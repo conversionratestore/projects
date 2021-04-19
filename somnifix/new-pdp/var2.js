@@ -1,6 +1,8 @@
-document.head.insertAdjacentHTML(
-  "beforeend",
-  `<style>
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('start')
+  document.head.insertAdjacentHTML(
+      "beforeend",
+      `<style>
         .product_section .shopify-product-form {
             color: #1E415F;        
         }
@@ -342,39 +344,39 @@ document.head.insertAdjacentHTML(
             }
             
     </style>`
-);
+  );
 
-const subheading = document.createElement("p");
-subheading.classList.add("subheading");
-subheading.innerText = `12-week pack (84 strips in a pack)`;
+  const subheading = document.createElement("p");
+  subheading.classList.add("subheading");
+  subheading.innerText = `12-week pack (84 strips in a pack)`;
 
-const productFormShopify = document.querySelectorAll(
-  ".product_section .shopify-product-form"
-)[1];
-const productNameTitle = document.querySelectorAll(".product_name.title")[1];
+  const productFormShopify = document.querySelectorAll(
+      ".product_section .shopify-product-form"
+  )[1];
+  const productNameTitle = document.querySelectorAll(".product_name.title")[1];
 
-const reviewWrap = document.createElement("div");
+  const reviewWrap = document.createElement("div");
 
-reviewWrap.classList.add("review-wrap");
-reviewWrap.append(
-  document.querySelectorAll(
-    ".stamped-product-reviews-badge.stamped-main-badge"
-  )[1],
-  document.querySelector(".made_in")
-);
-subheading.insertAdjacentElement("afterend", reviewWrap);
+  reviewWrap.classList.add("review-wrap");
+  reviewWrap.append(
+      document.querySelectorAll(
+          ".stamped-product-reviews-badge.stamped-main-badge"
+      )[1],
+      document.querySelector(".made_in")
+  );
+  subheading.insertAdjacentElement("afterend", reviewWrap);
 
-const spanMadeIn = document.querySelector(".made_in");
+  const spanMadeIn = document.querySelector(".made_in");
 
-const checkmark = document.querySelector(".checkmark_wrap.mobile-hide");
+  const checkmark = document.querySelector(".checkmark_wrap.mobile-hide");
 
-const swatch = document.querySelector(
-  ".section.is-width-standard .product_section .swatch_options .swatch"
-);
+  const swatch = document.querySelector(
+      ".section.is-width-standard .product_section .swatch_options .swatch"
+  );
 
-const checkListNav = document.createElement("nav");
-checkListNav.classList.add("checklist");
-checkListNav.innerHTML = `
+  const checkListNav = document.createElement("nav");
+  checkListNav.classList.add("checklist");
+  checkListNav.innerHTML = `
                                 <ul class="checklist">
                                     <li>Promote nose breathing</li>
                                     <li>Reduce open-mouth snoring</li>
@@ -382,15 +384,15 @@ checkListNav.innerHTML = `
                                     <li>Improve sleep quality</li>
                                 </ul>`;
 
-const middleBlock = document.createElement("div");
-middleBlock.classList.add("middle-block");
-middleBlock.innerHTML = `
+  const middleBlock = document.createElement("div");
+  middleBlock.classList.add("middle-block");
+  middleBlock.innerHTML = `
                                 <p>Price: <span class="middle-block__price-output">$55.97 USD</span></p>
                                 <p>Choose your pack: <span class="middle-block__week-output">12-week pack</span></p>`;
 
-const swatchCustom = document.createElement("div");
-swatchCustom.classList.add("swatchCustom");
-swatchCustom.innerHTML = `
+  const swatchCustom = document.createElement("div");
+  swatchCustom.classList.add("swatchCustom");
+  swatchCustom.innerHTML = `
                                 <div class="swatchCustom__item nosale swatchCustom__item--item1" data-variant="32115046023283" >
                                     <div class="swatchCustom__item--first">
                                         <span class="week">4-week pack</span>
@@ -428,38 +430,38 @@ swatchCustom.innerHTML = `
                                 </div>     
                                 `;
 
-const productInfo = document.querySelectorAll(".product__information")[1];
+  const productInfo = document.querySelectorAll(".product__information")[1];
 
-const shipping = document.createElement("div");
-shipping.classList.add(
-  "shipping",
-  "one-half",
-  "column",
-  "medium-down--one-whole"
-);
+  const shipping = document.createElement("div");
+  shipping.classList.add(
+      "shipping",
+      "one-half",
+      "column",
+      "medium-down--one-whole"
+  );
 
-const shippingInner = document.createElement("div");
-shippingInner.classList.add("shipping-inner");
+  const shippingInner = document.createElement("div");
+  shippingInner.classList.add("shipping-inner");
 
-const shippingPriceWrapper = document.createElement("div");
-shippingPriceWrapper.append(
-  document.querySelectorAll(".on-pack-wrapper")[3],
-  document.querySelectorAll(".on-pack-wrapper")[4],
-  document.querySelectorAll(".on-pack-wrapper")[5]
-);
+  const shippingPriceWrapper = document.createElement("div");
+  shippingPriceWrapper.append(
+      document.querySelectorAll(".on-pack-wrapper")[3],
+      document.querySelectorAll(".on-pack-wrapper")[4],
+      document.querySelectorAll(".on-pack-wrapper")[5]
+  );
 
-const shipToWrap = document.createElement("div");
-shipToWrap.classList.add("ship-destination");
-shipToWrap.innerHTML = `
+  const shipToWrap = document.createElement("div");
+  shipToWrap.classList.add("ship-destination");
+  shipToWrap.innerHTML = `
                             <span class ="ship-destination__span--ship">Ship to: </span>
                             <p>Arrives: <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
                             `;
 
-const shippingInfo = document.querySelectorAll(".on-right")[3];
+  const shippingInfo = document.querySelectorAll(".on-right")[3];
 
-const inStock = document.createElement("div");
-inStock.classList.add("stock");
-inStock.innerHTML = `
+  const inStock = document.createElement("div");
+  inStock.classList.add("stock");
+  inStock.innerHTML = `
                             <h4 class="stock__header">In Stock.</h4>
                             <select class="stock__select">
                                 <option value="1" data-value="1">Qty: 1</option>
@@ -486,48 +488,48 @@ inStock.innerHTML = `
                             <p class="stock__pack">1 pack = 84 strips</p>
                             `;
 
-const subscribe = document.createElement("div");
-subscribe.classList.add("subscribe-custom");
-subscribe.innerHTML = `
+  const subscribe = document.createElement("div");
+  subscribe.classList.add("subscribe-custom");
+  subscribe.innerHTML = `
                             <input class="subscribe-custom__checkbox" type="checkbox">
                             <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
                             <p>Auto delivery every 3 month for $49.97.</p>
                             <p>Cancel anytime.</p>
                             `;
 
-const cartButtonWrap = document.createElement("div");
-cartButtonWrap.classList.add("addcart");
-cartButtonWrap.innerHTML = `<button class="addcart__button">Add to cart</button>`;
+  const cartButtonWrap = document.createElement("div");
+  cartButtonWrap.classList.add("addcart");
+  cartButtonWrap.innerHTML = `<button class="addcart__button">Add to cart</button>`;
 
-productFormShopify.insertAdjacentElement("afterbegin", productNameTitle);
+  productFormShopify.insertAdjacentElement("afterbegin", productNameTitle);
 
-const moneybackWrap = document.createElement("div");
-moneybackWrap.classList.add("moneyback");
-moneybackWrap.innerHTML = `<img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day <br /> Money-Back <br />Guarantee</p>`;
+  const moneybackWrap = document.createElement("div");
+  moneybackWrap.classList.add("moneyback");
+  moneybackWrap.innerHTML = `<img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day <br /> Money-Back <br />Guarantee</p>`;
 
-productNameTitle.insertAdjacentElement("afterend", subheading);
-subheading.insertAdjacentElement("afterend", reviewWrap);
-swatch.insertAdjacentElement("beforebegin", checkListNav);
-checkListNav.insertAdjacentElement("afterend", middleBlock);
-middleBlock.insertAdjacentElement("afterend", swatchCustom);
-productFormShopify.insertAdjacentElement("afterend", checkmark);
-productInfo.insertAdjacentElement("afterend", shipping);
-shipping.insertAdjacentElement("afterbegin", shippingInner);
-shippingInner.insertAdjacentElement("afterbegin", shippingPriceWrapper);
-shippingPriceWrapper.insertAdjacentElement("afterend", shipToWrap);
-shipToWrap.insertAdjacentElement("afterend", inStock);
-document
-  .querySelector(".ship-destination__span--ship")
-  .insertAdjacentElement(
-    "afterend",
-    document.querySelectorAll(".on-select")[5]
-  );
-inStock.insertAdjacentElement("afterend", subscribe);
-subscribe.insertAdjacentElement("afterend", cartButtonWrap);
-shippingInner.insertAdjacentElement("afterend", moneybackWrap);
+  productNameTitle.insertAdjacentElement("afterend", subheading);
+  subheading.insertAdjacentElement("afterend", reviewWrap);
+  swatch.insertAdjacentElement("beforebegin", checkListNav);
+  checkListNav.insertAdjacentElement("afterend", middleBlock);
+  middleBlock.insertAdjacentElement("afterend", swatchCustom);
+  productFormShopify.insertAdjacentElement("afterend", checkmark);
+  productInfo.insertAdjacentElement("afterend", shipping);
+  shipping.insertAdjacentElement("afterbegin", shippingInner);
+  shippingInner.insertAdjacentElement("afterbegin", shippingPriceWrapper);
+  shippingPriceWrapper.insertAdjacentElement("afterend", shipToWrap);
+  shipToWrap.insertAdjacentElement("afterend", inStock);
+  document
+      .querySelector(".ship-destination__span--ship")
+      .insertAdjacentElement(
+          "afterend",
+          document.querySelectorAll(".on-select")[5]
+      );
+  inStock.insertAdjacentElement("afterend", subscribe);
+  subscribe.insertAdjacentElement("afterend", cartButtonWrap);
+  shippingInner.insertAdjacentElement("afterend", moneybackWrap);
 
-const swatchWrap = document.querySelector(".swatchCustom");
-const swatchItem = document.querySelectorAll(".swatchCustom__item");
+  const swatchWrap = document.querySelector(".swatchCustom");
+  const swatchItem = document.querySelectorAll(".swatchCustom__item");
 
 // let month = document
 //   .querySelector(".swatchCustom__item--active")
@@ -537,130 +539,133 @@ const swatchItem = document.querySelectorAll(".swatchCustom__item");
 //   .variant;
 // const itemQuantity = document.querySelector(".stock__select").value;
 
-for (let i = 0; i < swatchItem.length; i++) {
-  swatchItem[i].addEventListener("click", function () {
-    let current = document.getElementsByClassName("swatchCustom__item--active");
-    current[0].className = current[0].className.replace(
-      " swatchCustom__item--active",
-      ""
-    );
-    this.className += " swatchCustom__item--active";
+  for (let i = 0; i < swatchItem.length; i++) {
+    swatchItem[i].addEventListener("click", function () {
+      let current = document.getElementsByClassName("swatchCustom__item--active");
+      current[0].className = current[0].className.replace(
+          " swatchCustom__item--active",
+          ""
+      );
+      this.className += " swatchCustom__item--active";
 
-    if (swatchItem[0].classList.contains("swatchCustom__item--active")) {
-      document.querySelector(".subscribe-custom").style.display = "none";
-    } else {
-      document.querySelector(".subscribe-custom").style.display = "block";
-    }
+      if (swatchItem[0].classList.contains("swatchCustom__item--active")) {
+        document.querySelector(".subscribe-custom").style.display = "none";
+      } else {
+        document.querySelector(".subscribe-custom").style.display = "block";
+      }
 
-    document.querySelector(".stock__select").value = 1;
+      document.querySelector(".stock__select").value = 1;
 
-    let spanWeek = document
-      .querySelector(".swatchCustom__item--active")
-      .children[0].getElementsByClassName("week")[0].innerText;
-    let spanPrice = document
-      .querySelector(".swatchCustom__item--active")
-      .lastElementChild.getElementsByClassName("price")[0].innerText;
-    let spanStrips = document
-      .querySelector(".swatchCustom__item--active")
-      .children[0].getElementsByClassName("days")[0]
-      .innerText.replace(/ .*/, "");
+      let spanWeek = document
+          .querySelector(".swatchCustom__item--active")
+          .children[0].getElementsByClassName("week")[0].innerText;
+      let spanPrice = document
+          .querySelector(".swatchCustom__item--active")
+          .lastElementChild.getElementsByClassName("price")[0].innerText;
+      let spanStrips = document
+          .querySelector(".swatchCustom__item--active")
+          .children[0].getElementsByClassName("days")[0]
+          .innerText.replace(/ .*/, "");
 
-    subheading.innerText = `${spanWeek} (${spanStrips} strips in a pack)`;
+      subheading.innerText = `${spanWeek} (${spanStrips} strips in a pack)`;
 
-    document.querySelector(".middle-block__week-output").innerText = spanWeek;
-    document.querySelector(".middle-block__price-output").innerText = spanPrice;
-  });
-}
+      document.querySelector(".middle-block__week-output").innerText = spanWeek;
+      document.querySelector(".middle-block__price-output").innerText = spanPrice;
+    });
+  }
 
-for (let i = 0; i < swatchWrap.children.length; i++) {
-  document
-    .querySelector(".swatchCustom")
-    .children[i].addEventListener("click", () => {
+  for (let i = 0; i < swatchWrap.children.length; i++) {
+    document
+        .querySelector(".swatchCustom")
+        .children[i].addEventListener("click", () => {
       document.querySelectorAll(".swatch-element")[i + 3].click();
 
       upgrade();
     });
-}
-
-const starWrap = document.querySelectorAll(
-  ".stamped-starrating.stamped-badge-starrating"
-)[1];
-
-document.querySelectorAll(".swatch-element")[4].click();
-for (let i = 0; i < starWrap.children.length; i++) {
-  starWrap.children[i].style.cssText = "color: rgb(242, 180, 19) !important;";
-}
-
-function upgrade(currentOptionValue) {
-  let stockStrips = document
-    .querySelector(".swatchCustom__item--active")
-    .children[0].getElementsByClassName("days")[0]
-    .innerText.replace(/ .*/, "");
-
-  if (currentOptionValue === undefined) {
-    document.querySelector(
-      ".stock__pack"
-    ).innerHTML = `1 pack = ${stockStrips} strips`;
-  } else {
-    document.querySelector(
-      ".stock__pack"
-    ).innerHTML = `${currentOptionValue} packs = ${
-      stockStrips * currentOptionValue
-    } strips`;
   }
-}
 
-document.querySelector(".stock__select").addEventListener("change", (e) => {
-  let currentOptionValue =
-    e.target.options[e.target.selectedIndex].dataset.value;
+  const starWrap = document.querySelectorAll(
+      ".stamped-starrating.stamped-badge-starrating"
+  )[1];
 
-  let initialValue = document
-    .querySelectorAll(".modal_price.subtitle")[3]
-    .getElementsByClassName("money")[0]
-    .dataset.currencyUsd.replace(/[^0-9.]/g, "");
+  document.querySelectorAll(".swatch-element")[4].click();
+  for (let i = 0; i < starWrap.children.length; i++) {
+    starWrap.children[i].style.cssText = "color: rgb(242, 180, 19) !important;";
+  }
 
-  let tempMoneyValue = initialValue * currentOptionValue;
+  function upgrade(currentOptionValue) {
+    let stockStrips = document
+        .querySelector(".swatchCustom__item--active")
+        .children[0].getElementsByClassName("days")[0]
+        .innerText.replace(/ .*/, "");
+
+    if (currentOptionValue === undefined) {
+      document.querySelector(
+          ".stock__pack"
+      ).innerHTML = `1 pack = ${stockStrips} strips`;
+    } else {
+      document.querySelector(
+          ".stock__pack"
+      ).innerHTML = `${currentOptionValue} packs = ${
+          stockStrips * currentOptionValue
+      } strips`;
+    }
+  }
+
+  document.querySelector(".stock__select").addEventListener("change", (e) => {
+    let currentOptionValue =
+        e.target.options[e.target.selectedIndex].dataset.value;
+
+    let initialValue = document
+        .querySelectorAll(".modal_price.subtitle")[3]
+        .getElementsByClassName("money")[0]
+        .dataset.currencyUsd.replace(/[^0-9.]/g, "");
+
+    let tempMoneyValue = initialValue * currentOptionValue;
+
+    document
+        .querySelectorAll(".modal_price.subtitle")[3]
+        .getElementsByClassName("money")[0].innerText = `$${Number(
+        tempMoneyValue.toFixed(2)
+    )} USD`;
+
+    upgrade(currentOptionValue);
+  });
 
   document
-    .querySelectorAll(".modal_price.subtitle")[3]
-    .getElementsByClassName("money")[0].innerText = `$${Number(
-    tempMoneyValue.toFixed(2)
-  )} USD`;
-
-  upgrade(currentOptionValue);
-});
-
-document
-  .querySelector(".subscribe-custom__checkbox")
-  .addEventListener("change", (e) => {
-    if (e.currentTarget.checked) {
-      upgrade();
-      document.querySelector(".stock__select").disabled = true;
-      document.querySelector(".stock__select").value = 1;
-    } else {
-      document.querySelector(".stock__select").disabled = false;
-    }
-  });
+      .querySelector(".subscribe-custom__checkbox")
+      .addEventListener("change", (e) => {
+        if (e.currentTarget.checked) {
+          upgrade();
+          document.querySelector(".stock__select").disabled = true;
+          document.querySelector(".stock__select").value = 1;
+        } else {
+          document.querySelector(".stock__select").disabled = false;
+        }
+      });
 
   document.querySelector(".ship-destination__span--date").innerText = document.querySelectorAll(".on-select")[5].children[0].dataset.value
 
-document.querySelectorAll(".on-select")[5].addEventListener("change", (e) => {
-  let value = e.target.options[e.target.selectedIndex].dataset.value;
-  document.querySelector(".ship-destination__span--date").innerText = value;
-});
+  document.querySelectorAll(".on-select")[5].addEventListener("change", (e) => {
+    let value = e.target.options[e.target.selectedIndex].dataset.value;
+    document.querySelector(".ship-destination__span--date").innerText = value;
+  });
 
-document.querySelector(".addcart__button").addEventListener("click", () => {
-  const itemId = document.querySelector(".swatchCustom__item--active").dataset
-    .variant;
-  const itemQuantity = document.querySelector(".stock__select").value;
+  document.querySelector(".addcart__button").addEventListener("click", () => {
+    const itemId = document.querySelector(".swatchCustom__item--active").dataset
+        .variant;
+    const itemQuantity = document.querySelector(".stock__select").value;
 
-  if (document.querySelector(".subscribe-custom__checkbox").checked) {
-    if (itemId === "32115046056051") {
-      addItemToCart("31272810676339", 1, "3", "Month", "95310");
-    } else if (itemId === "32190023958643") {
-      addItemToCart("32190023958643", 1, "12", "Month", "95310");
+    if (document.querySelector(".subscribe-custom__checkbox").checked) {
+      if (itemId === "32115046056051") {
+        addItemToCart("31272810676339", 1, "3", "Month", "95310");
+      } else if (itemId === "32190023958643") {
+        addItemToCart("32190023958643", 1, "12", "Month", "95310");
+      }
+    } else {
+      addItemToCart(itemId, itemQuantity);
     }
-  } else {
-    addItemToCart(itemId, itemQuantity);
-  }
-});
+  });
+})
+
+
