@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.onload = function () {
     console.log('start')
     let style = `
 <style>
@@ -783,4 +783,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //31272810676339 3 month
 //32190023958643 12 month
-})
+}
