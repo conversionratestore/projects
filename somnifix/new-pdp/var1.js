@@ -347,7 +347,7 @@ let style = `
         border-radius: 10px;
         transition: all 0.3s ease;
         height: 0;
-        overflow: hidden;
+        overflow-y: auto;
     }
     
     .select-choose.active .select-choose__current {
@@ -438,7 +438,7 @@ let style = `
         letter-spacing: 0.005em;
     }
     .section.is-width-standard .product_section .select-choose .swatch label.on-variant-label {
-        padding: 20px
+        padding: 20px 5px;
     }
     .section.is-width-standard .product_section .select-choose .swatch .swatch-element{
         background: rgba(196, 196, 196, 0.02);
@@ -503,12 +503,10 @@ let style = `
         text-decoration-line: underline;
         color: #1E415F;
 
-    }
-    
+    } 
     .select-country {
         display: flex;
         align-items: center;
-    
     }
     .select-country p {
         font-style: normal;
@@ -522,6 +520,15 @@ let style = `
         font-size: 14px;
         line-height: 16px;
         margin-top: 5px;
+    }
+    .swatch_options {
+        margin-bottom: 0;
+    }
+    @media only screen and (max-width : 1199px){
+        .section.is-width-standard .product_section .select-choose .swatch label.on-variant-label .on-title {
+            font-size: 16px;
+            line-height: 18px;
+        }
     }
 </style>
 `
@@ -629,7 +636,6 @@ newElementProductRight.innerHTML = `
 
 document.querySelectorAll('.product-form-container').forEach(function (item) {
     item.appendChild(newElementProductRight);
- 
 });
 
 document.querySelector('.product-review').appendChild(document.querySelector('.stamped-product-reviews-badge'));
@@ -653,7 +659,7 @@ document.querySelector('.select2 select').addEventListener('change', function (e
     document.querySelector('.pack-val-strips').innerHTML =`${stripsMulty} strips`
 });
 
-//added
+//add data-id in swatch element
 var arrId = ['0','31272810676339','32190023958643'];
   
 var els = document.querySelectorAll('.select-choose .swatch-element');
