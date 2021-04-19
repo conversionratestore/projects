@@ -1,5 +1,6 @@
-
-let style = `
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('start')
+    let style = `
 <style>
     .flex-center-between {
         display: flex;
@@ -533,23 +534,23 @@ let style = `
 </style>
 `
 
-document.body.insertAdjacentHTML('afterbegin', style);
+    document.body.insertAdjacentHTML('afterbegin', style);
 
-const productName = document.querySelector('.product_name').innerHTML,
-      madeIn = document.querySelector('.made_in').innerHTML,
-      swatchOptions  = document.querySelector('.swatch_options').innerHTML,
-      currentPrice = document.querySelector('.modal_price.subtitle').innerHTML,
-      freeShippingLabel = document.querySelector('.on-free-shipping-label').innerHTML,
-      onSelect = document.querySelector('.on-select').innerHTML,
-      checkmarkWrap = document.querySelector('.checkmark_wrap').innerHTML;
+    const productName = document.querySelector('.product_name').innerHTML,
+        madeIn = document.querySelector('.made_in').innerHTML,
+        swatchOptions = document.querySelector('.swatch_options').innerHTML,
+        currentPrice = document.querySelector('.modal_price.subtitle').innerHTML,
+        freeShippingLabel = document.querySelector('.on-free-shipping-label').innerHTML,
+        onSelect = document.querySelector('.on-select').innerHTML,
+        checkmarkWrap = document.querySelector('.checkmark_wrap').innerHTML;
 
-const newElementProductRight= document.createElement('div');
-newElementProductRight.className = 'product__right active';
+    const newElementProductRight = document.createElement('div');
+    newElementProductRight.className = 'product__right active';
 
-var variantImportant = document.querySelectorAll('.on-variant-label')[0].dataset.variant;
+    var variantImportant = document.querySelectorAll('.on-variant-label')[0].dataset.variant;
 
-document.querySelectorAll('.on-pack-wrapper-1 .on-count');
-newElementProductRight.innerHTML = `
+    document.querySelectorAll('.on-pack-wrapper-1 .on-count');
+    newElementProductRight.innerHTML = `
     <div class="product-form_gray">
         <div class="product-form_head">
             <h1 class="product_name title">${productName}</h1>
@@ -634,151 +635,152 @@ newElementProductRight.innerHTML = `
 `
 
 
-document.querySelectorAll('.product-form-container').forEach(function (item) {
-    item.appendChild(newElementProductRight);
-});
+    document.querySelectorAll('.product-form-container').forEach(function (item) {
+        item.appendChild(newElementProductRight);
+    });
 
-document.querySelector('.product-review').appendChild(document.querySelector('.stamped-product-reviews-badge'));
+    document.querySelector('.product-review').appendChild(document.querySelector('.stamped-product-reviews-badge'));
 
 // toggle classList select
-document.querySelector('.select-choose__current').addEventListener('click', (e) => {
-    e.target.parentNode.classList.toggle('active');
-});
+    document.querySelector('.select-choose__current').addEventListener('click', (e) => {
+        e.target.parentNode.classList.toggle('active');
+    });
 
 // record - value selected
-document.querySelector('.select2 select').addEventListener('change', function (event) {
-    let pack = event.target.options[event.target.selectedIndex].dataset.pack,
-        strips = this.dataset.strips,
-        price = this.dataset.price,
-        multy = pack * price,
-        stripsMulty = pack * strips;
+    document.querySelector('.select2 select').addEventListener('change', function (event) {
+        let pack = event.target.options[event.target.selectedIndex].dataset.pack,
+            strips = this.dataset.strips,
+            price = this.dataset.price,
+            multy = pack * price,
+            stripsMulty = pack * strips;
 
-    document.querySelector('.pack-val-item').innerHTML = `${pack} pack = `; 
-    document.querySelector('.product-price .money').innerHTML = `$${multy.toFixed(2)} USD`; 
-    document.querySelector('.button__add-to-cart').dataset.pack = pack;
-    document.querySelector('.pack-val-strips').innerHTML =`${stripsMulty} strips`
-});
+        document.querySelector('.pack-val-item').innerHTML = `${pack} pack = `;
+        document.querySelector('.product-price .money').innerHTML = `$${multy.toFixed(2)} USD`;
+        document.querySelector('.button__add-to-cart').dataset.pack = pack;
+        document.querySelector('.pack-val-strips').innerHTML = `${stripsMulty} strips`
+    });
 
 //add data-id in swatch element
-var arrId = ['0','31272810676339','32190023958643'];
-  
-var els = document.querySelectorAll('.select-choose .swatch-element');
-for (let i = 0; i < els.length; i++) {
-    els[i].setAttribute("data-id", arrId[i]);
-}
+    var arrId = ['0', '31272810676339', '32190023958643'];
+
+    var els = document.querySelectorAll('.select-choose .swatch-element');
+    for (let i = 0; i < els.length; i++) {
+        els[i].setAttribute("data-id", arrId[i]);
+    }
 
 
-document.querySelectorAll('.swatch-element').forEach(function (item) {
-    item.addEventListener('click', () => {
-        let childValue = item.querySelector('.new-price-label').innerHTML,
-            title = item.querySelector('.on-title').innerHTML,
-            titleDetails = item.querySelector('.on-title-details').innerHTML,
-            splDetails = titleDetails.split(' — '),
-            splDetailsStrips = titleDetails.split(' strips'),
-            splChildValue = childValue.split('$'),
-            dataId = item.dataset.id;
-            
-        if (dataId == '0') {
-            document.querySelector('.message-block').style.display = 'none';
-        } else {
-            document.querySelector('.message-block').style.display = 'flex';
-        }
-      
-        document.querySelector(".select2 select").dataset.strips = splDetailsStrips[0];
+    document.querySelectorAll('.swatch-element').forEach(function (item) {
+        item.addEventListener('click', () => {
+            let childValue = item.querySelector('.new-price-label').innerHTML,
+                title = item.querySelector('.on-title').innerHTML,
+                titleDetails = item.querySelector('.on-title-details').innerHTML,
+                splDetails = titleDetails.split(' — '),
+                splDetailsStrips = titleDetails.split(' strips'),
+                splChildValue = childValue.split('$'),
+                dataId = item.dataset.id;
 
-        document.querySelector(".select2 select").dataset.price = splChildValue[1];
+            if (dataId == '0') {
+                document.querySelector('.message-block').style.display = 'none';
+            } else {
+                document.querySelector('.message-block').style.display = 'flex';
+            }
 
-        document.querySelector('.select-choose').classList.remove('active');
+            document.querySelector(".select2 select").dataset.strips = splDetailsStrips[0];
 
-        document.querySelector('.product-price .money').innerHTML = childValue;
-        document.querySelector('.select-choose__current').innerHTML = `${title} (${splDetails[0]}) `;
-     
-        let objSelect = document.querySelector('.select2 select');
-        objSelect.selectedIndex = 0;
-        objSelect.dispatchEvent(new Event('change'));
+            document.querySelector(".select2 select").dataset.price = splChildValue[1];
 
-        document.querySelector('.product-info_right .pack-val-strips').innerHTML = `${splDetails[0]}`; 
-        
-        document.querySelector('.button__add-to-cart').dataset.variant = item.querySelector('.on-variant-label').dataset.variant; 
-        document.querySelector('.button__add-to-cart').dataset.id = dataId; 
-   
-        document.querySelector('.select2 select').disabled = false;
-        document.querySelector('.message-block_checbox .checkbox').checked = false;
+            document.querySelector('.select-choose').classList.remove('active');
+
+            document.querySelector('.product-price .money').innerHTML = childValue;
+            document.querySelector('.select-choose__current').innerHTML = `${title} (${splDetails[0]}) `;
+
+            let objSelect = document.querySelector('.select2 select');
+            objSelect.selectedIndex = 0;
+            objSelect.dispatchEvent(new Event('change'));
+
+            document.querySelector('.product-info_right .pack-val-strips').innerHTML = `${splDetails[0]}`;
+
+            document.querySelector('.button__add-to-cart').dataset.variant = item.querySelector('.on-variant-label').dataset.variant;
+            document.querySelector('.button__add-to-cart').dataset.id = dataId;
+
+            document.querySelector('.select2 select').disabled = false;
+            document.querySelector('.message-block_checbox .checkbox').checked = false;
+        });
     });
-});
 
 
 // changed text in button - Add to cart
-document.querySelector('.product-form_gray .text-no-change').innerHTML = 'Add to cart';
+    document.querySelector('.product-form_gray .text-no-change').innerHTML = 'Add to cart';
 
 //added img before save lable in swatch
-document.querySelectorAll('.select-choose__dropdown .save-label').forEach(function (item){
-    item.insertAdjacentHTML('afterend','<img src="https://i.ibb.co/m9jVcgt/box-7.png" alt="alt">');
-});
+    document.querySelectorAll('.select-choose__dropdown .save-label').forEach(function (item) {
+        item.insertAdjacentHTML('afterend', '<img src="https://i.ibb.co/m9jVcgt/box-7.png" alt="alt">');
+    });
 
-let newElementPriceLabel = document.createElement('div');
-newElementPriceLabel.className = 'row-price-label';
-document.querySelectorAll('.select-choose .on-desktop-show').forEach(function (item) {
-    let oldPriceLabel = item.querySelector('.old-price-label').innerHTML,
-        newPriceLabel = item.querySelector('.new-price-label').innerHTML;
-    
-    newElementPriceLabel.innerHTML = `<span class="new-price-label">${newPriceLabel}</span><span class="old-price-label">${oldPriceLabel}</span>`;
+    let newElementPriceLabel = document.createElement('div');
+    newElementPriceLabel.className = 'row-price-label';
+    document.querySelectorAll('.select-choose .on-desktop-show').forEach(function (item) {
+        let oldPriceLabel = item.querySelector('.old-price-label').innerHTML,
+            newPriceLabel = item.querySelector('.new-price-label').innerHTML;
 
-    item.append(newElementPriceLabel.cloneNode(true));
+        newElementPriceLabel.innerHTML = `<span class="new-price-label">${newPriceLabel}</span><span class="old-price-label">${oldPriceLabel}</span>`;
 
-});
+        item.append(newElementPriceLabel.cloneNode(true));
 
-document.querySelector('.select-country select').innerHTML = document.querySelectorAll('.on-pack-wrapper select.on-select')[4].innerHTML;
+    });
 
-document.querySelector('.select-country select').addEventListener('change', function (event) {
-    let free = event.target.options[event.target.selectedIndex].dataset.free,
-        value = event.target.options[event.target.selectedIndex].dataset.value;
+    document.querySelector('.select-country select').innerHTML = document.querySelectorAll('.on-pack-wrapper select.on-select')[4].innerHTML;
 
-    if (free == 'free') {
-        document.querySelector('.align-items-center .on-free-shipping-label').innerHTML = `Free Shipping`;
-    } else {
-        document.querySelector('.align-items-center .on-free-shipping-label').innerHTML = `Shipping from ${free}`;
-    }
+    document.querySelector('.select-country select').addEventListener('change', function (event) {
+        let free = event.target.options[event.target.selectedIndex].dataset.free,
+            value = event.target.options[event.target.selectedIndex].dataset.value;
 
-    document.querySelector('.product-arrives .on-date-text').innerHTML = value;
-});
+        if (free == 'free') {
+            document.querySelector('.align-items-center .on-free-shipping-label').innerHTML = `Free Shipping`;
+        } else {
+            document.querySelector('.align-items-center .on-free-shipping-label').innerHTML = `Shipping from ${free}`;
+        }
+
+        document.querySelector('.product-arrives .on-date-text').innerHTML = value;
+    });
 
 //change color star 
-document.querySelectorAll('.product-review .stamped-fa-star').forEach(function (item) {
-    item.style = 'color: #F2B413!important';
-});
+    document.querySelectorAll('.product-review .stamped-fa-star').forEach(function (item) {
+        item.style = 'color: #F2B413!important';
+    });
 
 //checked
-document.querySelector('.message-block_checbox').addEventListener('click', function () {
-    if ( document.querySelector('.message-block_checbox .checkbox').checked) {
-        document.querySelector('.select2 select').disabled = true;
-        document.querySelector('.select2 select').selectedIndex = '0';
-        document.querySelector('.pack-val-item').innerHTML = '1 pack = ';
-        document.querySelector('.pack-val-strips').innerHTML = `${document.querySelector('.select2 select').dataset.strips} strips`;
-        document.querySelector('.product-price .money').innerHTML = `$${document.querySelector('.select2 select').dataset.price} USD`;
-    } else {
-        document.querySelector('.select2 select').disabled = false;
-    } 
-});
-
-document.querySelector('.button__add-to-cart').addEventListener('click', function() {
-    let checkbox = document.querySelector('.message-block_checbox input'),
-        dataVariant = this.dataset.variant,
-        dataPack = this.dataset.pack,
-        dataId = this.dataset.id;
-
-    if (!checkbox.checked) {
-        addItemToCart(dataVariant, dataPack);
-    } else {
-        console.log("checked");
-        if (dataId == '31272810676339') {
-            addItemToCart('31272810676339', 1, '3', 'Month', '95310');
+    document.querySelector('.message-block_checbox').addEventListener('click', function () {
+        if (document.querySelector('.message-block_checbox .checkbox').checked) {
+            document.querySelector('.select2 select').disabled = true;
+            document.querySelector('.select2 select').selectedIndex = '0';
+            document.querySelector('.pack-val-item').innerHTML = '1 pack = ';
+            document.querySelector('.pack-val-strips').innerHTML = `${document.querySelector('.select2 select').dataset.strips} strips`;
+            document.querySelector('.product-price .money').innerHTML = `$${document.querySelector('.select2 select').dataset.price} USD`;
+        } else {
+            document.querySelector('.select2 select').disabled = false;
         }
-        if (dataId == '32190023958643') {
-            addItemToCart('32190023958643', 1, '12', 'Month', '95310');
+    });
+
+    document.querySelector('.button__add-to-cart').addEventListener('click', function () {
+        let checkbox = document.querySelector('.message-block_checbox input'),
+            dataVariant = this.dataset.variant,
+            dataPack = this.dataset.pack,
+            dataId = this.dataset.id;
+
+        if (!checkbox.checked) {
+            addItemToCart(dataVariant, dataPack);
+        } else {
+            console.log("checked");
+            if (dataId == '31272810676339') {
+                addItemToCart('31272810676339', 1, '3', 'Month', '95310');
+            }
+            if (dataId == '32190023958643') {
+                addItemToCart('32190023958643', 1, '12', 'Month', '95310');
+            }
         }
-    }
-});
+    });
 
 //31272810676339 3 month
 //32190023958643 12 month
+})
