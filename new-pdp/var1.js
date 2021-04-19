@@ -664,8 +664,6 @@ for (let i = 0; i < els.length; i++) {
 
 document.querySelectorAll('.swatch-element').forEach(function (item) {
     item.addEventListener('click', () => {
-        // document.querySelector('.select2 select').dataset.price = 
-        console.log(item.children.checked);
         let childValue = item.querySelector('.new-price-label').innerHTML,
             title = item.querySelector('.on-title').innerHTML,
             titleDetails = item.querySelector('.on-title-details').innerHTML,
@@ -727,8 +725,8 @@ document.querySelectorAll('.select-choose .on-desktop-show').forEach(function (i
 document.querySelector('.select-country select').innerHTML = document.querySelectorAll('.on-pack-wrapper select.on-select')[4].innerHTML;
 
 document.querySelector('.select-country select').addEventListener('change', function (event) {
-    var free = event.target.options[event.target.selectedIndex].dataset.free;
-    var value = event.target.options[event.target.selectedIndex].dataset.value;
+    let free = event.target.options[event.target.selectedIndex].dataset.free,
+        value = event.target.options[event.target.selectedIndex].dataset.value;
 
     if (free == 'free') {
         document.querySelector('.align-items-center .on-free-shipping-label').innerHTML = `Free Shipping`;
@@ -750,6 +748,7 @@ document.querySelector('.message-block_checbox').addEventListener('click', funct
         document.querySelector('.select2 select').disabled = true;
         document.querySelector('.select2 select').selectedIndex = '0';
         document.querySelector('.pack-val-item').innerHTML = '1 pack = ';
+        document.querySelector('.pack-val-strips').innerHTML = `${document.querySelector('.select2 select').dataset.strips} strips`;
         document.querySelector('.product-price .money').innerHTML = `$${document.querySelector('.select2 select').dataset.price} USD`;
     } else {
         document.querySelector('.select2 select').disabled = false;
