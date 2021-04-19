@@ -1,8 +1,7 @@
 window.onload = function () {
-  console.log('start')
   document.head.insertAdjacentHTML(
-      "beforeend",
-      `<style>
+    "beforeend",
+    `<style>
         .product_section .shopify-product-form {
             color: #1E415F;        
         }
@@ -132,6 +131,7 @@ window.onload = function () {
             cursor: pointer;
         }
         .swatchCustom__item.swatchCustom__item--active {
+            pointer-events: none;
             background: #F1F7FC;
             border: 2px solid #4090D1;
         }
@@ -337,6 +337,10 @@ window.onload = function () {
                 display: none;
             }                       
             
+            #shopify-section-product__main .stamped-product-reviews-badge {
+                padding: 0 !important;
+            }
+
             @media only screen and (max-width: 1281px) and (min-width: 1024px)  {
                 .product_section .shopify-product-form, .shipping-inner {
                     height: 600px;
@@ -351,7 +355,7 @@ window.onload = function () {
   subheading.innerText = `12-week pack (84 strips in a pack)`;
 
   const productFormShopify = document.querySelectorAll(
-      ".product_section .shopify-product-form"
+    ".product_section .shopify-product-form"
   )[1];
   const productNameTitle = document.querySelectorAll(".product_name.title")[1];
 
@@ -359,19 +363,17 @@ window.onload = function () {
 
   reviewWrap.classList.add("review-wrap");
   reviewWrap.append(
-      document.querySelectorAll(
-          ".stamped-product-reviews-badge.stamped-main-badge"
-      )[1],
-      document.querySelector(".made_in")
+    document.querySelectorAll(
+      ".stamped-product-reviews-badge.stamped-main-badge"
+    )[1],
+    document.querySelector(".made_in")
   );
   subheading.insertAdjacentElement("afterend", reviewWrap);
-
-  const spanMadeIn = document.querySelector(".made_in");
 
   const checkmark = document.querySelector(".checkmark_wrap.mobile-hide");
 
   const swatch = document.querySelector(
-      ".section.is-width-standard .product_section .swatch_options .swatch"
+    ".section.is-width-standard .product_section .swatch_options .swatch"
   );
 
   const checkListNav = document.createElement("nav");
@@ -434,10 +436,10 @@ window.onload = function () {
 
   const shipping = document.createElement("div");
   shipping.classList.add(
-      "shipping",
-      "one-half",
-      "column",
-      "medium-down--one-whole"
+    "shipping",
+    "one-half",
+    "column",
+    "medium-down--one-whole"
   );
 
   const shippingInner = document.createElement("div");
@@ -445,9 +447,9 @@ window.onload = function () {
 
   const shippingPriceWrapper = document.createElement("div");
   shippingPriceWrapper.append(
-      document.querySelectorAll(".on-pack-wrapper")[3],
-      document.querySelectorAll(".on-pack-wrapper")[4],
-      document.querySelectorAll(".on-pack-wrapper")[5]
+    document.querySelectorAll(".on-pack-wrapper")[3],
+    document.querySelectorAll(".on-pack-wrapper")[4],
+    document.querySelectorAll(".on-pack-wrapper")[5]
   );
 
   const shipToWrap = document.createElement("div");
@@ -457,33 +459,18 @@ window.onload = function () {
                             <p>Arrives: <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
                             `;
 
-  const shippingInfo = document.querySelectorAll(".on-right")[3];
+  const options = [];
+
+  for (let i = 1; i <= 20; i++) {
+    options.push(`<option value="${i}" data-value="${i}">Qty: ${i}</option>`);
+  }
 
   const inStock = document.createElement("div");
   inStock.classList.add("stock");
   inStock.innerHTML = `
                             <h4 class="stock__header">In Stock.</h4>
                             <select class="stock__select">
-                                <option value="1" data-value="1">Qty: 1</option>
-                                <option value="2" data-value="2">Qty: 2</option>
-                                <option value="3" data-value="3">Qty: 3</option>
-                                <option value="4" data-value="4">Qty: 4</option>
-                                <option value="5" data-value="5">Qty: 5</option>
-                                <option value="6" data-value="6">Qty: 6</option>
-                                <option value="7" data-value="7">Qty: 7</option>
-                                <option value="8" data-value="8">Qty: 8</option>
-                                <option value="9" data-value="9">Qty: 9</option>
-                                <option value="10" data-value="10">Qty: 10</option>
-                                <option value="11" data-value="11">Qty: 11</option>
-                                <option value="12" data-value="12">Qty: 12</option>
-                                <option value="13" data-value="13">Qty: 13</option>
-                                <option value="14" data-value="14">Qty: 14</option>
-                                <option value="15" data-value="15">Qty: 15</option>
-                                <option value="16" data-value="16">Qty: 16</option>
-                                <option value="17" data-value="17">Qty: 17</option>
-                                <option value="18" data-value="18">Qty: 18</option>
-                                <option value="19" data-value="19">Qty: 19</option>
-                                <option value="20" data-value="20">Qty: 20</option>
+                            ${options}
                             </select>
                             <p class="stock__pack">1 pack = 84 strips</p>
                             `;
@@ -519,11 +506,11 @@ window.onload = function () {
   shippingPriceWrapper.insertAdjacentElement("afterend", shipToWrap);
   shipToWrap.insertAdjacentElement("afterend", inStock);
   document
-      .querySelector(".ship-destination__span--ship")
-      .insertAdjacentElement(
-          "afterend",
-          document.querySelectorAll(".on-select")[5]
-      );
+    .querySelector(".ship-destination__span--ship")
+    .insertAdjacentElement(
+      "afterend",
+      document.querySelectorAll(".on-select")[5]
+    );
   inStock.insertAdjacentElement("afterend", subscribe);
   subscribe.insertAdjacentElement("afterend", cartButtonWrap);
   shippingInner.insertAdjacentElement("afterend", moneybackWrap);
@@ -531,20 +518,14 @@ window.onload = function () {
   const swatchWrap = document.querySelector(".swatchCustom");
   const swatchItem = document.querySelectorAll(".swatchCustom__item");
 
-// let month = document
-//   .querySelector(".swatchCustom__item--active")
-//   .children[0].getElementsByClassName("week")[0].innerText;
-
-// const itemId = document.querySelector(".swatchCustom__item--active").dataset
-//   .variant;
-// const itemQuantity = document.querySelector(".stock__select").value;
-
   for (let i = 0; i < swatchItem.length; i++) {
     swatchItem[i].addEventListener("click", function () {
-      let current = document.getElementsByClassName("swatchCustom__item--active");
+      let current = document.getElementsByClassName(
+        "swatchCustom__item--active"
+      );
       current[0].className = current[0].className.replace(
-          " swatchCustom__item--active",
-          ""
+        " swatchCustom__item--active",
+        ""
       );
       this.className += " swatchCustom__item--active";
 
@@ -557,35 +538,62 @@ window.onload = function () {
       document.querySelector(".stock__select").value = 1;
 
       let spanWeek = document
-          .querySelector(".swatchCustom__item--active")
-          .children[0].getElementsByClassName("week")[0].innerText;
+        .querySelector(".swatchCustom__item--active")
+        .children[0].getElementsByClassName("week")[0].innerText;
       let spanPrice = document
-          .querySelector(".swatchCustom__item--active")
-          .lastElementChild.getElementsByClassName("price")[0].innerText;
+        .querySelector(".swatchCustom__item--active")
+        .lastElementChild.getElementsByClassName("price")[0].innerText;
       let spanStrips = document
-          .querySelector(".swatchCustom__item--active")
-          .children[0].getElementsByClassName("days")[0]
-          .innerText.replace(/ .*/, "");
+        .querySelector(".swatchCustom__item--active")
+        .children[0].getElementsByClassName("days")[0]
+        .innerText.replace(/ .*/, "");
 
       subheading.innerText = `${spanWeek} (${spanStrips} strips in a pack)`;
 
       document.querySelector(".middle-block__week-output").innerText = spanWeek;
-      document.querySelector(".middle-block__price-output").innerText = spanPrice;
+      document.querySelector(
+        ".middle-block__price-output"
+      ).innerText = spanPrice;
     });
   }
 
   for (let i = 0; i < swatchWrap.children.length; i++) {
     document
-        .querySelector(".swatchCustom")
-        .children[i].addEventListener("click", () => {
-      document.querySelectorAll(".swatch-element")[i + 3].click();
+      .querySelector(".swatchCustom")
+      .children[i].addEventListener("click", function () {
+        if (i === 0) {
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — New PDP (Variant 1/A)",
+            eventAction: "click on button 4-week pack",
+            eventLabel: "Section: Pack size",
+          });
+        } else if (i === 1) {
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — New PDP (Variant 1/A)",
+            eventAction: "click on button 12-week pack",
+            eventLabel: "Section: Pack size",
+          });
+        } else if (i === 2) {
+          window.dataLayer = window.dataLayer || [];
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — New PDP (Variant 1/A)",
+            eventAction: "click on button 12-month pack",
+            eventLabel: "Section: Pack size",
+          });
+        }
+        document.querySelectorAll(".swatch-element")[i + 3].click();
 
-      upgrade();
-    });
+        upgrade();
+      });
   }
 
   const starWrap = document.querySelectorAll(
-      ".stamped-starrating.stamped-badge-starrating"
+    ".stamped-starrating.stamped-badge-starrating"
   )[1];
 
   document.querySelectorAll(".swatch-element")[4].click();
@@ -595,56 +603,74 @@ window.onload = function () {
 
   function upgrade(currentOptionValue) {
     let stockStrips = document
-        .querySelector(".swatchCustom__item--active")
-        .children[0].getElementsByClassName("days")[0]
-        .innerText.replace(/ .*/, "");
+      .querySelector(".swatchCustom__item--active")
+      .children[0].getElementsByClassName("days")[0]
+      .innerText.replace(/ .*/, "");
 
     if (currentOptionValue === undefined) {
       document.querySelector(
-          ".stock__pack"
+        ".stock__pack"
       ).innerHTML = `1 pack = ${stockStrips} strips`;
     } else {
       document.querySelector(
-          ".stock__pack"
+        ".stock__pack"
       ).innerHTML = `${currentOptionValue} packs = ${
-          stockStrips * currentOptionValue
+        stockStrips * currentOptionValue
       } strips`;
     }
   }
 
   document.querySelector(".stock__select").addEventListener("change", (e) => {
     let currentOptionValue =
-        e.target.options[e.target.selectedIndex].dataset.value;
+      e.target.options[e.target.selectedIndex].dataset.value;
 
     let initialValue = document
-        .querySelectorAll(".modal_price.subtitle")[3]
-        .getElementsByClassName("money")[0]
-        .dataset.currencyUsd.replace(/[^0-9.]/g, "");
+      .querySelectorAll(".modal_price.subtitle")[3]
+      .getElementsByClassName("money")[0]
+      .dataset.currencyUsd.replace(/[^0-9.]/g, "");
 
     let tempMoneyValue = initialValue * currentOptionValue;
 
     document
-        .querySelectorAll(".modal_price.subtitle")[3]
-        .getElementsByClassName("money")[0].innerText = `$${Number(
-        tempMoneyValue.toFixed(2)
+      .querySelectorAll(".modal_price.subtitle")[3]
+      .getElementsByClassName("money")[0].innerText = `$${Number(
+      tempMoneyValue.toFixed(2)
     )} USD`;
 
     upgrade(currentOptionValue);
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — New PDP (Variant 1/A)",
+      eventAction: "click on select — quantity",
+    });
   });
 
   document
-      .querySelector(".subscribe-custom__checkbox")
-      .addEventListener("change", (e) => {
-        if (e.currentTarget.checked) {
-          upgrade();
-          document.querySelector(".stock__select").disabled = true;
-          document.querySelector(".stock__select").value = 1;
-        } else {
-          document.querySelector(".stock__select").disabled = false;
-        }
-      });
+    .querySelector(".subscribe-custom__checkbox")
+    .addEventListener("change", (e) => {
+      if (e.currentTarget.checked) {
+        upgrade();
+        document.querySelector(".stock__select").disabled = true;
+        document.querySelector(".stock__select").value = 1;
 
-  document.querySelector(".ship-destination__span--date").innerText = document.querySelectorAll(".on-select")[5].children[0].dataset.value
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — New PDP (Variant 1/A)",
+          eventAction: "click on checkbox — Subscribe and save 10%",
+        });
+      } else {
+        document.querySelector(".stock__select").disabled = false;
+      }
+    });
+
+  document.querySelector(
+    ".ship-destination__span--date"
+  ).innerText = document.querySelectorAll(
+    ".on-select"
+  )[5].children[0].dataset.value;
 
   document.querySelectorAll(".on-select")[5].addEventListener("change", (e) => {
     let value = e.target.options[e.target.selectedIndex].dataset.value;
@@ -653,7 +679,7 @@ window.onload = function () {
 
   document.querySelector(".addcart__button").addEventListener("click", () => {
     const itemId = document.querySelector(".swatchCustom__item--active").dataset
-        .variant;
+      .variant;
     const itemQuantity = document.querySelector(".stock__select").value;
 
     if (document.querySelector(".subscribe-custom__checkbox").checked) {
@@ -666,6 +692,59 @@ window.onload = function () {
       addItemToCart(itemId, itemQuantity);
     }
   });
-}
 
+  document.querySelectorAll(".tooltip-container").forEach((e, index) =>
+    e.addEventListener("mouseenter", () => {
+      if (index === 0) {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — New PDP (Variant 1/A)",
+          eventAction: "click on tooltip",
+          eventLabel: "Tooltip: Hyppoallergic and good for sensitive skin",
+        });
+      } else if (index === 1) {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — New PDP (Variant 1/A)",
+          eventAction: "click on tooltip",
+          eventLabel: "Tooltip: Does not block breathing",
+        });
+      } else if (index === 2) {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp — New PDP (Variant 1/A)",
+          eventAction: "click on tooltip",
+          eventLabel: "Tooltip: CPAP-friendly with nasal mask or nasal pillows",
+        });
+      }
+    })
+  )(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 1271698, hjsv: 6 };
+    a = o.getElementsByTagName("head")[0];
+    r = o.createElement("script");
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj("trigger", "new_pdp_desktop");
 
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — New PDP",
+    eventAction: "loaded",
+  });
+};
