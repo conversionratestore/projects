@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.onload = function () {
   console.log('start')
   document.head.insertAdjacentHTML(
       "beforeend",
@@ -666,6 +666,6 @@ document.addEventListener('DOMContentLoaded', function () {
       addItemToCart(itemId, itemQuantity);
     }
   });
-})
+}
 
 
