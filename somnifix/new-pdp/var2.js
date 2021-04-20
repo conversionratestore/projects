@@ -2,352 +2,358 @@ window.onload = function () {
   document.head.insertAdjacentHTML(
     "beforeend",
     `<style>
-        .product_section .shopify-product-form {
-            color: #1E415F;        
-        }
-        .stamped-badge-caption span {
-            color: #000;
-        }
         
-        .swatch label.on-variant-label .on-icon,
-        .section.is-width-standard .swatch .top-label,
-        .section.is-width-standard .swatch .best-label,
-        body .section.is-width-standard .swatch .weeks-label,
-        .description.content.has-padding-top,
-        .on-payment-wrapper {
-            display: none !important;
-        }
-        .review-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .made_in {                        
-            font-weight: 500;
-            font-size: 12px;
-            color: #fff;
-            background: #4090d1;
-            border-radius: 5px;
-            padding: 8px;
-        }
-        .made_in::before {
-            background-image: url(https://i.ibb.co/hcttzx7/image-62.png);
-            display: inline-block;            
-            height: 10px;
-            width: 14px;
-            margin-right: 7px;
-            border-radius: 1px;
-            content: "";
-        }    
-        .product_section .shopify-product-form, 
-        .shipping-inner {
-            height: 560px;
-        }
-        .product_section .shopify-product-form {
-            position: relative;
-            padding: 20px;
-        }
-        .product_name.title {
-            margin-bottom: 0;
-        }
-        .subheading {
-            color: #1E415F;
-            margin: 10px 0;
-            font-weight: 700;
-        }
-        .checkmark_wrap {    
-            flex-direction: column;
-            padding: 12px 20px;
-        }
-        .checkmark_wrap .checkmark_item {
-            display: flex;
-            width: 100%;
-            text-align: left;
-        }
-        .checkmark_wrap .checkmark_ico {
-            display: none;
-        }
-        .checkmark_wrap .checkmark_title::before {
-            content: "";
-            background-image: url(https://i.shgcdn.com/1a566448-1cc6-46f0-9158-cfe93799456b/-/format/auto/-/preview/3000x3000/-/quality/lighter/);
-            display: inline-block;
-            height: 20px;
-            width: 20px;
-            margin-right: 5px;
-            vertical-align: middle;
-            background-repeat: no-repeat;
-            font-size: 12px;
-        }
-        .tooltip-container {
-            margin: 7px 10px;
-        }
-        .swatch-element .price-wrapper{
-            margin-top: 0 !important
-        }
-        .checklist {
-            color: #1E415F;
-            margin: 5px 0;
-        }
-        .checklist ul {
-            color: #1E415F;
-            list-style: none;
-            font-size: 14px;
-        }
-        .checklist ul li::before {
-            content: "✓";
-            margin-right: 10px;
-            font-weight: 700;
-        }
-        .middle-block {
-            margin: 10px;
-            padding: 15px 0;
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-        }
-        .middle-block span {
-            font-size: 16px;
-            font-weight: 700;
-        }
-        .middle-block p {
-            font-size: 14px;
-        }
-        .swatch.is-flex.is-flex-wrap {
-            display: none;
-        }
-        .purchase-details {
-            display: none;
-        }
-        .swatchCustom__item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin: 10px 0;
-            padding: 10px;
-            background: #FFFFFF;
-            border: 2px solid transparent;
-            border-radius: 10px;
-            color: #1e415f;
-            cursor: pointer;
-        }
-        .swatchCustom__item.swatchCustom__item--active {
-            pointer-events: none;
-            background: #F1F7FC;
-            border: 2px solid #4090D1;
-        }
-        .swatchCustom span {
-            display: block;
-            margin: ;
-        }
-        .swatchCustom__item--first .week {
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 16px;
-        }
-        .swatchCustom__item--first .days {
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 14px;
-        }
-        .swatchCustom__item--second {
-            display: flex;
-            align-items: flex-end;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 14px;
-            letter-spacing: 0.05em;
-            text-decoration-line: line-through;
-            color: rgba(30, 65, 95, 0.7);
-        }
-        .swatchCustom__item--active.nosale .swatchCustom__item--third {
-            display: flex;
-            align-items: center;
-        }
-        .swatchCustom__item--third {
-            text-align: right;
-        }
-        .swatchCustom__item--third .sale {
-            color: #f27113;
-            font-size: 12px;                
-        }
-        .swatchCustom__item--third .price {
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 16px;    
-        }
-        .modal_price .sale {
-            line-height: 40.5px !important;
-            font-weight: 800;
-                font-size: 32px;
-        }
-        .one-half {
-            flex: 30%;
-        }
-        
-        .on-date-text {
-            display: none;
-        }
-        .shipping {
-            flex: 19%;            
-            font-size: 14px;
-        }
-        .shipping-inner {
-            padding: 20px;
-            background: #f5f6f7;
-            border-radius: 22px;
-        }
-        .on-free-shipping-label {
-            background: #4090D1;
-            border-radius: 5px;
-            color:#fff;
-            padding: 7px;
-        }
-        .on-pack-wrapper {
-            margin-bottom: 10px;
-        }
-        .on-select {
-            background: none;
-            width: 70%;
-            border: none;
-            color: inherit; 
-            text-decoration: underline;                   
-        }
-        .on-select:focus {
-            outline: none !important;
-        }
-        .custom-select {
-            width: 65%
-        }
-        .ship-destination {
-            margin: 10px 0;
-        }
-        .on-free-shipping-label {
-            font-size: 12px;
-        }
-        .ship-destination span{
-            font-weight: 700;
-            margin: 25px 0;
-            font-size: 14px;
-        }
-        .stock {
-            margin: 30px 0;
-        }
-        .stock__header {
-            font-family: Roboto;
-            font-style: normal;
-            color: #29C470 !important;
-            font-weight: 700 !important;
-            font-size: 16px !important;
-            line-height: 19px !important;
-            margin: 10px 0;
-        }
-        .stock__select {
-            padding: 10px;
-            background: #FFFFFF;
-            border: 1px solid rgba(31, 64, 92, 0.2);
-            box-sizing: border-box;
-            border-radius: 5px;
-            height: 40px;
-            // -moz-appearance: none;
-            // -webkit-appearance: none;
-        }
-        .subscribe-custom {
-            display: block;
-            color: #1E415F;
-            background: #FEF7E7;
-            border: 1px solid #F2B413;
-            border-radius: 10px;            
-            padding: 15px;
-            margin: 30px 0;            
+            .product_section .shopify-product-form {
+                color: #1E415F;        
             }
-            .subscribe-custom p{
-                font-size: 12px;
-                line-height: 17px !important;
-                font-weight: 400;
-                
+            .stamped-badge-caption span {
+                color: #000;
             }
-            h5.subscribe-custom__header {
-            font-family: "Roboto";
-            font-weight: 500;
-            display: inline;
-            font-size: 14px;
-            line-height: 16px;
-            color: #1E415F;
-            }            
-            .subscribe-custom__header span{
-                color: #F27113;
+            .product_name.title {
+              font-size: 32px;
             }
-            .subscribe-custom__checkbox {
-                transform: scale(1.4);
-                margin: 0 5px 0 0;
-                
+            .swatch label.on-variant-label .on-icon,
+            .section.is-width-standard .swatch .top-label,
+            .section.is-width-standard .swatch .best-label,
+            body .section.is-width-standard .swatch .weeks-label,
+            .description.content.has-padding-top,
+            .on-payment-wrapper {
+                display: none !important;
             }
-            .addcart {
-                display:flex;
-                align-items:center;                    
-            }
-            .addcart__button{
-                width: 100%;
-                color: #fff;
-                border: none;
-                padding: 15px;
-                font: inherit;
-                cursor: pointer;
-                outline: inherit;
-                background: #1E415F;
-                border-radius: 100px;
-            }
-            .moneyback {
-                height: 150px;
-                display:flex;
+            .review-wrap {
+                display: flex;
+                justify-content: space-between;
                 align-items: center;
             }
-            .moneyback p{
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 126.19%;
-                margin: 10px;
-            }
-            .on-left {
-                display: none;
-            }
-            .on-pack-wrapper .on-date-text, .on-pack-wrapper .on-free-shipping-label {
-                color: #fff;
+            
+            .made_in {                        
                 font-weight: 500;
                 font-size: 12px;
-                line-height: 11px;
-                font-family: Roboto;
-                font-style: normal;
-                max-width: fit-content;
-                line-height: 1.5;
-                margin: 15px 0;
+                color: #fff;
+                background: #4090d1;
+                border-radius: 5px;
+                padding: 5px;
             }
-
-            .on-pack-wrapper .on-select {
-                display: none;
+            .made_in::before {                
+                background-image: url(https://i.ibb.co/hcttzx7/image-62.png);
+                display: inline-block;            
+                height: 10px;
+                width: 20px;
+                margin-right: 7px;
+                border-radius: 1px;
+                content: "";
+            }    
+            .product_section .shopify-product-form, 
+            .shipping-inner {
+                height: 543px;
             }
-
-            .on-pack-wrapper-1 .on-right, .on-pack-wrapper-2 .on-right, .on-pack-wrapper-3 .on-right {
+            .product_section .shopify-product-form {
+                position: relative;
+                padding: 20px;
+            }
+            .product_name.title {
+                margin-bottom: 0;
+            }
+            .subheading {
+                color: #1E415F;
+                margin: 10px 0;
+                font-weight: 700;
+                font-size: 14px;
+                font-family: 'Kontora bold'!important;
+            }
+            .checkmark_wrap {    
+                flex-direction: column;
+                padding: 12px 20px;
+            }
+            .checkmark_wrap .checkmark_item {
+                display: flex;
                 width: 100%;
                 text-align: left;
-                padding-left: 0;
             }
-
-            .checkmark_ico {
+            .checkmark_wrap .checkmark_ico {
                 display: none;
-            }                       
-            
-            #shopify-section-product__main .stamped-product-reviews-badge {
-                padding: 0 !important;
             }
-
-            @media only screen and (max-width: 1281px) and (min-width: 1024px)  {
-                .product_section .shopify-product-form, .shipping-inner {
-                    height: 600px;
+            .checkmark_wrap .checkmark_title::before {
+                content: "";
+                background-image: url(https://i.ibb.co/2W120Wv/cil-check-circle.png);
+                display: inline-block;
+                height: 20px;
+                width: 20px;
+                margin-right: 5px;
+                vertical-align: middle;
+                background-repeat: no-repeat;
+                font-size: 12px;
+            }
+            .tooltip-container {
+                margin: 7px 10px;
+            }
+            .swatch-element .price-wrapper{
+                margin-top: 0 !important
+            }
+            .checklist {
+                color: #1E415F;
+                margin: 5px 0;
+            }
+            .checklist ul {
+                color: #1E415F;
+                list-style: none;
+                font-size: 14px;
+            }
+            .checklist ul li::before {
+                content: "✓";
+                margin-right: 10px;
+                font-weight: 700;
+            }
+            .middle-block {
+                margin: 10px;
+                padding: 15px 0;
+                border-top: 1px solid #fff;
+                border-bottom: 1px solid #fff;
+            }
+            .middle-block span {
+                font-size: 16px;
+                font-weight: 700;
+            }
+            .middle-block p {
+                font-size: 14px;
+            }
+            .swatch.is-flex.is-flex-wrap {
+                display: none;
+            }
+            .purchase-details {
+                display: none;
+            }
+            .swatchCustom__item {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin: 10px 0;
+                padding: 10px;
+                background: #FFFFFF;
+                border: 2px solid transparent;
+                border-radius: 10px;
+                color: #1e415f;
+                cursor: pointer;
+            }
+            .swatchCustom__item.swatchCustom__item--active {
+                pointer-events: none;
+                background: #F1F7FC;
+                border: 2px solid #4090D1;
+            }
+            .swatchCustom span {
+                display: block;
+                margin: ;
+            }
+            .swatchCustom__item--first .week {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+            }
+            .swatchCustom__item--first .days {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 14px;
+            }
+            .swatchCustom__item--second {
+                display: flex;
+                align-items: flex-end;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 14px;
+                letter-spacing: 0.05em;
+                text-decoration-line: line-through;
+                color: rgba(30, 65, 95, 0.7);
+            }
+            .swatchCustom__item--active.nosale .swatchCustom__item--third {
+                display: flex;
+                align-items: center;
+            }
+            .swatchCustom__item--third {
+                text-align: right;
+            }
+            .swatchCustom__item--third .sale {
+                color: #f27113;
+                font-size: 12px;                
+            }
+            .swatchCustom__item--third .price {
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 16px;    
+            }
+            .modal_price .sale {
+                line-height: 40.5px !important;
+                font-weight: 800;
+                    font-size: 32px;
+                    font-family: 'Kontora bold'!important;
+            }
+    
+            .section.is-width-standard .product_section .product__images {
+              flex: 35%;
+            }
+            .product_section .product__information.one-half {
+              flex: 33%;
+            }
+            .shipping.one-half.column.medium-down--one-whole {
+              flex: 20%;
+            }        
+            .on-date-text {
+                display: none;
+            }
+            .shipping-inner {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                background: #f5f6f7;
+                border-radius: 22px;
+            }
+            .on-free-shipping-label {
+                background: #4090D1;
+                border-radius: 5px;
+                color:#fff;
+                padding: 5px;
+            }
+            .on-pack-wrapper {
+                margin-bottom: 10px;
+            }
+            .on-select {
+                background: none;
+                width: 70%;
+                border: none;
+                color: inherit; 
+                text-decoration: underline;                   
+            }
+            .on-select:focus {
+                outline: none !important;
+            }
+            .custom-select {
+                width: 65%
+            }
+            .on-free-shipping-label {
+                font-size: 12px;
+            }
+            .ship-destination span{
+                font-weight: 700;
+                margin: 25px 0;
+                font-size: 14px;
+            }
+            .stock {
+                margin: 10px 0;
+            }
+            .stock__header {
+                font-family: Roboto;
+                font-style: normal;
+                color: #29C470 !important;
+                font-weight: 700 !important;
+                font-size: 16px !important;
+                line-height: 19px !important;
+                margin: 10px 0;
+            }
+            .stock__select {
+                padding: 5px;
+                background: #FFFFFF;
+                border: 1px solid rgba(31, 64, 92, 0.2);
+                box-sizing: border-box;
+                border-radius: 5px;
+                height: 35px;
+            }
+            .subscribe-custom {
+                display: block;
+                color: #1E415F;
+                background: #FEF7E7;
+                border: 1px solid #F2B413;
+                border-radius: 10px;            
+                padding: 15px;
+                margin: 10px 0;            
                 }
-            }
-            
-    </style>`
+                .subscribe-custom p{
+                    font-size: 12px;
+                    line-height: 17px !important;
+                    font-weight: 400;
+                    
+                }
+                h5.subscribe-custom__header {
+                font-family: "Roboto";
+                font-weight: 500;
+                display: inline;
+                font-size: 14px;
+                line-height: 16px;
+                color: #1E415F;
+                }            
+                .subscribe-custom__header span{
+                    color: #F27113;
+                }
+                .subscribe-custom__checkbox {
+                    transform: scale(1.4);
+                    margin: 0 5px 0 0;
+                    
+                }
+                .addcart {
+                    display:flex;
+                    margin-top: auto;             
+                }
+                .addcart__button{
+                    width: 100%;
+                    color: #fff;
+                    border: none;
+                    padding: 10px;
+                    font: inherit;
+                    cursor: pointer;
+                    outline: inherit;
+                    background: #1E415F;
+                    border-radius: 100px;
+                }
+                .moneyback {
+                    height: 150px;
+                    display:flex;
+                    align-items: center;
+                    padding: 20px;
+                }
+                .moneyback p{
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 126.19%;
+                    margin: 10px;
+                }
+                .on-left {
+                    display: none;
+                }
+                .on-pack-wrapper .on-date-text, .on-pack-wrapper .on-free-shipping-label {
+                    color: #fff;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 11px;
+                    font-family: Roboto;
+                    font-style: normal;
+                    max-width: fit-content;
+                    line-height: 1.5;
+                    margin: 15px 0;
+                }
+    
+                .on-pack-wrapper .on-select {
+                    display: none;
+                }
+    
+                .on-pack-wrapper-1 .on-right, .on-pack-wrapper-2 .on-right, .on-pack-wrapper-3 .on-right {
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 0;
+                }
+    
+                .checkmark_ico {
+                    display: none;
+                }                       
+                
+                #shopify-section-product__main .stamped-product-reviews-badge {
+                    padding: 0 !important;
+                }
+    
+                @media only screen and (max-width: 1281px) and (min-width: 1024px)  {
+                    .product_section .shopify-product-form, .shipping-inner {
+                        height: 577px;
+                    }
+                }
+                
+        </style>`
   );
 
   const subheading = document.createElement("p");
@@ -379,58 +385,58 @@ window.onload = function () {
   const checkListNav = document.createElement("nav");
   checkListNav.classList.add("checklist");
   checkListNav.innerHTML = `
-                                <ul class="checklist">
-                                    <li>Promote nose breathing</li>
-                                    <li>Reduce open-mouth snoring</li>
-                                    <li>Boost CPAP exprerience</li>
-                                    <li>Improve sleep quality</li>
-                                </ul>`;
+                                    <ul class="checklist">
+                                        <li>Promote nose breathing</li>
+                                        <li>Reduce open-mouth snoring</li>
+                                        <li>Boost CPAP exprerience</li>
+                                        <li>Improve sleep quality</li>
+                                    </ul>`;
 
   const middleBlock = document.createElement("div");
   middleBlock.classList.add("middle-block");
   middleBlock.innerHTML = `
-                                <p>Price: <span class="middle-block__price-output">$55.97 USD</span></p>
-                                <p>Choose your pack: <span class="middle-block__week-output">12-week pack</span></p>`;
+                                    <p>Price: <span class="middle-block__price-output">$55.97 USD</span></p>
+                                    <p>Choose your pack: <span class="middle-block__week-output">12-week pack</span></p>`;
 
   const swatchCustom = document.createElement("div");
   swatchCustom.classList.add("swatchCustom");
   swatchCustom.innerHTML = `
-                                <div class="swatchCustom__item nosale swatchCustom__item--item1" data-variant="32115046023283" >
-                                    <div class="swatchCustom__item--first">
-                                        <span class="week">4-week pack</span>
-                                        <span class="days">28 strips - 28 days</span>
+                                    <div class="swatchCustom__item nosale swatchCustom__item--item1" data-variant="32115046023283" >
+                                        <div class="swatchCustom__item--first">
+                                            <span class="week">4-week pack</span>
+                                            <span class="days">28 strips - 28 days</span>
+                                        </div>
+                                        <div class="swatchCustom__item--third">        
+                                            <span class="price">$21.99 USD</span>
+                                        </div>
                                     </div>
-                                    <div class="swatchCustom__item--third">        
-                                        <span class="price">$19.95 USD</span>
-                                    </div>
-                                </div>
-                                <div class="swatchCustom__item swatchCustom__item--item2 swatchCustom__item--active" data-variant="32115046056051">
-                                    <div class="swatchCustom__item--first">
-                                        <span class="week">12-week pack</span>
-                                        <span class="days">84 strips - 84 days</span>
-                                    </div>
-                                    <div class="swatchCustom__item--second">            
-                                        <span>$59.97 USD</span>
-                                    </div>
-                                    <div class="swatchCustom__item--third">            
-                                        <span class="sale">Save 5%</span>
-                                        <span class="price">$55.95 USD</span>
-                                    </div>
-                                </div>    
-                                <div class="swatchCustom__item swatchCustom__item--item3" data-variant="32190023958643">
-                                    <div class="swatchCustom__item--first">
-                                        <span class="week">12-month pack</span>
-                                        <span class="days">365 strips - 365 days</span>
-                                    </div>
-                                    <div class="swatchCustom__item--second">            
-                                        <span>$230.97 USD</span>
-                                    </div>
-                                    <div class="swatchCustom__item--third">            
-                                        <span class="sale">Save 17%</span>
-                                        <span class="price">$219.95 USD</span>
-                                    </div>
-                                </div>     
-                                `;
+                                    <div class="swatchCustom__item swatchCustom__item--item2 swatchCustom__item--active" data-variant="32115046056051">
+                                        <div class="swatchCustom__item--first">
+                                            <span class="week">12-week pack</span>
+                                            <span class="days">84 strips - 84 days</span>
+                                        </div>
+                                        <div class="swatchCustom__item--second">            
+                                            <span>$59.97 USD</span>
+                                        </div>
+                                        <div class="swatchCustom__item--third">            
+                                            <span class="sale">Save 5%</span>
+                                            <span class="price">$55.97 USD</span>
+                                        </div>
+                                    </div>    
+                                    <div class="swatchCustom__item swatchCustom__item--item3" data-variant="32190023958643">
+                                        <div class="swatchCustom__item--first">
+                                            <span class="week">12-month pack</span>
+                                            <span class="days">365 strips - 365 days</span>
+                                        </div>
+                                        <div class="swatchCustom__item--second">            
+                                            <span>$230.97 USD</span>
+                                        </div>
+                                        <div class="swatchCustom__item--third">            
+                                            <span class="sale">Save 17%</span>
+                                            <span class="price">$219.97 USD</span>
+                                        </div>
+                                    </div>     
+                                    `;
 
   const productInfo = document.querySelectorAll(".product__information")[1];
 
@@ -455,9 +461,9 @@ window.onload = function () {
   const shipToWrap = document.createElement("div");
   shipToWrap.classList.add("ship-destination");
   shipToWrap.innerHTML = `
-                            <span class ="ship-destination__span--ship">Ship to: </span>
-                            <p>Arrives: <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
-                            `;
+                                <span class ="ship-destination__span--ship">Ship to: </span>
+                                <p>Arrives: <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
+                                `;
 
   const options = [];
 
@@ -468,21 +474,21 @@ window.onload = function () {
   const inStock = document.createElement("div");
   inStock.classList.add("stock");
   inStock.innerHTML = `
-                            <h4 class="stock__header">In Stock.</h4>
-                            <select class="stock__select">
-                            ${options}
-                            </select>
-                            <p class="stock__pack">1 pack = 84 strips</p>
-                            `;
+                                <h4 class="stock__header">In Stock.</h4>
+                                <select class="stock__select">
+                                ${options}
+                                </select>
+                                <p class="stock__pack">1 pack = 84 strips</p>
+                                `;
 
   const subscribe = document.createElement("div");
   subscribe.classList.add("subscribe-custom");
   subscribe.innerHTML = `
-                            <input class="subscribe-custom__checkbox" type="checkbox">
-                            <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
-                            <p>Auto delivery every 3 month for $49.97.</p>
-                            <p>Cancel anytime.</p>
-                            `;
+                                <input class="subscribe-custom__checkbox" type="checkbox">
+                                <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
+                                <p class="subscibe-custom__info">Auto delivery every 3 month for $49.97.</p>
+                                <p>Cancel anytime.</p>
+                                `;
 
   const cartButtonWrap = document.createElement("div");
   cartButtonWrap.classList.add("addcart");
@@ -520,6 +526,9 @@ window.onload = function () {
 
   for (let i = 0; i < swatchItem.length; i++) {
     swatchItem[i].addEventListener("click", function () {
+      document.querySelector(".stock__select").disabled = false;
+      document.querySelector(".subscribe-custom__checkbox").checked = false;
+
       let current = document.getElementsByClassName(
         "swatchCustom__item--active"
       );
@@ -570,6 +579,8 @@ window.onload = function () {
             eventLabel: "Section: Pack size",
           });
         } else if (i === 1) {
+          document.querySelector(".subscibe-custom__info").innerText =
+            "Auto delivery every 3 month for $49.97.";
           window.dataLayer = window.dataLayer || [];
           dataLayer.push({
             event: "event-to-ga",
@@ -578,6 +589,8 @@ window.onload = function () {
             eventLabel: "Section: Pack size",
           });
         } else if (i === 2) {
+          document.querySelector(".subscibe-custom__info").innerText =
+            "Auto delivery every 12 month for $199.97.";
           window.dataLayer = window.dataLayer || [];
           dataLayer.push({
             event: "event-to-ga",
@@ -586,6 +599,7 @@ window.onload = function () {
             eventLabel: "Section: Pack size",
           });
         }
+
         document.querySelectorAll(".swatch-element")[i + 3].click();
 
         upgrade();
@@ -661,7 +675,42 @@ window.onload = function () {
           eventCategory: "Exp — New PDP (Variant 1/A)",
           eventAction: "click on checkbox — Subscribe and save 10%",
         });
-      } else {
+
+        if (
+          document
+            .querySelectorAll(".swatchCustom__item")[1]
+            .classList.contains("swatchCustom__item--active")
+        ) {
+          document
+            .querySelectorAll(".modal_price.subtitle")[3]
+            .getElementsByClassName("money")[0].innerText = "$49.97 USD";
+        } else if (
+          document
+            .querySelectorAll(".swatchCustom__item")[2]
+            .classList.contains("swatchCustom__item--active")
+        ) {
+          document
+            .querySelectorAll(".modal_price.subtitle")[3]
+            .getElementsByClassName("money")[0].innerText = "$199.97 USD";
+        }
+      } else if (e.currentTarget.checked === false) {
+        if (
+          document
+            .querySelectorAll(".swatchCustom__item")[1]
+            .classList.contains("swatchCustom__item--active")
+        ) {
+          document
+            .querySelectorAll(".modal_price.subtitle")[3]
+            .getElementsByClassName("money")[0].innerText = "$55.97 USD";
+        } else if (
+          document
+            .querySelectorAll(".swatchCustom__item")[2]
+            .classList.contains("swatchCustom__item--active")
+        ) {
+          document
+            .querySelectorAll(".modal_price.subtitle")[3]
+            .getElementsByClassName("money")[0].innerText = "$219.97 USD";
+        }
         document.querySelector(".stock__select").disabled = false;
       }
     });
@@ -721,7 +770,9 @@ window.onload = function () {
         });
       }
     })
-  )(function (h, o, t, j, a, r) {
+  );
+
+  (function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||
       function () {
