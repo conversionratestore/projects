@@ -639,6 +639,7 @@ window.onload  = function () {
         item.appendChild(newElementProductRight);
     });
     
+    // added product reviews
     document.querySelector('.product-review').appendChild(document.querySelector('.stamped-product-reviews-badge'));
     
     // toggle classList select
@@ -673,15 +674,24 @@ window.onload  = function () {
         });
 
     });
-    
-    //add data-id in swatch element
+
+    document.querySelectorAll('.save-label').forEach((item) => {
+        if (item.innerHTML == 'One-Time'){
+            item.style.opacity = '0';
+        }
+    });
+ 
+    //add data-id and data-save in swatch element
     var arrId = ['0','31272810676339','32190023958643'];
+    var arrSave = ['0','49.97','199.97'];
       
     var els = document.querySelectorAll('.select-choose .swatch-element');
     for (let i = 0; i < els.length; i++) {
         els[i].setAttribute("data-id", arrId[i]);
+        els[i].setAttribute("data-save", arrSave[i]);
     }
-    
+
+    // selected swatch-element 
     document.querySelectorAll('.swatch-element').forEach(function (item) {
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
@@ -694,6 +704,7 @@ window.onload  = function () {
                 });
             } 
             if (item.dataset.value == '3 Pack') {
+                document.querySelector('.message-block p').innerHTML = ` Auto delivery every 3 month for $${item.dataset.save}. Cancel anytime.`; 
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — New PDP (Variant 2/B)',
@@ -702,6 +713,7 @@ window.onload  = function () {
                 });
             }
             if (item.dataset.value == '12 Pack') {
+                document.querySelector('.message-block p').innerHTML = ` Auto delivery every 12 month for $${item.dataset.save}. Cancel anytime.`; 
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — New PDP (Variant 2/B)',
@@ -724,11 +736,8 @@ window.onload  = function () {
             }
           
             document.querySelector(".select2 select").dataset.strips = splDetailsStrips[0];
-    
             document.querySelector(".select2 select").dataset.price = splChildValue[1];
-    
             document.querySelector('.select-choose').classList.remove('active');
-    
             document.querySelector('.product-price .money').innerHTML = childValue;
             document.querySelector('.select-choose__current').innerHTML = `${title} (${splDetails[0]}) `;
          
@@ -737,10 +746,9 @@ window.onload  = function () {
             objSelect.dispatchEvent(new Event('change'));
     
             document.querySelector('.product-info_right .pack-val-strips').innerHTML = `${splDetails[0]}`; 
-            
             document.querySelector('.button__add-to-cart').dataset.variant = item.querySelector('.on-variant-label').dataset.variant; 
             document.querySelector('.button__add-to-cart').dataset.id = dataId; 
-       
+            document.querySelector('.message-block_checbox').dataset.save = item.dataset.save; 
             document.querySelector('.select2 select').disabled = false;
             document.querySelector('.message-block_checbox .checkbox').checked = false;
         });
@@ -794,8 +802,9 @@ window.onload  = function () {
             document.querySelector('.select2 select').selectedIndex = '0';
             document.querySelector('.pack-val-item').innerHTML = '1 pack = ';
             document.querySelector('.pack-val-strips').innerHTML = `${document.querySelector('.select2 select').dataset.strips} strips`;
-            document.querySelector('.product-price .money').innerHTML = `$${document.querySelector('.select2 select').dataset.price} USD`;
-           
+            document.querySelector('.product-price .money').innerHTML = `$${this.dataset.save} USD`;
+            
+
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
@@ -804,6 +813,7 @@ window.onload  = function () {
             });
         } else {
             document.querySelector('.select2 select').disabled = false;
+            document.querySelector('.product-price .money').innerHTML = `$${document.querySelector('.select2 select').dataset.price} USD`;  
         } 
     });
     
@@ -818,11 +828,15 @@ window.onload  = function () {
         } else {
             if (dataId == '31272810676339') {
                 addItemToCart('31272810676339', 1, '3', 'Month', '95310');
+                
+            
             }
             if (dataId == '32190023958643') {
                 addItemToCart('32190023958643', 1, '12', 'Month', '95310');
             }
         }
+        console.log(  addItemToCart());
+       
     });
 
     document.querySelectorAll('.tooltip-container').forEach(function (item) {
