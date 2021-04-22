@@ -692,10 +692,7 @@ window.onload  = function () {
 
     // selected swatch-element 
     document.querySelectorAll('.swatch-element').forEach(function (item) {
-        if (item.previousElementSibling.checked) {
-            let price = item.querySelector('.row-price-label .new-price-label').innerHTML;
-            document.querySelector('.product-price .money').innerHTML = `${price} USD`;
-        }
+      
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             if (item.dataset.value == '1 Pack') {
@@ -754,6 +751,12 @@ window.onload  = function () {
             document.querySelector('.message-block_checbox').dataset.save = item.dataset.save; 
             document.querySelector('.select2 select').disabled = false;
             document.querySelector('.message-block_checbox .checkbox').checked = false;
+        });
+        item.addEventListener('change', () => {
+            if (item.previousElementSibling.checked) {
+                let price = item.querySelector('.row-price-label .new-price-label').innerHTML;
+                document.querySelector('.product-price .money').innerHTML = `${price} USD`;
+            }
         });
     });
     
