@@ -688,9 +688,14 @@ window.onload  = function () {
         els[i].setAttribute("data-id", arrId[i]);
         els[i].setAttribute("data-save", arrSave[i]);
     }
+  
 
     // selected swatch-element 
     document.querySelectorAll('.swatch-element').forEach(function (item) {
+        if (item.previousElementSibling.checked) {
+            let price = item.querySelector('.row-price-label .new-price-label').innerHTML;
+            document.querySelector('.product-price .money').innerHTML = `${price} USD`;
+        }
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             if (item.dataset.value == '1 Pack') {
