@@ -750,11 +750,9 @@ window.onload  = function () {
             document.querySelector('.select2 select').disabled = false;
             document.querySelector('.message-block_checbox .checkbox').checked = false;
         });   
-        // if (item.dataset.value == '1 Pack') {
-        //     document.querySelector('.product-price .money').innerHTML = `${item.querySelector('.row-price-label .new-price-label').innerHTML} USD`;
-        // }
     });
 
+    document.querySelector('.product-price .money').innerHTML = `${document.querySelectorAll('.select-choose__dropdown .swatch-element .new-price-label')[0].innerHTML} USD`;
 
     // changed text in button - Add to cart
     document.querySelector('.product-form_gray .text-no-change').innerHTML = 'Add to cart';
