@@ -750,9 +750,9 @@ window.onload  = function () {
             document.querySelector('.select2 select').disabled = false;
             document.querySelector('.message-block_checbox .checkbox').checked = false;
         });   
-        if (item.dataset.value == '1 Pack') {
-            document.querySelector('.product-price .money').innerHTML = `${item.querySelector('.row-price-label .new-price-label').innerHTML} USD`;
-        }
+        // if (item.dataset.value == '1 Pack') {
+        //     document.querySelector('.product-price .money').innerHTML = `${item.querySelector('.row-price-label .new-price-label').innerHTML} USD`;
+        // }
     });
 
 
