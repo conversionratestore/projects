@@ -849,7 +849,7 @@ window.onload  = function () {
             });
         });   
     });
-}
+};
 
 //Hotjar trigger to record video sessions
 (function(h,o,t,j,a,r){
