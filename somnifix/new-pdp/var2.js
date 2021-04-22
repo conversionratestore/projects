@@ -1,8 +1,7 @@
 window.onload = function () {
   document.head.insertAdjacentHTML(
     "beforeend",
-    `<style>
-        
+    `<style>        
             .product_section .shopify-product-form {
                 color: #1E415F;        
             }
@@ -25,7 +24,9 @@ window.onload = function () {
                 justify-content: space-between;
                 align-items: center;
             }
-            
+            .section.is-width-standard .product_section .product__images .made_in {
+              display: none;
+            }
             .made_in {                        
                 font-weight: 500;
                 font-size: 12px;
@@ -217,10 +218,12 @@ window.onload = function () {
             }
             .on-select {
                 background: none;
-                width: 70%;
+                width: 51%;
                 border: none;
                 color: inherit; 
-                text-decoration: underline;                   
+                text-decoration: underline;     
+                font-weight: 500;  
+                font-size: 13px;            
             }
             .on-select:focus {
                 outline: none !important;
@@ -231,10 +234,16 @@ window.onload = function () {
             .on-free-shipping-label {
                 font-size: 12px;
             }
-            .ship-destination span{
-                font-weight: 700;
-                margin: 25px 0;
-                font-size: 14px;
+            // .ship-destination span{
+            //     font-weight: 700;
+            //     margin: 25px 0;
+            //     font-size: 14px;
+            // }
+            .ship-destination p, .ship-destination__span--ship, .stock__pack {
+              font-size: 14px;
+            }
+            .ship-destination__span--date {
+              font-weight: 700;
             }
             .stock {
                 margin: 10px 0;
@@ -365,14 +374,17 @@ window.onload = function () {
   )[1];
   const productNameTitle = document.querySelectorAll(".product_name.title")[1];
 
-  const reviewWrap = document.createElement("div");
+  const madeIn = document.createElement("span");
+  madeIn.classList.add("made_in");
+  madeIn.innerText = "Made in USA";
 
+  const reviewWrap = document.createElement("div");
   reviewWrap.classList.add("review-wrap");
   reviewWrap.append(
     document.querySelectorAll(
       ".stamped-product-reviews-badge.stamped-main-badge"
     )[1],
-    document.querySelector(".made_in")
+    madeIn
   );
   subheading.insertAdjacentElement("afterend", reviewWrap);
 
