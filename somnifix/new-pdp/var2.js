@@ -651,14 +651,14 @@ window.onload = function () {
       e.target.options[e.target.selectedIndex].dataset.value;
 
     let initialValue = document
-      .querySelectorAll(".modal_price.subtitle")[3]
+      .querySelectorAll(".active .modal_price.subtitle")[1]
       .getElementsByClassName("money")[0]
       .dataset.currencyUsd.replace(/[^0-9.]/g, "");
 
     let tempMoneyValue = initialValue * currentOptionValue;
 
     document
-      .querySelectorAll(".modal_price.subtitle")[3]
+      .querySelectorAll(".active .modal_price.subtitle")[1]
       .getElementsByClassName("money")[0].innerText = `$${Number(
       tempMoneyValue.toFixed(2)
     )} USD`;
@@ -694,7 +694,7 @@ window.onload = function () {
             .classList.contains("swatchCustom__item--active")
         ) {
           document
-            .querySelectorAll(".modal_price.subtitle")[3]
+            .querySelectorAll(".active .modal_price.subtitle")[1]
             .getElementsByClassName("money")[0].innerText = "$49.97 USD";
         } else if (
           document
@@ -702,7 +702,7 @@ window.onload = function () {
             .classList.contains("swatchCustom__item--active")
         ) {
           document
-            .querySelectorAll(".modal_price.subtitle")[3]
+            .querySelectorAll(".active .modal_price.subtitle")[1]
             .getElementsByClassName("money")[0].innerText = "$199.97 USD";
         }
       } else if (e.currentTarget.checked === false) {
@@ -712,7 +712,7 @@ window.onload = function () {
             .classList.contains("swatchCustom__item--active")
         ) {
           document
-            .querySelectorAll(".modal_price.subtitle")[3]
+            .querySelectorAll(".active .modal_price.subtitle")[1]
             .getElementsByClassName("money")[0].innerText = "$55.97 USD";
         } else if (
           document
@@ -720,7 +720,7 @@ window.onload = function () {
             .classList.contains("swatchCustom__item--active")
         ) {
           document
-            .querySelectorAll(".modal_price.subtitle")[3]
+            .querySelectorAll(".active .modal_price.subtitle")[1]
             .getElementsByClassName("money")[0].innerText = "$219.97 USD";
         }
         document.querySelector(".stock__select").disabled = false;
