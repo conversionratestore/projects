@@ -322,6 +322,7 @@ window.onload = function () {
                     font-size: 16px;
                     line-height: 126.19%;
                     margin: 10px;
+                    color: #1E415F;
                 }
                 .on-left {
                     display: none;
