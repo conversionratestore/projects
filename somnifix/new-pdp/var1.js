@@ -537,7 +537,6 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', style);
     
     const productName = document.querySelector('.product_name').innerHTML,
-          madeIn = document.querySelector('.made_in').innerHTML,
           swatchOptions  = document.querySelector('.swatch_options').innerHTML,
           currentPrice = document.querySelector('.modal_price.subtitle').innerHTML,
           freeShippingLabel = document.querySelector('.on-free-shipping-label').innerHTML,
@@ -554,7 +553,7 @@ window.onload  = function () {
         <div class="product-form_gray">
             <div class="product-form_head">
                 <h1 class="product_name title">${productName}</h1>
-                <div class="made_in"> ${madeIn}</div>
+                <div class="made_in">Made in USA</div>
             </div>
             <div class="product-review"> </div>
             <div class="select-choose">
@@ -672,7 +671,6 @@ window.onload  = function () {
             'eventCategory': 'Exp — New PDP (Variant 2/B)',
             'eventAction': 'click on select — quantity'
         });
-
     });
 
     document.querySelectorAll('.save-label').forEach((item) => {
