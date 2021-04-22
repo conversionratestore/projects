@@ -752,9 +752,8 @@ window.onload  = function () {
         });   
     });
 
-    document.querySelector('.product-price .money').innerHTML = `${ document.querySelectorAll('.select-choose .swatch-element .row-price-label .new-price-label')[0].innerHTML} USD`;
+    document.querySelector('.product-price .money').innerHTML = `${ document.querySelectorAll('.select-choose .swatch-element.1-pack-swatch .row-price-label .new-price-label').innerHTML} USD`;
   
-   
     // changed text in button - Add to cart
     document.querySelector('.product-form_gray .text-no-change').innerHTML = 'Add to cart';
     
