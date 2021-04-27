@@ -1,7 +1,10 @@
-window.onload = function () {
-  document.head.insertAdjacentHTML(
-    "beforeend",
-    `<style>        
+let start = setInterval(function () {
+    if(document.querySelectorAll('.shopify-product-form')[1]) {
+        clearInterval(start)
+
+    document.head.insertAdjacentHTML(
+        "beforeend",
+        `<style>        
             .product_section .shopify-product-form {
                 color: #1E415F;        
             }
@@ -364,40 +367,40 @@ window.onload = function () {
                 }
                 
         </style>`
-  );
+    );
 
-  const subheading = document.createElement("p");
-  subheading.classList.add("subheading");
-  subheading.innerText = `12-week pack (84 strips in a pack)`;
+    const subheading = document.createElement("p");
+    subheading.classList.add("subheading");
+    subheading.innerText = `12-week pack (84 strips in a pack)`;
 
-  const productFormShopify = document.querySelectorAll(
-    ".product_section .shopify-product-form"
-  )[1];
-  const productNameTitle = document.querySelectorAll(".product_name.title")[1];
+    const productFormShopify = document.querySelectorAll(
+        ".product_section .shopify-product-form"
+    )[1];
+    const productNameTitle = document.querySelectorAll(".product_name.title")[1];
 
-  const madeIn = document.createElement("span");
-  madeIn.classList.add("made_in");
-  madeIn.innerText = "Made in USA";
+    const madeIn = document.createElement("span");
+    madeIn.classList.add("made_in");
+    madeIn.innerText = "Made in USA";
 
-  const reviewWrap = document.createElement("div");
-  reviewWrap.classList.add("review-wrap");
-  reviewWrap.append(
-    document.querySelectorAll(
-      ".stamped-product-reviews-badge.stamped-main-badge"
-    )[1],
-    madeIn
-  );
-  subheading.insertAdjacentElement("afterend", reviewWrap);
+    const reviewWrap = document.createElement("div");
+    reviewWrap.classList.add("review-wrap");
+    reviewWrap.append(
+        document.querySelectorAll(
+            ".stamped-product-reviews-badge.stamped-main-badge"
+        )[1],
+        madeIn
+    );
+    subheading.insertAdjacentElement("afterend", reviewWrap);
 
-  const checkmark = document.querySelector(".checkmark_wrap.mobile-hide");
+    const checkmark = document.querySelector(".checkmark_wrap.mobile-hide");
 
-  const swatch = document.querySelector(
-    ".section.is-width-standard .product_section .swatch_options .swatch"
-  );
+    const swatch = document.querySelector(
+        ".section.is-width-standard .product_section .swatch_options .swatch"
+    );
 
-  const checkListNav = document.createElement("nav");
-  checkListNav.classList.add("checklist");
-  checkListNav.innerHTML = `
+    const checkListNav = document.createElement("nav");
+    checkListNav.classList.add("checklist");
+    checkListNav.innerHTML = `
                                     <ul class="checklist">
                                         <li>Promote nose breathing</li>
                                         <li>Reduce open-mouth snoring</li>
@@ -405,15 +408,15 @@ window.onload = function () {
                                         <li>Improve sleep quality</li>
                                     </ul>`;
 
-  const middleBlock = document.createElement("div");
-  middleBlock.classList.add("middle-block");
-  middleBlock.innerHTML = `
+    const middleBlock = document.createElement("div");
+    middleBlock.classList.add("middle-block");
+    middleBlock.innerHTML = `
                                     <p>Price: <span class="middle-block__price-output">$55.97 USD</span></p>
                                     <p>Choose your pack: <span class="middle-block__week-output">12-week pack</span></p>`;
 
-  const swatchCustom = document.createElement("div");
-  swatchCustom.classList.add("swatchCustom");
-  swatchCustom.innerHTML = `
+    const swatchCustom = document.createElement("div");
+    swatchCustom.classList.add("swatchCustom");
+    swatchCustom.innerHTML = `
                                     <div class="swatchCustom__item nosale swatchCustom__item--item1" data-variant="32115046023283" >
                                         <div class="swatchCustom__item--first">
                                             <span class="week">4-week pack</span>
@@ -451,42 +454,42 @@ window.onload = function () {
                                     </div>     
                                     `;
 
-  const productInfo = document.querySelectorAll(".product__information")[1];
+    const productInfo = document.querySelectorAll(".product__information")[1];
 
-  const shipping = document.createElement("div");
-  shipping.classList.add(
-    "shipping",
-    "one-half",
-    "column",
-    "medium-down--one-whole"
-  );
+    const shipping = document.createElement("div");
+    shipping.classList.add(
+        "shipping",
+        "one-half",
+        "column",
+        "medium-down--one-whole"
+    );
 
-  const shippingInner = document.createElement("div");
-  shippingInner.classList.add("shipping-inner");
+    const shippingInner = document.createElement("div");
+    shippingInner.classList.add("shipping-inner");
 
-  const shippingPriceWrapper = document.createElement("div");
-  shippingPriceWrapper.append(
-    document.querySelectorAll(".on-pack-wrapper")[3],
-    document.querySelectorAll(".on-pack-wrapper")[4],
-    document.querySelectorAll(".on-pack-wrapper")[5]
-  );
+    const shippingPriceWrapper = document.createElement("div");
+    shippingPriceWrapper.append(
+        document.querySelectorAll(".on-pack-wrapper")[3],
+        document.querySelectorAll(".on-pack-wrapper")[4],
+        document.querySelectorAll(".on-pack-wrapper")[5]
+    );
 
-  const shipToWrap = document.createElement("div");
-  shipToWrap.classList.add("ship-destination");
-  shipToWrap.innerHTML = `
+    const shipToWrap = document.createElement("div");
+    shipToWrap.classList.add("ship-destination");
+    shipToWrap.innerHTML = `
                                 <span class ="ship-destination__span--ship">Ship to: </span>
                                 <p>Arrives: <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
                                 `;
 
-  const options = [];
+    const options = [];
 
-  for (let i = 1; i <= 20; i++) {
-    options.push(`<option value="${i}" data-value="${i}">Qty: ${i}</option>`);
-  }
+    for (let i = 1; i <= 20; i++) {
+        options.push(`<option value="${i}" data-value="${i}">Qty: ${i}</option>`);
+    }
 
-  const inStock = document.createElement("div");
-  inStock.classList.add("stock");
-  inStock.innerHTML = `
+    const inStock = document.createElement("div");
+    inStock.classList.add("stock");
+    inStock.innerHTML = `
                                 <h4 class="stock__header">In Stock.</h4>
                                 <select class="stock__select">
                                 ${options}
@@ -494,321 +497,322 @@ window.onload = function () {
                                 <p class="stock__pack">1 pack = 84 strips</p>
                                 `;
 
-  const subscribe = document.createElement("div");
-  subscribe.classList.add("subscribe-custom");
-  subscribe.innerHTML = `
+    const subscribe = document.createElement("div");
+    subscribe.classList.add("subscribe-custom");
+    subscribe.innerHTML = `
                                 <input class="subscribe-custom__checkbox" type="checkbox">
                                 <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
                                 <p class="subscibe-custom__info">Auto delivery every 3 month for $49.97.</p>
                                 <p>Cancel anytime.</p>
                                 `;
 
-  const cartButtonWrap = document.createElement("div");
-  cartButtonWrap.classList.add("addcart");
-  cartButtonWrap.innerHTML = `<button class="addcart__button">Add to cart</button>`;
+    const cartButtonWrap = document.createElement("div");
+    cartButtonWrap.classList.add("addcart");
+    cartButtonWrap.innerHTML = `<button class="addcart__button">Add to cart</button>`;
 
-  productFormShopify.insertAdjacentElement("afterbegin", productNameTitle);
+    productFormShopify.insertAdjacentElement("afterbegin", productNameTitle);
 
-  const moneybackWrap = document.createElement("div");
-  moneybackWrap.classList.add("moneyback");
-  moneybackWrap.innerHTML = `<img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day <br /> Money-Back <br />Guarantee</p>`;
+    const moneybackWrap = document.createElement("div");
+    moneybackWrap.classList.add("moneyback");
+    moneybackWrap.innerHTML = `<img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day <br /> Money-Back <br />Guarantee</p>`;
 
-  productNameTitle.insertAdjacentElement("afterend", subheading);
-  subheading.insertAdjacentElement("afterend", reviewWrap);
-  swatch.insertAdjacentElement("beforebegin", checkListNav);
-  checkListNav.insertAdjacentElement("afterend", middleBlock);
-  middleBlock.insertAdjacentElement("afterend", swatchCustom);
-  productFormShopify.insertAdjacentElement("afterend", checkmark);
-  productInfo.insertAdjacentElement("afterend", shipping);
-  shipping.insertAdjacentElement("afterbegin", shippingInner);
-  shippingInner.insertAdjacentElement("afterbegin", shippingPriceWrapper);
-  shippingPriceWrapper.insertAdjacentElement("afterend", shipToWrap);
-  shipToWrap.insertAdjacentElement("afterend", inStock);
-  document
-    .querySelector(".ship-destination__span--ship")
-    .insertAdjacentElement(
-      "afterend",
-      document.querySelectorAll(".on-select")[5]
-    );
-  inStock.insertAdjacentElement("afterend", subscribe);
-  subscribe.insertAdjacentElement("afterend", cartButtonWrap);
-  shippingInner.insertAdjacentElement("afterend", moneybackWrap);
-
-  const swatchWrap = document.querySelector(".swatchCustom");
-  const swatchItem = document.querySelectorAll(".swatchCustom__item");
-
-  for (let i = 0; i < swatchItem.length; i++) {
-    swatchItem[i].addEventListener("click", function () {
-      document.querySelector(".stock__select").disabled = false;
-      document.querySelector(".subscribe-custom__checkbox").checked = false;
-
-      let current = document.getElementsByClassName(
-        "swatchCustom__item--active"
-      );
-      current[0].className = current[0].className.replace(
-        " swatchCustom__item--active",
-        ""
-      );
-      this.className += " swatchCustom__item--active";
-
-      if (swatchItem[0].classList.contains("swatchCustom__item--active")) {
-        document.querySelector(".subscribe-custom").style.display = "none";
-      } else {
-        document.querySelector(".subscribe-custom").style.display = "block";
-      }
-
-      document.querySelector(".stock__select").value = 1;
-
-      let spanWeek = document
-        .querySelector(".swatchCustom__item--active")
-        .children[0].getElementsByClassName("week")[0].innerText;
-      let spanPrice = document
-        .querySelector(".swatchCustom__item--active")
-        .lastElementChild.getElementsByClassName("price")[0].innerText;
-      let spanStrips = document
-        .querySelector(".swatchCustom__item--active")
-        .children[0].getElementsByClassName("days")[0]
-        .innerText.replace(/ .*/, "");
-
-      subheading.innerText = `${spanWeek} (${spanStrips} strips in a pack)`;
-
-      document.querySelector(".middle-block__week-output").innerText = spanWeek;
-      document.querySelector(
-        ".middle-block__price-output"
-      ).innerText = spanPrice;
-    });
-  }
-
-  for (let i = 0; i < swatchWrap.children.length; i++) {
+    productNameTitle.insertAdjacentElement("afterend", subheading);
+    subheading.insertAdjacentElement("afterend", reviewWrap);
+    swatch.insertAdjacentElement("beforebegin", checkListNav);
+    checkListNav.insertAdjacentElement("afterend", middleBlock);
+    middleBlock.insertAdjacentElement("afterend", swatchCustom);
+    productFormShopify.insertAdjacentElement("afterend", checkmark);
+    productInfo.insertAdjacentElement("afterend", shipping);
+    shipping.insertAdjacentElement("afterbegin", shippingInner);
+    shippingInner.insertAdjacentElement("afterbegin", shippingPriceWrapper);
+    shippingPriceWrapper.insertAdjacentElement("afterend", shipToWrap);
+    shipToWrap.insertAdjacentElement("afterend", inStock);
     document
-      .querySelector(".swatchCustom")
-      .children[i].addEventListener("click", function () {
-        if (i === 0) {
-          window.dataLayer = window.dataLayer || [];
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: "Exp — New PDP (Variant 1/A)",
-            eventAction: "click on button 4-week pack",
-            eventLabel: "Section: Pack size",
-          });
-        } else if (i === 1) {
-          document.querySelector(".subscibe-custom__info").innerText =
-            "Auto delivery every 3 month for $49.97.";
-          window.dataLayer = window.dataLayer || [];
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: "Exp — New PDP (Variant 1/A)",
-            eventAction: "click on button 12-week pack",
-            eventLabel: "Section: Pack size",
-          });
-        } else if (i === 2) {
-          document.querySelector(".subscibe-custom__info").innerText =
-            "Auto delivery every 12 month for $199.97.";
-          window.dataLayer = window.dataLayer || [];
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: "Exp — New PDP (Variant 1/A)",
-            eventAction: "click on button 12-month pack",
-            eventLabel: "Section: Pack size",
-          });
-        }
+        .querySelector(".ship-destination__span--ship")
+        .insertAdjacentElement(
+            "afterend",
+            document.querySelectorAll(".on-select")[5]
+        );
+    inStock.insertAdjacentElement("afterend", subscribe);
+    subscribe.insertAdjacentElement("afterend", cartButtonWrap);
+    shippingInner.insertAdjacentElement("afterend", moneybackWrap);
 
-        document.querySelectorAll(".swatch-element")[i + 3].click();
+    const swatchWrap = document.querySelector(".swatchCustom");
+    const swatchItem = document.querySelectorAll(".swatchCustom__item");
 
-        upgrade();
-      });
-  }
+    for (let i = 0; i < swatchItem.length; i++) {
+        swatchItem[i].addEventListener("click", function () {
+            document.querySelector(".stock__select").disabled = false;
+            document.querySelector(".subscribe-custom__checkbox").checked = false;
 
-  const starWrap = document.querySelectorAll(
-    ".stamped-starrating.stamped-badge-starrating"
-  )[1];
+            let current = document.getElementsByClassName(
+                "swatchCustom__item--active"
+            );
+            current[0].className = current[0].className.replace(
+                " swatchCustom__item--active",
+                ""
+            );
+            this.className += " swatchCustom__item--active";
 
-  document.querySelectorAll(".swatch-element")[4].click();
-  for (let i = 0; i < starWrap.children.length; i++) {
-    starWrap.children[i].style.cssText = "color: rgb(242, 180, 19) !important;";
-  }
+            if (swatchItem[0].classList.contains("swatchCustom__item--active")) {
+                document.querySelector(".subscribe-custom").style.display = "none";
+            } else {
+                document.querySelector(".subscribe-custom").style.display = "block";
+            }
 
-  function upgrade(currentOptionValue) {
-    let stockStrips = document
-      .querySelector(".swatchCustom__item--active")
-      .children[0].getElementsByClassName("days")[0]
-      .innerText.replace(/ .*/, "");
+            document.querySelector(".stock__select").value = 1;
 
-    if (currentOptionValue === undefined) {
-      document.querySelector(
-        ".stock__pack"
-      ).innerHTML = `1 pack = ${stockStrips} strips`;
-    } else {
-      document.querySelector(
-        ".stock__pack"
-      ).innerHTML = `${currentOptionValue} packs = ${
-        stockStrips * currentOptionValue
-      } strips`;
+            let spanWeek = document
+                .querySelector(".swatchCustom__item--active")
+                .children[0].getElementsByClassName("week")[0].innerText;
+            let spanPrice = document
+                .querySelector(".swatchCustom__item--active")
+                .lastElementChild.getElementsByClassName("price")[0].innerText;
+            let spanStrips = document
+                .querySelector(".swatchCustom__item--active")
+                .children[0].getElementsByClassName("days")[0]
+                .innerText.replace(/ .*/, "");
+
+            subheading.innerText = `${spanWeek} (${spanStrips} strips in a pack)`;
+
+            document.querySelector(".middle-block__week-output").innerText = spanWeek;
+            document.querySelector(
+                ".middle-block__price-output"
+            ).innerText = spanPrice;
+        });
     }
-  }
 
-  document.querySelector(".stock__select").addEventListener("change", (e) => {
-    let currentOptionValue =
-      e.target.options[e.target.selectedIndex].dataset.value;
+    for (let i = 0; i < swatchWrap.children.length; i++) {
+        document
+            .querySelector(".swatchCustom")
+            .children[i].addEventListener("click", function () {
+            if (i === 0) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on button 4-week pack",
+                    eventLabel: "Section: Pack size",
+                });
+            } else if (i === 1) {
+                document.querySelector(".subscibe-custom__info").innerText =
+                    "Auto delivery every 3 month for $49.97.";
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on button 12-week pack",
+                    eventLabel: "Section: Pack size",
+                });
+            } else if (i === 2) {
+                document.querySelector(".subscibe-custom__info").innerText =
+                    "Auto delivery every 12 month for $199.97.";
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on button 12-month pack",
+                    eventLabel: "Section: Pack size",
+                });
+            }
 
-    let initialValue = document
-      .querySelectorAll(".active .modal_price.subtitle")[1]
-      .getElementsByClassName("money")[0]
-      .dataset.currencyUsd.replace(/[^0-9.]/g, "");
+            document.querySelectorAll(".swatch-element")[i + 3].click();
 
-    let tempMoneyValue = initialValue * currentOptionValue;
+            upgrade();
+        });
+    }
+
+    const starWrap = document.querySelectorAll(
+        ".stamped-starrating.stamped-badge-starrating"
+    )[1];
+
+    document.querySelectorAll(".swatch-element")[4].click();
+    for (let i = 0; i < starWrap.children.length; i++) {
+        starWrap.children[i].style.cssText = "color: rgb(242, 180, 19) !important;";
+    }
+
+    function upgrade(currentOptionValue) {
+        let stockStrips = document
+            .querySelector(".swatchCustom__item--active")
+            .children[0].getElementsByClassName("days")[0]
+            .innerText.replace(/ .*/, "");
+
+        if (currentOptionValue === undefined) {
+            document.querySelector(
+                ".stock__pack"
+            ).innerHTML = `1 pack = ${stockStrips} strips`;
+        } else {
+            document.querySelector(
+                ".stock__pack"
+            ).innerHTML = `${currentOptionValue} packs = ${
+                stockStrips * currentOptionValue
+            } strips`;
+        }
+    }
+
+    document.querySelector(".stock__select").addEventListener("change", (e) => {
+        let currentOptionValue =
+            e.target.options[e.target.selectedIndex].dataset.value;
+
+        let initialValue = document
+            .querySelectorAll(".active .modal_price.subtitle")[1]
+            .getElementsByClassName("money")[0]
+            .dataset.currencyUsd.replace(/[^0-9.]/g, "");
+
+        let tempMoneyValue = initialValue * currentOptionValue;
+
+        document
+            .querySelectorAll(".active .modal_price.subtitle")[1]
+            .getElementsByClassName("money")[0].innerText = `$${Number(
+            tempMoneyValue.toFixed(2)
+        )} USD`;
+
+        upgrade(currentOptionValue);
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — New PDP (Variant 1/A)",
+            eventAction: "click on select — quantity",
+        });
+    });
 
     document
-      .querySelectorAll(".active .modal_price.subtitle")[1]
-      .getElementsByClassName("money")[0].innerText = `$${Number(
-      tempMoneyValue.toFixed(2)
-    )} USD`;
+        .querySelector(".subscribe-custom__checkbox")
+        .addEventListener("change", (e) => {
+            if (e.currentTarget.checked) {
+                upgrade();
+                document.querySelector(".stock__select").disabled = true;
+                document.querySelector(".stock__select").value = 1;
 
-    upgrade(currentOptionValue);
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on checkbox — Subscribe and save 10%",
+                });
+
+                if (
+                    document
+                        .querySelectorAll(".swatchCustom__item")[1]
+                        .classList.contains("swatchCustom__item--active")
+                ) {
+                    document
+                        .querySelectorAll(".active .modal_price.subtitle")[1]
+                        .getElementsByClassName("money")[0].innerText = "$49.97 USD";
+                } else if (
+                    document
+                        .querySelectorAll(".swatchCustom__item")[2]
+                        .classList.contains("swatchCustom__item--active")
+                ) {
+                    document
+                        .querySelectorAll(".active .modal_price.subtitle")[1]
+                        .getElementsByClassName("money")[0].innerText = "$199.97 USD";
+                }
+            } else if (e.currentTarget.checked === false) {
+                if (
+                    document
+                        .querySelectorAll(".swatchCustom__item")[1]
+                        .classList.contains("swatchCustom__item--active")
+                ) {
+                    document
+                        .querySelectorAll(".active .modal_price.subtitle")[1]
+                        .getElementsByClassName("money")[0].innerText = "$55.97 USD";
+                } else if (
+                    document
+                        .querySelectorAll(".swatchCustom__item")[2]
+                        .classList.contains("swatchCustom__item--active")
+                ) {
+                    document
+                        .querySelectorAll(".active .modal_price.subtitle")[1]
+                        .getElementsByClassName("money")[0].innerText = "$219.97 USD";
+                }
+                document.querySelector(".stock__select").disabled = false;
+            }
+        });
+
+    document.querySelector(
+        ".ship-destination__span--date"
+    ).innerText = document.querySelectorAll(
+        ".on-select"
+    )[5].children[0].dataset.value;
+
+    document.querySelectorAll(".on-select")[5].addEventListener("change", (e) => {
+        let value = e.target.options[e.target.selectedIndex].dataset.value;
+        document.querySelector(".ship-destination__span--date").innerText = value;
+    });
+
+    document.querySelector(".addcart__button").addEventListener("click", () => {
+        const itemId = document.querySelector(".swatchCustom__item--active").dataset
+            .variant;
+        const itemQuantity = document.querySelector(".stock__select").value;
+
+        if (document.querySelector(".subscribe-custom__checkbox").checked) {
+            if (itemId === "32115046056051") {
+                addItemToCart("31272810676339", 1, "3", "Month", "95310");
+            } else if (itemId === "32190023958643") {
+                addItemToCart("32190023958643", 1, "12", "Month", "95310");
+            }
+        } else {
+            addItemToCart(itemId, itemQuantity);
+        }
+    });
+
+    document.querySelectorAll(".tooltip-container").forEach((e, index) =>
+        e.addEventListener("mouseenter", () => {
+            if (index === 0) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on tooltip",
+                    eventLabel: "Tooltip: Hyppoallergic and good for sensitive skin",
+                });
+            } else if (index === 1) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on tooltip",
+                    eventLabel: "Tooltip: Does not block breathing",
+                });
+            } else if (index === 2) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp — New PDP (Variant 1/A)",
+                    eventAction: "click on tooltip",
+                    eventLabel: "Tooltip: CPAP-friendly with nasal mask or nasal pillows",
+                });
+            }
+        })
+    );
+
+    (function (h, o, t, j, a, r) {
+        h.hj =
+            h.hj ||
+            function () {
+                (h.hj.q = h.hj.q || []).push(arguments);
+            };
+        h._hjSettings = { hjid: 1271698, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    window.hj =
+        window.hj ||
+        function () {
+            (hj.q = hj.q || []).push(arguments);
+        };
+    hj("trigger", "new_pdp_desktop");
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp — New PDP (Variant 1/A)",
-      eventAction: "click on select — quantity",
+        event: "event-to-ga",
+        eventCategory: "Exp — New PDP",
+        eventAction: "loaded",
     });
-  });
-
-  document
-    .querySelector(".subscribe-custom__checkbox")
-    .addEventListener("change", (e) => {
-      if (e.currentTarget.checked) {
-        upgrade();
-        document.querySelector(".stock__select").disabled = true;
-        document.querySelector(".stock__select").value = 1;
-
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: "Exp — New PDP (Variant 1/A)",
-          eventAction: "click on checkbox — Subscribe and save 10%",
-        });
-
-        if (
-          document
-            .querySelectorAll(".swatchCustom__item")[1]
-            .classList.contains("swatchCustom__item--active")
-        ) {
-          document
-            .querySelectorAll(".active .modal_price.subtitle")[1]
-            .getElementsByClassName("money")[0].innerText = "$49.97 USD";
-        } else if (
-          document
-            .querySelectorAll(".swatchCustom__item")[2]
-            .classList.contains("swatchCustom__item--active")
-        ) {
-          document
-            .querySelectorAll(".active .modal_price.subtitle")[1]
-            .getElementsByClassName("money")[0].innerText = "$199.97 USD";
-        }
-      } else if (e.currentTarget.checked === false) {
-        if (
-          document
-            .querySelectorAll(".swatchCustom__item")[1]
-            .classList.contains("swatchCustom__item--active")
-        ) {
-          document
-            .querySelectorAll(".active .modal_price.subtitle")[1]
-            .getElementsByClassName("money")[0].innerText = "$55.97 USD";
-        } else if (
-          document
-            .querySelectorAll(".swatchCustom__item")[2]
-            .classList.contains("swatchCustom__item--active")
-        ) {
-          document
-            .querySelectorAll(".active .modal_price.subtitle")[1]
-            .getElementsByClassName("money")[0].innerText = "$219.97 USD";
-        }
-        document.querySelector(".stock__select").disabled = false;
-      }
-    });
-
-  document.querySelector(
-    ".ship-destination__span--date"
-  ).innerText = document.querySelectorAll(
-    ".on-select"
-  )[5].children[0].dataset.value;
-
-  document.querySelectorAll(".on-select")[5].addEventListener("change", (e) => {
-    let value = e.target.options[e.target.selectedIndex].dataset.value;
-    document.querySelector(".ship-destination__span--date").innerText = value;
-  });
-
-  document.querySelector(".addcart__button").addEventListener("click", () => {
-    const itemId = document.querySelector(".swatchCustom__item--active").dataset
-      .variant;
-    const itemQuantity = document.querySelector(".stock__select").value;
-
-    if (document.querySelector(".subscribe-custom__checkbox").checked) {
-      if (itemId === "32115046056051") {
-        addItemToCart("31272810676339", 1, "3", "Month", "95310");
-      } else if (itemId === "32190023958643") {
-        addItemToCart("32190023958643", 1, "12", "Month", "95310");
-      }
-    } else {
-      addItemToCart(itemId, itemQuantity);
     }
-  });
-
-  document.querySelectorAll(".tooltip-container").forEach((e, index) =>
-    e.addEventListener("mouseenter", () => {
-      if (index === 0) {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: "Exp — New PDP (Variant 1/A)",
-          eventAction: "click on tooltip",
-          eventLabel: "Tooltip: Hyppoallergic and good for sensitive skin",
-        });
-      } else if (index === 1) {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: "Exp — New PDP (Variant 1/A)",
-          eventAction: "click on tooltip",
-          eventLabel: "Tooltip: Does not block breathing",
-        });
-      } else if (index === 2) {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: "Exp — New PDP (Variant 1/A)",
-          eventAction: "click on tooltip",
-          eventLabel: "Tooltip: CPAP-friendly with nasal mask or nasal pillows",
-        });
-      }
-    })
-  );
-
-  (function (h, o, t, j, a, r) {
-    h.hj =
-      h.hj ||
-      function () {
-        (h.hj.q = h.hj.q || []).push(arguments);
-      };
-    h._hjSettings = { hjid: 1271698, hjsv: 6 };
-    a = o.getElementsByTagName("head")[0];
-    r = o.createElement("script");
-    r.async = 1;
-    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-    a.appendChild(r);
-  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-  window.hj =
-    window.hj ||
-    function () {
-      (hj.q = hj.q || []).push(arguments);
-    };
-  hj("trigger", "new_pdp_desktop");
-
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp — New PDP",
-    eventAction: "loaded",
-  });
-};
+})
