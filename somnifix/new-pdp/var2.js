@@ -1,5 +1,5 @@
 let start = setInterval(function () {
-    if(document.querySelectorAll('.shopify-product-form')[1]) {
+    if(document.querySelectorAll('.shopify-product-form')[1] && document.querySelector(".section.is-width-standard .product_section .swatch_options .swatch")) {
         clearInterval(start)
 
     document.head.insertAdjacentHTML(
