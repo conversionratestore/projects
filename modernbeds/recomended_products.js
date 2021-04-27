@@ -134,7 +134,7 @@ if(cat.includes('bed-set')) {
 }
 
 let start = setInterval(function () {
-    if(document.querySelector('.cbb-also-bought-slider-list')) {
+    if(document.querySelector('.cbb-also-bought-slider-list li:first-child')) {
         clearInterval(start)
 // document.addEventListener('DOMContentLoaded', function () {
 
@@ -146,7 +146,9 @@ let start = setInterval(function () {
             priceRegular: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-regular-price').innerText,
             priceSale: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-sale-price').innerText,
             priceThrow: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-compare-at-price').innerText,
-            reviewCount: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-review-count').innerText.trim().slice(1, -1)
+            reviewCount: (document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-review-count')) ?
+                document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-review-count').innerText.trim().slice(1, -1) :
+                '0'
         }
         let secondProduct = {
             img: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-image').style.backgroundImage.split('"')[1],
