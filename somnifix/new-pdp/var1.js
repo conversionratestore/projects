@@ -691,7 +691,7 @@ let start = setInterval(function () {
                 els[i].setAttribute("data-save", arrSave[i]);
             }
 
-            // selected swatch-element 
+            // selected swatch-element
             document.querySelectorAll('.swatch-element').forEach(function (item) {
                 item.addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
@@ -791,7 +791,7 @@ let start = setInterval(function () {
                 document.querySelector('.product-arrives .on-date-text').innerHTML = value;
             });
 
-            //change color star 
+            //change color star
             document.querySelectorAll('.product-review .stamped-fa-star').forEach(function (item) {
                 item.style = 'color: #F2B413!important';
             });
@@ -853,7 +853,7 @@ let start = setInterval(function () {
                 });
             });
         }
-})
+}, 50)
 
 //Hotjar trigger to record video sessions
         (function(h,o,t,j,a,r){
