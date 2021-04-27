@@ -865,7 +865,7 @@ let start = setInterval(function () {
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'new_pdp_desktop');
+hj('trigger', 'optimize_pdp');
 
 
 //Activation of the experiment
