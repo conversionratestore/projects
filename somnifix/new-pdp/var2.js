@@ -806,7 +806,7 @@ let start = setInterval(function () {
         function () {
             (hj.q = hj.q || []).push(arguments);
         };
-    hj("trigger", "new_pdp_desktop");
+    hj("trigger", "optimize_pdp");
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
