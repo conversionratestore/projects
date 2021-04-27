@@ -134,7 +134,7 @@ if(cat.includes('bed-set')) {
 }
 
 let start = setInterval(function () {
-    if(document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-rating-box')) {
+    if(document.querySelector('.cbb-also-bought-slider-list li .cbb-review-count')) {
         clearInterval(start)
 // document.addEventListener('DOMContentLoaded', function () {
 
