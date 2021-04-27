@@ -133,34 +133,34 @@ if(cat.includes('bed-set')) {
     toCat = 'https://modernbeds.co.uk/pages/divan-beds'
 }
 
-// let start = setInterval(function () {
-//     if(document.querySelector('.product__price'))
-//     clearInterval(start)
-document.addEventListener('DOMContentLoaded', function () {
+let start = setInterval(function () {
+    if(document.querySelector('.cbb-also-bought-slider-list')) {
+        clearInterval(start)
+// document.addEventListener('DOMContentLoaded', function () {
 
 
-    let firstProduct = {
-        img: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-image').style.backgroundImage.split('"')[1],
-        href: document.querySelector('.cbb-also-bought-slider-list li:first-child a').getAttribute('href'),
-        name: document.querySelector('.cbb-also-bought-slider-list li:first-child h3 a').innerText,
-        priceRegular: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-regular-price').innerText,
-        priceSale: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-sale-price').innerText,
-        priceThrow: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-compare-at-price').innerText,
-        reviewCount: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-review-count').innerText.trim().slice(1, -1)
-    }
-    let secondProduct = {
-        img: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-image').style.backgroundImage.split('"')[1],
-        href: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) a').getAttribute('href'),
-        name: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) h3 a').innerText,
-        priceRegular: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-regular-price').innerText,
-        priceSale: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-sale-price').innerText,
-        priceThrow: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-compare-at-price').innerText,
-        reviewCount: (document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-review-count')) ?
-            document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-review-count').innerText.trim().slice(1, -1) :
-            '0'
-    }
+        let firstProduct = {
+            img: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-image').style.backgroundImage.split('"')[1],
+            href: document.querySelector('.cbb-also-bought-slider-list li:first-child a').getAttribute('href'),
+            name: document.querySelector('.cbb-also-bought-slider-list li:first-child h3 a').innerText,
+            priceRegular: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-regular-price').innerText,
+            priceSale: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-sale-price').innerText,
+            priceThrow: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-also-bought-product-compare-at-price').innerText,
+            reviewCount: document.querySelector('.cbb-also-bought-slider-list li:first-child .cbb-review-count').innerText.trim().slice(1, -1)
+        }
+        let secondProduct = {
+            img: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-image').style.backgroundImage.split('"')[1],
+            href: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) a').getAttribute('href'),
+            name: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) h3 a').innerText,
+            priceRegular: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-regular-price').innerText,
+            priceSale: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-sale-price').innerText,
+            priceThrow: document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-also-bought-product-compare-at-price').innerText,
+            reviewCount: (document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-review-count')) ?
+                document.querySelector('.cbb-also-bought-slider-list li:nth-child(2) .cbb-review-count').innerText.trim().slice(1, -1) :
+                '0'
+        }
 
-    let newBlock = `
+        let newBlock = `
     <div class="recommended">
       <p>Other bed sets</p>
       <a href="${firstProduct.href}" class="prod-block">
@@ -186,65 +186,65 @@ document.addEventListener('DOMContentLoaded', function () {
       <a class="more" href="${toCat}">Show more<img src="https://conversionratestore.github.io/projects/modernbeds/img/arr.svg" alt="arr"></a>
     </div>
 `
-    if ($('.product-form__item .swatch-wrapper').hasClass('slick-slider')) {
-        $('.product-form__item .swatch-wrapper').slick('unslick')
-    }
+        if ($('.product-form__item .swatch-wrapper').hasClass('slick-slider')) {
+            $('.product-form__item .swatch-wrapper').slick('unslick')
+        }
 
-    document.body.insertAdjacentHTML('afterbegin', style)
+        document.body.insertAdjacentHTML('afterbegin', style)
 
-    if (document.querySelector('.swatch.clearfix.option1')) {
-        document.querySelector('.swatch.clearfix.option1').insertAdjacentHTML('beforeend', newBlock)
-        document.querySelectorAll('.swatch-element')[0].insertAdjacentHTML('beforebegin', `
+        if (document.querySelector('.swatch.clearfix.option1')) {
+            document.querySelector('.swatch.clearfix.option1').insertAdjacentHTML('beforeend', newBlock)
+            document.querySelectorAll('.swatch-element')[0].insertAdjacentHTML('beforebegin', `
             <div class="v-slider">
                 <div class="up"></div>
                 <div class="sld"></div>
                 <div class="down"></div>
             </div>
         `)
-        document.querySelectorAll('.swatch-element').forEach(item => {
-            document.querySelector('.v-slider .sld').append(item)
+            document.querySelectorAll('.swatch-element').forEach(item => {
+                document.querySelector('.v-slider .sld').append(item)
+            })
+            $('.v-slider .sld').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                vertical: true,
+                prevArrow: '.v-slider .up',
+                nextArrow: '.v-slider .down'
+            })
+        } else {
+            document.querySelector('.product__price').insertAdjacentHTML('beforebegin', newBlock)
+            document.querySelector('.recommended').style.width = '100%'
+        }
+
+        document.querySelector('.recommended .prod-block img').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - PDP product recommendations',
+                'eventAction': 'click on recommended product image'
+            });
         })
-        $('.v-slider .sld').slick({
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            vertical: true,
-            prevArrow: '.v-slider .up',
-            nextArrow: '.v-slider .down'
+
+        document.querySelector('.recommended .prod-block .name').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - PDP product recommendations',
+                'eventAction': 'click on recommended product name'
+            });
         })
-    } else {
-        document.querySelector('.product__price').insertAdjacentHTML('beforebegin', newBlock)
-        document.querySelector('.recommended').style.width = '100%'
+
+        document.querySelector('.recommended a.more').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - PDP product recommendations',
+                'eventAction': 'click on Show more'
+            });
+        })
     }
-
-    document.querySelector('.recommended .prod-block img').addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - PDP product recommendations',
-            'eventAction': 'click on recommended product image'
-        });
-    })
-
-    document.querySelector('.recommended .prod-block .name').addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - PDP product recommendations',
-            'eventAction': 'click on recommended product name'
-        });
-    })
-
-    document.querySelector('.recommended a.more').addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - PDP product recommendations',
-            'eventAction': 'click on Show more'
-        });
-    })
-
-// }, 50);
-});
+}, 50);
+// });
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
