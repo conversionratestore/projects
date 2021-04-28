@@ -113,7 +113,6 @@ let style = `
         position: sticky;
         top: -180px;
         z-index: 100;
-        height: 80px;
        }
        
        .product-single__thumbnails .slick-list {
@@ -132,6 +131,8 @@ let style = `
        
        .new_title {
         display: flex;
+        align-items: center;
+        margin: 10px 5px;
        }
        
        .new_title h1 {
@@ -147,8 +148,13 @@ let style = `
         display: inline;
        }
        
-       .product__price {
+       .template-product .product__price{
         display: flex;
+        margin: 15px;
+       }
+       
+       .template-product .product__price span {
+        font-size: 18px !important;
        }
     </style>
 `
