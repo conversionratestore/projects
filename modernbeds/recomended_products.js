@@ -148,15 +148,6 @@ let style = `
         display: inline;
        }
        
-       .template-product .product__price{
-        display: flex;
-        margin: 15px;
-       }
-       
-       .template-product .product__price span {
-        font-size: 18px !important;
-       }
-       
        .product-template__container .wishlist-sharing {
         padding: 0;
        }
@@ -248,7 +239,6 @@ let start = setInterval(function () {
         document.querySelector('.store-features').insertAdjacentHTML('afterend', `<div class="new_title"></div>`)
         document.querySelector('.new_title').append(document.querySelector('.product-single__title'))
         document.querySelector('.new_title').append(document.querySelector('.reviewLink'))
-        document.querySelector('.product-single__photos').after(document.querySelector('.product__price'))
 
 
         if (document.querySelector('.swatch.clearfix.option1')) {
