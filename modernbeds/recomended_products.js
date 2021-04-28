@@ -108,6 +108,48 @@ let style = `
        .v-slider .down {
         transform: rotateZ(90deg);
        }
+       
+       .product-single__photos {
+        position: sticky;
+        top: -180px;
+        z-index: 100;
+        height: 80px;
+       }
+       
+       .product-single__thumbnails .slick-list {
+        height: 80px;
+       }
+       
+       .product-single__thumbnails {
+        background-color: #fff;
+        box-shadow:  0 4px 11px rgba(0, 0, 0, 0.25);
+        margin-bottom: 20px;
+       }
+       
+       .store-features {
+        border-bottom: 1px solid #E8E9EB;
+       }
+       
+       .new_title {
+        display: flex;
+       }
+       
+       .new_title h1 {
+        font-size: 16px;
+        width: 55%;
+       }
+       
+       .new_title .reviewLink {
+        width: 45%;
+       }
+       
+       .reviewLink .spr-badge-caption {
+        display: inline;
+       }
+       
+       .product__price {
+        display: flex;
+       }
     </style>
 `
 
@@ -193,6 +235,11 @@ let start = setInterval(function () {
         }
 
         document.body.insertAdjacentHTML('afterbegin', style)
+        document.querySelector('.store-features').insertAdjacentHTML('afterend', `<div class="new_title"></div>`)
+        document.querySelector('.new_title').append(document.querySelector('.product-single__title'))
+        document.querySelector('.new_title').append(document.querySelector('.reviewLink'))
+        document.querySelector('.product-single__photos').after(document.querySelector('.product__price'))
+
 
         if (document.querySelector('.swatch.clearfix.option1')) {
             document.querySelector('.swatch.clearfix.option1').insertAdjacentHTML('beforeend', newBlock)
