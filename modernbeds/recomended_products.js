@@ -156,6 +156,10 @@ let style = `
        .template-product .product__price span {
         font-size: 18px !important;
        }
+       
+       .product-template__container .wishlist-sharing {
+        padding: 0;
+       }
     </style>
 `
 
