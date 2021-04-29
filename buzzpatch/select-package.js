@@ -288,11 +288,6 @@ window.onload  = function () {
     });
 
     function counterIf() {  
-        document.querySelectorAll('.packs-group label').forEach((label) => {
-            if (label.querySelector('input').checked) {
-                document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
-            }
-        });
         if (document.querySelector('.counter-input').value <= 1) {
             document.querySelector('.counter-input').value = 1;
             document.querySelector('.counter-btn_minus').classList.remove('active');
@@ -312,6 +307,11 @@ window.onload  = function () {
                 el.innerHTML = `${parseFloat(daysForPeople.toFixed(1))} days`;
             });
         } 
+        document.querySelectorAll('.packs-group label').forEach((label) => {
+            if (label.querySelector('input').checked) {
+                document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
+            }
+        });
     }
 
     document.querySelectorAll('.counter-btn').forEach( (item) => {
