@@ -140,7 +140,6 @@ window.onload  = function () {
         }
     </style>
     `
-
     document.body.insertAdjacentHTML('afterbegin', style);
 
     let selectPackage = `
@@ -249,7 +248,7 @@ window.onload  = function () {
         }
         if(packs[i].checked === true) {
             document.querySelectorAll('.packs-group input')[i].setAttribute('checked','checked');     
-            document.querySelector('.js-total .pr').innerHTML = packs[i].pack * packs[i].price;   
+            document.querySelector('.js-total .pr').innerHTML = packs[i].pack * packs[i].price * document.querySelector('.counter-input').value;   
             document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack;
             document.querySelector('.js-regular .rs').innerHTML = 20 * packs[i].pack - packs[i].pack * packs[i].price;
             document.querySelector('#purchase .js-btn').setAttribute('data-id', packs[i].id);
@@ -261,7 +260,7 @@ window.onload  = function () {
     document.querySelectorAll('.packs-group label').forEach((item, index) => {
         item.addEventListener('change', () => {
             if(item.querySelector('input').checked) {
-                document.querySelector('.js-total .pr').innerHTML = item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price;
+                document.querySelector('.js-total .pr').innerHTML = item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
                 document.querySelector('.js-total .ps').innerHTML = item.dataset.save;
                 document.querySelector('.js-strike .rp').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack;
                 document.querySelector('.js-regular .rs').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack - item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price;
