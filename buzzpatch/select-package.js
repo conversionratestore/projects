@@ -360,13 +360,11 @@ window.onload  = function () {
                     el.dataset.dayssum = spldays[0];
                     dataLayer.eventAction = 'click on age — 0-2';
                 } else if (index == 1) {
-                    // el.dataset.days = el.dataset.days * 0.5;
-                    el.innerHTML = `${el.dataset.days * 0.5} days`;
+                    el.innerHTML = `${el.dataset.days * 0.5 + el.dataset.days} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
                     dataLayer.eventAction = 'click on age — 3-5';
                 } else if (index == 2) {
-                    // el.dataset.days = el.dataset.days;
                     el.innerHTML = `${el.dataset.days} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
