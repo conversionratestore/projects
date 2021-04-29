@@ -314,9 +314,8 @@ window.onload  = function () {
             if (label.querySelector('input').checked) {
                 document.querySelector('.js-total .pr').innerHTML = (label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price) * document.querySelector('.counter-input').value;
                 document.querySelector('.js-strike .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
-                document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
+                document.querySelector('.js-strike .rp').innerHTML *= document.querySelector('.counter-input').value;
             }
-           
         });
     }
 
