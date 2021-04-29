@@ -289,7 +289,7 @@ window.onload  = function () {
 
     function counterIf() {  
         document.querySelectorAll('.packs-group label').forEach((label) => {
-            if (label.checked) {
+            if (label.querySelector('input').checked) {
                 document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
             }
         });
