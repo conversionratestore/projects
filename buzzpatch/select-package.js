@@ -225,7 +225,7 @@ window.onload  = function () {
 
     let newElementBestseller = `<span class="bestseller">Bestseller</span>`;
 
-    document.querySelector('.js-strike .rs').innerHTML = parseInt(document.querySelector('.js-strike .rp').innerHTML) - parseInt(document.querySelector('.js-total .pr').innerHTML);
+    // document.querySelector('.js-strike .rs').innerHTML = parseInt(document.querySelector('.js-strike .rp').innerHTML) - parseInt(document.querySelector('.js-total .pr').innerHTML);
     
     for (let i = 0; i < packs.length; i++) {
         let newElementPacksLabel = document.createElement('label');
