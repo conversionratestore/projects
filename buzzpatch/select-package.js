@@ -252,7 +252,7 @@ window.onload  = function () {
             document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack * document.querySelector('.counter-input').value;
             document.querySelector('.js-regular .rs').innerHTML = 20 * packs[i].pack - packs[i].pack * packs[i].price;
             document.querySelector('#purchase .js-btn').setAttribute('data-id', packs[i].id);
-            document.querySelector('.js-strike .rs').innerHTML = parseInt(document.querySelector('.js-strike .rp').innerHTML) - parseInt(document.querySelector('.js-total .pr').innerHTML);
+            document.querySelector('.js-strike .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
         }
     }
 
