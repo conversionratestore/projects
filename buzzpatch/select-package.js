@@ -316,7 +316,7 @@ window.onload  = function () {
             }
         });
         document.querySelector('.js-strike .rp').innerHTML *= document.querySelector('.counter-input').value;
-        document.querySelector('.js-strike .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
+        document.querySelector('.js-regular .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
     }
 
     document.querySelectorAll('.counter-btn').forEach( (item) => {
