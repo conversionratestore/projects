@@ -313,8 +313,9 @@ window.onload  = function () {
         document.querySelectorAll('.packs-group label').forEach((label) => {
             if (label.querySelector('input').checked) {
                 document.querySelector('.js-total .pr').innerHTML = (label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price) * document.querySelector('.counter-input').value;
-                document.querySelector('.js-strike .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
                 document.querySelector('.js-strike .rp').innerHTML *= document.querySelector('.counter-input').value;
+                document.querySelector('.js-strike .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
+               
             }
         });
     }
