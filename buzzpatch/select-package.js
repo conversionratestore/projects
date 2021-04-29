@@ -225,8 +225,7 @@ window.onload  = function () {
 
     let newElementBestseller = `<span class="bestseller">Bestseller</span>`;
 
-    // document.querySelector('.js-strike .rs').innerHTML = parseInt(document.querySelector('.js-strike .rp').innerHTML) - parseInt(document.querySelector('.js-total .pr').innerHTML);
-    
+
     for (let i = 0; i < packs.length; i++) {
         let newElementPacksLabel = document.createElement('label');
         newElementPacksLabel.className = 'mb-3 w-100';
@@ -254,7 +253,6 @@ window.onload  = function () {
             document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack * document.querySelector('.counter-input').value;
             document.querySelector('.js-regular .rs').innerHTML = 20 * packs[i].pack - packs[i].pack * packs[i].price;
             document.querySelector('#purchase .js-btn').setAttribute('data-id', packs[i].id);
-            // document.querySelector('.js-strike .rs').innerHTML = parseInt(document.querySelector('.js-strike .rp').innerHTML) - parseInt(document.querySelector('.js-total .pr').innerHTML);
         }
     }
 
@@ -313,10 +311,12 @@ window.onload  = function () {
         document.querySelectorAll('.packs-group label').forEach((label) => {
             if (label.querySelector('input').checked) {
                 document.querySelector('.js-total .pr').innerHTML = (label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price) * document.querySelector('.counter-input').value;
+                document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
             }
         });
-        document.querySelector('.js-strike .rp').innerHTML *= document.querySelector('.counter-input').value;
+       
         document.querySelector('.js-regular .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
+    
     }
 
     document.querySelectorAll('.counter-btn').forEach( (item) => {
