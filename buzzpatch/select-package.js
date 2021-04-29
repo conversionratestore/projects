@@ -161,7 +161,7 @@ window.onload  = function () {
         <div class="d-md-none d-flex justify-content-center counter">
             <button class="counter-btn counter-btn_minus" type="button"></button>
             <div class="text-center">
-                <input type="text" class="counter-input" value="1">   
+                <input type="text" class="counter-input" value="1" readonly>   
                 <p class="fs-14">person</p>
             </div>
             <button class="counter-btn counter-btn_plus active" type="button"></button>
@@ -360,7 +360,7 @@ window.onload  = function () {
                     el.dataset.dayssum = spldays[0];
                     dataLayer.eventAction = 'click on age — 0-2';
                 } else if (index == 1) {
-                    el.innerHTML = `${(el.dataset.days * 0.5) + el.dataset.days} days`;
+                    el.innerHTML = `${el.dataset.days * 0.5} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
                     dataLayer.eventAction = 'click on age — 3-5';
