@@ -448,6 +448,7 @@ window.onload  = function () {
     };
 
     document.querySelector('#purchase .js-btn').addEventListener('click', (e) => {
+        e.preventDefault();
         formData.items.push({
             'id': e.target.dataset.id,
             'quantity': document.querySelector('.counter-input').value
