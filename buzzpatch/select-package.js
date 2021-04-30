@@ -225,7 +225,6 @@ window.onload  = function () {
 
     let newElementBestseller = `<span class="bestseller">Bestseller</span>`;
 
-
     for (let i = 0; i < packs.length; i++) {
         let newElementPacksLabel = document.createElement('label');
         newElementPacksLabel.className = 'mb-3 w-100';
@@ -255,7 +254,6 @@ window.onload  = function () {
             document.querySelector('#purchase .js-btn').setAttribute('data-id', packs[i].id);
         }
     }
-
     document.querySelectorAll('.packs-group label')[packs.length - 1].hidden = true;
 
     document.querySelectorAll('.packs-group label').forEach((item, index) => {
@@ -285,7 +283,6 @@ window.onload  = function () {
             }else if (index == 4) {
                 dataLayer.eventAction = 'click on pack size — 24 pack';
             }
-          
         });
     });
 
@@ -315,9 +312,7 @@ window.onload  = function () {
                 document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
             }
         });
-       
         document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));
-    
     }
 
     document.querySelectorAll('.counter-btn').forEach( (item) => {
