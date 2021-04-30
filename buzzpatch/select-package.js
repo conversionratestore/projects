@@ -265,22 +265,47 @@ window.onload  = function () {
                 document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));
                 document.querySelector('#purchase .js-btn').setAttribute('data-id', item.dataset.id);
             }
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP: Age based labels',
-                'eventLabel': '',
-            });
+          
             if(index == 0) {  
-                dataLayer.push({'eventAction': 'click on pack size — 1 pack'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on pack size — 1 pack',
+                    'eventLabel': '',
+                });
             } else if (index == 1) {
-                dataLayer.push({'eventAction': 'click on pack size — 3 pack'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on pack size — 3 pack',
+                    'eventLabel': '',
+                });
             } else if (index == 2) {
-                dataLayer.push({'eventAction': 'click on pack size — 6 pack'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on pack size — 6 pack',
+                    'eventLabel': '',
+                });
             } else if (index == 3) {
-                dataLayer.push({'eventAction': 'click on pack size — 12 pack'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on pack size — 12 pack',
+                    'eventLabel': '',
+                });
             } else if (index == 4) {
-                dataLayer.push({'eventAction': 'click on pack size — 24 pack'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on pack size — 24 pack',
+                    'eventLabel': '',
+                });
             }
         });
     });
@@ -316,19 +341,26 @@ window.onload  = function () {
 
     document.querySelectorAll('.counter-btn').forEach( (item) => {
         item.addEventListener('click', (e) => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP: Age based labels',
-                'eventLabel': 'Quantity',
-            });
+          
             if (e.target.classList.contains('counter-btn_minus')) {
                 document.querySelector('.counter-input').value = parseInt(document.querySelector('.counter-input').value) - 1;
-                dataLayer.push({'eventAction': 'click on button Minus'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventLabel': 'Quantity',
+                    'eventAction': 'click on button Minus'
+                });
             }
             if (e.target.classList.contains('counter-btn_plus')) {
                 document.querySelector('.counter-input').value = parseInt(document.querySelector('.counter-input').value) + 1;
-                dataLayer.push({'eventAction': 'click on button Plus'});
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventLabel': 'Quantity',
+                    'eventAction': 'click on button Plus'
+                });
             }
             counterIf();
         });  
