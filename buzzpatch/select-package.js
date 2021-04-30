@@ -264,7 +264,7 @@ window.onload  = function () {
                 document.querySelector('.js-total .pr').innerHTML = item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
                 document.querySelector('.js-total .ps').innerHTML = item.dataset.save;
                 document.querySelector('.js-strike .rp').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
-                document.querySelector('.js-regular .rs').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack - item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price;
+                document.querySelector('.js-regular .rs').innerHTML = document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML;
                 document.querySelector('#purchase .js-btn').setAttribute('data-id', item.dataset.id);
             }
             window.dataLayer = window.dataLayer || [];
@@ -285,6 +285,7 @@ window.onload  = function () {
             }else if (index == 4) {
                 dataLayer.eventAction = 'click on pack size — 24 pack';
             }
+          
         });
     });
 
