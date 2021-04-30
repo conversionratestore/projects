@@ -269,19 +269,18 @@ window.onload  = function () {
             dataLayer.push({
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp — PDP: Age based labels',
-                'eventAction': '',
-                'eventLabel': ''
+                'eventLabel': '',
             });
-            if(index == 0) {
-                dataLayer.eventAction = 'click on pack size — 1 pack';     
+            if(index == 0) {  
+                dataLayer.push({'eventAction': 'click on pack size — 1 pack'});
             } else if (index == 1) {
-                dataLayer.eventAction = 'click on pack size — 3 pack';
+                dataLayer.push({'eventAction': 'click on pack size — 3 pack'});
             } else if (index == 2) {
-                dataLayer.eventAction = 'click on pack size — 6 pack';
+                dataLayer.push({'eventAction': 'click on pack size — 6 pack'});
             } else if (index == 3) {
-                dataLayer.eventAction = 'click on pack size — 12 pack';
-            }else if (index == 4) {
-                dataLayer.eventAction = 'click on pack size — 24 pack';
+                dataLayer.push({'eventAction': 'click on pack size — 12 pack'});
+            } else if (index == 4) {
+                dataLayer.push({'eventAction': 'click on pack size — 24 pack'});
             }
         });
     });
@@ -322,15 +321,14 @@ window.onload  = function () {
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp — PDP: Age based labels',
                 'eventLabel': 'Quantity',
-                'eventAction': ''
             });
             if (e.target.classList.contains('counter-btn_minus')) {
                 document.querySelector('.counter-input').value = parseInt(document.querySelector('.counter-input').value) - 1;
-                dataLayer.eventAction = 'click on button Minus';
+                dataLayer.push({'eventAction': 'click on button Minus'});
             }
             if (e.target.classList.contains('counter-btn_plus')) {
                 document.querySelector('.counter-input').value = parseInt(document.querySelector('.counter-input').value) + 1;
-                dataLayer.eventAction = 'click on button Plus';
+                dataLayer.push({'eventAction': 'click on button Plus'});
             }
             counterIf();
         });  
@@ -352,24 +350,23 @@ window.onload  = function () {
             dataLayer.push({
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp — PDP: Age based labels',
-                'eventAction': ''
             });
             document.querySelectorAll('.packs-days').forEach((el) => {
                 if (index == 0) {
                     el.innerHTML = `${el.dataset.days * 3} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.eventAction = 'click on age — 0-2';
+                    dataLayer.push({'eventAction': 'click on age — 0-2'});
                 } else if (index == 1) {
                     el.innerHTML = `${el.dataset.days * 1.5} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.eventAction = 'click on age — 3-5';
+                    dataLayer.push({'eventAction': 'click on age — 3-5'});
                 } else if (index == 2) {
                     el.innerHTML = `${el.dataset.days} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.eventAction = 'click on age — 6+';
+                    dataLayer.push({'eventAction': 'click on age — 6+'});
                 }
             });
             document.querySelectorAll('.packs-group label').forEach((label) => {
