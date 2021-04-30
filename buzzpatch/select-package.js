@@ -59,6 +59,8 @@ window.onload  = function () {
             .counter-btn_plus:after {
                 width: 3px;
                 height: 15px;}
+            button.counter-btn:hover {
+                opacity: 1;}
             .counter-btn.active {
                 background-color: #FF3C7F;}
             .counter-btn.active:before, .counter-btn.active:after {
