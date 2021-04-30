@@ -213,7 +213,7 @@ window.onload  = function () {
         {
             id: 39351115186220,
             pack: '24',
-            price: '10.5',
+            price: '9.99',
             days: '120',
             bestseller: false,
             checked: false,
