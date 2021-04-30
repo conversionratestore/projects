@@ -346,27 +346,38 @@ window.onload  = function () {
             document.querySelectorAll('.packs-group label')[packs.length - 1].hidden = true;
             document.querySelector('.text-dynamically').innerHTML = `${item.nextElementSibling.innerHTML}: <span class="c-pink fw-bold"> ${item.nextElementSibling.dataset.patch} </span> <span class="text-nowrap">  every 6 hours.</span>   `;
             document.querySelector('.text-dynamically br').remove();
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP: Age based labels',
-            });
+          
             document.querySelectorAll('.packs-days').forEach((el) => {
                 if (index == 0) {
                     el.innerHTML = `${el.dataset.days * 3} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.push({'eventAction': 'click on age — 0-2'});
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — PDP: Age based labels',
+                        'eventAction': 'click on age — 0-2'
+                    });
                 } else if (index == 1) {
                     el.innerHTML = `${el.dataset.days * 1.5} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.push({'eventAction': 'click on age — 3-5'});
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — PDP: Age based labels',
+                        'eventAction': 'click on age — 3-5',
+                    });
                 } else if (index == 2) {
                     el.innerHTML = `${el.dataset.days} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
-                    dataLayer.push({'eventAction': 'click on age — 6+'});
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — PDP: Age based labels',
+                        'eventAction': 'click on age — 6+'
+                    });
                 }
             });
             document.querySelectorAll('.packs-group label').forEach((label) => {
