@@ -348,8 +348,8 @@ window.onload  = function () {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on button Minus',
                     'eventLabel': 'Quantity',
-                    'eventAction': 'click on button Minus'
                 });
             }
             if (e.target.classList.contains('counter-btn_plus')) {
@@ -358,8 +358,8 @@ window.onload  = function () {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP: Age based labels',
+                    'eventAction': 'click on button Plus',
                     'eventLabel': 'Quantity',
-                    'eventAction': 'click on button Plus'
                 });
             }
             counterIf();
