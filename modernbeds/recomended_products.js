@@ -96,7 +96,7 @@ let style = `
       
       .v-slider .up, .v-slider .down {
         width: 100%;
-        height: 15px;
+        height: 25px;
         background: url("https://conversionratestore.github.io/projects/modernbeds/img/arr.svg") center center no-repeat;
         background-size: contain;
       }
@@ -151,6 +151,10 @@ let style = `
        .product-template__container .wishlist-sharing {
         padding: 0;
        }
+       
+       .cbb-also-bought-container {
+        display: none;
+       }
     </style>
 `
 
@@ -172,13 +176,14 @@ if(cat.includes('wooden')) {
 if(cat.includes('headboard')) {
     toCat = 'https://modernbeds.co.uk/collections/head-boards'
 }
+
 if(cat.includes('bed-set')) {
     toCat = 'https://modernbeds.co.uk/pages/divan-beds'
 }
 
-let start = setInterval(function () {
-    if(document.querySelector('.cbb-also-bought-slider-list li .cbb-review-count')) {
-        clearInterval(start)
+// let start = setInterval(function () {
+//     if(document.querySelector('.cbb-also-bought-slider-list li .cbb-review-count')) {
+//         clearInterval(start)
 // document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -290,9 +295,9 @@ let start = setInterval(function () {
                 'eventCategory': 'Exp - PDP product recommendations',
                 'eventAction': 'click on Show more'
             });
-        })
-    }
-}, 50);
+        });
+//     }
+// }, 50);
 // });
 
 (function(h,o,t,j,a,r){
