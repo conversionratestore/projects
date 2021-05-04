@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async function () {
+window.onload = async function () {
     try {
         const response = await fetch('https://shopify.blaster.ai/api/processing-time-ip')
         if (!response.ok) {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (error) {
         console.log('Возникла проблема с вашим fetch запросом: ', error.message);
     }
-})
+}
 
 
 function start(d) {
