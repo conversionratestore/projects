@@ -1,19 +1,18 @@
-
-
-try {
-    const response = await fetch('https://shopify.blaster.ai/api/processing-time-ip')
-    if (!response.ok) {
-        throw new Error('Ответ сети был не ok.');
-    } else {
-        console.log(response)
-        response.json().then((r) => {
-            start(r)
-        })
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const response = await fetch('https://shopify.blaster.ai/api/processing-time-ip')
+        if (!response.ok) {
+            throw new Error('Ответ сети был не ok.');
+        } else {
+            console.log(response)
+            response.json().then((r) => {
+                start(r)
+            })
+        }
+    } catch (error) {
+        console.log('Возникла проблема с вашим fetch запросом: ', error.message);
     }
-} catch (error) {
-    console.log('Возникла проблема с вашим fetch запросом: ', error.message);
-}
-
+})
 
 
 function start(d) {
