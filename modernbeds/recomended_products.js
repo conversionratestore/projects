@@ -181,9 +181,9 @@ if(cat.includes('bed-set')) {
     toCat = 'https://modernbeds.co.uk/pages/divan-beds'
 }
 
-// let start = setInterval(function () {
-//     if(document.querySelector('.cbb-also-bought-slider-list li .cbb-review-count')) {
-//         clearInterval(start)
+let start = setInterval(function () {
+    if(document.querySelector('.cbb-also-bought-slider-list li .cbb-review-count')) {
+        clearInterval(start)
 // document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -296,8 +296,8 @@ if(cat.includes('bed-set')) {
                 'eventAction': 'click on Show more'
             });
         });
-//     }
-// }, 50);
+    }
+}, 50);
 // });
 
 (function(h,o,t,j,a,r){
