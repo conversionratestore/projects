@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-
+setTimeout(function () {
     document.head.insertAdjacentHTML(
         'beforeend',
         `
@@ -793,5 +792,4 @@ document.addEventListener("DOMContentLoaded", function () {
         a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     hj('trigger', 'pdp_quiz-experiment');
-
-});
+}, 500)
