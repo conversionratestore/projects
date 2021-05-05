@@ -11,6 +11,7 @@ window.onload = async function () {
         }
     } catch (error) {
         console.log('Возникла проблема с вашим fetch запросом: ', error.message);
+        altStart()
     }
 }
 
@@ -183,23 +184,39 @@ function start(d) {
             'eventAction': 'Click on "Go to looks"'
         });
     })
-
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Geolocation and shipping info',
-        'eventAction': 'loaded'
-    });
-
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:1271698,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('trigger', 'location_and_shipping');
 }
+
+function altStart() {
+    console.log('altStart')
+    document.querySelector('.announcement-bar').insertAdjacentHTML('afterbegin', `<p>Free shipping world wide on all orders over $399</p>`)
+    document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+          .announcement-bar .page-width {
+            display: none;
+          }
+          
+          .announcement-bar p {
+            margin-bottom: 0;
+            font-size: 14px;
+          }
+         </style>`)
+}
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Geolocation and shipping info',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1271698,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'location_and_shipping');
 
