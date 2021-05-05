@@ -176,7 +176,8 @@ function start(d) {
         });
     })
 
-    document.querySelector('.popup-delivery a').addEventListener('click', function () {
+    document.querySelector('.popup-delivery a').addEventListener('click', function (e) {
+        e.stopPropagation()
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
