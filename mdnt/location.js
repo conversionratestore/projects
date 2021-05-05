@@ -144,13 +144,24 @@ function start(d) {
     document.querySelector('.announcement-bar').insertAdjacentHTML('afterbegin', btnLocation)
     document.querySelector('.location_block').addEventListener('click', function () {
         document.querySelector('.dark_bg').classList.add('active')
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Geolocation and shipping info',
-            'eventAction': 'Click on country',
-            'eventLabel': 'Main page'
-        });
+        if(window.location.pathname === '/') {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Geolocation and shipping info',
+                'eventAction': 'Click on country',
+                'eventLabel': 'Main page'
+            });
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Geolocation and shipping info',
+                'eventAction': 'Click on country',
+                'eventLabel': 'Listing page'
+            });
+        }
+        
     })
 
     document.querySelector('.popup-delivery .close').addEventListener('click', function () {
