@@ -23,7 +23,7 @@ function start(d) {
     let price = '5.83'
     if(d.region === 'CA') {
         price = '9.83'
-    } else if (d.region === 'AU') {
+    } else if (d.region.includes('AU')) {
         price = '33.75'
     }
 
