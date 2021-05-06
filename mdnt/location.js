@@ -1,4 +1,4 @@
-window.onload = async function () {
+setTimeout(async function () {
     try {
         const response = await fetch('https://shopify.blaster.ai/api/processing-time-ip')
         if (!response.ok) {
@@ -13,7 +13,7 @@ window.onload = async function () {
         console.log('Возникла проблема с вашим fetch запросом: ', error.message);
         altStart()
     }
-}
+}, 300)
 
 
 function start(d) {
