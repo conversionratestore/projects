@@ -139,7 +139,7 @@ function start(d) {
           <p>Delivering to ${d.country.replace('(the)', '').trim()} within ${d['total-max']} days!</p>
           <p>The shipping cost depends on the weight of your order and start at $${price}.</p>
           <p>We need ${d['processing-max']} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
-           to ${d.country.replace('(the)', '').trim()} within ${d['ship-max']}.</p>
+           to ${d.country.replace('(the)', '').trim()} within ${d['ship-max']} days.</p>
           <div class="y">Free shipping on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
