@@ -4,8 +4,8 @@ window.onload = async function () {
         if (!response.ok) {
             throw new Error('Ответ сети был не ok.');
         } else {
-            console.log(response)
             response.json().then((r) => {
+                console.log(r)
                 start(r)
             })
         }
@@ -19,6 +19,13 @@ window.onload = async function () {
 function start(d) {
 
     console.log('start')
+
+    let price = '5.83'
+    if(d.region === 'CA') {
+        price = '9.83'
+    } else if (d.region === 'AU') {
+        price = '33.75'
+    }
 
     let style = `
         <style>
@@ -129,9 +136,10 @@ function start(d) {
       <div class="dark_bg">
         <div class="popup-delivery">
           <span class="close"></span>
-          <p>Shipping to ${d.country.replace('(the)', '').trim()} ${d['ship-min']}-${d['ship-max']} days (DHL), starts from $5.83</p>
-          <p>Shipping costs depends on your order total weight. Here is the list of estimated shipping time and minimum cost:</p>
-          <p>The time we need to prepare an order for shipping varies from ${d['processing-min']} to ${d['processing-max']} business days.</p>
+          <p>Delivering to ${d.country.replace('(the)', '').trim()} within ${d['total-max']} days!</p>
+          <p>The shipping cost depends on the weight of your order and start at $${price}.</p>
+          <p>We need ${d['processing-max']} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
+           to ${d.country.replace('(the)', '').trim()} within ${d['ship-max']}.</p>
           <div class="y">Free shipping on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
@@ -161,7 +169,7 @@ function start(d) {
                 'eventLabel': 'Listing page'
             });
         }
-        
+
     })
 
     document.querySelector('.popup-delivery .close').addEventListener('click', function () {
