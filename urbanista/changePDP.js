@@ -68,7 +68,7 @@ setTimeout(function () {
             color: #737373;
         }
         .product-info-main-wrapper {
-            height: auto !important;
+            height: 350px !important;
         }
         .product-info-main .page-title {
             letter-spacing: 6px;
@@ -138,6 +138,11 @@ setTimeout(function () {
           height: 100%;
           object-fit: contain;
         }
+        .item.item--battery-life,
+        .item.item--listening-time {
+            display: flex;
+            justify-content: center;
+        }
         .item.item--battery-life span,
         .item.item--listening-time span{
             font-size: 12px;
@@ -160,12 +165,12 @@ setTimeout(function () {
         .view-block { 
             color: #70785B;           
             margin: auto;
-            padding: 30px;
+            padding: 15px 0;
             width: 100%;
         }
         .view-block span{
             display: block;
-            font-size: 14px;
+            font-size: 16px;
             line-height: normal;
             letter-spacing: normal;
             text-decoration: underline;
@@ -285,6 +290,10 @@ setTimeout(function () {
         .prev-arrow, .next-arrow{
             margin: 0 10px;
         }
+        @media only screen and (max-width: 1023px)
+.sticky-pdp-cta .product-title-price {
+    display: flex !important;
+}
     </style>
     `,
     );
@@ -573,7 +582,6 @@ setTimeout(function () {
     };
 
     let currentPropList = propForProduct[product];
-    console.log(currentPropList);
 
     let propList = [
         /* 0 */ ['voice.svg', textList[4], textList[5]],
@@ -680,8 +688,11 @@ setTimeout(function () {
     // </ul>`
 
     // product properties
-    const specsBlock = document.querySelectorAll('.pd-row')[9];
-    specsBlock ? specsBlock.setAttribute('id', 'specs-block') : null;
+    let specsBlock; 
+    if (product !== 'miami') {
+        specsBlock = document.querySelectorAll('.pd-row')[9];
+        specsBlock ? specsBlock.setAttribute('id', 'specs-block') : null;
+    }
 
     drawProdProp();
 
@@ -891,4 +902,4 @@ setTimeout(function () {
         '.js?sv=',
     );
     hj('trigger', 'pdp_quiz-experiment');
-}, 500);
+}, 1000);
