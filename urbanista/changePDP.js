@@ -262,7 +262,7 @@ setTimeout(function () {
             justify-content: center;
             align-items: center;
             margin: 0;
-            padding: 1rem 0;
+            padding: 15px 0 5px 0;
         }
         .slick-dots li {
             margin: 0 5px;
