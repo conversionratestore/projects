@@ -187,15 +187,17 @@ function start(d) {
 
     })
 
-    document.querySelector('.dark_bg').addEventListener('click', function () {
-        document.querySelector('.dark_bg').classList.remove('active')
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Geolocation and shipping info',
-            'eventAction': 'Close popup',
-            'eventLabel': 'Background'
-        });
+    document.querySelector('.dark_bg').addEventListener('click', function (e) {
+        if(e.target.classList.contains('dark_bg')) {
+            document.querySelector('.dark_bg').classList.remove('active')
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Geolocation and shipping info',
+                'eventAction': 'Close popup',
+                'eventLabel': 'Background'
+            });
+        }
     })
 
     document.querySelector('.popup-delivery a').addEventListener('click', function (e) {
