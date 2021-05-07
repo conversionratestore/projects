@@ -21,19 +21,11 @@ function start(d) {
     console.log('start')
 
     let price = '5.83'
-    let time = ['12', '7', '5']
     if(d.region === 'CA') {
         price = '9.83'
     } else if (d.region.includes('AU')) {
         price = '33.75'
     }
-
-    if (d.region === 'US') {
-        time = ['14', '7', '7']
-    }
-
-
-
 
     let style = `
         <style>
@@ -98,16 +90,19 @@ function start(d) {
             font-size: 22px;
             padding-right: 30px;
             line-height: 1.2;
+            text-transform:uppercase;
           }
           
           .popup-delivery>*:nth-child(3) {
             font-size: 18px;
             line-height: 1.2;
+            padding: 0 10px;
           }
           
           .popup-delivery>*:nth-child(4) {
             font-size: 18px;
             line-height: 1.2;
+            padding: 0 10px;
           }
           
           .popup-delivery .y {
@@ -144,10 +139,10 @@ function start(d) {
       <div class="dark_bg">
         <div class="popup-delivery">
           <span class="close"></span>
-          <p>Delivering to ${d.country.replace('(the)', '').trim()} within ${time[0]} days!</p>
+          <p><b>Delivering to ${d.country.replace('(the)', '').trim()} within ${d['total-min']}-${d['total-max']} days!</b></p>
           <p>The shipping cost depends on the weight of your order and start at $${price}.</p>
-          <p>We need ${time[1]} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
-           to ${d.country.replace('(the)', '').trim()} within ${time[2]} days.</p>
+          <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
+           to ${d.country.replace('(the)', '').trim()} within ${d['ship-min']}-${d['ship-max']} days.</p>
           <div class="y">Free shipping on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
