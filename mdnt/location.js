@@ -20,13 +20,6 @@ function start(d) {
 
     console.log('start')
 
-    let price = '5.83'
-    if(d.region === 'CA') {
-        price = '9.83'
-    } else if (d.region.includes('AU')) {
-        price = '33.75'
-    }
-
     let style = `
         <style>
           .announcement-bar .page-width {
@@ -139,10 +132,10 @@ function start(d) {
       <div class="dark_bg">
         <div class="popup-delivery">
           <span class="close"></span>
-          <p><b>Delivering to ${d.country.replace('(the)', '').trim()} within ${d['total-min']}-${d['total-max']} days!</b></p>
-          <p>The shipping cost depends on the weight of your order and start at $${price}.</p>
-          <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
-           to ${d.country.replace('(the)', '').trim()} within ${d['ship-min']}-${d['ship-max']} days.</p>
+          <p><b>Deliver ${d['shipping-preposition']} ${d.country.replace('(the)', '').trim()} within ${d['total-min']}-${d['total-max']} days!</b></p>
+          <p>The shipping cost starts at $${d['delivery-min']} and depends on the weight of your order.</p>
+          <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfill your order. Then it will be delivered 
+           to you within ${d['ship-min']}-${d['ship-max']} days.</p>
           <div class="y">Free shipping<br>on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
