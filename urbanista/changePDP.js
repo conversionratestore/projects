@@ -85,6 +85,9 @@ setTimeout(function () {
             letter-spacing: 0.2px;
             margin-bottom: 0;
         }
+        .product-info-main .product.attribute.overview .value {
+            position: relative;
+        }
         .product-info-main .product.attribute.overview .trigger {
             position: absolute;
             right: 0;
@@ -654,19 +657,15 @@ setTimeout(function () {
     });
 
     // read more
-    const descriptionText =
-        document
-            .querySelector(
-                '.product-info-main .product.attribute.overview',
-            )
-            .getElementsByClassName('value')[0].children[0] ||
-        document
-            .querySelector(
-                '.product-info-main .product.attribute.overview',
-            )
-            .getElementsByClassName('value')[0];
+    let descriptionText = document
+        .querySelector(
+            '.product-info-main .product.attribute.overview',
+        )
+        .getElementsByClassName('value')[0];
 
-    descriptionText.style.position = 'relative';
+    if (!descriptionText.querySelector('p')) {
+        descriptionText.innerHTML = `<p>${descriptionText.innerText}</p>`;
+    }
 
     const trigger = document
         .querySelector(
