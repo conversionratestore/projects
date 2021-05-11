@@ -935,4 +935,4 @@ setTimeout(function () {
         '.js?sv=',
     );
     hj('trigger', 'pdp_quiz-experiment');
-}, 800);
+}, 700);
