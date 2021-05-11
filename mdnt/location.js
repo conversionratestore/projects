@@ -106,7 +106,7 @@ function start(d) {
           }
           
           .popup-delivery .y {
-            background-color: #fff2e8;
+            background-color: #e3e3e3;
             padding: 10px;
             font-size: 18px;
             font-weight: 700;
@@ -143,12 +143,11 @@ function start(d) {
           <p>The shipping cost depends on the weight of your order and start at $${price}.</p>
           <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfil your order. Then it will be delivered by ${(d.region === 'US')?'USPS':'DHL'}
            to ${d.country.replace('(the)', '').trim()} within ${d['ship-min']}-${d['ship-max']} days.</p>
-          <div class="y">Free shipping on all orders over $399</div>
+          <div class="y">Free shipping<br>on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
       </div>
     `
-
 
     document.body.insertAdjacentHTML('afterbegin', style)
     document.body.insertAdjacentHTML('beforeend', popup)
