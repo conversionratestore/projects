@@ -657,14 +657,14 @@ setTimeout(function () {
     });
 
     // read more
-    let descriptionText = document
+    let descriptionDiv = document
         .querySelector(
             '.product-info-main .product.attribute.overview',
         )
         .getElementsByClassName('value')[0];
 
-    if (!descriptionText.querySelector('p')) {
-        descriptionText.innerHTML = `<p>${descriptionText.innerText}</p>`;
+    if (!descriptionDiv.querySelector('p')) {
+        descriptionDiv.innerHTML = `<p>${descriptionDiv.innerText}</p>`;
     }
 
     const trigger = document
@@ -673,7 +673,7 @@ setTimeout(function () {
         )
         .getElementsByClassName('trigger')[0];
 
-    descriptionText.insertAdjacentElement('beforeend', trigger);
+    descriptionDiv.insertAdjacentElement('beforeend', trigger);
 
     const productInfoWrapper = document.querySelector(
         '.product-info-main-wrapper',
@@ -681,9 +681,14 @@ setTimeout(function () {
 
     // add height on click on Read More
     trigger.addEventListener('click', () => {
+        let blockHeight = productInfoWrapper.offsetHeight;
+        let descriptionDivHeight = descriptionDiv.offsetHeight;
+
         productInfoWrapper.setAttribute(
             'style',
-            'height:525px !important',
+            `height:${
+                blockHeight + descriptionDivHeight - 32
+            }px !important`,
         );
     });
 
