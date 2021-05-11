@@ -714,11 +714,25 @@ setTimeout(function () {
         );
 
     // add id
-    document
-        .querySelectorAll(
-            '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
-        )[5]
-        .setAttribute('id', 'specs-block');
+    if (product === 'brisbane') {
+        document
+            .querySelectorAll('.gutters.pd-row.row')[1]
+            .setAttribute('id', 'specs-block');
+    } else if (product === 'athens') {
+        document
+            .querySelectorAll(
+                '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
+            )[6]
+            .setAttribute('id', 'specs-block');
+    } else {
+        let temp =
+            document.querySelectorAll(
+                '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
+            )[5] ||
+            document.querySelectorAll('.pd-row.row')[2].children[1];
+
+        temp.setAttribute('id', 'specs-block');
+    }
 
     drawProdProp();
 
