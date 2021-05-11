@@ -69,7 +69,7 @@ let style = `
             width: 100%;}
         .add-to-cart button {
             color: #FFFFFF;
-            padding: 0 10px;
+            padding: 0 9px;
             margin-bottom: 0;
             line-height: 33px!important;
             outline: none;
