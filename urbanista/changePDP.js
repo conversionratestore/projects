@@ -77,6 +77,8 @@ setTimeout(function () {
             color: #737373;
             letter-spacing: 0.2px;
             line-height: 125.19%;
+            height: 32px;
+            overflow: hidden;
         }
         .product-info-main .product.attribute.overview {
             text-align: start;
@@ -304,6 +306,9 @@ setTimeout(function () {
         }
         .sticky-pdp-cta .product-title-price {
             display: none !important;
+        }
+        .pd-row.row {
+            display: block !important;
         }
     </style>
     `,
@@ -723,6 +728,12 @@ setTimeout(function () {
             .querySelectorAll(
                 '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
             )[6]
+            .setAttribute('id', 'specs-block');
+    } else if (product === 'stockholm') {
+        document
+            .querySelectorAll(
+                '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
+            )[7]
             .setAttribute('id', 'specs-block');
     } else {
         let temp =
