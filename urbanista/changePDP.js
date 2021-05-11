@@ -290,10 +290,12 @@ setTimeout(function () {
         .prev-arrow, .next-arrow{
             margin: 0 10px;
         }
-        @media only screen and (max-width: 1023px)
-.sticky-pdp-cta .product-title-price {
-    display: flex !important;
-}
+        .swatch-option.selected {
+            pointer-events: none;
+        }
+        .sticky-pdp-cta .product-title-price {
+            display: none !important;
+        }
     </style>
     `,
     );
@@ -629,18 +631,13 @@ setTimeout(function () {
         document.querySelector('.swatch-option.selected').ariaLabel
     }`;
 
-    document.querySelectorAll('.swatch-option').forEach((e) =>
+    document.querySelectorAll('.swatch-option').forEach((e) => {
         e.addEventListener('click', () => {
             document.querySelector(
                 '.swatch-title',
-            ).innerHTML = `<span class='swatch-title--color'>${
-                languages[local].color
-            }: </span> ${
-                document.querySelector('.swatch-option.selected')
-                    .ariaLabel
-            }`;
-        }),
-    );
+            ).innerHTML = `<span class='swatch-title--color'>${textList[41]}: </span> ${e.ariaLabel}`;
+        });
+    });
 
     // read more
     const descriptionText =
@@ -707,26 +704,18 @@ setTimeout(function () {
             `<img style="margin-right: 5px; vertical-align: text-bottom;" src='https://conversionratestore.github.io/projects/urbanista/images/Vector.svg' />`,
         );
 
-    // // shipping list
-    // const shippingList = document.createElement('div')
-    // shippingList.classList.add('shipping');
-    // shippingList.innerHTML = `
-    // <ul>
-    //     <li>Free shipping to <strong>United States</strong></li>
-    //     <li>Arrives: <strong>April 21-23</strong></li>
-    //     <li>Order within: <strong>7 hrs 25 mins</strong></li>
-    //     <li>Free &amp; easy 90-day returns</li>
-    //     <li>365 days warranty</li>
-    // </ul>`
-
     // product properties
     let specsBlock;
+
     if (product !== 'miami') {
         specsBlock = document.querySelectorAll('.pd-row')[9];
-        specsBlock
-            ? specsBlock.setAttribute('id', 'specs-block')
-            : null;
+    } else {
+        specsBlock = document.querySelectorAll(
+            '.mobile-order-1.pd-col.col-md-6',
+        )[4];
     }
+
+    specsBlock ? specsBlock.setAttribute('id', 'specs-block') : null;
 
     drawProdProp();
 
