@@ -2,6 +2,8 @@
     let style = `
         <style>
             @media screen and (max-width: 899px) {
+                .e-main-container.with-promo .dropdown {
+                    height: calc(100% - 100px);}
                 .css-huxp3r .dropdown.shop .left, .css-huxp3r .dropdown .right button.secondary{
                     display: none; }
                 .css-huxp3r .dropdown .right .method-picker .method-image img.mobile {
@@ -26,11 +28,11 @@
                 .css-huxp3r .dropdown .right {
                     height: 100%; }
                 .css-huxp3r .dropdown .right .secondary-menu {
-                    padding: 24px 24px 100px 24px;
+                    padding: 24px 24px 0 24px;
                     display: inline-flex;
                     flex-direction: column;
                     width: 100%;
-                    height: 100%;}
+                    height: calc(100vh - 100px);}
                 .css-huxp3r .dropdown .right .method-picker {
                     margin-bottom: 20px;}
                 .css-huxp3r .dropdown .right .method-picker .method-title, .css-huxp3r .dropdown .right .method-picker .method-description {
@@ -55,7 +57,6 @@
                 'eventAction': 'Customize (Quiz) click'
             });
         });
-        
         document.querySelector('.method-box-builder').addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
