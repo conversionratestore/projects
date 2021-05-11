@@ -86,13 +86,7 @@ function start(d) {
             text-transform:uppercase;
           }
           
-          .popup-delivery>*:nth-child(3) {
-            font-size: 18px;
-            line-height: 1.2;
-            padding: 0 10px;
-          }
-          
-          .popup-delivery>*:nth-child(4) {
+          .popup-delivery>*:nth-child(3), .popup-delivery>*:nth-child(4), .popup-delivery>*:nth-child(5) {
             font-size: 18px;
             line-height: 1.2;
             padding: 0 10px;
