@@ -187,6 +187,15 @@ setTimeout(function () {
             color: #737373;
             line-height: 30px;
         }      
+        .review__images {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 35px 0;
+        }
+        .review__images {
+            mix-blend-mode: darken;
+        }
         .slick-track {
             display: flex;
         }
@@ -704,18 +713,12 @@ setTimeout(function () {
             `<img style="margin-right: 5px; vertical-align: text-bottom;" src='https://conversionratestore.github.io/projects/urbanista/images/Vector.svg' />`,
         );
 
-    // product properties
-    let specsBlock;
-
-    if (product !== 'miami') {
-        specsBlock = document.querySelectorAll('.pd-row')[9];
-    } else {
-        specsBlock = document.querySelectorAll(
-            '.mobile-order-1.pd-col.col-md-6',
-        )[4];
-    }
-
-    specsBlock ? specsBlock.setAttribute('id', 'specs-block') : null;
+    // add id
+    document
+        .querySelectorAll(
+            '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
+        )[5]
+        .setAttribute('id', 'specs-block');
 
     drawProdProp();
 
@@ -724,7 +727,7 @@ setTimeout(function () {
         e.preventDefault();
         $('html,body').animate(
             {
-                scrollTop: $('#specs-block').offset().top - 68 + 'px',
+                scrollTop: $('#specs-block').offset().top - 66 + 'px',
             },
             { duration: 1e3 },
         );
@@ -735,8 +738,10 @@ setTimeout(function () {
     review.classList.add('review');
     review.innerHTML = `
 <p>${textList[40]}</p>
-<div>
-    <img src='https://conversionratestore.github.io/projects/urbanista/images/awards.png'/>
+<div class="review__images">
+    <img src='https://conversionratestore.github.io/projects/urbanista/images/stuff.png'/>
+    <img src='https://conversionratestore.github.io/projects/urbanista/images/wired.png'/>
+    <img src='https://conversionratestore.github.io/projects/urbanista/images/trusted-reviews.png'/>
 </div>
 <div class='single-item'>
     <div>
@@ -888,9 +893,7 @@ setTimeout(function () {
             );
         });
 
-        if (specsBlock) {
-            t += `<div class='view-block'><span>${textList[39]} ></span></div>`;
-        }
+        t += `<div class='view-block'><span>${textList[39]} ></span></div>`;
 
         properties.innerHTML = t;
         document
