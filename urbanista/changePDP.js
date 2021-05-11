@@ -68,7 +68,7 @@ setTimeout(function () {
             color: #737373;
         }
         .product-info-main-wrapper {
-            height: 350px !important;
+            height: 350px !important;            
         }
         .product-info-main .page-title {
             letter-spacing: 6px;
@@ -657,14 +657,46 @@ setTimeout(function () {
 
     descriptionText.style.position = 'relative';
 
-    descriptionText.insertAdjacentElement(
-        'beforeend',
+    const trigger = document
+        .querySelector(
+            '.product-info-main .product.attribute.overview',
+        )
+        .getElementsByClassName('trigger')[0];
+
+    descriptionText.insertAdjacentElement('beforeend', trigger);
+
+    const productInfoWrapper = document.querySelector(
+        '.product-info-main-wrapper',
+    );
+
+    // add height on click on Read More
+    trigger.addEventListener('click', () => {
+        productInfoWrapper.setAttribute(
+            'style',
+            'height:540px !important',
+        );
+    });
+
+    //add height of second p in description
+    if (
         document
             .querySelector(
                 '.product-info-main .product.attribute.overview',
             )
-            .getElementsByClassName('trigger')[0],
-    );
+            .getElementsByClassName('value')[0].children[1]
+    ) {
+        let blockHeight =
+            document
+                .querySelector(
+                    '.product-info-main .product.attribute.overview',
+                )
+                .getElementsByClassName('value')[0].children[1]
+                .offsetHeight + productInfoWrapper.offsetHeight;
+        productInfoWrapper.setAttribute(
+            'style',
+            `height:${blockHeight}px !important`,
+        );
+    }
 
     // add to cart button
     document
@@ -688,10 +720,12 @@ setTimeout(function () {
     // </ul>`
 
     // product properties
-    let specsBlock; 
+    let specsBlock;
     if (product !== 'miami') {
         specsBlock = document.querySelectorAll('.pd-row')[9];
-        specsBlock ? specsBlock.setAttribute('id', 'specs-block') : null;
+        specsBlock
+            ? specsBlock.setAttribute('id', 'specs-block')
+            : null;
     }
 
     drawProdProp();
@@ -701,8 +735,7 @@ setTimeout(function () {
         e.preventDefault();
         $('html,body').animate(
             {
-                scrollTop:
-                    $('#specs-block').offset().top - 430 + 'px',
+                scrollTop: $('#specs-block').offset().top - 68 + 'px',
             },
             { duration: 1e3 },
         );
@@ -902,4 +935,4 @@ setTimeout(function () {
         '.js?sv=',
     );
     hj('trigger', 'pdp_quiz-experiment');
-}, 1000);
+}, 800);
