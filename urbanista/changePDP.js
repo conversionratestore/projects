@@ -673,7 +673,7 @@ setTimeout(function () {
     trigger.addEventListener('click', () => {
         productInfoWrapper.setAttribute(
             'style',
-            'height:540px !important',
+            'height:525px !important',
         );
     });
 
