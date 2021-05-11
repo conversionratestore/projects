@@ -134,8 +134,8 @@ function start(d) {
           <span class="close"></span>
           <p><b>Deliver ${d['shipping-preposition']} ${d.country.replace('(the)', '').trim()} within ${d['total-min']}-${d['total-max']} days!</b></p>
           <p>The shipping cost starts at $${d['delivery-min']} and depends on the weight of your order.</p>
-          <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfill your order. Then it will be delivered 
-           to you within ${d['ship-min']}-${d['ship-max']} days.</p>
+          <p>We need ${d['processing-min']}-${d['processing-max']} days to produce and fulfill your order.</p>
+          <p>Then it will be delivered to you within ${d['ship-min']}-${d['ship-max']} days.</p>
           <div class="y">Free shipping<br>on all orders over $399</div>
           <a href="https://mdnt45.com/collections/bestsellers">GO TO LOOKS</a>
         </div>
