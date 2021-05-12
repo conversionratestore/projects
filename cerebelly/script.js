@@ -48,7 +48,7 @@ setTimeout(() => {
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
-    document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
+    document.querySelector('.css-huxp3r').addEventListener('DOMNodeRemovedFromDocument', () => {
         document.querySelector('.method-quiz').addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
