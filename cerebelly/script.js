@@ -1,7 +1,5 @@
 
-
-document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
-    let style = `
+  let style = `
     <style>
         @media screen and (max-width: 899px) {
             .e-main-container.with-promo .dropdown {
@@ -49,6 +47,8 @@ document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => 
 `
 
 document.body.insertAdjacentHTML('afterbegin', style);
+document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
+  
     document.querySelector('.method-quiz').addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
