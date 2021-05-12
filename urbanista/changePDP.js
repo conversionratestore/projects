@@ -171,7 +171,6 @@ setTimeout(function () {
             margin: auto;
             padding: 15px 0;
             width: 100%;
-            display: none !important;
         }
         .view-block span{
             display: block;
