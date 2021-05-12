@@ -1,4 +1,4 @@
-function timer () {
+setTimeout ( () => {
     let style = `
     <style>
         @media screen and (max-width: 899px) {
@@ -86,9 +86,4 @@ function timer () {
         'eventAction': 'loaded'
     });
    
-};
-if (document.body.className == 'm-overflow-hidden-nav') { 
-    clearInterval(timer);
-}  else {
-    setInterval(timer, 100);
-}
+},10) ;
