@@ -1,4 +1,5 @@
-let timer = setInterval(() => {
+clearInterval(window.timer);
+window.timer = setInterval(() => {
     let style = `
     <style>
         @media screen and (max-width: 899px) {
@@ -86,9 +87,4 @@ let timer = setInterval(() => {
         'eventAction': 'loaded'
     });
    
-}, 10);
-if (document.querySelector('.css-huxp3r')) { 
-    clearInterval(timer);
-}  else {
-    setTimeout(setInterval(timer), 100);
-}
+}, 1000);
