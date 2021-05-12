@@ -47,6 +47,7 @@ setTimeout(function () {
             width: 22px;
             height: 22px;
             margin: 0px 12px;
+            margin-bottom: 10px;
         }
         .swatch-option:after {
             content: '';
@@ -750,7 +751,11 @@ setTimeout(function () {
         document
             .querySelectorAll('.pd-col.col-md-6')[1]
             .setAttribute('id', 'specs-block');
-    } else if (product === 'seattle') {
+    } else if (
+        product === 'seattle' ||
+        product === 'new' ||
+        product === 'san'
+    ) {
         document
             .querySelectorAll('.pd-col.col-md-6')[1]
             .setAttribute('id', 'specs-block');
