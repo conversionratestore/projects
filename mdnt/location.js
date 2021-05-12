@@ -118,7 +118,7 @@ function start(d) {
     let btnLocation = `
         <div class="location_block">
           <img src="https://conversionratestore.github.io/projects/mdnt/img/plane.svg" alt="plane">
-          <p>we ship to <span>${d.country.replace('(the)', '').trim()}</span></p>
+          <p>we ship ${d['shipping-preposition']} <span>${d.country.replace('(the)', '').trim()}</span></p>
         </div>
     `
 
