@@ -885,6 +885,14 @@ setTimeout(function () {
             .querySelectorAll('.pd-row.row')[1]
             .setAttribute('style', 'display: none;');
     }
+    if (product === 'sydney') {
+        document
+            .querySelectorAll('.padded.row')[1]
+            .setAttribute('style', 'display: block !important;');
+        document
+            .querySelectorAll('.padded.row')[1]
+            .setAttribute('id', 'specs-block');
+    }
 
     document
         .querySelector('.product-info-main-wrapper')
@@ -982,4 +990,4 @@ setTimeout(function () {
         '.js?sv=',
     );
     hj('trigger', 'pdp_quiz-experiment');
-}, 800);
+}, 700);
