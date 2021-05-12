@@ -1,4 +1,4 @@
-let timer = setInterval(() => {
+document.querySelector('.e-mobile-nav-open-close-wrap').addEventListener('click', () => {
     let style = `
         <style>
             @media screen and (max-width: 899px) {
@@ -48,8 +48,8 @@ let timer = setInterval(() => {
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
-    document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
-        if (e.target.innerHTML != '') {
+    // document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
+        if (document.querySelector('.css-huxp3r').innerHTML != '') {
             document.querySelector('.method-quiz').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
@@ -67,7 +67,7 @@ let timer = setInterval(() => {
                 });
             });
         }
-    }, false);
+    // }, false);
 
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -86,9 +86,4 @@ let timer = setInterval(() => {
         'eventCategory': 'Exp: Menu Improvement',
         'eventAction': 'loaded'
     });
-
-}, 10);
-
-if (document.getElementById('dropdown-shop')) {
-    clearInterval(timer);
-}
+}, false);
