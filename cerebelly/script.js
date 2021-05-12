@@ -46,8 +46,7 @@ let build = setInterval(() => {
                         line-height: 15px;
                         letter-spacing: 0.3px;}
                 }
-            </style>
-            `
+            </style>`;
         document.body.insertAdjacentHTML('afterbegin', style);
 
         document.querySelector('.e-mobile-nav-open-close-wrap').addEventListener('click', () => {
