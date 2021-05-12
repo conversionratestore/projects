@@ -68,15 +68,14 @@ setTimeout(function () {
             color: #737373;
         }
         .product-info-main-wrapper {
-            height: 500px !important;            
+            height: 525px !important;            
         }
         .product-info-main .page-title {
             letter-spacing: 6px;
         }
         .product-info-main .product.attribute p{
             color: #737373;
-            letter-spacing: 0.2px;
-            line-height: 125.19%;
+            letter-spacing: 0.2px;            
             height: 32px;
             overflow: hidden;
         }
@@ -172,7 +171,7 @@ setTimeout(function () {
             margin: auto;
             padding: 15px 0;
             width: 100%;
-display: none !important;
+            display: none !important;
         }
         .view-block span{
             display: block;
@@ -313,6 +312,9 @@ display: none !important;
         }
         .yotpo-syndication-reference {
             display: none;
+        }
+        .product-info-main-wrapper {
+            height: auto !important;
         }
     </style>
     `,
@@ -629,7 +631,6 @@ display: none !important;
 
     $('.fotorama').fotorama({
         nav: 'dots',
-        height: 420,
     });
 
     // product name
@@ -867,6 +868,16 @@ display: none !important;
             .querySelector('.review')
             .insertAdjacentElement('afterend', quote);
     }
+
+    if (product === 'paris') {
+        document
+            .querySelectorAll('.pd-row.row')[1]
+            .setAttribute('style', 'display: none;');
+    }
+
+    document
+        .querySelector('.product-info-main-wrapper')
+        .setAttribute('style', 'height: 500px !important');
 
     function drawTimeBat(time, text) {
         return `
