@@ -1,4 +1,4 @@
-
+let timer = setInterval(() => {
     let style = `
         <style>
             @media screen and (max-width: 899px) {
@@ -48,7 +48,7 @@
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
-    document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', (e) => {
+    document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
         document.querySelector('.method-quiz').addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
@@ -67,6 +67,7 @@
         });
     });
 
+}, 1000);
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
