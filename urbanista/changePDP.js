@@ -982,4 +982,4 @@ setTimeout(function () {
         '.js?sv=',
     );
     hj('trigger', 'pdp_quiz-experiment');
-}, 700);
+}, 800);
