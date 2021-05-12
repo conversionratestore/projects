@@ -735,6 +735,18 @@ setTimeout(function () {
         document
             .querySelectorAll('.gutters.pd-row.row')[1]
             .setAttribute('id', 'specs-block');
+    } else if (
+        product === 'seattle' ||
+        product === 'new' ||
+        product === 'san' ||
+        product === 'berlin' ||
+        product === 'detroit' ||
+        product === 'melbourne' ||
+        product === 'madrid'
+    ) {
+        document
+            .querySelectorAll('.pd-col.col-md-6')[1]
+            .setAttribute('id', 'specs-block');
     } else if (product === 'athens') {
         document
             .querySelectorAll(
@@ -748,14 +760,6 @@ setTimeout(function () {
             )[6]
             .setAttribute('id', 'specs-block');
     } else if (product === 'boston') {
-        document
-            .querySelectorAll('.pd-col.col-md-6')[1]
-            .setAttribute('id', 'specs-block');
-    } else if (
-        product === 'seattle' ||
-        product === 'new' ||
-        product === 'san'
-    ) {
         document
             .querySelectorAll('.pd-col.col-md-6')[1]
             .setAttribute('id', 'specs-block');
