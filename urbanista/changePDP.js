@@ -310,8 +310,8 @@ setTimeout(function () {
         .sticky-pdp-cta .product-title-price {
             display: none !important;
         }
-        .pd-row.row {
-            display: block !important;
+        .yotpo-syndication-reference {
+            display: none;
         }
     </style>
     `,
@@ -739,6 +739,14 @@ setTimeout(function () {
                 '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
             )[7]
             .setAttribute('id', 'specs-block');
+    } else if (product === 'boston') {
+        document
+            .querySelectorAll('.pd-col.col-md-6')[1]
+            .setAttribute('id', 'specs-block');
+    } else if (product === 'seattle') {
+        document
+            .querySelectorAll('.pd-col.col-md-6')[1]
+            .setAttribute('id', 'specs-block');
     } else {
         let temp =
             document.querySelectorAll(
@@ -857,11 +865,6 @@ setTimeout(function () {
         document
             .querySelector('.review')
             .insertAdjacentElement('afterend', quote);
-    }
-
-    if (product !== 'detroit') {
-        document.querySelectorAll('.pd-row.row')[2].style.display =
-            'none';
     }
 
     function drawTimeBat(time, text) {
