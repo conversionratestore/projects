@@ -1,4 +1,4 @@
-setTimeout(() => {
+let timer = setInterval(() => {
     let style = `
         <style>
             @media screen and (max-width: 899px) {
@@ -48,23 +48,25 @@ setTimeout(() => {
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
-    document.querySelector('.css-huxp3r').addEventListener('DOMNodeRemovedFromDocument', () => {
-        document.querySelector('.method-quiz').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: Menu Improvement',
-                'eventAction': 'Customize (Quiz) click'
+    document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
+        if (e.target.innerHTML != '') {
+            document.querySelector('.method-quiz').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Menu Improvement',
+                    'eventAction': 'Customize (Quiz) click'
+                });
             });
-        });
-        document.querySelector('.method-box-builder').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: Menu Improvement',
-                'eventAction': 'Pick flawor (BB) click'
+            document.querySelector('.method-box-builder').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Menu Improvement',
+                    'eventAction': 'Pick flawor (BB) click'
+                });
             });
-        });
+        }
     }, false);
 
     (function(h,o,t,j,a,r){
@@ -84,4 +86,10 @@ setTimeout(() => {
         'eventCategory': 'Exp: Menu Improvement',
         'eventAction': 'loaded'
     });
+
+}, 100);
+
+
+setTimeout(() => {
+    clearInterval(timer);
 }, 100);
