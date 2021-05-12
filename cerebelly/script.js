@@ -87,7 +87,7 @@ let timer = setInterval(() => {
         'eventAction': 'loaded'
     });
 
-});
+}, 10);
 
 if (document.getElementById('dropdown-shop')) {
     clearInterval(timer);
