@@ -46,7 +46,7 @@
     </style>
 `
 
-document.body.insertAdjacentHTML('afterbegin', style);
+document.querySelector('.css-huxp3r').insertAdjacentHTML('beforebegin', style);
 document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
   
     document.querySelector('.method-quiz').addEventListener('click', () => {
