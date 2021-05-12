@@ -891,9 +891,11 @@ setTimeout(function () {
             .setAttribute('style', 'display: none;');
     }
     if (product === 'sydney') {
-        document
-            .querySelectorAll('.padded.row')[1]
-            .setAttribute('style', 'display: block !important;');
+        document.querySelectorAll('.padded.row')[1]
+            ? document
+                  .querySelectorAll('.padded.row')[1]
+                  .setAttribute('style', 'display: block !important;')
+            : null;
         document
             .querySelectorAll('.padded.row')[1]
             .setAttribute('id', 'specs-block');
