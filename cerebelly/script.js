@@ -1,3 +1,9 @@
+let mut = new MutationObserver((muts) => {
+    mut.observe(document,{
+        childList: true,
+        subtree: true
+    });
+});
 let build = setInterval(() => {
     let loc = window.location.pathname;
     if(loc === '/') {
@@ -50,6 +56,10 @@ let build = setInterval(() => {
             `
         document.body.insertAdjacentHTML('afterbegin', style);
 
+        mut.observe(document,{
+            childList: true,
+            subtree: true
+        });
         document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
             document.querySelector('.method-quiz').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
