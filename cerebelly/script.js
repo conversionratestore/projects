@@ -1,4 +1,4 @@
-window.onload  = function () {
+
     let style = `
         <style>
             @media screen and (max-width: 899px) {
@@ -66,7 +66,7 @@ window.onload  = function () {
             });
         });
     });
-};
+
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
