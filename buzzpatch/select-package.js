@@ -151,11 +151,11 @@ window.onload  = function () {
                 <span class="check-kids" data-patch="1 patch">Kids 0-2 <br> years</span>
             </label>
             <label class="mb-0">
-                <input type="radio" name="kids" class="checkbox d-none" >
+                <input type="radio" name="kids" class="checkbox d-none" checked>
                 <span class="check-kids" data-patch="2 patches">Kids 3-5 <br> years</span>
             </label>
             <label class=" mb-0">
-                <input type="radio" name="kids" class="checkbox d-none" checked>
+                <input type="radio" name="kids" class="checkbox d-none" >
                 <span class="check-kids" data-patch="2-4 patches">Kids 6+ years <br> and adults</span>
             </label>
         </div>
@@ -178,7 +178,7 @@ window.onload  = function () {
             id: 34137893142572,
             pack: '1',
             price: '14.99',
-            days: '5',
+            days: '7.5',
             bestseller: false,
             checked: false,
             save: '25',
@@ -187,25 +187,25 @@ window.onload  = function () {
             id: 39351067279404,
             pack: '3',
             price: '13.25',
-            days: '15',
+            days: '22.5',
             bestseller: false,
-            checked: false,
+            checked: true,
             save: '32.5'
         }, 
         {
             id: 39351111680044,
             pack: '6',
             price: '12',
-            days: '30',
+            days: '45',
             bestseller: true,
-            checked: true,
+            checked: false,
             save: '40'
         }, 
         {
             id: 39351113678892,
             pack: '12',
             price: '10.5',
-            days: '60',
+            days: '90',
             bestseller: false,
             checked: false,
             save: '47.5'
@@ -214,7 +214,7 @@ window.onload  = function () {
             id: 39351115186220,
             pack: '24',
             price: '9.99',
-            days: '120',
+            days: '180',
             bestseller: false,
             checked: false,
             save: '47.5'
@@ -404,15 +404,15 @@ window.onload  = function () {
             }
             document.querySelectorAll('.packs-days').forEach((el) => {
                 if (index == 0) {
-                    el.innerHTML = `${el.dataset.days * 3} days`;
+                    el.innerHTML = `${el.dataset.days * 2} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
                 } else if (index == 1) {
-                    el.innerHTML = `${el.dataset.days * 1.5} days`;
+                    el.innerHTML = `${el.dataset.days} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
                 } else if (index == 2) {
-                    el.innerHTML = `${el.dataset.days} days`;
+                    el.innerHTML = `${el.dataset.days - (el.dataset.days / 3)} days`;
                     let spldays = el.innerHTML.split(' days');
                     el.dataset.dayssum = spldays[0];
                 }
