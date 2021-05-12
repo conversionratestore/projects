@@ -175,56 +175,52 @@ window.onload  = function () {
 
     let packs = [
         {
-            id: 34137893142572,
             pack: '1',
             price: '14.99',
             days: '7.5',
             bestseller: false,
             checked: false,
             save: '25',
+            link: 'https://buzz-patch.myshopify.com/a/secure/checkout/jGgZKu7znCGoHPNOpTXS'
         }, 
         {
-            id: 39351067279404,
             pack: '3',
             price: '13.25',
             days: '22.5',
             bestseller: false,
             checked: true,
-            save: '32.5'
+            save: '32.5',
+            link: 'https://buzz-patch.myshopify.com/a/secure/checkout/OEoSW4QbAjIfpsbfZOCH'
         }, 
         {
-            id: 39351111680044,
             pack: '6',
             price: '12',
             days: '45',
             bestseller: true,
             checked: false,
-            save: '40'
+            save: '40',
+            link: 'https://buzz-patch.myshopify.com/a/secure/checkout/tTTdIUSYExil4NMfS5jC'
         }, 
         {
-            id: 39351113678892,
             pack: '12',
             price: '10.5',
             days: '90',
             bestseller: false,
             checked: false,
-            save: '47.5'
+            save: '47.5',
+            link: 'https://buzz-patch.myshopify.com/a/secure/checkout/4fpMDtq5foR0kbuZ70Gd'
         },
         {
-            id: 39351115186220,
             pack: '24',
             price: '9.99',
             days: '180',
             bestseller: false,
             checked: false,
-            save: '47.5'
+            save: '47.5',
+            link: 'https://buzz-patch.myshopify.com/a/secure/checkout/3Q7evVMg5y5VgLV7ZbuU'
         }
     ];
             
-    let formData = {
-        'items': []
-    };
-
     let newElementBestseller = `<span class="bestseller">Bestseller</span>`;
 
     for (let i = 0; i < packs.length; i++) {
@@ -243,7 +239,7 @@ window.onload  = function () {
         `;  
         document.querySelector('.packs-group').append(newElementPacksLabel.cloneNode(true));
         document.querySelectorAll('.packs-group label')[i].setAttribute('data-save', packs[i].save);
-        document.querySelectorAll('.packs-group label')[i].setAttribute('data-id', packs[i].id);
+        document.querySelectorAll('.packs-group label')[i].setAttribute('data-link', packs[i].link);
 
         if(packs[i].bestseller === true) {
             document.querySelectorAll('.packs-block')[i].insertAdjacentHTML('afterbegin', newElementBestseller);            
@@ -253,7 +249,7 @@ window.onload  = function () {
             document.querySelector('.js-total .pr').innerHTML = packs[i].pack * packs[i].price * document.querySelector('.counter-input').value;   
             document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack * document.querySelector('.counter-input').value;
             document.querySelector('.js-regular .rs').innerHTML = 20 * packs[i].pack - packs[i].pack * packs[i].price;
-            document.querySelector('#purchase .js-btn').setAttribute('data-id', packs[i].id);
+            document.querySelector('#purchase .js-btn').setAttribute('href', packs[i].link);
         }
     }
     document.querySelectorAll('.packs-group label')[packs.length - 1].hidden = true;
@@ -265,7 +261,7 @@ window.onload  = function () {
                 document.querySelector('.js-total .ps').innerHTML = item.dataset.save;
                 document.querySelector('.js-strike .rp').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
                 document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));
-                document.querySelector('#purchase .js-btn').setAttribute('data-id', item.dataset.id);
+                document.querySelector('#purchase .js-btn').setAttribute('href', item.dataset.link);
             }
           
             if(index == 0) {  
@@ -447,14 +443,6 @@ window.onload  = function () {
             });
     };
 
-    document.querySelector('#purchase .js-btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        formData.items.push({
-            'id': e.target.dataset.id,
-            'quantity': document.querySelector('.counter-input').value
-        });
-        addToCart(formData);
-    });
 };
 
 (function(h,o,t,j,a,r){
