@@ -1,4 +1,4 @@
-let timer = setInterval(() => {
+function timer () {
     let style = `
     <style>
         @media screen and (max-width: 899px) {
@@ -45,8 +45,6 @@ let timer = setInterval(() => {
         }
     </style>
     `
-    
-   
     document.body.insertAdjacentHTML('afterbegin', style);
 
     document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
@@ -88,7 +86,9 @@ let timer = setInterval(() => {
         'eventAction': 'loaded'
     });
    
-}, 10);
+};
 if (document.body.className == 'm-overflow-hidden-nav') { 
     clearInterval(timer);
-}    
+}  else {
+    setInterval(timer, 100);
+}
