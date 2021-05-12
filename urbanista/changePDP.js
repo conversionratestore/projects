@@ -91,7 +91,7 @@ setTimeout(function () {
         .product-info-main .product.attribute.overview .trigger {
             position: absolute;
             right: 0;
-            bottom: 0;
+            top: 17px;
             padding: 0 5px;
             background: #fff;
             color: #979F88;            
