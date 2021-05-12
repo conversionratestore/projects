@@ -68,7 +68,7 @@ setTimeout(function () {
             color: #737373;
         }
         .product-info-main-wrapper {
-            height: 375px !important;            
+            height: 500px !important;            
         }
         .product-info-main .page-title {
             letter-spacing: 6px;
