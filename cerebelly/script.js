@@ -46,7 +46,7 @@ let style = `
 `
 let timer = setInterval(() => {
     let loc = window.location.pathname;
-    if(loc === '/script') {
+    if(loc === '/') {
         clearInterval(timer);
         document.body.insertAdjacentHTML('afterbegin', style);
 
