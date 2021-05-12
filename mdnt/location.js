@@ -46,7 +46,7 @@ function start(d) {
           .dark_bg {
             display: none;
             position: fixed;
-            height: 100%;
+            height: 120%;
             width: 100%;
             background-color: rgba(0, 0, 0, .4);
             top: 0;
@@ -61,7 +61,7 @@ function start(d) {
           .popup-delivery {
             width: 80%;
             position:absolute;
-            top: 50%;
+            top: 45%;
             left: 50%;
             background:#fff;
             padding: 17px;
