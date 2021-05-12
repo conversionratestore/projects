@@ -1,4 +1,4 @@
-let timer = setInterval(() => {
+
     let style = `
         <style>
             @media screen and (max-width: 899px) {
@@ -67,7 +67,6 @@ let timer = setInterval(() => {
         });
     });
 
-}, 1000);
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
