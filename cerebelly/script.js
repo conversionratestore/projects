@@ -1,5 +1,4 @@
-clearInterval(window.timer);
-window.timer = setInterval(() => {
+
     let style = `
     <style>
         @media screen and (max-width: 899px) {
@@ -86,5 +85,4 @@ window.timer = setInterval(() => {
         'eventCategory': 'Exp: Menu Improvement',
         'eventAction': 'loaded'
     });
-   
-}, 1000);
+
