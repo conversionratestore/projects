@@ -728,7 +728,7 @@ setTimeout(function () {
             'beforebegin',
             `<img style="margin-right: 5px; vertical-align: text-bottom;" src='https://conversionratestore.github.io/projects/urbanista/images/Vector.svg' />`,
         );
-
+	console.log(product);
     // add id
     if (product === 'brisbane') {
         document
