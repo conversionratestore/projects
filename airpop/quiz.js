@@ -237,6 +237,16 @@ setTimeout(function () {
 function startExp() {
     if(document.querySelector('.category-view')) {
         document.querySelector('.category-view').insertAdjacentHTML('afterbegin', btns)
+
+        document.querySelector('.main_btn').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Quiz',
+                'eventAction': 'click on button Pick up a mask',
+                'eventLabel': 'Homepage'
+            });
+        })
     }
 
     document.body.insertAdjacentHTML('afterbegin', buttonStyle)
@@ -252,15 +262,7 @@ function startExp() {
         });
     })
 
-    document.querySelector('.main_btn').addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Quiz',
-            'eventAction': 'click on button Pick up a mask',
-            'eventLabel': 'Homepage'
-        });
-    })
+   
 }
 
 function startQuiz () {
