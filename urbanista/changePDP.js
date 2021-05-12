@@ -171,6 +171,7 @@ setTimeout(function () {
             margin: auto;
             padding: 15px 0;
             width: 100%;
+            display: none !important;
         }
         .view-block span{
             display: block;
@@ -728,7 +729,7 @@ setTimeout(function () {
             'beforebegin',
             `<img style="margin-right: 5px; vertical-align: text-bottom;" src='https://conversionratestore.github.io/projects/urbanista/images/Vector.svg' />`,
         );
-	console.log(product);
+    console.log(product);
     // add id
     if (product === 'brisbane') {
         document
@@ -744,7 +745,7 @@ setTimeout(function () {
         document
             .querySelectorAll(
                 '.mobile-padding-lr.tablet-padding-lr.pd-row.row',
-            )[7]
+            )[6]
             .setAttribute('id', 'specs-block');
     } else if (product === 'boston') {
         document
