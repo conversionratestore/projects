@@ -316,6 +316,12 @@ setTimeout(function () {
         .product-info-main-wrapper {
             height: auto !important;
         }
+        @media only screen and (max-width: 767px) {
+            .product-info-main .product.attribute.overview p {
+                height: 30px;
+                overflow: hidden;
+            }
+        }        
     </style>
     `,
     );
