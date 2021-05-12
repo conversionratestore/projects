@@ -66,7 +66,7 @@ let timer = setInterval(() => {
                 });
             });
         }
-    }, true);
+    }, false);
 
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -87,8 +87,8 @@ let timer = setInterval(() => {
     });
    
 }, 10);
-if (document.body.className == 'm-overflow-hidden-nav') { 
+if (document.querySelector('.css-huxp3r')) { 
     clearInterval(timer);
 }  else {
-    setTimeout(timer, 100);
+    setTimeout(setInterval(timer), 100);
 }
