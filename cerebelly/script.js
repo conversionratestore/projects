@@ -50,25 +50,28 @@ let build = setInterval(() => {
             `
         document.body.insertAdjacentHTML('afterbegin', style);
 
-        document.querySelector('.css-huxp3r').addEventListener('DOMNodeInserted', () => {
-            document.querySelector('.method-quiz').addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Menu Improvement',
-                    'eventAction': 'Customize (Quiz) click'
+        document.querySelector('.e-mobile-nav-open-close-wrap').addEventListener('click', () => {
+            if(document.body.className == 'm-overflow-hidden-nav') {
+                document.querySelector('.method-quiz').addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Menu Improvement',
+                        'eventAction': 'Customize (Quiz) click'
+                    });
+                    console.log('Customize');
                 });
-                console.log('Customize');
-            });
-            document.querySelector('.method-box-builder').addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Menu Improvement',
-                    'eventAction': 'Pick flawor (BB) click'
+                document.querySelector('.method-box-builder').addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Menu Improvement',
+                        'eventAction': 'Pick flawor (BB) click'
+                    });
+                    console.log('Pick');
                 });
-                console.log('Pick');
-            });
+            }
+         
         });
     }
 }, 10);
