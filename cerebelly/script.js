@@ -58,7 +58,6 @@ let build = setInterval(() => {
                         'eventCategory': 'Exp: Menu Improvement',
                         'eventAction': 'Customize (Quiz) click'
                     });
-                    console.log('Customize');
                 });
                 document.querySelector('.method-box-builder').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
@@ -67,7 +66,6 @@ let build = setInterval(() => {
                         'eventCategory': 'Exp: Menu Improvement',
                         'eventAction': 'Pick flawor (BB) click'
                     });
-                    console.log('Pick');
                 });
             }
          
