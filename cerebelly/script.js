@@ -44,49 +44,47 @@ let style = `
     }
 </style>
 `
-document.querySelector('.e-mobile-nav-open-close-wrap').addEventListener('click', () => {
-    document.body.classList.add('m-overflow-hidden-nav');
 
-    if (document.body.className == 'm-overflow-hidden-nav') {
-        document.body.insertAdjacentHTML('afterbegin', style);
+if (document.body.className == 'm-overflow-hidden-nav') {
+    document.body.insertAdjacentHTML('afterbegin', style);
 
-        // document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
-            if (document.querySelector('.css-huxp3r').innerHTML != '') {
-                document.querySelector('.method-quiz').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Menu Improvement',
-                        'eventAction': 'Customize (Quiz) click'
-                    });
+    document.querySelector('.css-huxp3r').addEventListener('DOMContentLoaded', (e) => {
+        if (document.querySelector('.css-huxp3r').innerHTML != '') {
+            document.querySelector('.method-quiz').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Menu Improvement',
+                    'eventAction': 'Customize (Quiz) click'
                 });
-                document.querySelector('.method-box-builder').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Menu Improvement',
-                        'eventAction': 'Pick flawor (BB) click'
-                    });
+            });
+            document.querySelector('.method-box-builder').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Menu Improvement',
+                    'eventAction': 'Pick flawor (BB) click'
                 });
-            }
-        // }, false);
-    
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2171597,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-            window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-            hj('trigger', 'menu_improvement');
-    
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Menu Improvement',
-            'eventAction': 'loaded'
-        });
-    }
-}, false);
+            });
+        }
+    }, false);
+
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2171597,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('trigger', 'menu_improvement');
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Menu Improvement',
+        'eventAction': 'loaded'
+    });
+}
+ 
