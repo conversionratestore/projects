@@ -778,9 +778,15 @@ setTimeout(function () {
     review.innerHTML = `
 <p>${textList[40]}</p>
 <div class="review__images">
-    <img src='https://conversionratestore.github.io/projects/urbanista/images/stuff.png'/>
-    <img src='https://conversionratestore.github.io/projects/urbanista/images/wired.png'/>
-    <img src='https://conversionratestore.github.io/projects/urbanista/images/trusted-reviews.png'/>
+    <div>
+        <img src='https://conversionratestore.github.io/projects/urbanista/images/stuff.png'/>
+    </div>
+    <div>
+        <img src='https://conversionratestore.github.io/projects/urbanista/images/wired.png'/>
+    </div>
+    <div>
+        <img src='https://conversionratestore.github.io/projects/urbanista/images/trusted-reviews.png'/>
+    </div>
 </div>
 <div class='single-item'>
     <div>
