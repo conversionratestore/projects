@@ -112,7 +112,7 @@ setTimeout(function () {
         .action.primary {
             font-size: 14px !important;
         }
-        .product-additional-info, .product-view-badge, .padded.row, .product-view-cms:after {
+        .product-additional-info, .product-view-badge, .product-view-cms:after {
             display: none;
         }
         .properties {
