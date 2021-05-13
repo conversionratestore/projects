@@ -1,4 +1,4 @@
-let build = setInterval(() => {
+let build = setInterval(function() {
     let loc = window.location.pathname;
     if(loc === '/') {
         clearInterval(build);
