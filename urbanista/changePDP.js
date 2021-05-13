@@ -729,7 +729,7 @@ setTimeout(function () {
             'beforebegin',
             `<img style="margin-right: 5px; vertical-align: text-bottom;" src='https://conversionratestore.github.io/projects/urbanista/images/Vector.svg' />`,
         );
-    console.log(product);
+
     // add id
     if (product === 'brisbane') {
         document
@@ -909,9 +909,15 @@ setTimeout(function () {
                   .setAttribute('id', 'specs-block');
     }
 
-    document
-        .querySelector('.product-info-main-wrapper')
-        .setAttribute('style', 'height: 500px !important');
+    if (product === 'paris') {
+        document
+            .querySelector('.product-info-main-wrapper')
+            .setAttribute('style', 'height: 525px !important');
+    } else {
+        document
+            .querySelector('.product-info-main-wrapper')
+            .setAttribute('style', 'height: 500px !important');
+    }
 
     function drawTimeBat(time, text) {
         return `
