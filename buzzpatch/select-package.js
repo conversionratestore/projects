@@ -246,8 +246,8 @@ window.onload  = function () {
         }
         if(packs[i].checked === true) {
             document.querySelectorAll('.packs-group input')[i].setAttribute('checked','checked');     
-            document.querySelector('.js-total .pr').innerHTML = packs[i].pack * packs[i].price * document.querySelector('.counter-input').value;   
-            document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack * document.querySelector('.counter-input').value;
+            document.querySelector('.js-total .pr').innerHTML = packs[i].pack * packs[i].price;   
+            document.querySelector('.js-strike .rp').innerHTML = 20 * packs[i].pack;
             document.querySelector('.js-regular .rs').innerHTML = 20 * packs[i].pack - packs[i].pack * packs[i].price;
             document.querySelector('#purchase .js-btn').setAttribute('href', packs[i].link);
         }
@@ -257,9 +257,9 @@ window.onload  = function () {
     document.querySelectorAll('.packs-group label').forEach((item, index) => {
         item.addEventListener('change', () => {
             if(item.querySelector('input').checked) {
-                document.querySelector('.js-total .pr').innerHTML = item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
+                document.querySelector('.js-total .pr').innerHTML = item.querySelector('.packs-pack').dataset.pack * item.querySelector('.packs-price').dataset.price;
                 document.querySelector('.js-total .ps').innerHTML = item.dataset.save;
-                document.querySelector('.js-strike .rp').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
+                document.querySelector('.js-strike .rp').innerHTML = 20 * item.querySelector('.packs-pack').dataset.pack;
                 document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));
                 document.querySelector('#purchase .js-btn').setAttribute('href', item.dataset.link);
             }
@@ -330,8 +330,8 @@ window.onload  = function () {
         } 
         document.querySelectorAll('.packs-group label').forEach((label) => {
             if (label.querySelector('input').checked) {
-                document.querySelector('.js-total .pr').innerHTML = (label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price) * document.querySelector('.counter-input').value;
-                document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
+                document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price;
+                document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack;
             }
         });
         document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));
@@ -371,6 +371,7 @@ window.onload  = function () {
             document.querySelector('.text-dynamically').innerHTML = `${item.nextElementSibling.innerHTML}: <span class="c-pink fw-bold"> ${item.nextElementSibling.dataset.patch} </span> <span class="text-nowrap">  every 6 hours.</span>   `;  
         }
         item.addEventListener('change', () => {
+            document.querySelectorAll('.packs-group label input')[1].checked = 'true';
             document.querySelector('.counter-input').value = 1;
             document.querySelectorAll('.for-people').forEach((el) => {el.innerHTML = ` `;});
             document.querySelectorAll('.packs-group label')[packs.length - 1].hidden = true;
@@ -415,34 +416,14 @@ window.onload  = function () {
             });
             document.querySelectorAll('.packs-group label').forEach((label) => {
                 if (label.querySelector('input').checked) {
-                    document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price * document.querySelector('.counter-input').value;
-                    document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack * document.querySelector('.counter-input').value;
+                    document.querySelector('.js-total .pr').innerHTML = label.querySelector('.packs-pack').dataset.pack * label.querySelector('.packs-price').dataset.price;
+                    document.querySelector('.js-strike .rp').innerHTML = 20 * label.querySelector('.packs-pack').dataset.pack;
                 }
             });
            document.querySelector('.js-regular .rs').innerHTML = parseFloat((document.querySelector('.js-strike .rp').innerHTML - document.querySelector('.js-total .pr').innerHTML).toFixed(2));  
         });
     });
     document.querySelector('.text-dynamically br').remove();
-
-    function addToCart(formData) {
-        fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(response => {
-                response.json().then(r => {
-                    console.log(r)
-                    window.location = '/checkout'
-                })
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    };
-
 };
 
 (function(h,o,t,j,a,r){
