@@ -637,6 +637,7 @@ setTimeout(function () {
 
     $('.fotorama').fotorama({
         nav: 'dots',
+	height: 420,
     });
 
     // product name
