@@ -192,48 +192,44 @@ document.body.insertAdjacentHTML('afterbegin', style);
 let list = [
     {
         item: 'Unlimited downloads',
-        toltipe: ''
-    },
-    {
-        item: 'Brand Kit',
-        toltipe: 'Add your brand palette, fonts, and logo to the editor, and build your own brand kit with Crello. Make designs that fit your brand style. '
-    },
-    {
-        item: 'Easily resize your design',
-        toltipe: ''
-    },
-    {
-        item: 'Tonns of fresh content with weekly update',
-        toltipe: ''
-    },
-    {
-        item: 'Priority support',
-        toltipe: ''
-    },
-    {
-        item: 'Invite your team to collaborate',
-        toltipe: ''
+        toltipe: 'Download as many designs as you need. Without limits.'
     },
     {
         item: 'Background removal',
-        toltipe: ''
+        toltipe: 'Remove backgrounds from images.'
+    },
+    {
+        item: 'Brand Kit',
+        toltipe: 'Match your company style to your visuals. Add your brand palette, fonts, and logo to the Crello editor.'
+    },
+    {
+        item: 'Invite your team to collaborate',
+        toltipe: 'Invite team members and design together.'
+    },
+    {
+        item: 'Priority support',
+        toltipe: 'Get help online with priority support.'
+    },
+    {
+        item: 'Tons of fresh content with weekly update'
     }
 ];
-
 
 var today = new Date();
 let dd = today.getDate();
 let mm = today.getMonth()+1;
 
 let yyyy = today.getFullYear();
-if(dd<10){dd = '0' + dd}
-if(mm<10){mm = '0' + mm}
+if(dd<10) {dd = '0' + dd}
+if(mm<10) {mm = '0' + mm}
 var today = dd + '.' + mm + '.' + yyyy;
 
 function get(data, day){
    data = data.split('.');
    data = new Date(data[2], +data[1]-1, +data[0]+day, 0, 0, 0, 0);
    data = [data.getDate(),data.getMonth()+1,data.getFullYear()];
+   if (data[0] < 10) {data[0] = '0' + data[0]}
+   if (data[1] < 10) {data[1] = '0' + data[1]}
    data = data.join('.').replace(/(^|\/)(\d)(?=\/)/g,"$10$2");  
    return data;
 }
@@ -255,7 +251,7 @@ let newElement = `
             </div>
             <div class="pay-here">
                 <p class="typography-subheading-l c-green ff-proximabold">Start Free trial</p>
-                <p class="date">${get(dd+'.'+mm+'.'+yyyy, 7)}</p>
+                <p class="date">${get(today, 7)}</p>
                 <div class="steps bg-green"></div>
             </div>
         </div>
@@ -272,7 +268,11 @@ for (let i = 0; i < sptDate.length; i++) {
 }
 
 for (let i = 0; i < list.length; i++) {
-    document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item} <div class="icon-i"><div class="toltipe"><div class="toltipe-content">${list[i].toltipe}</div></div></div></li>`);
+    if (list[i].toltipe) {
+        document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}<div class="icon-i"><div class="toltipe"><div class="toltipe-content">${list[i].toltipe}</div></div></div></li>`);
+    } else {
+        document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}</li>`);
+    }
 }
 
 let n = 7;
