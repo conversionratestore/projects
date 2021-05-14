@@ -216,7 +216,7 @@ let buttonStyle = `
         bottom: 100px;
         left: 24px;
         width: 30%;
-        z-index: 999;
+        z-index: 200;
       }
     </style>
 `
@@ -262,7 +262,7 @@ function startExp() {
         });
     })
 
-   
+
 }
 
 function startQuiz () {
