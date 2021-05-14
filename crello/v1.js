@@ -187,8 +187,6 @@ let style = `
         border-radius: 7px;}
 </style>`
 
-document.body.insertAdjacentHTML('afterbegin', style);
-
 let list = [
     {
         item: 'Unlimited downloads',
@@ -215,26 +213,31 @@ let list = [
     }
 ];
 
-var today = new Date();
-let dd = today.getDate();
-let mm = today.getMonth()+1;
+let mut = new MutationObserver(function (muts) {
+    mut.disconnect()
+    if(document.querySelector('.subscriptionModalWrapper___3_4Em') && !document.querySelector('.checkoutWrapper___container')) {
+        document.body.insertAdjacentHTML('afterbegin', style);
 
-let yyyy = today.getFullYear();
-if(dd<10) {dd = '0' + dd}
-if(mm<10) {mm = '0' + mm}
-var today = dd + '.' + mm + '.' + yyyy;
+        var today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth()+1;
 
-function get(data, day){
-   data = data.split('.');
-   data = new Date(data[2], +data[1]-1, +data[0]+day, 0, 0, 0, 0);
-   data = [data.getDate(),data.getMonth()+1,data.getFullYear()];
-   if (data[0] < 10) {data[0] = '0' + data[0]}
-   if (data[1] < 10) {data[1] = '0' + data[1]}
-   data = data.join('.').replace(/(^|\/)(\d)(?=\/)/g,"$10$2");  
-   return data;
-}
+        let yyyy = today.getFullYear();
+        if(dd<10) {dd = '0' + dd}
+        if(mm<10) {mm = '0' + mm}
+        var today = dd + '.' + mm + '.' + yyyy;
 
-let newElement = `
+        function get(data, day){
+            data = data.split('.');
+            data = new Date(data[2], +data[1]-1, +data[0]+day, 0, 0, 0, 0);
+            data = [data.getDate(),data.getMonth()+1,data.getFullYear()];
+            if (data[0] < 10) {data[0] = '0' + data[0]}
+            if (data[1] < 10) {data[1] = '0' + data[1]}
+            data = data.join('.').replace(/(^|\/)(\d)(?=\/)/g,"$10$2");
+            return data;
+        }
+
+        let newElement = `
     <div class="checkoutWrapper___container">
         <div class="section___36_7J flex-wrap">
             <div class="start-free">
@@ -258,27 +261,27 @@ let newElement = `
     </div>
 `;
 
-document.querySelector('.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
+        document.querySelector('.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
 
-let sptDate = document.querySelectorAll('.date')[1].innerHTML.split('.');
-for (let i = 0; i < sptDate.length; i++) {
-    if(parseInt(sptDate[i]) < 10) {
-     sptDate[i].innerHTML = `0 ${sptDate[i]}`;
-    }
-}
+        let sptDate = document.querySelectorAll('.date')[1].innerHTML.split('.');
+        for (let i = 0; i < sptDate.length; i++) {
+            if(parseInt(sptDate[i]) < 10) {
+                sptDate[i].innerHTML = `0 ${sptDate[i]}`;
+            }
+        }
 
-for (let i = 0; i < list.length; i++) {
-    if (list[i].toltipe) {
-        document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}<div class="icon-i"><div class="toltipe"><div class="toltipe-content">${list[i].toltipe}</div></div></div></li>`);
-    } else {
-        document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}</li>`);
-    }
-}
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].toltipe) {
+                document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}<div class="icon-i"><div class="toltipe"><div class="toltipe-content">${list[i].toltipe}</div></div></div></li>`);
+            } else {
+                document.querySelector('.list').insertAdjacentHTML('beforeend', `<li class="list-item">${list[i].item}</li>`);
+            }
+        }
 
-let n = 7;
-while(n--) {document.querySelector('.steps.bg-blue').insertAdjacentHTML('afterbegin', `<div class="step"></div>`)}
+        let n = 7;
+        while(n--) {document.querySelector('.steps.bg-blue').insertAdjacentHTML('afterbegin', `<div class="step"></div>`)}
 
-let modal = `
+        let modal = `
 <div class="m__how-do-cancel ReactModal__Overlay--dark64">
     <div class="m__container">
         <button class="m__close"><svg viewBox="0 0 12 12" width="14" height="14"><path d="M11.8479 10.4379C11.9426 10.5318 11.9958 10.6596 11.9958 10.7929C11.9958 10.9262 11.9426 11.054 11.8479 11.1479L11.1479 11.8479C11.054 11.9426 10.9262 11.9958 10.7929 11.9958C10.6596 11.9958 10.5318 11.9426 10.4379 11.8479L5.9979 7.4079L1.5579 11.8479C1.46402 11.9426 1.33622 11.9958 1.2029 11.9958C1.06958 11.9958 0.941782 11.9426 0.847899 11.8479L0.147899 11.1479C0.0532428 11.054 0 10.9262 0 10.7929C0 10.6596 0.0532428 10.5318 0.147899 10.4379L4.5879 5.9979L0.147899 1.5579C0.0532428 1.46402 0 1.33622 0 1.2029C0 1.06958 0.0532428 0.941782 0.147899 0.847899L0.847899 0.147899C0.941782 0.0532428 1.06958 0 1.2029 0C1.33622 0 1.46402 0.0532428 1.5579 0.147899L5.9979 4.5879L10.4379 0.147899C10.5318 0.0532428 10.6596 0 10.7929 0C10.9262 0 11.054 0.0532428 11.1479 0.147899L11.8479 0.847899C11.9426 0.941782 11.9958 1.06958 11.9958 1.2029C11.9958 1.33622 11.9426 1.46402 11.8479 1.5579L7.4079 5.9979L11.8479 10.4379Z"></path></svg></button>
@@ -296,17 +299,30 @@ let modal = `
     </div>
 </div>
 `
-document.querySelector('.ReactModal__Overlay--dark64').insertAdjacentHTML('afterend', modal);
+        document.querySelector('.ReactModal__Overlay--dark64').insertAdjacentHTML('afterend', modal);
 
-document.querySelector('.btn').addEventListener('click', () => {
-    document.querySelector('.m__how-do-cancel').classList.add('isActive');
-});
+        document.querySelector('.btn').addEventListener('click', () => {
+            document.querySelector('.m__how-do-cancel').classList.add('isActive');
+        });
 
-function removeActive() {
-    document.querySelector('.m__how-do-cancel').classList.remove('isActive');
-}
-document.querySelector('.m__close').addEventListener('click', removeActive);
-document.querySelector('.m__container').addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-});
-document.querySelector('.m__how-do-cancel').addEventListener('click', removeActive);
+        function removeActive() {
+            document.querySelector('.m__how-do-cancel').classList.remove('isActive');
+        }
+        document.querySelector('.m__close').addEventListener('click', removeActive);
+        document.querySelector('.m__container').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+        });
+        document.querySelector('.m__how-do-cancel').addEventListener('click', removeActive);
+    }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    })
+})
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+})
+
+
