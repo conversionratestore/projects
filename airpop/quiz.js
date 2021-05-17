@@ -229,6 +229,8 @@ let popupStyle = `
       }
       
       .popup {
+        width: 80%;
+        box-sizing: border-box;
         position:absolute;
         top: 50%;
         left: 50%;
@@ -242,11 +244,13 @@ let popupStyle = `
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 25px;
+        text-align: center;
       }
       
       .popup p.title+p {
         font-size: 16px;
         margin-bottom: 30px;
+        text-align: center;
       }
       
       .popup button {
@@ -256,6 +260,8 @@ let popupStyle = `
         text-transform:uppercase;
         padding: 11px 42px;
         border: none;
+        background-color: #32CDD5;
+        border-radius: 40px;
       }
       
       .popup .close {
@@ -264,7 +270,7 @@ let popupStyle = `
         position:absolute;
         top: 35px;
         right: 35px;
-        background: url(https://conversionratestore.com/projects/airpop/img/close.svg) center center no-repeat;
+        background: url(https://conversionratestore.github.io/projects/airpop/img/close.svg) center center no-repeat;
         background-size: contain;
       }
     </style>
@@ -504,7 +510,7 @@ function selectPocket(a4, a5) {
 
     console.log('block2' , finalHref)
     window.location.href = finalHref
-    localStorage.setItem('quiz', 1)
+    localStorage.setItem('quiz', '1')
 }
 
 function select1(answers) {
@@ -612,6 +618,7 @@ function select1(answers) {
 
     console.log('block1' , finalHref)
     window.location.href = finalHref
+    localStorage.setItem('quiz', '1')
 }
 
 function select3(answers) {
@@ -683,6 +690,7 @@ function select3(answers) {
     }
     console.log('block3' , finalHref)
     window.location.href = finalHref
+    localStorage.setItem('quiz', '1')
 }
 
 function select4(answers) {
@@ -730,6 +738,7 @@ function select4(answers) {
     }
     console.log('block4' , finalHref)
     window.location.href = finalHref
+    localStorage.setItem('quiz', '1')
 }
 
 (function(h,o,t,j,a,r){
