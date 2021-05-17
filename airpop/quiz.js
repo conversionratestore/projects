@@ -57,7 +57,7 @@ let style = `
       
       .quiz button, .quiz button:hover {
         padding: 10px 25px;
-        background-color: #64BACA;
+        background-color: #32CDD5;
         border-radius: 5px;
         color: white;
         border: none;
@@ -76,8 +76,8 @@ let style = `
         display: inline-block;
         font-weight: 700;
         padding: 5px 7px;
-        color: #64BACA;
-        border: 1px solid #64BACA;
+        color: #32CDD5;
+        border: 1px solid #32CDD5;
         border-radius: 5px;
         margin-left: 20px;
         text-transform:uppercase;
@@ -190,21 +190,20 @@ let quizBlock = `
 let finalHref = 'https://www.airpophealth.com/us/airpop-light-se-4pcs-white'
 let page = window.location.pathname
 
-
-
 let buttonStyle = `
     <style>
       .quiz_btn {
         display: flex;
-        background-color: #64BACA;
+        background-color: #32CDD5;
         color: white !important;
         font-weight: 700;
-        font-size: 12px;
+        font-size: 14px;
         justify-content:center;
         margin: 15px auto;
         border-radius: 50px;
         width: 50%;
-        padding: 10px !important;
+        padding: 10px 20px !important;
+        text-transform:uppercase;
       }
       
       .category-view {
@@ -212,11 +211,7 @@ let buttonStyle = `
       }
       
       .main_btn {
-        position:absolute;
-        bottom: 100px;
-        left: 24px;
         width: 30%;
-        z-index: 200;
       }
     </style>
 `
@@ -236,7 +231,7 @@ setTimeout(function () {
 
 function startExp() {
     if(document.querySelector('.category-view')) {
-        document.querySelector('.category-view').insertAdjacentHTML('afterbegin', btns)
+        document.querySelector('.Subwidget').insertAdjacentHTML('afterbegin', btns)
 
         document.querySelector('.main_btn').addEventListener('click', function () {
             window.dataLayer = window.dataLayer || [];
@@ -248,6 +243,7 @@ function startExp() {
             });
         })
     }
+
 
     document.body.insertAdjacentHTML('afterbegin', buttonStyle)
     document.querySelectorAll('.navigation')[1].querySelector('ul').insertAdjacentHTML('afterbegin', `<li><a class="quiz_btn quiz_link" href="/us/face-mask-quiz">Pick up a mask</a></li>`)
@@ -261,8 +257,6 @@ function startExp() {
             'eventLabel': 'Menu'
         });
     })
-
-
 }
 
 function startQuiz () {
