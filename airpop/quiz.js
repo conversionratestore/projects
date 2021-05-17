@@ -190,7 +190,7 @@ let page = window.location.pathname
 
 let buttonStyle = `
     <style>
-      .quiz_btn, .Subwidget .quiz_btn {
+      .quiz_btn, .Subwidget a.quiz_btn {
         display: flex;
         background-color: #32CDD5;
         color: white !important;
@@ -208,7 +208,7 @@ let buttonStyle = `
         position:relative;
       }
       
-      .Subwidget .main_btn {
+      a.main_btn {
         width: 30%;
         
       }
