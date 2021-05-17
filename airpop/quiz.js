@@ -54,7 +54,7 @@ let style = `
         margin-bottom: 20px;
       }
       
-      .quiz button:not(.prev), .quiz button:hover {
+      .quiz button:not(.prev), .quiz button:not(.prev):hover {
         padding: 10px 25px;
         background-color: #32CDD5;
         border-radius: 30px;
