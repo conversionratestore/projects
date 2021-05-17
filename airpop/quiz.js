@@ -82,8 +82,6 @@ let style = `
         margin-left: 20px;
         text-transform:uppercase;
       }
-      
-      
     </style>
 `
 
@@ -192,7 +190,7 @@ let page = window.location.pathname
 
 let buttonStyle = `
     <style>
-      .quiz_btn {
+      .quiz_btn, .Subwidget .quiz_btn {
         display: flex;
         background-color: #32CDD5;
         color: white !important;
@@ -210,8 +208,9 @@ let buttonStyle = `
         position:relative;
       }
       
-      .main_btn {
+      .Subwidget .main_btn {
         width: 30%;
+        
       }
     </style>
 `
