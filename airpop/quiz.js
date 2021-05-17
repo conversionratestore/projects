@@ -198,7 +198,7 @@ let buttonStyle = `
         font-size: 14px;
         justify-content:center;
         margin: 15px auto;
-        border-radius: 50px;
+        border-radius: 50px !important;
         width: 50%;
         padding: 5px 20px !important;
         text-transform:uppercase;
@@ -209,7 +209,6 @@ let buttonStyle = `
       }
       
       .Subwidget a.main_btn {
-        width: 30%;
         margin: 0 0 10px;
       }
     </style>
