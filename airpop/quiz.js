@@ -506,6 +506,9 @@ function selectPocket(a4, a5) {
     if(a4.includes('2')) {
         color = 'black'
     }
+    if (a5 === '1') {
+        a5 = '2'
+    }
     finalHref = products[type][color][a5]
 
     console.log('block2' , finalHref)
@@ -521,6 +524,9 @@ function select1(answers) {
             case '1':
                 if(answers[3].includes('2')) {
                     color = 'black'
+                }
+                if (color === 'white' && answers[5] === '1') {
+                    answers[5] = '4'
                 }
                 finalHref = products[type][color][answers[5]]
                 break
@@ -538,6 +544,9 @@ function select1(answers) {
                 } else {
                     if(answers[3].includes('2')) {
                         color = 'black'
+                    }
+                    if (color === 'white' && answers[5] === '1') {
+                        answers[5] = '4'
                     }
                     finalHref = products[type][color][answers[5]]
                 }
@@ -577,6 +586,9 @@ function select1(answers) {
                     if(answers[3].includes('2')) {
                         color = 'black'
                     }
+                    if (color === 'white' && answers[5] === '1') {
+                        answers[5] = '4'
+                    }
                     finalHref = products[type][color][answers[5]]
                 } else {
                     type = 'active'
@@ -611,6 +623,9 @@ function select1(answers) {
             type = 'se'
             if(answers[3].includes('2')) {
                 color = 'black'
+            }
+            if (color === 'white' && answers[5] === '1') {
+                answers[5] = '4'
             }
             finalHref = products[type][color][answers[5]]
         }
