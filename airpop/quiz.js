@@ -54,7 +54,7 @@ let style = `
         margin-bottom: 20px;
       }
       
-      .quiz button, .quiz button:hover {
+      .quiz button:not(.prev), .quiz button:hover {
         padding: 10px 25px;
         background-color: #32CDD5;
         border-radius: 30px;
@@ -63,6 +63,12 @@ let style = `
         font-weight: 600;
         text-transform:uppercase;
         width: 50%;
+      }
+      
+      .quiz button {
+        color: black;
+        border: none;
+        background: #fff;
       }
       
       .quiz button {
@@ -189,7 +195,7 @@ let quizBlock = `
           <button class="next active">Next</button>
           <button class="finish">Show me my mask</button>
       </div>
-      <button class="prev">Back</button>
+      <button class="prev">< Back</button>
     </div>
 `
 let finalHref = 'https://www.airpophealth.com/us/airpop-light-se-4pcs-white'
