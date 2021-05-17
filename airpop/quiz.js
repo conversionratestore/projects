@@ -83,9 +83,9 @@ let style = `
         display: inline-block;
         font-weight: 700;
         padding: 5px 7px;
-        color: #32CDD5;
-        border: 1px solid #32CDD5;
-        border-radius: 5px;
+        color: #333333;
+        background-color: #FFCC66;
+        border-radius: 30px;
         margin-left: 20px;
         text-transform:uppercase;
       }
@@ -198,6 +198,77 @@ let quizBlock = `
       <button class="prev">< Back</button>
     </div>
 `
+
+let popup = `
+<div class="dark_bg">
+    <div class="popup">
+      <span class="close"></span>
+      <p class="title">Perfect Mask found for you</p>
+      <p>We analyzed your answers and found Mask the fit’s your request best</p>
+      <button>Take a look</button>
+    </div>
+</div>
+`
+
+let popupStyle = `
+    <style>
+      .dark_bg {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0, 0, 0, .25);
+        z-index: 999;
+      }
+      
+      .dark_bg.active {
+        display: block;
+      }
+      
+      .popup {
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 80px 60px;
+      }
+      
+      .popup p.title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 25px;
+      }
+      
+      .popup p.title+p {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+      
+      .popup button {
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform:uppercase;
+        padding: 11px 42px;
+        border: none;
+      }
+      
+      .popup .close {
+        height: 14px;
+        width: 14px;
+        position:absolute;
+        top: 35px;
+        right: 35px;
+        background: url(https://conversionratestore.com/projects/airpop/img/close.svg) center center no-repeat;
+        background-size: contain;
+      }
+    </style>
+`
+
 let finalHref = 'https://www.airpophealth.com/us/airpop-light-se-4pcs-white'
 let page = window.location.pathname
 
@@ -212,7 +283,8 @@ let buttonStyle = `
         justify-content:center;
         margin: 15px auto;
         border-radius: 50px !important;
-        width: 50%;
+        width: 70%;
+        max-width: 200px;
         padding: 10px 20px !important;
         text-transform:uppercase;
       }
@@ -237,6 +309,9 @@ setTimeout(function () {
         startQuiz()
     } else {
         startExp()
+        if (localStorage.getItem('quiz') === '1') {
+            startPopup()
+        }
     }
 }, 500)
 
@@ -333,6 +408,34 @@ function startQuiz () {
 
 }
 
+function startPopup() {
+    document.body.insertAdjacentHTML('afterbegin', popupStyle)
+    document.body.insertAdjacentHTML('beforeend', popup)
+    $('.dark_bg').addClass('active')
+
+    $('.dark_bg .close').click(function () {
+        $('.dark_bg').removeClass('active')
+        localStorage.removeItem('quiz')
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz',
+            'eventAction': 'close popup'
+        });
+    })
+
+    $('.dark_bg button').click(function () {
+        $('.dark_bg').removeClass('active')
+        localStorage.removeItem('quiz')
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz',
+            'eventAction': 'close popup'
+        });
+    })
+}
+
 function changeStep(s) {
     $('.questions>p').eq(s).addClass('active').siblings('p').removeClass('active')
     $('.answers>div').eq(s).addClass('active').siblings('div').removeClass('active')
@@ -400,6 +503,7 @@ function selectPocket(a4, a5) {
 
     console.log('block2' , finalHref)
     window.location.href = finalHref
+    localStorage.setItem('quiz', 1)
 }
 
 function select1(answers) {
