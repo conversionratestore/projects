@@ -192,7 +192,7 @@ let buttonStyle = `
     <style>
       .quiz_btn, .Subwidget a.quiz_btn {
         display: flex;
-        background-color: #32CDD5;
+        background-color: #32CDD5 !important;
         color: white !important;
         font-weight: 700;
         font-size: 14px;
@@ -210,7 +210,7 @@ let buttonStyle = `
       
       a.main_btn {
         width: 30%;
-        
+        margin: 0 0 10px;
       }
     </style>
 `
