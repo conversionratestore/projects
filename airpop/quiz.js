@@ -24,14 +24,13 @@ let style = `
       }
       
       .pointer {
-        border: 1px solid black;
-        padding: 5px 10px;
+        border: 1px solid #EEEEEE;
+        padding: 10px 20px;
         font-weight: 700;
         margin: 15px auto;
         text-align: center;
         display:inline-block;
-        border-radius: 4px;
-        background-color: #e5e5e5;
+        border-radius: 20px;
       }
       
       .answers {
@@ -58,10 +57,12 @@ let style = `
       .quiz button, .quiz button:hover {
         padding: 10px 25px;
         background-color: #32CDD5;
-        border-radius: 5px;
+        border-radius: 30px;
         color: white;
         border: none;
         font-weight: 600;
+        text-transform:uppercase;
+        width: 50%;
       }
       
       .quiz button {
@@ -81,6 +82,10 @@ let style = `
         border-radius: 5px;
         margin-left: 20px;
         text-transform:uppercase;
+      }
+      
+      .block.newsletter {
+        display: none;
       }
     </style>
 `
@@ -180,9 +185,11 @@ let quizBlock = `
         </div>
       </div>
       
-      <button class="prev">Prev</button>
-      <button class="next active">Next</button>
-      <button class="finish">Show me my mask</button>
+      <div>
+          <button class="next active">Next</button>
+          <button class="finish">Show me my mask</button>
+      </div>
+      <button class="prev">Back</button>
     </div>
 `
 let finalHref = 'https://www.airpophealth.com/us/airpop-light-se-4pcs-white'
@@ -225,7 +232,7 @@ setTimeout(function () {
     } else {
         startExp()
     }
-}, 1000)
+}, 500)
 
 
 function startExp() {
