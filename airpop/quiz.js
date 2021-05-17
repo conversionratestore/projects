@@ -62,7 +62,8 @@ let style = `
         border: none;
         font-weight: 600;
         text-transform:uppercase;
-        width: 50%;
+        width: 70%;
+        max-width: 200px;
       }
       
       .quiz button {
