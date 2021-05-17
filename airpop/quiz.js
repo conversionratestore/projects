@@ -200,7 +200,7 @@ let buttonStyle = `
         margin: 15px auto;
         border-radius: 50px;
         width: 50%;
-        padding: 10px 20px !important;
+        padding: 5px 20px !important;
         text-transform:uppercase;
       }
       
@@ -208,7 +208,7 @@ let buttonStyle = `
         position:relative;
       }
       
-      a.main_btn {
+      .Subwidget a.main_btn {
         width: 30%;
         margin: 0 0 10px;
       }
