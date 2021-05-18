@@ -320,16 +320,20 @@ let btns = `
       <a class="quiz_btn main_btn" href="/us/face-mask-quiz">Pick your mask</a>
 `
 let $ = jQuery
-setTimeout(function () {
-    if (page.includes('face-mask-quiz')) {
-        startQuiz()
-    } else {
-        startExp()
-        if (localStorage.getItem('quiz') === '1') {
-            startPopup()
+let go = setInterval(function () {
+    console.log('start')
+    if(document.querySelector('.category-view') || document.querySelector('#maincontent')) {
+        clearInterval(go)
+        if (page.includes('face-mask-quiz')) {
+            startQuiz()
+        } else {
+            startExp()
+            if (localStorage.getItem('quiz') === '1') {
+                startPopup()
+            }
         }
     }
-}, 500)
+}, 100)
 
 
 function startExp() {
