@@ -292,9 +292,7 @@ let mut = new MutationObserver(function (muts) {
             <p>Step 3 <span>Click “Cancel” the subscription</span></p>
         </div>
         <video class="m__video" width="335" height="209" controls="controls" poster="video/duel.jpg">
-            <source src="video/duel.ogv" type='video/ogg; codecs="theora, vorbis"'>
-            <source src="video/duel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            <source src="video/duel.webm" type='video/webm; codecs="vp8, vorbis"'>
+            <source src="https://conversionratestore.github.io/projects/crello/zoom_0.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
         </video>
     </div>
 </div>
