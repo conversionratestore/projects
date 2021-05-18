@@ -540,10 +540,10 @@ function select1(answers) {
                 if(answers[3].includes('2')) {
                     color = 'black'
                 }
-                if (color === 'white' && answers[5] === '1') {
-                    answers[5] = '4'
+                if (color === 'white' && answers[4] === '1') {
+                    answers[4] = '4'
                 }
-                finalHref = products[type][color][answers[5]]
+                finalHref = products[type][color][answers[4]]
                 break
             case '2':
                 if (answers[2] === '1' || answers[2] === '2') {
@@ -560,10 +560,10 @@ function select1(answers) {
                     if(answers[3].includes('2')) {
                         color = 'black'
                     }
-                    if (color === 'white' && answers[5] === '1') {
-                        answers[5] = '4'
+                    if (color === 'white' && answers[4] === '1') {
+                        answers[4] = '4'
                     }
-                    finalHref = products[type][color][answers[5]]
+                    finalHref = products[type][color][answers[4]]
                 }
                 break
             case '3':
@@ -601,10 +601,10 @@ function select1(answers) {
                     if(answers[3].includes('2')) {
                         color = 'black'
                     }
-                    if (color === 'white' && answers[5] === '1') {
-                        answers[5] = '4'
+                    if (color === 'white' && answers[4] === '1') {
+                        answers[4] = '4'
                     }
-                    finalHref = products[type][color][answers[5]]
+                    finalHref = products[type][color][answers[4]]
                 } else {
                     type = 'active'
                     if(answers[3].includes('2')) {
@@ -639,10 +639,10 @@ function select1(answers) {
             if(answers[3].includes('2')) {
                 color = 'black'
             }
-            if (color === 'white' && answers[5] === '1') {
-                answers[5] = '4'
+            if (color === 'white' && answers[4] === '1') {
+                answers[4] = '4'
             }
-            finalHref = products[type][color][answers[5]]
+            finalHref = products[type][color][answers[4]]
         }
     }
 
