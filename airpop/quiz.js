@@ -317,7 +317,7 @@ let buttonStyle = `
 `
 
 let btns = `
-      <a class="quiz_btn main_btn" href="/us/face-mask-quiz">Pick up a mask</a>
+      <a class="quiz_btn main_btn" href="/us/face-mask-quiz">Pick your mask</a>
 `
 let $ = jQuery
 setTimeout(function () {
@@ -349,7 +349,7 @@ function startExp() {
 
 
     document.body.insertAdjacentHTML('afterbegin', buttonStyle)
-    document.querySelectorAll('.navigation')[1].querySelector('ul').insertAdjacentHTML('afterbegin', `<li><a class="quiz_btn quiz_link" href="/us/face-mask-quiz">Pick up a mask</a></li>`)
+    document.querySelectorAll('.navigation')[1].querySelector('ul').insertAdjacentHTML('afterbegin', `<li><a class="quiz_btn quiz_link" href="/us/face-mask-quiz">Pick your mask</a></li>`)
 
     document.querySelector('.quiz_link').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || [];
