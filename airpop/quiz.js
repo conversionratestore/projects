@@ -4,6 +4,10 @@ let style = `
         box-sizing: border-box;
       }
       
+      #maincontent input:focus {
+        box-shadow: none;
+      }
+      
       .quiz {
         text-align: center;
       }
