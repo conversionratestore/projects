@@ -154,6 +154,6 @@ window.onload  = function () {
     document.querySelectorAll('.section-vs_table tr')[4].setAttribute('valign', 'baseline');
      $("#section-vs .btn-primary").click(function (e) {
         e.preventDefault();
-        $('html,body').animate({scrollTop:$('#purchase').offset().top + "px"},{duration:1E3});
+        $('html,body').animate({scrollTop:$('#purchase').offset().top + 10 + "px"},{duration:1E3});
     });
 };
