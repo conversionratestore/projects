@@ -242,6 +242,7 @@ let popupStyle = `
         background-color: #fff;
         border-radius: 20px;
         padding: 80px 60px;
+        text-align: center;
       }
       
       .popup p.title {
