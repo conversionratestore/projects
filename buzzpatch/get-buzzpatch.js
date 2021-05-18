@@ -85,7 +85,7 @@ window.onload  = function () {
                     </tr>
                 </tbody>
             </table>
-            <a href="#" class="btn js-btn btn-primary get-it">Get Buzzpatch</a>
+            <a href="#getNow" class="btn js-btn btn-primary get-it">Get Buzzpatch</a>
         </div>
         <div class="section-vs_bottom">
             <img src="https://i.ibb.co/Xth0kdp/australia-1-1.png" alt="australia icon">
