@@ -65,6 +65,7 @@ window.onload  = function () {
         </style>`;
 
     document.body.insertAdjacentHTML('afterbegin', style);
+    document.querySelector('.js-mobile .btn').style.display = 'none';
 
     let section = `
     <section id="section-vs">
