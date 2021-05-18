@@ -152,4 +152,8 @@ window.onload  = function () {
         }
     } 
     document.querySelectorAll('.section-vs_table tr')[4].setAttribute('valign', 'baseline');
+     $("#section-vs .btn-primary").click(function (e) {
+        e.preventDefault();
+        $('html,body').animate({scrollTop:$('#purchase').offset().top + 95 + "px"},{duration:1E3});
+    });
 };
