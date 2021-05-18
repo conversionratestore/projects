@@ -75,11 +75,11 @@ window.onload  = function () {
                     <tr>
                         <th width="46%"></th>
                         <th width="29%">
-                            <img src="https://i.ibb.co/9cHTXzd/Buzz-Patch-v2.png" alt="Buzz-Patch icon" width="38px" height="36px">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/buzzpatch.svg" alt="Buzz-Patch icon" width="38px" height="36px">
                             <p class="c-pink">Buzzpatch</p>
                         </th>
                         <th width="25%">
-                            <img src="https://i.ibb.co/mX3WZvC/Group.png" alt="Buzz-Patch icon" width="20px" height="30px">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/spray.svg" alt="Buzz-Patch icon" width="20px" height="30px">
                             <p>Spray</p>
                         </th>
                     </tr>
@@ -88,9 +88,9 @@ window.onload  = function () {
             <a href="#getNow" class="btn js-btn btn-primary get-it">Get Buzzpatch</a>
         </div>
         <div class="section-vs_bottom">
-            <img src="https://i.ibb.co/Xth0kdp/australia-1-1.png" alt="australia icon">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/australia.svg" alt="australia icon">
             <p>Formulated and designed in Australia</p>
-            <img src="https://i.ibb.co/QpQGyrQ/shipped.png" alt="shipped icon">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped.svg" alt="shipped icon">
             <p>FREE shipping worldwide</p>
         </div>
     </section>`;
@@ -100,35 +100,35 @@ window.onload  = function () {
     let arr = [
         {
             name: 'Effective <span class="nowrap"> up to 6 hours</span>',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/Z6Vnb3x/check.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
         },
         {
             name: 'Smells nice, kids <span class="nowrap">like it</span>',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/1zMqTBs/close.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/close.svg',
         },
         {
             name: 'Non-sticky skin after use',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/1zMqTBs/close.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/close.svg',
         },
         {
             name: 'Chemical-free',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/1zMqTBs/close.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/close.svg',
             spanBuzzpatch: '100% <br> natural <br> ingredients',
             spanSpray: 'Contains <br> DEET',
         },
         {
             name: 'Does not get into eyes',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/1zMqTBs/close.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/close.svg',
         },
         {
             name: 'Does not irritate <span class="nowrap">the lungs</span>',
-            checkBuzzpatch: 'https://i.ibb.co/Z6Vnb3x/check.png',
-            checkSpray: 'https://i.ibb.co/1zMqTBs/close.png',
+            checkBuzzpatch: 'https://conversionratestore.github.io/projects/buzzpatch/img/check.svg',
+            checkSpray: 'https://conversionratestore.github.io/projects/buzzpatch/img/close.svg',
         },
     ];
 
