@@ -94,6 +94,10 @@ let style = `
       .block.newsletter {
         display: none;
       }
+      
+      .error {
+        color: #db2f2f;
+      }
     </style>
 `
 
@@ -368,9 +372,7 @@ function startQuiz () {
 
     $('button.next').click(function () {
 
-        if ($('.answers>div.active input:checked').length === 0) {
-
-        } else {
+        if ($('.answers>div.active input:checked').length !== 0) {
             step += 1
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
@@ -380,6 +382,11 @@ function startQuiz () {
                 'eventLabel': `Quiz — Step #${step + 1}`
             });
             changeStep(step)
+        } else {
+            $('.answers').after(`<p class="error">need an answer to the question</p>`)
+            setTimeout(function () {
+                $('.error').remove()
+            }, 3000)
         }
     })
 
@@ -396,9 +403,16 @@ function startQuiz () {
             'eventAction': 'click on button Show me my mask',
             'eventLabel': 'Quiz'
         });
-        let answers = getAnswers()
-        console.log(answers)
-        check(answers)
+        if($('.answers>div.active input:checked').length !== 0) {
+                let answers = getAnswers()
+                console.log(answers)
+                check(answers)
+        } else {
+            $('.answers').after(`<p class="error">need an answer to the question</p>`)
+            setTimeout(function () {
+                $('.error').remove()
+            }, 3000)
+        }
     })
 
     $('.answers input').click(function (e) {
