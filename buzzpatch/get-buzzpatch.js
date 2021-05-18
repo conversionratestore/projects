@@ -2,9 +2,10 @@ window.onload  = function () {
     let style = `
         <style>
             .section-vs_top {
-                background: url('https://i.ibb.co/ZYFDJzG/Vector-4-1.png') no-repeat center / cover;
+                background: url('https://i.ibb.co/ZYFDJzG/Vector-4-1.png') no-repeat center top / cover;
                 padding: 54px 15px 30px;}
-            .section-vs .js-title {
+            #section-vs .js-title {
+                text-align: center;
                 font-size: 42px;}
             table.section-vs_table {
                 max-width: 370px;
@@ -65,7 +66,6 @@ window.onload  = function () {
         </style>`;
 
     document.body.insertAdjacentHTML('afterbegin', style);
-    document.querySelector('.js-mobile .btn').style.display = 'none';
 
     let section = `
     <section id="section-vs">
