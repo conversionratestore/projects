@@ -1,6 +1,7 @@
-let mut = new MutationObserver(function (muts) {
-    mut.disconnect();
-    if (document.querySelector('.elementor-button-content-wrapper .elementor-button-text')) {
+let build = setInterval(function() {
+    let loc = window.location.pathname;
+    if(loc === '/') {
+        clearInterval(build);
         let style = `
         <style>
             .elementor-36 .elementor-element.elementor-element-2d03d92 {
@@ -12,14 +13,4 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('.elementor-button-content-wrapper .elementor-button-text').innerHTML = 'Sign 3 documents for FREE >';
     }
-  
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-});
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+}, 100);
