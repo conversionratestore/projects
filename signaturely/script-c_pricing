@@ -5,6 +5,7 @@ let style = `
         position: relative;
         margin: 25px auto 0;}
     .b-free .e-form__buttons {
+        width: fit-content;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
