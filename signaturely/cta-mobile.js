@@ -14,7 +14,7 @@ let build = setInterval(function() {
                 color: white;
                 bottom: 10px;
                 left: 20px;
-                background-color: rgb(0, 163, 250);
+                background-color: #f4d175;
                 font-size: 14px;
                 padding: 10px;
                 box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .25);
