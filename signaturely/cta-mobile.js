@@ -2,17 +2,43 @@ let build = setInterval(function() {
     console.log("s");
     if(document.querySelector('.elementor-button-content-wrapper .elementor-button-text')) {
         clearInterval(build);
-        document.querySelectorAll('.elementor-button.elementor-size-xs')[0].innerHTML = 'Sign 3 documents for FREE >';
+        let style = `
+            <style>
+              a.sticky_btn {
+                display: flex;
+                justify-content:center;
+                align-items: center;
+                position: fixed;
+                height: 60px;
+                border-radius: 30px;
+                color: white;
+                bottom: 10px;
+                left: 20px;
+                background-color: rgb(0, 163, 250);
+                font-size: 14px;
+                padding: 10px;
+                box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .25);
+                width: calc(100% - 115px);
+              }
+              
+              button.jvwNFK {
+                background-color: #fff;
+              }
+              
+              .bIvNUR, .hZgNWn {
+                color: rgb(0, 163, 250) !important;
+              }
+            </style>
+        `
 
-        document.querySelectorAll('.elementor-button.elementor-size-xs')[0].addEventListener('click', function () {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — New CTA in header',
-                'eventAction': 'click on button Sign 3 Documents for Free',
-                'eventLabel': 'Header'
-            });
-        })
+        let btn = `
+            <a href="https://app.signaturely.com/signup" class="sticky_btn">
+              Sign 3 documents for FREE
+            </a>
+        `
+
+        document.body.insertAdjacentHTML('afterbegin', style)
+        document.body.insertAdjacentHTML('beforeend', btn)
     }
 }, 100);
 
