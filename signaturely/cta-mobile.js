@@ -21,13 +21,11 @@ let build = setInterval(function() {
                 width: calc(100% - 115px);
               }
               
-              button.jvwNFK {
-                background-color: #fff;
+              .hsds-beacon .fVZPyv {
+                bottom: 10px;
+                right: 20px;
               }
               
-              .bIvNUR, .hZgNWn {
-                color: rgb(0, 163, 250) !important;
-              }
             </style>
         `
 
