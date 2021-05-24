@@ -7,8 +7,11 @@ let build = setInterval(function() {
             .elementor-36 .elementor-element.elementor-element-2d03d92 {
                 width: 100%;}
             .elementor-36 .elementor-element.elementor-element-2325564 .elementor-button {
+                margin-left: 10px;
                 font-size: 14px;
                 padding: 14px 22px;}
+            .elementor-36 .elementor-element.elementor-element-2325564 .elementor-button span{
+                white-space: nowrap;}
         </style>`;
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('.elementor-button-content-wrapper .elementor-button-text').innerHTML = 'Sign 3 documents for FREE >';
