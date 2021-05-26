@@ -24,11 +24,7 @@ let build = setInterval(function() {
               .hsds-beacon .fVZPyv {
                 bottom: 10px;
                 right: 20px;
-              }
-               .elementor-79 .elementor-element.elementor-element-15be813 {
-                  padding: 0 24px;
-              }
-              
+              }            
             </style>
         `
 
