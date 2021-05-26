@@ -25,6 +25,12 @@ let build = setInterval(function() {
                 bottom: 10px;
                 right: 20px;
               }
+               .elementor-79 .elementor-element.elementor-element-15be813 {
+                  padding: 0 24px;
+              }
+              .jvwNFK {
+                box-shadow: 1px 1px 3px 2px rgb(0 0 0 / 25%);
+                }
               
             </style>
         `
