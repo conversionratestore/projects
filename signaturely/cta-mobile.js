@@ -14,17 +14,23 @@ let build = setInterval(function() {
                 color: white;
                 bottom: 10px;
                 left: 20px;
-                background-color: #f4d175;
+                background-color: #70BA83;
                 font-size: 14px;
                 padding: 10px;
                 box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, .25);
                 width: calc(100% - 115px);
+                z-index: 999;
               }
               
               .hsds-beacon .fVZPyv {
                 bottom: 10px;
                 right: 20px;
-              }            
+              }
+              
+              .elementor-location-footer .elementor-section-wrap {
+                padding-bottom: 70px;
+              }
+                          
             </style>
         `
 
