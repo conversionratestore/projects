@@ -252,7 +252,7 @@ let popupStyle = `
         transform: translate(-50%, -50%);
         background-color: #fff;
         border-radius: 20px;
-        padding: 80px 60px;
+        padding: 80px 30px;
         text-align: center;
       }
       
@@ -278,7 +278,7 @@ let popupStyle = `
         font-size: 14px;
         font-weight: 700;
         text-transform:uppercase;
-        padding: 11px 42px;
+        padding: 11px 30px;
         border: none;
         background-color: #32CDD5;
         border-radius: 40px;
@@ -341,8 +341,10 @@ let go = setInterval(function () {
             startExp()
             let first = localStorage.getItem('first')
             if (first === '1' && !page.includes('checkout')) {
+                console.log('var b')
                 startPopup('b')
             } else if (localStorage.getItem('quiz') !== '0') {
+                console.log('var a')
                 startPopup('a')
             }
             if (document.querySelector('product-info-delivery') && first !== '1') {
