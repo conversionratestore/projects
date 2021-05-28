@@ -463,10 +463,9 @@ function startQuiz () {
 function startPopup(a) {
     document.body.insertAdjacentHTML('afterbegin', popupStyle)
     document.body.insertAdjacentHTML('beforeend', popup)
-    let pop = localStorage.getItem('quiz')
     $('.dark_bg').addClass('active')
 
-    if (pop === 'a') {
+    if (a === 'a') {
         $('.popup.result').addClass('active')
     } else {
         $('.popup.eip').addClass('active')
@@ -476,6 +475,7 @@ function startPopup(a) {
         $('.dark_bg').removeClass('active')
         $('.popup').removeClass('active')
         localStorage.removeItem('quiz')
+        localStorage.setItem('first', '1')
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
