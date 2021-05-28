@@ -276,7 +276,7 @@ let style = `
         .btn img {
             margin-left: 5px;}
         .popup__bottom {
-            margin-bottom: 30px;
+            // margin-bottom: 30px;
             padding: 20px 0;
             border-bottom: 0.5px solid #EEEEEE;
             display: flex;
@@ -354,6 +354,8 @@ let style = `
             margin-left: calc(50% - 10px);}
         .after {
             margin-left: calc(75% - 10px);}
+        .bought-products {
+            display: none;}
     </style>
 `;
 
@@ -466,17 +468,18 @@ let popupShoppingCart = `
         <div class="bought-products">
             <h3 class="title3">Also bought with this products</h3>
             <div class="swiper-container">
-            <dl class="slider-gallery gallery"></dl>
-            <button class="swiper-button-prev" type="button"></button>
-            <button class="swiper-button-next" type="button"></button>
+                <dl class="slider-gallery gallery"></dl>
+                <button class="swiper-button-prev" type="button"></button>
+                <button class="swiper-button-next" type="button"></button>
             </div>
         </div>
     </div>
 </div>`;
 
+
 document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
 
-let n = 6;
+let n = 0;
 while (n--) {
     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend', `
     <dd class="swiper-slide">
@@ -504,9 +507,51 @@ function sumTotalPrice() {
         });
     });  
 }
+function quantityFun(el) {
+    if (el.querySelector('.quantity').value < 2) {
+        el.querySelector('.quantity').value = 1;
+        el.querySelector('.quantity-btn_minus').disabled = true;
+    } else {
+        el.querySelector('.quantity-btn_minus').disabled = false;
+    }
+    el.querySelector('.quantity-row').addEventListener('change', () => {
+        if (el.querySelector('.quantity').value < 2) {
+            el.querySelector('.quantity').value = 1;
+            el.querySelector('.quantity-btn_minus').disabled = true;
+        } else {
+            el.querySelector('.quantity-btn_minus').disabled = false;
+        }
+        el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+        sumTotalPrice();
+    });
+    el.querySelectorAll('.quantity-btn').forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.stopImmediatePropagation();
+            let id = button.closest('.popup__product').dataset.productId,
+                idVariant = button.closest('.popup__product').dataset.productVariantId;
+            if (button.className == 'quantity-btn quantity-btn_plus') {
+                button.previousElementSibling.value = +button.previousElementSibling.value + 1;
+                button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+            }
+            if (button.className == 'quantity-btn quantity-btn_minus') {
+                if (button.nextElementSibling.value < 2) {
+                    button.nextElementSibling.value = 1;
+                    button.disabled = true;
+                } else {
+                    button.nextElementSibling.value = +button.nextElementSibling.value - 1;
+                } 
+            }
+            el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+            sumTotalPrice();
+        });
+    });
+}
+
+let productItems = [];
 
 document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
     item.addEventListener('click', () => {
+        let id = item.closest('.product-card').dataset.productId;
         let valueP = 1;
             valueP = +item.nextElementSibling.value,
             num = +document.querySelector('.by_num span').innerHTML;
@@ -519,9 +564,12 @@ document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
             linkProduct = parent.querySelectorAll('a')[1].href,
             priceProductAll = parent.querySelector('b').innerHTML,
             splPrice = priceProductAll.split('$');
-      
+
+        let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+            productId = item.closest('.product-card').getAttribute('data-product-id');
+
         let newElementProduct = `
-            <tr class="popup__product" data-index='${index}'>
+            <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                 <td width="44%">
                     <div class="product-cell-inner">
                         <span> 
@@ -548,63 +596,119 @@ document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
             </tr>
         `;
       
-        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-index='${index}']`)) {
+        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
             document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
         } 
-        if (document.querySelector(`.popup__product[data-index='${index}']`)) {
-            document.querySelectorAll(`.popup__product[data-index='${index}']`).forEach((el) => {
+        if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+            document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
                 el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
             });
         }
         document.querySelector('.popup').classList.add('isActive');
 
-        document.querySelectorAll(`.popup__product[data-index='${index}']`).forEach((el) => {
-            if (el.querySelector('.quantity').value < 2) {
-                el.querySelector('.quantity').value = 1;
-                el.querySelector('.quantity-btn_minus').disabled = true;
-            } else {
-                el.querySelector('.quantity-btn_minus').disabled = false;
-            }
-            el.querySelector('.quantity-row').addEventListener('change', () => {
-                if (el.querySelector('.quantity').value < 2) {
-                    el.querySelector('.quantity').value = 1;
-                    el.querySelector('.quantity-btn_minus').disabled = true;
-                } else {
-                    el.querySelector('.quantity-btn_minus').disabled = false;
-                }
-                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                sumTotalPrice();
-            });
-            el.querySelectorAll('.quantity-btn').forEach((button) => {
-                button.addEventListener('click', (event) => {
-                    event.stopImmediatePropagation();
-                    if (button.className == 'quantity-btn quantity-btn_plus') {
-                        button.previousElementSibling.value = +button.previousElementSibling.value + 1;
-                        button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-                    }
-                    if (button.className == 'quantity-btn quantity-btn_minus') {
-                        if (button.nextElementSibling.value < 2) {
-                            button.nextElementSibling.value = 1;
-                            button.disabled = true;
-                        } else {
-                            button.nextElementSibling.value = +button.nextElementSibling.value - 1;
-                        } 
-                    }
-                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) *  parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                    sumTotalPrice();
-                });
-            });
-            el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) *  parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+        document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+            quantityFun(el);
+      
+            el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
         });
     });  
 });  
 
+if (document.querySelector('.by_num span').innerHTML == '0') {
+    localStorage.clear();
+}
+if (document.querySelector('.by_num span').innerHTML != '0') {
+    let cartItems = JSON.parse(localStorage.getItem("productItems"));
+    if (cartItems) {
+        for (let i = 0; i < cartItems.length; i++) {
+            document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
+                let srcImgProduct = item.querySelector('img').src,
+                    altImgProduct = item.querySelector('img').alt,
+                    titleProduct = item.querySelectorAll('a')[1].innerHTML,
+                    linkProduct = item.querySelectorAll('a')[1].href,
+                    priceProductAll = item.querySelector('b').innerHTML,
+                    splPrice = priceProductAll.split('$');
+
+                let dataProductVariantId = item.getAttribute('data-product-variant-id'),
+                    productId = item.getAttribute('data-product-id');
+        
+                let newElementProduct = `
+                    <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                        <td width="44%">
+                            <div class="product-cell-inner">
+                                <span> 
+                                    <a href="${linkProduct}">
+                                        <img src="${srcImgProduct}" alt="${altImgProduct}">
+                                    </a>
+                                </span>
+                                <p class="product-description" align="left">
+                                    <b>
+                                        <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
+                                    </b>
+                                </p>
+                            </div>
+                        </td>
+                        <td width="22%" align="left">
+                            <div class="quantity-row">
+                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
+                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                            </div>
+                        </td>
+                        <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
+                        <td width="17%" class="total-price" align="left">$ <b></b></td>
+                    </tr> `;   
+
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+                } 
+                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
+                        quantityFun(el);
+                    });
+                }
+
+                document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                sumTotalPrice();
+            });   
+        }
+    }
+} 
+
+function pushProductItems() {
+    document.querySelectorAll('.popup__product').forEach((item) => {
+        let idVariant = item.dataset.productVariantId,
+            quantity = item.querySelector('.quantity').value,
+            id = item.dataset.productId;
+            
+        fetch('/cart.html', {
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            method: "POST",
+            body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+        }).then(r => {
+            productItems.push({
+                'product_id': id,
+                'quantity': quantity,
+                'price': item.querySelector('.unit-price b').innerHTML,
+            });
+            localStorage.setItem('productItems', JSON.stringify(productItems));
+        });
+    });
+}
 document.querySelector('.close').addEventListener('click', () => {
-    document.querySelector('.popup').classList.remove('isActive');
+    document.querySelector('.popup').classList.remove('isActive');   
+    pushProductItems();
 });
 document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
     document.querySelector('.popup').classList.remove('isActive');
+    pushProductItems();
+});
+document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+    pushProductItems();
 });
 
 let container = document.querySelector('.slider-gallery');
