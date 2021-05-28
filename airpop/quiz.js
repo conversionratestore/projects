@@ -340,7 +340,7 @@ let go = setInterval(function () {
         } else {
             startExp()
             let first = localStorage.getItem('first')
-            if (first === '1' && !page.includes('checkout')) {
+            if (first === '0' && !page.includes('checkout')) {
                 console.log('var b')
                 startPopup('b')
             } else if (localStorage.getItem('quiz') !== '0') {
