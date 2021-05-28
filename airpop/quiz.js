@@ -343,7 +343,7 @@ let go = setInterval(function () {
             if (first === '0' && !page.includes('checkout')) {
                 console.log('var b')
                 startPopup('b')
-            } else if (localStorage.getItem('quiz') !== '0') {
+            } else if (localStorage.getItem('quiz') === '1') {
                 console.log('var a')
                 startPopup('a')
             }
