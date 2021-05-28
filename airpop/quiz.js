@@ -340,9 +340,9 @@ let go = setInterval(function () {
         } else {
             startExp()
             let first = localStorage.getItem('first')
-            if (first === '1' && page.includes('checkout')) {
+            if (first === '1' && !page.includes('checkout')) {
                 startPopup('b')
-            } else if (localStorage.getItem('quiz') === '1') {
+            } else if (localStorage.getItem('quiz') !== '0') {
                 startPopup('a')
             }
             if (document.querySelector('product-info-delivery') && first !== '1') {
