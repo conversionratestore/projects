@@ -347,11 +347,11 @@ let go = setInterval(function () {
                 console.log('var a')
                 startPopup('a')
             }
-            if (document.querySelector('product-info-delivery') && first !== '1') {
+            if (document.querySelector('.product-info-delivery') && first !== '1') {
                 localStorage.setItem('first', '0')
             }
             console.log(first)
-            console.log(document.querySelector('product-info-delivery'))
+            console.log(document.querySelector('.product-info-delivery'))
             console.log(first !== '1')
         }
     }
