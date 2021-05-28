@@ -348,6 +348,9 @@ let go = setInterval(function () {
             if (document.querySelector('product-info-delivery') && first !== '1') {
                 localStorage.setItem('first', '0')
             }
+            console.log(first)
+            console.log(document.querySelector('product-info-delivery'))
+            console.log(first !== '1')
         }
     }
 }, 100)
