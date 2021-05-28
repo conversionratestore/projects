@@ -210,11 +210,17 @@ let quizBlock = `
 
 let popup = `
 <div class="dark_bg">
-    <div class="popup">
+    <div class="popup result">
       <span class="close"></span>
       <p class="title">Perfect Mask found for you</p>
       <p>We analyzed your answers and found Mask the fit’s your request best</p>
       <button>Take a look</button>
+    </div>
+    <div class="popup eip">
+      <span class="close"></span>
+      <p class="title">Can’t pick a Mask?</p>
+      <p>Let us help you choose a mask based on your goals</p>
+      <a href="/us/face-mask-quiz">help me choose</a>
     </div>
 </div>
 `
@@ -237,6 +243,7 @@ let popupStyle = `
       }
       
       .popup {
+        display: none;
         width: 80%;
         box-sizing: border-box;
         position:absolute;
@@ -247,6 +254,10 @@ let popupStyle = `
         border-radius: 20px;
         padding: 80px 60px;
         text-align: center;
+      }
+      
+      .popup.active {
+        display: block;
       }
       
       .popup p.title {
@@ -262,7 +273,7 @@ let popupStyle = `
         text-align: center;
       }
       
-      .popup button {
+      .popup button, .popup a {
         color: white;
         font-size: 14px;
         font-weight: 700;
@@ -328,8 +339,14 @@ let go = setInterval(function () {
             startQuiz()
         } else {
             startExp()
-            if (localStorage.getItem('quiz') === '1') {
-                startPopup()
+            let first = localStorage.getItem('first')
+            if (first === '1' && page.includes('checkout')) {
+                startPopup('b')
+            } else if (localStorage.getItem('quiz') === '1') {
+                startPopup('a')
+            }
+            if (document.querySelector('product-info-delivery') && first !== '1') {
+                localStorage.setItem('first', '0')
             }
         }
     }
@@ -438,13 +455,21 @@ function startQuiz () {
 
 }
 
-function startPopup() {
+function startPopup(a) {
     document.body.insertAdjacentHTML('afterbegin', popupStyle)
     document.body.insertAdjacentHTML('beforeend', popup)
+    let pop = localStorage.getItem('quiz')
     $('.dark_bg').addClass('active')
+
+    if (pop === 'a') {
+        $('.popup.result').addClass('active')
+    } else {
+        $('.popup.eip').addClass('active')
+    }
 
     $('.dark_bg .close').click(function () {
         $('.dark_bg').removeClass('active')
+        $('.popup').removeClass('active')
         localStorage.removeItem('quiz')
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -463,6 +488,10 @@ function startPopup() {
             'eventCategory': 'Exp — Quiz',
             'eventAction': 'close popup'
         });
+    })
+
+    $('.dark_bg a').click(function () {
+        localStorage.setItem('first', '1')
     })
 }
 
