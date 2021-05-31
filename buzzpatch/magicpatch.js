@@ -2,6 +2,7 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `<style>
     .popup {
             background: rgba(69, 69, 69, 0.46);
+            overflow-y: auto;
             position: fixed;
             width: 100%;
             height: 100%;
