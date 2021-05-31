@@ -138,24 +138,23 @@ window.onload  = function () {
         document.querySelector('.popup').classList.add('isActive');
     });
 
-    document.querySelectorAll('.js-packs').forEach((element, index) => {
-        element.addEventListener('click', () => {
-            if (index == 0) {
-                document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa');
-            } else if (index == 1) {
-                document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/Xi4NXSflSv8HtgyslK9X');
-            } else if (index == 2) {     
-                document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/kTTOTJbbZ9ZzUt3uIzsG');
-            } else if (index == 3) {
-                document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/RB5EOORBafijZmGylohb'); 
-            }
-        });
-    });
-
     document.querySelector('#getNow').addEventListener('change', () => {
         document.querySelectorAll('.btn-cl').forEach(item => {
             item.setAttribute('href',  document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href'));
             document.querySelector('.popup__total span').innerHTML = document.querySelector('.js-total .pr').innerHTML;
+        });
+        document.querySelectorAll('.js-packs').forEach((element, index) => {
+            if (element.querySelector('input').checked) {
+                if (index == 0) {
+                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa');
+                } else if (index == 1) {
+                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/Xi4NXSflSv8HtgyslK9X');
+                } else if (index == 2) {     
+                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/kTTOTJbbZ9ZzUt3uIzsG');
+                } else if (index == 3) {
+                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/RB5EOORBafijZmGylohb'); 
+                }
+            }
         });
     });
 };
