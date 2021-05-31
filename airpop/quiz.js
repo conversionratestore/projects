@@ -393,19 +393,21 @@ let go = setInterval(function () {
 
 
 function startExp() {
-    if(document.querySelector('.category-view')) {
+    if(document.querySelector('.Subwidget') ) {
         document.querySelector('.Subwidget').insertAdjacentHTML('afterbegin', btns)
+
+        document.querySelector('.main_btn').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Quiz',
+                'eventAction': 'click on button Pick up a mask',
+                'eventLabel': 'Homepage'
+            });
+        })
     }
 
-    document.querySelector('.main_btn').addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Quiz',
-            'eventAction': 'click on button Pick up a mask',
-            'eventLabel': 'Homepage'
-        });
-    })
+
 
     document.body.insertAdjacentHTML('afterbegin', buttonStyle)
     document.querySelectorAll('.navigation')[1].querySelector('ul').insertAdjacentHTML('afterbegin', `<li><a class="quiz_btn quiz_link" href="/us/face-mask-quiz">Pick your mask</a></li>`)
