@@ -330,8 +330,29 @@ let buttonStyle = `
 let btns = `
       <a class="quiz_btn main_btn" href="/us/face-mask-quiz">Pick your mask</a>
 `
+
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 let $ = jQuery
 let go = setInterval(function () {
+    let checkScrollSpeed = (function () {
+
+        let lastPos, newPos, delta
+
+        return function () {
+            newPos = window.scrollY;
+            if (lastPos != null) {
+                delta = newPos - lastPos;
+            }
+            lastPos = newPos;
+            return delta;
+        };
+    })();
     console.log('start')
     if(document.querySelector('.category-view') || document.querySelector('#maincontent')) {
         clearInterval(go)
@@ -341,18 +362,28 @@ let go = setInterval(function () {
             startExp()
             let first = localStorage.getItem('first')
             if (first === '0' && !page.includes('checkout')) {
-                console.log('var b')
                 startPopup('b')
             } else if (localStorage.getItem('quiz') === '1') {
-                console.log('var a')
                 startPopup('a')
             }
             if (document.querySelector('.product-info-delivery') && first !== '1') {
                 localStorage.setItem('first', '0')
+                let popup = getCookie('popup');
+                function handler() {
+                    let speed = checkScrollSpeed();
+                    console.log(speed);
+                    if (speed < -100) {
+                        startPopup('b')
+                        document.cookie = "popup=true";
+                        window.removeEventListener('scroll', handler);
+                    }
+                }
+
+                if (!popup) {
+                    window.addEventListener('scroll', handler);
+                }
+
             }
-            console.log(first)
-            console.log(document.querySelector('.product-info-delivery'))
-            console.log(first !== '1')
         }
     }
 }, 100)
@@ -371,6 +402,8 @@ function startExp() {
                 'eventLabel': 'Homepage'
             });
         })
+
+
     }
 
 
