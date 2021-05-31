@@ -125,7 +125,7 @@ window.onload  = function () {
                 </ul>
             </div>
             <p class="popup__total"><span>$12.0 </span> /pack</p>
-            <p class="popup__patches">27 patches in <span> 3 </span> pack</p>
+            <p class="popup__patches">27 patches in 1 pack</p>
             <a href="https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa" class="popup__add btn js-btn btn-primary">Add</a>
             <a href="${document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href')}" class="popup__skip btn btn-cl">Skip</a>
         </div>
@@ -140,11 +140,9 @@ window.onload  = function () {
 
     document.querySelectorAll('.js-packs').forEach((element, index) => {
         element.addEventListener('click', () => {
-            let packs = element.querySelector('label').innerHTML.split('Pack'),
-                price = element.querySelector('label span').innerHTML.split('Each');
+            let price = element.querySelector('label span').innerHTML.split('Each');
             
             document.querySelector('.popup__total span').innerHTML = price[0];
-            document.querySelector('.popup__patches span').innerHTML = packs[0];
 
             if (index == 0) {
                 document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa');
