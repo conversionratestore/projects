@@ -2,8 +2,8 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `<style>
     .popup {
             background: rgba(69, 69, 69, 0.46);
-            overflow-y: auto;
             position: fixed;
+            overflow-y: auto;
             width: 100%;
             height: 100%;
             left: 0;
@@ -124,8 +124,8 @@ window.onload  = function () {
                     <li><p>100% natural</p></li>
                 </ul>
             </div>
-            <p class="popup__total"><span>$12.0 </span> /pack</p>
-            <p class="popup__patches">27 patches in 1 pack</p>
+            <p class="popup__total">$<span>${document.querySelector('.js-total .pr').innerHTML} </span> /pack</p>
+            <p class="popup__patches">27 patches in <span> 3 </span> pack</p>
             <a href="https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa" class="popup__add btn js-btn btn-primary">Add</a>
             <a href="${document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href')}" class="popup__skip btn btn-cl">Skip</a>
         </div>
@@ -140,10 +140,6 @@ window.onload  = function () {
 
     document.querySelectorAll('.js-packs').forEach((element, index) => {
         element.addEventListener('click', () => {
-            let price = element.querySelector('label span').innerHTML.split('Each');
-            
-            document.querySelector('.popup__total span').innerHTML = price[0];
-
             if (index == 0) {
                 document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa');
             } else if (index == 1) {
@@ -158,7 +154,8 @@ window.onload  = function () {
 
     document.querySelector('#getNow').addEventListener('change', () => {
         document.querySelectorAll('.btn-cl').forEach(item => {
-            item.setAttribute('href',  document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href'))
+            item.setAttribute('href',  document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href'));
+            document.querySelector('.popup__total span').innerHTML = document.querySelector('.js-total .pr').innerHTML;
         });
     });
 };
