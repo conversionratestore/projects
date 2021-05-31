@@ -102,6 +102,8 @@ let style = `
       .error {
         color: #db2f2f;
       }
+      
+      
     </style>
 `
 
@@ -357,6 +359,7 @@ let go = setInterval(function () {
     if(document.querySelector('.category-view') || document.querySelector('#maincontent')) {
         clearInterval(go)
         if (page.includes('face-mask-quiz')) {
+            localStorage.setItem('first', '1')
             startQuiz()
         } else {
             startExp()
@@ -392,20 +395,17 @@ let go = setInterval(function () {
 function startExp() {
     if(document.querySelector('.category-view')) {
         document.querySelector('.Subwidget').insertAdjacentHTML('afterbegin', btns)
-
-        document.querySelector('.main_btn').addEventListener('click', function () {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Quiz',
-                'eventAction': 'click on button Pick up a mask',
-                'eventLabel': 'Homepage'
-            });
-        })
-
-
     }
 
+    document.querySelector('.main_btn').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz',
+            'eventAction': 'click on button Pick up a mask',
+            'eventLabel': 'Homepage'
+        });
+    })
 
     document.body.insertAdjacentHTML('afterbegin', buttonStyle)
     document.querySelectorAll('.navigation')[1].querySelector('ul').insertAdjacentHTML('afterbegin', `<li><a class="quiz_btn quiz_link" href="/us/face-mask-quiz">Pick your mask</a></li>`)
@@ -447,7 +447,9 @@ function startQuiz () {
             });
             changeStep(step)
         } else {
-            $('.answers').after(`<p class="error">need an answer to the question</p>`)
+            if(!document.querySelector('.error')) {
+                $('.answers').after(`<p class="error">need an answer to the question</p>`)
+            }
             setTimeout(function () {
                 $('.error').remove()
             }, 3000)
