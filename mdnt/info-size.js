@@ -10,9 +10,6 @@ window.onload = function () {
           border: 1px solid #C00303;
           text-align: left;
         }
-        .info-size__heading-wrapper {
-          background: #C00303;
-        }
         .info-size__heading-wrapper h4{
           margin: 0;
           color: #FFFFFF;
