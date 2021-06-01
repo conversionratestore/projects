@@ -92,8 +92,8 @@ window.onload = function () {
                   ? `<p class='info-size__text--small'>${item['in-between-sizes']} if you are between sizes.</p>`
                   : ''
               }
-              <div>
-          <div>
+              </div>
+          </div>
         `,
       );
 
