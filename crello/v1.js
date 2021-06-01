@@ -260,7 +260,7 @@ let mut = new MutationObserver(function (muts) {
                         </div>
                     </div>
                     <div class="pay-here">
-                        <p class="typography-subheading-l c-green ff-proximabold">Start Free trial</p>
+                        <p class="typography-subheading-l c-green ff-proximabold">You pay here</p>
                         <p class="date">${get(today, 7)}</p>
                         <div class="steps bg-green"></div>
                     </div>
