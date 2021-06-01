@@ -40,7 +40,7 @@ window.onload = function () {
             .content.sc-content-blaster .product-single__info-size {
             margin: 0;
             }
-            .content.sc-content-blaster .info-size__heading-wrapper, .info-size__text-wrapper {
+            .content.sc-content-blaster .info-size__heading-wrapper {
             padding: 12px;
             }
         </style>
