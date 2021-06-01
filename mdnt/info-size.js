@@ -2,52 +2,52 @@ window.onload = function () {
   document.head.insertAdjacentHTML(
     'beforeend',
     `
-    <style>
-      .product-single__info-size {
-        margin: 25px 0 15px 0;
-        padding: 0;
-        background: #C00303;
-        border: 1px solid #C00303;
-        text-align: left;
-      }
-      .info-size__heading-wrapper {
-        background: #C00303;
-      }
-      .info-size__heading-wrapper h4{
-        margin: 0;
-        color: #FFFFFF;
-        letter-spacing: normal;
-        font-size: 16px;
-        text-transform: lowercase;
-      }
-      .info-size__heading-wrapper, .info-size__text-wrapper {
-        padding: 12px 15px;
-        margin: 0;
-      }
-      .info-size__text-wrapper {
-        background: #FFFFFF;
-      }
-      .info-size__text-wrapper p {
-        margin: 0;
-      }
-      p.info-size__text--small {
-        margin-top: 10px;
-        font-size: 12px;
-      }
-      p.info-size__text--small::first-letter {
-        text-transform: uppercase;
-      }
-      .content.sc-content-blaster {
-        padding: 10px 15px;
-      }
-      .content.sc-content-blaster .product-single__info-size {
-        margin: 0;
-      }
-      .content.sc-content-blaster .info-size__heading-wrapper {
-        padding: 12px;
-      }
-    </style>
-  `,
+      <style>
+        .product-single__info-size {
+          margin: 25px 0 15px 0;
+          padding: 0;
+          background: #C00303;
+          border: 1px solid #C00303;
+          text-align: left;
+        }
+        .info-size__heading-wrapper {
+          background: #C00303;
+        }
+        .info-size__heading-wrapper h4{
+          margin: 0;
+          color: #FFFFFF;
+          letter-spacing: normal;
+          font-size: 16px;
+          text-transform: lowercase;
+        }
+        .info-size__heading-wrapper, .info-size__text-wrapper {
+          padding: 12px 15px;
+          margin: 0;
+        }
+        .info-size__text-wrapper {
+          background: #FFFFFF;
+        }
+        .info-size__text-wrapper p {
+          margin: 0;
+        }
+        p.info-size__text--small {
+          margin-top: 10px;
+          font-size: 12px;
+        }
+        p.info-size__text--small::first-letter {
+          text-transform: uppercase;
+        }
+        .content.sc-content-blaster {
+          padding: 10px 15px;
+        }
+        .content.sc-content-blaster .product-single__info-size {
+          margin: 0;
+        }
+        .content.sc-content-blaster .info-size__heading-wrapper {
+          padding: 12px;
+        }
+      </style>
+    `,
   );
 
   fetch(
@@ -122,14 +122,16 @@ window.onload = function () {
       });
     });
 
-  document.querySelector('._ks_text').addEventListener('click', () => {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      event: 'event-to-ga',
-      eventCategory: 'Exp: True_to_size_guide',
-      eventAction: 'How to take measurements',
+  if (document.querySelector('._ks_text')) {
+    document.querySelector('._ks_text').addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: 'event-to-ga',
+        eventCategory: 'Exp: True_to_size_guide',
+        eventAction: 'How to take measurements',
+      });
     });
-  });
+  }
 
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
