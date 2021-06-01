@@ -306,7 +306,7 @@ let mut = new MutationObserver(function (muts) {
         `
 
         document.querySelectorAll('.icon-i').forEach(function (item) {
-            item.addEventListener('hover', function () {
+            item.addEventListener('onmouseover', function () {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
