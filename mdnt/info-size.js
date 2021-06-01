@@ -6,6 +6,7 @@ window.onload = function () {
         .product-single__info-size {
           margin: 25px 0 15px 0;
           padding: 0;
+          background: #C00303;
           border: 1px solid #C00303;
           text-align: left;
         }
