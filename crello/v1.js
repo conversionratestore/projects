@@ -347,6 +347,15 @@ let mut = new MutationObserver(function (muts) {
                 'eventLabel': 'how to cancel'
             });
         }
+        document.querySelector('.m__video').addEventListener('play', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Experiment — Tips',
+                'eventAction': 'play video',
+                'eventLabel': 'photos banner'
+            });
+        });
         document.querySelector('.m__close').addEventListener('click', removeActive);
         document.querySelector('.m__container').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
