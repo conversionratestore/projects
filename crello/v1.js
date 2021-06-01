@@ -218,6 +218,13 @@ let mut = new MutationObserver(function (muts) {
     if(document.querySelector('.subscriptionModalWrapper___3_4Em') && !document.querySelector('.checkoutWrapper___container')) {
         document.body.insertAdjacentHTML('afterbegin', style);
 
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Experiment — checkout hints',
+            'eventAction': 'block with hints loaded'
+        });
+
         var today = new Date();
         let dd = today.getDate();
         let mm = today.getMonth()+1;
@@ -297,14 +304,48 @@ let mut = new MutationObserver(function (muts) {
             </div>
         </div>
         `
+
+        document.querySelectorAll('.icon-i').forEach(function (item) {
+            item.addEventListener('hover', function () {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Experiment — checkout hints',
+                    'eventAction': 'hint hover'
+                });
+            })
+        })
+
         document.querySelector('.ReactModal__Overlay--dark64').insertAdjacentHTML('afterend', modal);
 
         document.querySelector('.btn').addEventListener('click', () => {
             document.querySelector('.m__how-do-cancel').classList.add('isActive');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Experiment — checkout hints',
+                'eventAction': 'button click',
+                'eventLabel': 'how to cancel'
+            });
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Experiment — checkout hints',
+                'eventAction': 'pop-up loaded',
+                'eventLabel': 'how to cancel'
+            });
         });
 
         function removeActive() {
             document.querySelector('.m__how-do-cancel').classList.remove('isActive');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Experiment — checkout hints',
+                'eventAction': 'pop-up closed',
+                'eventLabel': 'how to cancel'
+            });
         }
         document.querySelector('.m__close').addEventListener('click', removeActive);
         document.querySelector('.m__container').addEventListener('click', (e) => {
@@ -322,5 +363,25 @@ mut.observe(document, {
     childList: true,
     subtree: true
 })
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:410340,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj = window.hj || function(){(hj.q = hj.q || []).push(arguments)};
+hj('trigger', 'checkout_hintsl');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Experiment — checkout hints',
+    'eventAction': 'loaded'
+});
+
+
 
 
