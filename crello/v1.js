@@ -238,30 +238,30 @@ let mut = new MutationObserver(function (muts) {
         }
 
         let newElement = `
-    <div class="checkoutWrapper___container">
-        <div class="section___36_7J flex-wrap">
-            <div class="start-free">
-                <p class="typography-subheading-l c-blue ff-proximasemibold">Start Free trial</p>
-                <p class="date">${today}</p>
-                <div class="steps bg-blue"></div>
-                <div class="access-block">
-                    <div>
-                        <p class="typography-subheading-l ff-proximabold">Get access to:</p>
-                        <ul class="list"></ul>
+            <div class="checkoutWrapper___container">
+                <div class="section___36_7J flex-wrap">
+                    <div class="start-free">
+                        <p class="typography-subheading-l c-blue ff-proximasemibold">Start Free trial</p>
+                        <p class="date">${today}</p>
+                        <div class="steps bg-blue"></div>
+                        <div class="access-block">
+                            <div>
+                                <p class="typography-subheading-l ff-proximabold">Get access to:</p>
+                                <ul class="list"></ul>
+                            </div>
+                            <button class="btn" type="button">How do I cancel?</button>
+                        </div>
                     </div>
-                    <button class="btn" type="button">How do I cancel?</button>
+                    <div class="pay-here">
+                        <p class="typography-subheading-l c-green ff-proximabold">Start Free trial</p>
+                        <p class="date">${get(today, 7)}</p>
+                        <div class="steps bg-green"></div>
+                    </div>
                 </div>
             </div>
-            <div class="pay-here">
-                <p class="typography-subheading-l c-green ff-proximabold">Start Free trial</p>
-                <p class="date">${get(today, 7)}</p>
-                <div class="steps bg-green"></div>
-            </div>
-        </div>
-    </div>
-`;
+        `;
 
-        document.querySelector('.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
+        document.querySelector('h1.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
 
         let sptDate = document.querySelectorAll('.date')[1].innerHTML.split('.');
         for (let i = 0; i < sptDate.length; i++) {
@@ -282,21 +282,21 @@ let mut = new MutationObserver(function (muts) {
         while(n--) {document.querySelector('.steps.bg-blue').insertAdjacentHTML('afterbegin', `<div class="step"></div>`)}
 
         let modal = `
-<div class="m__how-do-cancel ReactModal__Overlay--dark64">
-    <div class="m__container">
-        <button class="m__close"><svg viewBox="0 0 12 12" width="14" height="14"><path d="M11.8479 10.4379C11.9426 10.5318 11.9958 10.6596 11.9958 10.7929C11.9958 10.9262 11.9426 11.054 11.8479 11.1479L11.1479 11.8479C11.054 11.9426 10.9262 11.9958 10.7929 11.9958C10.6596 11.9958 10.5318 11.9426 10.4379 11.8479L5.9979 7.4079L1.5579 11.8479C1.46402 11.9426 1.33622 11.9958 1.2029 11.9958C1.06958 11.9958 0.941782 11.9426 0.847899 11.8479L0.147899 11.1479C0.0532428 11.054 0 10.9262 0 10.7929C0 10.6596 0.0532428 10.5318 0.147899 10.4379L4.5879 5.9979L0.147899 1.5579C0.0532428 1.46402 0 1.33622 0 1.2029C0 1.06958 0.0532428 0.941782 0.147899 0.847899L0.847899 0.147899C0.941782 0.0532428 1.06958 0 1.2029 0C1.33622 0 1.46402 0.0532428 1.5579 0.147899L5.9979 4.5879L10.4379 0.147899C10.5318 0.0532428 10.6596 0 10.7929 0C10.9262 0 11.054 0.0532428 11.1479 0.147899L11.8479 0.847899C11.9426 0.941782 11.9958 1.06958 11.9958 1.2029C11.9958 1.33622 11.9426 1.46402 11.8479 1.5579L7.4079 5.9979L11.8479 10.4379Z"></path></svg></button>
-        <h2 class="m__title">How do I cancel?</h2>
-        <div class="m__steps">
-            <p>Step 1 <span>Go to your account settings</span></p>
-            <p>Step 2 <span>Billing details</span></p>
-            <p>Step 3 <span>Click “Cancel” the subscription</span></p>
+        <div class="m__how-do-cancel ReactModal__Overlay--dark64">  
+            <div class="m__container">
+                <button class="m__close"><svg viewBox="0 0 12 12" width="14" height="14"><path d="M11.8479 10.4379C11.9426 10.5318 11.9958 10.6596 11.9958 10.7929C11.9958 10.9262 11.9426 11.054 11.8479 11.1479L11.1479 11.8479C11.054 11.9426 10.9262 11.9958 10.7929 11.9958C10.6596 11.9958 10.5318 11.9426 10.4379 11.8479L5.9979 7.4079L1.5579 11.8479C1.46402 11.9426 1.33622 11.9958 1.2029 11.9958C1.06958 11.9958 0.941782 11.9426 0.847899 11.8479L0.147899 11.1479C0.0532428 11.054 0 10.9262 0 10.7929C0 10.6596 0.0532428 10.5318 0.147899 10.4379L4.5879 5.9979L0.147899 1.5579C0.0532428 1.46402 0 1.33622 0 1.2029C0 1.06958 0.0532428 0.941782 0.147899 0.847899L0.847899 0.147899C0.941782 0.0532428 1.06958 0 1.2029 0C1.33622 0 1.46402 0.0532428 1.5579 0.147899L5.9979 4.5879L10.4379 0.147899C10.5318 0.0532428 10.6596 0 10.7929 0C10.9262 0 11.054 0.0532428 11.1479 0.147899L11.8479 0.847899C11.9426 0.941782 11.9958 1.06958 11.9958 1.2029C11.9958 1.33622 11.9426 1.46402 11.8479 1.5579L7.4079 5.9979L11.8479 10.4379Z"></path></svg></button>
+                <h2 class="m__title">How do I cancel?</h2>
+                <div class="m__steps">
+                    <p>Step 1 <span>Go to your account settings</span></p>
+                    <p>Step 2 <span>Billing details</span></p>
+                    <p>Step 3 <span>Click “Cancel” the subscription</span></p>
+                </div>
+                <video class="m__video" width="335" height="209" controls="controls" poster="video/duel.jpg">
+                    <source src="https://conversionratestore.github.io/projects/crello/zoom_0.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                </video>
+            </div>
         </div>
-        <video class="m__video" width="335" height="209" controls="controls" poster="video/duel.jpg">
-            <source src="https://conversionratestore.github.io/projects/crello/zoom_0.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        </video>
-    </div>
-</div>
-`
+        `
         document.querySelector('.ReactModal__Overlay--dark64').insertAdjacentHTML('afterend', modal);
 
         document.querySelector('.btn').addEventListener('click', () => {
