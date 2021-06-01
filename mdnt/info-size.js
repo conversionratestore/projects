@@ -5,6 +5,7 @@ window.onload = function () {
         <style>
             .product-single__info-size {
             margin: 25px 0 15px 0;
+            padding: 0;
             border: 1px solid #C00303;
             text-align: left;
             }
@@ -20,6 +21,7 @@ window.onload = function () {
             }
             .info-size__heading-wrapper, .info-size__text-wrapper {
             padding: 12px 15px;
+            margin: 0;
             }
             .info-size__text-wrapper {
             background: #FFFFFF;
