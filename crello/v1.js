@@ -261,7 +261,7 @@ let mut = new MutationObserver(function (muts) {
             </div>
         `;
 
-        document.querySelector('h1.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
+        document.querySelector('.subscriptionModalWrapper___3_4Em h1.typography-marketing-display-l').insertAdjacentHTML('afterend', newElement);
 
         let sptDate = document.querySelectorAll('.date')[1].innerHTML.split('.');
         for (let i = 0; i < sptDate.length; i++) {
