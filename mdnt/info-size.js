@@ -77,7 +77,7 @@ window.onload = function () {
                   <div class='info-size__text-wrapper'>
                       <p><strong>Model wears: </strong>${item['item-size']} ${
           item['item-length-cm']
-            ? `(${item['item-length-cm']}) Centimeters`
+            ? `(${item['item-length-cm']} Centimeters)`
             : ''
         }</p>
                   <p>Model’s height is ${item['model-height-cm']}cm / ${
