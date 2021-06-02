@@ -138,6 +138,36 @@ window.onload  = function () {
         document.querySelector('.popup').classList.add('isActive');
     });
 
+    document.querySelector('.popup__add').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Bundles',
+            'eventAction': 'click in pop up bundles',
+            'eventLabel': 'ADD'
+        });
+    })
+
+    document.querySelector('.btn-close').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Bundles',
+            'eventAction': 'click in pop up bundles',
+            'eventLabel': 'close'
+        });
+    })
+
+    document.querySelectorAll('.btn-cl')[1].addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Bundles',
+            'eventAction': 'click in pop up bundles',
+            'eventLabel': 'SKIP'
+        });
+    })
+
     document.querySelector('#getNow').addEventListener('change', () => {
         document.querySelectorAll('.btn-cl').forEach(item => {
             item.setAttribute('href',  document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href'));
@@ -149,12 +179,30 @@ window.onload  = function () {
                     document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa');
                 } else if (index == 1) {
                     document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/Xi4NXSflSv8HtgyslK9X');
-                } else if (index == 2) {     
+                } else if (index == 2) {
                     document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/kTTOTJbbZ9ZzUt3uIzsG');
                 } else if (index == 3) {
-                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/RB5EOORBafijZmGylohb'); 
+                    document.querySelector('.popup__add').setAttribute('href', 'https://buzz-patch.myshopify.com/a/secure/checkout/RB5EOORBafijZmGylohb');
                 }
             }
         });
     });
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2247058,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'magic_patches_bundles');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Bundles',
+    'eventAction': 'loaded'
+});
