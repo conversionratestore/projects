@@ -237,7 +237,7 @@ let popupStyle = `
         bottom: 0;
         right: 0;
         background: rgba(0, 0, 0, .25);
-        z-index: 999;
+        z-index: 999999;
       }
       
       .dark_bg.active {
@@ -509,21 +509,23 @@ function startPopup(a) {
     }
 
     $('.dark_bg .close').click(function () {
-        $('.dark_bg').removeClass('active')
-        $('.popup').removeClass('active')
-        localStorage.removeItem('quiz')
-        localStorage.setItem('first', '1')
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Quiz',
             'eventAction': 'close popup'
         });
+
+        $('.dark_bg').removeClass('active')
+        $('.popup').removeClass('active')
+        localStorage.removeItem('quiz')
+        localStorage.setItem('first', '1')
     })
 
     $('.dark_bg button').click(function () {
         $('.dark_bg').removeClass('active')
         localStorage.removeItem('quiz')
+
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
@@ -533,6 +535,13 @@ function startPopup(a) {
     })
 
     $('.dark_bg a').click(function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz',
+            'eventAction': 'Go to Quiz from PopUp'
+        });
+
         localStorage.setItem('first', '1')
     })
 }
