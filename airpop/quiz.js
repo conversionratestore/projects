@@ -498,6 +498,12 @@ function startQuiz () {
 }
 
 function startPopup(a) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Quiz',
+        'eventAction': 'Exit intent'
+    });
     document.body.insertAdjacentHTML('afterbegin', popupStyle)
     document.body.insertAdjacentHTML('beforeend', popup)
     $('.dark_bg').addClass('active')
