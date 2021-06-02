@@ -171,7 +171,7 @@ window.onload  = function () {
     document.querySelector('#getNow').addEventListener('change', () => {
         document.querySelectorAll('.btn-cl').forEach(item => {
             item.setAttribute('href',  document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href'));
-            document.querySelector('.popup__total span').innerHTML = document.querySelector('.js-total .pr').innerHTML;
+            
         });
         document.querySelectorAll('.js-packs').forEach((element, index) => {
             if (element.querySelector('input').checked) {
