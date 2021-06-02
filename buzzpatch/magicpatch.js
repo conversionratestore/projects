@@ -124,7 +124,7 @@ window.onload  = function () {
                     <li><p>100% natural</p></li>
                 </ul>
             </div>
-            <p class="popup__total">$<span>${document.querySelector('.js-total .pr').innerHTML} </span> /pack</p>
+            <p class="popup__total">$<span>14.99</span> /pack</p>
             <p class="popup__patches">27 patches in 1 pack</p>
             <a href="https://buzz-patch.myshopify.com/a/secure/checkout/vLWFoKhNuowErJ4w3UQa" class="popup__add btn js-btn btn-primary">Add</a>
             <a href="${document.querySelector('.package .js-heading .js-btn.btn-primary').getAttribute('href')}" class="popup__skip btn btn-cl">Skip</a>
