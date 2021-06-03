@@ -1,5 +1,5 @@
 let start = setInterval(() => {
-  if (document.querySelector('.product-info-price')) {
+  if (document.querySelector('.product-options-wrapper')) {
     clearInterval(start);
 
     document.head.insertAdjacentHTML(
