@@ -3,6 +3,12 @@ let start = setInterval(function () {
   if (document.querySelector('#product-options-wrapper')) {
     clearInterval(start);
 
+    let script = document.createElement('script');
+    script.src =
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+    script.async = false;
+    document.head.appendChild(script);
+
     document.head.insertAdjacentHTML(
       'beforeend',
       `
@@ -158,6 +164,7 @@ let start = setInterval(function () {
       ],
       new: [
         'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/0/30278_1.webp',
+        'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/0/30280_1_1.webp',
       ],
       seattle: [
         'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/2/6/26561_1.webp',
@@ -276,16 +283,16 @@ let start = setInterval(function () {
       attributes: true,
       attributeFilter: ['style'],
     });
+
+    setTimeout(function () {
+      $('.color-carousel').slick({
+        arrows: false,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        variableWidth: true,
+        swipeToSlide: true,
+        infinite: false,
+      });
+    }, 500);
   }
 }, 100);
-
-window.onload = function () {
-  $('.color-carousel').slick({
-    arrows: false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    variableWidth: true,
-    swipeToSlide: true,
-    infinite: false,
-  });
-};
