@@ -26,7 +26,7 @@ let build = setInterval(function() {
             });
         })
     }
-}, 50);
+}, 100);
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
