@@ -1,7 +1,9 @@
-let build = setInterval(function() {
-    console.log("s");
+// let build = setInterval(function() {
+//     console.log("s");
+ let mut = new MutationObserver(function (muts) {
+    mut.disconnect();
     if(document.querySelector('.elementor-button-content-wrapper .elementor-button-text')) {
-        clearInterval(build);
+//         clearInterval(build);
         let style = `
         <style>
             .elementor-36 .elementor-element.elementor-element-2d03d92 {
@@ -26,7 +28,17 @@ let build = setInterval(function() {
             });
         })
     }
-}, 100);
+       mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+});
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
+// }, 100);
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
