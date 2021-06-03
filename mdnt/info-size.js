@@ -73,7 +73,7 @@ window.onload = function () {
               item['designed-fit']
                 ? `
                     <div class='info-size__heading-wrapper'>
-                      <h4>90% of users say this product is ${item['designed-fit']}.</h4>
+                      <h4>${item['customers-say']}% of users say this product is ${item['designed-fit']}.</h4>
                     </div>
                   `
                 : ''
@@ -103,7 +103,7 @@ window.onload = function () {
         `
           <div class='product-single__info-size'>
             <div class='info-size__heading-wrapper'>
-                <h4>90% of users say this product is ${item['designed-fit']}.</h4>
+                <h4>${item['customers-say']}% of users say this product is ${item['designed-fit']}.</h4>
             </div>
           </div>                     
         `,
