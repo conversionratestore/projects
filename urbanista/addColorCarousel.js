@@ -79,7 +79,7 @@ document.head.insertAdjacentHTML(
                 left: 0;
                 bottom: 0;
                 height: 100%;
-                width: 2https://www.urbanista.com/us/stockholm-plus0px;    
+                width: 20px;    
                 background: linear-gradient(to right, var(--main-bg-color), rgba(0, 0, 0, 0));
                 z-index: 1;
             }
