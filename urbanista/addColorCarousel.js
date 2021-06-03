@@ -1,4 +1,4 @@
-let start = setInterval(() => {
+let start = setInterval(function () {
   console.log('Here!!!!!!!!');
   if (document.querySelector('#product-options-wrapper')) {
     clearInterval(start);
@@ -279,7 +279,7 @@ let start = setInterval(() => {
   }
 }, 100);
 
-window.onload = () => {
+window.onload = function () {
   $('.color-carousel').slick({
     arrows: false,
     slidesToShow: 2,
