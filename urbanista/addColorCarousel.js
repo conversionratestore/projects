@@ -32,15 +32,16 @@ document.head.insertAdjacentHTML(
             .color-carousel {
                 display: flex;
                 flex-direction: row;
+                justify-content: center;
                 margin: 0 -15px 45px -15px;
             }
             .sticky-pdp-cta .color-wrapper {
                 display: none;
             }
             .color-item {
-                width: 80px;
+                width: 90px;
                 height: 140px;
-                margin-left: 15px;
+                margin: 0 7.5px;
                 padding: 10px;
                 background: #FFFFFF;
                 border: 1px solid transparent;
@@ -117,6 +118,21 @@ const imagesForProduct = {
     'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/0/40409_1.webp',
     'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/0/40410_1.webp',
     'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/0/40411_1.webp',
+  ],
+  paris: [
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/7/37058_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/7/37059_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/7/37060_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/3/7/37061_1.webp',
+  ],
+  miami: [
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/4/44259_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/4/44256_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/4/44257_1.webp',
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/4/4/44260_1.webp',
+  ],
+  boston: [
+    'https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/2/1/21315_1.webp',
   ],
 };
 
