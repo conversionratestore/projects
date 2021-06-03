@@ -16,8 +16,7 @@ document.head.insertAdjacentHTML(
             .color-wrapper {
                 display: flex;
                 flex-direction: column;
-                position: relative;
-                margin: 0 -15px 45px 0;
+                position: relative;                
             }
             .color-title {
                 font-family: bodoni;
@@ -33,6 +32,7 @@ document.head.insertAdjacentHTML(
             .color-carousel {
                 display: flex;
                 flex-direction: row;
+                margin: 0 -15px 45px -15px;
             }
             .sticky-pdp-cta .color-wrapper {
                 display: none;
@@ -47,9 +47,6 @@ document.head.insertAdjacentHTML(
                 box-sizing: border-box;
                 text-align: center;
                 cursor: pointer;
-            }
-            .color-item:first-child {
-                margin-left: 45px;
             }
             .color-item.selected {
                 border: 1px solid #1A1A1A;
@@ -71,37 +68,29 @@ document.head.insertAdjacentHTML(
                 text-transform: uppercase;
             }
             :root {
-                --main-bg-color: red;
+                --main-bg-color: transparent;
             }
             .color-wrapper::before {
                 content: '';
                 position: absolute;
-                left: 0;
+                left: -15px;
                 bottom: 0;
                 height: 100%;
-                width: 20px;    
+                width: 15px;    
                 background: linear-gradient(to right, var(--main-bg-color), rgba(0, 0, 0, 0));
                 z-index: 1;
             }
             .color-wrapper::after {
                 content: '';
                 position: absolute;
-                right: 0;
+                right: -15px;
                 bottom: 0;
                 height: 100%;
-                width: 42px;    
+                width: 40px;    
                 background: linear-gradient(to left, var(--main-bg-color), rgba(0, 0, 0, 0));
-            }            
-            // .color-wrapper--opacity {
-            //     content: '';
-            //     position: absolute;
-            //     right: 0;
-            //     bottom: 0;
-            //     height: 140px;
-            //     width: 40px;                
-            // }
+            }       
             .slick-list {
-                padding: 0 !important;
+                padding-left: 15px !important;
             }
         </style>
 `,
