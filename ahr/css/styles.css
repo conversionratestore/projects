@@ -205,20 +205,34 @@ h2 {
 .s-first {
   padding-bottom: 50px; }
 
+.s-first_img {
+  width: 100%;
+  height: 100%;
+  min-height: 571px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 21px 0 0 21px;
+  background: url("https://conversionratestore.github.io/projects/ahr/img/img.png") no-repeat right center/cover; }
+
 .s-first_row {
   border-radius: 21px;
   margin-top: 16px;
-  position: relative;
-  z-index: -1; }
+  position: relative; }
+  .s-first_row:before {
+    content: '';
+    position: absolute;
+    top: calc(100% - 128px);
+    left: 90.5%;
+    z-index: 1;
+    width: 92px;
+    height: 37px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles5.svg") no-repeat right center/contain; }
   .s-first_row .col:first-child {
     width: 44.6%;
     position: relative; }
-    .s-first_row .col:first-child img {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-      object-fit: cover;
-      border-radius: 21px 0 0 21px; }
     .s-first_row .col:first-child:before {
       content: '';
       position: absolute;
@@ -253,26 +267,18 @@ h2 {
   border-radius: 12px;
   padding: 46px 70px;
   position: relative;
+  z-index: 1;
   max-width: 1060px;
   margin: -75px auto 0; }
   .brands:after {
     content: '';
     position: absolute;
     top: calc(100% - 14px);
-    left: -40px;
+    left: -42px;
     z-index: 1;
     width: 74px;
     height: 14px;
-    background: url("../img/circles.svg") no-repeat center/contain; }
-  .brands:before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: calc(100% - 59px);
-    z-index: -1;
-    width: 92px;
-    height: 37px;
-    background: url("../img/circles5.svg") no-repeat center/contain; }
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles.svg") no-repeat center/contain; }
 
 .s-second {
   padding-bottom: 40px; }
@@ -288,7 +294,7 @@ h2 {
     left: -15px;
     width: 55px;
     height: 150px;
-    background: url("../img/circles3.svg") no-repeat right top/contain;
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles3.svg") no-repeat right top/contain;
     z-index: -1; }
   .block.left .block_img:before {
     background: -o-linear-gradient(179.59deg, #FFFFFF 4.91%, rgba(255, 255, 255, 0) 45.89%);
@@ -298,7 +304,7 @@ h2 {
     top: -10px;
     z-index: -1; }
   .block.left:before {
-    background-image: url("../img/circles4-b.svg");
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles4-b.svg") no-repeat center/contain;
     width: 141px;
     height: 24px;
     top: auto;
@@ -311,7 +317,7 @@ h2 {
     position: absolute;
     top: calc(100% - 55px);
     left: calc(100% - 85.5px);
-    background-image: url("../img/circles4-t.svg");
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles4-t.svg") no-repeat center/contain;
     z-index: -1;
     width: 119px;
     height: 20px; }
@@ -354,7 +360,7 @@ h2 {
       left: calc(100% - 115px);
       width: 127px;
       height: 24px;
-      background: url("../img/circles2.svg") no-repeat right top/contain; }
+      background: url("https://conversionratestore.github.io/projects/ahr/img/circles2.svg") no-repeat right top/contain; }
 
 .s-third {
   padding: 54px 0 17px; }
@@ -362,7 +368,7 @@ h2 {
     margin-bottom: 40px; }
 
 .items_row {
-  background: url("../img/kisspng-sydney-opera-house-museum-of-contemporary-art-aust-sydney-opera-house-png-picture-5a77e0eaa564961.png") no-repeat center top/contain; }
+  background: url("https://conversionratestore.github.io/projects/ahr/img/kisspng-sydney-opera-house-museum-of-contemporary-art-aust-sydney-opera-house-png-picture-5a77e0eaa564961.png") no-repeat center top/contain; }
 
 .item {
   width: calc(33.33% - 27px);
@@ -429,7 +435,9 @@ h2 {
       background: linear-gradient(360deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 34.27%); }
     .card_img img {
       border-radius: 12px 12px 0px 0px;
-      width: 100%; }
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover; }
   .card_bottom {
     border-radius: 0 0 12px 12px;
     padding: 20px 39px 35px; }
@@ -453,10 +461,11 @@ h2 {
   padding: 25px 0 50px; }
 
 .guide {
-  background: #011E41 url("../img/shadow.png") no-repeat center right/auto 100%;
+  background: #011E41 url("https://conversionratestore.github.io/projects/ahr/img/shadow.png") no-repeat center right/auto 100%;
   padding: 74px 15px;
   border-radius: 21px;
-  margin-top: 38px; }
+  margin-top: 38px;
+  position: relative; }
   .guide .col {
     width: 50%; }
     .guide .col:last-child {
@@ -563,7 +572,7 @@ h2 {
     line-height: 171.69%; }
 
 .s-seventh_img {
-  background: url("../img/circles-bg.png") no-repeat center/auto 219px; }
+  background: url("https://conversionratestore.github.io/projects/ahr/img/circles-bg.png") no-repeat center/auto 219px; }
 
 .step-3, .step-4 {
   min-height: 189px;
@@ -661,7 +670,8 @@ h2 {
   border-color: #011E41 transparent transparent transparent;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
-  transition: all 0.3s ease; }
+  transition: all 0.3s ease;
+  margin-left: 10px; }
 
 .s-ninth {
   padding-bottom: 35px; }
@@ -670,7 +680,7 @@ h2 {
   padding-bottom: 35px; }
   .s-tenth .guide {
     background-position: left bottom;
-    background-image: url("../img/shadow2.png");
+    background-image: url("https://conversionratestore.github.io/projects/ahr/img/shadow2.png");
     padding: 44px 15px 77px; }
     .s-tenth .guide img {
       margin: 0 auto; }
@@ -741,7 +751,7 @@ h2 {
   .max-296 .logo {
     margin-bottom: 25px; }
 
-.footer-col {
+.footer-right {
   padding-top: 13px; }
 
 .header {
@@ -776,7 +786,7 @@ h2 {
   display: none; }
   .burger-line {
     background-color: #011E41;
-    border-radius: 20px;
+    border-radius: 50px;
     width: 30px;
     height: 3.33px;
     -webkit-transition: all 0.3s ease;
@@ -1062,14 +1072,31 @@ h2 {
   .d-md-block {
     display: block; }
   .d-md-none {
-    display: none; } }
+    display: none; }
+  .justify-content-md-between {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+  .ml-md-auto {
+    margin-left: auto; } }
 
 @media only screen and (max-width: 1199px) {
   .step {
     max-width: 350px; }
   h1 {
     font-size: 29px;
-    line-height: 41px; } }
+    line-height: 41px; }
+  .brands {
+    padding: 46px; } }
+
+@media only screen and (max-width: 1320px) {
+  .brands {
+    max-width: 83%; }
+  .s-first_img {
+    min-height: 43.2vw; } }
 
 @media only screen and (max-width: 1024px) {
   body {
@@ -1082,11 +1109,13 @@ h2 {
       font-size: 16px;
       line-height: 160%; }
   .item {
-    padding: 20px;
+    padding: 20px 28px;
     margin: 10px 20px 10px 0; }
   .item-about {
     padding: 5px 15px 0;
     margin: 10px 0; }
+    .item-about p {
+      line-height: 31.15px; }
     .item-about .btn {
       margin-top: 16px; }
   .item svg {
@@ -1096,7 +1125,7 @@ h2 {
     margin: 0 20px 20px 0;
     width: calc(33.33% - 14px); }
   .card_bottom {
-    padding: 30px 15px; }
+    padding: 28px 18px; }
   .card_name {
     margin-bottom: 10px; }
   .block_content p {
@@ -1108,7 +1137,7 @@ h2 {
   .s-seventh img {
     max-width: 250px; }
   .step {
-    max-width: 300px; }
+    max-width: 335px; }
   .s-seventh .w-lg-33:first-child .step_n {
     left: calc(100% + 10px); }
   .s-seventh .w-lg-33:last-child .step_n {
@@ -1141,14 +1170,14 @@ h2 {
     line-height: 27px; }
   .s-first_row p {
     font-size: 14px;
-    line-height: 139.69%;
+    line-height: 20px;
     margin-top: 11px; }
   .brands {
-    padding: 20px 24px 5px;
+    padding: 27px 24px 0;
     margin: -55px auto 0; }
     .brands a {
       width: 50%;
-      margin-bottom: 25px; }
+      margin-bottom: 29px; }
       .brands a:first-child, .brands a:nth-child(2) {
         width: 100%; }
     .brands img {
@@ -1159,7 +1188,7 @@ h2 {
     max-width: 200px; }
   .step_n {
     position: static;
-    margin: 0 atuo 10px; }
+    margin: 0 auto 10px; }
   .step {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1189,9 +1218,10 @@ h2 {
   .step-3, .step-4 {
     min-height: auto; }
   .step {
-    padding-top: 30px; }
+    padding-top: 25px; }
   .s-seventh img {
-    max-width: 300px; }
+    max-width: 300px;
+    margin: 0 auto 10px; }
   .navtop {
     position: absolute;
     top: 100%;
@@ -1201,8 +1231,16 @@ h2 {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(73.95%, #F2F3F4), to(rgba(242, 243, 244, 0)));
     background: -o-linear-gradient(top, #F2F3F4 73.95%, rgba(242, 243, 244, 0) 100%);
     background: linear-gradient(180deg, #F2F3F4 73.95%, rgba(242, 243, 244, 0) 100%);
-    min-height: 371px;
-    display: none; }
+    height: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none; }
+    .navtop.active {
+      opacity: 1;
+      height: 371px;
+      pointer-events: auto; }
   .menu {
     display: block;
     padding-top: 34px; }
@@ -1223,11 +1261,20 @@ h2 {
   .item, .item:nth-child(3n+3) {
     margin-right: 20px; }
   .item:nth-child(2n+2) {
-    margin-right: 0; } }
+    margin-right: 0; }
+  .s-first_row:before {
+    top: 62.4%; }
+  .s-fourth {
+    padding: 71px 0 18px; }
+  .s-seventh .btn {
+    margin: 33px auto 0;
+    max-width: 300px; } }
 
 @media only screen and (max-width: 767px) {
   .container {
     max-width: 575px !important; }
+  .s-first {
+    padding-bottom: 46px; }
   .s-first_row {
     display: block;
     background: #011E41;
@@ -1235,7 +1282,7 @@ h2 {
   .s-first_row .col:first-child:before {
     background: -o-linear-gradient(89.95deg, #011E41 0.07%, rgba(1, 30, 65, 0) 17.33%);
     background: linear-gradient(0.05deg, #011E41 0.07%, rgba(1, 30, 65, 0) 17.33%); }
-  .s-first_row .col:first-child img {
+  .s-first_img {
     border-radius: 21px 21px 0px 0px; }
   .s-first_row {
     border-radius: 21px;
@@ -1245,29 +1292,36 @@ h2 {
     width: calc(100% + 30px); }
   .s-first_row .col:last-child {
     width: 100%;
-    padding: 8px 0 25px 0; }
+    padding: 10px 0 25px 0; }
   .brands {
-    margin: 0; }
+    margin: 0;
+    max-width: 100%; }
   .s-first_row {
     z-index: auto; }
-  .brands:before {
-    top: calc(100% - 8px);
-    left: calc(100% - 50px); }
   .brands:after {
+    content: none; }
+  .s-first_row:after {
+    content: '';
     width: 92px;
     height: 37px;
-    background-image: url(../img/circles5.svg);
+    background: url("https://conversionratestore.github.io/projects/ahr/img/circles5.svg") no-repeat center/contain;
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
     z-index: -1;
     top: 65px;
     left: -52px; }
+  .btn {
+    padding: 13px 25px; }
   h2 {
     font-size: 16px;
     line-height: 22px;
-    margin-bottom: 25px; }
-  .s-third h2 {
+    margin: 0 auto 25px; }
+  h2 span {
+    margin: 10px -15px 0;
+    font-size: 14px;
+    line-height: 19px; }
+  .s-third h2, .s-fifth h2 {
     margin-bottom: 25px; }
   .block {
     -webkit-box-orient: vertical;
@@ -1280,10 +1334,12 @@ h2 {
     background: -o-linear-gradient(90.01deg, #FFFFFF 5.51%, rgba(255, 255, 255, 0) 36.33%);
     background: linear-gradient(359.99deg, #FFFFFF 5.51%, rgba(255, 255, 255, 0) 36.33%); }
   .block_content {
-    padding: 9px 15px 29px; }
+    padding: 2px 15px 29px; }
   .block:before {
-    top: calc(100% - 274px);
-    left: -34px; }
+    top: calc(100% - 335px);
+    left: -19px;
+    width: 40px;
+    height: 107px; }
   .block_content p {
     margin-bottom: 18px;
     font-size: 14px;
@@ -1310,21 +1366,27 @@ h2 {
     width: 100%;
     margin: 0 0 15px 0 !important; }
   .s-fourth h2 {
-    margin: 0; }
+    margin: 0 auto; }
   .items_row {
-    padding-top: 83px; }
+    padding-top: 85px; }
   .item-about {
     padding: 0; }
     .item-about p {
-      padding: 16px 15px 0; }
+      padding: 22px 15px 0; }
   .card {
     width: 100%;
     margin-right: 0; }
+  .cards {
+    padding-top: 24px; }
+  .card_img img {
+    min-height: 213px; }
+  .card_name {
+    line-height: 24px; }
   .s-fifth {
-    padding: 17px 0; }
+    padding: 24px 0 18px; }
   .guide {
     margin: 0;
-    padding: 34px 15px 20px; }
+    padding: 32px 15px 20px; }
   .guide .col {
     width: 100%; }
   .guide_content p {
@@ -1332,32 +1394,184 @@ h2 {
     line-height: 139.69%; }
   .form {
     max-width: 100%;
-    margin: 34px auto 0;
+    margin: 41px auto 0;
     padding: 15px 17px 18px; }
   .form h2 span {
-    margin-top: 7px; }
+    margin: 7px 0 0 0; }
   .checkboxes {
     margin-top: 20px; }
   .form .btn {
     margin-top: 28px; }
   .s-sixth {
     padding-bottom: 20px; }
+    .s-sixth h2 {
+      margin: 0 auto 18px; }
   .s-seventh {
-    padding: 20px 0; }
+    padding: 26px 0 20px; }
   .s-seventh h2 {
-    margin-bottom: 25px; }
+    margin-bottom: 29px; }
   .guide_content p {
-    margin-bottom: 20px; }
+    margin-bottom: 26px; }
   .s-eight {
     padding-bottom: 40px; }
+  .accordion {
+    margin-bottom: 12px; }
   .accordion_item {
     padding: 9px 20px 9px 15px;
     font-size: 14px;
-    line-height: 19px; }
+    line-height: 19px;
+    min-height: 72px; }
   .accordion_drop {
     padding: 9px 20px 30px 15px; }
   .accordion_drop p {
     font-size: 14px;
     line-height: 205.69%; }
   .arrow {
-    border-width: 9px 5.5px 0 5.5px; } }
+    border-width: 9px 5.5px 0 5.5px; }
+  .guide .col:last-child {
+    padding: 0; }
+  .s-tenth .guide {
+    background-image: url("https://conversionratestore.github.io/projects/ahr/img/shadow3.png");
+    background-position: right top;
+    background-size: 100%;
+    padding: 65px 15px 40px; }
+  .s-tenth .guide img {
+    width: 181px;
+    margin-bottom: 45px; }
+  .s-tenth .guide_container {
+    min-height: auto; }
+  .s-tenth .guide h2 {
+    font-size: 16px;
+    line-height: 22px; }
+  .s-tenth .guide_content p {
+    font-size: 14px;
+    line-height: 139.69%; }
+  .btn {
+    font-size: 14px; }
+  .footer-right {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    max-width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse; }
+    .footer-right img {
+      height: 50px; }
+  .list-contacts {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    max-width: 100%;
+    padding-top: 17px; }
+    .list-contacts svg {
+      width: 15px;
+      height: 15px; }
+  .footer-left {
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
+    max-width: 100%; }
+  .footer-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  .list-contacts li {
+    margin-bottom: 14px; }
+  .footer .logo img {
+    margin: 17px auto 0; }
+  .max-296 .logo {
+    margin-bottom: 15px; }
+  .s-tenth {
+    padding-bottom: 0; }
+  .s-first_row:before {
+    top: calc(100% - 27px);
+    left: 98%;
+    z-index: -1; }
+  .s-third h2 {
+    margin: 0 auto 25px; }
+  .block.left .block_img:after {
+    left: -10px;
+    top: -7px;
+    width: 78px;
+    height: 15px; }
+  .block.left:before {
+    width: 101px;
+    height: 17px;
+    bottom: -10px;
+    right: -10px; }
+  .block.left:after {
+    width: 85px;
+    height: 14px;
+    top: calc(100% - 29px);
+    left: calc(100% - 65.5px); }
+  .s-first_img {
+    min-height: 70.1vw; }
+  .block_img:after {
+    top: -6px;
+    left: calc(100% - 58px);
+    width: 78px;
+    height: 15px; }
+  .brands a {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8); }
+    .brands a:nth-child(1) {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1); }
+    .brands a:nth-child(2) {
+      -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+      order: 2;
+      width: 50%; }
+    .brands a:nth-child(3) {
+      -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+      order: 3; }
+    .brands a:nth-child(4) {
+      -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+      order: 4; }
+    .brands a:nth-child(5) {
+      -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+      order: 1;
+      width: 100%; }
+    .brands a:nth-child(6) {
+      -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+      order: 5; }
+  .s-fifth .brands {
+    max-width: 300px;
+    margin: 17px auto 0;
+    padding: 27px 24px 8px; }
+    .s-fifth .brands a {
+      margin-bottom: 21px; }
+  .checkboxes {
+    padding: 0 3px; }
+  .s-seventh .text-italic {
+    margin: 38px auto 0; }
+  .s-ninth h2 {
+    margin: 0 auto 17px; } }
+
+@media only screen and (max-width: 575px) {
+  h1 {
+    font-size: 16px;
+    line-height: 22px; }
+  .s-first_img {
+    min-height: 70.1vw;
+    background-image: url("https://conversionratestore.github.io/projects/ahr/img/img1.png"); }
+  h2 {
+    max-width: 307px; }
+  .s-sixth h2, .s-tenth .guide h2 {
+    max-width: 100%; }
+  .s-third h2 {
+    max-width: 307px; } }
+
+@media only screen and (max-width: 374px) {
+  .container {
+    padding: 0 15px; } }
