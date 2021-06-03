@@ -1,4 +1,5 @@
 let start = setInterval(() => {
+  console.log('Here!!!!!!!!');
   if (document.querySelector('#product-options-wrapper')) {
     clearInterval(start);
 
