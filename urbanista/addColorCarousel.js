@@ -1,5 +1,10 @@
+/* let script = document.createElement('script');
+script.src = 'https://conversionratestore.github.io/projects/urbanista/addColorCarousel.js';
+script.async = false;
+document.head.appendChild(script); */
+
 let start = setInterval(function () {
-  console.log('Here!!!!!!!!');
+  
   if (document.querySelector('#product-options-wrapper')) {
     clearInterval(start);
 
@@ -15,10 +20,8 @@ let start = setInterval(function () {
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>    
     
         <style>
-            .product-info-main {
-              margin-bottom: 20px;
-            }
             .product-view-badge {
+              margin-top: 25px;
               padding: 0 !important;
             }
             .product-options-wrapper {
@@ -293,6 +296,6 @@ let start = setInterval(function () {
         swipeToSlide: true,
         infinite: false,
       });
-    }, 500);
+    }, 1000);
   }
 }, 100);
