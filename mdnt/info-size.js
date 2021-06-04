@@ -82,7 +82,7 @@ window.onload = function () {
                   <p><strong>Model wears: </strong>${item['item-size']} 
                   ${
                     item['item-length-cm']
-                      ? `(${item['item-length-cm']} Centimeters)`
+                      ? `&amp; ${item['item-length-cm']} cm`
                       : ''
                   }</p>
               <p>Model’s height is ${item['model-height-cm']}cm / 
