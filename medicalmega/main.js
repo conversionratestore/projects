@@ -568,7 +568,7 @@ window.onload  = function () {
                 productId = item.closest('.product-card').getAttribute('data-product-id');
 
             let newElementProduct = `
-                <tr class="popup__product" data-check='false' data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                     <td width="44%">
                         <div class="product-cell-inner">
                             <span> 
@@ -601,6 +601,7 @@ window.onload  = function () {
             if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
                 document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
                     el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
+
                 });
             }
             document.querySelector('.popup').classList.add('isActive');
@@ -633,7 +634,7 @@ window.onload  = function () {
                         productId = item.getAttribute('data-product-id');
             
                     let newElementProduct = `
-                        <tr class="popup__product" data-check='true' data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                        <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                             <td width="44%">
                                 <div class="product-cell-inner">
                                     <span> 
@@ -683,24 +684,20 @@ window.onload  = function () {
                 id = item.dataset.productId,
                 dataCheck = item.dataset.check;
 
-            if (item.dataset.check == 'false') {
-                    fetch('/cart.html', {
-                    headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
-                }).then(r => {
-                    productItems.push({
-                        'product_id': id,
-                        'quantity': quantity,
-                        'price': item.querySelector('.unit-price b').innerHTML,
-                        'check': true,
-                    });
-                    localStorage.setItem('productItems', JSON.stringify(productItems));
+            fetch('/cart.html', {
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+            }).then(r => {
+                productItems.push({
+                    'product_id': id,
+                    'quantity': quantity,
+                    'price': item.querySelector('.unit-price b').innerHTML,
                 });
-                item.dataset.check = 'true';   
-            } 
+                localStorage.setItem('productItems', JSON.stringify(productItems));
+            });
         });
     }
     document.querySelector('.close').addEventListener('click', () => {
