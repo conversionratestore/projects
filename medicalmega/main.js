@@ -722,7 +722,6 @@ window.onload  = function () {
                 }
             }, 25);
         });
-
         document.querySelector('.swiper-button-next').addEventListener('click', () => {
             scrollAmount = 0;
             let slideTimer = setInterval(function() {
@@ -733,5 +732,4 @@ window.onload  = function () {
                 }
             }, 25);
         });
-  console.log('s');
 };
