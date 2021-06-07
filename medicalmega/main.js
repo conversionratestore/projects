@@ -361,142 +361,9 @@ window.onload  = function () {
     `;
 
     document.body.insertAdjacentHTML('afterbegin', style);
-    document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
-    document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
 
-    document.querySelectorAll('.gallery').forEach( (item, index) => {
-        let galleryWrapper = document.createElement('div');
-        galleryWrapper.className = 'gallery-parent';
-
-        let htmlTitle = `<h2 class="title"></h2>`;
-        if (index < 6) {
-            galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle); 
-        }
-
-        item.parentNode.appendChild(galleryWrapper);
-
-        return galleryWrapper.appendChild(item);    
-    });
-
-    const galleryDd = document.querySelectorAll('.gallery dd'),
-        btnAddToCart = `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`;
-
-    for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', btnAddToCart); }
-
-    const galleryParent = document.querySelectorAll('.gallery-parent'),
-        btnShowMore = `<a href="#" class="show-more">Show more</a>`;
-
-    for (let i = 0; i < galleryParent.length; i++) {
-        if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', btnShowMore); }
-    } 
-    // adding titles in gallery-title
-    const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
-        galleryTitle = document.querySelectorAll('.title'),
-        showMore = document.querySelectorAll('.show-more');
-
-    for (let i = 0; i < arrTitle.length; i++) {
-        galleryTitle[i].innerHTML = arrTitle[i];
-        let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
-        if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
-    }
-
-    document.querySelectorAll('.add-to-cart').forEach( (item) => {
-        item.addEventListener('change', () => {
-            if (item.querySelector('input').value <= 1) {
-                item.querySelector('input').value = 1;
-            }
-        });  
-    });
-
-    let popupShoppingCart = `
-    <div class="popup">
-        <div class="popup__container">
-            <div class="popup__head">
-                <h2 class="title">Shopping cart</h2>
-                <button class="close" type="button"></button>
-            </div>
-            <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
-                <tbody>
-                    <tr id="header-row">
-                        <th align="left" width="44%">Product Name</th>
-                        <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
-                        <th align="left" width="17%">Price</th>
-                        <th align="left" width="17%">Total</th>
-                    </tr>
-                    <tr class="body">
-                        <td colspan="4" style="padding-top: 10px;">
-                            <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
-                        </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="popup__product-total">
-                        <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
-                            <b>Sub Total :</b><br>
-                            <b style="font-size:17px;">Grand Total:</b>
-                        </td>
-                        <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
-                            <b>$ 7.25</b><br>
-                            <b style="font-size:17px;">$7.25</b>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="popup__bottom">
-                <button type="button" class="continue-shopping">
-                    <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
-                    Back to Shopping
-                </button>
-                <div class="flex-center">
-                    <div class="paypal-button">
-                        <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
-                            <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
-                        </form>
-                    </div>
-                    <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
-                        OR</p>
-                    </div>
-                    <div class="checkout">
-                        <a class="btn" href="https://medicalmega.com/checkout/step1">
-                            Checkout Now
-                            <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="bought-products">
-                <h3 class="title3">Also bought with this products</h3>
-                <div class="swiper-container">
-                    <dl class="slider-gallery gallery"></dl>
-                    <button class="swiper-button-prev" type="button"></button>
-                    <button class="swiper-button-next" type="button"></button>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-    document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
-
-    let n = 0;
-    while (n--) {
-        document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend', `
-        <dd class="swiper-slide">
-            <span>&nbsp;<a
-            href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle"><img
-                src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/160009233410181694495f5f78ae28234.jpg"
-                alt="Image Of Hand Sanitizer Purell Advanced 8 oz Alcohol Ethyl Gel Pump Bottle"></a>&nbsp;</span>
-            <a
-                href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle">
-                Hand Sanitizer<br>Purell Advanced 8<br>oz Alcohol Ethyl<br>Gel Pump Bottle
-            </a>
-            <b>
-                $
-                7.25 </b>
-            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
-        </dd>`);
-    }
-    
+    let productItems = [];
+      
     function sumTotalPrice() {
         let sum = 0;  
         document.querySelectorAll('.total-price b').forEach((totalPrice) => {
@@ -545,151 +412,6 @@ window.onload  = function () {
             });
         });
     }
-
-    let productItems = [];
-
-    document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
-        item.addEventListener('click', () => {
-            let id = item.closest('.product-card').dataset.productId;
-            let valueP = 1;
-                valueP = +item.nextElementSibling.value,
-                num = +document.querySelector('.by_num span').innerHTML;
-            document.querySelector('.by_num span').innerHTML = num + valueP;
-
-            let parent = item.parentElement.closest('dd'),
-                srcImgProduct = parent.querySelector('img').src,
-                altImgProduct = parent.querySelector('img').alt,
-                titleProduct = parent.querySelectorAll('a')[1].innerHTML,
-                linkProduct = parent.querySelectorAll('a')[1].href,
-                priceProductAll = parent.querySelector('b').innerHTML,
-                splPrice = priceProductAll.split('$');
-
-            let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
-                productId = item.closest('.product-card').getAttribute('data-product-id');
-
-            let newElementProduct = `
-                <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
-                    <td width="44%">
-                        <div class="product-cell-inner">
-                            <span> 
-                                <a href="${linkProduct}">
-                                    <img src="${srcImgProduct}" alt="${altImgProduct}">
-                                </a>
-                            </span>
-                            <p class="product-description" align="left">
-                                <b>
-                                    <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
-                                </b>
-                            </p>
-                        </div>
-                    </td>
-                    <td width="22%" align="left">
-                        <div class="quantity-row">
-                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP}">
-                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                        </div>
-                    </td>
-                    <td width="17%" class="unit-price" align="left">$ <b>${parent.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
-                    <td width="17%" class="total-price" align="left">$ <b></b></td>
-                </tr>
-            `;
-        
-            if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
-                document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-            } 
-            if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
-                document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
-                    el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
-
-                });
-            }
-            document.querySelector('.popup').classList.add('isActive');
-
-            document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
-                quantityFun(el);
-        
-                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                sumTotalPrice();
-            });
-        });  
-    });  
-
-    if (document.querySelector('.by_num span').innerHTML == '0') {
-        localStorage.setItem('productItems', '');
-    }
-    if (document.querySelector('.by_num span').innerHTML != '0') {
-        let cartItems = JSON.parse(localStorage.getItem("productItems"));
-        if (cartItems) {
-            for (let i = 0; i < cartItems.length; i++) {
-                document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
-                    let srcImgProduct = item.querySelector('img').src,
-                        altImgProduct = item.querySelector('img').alt,
-                        titleProduct = item.querySelectorAll('a')[1].innerHTML,
-                        linkProduct = item.querySelectorAll('a')[1].href,
-                        priceProductAll = item.querySelector('b').innerHTML,
-                        splPrice = priceProductAll.split('$');
-
-                    let dataProductVariantId = item.getAttribute('data-product-variant-id'),
-                        productId = item.getAttribute('data-product-id');
-            
-                    let newElementProduct = `
-                        <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
-                            <td width="44%">
-                                <div class="product-cell-inner">
-                                    <span> 
-                                        <a href="${linkProduct}">
-                                            <img src="${srcImgProduct}" alt="${altImgProduct}">
-                                        </a>
-                                    </span>
-                                    <p class="product-description" align="left">
-                                        <b>
-                                            <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
-                                        </b>
-                                    </p>
-                                </div>
-                            </td>
-                            <td width="22%" align="left">
-                                <div class="quantity-row">
-                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
-                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                                </div>
-                            </td>
-                            <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
-                            <td width="17%" class="total-price" align="left">$ <b></b></td>
-                        </tr> `;   
-
-                    if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-                    } 
-                    if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                        document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
-                            el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
-                            quantityFun(el);
-                        });
-                    }
-
-                    document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
-                    sumTotalPrice();
-                });   
-            }
-        }
-    } 
-
-    if (window.location.pathname == '/cart.html') {
-        productItems = justunoCartItems;
-        for (let i = 0; i < productItems[i].length; i++) {
-            productItems.push({
-                'product_id': productItems[i].productid,
-                'quantity': productItems[i].quantity,
-                'price': productItems[i].price,
-            });
-            localStorage.setItem('productItems', JSON.stringify(productItems));
-        }
-       
-    }
-
     function pushProductItems() {
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
@@ -750,40 +472,319 @@ window.onload  = function () {
             });
         });
     }
-    document.querySelector('.close').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');   
-    });
-    document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');
-    });
-    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-        pushProductItems();
-    });
-    document.querySelector('.shoppingcart').addEventListener('click', () => {
-        pushProductItems();
-    });
+    if (window.location.pathname == '/') {
+        document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
+        document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
 
-    let container = document.querySelector('.slider-gallery');
+        document.querySelectorAll('.gallery').forEach( (item, index) => {
+            let galleryWrapper = document.createElement('div');
+            galleryWrapper.className = 'gallery-parent';
 
-    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function(){
-            container.scrollLeft -= 25;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
+            let htmlTitle = `<h2 class="title"></h2>`;
+            if (index < 6) {
+                galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle); 
             }
-        }, 25);
-    });
 
-    document.querySelector('.swiper-button-next').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function() {
-            container.scrollLeft += 25;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
+            item.parentNode.appendChild(galleryWrapper);
+
+            return galleryWrapper.appendChild(item);    
+        });
+
+        const galleryDd = document.querySelectorAll('.gallery dd'),
+            btnAddToCart = `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`;
+
+        for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', btnAddToCart); }
+
+        const galleryParent = document.querySelectorAll('.gallery-parent'),
+            btnShowMore = `<a href="#" class="show-more">Show more</a>`;
+
+        for (let i = 0; i < galleryParent.length; i++) {
+            if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', btnShowMore); }
+        } 
+        // adding titles in gallery-title
+        const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
+            galleryTitle = document.querySelectorAll('.title'),
+            showMore = document.querySelectorAll('.show-more');
+
+        for (let i = 0; i < arrTitle.length; i++) {
+            galleryTitle[i].innerHTML = arrTitle[i];
+            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
+            if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });  
+        });
+
+        let popupShoppingCart = `
+        <div class="popup">
+            <div class="popup__container">
+                <div class="popup__head">
+                    <h2 class="title">Shopping cart</h2>
+                    <button class="close" type="button"></button>
+                </div>
+                <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
+                    <tbody>
+                        <tr id="header-row">
+                            <th align="left" width="44%">Product Name</th>
+                            <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
+                            <th align="left" width="17%">Price</th>
+                            <th align="left" width="17%">Total</th>
+                        </tr>
+                        <tr class="body">
+                            <td colspan="4" style="padding-top: 10px;">
+                                <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
+                            </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="popup__product-total">
+                            <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
+                                <b>Sub Total :</b><br>
+                                <b style="font-size:17px;">Grand Total:</b>
+                            </td>
+                            <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
+                                <b>$ 7.25</b><br>
+                                <b style="font-size:17px;">$7.25</b>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="popup__bottom">
+                    <button type="button" class="continue-shopping">
+                        <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
+                        Back to Shopping
+                    </button>
+                    <div class="flex-center">
+                        <div class="paypal-button">
+                            <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
+                                <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
+                            </form>
+                        </div>
+                        <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
+                            OR</p>
+                        </div>
+                        <div class="checkout">
+                            <a class="btn" href="https://medicalmega.com/checkout/step1">
+                                Checkout Now
+                                <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bought-products">
+                    <h3 class="title3">Also bought with this products</h3>
+                    <div class="swiper-container">
+                        <dl class="slider-gallery gallery"></dl>
+                        <button class="swiper-button-prev" type="button"></button>
+                        <button class="swiper-button-next" type="button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
+
+        let n = 0;
+        while (n--) {
+            document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend', `
+            <dd class="swiper-slide">
+                <span>&nbsp;<a
+                href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle"><img
+                    src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/160009233410181694495f5f78ae28234.jpg"
+                    alt="Image Of Hand Sanitizer Purell Advanced 8 oz Alcohol Ethyl Gel Pump Bottle"></a>&nbsp;</span>
+                <a
+                    href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle">
+                    Hand Sanitizer<br>Purell Advanced 8<br>oz Alcohol Ethyl<br>Gel Pump Bottle
+                </a>
+                <b>
+                    $
+                    7.25 </b>
+                <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+            </dd>`);
+        }
+   
+        document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
+            item.addEventListener('click', () => {
+                let id = item.closest('.product-card').dataset.productId;
+                let valueP = 1;
+                    valueP = +item.nextElementSibling.value,
+                    num = +document.querySelector('.by_num span').innerHTML;
+                document.querySelector('.by_num span').innerHTML = num + valueP;
+
+                let parent = item.parentElement.closest('dd'),
+                    srcImgProduct = parent.querySelector('img').src,
+                    altImgProduct = parent.querySelector('img').alt,
+                    titleProduct = parent.querySelectorAll('a')[1].innerHTML,
+                    linkProduct = parent.querySelectorAll('a')[1].href,
+                    priceProductAll = parent.querySelector('b').innerHTML,
+                    splPrice = priceProductAll.split('$');
+
+                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+                    productId = item.closest('.product-card').getAttribute('data-product-id');
+
+                let newElementProduct = `
+                    <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                        <td width="44%">
+                            <div class="product-cell-inner">
+                                <span> 
+                                    <a href="${linkProduct}">
+                                        <img src="${srcImgProduct}" alt="${altImgProduct}">
+                                    </a>
+                                </span>
+                                <p class="product-description" align="left">
+                                    <b>
+                                        <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
+                                    </b>
+                                </p>
+                            </div>
+                        </td>
+                        <td width="22%" align="left">
+                            <div class="quantity-row">
+                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP}">
+                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                            </div>
+                        </td>
+                        <td width="17%" class="unit-price" align="left">$ <b>${parent.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
+                        <td width="17%" class="total-price" align="left">$ <b></b></td>
+                    </tr>
+                `;
+            
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+                    document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+                } 
+                if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
+
+                    });
+                }
+                document.querySelector('.popup').classList.add('isActive');
+
+                document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+                    quantityFun(el);
+            
+                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+                    sumTotalPrice();
+                });
+            });  
+        });  
+
+        if (document.querySelector('.by_num span').innerHTML == '0') {
+            localStorage.setItem('productItems', '');
+        }
+        if (document.querySelector('.by_num span').innerHTML != '0') {
+            let cartItems = JSON.parse(localStorage.getItem("productItems"));
+            if (cartItems) {
+                for (let i = 0; i < cartItems.length; i++) {
+                    document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
+                        let srcImgProduct = item.querySelector('img').src,
+                            altImgProduct = item.querySelector('img').alt,
+                            titleProduct = item.querySelectorAll('a')[1].innerHTML,
+                            linkProduct = item.querySelectorAll('a')[1].href,
+                            priceProductAll = item.querySelector('b').innerHTML,
+                            splPrice = priceProductAll.split('$');
+
+                        let dataProductVariantId = item.getAttribute('data-product-variant-id'),
+                            productId = item.getAttribute('data-product-id');
+                
+                        let newElementProduct = `
+                            <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                                <td width="44%">
+                                    <div class="product-cell-inner">
+                                        <span> 
+                                            <a href="${linkProduct}">
+                                                <img src="${srcImgProduct}" alt="${altImgProduct}">
+                                            </a>
+                                        </span>
+                                        <p class="product-description" align="left">
+                                            <b>
+                                                <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
+                                            </b>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td width="22%" align="left">
+                                    <div class="quantity-row">
+                                        <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                        <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
+                                        <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                                    </div>
+                                </td>
+                                <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
+                                <td width="17%" class="total-price" align="left">$ <b></b></td>
+                            </tr> `;   
+
+                        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                            document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+                        } 
+                        if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                            document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                                el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
+                                quantityFun(el);
+                            });
+                        }
+
+                        document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                        sumTotalPrice();
+                    });   
+                }
             }
-        }, 25);
-    });
+        } 
+
+        document.querySelector('.close').addEventListener('click', () => {
+            document.querySelector('.popup').classList.remove('isActive');   
+        });
+        document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
+            document.querySelector('.popup').classList.remove('isActive');
+        });
+        document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+            pushProductItems();
+        });
+        document.querySelector('.shoppingcart').addEventListener('click', () => {
+            pushProductItems();
+        });
+
+        let container = document.querySelector('.slider-gallery');
+
+        document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+            scrollAmount = 0;
+            let slideTimer = setInterval(function(){
+                container.scrollLeft -= 25;
+                scrollAmount += 10;
+                if(scrollAmount >= 50){
+                    window.clearInterval(slideTimer);
+                }
+            }, 25);
+        });
+
+        document.querySelector('.swiper-button-next').addEventListener('click', () => {
+            scrollAmount = 0;
+            let slideTimer = setInterval(function() {
+                container.scrollLeft += 25;
+                scrollAmount += 10;
+                if(scrollAmount >= 50){
+                    window.clearInterval(slideTimer);
+                }
+            }, 25);
+        });
+    }
+   
+    if (window.location.pathname == '/cart.html') {
+        productItems = justunoCartItems;
+        for (let i = 0; i < productItems.length; i++) {
+            productItems.push({
+                'product_id': productItems[i].productid,
+                'quantity': productItems[i].quantity,
+                'price': productItems[i].price,
+            });
+            localStorage.setItem('productItems', JSON.stringify(productItems));
+        }
+    }
 };
