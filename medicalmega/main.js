@@ -677,15 +677,13 @@ window.onload  = function () {
         }
     } 
 
-    let loc = [];
     if (window.location.pathname == '/cart.html') {
-        
-        loc = justunoCartItems;
-        for (let i = 0; i < loc[i].length; i++) {
+        productItems = justunoCartItems;
+        for (let i = 0; i < productItems[i].length; i++) {
             productItems.push({
-                'product_id': loc[i].productid,
-                'quantity': loc[i].quantity,
-                'price': loc[i].price,
+                'product_id': productItems[i].productid,
+                'quantity': productItems[i].quantity,
+                'price': productItems[i].price,
             });
             localStorage.setItem('productItems', JSON.stringify(productItems));
         }
