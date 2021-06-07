@@ -363,6 +363,7 @@ let build = setInterval(function() {
     document.body.insertAdjacentHTML('afterbegin', style);
 
     if (document.querySelector('.homeslider__img') && document.querySelectorAll('.gallery')) {
+         clearInterval(build);
         document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
         document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
    
