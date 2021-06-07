@@ -684,7 +684,12 @@ window.onload  = function () {
                 id = item.dataset.productId,
                 dataCheck = item.dataset.check;
                 
-                fetch('/cart.html')
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "GET",
+                })
                 .then((response) => {
                     console.log(response);
                     return response.json();
