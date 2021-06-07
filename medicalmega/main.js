@@ -568,7 +568,7 @@ window.onload  = function () {
                     productId = item.closest('.product-card').getAttribute('data-product-id');
 
                 let newElementProduct = `
-                    <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                    <tr class="popup__product" data-check='false' data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                         <td width="44%">
                             <div class="product-cell-inner">
                                 <span> 
@@ -633,7 +633,7 @@ window.onload  = function () {
                             productId = item.getAttribute('data-product-id');
                 
                         let newElementProduct = `
-                            <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                            <tr class="popup__product" data-check='true' data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                                 <td width="44%">
                                     <div class="product-cell-inner">
                                         <span> 
@@ -680,22 +680,27 @@ window.onload  = function () {
             document.querySelectorAll('.popup__product').forEach((item) => {
                 let idVariant = item.dataset.productVariantId,
                     quantity = item.querySelector('.quantity').value,
-                    id = item.dataset.productId;
-                    
-                fetch('/cart.html', {
-                    headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
-                }).then(r => {
-                    productItems.push({
-                        'product_id': id,
-                        'quantity': quantity,
-                        'price': item.querySelector('.unit-price b').innerHTML,
+                    id = item.dataset.productId,
+                    dataCheck = item.dataset.check;
+
+                if (item.dataset.check == 'false')) {
+                        fetch('/cart.html', {
+                        headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: "POST",
+                        body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+                    }).then(r => {
+                        productItems.push({
+                            'product_id': id,
+                            'quantity': quantity,
+                            'price': item.querySelector('.unit-price b').innerHTML,
+                            'check': true,
+                        });
+                        localStorage.setItem('productItems', JSON.stringify(productItems));
                     });
-                    localStorage.setItem('productItems', JSON.stringify(productItems));
-                });
+                    item.dataset.check = 'true';   
+                } 
             });
         }
         document.querySelector('.close').addEventListener('click', () => {
