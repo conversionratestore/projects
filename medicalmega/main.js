@@ -778,13 +778,13 @@ window.onload  = function () {
    
     if (window.location.pathname == '/cart.html') {
         productItems = justunoCartItems;
-        for (let i = 0; i < productItems.length; i++) {
-            productItems.push({
-                'product_id': productItems[i].productid,
-                'quantity': productItems[i].quantity,
-                'price': productItems[i].price,
-            });
-            localStorage.setItem('productItems', JSON.stringify(productItems));
-        }
+//         for (let i = 0; i < productItems.length; i++) {
+//             productItems.push({
+//                 'product_id': productItems[i].productid,
+//                 'quantity': productItems[i].quantity,
+//                 'price': productItems[i].price,
+//             });
+//             localStorage.setItem('productItems', JSON.stringify(productItems));
+//         }
     }
 };
