@@ -1,4 +1,7 @@
-window.onload  = function () {
+let build = setInterval(() => {
+    let loc = window.location.pathname;
+    if(loc === '/') {
+        clearInterval(build);
 let style = `
     <style>
         button {
@@ -735,4 +738,5 @@ document.querySelector('.swiper-button-next').addEventListener('click', () => {
         }
     }, 25);
 });
-};
+    }
+}, 50);
