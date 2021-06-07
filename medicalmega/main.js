@@ -682,14 +682,7 @@ window.onload  = function () {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId,
-                dataCheck = item.dataset.check;
-                
-                fetch('/cart.html')
-                .then((response) => {
-                    console.log(response.body);
-                    return response.body;
-                })
-
+                dataCheck = item.dataset.check;      
 
             fetch('/cart.html', {
                 headers: {
