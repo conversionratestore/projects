@@ -1,7 +1,6 @@
-let build = setInterval(function() {
-
-    if (document.querySelector('.homeslider__img') && document.querySelectorAll('.gallery')) {
-        clearInterval(build);
+window.onload  = function () {
+   
+        
         let style = `
             <style>
                 button {
@@ -736,7 +735,5 @@ let build = setInterval(function() {
                 }
             }, 25);
         });
-    }
 
- 
-}, 100);
+};
