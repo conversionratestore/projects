@@ -1,3 +1,4 @@
+window.onload  = function () {
 let style = `
     <style>
         button {
@@ -734,3 +735,4 @@ document.querySelector('.swiper-button-next').addEventListener('click', () => {
         }
     }, 25);
 });
+};
