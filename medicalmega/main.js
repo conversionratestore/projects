@@ -1,6 +1,4 @@
 window.onload  = function () {
-   
-        
         let style = `
             <style>
                 button {
@@ -735,5 +733,4 @@ window.onload  = function () {
                 }
             }, 25);
         });
-
 };
