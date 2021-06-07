@@ -683,6 +683,14 @@ window.onload  = function () {
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId,
                 dataCheck = item.dataset.check;
+                
+                fetch('/cart.html')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                });
 
             fetch('/cart.html', {
                 headers: {
