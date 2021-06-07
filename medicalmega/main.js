@@ -683,7 +683,17 @@ window.onload  = function () {
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId,
                 dataCheck = item.dataset.check;      
-
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    method: "GET",
+                })
+                .then((response) => {
+                    console.log(response.body);
+                    console.log(response);
+                    return response.body;
+                })
             fetch('/cart.html', {
                 headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
