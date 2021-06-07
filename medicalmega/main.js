@@ -558,7 +558,6 @@ window.onload  = function () {
             localStorage.setItem('productItems', JSON.stringify(productItems));
         }
     }
-
     document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
         item.addEventListener('click', () => {
             let id = item.closest('.product-card').dataset.productId;
