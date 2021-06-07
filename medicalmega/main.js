@@ -708,13 +708,14 @@ window.onload  = function () {
     }
     document.querySelector('.close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
-        pushProductItems();
     });
     document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');
-        pushProductItems();
     });
     document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+        pushProductItems();
+    });
+    document.querySelector('.shoppingcart').addEventListener('click', () => {
         pushProductItems();
     });
 
