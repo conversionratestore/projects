@@ -684,7 +684,7 @@ window.onload  = function () {
                 id = item.dataset.productId,
                 dataCheck = item.dataset.check;    
             
-             fetch('/cart.html' + id, {
+             fetch('/cart.html/' + id, {
                 method: 'DELETE',
             })
             .then(res => res.text()) // or res.json()
