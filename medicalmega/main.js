@@ -686,7 +686,7 @@ window.onload  = function () {
                 
                 fetch('/cart.html', {
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/json',
                     },
                     method: "GET",
                 })
