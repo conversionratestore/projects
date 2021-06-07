@@ -682,18 +682,14 @@ window.onload  = function () {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId,
-                dataCheck = item.dataset.check;      
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    method: "GET",
-                })
-                .then((response) => {
-                    console.log(response.body);
-                    console.log(response);
-                    return response.body;
-                })
+                dataCheck = item.dataset.check;    
+            
+             fetch('/cart.html' + id, {
+                method: 'DELETE',
+            })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+            
             fetch('/cart.html', {
                 headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
