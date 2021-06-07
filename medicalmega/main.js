@@ -362,7 +362,7 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('afterbegin', style);
     document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
-    document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
+    document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
 
     document.querySelectorAll('.gallery').forEach( (item, index) => {
         let galleryWrapper = document.createElement('div');
@@ -370,12 +370,12 @@ window.onload  = function () {
 
         let htmlTitle = `<h2 class="title"></h2>`;
         if (index < 6) {
-            galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle); 
+            galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
         }
 
         item.parentNode.appendChild(galleryWrapper);
 
-        return galleryWrapper.appendChild(item);    
+        return galleryWrapper.appendChild(item);
     });
 
     const galleryDd = document.querySelectorAll('.gallery dd'),
@@ -388,9 +388,9 @@ window.onload  = function () {
 
     for (let i = 0; i < galleryParent.length; i++) {
         if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', btnShowMore); }
-    } 
+    }
     // adding titles in gallery-title
-    const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
+    const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'],
         galleryTitle = document.querySelectorAll('.title'),
         showMore = document.querySelectorAll('.show-more');
 
@@ -405,7 +405,7 @@ window.onload  = function () {
             if (item.querySelector('input').value <= 1) {
                 item.querySelector('input').value = 1;
             }
-        });  
+        });
     });
 
     let popupShoppingCart = `
@@ -496,15 +496,15 @@ window.onload  = function () {
             <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
         </dd>`);
     }
-    
+
     function sumTotalPrice() {
-        let sum = 0;  
+        let sum = 0;
         document.querySelectorAll('.total-price b').forEach((totalPrice) => {
             sum += parseFloat(totalPrice.innerHTML);
             document.querySelectorAll('.total-values b').forEach((totalValues) => {
                 totalValues.innerHTML = `$ ${sum.toFixed(2)}`;
             });
-        });  
+        });
     }
     function quantityFun(el) {
         if (el.querySelector('.quantity').value < 2) {
@@ -538,7 +538,7 @@ window.onload  = function () {
                         button.disabled = true;
                     } else {
                         button.nextElementSibling.value = +button.nextElementSibling.value - 1;
-                    } 
+                    }
                 }
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
@@ -552,7 +552,7 @@ window.onload  = function () {
         item.addEventListener('click', () => {
             let id = item.closest('.product-card').dataset.productId;
             let valueP = 1;
-                valueP = +item.nextElementSibling.value,
+            valueP = +item.nextElementSibling.value,
                 num = +document.querySelector('.by_num span').innerHTML;
             document.querySelector('.by_num span').innerHTML = num + valueP;
 
@@ -594,13 +594,13 @@ window.onload  = function () {
                     <td width="17%" class="total-price" align="left">$ <b></b></td>
                 </tr>
             `;
-        
+
             if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
                 document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-            } 
+            }
             if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
                 document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
-                    el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
+                    el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value);
 
                 });
             }
@@ -608,12 +608,12 @@ window.onload  = function () {
 
             document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
                 quantityFun(el);
-        
+
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
             });
-        });  
-    });  
+        });
+    });
 
     if (document.querySelector('.by_num span').innerHTML == '0') {
         localStorage.clear();
@@ -622,7 +622,7 @@ window.onload  = function () {
         let cartItems = JSON.parse(localStorage.getItem("productItems"));
         if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
-                document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
+                document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => {
                     let srcImgProduct = item.querySelector('img').src,
                         altImgProduct = item.querySelector('img').alt,
                         titleProduct = item.querySelectorAll('a')[1].innerHTML,
@@ -632,7 +632,7 @@ window.onload  = function () {
 
                     let dataProductVariantId = item.getAttribute('data-product-variant-id'),
                         productId = item.getAttribute('data-product-id');
-            
+
                     let newElementProduct = `
                         <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                             <td width="44%">
@@ -658,11 +658,11 @@ window.onload  = function () {
                             </td>
                             <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
                             <td width="17%" class="total-price" align="left">$ <b></b></td>
-                        </tr> `;   
+                        </tr> `;
 
                     if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
                         document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-                    } 
+                    }
                     if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
                         document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
                             el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
@@ -672,27 +672,27 @@ window.onload  = function () {
 
                     document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
                     sumTotalPrice();
-                });   
+                });
             }
         }
-    } 
+    }
 
     function pushProductItems() {
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId,
-                dataCheck = item.dataset.check;    
-            
-             fetch('/cart.html/' + id, {
-                method: 'DELETE',
-            })
-            .then(res => res.text()) // or res.json()
-            .then(res => console.log(res))
-            
+                dataCheck = item.dataset.check;
+
+            // fetch('/cart.html/' + id, {
+            //     method: 'DELETE',
+            // })
+            //     .then(res => res.text()) // or res.json()
+            //     .then(res => console.log(res))
+
             fetch('/cart.html', {
                 headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 method: "POST",
                 body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
@@ -707,14 +707,14 @@ window.onload  = function () {
         });
     }
     document.querySelector('.close').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');   
+        document.querySelector('.popup').classList.remove('isActive');
     });
     document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');
     });
-    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-        pushProductItems();
-    });
+    // document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+    //     pushProductItems();
+    // });
     document.querySelector('.shoppingcart').addEventListener('click', () => {
         pushProductItems();
     });
