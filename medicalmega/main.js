@@ -414,10 +414,12 @@ window.onload  = function () {
         });
     }
     function pushProducts() {
-        if (localStorage.getItem('productsStored') != '') {
-            for (const key in productsStored) {
+        let locProductsStored = JSON.parse(localStorage.getItem('productsStored'));
+        if (locProductsStored != '') {
+            for (const key in locProductsStored) {
                 if (productsStoredTemporarily[key].productid == productsStored[key].productid) {
                     productsStored[key].quantity = productsStoredTemporarily[key].quantity;    
+                    console.log(productsStored[key].quantity);
                 } else {
                     productsStored.push({
                         'product_id': productsStoredTemporarily[key].productid,
@@ -425,6 +427,7 @@ window.onload  = function () {
                         'price': productsStoredTemporarily[key].price,
                         'product_variant_id': productsStoredTemporarily[key].productvariantid
                     });
+                    localStorage.setItem('productsStored', JSON.stringify(locProductsStored));
                     fetch('/cart.html', {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -435,6 +438,7 @@ window.onload  = function () {
                 }
             }
         } else {
+            localStorage.setItem('productsStoredTemporarily', '');
             document.querySelectorAll('.popup__product').forEach((item) => {
                 let idVariant = item.dataset.productVariantId,
                     quantity = item.querySelector('.quantity').value,
@@ -451,7 +455,7 @@ window.onload  = function () {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    
+
                     method: "POST",
                     body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
                 });
@@ -460,7 +464,7 @@ window.onload  = function () {
             productsStoredTemporarily = [];
             
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            localStorage.setItem('productsStoredTemporarily', '');
+           
         }
     }
     if (window.location.pathname == '/') {
@@ -481,16 +485,14 @@ window.onload  = function () {
             return galleryWrapper.appendChild(item);    
         });
 
-        const galleryDd = document.querySelectorAll('.gallery dd'),
-            btnAddToCart = `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`;
+        const galleryDd = document.querySelectorAll('.gallery dd');
 
-        for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', btnAddToCart); }
+        for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`); }
 
-        const galleryParent = document.querySelectorAll('.gallery-parent'),
-            btnShowMore = `<a href="#" class="show-more">Show more</a>`;
+        const galleryParent = document.querySelectorAll('.gallery-parent');
 
         for (let i = 0; i < galleryParent.length; i++) {
-            if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', btnShowMore); }
+            if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`); }
         } 
         // adding titles in gallery-title
         const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
@@ -781,5 +783,4 @@ window.onload  = function () {
             }
         }
     }
-
 };
