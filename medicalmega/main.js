@@ -615,7 +615,7 @@ window.onload  = function () {
                 if (localStorage.getItem("productsStoredTemporarily") != '') {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                     for (const key in productsStoredTemporarily) {
-                        if (productsStoredTemporarily[key].product_id != undefined) {
+                        if (productsStoredTemporarily[key].product_id != '') {
                             if (productsStoredTemporarily[key].product_id == productId) {
                                 productsStoredTemporarily[key].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
                             } else {
