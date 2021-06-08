@@ -615,7 +615,7 @@ window.onload  = function () {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                     console.log(productsStoredTemporarily);
                     for (const key in productsStoredTemporarily) {
-                        console.log(productsStoredTemporarily[key]);
+                        console.log(productsStoredTemporarily[key].product_id)
                         if (productsStoredTemporarily[key].product_id != '' && productsStoredTemporarily[key].product_id != undefined && productsStoredTemporarily[key].product_id && null) {
                             console.log('productsStoredTemporarily[key].product_id !=');
                             if (productsStoredTemporarily[key].product_id == productId) {
