@@ -417,8 +417,8 @@ window.onload  = function () {
         localStorage.setItem('productsStoredTemporarily', '');
         console.log(localStorage.setItem('productsStoredTemporarily', ''));
 
-        let locProductsStored = JSON.parse(localStorage.getItem('productsStored'));
-        console.log(locProductsStored);
+        // let locProductsStored = localStorage.getItem('productsStored');
+        // console.log(locProductsStored);
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
