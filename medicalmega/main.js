@@ -451,6 +451,7 @@ window.onload  = function () {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
+                    
                     method: "POST",
                     body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
                 });
