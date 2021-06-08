@@ -19,6 +19,7 @@ window.onload = function () {
           letter-spacing: normal;
           font-size: 16px;
           text-transform: lowercase;
+          font-family: Archivo Narrow;
         }
         .info-size__heading-wrapper, .info-size__text-wrapper {
           padding: 12px 15px;
