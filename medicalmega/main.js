@@ -390,6 +390,20 @@ window.onload  = function () {
             }
             el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
+
+            productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+            for (const key in productsStoredTemporarily) {
+                if (productsStoredTemporarily[key].product_id == el.getAttribute('data-product-id')) {
+                    productsStoredTemporarily[key].quantity = el.querySelector('.quantity').value;
+                } else {
+                    productsStoredTemporarily.push({
+                        'product_id': el.getAttribute('data-product-id'),
+                        'quantity': el.querySelector('.quantity').value,
+                        'price': el.querySelector('.unit-price b').innerHTML,
+                        'product_variant_id': el.getAttribute('data-product-variant-id'),
+                    });
+                }
+            }
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
@@ -414,101 +428,45 @@ window.onload  = function () {
         });
     }
     function pushProducts() {
-        localStorage.setItem('productsStoredTemporarily', '');
-        console.log(localStorage.setItem('productsStoredTemporarily', ''));
-
-        // console.log(locProductsStored);
-        document.querySelectorAll('.popup__product').forEach((item) => {
-            let idVariant = item.dataset.productVariantId,
-                quantity = item.querySelector('.quantity').value,
-                id = item.dataset.productId;
-
-            if (localStorage.getItem("productsStored") != '') {
-                let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
-                for (const key in locProductsStored) {
-                    if (locProductsStored[key].product_id != undefined) {
-                        if (locProductsStored[key].product_id == id) {
-                            locProductsStored[key].quantity = quantity;
-                            console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
-                        } else {
-                            productsStoredTemporarily.push({
-                                'product_id': id,
-                                'quantity': quantity,
-                                'price': item.querySelector('.unit-price b').innerHTML,
-                                'product_variant_id': idVariant,
-                            });
-                            localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                            localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-                            console.log(productsStoredTemporarily);
-                        }
-                    }
-                  
-                }
-            } else {
-                productsStoredTemporarily.push({
-                    'product_id': id,
-                    'quantity': quantity,
-                    'price': item.querySelector('.unit-price b').innerHTML,
-                    'product_variant_id': idVariant,
-                });
-                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-                console.log('locProductsStored == null');
-            }
-        });
-        
-        if (localStorage.getItem("productsStoredTemporarily") != '') {
-            let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-            for (const key in locProductsStoredTemporarily) {
-                if (locProductsStoredTemporarily[key].product_id != undefined) {
-                    console.log('true');
-                    fetch('/cart.html', {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: "POST",
-                        body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
-                    });
-                }
-            }  
+        productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+        for (const key in productsStoredTemporarily) {
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `product_variant_id=${productsStoredTemporarily[key].product_variant_id}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].product_id}&add_to_cart=variant`
+            });
         }
-      
+        // localStorage.setItem('productsStoredTemporarily', '');
 
-        // if (locProductsStored != '') { 
-        //     localStorage.setItem('locProductsStored', JSON.stringify(productsStoredTemporarily));
-        //     localStorage.setItem('productsStoredTemporarily', '');
-        // }
-        // if (locProductsStored != '') {
-        //     for (const key in locProductsStored) {
-        //         if (productsStoredTemporarily[key].productid == productsStored[key].productid) {
-        //             productsStored[key].quantity = productsStoredTemporarily[key].quantity;    
-        //             console.log(productsStored[key].quantity);
-        //         } else {
-        //             productsStored.push({
-        //                 'product_id': productsStoredTemporarily[key].productid,
-        //                 'quantity': productsStoredTemporarily[key].quantity,
-        //                 'price': productsStoredTemporarily[key].price,
-        //                 'product_variant_id': productsStoredTemporarily[key].productvariantid
-        //             });
-        //             localStorage.setItem('productsStored', JSON.stringify(locProductsStored));
-        //             fetch('/cart.html', {
-        //                 headers: {
-        //                     'Content-Type': 'application/x-www-form-urlencoded',
-        //                 },
-        //                 method: "POST",
-        //                 body: `product_variant_id=${productsStoredTemporarily[key].productvariantid}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].productid}&add_to_cart=variant`
-        //             });
+        // document.querySelectorAll('.popup__product').forEach((item) => {
+        //     let idVariant = item.dataset.productVariantId,
+        //         quantity = item.querySelector('.quantity').value,
+        //         id = item.dataset.productId;
+
+        //     if (localStorage.getItem("productsStored") != '') {
+        //         let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
+        //         for (const key in locProductsStored) {
+        //             if (locProductsStored[key].product_id != undefined) {
+        //                 if (locProductsStored[key].product_id == id) {
+        //                     locProductsStored[key].quantity = quantity;
+        //                     console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
+        //                 } else {
+        //                     productsStoredTemporarily.push({
+        //                         'product_id': id,
+        //                         'quantity': quantity,
+        //                         'price': item.querySelector('.unit-price b').innerHTML,
+        //                         'product_variant_id': idVariant,
+        //                     });
+        //                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+        //                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+
+        //                     console.log(productsStoredTemporarily);
+        //                 }
+        //             }
         //         }
-        //     }
-        // } else {
-        //     localStorage.setItem('productsStoredTemporarily', '');
-        //     document.querySelectorAll('.popup__product').forEach((item) => {
-        //         let idVariant = item.dataset.productVariantId,
-        //             quantity = item.querySelector('.quantity').value,
-        //             id = item.dataset.productId;
-
+        //     } else {
         //         productsStoredTemporarily.push({
         //             'product_id': id,
         //             'quantity': quantity,
@@ -516,17 +474,26 @@ window.onload  = function () {
         //             'product_variant_id': idVariant,
         //         });
         //         localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-        //         fetch('/cart.html', {
-        //             headers: {
-        //                 'Content-Type': 'application/x-www-form-urlencoded',
-        //             },
-        //             method: "POST",
-        //             body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
-        //         });
-        //     });
-        //     productsStored = productsStoredTemporarily;
-            
-        //     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));  
+        //         localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+
+        //         console.log('locProductsStored == null');
+        //     }
+        // });
+        
+        // if (localStorage.getItem("productsStoredTemporarily") != '') {
+        //     let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+        //     for (const key in locProductsStoredTemporarily) {
+        //         if (locProductsStoredTemporarily[key].product_id != undefined) {
+        //             console.log('true');
+        //             fetch('/cart.html', {
+        //                 headers: {
+        //                     'Content-Type': 'application/x-www-form-urlencoded',
+        //                 },
+        //                 method: "POST",
+        //                 body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
+        //             });
+        //         }
+        //     }  
         // }
     }
     if (window.location.pathname == '/') {
@@ -666,7 +633,6 @@ window.onload  = function () {
    
         document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
             item.addEventListener('click', () => {
-                let id = item.closest('.product-card').dataset.productId;
                 let valueP = 1;
                     valueP = +item.nextElementSibling.value,
                     num = +document.querySelector('.by_num span').innerHTML;
@@ -714,20 +680,70 @@ window.onload  = function () {
                 if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
                     document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
                 } 
-                if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
-                    document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+                if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
                         el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
-
                     });
                 }
                 document.querySelector('.popup').classList.add('isActive');
 
-                document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+                document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
                     quantityFun(el);
-            
                     el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                     sumTotalPrice();
                 });
+
+                if (localStorage.getItem("productsStoredTemporarily") != '') {
+                    productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                    for (const key in productsStoredTemporarily) {
+                        if (productsStoredTemporarily[key].product_id != undefined) {
+                            if (productsStoredTemporarily[key].product_id == productId) {
+                                productsStoredTemporarily[key].quantity = quantity;
+                            } else {
+                                productsStoredTemporarily.push({
+                                    'product_id': productId,
+                                    'quantity': valueP,
+                                    'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                                    'product_variant_id': dataProductVariantId,
+                                });
+                                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                            }
+                        }
+                    }
+                } else {
+                    productsStoredTemporarily.push({
+                        'product_id': productId,
+                        'quantity': valueP,
+                        'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                        'product_variant_id': dataProductVariantId,
+                    });
+                    localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                    localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                }
+
+                // if (localStorage.getItem("productsStored") != '') {
+                //     let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
+                //     for (const key in locProductsStored) {
+                //         if (locProductsStored[key].product_id != undefined) {
+                //             if (locProductsStored[key].product_id == id) {
+                //                 locProductsStored[key].quantity = quantity;
+                //                 console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
+                //             } else {
+                //                 productsStoredTemporarily.push({
+                //                     'product_id': id,
+                //                     'quantity': quantity,
+                //                     'price': item.querySelector('.unit-price b').innerHTML,
+                //                     'product_variant_id': idVariant,
+                //                 });
+                //                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                //                 localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+
+                //                 console.log(productsStoredTemporarily);
+                //             }
+                //         }
+                //     }
+                // }
             });  
         });  
 
