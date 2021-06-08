@@ -617,11 +617,11 @@ window.onload  = function () {
                     for (const key in productsStoredTemporarily) {
                         if (productsStoredTemporarily[key].product_id != '') {
                             if (productsStoredTemporarily[key].product_id == productId) {
-                                productsStoredTemporarily[key].quantity = item.nextElementSibling.value;
+                                productsStoredTemporarily[key].quantity = +item.nextElementSibling.value;
                             } else {
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
-                                    'quantity': item.nextElementSibling.value,
+                                    'quantity': +item.nextElementSibling.value,
                                     'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
                                     'product_variant_id': dataProductVariantId,
                                 });
@@ -633,7 +633,7 @@ window.onload  = function () {
                 } else {
                     productsStoredTemporarily.push({
                         'product_id': productId,
-                        'quantity': item.nextElementSibling.value,
+                        'quantity': +item.nextElementSibling.value,
                         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
                         'product_variant_id': dataProductVariantId,
                     });
