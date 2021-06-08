@@ -617,7 +617,7 @@ window.onload  = function () {
                     for (const key in productsStoredTemporarily) {
                         if (productsStoredTemporarily[key].product_id != undefined) {
                             if (productsStoredTemporarily[key].product_id == productId) {
-                                productsStoredTemporarily[key].quantity = quantity;
+                                productsStoredTemporarily[key].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
                             } else {
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
