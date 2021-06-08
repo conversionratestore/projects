@@ -2,53 +2,68 @@ window.onload = function () {
   document.head.insertAdjacentHTML(
     'beforeend',
     `
-      <style>
-        .product-single__info-size {
-          margin: 25px 0 15px 0;
-          padding: 0;
-          background: #C00303;
-          border: 1px solid #C00303;
-          text-align: left;
-        }
-        .info-size__heading-wrapper {
-          background: #C00303;
-        }
-        .info-size__heading-wrapper h4{
-          margin: 0;
-          color: #FFFFFF;
-          letter-spacing: normal;
-          font-size: 16px;
-          text-transform: lowercase;
-          font-family: Archivo Narrow;
-        }
-        .info-size__heading-wrapper, .info-size__text-wrapper {
-          padding: 12px 15px;
-          margin: 0;
-        }
-        .info-size__text-wrapper {
-          background: #FFFFFF;
-        }
-        .info-size__text-wrapper p {
-          margin: 0;
-        }
-        p.info-size__text--small {
-          margin-top: 10px;
-          font-size: 12px;
-        }
-        p.info-size__text--small::first-letter {
-          text-transform: uppercase;
-        }
-        .content.sc-content-blaster {
-          padding: 10px 15px;
-        }
-        .content.sc-content-blaster .product-single__info-size {
-          margin: 0;
-        }
-        .content.sc-content-blaster .info-size__heading-wrapper {
-          padding: 12px;
-        }
-      </style>
-    `,
+        <style>
+          .product-single__wrapper {
+            margin: 25px 0 15px 0;
+          }
+          .product-single__wrapper h5 {
+            padding: 0 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: normal;
+          }
+          .product-single__info-size {
+            padding: 0;
+            background: #C00303;
+            border: 1px solid #C00303;
+            text-align: left;
+          }
+          .info-size__heading-wrapper {
+            background: #C00303;
+          }
+          .info-size__heading-wrapper h4{
+            margin: 0;
+            color: #FFFFFF;
+            letter-spacing: normal;
+            font-size: 16px;
+            text-transform: lowercase;
+            font-family: 'Archivo Narrow', sans-serif;
+          }
+          .info-size__heading-wrapper h4 span {
+            text-transform: uppercase;
+          }
+          .info-size__heading-wrapper, .info-size__text-wrapper {
+            padding: 12px 15px;
+            margin: 0;
+          }
+          .info-size__text-wrapper {
+            background: #FFFFFF;
+          }
+          .info-size__text-wrapper p {
+            margin: 0;
+          }
+          p.info-size__text--small {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #009D3F;
+          }
+          p.info-size__text--small span {
+              display: inline-block;
+              font-weight: 700;
+          }
+          p.info-size__text--small span:first-letter {
+            text-transform: uppercase;
+          }
+          .content.sc-content-blaster {
+            padding: 10px 15px;
+          }
+          .content.sc-content-blaster .product-single__info-size {
+            margin: 0;
+          }
+        </style>
+      `,
   );
 
   fetch(
@@ -62,54 +77,49 @@ window.onload = function () {
     });
 
   function template(item) {
-    document
-      .querySelector(
-        '.variant-wrapper.variant-wrapper--dropdown.blaster-select--Size.js',
-      )
-      .insertAdjacentHTML(
-        'afterEnd',
-        `
-          <div class='product-single__info-size'>
-            ${
-              item['designed-fit']
-                ? `
-                    <div class='info-size__heading-wrapper'>
-                      <h4>${item['customers-say']}% of users say this product is ${item['designed-fit']}.</h4>
+    document.querySelector('.payment-buttons').insertAdjacentHTML(
+      'beforebegin',
+      `
+        <div class='product-single__wrapper'>
+          ${
+            item['designed-fit']
+              ? `
+                  <h5>SIZE &amp; FIT</h5>
+                  <div class='product-single__info-size'>
+                      <div class='info-size__heading-wrapper'>
+                          <h4>${item['customers-say']}
+                            % of users say this product is <span>
+                            ${item['designed-fit']}.</span>
+                          </h4>
+                      </div>
+                      <div class='info-size__text-wrapper'>
+                        <p>Model wears size: ${item['item-size']} 
+                        ${
+                          item['item-length-cm']
+                            ? `&amp; ${item['item-length-cm']} cm`
+                            : ''
+                        }</p>
+                        <p>Model’s height is ${item['model-height-cm']}cm / 
+                        ${item['model-height-ft']}</p>
+                        <p class='info-size__text--small'>*Fit recommendation: <span>${
+                          item['in-between-sizes']
+                        }</span> if you are between sizes.</p>
+                      </div>
+                  </div>
+                `
+              : `
+                  <div class='product-single__info-size'>
+                    <div class='info-size__text-wrapper'>
+                      <p>ONE SIZE ITEM!</p>
+                      <p>Model’s height is ${item['model-height-cm']}cm / 
+                      ${item['model-height-ft']}</p>
                     </div>
-                  `
-                : ''
-            }                  
-              <div class='info-size__text-wrapper'>
-                  <p><strong>Model wears: </strong>${item['item-size']} 
-                  ${
-                    item['item-length-cm']
-                      ? `&amp; ${item['item-length-cm']} cm`
-                      : ''
-                  }</p>
-              <p>Model’s height is ${item['model-height-cm']}cm / 
-              ${item['model-height-ft']}</p>
-              ${
-                item['in-between-sizes']
-                  ? `<p class='info-size__text--small'>${item['in-between-sizes']} if you are between sizes.</p>`
-                  : ''
-              }
-              </div>
-          </div>
-        `,
-      );
-
-    if (item['designed-fit']) {
-      document.querySelector('.content.sc-content-blaster').insertAdjacentHTML(
-        'afterBegin',
-        `
-          <div class='product-single__info-size'>
-            <div class='info-size__heading-wrapper'>
-                <h4>${item['customers-say']}% of users say this product is ${item['designed-fit']}.</h4>
-            </div>
-          </div>                     
-        `,
-      );
-    }
+                  </div>   
+                `
+          }
+        </div>
+      `,
+    );
   }
 
   document
