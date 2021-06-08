@@ -7,7 +7,7 @@ window.onload = function () {
             margin: 25px 0 15px 0;
           }
           .product-single__wrapper h5 {
-            padding: 0 10px;
+            padding: 0 5px;
             font-family: 'Roboto', sans-serif;
             font-size: 14px;
             font-weight: 600;
@@ -34,18 +34,20 @@ window.onload = function () {
           .info-size__heading-wrapper h4 span {
             text-transform: uppercase;
           }
-          .info-size__heading-wrapper, .info-size__text-wrapper {
-            padding: 12px 15px;
+          .info-size__heading-wrapper {
+            padding: 13px 15px;
             margin: 0;
           }
           .info-size__text-wrapper {
+            margin: 0;
+            padding: 5px 15px;
             background: #FFFFFF;
           }
           .info-size__text-wrapper p {
             margin: 0;
           }
           p.info-size__text--small {
-            margin-top: 10px;
+            margin: 10px 0;
             font-size: 12px;
             color: #009D3F;
           }
