@@ -461,9 +461,8 @@ window.onload  = function () {
                 });
             });
             productsStored = productsStoredTemporarily;
-            productsStoredTemporarily = [];
             
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
            
         }
     }
