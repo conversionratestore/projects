@@ -430,8 +430,10 @@ window.onload  = function () {
                 'price': item.querySelector('.unit-price b').innerHTML,
                 'product_variant_id': idVariant,
             });
+            localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
             localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
 
+            console.log(localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily)));
             console.log(localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily)));
 
             for (const key in productsStoredTemporarily) {
@@ -445,8 +447,7 @@ window.onload  = function () {
                     method: "POST",
                     body: `product_variant_id=${productsStoredTemporarily[key].productvariantid}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].productid}&add_to_cart=variant`
                 });
-            }
-       
+            }   
         });
 
         // if (locProductsStored != '') { 
@@ -772,7 +773,8 @@ window.onload  = function () {
         document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('isActive');
         });
-        document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+        document.querySelector('.popup .checkout .btn').addEventListener('click', (e) => {
+            e.preventDefault();
             pushProducts();
         });
         document.querySelector('.shoppingcart').addEventListener('click', () => {
