@@ -455,8 +455,11 @@ window.onload  = function () {
                     body: `product_variant_id=${idVariant}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
                 });
             });
-            productsStored = productsStoredTemporarily
+            productsStored = productsStoredTemporarily;
             productsStoredTemporarily = [];
+            
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            localStorage.setItem('productsStoredTemporarily', '');
         }
     }
     if (window.location.pathname == '/') {
