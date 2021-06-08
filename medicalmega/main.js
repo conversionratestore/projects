@@ -429,6 +429,7 @@ window.onload  = function () {
                     if (locProductsStored[key].product_id != undefined) {
                         if (locProductsStored[key].product_id == id) {
                             locProductsStored[key].quantity = quantity;
+                            console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
                         } else {
                             productsStoredTemporarily.push({
                                 'product_id': id,
@@ -438,6 +439,8 @@ window.onload  = function () {
                             });
                             localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                             localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+
+                            console.log(productsStoredTemporarily);
                         }
                     }
                   
@@ -451,22 +454,27 @@ window.onload  = function () {
                 });
                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                 localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+
+                console.log('locProductsStored == null');
             }
         });
         
-        let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-        for (const key in locProductsStoredTemporarily) {
-            if (locProductsStoredTemporarily[key].product_id != undefined) {
-                console.log('true');
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
-                });
-            }
-        }  
+        if (localStorage.getItem("productsStoredTemporarily") != '') {
+            let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+            for (const key in locProductsStoredTemporarily) {
+                if (locProductsStoredTemporarily[key].product_id != undefined) {
+                    console.log('true');
+                    fetch('/cart.html', {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: "POST",
+                        body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
+                    });
+                }
+            }  
+        }
+      
 
         // if (locProductsStored != '') { 
         //     localStorage.setItem('locProductsStored', JSON.stringify(productsStoredTemporarily));
