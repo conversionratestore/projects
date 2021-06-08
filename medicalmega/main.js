@@ -588,7 +588,7 @@ window.onload  = function () {
                         <td width="22%" align="left">
                             <div class="quantity-row">
                                 <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                <input type="text" name="quantity" value="0" class="quantity" data-val="${valueP} readonly">
+                                <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP} readonly">
                                 <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                             </div>
                         </td>
