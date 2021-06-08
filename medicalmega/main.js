@@ -614,26 +614,26 @@ window.onload  = function () {
 
                 if (localStorage.getItem("productsStoredTemporarily") != '') {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-                    console.log('s');
+                    console.log(productsStoredTemporarily);
                     for (const key in productsStoredTemporarily) {
-                        console.log('ss');
+                        console.log(productsStoredTemporarily[key]);
                         if (productsStoredTemporarily[key].product_id != '' || productsStoredTemporarily[key].product_id != undefined || productsStoredTemporarily[key].product_id != null) {
-                            console.log(' if sss ');
+                            console.log('productsStoredTemporarily[key].product_id != ''');
                             if (productsStoredTemporarily[key].product_id == productId) {
                                 productsStoredTemporarily[key].quantity = +item.nextElementSibling.value;
-                                console.log(' if ssss ');
-                            } else {
-
-                                productsStoredTemporarily.push({
-                                    'product_id': productId,
-                                    'quantity': +item.nextElementSibling.value,
-                                    'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                                    'product_variant_id': dataProductVariantId,
-                                });
-                                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-                                console.log(' else ssss ');
-                            }
+                                console.log(productsStoredTemporarily[key].quantity);
+                            } 
+                            // else {
+                            //     productsStoredTemporarily.push({
+                            //         'product_id': productId,
+                            //         'quantity': +item.nextElementSibling.value,
+                            //         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                            //         'product_variant_id': dataProductVariantId,
+                            //     });
+                            //     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                            //     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                            //     console.log(' else ssss ');
+                            // }
                         }
                     }
                 } else {
