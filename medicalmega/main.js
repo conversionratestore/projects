@@ -417,14 +417,14 @@ window.onload  = function () {
         localStorage.setItem('productsStoredTemporarily', '');
         console.log(localStorage.setItem('productsStoredTemporarily', ''));
 
-        let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
+        let locProductsStored = localStorage.getItem("productsStored");
         // console.log(locProductsStored);
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId;
 
-            if (locProductsStored) {
+            if (locProductsStored != '') {
                 for (const key in locProductsStored) {
                     if (locProductsStored[key].product_id == id) {
                         locProductsStored[key].quantity = quantity;
