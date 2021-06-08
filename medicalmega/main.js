@@ -415,9 +415,10 @@ window.onload  = function () {
     }
     function pushProducts() {
         localStorage.setItem('productsStoredTemporarily', '');
+        console.log(localStorage.setItem('productsStoredTemporarily', ''));
 
         let locProductsStored = JSON.parse(localStorage.getItem('productsStored'));
-
+        console.log(locProductsStored);
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
@@ -431,7 +432,12 @@ window.onload  = function () {
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
 
+            console.log(localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily)));
+
             for (const key in productsStoredTemporarily) {
+                console.log(productsStoredTemporarily[key].productvariantid);
+                console.log(productsStoredTemporarily[key].quantity);
+                console.log(productsStoredTemporarily[key].productid);
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
