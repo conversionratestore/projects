@@ -413,18 +413,7 @@ window.onload  = function () {
             });
         });
     }
-    function post() {
-        productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-        for (const key in productsStoredTemporarily) {
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `product_variant_id=${productsStoredTemporarily[key].product_variant_id}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].product_id}&add_to_cart=variant`
-            });
-        }
-    }
+
 
     if (window.location.pathname == '/') {
         document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
@@ -651,6 +640,17 @@ window.onload  = function () {
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                 }
+
+                productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                for (const key in productsStoredTemporarily) {
+                    fetch('/cart.html', {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: "POST",
+                        body: `product_variant_id=${productsStoredTemporarily[key].product_variant_id}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].product_id}&add_to_cart=variant`
+                    });
+                }
             });  
         });  
 
@@ -724,12 +724,7 @@ window.onload  = function () {
             document.querySelector('.popup').classList.remove('isActive');
         });
         document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-            post();
         });
-        document.querySelector('.shoppingcart').addEventListener('click', () => {
-            post();
-        });
-
         let container = document.querySelector('.slider-gallery');
 
         document.querySelector('.swiper-button-prev').addEventListener('click', () => {
