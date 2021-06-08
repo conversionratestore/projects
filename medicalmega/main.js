@@ -659,6 +659,7 @@ window.onload  = function () {
                         body: `product_variant_id=${productsStoredTemporarily[i].product_variant_id}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].product_id}&add_to_cart=variant`
                     }).then(()=>{
                         localStorage.setItem("productsStoredTemporarily",'');
+                        productsStoredTemporarily = []
                     })
 
                 }
