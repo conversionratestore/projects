@@ -44,7 +44,9 @@ window.onload = function () {
           }
           .info-size__text-wrapper p {
             margin: 0;
+            font-weight: 550;
           }
+          .info-size__text-wrapper--bigger {padding: 15px !important;}
           p.info-size__text--small {
             margin: 10px 0;
             font-size: 12px;
@@ -110,7 +112,7 @@ window.onload = function () {
                 `
               : `
                   <div class='product-single__info-size'>
-                    <div class='info-size__text-wrapper'>
+                    <div class='info-size__text-wrapper info-size__text-wrapper--bigger'>
                       <p>ONE SIZE ITEM!</p>
                       <p>Model’s height is ${item['model-height-cm']}cm / 
                       ${item['model-height-ft']}</p>
