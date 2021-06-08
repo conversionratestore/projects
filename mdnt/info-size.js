@@ -4,7 +4,7 @@ window.onload = function () {
     `
         <style>
           .product-single__wrapper {
-            margin: 25px 0 15px 0;
+            margin: 20px 0 15px 0;
           }
           .product-single__wrapper h5 {
             padding: 0 5px;
