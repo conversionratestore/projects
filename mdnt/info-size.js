@@ -15,9 +15,7 @@ window.onload = function () {
             letter-spacing: normal;
           }
           .product-single__info-size {
-            padding: 0;
-            background: #C00303;
-            border: 1px solid #C00303;
+            padding: 0;            
             text-align: left;
           }
           .info-size__heading-wrapper {
@@ -42,6 +40,7 @@ window.onload = function () {
             margin: 0;
             padding: 5px 15px;
             background: #FFFFFF;
+            border: 1px solid #C00303;
           }
           .info-size__text-wrapper p {
             margin: 0;
