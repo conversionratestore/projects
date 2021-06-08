@@ -364,7 +364,7 @@ window.onload  = function () {
 
     let productsStored = [];
     let productsStoredTemporarily = [];
-      
+
     function sumTotalPrice() {
         let sum = 0;  
         document.querySelectorAll('.total-price b').forEach((totalPrice) => {
@@ -414,7 +414,7 @@ window.onload  = function () {
         });
     }
     function pushProducts() {
-        if (JSON.parse(localStorage.getItem("productsStored")) != '') {
+        if (localStorage.getItem('productsStored') != '') {
             for (const key in productsStored) {
                 if (productsStoredTemporarily[key].productid == productsStored[key].productid) {
                     productsStored[key].quantity = productsStoredTemporarily[key].quantity;    
