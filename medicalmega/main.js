@@ -647,7 +647,9 @@ window.onload  = function () {
                     console.log('else last ');
                 }
 
+
                 productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                console.log(productsStoredTemporarily);
                 for (const key in productsStoredTemporarily) {
                     fetch('/cart.html', {
                         headers: {
