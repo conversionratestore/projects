@@ -614,14 +614,14 @@ window.onload  = function () {
                 if (localStorage.getItem("productsStoredTemporarily") != '') {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                     console.log(productsStoredTemporarily);
-                    for (const key in productsStoredTemporarily) {
-                        console.log(productsStoredTemporarily[key].product_id)
-                        if (productsStoredTemporarily[key].product_id != undefined) {
-                            console.log(productsStoredTemporarily[key].product_id != '');
-                            console.log(productsStoredTemporarily[key].product_id != undefined);
-                            if (productsStoredTemporarily[key].product_id === productId) {
-                                productsStoredTemporarily[key].quantity = item.nextElementSibling.value;
-                                console.log(productsStoredTemporarily[key].quantity + ' = ' + item.nextElementSibling.value);
+                    for (let i = 0; i < productsStoredTemporarily.length; i++) {
+                        console.log(productsStoredTemporarily[i].product_id)
+                        if (productsStoredTemporarily[i].product_id != undefined) {
+                            console.log(productsStoredTemporarily[i].product_id != '');
+                            console.log(productsStoredTemporarily[i].product_id != undefined);
+                            if (productsStoredTemporarily[i].product_id === productId) {
+                                productsStoredTemporarily[i].quantity = item.nextElementSibling.value;
+                                console.log(productsStoredTemporarily[i].quantity + ' = ' + item.nextElementSibling.value);
                             } else {
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
