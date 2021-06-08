@@ -614,11 +614,16 @@ window.onload  = function () {
 
                 if (localStorage.getItem("productsStoredTemporarily") != '') {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                    console.log('s');
                     for (const key in productsStoredTemporarily) {
+                        console.log('ss');
                         if (productsStoredTemporarily[key].product_id != '' || productsStoredTemporarily[key].product_id != undefined || productsStoredTemporarily[key].product_id != null) {
+                            console.log(' if sss ');
                             if (productsStoredTemporarily[key].product_id == productId) {
                                 productsStoredTemporarily[key].quantity = +item.nextElementSibling.value;
+                                console.log(' if ssss ');
                             } else {
+
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
                                     'quantity': +item.nextElementSibling.value,
@@ -627,6 +632,7 @@ window.onload  = function () {
                                 });
                                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                                 localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                                console.log(' else ssss ');
                             }
                         }
                     }
@@ -639,6 +645,7 @@ window.onload  = function () {
                     });
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                    console.log('else last ');
                 }
 
                 productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
