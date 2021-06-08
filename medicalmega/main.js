@@ -435,9 +435,9 @@ window.onload  = function () {
                             'price': item.querySelector('.unit-price b').innerHTML,
                             'product_variant_id': idVariant,
                         });
+                        localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                        localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                     }
-                    localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                    localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                 }
             } else {
                 productsStoredTemporarily.push({
