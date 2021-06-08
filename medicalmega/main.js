@@ -619,7 +619,7 @@ window.onload  = function () {
                         if (productsStoredTemporarily[key].product_id != undefined) {
                             console.log(productsStoredTemporarily[key].product_id != '');
                             console.log(productsStoredTemporarily[key].product_id != undefined);
-                            if (productsStoredTemporarily[key].product_id == productId) {
+                            if (productsStoredTemporarily[key].product_id === productId) {
                                 productsStoredTemporarily[key].quantity = item.nextElementSibling.value;
                                 console.log(productsStoredTemporarily[key].quantity + ' = ' + item.nextElementSibling.value);
                             } else {
