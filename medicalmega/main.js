@@ -656,6 +656,7 @@ window.onload  = function () {
 
         if (document.querySelector('.by_num span').innerHTML == '0') {
             localStorage.setItem('productsStored', '');
+            localStorage.setItem('productsStoredTemporarily', '');
         }
         if (document.querySelector('.by_num span').innerHTML != '0') {
             let cartItems = JSON.parse(localStorage.getItem("productsStored"));
