@@ -618,7 +618,7 @@ window.onload  = function () {
                     for (const key in productsStoredTemporarily) {
                         console.log(productsStoredTemporarily[key]);
                         if (productsStoredTemporarily[key].product_id != '' || productsStoredTemporarily[key].product_id != undefined || productsStoredTemporarily[key].product_id != null) {
-                            console.log('productsStoredTemporarily[key].product_id != ''');
+                            console.log('productsStoredTemporarily[key].product_id !=');
                             if (productsStoredTemporarily[key].product_id == productId) {
                                 productsStoredTemporarily[key].quantity = +item.nextElementSibling.value;
                                 console.log(productsStoredTemporarily[key].quantity);
