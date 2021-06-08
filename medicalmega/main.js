@@ -677,7 +677,7 @@ window.onload  = function () {
                     </tr>
                 `;
             
-                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
                     document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
                 } 
                 if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
