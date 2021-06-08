@@ -822,5 +822,6 @@ window.onload  = function () {
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
         }
+        localStorage.setItem('productsStoredTemporarily', '');
     }
 };
