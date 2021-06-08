@@ -777,8 +777,7 @@ window.onload  = function () {
         document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('isActive');
         });
-        document.querySelector('.popup .checkout .btn').addEventListener('click', (e) => {
-            e.preventDefault();
+        document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
             pushProducts();
         });
         document.querySelector('.shoppingcart').addEventListener('click', () => {
