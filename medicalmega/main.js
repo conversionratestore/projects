@@ -390,20 +390,6 @@ window.onload  = function () {
             }
             el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
-
-            productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-            for (const key in productsStoredTemporarily) {
-                if (productsStoredTemporarily[key].product_id == el.getAttribute('data-product-id')) {
-                    productsStoredTemporarily[key].quantity = el.querySelector('.quantity').value;
-                } else {
-                    productsStoredTemporarily.push({
-                        'product_id': el.getAttribute('data-product-id'),
-                        'quantity': el.querySelector('.quantity').value,
-                        'price': el.querySelector('.unit-price b').innerHTML,
-                        'product_variant_id': el.getAttribute('data-product-variant-id'),
-                    });
-                }
-            }
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
@@ -427,9 +413,14 @@ window.onload  = function () {
             });
         });
     }
-    function pushProducts() {
+    function post() {
         productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
         for (const key in productsStoredTemporarily) {
+            document.querySelectorAll('.popup__product').forEach(element => {
+                if (element.getAttribute('data-product-id') == productsStoredTemporarily[key].product_id) {
+                    productsStoredTemporarily[key].quantity = element.querySelector('.quantity').value;
+                }
+            });
             fetch('/cart.html', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -438,64 +429,8 @@ window.onload  = function () {
                 body: `product_variant_id=${productsStoredTemporarily[key].product_variant_id}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].product_id}&add_to_cart=variant`
             });
         }
-        // localStorage.setItem('productsStoredTemporarily', '');
-
-        // document.querySelectorAll('.popup__product').forEach((item) => {
-        //     let idVariant = item.dataset.productVariantId,
-        //         quantity = item.querySelector('.quantity').value,
-        //         id = item.dataset.productId;
-
-        //     if (localStorage.getItem("productsStored") != '') {
-        //         let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
-        //         for (const key in locProductsStored) {
-        //             if (locProductsStored[key].product_id != undefined) {
-        //                 if (locProductsStored[key].product_id == id) {
-        //                     locProductsStored[key].quantity = quantity;
-        //                     console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
-        //                 } else {
-        //                     productsStoredTemporarily.push({
-        //                         'product_id': id,
-        //                         'quantity': quantity,
-        //                         'price': item.querySelector('.unit-price b').innerHTML,
-        //                         'product_variant_id': idVariant,
-        //                     });
-        //                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-        //                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-        //                     console.log(productsStoredTemporarily);
-        //                 }
-        //             }
-        //         }
-        //     } else {
-        //         productsStoredTemporarily.push({
-        //             'product_id': id,
-        //             'quantity': quantity,
-        //             'price': item.querySelector('.unit-price b').innerHTML,
-        //             'product_variant_id': idVariant,
-        //         });
-        //         localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-        //         localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-        //         console.log('locProductsStored == null');
-        //     }
-        // });
-        
-        // if (localStorage.getItem("productsStoredTemporarily") != '') {
-        //     let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-        //     for (const key in locProductsStoredTemporarily) {
-        //         if (locProductsStoredTemporarily[key].product_id != undefined) {
-        //             console.log('true');
-        //             fetch('/cart.html', {
-        //                 headers: {
-        //                     'Content-Type': 'application/x-www-form-urlencoded',
-        //                 },
-        //                 method: "POST",
-        //                 body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
-        //             });
-        //         }
-        //     }  
-        // }
     }
+
     if (window.location.pathname == '/') {
         document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
         document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
@@ -721,29 +656,6 @@ window.onload  = function () {
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                 }
-
-                // if (localStorage.getItem("productsStored") != '') {
-                //     let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
-                //     for (const key in locProductsStored) {
-                //         if (locProductsStored[key].product_id != undefined) {
-                //             if (locProductsStored[key].product_id == id) {
-                //                 locProductsStored[key].quantity = quantity;
-                //                 console.log(locProductsStored[key].quantity + 'locProductsStored[key].quantity');
-                //             } else {
-                //                 productsStoredTemporarily.push({
-                //                     'product_id': id,
-                //                     'quantity': quantity,
-                //                     'price': item.querySelector('.unit-price b').innerHTML,
-                //                     'product_variant_id': idVariant,
-                //                 });
-                //                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                //                 localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-                //                 console.log(productsStoredTemporarily);
-                //             }
-                //         }
-                //     }
-                // }
             });  
         });  
 
@@ -816,10 +728,10 @@ window.onload  = function () {
             document.querySelector('.popup').classList.remove('isActive');
         });
         document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-            pushProducts();
+            post();
         });
         document.querySelector('.shoppingcart').addEventListener('click', () => {
-            pushProducts();
+            post();
         });
 
         let container = document.querySelector('.slider-gallery');
