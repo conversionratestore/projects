@@ -442,13 +442,16 @@ window.onload  = function () {
             console.log(locProductsStoredTemporarily[key].product_variant_id);
             console.log(locProductsStoredTemporarily[key].quantity);
             console.log(locProductsStoredTemporarily[key].product_id);
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
-            });
+            if (locProductsStoredTemporarily[key].product_id != undefined) {
+                console.log('true');
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
+                });
+            }
         }  
 
         // if (locProductsStored != '') { 
