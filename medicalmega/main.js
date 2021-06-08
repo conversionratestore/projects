@@ -439,6 +439,15 @@ window.onload  = function () {
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                 }
+            } else {
+                productsStoredTemporarily.push({
+                    'product_id': id,
+                    'quantity': quantity,
+                    'price': item.querySelector('.unit-price b').innerHTML,
+                    'product_variant_id': idVariant,
+                });
+                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
             }
         });
         
