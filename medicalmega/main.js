@@ -434,21 +434,22 @@ window.onload  = function () {
             localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
 
             console.log(localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily)));
-            console.log(localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily)));
-
-            for (const key in productsStoredTemporarily) {
-                console.log(productsStoredTemporarily[key].productvariantid);
-                console.log(productsStoredTemporarily[key].quantity);
-                console.log(productsStoredTemporarily[key].productid);
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `product_variant_id=${productsStoredTemporarily[key].productvariantid}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].productid}&add_to_cart=variant`
-                });
-            }   
+            console.log(localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily))); 
         });
+        
+        let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+        for (const key in locProductsStoredTemporarily) {
+            console.log(locProductsStoredTemporarily[key].product_variant_id);
+            console.log(locProductsStoredTemporarily[key].quantity);
+            console.log(locProductsStoredTemporarily[key].product_id);
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `product_variant_id=${locProductsStoredTemporarily[key].product_variant_id}&quantity=${locProductsStoredTemporarily[key].quantity}&product_id=${locProductsStoredTemporarily[key].product_id}&add_to_cart=variant`
+            });
+        }  
 
         // if (locProductsStored != '') { 
         //     localStorage.setItem('locProductsStored', JSON.stringify(productsStoredTemporarily));
