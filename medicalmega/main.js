@@ -416,11 +416,6 @@ window.onload  = function () {
     function post() {
         productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
         for (const key in productsStoredTemporarily) {
-            document.querySelectorAll('.popup__product').forEach(element => {
-                if (element.getAttribute('data-product-id') == productsStoredTemporarily[key].product_id) {
-                    productsStoredTemporarily[key].quantity = element.querySelector('.quantity').value;
-                }
-            });
             fetch('/cart.html', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
