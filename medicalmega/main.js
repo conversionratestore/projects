@@ -621,7 +621,7 @@ window.onload  = function () {
                             } else {
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
-                                    'quantity': valueP,
+                                    'quantity': document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value,
                                     'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
                                     'product_variant_id': dataProductVariantId,
                                 });
@@ -633,7 +633,7 @@ window.onload  = function () {
                 } else {
                     productsStoredTemporarily.push({
                         'product_id': productId,
-                        'quantity': valueP,
+                        'quantity': document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value,
                         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
                         'product_variant_id': dataProductVariantId,
                     });
