@@ -617,7 +617,7 @@ window.onload  = function () {
                     for (const key in productsStoredTemporarily) {
                         if (productsStoredTemporarily[key].product_id != '') {
                             if (productsStoredTemporarily[key].product_id == productId) {
-                                productsStoredTemporarily[key].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
+                                productsStoredTemporarily[key].quantity = valueP;
                             } else {
                                 productsStoredTemporarily.push({
                                     'product_id': productId,
@@ -633,7 +633,7 @@ window.onload  = function () {
                 } else {
                     productsStoredTemporarily.push({
                         'product_id': productId,
-                        'quantity': document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value,
+                        'quantity': valueP,
                         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
                         'product_variant_id': dataProductVariantId,
                     });
