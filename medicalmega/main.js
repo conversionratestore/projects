@@ -414,7 +414,7 @@ window.onload  = function () {
         });
     }
     function pushProducts() {
-        if (productsStored != '') {
+        if (JSON.parse(localStorage.getItem("productsStored")) != '') {
             for (const key in productsStored) {
                 if (productsStoredTemporarily[key].productid == productsStored[key].productid) {
                     productsStored[key].quantity = productsStoredTemporarily[key].quantity;    
@@ -434,7 +434,6 @@ window.onload  = function () {
                     });
                 }
             }
-        
         } else {
             document.querySelectorAll('.popup__product').forEach((item) => {
                 let idVariant = item.dataset.productVariantId,
@@ -447,7 +446,7 @@ window.onload  = function () {
                     'price': item.querySelector('.unit-price b').innerHTML,
                     'product_variant_id': idVariant,
                 });
-                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
