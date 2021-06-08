@@ -417,31 +417,33 @@ window.onload  = function () {
         localStorage.setItem('productsStoredTemporarily', '');
         console.log(localStorage.setItem('productsStoredTemporarily', ''));
 
-        // let locProductsStored = localStorage.getItem('productsStored');
+        let locProductsStored = JSON.parse(localStorage.getItem("productsStored"));
         // console.log(locProductsStored);
         document.querySelectorAll('.popup__product').forEach((item) => {
             let idVariant = item.dataset.productVariantId,
                 quantity = item.querySelector('.quantity').value,
                 id = item.dataset.productId;
 
-            productsStoredTemporarily.push({
-                'product_id': id,
-                'quantity': quantity,
-                'price': item.querySelector('.unit-price b').innerHTML,
-                'product_variant_id': idVariant,
-            });
-            localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-            localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
-
-            console.log(localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily)));
-            console.log(localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily))); 
+            if (locProductsStored) {
+                for (const key in locProductsStored) {
+                    if (locProductsStored[key].product_id == id) {
+                        locProductsStored[key].quantity = quantity;
+                    } else {
+                        productsStoredTemporarily.push({
+                            'product_id': id,
+                            'quantity': quantity,
+                            'price': item.querySelector('.unit-price b').innerHTML,
+                            'product_variant_id': idVariant,
+                        });
+                    }
+                    localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                    localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
+                }
+            }
         });
         
         let locProductsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
         for (const key in locProductsStoredTemporarily) {
-            console.log(locProductsStoredTemporarily[key].product_variant_id);
-            console.log(locProductsStoredTemporarily[key].quantity);
-            console.log(locProductsStoredTemporarily[key].product_id);
             if (locProductsStoredTemporarily[key].product_id != undefined) {
                 console.log('true');
                 fetch('/cart.html', {
