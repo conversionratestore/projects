@@ -197,6 +197,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
+                display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -235,6 +236,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
+                padding-left: 28px;
                 display: flex;}
             .flex-center {
                 display: flex;
@@ -586,7 +588,7 @@ window.onload  = function () {
                         <td width="22%" align="left">
                             <div class="quantity-row">
                                 <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP}">
+                                <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP} readonly">
                                 <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                             </div>
                         </td>
