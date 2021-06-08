@@ -650,13 +650,13 @@ window.onload  = function () {
 
                 productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                 console.log(productsStoredTemporarily);
-                for (const key in productsStoredTemporarily) {
+                for (let i = 0; i < productsStoredTemporarily.length; i++) {
                     fetch('/cart.html', {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         method: "POST",
-                        body: `product_variant_id=${productsStoredTemporarily[key].product_variant_id}&quantity=${productsStoredTemporarily[key].quantity}&product_id=${productsStoredTemporarily[key].product_id}&add_to_cart=variant`
+                        body: `product_variant_id=${productsStoredTemporarily[i].product_variant_id}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].product_id}&add_to_cart=variant`
                     });
                 }
             });  
