@@ -102,8 +102,6 @@ let mut = new MutationObserver(function (muts) {
                         var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                         document.querySelector('.b-free').insertAdjacentHTML('beforeend', doc.querySelector('.elementor-element-46bb9b5').innerHTML);
                         if (document.querySelector('.b-free .elementor-button')) {
-                            // document.querySelector('.b-free .elementor-form').setAttribute('method','');
-                            // document.querySelector('.b-free .elementor-button').setAttribute('type','button');
                             document.querySelector('.b-free .elementor-button').addEventListener('click', (e) => {
                                 e.preventDefault();
                                 let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
