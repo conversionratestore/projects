@@ -394,15 +394,29 @@ window.onload  = function () {
             el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
 
-            console.log('s');
-            productsStoredUpdate.push({
-                'product_id': el.getAttribute('data-product-id'),
-                'quantity': el.querySelector('.quantity').value,
-                'price': el.querySelector('.unit-price b').innerHTML,
-                'product_variant_id': el.getAttribute('data-product-variant-id'),
-            });
-            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-            console.log(productsStoredUpdate);
+            if (productsStoredUpdate != '') {
+                for (let i = 0; i < productsStoredUpdate.length; i++) {
+                    if (el.getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
+                        productsStoredUpdate[i].quantity = el.querySelector('.quantity').value
+                    } else {
+                        productsStoredUpdate.push({
+                            'product_id': el.getAttribute('data-product-id'),
+                            'quantity': el.querySelector('.quantity').value,
+                            'price': el.querySelector('.unit-price b').innerHTML,
+                            'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        });
+                        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+                    }
+                }
+            } else {
+                productsStoredUpdate.push({
+                    'product_id': el.getAttribute('data-product-id'),
+                    'quantity': el.querySelector('.quantity').value,
+                    'price': el.querySelector('.unit-price b').innerHTML,
+                    'product_variant_id': el.getAttribute('data-product-variant-id'),
+                });
+                localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            }
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
