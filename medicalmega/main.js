@@ -774,7 +774,7 @@ window.onload  = function () {
 
     document.querySelector('.popup').addEventListener('change', () => {
         document.querySelectorAll('.popup__product').forEach(el => {
-            if (localStorage.getItem('productsStoredUpdate') != null) {
+            if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
                     if (el.getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
@@ -801,7 +801,6 @@ window.onload  = function () {
                 localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                 console.log(' else last');
             }
-        });
-       
+        }); 
     });
 };
