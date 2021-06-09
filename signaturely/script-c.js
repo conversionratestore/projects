@@ -1,7 +1,7 @@
 let mut = new MutationObserver(function (muts) {
     mut.disconnect();
   
-    if (window.location.pathname == '/online-signature/type/' || window.location.pathname == '/online-signature/draw/') {
+    if (window.location.pathname.includes('online-signature/type') || window.location.pathname.includes('online-signature/draw')) {
         if(document.querySelector('.download-popup--download')) {
             document.querySelector('.download-popup--download .download-button').addEventListener('click', () => {
                 window.location = 'https://signaturely.com/pricing/';
@@ -13,7 +13,8 @@ let mut = new MutationObserver(function (muts) {
         });
     }
    
-    if (window.location.pathname == '/pricing/') {
+    if (window.location.pathname.includes('pricing')) {
+       
         mut.disconnect();
         if (document.querySelector('.elementor-inner')) {
             let style = `
@@ -106,19 +107,20 @@ let mut = new MutationObserver(function (muts) {
             })()
 
             document.querySelector(".elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title").innerHTML = `Need more?`;
-            document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>');
-     
-            if (document.querySelector('.b-free .elementor-button')) {
-                document.querySelector('.b-free .elementor-form').setAttribute('method','');
-                document.querySelector('.b-free .elementor-button').setAttribute('type','button');
-                document.querySelector('.b-free .elementor-button').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
-                    window.location = `https://app.signaturely.com/signup/?email=${val}`;
-                });
-            }
+            document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>'); 
+        }
+        if (document.querySelector('.b-free .elementor-button')) {
+            console.log('b')
+            document.querySelector('.b-free .elementor-form').setAttribute('method','');
+            document.querySelector('.b-free .elementor-button').setAttribute('type','button');
+            document.querySelector('.b-free .elementor-button').addEventListener('click', (e) => {
+                e.preventDefault();
+                let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
+                window.location = `https://app.signaturely.com/signup/?email=${val}`;
+            });
         }
     }
+  
 
 });
 
