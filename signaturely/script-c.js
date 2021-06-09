@@ -7,8 +7,8 @@ let mut = new MutationObserver(function (muts) {
         });
     }
     if (window.location.pathname == '/pricing/') {
-        mut.disconnect();
         if (document.querySelector('.elementor-inner')) {
+            mut.disconnect();
             let style = `
             <style>
                 .b-free .elementor-form {
