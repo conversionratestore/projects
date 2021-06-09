@@ -779,7 +779,7 @@ window.onload  = function () {
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
                     if (el.getAttribute('data-product-id') == productsStoredUpdate[i].product_id) {
                         productsStoredUpdate[i].push({
-                            'quantity': el.querySelector('.quantity').value;
+                            'quantity': el.querySelector('.quantity').value,
                         });
                         console.log(productsStoredUpdate[i].quantity + ' = ' + el.querySelector('.quantity').value + ' пренадлежит Id ' + productsStoredUpdate[i].product_id);
                     } else {
