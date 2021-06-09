@@ -1,14 +1,21 @@
 let mut = new MutationObserver(function (muts) {
     mut.disconnect();
   
-    if(document.querySelector('.download-popup--download')) {
-        document.querySelector('.download-popup--download .download-button').addEventListener('click', () => {
-            window.location = 'https://signaturely.com/pricing/';
+    if (window.location.pathname == '/online-signature/type/' || window.location.pathname == '/online-signature/draw/') {
+        if(document.querySelector('.download-popup--download')) {
+            document.querySelector('.download-popup--download .download-button').addEventListener('click', () => {
+                window.location = 'https://signaturely.com/pricing/';
+            });
+        }    
+        mut.observe(document, {
+            childList: true,
+            subtree: true
         });
     }
+   
     if (window.location.pathname == '/pricing/') {
+        mut.disconnect();
         if (document.querySelector('.elementor-inner')) {
-
             let style = `
             <style>
                 .b-free .elementor-form {
@@ -100,7 +107,6 @@ let mut = new MutationObserver(function (muts) {
 
             document.querySelector(".elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title").innerHTML = `Need more?`;
             document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>');
- 
         }
     }
 
