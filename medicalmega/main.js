@@ -769,17 +769,21 @@ window.onload  = function () {
             }
         }
         localStorage.setItem('productsStoredTemporarily', '');
-
     }
 
     document.querySelector('.popup .body').addEventListener('change', () => {
+        console.log('changed');
         document.querySelectorAll('.popup__product .quantity').forEach(el => {
+            console.log('forEach');
             if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
+                console.log(productsStoredUpdate + ' localStorage');
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
+                    console.log(productsStoredUpdate[i] + ' перебор localStorage');
                     if (el.closest('.popup__product').getAttribute('data-product-id') == productsStoredUpdate[i].product_id) {
                         productsStoredUpdate[i].quantity = el.value;
-                        console.log(productsStoredUpdate[i].quantity + ' = ' + el.value + ' пренадлежит Id ' + productsStoredUpdate[i].product_id);
+                        console.log(productsStoredUpdate[i].quantity + ' = ' + el.value);
+                        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                     } else {
                         productsStoredUpdate.push({
                             'product_id': el.closest('.popup__product').getAttribute('data-product-id'),
