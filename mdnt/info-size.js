@@ -31,7 +31,7 @@ window.onload = function () {
               text-transform: uppercase;
             }
             .info-size__heading-wrapper {
-              padding: 13px 15px;
+              padding: 13px 16px;
               margin: 0;
             }
             .info-size__text-wrapper {
