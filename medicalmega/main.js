@@ -772,9 +772,8 @@ window.onload  = function () {
 
     }
 
-
-    document.querySelectorAll('.popup__product').forEach((el) => {
-        el.querySelector('.quantity-row').addEventListener('change', () => {
+    document.querySelector('.popup').addEventListener('change', () => {
+        document.querySelectorAll('.popup__product').forEach(el => {
             if (productsStoredUpdate != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
@@ -803,5 +802,6 @@ window.onload  = function () {
                 console.log(' else last');
             }
         });
+       
     });
 };
