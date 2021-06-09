@@ -101,6 +101,16 @@ let mut = new MutationObserver(function (muts) {
                     if (this.readyState == 4 && this.status == 200) {
                         var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                         document.querySelector('.b-free').insertAdjacentHTML('beforeend', doc.querySelector('.elementor-element-46bb9b5').innerHTML);
+                        if (document.querySelector('.b-free .elementor-button')) {
+                            console.log('b')
+                            document.querySelector('.b-free .elementor-form').setAttribute('method','');
+                            document.querySelector('.b-free .elementor-button').setAttribute('type','button');
+                            document.querySelector('.b-free .elementor-button').addEventListener('click', (e) => {
+                                e.preventDefault();
+                                let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
+                                window.location = `https://app.signaturely.com/signup/?email=${val}`;
+                            });
+                        }
                     }
                 }
                 http.send(null);
@@ -108,17 +118,10 @@ let mut = new MutationObserver(function (muts) {
 
             document.querySelector(".elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title").innerHTML = `Need more?`;
             document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>'); 
-        }
-        if (document.querySelector('.b-free .elementor-button')) {
-            console.log('b')
-            document.querySelector('.b-free .elementor-form').setAttribute('method','');
-            document.querySelector('.b-free .elementor-button').setAttribute('type','button');
-            document.querySelector('.b-free .elementor-button').addEventListener('click', (e) => {
-                e.preventDefault();
-                let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
-                window.location = `https://app.signaturely.com/signup/?email=${val}`;
-            });
-        }
+            
+           
+       }
+     
     }
   
 
