@@ -107,20 +107,15 @@ let mut = new MutationObserver(function (muts) {
 
             document.querySelector(".elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title").innerHTML = `Need more?`;
             document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>');
-
- 
-        }
-        if (document.querySelector('.b-free .e-form__buttons')) {
+            document.querySelector('.b-free .elementor-form').setAttribute('method','');
             document.querySelector('.b-free .e-form__buttons').addEventListener('click', (e) => {
                 e.preventDefault();
                 let val = document.querySelector('.b-free input.elementor-field').value.replace('@','%40');
                 window.location = `https://app.signaturely.com/signup/?email=${val}`;
             });
-            mut.observe(document, {
-                childList: true,
-                subtree: true
-            });
+ 
         }
+
     }
 
 });
