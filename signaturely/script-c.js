@@ -8,7 +8,7 @@ let mut = new MutationObserver(function (muts) {
     }
     if (window.location.pathname == '/pricing/') {
         if (document.querySelector('.elementor-inner')) {
-            mut.disconnect();
+
             let style = `
             <style>
                 .b-free .elementor-form {
@@ -103,10 +103,7 @@ let mut = new MutationObserver(function (muts) {
  
         }
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
+
 });
 
 mut.observe(document, {
