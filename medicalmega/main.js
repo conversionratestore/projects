@@ -774,7 +774,7 @@ window.onload  = function () {
 
     document.querySelector('.popup').addEventListener('change', () => {
         document.querySelectorAll('.popup__product').forEach(el => {
-            if (productsStoredUpdate != '') {
+            if (localStorage.getItem('productsStoredUpdate') != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
                     if (el.getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
@@ -802,6 +802,5 @@ window.onload  = function () {
                 console.log(' else last');
             }
         });
-       
     });
 };
