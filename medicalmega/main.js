@@ -616,15 +616,15 @@ window.onload  = function () {
                 if (localStorage.getItem("productsStoredTemporarily") != '') {
                     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                     for (let i = 0; i < productsStoredTemporarily.length; i++) {
-                        if (productsStoredTemporarily[i].productid != undefined) {
-                            if (productsStoredTemporarily[i].productid === productId) {
+                        if (productsStoredTemporarily[i].product_id != undefined) {
+                            if (productsStoredTemporarily[i].product_id === productId) {
                                 productsStoredTemporarily[i].quantity = item.nextElementSibling.value;
                             } else {
                                 productsStoredTemporarily.push({
-                                    'productid': productId,
+                                    'product_id': productId,
                                     'quantity': item.nextElementSibling.value,
                                     'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                                    'variationid': dataProductVariantId,
+                                    'product_variant_id': dataProductVariantId,
                                 });
                                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                                 localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
@@ -633,10 +633,10 @@ window.onload  = function () {
                     }
                 } else {
                     productsStoredTemporarily.push({
-                        'productid': productId,
+                        'product_id': productId,
                         'quantity': item.nextElementSibling.value,
                         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                        'variationid': dataProductVariantId,
+                        'product_variant_id': dataProductVariantId,
                     });
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
                     localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
@@ -648,7 +648,7 @@ window.onload  = function () {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         method: "POST",
-                        body: `product_variant_id=${productsStoredTemporarily[i].variationid}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].productid}&add_to_cart=variant`
+                        body: `product_variant_id=${productsStoredTemporarily[i].product_variant_id}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].product_id}&add_to_cart=variant`
                     }).then(()=>{
                         localStorage.setItem("productsStoredTemporarily",'');
                         productsStoredTemporarily = []
@@ -665,7 +665,7 @@ window.onload  = function () {
             let cartItems = JSON.parse(localStorage.getItem("productsStored"));
             if (cartItems) {
                 for (let i = 0; i < cartItems.length; i++) {
-                    document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].productid}']`).forEach((item) => { 
+                    document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
                         let srcImgProduct = item.querySelector('img').src,
                             altImgProduct = item.querySelector('img').alt,
                             titleProduct = item.querySelectorAll('a')[1].innerHTML,
@@ -703,17 +703,17 @@ window.onload  = function () {
                                 <td width="17%" class="total-price" align="left">$ <b></b></td>
                             </tr> `;   
 
-                        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}']`)) {
+                        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
                             document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
                         } 
-                        if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}']`)) {
-                            document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].productid}']`).forEach((el) => {
+                        if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                            document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
                                 el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
                                 quantityFun(el);
                             });
                         }
 
-                        document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .unit-price b`).innerHTML)).toFixed(2);
+                        document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
                         sumTotalPrice();
                     });   
                 }
@@ -758,10 +758,10 @@ window.onload  = function () {
         for (const key in productsStored) {
             if (productsStored[key].productid != undefined) {
                 productsStored.push({
-                    'productid': productsStored[key].productid,
+                    'product_id': productsStored[key].productid,
                     'quantity': productsStored[key].quantity,
                     'price': productsStored[key].price,
-                    'variationid': productsStored[key].variationid,
+                    'product_variant_id': productsStored[key].variationid,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
