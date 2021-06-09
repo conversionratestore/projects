@@ -1,5 +1,5 @@
-// let mut = new MutationObserver(function (muts) {
-//     mut.disconnect();
+let mut = new MutationObserver(function (muts) {
+    mut.disconnect();
   
     if(document.querySelector('.download-popup--download')) {
         document.querySelector('.download-popup--download .download-button').addEventListener('click', () => {
@@ -99,16 +99,16 @@
 
             document.querySelector(".elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title").innerHTML = `Need more?`;
             document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>');
-            mut.disconnect();
+ 
         }
     }
-//     mut.observe(document, {
-//         childList: true,
-//         subtree: true
-//     });
-// });
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+});
 
-// mut.observe(document, {
-//     childList: true,
-//     subtree: true
-// });
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
