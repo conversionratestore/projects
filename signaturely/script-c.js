@@ -1,5 +1,5 @@
-let mut = new MutationObserver(function (muts) {
-    mut.disconnect();
+// let mut = new MutationObserver(function (muts) {
+//     mut.disconnect();
   
     if(document.querySelector('.download-popup--download')) {
         document.querySelector('.download-popup--download .download-button').addEventListener('click', () => {
@@ -102,13 +102,13 @@ let mut = new MutationObserver(function (muts) {
             mut.disconnect();
         }
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-});
+//     mut.observe(document, {
+//         childList: true,
+//         subtree: true
+//     });
+// });
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+// mut.observe(document, {
+//     childList: true,
+//     subtree: true
+// });
