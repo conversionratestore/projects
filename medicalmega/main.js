@@ -392,6 +392,14 @@ window.onload  = function () {
             }
             el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
+            
+            productsStoredUpdate.push({
+                'product_id': el.getAttribute('data-product-id'),
+                'quantity': el.querySelector('.quantity').value,
+                'price': el.querySelector('.unit-price b').innerHTML,
+                'product_variant_id': el.getAttribute('data-product-variant-id'),
+            });
+            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
