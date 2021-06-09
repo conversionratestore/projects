@@ -399,7 +399,7 @@ window.onload  = function () {
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
                     if (el.getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
                         productsStoredUpdate[i].quantity = el.querySelector('.quantity').value;
-                        console.log(productsStoredUpdate[i].quantity + ' quantity productsStoredUpdate');
+                        console.log(productsStoredUpdate[i].quantity + ' = ' + el.querySelector('.quantity').value + ' quantity productsStoredUpdate');
                     } else {
                         productsStoredUpdate.push({
                             'product_id': el.getAttribute('data-product-id'),
@@ -419,7 +419,7 @@ window.onload  = function () {
                     'product_variant_id': el.getAttribute('data-product-variant-id'),
                 });
                 localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-                console.log(productsStoredUpdate + ' else last');
+                console.log(' else last');
             }
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
