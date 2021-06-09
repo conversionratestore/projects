@@ -109,7 +109,7 @@ let mut = new MutationObserver(function (muts) {
             document.querySelector('.elementor-83 .elementor-element.elementor-element-62dcef9 .elementor-heading-title').insertAdjacentHTML('afterend', '<p class="title-span">Check other options</p>');
 
             if (document.querySelector('.b-free .e-form__buttons')) {
-                document.querySelector('.b-free .e-form__buttons').addEventListener('submit', (e) => {
+                document.querySelector('.b-free .e-form__buttons').addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location = `https://app.signaturely.com/signup/${document.querySelector('.b-free input.elementor-field').value}`;
                 });
