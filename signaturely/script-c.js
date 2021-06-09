@@ -7,6 +7,7 @@ let mut = new MutationObserver(function (muts) {
         });
     }
     if (window.location.pathname == '/pricing/') {
+        mut.disconnect();
         if (document.querySelector('.elementor-inner')) {
             let style = `
             <style>
