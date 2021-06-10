@@ -376,7 +376,7 @@ setTimeout(function () {
 `;
 
     document.querySelector('.product-info-main-wrapper').insertAdjacentElement('afterend', review);
-
+setTimeout(function () {
     // slick slider properties
     $('.single-item').slick({
         dots: true,
@@ -384,7 +384,7 @@ setTimeout(function () {
         prevArrow: '.prev-arrow',
         nextArrow: '.next-arrow',
     });
-
+}, 2000)
     // quote block
     if (currentPropList.review.length) {
         const quote = document.createElement('div');
@@ -428,4 +428,4 @@ setTimeout(function () {
         a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     hj('trigger', 'add_press_blocks');
-}, 1500);
+}, 500);
