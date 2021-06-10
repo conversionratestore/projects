@@ -2,7 +2,6 @@ setTimeout(function () {
     document.head.insertAdjacentHTML(
         'beforeend',
         `
-        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
         <style>           
             .review {
@@ -60,7 +59,7 @@ setTimeout(function () {
                 font-style: normal;
             }
             .quote {
-                background: #FFFFFF;
+                background: #FFFFFF;f
                 padding: 35px 35px 27px 35px;
             }
             .quote__box {
@@ -143,11 +142,16 @@ setTimeout(function () {
         </style>  
     `,
     );
-    
-    let link1 = document.createElement('script');
-    link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js';
-    link1.rel = 'stylesheet'
-    document.head.appendChild(link1); 
+
+    let link1 = document.createElement('link');
+    link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    link1.rel = 'stylesheet';
+    document.head.appendChild(link1);
+
+    let script22 = document.createElement('script');
+    script22.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    script22.async = false;
+    document.head.appendChild(script22);
 
     const local = window.location.pathname.split('/')[1];
 
@@ -376,15 +380,13 @@ setTimeout(function () {
 `;
 
     document.querySelector('.product-info-main-wrapper').insertAdjacentElement('afterend', review);
-setTimeout(function () {
-    // slick slider properties
-    $('.single-item').slick({
-        dots: true,
-        arrows: true,
-        prevArrow: '.prev-arrow',
-        nextArrow: '.next-arrow',
+
+    var slider = tns({
+        container: '.single-item',
+        items: 1,
+        autoplay: false,
     });
-}, 1500)
+
     // quote block
     if (currentPropList.review.length) {
         const quote = document.createElement('div');
@@ -428,4 +430,4 @@ setTimeout(function () {
         a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     hj('trigger', 'add_press_blocks');
-}, 500);
+}, 1000);
