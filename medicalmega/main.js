@@ -770,6 +770,7 @@ window.onload  = function () {
     }
    
     if (window.location.pathname == '/cart.html') {
+        let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
         for (const key in justunoCartItems) {
             if (justunoCartItems[key].productid != undefined) {
                 productsStored.push({
@@ -780,12 +781,10 @@ window.onload  = function () {
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
+            if (justunoCartItems[key].productid == locProductsUpdated[key].productid) {
+                justunoCartItems[key].quantity = locProductsUpdated[key].quantity;
+            }
         }
         localStorage.setItem('productsStoredTemporarily', '');
-
-        JSON.parse(localStorage.getItem('productsStoredUpdate'));
     }
-
-   
- 
 };
