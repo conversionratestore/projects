@@ -792,7 +792,7 @@ window.onload  = function () {
                             }).then(()=>{
                                 localStorage.setItem("productsStoredUpdate",'');
                                 productsStoredUpdate = [];
-                                window.location.reload();
+                                // window.location.reload();
                             });
                         } else {
                             
