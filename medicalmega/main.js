@@ -778,11 +778,11 @@ window.onload  = function () {
             if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 console.log(productsStoredUpdate + ' localStorage');
-                for (const key of productsStoredUpdate) {
+                for (const key in productsStoredUpdate) {
                     console.log(productsStoredUpdate[key] + ' перебор localStorage');
-                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[productid]) {
-                        productsStoredUpdate[quantity] = el.value;
-                        console.log(productsStoredUpdate[quantity] + ' = ' + el.value);
+                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[key].productid) {
+                        productsStoredUpdate[key].quantity = el.value;
+                        console.log(productsStoredUpdate[key].quantity + ' = ' + el.value);
                         localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                     } else {
                         productsStoredUpdate.push({
