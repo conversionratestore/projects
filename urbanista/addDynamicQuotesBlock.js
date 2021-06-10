@@ -1,3 +1,13 @@
+let link1 = document.createElement('link');
+link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+link1.rel = 'stylesheet';
+document.head.appendChild(link1);
+
+let script22 = document.createElement('script');
+script22.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+script22.async = false;
+document.head.appendChild(script22);
+
 setTimeout(function () {
     document.head.insertAdjacentHTML(
         'beforeend',
@@ -142,16 +152,6 @@ setTimeout(function () {
         </style>  
     `,
     );
-
-    let link1 = document.createElement('link');
-    link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-    link1.rel = 'stylesheet';
-    document.head.appendChild(link1);
-
-    let script22 = document.createElement('script');
-    script22.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-    script22.async = false;
-    document.head.appendChild(script22);
 
     const local = window.location.pathname.split('/')[1];
 
