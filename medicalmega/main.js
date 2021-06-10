@@ -757,31 +757,11 @@ window.onload  = function () {
         function quantityChenged(el){
             productsStoredUpdate.unshift({
                 'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                'quantity': el.value,
+                'quantity': el.closest('.popup__product').querySelector('.quantity').value,
                 'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
                 'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
             });
-            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate)); 
-
-            if (localStorage.getItem("productsStoredUpdate") != '') {
-                let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                for (let i = 0; i < locProductsUpdated.length; i++) {
-                    if (locProductsUpdated[i].quantity > el.value) {
-                        locProductsUpdated[i].quantity = locProductsUpdated[i].quantity - el.value;
-                        fetch('/cart.html', {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            method: "POST",
-                            body: `product_variant_id=${locProductsUpdated[i].variationid}&quantity=${locProductsUpdated[i].quantity}&product_id=${locProductsUpdated[i].productid}&add_to_cart=variant`
-                        }).then(()=>{
-                            localStorage.setItem("productsStoredUpdate",'');
-                            productsStoredUpdate = [];
-                        });
-                    }
-                }
-            }
-           
+            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));         
         }
         document.querySelector('.popup .body').addEventListener('change', () => {
             productsStoredUpdate = [];
@@ -798,42 +778,40 @@ window.onload  = function () {
     if (window.location.pathname == '/cart.html') {
         for (const keyJ in justunoCartItems) {
             if (justunoCartItems[keyJ].productid != undefined) {
-                // if (localStorage.getItem("productsStoredUpdate") != '') {
-                //     let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-
-                   
-                //     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-                //         if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
-                //             justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
-                //             fetch('/cart.html', {
-                //                 headers: {
-                //                     'Content-Type': 'application/x-www-form-urlencoded',
-                //                 },
-                //                 method: "POST",
-                //                 body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
-                //             }).then(()=>{
-                //                 localStorage.setItem("productsStoredUpdate",'');
-                //                 productsStoredUpdate = [];
-                //                 window.location.reload();
-                //             });
-                //         } 
-                //         else {
-                //             // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
-                //             fetch('/cart.html', {
-                //                 headers: {
-                //                     'Content-Type': 'application/x-www-form-urlencoded',
-                //                 },
-                //                 method: "POST",
-                //                 body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
-                //             }).then(()=>{
-                //                 localStorage.setItem("productsStoredUpdate",'');
-                //                 productsStoredUpdate = [];
-                //                 window.location.reload();
-                //             });
+                if (localStorage.getItem("productsStoredUpdate") != '') {
+                    let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
+                    if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
+                        if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
+                            justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
+                            fetch('/cart.html', {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: "POST",
+                                body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
+                            }).then(()=>{
+                                localStorage.setItem("productsStoredUpdate",'');
+                                productsStoredUpdate = [];
+                                window.location.reload();
+                            });
+                        } 
+                        else {
+                            // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
+                            fetch('/cart.html', {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: "POST",
+                                body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
+                            }).then(()=>{
+                                localStorage.setItem("productsStoredUpdate",'');
+                                productsStoredUpdate = [];
+                                window.location.reload();
+                            });
                         
-                //         }
-                //     }
-                // }
+                        }
+                    }
+                }
      
                 productsStored.push({
                     'product_id': justunoCartItems[keyJ].productid,
