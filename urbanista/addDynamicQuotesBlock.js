@@ -69,7 +69,7 @@ setTimeout(function () {
                 font-style: normal;
             }
             .quote {
-                background: #FFFFFF;f
+                background: #FFFFFF;
                 padding: 35px 35px 27px 35px;
             }
             .quote__box {
