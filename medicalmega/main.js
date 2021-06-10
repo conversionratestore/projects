@@ -381,6 +381,8 @@ window.onload  = function () {
           
     //     }
     function quantityFun(el) {
+        productsStoredUpdate = [];
+        localStorage.setItem('productsStoredUpdate', '');
         if (el.querySelector('.quantity').value < 2) {
             el.querySelector('.quantity').value = 1;
             el.querySelector('.quantity-btn_minus').disabled = true;
