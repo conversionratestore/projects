@@ -1,4 +1,4 @@
-window.onload = function () {
+setTimeout(function () {
     document.head.insertAdjacentHTML(
         'beforeend',
         `
@@ -428,4 +428,4 @@ window.onload = function () {
         a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     hj('trigger', 'add_press_blocks');
-};
+}, 800);
