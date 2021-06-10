@@ -811,7 +811,7 @@ window.onload  = function () {
                         //     });
                         
                         // }
-                    }
+                    // }
                 }
      
                 productsStored.push({
