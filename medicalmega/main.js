@@ -411,7 +411,7 @@ window.onload  = function () {
                 if (productsStoredUpdate[key].productid != undefined) {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                        let locProductsStored = JSON.parse(localStorage.getItem('locProductsStored'));
+                        let locProductsStored = JSON.parse(localStorage.getItem('productsStored'));
                         if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid ) {
                             if (locProductsUpdated[key].quantity > locProductsStored) {
                                 locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - locProductsStored[key].quantity;
