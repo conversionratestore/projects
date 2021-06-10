@@ -143,11 +143,11 @@ setTimeout(function () {
         </style>  
     `,
     );
-
-    document.body.insertAdjacentHTML(
-        'beforeEnd',
-        `<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>`,
-    );
+    
+    let link1 = document.createElement('link');
+    link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js';
+    link1.rel = 'stylesheet'
+    document.head.appendChild(link1); 
 
     const local = window.location.pathname.split('/')[1];
 
@@ -384,7 +384,7 @@ setTimeout(function () {
         prevArrow: '.prev-arrow',
         nextArrow: '.next-arrow',
     });
-}, 4000)
+}, 1500)
     // quote block
     if (currentPropList.review.length) {
         const quote = document.createElement('div');
