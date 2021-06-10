@@ -764,14 +764,10 @@ window.onload  = function () {
         document.querySelector('.popup .body').addEventListener('change', () => {
             productsStoredUpdate = [];
             localStorage.setItem('productsStoredUpdate', '');
-            document.querySelectorAll('.popup__product .quantity').forEach(el => {
-                quantityChenged(el);
-            });
+            document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
         });
         document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
             el.addEventListener('click', () => {
-                productsStoredUpdate = [];
-                localStorage.setItem('productsStoredUpdate', '');
                 quantityChenged(el)
             });
         });
@@ -784,17 +780,19 @@ window.onload  = function () {
                     let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
                         justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
-                        fetch('/cart.html', {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            method: "POST",
-                            body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
-                        }).then(()=>{
-                            localStorage.setItem("productsStoredUpdate",'');
-                            productsStoredUpdate = [];
-                            window.location.reload();
-                        })
+                        if (justunoCartItems[keyJ].quantity > 0) {
+                            fetch('/cart.html', {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: "POST",
+                                body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
+                            }).then(()=>{
+                                localStorage.setItem("productsStoredUpdate",'');
+                                productsStoredUpdate = [];
+                                window.location.reload();
+                            })
+                        }
                     }
                 }
      
