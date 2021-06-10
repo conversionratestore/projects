@@ -792,7 +792,7 @@ window.onload  = function () {
                                     'Content-Type': 'application/x-www-form-urlencoded',
                                 },
                                 method: "POST",
-                                body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&update_to_cart=variant`
+                                body: `&product_quantity=${justunoCartItems[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart&option_id=${justunoCartItems[keyJ].variationid}`
                             }).then(()=>{
                                 localStorage.setItem("productsStoredUpdate",'');
                                 productsStoredUpdate = [];
