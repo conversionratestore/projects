@@ -786,10 +786,10 @@ window.onload  = function () {
                         localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                     } else {
                         productsStoredUpdate.push({
-                            'product_id': el.closest('.popup__product').getAttribute('data-product-id'),
+                            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
                             'quantity': el.value,
                             'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-                            'product_variant_id': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+                            'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
                         });
                         localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                         console.log(productsStoredUpdate + ' else 1');
