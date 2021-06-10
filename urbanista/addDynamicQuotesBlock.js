@@ -13,7 +13,10 @@ setTimeout(function () {
         'beforeend',
         `
 
-        <style>           
+        <style>     
+            .tns-nav {
+                margin-top: 15px;
+            }      
             .tns-nav button {
                 width: 10px;
                 height: 10px;
@@ -25,7 +28,7 @@ setTimeout(function () {
             }
             .tns-nav button.tns-nav-active {
                 background-color: #878787;
-            }
+            }            
             .review {
                 background: #F2F2F2;
                 padding: 20px 35px;
@@ -44,15 +47,6 @@ setTimeout(function () {
             }
             .review__images {
                 mix-blend-mode: darken;
-            }
-            .slick-track {
-                display: flex;
-            }
-            .slick-initialized .slick-slide {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                height: auto;
             }
             .single-item > div {
                 background: #FFFFFF;
@@ -110,40 +104,6 @@ setTimeout(function () {
             }
             .slider_block {
                 position: relative;
-            }
-            .slick-slider {
-                margin-top: 10px;
-            }
-            .slick-slide {
-                padding: 25px;
-            }
-            .slick-dots {
-                list-style-type: none;
-                display: flex !important;
-                justify-content: center;
-                align-items: center;
-                margin: 0;
-                padding: 15px 0 5px 0;
-            }
-            .slick-dots li {
-                margin: 0 5px;
-            }
-            .slick-dots button {
-                display: block;
-                padding: 0;			
-                text-indent: -9999px;
-                height: 10px;
-                width: 10px;
-                background-color: #DCDCDC !important;
-                border-color: #DCDCDC !important;            
-                border-radius: 6px;
-            }
-            .slick-dots .slick-active button{
-                background-color: #737373 !important;
-                border-color: #737373 !important;
-            }
-            .slick-prev.slick-arrow, .slick-next.slick-arrow {
-                display: none !important;
             }
             .prev-arrow {
                 transform: rotate(180deg);
