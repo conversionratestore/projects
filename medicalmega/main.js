@@ -755,7 +755,6 @@ window.onload  = function () {
         });
 
         function quantityChenged(el){
-            
             productsStoredUpdate.unshift({
                 'productid': el.closest('.popup__product').getAttribute('data-product-id'),
                 'quantity': el.closest('.popup__product').querySelector('.quantity').value,
@@ -872,5 +871,6 @@ window.onload  = function () {
             }
         }
         localStorage.setItem('productsStoredTemporarily', '');
+        localStorage.setItem('productsStoredUpdate', '');   
     }
 };
