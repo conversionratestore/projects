@@ -388,6 +388,7 @@ setTimeout(function () {
             autoplay: false,
             prevButton: '.prev-arrow',
             nextButton: '.next-arrow',
+            navPosition: 'bottom',
         });
     }, 1000);
 
