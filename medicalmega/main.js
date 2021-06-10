@@ -783,6 +783,7 @@ window.onload  = function () {
             }
             if (justunoCartItems[key].productid == locProductsUpdated[key].productid) {
                 justunoCartItems[key].quantity = locProductsUpdated[key].quantity;
+                console.log(justunoCartItems[key].quantity + ' = ' + locProductsUpdated[key].quantity)
             }
         }
         localStorage.setItem('productsStoredTemporarily', '');
