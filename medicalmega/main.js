@@ -778,11 +778,11 @@ window.onload  = function () {
             if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
                 productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 console.log(productsStoredUpdate + ' localStorage');
-                for (let i = 0; i < productsStoredUpdate.length; i++) {
-                    console.log(productsStoredUpdate[i] + ' перебор localStorage');
-                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
-                        productsStoredUpdate[i].quantity = el.value;
-                        console.log(productsStoredUpdate[i].quantity + ' = ' + el.value);
+                for (const key of productsStoredUpdate) {
+                    console.log(productsStoredUpdate[key] + ' перебор localStorage');
+                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[key].product_id) {
+                        productsStoredUpdate[key].quantity = el.value;
+                        console.log(productsStoredUpdate[key].quantity + ' = ' + el.value);
                         localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
                     } else {
                         productsStoredUpdate.push({
@@ -795,6 +795,9 @@ window.onload  = function () {
                         console.log(productsStoredUpdate + ' else 1');
                     }
                 }
+                // for (let i = 0; i < productsStoredUpdate.length; i++) {
+                 
+                // }
             } else {
                 productsStoredUpdate.push({
                     'product_id': el.closest('.popup__product').getAttribute('data-product-id'),
