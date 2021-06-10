@@ -12,7 +12,6 @@ setTimeout(function () {
     document.head.insertAdjacentHTML(
         'beforeend',
         `
-
         <style>     
             .tns-nav {
                 margin-top: 15px;
@@ -382,6 +381,26 @@ setTimeout(function () {
 
     // document.querySelector('.product-info-main-wrapper').style.height =
     //     document.querySelector('.product-info-main-wrapper').offsetHeight - 190 + 'px';
+
+    document.querySelector('.prev-arrow').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: 'event-to-ga',
+            eventCategory: 'Exp —  PDP add press blocks',
+            eventAction: 'Click on arrow in slider',
+            eventLabel: 'left',
+        });
+    });
+
+    document.querySelector('.next-arrow').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: 'event-to-ga',
+            eventCategory: 'Exp —  PDP add press blocks',
+            eventAction: 'Click on arrow in slider',
+            eventLabel: 'right',
+        });
+    });
 
     setTimeout(function () {
         document.querySelector('.single-item ').firstChild.remove();
