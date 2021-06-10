@@ -780,7 +780,7 @@ window.onload  = function () {
                 console.log(productsStoredUpdate + ' localStorage');
                 for (let i = 0; i < productsStoredUpdate.length; i++) {
                     console.log(productsStoredUpdate[i] + ' перебор localStorage');
-                    if (el.closest('.popup__product').getAttribute('data-product-id') == productsStoredUpdate[i].product_id) {
+                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[i].product_id) {
                         productsStoredUpdate[i].quantity = el.value;
                         console.log(productsStoredUpdate[i].quantity + ' = ' + el.value);
                         localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
