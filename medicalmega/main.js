@@ -433,7 +433,7 @@ window.onload  = function () {
                                         'Content-Type': 'application/x-www-form-urlencoded',
                                     },
                                     method: "POST",
-                                    body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
+                                    body: `cp_id=888811&option_id=${locProductsUpdated[key].variationid}&product_quantity=${locProductsUpdated[key].quantity}&product_type=variant&update_to_cart=update_to_cart`
                                 }).then(()=>{
                                     localStorage.setItem("productsStoredUpdate",'');
                                     productsStoredUpdate = [];
