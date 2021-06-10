@@ -144,7 +144,7 @@ setTimeout(function () {
     `,
     );
     
-    let link1 = document.createElement('link');
+    let link1 = document.createElement('script');
     link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js';
     link1.rel = 'stylesheet'
     document.head.appendChild(link1); 
