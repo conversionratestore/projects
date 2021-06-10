@@ -783,7 +783,7 @@ window.onload  = function () {
 
                    
                     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-                        if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
+                        // if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
                             justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
                             fetch('/cart.html', {
                                 headers: {
@@ -796,7 +796,7 @@ window.onload  = function () {
                                 productsStoredUpdate = [];
                                 window.location.reload();
                             });
-                        } 
+                        // } 
                         // else {
                             
                         //     justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
