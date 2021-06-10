@@ -384,7 +384,7 @@ setTimeout(function () {
         prevArrow: '.prev-arrow',
         nextArrow: '.next-arrow',
     });
-}, 2000)
+}, 4000)
     // quote block
     if (currentPropList.review.length) {
         const quote = document.createElement('div');
