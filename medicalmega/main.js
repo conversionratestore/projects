@@ -788,7 +788,7 @@ window.onload  = function () {
                             justunoCartItems[keyJ].quantity = 0;
                         }
                     }
-                    // if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
+                    if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
                     //     if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
                     //         justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
                             fetch('/cart.html', {
@@ -811,7 +811,7 @@ window.onload  = function () {
                         //     });
                         
                         // }
-                    // }
+                    }
                 }
      
                 productsStored.push({
