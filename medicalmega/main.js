@@ -387,8 +387,8 @@ window.onload  = function () {
         } else {
             el.querySelector('.quantity-btn_minus').disabled = false;
         }
-        let val = el.querySelector('.quantity').value;
         el.querySelector('.quantity-row').addEventListener('change', () => {
+            let val = el.querySelector('.quantity').value;
             if (el.querySelector('.quantity').value < 2) {
                 el.querySelector('.quantity').value = 1;
                 el.querySelector('.quantity-btn_minus').disabled = true;
