@@ -785,7 +785,7 @@ window.onload  = function () {
                         }).then(()=>{
                             localStorage.setItem("productsStoredUpdate",'');
                             productsStoredUpdate = [];
-                            window.onload;
+                            window.location.reload();
                         })
                     }
                 }
@@ -798,7 +798,6 @@ window.onload  = function () {
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
-         
         }
         localStorage.setItem('productsStoredTemporarily', '');
     }
