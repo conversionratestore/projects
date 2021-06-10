@@ -770,14 +770,13 @@ window.onload  = function () {
     }
    
     if (window.location.pathname == '/cart.html') {
-        productsStored = justunoCartItems;
-        for (const key in productsStored) {
-            if (productsStored[key].productid != undefined) {
+        for (const key in justunoCartItems) {
+            if (justunoCartItems[key].productid != undefined) {
                 productsStored.push({
-                    'productid': productsStored[key].productid,
-                    'quantity': productsStored[key].quantity,
-                    'price': productsStored[key].price,
-                    'variationid': productsStored[key].variationid,
+                    'product_id': justunoCartItems[key].productid,
+                    'quantity': justunoCartItems[key].quantity,
+                    'price': justunoCartItems[key].price,
+                    'product_variant_id': justunoCartItems[key].variationid,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
@@ -785,9 +784,6 @@ window.onload  = function () {
         localStorage.setItem('productsStoredTemporarily', '');
 
         JSON.parse(localStorage.getItem('productsStoredUpdate'));
-
-
-
     }
 
    
