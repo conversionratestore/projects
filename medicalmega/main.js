@@ -197,6 +197,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
+                display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -235,6 +236,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
+                padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
@@ -766,11 +768,11 @@ window.onload  = function () {
             localStorage.setItem('productsStoredUpdate', '');
             document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
         });
-        document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
-            el.addEventListener('click', () => {
-                quantityChenged(el)
-            });
-        });
+        // document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
+        //     el.addEventListener('click', () => {
+        //         quantityChenged(el)
+        //     });
+        // });
     }
    
     if (window.location.pathname == '/cart.html') {
@@ -779,8 +781,10 @@ window.onload  = function () {
                 if (localStorage.getItem("productsStoredUpdate") != '') {
                     let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-                        justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
-                        if (justunoCartItems[keyJ].quantity > 0) {
+                        // if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
+                        //     justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
+                        // } else {
+                            justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
                             fetch('/cart.html', {
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -792,7 +796,7 @@ window.onload  = function () {
                                 productsStoredUpdate = [];
                                 window.location.reload();
                             })
-                        }
+                        // }
                     }
                 }
      
