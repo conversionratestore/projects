@@ -780,11 +780,13 @@ window.onload  = function () {
                     'product_variant_id': justunoCartItems[key].variationid,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                
+                if (justunoCartItems[key].productid == locProductsUpdated[key].productid) {
+                    justunoCartItems[key].quantity = locProductsUpdated[key].quantity;
+                    console.log(justunoCartItems[key].quantity + ' = ' + locProductsUpdated[key].quantity)
+                }
             }
-            if (justunoCartItems[key].productid == locProductsUpdated[key].productid) {
-                justunoCartItems[key].quantity = locProductsUpdated[key].quantity;
-                console.log(justunoCartItems[key].quantity + ' = ' + locProductsUpdated[key].quantity)
-            }
+         
         }
         localStorage.setItem('productsStoredTemporarily', '');
     }
