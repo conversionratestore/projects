@@ -768,7 +768,7 @@ window.onload  = function () {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                         let locProductsStored = JSON.parse(localStorage.getItem('locProductsStored'));
-                        if (el.closest('.popup__product')[key].getAttribute('data-product-id') == locProductsUpdated[keyJ].productid ) {
+                        if (el.closest('.popup__product').getAttribute('data-product-id') == locProductsUpdated[keyJ].productid ) {
                             if (locProductsUpdated[key].quantity > locProductsStored) {
                                 justunoCartItems[key].quantity = locProductsUpdated[key].quantity - locProductsStored[key].quantity;
                                 fetch('/cart.html', {
