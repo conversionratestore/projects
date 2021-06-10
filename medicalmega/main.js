@@ -387,6 +387,7 @@ window.onload  = function () {
         } else {
             el.querySelector('.quantity-btn_minus').disabled = false;
         }
+        let val = el.querySelector('.quantity').value;
         el.querySelector('.quantity-row').addEventListener('change', () => {
             if (el.querySelector('.quantity').value < 2) {
                 el.querySelector('.quantity').value = 1;
@@ -409,10 +410,9 @@ window.onload  = function () {
                 if (productsStoredUpdate[key].productid != undefined) {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                        let locProductsStored = JSON.parse(localStorage.getItem('productsStored'));
                         if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid ) {
-                            if (locProductsUpdated[key].quantity > locProductsStored) {
-                                locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - el.querySelector('.quantity').vallue;
+                            if (locProductsUpdated[key].quantity > val) {
+                                locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - val;
                                 fetch('/cart.html', {
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded',
