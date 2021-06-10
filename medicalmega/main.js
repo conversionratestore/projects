@@ -752,18 +752,24 @@ window.onload  = function () {
             }, 25);
         });
 
-        document.querySelector('.popup .body').addEventListener('change', () => {
+        function quantityChenged(){
             productsStoredUpdate = [];
             localStorage.setItem('productsStoredUpdate', '');
-            document.querySelectorAll('.popup__product .quantity').forEach(el => {
-                productsStoredUpdate.unshift({
-                    'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                    'quantity': el.value,
-                    'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-                    'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-                });
-                localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            productsStoredUpdate.unshift({
+                'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+                'quantity': el.value,
+                'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+                'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
             });
+            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate)); 
+        }
+        document.querySelector('.popup .body').addEventListener('change', () => {
+            document.querySelectorAll('.popup__product .quantity').forEach(el => {
+                quantityChenged();
+            });
+        });
+        document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
+            el.addEventListener('click', quantityChenged);
         });
     }
    
