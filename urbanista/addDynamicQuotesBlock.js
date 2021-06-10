@@ -381,11 +381,15 @@ setTimeout(function () {
 
     document.querySelector('.product-info-main-wrapper').insertAdjacentElement('afterend', review);
 
-    var slider = tns({
-        container: '.single-item',
-        items: 1,
-        autoplay: false,
-    });
+    setTimeout(function () {
+        var slider = tns({
+            container: '.single-item',
+            items: 1,
+            autoplay: false,
+            prevButton: '.prev-arrow',
+            nextButton: '.next-arrow',
+        });
+    }, 1000);
 
     // quote block
     if (currentPropList.review.length) {
