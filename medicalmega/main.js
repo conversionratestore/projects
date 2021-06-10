@@ -799,7 +799,7 @@ window.onload  = function () {
                             justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
                             document.querySelectorAll(`.product-quantity-form input[name='option_id'][value='${justunoCartItems[keyJ].variationid}']`).forEach(el => {
                                 el.closest('.product-quantity-form').querySelector('.product-quantity').value = justunoCartItems[keyJ].quantity;
-                                el.closest('.product-quantity-form').querySelector('.input-update').click();
+                                // el.closest('.product-quantity-form').querySelector('.input-update').click();
                             });
                         
                         }
