@@ -411,8 +411,11 @@ window.onload  = function () {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                         if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid ) {
+                             console.log('id == id');
                             if (locProductsUpdated[key].quantity > val) {
+                                console.log(val);
                                 locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - val;
+                                 console.log(locProductsUpdated[key].quantity);
                                 fetch('/cart.html', {
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded',
