@@ -800,14 +800,6 @@ window.onload  = function () {
                             }
                         }
                     }
-        
-                    productsStored.push({
-                        'product_id': justunoCartItems[keyJ].productid,
-                        'quantity': justunoCartItems[keyJ].quantity,
-                        'price': justunoCartItems[keyJ].price,
-                        'product_variant_id': justunoCartItems[keyJ].variationid,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
                 }
             }      
         }
