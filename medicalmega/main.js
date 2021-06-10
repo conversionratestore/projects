@@ -773,7 +773,9 @@ window.onload  = function () {
 
     document.querySelector('.popup .body').addEventListener('change', () => {
         console.log('changed');
+        productsStoredUpdate = [];
         localStorage.setItem('productsStoredUpdate', '');
+        
         document.querySelectorAll('.popup__product .quantity').forEach(el => {
             console.log('forEach');
             productsStoredUpdate.push({
