@@ -752,24 +752,28 @@ window.onload  = function () {
             }, 25);
         });
 
-        function quantityChenged(){
-            productsStoredUpdate = [];
-            localStorage.setItem('productsStoredUpdate', '');
+        function quantityChenged(el){
             productsStoredUpdate.unshift({
                 'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                'quantity': el.value,
+                'quantity': el.closest('.popup__product').querySelector('.quantity').value,
                 'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
                 'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
             });
             localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate)); 
         }
         document.querySelector('.popup .body').addEventListener('change', () => {
+            productsStoredUpdate = [];
+            localStorage.setItem('productsStoredUpdate', '');
             document.querySelectorAll('.popup__product .quantity').forEach(el => {
-                quantityChenged();
+                quantityChenged(el);
             });
         });
         document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
-            el.addEventListener('click', quantityChenged);
+            el.addEventListener('click', () => {
+                productsStoredUpdate = [];
+                localStorage.setItem('productsStoredUpdate', '');
+                quantityChenged(el)
+            });
         });
     }
    
