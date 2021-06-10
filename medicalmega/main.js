@@ -804,7 +804,7 @@ window.onload  = function () {
                                     'Content-Type': 'application/x-www-form-urlencoded',
                                 },
                                 method: "POST",
-                                body: `option_id=${locProductsUpdated[keyJ].variationid}&quantity=${locProductsUpdated[keyJ].quantity}&product_id=${locProductsUpdated[keyJ].productid}&product_type=variant&update_to_cart=update_to_cart`
+                                body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
                             }).then(()=>{
                                 localStorage.setItem("productsStoredUpdate",'');
                                 productsStoredUpdate = [];
