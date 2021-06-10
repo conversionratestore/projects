@@ -410,37 +410,38 @@ window.onload  = function () {
                 if (productsStoredUpdate[key].productid != undefined) {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                        if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid ) {
-                             console.log('id == id');
-                            if (locProductsUpdated[key].quantity > val) {
-                                console.log(val);
-                                locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - val;
-                                 console.log(locProductsUpdated[key].quantity);
-                                fetch('/cart.html', {
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: "POST",
-                                    body: `product_variant_id=${locProductsUpdated[key].variationid}&quantity=${locProductsUpdated[key].quantity}&product_id=${locProductsUpdated[key].productid}&add_to_cart=variant`
-                                }).then(()=>{
-                                    localStorage.setItem("productsStoredUpdate",'');
-                                    productsStoredUpdate = [];
-                                });
-                            } 
-                            else {
-                                // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
-                                fetch('/cart.html', {
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded',
-                                    },
-                                    method: "POST",
-                                    body: `cp_id=888811&option_id=${locProductsUpdated[key].variationid}&product_quantity=${locProductsUpdated[key].quantity}&product_type=variant&update_to_cart=update_to_cart`
-                                }).then(()=>{
-                                    localStorage.setItem("productsStoredUpdate",'');
-                                    productsStoredUpdate = [];
-                                });
+                         console.log(locProductsUpdated);
+                        if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid) {
+                            console.log('id == id');
+                            // if (locProductsUpdated[key].quantity > val) {
+                            //     console.log(val);
+                            //     locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - val;
+                            //     console.log(locProductsUpdated[key].quantity);
+                            //     fetch('/cart.html', {
+                            //         headers: {
+                            //             'Content-Type': 'application/x-www-form-urlencoded',
+                            //         },
+                            //         method: "POST",
+                            //         body: `product_variant_id=${locProductsUpdated[key].variationid}&quantity=${locProductsUpdated[key].quantity}&product_id=${locProductsUpdated[key].productid}&add_to_cart=variant`
+                            //     }).then(()=>{
+                            //         localStorage.setItem("productsStoredUpdate",'');
+                            //         productsStoredUpdate = [];
+                            //     });
+                            // } 
+                            // else {
+                            //     // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
+                            //     fetch('/cart.html', {
+                            //         headers: {
+                            //             'Content-Type': 'application/x-www-form-urlencoded',
+                            //         },
+                            //         method: "POST",
+                            //         body: `cp_id=888811&option_id=${locProductsUpdated[key].variationid}&product_quantity=${locProductsUpdated[key].quantity}&product_type=variant&update_to_cart=update_to_cart`
+                            //     }).then(()=>{
+                            //         localStorage.setItem("productsStoredUpdate",'');
+                            //         productsStoredUpdate = [];
+                            //     });
                             
-                            }
+                            // }
                         }
                     }
                 }
