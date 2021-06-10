@@ -14,6 +14,17 @@ setTimeout(function () {
         `
 
         <style>           
+            .tns-nav button {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #DCDCDC;
+                margin: 0px 10px;
+                padding: 0;
+            }
+            .tns-nav button.tns-nav-active {
+                background-color: #878787;
+            }
             .review {
                 background: #F2F2F2;
                 padding: 20px 35px;
