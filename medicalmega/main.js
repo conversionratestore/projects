@@ -772,7 +772,7 @@ window.onload  = function () {
     if (window.location.pathname == '/cart.html') {
         for (const keyJ in justunoCartItems) {
             if (justunoCartItems[keyJ].productid != undefined) {
-                if (localStorage.getItem("productsStoredTemporarily") != '') {
+                if (localStorage.getItem("productsStoredUpdate") != '') {
                     let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
      
