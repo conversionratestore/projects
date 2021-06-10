@@ -377,9 +377,7 @@ window.onload  = function () {
             });
         });  
     }
-    // function quantityChenged(el){
-          
-    //     }
+
     function quantityFun(el) {
         if (el.querySelector('.quantity').value < 2) {
             el.querySelector('.quantity').value = 1;
@@ -396,7 +394,6 @@ window.onload  = function () {
             }
             el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
             sumTotalPrice();
-   
         });
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
@@ -758,12 +755,20 @@ window.onload  = function () {
             }, 25);
         });
 
-
-        // document.querySelector('.popup .body').addEventListener('change', () => {
-        //     productsStoredUpdate = [];
-        //     localStorage.setItem('productsStoredUpdate', '');
-        //     document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
-        // });
+        function quantityChenged(el){
+            productsStoredUpdate.unshift({
+                'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+                'quantity': el.closest('.popup__product').querySelector('.quantity').value,
+                'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+                'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+            });
+            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));   
+        }
+        document.querySelector('.popup .body').addEventListener('change', () => {
+            productsStoredUpdate = [];
+            localStorage.setItem('productsStoredUpdate', '');
+            document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
+        });
         // document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
         //     el.addEventListener('click', () => {
         //         quantityChenged(el)
