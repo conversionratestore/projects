@@ -46,7 +46,6 @@ document.body.insertAdjacentHTML('afterbegin', `
     }
 </style>`);
 
-document.getElementById('prd_desc').removeAttribute('checked');
 $('#prd_desc').removeAttr('checked');
 
 document.querySelector('.tabs').insertAdjacentHTML('afterend',`<div id="category"><h3 class="h2">Shop by Category</h3><div id="c-slider"></div></div>`);
