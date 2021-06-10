@@ -758,7 +758,7 @@ window.onload  = function () {
             productsStoredUpdate = [];
             localStorage.setItem('productsStoredUpdate', '');
             document.querySelectorAll('.popup__product .quantity').forEach(el => {
-                productsStoredUpdate.push({
+                productsStoredUpdate.unshift({
                     'productid': el.closest('.popup__product').getAttribute('data-product-id'),
                     'quantity': el.value,
                     'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
@@ -771,19 +771,19 @@ window.onload  = function () {
    
     if (window.location.pathname == '/cart.html') {
         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-        for (const key in justunoCartItems) {
-            if (justunoCartItems[key].productid != undefined) {
+        for (const keyJ in justunoCartItems) {
+            if (justunoCartItems[keyJ].productid != undefined) {
                 productsStored.push({
-                    'product_id': justunoCartItems[key].productid,
-                    'quantity': justunoCartItems[key].quantity,
-                    'price': justunoCartItems[key].price,
-                    'product_variant_id': justunoCartItems[key].variationid,
+                    'product_id': justunoCartItems[keyJ].productid,
+                    'quantity': justunoCartItems[keyJ].quantity,
+                    'price': justunoCartItems[keyJ].price,
+                    'product_variant_id': justunoCartItems[keyJ].variationid,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                
-                if (justunoCartItems[key].productid == locProductsUpdated[key].productid) {
-                    justunoCartItems[key].quantity = locProductsUpdated[key].quantity;
-                    console.log(justunoCartItems[key].quantity + ' = ' + locProductsUpdated[key].quantity)
+              
+                if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid) {
+                    justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity;
+                    console.log(justunoCartItems[keyJ].quantity + ' = ' + locProductsUpdated[keyJ].quantity)
                 }
             }
          
