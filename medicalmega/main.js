@@ -412,7 +412,7 @@ window.onload  = function () {
                     if (localStorage.getItem("productsStoredUpdate") != '') {
                         let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                         let locProductsStored = JSON.parse(localStorage.getItem('locProductsStored'));
-                        if (el.getAttribute('data-product-id') == locProductsUpdated[keyJ].productid ) {
+                        if (el.getAttribute('data-product-id') == locProductsUpdated[key].productid ) {
                             if (locProductsUpdated[key].quantity > locProductsStored) {
                                 locProductsUpdated[key].quantity = locProductsUpdated[key].quantity - locProductsStored[key].quantity;
                                 fetch('/cart.html', {
