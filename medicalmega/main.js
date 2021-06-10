@@ -757,7 +757,7 @@ window.onload  = function () {
         function quantityChenged(el){
             productsStoredUpdate.unshift({
                 'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                'quantity': el.closest('.popup__product').querySelector('.quantity').value,
+                'quantity': el.value,
                 'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
                 'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
             });
@@ -766,8 +766,8 @@ window.onload  = function () {
             if (localStorage.getItem("productsStoredUpdate") != '') {
                 let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                 for (let i = 0; i < locProductsUpdated.length; i++) {
-                    if (locProductsUpdated[i].quantity > el.closest('.popup__product').querySelector('.quantity').value) {
-                        locProductsUpdated[i].quantity = locProductsUpdated[i].quantity - el.closest('.popup__product').querySelector('.quantity').value;
+                    if (locProductsUpdated[i].quantity > el.value) {
+                        locProductsUpdated[i].quantity = locProductsUpdated[i].quantity - el.value;
                         fetch('/cart.html', {
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
