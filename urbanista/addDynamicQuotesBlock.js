@@ -428,4 +428,4 @@ setTimeout(function () {
         a.appendChild(r);
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     hj('trigger', 'add_press_blocks');
-}, 800);
+}, 1500);
