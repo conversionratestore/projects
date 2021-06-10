@@ -775,7 +775,6 @@ window.onload  = function () {
                 if (localStorage.getItem("productsStoredUpdate") != '') {
                     let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
                     if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-     
                         justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
                         fetch('/cart.html', {
                             headers: {
@@ -786,6 +785,7 @@ window.onload  = function () {
                         }).then(()=>{
                             localStorage.setItem("productsStoredUpdate",'');
                             productsStoredUpdate = [];
+                            window.onload;
                         })
                     }
                 }
