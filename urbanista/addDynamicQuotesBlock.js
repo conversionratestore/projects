@@ -19,8 +19,9 @@ setTimeout(function () {
                 height: 10px;
                 border-radius: 50%;
                 background-color: #DCDCDC;
-                margin: 0px 10px;
+                margin: 0px 5px;
                 padding: 0;
+                border: none;
             }
             .tns-nav button.tns-nav-active {
                 background-color: #878787;
@@ -55,7 +56,7 @@ setTimeout(function () {
             }
             .single-item > div {
                 background: #FFFFFF;
-                // padding: 25px;
+                padding: 25px;
                 letter-spacing: 0.2px;
             }
             .single-item > div p {
@@ -400,6 +401,7 @@ setTimeout(function () {
             prevButton: '.prev-arrow',
             nextButton: '.next-arrow',
             navPosition: 'bottom',
+            autoHeight: true,
         });
     }, 1000);
 
