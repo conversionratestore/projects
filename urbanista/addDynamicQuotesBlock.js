@@ -60,7 +60,7 @@ window.onload = function () {
                 font-style: normal;
             }
             .quote {
-                background: #FFFFFF;
+                background: #FFFFFF;f
                 padding: 35px 35px 27px 35px;
             }
             .quote__box {
@@ -406,4 +406,26 @@ window.onload = function () {
     setTimeout(function () {
         document.querySelector('.single-item ').firstChild.remove();
     }, 500);
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        event: 'event-to-ga',
+        eventCategory: 'Exp —  PDP add press blocks',
+        eventAction: 'loaded',
+    });
+
+    (function (h, o, t, j, a, r) {
+        h.hj =
+            h.hj ||
+            function () {
+                (h.hj.q = h.hj.q || []).push(arguments);
+            };
+        h._hjSettings = { hjid: 2067583, hjsv: 6 };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script');
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    hj('trigger', 'add_press_blocks');
 };
