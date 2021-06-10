@@ -773,41 +773,50 @@ window.onload  = function () {
 
     document.querySelector('.popup .body').addEventListener('change', () => {
         console.log('changed');
+        localStorage.setItem('productsStoredUpdate', '');
         document.querySelectorAll('.popup__product .quantity').forEach(el => {
             console.log('forEach');
-            if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
-                productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                console.log(productsStoredUpdate + ' localStorage');
-                for (const key in productsStoredUpdate) {
-                    console.log(productsStoredUpdate[key] + ' перебор localStorage');
-                    if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[key].productid) {
-                        productsStoredUpdate[key].quantity = el.value;
-                        console.log(productsStoredUpdate[key].quantity + ' = ' + el.value);
-                        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-                    } else {
-                        productsStoredUpdate.push({
-                            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                            'quantity': el.value,
-                            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-                            'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-                        });
-                        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-                        console.log(productsStoredUpdate + ' else 1');
-                    }
-                }
-                // for (let i = 0; i < productsStoredUpdate.length; i++) {
+            productsStoredUpdate.push({
+                'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+                'quantity': el.value,
+                'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+                'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+            });
+            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            console.log(productsStoredUpdate + ' else 1');
+            // if (localStorage.getItem('productsStoredUpdate') != null && localStorage.getItem('productsStoredUpdate') != '') {
+            //     productsStoredUpdate = JSON.parse(localStorage.getItem('productsStoredUpdate'));
+            //     console.log(productsStoredUpdate + ' localStorage');
+            //     for (const key in productsStoredUpdate) {
+            //         console.log(productsStoredUpdate[key] + ' перебор localStorage');
+            //         if (el.closest('.popup__product').getAttribute('data-product-id') === productsStoredUpdate[key].productid) {
+            //             productsStoredUpdate[key].quantity = el.value;
+            //             console.log(productsStoredUpdate[key].quantity + ' = ' + el.value);
+            //             localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            //         } else {
+            //             productsStoredUpdate.push({
+            //                 'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+            //                 'quantity': el.value,
+            //                 'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+            //                 'productvariantid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+            //             });
+            //             localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            //             console.log(productsStoredUpdate + ' else 1');
+            //         }
+            //     }
+            //     // for (let i = 0; i < productsStoredUpdate.length; i++) {
                  
-                // }
-            } else {
-                productsStoredUpdate.push({
-                    'product_id': el.closest('.popup__product').getAttribute('data-product-id'),
-                    'quantity': el.value,
-                    'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-                    'product_variant_id': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-                });
-                localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-                console.log(' else last');
-            }
+            //     // }
+            // } else {
+            //     productsStoredUpdate.push({
+            //         'product_id': el.closest('.popup__product').getAttribute('data-product-id'),
+            //         'quantity': el.value,
+            //         'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+            //         'product_variant_id': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+            //     });
+            //     localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+            //     console.log(' else last');
+            // }
         });
     });
 };
