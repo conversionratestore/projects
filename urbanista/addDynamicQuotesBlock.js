@@ -363,7 +363,7 @@ setTimeout(function () {
             navPosition: 'bottom',
             autoHeight: true,
         });
-    }, 1000);
+    }, 1200);
 
     // quote block
     if (currentPropList.review.length) {
