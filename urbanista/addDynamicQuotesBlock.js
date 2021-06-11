@@ -13,7 +13,6 @@ setTimeout(function () {
         'beforeend',
         `
         <style>     
-            .product-info-main-wrapper {margin-bottom: 50px;}
             .product-view-badge {display: none;}
             .tns-nav {
                 margin-top: 15px;
@@ -394,6 +393,10 @@ setTimeout(function () {
 
         document.querySelector('.review').insertAdjacentElement('afterend', quote);
     }
+
+    document.querySelector('.trigger').addEventListener('click', function() {
+        document.querySelector('.product-info-main-wrapper').style.marginBottom = '100px'
+    })
 
     document.querySelector('.prev-arrow').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || [];
