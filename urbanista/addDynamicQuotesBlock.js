@@ -350,7 +350,7 @@ setTimeout(function () {
         <img class='next-arrow' src='https://conversionratestore.github.io/projects/urbanista/images/arrow-next.svg'/>
     </div>
 `;
-    const block = document.querySelector('.product-view-cms') || document.querySelector('.product-info-main-wrapper')
+    const block = document.querySelector('.product-view-cms .padded') || document.querySelector('.product-info-main-wrapper')
     block.insertAdjacentElement('afterend', review);
 
     setTimeout(function () {
