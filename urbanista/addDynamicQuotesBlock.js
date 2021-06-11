@@ -13,6 +13,7 @@ setTimeout(function () {
         'beforeend',
         `
         <style>     
+            .product-view-badge {display: none;}
             .tns-nav {
                 margin-top: 15px;
             }      
