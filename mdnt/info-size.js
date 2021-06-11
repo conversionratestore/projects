@@ -121,30 +121,15 @@ window.onload = function () {
         );
     }
 
-    document
-        .querySelectorAll('.size-guide-link')[0]
-        .addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                event: 'event-to-ga',
-                eventCategory: 'Exp: True_to_size_guide',
-                eventAction: 'Size Guide',
-            });
-        });
-
-    if (document.querySelector('._ks_text')) {
-        document
-            .querySelector('._ks_text')
-            .addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    event: 'event-to-ga',
-                    eventCategory: 'Exp: True_to_size_guide',
-                    eventAction: 'How to take measurements',
-                });
-            });
-    }
-
+document.querySelector('._ks_text').addEventListener('click', function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: True_to_size_guide',
+        'eventAction': 'Size Guide'
+    });
+});   
+    
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         event: 'event-to-ga',
