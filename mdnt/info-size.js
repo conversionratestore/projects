@@ -67,13 +67,9 @@ window.onload = function () {
         `,
     );
 
-    fetch(
-        `https://shopify.blaster.ai/api/item-model-info?handle=${
-            location.href.split('products/')[1].split('?')[0]
-        }`,
-    )
-        .then((response) => response.json())
-        .then((data) => {
+    fetch(`https://shopify.blaster.ai/api/item-model-info?handle=${location.href.split('products/')[1].split('?')[0]}`)
+        .then(response => response.json())
+        .then(data => {
             template(data);
         });
 
@@ -94,14 +90,8 @@ window.onload = function () {
                         </div>
                         <div class='info-size__text-wrapper'>
                             <p>Model wears size: ${item['item-size']} 
-                            ${
-                                item['item-length-cm']
-                                    ? `&amp; ${item['item-length-cm']} cm`
-                                    : ''
-                            }</p>
-                            <p>Model’s height is ${
-                                item['model-height-cm']
-                            }cm / 
+                            ${item['item-length-cm'] ? `&amp; ${item['item-length-cm']} cm` : ''}</p>
+                            <p>Model’s height is ${item['model-height-cm']}cm / 
                             ${item['model-height-ft']}</p>
                             <p class='info-size__text--small'>*Fit recommendation: <span>${
                                 item['in-between-sizes']
@@ -121,15 +111,15 @@ window.onload = function () {
         );
     }
 
-document.querySelector('._ks_text').addEventListener('click', function () {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: True_to_size_guide',
-        'eventAction': 'Size Guide'
+    document.querySelector('._ks_text').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: 'event-to-ga',
+            eventCategory: 'Exp: True_to_size_guide',
+            eventAction: 'Size Guide',
+        });
     });
-});   
-    
+
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         event: 'event-to-ga',
@@ -149,12 +139,7 @@ document.querySelector('._ks_text').addEventListener('click', function () {
         r.async = 1;
         r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
         a.appendChild(r);
-    })(
-        window,
-        document,
-        'https://static.hotjar.com/c/hotjar-',
-        '.js?sv=',
-    );
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     window.hj =
         window.hj ||
         function () {
