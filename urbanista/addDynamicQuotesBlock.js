@@ -351,14 +351,13 @@ setTimeout(function () {
     </div>
 `;
 
-    let block = document.querySelector('.product-info-main-wrapper');
+    let block;
 
-    // if (product === 'boston' || product === 'brisbane' || product === 'athens' || product === 'new-york') {
-    //     block = document.querySelector('.product-info-main-wrapper');
-    // } else {
-    //     block =
-    //         document.querySelector('.product-view-cms .pd-row') || document.querySelector('.product-info-main-wrapper');
-    // }
+    if (product === 'london') {
+        block = document.querySelector('.product-view-cms .pd-row');
+    } else {
+        block = document.querySelector('.product-info-main-wrapper');
+    }
 
     block.insertAdjacentElement('afterend', review);
 
