@@ -1,6 +1,6 @@
-let start = setInterval(function () {
+let startCustom = setInterval(function () {
     if (document.querySelector('.payment-buttons')) {
-        clearInterval(start);
+        clearInterval(startCustom);
 
         document.head.insertAdjacentHTML(
             'beforeend',
