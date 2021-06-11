@@ -353,7 +353,7 @@ setTimeout(function () {
 
     let block;
 
-    if (product === 'boston') {
+    if (product === 'boston' || product === 'brisbane') {
         block = document.querySelector('.product-info-main-wrapper');
     } else {
         block =
