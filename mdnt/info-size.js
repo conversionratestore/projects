@@ -1,5 +1,5 @@
 let startCustom = setInterval(function () {
-    if (document.querySelector('.payment-buttons')) {
+    if (document.querySelector('.payment-buttons') && document.querySelector('._ks_text')) {
         clearInterval(startCustom);
 
         document.head.insertAdjacentHTML(
@@ -45,7 +45,7 @@ let startCustom = setInterval(function () {
                 }
                 .info-size__text-wrapper p {
                   margin: 0;
-                  font-weight: 550;
+                  font-weight: 500;
                 }
                 .info-size__text-wrapper--bigger {padding: 15px !important;}
                 p.info-size__text--small {
@@ -101,8 +101,8 @@ let startCustom = setInterval(function () {
                                 <p>Model’s height is ${item['model-height-cm']}cm / 
                                 ${item['model-height-ft']}</p>
                                 <p class='info-size__text--small'>*Fit recommendation: <span>${
-                                    item['in-between-sizes']
-                                }</span> if you are between sizes.</p>
+                            item['in-between-sizes']
+                        }</span> if you are between sizes.</p>
                             </div>
                             `
                         : `
