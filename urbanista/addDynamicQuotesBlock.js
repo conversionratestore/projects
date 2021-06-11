@@ -352,8 +352,8 @@ setTimeout(function () {
 `;
 
     let block;
-    
-    if (product !== 'boston') {
+
+    if (product === 'boston') {
         block = document.querySelector('.product-info-main-wrapper');
     } else {
         block =
