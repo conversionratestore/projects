@@ -353,7 +353,13 @@ setTimeout(function () {
 
     let block;
 
-    if (product === 'london') {
+    if (
+        product === 'london' ||
+        product === 'miami' ||
+        product === 'paris' ||
+        product === 'stockholm-plus' ||
+        product === 'miami-crystal-edition-headphones'
+    ) {
         block = document.querySelector('.product-view-cms .pd-row');
     } else {
         block = document.querySelector('.product-info-main-wrapper');
@@ -387,9 +393,6 @@ setTimeout(function () {
 
         document.querySelector('.review').insertAdjacentElement('afterend', quote);
     }
-
-    // document.querySelector('.product-info-main-wrapper').style.height =
-    //     document.querySelector('.product-info-main-wrapper').offsetHeight - 190 + 'px';
 
     document.querySelector('.prev-arrow').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || [];
