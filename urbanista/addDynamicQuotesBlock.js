@@ -350,7 +350,16 @@ setTimeout(function () {
         <img class='next-arrow' src='https://conversionratestore.github.io/projects/urbanista/images/arrow-next.svg'/>
     </div>
 `;
-    const block = document.querySelector('.product-view-cms .pd-row') || document.querySelector('.product-info-main-wrapper')
+
+    let block;
+    
+    if (product !== 'boston') {
+        block = document.querySelector('.product-info-main-wrapper');
+    } else {
+        block =
+            document.querySelector('.product-view-cms .pd-row') || document.querySelector('.product-info-main-wrapper');
+    }
+
     block.insertAdjacentElement('afterend', review);
 
     setTimeout(function () {
