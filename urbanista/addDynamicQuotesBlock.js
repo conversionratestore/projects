@@ -350,8 +350,8 @@ setTimeout(function () {
         <img class='next-arrow' src='https://conversionratestore.github.io/projects/urbanista/images/arrow-next.svg'/>
     </div>
 `;
-
-    document.querySelector('.product-info-main-wrapper').insertAdjacentElement('afterend', review);
+    const block = document.querySelector('.product-view-cms') || document.querySelector('.product-info-main-wrapper')
+    block.insertAdjacentElement('afterend', review);
 
     setTimeout(function () {
         var slider = tns({
