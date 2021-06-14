@@ -30,7 +30,7 @@ let startCustom = setInterval(function () {
                   color: #FFFFFF;
                   letter-spacing: normal;
                   font-size: 16px;
-                  text-transform: lowercase;
+                  text-transform: none;
                   font-family: 'Archivo Narrow', sans-serif;
                 }
                 .info-size__heading-wrapper h4 span {
