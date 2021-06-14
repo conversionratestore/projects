@@ -95,9 +95,7 @@ let startCustom = setInterval(function () {
                         ? `
                             <h5>SIZE &amp; FIT</h5>                
                             <div class='info-size__heading-wrapper'>
-                                <h4>
-                                    ${item['fit-full-sentence']}
-                                </h4>
+                                <h4>${item['fit-full-sentence']}</h4>
                             </div>
                             <div class='info-size__text-wrapper'>
                                 <p>Model wears size: ${
