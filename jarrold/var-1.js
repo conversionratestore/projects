@@ -1,4 +1,4 @@
-document.body.insertAdjacentHTML('afterbegin', `
+$('body').prepend(`
 <style>
     #product .tabs>div label {
         font-size: 16px;
@@ -55,7 +55,6 @@ document.body.insertAdjacentHTML('afterbegin', `
 </style>`);
 
 $('#prd_desc').removeAttr('checked');
-
 $('.tabs').after(`<div id="category"><h3 class="h2">Shop by Category</h3><div id="c-slider"></div></div>`);
 
 for (let i = 0; i < $('#navxs ul li a').length; i++) {
