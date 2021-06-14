@@ -12,7 +12,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         background-size: 12px;
     }
     .c-slide {
-        padding: 5px 11px;
+        padding: 5px 0;
     }
     .c-slide img{
         width: 165px;
