@@ -37,18 +37,26 @@ document.body.insertAdjacentHTML('afterbegin', `
         margin-bottom: 50px;
     }
     #c-slider .slick-dots {
-        bottom: -34px;
+        bottom: -25px;
     }
-    .slick-prev, .slick-next {
+    #c-slider .slick-prev, #c-slider .slick-next {
         top: auto;
-        bottom: -28px;
+        bottom: -34px;
         transform: translate(0,0);
+    }
+    #c-slider .slick-dots li {
+        border: none;
+        background: #EFEFEF;
+        margin: 0 5px
+    }
+    #c-slider .slick-dots li.slick-active {
+        background: #447E80;
     }
 </style>`);
 
 $('#prd_desc').removeAttr('checked');
 
-document.querySelector('.tabs').insertAdjacentHTML('afterend',`<div id="category"><h3 class="h2">Shop by Category</h3><div id="c-slider"></div></div>`);
+$('.tabs').after(`<div id="category"><h3 class="h2">Shop by Category</h3><div id="c-slider"></div></div>`);
 
 for (let i = 0; i < $('#navxs ul li a').length; i++) {
     $('#c-slider').append(`<div class="c-slide"><img src="" alt="img"><a href="${$('#navxs ul li a')[i].href}">${$('#navxs ul li a')[i].innerHTML}</a></div>`);
