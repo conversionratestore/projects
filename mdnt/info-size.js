@@ -1,5 +1,8 @@
 let startCustom = setInterval(function () {
-    if (document.querySelector('.payment-buttons') && document.querySelector('._ks_text')) {
+    if (
+        document.querySelector('.payment-buttons') &&
+        document.querySelector('._ks_text')
+    ) {
         clearInterval(startCustom);
 
         document.head.insertAdjacentHTML(
@@ -75,34 +78,43 @@ let startCustom = setInterval(function () {
                 location.href.split('products/')[1].split('?')[0]
             }`,
         )
-            .then(response => response.json())
-            .then(data => {
+            .then((response) => response.json())
+            .then((data) => {
                 template(data);
             });
 
         function template(item) {
-            document.querySelector('.payment-buttons').insertAdjacentHTML(
-                'beforebegin',
-                `
+            document
+                .querySelector('.payment-buttons')
+                .insertAdjacentHTML(
+                    'beforebegin',
+                    `
             <div class='product-single__info-size'>
                 ${
-                    item['designed-fit']
+                    item['fit-full-sentence']
                         ? `
                             <h5>SIZE &amp; FIT</h5>                
                             <div class='info-size__heading-wrapper'>
-                                <h4>${item['customers-say']}
-                                    % of users say this product is <span>
-                                    ${item['designed-fit']}.</span>
+                                <h4>
+                                    ${item['fit-full-sentence']}
                                 </h4>
                             </div>
                             <div class='info-size__text-wrapper'>
-                                <p>Model wears size: ${item['item-size']} 
-                                ${item['item-length-cm'] ? `&amp; ${item['item-length-cm']} cm` : ''}</p>
-                                <p>Model’s height is ${item['model-height-cm']}cm / 
+                                <p>Model wears size: ${
+                                    item['item-size']
+                                } 
+                                ${
+                                    item['item-length-cm']
+                                        ? `&amp; ${item['item-length-cm']} cm`
+                                        : ''
+                                }</p>
+                                <p>Model’s height is ${
+                                    item['model-height-cm']
+                                }cm / 
                                 ${item['model-height-ft']}</p>
                                 <p class='info-size__text--small'>*Fit recommendation: <span>${
-                            item['in-between-sizes']
-                        }</span> if you are between sizes.</p>
+                                    item['in-between-sizes']
+                                }</span> if you are between sizes.</p>
                             </div>
                             `
                         : `
@@ -115,17 +127,19 @@ let startCustom = setInterval(function () {
                 }
               </div>
             `,
-            );
+                );
         }
 
-        document.querySelector('._ks_text').addEventListener('click', function () {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                event: 'event-to-ga',
-                eventCategory: 'Exp: True_to_size_guide',
-                eventAction: 'Size Guide',
+        document
+            .querySelector('._ks_text')
+            .addEventListener('click', function () {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    event: 'event-to-ga',
+                    eventCategory: 'Exp: True_to_size_guide',
+                    eventAction: 'Size Guide',
+                });
             });
-        });
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -146,7 +160,12 @@ let startCustom = setInterval(function () {
             r.async = 1;
             r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+        })(
+            window,
+            document,
+            'https://static.hotjar.com/c/hotjar-',
+            '.js?sv=',
+        );
         window.hj =
             window.hj ||
             function () {
