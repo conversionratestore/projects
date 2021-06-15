@@ -57,8 +57,9 @@ $('body').prepend(`
 $('#prd_desc').removeAttr('checked');
 $('.tabs').after(`<div id="category"><h3 class="h2">Shop by Category</h3><div id="c-slider"></div></div>`);
 
-for (let i = 0; i < $('#navxs ul li a').length; i++) {
-    $('#c-slider').append(`<div class="c-slide"><img src="" alt="img"><a href="${$('#navxs ul li a')[i].href}">${$('#navxs ul li a')[i].innerHTML}</a></div>`);
+let arrImages = ['https://jarroldcdn.azureedge.net/homepage/content-blocks/beauty_generic_may21_690x510.webp','https://jarroldcdn.azureedge.net/departments/sale/ss21/mss_may21_womens_v2_690x690.webp','https://jarroldcdn.azureedge.net/departments/sale/ss21/mss_may21_mens_v1_690x690.webp','https://jarroldcdn.azureedge.net/departments/home/tedbaker_march21_690x510.webp','','https://jarroldcdn.azureedge.net/homepage/content-blocks/feb21_books_v1_690x690.webp','','','https://jarroldcdn.azureedge.net/departments/deli/content-blocks/deli_own_label_honey_685x475.webp','https://jarroldcdn.azureedge.net/departments/sport/content-blocks/brands-nike-womens-july19-690x510.webp','','','','https://jarroldcdn.azureedge.net/homepage/main-banners/mar20_store_sunshine_750x920.webp']
+for (let i = 0; i < $('#navxs .dept ul li a').length; i++) {
+    $('#c-slider').append(`<div class="c-slide"><img src="${arrImages[i]}" alt="img"><a href="${$('#navxs ul li a')[i].href}">${$('#navxs ul li a')[i].innerHTML}</a></div>`);
 }
 
 $('#c-slider').slick({
