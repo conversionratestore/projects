@@ -401,7 +401,7 @@ setTimeout(function () {
     }
 
     document.querySelector('.trigger').addEventListener('click', function () {
-        document.querySelector('.product-info-main-wrapper').style.marginBottom = '60px';
+        document.querySelector('.product-info-main-wrapper').style.marginBottom = '70px';
     });
 
     document.querySelector('.prev-arrow').addEventListener('click', function () {
