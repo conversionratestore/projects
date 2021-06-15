@@ -401,8 +401,17 @@ setTimeout(function () {
     }
 
     document.querySelector('.trigger').addEventListener('click', function () {
-        document.querySelector('.product-info-main-wrapper').style.marginBottom = '70px';
+        let wrapperBottomMargin = document.querySelector('.product-info-main-wrapper').style.marginBottom;
+        
+        if (product === 'london') {
+            wrapperBottomMargin = '100px'
+        } else {
+            wrapperBottomMargin = '50px'
+        }
     });
+
+   
+    
 
     document.querySelector('.prev-arrow').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || [];
