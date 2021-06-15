@@ -129,12 +129,18 @@ setTimeout(function () {
 
     const languages = {
         us: ['Urbanista has been praised by a long list of tech’s most respected publications'],
-        eu: ['Urbanista has been praised by a long list of tech’s most respected publications'],
         se: ['Urbanista har hyllats av en rad av Techvärldens mest respekterade publicister'],
         de: ['Urbanista wurde von einer langen Liste renommiertester technischer Publikationen gelobt'],
     };
 
-    let textList = languages[local];
+    let textList;
+
+    if (languages[local]) {
+        textList = languages[local];
+    } else {
+        textList = languages['us'];
+    }
+
     let product = window.location.pathname.split('/')[2];
 
     let propForProduct = {
@@ -394,9 +400,9 @@ setTimeout(function () {
         document.querySelector('.review').insertAdjacentElement('afterend', quote);
     }
 
-    document.querySelector('.trigger').addEventListener('click', function() {
-        document.querySelector('.product-info-main-wrapper').style.marginBottom = '100px'
-    })
+    document.querySelector('.trigger').addEventListener('click', function () {
+        document.querySelector('.product-info-main-wrapper').style.marginBottom = '50px';
+    });
 
     document.querySelector('.prev-arrow').addEventListener('click', function () {
         window.dataLayer = window.dataLayer || [];
