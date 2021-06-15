@@ -400,13 +400,11 @@ setTimeout(function () {
         document.querySelector('.review').insertAdjacentElement('afterend', quote);
     }
 
-    let wrapperBottomMargin = document.querySelector('.product-info-main-wrapper').style.marginBottom;
-
     document.querySelector('.trigger').addEventListener('click', function () {     
         if (product === 'london') {
-            wrapperBottomMargin = '100px'
+            document.querySelector('.product-info-main-wrapper').style.marginBottom = '100px'
         } else {
-            wrapperBottomMargin = '50px'
+            document.querySelector('.product-info-main-wrapper').style.marginBottom = '50px'
         }
     }); 
 
