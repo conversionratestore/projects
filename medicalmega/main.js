@@ -571,6 +571,14 @@ window.onload  = function () {
                 let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
                     productId = item.closest('.product-card').getAttribute('data-product-id');
 
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — add to cart',
+                    'eventQuantity': `${valueP}`
+                });
+                
                 let newElementProduct = `
                     <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                         <td width="44%">
@@ -722,14 +730,39 @@ window.onload  = function () {
                 }
             }
         } 
-
+        document.querySelector('.shoppingcart').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on shopping cart'
+            });
+        });
         document.querySelector('.close').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('isActive');   
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on button — close popup'
+            });
         });
         document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
             document.querySelector('.popup').classList.remove('isActive');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on button — back to shopping'
+            });
         });
         document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on button — checkout now'
+            });
         });
         let container = document.querySelector('.slider-gallery');
 
@@ -827,3 +860,21 @@ window.onload  = function () {
         localStorage.setItem('productsStoredUpdate', '');   
     }
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1483840,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'PL_and_cart_improvements');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+    'eventAction': 'loaded'
+});
