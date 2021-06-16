@@ -1,6 +1,6 @@
 let mut = new MutationObserver(function (muts) {
-    mut.disconnect();
     if ($('.tabs')) {
+        mut.disconnect();
         $('body').prepend(`
             <style>
                 #product .tabs>div label {
