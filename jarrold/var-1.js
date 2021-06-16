@@ -18,6 +18,8 @@
                     -ms-transform: translateY(-50%) rotate(180deg);
                     -o-transform: translateY(-50%) rotate(180deg);
                     transform: translateY(-50%) rotate(180deg);}
+                 #product .tabs>div input:checked+label:after {
+                    background-size: 12px;}
                 .c-slide {
                     padding: 5px 0;}
                 .c-slide img{
