@@ -1,6 +1,6 @@
-let mut = new MutationObserver(function (muts) {
-    if ($('.tabs')) {
-        mut.disconnect();
+
+
+
         $('body').prepend(`
             <style>
                 #product .tabs>div label {
@@ -13,6 +13,11 @@ let mut = new MutationObserver(function (muts) {
                     top: 50%;
                     transform: translateY(-50%);
                     background-size: 12px;}
+                #product .tabs>div input:checked+label:after {
+                    -webkit-transform: translateY(-50%) rotate(180deg);
+                    -ms-transform: translateY(-50%) rotate(180deg);
+                    -o-transform: translateY(-50%) rotate(180deg);
+                    transform: translateY(-50%) rotate(180deg);}
                 .c-slide {
                     padding: 5px 0;}
                 .c-slide img{
@@ -64,10 +69,3 @@ let mut = new MutationObserver(function (muts) {
             dots: true,
             arrows: true
         });
-    }
-});
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
