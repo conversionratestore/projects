@@ -65,10 +65,6 @@ let mut = new MutationObserver(function (muts) {
             arrows: true
         });
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
 });
 
 mut.observe(document, {
