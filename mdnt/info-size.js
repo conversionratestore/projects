@@ -1,7 +1,6 @@
 let startCustom = setInterval(function () {
     if (
-        document.querySelector('.payment-buttons') &&
-        document.querySelector('._ks_text')
+        document.querySelector('.payment-buttons')        
     ) {
         clearInterval(startCustom);
 
@@ -128,16 +127,20 @@ let startCustom = setInterval(function () {
                 );
         }
 
-        document
-            .querySelector('._ks_text')
-            .addEventListener('click', function () {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    event: 'event-to-ga',
-                    eventCategory: 'Exp: True_to_size_guide',
-                    eventAction: 'Size Guide',
+        setTimeout(function() {
+            if(document.querySelector('._ks_text')) {
+                document
+                .querySelector('._ks_text')
+                .addEventListener('click', function () {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        event: 'event-to-ga',
+                        eventCategory: 'Exp: True_to_size_guide',
+                        eventAction: 'Size Guide',
+                    });
                 });
-            });
+            }
+        }, 1000)       
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
