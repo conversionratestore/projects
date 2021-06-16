@@ -10,6 +10,7 @@
                     text-align: left;}
                 #product .tabs>div label:after {
                     height: 100%;
+                    width: 12px;
                     top: 50%;
                     transform: translateY(-50%);
                     background-size: 12px;}
