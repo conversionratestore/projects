@@ -1,4 +1,4 @@
-window.onload  = function () {
+// window.onload  = function () {
 $('body').prepend(`
 <style>
     #product .tabs>div label {
@@ -62,4 +62,4 @@ $('#c-slider').slick({
     dots: true,
     arrows: true
 });
-};
+// };
