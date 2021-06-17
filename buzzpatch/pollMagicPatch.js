@@ -451,7 +451,7 @@ window.onload  = function () {
                     });
                 });
                 $('.card-link').click((e) => { 
-                    consoole.log($(this).find('b').text());
+                    console.log($(this).find('b').text());
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
