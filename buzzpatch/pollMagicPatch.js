@@ -343,7 +343,7 @@ window.onload  = function () {
             width: 100%;}
     }
     </style>`);
-    $('.header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
+    $('header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
     $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
     (function(){
