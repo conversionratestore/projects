@@ -8,7 +8,7 @@ let mut = new MutationObserver(function (muts) {
             });
         }
         
-        if(document.querySelectorAll('.download-button__reverse')) {
+        if(document.querySelector('.download-button__reverse')) {
             document.querySelector('.download-button__reverse').addEventListener('click', () => {
                 window.location = 'https://signaturely.com/signature-downloaded';
             })
