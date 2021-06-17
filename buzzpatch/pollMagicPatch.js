@@ -517,7 +517,7 @@ window.onload  = function () {
             text: '<p>All orders are dispatched the same day, and usually take 3-5 days to USA, Canada and Australia. However, with current travel restrictions, we’re seeing shipping times range between 10-15 days, and in some cases up to 25 days.</p>',
         },
     ]
-    $('#js-accordion').innerHTML = '';
+    $('#js-accordion').html('')
     for (let i = 0; i < arrFAQ.length; i++) {
         let newElementFAQ = `
             <div class="card">
