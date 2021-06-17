@@ -448,12 +448,13 @@ window.onload  = function () {
                         'eventAction': 'click on trust pilot ',
                     });
                 });
-                $('.card-link').click(() => { 
+                $('.card-link').click((e) => { 
+                    consoole.log($(this).find('b').text());
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
-                        'eventAction': `click on FAQ — ${$(this).text()}`,
+                        'eventAction': `click on FAQ — ${$(this).find('b').text()}`,
                     });
                 });
                 $('.carousel-item').click(() => { 
@@ -518,7 +519,7 @@ window.onload  = function () {
         let newElementFAQ = `
             <div class="card">
                 <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse${i}"><span class="arrow down"></span>${arrFAQ[i].name}</a>
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse${i}"><span class="arrow down"></span><b>${arrFAQ[i].name}</b></a>
                 </div>
                 <div id="collapse${i}" class="collapse" data-parent="#js-accordion">
                     <div class="card-body">${arrFAQ[i].text}</div>
