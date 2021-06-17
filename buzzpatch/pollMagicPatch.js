@@ -342,6 +342,7 @@ window.onload  = function () {
     }
     </style>`);
 
+    $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
     (function(){
         var http = new XMLHttpRequest();  
         http.open('GET', 'https://buzzpatch.com/pages/buzzpatch');
@@ -349,7 +350,7 @@ window.onload  = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 $('header').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile'));
-                $('header .js-title').after(doc.querySelector('.trust-rating'));
+                $('header .trust-rating').after(doc.querySelector('.trust-rating').innerHTML);
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
@@ -451,12 +452,12 @@ window.onload  = function () {
                     });
                 });
                 $('.card-link').click((e) => { 
-                    console.log($(this).find('b').text());
+                    console.log(e.target.innerHTML);
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
-                        'eventAction': `click on FAQ — ${$(this).find('b').text()}`,
+                        'eventAction': `click on FAQ — ${e.target.innerHTML}`,
                     });
                 });
                 $('.carousel-item').click(() => { 
