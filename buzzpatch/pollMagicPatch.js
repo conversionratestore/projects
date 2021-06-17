@@ -75,20 +75,6 @@ $('body').prepend(`
         width: 78%;}
     #flowers .col-sm-4, .effectiveness .col-sm-4 {
         width: 22%;}
-    // .effectiveness.js-mobile, #ingredients {
-    //     display: none;}
-    // .js-iphone header {
-    //     display: flex;
-    //     flex-direction: column;}
-    // .js-iphone .hand-banner img {
-    //     margin-bottom: -20%;
-    //     margin-top: -9%;}
-    // .js-iphone .js-heading .js-btn.btn-primary {
-    //     margin-bottom: 25px;}
-    // .js-main img {
-    //     width: 100%;}
-    // .js-iphone .transparent {
-    //     margin-top: -34%;}
     .free-block_top, .free-block_bottom {
         position: absolute;
         left: 50%;
@@ -370,7 +356,6 @@ $('body').prepend(`
             $('#returns').after(doc.querySelector('#featured-reviews'));
 
             $('.js-mobile')[5].remove();
-            
             $('.flowers-bg').before(`<div class="free-blocks d-flex"></div>`);
     
             let freeBlock = ['Latex FREE','benedryl FREE'];
