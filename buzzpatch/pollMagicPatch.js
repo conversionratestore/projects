@@ -239,8 +239,8 @@ window.onload  = function () {
             height: 18px;}
         #faqs .card-link span.up:after {
             transform: translate(-50%,-50%) rotate(-90deg);}
-        #faqs .card:nth-child(7), #faqs .card:first-child {
-            display: none;}
+        // #faqs .card:nth-child(7), #faqs .card:first-child {
+        //     display: none;}
         #faqs #js-accordion{
             margin-top: 25px;}
         .carousel-item {
