@@ -343,8 +343,6 @@ window.onload  = function () {
             width: 100%;}
     }
     </style>`);
-    $('header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
-
     $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
     (function(){
         var http = new XMLHttpRequest();  
@@ -497,6 +495,8 @@ window.onload  = function () {
     $('#purchase img.mc').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day.png?v=1618147802');
 
     $('#returns').append(`<div class="js-mobile wave-bg"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%"></div>`);
+   
+    $('header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
     let arrFAQ =[
         {
