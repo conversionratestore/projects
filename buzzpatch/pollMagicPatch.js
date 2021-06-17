@@ -31,6 +31,7 @@ $('body').prepend(`
         letter-spacing: 0.05em;
         min-width: 164px;}
     .js-iphone header {
+        overflow: hidden;
         margin-bottom: 0;
         padding-bottom: 0;}
     .js-iphone header .navbar {
