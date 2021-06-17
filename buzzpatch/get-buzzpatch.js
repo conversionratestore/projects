@@ -353,7 +353,6 @@ window.onload  = function () {
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
-                $('#faqs').innerHTML = doc.querySelector('#faqs').innerHTML;
 
                 $('.js-mobile')[5].remove();
                 $('.flowers-bg').before(`<div class="free-blocks d-flex"></div>`);
@@ -434,6 +433,7 @@ window.onload  = function () {
                     </div>
                 </section> `);
 
+                $('#faqs').innerHTML = doc.querySelector('#faqs').innerHTML;
                 $('#featured-reviews h2.js-title').innerHTML = `Why people love <br> itch relief patches`;
                 $('#featured-reviews').append(`<div class="js-mobile wave-bg"> 
                         <img data-sizes="auto" data-src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave.png?v=1619947876" data-srcset="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave_300x.png 300w,
