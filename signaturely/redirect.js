@@ -7,6 +7,13 @@ let mut = new MutationObserver(function (muts) {
                 window.location = 'https://signaturely.com/signature-downloaded';
             });
         }
+        
+        if(document.querySelectorAll('.download-button__reverse')) {
+            document.querySelector('.download-button__reverse').addEventListener('click', () => {
+                window.location = 'https://signaturely.com/signature-downloaded';
+            })
+        }
+        
         mut.observe(document, {
             childList: true,
             subtree: true
