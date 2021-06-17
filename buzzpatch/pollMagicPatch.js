@@ -344,7 +344,7 @@ window.onload  = function () {
 
     (function(){
         var http = new XMLHttpRequest();  
-        http.open('GET', 'https://buzzpatch.com/');
+        http.open('GET', 'https://buzzpatch.com/pages/buzzpatch');
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
