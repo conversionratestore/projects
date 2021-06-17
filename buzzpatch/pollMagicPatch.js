@@ -53,8 +53,10 @@ window.onload  = function () {
             max-width: 345px;}
         header .js-heading .col-lg-7 img {
             transform: rotate(13.28deg);
-            width: 390px;
-            margin: 12px -26px 0 -26px;}
+            width: 316.48px;
+            margin: 0 auto;}
+        .wrapper header a.btn.js-btn.btn-primary.get-it {
+            margin-top: 0;}
         header .js-mobile.wave-bg {
             height: 17.6vw}
         #flowers {
@@ -331,16 +333,17 @@ window.onload  = function () {
         #purchase .js-packs {
             max-width: 45%;}
         header .js-title, h1 {
-            line-height: 51px;
+            line-height: 51px; 
             font-size: 42px;}
     }
     @media (max-width: 365px) {
         .free-block {
             font-size: 15px;}
         header .js-heading .col-lg-7 img {
-            transform:  translateX(-13px) rotate(13.28deg);}
+            width: 100%;}
     }
     </style>`);
+    $('.header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
     $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
     (function(){
