@@ -214,9 +214,7 @@ window.onload  = function () {
         #faqs #js-accordion .card-link {
             display: flex;
             padding: 10px 0;
-            align-items: center;
-            flex-direction: row-reverse;
-            justify-content: flex-end;}
+            align-items: center;}
         #faqs .card-link span {
             transform: none;
             margin: 0 10px 0 0;
@@ -241,8 +239,6 @@ window.onload  = function () {
             height: 18px;}
         #faqs .card-link span.up:after {
             transform: translate(-50%,-50%) rotate(-90deg);}
-        // #faqs .card:nth-child(7), #faqs .card:first-child {
-        //     display: none;}
         #faqs #js-accordion{
             margin-top: 25px;}
         .carousel-item {
@@ -522,7 +518,7 @@ window.onload  = function () {
         let newElementFAQ = `
             <div class="card">
                 <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse1">${arrFAQ[i].name}<span class="arrow down"></span></a>
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse1"><span class="arrow down"></span>${arrFAQ[i].name}</a>
                 </div>
                 <div id="collapse1" class="collapse" data-parent="#js-accordion">
                     <div class="card-body">${arrFAQ[i].text}</div>
