@@ -214,7 +214,9 @@ window.onload  = function () {
         #faqs #js-accordion .card-link {
             display: flex;
             padding: 10px 0;
-            align-items: center;}
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: flex-end;}
         #faqs .card-link span {
             transform: none;
             margin: 0 10px 0 0;
@@ -432,9 +434,6 @@ window.onload  = function () {
                     https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave_900x.png 900w" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave.png?v=1619947876">
                     </div>
                 </section> `);
-                if (doc.querySelector('#faqs')) {
-                    $('#faqs').innerHTML = doc.querySelector('#faqs').innerHTML;
-                }
                 
                 $('#featured-reviews h2.js-title').innerHTML = `Why people love <br> itch relief patches`;
                 $('#featured-reviews').append(`<div class="js-mobile wave-bg"> 
@@ -495,6 +494,42 @@ window.onload  = function () {
     $('#purchase img.mc').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day.png?v=1618147802');
 
     $('#returns').append(`<div class="js-mobile wave-bg"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%"></div>`);
+
+    let arrFAQ =[
+        {
+            name: 'How do they work?',
+            text: '<p>Mosquitoes find us by sensing the carbon dioxide (CO2) we emit when we exhale. Certain compounds, including specific essential oils, overpower the CO2 we emit, essentially hiding us from mosquitoes.</p>',
+        },
+        {
+            name: 'How long will the sealed pack last?',
+            text: '<p>The bag has a ziplock. Put the unused patches into the bag and seal it. BuzzPatch when sealed will last up to 24 months.</p><p>If you have a pack that is past its used by date, send a photo of the unopened pack to hello@buzzpatch.com and we`ll send you a new one.</p>',
+        },
+        {
+            name: 'Where are BuzzPatch stickers made?',
+            text: '<p>Patches are formulated and designed in Australia.</p>',
+        },
+        {
+            name: 'How many do you need?',
+            text: '<p>One per mosquito bite.</p>',
+        },
+        {
+            name: 'How long will shipping take?',
+            text: '<p>All orders are dispatched the same day, and usually take 3-5 days to USA, Canada and Australia. However, with current travel restrictions, we’re seeing shipping times range between 10-15 days, and in some cases up to 25 days.</p>',
+        },
+    ]
+    $('#js-accordion').innerHTML = '';
+    for (let i = 0; i < arrFAQ.length; i++) {
+        let newElementFAQ = `
+            <div class="card">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse1">${arrFAQ[i].name}<span class="arrow down"></span></a>
+                </div>
+                <div id="collapse1" class="collapse" data-parent="#js-accordion">
+                    <div class="card-body">${arrFAQ[i].text}</div>
+                </div>
+            </div>`;
+            $('#js-accordion').append(newElementFAQ);
+      }
 };
 
 (function(h,o,t,j,a,r){
