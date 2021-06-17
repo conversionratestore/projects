@@ -350,7 +350,7 @@ window.onload  = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 $('header').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile'));
-                $('header .trust-rating').after(doc.querySelector('.trust-rating').innerHTML);
+                $('header .trust-rating').append(doc.querySelector('.trust-rating').innerHTML);
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
