@@ -211,6 +211,8 @@ window.onload  = function () {
             width: 100%;}
         #faqs #js-accordion .card {
             border: none;}
+        #faqs #js-accordion .card-link b{
+            font-weight: 400; }
         #faqs #js-accordion .card-link {
             display: flex;
             padding: 10px 0;
