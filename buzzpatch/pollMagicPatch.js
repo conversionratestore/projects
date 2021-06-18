@@ -2,8 +2,6 @@ window.onload  = function () {
     $('body').prepend(`
     <style>
     @media (max-width: 767px) {
-        .js-main header {
-            min-height: 750px;}
         #returns .conditions .d-flex {
             padding: 10px 12px; }
         #returns .js-light-border {
