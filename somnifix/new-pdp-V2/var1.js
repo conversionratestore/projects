@@ -1,5 +1,5 @@
 let start = setInterval(function () {
-    if (document.querySelectorAll('.product__images')[1]) {
+    if (document.querySelectorAll('.product__images')[1] && document.querySelectorAll('.on-pack-wrapper')[5]) {
         clearInterval(start);
         document.head.insertAdjacentHTML(
             'beforeend',
