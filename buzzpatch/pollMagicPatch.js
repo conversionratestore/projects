@@ -359,7 +359,7 @@ window.onload  = function () {
 
                 $('.js-mobile')[5].remove();
                 $('.flowers-bg').before(`<div class="free-blocks d-flex"></div>`);
-        
+                $('.shipping-noti h3').html('Free shipping <span>|</span>365-day Money Back Guarantee');
                 let freeBlock = ['Latex FREE','benedryl FREE'];
                 let n = 2;
                 while (n--) {
@@ -462,7 +462,8 @@ window.onload  = function () {
                         'eventAction': `click on FAQ — ${e.target.innerHTML}`,
                     });
                 });
-                $('.carousel-item').click(() => { 
+                $('.carousel-item').bind('touchstart', () => { 
+                    console.log('s');
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
@@ -499,6 +500,8 @@ window.onload  = function () {
     $('#purchase #getNow img').eq(1).attr('srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
     $('#purchase #getNow img').eq(1).attr('width','255');
     $('#purchase #getNow img').eq(1).css('margin-top','10px');
+
+    $('#faqs h2').html('FAQ');
 
     $('#returns').append(`<div class="js-mobile wave-bg"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%"></div>`);
    
