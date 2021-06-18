@@ -280,7 +280,7 @@ let start = setInterval(function () {
                     line-height: 126.19%;
                     margin: 10px;
                     color: #1E415F;
-                }
+                } 
             </style>
         `,
         );
@@ -402,7 +402,7 @@ let start = setInterval(function () {
             .querySelector('.ship-destination__span--ship')
             .insertAdjacentElement('afterend', document.querySelectorAll('.on-select')[5]);
 
-        const swatchWrap = document.querySelector('.swatchCustom');
+        // const swatchWrap = document.querySelector('.swatchCustom');
         const swatchItem = document.querySelectorAll('.swatchCustom__item');
 
         for (let i = 0; i < swatchItem.length; i++) {
@@ -421,11 +421,7 @@ let start = setInterval(function () {
                 }
 
                 document.querySelector('.stock__select').value = 1;
-            });
-        }
 
-        for (let i = 2; i < swatchWrap.children.length; i++) {
-            document.querySelector('.swatchCustom').children[i].addEventListener('click', function () {
                 if (i === 0) {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
@@ -456,7 +452,7 @@ let start = setInterval(function () {
                     });
                 }
 
-                document.querySelectorAll('.swatch-element')[i + 1].click();
+                document.querySelectorAll('.swatch-element')[i + 3].click();
 
                 upgrade();
             });
