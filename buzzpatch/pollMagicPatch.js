@@ -483,7 +483,7 @@ window.onload  = function () {
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
-                        'eventAction': `swipe on slider`,
+                        'eventAction': `click on slider`,
                     });
                 });
                 $('body').append(
@@ -515,6 +515,7 @@ window.onload  = function () {
 
     $('.navbar .row').addClass('align-items-center');
     $('header .js-heading img').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/PATCHES.png?v=1606305083');
+
     $('.js-iphone .js-heading.js-mobile h1').html('Instant itch relief </br> the natural way');
     $('.hand-banner img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
@@ -526,9 +527,7 @@ window.onload  = function () {
 
 
     $('#faqs h2').html('FAQ');
-
     $('#returns').append(`<div class="js-mobile wave-bg"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%"></div>`);
-   
     $('header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
     let arrFAQ =[
@@ -565,7 +564,7 @@ window.onload  = function () {
                 </div>
             </div>`;
             $('#js-accordion').append(newElementFAQ);
-    }    
+    }
 };
 
 (function(h,o,t,j,a,r){
