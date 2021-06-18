@@ -470,8 +470,7 @@ window.onload  = function () {
                         'eventAction': `click on FAQ — ${e.target.innerHTML}`,
                     });
                 });
-                $('.carousel-item').bind('touchstart', () => { 
-                    console.log('s');
+                $('.carousel-item').bind('touchstart', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
@@ -550,10 +549,15 @@ window.onload  = function () {
             </div>`;
             $('#js-accordion').append(newElementFAQ);
     }
-    $('.carousel').carousel({
-        interval: false ,
-        touch: true
-    });
+
+    $('body').append(
+       `<script type="text/javascript"> 
+        $('.carousel').carousel({
+            interval: false ,
+            touch: true
+        });
+        </script>`
+    );
 };
 
 (function(h,o,t,j,a,r){
