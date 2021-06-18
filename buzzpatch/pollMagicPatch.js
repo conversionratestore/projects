@@ -479,13 +479,11 @@ window.onload  = function () {
                     });
                 });
                 $('.carousel-item').bind('touchstart', () => {
-                    console.log($(this).find('.name').html());
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
                         'eventAction': `click on slider`,
-                        'eventName': `${$(this).find('.name').html()}`,
                     });
                 });
                 $('body').append(
