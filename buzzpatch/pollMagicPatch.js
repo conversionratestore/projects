@@ -331,6 +331,9 @@ window.onload  = function () {
         footer .navbar-brand.js-logo img {
             margin-top: 0; }
         #returns .conditions p {
+            display: flex;
+            align-items: center;
+            min-height: 32px;
             font-size: 14px!important;
             line-height: 16px!important; }
         .conditions .d-flex .inside img {
