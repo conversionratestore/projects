@@ -267,7 +267,7 @@ shippingPriceWrapper.append(
     document.querySelectorAll('.on-pack-wrapper')[5],
 );
 
-const madeIn = '<span class="made_in">Made in USA<span>';
+const madeIn = '<span class="made_in">Made in USA</span>';
 
 const options = [];
 
