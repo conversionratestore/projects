@@ -177,7 +177,7 @@ document.head.insertAdjacentHTML(
             margin-right: 5px;
             font-size: 16px;
             -webkit-appearance: none;
-            background-position-x: 90px;
+            background-position-x: 75px;
         }
         .stock__pack {
             display: inline-block;
