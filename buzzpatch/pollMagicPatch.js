@@ -359,7 +359,7 @@ window.onload  = function () {
     }
     </style>`);
 
-    $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
+    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"></a>`);
     
     (function(){
         var http = new XMLHttpRequest();  
