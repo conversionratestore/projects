@@ -5,6 +5,21 @@ let start = setInterval(function () {
             'beforeend',
             `
             <style>
+                .on-header-get-wrapper {
+                    position: relative;
+                }
+                .on-header-get-wrapper--action {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;                    
+                    display: block;
+                    width: 173px;
+                    height: 40px;
+                    border-radius: 104px;
+                    z-index: 2;
+                }
                 .product-template .on-pack-wrapper .on-left,
                 .on-pack-wrapper .on-select,
                 .on-mobile-btn-wrapper a.on-mob-btn {
@@ -15,6 +30,9 @@ let start = setInterval(function () {
                 }
                 .on-pack-wrapper .on-right {
                     width: 100%;
+                }
+                .swatchCustom {
+                    position: relative;
                 }
                 .swatchCustom__item {
                     position: relative;
@@ -28,6 +46,11 @@ let start = setInterval(function () {
                     pointer-events: none;
                     background: #F1F7FC;
                     border: 1px solid #4090D1;
+                }
+                .swatchCustom--anchor{
+                    position: absolute; 
+                    top: -80px; 
+                    left: 0;
                 }
                 .swatchCustom__item span {
                     display: block;
@@ -257,10 +280,14 @@ let start = setInterval(function () {
                     line-height: 126.19%;
                     margin: 10px;
                     color: #1E415F;
-                }        
+                }
             </style>
         `,
         );
+
+        document
+            .querySelectorAll('.on-header-get-wrapper')[1]
+            .insertAdjacentHTML('beforeend', '<div class="on-header-get-wrapper--action"></div>');
 
         const shippingPriceWrapper = document.createElement('div');
         shippingPriceWrapper.classList.add('packs-wrapper');
@@ -281,86 +308,91 @@ let start = setInterval(function () {
         document.querySelectorAll('.product__images')[1].insertAdjacentHTML(
             'afterend',
             `
-    <div class="shipping one-half column medium-down--one-whole">
-        <div class="shipping-inner">
-            <div class="swatchCustom">
-                <p class="swatchCustom__heading">Pack size: </p>
-                <div class="swatchCustom__item nosale swatchCustom__item--item1" 
-                data-variant="32115046023283" >
-                    <div class="swatchCustom__image-wrapper">
-                        <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/one-box.png" alt="pack">
+            <div class="shipping one-half column medium-down--one-whole">
+                <div class="shipping-inner">
+                    <div class="swatchCustom">
+                        <div class="swatchCustom--anchor"></div>
+                        <p class="swatchCustom__heading">Pack size: </p>
+                        <div class="swatchCustom__item nosale swatchCustom__item--item1" 
+                        data-variant="32115046023283" >
+                            <div class="swatchCustom__image-wrapper">
+                                <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/one-box.png" alt="pack">
+                            </div>
+                            <div class="swatchCustom__text">
+                                <span class="week">4-week pack</span>
+                                <span class="days">28 strips - 28 days</span>
+                                <span class="price">$21.99 USD</span>
+                            </div>
+                        </div>
+                        <div class="swatchCustom__item swatchCustom__item--item2 swatchCustom__item--active" data-variant="32115046056051">
+                            <div class="swatchCustom__image-wrapper">
+                                <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/three-boxes.png" alt="pack">
+                            </div>
+                            <div class="swatchCustom__text">
+                                <span class="week">12-week pack</span>
+                                <span class="days">84 strips - 84 days</span>
+                                <span class="price">$55.97 USD</span>
+                                <span class="price--strikeout">$59.97 USD</span>
+                                <span class="sale">Save 7%</span>
+                            </div>
+                        </div>    
+                        <div class="swatchCustom__item swatchCustom__item--item3" data-variant="32115046940787">
+                            <div class="swatchCustom__image-wrapper">
+                                <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/five-boxes.png" alt="pack">
+                            </div>
+                            <div class="swatchCustom__text">
+                                <span class="week">12-month pack</span>
+                                <span class="days">365 strips - 365 days</span>
+                                <span class="price">$219.97 USD</span>
+                                <span class="price--strikeout">$230.97 USD</span>
+                                <span class="sale">Save 17%</span>
+                            </div>
+                        </div> 
                     </div>
-                    <div class="swatchCustom__text">
-                        <span class="week">4-week pack</span>
-                        <span class="days">28 strips - 28 days</span>
-                        <span class="price">$21.99 USD</span>
+                    <div class="checklist">
+                        <ul>
+                            <li>Promote nose breathing</li>
+                            <li>Reduce open-mouth snoring</li>
+                            <li>Boost CPAP exprerience</li>
+                            <li>Improve sleep quality</li>
+                        </ul> 
+                    </div>            
+                    <div class="ship-destination">
+                        <span class ="ship-destination__span--ship">Ship to: </span>
+                        <p>Est. Delivery <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
+                        <span class="free-shipping">Free shipping</span>
+                    </div>
+                    <div class="stock">
+                        <h4 class="stock__header">In Stock.</h4>
+                        <select class="stock__select">
+                        ${options}
+                        </select>
+                        <p class="stock__pack">1 pack = 84 strips</p>
+                    </div>
+                    <div class="subscribe-custom">
+                        <div class="subscribe-custom__checkbox-wrapper">
+                            <input class="subscribe-custom__checkbox" type="checkbox">    
+                        </div>
+                        <div class="subscribe-custom__text-wrapper">
+                            <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
+                            <p class="subscibe-custom__info">Auto delivery every 3 month for $49.97.</p>
+                            <p>Cancel anytime.</p>
+                        </div>   
+                    </div>
+                    <div class="addcart">
+                        <button class="addcart__button">Add to cart</button>
+                    </div>
+                    <div class="moneyback">
+                        <img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day Money-Back <br />Guarantee</p>
                     </div>
                 </div>
-                <div class="swatchCustom__item swatchCustom__item--item2 swatchCustom__item--active" data-variant="32115046056051">
-                    <div class="swatchCustom__image-wrapper">
-                        <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/three-boxes.png" alt="pack">
-                    </div>
-                    <div class="swatchCustom__text">
-                        <span class="week">12-week pack</span>
-                        <span class="days">84 strips - 84 days</span>
-                        <span class="price">$55.97 USD</span>
-                        <span class="price--strikeout">$59.97 USD</span>
-                        <span class="sale">Save 7%</span>
-                    </div>
-                </div>    
-                <div class="swatchCustom__item swatchCustom__item--item3" data-variant="32115046940787">
-                    <div class="swatchCustom__image-wrapper">
-                        <img src="https://conversionratestore.github.io/projects/somnifix/new-pdp-V2/images/five-boxes.png" alt="pack">
-                    </div>
-                    <div class="swatchCustom__text">
-                        <span class="week">12-month pack</span>
-                        <span class="days">365 strips - 365 days</span>
-                        <span class="price">$219.97 USD</span>
-                        <span class="price--strikeout">$230.97 USD</span>
-                        <span class="sale">Save 17%</span>
-                    </div>
-                </div> 
             </div>
-            <div class="checklist">
-                <ul>
-                    <li>Promote nose breathing</li>
-                    <li>Reduce open-mouth snoring</li>
-                    <li>Boost CPAP exprerience</li>
-                    <li>Improve sleep quality</li>
-                </ul> 
-            </div>            
-            <div class="ship-destination">
-                <span class ="ship-destination__span--ship">Ship to: </span>
-                <p>Est. Delivery <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
-                <span class="free-shipping">Free shipping</span>
-            </div>
-            <div class="stock">
-                <h4 class="stock__header">In Stock.</h4>
-                <select class="stock__select">
-                ${options}
-                </select>
-                <p class="stock__pack">1 pack = 84 strips</p>
-            </div>
-            <div class="subscribe-custom">
-                <div class="subscribe-custom__checkbox-wrapper">
-                    <input class="subscribe-custom__checkbox" type="checkbox">    
-                </div>
-                <div class="subscribe-custom__text-wrapper">
-                    <h5 class="subscribe-custom__header">Subscribe and <span>save 10%</span></h5>
-                    <p class="subscibe-custom__info">Auto delivery every 3 month for $49.97.</p>
-                    <p>Cancel anytime.</p>
-                </div>   
-            </div>
-            <div class="addcart">
-                <button class="addcart__button">Add to cart</button>
-            </div>
-            <div class="moneyback">
-                <img src="https://i.ibb.co/kXqgv3n/image-44-2.png" alt="moneyback"/><p>30-day Money-Back <br />Guarantee</p>
-            </div>
-        </div>
-    </div>
-    `,
+        `,
         );
+
+        document.querySelector('.on-header-get-wrapper--action').addEventListener('click', () => {
+            document.querySelector('.swatchCustom--anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
 
         document.querySelector('.swatchCustom').insertAdjacentElement('afterend', shippingPriceWrapper);
 
