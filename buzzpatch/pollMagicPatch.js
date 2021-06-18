@@ -361,6 +361,7 @@ window.onload  = function () {
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
 
+                console.log($('.js-mobile')[5]);
                 $('.js-mobile')[5].remove();
                 $('.flowers-bg').before(`<div class="free-blocks d-flex"></div>`);
                 $('.shipping-noti h3').html('Free shipping <span>|</span>365-day Money Back Guarantee');
