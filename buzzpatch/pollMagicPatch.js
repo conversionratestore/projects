@@ -495,6 +495,8 @@ window.onload  = function () {
                      </script>`);
                 $('#purchase #getNow img').eq(1).attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
                 $('#purchase #getNow img').eq(1).attr('srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
+                $('#purchase #getNow img').eq(1).attr('data-src','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
+                $('#purchase #getNow img').eq(1).attr('data-srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
                 $('#purchase #getNow img').eq(1).attr('width','255');
                 $('#purchase #getNow img').eq(1).css('margin-top','10px');
                 $('#featured-reviews h2.js-title').html(`Why people love <br> itch relief patches`);
@@ -512,9 +514,7 @@ window.onload  = function () {
     $('#returns .js-title').remove();
 
     $('.navbar .row').addClass('align-items-center');
-
     $('header .js-heading img').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/PATCHES.png?v=1606305083');
-
     $('.js-iphone .js-heading.js-mobile h1').html('Instant itch relief </br> the natural way');
     $('.hand-banner img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
 
@@ -565,7 +565,7 @@ window.onload  = function () {
                 </div>
             </div>`;
             $('#js-accordion').append(newElementFAQ);
-    } 
+    }    
 };
 
 (function(h,o,t,j,a,r){
