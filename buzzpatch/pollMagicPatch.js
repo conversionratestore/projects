@@ -351,19 +351,20 @@ window.onload  = function () {
     </style>`);
 
     $('header .js-title').after(`<a href="#" _blank class="trust-rating"></a>`);
-    console.log($('.js-mobile')[5]);
+    
     (function(){
         var http = new XMLHttpRequest();  
         http.open('GET', 'https://buzzpatch.com/pages/buzzpatch');
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
+                console.log($('.js-mobile')[5]);
                 $('header').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile'));
                 $('header .trust-rating').append(doc.querySelector('.trust-rating').innerHTML);
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
-
+               
                 $('.js-mobile')[5].remove();
                 $('.flowers-bg').before(`<div class="free-blocks d-flex"></div>`);
                 $('.shipping-noti h3').html('Free shipping <span>|</span>365-day Money Back Guarantee');
