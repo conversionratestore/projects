@@ -71,8 +71,6 @@ window.onload  = function () {
         #flowers p {
             font-size: 18px!important;
             line-height: 27px!important; }
-        #flowers p span {
-            text-decoration: line-through;}
         #flowers .js-title {
             font-size: 22px;
             line-height: 130%;
@@ -367,7 +365,6 @@ window.onload  = function () {
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
-                console.log($('.js-mobile')[5]);
                 $('header').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile'));
                 $('header .trust-rating').append(doc.querySelector('.trust-rating').innerHTML);
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
@@ -484,6 +481,14 @@ window.onload  = function () {
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
                         'eventAction': `click on slider`,
+                    });
+                });
+                $('.carousel-indicators li').bind('touchstart', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Bundles',
+                        'eventAction': `click on slider dots — ${$(this).attr('data-slide-to')}`,
                     });
                 });
                 $('body').append(
