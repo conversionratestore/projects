@@ -4,12 +4,11 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .banner {
-                max-width: 481px;
                 display: block;
                 margin-top: 20px;
-                width: 100%;
-                height: 111px;
-                background: no-repeat center / contain;}
+                width: 100%;}
+            .banner {
+                width: 100%;}
             .d-flex {
                 justify-content: space-between;
                 display: flex;}
@@ -55,8 +54,8 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner" style="background-image: url(https://conversionratestore.github.io/projects/zizzz/img/banner1.png)"></a>`);
-        document.querySelectorAll('h2')[5].insertAdjacentHTML('beforebegin',`<a href="#" class="banner" style="background-image: url(https://conversionratestore.github.io/projects/zizzz/img/banner2.png)"></a>`);
+        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner1.png' alt='banner'></a>`);
+        document.querySelectorAll('h2')[5].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner2.png' alt='banner'></a>`);
         document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
 
         let card = `
