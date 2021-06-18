@@ -478,6 +478,13 @@ window.onload  = function () {
                         'eventAction': `click on slider`,
                     });
                 });
+                $('body').append(
+                    `<script type="text/javascript"> 
+                     $('.carousel').carousel({
+                         interval: false ,
+                         touch: true
+                     });
+                     </script>`);
             }
         }
         http.send(null);
@@ -550,14 +557,7 @@ window.onload  = function () {
             $('#js-accordion').append(newElementFAQ);
     }
 
-    $('body').append(
-       `<script type="text/javascript"> 
-        $('.carousel').carousel({
-            interval: false ,
-            touch: true
-        });
-        </script>`
-    );
+    
 };
 
 (function(h,o,t,j,a,r){
