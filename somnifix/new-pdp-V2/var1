@@ -327,8 +327,7 @@ document.querySelectorAll('.product__images')[1].insertAdjacentHTML(
                     <li>Boost CPAP exprerience</li>
                     <li>Improve sleep quality</li>
                 </ul> 
-            </div>
-            
+            </div>            
             <div class="ship-destination">
                 <span class ="ship-destination__span--ship">Ship to: </span>
                 <p>Est. Delivery <span class="ship-destination__span--date">24 Sep - 26 Sep</span></p>
