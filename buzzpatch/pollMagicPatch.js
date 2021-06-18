@@ -2,6 +2,8 @@ window.onload  = function () {
     $('body').prepend(`
     <style>
     @media (max-width: 767px) {
+        #returns .js-light-border {
+            border-width: 1px;}
         #children-safe {
             display: none; }
         .shipping-noti {
