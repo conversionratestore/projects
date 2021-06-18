@@ -328,8 +328,14 @@ window.onload  = function () {
         #purchase .prices .js-total {
             font-size: 24px;
             line-height: 130%;}
-    footer .navbar-brand.js-logo img {
-        margin-top: 0; }
+        footer .navbar-brand.js-logo img {
+            margin-top: 0; }
+        #returns .conditions p {
+            font-size: 14px!important;
+            line-height: 16px!important; }
+        .conditions .d-flex .inside img {
+            height: 45px;
+            width: auto; }
     }
     @media (max-width: 474px) {
         .js-packs {
