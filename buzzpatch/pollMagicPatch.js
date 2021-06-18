@@ -488,7 +488,7 @@ window.onload  = function () {
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
-                        'eventAction': `click on slider dots — ${$(this).attr('data-slide-to')}`,
+                        'eventAction': `click on slider dots — ${this.attr('data-slide-to')}`,
                     });
                 });
                 $('body').append(
