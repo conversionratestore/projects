@@ -453,7 +453,6 @@ window.onload  = function () {
                     </div>
                 </section> `);
                 
-                $('#featured-reviews h2.js-title').innerHTML = `Why people love <br> itch relief patches`;
                 $('#featured-reviews').append(`<div class="js-mobile wave-bg"> 
                         <img data-sizes="auto" data-src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave.png?v=1619947876" data-srcset="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave_300x.png 300w,
                     https://cdn.shopify.com/s/files/1/0387/0749/4956/files/white-wave_600x.png 600w,
@@ -498,6 +497,7 @@ window.onload  = function () {
                 $('#purchase #getNow img').eq(1).attr('srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
                 $('#purchase #getNow img').eq(1).attr('width','255');
                 $('#purchase #getNow img').eq(1).css('margin-top','10px');
+                $('#featured-reviews h2.js-title').html(`Why people love <br> itch relief patches`);
             }
         }
         http.send(null);
