@@ -549,7 +549,11 @@ window.onload  = function () {
                 </div>
             </div>`;
             $('#js-accordion').append(newElementFAQ);
-      }
+    }
+    $('.carousel').carousel({
+        interval: false ,
+        touch: true
+    });
 };
 
 (function(h,o,t,j,a,r){
