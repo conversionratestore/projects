@@ -424,7 +424,7 @@ let start = setInterval(function () {
             });
         }
 
-        for (let i = 1; i < swatchWrap.children.length; i++) {
+        for (let i = 2; i < swatchWrap.children.length; i++) {
             document.querySelector('.swatchCustom').children[i].addEventListener('click', function () {
                 if (i === 0) {
                     window.dataLayer = window.dataLayer || [];
@@ -456,7 +456,7 @@ let start = setInterval(function () {
                     });
                 }
 
-                document.querySelectorAll('.swatch-element')[i + 2].click();
+                document.querySelectorAll('.swatch-element')[i + 1].click();
 
                 upgrade();
             });
