@@ -71,8 +71,8 @@ window.onload  = function () {
         #flowers p {
             font-size: 18px!important;
             line-height: 27px!important; }
-        #flowers p br {
-            display: none;}
+        #flowers p span {
+            text-decoration: line-through;}
         #flowers .js-title {
             font-size: 22px;
             line-height: 130%;
@@ -498,6 +498,7 @@ window.onload  = function () {
                 $('#purchase #getNow img').eq(1).attr('width','255');
                 $('#purchase #getNow img').eq(1).css('margin-top','10px');
                 $('#featured-reviews h2.js-title').html(`Why people love <br> itch relief patches`);
+                $('#flowers p').html(`BuzzPatch has only <span>3 natural ingredients:  lavender, citronella and geraniol oils. It is completely chemical free and safe for kids.</span>`);
             }
         }
         http.send(null);
@@ -564,9 +565,7 @@ window.onload  = function () {
                 </div>
             </div>`;
             $('#js-accordion').append(newElementFAQ);
-    }
-
-    
+    } 
 };
 
 (function(h,o,t,j,a,r){
