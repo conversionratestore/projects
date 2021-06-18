@@ -484,7 +484,7 @@ window.onload  = function () {
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp — Bundles',
-                        'eventAction': `click on slider`,
+                        'eventAction': `swipe on slider`,
                     });
                 });
                 $('body').append(
@@ -494,6 +494,10 @@ window.onload  = function () {
                          touch: true
                      });
                      </script>`);
+                $('#purchase #getNow img').eq(1).attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
+                $('#purchase #getNow img').eq(1).attr('srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
+                $('#purchase #getNow img').eq(1).attr('width','255');
+                $('#purchase #getNow img').eq(1).css('margin-top','10px');
             }
         }
         http.send(null);
@@ -518,11 +522,7 @@ window.onload  = function () {
     $('#purchase img.mc').attr('sizes','320px');
     $('#purchase img.mc').attr('srcset','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day_300x.png 300w,https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day_600x.png 600w,https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day_900x.png 900w');
     $('#purchase img.mc').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day.png?v=1618147802');
-    
-    $('#purchase #getNow img').eq(1).attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
-    $('#purchase #getNow img').eq(1).attr('srcset','https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png');
-    $('#purchase #getNow img').eq(1).attr('width','255');
-    $('#purchase #getNow img').eq(1).css('margin-top','10px');
+
 
     $('#faqs h2').html('FAQ');
 
