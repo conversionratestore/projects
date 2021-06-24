@@ -61,7 +61,7 @@ let mut = new MutationObserver(function (muts) {
             display: inline-flex;
             overflow-y: auto;
             opacity: 0;
-            padding: 0 16px;
+            padding: 16px;
             pointer-events: none;
             transition: all 0.3s ease;
             z-index: 9999;
@@ -83,13 +83,12 @@ let mut = new MutationObserver(function (muts) {
             padding: 40px 15px 0 15px;}
         .notification {
             border-top: 1px dashed #E5E5E5;
-            padding: 21px 15px;
+            padding: 21px 30px;
             display: flex;
             align-items: center;}
         .notification p {
             margin: 0 0 0 15px;
-            font-weight: 600;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 18px;
             color: #CDCDCD;}
         .notification img {
