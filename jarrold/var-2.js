@@ -14,7 +14,7 @@ let mut = new MutationObserver(function (muts) {
                             'title': el.querySelector('.desc a').innerHTML,
                             'link': el.querySelector('.desc a').getAttribute('href'),
                             'price': el.querySelector('.hidden-xs.text-center').innerHTML,
-                            'imageSrc': el.querySelector('.square img').getAttribute('data-src'),
+                            'imageSrc': el.querySelector('.square img').getAttribute('data-src').replace('.net','.net/').replace('93','670'),
                         });
                         localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     });  
