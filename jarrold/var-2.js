@@ -1,15 +1,15 @@
 let mut = new MutationObserver(function (muts) {    
-    // (function(){
-    //     var http = new XMLHttpRequest();  
-    //     http.open('GET', 'https://buzzpatch.com/pages/buzzpatch');
-    //     http.onreadystatechange = function () {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
-                if (document.querySelectorAll('.cart-table tbody tr')) {
+    (function(){
+        var http = new XMLHttpRequest();  
+        http.open('GET', 'https://www.jarrold.co.uk/my-account?view=wishlist');
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
+                if (doc.querySelectorAll('.cart-table tbody tr')) {
                     mut.disconnect();
                     let wishlist = [];
                     localStorage.setItem('wishlist', '');
-                    document.querySelectorAll('.cart-table tbody tr').forEach(el => {
+                    doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
                         wishlist.push({
                             'title': el.querySelector('.desc a').innerHTML,
                             'link': el.querySelector('.desc a').getAttribute('href'),
@@ -23,10 +23,10 @@ let mut = new MutationObserver(function (muts) {
                         subtree: true
                     });
                 }      
-    //         }
-    //     }
-    //     http.send(null);
-    // })();
+            }
+        }
+        http.send(null);
+    })();
 
     if (document.querySelector('#page_header_CPR')) {
         mut.disconnect();
