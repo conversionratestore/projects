@@ -51,11 +51,7 @@ let mut = new MutationObserver(function (muts) {
         if (localStorage.getItem('wishlist') != '') {
             $('.favorites span').html(JSON.parse(localStorage.getItem('wishlist')).length);
         }
-  
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
+
     }
   
     if (!document.querySelector('#product') && !window.location.pathname.includes('basket')) {
