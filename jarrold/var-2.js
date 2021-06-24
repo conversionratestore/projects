@@ -61,10 +61,10 @@ let mut = new MutationObserver(function (muts) {
             display: inline-flex;
             overflow-y: auto;
             opacity: 0;
+            padding: 0 16px;
             pointer-events: none;
             transition: all 0.3s ease;
             z-index: 9999;
-            padding: 0 16px;
             height: 100vh;
             width: 100%;}
         .modal.active {
@@ -78,7 +78,7 @@ let mut = new MutationObserver(function (muts) {
             height: fit-content;
             background: #FFFFFF;
             box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
-            border-radius: 16px;}
+            border-radius: 5px;}
         .modal_top {
             padding: 40px 15px 0 15px;}
         .notification {
@@ -98,7 +98,7 @@ let mut = new MutationObserver(function (muts) {
             flex-shrink: 0;}
         .modal .btn {
             background: #4B2A4D;
-            border-radius: 0px 0px 16px 16px;
+            border-radius: 0px 0px 5px 5px;
             font-weight: 600;
             font-size: 14px;
             line-height: 54px;
