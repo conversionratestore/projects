@@ -18,10 +18,6 @@ let mut = new MutationObserver(function (muts) {
                         });
                         localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     });  
-                    mut.observe(document, {
-                        childList: true,
-                        subtree: true
-                    });
                 }      
             }
         }
