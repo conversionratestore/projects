@@ -64,21 +64,23 @@ let mut = new MutationObserver(function (muts) {
             pointer-events: none;
             transition: all 0.3s ease;
             z-index: 9999;
+            padding: 0 16px;
             height: 100vh;
             width: 100%;}
         .modal.active {
             opacity: 1;
             pointer-events: auto;}
         .modal_container {
+            position: relative;
             margin: auto;
             display: block;
-            max-width: 350px;
+            max-width: 323px;
             height: fit-content;
             background: #FFFFFF;
             box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
             border-radius: 16px;}
         .modal_top {
-            padding: 15px 15px 0 15px;}
+            padding: 40px 15px 0 15px;}
         .notification {
             border-top: 1px dashed #E5E5E5;
             padding: 21px 15px;
@@ -106,9 +108,12 @@ let mut = new MutationObserver(function (muts) {
             width: 100%;
             color: #FFFFFF;}
         .close {
+            position: absolute;
+            right: -16px;
+            top: -16px;
             background: url('https://conversionratestore.github.io/projects/jarrold/img/close.svg') no-repeat center / contain;
-            width: 15px;
-            height: 15px;
+            width: 33px;
+            height: 33px;
             border: none;
             margin-left: auto;
             display: block;}
@@ -128,20 +133,20 @@ let mut = new MutationObserver(function (muts) {
             background: #F8F8F8;
             border: 1px solid #eae8e8;
             border-radius: 6px;
-            max-width: 261px;
+            max-width: 263px;
             text-align: center;
             padding: 4px 20px;
             margin: 0 auto;}
         .modal_products {
             max-height: 250px;
             overflow-y: auto;
-            padding: 0 30px;
+            padding: 5px 15px 0;
             margin: 0;
             list-style-type: none;}
         .modal_products li {
             padding: 20px 0;}
         .modal_products img {
-            height: 99px;
+            height: 100px;
             width: 100%;
             margin: 0 auto 20px;
             display: block;
@@ -159,10 +164,10 @@ let mut = new MutationObserver(function (muts) {
             padding-right: 15px;
             color: #000000;}
         .product-price {
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 25px;
-            color: #000000;}
+            font-size: 20px;
+            line-height: 20px;
+            color: #000000;
+            letter-spacing: 0.05em;}
         </style>`);
 
         if (localStorage.getItem('wishlist') != '') {
