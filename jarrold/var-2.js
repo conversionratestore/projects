@@ -195,7 +195,7 @@ let mut = new MutationObserver(function (muts) {
                 }
             }
         }
-
+ 
         var my_scroll = (function() { 
             var last_position, new_position, timer, delta, delay = 50; 
             
@@ -217,7 +217,12 @@ let mut = new MutationObserver(function (muts) {
                 return delta;
             };
         })();
-       
+        $(".close, .modal").on('click', () => {
+            $('.modal').removeClass('active');
+        });
+        $(".modal_container").on('click', (e) => {
+            e.stopPropagation();
+        });
         if (document.querySelector('#product h1') && wishlist[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             let wishlist = JSON.parse(localStorage.getItem('wishlist'));
             for (let i = 0; i < wishlist.length; i++) {
@@ -231,14 +236,7 @@ let mut = new MutationObserver(function (muts) {
                 </li>`);
             }
             jQuery(document).on('scroll', myScrollSpeedFunction);
-            $(".close, .modal").on('click', () => {
-                $('.modal').removeClass('active');
-            });
-            $(".modal_container").on('click', (e) => {
-                e.stopPropagation();
-            });
-        } 
-       
+        }    
     }
 });
 
