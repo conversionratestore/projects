@@ -360,7 +360,7 @@ window.onload  = function () {
     }
     </style>`);
 
-    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"></a>`);
+    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/trust-rating.svg?v=1618830266" class=" ls-is-cached lazyloaded"></a>`);
     $('.js-main').addClass('js-iphone');
     $('.announcement-container').addClass('shipping-noti js-mobile');
     $('.navbar .row').addClass('align-items-center');
@@ -371,7 +371,7 @@ window.onload  = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 $('.announcement-container').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile').innerHTML);
-                $('header .trust-rating').append(doc.querySelector('.trust-rating').innerHTML);
+               
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
