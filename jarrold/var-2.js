@@ -237,9 +237,9 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && wishlist[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+            console.log('have modal');
             jQuery(document).on('scroll', myScrollSpeedFunction);
-        } 
-       
+        }     
     }
 });
 
