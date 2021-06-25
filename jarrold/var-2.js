@@ -223,13 +223,12 @@ let mut = new MutationObserver(function (muts) {
             for (let i = 0; i < wishlist.length; i++) {
                 $('.modal_products').append(`
                 <li>
-                    <a href="${wishlist[i].link}" class="modal_img"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
+                    <a href="${wishlist[i].link}" class="modal_ismg"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
                     <div class="flex-center-between">
                         <a href="${wishlist[i].link}" class="product-title">${wishlist[i].title}</a>
                         <p class="product-price">${wishlist[i].price}</p>
                     </div>
                 </li>`);
-                    }
             }
             jQuery(document).on('scroll', myScrollSpeedFunction);
             $(".close, .modal").on('click', () => {
