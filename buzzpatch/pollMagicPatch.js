@@ -360,7 +360,7 @@ window.onload  = function () {
     }
     </style>`);
 
-    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/trust-rating.svg?v=1618830266" class=" ls-is-cached lazyloaded"></a>`);
+    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/trust-rating.svg" class=" ls-is-cached lazyloaded"></a>`);
     $('.js-main').addClass('js-iphone');
     $('.announcement-container').addClass('shipping-noti js-mobile');
     $('.navbar .row').addClass('align-items-center');
