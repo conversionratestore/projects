@@ -52,7 +52,6 @@ let mut = new MutationObserver(function (muts) {
     }
     if (localStorage.getItem('wishlist') != '' && !window.location.pathname.includes('basket')) {
         mut.disconnect();
-        let wishlist = JSON.parse(localStorage.getItem('wishlist'));
         $('body').eq(0).prepend(`<style>
         .modal {
             background: rgba(0, 0, 0, 0.59);
@@ -218,8 +217,10 @@ let mut = new MutationObserver(function (muts) {
                 return delta;
             };
         })();
-        for (let i = 0; i < wishlist.length; i++) {
-            if (wishlist[i].title != document.querySelector('#product h1').innerHTML) {
+       
+        if (document.querySelector('#product h1') && wishlist[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist'));
+            for (let i = 0; i < wishlist.length; i++) {
                 $('.modal_products').append(`
                 <li>
                     <a href="${wishlist[i].link}" class="modal_img"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
@@ -228,15 +229,17 @@ let mut = new MutationObserver(function (muts) {
                         <p class="product-price">${wishlist[i].price}</p>
                     </div>
                 </li>`);
-                jQuery(document).on('scroll', myScrollSpeedFunction);
-                $(".close, .modal").on('click', () => {
-                    $('.modal').removeClass('active');
-                });
-                $(".modal_container").on('click', (e) => {
-                    e.stopPropagation();
-                });
-            }  
-        }
+                    }
+            }
+            jQuery(document).on('scroll', myScrollSpeedFunction);
+            $(".close, .modal").on('click', () => {
+                $('.modal').removeClass('active');
+            });
+            $(".modal_container").on('click', (e) => {
+                e.stopPropagation();
+            });
+        } 
+       
     }
 });
 
