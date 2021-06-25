@@ -1,3 +1,4 @@
+
 window.onload  = function () {
     $('body').prepend(`
     <style>
@@ -337,6 +338,8 @@ window.onload  = function () {
         .conditions .d-flex .inside img {
             height: 45px;
             width: auto; }
+        #included, #purchase .js-title.big, .announcement-container , #returns .smile, #returns .js-title{
+            display: none; }
     }
     @media (max-width: 474px) {
         .js-packs {
@@ -359,9 +362,9 @@ window.onload  = function () {
 
     $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"></a>`);
     $('.js-main').addClass('js-iphone');
-    $('.announcement-container').remove();
-    $('#included').remove();
-    $('#purchase .js-title.big').remove();
+    // $('.announcement-container').remove();
+    // $('#included').remove();
+    // $('#purchase .js-title.big').remove();
     $('.navbar .row').addClass('align-items-center');
     (function(){
         var http = new XMLHttpRequest();  
@@ -516,8 +519,8 @@ window.onload  = function () {
     })();
 
 
-    $('#returns .smile').remove();
-    $('#returns .js-title').remove();
+    // $('#returns .smile').remove();
+    // $('#returns .js-title').remove();
 
     $('header .js-heading img').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/PATCHES.png?v=1606305083');
 
