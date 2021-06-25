@@ -360,8 +360,7 @@ window.onload  = function () {
     }
     </style>`);
 
-    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/trust-rating.svg" class=" ls-is-cached lazyloaded"></a>`);
-    $('.js-main').addClass('js-iphone');
+ $('.js-main').addClass('js-iphone');
     $('.announcement-container').addClass('shipping-noti js-mobile');
     $('.navbar .row').addClass('align-items-center');
     (function(){
@@ -371,7 +370,7 @@ window.onload  = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 $('.announcement-container').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile').innerHTML);
-               
+                
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
                 $('#returns').after(doc.querySelector('#featured-reviews'));
@@ -531,7 +530,8 @@ window.onload  = function () {
     $('#faqs h2').html('FAQ');
     $('#returns').append(`<div class="js-mobile wave-bg"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/wave.svg?v=1619943742" width="100%"></div>`);
     $('header .js-heading .col-lg-7 img').attr('src','https://conversionratestore.github.io/projects/buzzpatch/img/patches.png');
-
+    $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"><img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/trust-rating.svg" class=" ls-is-cached lazyloaded"></a>`);
+    
     let arrFAQ =[
         {
             name: 'How do they work?',
