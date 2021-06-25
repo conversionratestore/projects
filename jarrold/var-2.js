@@ -17,6 +17,7 @@ let mut = new MutationObserver(function (muts) {
                             'imageSrc': el.querySelector('.square img').getAttribute('data-src').replace('.net','.net/').split('w=93,h=93').join('w=670,h=670'),
                         });
                         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                        $('.favorites span').html(JSON.parse(localStorage.getItem('wishlist')).length);
                     });  
                 }      
             }
@@ -49,9 +50,9 @@ let mut = new MutationObserver(function (muts) {
         }
 
     }
-  
-    if (!document.querySelector('#product') && !window.location.pathname.includes('basket')) {
+    if (localStorage.getItem('wishlist') != '' && !window.location.pathname.includes('basket')) {
         mut.disconnect();
+        let wishlist = JSON.parse(localStorage.getItem('wishlist'));
         $('body').eq(0).prepend(`<style>
         .modal {
             background: rgba(0, 0, 0, 0.59);
@@ -168,27 +169,57 @@ let mut = new MutationObserver(function (muts) {
             color: #000000;
             letter-spacing: 0.05em;}
         </style>`);
+        $('body').eq(0).append(`
+        <div class="modal">
+            <div class="modal_container">
+                <div class="modal_top">
+                    <button type="button" class="close"></button>
+                    <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
+                    <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
+                    <ul class="modal_products"></ul>
+                </div>
+                <div class="notification">
+                    <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
+                    <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
+                </div>
+                <a href="#" class="btn">complete my order now</a>
+            </div> 
+        </div>`); 
+        jQuery(document).on('touchstart', function(){
+            $('body').addClass('on-mobile-device');
+        });
 
-        if (localStorage.getItem('wishlist') != '') {
-            $('body').eq(0).append(`
-            <div class="modal">
-                <div class="modal_container">
-                    <div class="modal_top">
-                        <button type="button" class="close"></button>
-                        <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
-                        <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
-                        <ul class="modal_products"></ul>
-                    </div>
-                    <div class="notification">
-                        <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
-                        <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
-                    </div>
-                    <a href="#" class="btn">complete my order now</a>
-                </div> 
-            </div>`);
-                    
-            let wishlist = JSON.parse(localStorage.getItem('wishlist'));
-            for (let i = 0; i < wishlist.length; i++) {
+        function myScrollSpeedFunction(){
+            if(jQuery('body').hasClass('on-mobile-device') ){ 
+                if(my_scroll() < -200){
+                    $(".modal").addClass('active');
+                }
+            }
+        }
+
+        var my_scroll = (function() { 
+            var last_position, new_position, timer, delta, delay = 50; 
+            
+            function clear() {
+                last_position = null;
+                delta = 0;
+            }
+
+            clear();
+
+            return function(){
+                new_position = window.scrollY;
+                if (last_position != null){
+                    delta = new_position -  last_position;
+                }
+                last_position = new_position;
+                clearTimeout(timer);
+                timer = setTimeout(clear, delay);
+                return delta;
+            };
+        })();
+        for (let i = 0; i < wishlist.length; i++) {
+            if (wishlist[i].title != document.querySelector('#product h1').innerHTML) {
                 $('.modal_products').append(`
                 <li>
                     <a href="${wishlist[i].link}" class="modal_img"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
@@ -197,50 +228,15 @@ let mut = new MutationObserver(function (muts) {
                         <p class="product-price">${wishlist[i].price}</p>
                     </div>
                 </li>`);
-            }
-
-            jQuery(document).on('touchstart', function(){
-                $('body').addClass('on-mobile-device');
-            });
-
-            function myScrollSpeedFunction(){
-                if(jQuery('body').hasClass('on-mobile-device') ){ 
-                    if(my_scroll() < -200){
-                        $(".modal").addClass('active');
-                    }
-                }
-            }
-
-            var my_scroll = (function() { 
-                var last_position, new_position, timer, delta, delay = 50; 
-                
-                function clear() {
-                    last_position = null;
-                    delta = 0;
-                }
-
-                clear();
-
-                return function(){
-                    new_position = window.scrollY;
-                    if ( last_position != null ){
-                        delta = new_position -  last_position;
-                    }
-                    last_position = new_position;
-                    clearTimeout(timer);
-                    timer = setTimeout(clear, delay);
-                    return delta;
-                };
-            })();
-
-            jQuery(document).on('scroll', myScrollSpeedFunction);
-            $(".close, .modal").on('click', () => {
-                $('.modal').removeClass('active');
-            });
-            $(".modal_container").on('click', (e) => {
-                e.stopPropagation();
-            });
-        } 
+                jQuery(document).on('scroll', myScrollSpeedFunction);
+                $(".close, .modal").on('click', () => {
+                    $('.modal').removeClass('active');
+                });
+                $(".modal_container").on('click', (e) => {
+                    e.stopPropagation();
+                });
+            }  
+        }
     }
 });
 
