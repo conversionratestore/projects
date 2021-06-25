@@ -358,7 +358,11 @@ window.onload  = function () {
     </style>`);
 
     $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"></a>`);
-    
+    $('.js-main').addClass('js-iphone');
+    $('.announcement-container').remove();
+    $('#included').remove();
+    $('#purchase .js-title.big').remove();
+    $('.navbar .row').addClass('align-items-center');
     (function(){
         var http = new XMLHttpRequest();  
         http.open('GET', 'https://buzzpatch.com/pages/buzzpatch');
@@ -511,14 +515,10 @@ window.onload  = function () {
         http.send(null);
     })();
 
-    $('.js-main').addClass('js-iphone');
-    $('.announcement-container').remove();
-    $('#included').remove();
-    $('#purchase .js-title.big').remove();
+
     $('#returns .smile').remove();
     $('#returns .js-title').remove();
 
-    $('.navbar .row').addClass('align-items-center');
     $('header .js-heading img').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/PATCHES.png?v=1606305083');
 
     $('.js-iphone .js-heading.js-mobile h1').html('Instant itch relief </br> the natural way');
