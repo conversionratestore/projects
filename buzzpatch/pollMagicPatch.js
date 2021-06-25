@@ -362,9 +362,7 @@ window.onload  = function () {
 
     $('header .js-title').after(`<a href="https://www.trustpilot.com/review/buzzpatch.com" _blank class="trust-rating"></a>`);
     $('.js-main').addClass('js-iphone');
-    // $('.announcement-container').remove();
-    // $('#included').remove();
-    // $('#purchase .js-title.big').remove();
+    $('.announcement-container').addClass('shipping-noti js-mobile');
     $('.navbar .row').addClass('align-items-center');
     (function(){
         var http = new XMLHttpRequest();  
@@ -372,7 +370,7 @@ window.onload  = function () {
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
-                $('header').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile'));
+                $('.announcement-container').prepend(doc.querySelector('.js-iphone .shipping-noti.js-mobile').innerHTML);
                 $('header .trust-rating').append(doc.querySelector('.trust-rating').innerHTML);
                 $('header').append(doc.querySelector('header .js-mobile.wave-bg'));
                 $('header').after(doc.querySelector('#flowers'));
@@ -517,10 +515,6 @@ window.onload  = function () {
         }
         http.send(null);
     })();
-
-
-    // $('#returns .smile').remove();
-    // $('#returns .js-title').remove();
 
     $('header .js-heading img').attr('src','https://cdn.shopify.com/s/files/1/0387/0749/4956/files/PATCHES.png?v=1606305083');
 
