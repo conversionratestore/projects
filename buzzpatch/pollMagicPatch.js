@@ -338,7 +338,7 @@ window.onload  = function () {
         .conditions .d-flex .inside img {
             height: 45px;
             width: auto; }
-        #included, #purchase .js-title.big, .announcement-container , #returns .smile, #returns .js-title{
+        #included, #purchase .js-title.big, .announcement-container , #returns .smile, #returns .js-title, .announcement-bar{
             display: none; }
     }
     @media (max-width: 474px) {
