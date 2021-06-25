@@ -184,6 +184,19 @@ let mut = new MutationObserver(function (muts) {
                 <a href="#" class="btn">complete my order now</a>
             </div> 
         </div>`); 
+
+        let wishlist = JSON.parse(localStorage.getItem('wishlist'));
+        for (let i = 0; i < wishlist.length; i++) {
+            $('.modal_products').append(`
+            <li>
+                <a href="${wishlist[i].link}" class="modal_ismg"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
+                <div class="flex-center-between">
+                    <a href="${wishlist[i].link}" class="product-title">${wishlist[i].title}</a>
+                    <p class="product-price">${wishlist[i].price}</p>
+                </div>
+            </li>`);
+        }
+        
         jQuery(document).on('touchstart', function(){
             $('body').addClass('on-mobile-device');
         });
@@ -224,19 +237,9 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && wishlist[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist'));
-            for (let i = 0; i < wishlist.length; i++) {
-                $('.modal_products').append(`
-                <li>
-                    <a href="${wishlist[i].link}" class="modal_ismg"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
-                    <div class="flex-center-between">
-                        <a href="${wishlist[i].link}" class="product-title">${wishlist[i].title}</a>
-                        <p class="product-price">${wishlist[i].price}</p>
-                    </div>
-                </li>`);
-            }
             jQuery(document).on('scroll', myScrollSpeedFunction);
-        }    
+        } 
+       
     }
 });
 
