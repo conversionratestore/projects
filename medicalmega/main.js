@@ -761,7 +761,6 @@ window.onload  = function () {
                 <b>
                     $
                     7.25 </b>
-                <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
             </dd>`);
         }
     }
