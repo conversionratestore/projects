@@ -809,7 +809,7 @@ window.onload  = function () {
                         for (let i = 0; i < productsStored.length; i++) {
                             if (productsStored[i].product_id != undefined) {
                                 if (productsStored[i].product_id === productId) {
-                                    productsStored[i].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
+                                    productsStored[i].quantity = +item.nextElementSibling.value;
                                 } else {
                                     productsStored.push({
                                         'product_id': productId,
