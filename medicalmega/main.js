@@ -715,7 +715,7 @@ window.onload  = function () {
                 });
 
                 if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
-                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,arent.querySelector('b s') ? splPrice[2]: splPrice[1]);
+                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,parent.querySelector('b s') ? splPrice[2]: splPrice[1]);
                 } 
                
                 if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
