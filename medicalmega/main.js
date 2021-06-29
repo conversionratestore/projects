@@ -562,10 +562,10 @@ window.onload  = function () {
             'eventAction': 'click on shopping cart'
         });
     });
-    document.querySelector('#cart_box a').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.popup').classList.add('isActive');   
-    });
+    // document.querySelector('#cart_box a').addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     document.querySelector('.popup').classList.add('isActive');   
+    // });
 
     document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');
