@@ -554,6 +554,7 @@ window.onload  = function () {
         document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
+
             let id = document.querySelector('[name="product_id"]').getAttribute('product_id'),
                 varId = document.querySelector('[name="product_variant_id"]').getAttribute('product_variant_id'),
                 link = window.location.href,
@@ -561,6 +562,37 @@ window.onload  = function () {
                 title = document.querySelector('h3').innerHTML,
                 quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
                 price = document.querySelector('.product-price').innerHTML.replace('$','');
+
+            if (localStorage.getItem('productsStored') != '') {
+                let productsStored = JSON.parse(localStorage.getItem('productsStored'));
+                for (let i = 0; i < productsStored.length; i++) {
+                    if (id != productsStored[i].product_id) {
+                        productsStored.push({
+                            'product_id': id,
+                            'quantity': quantity,
+                            'price': price,
+                            'product_variant_id': varId,
+                            'img_src': imgSrc,
+                            'link': link,
+                            'title': title,
+                        });
+                        localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                    } else {
+                        productsStored[i].quantity += quantity;
+                    }
+                }
+            } else {
+                productsStored.push({
+                    'product_id': id,
+                    'quantity': quantity,
+                    'price': price,
+                    'product_variant_id': varId,
+                    'img_src': imgSrc,
+                    'link': link,
+                    'title': title,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            }
 
             addProduct(id,varId,link,imgSrc,title,quantity,price);
             document.querySelector('.popup').classList.add('isActive');   
