@@ -653,12 +653,7 @@ window.onload  = function () {
         const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
             galleryTitle = document.querySelectorAll('.title'),
             showMore = document.querySelectorAll('.show-more');
-
-        for (let i = 0; i < arrTitle.length; i++) {
-            galleryTitle[i].innerHTML = arrTitle[i];
-            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
-            if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
-            showMore[i].forEach( (item) => {
+            showMore.forEach( (item) => {
                 item.addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
@@ -668,6 +663,10 @@ window.onload  = function () {
                     });
                 });
             });
+        for (let i = 0; i < arrTitle.length; i++) {
+            galleryTitle[i].innerHTML = arrTitle[i];
+            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
+            if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
         }
 
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
