@@ -807,18 +807,17 @@ window.onload  = function () {
                     if (localStorage.getItem("productsStored") != '') {
                         let productsStored = JSON.parse(localStorage.getItem("productsStored"));
                         for (let i = 0; i < productsStored.length; i++) {
-                            if (productsStored[i].product_id != undefined) {
-                                if (productsStored[i].product_id === productId) {
-                                    productsStored[i].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
-                                } else {
-                                    productsStored.push({
-                                        'product_id': productId,
-                                        'quantity': valueP,
-                                        'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                                        'product_variant_id': dataProductVariantId,
-                                    });
-                                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                                }
+                            if (productsStored[i].product_id != undefined && productsStored[i].product_id === productId) {
+                                productsStored[i].quantity = document.querySelector(`.popup__product[data-product-id='${productId}'] .quantity`).value;
+                             
+                            } else {
+                                productsStored.push({
+                                    'product_id': productId,
+                                    'quantity': item.nextElementSibling.value,
+                                    'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                                    'product_variant_id': dataProductVariantId,
+                                });
+                                localStorage.setItem('productsStored', JSON.stringify(productsStored));
                             }
                         }
                     } else {
