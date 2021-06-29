@@ -559,7 +559,7 @@ window.onload  = function () {
                 varId = document.querySelector('[name="product_variant_id"]').value,
                 link = window.location.href,
                 imgSrc = document.querySelector('.product_img').getAttribute('src'),
-                title = document.querySelector('h3').innerHTML,
+                title = document.querySelectorAll('.center h3')[0].innerHTML,
                 quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
                 price = document.querySelector('.product-price').innerHTML.replace('$','');
 
