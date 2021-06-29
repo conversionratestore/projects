@@ -569,7 +569,7 @@ window.onload  = function () {
                     if (id != productsStored[i].product_id) {
                         productsStored.push({
                             'product_id': id,
-                            'quantity': quantity,
+                            'quantity': `${quantity}`,
                             'price': price,
                             'product_variant_id': varId,
                             'img_src': imgSrc,
