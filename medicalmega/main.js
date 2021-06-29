@@ -494,57 +494,46 @@ window.onload  = function () {
         let cartItems = JSON.parse(localStorage.getItem("productsStored"));
         if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
-                document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
-                    let srcImgProduct = item.querySelector('img').src,
-                        altImgProduct = item.querySelector('img').alt,
-                        titleProduct = item.querySelectorAll('a')[1].innerHTML,
-                        linkProduct = item.querySelectorAll('a')[1].href,
-                        priceProductAll = item.querySelector('b').innerHTML,
-                        splPrice = priceProductAll.split('$');
+                let newElementProduct = `
+                    <tr class="popup__product" data-product-id='${cartItems[i].product_id}' data-product-variant-id='${cartItems[i].product_variant_id}'>
+                        <td width="44%">
+                            <div class="product-cell-inner">
+                                <span> 
+                                    <a href="${cartItems[i].link}">
+                                        <img src="${cartItems[i].img_src}" alt="${cartItems[i].title}">
+                                    </a>
+                                </span>
+                                <p class="product-description" align="left">
+                                    <b>
+                                        <a href="${cartItems[i].link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${cartItems[i].title}</a>
+                                    </b>
+                                </p>
+                            </div>
+                        </td>
+                        <td width="22%" align="left">
+                            <div class="quantity-row">
+                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
+                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                            </div>
+                        </td>
+                        <td width="17%" class="unit-price" align="left">$ <b>${cartItems[i].price}</b></td>
+                        <td width="17%" class="total-price" align="left">$ <b></b></td>
+                    </tr> `;   
 
-                    let dataProductVariantId = item.getAttribute('data-product-variant-id'),
-                        productId = item.getAttribute('data-product-id');
-            
-                    let newElementProduct = `
-                        <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
-                            <td width="44%">
-                                <div class="product-cell-inner">
-                                    <span> 
-                                        <a href="${linkProduct}">
-                                            <img src="${srcImgProduct}" alt="${altImgProduct}">
-                                        </a>
-                                    </span>
-                                    <p class="product-description" align="left">
-                                        <b>
-                                            <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
-                                        </b>
-                                    </p>
-                                </div>
-                            </td>
-                            <td width="22%" align="left">
-                                <div class="quantity-row">
-                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
-                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                                </div>
-                            </td>
-                            <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
-                            <td width="17%" class="total-price" align="left">$ <b></b></td>
-                        </tr> `;   
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+                } 
+                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
+                        quantityFun(el);
+                    });
+                }
 
-                    if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-                    } 
-                    if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                        document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
-                            el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
-                            quantityFun(el);
-                        });
-                    }
-
-                    document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
-                    sumTotalPrice();
-                });   
+                document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                sumTotalPrice();
+                
             }
         }
     } 
@@ -770,12 +759,14 @@ window.onload  = function () {
                     quantityFun(el);
                     el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                     sumTotalPrice();
-
                     productsStored.push({
                         'product_id': el.getAttribute('data-product-id'),
                         'quantity': el.querySelector('.quantity').value,
                         'price': el.querySelector('.unit-price b').innerHTML,
                         'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        'img_src': el.querySelector('a img').getAttribute('src'),
+                        'link': el.querySelector('.product-description a').getAttribute('href'),
+                        'title': el.querySelector('.product-description a').innerHTML,
                     });
                     localStorage.setItem('productsStored', JSON.stringify(productsStored));
                 });
