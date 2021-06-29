@@ -595,6 +595,8 @@ window.onload  = function () {
             }
 
             addProduct(id,varId,link,imgSrc,title,quantity,price);
+            document.querySelector(`.popup__product[data-product-id='${id}'] .total-price b`).innerHTML = `${(parseFloat( document.querySelector(`.popup__product[data-product-id='${id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${id}'] .unit-price b`).innerHTML)).toFixed(2)}`;
+            sumTotalPrice();
             document.querySelector('.popup').classList.add('isActive');   
         });
     }
