@@ -552,6 +552,7 @@ window.onload  = function () {
         document.querySelector('.popup').classList.remove('isActive');   
     });
     if (document.querySelector('#cart_box a')) {
+        document.querySelectorAll('#cart_box a')[0].setAttribute('href','https://medicalmega.com/login.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1')
         document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
