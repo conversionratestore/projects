@@ -365,7 +365,6 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', style);
 
     let productsStored = [];
-    let productsStoredTemporarily = [];
     let productsStoredUpdate = [];
 
     function sumTotalPrice() {
@@ -490,8 +489,6 @@ window.onload  = function () {
     
     if (document.querySelector('.by_num span').innerHTML == '0') {
         localStorage.setItem('productsStored', '');
-        localStorage.setItem('productsStoredTemporarily', '');
-        localStorage.setItem('productsStoredUpdate', '');
     }
     if (document.querySelector('.by_num span').innerHTML != '0') {
         let cartItems = JSON.parse(localStorage.getItem("productsStored"));
@@ -765,7 +762,7 @@ window.onload  = function () {
                 }
 
                 document.querySelector('.popup').classList.add('isActive');
-                
+
                 productsStored = [];
                 localStorage.setItem('productsStored', '');
 
