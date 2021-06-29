@@ -563,6 +563,13 @@ window.onload  = function () {
                 quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
                 price = document.querySelector('.product-price').innerHTML.replace('$','');
 
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `product_variant_id=${varId}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+            })
             addProduct(id,varId,link,imgSrc,title,quantity,price);
             document.querySelector(`.popup__product[data-product-id='${id}'] .total-price b`).innerHTML = `${(parseFloat( document.querySelector(`.popup__product[data-product-id='${id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${id}'] .unit-price b`).innerHTML)).toFixed(2)}`;
             sumTotalPrice();
