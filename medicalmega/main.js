@@ -397,8 +397,6 @@ window.onload  = function () {
         el.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', (event) => {
                 event.stopImmediatePropagation();
-                let id = button.closest('.popup__product').dataset.productId,
-                    idVariant = button.closest('.popup__product').dataset.productVariantId;
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = +button.previousElementSibling.value + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
@@ -487,6 +485,34 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
     
+    function addProduct(id,varId,link,imgSrc,title,quantity,price) {
+        let newElementProduct = `
+        <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
+            <td width="44%">
+                <div class="product-cell-inner">
+                    <span> 
+                        <a href="${link}">
+                            <img src="${imgSrc}" alt="${title}">
+                        </a>
+                    </span>
+                    <p class="product-description" align="left">
+                        <b>
+                            <a href="${link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${title}</a>
+                        </b>
+                    </p>
+                </div>
+            </td>
+            <td width="22%" align="left">
+                <div class="quantity-row">
+                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                    <input type="number" name="quantity" value="0" class="quantity" data-val="${quantity}">
+                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                </div>
+            </td>
+            <td width="17%" class="unit-price" align="left">$ <b>${price}</b></td>
+            <td width="17%" class="total-price" align="left">$ <b></b></td>
+        </tr> `;  
+    }
     if (document.querySelector('.by_num span').innerHTML == '0') {
         localStorage.setItem('productsStored', '');
     }
@@ -494,33 +520,8 @@ window.onload  = function () {
         let cartItems = JSON.parse(localStorage.getItem("productsStored"));
         if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
-                let newElementProduct = `
-                    <tr class="popup__product" data-product-id='${cartItems[i].product_id}' data-product-variant-id='${cartItems[i].product_variant_id}'>
-                        <td width="44%">
-                            <div class="product-cell-inner">
-                                <span> 
-                                    <a href="${cartItems[i].link}">
-                                        <img src="${cartItems[i].img_src}" alt="${cartItems[i].title}">
-                                    </a>
-                                </span>
-                                <p class="product-description" align="left">
-                                    <b>
-                                        <a href="${cartItems[i].link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${cartItems[i].title}</a>
-                                    </b>
-                                </p>
-                            </div>
-                        </td>
-                        <td width="22%" align="left">
-                            <div class="quantity-row">
-                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
-                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                            </div>
-                        </td>
-                        <td width="17%" class="unit-price" align="left">$ <b>${cartItems[i].price}</b></td>
-                        <td width="17%" class="total-price" align="left">$ <b></b></td>
-                    </tr> `;   
-
+                addProduct(cartItems[i].product_id,cartItems[i].product_variant_id,cartItems[i].link,cartItems[i].img_src,cartItems[i].title,cartItems[i].quantity,cartItems[i].price) 
+            
                 if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
                     document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
                 } 
@@ -551,10 +552,13 @@ window.onload  = function () {
     document.querySelector('.close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
     });
-    // document.querySelector('#cart_box a').addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     document.querySelector('.popup').classList.add('isActive');   
-    // });
+    if (document.querySelector('#cart_box a')) {
+        document.querySelector('#cart_box a')[0].addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.popup').classList.add('isActive');   
+        });
+    }
+
 
     document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');
@@ -711,34 +715,7 @@ window.onload  = function () {
                     'eventAction': 'click on button — add to cart',
                     'eventQuantity': `${valueP}`
                 });
-
-                let newElementProduct = `
-                    <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
-                        <td width="44%">
-                            <div class="product-cell-inner">
-                                <span> 
-                                    <a href="${linkProduct}">
-                                        <img src="${srcImgProduct}" alt="${altImgProduct}">
-                                    </a>
-                                </span>
-                                <p class="product-description" align="left">
-                                    <b>
-                                        <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
-                                    </b>
-                                </p>
-                            </div>
-                        </td>
-                        <td width="22%" align="left">
-                            <div class="quantity-row">
-                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                <input type="number" name="quantity" value="0" class="quantity" data-val="${valueP} readonly">
-                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                            </div>
-                        </td>
-                        <td width="17%" class="unit-price" align="left">$ <b>${parent.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
-                        <td width="17%" class="total-price" align="left">$ <b></b></td>
-                    </tr>
-                `;
+                addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,arent.querySelector('b s') ? splPrice[2]: splPrice[1])
            
                 if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
                     document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
