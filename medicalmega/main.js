@@ -562,6 +562,12 @@ window.onload  = function () {
                 title = document.querySelectorAll('.center h3')[0].innerHTML,
                 quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
                 price = document.querySelector('.product-price').innerHTML.replace('$','');
+    
+         
+            addProduct(id,varId,link,imgSrc,title,quantity,price);
+
+            document.querySelector(`.popup__product[data-product-id='${id}'] .total-price b`).innerHTML = `${(parseFloat( document.querySelector(`.popup__product[data-product-id='${id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${id}'] .unit-price b`).innerHTML)).toFixed(2)}`;
+            sumTotalPrice();
 
             fetch('/cart.html', {
                 headers: {
@@ -569,27 +575,24 @@ window.onload  = function () {
                 },
                 method: "POST",
                 body: `product_variant_id=${varId}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+            }).then(()=>{
+                productsStored = [];
+                localStorage.setItem('productsStored', '');
+    
+                document.querySelector(`.popup__product`).forEach((el) => {
+                    productsStored.push({
+                        'product_id': el.getAttribute('data-product-id'),
+                        'quantity': el.querySelector('.quantity').value,
+                        'price': el.querySelector('.unit-price b').innerHTML,
+                        'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        'img_src': el.querySelector('a img').getAttribute('src'),
+                        'link': el.querySelector('.product-description a').getAttribute('href'),
+                        'title': el.querySelector('.product-description a').innerHTML,
+                    });
+                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                })
             })
-            addProduct(id,varId,link,imgSrc,title,quantity,price);
-            document.querySelector(`.popup__product[data-product-id='${id}'] .total-price b`).innerHTML = `${(parseFloat( document.querySelector(`.popup__product[data-product-id='${id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${id}'] .unit-price b`).innerHTML)).toFixed(2)}`;
-            sumTotalPrice();
 
-            productsStored = [];
-            localStorage.setItem('productsStored', '');
-
-            document.querySelector(`.popup__product`).forEach((el) => {
-                productsStored.push({
-                    'product_id': el.getAttribute('data-product-id'),
-                    'quantity': el.querySelector('.quantity').value,
-                    'price': el.querySelector('.unit-price b').innerHTML,
-                    'product_variant_id': el.getAttribute('data-product-variant-id'),
-                    'img_src': el.querySelector('a img').getAttribute('src'),
-                    'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            })
-      
             document.querySelector('.popup').classList.add('isActive');   
         });
     }
