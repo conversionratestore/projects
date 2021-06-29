@@ -548,15 +548,21 @@ window.onload  = function () {
             'eventAction': 'click on shopping cart'
         });
     });
-    document.querySelector('.close').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');   
-    });
+
     if (document.querySelector('#cart_box a')) {
         document.querySelectorAll('#cart_box a')[0].setAttribute('onclick','');
-        document.querySelectorAll('#cart_box a')[0].setAttribute('href','https://medicalmega.com/login.php?r=https%3A%2F%2Fmedicalmega.com%2Fcheckout%2Fstep1');
         document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
+            let id = document.querySelector('[name="product_id"]').getAttribute('product_id'),
+                varId = document.querySelector('[name="product_variant_id"]').getAttribute('product_variant_id'),
+                link = window.location.href,
+                imgSrc = document.querySelector('.product_img').getAttribute('src'),
+                title = document.querySelector('h3').innerHTML,
+                quantity = document.querySelector('[name="quantity"]').options[selectedIndex],
+                price = document.querySelector('.product-price').innerHTML.replace('$','');
+                
+            addProduct(id,varId,link,imgSrc,title,quantity,price);
             document.querySelector('.popup').classList.add('isActive');   
         });
     }
@@ -758,6 +764,9 @@ window.onload  = function () {
             });  
         }); 
     }
+    document.querySelector('.popup .close').addEventListener('click', () => {
+        document.querySelector('.popup').classList.remove('isActive');   
+    });
 };
 
 (function(h,o,t,j,a,r){
