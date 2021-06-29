@@ -658,12 +658,14 @@ window.onload  = function () {
             galleryTitle[i].innerHTML = arrTitle[i];
             let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
             if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
-            showMore[i].addEventListener('click',() => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                    'eventAction': 'click on button — show more'
+            showMore[i].forEach( (item) => {
+                item.addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                        'eventAction': 'click on button — show more'
+                    });
                 });
             });
         }
