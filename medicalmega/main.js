@@ -554,6 +554,7 @@ window.onload  = function () {
     if (document.querySelector('#cart_box a')) {
         document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopImmediatePropagation();
             document.querySelector('.popup').classList.add('isActive');   
         });
     }
