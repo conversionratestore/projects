@@ -219,6 +219,8 @@ window.onload  = function () {
                 text-align: center;
                 padding: 5px 0;
                 color: #000000;}
+            .quantity:focus {
+                pointer-events: none!important; }
             .popup .altTd b {
                 font-weight: 450;
                 font-size: 18px;
