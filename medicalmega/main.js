@@ -755,6 +755,7 @@ window.onload  = function () {
                         <td width="17%" class="total-price" align="left">$ <b></b></td>
                     </tr>
                 `;
+                productsStored = [];
                 localStorage.setItem('productsStored', '');
                 if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
                     document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
