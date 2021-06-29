@@ -219,7 +219,7 @@ window.onload  = function () {
                 text-align: center;
                 padding: 5px 0;
                 color: #000000;}
-            .quantity:focus {
+            .quantity:focus, .quantity[type='number']:focus, .quantity[type='number'] {
                 pointer-events: none!important; }
             .popup .altTd b {
                 font-weight: 450;
