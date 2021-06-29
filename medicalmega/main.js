@@ -555,8 +555,8 @@ window.onload  = function () {
             e.preventDefault();
             e.stopImmediatePropagation();
 
-            let id = document.querySelector('[name="product_id"]').getAttribute('product_id'),
-                varId = document.querySelector('[name="product_variant_id"]').getAttribute('product_variant_id'),
+            let id = document.querySelector('[name="product_id"]').value,
+                varId = document.querySelector('[name="product_variant_id"]').value,
                 link = window.location.href,
                 imgSrc = document.querySelector('.product_img').getAttribute('src'),
                 title = document.querySelector('h3').innerHTML,
