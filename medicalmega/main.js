@@ -552,7 +552,7 @@ window.onload  = function () {
         document.querySelector('.popup').classList.remove('isActive');   
     });
     if (document.querySelector('#cart_box a')) {
-        document.querySelector('#cart_box a')[0].addEventListener('click', (e) => {
+        document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
             e.preventDefault();
             document.querySelector('.popup').classList.add('isActive');   
         });
