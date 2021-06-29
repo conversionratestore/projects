@@ -621,7 +621,37 @@ window.onload  = function () {
             'eventAction': 'click on button — checkout now'
         });
     });
+
     let container = document.querySelector('.slider-gallery');
+
+    let arrSlides = [
+        {
+            product_id: '',
+            product_variant_id: '',
+            href: '',
+            title: '',
+            src_img: '',
+            price_old: '',
+            price: '',
+        },
+    ]
+    for (let i = 0; i < arrSlides.length; i++) {
+        container.insertAdjacentHTML('beforeend',`
+        <dd class="product-card" data-product-id="${arrSlides[i].product_id}" data-product-variant-id="${arrSlides[i].product_variant_id}">
+            <span>&nbsp;<a href="${arrSlides[i].href}"><img src="${arrSlides[i].src_img}" alt="${arrSlides[i].title}"></a>&nbsp;</span>
+            <a href="${arrSlides[i].href}">${arrSlides[i].title}</a>
+            <b><s>$
+            ${arrSlides[i].price_old} </s>&nbsp;&nbsp;$
+            ${arrSlides[i].price} </b>
+            <form action="https://medicalmega.com/cart.html" method="post">
+                <input type="hidden" name="product_id" value="${arrSlides[i].product_id}">
+                <input type="hidden" name="product_variant_id" value="${arrSlides[i].product_variant_id}">
+                <input type="hidden" name="quantity" value="1">
+            </form>
+            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+        </dd>`);
+    }
+  
 
     document.querySelector('.swiper-button-prev').addEventListener('click', () => {
         scrollAmount = 0;
