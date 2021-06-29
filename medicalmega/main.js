@@ -562,6 +562,9 @@ window.onload  = function () {
             'eventAction': 'click on shopping cart'
         });
     });
+    document.querySelector('.close').addEventListener('click', () => {
+        document.querySelector('.popup').classList.remove('isActive');   
+    });
     // document.querySelector('#cart_box a').addEventListener('click', (e) => {
     //     e.preventDefault();
     //     document.querySelector('.popup').classList.add('isActive');   
