@@ -698,7 +698,8 @@ window.onload  = function () {
                 <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
             </dd>`);
         }
-   
+    }
+    if (document.querySelector('.add-to-cart button')) {
         document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
             item.addEventListener('click', () => {
                 let valueP = 1;
@@ -769,128 +770,70 @@ window.onload  = function () {
                     sumTotalPrice();
                 });
 
-                if (localStorage.getItem("productsStoredTemporarily") != '') {
-                    productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-                    for (let i = 0; i < productsStoredTemporarily.length; i++) {
-                        if (productsStoredTemporarily[i].product_id != undefined) {
-                            if (productsStoredTemporarily[i].product_id === productId) {
-                                productsStoredTemporarily[i].quantity = item.nextElementSibling.value;
-                            } else {
-                                productsStoredTemporarily.push({
-                                    'product_id': productId,
-                                    'quantity': item.nextElementSibling.value,
-                                    'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                                    'product_variant_id': dataProductVariantId,
-                                });
-                                localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                            }
-                        }
-                    }
-                } else {
-                    productsStoredTemporarily.push({
-                        'product_id': productId,
-                        'quantity': item.nextElementSibling.value,
-                        'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                        'product_variant_id': dataProductVariantId,
-                    });
-                    localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                }
-                productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-                for (let i = 0; i < productsStoredTemporarily.length; i++) {
-                    fetch('/cart.html', {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: "POST",
-                        body: `product_variant_id=${productsStoredTemporarily[i].product_variant_id}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].product_id}&add_to_cart=variant`
-                    }).then(()=>{
-                        if (localStorage.getItem("productsStored") != '') {
-                            productsStored = JSON.parse(localStorage.getItem("productsStored"));
-                            productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
-                            for (let i = 0; i < productsStored.length; i++) {
-                                if (productsStored[i].product_id != undefined) {
-                                    if (productsStored[i].product_id === productsStoredTemporarily[i].product_id ) {
-                                        productsStored[i].quantity = productsStoredTemporarily[i].quantity;
-                                    } else {
-                                        productsStored.push({
-                                            'product_id': productsStoredTemporarily[i].product_id,
-                                            'quantity': productsStoredTemporarily[i].value,
-                                            'price': productsStoredTemporarily[i].price,
-                                            'product_variant_id': productsStoredTemporarily[i].product_variant_id,
-                                        });
-                                        localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                                    }
+                // if (localStorage.getItem("productsStoredTemporarily") != '') {
+                //     productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                //     for (let i = 0; i < productsStoredTemporarily.length; i++) {
+                //         if (productsStoredTemporarily[i].product_id != undefined) {
+                //             if (productsStoredTemporarily[i].product_id === productId) {
+                //                 productsStoredTemporarily[i].quantity = item.nextElementSibling.value;
+                //             } else {
+                //                 productsStoredTemporarily.push({
+                //                     'product_id': productId,
+                //                     'quantity': item.nextElementSibling.value,
+                //                     'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                //                     'product_variant_id': dataProductVariantId,
+                //                 });
+                //                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                //             }
+                //         }
+                //     }
+                // } else {
+                //     productsStoredTemporarily.push({
+                //         'product_id': productId,
+                //         'quantity': item.nextElementSibling.value,
+                //         'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                //         'product_variant_id': dataProductVariantId,
+                //     });
+                //     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
+                // }
+           
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                }).then(()=>{ 
+                    if (localStorage.getItem("productsStored") != '') {
+                        let productsStored = JSON.parse(localStorage.getItem("productsStored"));
+                        for (let i = 0; i < productsStored.length; i++) {
+                            if (productsStored[i].product_id != undefined) {
+                                if (productsStored[i].product_id === productId) {
+                                    productsStored[i].quantity = productsStored[i].quantity + item.nextElementSibling.value;
+                                } else {
+                                    productsStored.push({
+                                        'product_id': productId,
+                                        'quantity': valueP,
+                                        'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                                        'product_variant_id': dataProductVariantId,
+                                    });
+                                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
                                 }
                             }
-                        } else {
-                            productsStored.push({
-                                'product_id': productId,
-                                'quantity': item.nextElementSibling.value,
-                                'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
-                                'product_variant_id': dataProductVariantId,
-                            });
-                            localStorage.setItem('productsStored', JSON.stringify(productsStored));
                         }
-
-                        localStorage.setItem("productsStoredTemporarily",'');
-                        productsStoredTemporarily = []
-                    })
-                }
+                    } else {
+                        productsStored.push({
+                            'product_id': productId,
+                            'quantity': item.nextElementSibling.value,
+                            'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                            'product_variant_id': dataProductVariantId,
+                        });
+                        localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                    }
+                })
             });  
-        });  
-
+        }); 
     }
-   
-    // if (window.location.pathname == '/cart.html') {
-    //     for (const keyJ in justunoCartItems) {
-    //         if (justunoCartItems[keyJ].productid != undefined) {
-    //             if (localStorage.getItem("productsStoredUpdate") != '') {
-    //                 let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-    //                 if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-    //                     if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
-    //                         justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
-    //                         fetch('/cart.html', {
-    //                             headers: {
-    //                                 'Content-Type': 'application/x-www-form-urlencoded',
-    //                             },
-    //                             method: "POST",
-    //                             body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
-    //                         }).then(()=>{
-    //                             localStorage.setItem("productsStoredUpdate",'');
-    //                             productsStoredUpdate = [];
-    //                             window.location.reload();
-    //                         });
-    //                     } 
-    //                     else {
-    //                         // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
-    //                         fetch('/cart.html', {
-    //                             headers: {
-    //                                 'Content-Type': 'application/x-www-form-urlencoded',
-    //                             },
-    //                             method: "POST",
-    //                             body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
-    //                         }).then(()=>{
-    //                             localStorage.setItem("productsStoredUpdate",'');
-    //                             productsStoredUpdate = [];
-    //                             window.location.reload();
-    //                         });
-                        
-    //                     }
-    //                 }
-    //             }
-     
-    //             productsStored.push({
-    //                 'product_id': justunoCartItems[keyJ].productid,
-    //                 'quantity': justunoCartItems[keyJ].quantity,
-    //                 'price': justunoCartItems[keyJ].price,
-    //                 'product_variant_id': justunoCartItems[keyJ].variationid,
-    //             });
-    //             localStorage.setItem('productsStored', JSON.stringify(productsStored));
-    //         }
-    //     }
-    //     localStorage.setItem('productsStoredTemporarily', '');
-    //     localStorage.setItem('productsStoredUpdate', '');   
-    // }
 };
 
 (function(h,o,t,j,a,r){
