@@ -418,6 +418,210 @@ window.onload  = function () {
         });
     }
 
+    let popupShoppingCart = `
+    <div class="popup">
+        <div class="popup__container">
+            <div class="popup__head">
+                <h2 class="title">Shopping cart</h2>
+                <button class="close" type="button"></button>
+            </div>
+            <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
+                <tbody>
+                    <tr id="header-row">
+                        <th align="left" width="44%">Product Name</th>
+                        <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
+                        <th align="left" width="17%">Price</th>
+                        <th align="left" width="17%">Total</th>
+                    </tr>
+                    <tr class="body">
+                        <td colspan="4" style="padding-top: 10px;">
+                            <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
+                        </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr class="popup__product-total">
+                        <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
+                            <b>Sub Total :</b><br>
+                            <b style="font-size:17px;">Grand Total:</b>
+                        </td>
+                        <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
+                            <b>$ 7.25</b><br>
+                            <b style="font-size:17px;">$7.25</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="popup__bottom">
+                <button type="button" class="continue-shopping">
+                    <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
+                    Back to Shopping
+                </button>
+                <div class="flex-center">
+                    <div class="paypal-button">
+                        <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
+                            <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
+                        </form>
+                    </div>
+                    <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
+                        OR</p>
+                    </div>
+                    <div class="checkout">
+                        <a class="btn" href="https://medicalmega.com/checkout/step1">
+                            Checkout Now
+                            <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bought-products">
+                <h3 class="title3">Also bought with this products</h3>
+                <div class="swiper-container">
+                    <dl class="slider-gallery gallery"></dl>
+                    <button class="swiper-button-prev" type="button"></button>
+                    <button class="swiper-button-next" type="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
+    
+    if (document.querySelector('.by_num span').innerHTML == '0') {
+        localStorage.setItem('productsStored', '');
+        localStorage.setItem('productsStoredTemporarily', '');
+        localStorage.setItem('productsStoredUpdate', '');
+    }
+    if (document.querySelector('.by_num span').innerHTML != '0') {
+        let cartItems = JSON.parse(localStorage.getItem("productsStored"));
+        if (cartItems) {
+            for (let i = 0; i < cartItems.length; i++) {
+                document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
+                    let srcImgProduct = item.querySelector('img').src,
+                        altImgProduct = item.querySelector('img').alt,
+                        titleProduct = item.querySelectorAll('a')[1].innerHTML,
+                        linkProduct = item.querySelectorAll('a')[1].href,
+                        priceProductAll = item.querySelector('b').innerHTML,
+                        splPrice = priceProductAll.split('$');
+
+                    let dataProductVariantId = item.getAttribute('data-product-variant-id'),
+                        productId = item.getAttribute('data-product-id');
+            
+                    let newElementProduct = `
+                        <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
+                            <td width="44%">
+                                <div class="product-cell-inner">
+                                    <span> 
+                                        <a href="${linkProduct}">
+                                            <img src="${srcImgProduct}" alt="${altImgProduct}">
+                                        </a>
+                                    </span>
+                                    <p class="product-description" align="left">
+                                        <b>
+                                            <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
+                                        </b>
+                                    </p>
+                                </div>
+                            </td>
+                            <td width="22%" align="left">
+                                <div class="quantity-row">
+                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                    <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
+                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                                </div>
+                            </td>
+                            <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
+                            <td width="17%" class="total-price" align="left">$ <b></b></td>
+                        </tr> `;   
+
+                    if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+                    } 
+                    if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                        document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                            el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
+                            quantityFun(el);
+                        });
+                    }
+
+                    document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                    sumTotalPrice();
+                });   
+            }
+        }
+    } 
+
+    document.querySelector('.shoppingcart').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.popup').classList.add('isActive');   
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+            'eventAction': 'click on shopping cart'
+        });
+    });
+    document.querySelector('#cart_box a').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.popup').classList.add('isActive');   
+    });
+
+    document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
+        document.querySelector('.popup').classList.remove('isActive');
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+            'eventAction': 'click on button — back to shopping'
+        });
+    });
+    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+            'eventAction': 'click on button — checkout now'
+        });
+    });
+    let container = document.querySelector('.slider-gallery');
+
+    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function(){
+            container.scrollLeft -= 25;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
+
+    document.querySelector('.swiper-button-next').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function() {
+            container.scrollLeft += 25;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
+
+    function quantityChenged(el){
+        productsStoredUpdate.unshift({
+            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+            'quantity': el.closest('.popup__product').querySelector('.quantity').value,
+            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+            'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+        });
+        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));   
+    }
+    document.querySelector('.popup .body').addEventListener('change', () => {
+        productsStoredUpdate = [];
+        localStorage.setItem('productsStoredUpdate', '');
+        document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
+    });
     if (window.location.pathname == '/') {
         document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
         document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
@@ -454,6 +658,14 @@ window.onload  = function () {
             galleryTitle[i].innerHTML = arrTitle[i];
             let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
             if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
+            showMore[i].addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — show more'
+                });
+            });
         }
 
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
@@ -463,76 +675,6 @@ window.onload  = function () {
                 }
             });  
         });
-
-        let popupShoppingCart = `
-        <div class="popup">
-            <div class="popup__container">
-                <div class="popup__head">
-                    <h2 class="title">Shopping cart</h2>
-                    <button class="close" type="button"></button>
-                </div>
-                <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
-                    <tbody>
-                        <tr id="header-row">
-                            <th align="left" width="44%">Product Name</th>
-                            <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
-                            <th align="left" width="17%">Price</th>
-                            <th align="left" width="17%">Total</th>
-                        </tr>
-                        <tr class="body">
-                            <td colspan="4" style="padding-top: 10px;">
-                                <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
-                            </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                        </tr>
-                        <tr class="popup__product-total">
-                            <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
-                                <b>Sub Total :</b><br>
-                                <b style="font-size:17px;">Grand Total:</b>
-                            </td>
-                            <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
-                                <b>$ 7.25</b><br>
-                                <b style="font-size:17px;">$7.25</b>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="popup__bottom">
-                    <button type="button" class="continue-shopping">
-                        <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
-                        Back to Shopping
-                    </button>
-                    <div class="flex-center">
-                        <div class="paypal-button">
-                            <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
-                                <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
-                            </form>
-                        </div>
-                        <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
-                            OR</p>
-                        </div>
-                        <div class="checkout">
-                            <a class="btn" href="https://medicalmega.com/checkout/step1">
-                                Checkout Now
-                                <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bought-products">
-                    <h3 class="title3">Also bought with this products</h3>
-                    <div class="swiper-container">
-                        <dl class="slider-gallery gallery"></dl>
-                        <button class="swiper-button-prev" type="button"></button>
-                        <button class="swiper-button-next" type="button"></button>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-
-        document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
 
         let n = 0;
         while (n--) {
@@ -578,7 +720,7 @@ window.onload  = function () {
                     'eventAction': 'click on button — add to cart',
                     'eventQuantity': `${valueP}`
                 });
-                
+
                 let newElementProduct = `
                     <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
                         <td width="44%">
@@ -637,7 +779,6 @@ window.onload  = function () {
                                     'product_variant_id': dataProductVariantId,
                                 });
                                 localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                                localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                             }
                         }
                     }
@@ -649,7 +790,6 @@ window.onload  = function () {
                         'product_variant_id': dataProductVariantId,
                     });
                     localStorage.setItem('productsStoredTemporarily', JSON.stringify(productsStoredTemporarily));
-                    localStorage.setItem('productsStored', JSON.stringify(productsStoredTemporarily));
                 }
                 productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
                 for (let i = 0; i < productsStoredTemporarily.length; i++) {
@@ -660,6 +800,34 @@ window.onload  = function () {
                         method: "POST",
                         body: `product_variant_id=${productsStoredTemporarily[i].product_variant_id}&quantity=${productsStoredTemporarily[i].quantity}&product_id=${productsStoredTemporarily[i].product_id}&add_to_cart=variant`
                     }).then(()=>{
+                        if (localStorage.getItem("productsStored") != '') {
+                            productsStored = JSON.parse(localStorage.getItem("productsStored"));
+                            productsStoredTemporarily = JSON.parse(localStorage.getItem("productsStoredTemporarily"));
+                            for (let i = 0; i < productsStored.length; i++) {
+                                if (productsStored[i].product_id != undefined) {
+                                    if (productsStored[i].product_id === productsStoredTemporarily[i].product_id ) {
+                                        productsStored[i].quantity = productsStoredTemporarily[i].quantity;
+                                    } else {
+                                        productsStored.push({
+                                            'product_id': productsStoredTemporarily[i].product_id,
+                                            'quantity': productsStoredTemporarily[i].value,
+                                            'price': productsStoredTemporarily[i].price,
+                                            'product_variant_id': productsStoredTemporarily[i].product_variant_id,
+                                        });
+                                        localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                                    }
+                                }
+                            }
+                        } else {
+                            productsStored.push({
+                                'product_id': productId,
+                                'quantity': item.nextElementSibling.value,
+                                'price': parent.querySelector('b s') ? splPrice[2]: splPrice[1],
+                                'product_variant_id': dataProductVariantId,
+                            });
+                            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                        }
+
                         localStorage.setItem("productsStoredTemporarily",'');
                         productsStoredTemporarily = []
                     })
@@ -667,198 +835,58 @@ window.onload  = function () {
             });  
         });  
 
-        if (document.querySelector('.by_num span').innerHTML == '0') {
-            localStorage.setItem('productsStored', '');
-            localStorage.setItem('productsStoredTemporarily', '');
-            localStorage.setItem('productsStoredUpdate', '');
-        }
-        if (document.querySelector('.by_num span').innerHTML != '0') {
-            let cartItems = JSON.parse(localStorage.getItem("productsStored"));
-            if (cartItems) {
-                for (let i = 0; i < cartItems.length; i++) {
-                    document.querySelectorAll(`.product-card[data-product-id='${cartItems[i].product_id}']`).forEach((item) => { 
-                        let srcImgProduct = item.querySelector('img').src,
-                            altImgProduct = item.querySelector('img').alt,
-                            titleProduct = item.querySelectorAll('a')[1].innerHTML,
-                            linkProduct = item.querySelectorAll('a')[1].href,
-                            priceProductAll = item.querySelector('b').innerHTML,
-                            splPrice = priceProductAll.split('$');
-
-                        let dataProductVariantId = item.getAttribute('data-product-variant-id'),
-                            productId = item.getAttribute('data-product-id');
-                
-                        let newElementProduct = `
-                            <tr class="popup__product" data-product-id='${productId}' data-product-variant-id='${dataProductVariantId}'>
-                                <td width="44%">
-                                    <div class="product-cell-inner">
-                                        <span> 
-                                            <a href="${linkProduct}">
-                                                <img src="${srcImgProduct}" alt="${altImgProduct}">
-                                            </a>
-                                        </span>
-                                        <p class="product-description" align="left">
-                                            <b>
-                                                <a href="${linkProduct}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${titleProduct}</a>
-                                            </b>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td width="22%" align="left">
-                                    <div class="quantity-row">
-                                        <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                        <input type="number" name="quantity" value="0" class="quantity" data-val="${cartItems[i].quantity}">
-                                        <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                                    </div>
-                                </td>
-                                <td width="17%" class="unit-price" align="left">$ <b>${item.querySelector('b s') ? splPrice[2]: splPrice[1]}</b></td>
-                                <td width="17%" class="total-price" align="left">$ <b></b></td>
-                            </tr> `;   
-
-                        if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                            document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-                        } 
-                        if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                            document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
-                                el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
-                                quantityFun(el);
-                            });
-                        }
-
-                        document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
-                        sumTotalPrice();
-                    });   
-                }
-            }
-        } 
-        document.querySelector('.shoppingcart').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on shopping cart'
-            });
-        });
-        document.querySelector('.close').addEventListener('click', () => {
-            document.querySelector('.popup').classList.remove('isActive');   
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on button — close popup'
-            });
-        });
-        document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
-            document.querySelector('.popup').classList.remove('isActive');
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on button — back to shopping'
-            });
-        });
-        document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on button — checkout now'
-            });
-        });
-        let container = document.querySelector('.slider-gallery');
-
-        document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-            scrollAmount = 0;
-            let slideTimer = setInterval(function(){
-                container.scrollLeft -= 25;
-                scrollAmount += 10;
-                if(scrollAmount >= 50){
-                    window.clearInterval(slideTimer);
-                }
-            }, 25);
-        });
-
-        document.querySelector('.swiper-button-next').addEventListener('click', () => {
-            scrollAmount = 0;
-            let slideTimer = setInterval(function() {
-                container.scrollLeft += 25;
-                scrollAmount += 10;
-                if(scrollAmount >= 50){
-                    window.clearInterval(slideTimer);
-                }
-            }, 25);
-        });
-
-        function quantityChenged(el){
-            productsStoredUpdate.unshift({
-                'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-                'quantity': el.closest('.popup__product').querySelector('.quantity').value,
-                'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-                'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-            });
-            localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));   
-        }
-        document.querySelector('.popup .body').addEventListener('change', () => {
-            productsStoredUpdate = [];
-            localStorage.setItem('productsStoredUpdate', '');
-            document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
-        });
-        // document.querySelectorAll('.popup__product .quantity-btn').forEach(el => {
-        //     el.addEventListener('click', () => {
-        //         quantityChenged(el)
-        //     });
-        // });
     }
    
-    if (window.location.pathname == '/cart.html') {
-        for (const keyJ in justunoCartItems) {
-            if (justunoCartItems[keyJ].productid != undefined) {
-                if (localStorage.getItem("productsStoredUpdate") != '') {
-                    let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
-                    if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
-                        if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
-                            justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
-                            fetch('/cart.html', {
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                method: "POST",
-                                body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
-                            }).then(()=>{
-                                localStorage.setItem("productsStoredUpdate",'');
-                                productsStoredUpdate = [];
-                                window.location.reload();
-                            });
-                        } 
-                        else {
-                            // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
-                            fetch('/cart.html', {
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                method: "POST",
-                                body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
-                            }).then(()=>{
-                                localStorage.setItem("productsStoredUpdate",'');
-                                productsStoredUpdate = [];
-                                window.location.reload();
-                            });
+    // if (window.location.pathname == '/cart.html') {
+    //     for (const keyJ in justunoCartItems) {
+    //         if (justunoCartItems[keyJ].productid != undefined) {
+    //             if (localStorage.getItem("productsStoredUpdate") != '') {
+    //                 let locProductsUpdated = JSON.parse(localStorage.getItem('productsStoredUpdate'));
+    //                 if (justunoCartItems[keyJ].productid == locProductsUpdated[keyJ].productid ) {
+    //                     if (locProductsUpdated[keyJ].quantity > justunoCartItems[keyJ].quantity) {
+    //                         justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity;
+    //                         fetch('/cart.html', {
+    //                             headers: {
+    //                                 'Content-Type': 'application/x-www-form-urlencoded',
+    //                             },
+    //                             method: "POST",
+    //                             body: `product_variant_id=${justunoCartItems[keyJ].variationid}&quantity=${justunoCartItems[keyJ].quantity}&product_id=${justunoCartItems[keyJ].productid}&add_to_cart=variant`
+    //                         }).then(()=>{
+    //                             localStorage.setItem("productsStoredUpdate",'');
+    //                             productsStoredUpdate = [];
+    //                             window.location.reload();
+    //                         });
+    //                     } 
+    //                     else {
+    //                         // justunoCartItems[keyJ].quantity = locProductsUpdated[keyJ].quantity - justunoCartItems[keyJ].quantity + justunoCartItems[keyJ].quantity;
+    //                         fetch('/cart.html', {
+    //                             headers: {
+    //                                 'Content-Type': 'application/x-www-form-urlencoded',
+    //                             },
+    //                             method: "POST",
+    //                             body: `cp_id=888811&option_id=${locProductsUpdated[keyJ].variationid}&product_quantity=${locProductsUpdated[keyJ].quantity}&product_type=variant&update_to_cart=update_to_cart`
+    //                         }).then(()=>{
+    //                             localStorage.setItem("productsStoredUpdate",'');
+    //                             productsStoredUpdate = [];
+    //                             window.location.reload();
+    //                         });
                         
-                        }
-                    }
-                }
+    //                     }
+    //                 }
+    //             }
      
-                productsStored.push({
-                    'product_id': justunoCartItems[keyJ].productid,
-                    'quantity': justunoCartItems[keyJ].quantity,
-                    'price': justunoCartItems[keyJ].price,
-                    'product_variant_id': justunoCartItems[keyJ].variationid,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            }
-        }
-        localStorage.setItem('productsStoredTemporarily', '');
-        localStorage.setItem('productsStoredUpdate', '');   
-    }
+    //             productsStored.push({
+    //                 'product_id': justunoCartItems[keyJ].productid,
+    //                 'quantity': justunoCartItems[keyJ].quantity,
+    //                 'price': justunoCartItems[keyJ].price,
+    //                 'product_variant_id': justunoCartItems[keyJ].variationid,
+    //             });
+    //             localStorage.setItem('productsStored', JSON.stringify(productsStored));
+    //         }
+    //     }
+    //     localStorage.setItem('productsStoredTemporarily', '');
+    //     localStorage.setItem('productsStoredUpdate', '');   
+    // }
 };
 
 (function(h,o,t,j,a,r){
@@ -872,9 +900,9 @@ window.onload  = function () {
     window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
     hj('trigger', 'PL_and_cart_improvements');
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-    'eventAction': 'loaded'
-});
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+        'eventAction': 'loaded'
+    });
