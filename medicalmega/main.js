@@ -839,23 +839,14 @@ window.onload  = function () {
         }
     }
 
-    let mut = new MutationObserver(function (muts) {  
-        if (document.querySelector('.add-to-cart button')) {
-            mut.disconnect();
-            addToCart();
-        }; 
-        
-    });
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
+    if (document.querySelector('.add-to-cart button')) {
+        addToCart();
+    }; 
+  
     document.querySelector('.popup .close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
     });
 };
-
-
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
