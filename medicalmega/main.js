@@ -759,7 +759,7 @@ window.onload  = function () {
                     if (document.querySelectorAll('.popup .add-to-cart button')) {
                         // addToCart()
                     }
-                    console.log( document.querySelector('.popup .add-to-cart button'))
+                    console.log( document.querySelectorAll('.popup .add-to-cart button'));
                     // document.querySelector('.popup .add-to-cart button').addEventListener('click', (e) => {
                     //     let valueP = 1;
                     //         valueP = +e.target.nextElementSibling.value,
