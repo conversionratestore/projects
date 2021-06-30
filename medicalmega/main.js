@@ -673,7 +673,7 @@ window.onload  = function () {
                     } else {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',``);
                     }
-                    if (doc.querySelector('.type2 .product-price') != null && doc.querySelector('.type2 .product-price')) {
+                    if (doc.querySelector('.type2 .product-price') != null || doc.querySelector('.type2 .product-price')) {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML);
                     } else {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', '');
