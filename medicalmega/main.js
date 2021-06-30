@@ -381,6 +381,9 @@ window.onload  = function () {
                 height: 120px;
                 width: 100%;
                 object-fit: contain;}
+            .add-to-cart[disapled] {
+                opacity: 0.6;
+            }
         </style>
     `;
 
@@ -555,7 +558,6 @@ window.onload  = function () {
 
                 document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
                 sumTotalPrice();
-                
             }
         }
     } 
@@ -655,7 +657,7 @@ window.onload  = function () {
                     var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                  
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
-                    <dd class="product-card swiper-slide" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
+                    <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
                         <span>&nbsp;<a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a>&nbsp;</span>
                         <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
                         <b> <s>${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s').innerHTML : ''}</s>&nbsp;&nbsp; 
@@ -672,27 +674,6 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-
-    // let link1 = document.createElement('link');
-    // link1.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
-    // link1.rel = 'stylesheet'
-    // document.head.appendChild(link1);
-
-    // let script22 = document.createElement('script');
-    // script22.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
-    // script22.async = false;
-    // document.head.appendChild(script22)
-    // setTimeout(() => {
-    //     let swiper = new Swiper('.slider-gallery', {
-    //         direction: 'horizontal',
-    //         loop: true,
-    //         slidesPerView : 4,  
-    //         navigation: {
-    //             nextEl: '.swiper-button-next',
-    //             prevEl: '.swiper-button-prev',
-    //         },
-    //     });
-    // }, 1000);
 
     let container = document.querySelector('.slider-gallery');
 
@@ -751,11 +732,9 @@ window.onload  = function () {
         });
 
         const galleryDd = document.querySelectorAll('.gallery dd');
-
         for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`); }
 
         const galleryParent = document.querySelectorAll('.gallery-parent');
-
         for (let i = 0; i < galleryParent.length; i++) {
             if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`); }
         } 
@@ -763,46 +742,20 @@ window.onload  = function () {
         const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'], 
             galleryTitle = document.querySelectorAll('.title'),
             showMore = document.querySelectorAll('.show-more');
-            showMore.forEach( (item) => {
-                item.addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                        'eventAction': 'click on button — show more'
-                    });
+        showMore.forEach( (item) => {
+            item.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — show more'
                 });
             });
+        });
         for (let i = 0; i < arrTitle.length; i++) {
             galleryTitle[i].innerHTML = arrTitle[i];
             let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
             if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
-        }
-
-        document.querySelectorAll('.add-to-cart').forEach( (item) => {
-            item.addEventListener('change', () => {
-                if (item.querySelector('input').value <= 1) {
-                    item.querySelector('input').value = 1;
-                }
-            });  
-        });
-
-        let n = 0;
-        while (n--) {
-            document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend', `
-            <dd class="swiper-slide">
-                <span>&nbsp;<a
-                href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle"><img
-                    src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/160009233410181694495f5f78ae28234.jpg"
-                    alt="Image Of Hand Sanitizer Purell Advanced 8 oz Alcohol Ethyl Gel Pump Bottle"></a>&nbsp;</span>
-                <a
-                    href="https://medicalmega.com/product/hand-sanitizer-purell-advanced-8-oz-alcohol-ethyl-gel-pump-bottle">
-                    Hand Sanitizer<br>Purell Advanced 8<br>oz Alcohol Ethyl<br>Gel Pump Bottle
-                </a>
-                <b>
-                    $
-                    7.25 </b>
-            </dd>`);
         }
     }
     if (document.querySelector('.add-to-cart button')) {
@@ -872,6 +825,14 @@ window.onload  = function () {
                 })
             });  
         }); 
+
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });  
+        });
     }
     document.querySelector('.popup .close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
