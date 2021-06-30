@@ -373,6 +373,7 @@ window.onload  = function () {
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
             .bought-products {
+                display: none;
                 padding-top: 30px;}
             .slider-gallery.gallery .product-card span {
                 height: 120px;
