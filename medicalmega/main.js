@@ -380,7 +380,6 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('afterbegin', style);
     document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
-    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
 
     let productsStored = [];
     let productsStoredUpdate = [];
@@ -502,6 +501,7 @@ window.onload  = function () {
     </div>`;
 
     document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
+    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
     
     function addProduct(id,varId,link,imgSrc,title,quantity,price) {
         let newElementProduct = `
@@ -639,8 +639,6 @@ window.onload  = function () {
             'eventAction': 'click on button — checkout now'
         });
     });
-
-
 
     let arrSlides = [];
     let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
