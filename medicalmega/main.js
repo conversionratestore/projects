@@ -839,23 +839,24 @@ window.onload  = function () {
         }
     }
 
-    let mut = new MutationObserver(function (muts) {  
-        if (document.querySelector('.add-to-cart button')) {
-            mut.disconnect();
-            addToCart();
-        }; 
-       
-    });
-
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
     document.querySelector('.popup .close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
     });
 };
 
+let mut = new MutationObserver(function (muts) {  
+    if (document.querySelector('.add-to-cart button')) {
+        mut.disconnect();
+        addToCart();
+    }; 
+    
+});
+
+mut.observe(document, {
+    childList: true,
+    subtr
+    ee: true
+});
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1483840,hjsv:6};
