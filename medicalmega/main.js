@@ -687,7 +687,6 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-    document.body.insertAdjacentHTML('beforeend', `<script>${
     const swiper = new Swiper('.swiper-container', {
         direction: 'horizontal',
         loop: true,
@@ -699,7 +698,8 @@ window.onload  = function () {
         scrollbar: {
             el: '.swiper-scrollbar',
         },
-    });}</script>`);
+    });
+
     // let container = document.querySelector('.slider-gallery');
 
     // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
