@@ -361,8 +361,12 @@ window.onload  = function () {
                 margin-left: calc(75% - 10px);}
             .slider-gallery .product-card {
                 width: 133px;
-                flex-shrink: 0;
-            }
+                flex-shrink: 0; }
+            .slider-gallery .product-card .add-to-cart button {
+                font-size: 12px;
+                line-height: 31px!important;}
+            .slider-gallery .product-card .add-to-cart input {
+                padding: 5.5px 0;}
         </style>
     `;
 
