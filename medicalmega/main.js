@@ -641,19 +641,21 @@ window.onload  = function () {
                         product_id: doc.querySelector('[name="product_id"]').value,
                         product_variant_id: doc.querySelector('[name="product_variant_id"]').value,
                         title: doc.querySelectorAll('.center h3')[0].innerHTML,
-                        src_img: doc.querySelector('.product_img').getAttribute('src'),
+                        src_img: doc.querySelector('.type1 img').getAttribute('src'),
                         price_old: '',
-                        price: doc.querySelector('.product-price').innerHTML,
+                        price: doc.querySelector('.product-price').innerHTML.replace('$',''),
                     })
                     if (doc.querySelector('#variant_tag b s')) {
                         arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
                     } 
                     console.log(arrLinks[i]);
+                    console.log(arrSlides);
                 }
             }
             http.send(null);
         })()
     }
+    console.log(arrSlides);
     let container = document.querySelector('.slider-gallery');
 
     // for (let i = 0; i < arrLinks.length; i++) {
