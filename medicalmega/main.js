@@ -636,6 +636,7 @@ window.onload  = function () {
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
+                 
                     arrSlides.push({
                         product_id: doc.querySelector('[name="product_id"]').value,
                         product_variant_id: doc.querySelector('[name="product_variant_id"]').value,
@@ -647,6 +648,7 @@ window.onload  = function () {
                     if (doc.querySelector('#variant_tag b s')) {
                         arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
                     } 
+                    console.log(arrLinks[i]);
                 }
             }
             http.send(null);
