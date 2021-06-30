@@ -648,8 +648,7 @@ window.onload  = function () {
                     if (doc.querySelector('#variant_tag b s')) {
                         arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
                     } 
-                    if (doc.querySelector('.type2 .product-price')) {
-                        console.log(arrLinks[i]);
+                    if (doc.querySelector('.type2 .product-price') !=null) {
                         arrSlides[i].price = doc.querySelector('.type2 .product-price').innerHTML.replace('$','');
                     } 
 
