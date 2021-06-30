@@ -7,7 +7,7 @@ let mut = new MutationObserver(function (muts) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 if (doc.querySelectorAll('.cart-table tbody tr')) {
                     mut.disconnect();
-                    $('.favorites span').html(doc.querySelectorAll('.cart-table tbody tr')).length;
+                    $('.favorites span').html(doc.querySelectorAll('.cart-table tbody tr').length);
                 }      
             }
         }
