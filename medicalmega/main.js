@@ -359,8 +359,10 @@ window.onload  = function () {
                 margin-left: calc(50% - 10px);}
             .after {
                 margin-left: calc(75% - 10px);}
-            .bought-products {
-                display: none;}
+            .slider-gallery .product-card {
+                width: 133px;
+                flex-shrink: 0;
+            }
         </style>
     `;
 
