@@ -373,7 +373,6 @@ window.onload  = function () {
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
             .bought-products {
-                display: none;
                 padding-top: 30px;}
             .slider-gallery.gallery .product-card span {
                 height: 120px;
@@ -667,7 +666,7 @@ window.onload  = function () {
                         </form>
                         <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
                     </dd>`);
-                    
+
                     if (doc.querySelector('#variant_tag b s')) {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`);
                     } else {
