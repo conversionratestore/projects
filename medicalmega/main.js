@@ -376,7 +376,11 @@ window.onload  = function () {
         </style>
     `;
 
+  
+
     document.body.insertAdjacentHTML('afterbegin', style);
+    document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
+    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
 
     let productsStored = [];
     let productsStoredUpdate = [];
@@ -489,7 +493,7 @@ window.onload  = function () {
             <div class="bought-products">
                 <h3 class="title3">Also bought with this products</h3>
                 <div class="swiper-container">
-                    <dl class="slider-gallery gallery"></dl>
+                    <dl class="slider-gallery gallery swiper-wrapper"></dl>
                     <button class="swiper-button-prev" type="button"></button>
                     <button class="swiper-button-next" type="button"></button>
                 </div>
@@ -665,7 +669,7 @@ window.onload  = function () {
                     } 
 
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
-                    <dd class="product-card" data-product-id="${arrSlides[i].product_id}" data-product-variant-id="${arrSlides[i].product_variant_id}">
+                    <dd class="product-card swiper-slide" data-product-id="${arrSlides[i].product_id}" data-product-variant-id="${arrSlides[i].product_variant_id}">
                         <span>&nbsp;<a href="${arrLinks[i]}"><img src="${arrSlides[i].src_img}" alt="${arrSlides[i].title}"></a>&nbsp;</span>
                         <a href="${arrLinks[i]}">${arrSlides[i].title}</a>
                         <b><s>$
@@ -684,29 +688,29 @@ window.onload  = function () {
         })()
     }
  
-    let container = document.querySelector('.slider-gallery');
+    // let container = document.querySelector('.slider-gallery');
 
-    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function(){
-            container.scrollLeft -= 25;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
+    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function(){
+    //         container.scrollLeft -= 25;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
 
-    document.querySelector('.swiper-button-next').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function() {
-            container.scrollLeft += 25;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
+    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function() {
+    //         container.scrollLeft += 25;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
 
     function quantityChenged(el){
         productsStoredUpdate.unshift({
