@@ -667,10 +667,10 @@ window.onload  = function () {
                     </dd>`);
                     
                     if (doc.querySelector('#variant_tag b s')) {
-                        document.querySelector('.slider-gallery b').insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`);
+                        document.querySelector('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`);
                     } 
                     if (doc.querySelector('.type2 .product-price') != null && doc.querySelector('.type2 .product-price')) {
-                        document.querySelector('.slider-gallery b').insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML);
+                        document.querySelector('.slider-gallery b')[i].insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML);
                     } 
 
                 }
