@@ -684,10 +684,10 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-    
+
     document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
 
-    if (document.querySelector('script[src="https://unpkg.com/swiper/swiper-bundle.min.js"]')) {
+    setTimeout(() => {
         let swiper = new Swiper('.swiper-container', {
             direction: 'horizontal',
             loop: true,
@@ -700,8 +700,7 @@ window.onload  = function () {
                 el: '.swiper-scrollbar',
             },
         });
-    }
-
+    }, 1000);
 
     // let container = document.querySelector('.slider-gallery');
 
