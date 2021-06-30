@@ -641,9 +641,12 @@ window.onload  = function () {
                         product_variant_id: doc.querySelector('[name="product_variant_id"]').value,
                         title: doc.querySelectorAll('.center h3')[0].innerHTML,
                         src_img: doc.querySelector('.product_img').getAttribute('src'),
-                        price_old: doc.querySelector('#variant_tag b s').innerHTML,
+                        price_old: '',
                         price: doc.querySelector('.product-price').innerHTML,
                     })
+                    if (doc.querySelector('#variant_tag b s')) {
+                        arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
+                    } 
                 }
             }
             http.send(null);
