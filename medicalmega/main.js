@@ -343,8 +343,8 @@ window.onload  = function () {
             .gallery .swiper-slide {
                 flex-shrink: 0;
                 clear: both;}
-            .slider-gallery {
-                display: flex;}
+            // .slider-gallery {
+            //     display: flex;}
             .before, .after {
                 position: absolute;
                 display: block;
@@ -379,7 +379,6 @@ window.onload  = function () {
   
 
     document.body.insertAdjacentHTML('afterbegin', style);
-    // document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
 
     let productsStored = [];
     let productsStoredUpdate = [];
@@ -685,7 +684,6 @@ window.onload  = function () {
         })()
     }
 
-    // document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
     let link1 = document.createElement('link');
     link1.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
     link1.rel = 'stylesheet'
@@ -696,7 +694,7 @@ window.onload  = function () {
     script22.async = false;
     document.head.appendChild(script22)
     setTimeout(() => {
-        let swiper = new Swiper('.swiper-container', {
+        let swiper = new Swiper('.slider-gallery', {
             direction: 'horizontal',
             loop: true,
             slidesPerView : 4,  
