@@ -642,7 +642,6 @@ window.onload  = function () {
         });
     });
 
-    let arrSlides = [];
     let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
 
     for (let i = 0; i < arrLinks.length; i++) {
@@ -653,35 +652,26 @@ window.onload  = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                  
-                    arrSlides.push({
-                        product_id: doc.querySelector('[name="product_id"]').value,
-                        product_variant_id: doc.querySelector('[name="product_variant_id"]').value,
-                        title: doc.querySelectorAll('.center h3')[0].innerHTML,
-                        src_img: doc.querySelector('.type1 img').getAttribute('src'),
-                        price_old: '',
-                        price: '',
-                    })
-                    if (doc.querySelector('#variant_tag b s')) {
-                        arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
-                    } 
-                    if (doc.querySelector('.type2 .product-price') != null && doc.querySelector('.type2 .product-price')) {
-                        arrSlides[i].price = doc.querySelector('.type2 .product-price').innerHTML.replace('$','');
-                    } 
-
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
-                    <dd class="product-card swiper-slide" data-product-id="${arrSlides[i].product_id}" data-product-variant-id="${arrSlides[i].product_variant_id}">
-                        <span>&nbsp;<a href="${arrLinks[i]}"><img src="${arrSlides[i].src_img}" alt="${arrSlides[i].title}"></a>&nbsp;</span>
-                        <a href="${arrLinks[i]}">${arrSlides[i].title}</a>
-                        <b><s>$
-                        ${arrSlides[i].price_old} </s>&nbsp;&nbsp;$
-                        ${arrSlides[i].price} </b>
+                    <dd class="product-card swiper-slide" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
+                        <span>&nbsp;<a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a>&nbsp;</span>
+                        <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
+                        <b>&nbsp;&nbsp; </b>
                         <form action="https://medicalmega.com/cart.html" method="post">
-                            <input type="hidden" name="product_id" value="${arrSlides[i].product_id}">
-                            <input type="hidden" name="product_variant_id" value="${arrSlides[i].product_variant_id}">
+                            <input type="hidden" name="product_id" value="${doc.querySelector('[name="product_id"]').value}">
+                            <input type="hidden" name="product_variant_id" value="${doc.querySelector('[name="product_variant_id"]').value}">
                             <input type="hidden" name="quantity" value="1">
                         </form>
                         <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
                     </dd>`);
+                    
+                    if (doc.querySelector('#variant_tag b s')) {
+                        document.querySelector('.slider-gallery b').insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`);
+                    } 
+                    if (doc.querySelector('.type2 .product-price') != null && doc.querySelector('.type2 .product-price')) {
+                        document.querySelector('.slider-gallery b').insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML);
+                    } 
+
                 }
             }
             http.send(null);
