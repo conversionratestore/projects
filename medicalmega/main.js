@@ -658,14 +658,14 @@ window.onload  = function () {
                     <dd class="product-card swiper-slide" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
                         <span>&nbsp;<a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a>&nbsp;</span>
                         <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
-                        <b>${doc.querySelector('#variant_tag b s') ? document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`) : document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',``)}&nbsp;&nbsp; 
-                        ${doc.querySelector('.type2 .product-price') ? document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML) : document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', '')}</b>
+                        <b> <s>${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s').innerHTML : ''}</s>&nbsp;&nbsp; 
+                        ${doc.querySelector('.type2 .product-price') ? doc.querySelector('.type2 .product-price').innerHTML : ''}</b>
                         <form action="https://medicalmega.com/cart.html" method="post">
                             <input type="hidden" name="product_id" value="${doc.querySelector('[name="product_id"]').value}">
                             <input type="hidden" name="product_variant_id" value="${doc.querySelector('[name="product_variant_id"]').value}">
                             <input type="hidden" name="quantity" value="1">
                         </form>
-                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                        <div class="add-to-cart" style="${!doc.querySelector('.type2 .product-price') ? 'display: none' : ''}"><button type="button">add to cart</button><input type="number" value="1"></div>
                     </dd>`);
                 }
             }
