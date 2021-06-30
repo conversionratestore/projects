@@ -443,7 +443,6 @@ window.onload  = function () {
     function addToCart() {
         document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
-                mut.disconnect();
                 let valueP = 1;
                     valueP = +item.nextElementSibling.value,
                     num = +document.querySelector('.by_num span').innerHTML;
@@ -840,9 +839,10 @@ window.onload  = function () {
     }
 
     let mut = new MutationObserver(function (muts) {  
-        document.querySelectorAll('.add-to-cart button').forEach(el => {
+        if (document.querySelector('.add-to-cart button')) {
+            mut.disconnect();
             addToCart();
-        }); 
+        }; 
        
     });
 
