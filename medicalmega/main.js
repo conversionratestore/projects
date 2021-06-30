@@ -343,8 +343,9 @@ window.onload  = function () {
             .gallery .swiper-slide {
                 flex-shrink: 0;
                 clear: both;}
-            // .slider-gallery {
-            //     display: flex;}
+            .slider-gallery {
+                overflow-x: auto;
+                display: flex;}
             .before, .after {
                 position: absolute;
                 display: block;
@@ -370,7 +371,7 @@ window.onload  = function () {
                 padding: 5.5px 0;}
             .bought-products {
                 padding-top: 30px;}
-            .slider-gallery.gallery dd.product-card span {
+            .slider-gallery.gallery .product-card span {
                 height: 120px;
                 width: 120px;}
         </style>
@@ -490,11 +491,11 @@ window.onload  = function () {
             </div>
             <div class="bought-products">
                 <h3 class="title3">Also bought with this products</h3>
-                <div class="swiper-container">
-                    <dl class="slider-gallery gallery swiper-wrapper"></dl>
+                <dl class="swiper-container">
+                    <div class="slider-gallery gallery swiper-wrapper"></dl>
                     <button class="swiper-button-prev" type="button"></button>
                     <button class="swiper-button-next" type="button"></button>
-                </div>
+                </dl>
             </div>
         </div>
     </div>`;
@@ -684,26 +685,26 @@ window.onload  = function () {
         })()
     }
 
-    let link1 = document.createElement('link');
-    link1.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
-    link1.rel = 'stylesheet'
-    document.head.appendChild(link1);
+    // let link1 = document.createElement('link');
+    // link1.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
+    // link1.rel = 'stylesheet'
+    // document.head.appendChild(link1);
 
-    let script22 = document.createElement('script');
-    script22.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
-    script22.async = false;
-    document.head.appendChild(script22)
-    setTimeout(() => {
-        let swiper = new Swiper('.slider-gallery', {
-            direction: 'horizontal',
-            loop: true,
-            slidesPerView : 4,  
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    }, 1000);
+    // let script22 = document.createElement('script');
+    // script22.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+    // script22.async = false;
+    // document.head.appendChild(script22)
+    // setTimeout(() => {
+    //     let swiper = new Swiper('.slider-gallery', {
+    //         direction: 'horizontal',
+    //         loop: true,
+    //         slidesPerView : 4,  
+    //         navigation: {
+    //             nextEl: '.swiper-button-next',
+    //             prevEl: '.swiper-button-prev',
+    //         },
+    //     });
+    // }, 1000);
 
     // let container = document.querySelector('.slider-gallery');
 
