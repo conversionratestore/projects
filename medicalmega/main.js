@@ -367,6 +367,11 @@ window.onload  = function () {
                 line-height: 31px!important;}
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
+            .bought-products {
+                padding-top: 30px;}
+            .slider-gallery.gallery .product-card dd span {
+                height: 120px;
+                width: 120px;}
         </style>
     `;
 
