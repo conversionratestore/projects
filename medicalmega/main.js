@@ -839,7 +839,7 @@ window.onload  = function () {
         }
     }
 
-    if (document.querySelectorAll('.add-to-cart button') && ) {
+    if (document.querySelectorAll('.add-to-cart button')) {
         addToCart();
     }; 
   
