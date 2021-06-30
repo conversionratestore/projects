@@ -443,6 +443,7 @@ window.onload  = function () {
     function addToCart() {
         document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
+                console.log('click');
                 let valueP = 1;
                     valueP = +item.nextElementSibling.value,
                     num = +document.querySelector('.by_num span').innerHTML;
