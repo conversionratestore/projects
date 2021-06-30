@@ -307,9 +307,10 @@ window.onload  = function () {
                 margin: 0 auto;
                 padding-top: 15px;}
             .gallery .swiper-slide {
-                padding: 0 ;
-                width: calc(25% - 10px);
-                margin-right: 10px;}
+                padding: 0 10px 0 0;
+                width: calc(25% - 10px);}
+            .gallery .swiper-slide:last-child {
+                padding: 0;}
             .gallery .swiper-slide a {
                 font-size: 10px;
                 line-height: 12px;}
@@ -708,29 +709,29 @@ window.onload  = function () {
     //     });
     // }, 1000);
 
-    // let container = document.querySelector('.slider-gallery');
+    let container = document.querySelector('.slider-gallery');
 
-    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function(){
-    //         container.scrollLeft -= 25;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
+    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function(){
+            container.scrollLeft -= 26;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
 
-    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function() {
-    //         container.scrollLeft += 25;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
+    document.querySelector('.swiper-button-next').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function() {
+            container.scrollLeft += 26;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
 
     function quantityChenged(el){
         productsStoredUpdate.unshift({
