@@ -710,27 +710,27 @@ window.onload  = function () {
 
     // let container = document.querySelector('.slider-gallery');
 
-    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function(){
-            container.scrollLeft -= 25;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
+    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function(){
+    //         container.scrollLeft -= 25;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
 
-    document.querySelector('.swiper-button-next').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function() {
-            container.scrollLeft += 26;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
+    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function() {
+    //         container.scrollLeft += 25;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
 
     function quantityChenged(el){
         productsStoredUpdate.unshift({
