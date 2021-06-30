@@ -515,7 +515,48 @@ window.onload  = function () {
                 }
             });  
         });
+    }    
+
+    function addProduct(id,varId,link,imgSrc,title,quantity,price) {
+        let newElementProduct = `
+        <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
+            <td width="44%">
+                <div class="product-cell-inner">
+                    <span> 
+                        <a href="${link}">
+                            <img src="${imgSrc}" alt="${title}">
+                        </a>
+                    </span>
+                    <p class="product-description" align="left">
+                        <b>
+                            <a href="${link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${title}</a>
+                        </b>
+                    </p>
+                </div>
+            </td>
+            <td width="22%" align="left">
+                <div class="quantity-row">
+                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                    <input type="text" name="quantity" value="0" class="quantity" data-val="${quantity}" readonly>
+                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                </div>
+            </td>
+            <td width="17%" class="unit-price" align="left">$ <b>${price}</b></td>
+            <td width="17%" class="total-price" align="left">$ <b></b></td>
+        </tr> `;  
+        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
     }
+
+    function quantityChenged(el){
+        productsStoredUpdate.unshift({
+            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+            'quantity': el.closest('.popup__product').querySelector('.quantity').value,
+            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+            'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+        });
+        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));   
+    }
+
     let popupShoppingCart = `
     <div class="popup">
         <div class="popup__container">
@@ -585,36 +626,7 @@ window.onload  = function () {
     </div>`;
 
     document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
-    
-    function addProduct(id,varId,link,imgSrc,title,quantity,price) {
-        let newElementProduct = `
-        <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
-            <td width="44%">
-                <div class="product-cell-inner">
-                    <span> 
-                        <a href="${link}">
-                            <img src="${imgSrc}" alt="${title}">
-                        </a>
-                    </span>
-                    <p class="product-description" align="left">
-                        <b>
-                            <a href="${link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${title}</a>
-                        </b>
-                    </p>
-                </div>
-            </td>
-            <td width="22%" align="left">
-                <div class="quantity-row">
-                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                    <input type="text" name="quantity" value="0" class="quantity" data-val="${quantity}" readonly>
-                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                </div>
-            </td>
-            <td width="17%" class="unit-price" align="left">$ <b>${price}</b></td>
-            <td width="17%" class="total-price" align="left">$ <b></b></td>
-        </tr> `;  
-        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-    }
+
     if (document.querySelector('.by_num span').innerHTML == '0') {
         localStorage.setItem('productsStored', '');
     }
@@ -713,6 +725,7 @@ window.onload  = function () {
             'eventAction': 'click on button — back to shopping'
         });
     });
+
     document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -723,7 +736,6 @@ window.onload  = function () {
     });
 
     let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
-
     for (let i = 0; i < arrLinks.length; i++) {
         (function(){
             var http = new XMLHttpRequest();  
@@ -731,7 +743,6 @@ window.onload  = function () {
             http.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
-                 
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
                     <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
                         <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
@@ -750,6 +761,18 @@ window.onload  = function () {
             http.send(null);
         })()
     }
+
+    let mut = new MutationObserver(function (muts) {   
+        if (document.querySelectorAll('.slider-gallery .add-to-cart button')) {
+            mut.disconnect();
+            addToCart();
+        }
+    });
+
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
 
     let container = document.querySelector('.slider-gallery');
 
@@ -775,20 +798,12 @@ window.onload  = function () {
         }, 25);
     });
 
-    function quantityChenged(el){
-        productsStoredUpdate.unshift({
-            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-            'quantity': el.closest('.popup__product').querySelector('.quantity').value,
-            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-            'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-        });
-        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));   
-    }
     document.querySelector('.popup .body').addEventListener('change', () => {
         productsStoredUpdate = [];
         localStorage.setItem('productsStoredUpdate', '');
         document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
     });
+
     if (window.location.pathname == '/') {
         document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
         document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');  
@@ -836,8 +851,9 @@ window.onload  = function () {
     }
 
     if (document.querySelectorAll('.add-to-cart button')) {
-      addToCart();
+        addToCart();
     }
+
     document.querySelector('.popup .close').addEventListener('click', () => {
         document.querySelector('.popup').classList.remove('isActive');   
     });
