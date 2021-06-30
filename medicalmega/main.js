@@ -491,11 +491,11 @@ window.onload  = function () {
             </div>
             <div class="bought-products">
                 <h3 class="title3">Also bought with this products</h3>
-                <dl class="swiper-container">
-                    <div class="slider-gallery gallery swiper-wrapper"></dl>
+                <div class="swiper-container">
+                    <dl class="slider-gallery gallery swiper-wrapper"></dl>
                     <button class="swiper-button-prev" type="button"></button>
                     <button class="swiper-button-next" type="button"></button>
-                </dl>
+                </div>
             </div>
         </div>
     </div>`;
@@ -708,27 +708,27 @@ window.onload  = function () {
 
     // let container = document.querySelector('.slider-gallery');
 
-    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function(){
-    //         container.scrollLeft -= 25;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
+    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function(){
+            container.scrollLeft -= 25;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
 
-    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function() {
-    //         container.scrollLeft += 25;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
+    document.querySelector('.swiper-button-next').addEventListener('click', () => {
+        scrollAmount = 0;
+        let slideTimer = setInterval(function() {
+            container.scrollLeft += 26;
+            scrollAmount += 10;
+            if(scrollAmount >= 50){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    });
 
     function quantityChenged(el){
         productsStoredUpdate.unshift({
