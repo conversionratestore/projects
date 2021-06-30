@@ -379,7 +379,7 @@ window.onload  = function () {
   
 
     document.body.insertAdjacentHTML('afterbegin', style);
-    document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
+    // document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
 
     let productsStored = [];
     let productsStoredUpdate = [];
@@ -685,8 +685,16 @@ window.onload  = function () {
         })()
     }
 
-    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
+    // document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
+    let link1 = document.createElement('link');
+    link1.href = 'https://unpkg.com/swiper/swiper-bundle.min.css';
+    link1.rel = 'stylesheet'
+    document.head.appendChild(link1);
 
+    let script22 = document.createElement('script');
+    script22.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+    script22.async = false;
+    document.head.appendChild(script22)
     setTimeout(() => {
         let swiper = new Swiper('.swiper-container', {
             direction: 'horizontal',
