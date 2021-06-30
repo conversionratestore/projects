@@ -761,7 +761,7 @@ window.onload  = function () {
                     }
                     document.querySelectorAll('.popup .add-to-cart button')[i].addEventListener('click', (e) => {
                         let valueP = 1;
-                            valueP = +e.nextElementSibling.value,
+                            valueP = +e.target.nextElementSibling.value,
                             num = +document.querySelector('.by_num span').innerHTML;
                         document.querySelector('.by_num span').innerHTML = num + valueP;
 
