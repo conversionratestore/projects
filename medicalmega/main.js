@@ -649,7 +649,8 @@ window.onload  = function () {
                         arrSlides[i].price_old = doc.querySelector('#variant_tag b s').innerHTML;
                     } 
                     if (doc.querySelector('.type2 .product-price')) {
-                        arrSlides[i].price = doc.querySelector('.type2 .product-price').innerHTML;
+                        console.log(arrLinks[i]);
+                        arrSlides[i].price = doc.querySelector('.type2 .product-price').innerHTML.replace('$','');
                     } 
 
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
