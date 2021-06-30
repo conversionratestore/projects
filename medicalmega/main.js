@@ -364,7 +364,7 @@ window.onload  = function () {
             .after {
                 margin-left: calc(75% - 10px);}
             .slider-gallery .product-card {
-                width: 120px;
+                width: 117px;
                 flex-shrink: 0; }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
@@ -759,7 +759,7 @@ window.onload  = function () {
         }
     }
     if (document.querySelector('.add-to-cart button')) {
-        document.querySelectorAll('.add-to-cart button').forEach( (item, index) => {
+        document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
                 let valueP = 1;
                     valueP = +item.nextElementSibling.value,
