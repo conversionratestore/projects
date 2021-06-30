@@ -838,11 +838,11 @@ window.onload  = function () {
         }
     }
 
-    let mut = new MutationObserver(function (muts) {   
-        if (document.querySelectorAll('.add-to-cart button')) {
-            mut.disconnect();
+    let mut = new MutationObserver(function (muts) {  
+        document.querySelectorAll('.add-to-cart button').forEach(el => {
             addToCart();
-        }
+        }); 
+       
     });
 
     mut.observe(document, {
