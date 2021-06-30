@@ -624,24 +624,38 @@ window.onload  = function () {
         });
     });
 
+
+
+    let arrSlides = [];
+    let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
+
+    for (let i = 0; i < arrLinks.length; i++) {
+        (function(){
+            var http = new XMLHttpRequest();  
+            http.open('GET', `${arrLinks[i]}`);
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
+                    arrSlides.push({
+                        product_id: doc.querySelector('[name="product_id"]').value,
+                        product_variant_id: doc.querySelector('[name="product_variant_id"]').value,
+                        title: doc.querySelectorAll('.center h3')[0].innerHTML,
+                        src_img: doc.querySelector('.product_img').getAttribute('src'),
+                        price_old: doc.querySelector('#variant_tag b s').innerHTML,
+                        price: doc.querySelector('.product-price').innerHTML,
+                    })
+                }
+            }
+            http.send(null);
+        })()
+    }
     let container = document.querySelector('.slider-gallery');
 
-    let arrSlides = [
-        {
-            product_id: '',
-            product_variant_id: '',
-            href: '',
-            title: '',
-            src_img: '',
-            price_old: '',
-            price: '',
-        },
-    ]
-    for (let i = 0; i < arrSlides.length; i++) {
+    for (let i = 0; i < arrLinks.length; i++) {
         container.insertAdjacentHTML('beforeend',`
         <dd class="product-card" data-product-id="${arrSlides[i].product_id}" data-product-variant-id="${arrSlides[i].product_variant_id}">
-            <span>&nbsp;<a href="${arrSlides[i].href}"><img src="${arrSlides[i].src_img}" alt="${arrSlides[i].title}"></a>&nbsp;</span>
-            <a href="${arrSlides[i].href}">${arrSlides[i].title}</a>
+            <span>&nbsp;<a href="${arrLinks[i].href}"><img src="${arrSlides[i].src_img}" alt="${arrSlides[i].title}"></a>&nbsp;</span>
+            <a href="${arrLinks[i].href}">${arrSlides[i].title}</a>
             <b><s>$
             ${arrSlides[i].price_old} </s>&nbsp;&nbsp;$
             ${arrSlides[i].price} </b>
