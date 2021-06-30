@@ -346,6 +346,8 @@ window.onload  = function () {
             .slider-gallery {
                 overflow-x: auto;
                 display: flex;}
+            .slider-gallery::-webkit-scrollbar {
+                display: none;}
             .before, .after {
                 position: absolute;
                 display: block;
@@ -492,7 +494,7 @@ window.onload  = function () {
             <div class="bought-products">
                 <h3 class="title3">Also bought with this products</h3>
                 <div class="swiper-container">
-                    <dl class="slider-gallery gallery swiper-wrapper"></dl>
+                    <dl class="slider-gallery gallery"></dl>
                     <button class="swiper-button-prev" type="button"></button>
                     <button class="swiper-button-next" type="button"></button>
                 </div>
