@@ -687,7 +687,7 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-    const swiper = new Swiper('.swiper-container', {
+    let swiper = new Swiper('.swiper-container', {
         direction: 'horizontal',
         loop: true,
         slidesPerView : 4,  
