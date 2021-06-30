@@ -756,19 +756,9 @@ window.onload  = function () {
                         </form>
                         <div class="add-to-cart" ${!doc.querySelector('.type2 .product-price') ? 'disabled' : ''}><button type="button">add to cart</button><input type="number" value="1"></div>
                     </dd>`);
-                    if (document.querySelectorAll('.popup .add-to-cart button') && i === 0) {
+                    if (i === 0) {
                         addToCart()
                     }
-                    console.log( document.querySelectorAll('.popup .add-to-cart button'));
-         
-
-                    document.querySelectorAll('.add-to-cart').forEach( (item) => {
-                        item.addEventListener('change', () => {
-                            if (item.querySelector('input').value <= 1) {
-                                item.querySelector('input').value = 1;
-                            }
-                        });  
-                    });
                 }
             }
             http.send(null);
