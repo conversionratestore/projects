@@ -381,7 +381,7 @@ window.onload  = function () {
                 height: 120px;
                 width: 100%;
                 object-fit: contain;}
-            .add-to-cart[disapled] {
+            .add-to-cart[disabled] {
                 opacity: 0.6;
             }
         </style>
