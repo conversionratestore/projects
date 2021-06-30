@@ -384,7 +384,7 @@ window.onload  = function () {
                 object-fit: contain;}
         </style>
     `;
-    
+
     document.body.insertAdjacentHTML('afterbegin', style);
 
     let productsStored = [];
@@ -670,10 +670,14 @@ window.onload  = function () {
                     
                     if (doc.querySelector('#variant_tag b s')) {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',`<s>$${doc.querySelector('#variant_tag b s').innerHTML} </s>`);
-                    } 
+                    } else {
+                        document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('afterbegin',``);
+                    }
                     if (doc.querySelector('.type2 .product-price') != null && doc.querySelector('.type2 .product-price')) {
                         document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', doc.querySelector('.type2 .product-price').innerHTML);
-                    } 
+                    } else {
+                        document.querySelectorAll('.slider-gallery b')[i].insertAdjacentHTML('beforeend', '');
+                    }
 
                 }
             }
