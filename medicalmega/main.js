@@ -368,7 +368,7 @@ window.onload  = function () {
                 flex-shrink: 0; }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
-                padding: 0 5px;
+                padding: 0 4px;
                 line-height: 31px!important;}
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
@@ -378,7 +378,7 @@ window.onload  = function () {
                 height: 120px;
                 width: 120px;}
             .slider-gallery.gallery .product-card img {
-                height: 120px;
+                max-height: 120px;
                 width: 100%;
                 object-fit: contain;}
             .add-to-cart[disabled] {
@@ -734,9 +734,9 @@ window.onload  = function () {
                  
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
                     <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
-                        <span>&nbsp;<a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a>&nbsp;</span>
+                        <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
                         <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
-                        <b> ${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s') : ''}&nbsp;&nbsp; 
+                        <b> ${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s') : ''} 
                         ${doc.querySelector('.type2 .product-price') ? doc.querySelector('.type2 .product-price').innerHTML : ''}</b>
                         <form action="https://medicalmega.com/cart.html" method="post">
                             <input type="hidden" name="product_id" value="${doc.querySelector('[name="product_id"]').value}">
@@ -745,6 +745,7 @@ window.onload  = function () {
                         </form>
                         <div class="add-to-cart" ${!doc.querySelector('.type2 .product-price') ? 'disabled' : ''}><button type="button">add to cart</button><input type="number" value="1"></div>
                     </dd>`);
+                    addToCart();
                 }
             }
             http.send(null);
