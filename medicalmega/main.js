@@ -384,9 +384,7 @@ window.onload  = function () {
                 object-fit: contain;}
         </style>
     `;
-
-  
-
+    
     document.body.insertAdjacentHTML('afterbegin', style);
 
     let productsStored = [];
