@@ -758,7 +758,7 @@ window.onload  = function () {
             if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
         }
     }
-    if (document.querySelector('.add-to-cart button')) {
+    if (document.querySelectorAll('.add-to-cart button')) {
         document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
                 let valueP = 1;
