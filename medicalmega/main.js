@@ -381,19 +381,6 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', style);
     document.head.insertAdjacentHTML('beforeend', ' <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />');
     document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
-    document.body.insertAdjacentHTML('beforeend', `<script>${
-        const swiper = new Swiper('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            slidesPerView : 4,  
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-        });}</script>`);
 
     let productsStored = [];
     let productsStoredUpdate = [];
@@ -700,7 +687,19 @@ window.onload  = function () {
             http.send(null);
         })()
     }
- 
+    document.body.insertAdjacentHTML('beforeend', `<script>${
+    const swiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView : 4,  
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });}</script>`);
     // let container = document.querySelector('.slider-gallery');
 
     // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
