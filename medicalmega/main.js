@@ -501,7 +501,6 @@ window.onload  = function () {
     </div>`;
 
     document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
-    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
     
     function addProduct(id,varId,link,imgSrc,title,quantity,price) {
         let newElementProduct = `
@@ -685,18 +684,24 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-    let swiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        loop: true,
-        slidesPerView : 4,  
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        scrollbar: {
-            el: '.swiper-scrollbar',
-        },
-    });
+    
+    document.body.insertAdjacentHTML('beforeend', '<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>');
+
+    if (document.querySelector('script[src="https://unpkg.com/swiper/swiper-bundle.min.js"]')) {
+        let swiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView : 4,  
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+    }
+
 
     // let container = document.querySelector('.slider-gallery');
 
