@@ -32,7 +32,6 @@ let mut = new MutationObserver(function (muts) {
                             'imageSrc': el.querySelector('.square img').getAttribute('src'),
                         });
                         localStorage.setItem('basketList', JSON.stringify(basketList));
-                        $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
                     });  
                 }      
             }
