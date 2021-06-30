@@ -440,84 +440,6 @@ window.onload  = function () {
         });
     }
 
-    function addToCart() {
-        document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                console.log('click');
-                let valueP = 1;
-                    valueP = +item.nextElementSibling.value,
-                    num = +document.querySelector('.by_num span').innerHTML;
-                document.querySelector('.by_num span').innerHTML = num + valueP;
-
-                let parent = item.parentElement.closest('dd'),
-                    srcImgProduct = parent.querySelector('img').src,
-                    altImgProduct = parent.querySelector('img').alt,
-                    titleProduct = parent.querySelectorAll('a')[1].innerHTML,
-                    linkProduct = parent.querySelectorAll('a')[1].href,
-                    priceProductAll = parent.querySelector('b').innerHTML,
-                    splPrice = priceProductAll.split('$');
-
-                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
-                    productId = item.closest('.product-card').getAttribute('data-product-id');
-
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                    'eventAction': 'click on button — add to cart',
-                    'eventQuantity': `${valueP}`
-                });
-
-                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
-                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,parent.querySelector('b s') ? splPrice[2]: splPrice[1]);
-                } 
-               
-                if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
-                    document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
-                        el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
-                    });
-                }
-
-                document.querySelector('.popup').classList.add('isActive');
-
-                productsStored = [];
-                localStorage.setItem('productsStored', '');
-
-                document.querySelectorAll(`.popup__product`).forEach((el) => {
-                    quantityFun(el);
-                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                    sumTotalPrice();
-                    productsStored.push({
-                        'product_id': el.getAttribute('data-product-id'),
-                        'quantity': el.querySelector('.quantity').value,
-                        'price': el.querySelector('.unit-price b').innerHTML,
-                        'product_variant_id': el.getAttribute('data-product-variant-id'),
-                        'img_src': el.querySelector('a img').getAttribute('src'),
-                        'link': el.querySelector('.product-description a').getAttribute('href'),
-                        'title': el.querySelector('.product-description a').innerHTML,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                });
-
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
-                })
-            });  
-        }); 
-
-        document.querySelectorAll('.add-to-cart').forEach( (item) => {
-            item.addEventListener('change', () => {
-                if (item.querySelector('input').value <= 1) {
-                    item.querySelector('input').value = 1;
-                }
-            });  
-        });
-    }    
-
     function addProduct(id,varId,link,imgSrc,title,quantity,price) {
         let newElementProduct = `
         <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
@@ -845,6 +767,84 @@ window.onload  = function () {
 };
 
 let mut = new MutationObserver(function (muts) {  
+    
+    function addToCart() {
+        document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                console.log('click');
+                let valueP = 1;
+                    valueP = +item.nextElementSibling.value,
+                    num = +document.querySelector('.by_num span').innerHTML;
+                document.querySelector('.by_num span').innerHTML = num + valueP;
+
+                let parent = item.parentElement.closest('dd'),
+                    srcImgProduct = parent.querySelector('img').src,
+                    altImgProduct = parent.querySelector('img').alt,
+                    titleProduct = parent.querySelectorAll('a')[1].innerHTML,
+                    linkProduct = parent.querySelectorAll('a')[1].href,
+                    priceProductAll = parent.querySelector('b').innerHTML,
+                    splPrice = priceProductAll.split('$');
+
+                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+                    productId = item.closest('.product-card').getAttribute('data-product-id');
+
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — add to cart',
+                    'eventQuantity': `${valueP}`
+                });
+
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
+                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,parent.querySelector('b s') ? splPrice[2]: splPrice[1]);
+                } 
+               
+                if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value); 
+                    });
+                }
+
+                document.querySelector('.popup').classList.add('isActive');
+
+                productsStored = [];
+                localStorage.setItem('productsStored', '');
+
+                document.querySelectorAll(`.popup__product`).forEach((el) => {
+                    quantityFun(el);
+                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+                    sumTotalPrice();
+                    productsStored.push({
+                        'product_id': el.getAttribute('data-product-id'),
+                        'quantity': el.querySelector('.quantity').value,
+                        'price': el.querySelector('.unit-price b').innerHTML,
+                        'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        'img_src': el.querySelector('a img').getAttribute('src'),
+                        'link': el.querySelector('.product-description a').getAttribute('href'),
+                        'title': el.querySelector('.product-description a').innerHTML,
+                    });
+                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                });
+
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                })
+            });  
+        }); 
+
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });  
+        });
+    }    
     if (document.querySelector('.add-to-cart button')) {
         mut.disconnect();
         addToCart();
