@@ -360,10 +360,11 @@ window.onload  = function () {
             .after {
                 margin-left: calc(75% - 10px);}
             .slider-gallery .product-card {
-                width: 133px;
+                width: 120px;
                 flex-shrink: 0; }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
+                padding: 0 5px;
                 line-height: 31px!important;}
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
@@ -684,8 +685,6 @@ window.onload  = function () {
     }
  
     let container = document.querySelector('.slider-gallery');
-
-  
 
     document.querySelector('.swiper-button-prev').addEventListener('click', () => {
         scrollAmount = 0;
