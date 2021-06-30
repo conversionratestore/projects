@@ -7,17 +7,32 @@ let mut = new MutationObserver(function (muts) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
                 if (doc.querySelectorAll('.cart-table tbody tr')) {
                     mut.disconnect();
-                    let wishlist = [];
-                    localStorage.setItem('wishlist', '');
+                    $('.favorites span').html(doc.querySelectorAll('.cart-table tbody tr')).length);
+                }      
+            }
+        }
+        http.send(null);
+    })();
+    (function(){
+        var http = new XMLHttpRequest();  
+        http.open('GET', 'https://www.jarrold.co.uk/basket');
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var doc = new DOMParser().parseFromString(this.responseText, "text/html"); 
+                if (doc.querySelectorAll('.cart-table tbody tr')) {
+                    mut.disconnect();
+                    let basketList = [];
+                    localStorage.setItem('basketList', '');
+
                     doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
-                        wishlist.push({
+                        basketList.push({
                             'title': el.querySelector('.desc a').innerHTML,
                             'link': el.querySelector('.desc a').getAttribute('href'),
-                            'price': el.querySelector('.hidden-xs.text-center').innerHTML,
-                            'imageSrc': el.querySelector('.square img').getAttribute('data-src').replace('.net','.net/').split('w=93,h=93').join('w=670,h=670'),
+                            'price': el.querySelector('td.text-right').innerHTML,
+                            'imageSrc': el.querySelector('.square img').getAttribute('src'),
                         });
-                        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                        $('.favorites span').html(JSON.parse(localStorage.getItem('wishlist')).length);
+                        localStorage.setItem('basketList', JSON.stringify(basketList));
+                        $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
                     });  
                 }      
             }
@@ -44,13 +59,13 @@ let mut = new MutationObserver(function (muts) {
                 line-height: 12px;
                 color: #4B2A4D; }
         </style>`);
-        $('#page_header_CPR').prepend(`<a href="/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
-        if (localStorage.getItem('wishlist') != '') {
-            $('.favorites span').html(JSON.parse(localStorage.getItem('wishlist')).length);
+        $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
+        if (localStorage.getItem('basketList') != '') {
+            $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
         }
 
     }
-    if (localStorage.getItem('wishlist') != '' && !window.location.pathname.includes('basket')) {
+    if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket')) {
         mut.disconnect();
         $('body').eq(0).prepend(`<style>
         .modal {
@@ -181,18 +196,18 @@ let mut = new MutationObserver(function (muts) {
                     <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
                     <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
                 </div>
-                <a href="#" class="btn">complete my order now</a>
+                <a href="https://www.jarrold.co.uk/basket" class="btn">complete my order now</a>
             </div> 
         </div>`); 
 
-        let wishlist = JSON.parse(localStorage.getItem('wishlist'));
-        for (let i = 0; i < wishlist.length; i++) {
+        let basketList = JSON.parse(localStorage.getItem('basketList'));
+        for (let i = 0; i < basketList.length; i++) {
             $('.modal_products').append(`
             <li>
-                <a href="${wishlist[i].link}" class="modal_ismg"> <img src="${wishlist[i].imageSrc}" alt="${wishlist[i].title}"></a>
+                <a href="${basketList[i].link}" class="modal_ismg"> <img src="${basketList[i].imageSrc}" alt="${basketList[i].title}"></a>
                 <div class="flex-center-between">
-                    <a href="${wishlist[i].link}" class="product-title">${wishlist[i].title}</a>
-                    <p class="product-price">${wishlist[i].price}</p>
+                    <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
+                    <p class="product-price">${basketList[i].price}</p>
                 </div>
             </li>`);
         }
@@ -236,10 +251,14 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-        if (document.querySelector('#product h1') && wishlist[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             console.log('have modal');
             jQuery(document).on('scroll', myScrollSpeedFunction);
-        }     
+            setTimeout(() => {
+                $(".modal").addClass('active');
+            }, 10000);
+        } 
+       
     }
 });
 
