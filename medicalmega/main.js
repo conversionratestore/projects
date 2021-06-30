@@ -759,13 +759,13 @@ window.onload  = function () {
                     if (document.querySelectorAll('.popup .add-to-cart button')) {
                         // addToCart()
                     }
-                    document.querySelectorAll('.popup .add-to-cart button')[i].addEventListener('click', (e) => {
+                    document.querySelector('.popup .add-to-cart button')[i].addEventListener('click', (e) => {
                         let valueP = 1;
                             valueP = +e.target.nextElementSibling.value,
                             num = +document.querySelector('.by_num span').innerHTML;
                         document.querySelector('.by_num span').innerHTML = num + valueP;
 
-                        let parent = e.parentElement.closest('dd'),
+                        let parent = e.target.parentElement.closest('dd'),
                             srcImgProduct = parent.querySelector('img').src,
                             altImgProduct = parent.querySelector('img').alt,
                             titleProduct = parent.querySelectorAll('a')[1].innerHTML,
@@ -773,8 +773,8 @@ window.onload  = function () {
                             priceProductAll = parent.querySelector('b').innerHTML,
                             splPrice = priceProductAll.split('$');
 
-                        let dataProductVariantId = e.closest('.product-card').getAttribute('data-product-variant-id'),
-                            productId = e.closest('.product-card').getAttribute('data-product-id');
+                        let dataProductVariantId = e.target.closest('.product-card').getAttribute('data-product-variant-id'),
+                            productId = e.target.closest('.product-card').getAttribute('data-product-id');
 
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
