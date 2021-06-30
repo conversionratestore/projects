@@ -62,7 +62,6 @@ let mut = new MutationObserver(function (muts) {
         if (localStorage.getItem('basketList') != '') {
             $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
         }
-
     }
     if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket')) {
         mut.disconnect();
@@ -255,7 +254,7 @@ let mut = new MutationObserver(function (muts) {
             jQuery(document).on('scroll', myScrollSpeedFunction);
             setTimeout(() => {
                 $(".modal").addClass('active');
-            }, 10000);
+            }, 20000);
         } 
        
     }
