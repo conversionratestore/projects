@@ -378,6 +378,10 @@ window.onload  = function () {
             .slider-gallery.gallery .product-card span {
                 height: 120px;
                 width: 120px;}
+            .slider-gallery.gallery .product-card img {
+                height: 120px;
+                width: 100%;
+                object-fit: contain;}
         </style>
     `;
 
