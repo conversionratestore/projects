@@ -208,8 +208,10 @@ let mut = new MutationObserver(function (muts) {
                     <p class="product-price">${basketList[i].price}</p>
                 </div>
             </li>`);
-            let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
-            document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
+            if (document.querySelectorAll('.modal_img img')[i]){
+                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
+                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
+            }
         }
 
         jQuery(document).on('touchstart', function(){
@@ -258,7 +260,6 @@ let mut = new MutationObserver(function (muts) {
                 $(".modal").addClass('active');
             }, 20000);
         }
-
     }
 });
 
