@@ -29,7 +29,7 @@ let mut = new MutationObserver(function (muts) {
                             'title': el.querySelector('.desc a').innerHTML,
                             'link': el.querySelector('.desc a').getAttribute('href'),
                             'price': el.querySelector('td.text-right').innerHTML,
-                            'image': el.querySelector('.square'),
+                            'image': el.querySelector('.square').innerHTML,
                         });
                         localStorage.setItem('basketList', JSON.stringify(basketList));
                     });
