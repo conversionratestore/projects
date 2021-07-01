@@ -19,7 +19,7 @@ let mut = new MutationObserver(function (muts) {
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                if (doc.querySelectorAll('.cart-table tbody tr')) {
+                if (doc.querySelectorAll('.cart-table tbody tr .square')) {
                     mut.disconnect();
                     let basketList = [];
                     localStorage.setItem('basketList', '');
