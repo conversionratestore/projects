@@ -29,7 +29,7 @@ let mut = new MutationObserver(function (muts) {
                             'title': el.querySelector('.desc a').innerHTML,
                             'link': el.querySelector('.desc a').getAttribute('href'),
                             'price': el.querySelector('td.text-right').innerHTML,
-                            'image': el.querySelector('.square').innerHTML,
+                            'image_src': el.querySelector('.square img').getAttribute('data-src'),
                         });
                         localStorage.setItem('basketList', JSON.stringify(basketList));
                     });
@@ -202,7 +202,7 @@ let mut = new MutationObserver(function (muts) {
         for (let i = 0; i < basketList.length; i++) {
             $('.modal_products').append(`
             <li>
-                <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
+                <a href="${basketList[i].link}" class="modal_img"><img src="${basketList[i].image_src}" alt="${basketList[i].title}"></a>
                 <div class="flex-center-between">
                     <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
                     <p class="product-price">${basketList[i].price}</p>
