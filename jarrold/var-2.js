@@ -194,7 +194,7 @@ let mut = new MutationObserver(function (muts) {
                     <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
                     <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
                 </div>
-                <a href="https://www.jarrold.co.uk/basket" class="btn">complete my order now</a>
+                <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
             </div> 
         </div>`);
 
