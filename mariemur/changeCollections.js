@@ -496,41 +496,57 @@ async function drawSlider(count, title) {
     let collectionTitle;
     let collectionLink;
 
-    switch (true) {
-        case (productTitle.includes('lingerie set')):
-            collectionTitle = 'lingerie sets'
-            collectionLink = 'https://mariemur.com/collections/lingerie'
-            break;
-        case (productTitle.includes('fullbody set')):
-            collectionTitle = 'fullbody sets'
-            collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
-            break;
-        case (productTitle.includes('leather bra')):
-            collectionTitle = 'leather bra'
-            collectionLink = 'https://mariemur.com/collections/classic-harnesses'
-            break;
-        case (productTitle.includes('bra')):
-            collectionTitle = 'bra'
-            collectionLink = 'https://mariemur.com/collections/womens-bra'
-            break;
-        case (productTitle.includes('garters')):
-            collectionTitle = 'legs garters'
-            collectionLink = 'https://mariemur.com/collections/legs-garters'
-            break;
-        case (productTitle.includes('panties')):
-            collectionTitle = 'panties'
-            collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
-            break;
-        case (productTitle.includes('bodysuit')):
-            collectionTitle = 'bodysuits'
-            collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
-            break;
-        case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
-            collectionTitle = 'accessories'
-            collectionLink = 'https://mariemur.com/collections/accessories'
-            break;
-        default:
-            break;
+    let isEmptyField = false;
+    let collectionUrl = window.location.href.split('/collections/')[1];
+
+    if (collectionUrl !== 'lingerie'
+        && collectionUrl !== 'fullbody-harnesses'
+        && collectionUrl !== 'classic-harnesses'
+        && collectionUrl !== 'womens-bra'
+        && collectionUrl !== 'legs-garters'
+        && collectionUrl !== 'womens-lingerie-panties'
+        && collectionUrl !== 'womens-lingerie-bodysuit'
+        && collectionUrl !== 'accessories'
+    ) {
+        switch (true) {
+            case (productTitle.includes('lingerie set')):
+                collectionTitle = 'lingerie sets'
+                collectionLink = 'https://mariemur.com/collections/lingerie'
+                break;
+            case (productTitle.includes('fullbody set')):
+                collectionTitle = 'fullbody sets'
+                collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
+                break;
+            case (productTitle.includes('leather bra')):
+                collectionTitle = 'leather bra'
+                collectionLink = 'https://mariemur.com/collections/classic-harnesses'
+                break;
+            case (productTitle.includes('bra')):
+                collectionTitle = 'bra'
+                collectionLink = 'https://mariemur.com/collections/womens-bra'
+                break;
+            case (productTitle.includes('garters')):
+                collectionTitle = 'legs garters'
+                collectionLink = 'https://mariemur.com/collections/legs-garters'
+                break;
+            case (productTitle.includes('panties')):
+                collectionTitle = 'panties'
+                collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
+                break;
+            case (productTitle.includes('bodysuit')):
+                collectionTitle = 'bodysuits'
+                collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
+                break;
+            case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
+                collectionTitle = 'accessories'
+                collectionLink = 'https://mariemur.com/collections/accessories'
+                break;
+            default:
+                isEmptyField = true
+                break;
+        }
+    } else {
+        isEmptyField = true
     }
 
     let rateBlock = '';
@@ -557,7 +573,6 @@ async function drawSlider(count, title) {
 \t\tl-95.6-92.8l131.9-19.6c4.4-0.7,8.2-3.4,10.1-7.4l58.6-119.7l59.4,119.4c2,4,5.8,6.7,10.2,7.4l132,18.8L349.554,293.911z"/>
 </g>
 </svg>
-
         `
     }
 
@@ -605,7 +620,7 @@ async function drawSlider(count, title) {
                 <div class="slider-popup">
                     <div class="slider-popup__inner">
                         <a href="https://mariemur.com/collections/insta-queen/products/${title}">Bryony Lingerie Set</a>
-                        ${undefined ? '' : `<a href="${collectionLink}">See all ${collectionTitle}</a>`}
+                        ${isEmptyField ? '' : `<a href="${collectionLink}">See all ${collectionTitle}</a>`}
                     </div>
                 </div>
             </div>
