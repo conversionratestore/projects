@@ -26,11 +26,12 @@ document.body.insertAdjacentHTML('afterbegin',`
             align-items: center;
             margin: 0;
             padding: 8px 5px;
-            border-radius: 5px;}
+            border-radius: 5px;
+            cursor: pointer}
         .types__link--image {
             width: 50px!important;
             height: 42px!important;
-            margin: 0 50px 0 0;}
+            margin: 0 10px 0 0;}
         .types__link--image img {
             height: 44px;}
         .types__link--image.types__link--highlight {
@@ -38,7 +39,7 @@ document.body.insertAdjacentHTML('afterbegin',`
         .types__text {
             text-align: left;
             font-family: 'Roboto', sans-serif;
-            font-weight: 500; }
+            font-weight: 500;}
         #js-product-form--4396093669438 {
             display: flex;
             flex-direction: column;}
@@ -51,7 +52,9 @@ document.body.insertAdjacentHTML('afterbegin',`
             line-height: 16px;
             text-align: left;
             margin-left: auto;
-            width: 151px;}
+            width: 40%;
+            flex-shrink: 0;
+            }
        .info-row {
             border-bottom: 1px solid #000000;
             padding-top: 17px;
@@ -76,6 +79,9 @@ document.body.insertAdjacentHTML('afterbegin',`
             font-size: 14px;
             text-align: center;
             text-transform: uppercase;}
+       .types__link--image:active, .types__link--image:focus, .types__link--image:hover {
+            border: none;
+       }
 </style>`);
 
 document.querySelectorAll('.types__link--highlight').forEach((el)=> {
@@ -89,20 +95,60 @@ document.querySelector('.info-row').after(document.querySelector('#sizes'));
 let arrFurniture = [
     {
         name: 'Armchair',
-        width: '24’-43’ (61-110 cm) width',
+        width: '24”-43” (61-110 cm) width',
     },
     {
         name: 'Loveseat',
-        width: '47’-67’ (120-170 cm) width',
+        width: '47”-67” (120-170 cm) width',
     },
     {
         name: 'Sofa',
-        width: '69’-91’ (175-231 cm) width',
+        width: '69”-91” (175-231 cm) width',
     },
     {
         name: 'Sofa 4 Seater',
-        width: '92’-122’ (233-309 cm) width',
-    }
+        width: '92”-122” (233-309 cm) width',
+    },
+    {
+        name: 'Corner',
+        width: '135”-208” (343-528 cm) width',
+    },
+    {
+        name: 'L-Shaped Right',
+        width: '70”-145” (178-368 cm) width',
+    },
+    {
+        name: 'L-Shaped Left',
+        width: '70”-145” (178-368 cm) width',
+    },
+    {
+        name: 'Dining Chair',
+        width: '15”-20” (38-51 cm) width',
+    },
+    {
+        name: 'Recliner',
+        width: '24”-43” (61-109 cm) width',
+    },
+    {
+        name: 'Reclining Loveseat',
+        width: '55”-83” (140-211 cm) width',
+    },
+    {
+        name: 'Reclining Sofa',
+        width: '63”-91” (160-231 cm) width',
+    },
+    {
+        name: 'Pillow',
+        width: '18” (46 cm) width',
+    },
+    {
+        name: 'Chaise Lounge',
+        width: '32”-48” (81-122 cm) width',
+    },
+    {
+        name: 'Futon',
+        width: '59”-83” (150-211 cm) width',
+    },
 ]
 
 for (let i = 0; i < document.querySelectorAll('.types__item').length; i++) {
@@ -112,3 +158,9 @@ for (let i = 0; i < document.querySelectorAll('.types__item').length; i++) {
         }
     }
 }
+
+document.querySelectorAll('.types__item').forEach((item) => {
+    item.addEventListener('click', function () {
+        item.querySelector('a').click()
+    })
+})
