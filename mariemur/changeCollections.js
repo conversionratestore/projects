@@ -1,7 +1,6 @@
-window.onload = function() {
-    document.head.insertAdjacentHTML(
-        'beforeend',
-        `
+document.head.insertAdjacentHTML(
+    'beforeend',
+    `
             <style>
                 .catalog-box__head {
                     display: none;
@@ -415,137 +414,137 @@ window.onload = function() {
                 /*}*/
             </style>
         `,
-    );
+);
 
-    let linkCustom = document.createElement('link');
-    linkCustom.href =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-    linkCustom.rel = 'stylesheet';
-    document.head.appendChild(linkCustom);
+let linkCustom = document.createElement('link');
+linkCustom.href =
+    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+linkCustom.rel = 'stylesheet';
+document.head.appendChild(linkCustom);
 
-    let scriptCustom = document.createElement('script');
-    scriptCustom.src =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-    scriptCustom.async = false;
-    document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement('script');
+scriptCustom.src =
+    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
 
-    /*
-        render slider in HTML
-    */
+/*
+    render slider in HTML
+*/
 
-    let counter = 0;
-    let titlesInterval = setInterval(function () {
+let counter = 0;
+let titlesInterval = setInterval(function () {
 
-        let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
+    let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
 
-        if (t) {
-            let title = t.getAttribute('href').split(/products/)[1]
-            document.querySelector('.catalog-box:not([data-index])').setAttribute('data-index', counter)
+    if (t) {
+        let title = t.getAttribute('href').split(/products/)[1]
+        document.querySelector('.catalog-box:not([data-index])').setAttribute('data-index', counter)
 
-            drawSlider(counter, title)
+        drawSlider(counter, title)
 
-            counter++;
-        }
-    }, 200)
+        counter++;
+    }
+}, 200)
 
-    async function drawSlider(count, title) {
-        let response = await fetch(`/products/${title}.js`);
-        let data = await response.json();
+async function drawSlider(count, title) {
+    let response = await fetch(`/products/${title}.js`);
+    let data = await response.json();
 
-        let slider;
+    let slider;
 
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-        let raw = JSON.stringify({
-            "productIds": [
-                {
-                    "productId": data.id
-                }
-            ],
-            "apiKey": "pubkey-BB15V7N07pS0LxabX7B6i76608MMmj",
-            "storeUrl": "mariemur.com"
-        });
+    let raw = JSON.stringify({
+        "productIds": [
+            {
+                "productId": data.id
+            }
+        ],
+        "apiKey": "pubkey-BB15V7N07pS0LxabX7B6i76608MMmj",
+        "storeUrl": "mariemur.com"
+    });
 
-        let requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-        let objReview = await fetch("http://stamped.io/api/widget/badges?isIncludeBreakdown=true&isincludehtml=true", requestOptions)
-            .then(response => response.json())
-            .then(result => result)
-            .catch(error => console.log('error', error));
+    let objReview = await fetch("http://stamped.io/api/widget/badges?isIncludeBreakdown=true&isincludehtml=true", requestOptions)
+        .then(response => response.json())
+        .then(result => result)
+        .catch(error => console.log('error', error));
 
-        data.images.forEach(image => {
-            slider += `
+    data.images.forEach(image => {
+        slider += `
                 <div>
                     <a href="https://mariemur.com/collections/insta-queen/products/${title}">
                         <img src="${image}" alt="product image">
                     </a>
                 </div>`
-        })
+    })
 
-        console.log(objReview)
+    console.log(objReview)
 
-        /* link to the collection */
+    /* link to the collection */
 
-        let productTitle = document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).text.toLowerCase()
+    let productTitle = document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).text.toLowerCase()
 
-        let collectionTitle;
-        let collectionLink;
+    let collectionTitle;
+    let collectionLink;
 
-        switch (true) {
-            case (productTitle.includes('lingerie set')):
-                collectionTitle = 'lingerie sets'
-                collectionLink = 'https://mariemur.com/collections/lingerie'
-                break;
-            case (productTitle.includes('fullbody set')):
-                collectionTitle = 'fullbody sets'
-                collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
-                break;
-            case (productTitle.includes('leather bra')):
-                collectionTitle = 'leather bra'
-                collectionLink = 'https://mariemur.com/collections/classic-harnesses'
-                break;
-            case (productTitle.includes('bra')):
-                collectionTitle = 'bra'
-                collectionLink = 'https://mariemur.com/collections/womens-bra'
-                break;
-            case (productTitle.includes('garters')):
-                collectionTitle = 'legs garters'
-                collectionLink = 'https://mariemur.com/collections/legs-garters'
-                break;
-            case (productTitle.includes('panties')):
-                collectionTitle = 'panties'
-                collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
-                break;
-            case (productTitle.includes('bodysuit')):
-                collectionTitle = 'bodysuits'
-                collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
-                break;
-            case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
-                collectionTitle = 'accessories'
-                collectionLink = 'https://mariemur.com/collections/accessories'
-                break;
-            default:
-                break;
-        }
+    switch (true) {
+        case (productTitle.includes('lingerie set')):
+            collectionTitle = 'lingerie sets'
+            collectionLink = 'https://mariemur.com/collections/lingerie'
+            break;
+        case (productTitle.includes('fullbody set')):
+            collectionTitle = 'fullbody sets'
+            collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
+            break;
+        case (productTitle.includes('leather bra')):
+            collectionTitle = 'leather bra'
+            collectionLink = 'https://mariemur.com/collections/classic-harnesses'
+            break;
+        case (productTitle.includes('bra')):
+            collectionTitle = 'bra'
+            collectionLink = 'https://mariemur.com/collections/womens-bra'
+            break;
+        case (productTitle.includes('garters')):
+            collectionTitle = 'legs garters'
+            collectionLink = 'https://mariemur.com/collections/legs-garters'
+            break;
+        case (productTitle.includes('panties')):
+            collectionTitle = 'panties'
+            collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
+            break;
+        case (productTitle.includes('bodysuit')):
+            collectionTitle = 'bodysuits'
+            collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
+            break;
+        case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
+            collectionTitle = 'accessories'
+            collectionLink = 'https://mariemur.com/collections/accessories'
+            break;
+        default:
+            break;
+    }
 
-        let rateBlock = '';
-        let lastStar = '';
-        if (objReview[0].rating.toFixed(1) >= 5) {
-            lastStar = `<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+    let rateBlock = '';
+    let lastStar = '';
+    if (objReview[0].rating.toFixed(1) >= 5) {
+        lastStar = `<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.33335 3.07984L4.93669 2.87317L4.00002 0.666504L3.06335 2.8765L0.666687 3.07984L2.48669 4.6565L1.94002 6.99984L4.00002 5.7565L6.06002 6.99984L5.51669 4.6565L7.33335 3.07984ZM4.00002 5.13317V2.03317L4.57002 3.37984L6.03002 3.5065L4.92335 4.4665L5.25669 5.89317L4.00002 5.13317Z"/>
                         </svg> `
-        } else if (objReview[0].rating.toFixed(1) < 5) {
-            lastStar = `<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+    } else if (objReview[0].rating.toFixed(1) < 5) {
+        lastStar = `<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.33335 3.07984L4.93669 2.87317L4.00002 0.666504L3.06335 2.8765L0.666687 3.07984L2.48669 4.6565L1.94002 6.99984L4.00002 5.7565L6.06002 6.99984L5.51669 4.6565L7.33335 3.07984ZM4.00002 5.13317V2.03317L4.57002 3.37984L6.03002 3.5065L4.92335 4.4665L5.25669 5.89317L4.00002 5.13317Z"/>
         </svg>`
-        } else {
-            lastStar = `
+    } else {
+        lastStar = `
         <?xml version="1.0" encoding="iso-8859-1"?>
 <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 \t viewBox="0 0 487.222 487.222"  xml:space="preserve">
@@ -560,10 +559,10 @@ window.onload = function() {
 </svg>
 
         `
-        }
+    }
 
-        if (objReview[0].rating !== 0) {
-            rateBlock = `
+    if (objReview[0].rating !== 0) {
+        rateBlock = `
             <div class="rate-box">
                     <p class="number">${objReview[0].rating.toFixed(1)}</p>
                     <div class="stars">
@@ -584,11 +583,11 @@ window.onload = function() {
                     </div>
                 </div>
             `
-        }
+    }
 
-        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__body`).insertAdjacentHTML(
-            `beforeBegin`,
-            `
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__body`).insertAdjacentHTML(
+        `beforeBegin`,
+        `
             <div class="catalog-box__head--custom">
                 <div class="catalog-box__head-slider">
                      ${slider}
@@ -612,97 +611,97 @@ window.onload = function() {
             </div>
             `)
 
-        let sliderProductImg = tns({
-            container: document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__head-slider`),
-            items: 1,
-            autoplay: false,
-            controls: false,
-            loop: false,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-        });
+    let sliderProductImg = tns({
+        container: document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__head-slider`),
+        items: 1,
+        autoplay: false,
+        controls: false,
+        loop: false,
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+    });
 
-        // show popup on last slider
-        sliderProductImg.events.on('transitionEnd', function () {
-            if (
-                document
-                    .querySelector(`.view-single .catalog-box[data-index="${count}"] .tns-item:last-child`)
-                    ?.classList.contains('tns-slide-active')
-            ) {
-                setTimeout(() => {
-                    if (
-                        document.querySelector(
-                            `.view-single .catalog-box[data-index="${count}"] .slider-popup`,
-                        )
-                    ) {
-                        document.querySelector(
-                            `.view-single .catalog-box[data-index="${count}"] .slider-popup`,
-                        ).classList.add('slider-popup--active');
-                    }
-                }, 2000);
-            }
+    // show popup on last slider
+    sliderProductImg.events.on('transitionEnd', function () {
+        if (
+            document
+                .querySelector(`.view-single .catalog-box[data-index="${count}"] .tns-item:last-child`)
+                ?.classList.contains('tns-slide-active')
+        ) {
+            setTimeout(() => {
+                if (
+                    document.querySelector(
+                        `.view-single .catalog-box[data-index="${count}"] .slider-popup`,
+                    )
+                ) {
+                    document.querySelector(
+                        `.view-single .catalog-box[data-index="${count}"] .slider-popup`,
+                    ).classList.add('slider-popup--active');
+                }
+            }, 2000);
+        }
+    })
+
+    document.querySelectorAll('.slider-popup').forEach(popup => {
+        popup.addEventListener('touchmove', function () {
+            this.classList.remove('slider-popup--active');
         })
+    })
 
-        document.querySelectorAll('.slider-popup').forEach(popup => {
-            popup.addEventListener('touchmove', function () {
-                this.classList.remove('slider-popup--active');
-            })
-        })
-
-        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__price`).insertAdjacentHTML(
-            'beforeend',
-            `
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__price`).insertAdjacentHTML(
+        'beforeend',
+        `
                 <div class="favorite-box--heart">
                     <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill='none' xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" stroke="#000000"/>
                     </svg>
                 </div>
             `,
-        );
+    );
 
-        document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
-            item.addEventListener('click', function () {
-                document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
-                document
-                    .querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`)
-                    .classList.toggle('heart--active');
-            });
-        })
-
-        // add shop now button
-        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`).insertAdjacentHTML(
-            'beforeend',
-            `<a href="https://mariemur.com/collections/insta-queen/products/${title}" class="catalog-box__shop-now">Shop now</a>`,
-        );
-
-        document
-            .querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`)
-            .insertAdjacentHTML(
-                'afterend',
-                rateBlock
-            );
-
-        // add See More
-        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text p`).insertAdjacentHTML(
-            'afterend',
-            `
-                <span class="see-more">See more</span>
-            `,
-        );
-
-        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text .see-more`).addEventListener('click', function () {
-            this.style.display = 'none';
-            document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text p`).style.display = 'block';
+    document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
+        item.addEventListener('click', function () {
+            document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
+            document
+                .querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`)
+                .classList.toggle('heart--active');
         });
-    };
+    })
 
+    // add shop now button
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`).insertAdjacentHTML(
+        'beforeend',
+        `<a href="https://mariemur.com/collections/insta-queen/products/${title}" class="catalog-box__shop-now">Shop now</a>`,
+    );
 
-    /*
-        add most popular categories block
-    */
-    document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
+    document
+        .querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`)
+        .insertAdjacentHTML(
+            'afterend',
+            rateBlock
+        );
+
+    // add See More
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text p`).insertAdjacentHTML(
         'afterend',
         `
+                <span class="see-more">See more</span>
+            `,
+    );
+
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text .see-more`).addEventListener('click', function () {
+        this.style.display = 'none';
+        document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text p`).style.display = 'block';
+    });
+};
+
+
+/*
+    add most popular categories block
+*/
+document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
+    'afterend',
+    `
             <div class="popular-categories">
                 <p class="title">most popular <br /> categories</p>
                 <div class="popular-categories__slider">
@@ -714,18 +713,18 @@ window.onload = function() {
                 </div>
             </div>
         `,
-    );
+);
 
-    /*
-        add you have seen block
-    */
+/*
+    add you have seen block
+*/
 
-    let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
+let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
-    blockBeforeHaveSeen
-        .insertAdjacentHTML(
-            'afterend',
-            `
+blockBeforeHaveSeen
+    .insertAdjacentHTML(
+        'afterend',
+        `
                 <div class="have-seen">
                     <p class="title">you have seen</p>
                     <div class="have-seen__item">
@@ -752,16 +751,16 @@ window.onload = function() {
                     </div>
                 </div>
             `
-        );
+    );
 
-    /*
-        add influencers block
-    */
+/*
+    add influencers block
+*/
 
-    let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.have-seen')
-    blockBeforeInfluencers.insertAdjacentHTML(
-        'afterend',
-        `
+let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.have-seen')
+blockBeforeInfluencers.insertAdjacentHTML(
+    'afterend',
+    `
             <div class="influencers">
                 <p class="title">Influencers who wear</p>
                 <div class="influencers__item">
@@ -816,48 +815,44 @@ window.onload = function() {
                 </div>
             </div>
         `,
-    );
+);
 
-    const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
+const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
 
-    window.addEventListener('scroll', () => {
-        if ((offsetFilter - window.pageYOffset) <= 0) {
-            document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
-        } else {
-            document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
-        }
-    })
+window.addEventListener('scroll', () => {
+    if ((offsetFilter - window.pageYOffset) <= 0) {
+        document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
+    } else {
+        document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
+    }
+})
 
 // activate tiny slider
-    setTimeout(() => {
-        let sliderCategories = tns({
-            container: '.popular-categories__slider',
-            items: 1.5,
-            autoplay: false,
-            controls: false,
-            loop: false,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            nav: false,
-        });
-    }, 500);
-
-    (function (h, o, t, j, a, r) {
-        h.hj = h.hj || function () {
-            (h.hj.q = h.hj.q || []).push(arguments)
-        };
-        h._hjSettings = {hjid: 2442662, hjsv: 6};
-        a = o.getElementsByTagName('head')[0];
-        r = o.createElement('script');
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp PL improved',
-        'eventAction': 'loaded'
+setTimeout(() => {
+    let sliderCategories = tns({
+        container: '.popular-categories__slider',
+        items: 1.5,
+        autoplay: false,
+        controls: false,
+        loop: false,
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+        nav: false,
     });
-}
+}, 500);
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2442662,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp PL improved',
+    'eventAction': 'loaded'
+});
