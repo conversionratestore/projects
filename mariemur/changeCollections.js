@@ -643,7 +643,7 @@ async function drawSlider(count, title) {
     })
 
     document.querySelectorAll('.slider-popup').forEach(popup => {
-        popup.addEventListener('touchmove', function () {
+        popup.addEventListener('click', function () {
             this.classList.remove('slider-popup--active');
         })
     })
