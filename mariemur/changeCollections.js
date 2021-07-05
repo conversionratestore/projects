@@ -273,6 +273,7 @@ document.head.insertAdjacentHTML(
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    gap: 20px;
                 }
                 .catalog-box__title a {
                     padding: 0;
@@ -287,13 +288,13 @@ document.head.insertAdjacentHTML(
                     display: block;
                     width: 104px;
                     padding: 15px;
-                    margin-left: 5px;
                     background: #000000;
                     font-weight: 700;
                     font-size: 12px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
                     color: #FFFFFF;
+                    flex-shrink: 0;
                 }
                 .catalog-list.view-list .catalog-box__price {
                     display: flex;
