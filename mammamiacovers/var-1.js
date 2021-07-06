@@ -161,6 +161,29 @@ for (let i = 0; i < document.querySelectorAll('.types__item').length; i++) {
 
 document.querySelectorAll('.types__item').forEach((item) => {
     item.addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: PDP improvements',
+            'eventAction': 'Click on additional item with size'
+        });
         item.querySelector('a').click()
     })
 })
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2425703,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('trigger', 'pdp_improvements');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: PDP improvements',
+    'eventAction': 'loaded'
+});
