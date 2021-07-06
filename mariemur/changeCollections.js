@@ -135,7 +135,7 @@ document.head.insertAdjacentHTML(
                 .view-list .favorite-box{
                     display: none;
                 }
-                .view-list .catalog-box__head--custom .rate-box, .view-single .catalog-box__body .rate-box {
+                .view-list .catalog-box__head--custom .rate-box, .view-single .catalog-box__body .rate-box, .view-grid .catalog-box__body .rate-box {
                     display: none;
                 }
                 .view-list .catalog-box__body .rate-box {
@@ -248,7 +248,8 @@ document.head.insertAdjacentHTML(
                 }
                 .slider-popup__inner a {
                     position: relative;
-                    display: block;
+                    display: flex;
+                    align-items: center;
                     width: 256px;
                     margin: 15px 50px;
                     padding: 15px 20px;
@@ -261,10 +262,12 @@ document.head.insertAdjacentHTML(
                     border: 1px solid #FFFFFF;
                     text-align: left;
                 }
-                .slider-popup__inner a::after {
-                   content: url(https://conversionratestore.github.io/projects/mariemur/images/arrow-right.svg);
-                    position: absolute;
-                    right: 25px;
+                .slider-popup__inner a img{
+                    margin-left: auto;
+                }
+                .collection-name {
+                    margin-left: .3em;
+                    display: inline-block;
                 }
                 .slider-popup.slider-popup--active {
                     display: block;
@@ -488,8 +491,6 @@ async function drawSlider(count, title) {
                 </div>`
     })
 
-    console.log(objReview)
-
     /* link to the collection */
 
     let productTitle = document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).text.toLowerCase()
@@ -511,35 +512,35 @@ async function drawSlider(count, title) {
     ) {
         switch (true) {
             case (productTitle.includes('lingerie set')):
-                collectionTitle = 'lingerie sets'
+                collectionTitle = 'Lingerie sets'
                 collectionLink = 'https://mariemur.com/collections/lingerie'
                 break;
             case (productTitle.includes('fullbody set')):
-                collectionTitle = 'fullbody sets'
+                collectionTitle = 'Fullbody sets'
                 collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
                 break;
             case (productTitle.includes('leather bra')):
-                collectionTitle = 'leather bra'
+                collectionTitle = 'Leather bra'
                 collectionLink = 'https://mariemur.com/collections/classic-harnesses'
                 break;
             case (productTitle.includes('bra')):
-                collectionTitle = 'bra'
+                collectionTitle = 'Bra'
                 collectionLink = 'https://mariemur.com/collections/womens-bra'
                 break;
             case (productTitle.includes('garters')):
-                collectionTitle = 'legs garters'
+                collectionTitle = 'Legs garters'
                 collectionLink = 'https://mariemur.com/collections/legs-garters'
                 break;
             case (productTitle.includes('panties')):
-                collectionTitle = 'panties'
+                collectionTitle = 'Panties'
                 collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
                 break;
             case (productTitle.includes('bodysuit')):
-                collectionTitle = 'bodysuits'
+                collectionTitle = 'Bodysuits'
                 collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
                 break;
             case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
-                collectionTitle = 'accessories'
+                collectionTitle = 'Accessories'
                 collectionLink = 'https://mariemur.com/collections/accessories'
                 break;
             default:
@@ -620,13 +621,25 @@ async function drawSlider(count, title) {
                 ${rateBlock}
                 <div class="slider-popup">
                     <div class="slider-popup__inner">
-                        <a href="https://mariemur.com/collections/insta-queen/products/${title}">Bryony Lingerie Set</a>
-                        ${isEmptyField ? '' : `<a href="${collectionLink}">See all ${collectionTitle}</a>`}
+                            <a class="slider-popup__inner-item" href="https://mariemur.com/collections/insta-queen/products/${title}">
+                                <span class="item-name">${data.title}</span>
+                                <img src="https://conversionratestore.github.io/projects/mariemur/images/arrow-right.svg" alt="arrow right">
+                            </a>
+                            ${
+                                isEmptyField
+                                    ? ''
+                                    : `
+                                        <a class="slider-popup__inner-collection" href="${collectionLink}">
+                                            See all <span class="collection-name"> ${collectionTitle}</span>
+                                            <img src="https://conversionratestore.github.io/projects/mariemur/images/arrow-right.svg" alt="arrow right">  
+                                        </a>
+                                    `
+                            }                                             
                     </div>
-                </div>
             </div>
             `)
 
+    // product slider
     let sliderProductImg = tns({
         container: document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__head-slider`),
         items: 1,
@@ -661,7 +674,7 @@ async function drawSlider(count, title) {
     document.querySelectorAll('.slider-popup').forEach(popup => {
         popup.addEventListener('touchmove', function () {
             this.classList.remove('slider-popup--active');
-        })
+        },{ passive: true })
     })
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__price`).insertAdjacentHTML(
@@ -678,9 +691,14 @@ async function drawSlider(count, title) {
     document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
         item.addEventListener('click', function () {
             document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
-            document
-                .querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`)
-                .classList.toggle('heart--active');
+            document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`).classList.toggle('heart--active');
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp PL improved',
+                'eventAction': 'Click on Favotires'
+            });
         });
     })
 
@@ -689,6 +707,16 @@ async function drawSlider(count, title) {
         'beforeend',
         `<a href="https://mariemur.com/collections/insta-queen/products/${title}" class="catalog-box__shop-now">Shop now</a>`,
     );
+
+    // shop now tracking script
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`).addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp PL improved',
+            'eventAction': 'Shop now clicked'
+        });
+    })
 
     document
         .querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`)
@@ -709,8 +737,36 @@ async function drawSlider(count, title) {
         this.style.display = 'none';
         document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__text p`).style.display = 'block';
     });
-};
 
+    // add tracking scripts
+    document.querySelector(`.catalog-box[data-index="${count}"] .slider-popup__inner-item`).addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp PL improved',
+            'eventAction': `Click on ${this.querySelector('.item-name').innerHTML}`
+        });
+    })
+
+    document.querySelector(`.catalog-box[data-index="${count}"] .slider-popup__inner-collection`)?.addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp PL improved',
+            'eventAction': `Click on See All ${this.querySelector('.collection-name').innerHTML}`
+        });
+    })
+
+    // show similar tracking script
+    document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)?.addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp PL improved',
+            'eventAction': 'Click on Show similar'
+        });
+    })
+};
 
 /*
     add most popular categories block
