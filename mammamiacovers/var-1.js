@@ -169,7 +169,7 @@ document.querySelectorAll('.types__item').forEach((item) => {
         });
         item.querySelector('a').click()
     })
-})
+});
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
