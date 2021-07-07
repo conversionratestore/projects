@@ -67,13 +67,12 @@ document.head.insertAdjacentHTML(
                     stroke: #A60B00;
                 }
                 .similar-box {
-                    display: none !important; 
-                    position: absolute;
+                    position: absolute;                    
+                    display: flex;
                     top: 0;
                     right: 0;
                     height: 48px;
                     width: 116px;
-                    display: flex;
                     align-items: center;
                     justify-content: center;
                     background: rgba(0, 0, 0, 0.7);
@@ -296,6 +295,7 @@ document.head.insertAdjacentHTML(
                     font-size: 12px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
+                    text-align: center;
                     color: #FFFFFF;
                     flex-shrink: 0;
                 }
@@ -442,7 +442,7 @@ let titlesInterval = setInterval(function () {
     let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
 
     if (t) {
-        let title = t.getAttribute('href').split(/products/)[1]
+        let title = t.getAttribute('href').split('/products/')[1]
         document.querySelector('.catalog-box:not([data-index])').setAttribute('data-index', counter)
 
         drawSlider(counter, title)
@@ -454,8 +454,10 @@ let titlesInterval = setInterval(function () {
 async function drawSlider(count, title) {
     let response = await fetch(`/products/${title}.js`);
     let data = await response.json();
-
     let slider;
+
+    console.log(data)
+    console.log(data.type)
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -564,17 +566,17 @@ async function drawSlider(count, title) {
     } else {
         lastStar = `
         <?xml version="1.0" encoding="iso-8859-1"?>
-<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-\t viewBox="0 0 487.222 487.222"  xml:space="preserve">
-<g>
-<path d="M486.554,186.811c-1.6-4.9-5.8-8.4-10.9-9.2l-152-21.6l-68.4-137.5c-2.3-4.6-7-7.5-12.1-7.5l0,0c-5.1,0-9.8,2.9-12.1,7.6
-\t\tl-67.5,137.9l-152,22.6c-5.1,0.8-9.3,4.3-10.9,9.2s-0.2,10.3,3.5,13.8l110.3,106.9l-25.5,151.4c-0.9,5.1,1.2,10.2,5.4,13.2
-\t\tc2.3,1.7,5.1,2.6,7.9,2.6c2.2,0,4.3-0.5,6.3-1.6l135.7-71.9l136.1,71.1c2,1,4.1,1.5,6.2,1.5l0,0c7.4,0,13.5-6.1,13.5-13.5
-\t\tc0-1.1-0.1-2.1-0.4-3.1l-26.3-150.5l109.6-107.5C486.854,197.111,488.154,191.711,486.554,186.811z M349.554,293.911
-\t\tc-3.2,3.1-4.6,7.6-3.8,12l22.9,131.3l-118.2-61.7c-3.9-2.1-8.6-2-12.6,0l-117.8,62.4l22.1-131.5c0.7-4.4-0.7-8.8-3.9-11.9
-\t\tl-95.6-92.8l131.9-19.6c4.4-0.7,8.2-3.4,10.1-7.4l58.6-119.7l59.4,119.4c2,4,5.8,6.7,10.2,7.4l132,18.8L349.554,293.911z"/>
-</g>
-</svg>
+            <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                \t viewBox="0 0 487.222 487.222"  xml:space="preserve">
+                <g>
+                <path d="M486.554,186.811c-1.6-4.9-5.8-8.4-10.9-9.2l-152-21.6l-68.4-137.5c-2.3-4.6-7-7.5-12.1-7.5l0,0c-5.1,0-9.8,2.9-12.1,7.6
+                \t\tl-67.5,137.9l-152,22.6c-5.1,0.8-9.3,4.3-10.9,9.2s-0.2,10.3,3.5,13.8l110.3,106.9l-25.5,151.4c-0.9,5.1,1.2,10.2,5.4,13.2
+                \t\tc2.3,1.7,5.1,2.6,7.9,2.6c2.2,0,4.3-0.5,6.3-1.6l135.7-71.9l136.1,71.1c2,1,4.1,1.5,6.2,1.5l0,0c7.4,0,13.5-6.1,13.5-13.5
+                \t\tc0-1.1-0.1-2.1-0.4-3.1l-26.3-150.5l109.6-107.5C486.854,197.111,488.154,191.711,486.554,186.811z M349.554,293.911
+                \t\tc-3.2,3.1-4.6,7.6-3.8,12l22.9,131.3l-118.2-61.7c-3.9-2.1-8.6-2-12.6,0l-117.8,62.4l22.1-131.5c0.7-4.4-0.7-8.8-3.9-11.9
+                \t\tl-95.6-92.8l131.9-19.6c4.4-0.7,8.2-3.4,10.1-7.4l58.6-119.7l59.4,119.4c2,4,5.8,6.7,10.2,7.4l132,18.8L349.554,293.911z"/>
+                </g>
+            </svg>
         `
     }
 
@@ -702,6 +704,8 @@ async function drawSlider(count, title) {
         });
     })
 
+    document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).innerHTML = data.title
+
     // add shop now button
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title`).insertAdjacentHTML(
         'beforeend',
@@ -757,14 +761,63 @@ async function drawSlider(count, title) {
         });
     })
 
-    // show similar tracking script
+    if (collectionUrl === 'lingerie'
+        || collectionUrl === 'fullbody-harnesses'
+        ||collectionUrl === 'classic-harnesses'
+        || collectionUrl === 'womens-bra'
+        || collectionUrl === 'legs-garters'
+        || collectionUrl === 'womens-lingerie-panties'
+        || collectionUrl === 'womens-lingerie-bodysuit'
+        || collectionUrl === 'accessories'
+    ) {
+        document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`).style.display = 'none'
+    }
+
+    // types array
+    types = {
+        lingerieset: ['rose-bodysuit', 'valentine-bodysuit'],
+        bra: ['bryony-bra', 'rose-bra'],
+        panties: ['rosemary-thong', 'jade-panties'],
+        bodysuit: ['scarlett-bodysuit-in-black','grace-bodysuit-red'],
+        fullbody: ['poppy-bra-garters-set', 'kara-leather-fullbody-set-in-pink-by-ave'],
+        harness: ['poppy-leather-bra-in-pink', 'milena-leather-bra-harness'],
+        garter: ['adore-leather-legs-garters-cuffs-in-blue', 'milena-red-leather-set'],
+        choker: ['leather-choker-with-leash-kayla', 'leather-choker-alexia'],
+        cuffs: ['puppy-cuffs', 'handcuffs-morgan'],
+        mask: ['leather-mask-kitty'],
+        accessories: ['leather-choker-with-handcuffs-darcy', 'era-collar-cuffs-set-by-ave'],
+        trinket: ['bunny-trinket-in-black', 'mouse-trinket-in-pink'],
+        belt: ['linda-leather-basque-red-belt', 'linda-leather-basque-belt-in-black']
+    }
+
+    //show similar and tracking script logics
     document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)?.addEventListener('click', function () {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp PL improved',
-            'eventAction': 'Click on Show similar'
-        });
+        if(types[data.type]) {
+            let count = this.closest('.catalog-box').getAttribute('data-index')
+
+            this.closest('.catalog-box').querySelector('.catalog-box__shop-now').remove()
+            this.closest('.catalog-box').querySelector('.catalog-box__head--custom').remove()
+
+            if (types[data.type][0] !== data.handle) {
+                drawSlider(count, types[data.type][0])
+            } else {
+                drawSlider(count, types[data.type][1])
+            }
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp PL improved',
+                'eventAction': 'Click on Show similar'
+            });
+
+            let checkDiv = setInterval(() => {
+                if (document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)) {
+                    clearInterval(checkDiv)
+                    document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`).remove()
+                }
+            }, 100)
+        }
     })
 };
 
