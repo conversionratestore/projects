@@ -59,11 +59,15 @@ document.head.insertAdjacentHTML(
                 }
                 .view-list .favorite-box--heart {
                     display: block;
+                    stroke: #000;
                 }
                 .view-list .favorite-box--heart .heart.heart--active{
                     fill: #A60B00;
                 }
-                .view-list .favorite-box--heart .heart.heart--active path{
+                .view-list .favorite-box--heart .heart.heart--active {
+                    stroke: #000;
+                }
+                .view-list .favorite-box--heart .heart.heart--active {
                     stroke: #A60B00;
                 }
                 .similar-box {
@@ -213,12 +217,6 @@ document.head.insertAdjacentHTML(
                 .catalog-box .view-list .tns-item {
                     height: 400px;
                 }
-                .have-seen {
-                    display: none;
-                }
-                /*.view-single .catalog-box, .view-single .influencers,  view-list .influencers, .view-single .have-seen,  view-list .have-seen {*/
-                /*    margin-right: 5px;*/
-                /*}*/
                 .tns-item img{
                     height: 100%;
                     width: 100%;
@@ -324,12 +322,18 @@ document.head.insertAdjacentHTML(
                     text-decoration: underline;
                     cursor: pointer;
                 }
-                .popular-categories, .have-seen {
-                    margin: 20px 0 45px 12px;
+                .popular-categories {
+                    margin: 20px 0 20px 12px;
                 }
-                .view-grid .popular-categories, .view-grid .have-seen, .view-grid .influencers {
+                .view-grid .popular-categories,
+                .view-grid .influencers,
+                .view-grid .rvp-container
+                 {
                     grid-column-start: 1;
                     grid-column-end: 3;
+                }
+                .catalog-content .rvp-container {
+                    display: flex;
                 }
                 .title {
                     margin-bottom: 20px;
@@ -365,22 +369,16 @@ document.head.insertAdjacentHTML(
                     margin-top: 15px;
                     color: #000;
                 }
-                .have-seen, .influencers {
+                .influencers {
                     margin: 20px 12px 30px 12px;
                 }
-                .have-seen__item, .influencers__item a{
+                 .influencers__item a{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 15px;
                 }
-                .have-seen__item a{
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    color: #000;
-                }
-                .have-seen__item a img, .influencers__item img {
+                .influencers__item img {
                     width: 68px;
                     height: 68px;
                     border-radius: 50%;
@@ -391,10 +389,61 @@ document.head.insertAdjacentHTML(
                 .influencers__item img.instagram {
                     border-radius: 0;
                 }
-                .have-seen__item-icons, .influencers__item .first-div {
+                .influencers__item .first-div {
                     display: flex;
                     align-items: center;
                     gap: 15px;
+                }
+                .rvp-section-wrap {
+                    margin: 20px 12px 30px 12px;
+                }
+                .rvp-title-wrap .title {
+                    margin-bottom: 20px;
+                    font-family: 'Gallery Modern',sans-serif;
+                    font-size: 26px;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    text-align: left;
+                }
+                .splide-rvpCustom .rvp-product-box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: 0;
+                    margin-bottom: 15px !important;
+                    gap: 10px;
+                    flex-shrink: 0;   
+                }
+                .splide__slide .rvp-image-wrap img {
+                    width: 68px;
+                    height: 68px;
+                    border-radius: 50%;
+                    object-fit: cover;                                  
+                }
+                a.rvp-product-title {
+                    font-size: 12px;
+                    line-height: 14px;                    
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;                    
+                    color: #000000;
+                    text-align: left;
+                }
+                p.rvp-product-price, .rvp-buynow {
+                    display: none;
+                }
+                .item-icons {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-left: auto;
+                    flex-shrink: 0;
+                }
+                .item-icons .heart {
+                    stroke: #000;
+                }
+                .item-icons .heart.heart--active {
+                    stroke: #A60B00;
+                    fill: #A60B00;
                 }
                 .influencers__item .first-div > *:last-child {
                     margin-left: auto;
@@ -455,9 +504,6 @@ async function drawSlider(count, title) {
     let response = await fetch(`/products/${title}.js`);
     let data = await response.json();
     let slider;
-
-    console.log(data)
-    console.log(data.type)
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -553,8 +599,26 @@ async function drawSlider(count, title) {
         isEmptyField = true
     }
 
+    // product types array for show similar logic
+    const types = {
+        lingerieset: ['rose-bodysuit', 'valentine-bodysuit'],
+        bra: ['bryony-bra', 'rose-bra'],
+        panties: ['rosemary-thong', 'jade-panties'],
+        bodysuit: ['scarlett-bodysuit-in-black', 'grace-bodysuit-red'],
+        fullbody: ['poppy-bra-garters-set', 'kara-leather-fullbody-set-in-pink-by-ave'],
+        harness: ['poppy-leather-bra-in-pink', 'milena-leather-bra-harness'],
+        garter: ['adore-leather-legs-garters-cuffs-in-blue', 'milena-red-leather-set'],
+        choker: ['leather-choker-with-leash-kayla', 'leather-choker-alexia'],
+        cuffs: ['puppy-cuffs', 'handcuffs-morgan'],
+        mask: ['leather-mask-kitty'],
+        accessories: ['leather-choker-with-handcuffs-darcy', 'era-collar-cuffs-set-by-ave'],
+        trinket: ['bunny-trinket-in-black', 'mouse-trinket-in-pink'],
+        belt: ['linda-leather-basque-red-belt', 'linda-leather-basque-belt-in-black']
+    }
+
     let rateBlock = '';
     let lastStar = '';
+
     if (objReview[0].rating.toFixed(1) >= 5) {
         lastStar = `<svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.33335 3.07984L4.93669 2.87317L4.00002 0.666504L3.06335 2.8765L0.666687 3.07984L2.48669 4.6565L1.94002 6.99984L4.00002 5.7565L6.06002 6.99984L5.51669 4.6565L7.33335 3.07984ZM4.00002 5.13317V2.03317L4.57002 3.37984L6.03002 3.5065L4.92335 4.4665L5.25669 5.89317L4.00002 5.13317Z"/>
@@ -616,10 +680,13 @@ async function drawSlider(count, title) {
                         <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" stroke="#FFFFFF"/>
                     </svg>
                 </div>
-                <div class="similar-box">
-                    <img src="https://conversionratestore.github.io/projects/mariemur/images/union.svg" alt="similar">
-                    <p>Show similar</p>
-                </div>
+                ${types[data.type] ? `
+                    <div class="similar-box">
+                        <img src="https://conversionratestore.github.io/projects/mariemur/images/union.svg" alt="similar">
+                        <p>Show similar</p>
+                    </div>
+                ` : ''}
+                
                 ${rateBlock}
                 <div class="slider-popup">
                     <div class="slider-popup__inner">
@@ -628,15 +695,15 @@ async function drawSlider(count, title) {
                                 <img src="https://conversionratestore.github.io/projects/mariemur/images/arrow-right.svg" alt="arrow right">
                             </a>
                             ${
-                                isEmptyField
-                                    ? ''
-                                    : `
+            isEmptyField
+                ? ''
+                : `
                                         <a class="slider-popup__inner-collection" href="${collectionLink}">
                                             See all <span class="collection-name"> ${collectionTitle}</span>
                                             <img src="https://conversionratestore.github.io/projects/mariemur/images/arrow-right.svg" alt="arrow right">  
                                         </a>
                                     `
-                            }                                             
+        }                                             
                     </div>
             </div>
             `)
@@ -676,7 +743,7 @@ async function drawSlider(count, title) {
     document.querySelectorAll('.slider-popup').forEach(popup => {
         popup.addEventListener('touchmove', function () {
             this.classList.remove('slider-popup--active');
-        },{ passive: true })
+        }, {passive: true})
     })
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__price`).insertAdjacentHTML(
@@ -684,7 +751,7 @@ async function drawSlider(count, title) {
         `
                 <div class="favorite-box--heart">
                     <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill='none' xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" stroke="#000000"/>
+                    <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" />
                     </svg>
                 </div>
             `,
@@ -763,7 +830,7 @@ async function drawSlider(count, title) {
 
     if (collectionUrl === 'lingerie'
         || collectionUrl === 'fullbody-harnesses'
-        ||collectionUrl === 'classic-harnesses'
+        || collectionUrl === 'classic-harnesses'
         || collectionUrl === 'womens-bra'
         || collectionUrl === 'legs-garters'
         || collectionUrl === 'womens-lingerie-panties'
@@ -773,51 +840,32 @@ async function drawSlider(count, title) {
         document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`).style.display = 'none'
     }
 
-    // types array
-    types = {
-        lingerieset: ['rose-bodysuit', 'valentine-bodysuit'],
-        bra: ['bryony-bra', 'rose-bra'],
-        panties: ['rosemary-thong', 'jade-panties'],
-        bodysuit: ['scarlett-bodysuit-in-black','grace-bodysuit-red'],
-        fullbody: ['poppy-bra-garters-set', 'kara-leather-fullbody-set-in-pink-by-ave'],
-        harness: ['poppy-leather-bra-in-pink', 'milena-leather-bra-harness'],
-        garter: ['adore-leather-legs-garters-cuffs-in-blue', 'milena-red-leather-set'],
-        choker: ['leather-choker-with-leash-kayla', 'leather-choker-alexia'],
-        cuffs: ['puppy-cuffs', 'handcuffs-morgan'],
-        mask: ['leather-mask-kitty'],
-        accessories: ['leather-choker-with-handcuffs-darcy', 'era-collar-cuffs-set-by-ave'],
-        trinket: ['bunny-trinket-in-black', 'mouse-trinket-in-pink'],
-        belt: ['linda-leather-basque-red-belt', 'linda-leather-basque-belt-in-black']
-    }
-
     // show similar and tracking script logics
     document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)?.addEventListener('click', function () {
-        if(types[data.type]) {
-            let count = this.closest('.catalog-box').getAttribute('data-index')
+        let count = this.closest('.catalog-box').getAttribute('data-index')
 
-            this.closest('.catalog-box').querySelector('.catalog-box__shop-now').remove()
-            this.closest('.catalog-box').querySelector('.catalog-box__head--custom').remove()
+        this.closest('.catalog-box').querySelector('.catalog-box__shop-now').remove()
+        this.closest('.catalog-box').querySelector('.catalog-box__head--custom').remove()
 
-            if (types[data.type][0] !== data.handle) {
-                drawSlider(count, types[data.type][0])
-            } else {
-                drawSlider(count, types[data.type][1])
-            }
-
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp PL improved',
-                'eventAction': 'Click on Show similar'
-            });
-
-            let checkDiv = setInterval(() => {
-                if (document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)) {
-                    clearInterval(checkDiv)
-                    document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`).remove()
-                }
-            }, 100)
+        if (types[data.type][0] !== data.handle) {
+            drawSlider(count, types[data.type][0])
+        } else {
+            drawSlider(count, types[data.type][1])
         }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp PL improved',
+            'eventAction': 'Click on Show similar'
+        });
+
+        let checkDiv = setInterval(() => {
+            if (document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)) {
+                clearInterval(checkDiv)
+                document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`).remove()
+            }
+        }, 100)
     })
 };
 
@@ -846,43 +894,42 @@ document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
 
 let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
-blockBeforeHaveSeen
-    .insertAdjacentHTML(
-        'afterend',
-        `
-                <div class="have-seen">
-                    <p class="title">you have seen</p>
-                    <div class="have-seen__item">
-                        <a href="#">
-                            <img src="https://conversionratestore.github.io/projects/mariemur/images/have-seen1.png" alt="product"><p>MARSALA LINGERIE SET</p>
-                        </a>
-                        <div class="have-seen__item-icons">
-                            <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill='none' xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" stroke="#000000"/>
-                            </svg>
-                            <img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag">
-                        </div>
-                    </div>
-                    <div class="have-seen__item">
-                        <a href="#">
-                            <img src="https://conversionratestore.github.io/projects/mariemur/images/have-seen2.png" alt="product"><p>ROSE CROTCHLESS BODYSUIT</p>
-                        </a>
-                        <div class="have-seen__item-icons">
-                            <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill='none' xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z" stroke="#000000"/>
-                            </svg>
-                            <img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag">
-                        </div>
-                    </div>
-                </div>
-            `
-    );
+let rvpInterval = setInterval(() => {
+    if (document.querySelector('.rvp-title-wrap') && document.querySelector('.rvp-section-wrap') && document.querySelector('.rvp-buynow')) {
+        clearInterval(rvpInterval)
 
+        const rvpContainer = document.querySelector('.rvp-container')
+
+        blockBeforeHaveSeen.insertAdjacentElement('afterend',
+            rvpContainer
+        );
+        rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
+
+        document.querySelectorAll('.rvp-product-desc').forEach(item => {
+            let link = item.querySelector('.rvp-buynow a').href;
+
+            item.insertAdjacentHTML(`afterend`, `
+            <div class="item-icons">
+                <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z"></path>
+                </svg>
+                <a href="${link}"><img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag"></a>
+            </div>
+        `)
+        })
+
+        document.querySelectorAll('.item-icons .heart').forEach(item => {
+            item.addEventListener('click', function () {
+                this.classList.toggle('heart--active')
+            })
+        })
+    }
+}, 100)
 /*
     add influencers block
 */
 
-let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.have-seen')
+let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
 blockBeforeInfluencers.insertAdjacentHTML(
     'afterend',
     `
@@ -966,14 +1013,17 @@ setTimeout(() => {
     });
 }, 500);
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:2442662,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+(function (h, o, t, j, a, r) {
+    h.hj = h.hj || function () {
+        (h.hj.q = h.hj.q || []).push(arguments)
+    };
+    h._hjSettings = {hjid: 2442662, hjsv: 6};
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
     a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
