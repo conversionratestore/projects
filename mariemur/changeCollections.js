@@ -2,6 +2,9 @@ document.head.insertAdjacentHTML(
     'beforeend',
     `
             <style>
+                .catalog-list {
+                    grid-row-gap: 4px;
+                }
                 .catalog-box__head {
                     display: none;
                 }
@@ -469,6 +472,17 @@ document.head.insertAdjacentHTML(
         `,
 );
 
+// fixed menu
+const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
+
+window.addEventListener('scroll', () => {
+    if ((offsetFilter - window.pageYOffset) <= 0) {
+        document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
+    } else {
+        document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
+    }
+})
+
 let linkCustom = document.createElement('link');
 linkCustom.href =
     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -894,21 +908,18 @@ document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
 
 let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
-let rvpInterval = setInterval(() => {
-    if (document.querySelector('.rvp-title-wrap') && document.querySelector('.rvp-section-wrap') && document.querySelector('.rvp-buynow')) {
-        clearInterval(rvpInterval)
+setTimeout(() => {
+    const rvpContainer = document.querySelector('.rvp-container')
 
-        const rvpContainer = document.querySelector('.rvp-container')
+    blockBeforeHaveSeen.insertAdjacentElement('afterend',
+        rvpContainer
+    );
+    rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
 
-        blockBeforeHaveSeen.insertAdjacentElement('afterend',
-            rvpContainer
-        );
-        rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
+    document.querySelectorAll('.rvp-product-desc').forEach(item => {
+        let link = item.querySelector('.rvp-buynow a').href;
 
-        document.querySelectorAll('.rvp-product-desc').forEach(item => {
-            let link = item.querySelector('.rvp-buynow a').href;
-
-            item.insertAdjacentHTML(`afterend`, `
+        item.insertAdjacentHTML(`afterend`, `
             <div class="item-icons">
                 <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z"></path>
@@ -916,15 +927,15 @@ let rvpInterval = setInterval(() => {
                 <a href="${link}"><img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag"></a>
             </div>
         `)
-        })
+    })
 
-        document.querySelectorAll('.item-icons .heart').forEach(item => {
-            item.addEventListener('click', function () {
-                this.classList.toggle('heart--active')
-            })
+    document.querySelectorAll('.item-icons .heart').forEach(item => {
+        item.addEventListener('click', function () {
+            this.classList.toggle('heart--active')
         })
-    }
-}, 100)
+    })
+}, 1200)
+
 /*
     add influencers block
 */
@@ -988,16 +999,6 @@ blockBeforeInfluencers.insertAdjacentHTML(
             </div>
         `,
 );
-
-const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
-
-window.addEventListener('scroll', () => {
-    if ((offsetFilter - window.pageYOffset) <= 0) {
-        document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
-    } else {
-        document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
-    }
-})
 
 // activate tiny slider
 setTimeout(() => {
