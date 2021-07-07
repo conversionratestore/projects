@@ -498,7 +498,7 @@ async function drawSlider(count, title) {
     let productTitle = document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).text.toLowerCase()
 
     let collectionTitle;
-    let collectionLink;
+    let collectionLink = 'https://mariemur.com/collections/';
 
     let isEmptyField = false;
     let collectionUrl = window.location.href.split('/collections/')[1];
@@ -515,35 +515,35 @@ async function drawSlider(count, title) {
         switch (true) {
             case (productTitle.includes('lingerie set')):
                 collectionTitle = 'Lingerie sets'
-                collectionLink = 'https://mariemur.com/collections/lingerie'
+                collectionLink += 'lingerie'
                 break;
             case (productTitle.includes('fullbody set')):
                 collectionTitle = 'Fullbody sets'
-                collectionLink = 'https://mariemur.com/collections/fullbody-harnesses'
+                collectionLink += 'fullbody-harnesses'
                 break;
             case (productTitle.includes('leather bra')):
                 collectionTitle = 'Leather bra'
-                collectionLink = 'https://mariemur.com/collections/classic-harnesses'
+                collectionLink += 'classic-harnesses'
                 break;
             case (productTitle.includes('bra')):
                 collectionTitle = 'Bra'
-                collectionLink = 'https://mariemur.com/collections/womens-bra'
+                collectionLink += 'womens-bra'
                 break;
             case (productTitle.includes('garters')):
                 collectionTitle = 'Legs garters'
-                collectionLink = 'https://mariemur.com/collections/legs-garters'
+                collectionLink += 'legs-garters'
                 break;
             case (productTitle.includes('panties')):
                 collectionTitle = 'Panties'
-                collectionLink = 'https://mariemur.com/collections/womens-lingerie-panties'
+                collectionLink += 'womens-lingerie-panties'
                 break;
             case (productTitle.includes('bodysuit')):
                 collectionTitle = 'Bodysuits'
-                collectionLink = 'https://mariemur.com/collections/womens-lingerie-bodysuit'
+                collectionLink += 'womens-lingerie-bodysuit'
                 break;
             case (productTitle.includes('choker') || productTitle.includes('cuffs') || productTitle.includes('belts')):
                 collectionTitle = 'Accessories'
-                collectionLink = 'https://mariemur.com/collections/accessories'
+                collectionLink += 'accessories'
                 break;
             default:
                 isEmptyField = true
@@ -790,7 +790,7 @@ async function drawSlider(count, title) {
         belt: ['linda-leather-basque-red-belt', 'linda-leather-basque-belt-in-black']
     }
 
-    //show similar and tracking script logics
+    // show similar and tracking script logics
     document.querySelector(`.catalog-box[data-index="${count}"] .similar-box`)?.addEventListener('click', function () {
         if(types[data.type]) {
             let count = this.closest('.catalog-box').getAttribute('data-index')
