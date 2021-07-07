@@ -91,6 +91,15 @@ document.querySelector('.breadcrumb').insertAdjacentHTML('afterend',`<a href="#"
 document.querySelector('.btn-back').href = document.querySelector('.breadcrumb__item:last-child a').href;
 document.querySelector('.product-single__add').insertAdjacentHTML('afterend',`<div class="info-row"><p>30-day money back guarantee</p><p>Free USA shipping & retuens</p><p> <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/madeinitaly.png" alt="made in italy"></p></div>`)
 document.querySelector('.info-row').after(document.querySelector('#sizes'));
+
+document.querySelector('.btn-back').addEventListener('click', function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: PDP improvements',
+        'eventAction': 'Click on All sleepcovers'
+    });
+})
 let arrFurniture = [
     {
         name: 'Armchair',
