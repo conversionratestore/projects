@@ -326,7 +326,7 @@ document.head.insertAdjacentHTML(
                     cursor: pointer;
                 }
                 .popular-categories {
-                    margin: 20px 0 20px 12px;
+                    margin: 20px 0 40px 12px;
                 }
                 .view-grid .popular-categories,
                 .view-grid .influencers,
