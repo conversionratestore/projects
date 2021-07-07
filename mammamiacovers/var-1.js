@@ -7,7 +7,6 @@ document.body.insertAdjacentHTML('afterbegin',`
         padding: 0 14px 0 32px;
         font-size: 14px;
         line-height: 29px;
-        border: 1px solid #000000;
         width: fit-content;
         margin-bottom: 30px;
         display: flex;
