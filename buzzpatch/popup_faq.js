@@ -82,12 +82,23 @@ let style = `
         top: 50%;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
+        position: absolute;
     }
     
-   .popup .card-link {
+    .popup .card {
+      border: none;
+    }
+    
+   .popup .card-header {
         padding: 20px 20px 20px 30px;
-        font-size: 18px;
+        font-size: 16px;
         position: relative;
+        background-color: #fff;
+        border-bottom: none;
+    }
+    
+    .popup .card-body {
+      height: 0;
     }
     
     .popup .video {
@@ -102,6 +113,8 @@ let style = `
         height: 100%;
         z-index: 10;
     }
+    
+    
     
    </style>
 `
