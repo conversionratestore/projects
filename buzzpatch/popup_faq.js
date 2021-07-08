@@ -84,15 +84,10 @@ let style = `
         transform: translateY(-50%);
     }
     
-   .popup #js-accordion .card-link {
+   .popup .card-link {
         padding: 20px 20px 20px 30px;
         font-size: 18px;
         position: relative;
-    }
-    
-    .popup #js-accordion .card:nth-child(4),
-    .popup #js-accordion .card:nth-child(7) {
-        display: none;
     }
     
     .popup .video {
@@ -111,7 +106,58 @@ let style = `
    </style>
 `
 
-let block = document.querySelector('#js-accordion').cloneNode(true)
+let block = `
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link collapsed">
+          <span class="arrow down"></span>How do I place stickers to protect my whole child's body?</a>
+      </div>
+      <div class="card-body">
+        <p>Kids aged 0-2 need 1 patch: One patch placed centrally on clothes (ie, on their jumpsuit on the stomach, chest)</p>
+        <p>Kids aged 3-5 need 2 patches: One patch on the top clothes (sweater, t-shirt) and one on the shorts.</p>
+        <p>Kids aged 6+ and parents need 2-4 patches: One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link collapsed">
+          <span class="arrow down"></span>How long will sealed stickers last?</a>
+      </div>
+      <div class="card-body">
+        <p>The bag has a ziplock. Put the unused patches into the bag and seal it. BuzzPatch when sealed will last up to 24 months.</p>
+        <p>If you have a pack that is past its used by date, send a photo of the unopened pack to hello@buzzpatch.com and we'll send you a new one.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link collapsed">
+          <span class="arrow down"></span>Where are BuzzPatch stickers made?</a>
+      </div>
+      <div class="card-body">
+        <p>Patches are formulated and designed in Australia.</p>
+     </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link collapsed">
+          <span class="arrow down"></span>How many stickers do I need?</a>
+      </div>
+      <div class="card-body">
+        <p>Kids aged 0-2 need 1: One patch placed centrally on clothes (ie, on their jumpsuit on the stomach, chest)</p>
+        <p>Kids aged 3-5 need 2: One patch on the top clothes (sweater, t-shirt) and one on the shorts.</p>
+        <p>Kids aged 6+ and parents need 2-4: One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link collapsed">
+          <span class="arrow down"></span>How long will shipping take?</a>
+      </div>
+      <div class="card-body">
+        <p>All orders are dispatched the same day, and usually take 3-5 days to USA, Canada and Australia. However, with current travel restrictions, we’re seeing shipping times range between 10-15 days, and in some cases up to 25 days.</p>
+      </div>
+    </div>
+`
 
 let popup = `
     <div class="dark_bg">
@@ -126,6 +172,7 @@ let popup = `
           </div> 
           <p class="title">FAQ</p>
           <div class="accordion_popup">
+              ${block}
           </div>
           <button class="popup_btn close_btn">GET BUZZPATCH</button>
         </div>
@@ -139,7 +186,6 @@ let btn = `
 document.body.insertAdjacentHTML('afterbegin', style)
 document.querySelector('.hand-banner img').insertAdjacentHTML('afterend', btn)
 document.body.insertAdjacentHTML('beforeend', popup)
-document.querySelector('.accordion_popup').append(block)
 
 document.querySelector('.popup_btn.open_btn').addEventListener('click', function () {
     document.querySelector('.dark_bg').classList.add('active')
