@@ -151,6 +151,8 @@ let style = `
       padding: 14px 20px;
       font-family: "DIN Condensed",roboto,sans-serif;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
     }
     .popup .form-group .js-packs label span{
       font-size: 12px;
@@ -160,6 +162,7 @@ let style = `
     
     .popup .form-group .js-packs.selected {
       background-color: #ff3c81;
+      color: white;
     }
     
    </style>
