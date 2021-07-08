@@ -196,6 +196,7 @@ document.querySelectorAll('.popup #js-accordion a.collapsed').forEach((item) => 
 
 document.querySelector('.close_popup').addEventListener('click', function () {
     document.querySelector('.dark_bg').classList.remove('active')
+    document.getElementsByTagName('video')[1].pause()
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -209,6 +210,7 @@ document.querySelector('.popup_btn.close_btn').addEventListener('click', functio
     document.querySelector('#getNow').scrollIntoView({
         behavior: "smooth"
     })
+    document.getElementsByTagName('video')[1].pause()
     document.querySelector('.dark_bg').classList.remove('active')
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
