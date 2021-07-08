@@ -100,7 +100,7 @@ let style = `
     
     .popup .card-body {
       display: none;
-      font-size: 18px;
+      font-size: 14px !important;
       padding: 20px;
       background: #f9f8f6;
     }
