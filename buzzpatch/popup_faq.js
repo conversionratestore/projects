@@ -105,7 +105,7 @@ let style = `
     }
     
     .popup .card-body p {
-      font-size: 14px !important;
+      font-size: 16px !important;
     }
     
     .popup .video {
