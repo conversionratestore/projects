@@ -55,6 +55,7 @@ let style = `
     }
     
     .popup_btn.close_btn {
+        margin-top: 20px;
         background-color: #ff3c81;
         color: white;
     }
@@ -90,7 +91,7 @@ let style = `
     }
     
    .popup .card-header {
-        padding: 20px 20px 20px 30px;
+        padding: 10px 20px 10px 30px;
         font-size: 16px;
         position: relative;
         background-color: #fff;
@@ -207,10 +208,12 @@ $('.popup .card-header').click(function () {
     if($(this).find('a').hasClass('collapsed')) {
         $(this).closest('.card').siblings().each(function (i, item) {
             $(item).find('.card-body').slideUp()
+            $(item).find('a').addClass('collapsed')
         })
         $(this).find('a').removeClass('collapsed')
         $(this).next().slideDown()
     } else {
+        $(this).find('a').addClass('collapsed')
         $(this).next().slideUp()
     }
 })
