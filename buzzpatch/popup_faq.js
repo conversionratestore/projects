@@ -146,6 +146,18 @@ let style = `
       border: 2px solid #ff3c81;
     }
     
+    .popup .form-group .js-packs label {
+      font-size: 17px;
+      padding: 14px 20px;
+      font-family: "DIN Condensed",roboto,sans-serif;
+      font-weight: 700;
+    }
+    .popup .form-group .js-packs label span{
+      font-size: 12px;
+      font-family: Roboto, sans-serif;
+      font-weight: 400;
+    }
+    
     .popup .form-group .js-packs.selected {
       background-color: #ff3c81;
     }
@@ -243,7 +255,7 @@ let buyBlock = `
                 <div class="form">
                     <form class="form-horizontal">
                         <div class="form-group"> 
-                          <div class="js-packs select">
+                          <div class="js-packs selected">
                             <span class="bestseller">bestseller</span> 
                             <label class="radio-inline" for="radios-0"> 3 Packs<br><span>$12.0 Each</span> </label> 
                           </div> 
