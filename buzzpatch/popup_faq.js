@@ -130,6 +130,26 @@ let style = `
         display: block;
     }
     
+    .step2 {
+      padding: 20px 0 0;
+      text-align: center;
+    }
+    
+    .popup .form-group {
+      display: flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+    
+    .popup .form-group .js-packs {
+      width: 45%;
+      border: 2px solid #ff3c81;
+    }
+    
+    .popup .form-group .js-packs.selected {
+      background-color: #ff3c81;
+    }
+    
    </style>
 `
 
@@ -223,7 +243,7 @@ let buyBlock = `
                 <div class="form">
                     <form class="form-horizontal">
                         <div class="form-group"> 
-                          <div class="js-packs">
+                          <div class="js-packs select">
                             <span class="bestseller">bestseller</span> 
                             <label class="radio-inline" for="radios-0"> 3 Packs<br><span>$12.0 Each</span> </label> 
                           </div> 
@@ -346,6 +366,23 @@ document.querySelector('.popup_btn.close_btn').addEventListener('click', functio
 
 document.querySelector('.popup .to_checkout').addEventListener('click', function () {
     document.querySelector('#getNow a.btn-primary').click()
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Add how it work button',
+        'eventAction': 'Click popup button - Go to checkout'
+    });
+})
+
+$('.popup .js-packs').click(function () {
+    $(this).addClass('selected').siblings().removeClass('selected')
+    let packs = $(this).find('label').eq(0).text().split('$')[0].trim()
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Add how it work button',
+        'eventAction': 'Click on popup product packs',
+        'eventLabel': `${packs}`
+    });
 })
 
 window.dataLayer = window.dataLayer || [];
