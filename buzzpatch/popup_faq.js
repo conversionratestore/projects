@@ -361,6 +361,8 @@ document.querySelectorAll('.popup a.collapsed').forEach((item) => {
 document.querySelector('.close_popup').addEventListener('click', function () {
     document.querySelector('.dark_bg').classList.remove('active')
     document.getElementsByTagName('video')[1].pause()
+    document.querySelector('.step1').classList.add('active')
+    document.querySelector('.step2').classList.remove('active')
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
