@@ -100,9 +100,12 @@ let style = `
     
     .popup .card-body {
       display: none;
-      font-size: 14px !important;
       padding: 20px;
       background: #f9f8f6;
+    }
+    
+    .popup .card-body p {
+      font-size: 14px !important;
     }
     
     .popup .video {
