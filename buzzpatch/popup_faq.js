@@ -153,16 +153,19 @@ let style = `
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .6px;
+      margin-bottom: 0;
     }
     .popup .form-group .js-packs label span{
       font-size: 12px;
       font-family: Roboto, sans-serif;
       font-weight: 400;
+      text-transform: none;
     }
     
-    .popup .form-group .js-packs.selected {
+    .popup .form-group .js-packs.selected, .popup .form-group .js-packs.selected:hover {
       background-color: #ff3c81;
       color: white;
+      opacity: 1;
     }
     
    </style>
