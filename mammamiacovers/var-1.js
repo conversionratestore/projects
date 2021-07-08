@@ -89,7 +89,7 @@ document.querySelectorAll('.types__link--highlight').forEach((el)=> {
 document.head.insertAdjacentHTML('beforeend','<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">')
 document.querySelector('.breadcrumb').insertAdjacentHTML('afterend',`<a href="#" class="btn-back">ALL SLIPCOVERS</a>`);
 document.querySelector('.btn-back').href = document.querySelector('.breadcrumb__item:last-child a').href;
-document.querySelector('.product-single__add').insertAdjacentHTML('afterend',`<div class="info-row"><p>30-day money back guarantee</p><p>Free USA shipping & retuens</p><p> <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/madeinitaly.png" alt="made in italy"></p></div>`)
+document.querySelector('.product-single__add').insertAdjacentHTML('afterend',`<div class="info-row"><p>30-day money back guarantee</p><p>Free USA shipping & returns</p><p> <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/madeinitaly.png" alt="made in italy"></p></div>`)
 document.querySelector('.info-row').after(document.querySelector('#sizes'));
 
 document.querySelector('.btn-back').addEventListener('click', function () {
