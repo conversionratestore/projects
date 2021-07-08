@@ -98,7 +98,10 @@ let style = `
     }
     
     .popup .card-body {
-      height: 0;
+      display: none;
+      font-size: 18px;
+      padding: 20px;
+      background: #f9f8f6;
     }
     
     .popup .video {
@@ -199,6 +202,18 @@ let btn = `
 document.body.insertAdjacentHTML('afterbegin', style)
 document.querySelector('.hand-banner img').insertAdjacentHTML('afterend', btn)
 document.body.insertAdjacentHTML('beforeend', popup)
+
+$('.popup .card-header').click(function () {
+    if($(this).find('a').hasClass('collapsed')) {
+        $(this).closest('.card').siblings().each(function (i, item) {
+            $(item).find('.card-body').slideUp()
+        })
+        $(this).find('a').removeClass('collapsed')
+        $(this).next().slideDown()
+    } else {
+        $(this).next().slideUp()
+    }
+})
 
 document.querySelector('.popup_btn.open_btn').addEventListener('click', function () {
     document.querySelector('.dark_bg').classList.add('active')
