@@ -101,7 +101,7 @@ let style = `
     
     .popup .card-body {
       display: none;
-      padding: 20px;
+      padding: 20px 20px 0;
       background: #f9f8f6;
     }
     
