@@ -54,7 +54,7 @@ let style = `
         letter-spacing: .015em;
     }
     
-    .popup_btn.close_btn {
+    .popup .popup_btn {
         margin-top: 20px;
         background-color: #ff3c81;
         color: white;
@@ -122,7 +122,13 @@ let style = `
         z-index: 10;
     }
     
+    .step1, .step2 {
+        display: none;
+    }
     
+    .step1.active, .step2.active {
+        display: block;
+    }
     
    </style>
 `
@@ -184,18 +190,21 @@ let popup = `
     <div class="dark_bg">
         <div class="popup">
           <span class="close_popup"></span>
-          <h2>how does it work?</h2>
-          <div class="video"> 
-              <div class="play" data-status="pause"></div>
-              <video loop poster="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/video_c9e0b370-69c5-4dc5-b783-69f71b771e4a.jpg">
-                  <source src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/buzzpath-video.mp4?v=1614167522" type="video/mp4">  
-              </video>
-          </div> 
-          <p class="title">FAQ</p>
-          <div class="accordion_popup">
-              ${block}
+          <div class="step1 active">
+              <h2>how does it work?</h2>
+              <div class="video"> 
+                  <div class="play" data-status="pause"></div>
+                  <video loop poster="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/video_c9e0b370-69c5-4dc5-b783-69f71b771e4a.jpg">
+                      <source src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/buzzpath-video.mp4?v=1614167522" type="video/mp4">  
+                  </video>
+              </div> 
+              <p class="title">FAQ</p>
+              <div class="accordion_popup">
+                  ${block}
+              </div>
+              <button class="popup_btn close_btn">GET BUZZPATCH</button>
           </div>
-          <button class="popup_btn close_btn">GET BUZZPATCH</button>
+          
         </div>
     </div>
 `
@@ -204,9 +213,44 @@ let btn = `
     <button class="popup_btn open_btn">See how it works</button>
 `
 
+let buyBlock = `
+    <div class="package step2">
+                <h2>SELECT PACKAGE</h2>
+                <p>60 patches in 1 pack</p>
+                <p class="sub js-desktop">And get FREE shipping Worldwide</p> 
+               <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/delivery.png?v=1619961655" alt="buzzpatch">
+  
+                <div class="form">
+                    <form class="form-horizontal">
+                        <div class="form-group"> 
+                          <div class="js-packs">
+                            <span class="bestseller">bestseller</span> 
+                            <label class="radio-inline" for="radios-0"> 3 Packs<br><span>$12.0 Each</span> </label> 
+                          </div> 
+                          <div class="js-packs"> 
+                            <label class="radio-inline" for="radios-1"> 4 Packs<br><span>$10.5 Each</span></label> 
+                          </div>  
+                          <div class="js-packs"> 
+                            <label class="radio-inline" for="radios-2"> 2 Packs<br><span>$13.5 Each</span></label> 
+                          </div>  
+                          <div class="js-packs"> 
+                            <label class="radio-inline" for="radios-3">1 Pack<br><span>$14.99 Each</span> </label> 
+                          </div>   
+                        </div> 
+                    </form> 
+                </div>
+                <div class="prices">
+                    <span class="js-total">$<span class="pr">36.0</span> (<span class="ps">40</span>% OFF)</span>
+                    <span class="js-regular">Reg. Price: <span class="js-strike">$<span class="rp">60</span></span> (Save $<span class="rs">24.00</span>)</span>
+                </div>
+                <button class="popup_btn to_checkout">PROCEED TO CHECKOUT</button> 
+    </div>      
+`
+
 document.body.insertAdjacentHTML('afterbegin', style)
 document.querySelector('.hand-banner img').insertAdjacentHTML('afterend', btn)
 document.body.insertAdjacentHTML('beforeend', popup)
+document.querySelector('.step1').insertAdjacentHTML('afterend', buyBlock)
 
 $('.popup .card-header').click(function () {
     if($(this).find('a').hasClass('collapsed')) {
@@ -260,7 +304,7 @@ document.querySelector('.play').addEventListener('click', function () {
 
 })
 
-document.querySelectorAll('.popup #js-accordion a.collapsed').forEach((item) => {
+document.querySelectorAll('.popup a.collapsed').forEach((item) => {
     item.addEventListener('click', function () {
         let question = this.querySelector('.popup .card span').nextSibling.textContent.trim()
         if(this.classList.contains('collapsed')) {
@@ -288,11 +332,9 @@ document.querySelector('.close_popup').addEventListener('click', function () {
 })
 
 document.querySelector('.popup_btn.close_btn').addEventListener('click', function () {
-    document.querySelector('#getNow').scrollIntoView({
-        behavior: "smooth"
-    })
     document.getElementsByTagName('video')[1].pause()
-    document.querySelector('.dark_bg').classList.remove('active')
+    document.querySelector('.step1').classList.remove('active')
+    document.querySelector('.step2').classList.add('active')
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -300,6 +342,10 @@ document.querySelector('.popup_btn.close_btn').addEventListener('click', functio
         'eventAction': 'Click on button Get Buzzpatch',
         'eventLabel': 'Popup: How does it work'
     });
+})
+
+document.querySelector('.popup .to_checkout').addEventListener('click', function () {
+    document.querySelector('#getNow a.btn-primary').click()
 })
 
 window.dataLayer = window.dataLayer || [];
