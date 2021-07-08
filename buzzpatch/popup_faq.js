@@ -146,7 +146,7 @@ let style = `
       border: 2px solid #ff3c81;
     }
     
-    .popup .form-group .js-packs label {
+    .popup .form-group .js-packs label, .popup .form-group .js-packs label:hover {
       font-size: 17px;
       padding: 14px 20px;
       font-family: "DIN Condensed",roboto,sans-serif;
@@ -154,6 +154,7 @@ let style = `
       text-transform: uppercase;
       letter-spacing: .6px;
       margin-bottom: 0;
+      opacity: 1;
     }
     .popup .form-group .js-packs label span{
       font-size: 12px;
