@@ -93,6 +93,7 @@ let style = `
    .popup .card-header {
         padding: 10px 20px 10px 30px;
         font-size: 16px;
+        font-weight: 500;
         position: relative;
         background-color: #fff;
         border-bottom: none;
