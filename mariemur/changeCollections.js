@@ -240,7 +240,7 @@ document.head.insertAdjacentHTML(
                 .view-list .tns-nav {
                     bottom: 20px;
                 }
-                .catalog-box .tns-item {
+                .view-single .catalog-box .tns-item img{
                     height: 475px;
                 }
                 .view-list .tns-item img{
@@ -310,12 +310,11 @@ document.head.insertAdjacentHTML(
                 .catalog-box__title a .icon {
                      display: none;
                 }
-                .view-list .catalog-box__shop-now,
-                .view-grid .catalog-box__shop-now{
+                .view-list .catalog-box__title a.catalog-box__shop-now,
+                .view-grid .catalog-box__title a.catalog-box__shop-now{
                     display: none;
                 }
-                .view-list .no-reviews,
-                .view-grid .no-reviews {
+                .view-list .rate-box .no-reviews {
                     display: none;
                 }                
                 .view-single .catalog-box__title .catalog-box__shop-now {
@@ -462,7 +461,7 @@ document.head.insertAdjacentHTML(
                     color: #000000;
                     text-align: left;
                 }
-                p.rvp-product-price, .rvp-buynow {
+                .rvp-buynow, p.rvp-product-price {
                     display: none;
                 }
                 .item-icons {
