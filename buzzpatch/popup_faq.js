@@ -168,7 +168,9 @@ let style = `
       color: white;
       opacity: 1;
     }
-    
+    .navbar .row {
+      flex-wrap: nowrap;
+    }
    </style>
 `
 
@@ -386,12 +388,12 @@ document.querySelector('.popup_btn.close_btn').addEventListener('click', functio
 })
 
 document.querySelector('.popup .to_checkout').addEventListener('click', function () {
+    document.querySelector('#getNow a.btn-primary').click()
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp — Add how it work button',
         'eventAction': 'Click popup button - Go to checkout'
     });
-    document.querySelector('#getNow a.btn-primary').click()
 })
 
 $('.popup .js-packs').click(function () {
