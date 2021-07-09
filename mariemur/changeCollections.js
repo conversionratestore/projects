@@ -3,7 +3,7 @@ document.head.insertAdjacentHTML(
     `
             <style>
                 .catalog-list {
-                    grid-row-gap: 4px;
+                    grid-row-gap: 15px;
                 }
                 .catalog-box__head {
                     display: none;
@@ -22,12 +22,20 @@ document.head.insertAdjacentHTML(
                 }
                 .view-list .catalog-box .catalog-box__body {
                     width: 60%;
-                    margin-top: 0;
+                    margin: 0 12px;
                 }
                 .catalog-list.view-list .catalog-box__title {
                     font-size: 24px;
                     letter-spacing: 2px;
                 }
+                .catalog-list.view-list .catalog-box__title a{
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                }
+                
                 .favorite-box {
                     position: absolute;
                     top: 0;
@@ -138,6 +146,12 @@ document.head.insertAdjacentHTML(
                     font-weight: 300;
                     font-size: 10px;
                 }
+                .rate-box .no-reviews {
+                    color: #FFFFFF;
+                    font-size: 10px;
+                    letter-spacing: 0.01em;
+                    text-transform: uppercase;
+                }
                 .view-list .favorite-box{
                     display: none;
                 }
@@ -166,6 +180,8 @@ document.head.insertAdjacentHTML(
                 }
                 .tns-nav {
                     position: absolute;
+                    display: flex;
+                    justify-content: center;
                     /*left: 10px;*/
                     bottom: 0;
                     width: 100%;
@@ -181,7 +197,7 @@ document.head.insertAdjacentHTML(
                     align-items: center;
                 }
                 .tns-nav button{
-                    width: 12px;
+                    width: 15%;
                     height: 1px;
                     padding: 0;
                     margin: 0px 4px;
@@ -190,35 +206,35 @@ document.head.insertAdjacentHTML(
                     border: none;
                 }
                 .tns-nav  button.tns-nav-active{
-                    width: 57px;
+                    width: 25%;
                     opacity: 1;
                 }
-                .tns-nav  button.tns-nav-active{
-                    width: 57px;
-                }
-                .view-grid .tns-nav  button.tns-nav-active{
-                    width: 26px;
-                }
-                .view-grid .tns-nav button{
-                    width: 8px;
-                }
+                /*.tns-nav  button.tns-nav-active{*/
+                /*    width: 57px;*/
+                /*}*/
+                /*.view-grid .tns-nav  button.tns-nav-active{*/
+                /*    width: 10%;*/
+                /*}*/
+                /*.view-grid .tns-nav button{*/
+                /*    width: 5%;*/
+                /*}*/
                 .view-grid .tns-nav {
                     bottom: 72px;
                 }
-                .view-list .tns-nav  button.tns-nav-active{
-                    width: 16px;
-                }
-                .view-list .tns-nav button{
-                    width: 6px;
-                }
+                /*.view-list .tns-nav  button.tns-nav-active{*/
+                /*    width: 16px;*/
+                /*}*/
+                /*.view-list .tns-nav button{*/
+                /*    width: 6px;*/
+                /*}*/
                 .view-list .tns-nav {
                     bottom: 20px;
                 }
                 .catalog-box .tns-item {
                     height: 475px;
                 }
-                .catalog-box .view-list .tns-item {
-                    height: 400px;
+                .catalog-box .view-list .tns-item img{
+                    height: 399px;
                 }
                 .tns-item img{
                     height: 100%;
@@ -465,6 +481,9 @@ document.head.insertAdjacentHTML(
                     text-transform: uppercase;
                     color: #5E5E5E;
                 }
+                .catalog-list.view-list .catalog-box__button {
+                    margin-top: auto;
+                }
                 /*.influencers {*/
                 /*    background: rgba(245, 245, 245, 0.8);*/
                 /*}*/
@@ -676,10 +695,14 @@ async function drawSlider(count, title) {
                             <path d="M4.00002 5.7565L6.06002 6.99984L5.51335 4.6565L7.33335 3.07984L4.93669 2.8765L4.00002 0.666504L3.06335 2.8765L0.666687 3.07984L2.48669 4.6565L1.94002 6.99984L4.00002 5.7565Z"/>
                         </svg>
                         ${lastStar}          
-                        <span class="votes">(${objReview[0].count})</span>
+                        <span class="votes">(   ${objReview[0].count})</span>
                     </div>
                 </div>
             `
+    } else {
+        rateBlock = `<div class="rate-box">
+            <p class="no-reviews">No reviews</p>
+        </div>`
     }
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__body`).insertAdjacentHTML(
@@ -771,19 +794,25 @@ async function drawSlider(count, title) {
             `,
     );
 
-    document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
-        item.addEventListener('click', function () {
-            document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
-            document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`).classList.toggle('heart--active');
+    document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box`).addEventListener('click', function() {
+        this.querySelector('.heart').classList.toggle('heart--active')
+        document.querySelector(' .favorite-box--heart .heart').classList.toggle('heart--active')
 
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp PL improved',
-                'eventAction': 'Click on Favotires'
-            });
-        });
     })
+
+    // document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
+    //     item.addEventListener('click', function () {
+    //         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
+    //         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`).classList.toggle('heart--active');
+    //
+    //         window.dataLayer = window.dataLayer || [];
+    //         dataLayer.push({
+    //             'event': 'event-to-ga',
+    //             'eventCategory': 'Exp PL improved',
+    //             'eventAction': 'Click on Favotires'
+    //         });
+    //     });
+    // })
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).innerHTML = data.title
 
@@ -934,7 +963,7 @@ setTimeout(() => {
             this.classList.toggle('heart--active')
         })
     })
-}, 1200)
+}, 1500)
 
 /*
     add influencers block
@@ -1012,7 +1041,7 @@ setTimeout(() => {
         autoplayButtonOutput: false,
         nav: false,
     });
-}, 500);
+}, 1000);
 
 (function (h, o, t, j, a, r) {
     h.hj = h.hj || function () {
