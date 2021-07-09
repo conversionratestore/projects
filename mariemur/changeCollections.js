@@ -518,13 +518,28 @@ document.querySelector('.header-right').insertAdjacentElement('beforebegin',
     document.querySelector('.header-search')
 )
 
+document.querySelector('.header-favorite svg').addEventListener('click', function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp PL improved',
+        'eventAction': 'Click on Favorites'
+    });
+})
+
 // fixed menu
 const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
 
+
 window.addEventListener('scroll', () => {
     if ((offsetFilter - window.pageYOffset) <= 0) {
+        if (!document.querySelector('.empty-space')) {
+            document.querySelector('.catalog-title').insertAdjacentHTML('afterend', `<div class="empty-space" style="height: 48px"></div>`)
+        }
+
         document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
     } else {
+        document.querySelector('.empty-space')?.remove()
         document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
     }
 })
@@ -566,16 +581,16 @@ async function drawSlider(count, title) {
     let slider;
 
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     let raw = JSON.stringify({
-        "productIds": [
+        'productIds': [
             {
-                "productId": data.id
+                'productId': data.id
             }
         ],
-        "apiKey": "pubkey-BB15V7N07pS0LxabX7B6i76608MMmj",
-        "storeUrl": "mariemur.com"
+        'apiKey': 'pubkey-BB15V7N07pS0LxabX7B6i76608MMmj',
+        'storeUrl': 'mariemur.com'
     });
 
     let requestOptions = {
@@ -585,7 +600,7 @@ async function drawSlider(count, title) {
         redirect: 'follow'
     };
 
-    let objReview = await fetch("http://stamped.io/api/widget/badges?isIncludeBreakdown=true&isincludehtml=true", requestOptions)
+    let objReview = await fetch('http://stamped.io/api/widget/badges?isIncludeBreakdown=true&isincludehtml=true', requestOptions)
         .then(response => response.json())
         .then(result => result)
         .catch(error => console.log('error', error));
@@ -821,28 +836,18 @@ async function drawSlider(count, title) {
             `,
     );
 
-    document.querySelector('.header-favorite').addEventListener('click', () => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp PL improved',
-            'eventAction': 'Click on Favotires'
-        });
-    })
-
-    document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box`).addEventListener('click', function() {
+    document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box`).addEventListener('click', function () {
         this.querySelector('.heart').classList.toggle('heart--active')
         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active')
-
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp PL improved',
-            'eventAction': 'Click on Favotires'
+            'eventAction': 'Click on Favorites'
         });
     })
 
-    document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).addEventListener('click', function() {
+    document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).addEventListener('click', function () {
         this.classList.toggle('heart--active')
         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`).classList.toggle('heart--active')
 
@@ -850,23 +855,10 @@ async function drawSlider(count, title) {
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp PL improved',
-            'eventAction': 'Click on Favotires'
+            'eventAction': 'Click on Favorites'
         });
     })
 
-    // document.querySelectorAll(`.catalog-box[data-index="${count}"] .heart, .catalog-box[data-index="${count}"] .favorite-box`).forEach(item => {
-    //     item.addEventListener('click', function () {
-    //         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart .heart`).classList.toggle('heart--active');
-    //         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box .heart`).classList.toggle('heart--active');
-    //
-    //         window.dataLayer = window.dataLayer || [];
-    //         dataLayer.push({
-    //             'event': 'event-to-ga',
-    //             'eventCategory': 'Exp PL improved',
-    //             'eventAction': 'Click on Favotires'
-    //         });
-    //     });
-    // })
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__title a`).innerHTML = data.title
 
