@@ -350,6 +350,10 @@ document.head.insertAdjacentHTML(
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 20px;
+                    color: #5E5E5E;
                 }
                 .see-more {
                     color: #000;
