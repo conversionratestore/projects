@@ -208,7 +208,7 @@ document.head.insertAdjacentHTML(
                     align-items: center;
                 }
                 .tns-nav button{
-                    width: 30%;
+                    width: 20%;
                     height: 1px;
                     padding: 0;
                     margin: 0px 4px;
@@ -217,7 +217,7 @@ document.head.insertAdjacentHTML(
                     border: none;
                 }
                 .tns-nav  button.tns-nav-active{
-                    width: 25%;
+                    width: 30%;
                     opacity: 1;
                 }
                 /*.tns-nav  button.tns-nav-active{*/
