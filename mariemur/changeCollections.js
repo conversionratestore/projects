@@ -14,6 +14,7 @@ document.head.insertAdjacentHTML(
                 }
                 .catalog-list {
                     grid-row-gap: 15px;
+                    margin: 0 -12px;
                 }
                 .catalog-box__head {
                     display: none;
