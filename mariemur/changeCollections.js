@@ -321,7 +321,7 @@ document.head.insertAdjacentHTML(
                 .view-single .catalog-box__title .catalog-box__shop-now {
                     display: block;
                     width: 104px;
-                    padding: 15px;
+                    padding: 13px;
                     background: #FFFFFF;
                     font-weight: 700;
                     font-size: 12px;
@@ -330,7 +330,7 @@ document.head.insertAdjacentHTML(
                     text-align: center;
                     color: #000000;
                     flex-shrink: 0;
-                    border: 1px solid #000000;
+                    border: 2px solid #000000;
                 }
                 .catalog-list.view-list .catalog-box__price {
                     display: flex;
