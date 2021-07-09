@@ -939,6 +939,9 @@ async function drawSlider(count, title) {
 
         this.closest('.catalog-box').querySelector('.catalog-box__shop-now').remove()
         this.closest('.catalog-box').querySelector('.catalog-box__head--custom').remove()
+        document.querySelector(`.catalog-box[data-index="${count}"] .rate-box`).remove()
+        document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart`).remove()
+        document.querySelector(`.catalog-box[data-index="${count}"] .see-more`).remove()
 
         if (types[data.type][0] !== data.handle) {
             drawSlider(count, types[data.type][0])
