@@ -796,6 +796,12 @@ async function drawSlider(count, title) {
             </div>
             `)
 
+    // setInterval(function() {
+    //     if(tns) {
+    //
+    //     }
+    // }, 100)
+
     // product slider
     let sliderProductImg = tns({
         container: document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__head-slider`),
@@ -1088,18 +1094,22 @@ blockBeforeInfluencers.insertAdjacentHTML(
 );
 
 // activate tiny slider
-setTimeout(() => {
-    let sliderCategories = tns({
-        container: '.popular-categories__slider',
-        items: 1.5,
-        autoplay: false,
-        controls: false,
-        loop: false,
-        autoplayButton: false,
-        autoplayButtonOutput: false,
-        nav: false,
-    });
-}, 1000);
+let categoryInterval = setInterval(() => {
+    if (typeof tns == 'function') {
+        clearInterval(categoryInterval)
+        
+        let sliderCategories = tns({
+            container: '.popular-categories__slider',
+            items: 1.5,
+            autoplay: false,
+            controls: false,
+            loop: false,
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            nav: false,
+        });
+    }
+}, 200);
 
 (function (h, o, t, j, a, r) {
     h.hj = h.hj || function () {
