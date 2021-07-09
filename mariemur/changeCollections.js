@@ -310,9 +310,14 @@ document.head.insertAdjacentHTML(
                 .catalog-box__title a .icon {
                      display: none;
                 }
-                .catalog-box__title .catalog-box__shop-now {
+                .view-list .catalog-box__shop-now,
+                .view-grid .catalog-box__shop-now{
                     display: none;
                 }
+                .view-list .no-reviews,
+                .view-grid .no-reviews {
+                    display: none;
+                }                
                 .view-single .catalog-box__title .catalog-box__shop-now {
                     display: block;
                     width: 104px;
