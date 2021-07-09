@@ -537,7 +537,7 @@ document.querySelector('.header-favorite svg').addEventListener('click', functio
 })
 
 // fixed menu
-const offsetFilter = document.querySelector('.catalog-panel').offsetTop;
+const offsetFilter = document.querySelector('.catalog-panel').getBoundingClientRect().top;
 
 
 window.addEventListener('scroll', () => {
@@ -1097,7 +1097,7 @@ blockBeforeInfluencers.insertAdjacentHTML(
 let categoryInterval = setInterval(() => {
     if (typeof tns == 'function') {
         clearInterval(categoryInterval)
-        
+
         let sliderCategories = tns({
             container: '.popular-categories__slider',
             items: 1.5,
