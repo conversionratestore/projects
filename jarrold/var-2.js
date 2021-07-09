@@ -249,10 +249,25 @@ let mut = new MutationObserver(function (muts) {
         })();
         $(".close, .modal").on('click', () => {
             $('.modal').removeClass('active');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Exit intent pop-up for users with abandoned Bag',
+                'eventAction': 'Close popup'
+            });
         });
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
+
+        $('.modal_container>.btn').click(function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Exit intent pop-up for users with abandoned Bag',
+                'eventAction': 'Click on complete my order now'
+            });
+        })
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             console.log('have modal');
             jQuery(document).on('scroll', myScrollSpeedFunction);
@@ -266,4 +281,21 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, {
     childList: true,
     subtree: true
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2369936,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('trigger', 'exit_intent_popup');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Exit intent pop-up for users with abandoned Bag',
+    'eventAction': 'loaded'
 });
