@@ -365,6 +365,9 @@ document.head.insertAdjacentHTML(
                 .popular-categories {
                     margin: 20px 0 40px 12px;
                 }
+                /*.influencers {*/
+                /*display: none;*/
+                /*}*/
                 .view-grid .popular-categories,
                 .view-grid .influencers,
                 .view-grid .rvp-container
@@ -422,6 +425,7 @@ document.head.insertAdjacentHTML(
                     width: 68px;
                     height: 68px;
                     border-radius: 50%;
+                    object-fit: cover;
                 }
                 .influencers__item {
                     margin-bottom: 15px;
@@ -469,7 +473,7 @@ document.head.insertAdjacentHTML(
                     text-align: left;
                 }
                 .rvp-buynow, p.rvp-product-price {
-                    display: none;
+                    display: none !important;
                 }
                 .item-icons {
                     display: flex;
@@ -1036,36 +1040,45 @@ setTimeout(() => {
 */
 
 const instaModels = [
-    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/166359891_374480010252860_7900682382563466648_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=82AqIoPIXs0AX-2TE_H&edm=ABfd0MgBAAAA&ccb=7-4&oh=e53b81213b34f8ec87ecf0c02bc0b853&oe=60EF0DE9&_nc_sid=7bff83', 'justinemaebiticon', 366, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/198572269_913256315902855_6105177850495522650_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=0QmdM0vEVbIAX8MdXju&edm=AABBvjUBAAAA&ccb=7-4&oh=00de29cc9e334aeb9006b6c9b45d4815&oe=60EEE88C&_nc_sid=83d603'],
-    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/199955187_2800799710231308_424098207736311825_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=FEijMQODSi8AX8D2Tw1&edm=ABfd0MgBAAAA&ccb=7-4&oh=46dc589a622b1b23c53f2e36939f7e8b&oe=60EF10A4&_nc_sid=7bff83','ihateblonde', 162, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/188225602_517062169479284_462496295745246560_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=HQPX4zyYUUkAX-UBQEB&edm=AABBvjUBAAAA&ccb=7-4&oh=a77dca7d0f4d0709701e563d3a37313b&oe=60EE7AC4&_nc_sid=83d603'],
-    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/199328068_301736191664573_6619380015113242787_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=vkuFXhyghRkAX-dwrvs&edm=ABfd0MgBAAAA&ccb=7-4&oh=32049d95beff8ac3a75a34ef91b00d42&oe=60F00CA4&_nc_sid=7bff83','angelin_a_michelle', 739, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/197431458_675051060009298_5159747632732872846_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=7zQ8FCEhkj4AX_h5Hjc&edm=AABBvjUBAAAA&ccb=7-4&oh=891638566943ec06b50d6fc6a308c10a&oe=60EED9E8&_nc_sid=83d603'],
-    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/137667903_153315446374544_1786301798427562473_n.jpg?_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=U7hrQV7qS7gAX8JWMhY&edm=ABfd0MgBAAAA&ccb=7-4&oh=34bf2a15b5503999c466b51c52ee1b44&oe=60EFF3CC&_nc_sid=7bff83','meicrosoft', 785, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p750x750/130302963_396824534901623_6620658315283996582_n.jpg?_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=bSmAIip3fv8AX9-hBxJ&edm=AABBvjUBAAAA&ccb=7-4&oh=b5f7ba11d575ff3bc7a038c05114a40b&oe=60EFE7FA&_nc_sid=83d603'],
-    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/122030056_769205240303169_7821630856877430299_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=hpHaWj-3XKkAX82-ROq&edm=ABfd0MgBAAAA&ccb=7-4&oh=c18321ea4368b9fb914d734433048528&oe=60EE6EC2&_nc_sid=7bff83','jordynjohnsonn',196, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p750x750/90179837_2536123523328393_4407758530479253298_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=7H6BU5gCxPAAX-HhCFX&edm=AABBvjUBAAAA&ccb=7-4&oh=6cb4ba91e0586b6a79a8fa4a50faa3e9&oe=60EE9CAD&_nc_sid=83d603']
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta1-logo.jpg', 'justinemaebiticon', '366k', 'https://conversionratestore.github.io/projects/mariemur/images/insta1.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta2-logo.jpg','ihateblonde', '162k', 'https://conversionratestore.github.io/projects/mariemur/images/insta2.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta3-logo.jpg','angelin_a_michelle', '739k', 'https://conversionratestore.github.io/projects/mariemur/images/insta3.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta4-logo.jpg','meicrosoft', '785k', 'https://conversionratestore.github.io/projects/mariemur/images/insta4.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta5-logo.jpg','jordynjohnsonn','196k', 'https://conversionratestore.github.io/projects/mariemur/images/insta5.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta6-logo.jpg','britmanuela','1.5m', 'https://conversionratestore.github.io/projects/mariemur/images/insta6.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta7-logo.jpg','missdeadlyred','290k', 'https://conversionratestore.github.io/projects/mariemur/images/insta7.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta8-logo.jpg','anastasiya_kvitko','12.2m', 'https://conversionratestore.github.io/projects/mariemur/images/insta8.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta9-logo.jpg','valentinavoight','151k', 'https://conversionratestore.github.io/projects/mariemur/images/insta9.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta10-logo.jpg','lolobe4','2.9m', 'https://conversionratestore.github.io/projects/mariemur/images/insta10.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta11-logo.jpg','savannahhperkinss','456k', 'https://conversionratestore.github.io/projects/mariemur/images/insta11.jpg'],
+
 ]
 
-let influencersHTML;
+let influencersHTML = '';
+
 instaModels.forEach(model => {
-    influencersHTML += `
-        <div class="influencers">
-                <p class="title">Influencers who wear</p>
-                <div class="influencers__item">
-                    <div class="first-div">
-                        <img src="${model[0]}" alt="influencer">
-                            <div>
-                                <p class="nickname">${model[1]}</p>
-                                <p class="followers">${model[2]}k followers</p>
-                            </div>
-                             <img src="${model[3]}" alt="influencer ${model[1]}">
+    influencersHTML += `        
+        <div class="influencers__item">
+            <div class="first-div">
+                <img src="${model[0]}" alt="influencer">
+                    <div>
+                        <p class="nickname">${model[1]}</p>
+                        <p class="followers">${model[2]} followers</p>
                     </div>
-                </div> 
+                     <img src="${model[3]}" alt="influencer ${model[1]}">
             </div>
+        </div>            
     `
 })
 
 let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
 blockBeforeInfluencers.insertAdjacentHTML(
-    'afterend',
-    influencersHTML
+    'afterend',`
+    <div class="influencers">
+            <p class="title">Influencers who wear</p>
+            ${influencersHTML}
+    </div>
+    `
 );
 
 // activate tiny slider
