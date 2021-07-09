@@ -1035,64 +1035,37 @@ setTimeout(() => {
     add influencers block
 */
 
-let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
-blockBeforeInfluencers.insertAdjacentHTML(
-    'afterend',
-    `
-            <div class="influencers">
+const instaModels = [
+    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/166359891_374480010252860_7900682382563466648_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=82AqIoPIXs0AX-2TE_H&edm=ABfd0MgBAAAA&ccb=7-4&oh=e53b81213b34f8ec87ecf0c02bc0b853&oe=60EF0DE9&_nc_sid=7bff83', 'justinemaebiticon', 366, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/198572269_913256315902855_6105177850495522650_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=0QmdM0vEVbIAX8MdXju&edm=AABBvjUBAAAA&ccb=7-4&oh=00de29cc9e334aeb9006b6c9b45d4815&oe=60EEE88C&_nc_sid=83d603'],
+    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/199955187_2800799710231308_424098207736311825_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=FEijMQODSi8AX8D2Tw1&edm=ABfd0MgBAAAA&ccb=7-4&oh=46dc589a622b1b23c53f2e36939f7e8b&oe=60EF10A4&_nc_sid=7bff83','ihateblonde', 162, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/188225602_517062169479284_462496295745246560_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=HQPX4zyYUUkAX-UBQEB&edm=AABBvjUBAAAA&ccb=7-4&oh=a77dca7d0f4d0709701e563d3a37313b&oe=60EE7AC4&_nc_sid=83d603'],
+    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/199328068_301736191664573_6619380015113242787_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=vkuFXhyghRkAX-dwrvs&edm=ABfd0MgBAAAA&ccb=7-4&oh=32049d95beff8ac3a75a34ef91b00d42&oe=60F00CA4&_nc_sid=7bff83','angelin_a_michelle', 739, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/197431458_675051060009298_5159747632732872846_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=7zQ8FCEhkj4AX_h5Hjc&edm=AABBvjUBAAAA&ccb=7-4&oh=891638566943ec06b50d6fc6a308c10a&oe=60EED9E8&_nc_sid=83d603'],
+    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/137667903_153315446374544_1786301798427562473_n.jpg?_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=U7hrQV7qS7gAX8JWMhY&edm=ABfd0MgBAAAA&ccb=7-4&oh=34bf2a15b5503999c466b51c52ee1b44&oe=60EFF3CC&_nc_sid=7bff83','meicrosoft', 785, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p750x750/130302963_396824534901623_6620658315283996582_n.jpg?_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=bSmAIip3fv8AX9-hBxJ&edm=AABBvjUBAAAA&ccb=7-4&oh=b5f7ba11d575ff3bc7a038c05114a40b&oe=60EFE7FA&_nc_sid=83d603'],
+    ['https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-19/s150x150/122030056_769205240303169_7821630856877430299_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_ohc=hpHaWj-3XKkAX82-ROq&edm=ABfd0MgBAAAA&ccb=7-4&oh=c18321ea4368b9fb914d734433048528&oe=60EE6EC2&_nc_sid=7bff83','jordynjohnsonn',196, 'https://instagram.fiev3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p750x750/90179837_2536123523328393_4407758530479253298_n.jpg?tp=1&_nc_ht=instagram.fiev3-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=7H6BU5gCxPAAX-HhCFX&edm=AABBvjUBAAAA&ccb=7-4&oh=6cb4ba91e0586b6a79a8fa4a50faa3e9&oe=60EE9CAD&_nc_sid=83d603']
+]
+
+let influencersHTML;
+instaModels.forEach(model => {
+    influencersHTML += `
+        <div class="influencers">
                 <p class="title">Influencers who wear</p>
                 <div class="influencers__item">
                     <div class="first-div">
-                        <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer1.png" alt="influencer">
+                        <img src="${model[0]}" alt="influencer">
                             <div>
-                                <p class="nickname">stinemaebiticon</p>
-                                <p class="followers">371k followers</p>
+                                <p class="nickname">${model[1]}</p>
+                                <p class="followers">${model[2]}k followers</p>
                             </div>
-                             <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer1-insta.png" alt="influencer insta">
+                             <img src="${model[3]}" alt="influencer ${model[1]}">
                     </div>
-                </div>
-                <div class="influencers__item">
-                    <div class="first-div">
-                        <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer2.png" alt="influencer">
-                            <div>
-                                <p class="nickname">orinary</p>
-                                <p class="followers">117k followers</p>
-                            </div>
-                             <img class="instagram" src="https://conversionratestore.github.io/projects/mariemur/images/influencer1-insta.png" alt="influencer insta">
-                    </div>
-                </div>
-                <div class="influencers__item">
-                    <div class="first-div">
-                        <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer3.png" alt="influencer">
-                            <div>
-                                <p class="nickname">Angelin_A_michelle</p>
-                                <p class="followers">709k followers</p>
-                            </div>
-                             <img class="instagram" src="https://conversionratestore.github.io/projects/mariemur/images/influencer3-insta.png" alt="influencer insta">
-                    </div>
-                </div>
-                <div class="influencers__item">
-                    <div class="first-div">
-                        <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer4.png" alt="influencer">
-                            <div>
-                                <p class="nickname">princia_g</p>
-                                <p class="followers">72.2k followers</p>
-                            </div>
-                            <img class="instagram" src="https://conversionratestore.github.io/projects/mariemur/images/influencer4-insta.png" alt="influencer insta">
-                    </div>
-                </div>
-                <div class="influencers__item">
-                    <div class="first-div">
-                        <img src="https://conversionratestore.github.io/projects/mariemur/images/influencer5.png" alt="influencer">
-                            <div>
-                                <p class="nickname">carolinaimpu</p>
-                                <p class="followers">70k followers</p>
-                            </div>
-                            <img class="instagram" src="https://conversionratestore.github.io/projects/mariemur/images/influencer5-insta.png" alt="influencer insta">
-                    </div>
-                </div>
+                </div> 
             </div>
-        `,
+    `
+})
+
+let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
+blockBeforeInfluencers.insertAdjacentHTML(
+    'afterend',
+    influencersHTML
 );
 
 // activate tiny slider
