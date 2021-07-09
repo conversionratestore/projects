@@ -217,7 +217,7 @@ document.head.insertAdjacentHTML(
                     border: none;
                 }
                 .tns-nav  button.tns-nav-active{
-                    width: 30%;
+                    width: 50%;
                     opacity: 1;
                 }
                 /*.tns-nav  button.tns-nav-active{*/
@@ -322,14 +322,15 @@ document.head.insertAdjacentHTML(
                     display: block;
                     width: 104px;
                     padding: 15px;
-                    background: #000000;
+                    background: #FFFFFF;
                     font-weight: 700;
                     font-size: 12px;
                     letter-spacing: 0.5px;
                     text-transform: uppercase;
                     text-align: center;
-                    color: #FFFFFF;
+                    color: #000000;
                     flex-shrink: 0;
+                    border: 1px solid #000000;
                 }
                 .catalog-list.view-list .catalog-box__price {
                     display: flex;
