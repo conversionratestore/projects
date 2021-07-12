@@ -591,7 +591,6 @@ document.head.appendChild(scriptCustom);
 let counter = 0;
 let titlesInterval = setInterval(function () {
     if (document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')) {
-        clearInterval(titlesInterval)
 
         let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
         let title = t.getAttribute('href').split('/products/')[1]
