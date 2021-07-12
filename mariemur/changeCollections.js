@@ -212,7 +212,7 @@ document.head.insertAdjacentHTML(
                     width: 20%;
                     height: 1px;
                     padding: 0;
-                    margin: 0px 4px;
+                    margin: 0 4px;
                     background: #FFFFFF;
                     opacity: 0.5;
                     border: none;
@@ -520,8 +520,12 @@ document.head.insertAdjacentHTML(
         `,
 );
 
-// heart icon in haeder
-document.querySelector('.header-right').insertAdjacentHTML('afterbegin', `
+// heart icon in header
+let headerHeartIconInterval = setInterval(() => {
+    if (document.querySelector('.header-right')) {
+        clearInterval(headerHeartIconInterval);
+
+        document.querySelector('.header-right').insertAdjacentHTML('afterbegin', `
 <div class="header-favorite">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path d="M8 15.1099C7.77222 15.1099 7.55261 15.0273 7.38147 14.8774C6.73511 14.3123 6.11194 13.7811 5.56213 13.3126L5.55933 13.3102C3.94739 11.9365 2.55542 10.7502 1.58691 9.58167C0.504272 8.27527 0 7.03662 0 5.68347C0 4.36877 0.450806 3.15588 1.26929 2.26807C2.09753 1.36975 3.23401 0.875 4.46973 0.875C5.39331 0.875 6.23914 1.16699 6.98364 1.7428C7.35938 2.03345 7.69995 2.38916 8 2.80408C8.30017 2.38916 8.64062 2.03345 9.01648 1.7428C9.76099 1.16699 10.6068 0.875 11.5304 0.875C12.766 0.875 13.9026 1.36975 14.7308 2.26807C15.5493 3.15588 16 4.36877 16 5.68347C16 7.03662 15.4958 8.27527 14.4132 9.58154C13.4447 10.7502 12.0529 11.9364 10.4412 13.3099C9.89038 13.7792 9.26624 14.3112 8.61841 14.8777C8.44739 15.0273 8.22766 15.1099 8 15.1099ZM4.46973 1.81226C3.4989 1.81226 2.60706 2.19971 1.95825 2.90332C1.2998 3.61755 0.937134 4.60486 0.937134 5.68347C0.937134 6.82153 1.36011 7.83936 2.30847 8.98364C3.2251 10.0897 4.5885 11.2516 6.16711 12.5969L6.17004 12.5994C6.72192 13.0697 7.34753 13.6029 7.99866 14.1722C8.65369 13.6018 9.28027 13.0677 9.83325 12.5967C11.4117 11.2513 12.775 10.0897 13.6917 8.98364C14.6399 7.83936 15.0629 6.82153 15.0629 5.68347C15.0629 4.60486 14.7002 3.61755 14.0417 2.90332C13.3931 2.19971 12.5011 1.81226 11.5304 1.81226C10.8192 1.81226 10.1663 2.03833 9.58972 2.48413C9.07593 2.88159 8.71802 3.38403 8.50818 3.7356C8.40027 3.91638 8.21033 4.02429 8 4.02429C7.78967 4.02429 7.59973 3.91638 7.49182 3.7356C7.2821 3.38403 6.92419 2.88159 6.41028 2.48413C5.83374 2.03833 5.18079 1.81226 4.46973 1.81226Z" />
@@ -529,35 +533,44 @@ document.querySelector('.header-right').insertAdjacentHTML('afterbegin', `
 </div>
 `)
 
-document.querySelector('.header-right').insertAdjacentElement('beforebegin',
-    document.querySelector('.header-search')
-)
+        document.querySelector('.header-right').insertAdjacentElement('beforebegin',
+            document.querySelector('.header-search')
+        )
 
-document.querySelector('.header-favorite svg').addEventListener('click', function () {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp PL improved',
-        'eventAction': 'Click on Favorites'
-    });
-})
+        document.querySelector('.header-favorite svg').addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp PL improved',
+                'eventAction': 'Click on Favorites'
+            });
+        })
+    }
+}, 100)
+
 
 // fixed menu
-const offsetFilter = document.querySelector('.catalog-panel').getBoundingClientRect().top;
+let fixedMenuInterval = setInterval(() => {
+    if(document.querySelector('.catalog-panel')) {
+        clearInterval(fixedMenuInterval)
 
+        const offsetFilter = document.querySelector('.catalog-panel').getBoundingClientRect().top;
 
-window.addEventListener('scroll', () => {
-    if ((offsetFilter - window.pageYOffset) <= 0) {
-        if (!document.querySelector('.empty-space')) {
-            document.querySelector('.catalog-title').insertAdjacentHTML('afterend', `<div class="empty-space" style="height: 48px"></div>`)
-        }
+        window.addEventListener('scroll', () => {
+            if ((offsetFilter - window.pageYOffset) <= 0) {
+                if (!document.querySelector('.empty-space')) {
+                    document.querySelector('.catalog-title').insertAdjacentHTML('afterend', `<div class="empty-space" style="height: 48px"></div>`)
+                }
 
-        document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
-    } else {
-        document.querySelector('.empty-space')?.remove()
-        document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
+                document.querySelector('.catalog-panel').classList.add('catalog-panel--fixed')
+            } else {
+                document.querySelector('.empty-space')?.remove()
+                document.querySelector('.catalog-panel').classList.remove('catalog-panel--fixed')
+            }
+        })
     }
-})
+}, 100)
+
 
 let linkCustom = document.createElement('link');
 linkCustom.href =
@@ -576,11 +589,11 @@ document.head.appendChild(scriptCustom);
 */
 
 let counter = 0;
-let titlesInterval = setInterval(function () {
-
-    let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
-
-    if (t) {
+let titlesInterval = setInterval(function () {   
+    if (document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')) {
+        clearInterval(titlesInterval)
+        
+        let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
         let title = t.getAttribute('href').split('/products/')[1]
         document.querySelector('.catalog-box:not([data-index])').setAttribute('data-index', counter)
 
@@ -763,7 +776,7 @@ async function drawSlider(count, title) {
     }
 
     document.querySelector(`.catalog-box[data-index="${count}"] .catalog-box__body`).insertAdjacentHTML(
-        `beforeBegin`,
+        `beforebegin`,
         `
             <div class="catalog-box__head--custom">
                 <div class="catalog-box__head-slider">
@@ -801,12 +814,6 @@ async function drawSlider(count, title) {
                     </div>
             </div>
             `)
-
-    // setInterval(function() {
-    //     if(tns) {
-    //
-    //     }
-    // }, 100)
 
     // product slider
     let sliderProductImg = tns({
@@ -980,11 +987,12 @@ async function drawSlider(count, title) {
             }
         }, 100)
     })
-};
+}
 
 /*
     add most popular categories block
 */
+
 document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
     'afterend',
     `
@@ -1005,20 +1013,24 @@ document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
     add you have seen block
 */
 
-let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
+let haveSeenInterval = setInterval(() => {
+    if (document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1 && document.querySelector('.rvp-container')) {
+        
+        clearInterval(haveSeenInterval)
+        
+        let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
-setTimeout(() => {
-    const rvpContainer = document.querySelector('.rvp-container')
+        const rvpContainer = document.querySelector('.rvp-container')
 
-    blockBeforeHaveSeen.insertAdjacentElement('afterend',
-        rvpContainer
-    );
-    rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
+        blockBeforeHaveSeen.insertAdjacentElement('afterend',
+            rvpContainer
+        );
+        rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
 
-    document.querySelectorAll('.rvp-product-desc').forEach(item => {
-        let link = item.querySelector('.rvp-buynow a').href;
+        document.querySelectorAll('.rvp-product-desc').forEach(item => {
+            let link = item.querySelector('.rvp-buynow a').href;
 
-        item.insertAdjacentHTML(`afterend`, `
+            item.insertAdjacentHTML(`afterend`, `
             <div class="item-icons">
                 <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z"></path>
@@ -1026,14 +1038,15 @@ setTimeout(() => {
                 <a href="${link}"><img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag"></a>
             </div>
         `)
-    })
-
-    document.querySelectorAll('.item-icons .heart').forEach(item => {
-        item.addEventListener('click', function () {
-            this.classList.toggle('heart--active')
         })
-    })
-}, 1500)
+
+        document.querySelectorAll('.item-icons .heart').forEach(item => {
+            item.addEventListener('click', function () {
+                this.classList.toggle('heart--active')
+            })
+        })
+    }
+}, 200)
 
 /*
     add influencers block
@@ -1041,16 +1054,16 @@ setTimeout(() => {
 
 const instaModels = [
     ['https://conversionratestore.github.io/projects/mariemur/images/insta1-logo.jpg', 'justinemaebiticon', '366k', 'https://conversionratestore.github.io/projects/mariemur/images/insta1.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta2-logo.jpg','ihateblonde', '162k', 'https://conversionratestore.github.io/projects/mariemur/images/insta2.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta3-logo.jpg','angelin_a_michelle', '739k', 'https://conversionratestore.github.io/projects/mariemur/images/insta3.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta4-logo.jpg','meicrosoft', '785k', 'https://conversionratestore.github.io/projects/mariemur/images/insta4.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta5-logo.jpg','jordynjohnsonn','196k', 'https://conversionratestore.github.io/projects/mariemur/images/insta5.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta6-logo.jpg','britmanuela','1.5m', 'https://conversionratestore.github.io/projects/mariemur/images/insta6.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta7-logo.jpg','missdeadlyred','290k', 'https://conversionratestore.github.io/projects/mariemur/images/insta7.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta8-logo.jpg','anastasiya_kvitko','12.2m', 'https://conversionratestore.github.io/projects/mariemur/images/insta8.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta9-logo.jpg','valentinavoight','151k', 'https://conversionratestore.github.io/projects/mariemur/images/insta9.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta10-logo.jpg','lolobe4','2.9m', 'https://conversionratestore.github.io/projects/mariemur/images/insta10.jpg'],
-    ['https://conversionratestore.github.io/projects/mariemur/images/insta11-logo.jpg','savannahhperkinss','456k', 'https://conversionratestore.github.io/projects/mariemur/images/insta11.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta2-logo.jpg', 'ihateblonde', '162k', 'https://conversionratestore.github.io/projects/mariemur/images/insta2.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta3-logo.jpg', 'angelin_a_michelle', '739k', 'https://conversionratestore.github.io/projects/mariemur/images/insta3.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta4-logo.jpg', 'meicrosoft', '785k', 'https://conversionratestore.github.io/projects/mariemur/images/insta4.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta5-logo.jpg', 'jordynjohnsonn', '196k', 'https://conversionratestore.github.io/projects/mariemur/images/insta5.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta6-logo.jpg', 'britmanuela', '1.5m', 'https://conversionratestore.github.io/projects/mariemur/images/insta6.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta7-logo.jpg', 'missdeadlyred', '290k', 'https://conversionratestore.github.io/projects/mariemur/images/insta7.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta8-logo.jpg', 'anastasiya_kvitko', '12.2m', 'https://conversionratestore.github.io/projects/mariemur/images/insta8.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta9-logo.jpg', 'valentinavoight', '151k', 'https://conversionratestore.github.io/projects/mariemur/images/insta9.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta10-logo.jpg', 'lolobe4', '2.9m', 'https://conversionratestore.github.io/projects/mariemur/images/insta10.jpg'],
+    ['https://conversionratestore.github.io/projects/mariemur/images/insta11-logo.jpg', 'savannahhperkinss', '456k', 'https://conversionratestore.github.io/projects/mariemur/images/insta11.jpg'],
 
 ]
 
@@ -1071,15 +1084,21 @@ instaModels.forEach(model => {
     `
 })
 
-let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
-blockBeforeInfluencers.insertAdjacentHTML(
-    'afterend',`
+let influencersInterval = setInterval(() => {
+    clearInterval(influencersInterval)
+    
+    let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
+    blockBeforeInfluencers.insertAdjacentHTML(
+        'afterend', `
     <div class="influencers">
             <p class="title">Influencers who wear</p>
             ${influencersHTML}
     </div>
     `
-);
+    );
+}, 200)
+
+
 
 // activate tiny slider
 let categoryInterval = setInterval(() => {
