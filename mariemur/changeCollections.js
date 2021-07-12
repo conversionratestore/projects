@@ -613,6 +613,9 @@ async function drawSlider(count, title) {
     let data = await response.json();
     let slider;
 
+    console.log(data.handle)
+    console.log(data.type)
+
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -709,18 +712,18 @@ async function drawSlider(count, title) {
 
     // product types array for show similar logic
     const types = {
-        lingerieset: ['rose-bodysuit', 'valentine-bodysuit'],
-        bra: ['bryony-bra', 'rose-bra'],
-        panties: ['rosemary-thong', 'jade-panties'],
-        bodysuit: ['scarlett-bodysuit-in-black', 'grace-bodysuit-red'],
-        fullbody: ['poppy-bra-garters-set', 'kara-leather-fullbody-set-in-pink-by-ave'],
-        harness: ['poppy-leather-bra-in-pink', 'milena-leather-bra-harness'],
-        garter: ['adore-leather-legs-garters-cuffs-in-blue', 'milena-red-leather-set'],
+        lingerieset: ['marsala-lingerie-set', 'angel-lingerie-set', 'bryony-lingerie-set', 'rosemary-lingerie-set', 'spade-lingerie-set', 'katharine-set-lingerie', 'candice-lingerie-set', 'marsala-lingerie-set-white'],
+        bra: ['marsala-bra', 'bryony-bra', 'vanessa-bra', 'angelika-bra', 'rosemary-bra', 'candice-bra', 'ruby-bra', 'katharine-bra'],
+        panties: ['marsala-panties', 'bryony-panties', 'vanessa-panties', 'rosemary-thong', 'angelika-panties', 'candice-panties', 'ruby-panties'],
+        bodysuit: ['scarlett-bodysuit-in-black', 'lucy-black-bodysuit', 'buffy-black-bodysuit', 'rose-bodysuit', 'grace-bodysuit-1', 'grace-bodysuit-red'],
+        fullbody: ['goldie-leather-harnesses-set-in-pink', 'rita-bra-legs-garters-set-in-pink-by-ave', 'kara-leather-fullbody-set-in-pink-by-ave', 'gera-leather-fullbody-harness-in-pink-by-ave', 'kara-leather-fullbody-set-in-red-by-ave', 'kassandra-leather-fullbody-set-in-pink-by-ave'],
+        harness: ['poppy-leather-bra-in-pink', 'poppy-leather-bra-in-green','marilyn-leather-harness', 'lina-leather-harness-in-burgundy', 'adore-leather-bra-harness-in-blue', 'blair-leather-harness', 'adore-red-leather-bra'],
+        garter: ['milena-leather-legs-garters', 'poppy-leather-legs-garters-in-blue', 'poppy-leather-legs-garters', 'milena-red-leather-set', 'lina-leather-legs-garters-in-burgundy', 'blair-leather-legs-garters'],
         choker: ['leather-choker-with-leash-kayla', 'leather-choker-alexia'],
         cuffs: ['puppy-cuffs', 'handcuffs-morgan'],
-        mask: ['leather-mask-kitty'],
-        accessories: ['leather-choker-with-handcuffs-darcy', 'era-collar-cuffs-set-by-ave'],
-        trinket: ['bunny-trinket-in-black', 'mouse-trinket-in-pink'],
+        mask: ['leather-mask-kitty', 'puppy-leather-mask'],
+        accessories: ['leather-choker-with-handcuffs-darcy', 'red-leather-cuffs-and-collar-with-leash-brooke', 'era-collar-cuffs-set-by-ave', 'goldie-chain'],
+        trinket: ['bunny-trinket-in-black', 'mouse-trinket-in-pink', 'mouse-trinket-in-red', 'kitty-trinket', 'mouse-trinket', 'mouse-trinket-in-pink'],
         belt: ['linda-leather-basque-red-belt', 'linda-leather-basque-belt-in-black']
     }
 
@@ -974,11 +977,7 @@ async function drawSlider(count, title) {
         document.querySelector(`.catalog-box[data-index="${count}"] .favorite-box--heart`).remove()
         document.querySelector(`.catalog-box[data-index="${count}"] .see-more`).remove()
 
-        if (types[data.type][0] !== data.handle) {
-            drawSlider(count, types[data.type][0])
-        } else {
-            drawSlider(count, types[data.type][1])
-        }
+        drawSlider(count, types[data.type][Math.floor(Math.random() * types[data.type].length)])
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
@@ -1030,7 +1029,7 @@ let haveSeenInterval = setInterval(() => {
     if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap h3')) {
         clearInterval(haveSeenInterval)
 
-        if(!document.querySelector('.rvp-container .item-icons')) {
+        if (!document.querySelector('.rvp-container .item-icons')) {
             let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
             let rvpContainer = document.querySelector('.rvp-container')
             blockBeforeHaveSeen.insertAdjacentElement('afterend', rvpContainer);
