@@ -381,7 +381,9 @@ document.head.insertAdjacentHTML(
                 .rvp-title-wrap h3, .title {
                     margin-bottom: 20px;
                     font-family: 'Gallery Modern',sans-serif;
-                    font-size: 26px;
+                    font-size: 26px !important;
+                    font-weight: 400 !important;
+                    text-align: left !important;
                     letter-spacing: 2px;
                     text-transform: uppercase;
                 }
