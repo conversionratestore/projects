@@ -1023,15 +1023,14 @@ let mostPopular = setInterval(() => {
 let haveSeenInterval = setInterval(() => {
     if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap')) {
         clearInterval(haveSeenInterval)
-        let rvpContainer;
 
         if(!document.querySelector('.rvp-container .item-icons')) {
             let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
-            rvpContainer = document.querySelector('.rvp-container')
+            let rvpContainer = document.querySelector('.rvp-container')
             blockBeforeHaveSeen.insertAdjacentElement('afterend', rvpContainer);
         }
 
-        rvpContainer.querySelector('.rvp-title-wrap h3').innerText = 'You have seen';
+        document.querySelector('.rvp-title-wrap h3').innerText = 'You have seen';
 
         setTimeout(function () {
             document.querySelectorAll('.rvp-product-desc').forEach(item => {
@@ -1046,7 +1045,7 @@ let haveSeenInterval = setInterval(() => {
                     </div>
                 `)
             })
-        
+
             document.querySelectorAll('.item-icons .heart').forEach(item => {
                 item.addEventListener('click', function () {
                     this.classList.toggle('heart--active')
