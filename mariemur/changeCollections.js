@@ -1021,7 +1021,7 @@ let mostPopular = setInterval(() => {
 */
 
 let haveSeenInterval = setInterval(() => {
-    if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap')) {
+    if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap h3')) {
         clearInterval(haveSeenInterval)
 
         if(!document.querySelector('.rvp-container .item-icons')) {
