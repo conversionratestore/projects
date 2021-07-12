@@ -551,7 +551,7 @@ let headerHeartIconInterval = setInterval(() => {
 
 // fixed menu
 let fixedMenuInterval = setInterval(() => {
-    if(document.querySelector('.catalog-panel')) {
+    if (document.querySelector('.catalog-panel')) {
         clearInterval(fixedMenuInterval)
 
         const offsetFilter = document.querySelector('.catalog-panel').getBoundingClientRect().top;
@@ -994,9 +994,9 @@ async function drawSlider(count, title) {
 */
 
 let mostPopular = setInterval(() => {
-    if(document.querySelectorAll('.catalog-box')[1]) {
+    if (document.querySelectorAll('.catalog-box')[1]) {
         clearInterval(mostPopular)
-        
+
         document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
             'afterend',
             `
@@ -1012,7 +1012,7 @@ let mostPopular = setInterval(() => {
             </div>
         `,
         );
-    }   
+    }
 }, 200)
 
 /*
@@ -1028,10 +1028,11 @@ let haveSeenInterval = setInterval(() => {
 
         const rvpContainer = document.querySelector('.rvp-container')
 
-        blockBeforeHaveSeen.insertAdjacentElement('afterend',
-            rvpContainer
-        );
-        rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
+        blockBeforeHaveSeen.insertAdjacentElement('afterend', rvpContainer);
+
+        setTimeout(() => {
+            rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
+        }, 1000)
 
         document.querySelectorAll('.rvp-product-desc').forEach(item => {
             let link = item.querySelector('.rvp-buynow a').href;
@@ -1103,7 +1104,6 @@ let influencersInterval = setInterval(() => {
     `
     );
 }, 200)
-
 
 
 // activate tiny slider
