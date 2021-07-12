@@ -378,7 +378,7 @@ document.head.insertAdjacentHTML(
                 .catalog-content .rvp-container {
                     display: flex;
                 }
-                .title {
+                .rvp-title-wrap h3, .title {
                     margin-bottom: 20px;
                     font-family: 'Gallery Modern',sans-serif;
                     font-size: 26px;
@@ -1022,37 +1022,37 @@ let mostPopular = setInterval(() => {
 
 let haveSeenInterval = setInterval(() => {
     if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap')) {
-        console.log(111)
         clearInterval(haveSeenInterval)
-        
-        let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
+        let rvpContainer;
 
-        const rvpContainer = document.querySelector('.rvp-container')
+        if(!document.querySelector('.rvp-container .item-icons')) {
+            let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
+            rvpContainer = document.querySelector('.rvp-container')
+            blockBeforeHaveSeen.insertAdjacentElement('afterend', rvpContainer);
+        }
 
-        blockBeforeHaveSeen.insertAdjacentElement('afterend', rvpContainer);
+        rvpContainer.querySelector('.rvp-title-wrap h3').innerText = 'You have seen';
 
-        setTimeout(() => {
-            rvpContainer.querySelector('.rvp-title-wrap').innerHTML = '<p class="title">You have seen</p>';
-        }, 1000)
+        setTimeout(function () {
+            document.querySelectorAll('.rvp-product-desc').forEach(item => {
+                let link = item.querySelector('.rvp-buynow a').href;
 
-        document.querySelectorAll('.rvp-product-desc').forEach(item => {
-            let link = item.querySelector('.rvp-buynow a').href;
-
-            item.insertAdjacentHTML(`afterend`, `
-            <div class="item-icons">
-                <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z"></path>
-                </svg>
-                <a href="${link}"><img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag"></a>
-            </div>
-        `)
-        })
-
-        document.querySelectorAll('.item-icons .heart').forEach(item => {
-            item.addEventListener('click', function () {
-                this.classList.toggle('heart--active')
+                    item.insertAdjacentHTML(`afterend`, `
+                    <div class="item-icons">
+                        <svg class="heart" width="32" height="29" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.4198 1.68959L15.7552 1.35141L15.4198 1.68959L15.4828 1.75202C17.0798 3.33586 17.0798 5.95151 15.4828 7.53535L14.9792 8.03484L8.72087 14.2415L2.46258 8.03484L1.95894 7.53535C0.361914 5.95151 0.361914 3.33586 1.95894 1.75202L2.02189 1.68959C3.62121 0.10347 6.26582 0.10347 7.86514 1.68959L8.36879 2.18908L8.72087 2.53826L9.07296 2.18908L9.5766 1.68959C11.1759 0.10347 13.8205 0.10347 15.4198 1.68959Z"></path>
+                        </svg>
+                        <a href="${link}"><img src="https://conversionratestore.github.io/projects/mariemur/images/bag.svg" alt="bag"></a>
+                    </div>
+                `)
             })
-        })
+        
+            document.querySelectorAll('.item-icons .heart').forEach(item => {
+                item.addEventListener('click', function () {
+                    this.classList.toggle('heart--active')
+                })
+            })
+        }, 2000)
     }
 }, 200)
 
