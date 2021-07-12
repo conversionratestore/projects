@@ -444,7 +444,8 @@ document.head.insertAdjacentHTML(
                 .rvp-title-wrap .title {
                     margin-bottom: 20px;
                     font-family: 'Gallery Modern',sans-serif;
-                    font-size: 26px;
+                    font-size: 26px !important;
+                    font-weight: 400 !important;
                     letter-spacing: 2px;
                     text-transform: uppercase;
                     text-align: left;
@@ -470,7 +471,7 @@ document.head.insertAdjacentHTML(
                     letter-spacing: 0.5px;
                     text-transform: uppercase;                    
                     color: #000000;
-                    text-align: left;
+                    text-align: left !important;
                 }
                 .rvp-buynow, p.rvp-product-price {
                     display: none !important;
