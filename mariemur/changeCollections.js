@@ -459,6 +459,9 @@ document.head.insertAdjacentHTML(
                     gap: 10px;
                     flex-shrink: 0;   
                 }
+                .rvp-image-wrap {
+                    flex-shrink: 0;
+                }
                 .splide__slide .rvp-image-wrap img {
                     width: 68px;
                     height: 68px;
@@ -513,7 +516,7 @@ document.head.insertAdjacentHTML(
                 .catalog-box__button a{
                     width: 100%;
                 }
-                
+              
                 /*.influencers {*/
                 /*    background: rgba(245, 245, 245, 0.8);*/
                 /*}*/
