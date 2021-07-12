@@ -8,6 +8,7 @@ let mut = new MutationObserver(function (muts) {
                 margin-top: 20px;
                 width: 100%;}
             .d-flex {
+                flex-wrap: wrap;
                 justify-content: space-between;
                 display: flex;}
             #popular .product-item {
@@ -32,6 +33,7 @@ let mut = new MutationObserver(function (muts) {
                 align-items: center;
                 padding: 5px;}
             #popular .product-item-actions .actions-primary+.actions-secondary>.action {
+                line-height: 1;
                 width: 20px;}
             #popular .product-item-actions .actions-primary+.actions-secondary>.action:before {
             font-size: 13px;}
@@ -49,6 +51,33 @@ let mut = new MutationObserver(function (muts) {
                 max-width: 290px;
                 margin: 0 auto;
                 color: #000000;
+            }
+            @media only screen and (max-width: 880px) {
+                #popular .product-item {
+                    margin-bottom: 10px;
+                    width: 49%;}
+                #popular .product-item-info {
+                    margin: 0 auto;}
+                #popular .product-image-photo {
+                    height: 100%;}
+                #popular .product-image-wrapper {
+                    padding-bottom: 70%!important; }
+                #popular .product-item .price-box {
+                    margin: 10px 0;}
+            }
+            @media only screen and (max-width: 767px) {
+                #popular .product-item {
+                    margin-bottom: 10px;
+                    width: 24%;}
+            
+            }
+            @media only screen and (max-width: 660px) {
+                #popular .product-item {
+                    width: 49%; }
+            }
+            @media only screen and (max-width: 375px) {
+                .d-flex {
+                    margin: 0 -25px;}
             }
         </style>`);
 
@@ -119,7 +148,9 @@ let mut = new MutationObserver(function (muts) {
         let n = 4;
         while (n--) {
             document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', card);
-        }  
+        }
+        document.querySelector('.post-list-content').classList.remove('col-sm-8');
+        document.querySelector('.post-list-content').classList.add('col-sm-12');
     }
 });
 mut.observe(document, {
