@@ -823,7 +823,7 @@ async function drawSlider(count, title) {
         loop: false,
         autoplayButton: false,
         autoplayButtonOutput: false,
-        preventScrollOnTouch: auto
+        preventScrollOnTouch: 'auto'
     });
 
     // show popup on last slider
@@ -1120,7 +1120,7 @@ let categoryInterval = setInterval(() => {
             autoplayButton: false,
             autoplayButtonOutput: false,
             nav: false,
-            preventScrollOnTouch: auto
+            preventScrollOnTouch: 'auto'
         });
     }
 }, 200);
