@@ -1022,9 +1022,9 @@ let mostPopular = setInterval(() => {
 
 let haveSeenInterval = setInterval(() => {
     if ((document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1) && document.querySelector('.rvp-title-wrap')) {
-
+        console.log(111)
         clearInterval(haveSeenInterval)
-
+        
         let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
         const rvpContainer = document.querySelector('.rvp-container')
