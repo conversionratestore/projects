@@ -589,10 +589,10 @@ document.head.appendChild(scriptCustom);
 */
 
 let counter = 0;
-let titlesInterval = setInterval(function () {   
+let titlesInterval = setInterval(function () {
     if (document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')) {
         clearInterval(titlesInterval)
-        
+
         let t = document.querySelector('.catalog-box:not([data-index]) .catalog-box__title a')
         let title = t.getAttribute('href').split('/products/')[1]
         document.querySelector('.catalog-box:not([data-index])').setAttribute('data-index', counter)
@@ -993,9 +993,13 @@ async function drawSlider(count, title) {
     add most popular categories block
 */
 
-document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
-    'afterend',
-    `
+let mostPopular = setInterval(() => {
+    if(document.querySelectorAll('.catalog-box')[1]) {
+        clearInterval(mostPopular)
+        
+        document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
+            'afterend',
+            `
             <div class="popular-categories">
                 <p class="title">most popular <br /> categories</p>
                 <div class="popular-categories__slider">
@@ -1007,17 +1011,19 @@ document.querySelectorAll('.catalog-box')[1].insertAdjacentHTML(
                 </div>
             </div>
         `,
-);
+        );
+    }   
+}, 200)
 
 /*
     add you have seen block
 */
 
 let haveSeenInterval = setInterval(() => {
-    if (document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1 && document.querySelector('.rvp-container')) {
-        
+    if (document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1 && document.querySelector('.rvp-title-wrap')) {
+
         clearInterval(haveSeenInterval)
-        
+
         let blockBeforeHaveSeen = document.querySelectorAll('.catalog-box')[3] || document.querySelectorAll('.catalog-box').length - 1;
 
         const rvpContainer = document.querySelector('.rvp-container')
@@ -1086,7 +1092,7 @@ instaModels.forEach(model => {
 
 let influencersInterval = setInterval(() => {
     clearInterval(influencersInterval)
-    
+
     let blockBeforeInfluencers = document.querySelectorAll('.catalog-box')[5] || document.querySelector('.rvp-container')
     blockBeforeInfluencers.insertAdjacentHTML(
         'afterend', `
