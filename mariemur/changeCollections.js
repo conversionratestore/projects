@@ -193,6 +193,7 @@ document.head.insertAdjacentHTML(
                     position: absolute;
                     display: flex;
                     justify-content: center;
+                    padding: 0 8px;
                     /*left: 10px;*/
                     bottom: 0;
                     width: 100%;
@@ -202,11 +203,13 @@ document.head.insertAdjacentHTML(
                 }
                 .view-single .tns-nav {
                     width: 69%;
-                    padding: 8px;
                     height: 52px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                }
+                .view-grid .tns-nav {
+                    padding: 0 10px;
                 }
                 .tns-nav button{
                     width: 20%;
