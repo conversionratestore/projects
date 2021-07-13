@@ -773,7 +773,7 @@ async function drawSlider(count, title) {
                             <path d="M4.00002 5.7565L6.06002 6.99984L5.51335 4.6565L7.33335 3.07984L4.93669 2.8765L4.00002 0.666504L3.06335 2.8765L0.666687 3.07984L2.48669 4.6565L1.94002 6.99984L4.00002 5.7565Z"/>
                         </svg>
                         ${lastStar}          
-                        <span class="votes">(   ${objReview[0].count})</span>
+                        <span class="votes">(${objReview[0].count})</span>
                     </div>
                 </div>
             `
