@@ -1,3 +1,4 @@
+window.onload  = function () {
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
 @media screen and (max-width: 767px) {
@@ -213,3 +214,4 @@ document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
         }
     });
 });
+};
