@@ -616,9 +616,6 @@ async function drawSlider(count, title) {
     let data = await response.json();
     let slider;
 
-    console.log(data.handle)
-    console.log(data.type)
-
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -1145,6 +1142,7 @@ let categoryInterval = setInterval(() => {
     r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
     a.appendChild(r);
 })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+hj('trigger', 'Exp PL improved');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
