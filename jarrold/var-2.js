@@ -57,15 +57,21 @@ let mut = new MutationObserver(function (muts) {
                 font-size: 9px;
                 line-height: 12px;
                 color: #4B2A4D; }
-           body.scroll #head a.favorites strong {
-                height: 0;
-                overflow: hidden;
-           }
-           body.scroll .favorites{
-                padding-top: 30px;
-           }
-           #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
-                min-height: 30px;
+           @media screen and (min-width: 992px) {
+               body.scroll #head a.favorites strong {
+                    height: 0;
+                    overflow: hidden;
+               }
+               body.scroll .favorites{
+                    padding-top: 30px!important;
+               }
+               #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
+                    min-height: 30px;
+               }
+               #head header .r {
+                    display: flex;
+                    align-items: center;
+               }
            }
         </style>`);
         $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
