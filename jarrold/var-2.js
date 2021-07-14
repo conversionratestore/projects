@@ -254,8 +254,6 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            console.log('have modal');
-
             setTimeout(() => {
                 $(".modal").addClass('active');
             }, 20000);
@@ -269,12 +267,10 @@ let mut = new MutationObserver(function (muts) {
             }
 
             if (window.matchMedia("(max-width: 1024px)").matches) {
-                console.log('modal scroll');
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
                 addEvent(document, 'mouseout', function(evt) {
                     if (evt.toElement == null && evt.relatedTarget == null) {
-                        console.log('modal mouseout');
                         $(".modal").addClass('active');
                     };
                 });
