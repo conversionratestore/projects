@@ -117,7 +117,7 @@ let mut = new MutationObserver(function (muts) {
             height: 54px;
             text-align: center;
             text-transform: uppercase;
-            width: 100%;
+            width: 100%!important;
             color: #FFFFFF;}
         .close {
             position: absolute;
