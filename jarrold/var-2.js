@@ -66,7 +66,7 @@ let mut = new MutationObserver(function (muts) {
                     padding-top: 30px!important;
                }
                #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
-                    min-height: 30px;
+                    min-height: 34px;
                }
                #head header .r {
                     display: flex;
