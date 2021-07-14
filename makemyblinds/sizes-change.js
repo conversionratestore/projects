@@ -1,5 +1,5 @@
 window.onload  = function () {
-document.body.insertAdjacentHTML('afterbegin', `
+    document.body.insertAdjacentHTML('afterbegin', `
 <style>
 @media screen and (max-width: 767px) {
     .wishlist-mobile-wrap {
@@ -117,17 +117,12 @@ document.body.insertAdjacentHTML('afterbegin', `
     }
     .options-fields .tooltip-question {
         float: right;
-        width: auto;
-        height: auto;
         border: none;
-        text-align: left;
-        border-radius: 0;
         margin-left: 6px;
-        font-family: 'overpass-light',Arial,Helvetica,sans-serif;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 21px;
-        text-transform: none;
+        color: transparent;
+        width: 24px;
+        height: 24px;
+        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/info.svg') no-repeat center / contain;
     }
    .options-fields .bottom-actions__row .btn, .btn-get-instant{
         width: 100%;
@@ -180,40 +175,60 @@ document.body.insertAdjacentHTML('afterbegin', `
         height: 427px;
         opacity: 1;
     }
-    .product-options-wrapper .tooltip-question {
-        color: transparent;
-        width: 24px;
-        height: 24px;
-        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/info.svg') no-repeat center / contain;
-    }
 }
 </style>`);
 
-document.querySelector('.product-details').insertAdjacentHTML('afterbegin', `<div class="product-options"></div>`);
-document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
-document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
-document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
-document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
-document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
-document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
-document.querySelector('.option-after').after(document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field')[2]);
-document.querySelector('.option-after').after(document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field')[1]);
-document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin','<span class="your-text">Your price: </span>');
-document.querySelector('.options-fields').insertAdjacentHTML('beforebegin','<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
-document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
-    document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
-        if (el.value == '') {
-            el.classList.add('mage-error');
-            el.insertAdjacentHTML('afterend','<div for="options_112620_text" generated="true" class="mage-error" id="options_112620_text-error" style="display: block;">This is a required field.</div>')
-        } else {
-            el.classList.remove('mage-error');
-            el.classList.add('valid');
-            el.closest('.control').querySelector('.mage-error').style.display = 'none';
-            e.target.hidden = true;
-            document.querySelector('.options-fields').classList.add('active');
+    document.querySelector('.product-details').insertAdjacentHTML('afterbegin', `<div class="product-options"></div>`);
+    document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
+    document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
+    document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
+    document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
+    document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
+    document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
+    let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
+    for (let i = 0; i < option.length; i++) {
+        if (!option[i].classList.contains('unit-select')) {
+            document.querySelector('.option-after').after(option[i]);
         }
+    }
+    document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin','<span class="your-text">Your price: </span>');
+    document.querySelector('.options-fields').insertAdjacentHTML('beforebegin','<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
+    document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+        el.insertAdjacentHTML('afterend',`<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
     });
-});
+    document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — PDP sizes change improvement mobile',
+            'eventAction': 'Click on Get instant price button'
+        });
+        document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+           if (el.value == '') {
+                el.classList.remove('valid');
+                el.classList.add('mage-error');
+                el.closest('.control').querySelector('div.mage-error').style.display = 'block';
+            } else {
+               el.classList.remove('mage-error');
+               el.classList.add('valid');
+               el.closest('.control').querySelector('div.mage-error').style.display = 'none';
+               if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
+                   e.target.hidden = true;
+                   document.querySelector('.options-fields').classList.add('active');
+               }
+            }
+        });
+    });
+
+    document.querySelector('.options-fields #product-addtocart-button').addEventListener('click',() => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — PDP sizes change improvement mobile',
+            'eventAction': 'Click on Add to basket new'
+        });
+    })
+
 };
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
