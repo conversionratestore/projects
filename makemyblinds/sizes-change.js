@@ -1,4 +1,4 @@
-// window.onload  = function () {
+window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
 <style>
 /*@media screen and (max-width: 767px) {*/
@@ -267,7 +267,7 @@
         });
     })
 
-// };
+};
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1709958,hjsv:6};
