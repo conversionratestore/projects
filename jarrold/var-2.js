@@ -61,6 +61,12 @@ let mut = new MutationObserver(function (muts) {
                 height: 0;
                 overflow: hidden;
            }
+           body.scroll .favorites{
+                padding-top: 30px;
+           }
+           #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
+                min-height: 30px;
+           }
         </style>`);
         $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
         if (localStorage.getItem('basketList') != '') {
