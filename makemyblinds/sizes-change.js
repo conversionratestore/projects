@@ -74,7 +74,8 @@ window.onload  = function () {
         max-width: 218px;
    }
    .catalog-product-view #product-options-wrapper .fieldset {
-    width: 100%;
+        width: 100%;
+        max-width: 416px;
    }
    .catalog-product-view #product-options-wrapper .scaled-custom-field label {
     position: relative;
@@ -172,7 +173,7 @@ window.onload  = function () {
         transition: all 0.3s ease;
     }
     .options-fields.active {
-        height: 427px;
+        height: 100%;
         opacity: 1;
     }
     .catalog-product-view .product-info-main .product-details .page-title-wrapper h1 {
@@ -212,6 +213,19 @@ window.onload  = function () {
     }
     .options-fields .price-container {
         align-items: flex-end;
+    }
+    ul.pill {
+        float: right!important;
+        margin: 20px 0;
+    }
+    .htm-trigger {
+        float: left;
+        width: fit-content;
+    }
+}
+@media screen and (min-width: 576px) {
+    #product-options-wrapper .scaled-custom-field label:before {
+        right: 34%;
     }
 }
 </style>`);
