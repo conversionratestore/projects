@@ -57,6 +57,10 @@ let mut = new MutationObserver(function (muts) {
                 font-size: 9px;
                 line-height: 12px;
                 color: #4B2A4D; }
+           body.scroll #head a.favorites strong {
+                height: 0;
+                overflow: hidden;
+           }
         </style>`);
         $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
         if (localStorage.getItem('basketList') != '') {
