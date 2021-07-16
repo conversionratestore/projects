@@ -267,7 +267,7 @@ let mut = new MutationObserver(function (muts) {
             let _this = $(this);
             $('.modal').removeClass('active');
             window.dataLayer = window.dataLayer || [];
-            if (_this.getAttribute('class') == 'close') {
+            if (_this.attr('class') == 'close') {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup',
