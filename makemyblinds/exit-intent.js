@@ -58,10 +58,115 @@ document.body.insertAdjacentHTML('afterbegin', `
     .bottom-actions__row .product-social-links {
         order: 2;
     }
+    .card {
+        background: #FFFFFF;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 100px;
+        padding: 16px 8px 10px;
+        line-height: 120%;
+        font-family: 'Barlow', sans-serif;
+        font-style: normal;
+    }
+    .card_bottom {
+        padding: 0 8px
+    }
+    .card img {
+        margin: 0 auto 12px;
+        width: 100%;
+        height: 183px;
+        object-fit: contain;
+    }
+    .card a {
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.0018em;
+        color: #141729;
+        margin-bottom: 16px;
+    }
+    .card-price {
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.180451px;
+        color: #66CCCC;
+        margin-bottom: 21px;
+    }
+    .btn-view {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 38px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #232847;
+        border: 1px solid #141729;
+        border-radius: 8px;
+    }
+    .btn-order {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 40px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin-top: 10px;
+    }
+    .popup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: inline-flex;
+        background: rgba(81, 81, 81, 0.73);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        padding: 14px;
+    }
+    .popup.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .popup-container {
+        max-width: 343px;
+        width: 100%;
+        margin: auto;
+        background: #FFFFFF;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        padding: 16px 24px 44px;
+    }
+    .btn-close {
+        width: 13px;
+        height: 13px;
+        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/close.svg') no-repeat center / contain;
+        margin-right: -8px;
+    }
 </style>`);
 
 document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
 document.querySelector('.catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper').insertAdjacentHTML('beforebegin', `<p class="your-text">Your price </p>`);
+
+document.body.insertAdjacentHTML('beforeend', `
+<div class="popup">
+    <div class="popup-container">
+       <button class="btn-close" type="button"></button>
+        <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
+        <div class="slider"></div>
+    </div>
+</div>`);
+
+let card = `
+<div class="card">
+    <div class="product-great"></div>
+    <a href="">
+        <img src="" alt="">
+        <span>Editions Ghost White with Pure Tapes</span>
+    </a>
+    <div class="card_bottom">
+        <div class="card-price">£19.90</div>
+        <a href="#" class="btn-view">VIEW PRODUCT</a>
+        <button class="btn-order" type="button">Order free sample</button>
+    </div>
+</div>`;
 
 let arrGreatFor = [];
 
@@ -71,10 +176,53 @@ document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) =>
         for (let i = 0; i < tdSplit.length; i++) {
             arrGreatFor.push(tdSplit[i]);
             document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
+            document.querySelectorAll('.slider .card .product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
         }
     }
 });
+document.addEventListener('touchstart', function(){
+    document.body.classList.add('on-mobile-device');
+});
 
+function myScrollSpeedFunction(){
+    if(document.body.classList.contains('on-mobile-device')) {
+        if(my_scroll() < -200){
+            document.querySelector(".popup").classList.add('active');
+        }
+    }
+}
+
+var my_scroll = (function() {
+    var last_position, new_position, timer, delta, delay = 50;
+
+    function clear() {
+        last_position = null;
+        delta = 0;
+    }
+
+    clear();
+
+    return function(){
+        new_position = window.scrollY;
+        if (last_position != null){
+            delta = new_position -  last_position;
+        }
+        last_position = new_position;
+        clearTimeout(timer);
+        timer = setTimeout(clear, delay);
+        return delta;
+    };
+})();
+
+document.addEventListener('scroll', myScrollSpeedFunction);
+
+document.querySelector(".btn-close").on('click', (e) => {
+    e.stopImmediatePropagation();
+    document.querySelector('.popup').classList.remove('active');
+});
+document.querySelector(".popup-container").addEventListener('click', (e) => {
+    e.stopPropagation();
+});
 // let arrSolution = [];
 // let hrefSolutionItem = document.querySelectorAll('.submenu-solution-col:first-child .submenu-solution-item');
 // for (let i = 0; i < hrefSolutionItem.length; i++) {
