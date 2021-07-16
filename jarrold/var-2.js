@@ -269,6 +269,7 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
+        sessionStorage.setItem('key', 'false');
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             setTimeout(() => {
                 $(".modal").addClass('active');
@@ -281,15 +282,17 @@ let mut = new MutationObserver(function (muts) {
                     obj.attachEvent("on" + evt, fn);
                 }
             }
-
             if (window.matchMedia("(max-width: 1024px)").matches) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (evt.toElement == null && evt.relatedTarget == null) {
-                        $(".modal").addClass('active');
-                    };
-                });
+                if (sessionStorage.getItem('key') != 'true') {
+                    addEvent(document, 'mouseout', function(evt) {
+                        if (evt.toElement == null && evt.relatedTarget == null) {
+                            sessionStorage.setItem('key', 'true');
+                            $(".modal").addClass('active');
+                        };
+                    });
+                }
             }
         }
     }
