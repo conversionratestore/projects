@@ -202,7 +202,7 @@ document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) =>
 });
 
 function myScrollSpeedFunction(){
-    if(document.body.classList.contains('mobile ')) {
+    if(document.body.classList.contains('mobile')) {
         if(my_scroll() < -200){
             document.querySelector(".popup").classList.add('active');
         }
