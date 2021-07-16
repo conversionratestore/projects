@@ -263,24 +263,25 @@ let mut = new MutationObserver(function (muts) {
                 return delta;
             };
         })();
-        $(".close, .modal").on('click', (e) => {
+        $(".modal").on('click', (e) => {
             e.stopImmediatePropagation();
-            let _this = $(this);
             $('.modal').removeClass('active');
             window.dataLayer = window.dataLayer || [];
-            if (_this.attr('class') === 'close') {
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp - Exit-intent popup',
-                    'eventAction': `click on X to close popup`
-                });
-            } else {
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp - Exit-intent popup',
-                    'eventAction': `click on the background to close popup`
-                });
-            }
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': `click on the background to close popup`
+            });
+        });
+        $(".close").on('click', (e) => {
+            e.stopImmediatePropagation();
+            $('.modal').removeClass('active');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': `click on X to close popup`
+            });
         });
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
