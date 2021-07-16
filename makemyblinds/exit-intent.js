@@ -121,6 +121,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         pointer-events: none;
         transition: all 0.3s ease;
         padding: 14px;
+        z-index: 999;
     }
     .popup.active {
         opacity: 1;
