@@ -274,7 +274,7 @@ let mut = new MutationObserver(function (muts) {
                     'eventCategory': 'Exp - Exit-intent popup',
                     'eventAction': `click on X to close popup`
                 });
-            } else if () {
+            } else {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup',
