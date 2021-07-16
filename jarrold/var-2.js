@@ -287,9 +287,9 @@ let mut = new MutationObserver(function (muts) {
             } else {
                 addEvent(document, 'mouseout', function(evt) {
                     if (sessionStorage.getItem('key') != '') {
-                        sessionStorage.setItem('key', '');
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             $(".modal").addClass('active');
+                            sessionStorage.setItem('key', '');
                         };
                     }
                 });
