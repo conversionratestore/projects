@@ -8,8 +8,10 @@ window.onload  = function () {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
+        padding-top: 10px;
         margin-bottom: 28px;}
     .product-options .price-label {
+        margin-bottom: 7px;
         display: block;
         font-size: 16px;
         line-height: 150%;
@@ -237,6 +239,7 @@ window.onload  = function () {
     document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
     document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
     document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
+    document.querySelector('.product-options .price-label').innerHTML = 'From';
     let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
     for (let i = 0; i < option.length; i++) {
         if (!option[i].classList.contains('unit-select')) {
@@ -256,18 +259,18 @@ window.onload  = function () {
             'eventAction': 'Click on Get instant price button'
         });
         document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
-           if (el.value == '') {
+            if (el.value == '') {
                 el.classList.remove('valid');
                 el.classList.add('mage-error');
                 el.closest('.control').querySelector('div.mage-error').style.display = 'block';
             } else {
-               el.classList.remove('mage-error');
-               el.classList.add('valid');
-               el.closest('.control').querySelector('div.mage-error').style.display = 'none';
-               if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
-                   e.target.hidden = true;
-                   document.querySelector('.options-fields').classList.add('active');
-               }
+                el.classList.remove('mage-error');
+                el.classList.add('valid');
+                el.closest('.control').querySelector('div.mage-error').style.display = 'none';
+                if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
+                    e.target.hidden = true;
+                    document.querySelector('.options-fields').classList.add('active');
+                }
             }
         });
     });
