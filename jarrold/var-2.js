@@ -264,7 +264,7 @@ let mut = new MutationObserver(function (muts) {
             };
         })();
         $(".close, .modal").on('click', () => {
-            let _this = $(whis);
+            let _this = $(this);
             $('.modal').removeClass('active');
             window.dataLayer = window.dataLayer || [];
             if (_this.getAttribute('class') == 'close') {
