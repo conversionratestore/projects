@@ -285,14 +285,14 @@ let mut = new MutationObserver(function (muts) {
             if (window.matchMedia("(max-width: 1024px)").matches) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
-                if (sessionStorage.getItem('key') != '') {
-                    addEvent(document, 'mouseout', function(evt) {
+                addEvent(document, 'mouseout', function(evt) {
+                    if (sessionStorage.getItem('key') != '') {
                         sessionStorage.setItem('key', '');
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             $(".modal").addClass('active');
                         };
-                    });
-                }
+                    }
+                });
             }
         }
     }
