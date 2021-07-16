@@ -66,6 +66,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         line-height: 120%;
         font-family: 'Barlow', sans-serif;
         font-style: normal;
+        position: relative;
     }
     .card_bottom {
         padding: 0 8px
@@ -138,7 +139,26 @@ document.body.insertAdjacentHTML('afterbegin', `
         width: 13px;
         height: 13px;
         background: url('https://conversionratestore.github.io/projects/makemyblinds/img/close.svg') no-repeat center / contain;
-        margin-right: -8px;
+        display: block;
+        margin: 0 -8px 12px auto;
+    }
+    .popup-title {
+        text-align: center;
+        font-family: 'Barlow', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 30px;
+        letter-spacing: 0.0015em;
+        text-transform: uppercase;
+        color: #232847;
+    }
+    .popup-title span {
+        display: block;
+        margin-top: 10px;
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: normal;
     }
 </style>`);
 
@@ -176,16 +196,13 @@ document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) =>
         for (let i = 0; i < tdSplit.length; i++) {
             arrGreatFor.push(tdSplit[i]);
             document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
-            document.querySelectorAll('.slider .card .product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
+            // document.querySelectorAll('.slider .card .product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
         }
     }
 });
-document.addEventListener('touchstart', function(){
-    document.body.classList.add('on-mobile-device');
-});
 
 function myScrollSpeedFunction(){
-    if(document.body.classList.contains('on-mobile-device')) {
+    if(document.body.classList.contains('mobile ')) {
         if(my_scroll() < -200){
             document.querySelector(".popup").classList.add('active');
         }
@@ -214,9 +231,9 @@ var my_scroll = (function() {
     };
 })();
 
-document.addEventListener('scroll', myScrollSpeedFunction);
+window.addEventListener('scroll', myScrollSpeedFunction);
 
-document.querySelector(".btn-close").on('click', (e) => {
+document.querySelector(".btn-close").addEventListener('click', (e) => {
     e.stopImmediatePropagation();
     document.querySelector('.popup').classList.remove('active');
 });
