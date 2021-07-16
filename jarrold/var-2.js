@@ -265,6 +265,20 @@ let mut = new MutationObserver(function (muts) {
         })();
         $(".close, .modal").on('click', () => {
             $('.modal').removeClass('active');
+            window.dataLayer = window.dataLayer || [];
+            if ($(this).getAttribute('class') == 'close') {
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup',
+                    'eventAction': `click on X to close popup`
+                });
+            } else {
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup',
+                    'eventAction': `click on the background to close popup`
+                });
+            }
         });
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
@@ -301,4 +315,22 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, {
     childList: true,
     subtree: true
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1885763,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'exit_intent_popup');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - Exit-intent popup',
+    'eventAction': 'loaded'
 });
