@@ -263,7 +263,8 @@ let mut = new MutationObserver(function (muts) {
                 return delta;
             };
         })();
-        $(".close, .modal").on('click', () => {
+        $(".close, .modal").on('click', (e) => {
+            e.stopImmediatePropagation();
             let _this = $(this);
             $('.modal').removeClass('active');
             window.dataLayer = window.dataLayer || [];
