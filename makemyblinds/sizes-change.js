@@ -252,12 +252,21 @@ window.onload  = function () {
         el.insertAdjacentHTML('afterend',`<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
     });
     document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP sizes change improvement mobile',
-            'eventAction': 'Click on Get instant price button'
-        });
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                'eventAction': 'Click on Get instant price button'
+            });
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                'eventAction': 'Click on Get instant price button'
+            });
+        }
         document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
             if (el.value == '') {
                 el.classList.remove('valid');
@@ -276,29 +285,58 @@ window.onload  = function () {
     });
 
     document.querySelector('.options-fields #product-addtocart-button').addEventListener('click',() => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP sizes change improvement mobile',
-            'eventAction': 'Click on Add to basket new'
-        });
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                'eventAction': 'Click on Add to basket new'
+            });
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                'eventAction': 'Click on Add to basket new'
+            });
+        }
     })
-
 };
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1709958,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'pdp_sizes_change_mobile');
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP sizes change improvement mobile',
-    'eventAction': 'loaded'
-});
+if (window.matchMedia("(max-width: 768px)").matches) {
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'pdp_sizes_change_mobile');
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP sizes change improvement mobile',
+        'eventAction': 'loaded'
+    });
+} else {
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'pdp_sizes_change_desktop');
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP sizes change improvement desktop',
+        'eventAction': 'loaded'
+    });
+}
