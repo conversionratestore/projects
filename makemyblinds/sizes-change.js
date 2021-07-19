@@ -21,6 +21,7 @@ window.onload  = function () {
         display: none; }
     .from-price .price {
         font-weight: 500;
+        padding-right: 7px;
         font-size: 49px;
         line-height: 40px;
         letter-spacing: -0.005em;
@@ -71,19 +72,15 @@ window.onload  = function () {
         flex-direction: row;
         justify-content: space-between;
         margin: 0 0 24px 0!important;
-        width: 100%;
-   }
+        width: 100%;}
     .scaled-custom-field .control  {
-        max-width: 218px;
-   }
+        max-width: 218px;}
    .catalog-product-view #product-options-wrapper .fieldset {
         width: 100%;
-        max-width: 416px;
-   }
+        max-width: 416px;}
    .catalog-product-view #product-options-wrapper .scaled-custom-field label {
     position: relative;
-    width: calc(100% - 218px);
-   }
+    width: calc(100% - 218px);}
    #product-options-wrapper .scaled-custom-field label:before {
         content: '';
         position: absolute;
@@ -95,20 +92,16 @@ window.onload  = function () {
         background-position: center;
         width: 24px;
         height: 24px;
-        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/width.svg');
-    }
+        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/width.svg');}
      #product-options-wrapper .scaled-custom-field:nth-child(4) label:before {
-        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/height.svg');
-    }
+        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/height.svg');}
     .options-fields .option-field {
         border-bottom: 1px solid #cecece;
         padding: 4px 0 16px;
-        width: 100%;
-    }
+        width: 100%;}
     .options-fields .option-field>label.label {
         font-size: 1.125em;
-        margin: 5px 0 1px;
-    }
+        margin: 5px 0 1px;}
     .options-fields label.label {
         display: flex;
         align-items: flex-end;
@@ -116,8 +109,7 @@ window.onload  = function () {
         font-weight: 500;
         font-size: 20px;
         line-height: 24px;
-        text-transform: uppercase;
-    }
+        text-transform: uppercase;}
     .options-fields .tooltip-question {
         float: right;
         border: none;
@@ -125,8 +117,7 @@ window.onload  = function () {
         color: transparent;
         width: 24px;
         height: 24px;
-        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/info.svg') no-repeat center / contain;
-    }
+        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/info.svg') no-repeat center / contain;}
    .options-fields .bottom-actions__row .btn, .btn-get-instant{
         width: 100%;
         font-family: 'Barlow', sans-serif;
@@ -137,16 +128,13 @@ window.onload  = function () {
         text-align: center;
         letter-spacing: 0.180451px;
         color: #232849;
-        margin-top: 25px;
-   }
+        margin-top: 25px;}
    .options-fields .price-label, .options-fields .price-original{
-        display: none;
-   }
+        display: none;}
    .options-fields .price-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-   }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;}
    .options-fields .price-wrapper  {
          font-family: 'Barlow-medium',Arial,Helvetica,sans-serif;
         font-style: normal;
@@ -155,8 +143,7 @@ window.onload  = function () {
         line-height: 50px;
         text-align: right;
         letter-spacing: -0.005em;
-        color: #232849;
-   }
+        color: #232849;}
    .options-fields .your-text {
         font-family: 'Barlow', sans-serif;
         font-style: normal;
@@ -165,25 +152,20 @@ window.onload  = function () {
         line-height: 31px;
         letter-spacing: 0.0015em;
         color: #232849;
-        margin-right: 8px;
-   }
+        margin-right: 8px;}
     .btn-get-instant {
-        margin: 0;
-    }
+        margin: 0; }
     .options-fields {
         opacity: 0;
         height: 0;
         pointer-events: none;
-        transition: all 0.3s ease;
-    }
+        transition: all 0.3s ease;}
     .options-fields.active {
         height: 100%;
         opacity: 1;
-        pointer-events: auto;
-    }
+        pointer-events: auto;}
     .catalog-product-view .product-info-main .product-details .page-title-wrapper h1 {
-        margin-bottom: 15px;
-    }
+        margin-bottom: 15px;}
     .product-delivery-date__fast-track {
         flex: 1;
         background-color: #6cc;
@@ -194,55 +176,57 @@ window.onload  = function () {
         align-items: center;
         justify-content: center;
         min-height: 51px;
-        margin-bottom: 15px;
-    }
+        margin-bottom: 15px;}
 @media screen and (min-width: 992px) {
     .options-fields .option-field {
         flex-direction: row;
-        align-items: center;
-    }
+        align-items: center;}
     .options-fields .option-field>label.label {
-        margin: 5px 0;
-    }
+        margin: 5px 0;}
     .options-fields label.label {
-        width: 40%
-    }
+        width: 40%; }
     .options-fields .control {
-        width: 60%;
-    }
+        width: 60%; }
     .field.choice .label {
-        width: 100%
-    }
+        width: 100%;}
     .options-list {
         display: flex;
-        flex-wrap: wrap;
-    }
+        flex-wrap: wrap;}
     .bottom-actions__row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-    }
+        justify-content: space-between; }
     .options-fields .bottom-actions__row .btn, .btn-get-instant {
         margin-top: 0;
         max-width: 212px;
-        min-width: 100%;
-    }
+        min-width: 100%;}
     .options-fields .price-container {
-        align-items: flex-end;
-    }
+        align-items: flex-end;}
     ul.pill {
         float: right!important;
-        margin: 20px 0;
-    }
+        margin: 20px 0; }
     .htm-trigger {
         float: left;
-        width: fit-content;
-    }
+        width: fit-content;}
+}
+@media screen and (max-width: 768px) {
+    .hp_strip__container {
+        margin: 0 -16px;
+        width: calc(100% + 32px);}
+    .hp_strip__container ul i {
+        display: block;}
 }
 @media screen and (min-width: 576px) {
     #product-options-wrapper .scaled-custom-field label:before {
-        right: 34%;
-    }
+        right: 34%; }
+}
+@media screen and (min-width: 360px) {
+    .product-options .btn {
+        padding: 14px 10px;}
+    .scaled-custom-field .control {
+        max-width: 190px;}
+    .catalog-product-view #product-options-wrapper .scaled-custom-field label {
+        width: calc(100% - 190px);}
 }
 </style>`);
 
@@ -318,7 +302,6 @@ window.onload  = function () {
             });
         }
     })
-
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
