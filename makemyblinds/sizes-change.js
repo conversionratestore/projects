@@ -244,7 +244,7 @@ window.onload  = function () {
     let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
     for (let i = 0; i < option.length; i++) {
         if (!option[i].classList.contains('unit-select')) {
-            document.querySelector('.option-after').after(option[i]);
+            document.querySelector('.option-after').before(option[i]);
         }
     }
     document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin','<span class="your-text">Your price: </span>');
