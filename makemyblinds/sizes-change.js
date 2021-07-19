@@ -1,7 +1,6 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
 <style>
-/*@media screen and (max-width: 767px) {*/
     .wishlist-mobile-wrap {
         display: none;}
     .product-options {
@@ -183,7 +182,18 @@ window.onload  = function () {
     .catalog-product-view .product-info-main .product-details .page-title-wrapper h1 {
         margin-bottom: 15px;
     }
-/*}*/
+    .product-delivery-date__fast-track {
+        flex: 1;
+        background-color: #6cc;
+        padding: 10px 18px;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 51px;
+        margin-bottom: 15px;
+    }
 @media screen and (min-width: 992px) {
     .options-fields .option-field {
         flex-direction: row;
@@ -225,18 +235,6 @@ window.onload  = function () {
     .htm-trigger {
         float: left;
         width: fit-content;
-    }
-    .product-delivery-date__fast-track {
-        flex: 1;
-        background-color: #6cc;
-        padding: 10px 18px;
-        color: #fff;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 51px;
-        margin-bottom: 15px;
     }
 }
 @media screen and (min-width: 576px) {
