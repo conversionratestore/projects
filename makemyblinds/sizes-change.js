@@ -147,6 +147,8 @@ window.onload  = function () {
                         text-align: right;
                         letter-spacing: -0.005em;
                         color: #232849;}
+                   .from-price .price-wrapper  {
+                        color: #2E3560;}
                    .options-fields .your-text {
                         font-family: 'Barlow', sans-serif;
                         font-style: normal;
