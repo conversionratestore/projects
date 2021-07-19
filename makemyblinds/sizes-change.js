@@ -234,6 +234,7 @@ window.onload  = function () {
         text-align: center;
         display: flex;
         align-items: center;
+        justify-content: center;
         min-height: 51px;
         margin-bottom: 15px;
     }
