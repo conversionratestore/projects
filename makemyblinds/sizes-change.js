@@ -252,8 +252,9 @@ window.onload  = function () {
     document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
     document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
     document.querySelector('.product-options .price-label').innerHTML = 'From';
-    document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
-
+    if (document.querySelector('.product-delivery-date')) {
+        document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
+    }
     let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
     for (let i = 0; i < option.length; i++) {
         if (!option[i].classList.contains('unit-select')) {
