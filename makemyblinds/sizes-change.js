@@ -172,11 +172,13 @@ window.onload  = function () {
     .options-fields {
         opacity: 0;
         height: 0;
+        pointer-events: none;
         transition: all 0.3s ease;
     }
     .options-fields.active {
         height: 100%;
         opacity: 1;
+        pointer-events: auto;
     }
     .catalog-product-view .product-info-main .product-details .page-title-wrapper h1 {
         margin-bottom: 15px;
