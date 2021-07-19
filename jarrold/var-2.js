@@ -230,14 +230,19 @@ let mut = new MutationObserver(function (muts) {
             }
         }
 
+        sessionStorage.setItem('modal', 'true');
+
         jQuery(document).on('touchstart', function(){
             $('body').addClass('on-mobile-device');
         });
 
         function myScrollSpeedFunction(){
             if(jQuery('body').hasClass('on-mobile-device') ){
-                if(my_scroll() < -200){
-                    $(".modal").addClass('active');
+                if (sessionStorage.getItem('modal') != '') {
+                    if(my_scroll() < -200){
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
+                    }
                 }
             }
         }
@@ -286,7 +291,6 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-        sessionStorage.setItem('key', 'true');
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             setTimeout(() => {
                 $(".modal").addClass('active');
@@ -303,10 +307,10 @@ let mut = new MutationObserver(function (muts) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
                 addEvent(document, 'mouseout', function(evt) {
-                    if (sessionStorage.getItem('key') != '') {
+                    if (sessionStorage.getItem('modal') != '') {
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             $(".modal").addClass('active');
-                            sessionStorage.setItem('key', '');
+                            sessionStorage.setItem('modal', '');
                         };
                     }
                 });
