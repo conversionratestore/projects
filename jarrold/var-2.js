@@ -238,8 +238,8 @@ let mut = new MutationObserver(function (muts) {
 
         function myScrollSpeedFunction(){
             if(jQuery('body').hasClass('on-mobile-device') ){
-                if (sessionStorage.getItem('modal') != '') {
-                    if(my_scroll() < -200){
+                if(my_scroll() < -200){
+                    if (sessionStorage.getItem('modal') != '') {
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
                     }
@@ -292,9 +292,11 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            setTimeout(() => {
-                $(".modal").addClass('active');
-            }, 20000);
+            if (sessionStorage.getItem('modal') != '') {
+                setTimeout(() => {
+                    $(".modal").addClass('active');
+                }, 20000);
+            }
 
             function addEvent(obj, evt, fn) {
                 if (obj.addEventListener) {
