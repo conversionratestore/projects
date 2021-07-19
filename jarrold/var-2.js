@@ -295,6 +295,7 @@ let mut = new MutationObserver(function (muts) {
             if (sessionStorage.getItem('modal') != '') {
                 setTimeout(() => {
                     $(".modal").addClass('active');
+                    sessionStorage.setItem('modal', '');
                 }, 20000);
             }
 
