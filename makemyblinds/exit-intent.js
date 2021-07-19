@@ -1,11 +1,11 @@
 
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
+@media screen and (max-width: 768px) {
     .product-mobile-title .wishlist-mobile-wrap {
         display: none; }
     .catalog-product-view .product-info-main .media {
-        position: relative;
-    }
+        position: relative;}
     .product-great {
         display: flex;
         justify-content: flex-end;
@@ -15,8 +15,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         right: 0;
         width: 100%;
         z-index: 3;
-        padding: 0 15px 0 5px;
-     }
+        padding: 0 15px 0 5px;}
     .product-great-item {
         background: #66CCCC;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
@@ -26,11 +25,9 @@ document.body.insertAdjacentHTML('afterbegin', `
         margin-bottom: 10px;
         letter-spacing: 0.15px;
         color: #232849;
-        font-size: 14px;
-    }
+        font-size: 14px;}
     .product-options-wrapper, .htm-trigger, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-label, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-original {
-        display: none;
-    }
+        display: none; }
     .your-text {
         font-family: 'Barlow', sans-serif;
         font-style: normal;
@@ -39,25 +36,19 @@ document.body.insertAdjacentHTML('afterbegin', `
         line-height: 1;
         letter-spacing: 0.0015em;
         color: #232849;
-        margin-right: 8px;
-    }
+        margin-right: 8px; }
     .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
         flex-direction: row;
-        align-items: center;
-    }
+        align-items: center;}
     .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row {
-        width: 100%;
-    }
+        width: 100%;}
     .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .btn {
         width: 100%;
-        margin: 0;
-    }
+        margin: 0;}
     .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
-        margin-top: 0!important;
-    }
+        margin-top: 0!important;}
     .bottom-actions__row .product-social-links {
-        order: 2;
-    }
+        order: 2;}
     .card {
         background: #FFFFFF;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
@@ -66,31 +57,26 @@ document.body.insertAdjacentHTML('afterbegin', `
         line-height: 120%;
         font-family: 'Barlow', sans-serif;
         font-style: normal;
-        position: relative;
-    }
+        position: relative;}
     .card_bottom {
-        padding: 0 8px
-    }
+        padding: 0 8px;}
     .card img {
         margin: 0 auto 12px;
         width: 100%;
         height: 183px;
-        object-fit: contain;
-    }
+        object-fit: contain;}
     .card a {
         font-weight: 500;
         font-size: 14px;
         letter-spacing: 0.0018em;
         color: #141729;
-        margin-bottom: 16px;
-    }
+        margin-bottom: 16px; }
     .card-price {
         font-weight: 600;
         font-size: 14px;
         letter-spacing: 0.180451px;
         color: #66CCCC;
-        margin-bottom: 21px;
-    }
+        margin-bottom: 21px;}
     .btn-view {
         font-weight: 600;
         font-size: 14px;
@@ -99,16 +85,14 @@ document.body.insertAdjacentHTML('afterbegin', `
         text-transform: uppercase;
         color: #232847;
         border: 1px solid #141729;
-        border-radius: 8px;
-    }
+        border-radius: 8px; }
     .btn-order {
         font-weight: 600;
         font-size: 14px;
         line-height: 40px;
         text-transform: uppercase;
         color: #FFFFFF;
-        margin-top: 10px;
-    }
+        margin-top: 10px;}
     .popup {
         position: fixed;
         left: 0;
@@ -121,12 +105,10 @@ document.body.insertAdjacentHTML('afterbegin', `
         pointer-events: none;
         transition: all 0.3s ease;
         padding: 14px;
-        z-index: 999;
-    }
+        z-index: 999;}
     .popup.active {
         opacity: 1;
-        pointer-events: auto;
-    }
+        pointer-events: auto; }
     .popup-container {
         max-width: 343px;
         width: 100%;
@@ -134,15 +116,13 @@ document.body.insertAdjacentHTML('afterbegin', `
         background: #FFFFFF;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
         border-radius: 8px;
-        padding: 16px 24px 44px;
-    }
+        padding: 16px 24px 44px;}
     .btn-close {
         width: 13px;
         height: 13px;
         background: url('https://conversionratestore.github.io/projects/makemyblinds/img/close.svg') no-repeat center / contain;
         display: block;
-        margin: 0 -8px 12px auto;
-    }
+        margin: 0 -8px 12px auto; }
     .popup-title {
         text-align: center;
         font-family: 'Barlow', sans-serif;
@@ -152,22 +132,28 @@ document.body.insertAdjacentHTML('afterbegin', `
         line-height: 30px;
         letter-spacing: 0.0015em;
         text-transform: uppercase;
-        color: #232847;
-    }
+        color: #232847; }
     .popup-title span {
         display: block;
         margin-top: 10px;
         font-size: 18px;
         line-height: 22px;
-        font-weight: normal;
-    }
+        font-weight: normal;}
+    .bottom-actions__row {
+        display: block; }
+    .hp_strip__container {
+        margin: 0 -16px;
+        width: calc(100% + 32px);}
+    .hp_strip__container ul i {
+        display: block;}
+}
 </style>`);
 
 document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
 document.querySelector('.catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper').insertAdjacentHTML('beforebegin', `<p class="your-text">Your price </p>`);
 
 document.body.insertAdjacentHTML('beforeend', `
-<div class="popup">
+<div class="popup active">
     <div class="popup-container">
        <button class="btn-close" type="button"></button>
         <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
@@ -197,7 +183,6 @@ document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) =>
         for (let i = 0; i < tdSplit.length; i++) {
             arrGreatFor.push(tdSplit[i]);
             document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
-            // document.querySelectorAll('.slider .card .product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item">${tdSplit[i]}</a>`);
         }
     }
 });
@@ -241,6 +226,41 @@ document.querySelector(".btn-close").addEventListener('click', (e) => {
 document.querySelector(".popup-container").addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify( {
+        "username": "conversionrate",
+        "password": "gasmaj-mornut-sowZy9"
+    })
+
+}).then(res => res.json()).then(data => console.log(data))
+
+fetch('https://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=1', {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 46q6oqm37chhxvqd8y6l0iaawqa6xyfh"
+    },
+    method: "POST",
+    body: JSON.stringify( {
+        "username": "conversionrate",
+        "password": "gasmaj-mornut-sowZy9"
+    })
+}).then(res => res.json()).then(data => console.log(data))
+
+
+// fetch('http://makemyblinds.co.uk/rest/V1/products', {
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     method: "GET",
+// }).then((data) => {
+//     console.log(data)
+// })
+
 // let arrSolution = [];
 // let hrefSolutionItem = document.querySelectorAll('.submenu-solution-col:first-child .submenu-solution-item');
 // for (let i = 0; i < hrefSolutionItem.length; i++) {
