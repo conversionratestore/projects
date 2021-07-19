@@ -1,346 +1,351 @@
-let mut = new MutationObserver(function (muts) {
-    (function(){
-        var http = new XMLHttpRequest();
-        http.open('GET', 'https://www.jarrold.co.uk/my-account?view=wishlist');
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                if (doc.querySelectorAll('.cart-table tbody tr')) {
-                    mut.disconnect();
-                    $('.favorites span').html(doc.querySelectorAll('.cart-table tbody tr').length);
+window.onload  = function () {
+    document.querySelectorAll('.spec-table__inner__table tr').forEach((el) => {
+        if(el.querySelector('th').innerHTML === 'Great For:') {
+            if (el.querySelector('td').innerHTML != 'Attic/Loft') {
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style>
+                    .wishlist-mobile-wrap {
+                        display: none;}
+                    .product-options {
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: space-between;
+                        padding-top: 10px;
+                        margin-bottom: 28px;}
+                    .product-options .price-label {
+                        margin-bottom: 7px;
+                        display: block;
+                        font-size: 16px;
+                        line-height: 150%;
+                        letter-spacing: 0.15px;
+                        color: #232849;}
+                    .from-price .price-original {
+                        text-decoration: line-through;
+                        display: none; }
+                    .from-price .price {
+                        font-weight: 500;
+                        padding-right: 7px;
+                        font-size: 49px;
+                        line-height: 40px;
+                        letter-spacing: -0.005em;
+                        color: #232849;
+                        font-family: 'Barlow-medium', sans-serif;}
+                    .product-options .btn {
+                        padding: 14px 25px;
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: center;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 120%;
+                        width: 100%!important;
+                        font-family: 'Barlow', sans-serif;}
+                    .product-options .product-social-links {
+                        max-width: 185px;
+                        width: 100%; }
+                    .product-options-text {
+                        font-family: 'Overpass', sans-serif;
+                        font-size: 18px;
+                        line-height: 150%;
+                        letter-spacing: 0.180451px;
+                        color: #232849;}
+                    .product-options-text span {
+                        font-family: 'Barlow-medium', sans-serif;
+                        text-transform: uppercase;}
+                   .htm-trigger {
+                       margin: 25px 0;}
+                   .pill {
+                        float: initial!important;
+                        width: fit-content;
+                        position: relative;
+                        z-index: 2;
+                        margin: 0 auto;}
+                   ul.pill a {
+                        font-family: 'Overpass', sans-serif;
+                        font-size: 16px;
+                        line-height: 35px;
+                        letter-spacing: 0.15px;
+                        width: 40px;
+                        text-align: center; }
+                   .scaled-custom-field i {
+                        display: none;}
+                   .scaled-custom-field {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        margin: 0 0 24px 0!important;
+                        width: 100%;}
+                    .scaled-custom-field .control  {
+                        max-width: 218px;}
+                   .catalog-product-view #product-options-wrapper .fieldset {
+                        width: 100%;
+                        max-width: 416px;}
+                   .catalog-product-view #product-options-wrapper .scaled-custom-field label {
+                    position: relative;
+                    width: calc(100% - 218px);}
+                   #product-options-wrapper .scaled-custom-field label:before {
+                        content: '';
+                        position: absolute;
+                        right: 20%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        width: 24px;
+                        height: 24px;
+                        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/width.svg');}
+                     #product-options-wrapper .scaled-custom-field:nth-child(4) label:before {
+                        background-image: url('https://conversionratestore.github.io/projects/makemyblinds/img/height.svg');}
+                    .options-fields .option-field {
+                        border-bottom: 1px solid #cecece;
+                        padding: 4px 0 16px;
+                        width: 100%;}
+                    .options-fields .option-field>label.label {
+                        font-size: 1.125em;
+                        margin: 5px 0 1px;}
+                    .options-fields label.label {
+                        display: flex;
+                        align-items: flex-end;
+                        font-family: 'Barlow-medium',Arial,Helvetica,sans-serif;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 24px;
+                        text-transform: uppercase;}
+                    .options-fields .tooltip-question {
+                        float: right;
+                        border: none;
+                        margin-left: 6px;
+                        color: transparent;
+                        width: 24px;
+                        height: 24px;
+                        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/info.svg') no-repeat center / contain;}
+                   .options-fields .bottom-actions__row .btn, .btn-get-instant{
+                        width: 100%;
+                        font-family: 'Barlow', sans-serif;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 120%;
+                        text-align: center;
+                        letter-spacing: 0.180451px;
+                        color: #232849;
+                        margin-top: 25px;}
+                   .options-fields .price-label, .options-fields .price-original{
+                        display: none;}
+                   .options-fields .price-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;}
+                   .options-fields .price-wrapper  {
+                         font-family: 'Barlow-medium',Arial,Helvetica,sans-serif;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 49px;
+                        line-height: 50px;
+                        text-align: right;
+                        letter-spacing: -0.005em;
+                        color: #232849;}
+                   .from-price .price-wrapper  {
+                        color: #2E3560;}
+                   .options-fields .your-text {
+                        font-family: 'Barlow', sans-serif;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 26px;
+                        line-height: 31px;
+                        letter-spacing: 0.0015em;
+                        color: #232849;
+                        margin-right: 8px;}
+                    .btn-get-instant {
+                        margin: 0; }
+                    .options-fields {
+                        opacity: 0;
+                        height: 0;
+                        pointer-events: none;
+                        transition: all 0.3s ease;}
+                    .options-fields.active {
+                        height: 100%;
+                        opacity: 1;
+                        pointer-events: auto;}
+                    .catalog-product-view .product-info-main .product-details .page-title-wrapper h1 {
+                        margin-bottom: 15px;}
+                    .product-delivery-date__fast-track {
+                        flex: 1;
+                        background-color: #6cc;
+                        padding: 10px 18px;
+                        color: #fff;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-height: 51px;
+                        margin-bottom: 15px;}
+                @media screen and (min-width: 992px) {
+                    .options-fields .option-field {
+                        flex-direction: row;
+                        align-items: center;}
+                    .options-fields .option-field>label.label {
+                        margin: 5px 0;}
+                    .options-fields label.label {
+                        width: 40%; }
+                    .options-fields .control {
+                        width: 60%; }
+                    .field.choice .label {
+                        width: 100%;}
+                    .options-list {
+                        display: flex;
+                        flex-wrap: wrap;}
+                    .bottom-actions__row {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between; }
+                    .options-fields .bottom-actions__row .btn, .btn-get-instant {
+                        margin-top: 0;
+                        max-width: 212px;
+                        min-width: 100%;}
+                    .options-fields .price-container {
+                        align-items: flex-end;}
+                    ul.pill {
+                        float: right!important;
+                        margin: 20px 0; }
+                    .htm-trigger {
+                        float: left;
+                        width: fit-content;}
                 }
-            }
-        }
-        http.send(null);
-    })();
-    (function(){
-        var http = new XMLHttpRequest();
-        http.open('GET', 'https://www.jarrold.co.uk/basket');
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                if (doc.querySelectorAll('.cart-table tbody tr .square')) {
-                    mut.disconnect();
-                    let basketList = [];
-                    localStorage.setItem('basketList', '');
-
-                    doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
-                        basketList.push({
-                            'title': el.querySelector('.desc a').innerHTML,
-                            'link': el.querySelector('.desc a').getAttribute('href'),
-                            'price': el.querySelector('td.text-right').innerHTML,
-                            'image': el.querySelector('.square').innerHTML,
-                        });
-                        localStorage.setItem('basketList', JSON.stringify(basketList));
-                    });
+                @media screen and (max-width: 768px) {
+                    .hp_strip__container {
+                        margin: 0 -16px;
+                        width: calc(100% + 32px);}
+                    .hp_strip__container ul i {
+                        display: block;}
                 }
-            }
-        }
-        http.send(null);
-    })();
+                @media screen and (min-width: 576px) {
+                    #product-options-wrapper .scaled-custom-field label:before {
+                        right: 34%; }
+                }
+                @media screen and (max-width: 360px) {
+                    .product-options .btn {
+                        padding: 14px 10px;}
+                    .scaled-custom-field .control {
+                        max-width: 190px;}
+                    .catalog-product-view #product-options-wrapper .scaled-custom-field label {
+                        width: calc(100% - 190px);}
+                }
+                </style>`);
 
-    if (document.querySelector('#page_header_CPR')) {
-        mut.disconnect();
-
-        $('body').eq(0).prepend(`<style>
-            .favorites {
-                margin-right: 5px;}
-            .favorites:before {
-                background: url(https://conversionratestore.github.io/projects/jarrold/img/heart.svg) no-repeat center / 22px 19px;}
-            .favorites span {
-                position: absolute;
-                display: block!important;
-                top: 10px;
-                left: 0;
-                right: 0;
-                font-weight: 600;
-                font-size: 9px;
-                line-height: 12px;
-                color: #4B2A4D; }
-           @media screen and (min-width: 992px) {
-               body.scroll #head a.favorites strong {
-                    height: 0;
-                    overflow: hidden;
-               }
-               body.scroll .favorites{
-                    padding-top: 30px!important;
-               }
-               #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
-                    min-height: 34px;
-               }
-               #head header .r {
-                    display: flex;
-                    align-items: center;
-               }
-           }
-        </style>`);
-        $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
-        if (localStorage.getItem('basketList') != '') {
-            $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
-        }
-    }
-    if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
-        mut.disconnect();
-        $('body').eq(0).prepend(`<style>
-        .modal {
-            background: rgba(0, 0, 0, 0.59);
-            position: fixed;
-            left: 0;
-            top: 0;
-            display: inline-flex;
-            overflow-y: auto;
-            opacity: 0;
-            padding: 16px;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 9999;
-            height: 100vh;
-            width: 100%;}
-        .modal.active {
-            opacity: 1;
-            pointer-events: auto;}
-        .modal_container {
-            position: relative;
-            margin: auto;
-            display: block;
-            max-width: 323px;
-            height: fit-content;
-            background: #FFFFFF;
-            box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
-            border-radius: 5px;}
-        .modal_top {
-            padding: 40px 15px 0 15px;}
-        .notification {
-            border-top: 1px dashed #E5E5E5;
-            padding: 21px 30px;
-            display: flex;
-            align-items: center;}
-        .notification p {
-            margin: 0 0 0 15px;
-            font-size: 12px;
-            line-height: 18px;
-            color: #CDCDCD;}
-        .notification img {
-            width: 40px;
-            height: 21px;
-            flex-shrink: 0;}
-        .modal .btn {
-            background: #4B2A4D;
-            border-radius: 0px 0px 5px 5px;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 54px;
-            height: 54px;
-            text-align: center;
-            text-transform: uppercase;
-            width: 100%!important;
-            color: #FFFFFF;}
-        .close {
-            position: absolute;
-            right: -16px;
-            top: -16px;
-            background: url('https://conversionratestore.github.io/projects/jarrold/img/close.svg') no-repeat center / contain;
-            width: 33px;
-            height: 33px;
-            border: none;
-            margin-left: auto;
-            display: block;}
-        .modal_title {
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 22px;
-            text-align: center;
-            letter-spacing: 0.055em;
-            text-transform: uppercase;
-            margin-bottom: 13px;
-            color: #2F2F2F;}
-        .modal_title span {
-            display: block;
-            font-size: 13px; }
-        .modal_info {
-            background: #F8F8F8;
-            border: 1px solid #eae8e8;
-            border-radius: 6px;
-            max-width: 263px;
-            text-align: center;
-            padding: 4px 20px;
-            margin: 0 auto;}
-        .modal_products {
-            max-height: 250px;
-            overflow-y: auto;
-            padding: 5px 15px 0;
-            margin: 0;
-            list-style-type: none;}
-        .modal_products li {
-            padding: 20px 0;}
-        .modal_products img {
-            height: 100px;
-            width: 100%;
-            margin: 0 auto 20px;
-            display: block;
-            object-fit: contain;}
-        .modal_img {
-            display: block;}
-        .flex-center-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;}
-        .product-title {
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 16px;
-            padding-right: 15px;
-            color: #000000;}
-        .product-price {
-            font-size: 20px;
-            line-height: 20px;
-            color: #000000;
-            letter-spacing: 0.05em;}
-        </style>`);
-        $('body').eq(0).append(`
-        <div class="modal">
-            <div class="modal_container">
-                <div class="modal_top">
-                    <button type="button" class="close"></button>
-                    <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
-                    <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
-                    <ul class="modal_products"></ul>
-                </div>
-                <div class="notification">
-                    <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
-                    <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
-                </div>
-                <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
-            </div> 
-        </div>`);
-
-        let basketList = JSON.parse(localStorage.getItem('basketList'));
-        for (let i = 0; i < basketList.length; i++) {
-            $('.modal_products').append(`
-            <li>
-                <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
-                <div class="flex-center-between">
-                    <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
-                    <p class="product-price">${basketList[i].price}</p>
-                </div>
-            </li>`);
-            if (document.querySelectorAll('.modal_img img')[i]){
-                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
-                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
-            }
-        }
-
-       
-
-        jQuery(document).on('touchstart', function(){
-            $('body').addClass('on-mobile-device');
-        });
-
-        function myScrollSpeedFunction(){
-            if(jQuery('body').hasClass('on-mobile-device') ){
-                if(my_scroll() < -200){
-                    if (!sessionStorage.getItem('modal')) {
-                        $(".modal").addClass('active');
-                        sessionStorage.setItem('modal', '');
+                document.querySelector('.page-title-wrapper').insertAdjacentHTML('afterend', `<div class="product-options"></div>`);
+                document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
+                document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
+                document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
+                document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
+                document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
+                document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
+                document.querySelector('.product-options .price-label').innerHTML = 'From';
+                if (document.querySelector('.product-delivery-date')) {
+                    document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
+                }
+                let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
+                for (let i = 0; i < option.length; i++) {
+                    if (!option[i].classList.contains('unit-select')) {
+                        document.querySelector('.option-after').before(option[i]);
                     }
                 }
-            }
-        }
-
-        var my_scroll = (function() {
-            var last_position, new_position, timer, delta, delay = 50;
-
-            function clear() {
-                last_position = null;
-                delta = 0;
-            }
-
-            clear();
-
-            return function(){
-                new_position = window.scrollY;
-                if (last_position != null){
-                    delta = new_position -  last_position;
-                }
-                last_position = new_position;
-                clearTimeout(timer);
-                timer = setTimeout(clear, delay);
-                return delta;
-            };
-        })();
-        $(".modal").on('click', (e) => {
-            e.stopImmediatePropagation();
-            $('.modal').removeClass('active');
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup',
-                'eventAction': `click on the background to close popup`
-            });
-        });
-        $(".close").on('click', (e) => {
-            e.stopImmediatePropagation();
-            $('.modal').removeClass('active');
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup',
-                'eventAction': `click on X to close popup`
-            });
-        });
-        $(".modal_container").on('click', (e) => {
-            e.stopPropagation();
-        });
-        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            if (!sessionStorage.getItem('modal')) {
-                setTimeout(() => {
-                    $(".modal").addClass('active');
-                    sessionStorage.setItem('modal', '');
-                }, 20000);
-            }
-
-            function addEvent(obj, evt, fn) {
-                if (obj.addEventListener) {
-                    obj.addEventListener(evt, fn, false);
-                } else if (obj.attachEvent) {
-                    obj.attachEvent("on" + evt, fn);
-                }
-            }
-            if (window.matchMedia("(max-width: 1024px)").matches) {
-                jQuery(document).on('scroll', myScrollSpeedFunction);
-            } else {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (!sessionStorage.getItem('modal')) {
-                        if (evt.toElement == null && evt.relatedTarget == null) {
-                            $(".modal").addClass('active');
-                            sessionStorage.setItem('modal', '');
-                        };
-                    }
+                document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin','<span class="your-text">Your price: </span>');
+                document.querySelector('.options-fields').insertAdjacentHTML('beforebegin','<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
+                document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+                    el.insertAdjacentHTML('afterend',`<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
                 });
+                document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
+                    if (window.matchMedia("(max-width: 768px)").matches) {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                            'eventAction': 'Click on Get instant price button'
+                        });
+                    } else {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                            'eventAction': 'Click on Get instant price button'
+                        });
+                    }
+                    document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+                        if (el.value == '') {
+                            el.classList.remove('valid');
+                            el.classList.add('mage-error');
+                            el.closest('.control').querySelector('div.mage-error').style.display = 'block';
+                        } else {
+                            el.classList.remove('mage-error');
+                            el.classList.add('valid');
+                            el.closest('.control').querySelector('div.mage-error').style.display = 'none';
+                            if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
+                                e.target.hidden = true;
+                                document.querySelector('.options-fields').classList.add('active');
+                            }
+                        }
+                    });
+                });
+
+                document.querySelector('.options-fields #product-addtocart-button').addEventListener('click',() => {
+                    if (window.matchMedia("(max-width: 768px)").matches) {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                            'eventAction': 'Click on Add to basket new'
+                        });
+                    } else {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                            'eventAction': 'Click on Add to basket new'
+                        });
+                    }
+                })
             }
         }
-    }
-});
+    });
+};
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+if (window.matchMedia("(max-width: 768px)").matches) {
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'pdp_sizes_change_mobile');
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1885763,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'exit_intent_popup');
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP sizes change improvement mobile',
+        'eventAction': 'loaded'
+    });
+} else {
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'pdp_sizes_change_desktop');
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp - Exit-intent popup',
-    'eventAction': 'loaded'
-});
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP sizes change improvement desktop',
+        'eventAction': 'loaded'
+    });
+}
