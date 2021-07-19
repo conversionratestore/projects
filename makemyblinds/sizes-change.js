@@ -53,6 +53,8 @@ window.onload  = function () {
    .pill {
         float: initial!important;
         width: fit-content;
+        position: relative;
+        z-index: 2;
         margin: 0 auto;}
    ul.pill a {
         font-family: 'Overpass', sans-serif;
