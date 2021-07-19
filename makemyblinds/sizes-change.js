@@ -226,6 +226,17 @@ window.onload  = function () {
         float: left;
         width: fit-content;
     }
+    .product-delivery-date__fast-track {
+        flex: 1;
+        background-color: #6cc;
+        padding: 10px 18px;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        min-height: 51px;
+        margin-bottom: 15px;
+    }
 }
 @media screen and (min-width: 576px) {
     #product-options-wrapper .scaled-custom-field label:before {
@@ -242,6 +253,8 @@ window.onload  = function () {
     document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
     document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
     document.querySelector('.product-options .price-label').innerHTML = 'From';
+    document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
+
     let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
     for (let i = 0; i < option.length; i++) {
         if (!option[i].classList.contains('unit-select')) {
@@ -303,6 +316,7 @@ window.onload  = function () {
             });
         }
     })
+
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
