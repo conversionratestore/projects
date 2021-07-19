@@ -239,7 +239,7 @@ let mut = new MutationObserver(function (muts) {
         function myScrollSpeedFunction(){
             if(jQuery('body').hasClass('on-mobile-device') ){
                 if(my_scroll() < -200){
-                    if (!sessionStorage.getItem('modal')) {
+                    if (sessionStorage.getItem('modal') === null) {
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
                     }
@@ -292,7 +292,7 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            if (!sessionStorage.getItem('modal')) {
+            if (sessionStorage.getItem('modal') === null) {
                 setTimeout(() => {
                     $(".modal").addClass('active');
                     sessionStorage.setItem('modal', '');
@@ -310,7 +310,7 @@ let mut = new MutationObserver(function (muts) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
                 addEvent(document, 'mouseout', function(evt) {
-                    if (!sessionStorage.getItem('modal')) {
+                    if (sessionStorage.getItem('modal') === null) {
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             $(".modal").addClass('active');
                             sessionStorage.setItem('modal', '');
