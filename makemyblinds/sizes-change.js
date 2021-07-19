@@ -1,5 +1,5 @@
 window.onload  = function () {
-    document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
+    document.querySelectorAll('.spec-table__inner__table tr').forEach((el) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
             if (el.querySelector('td').innerHTML != 'Attic/Loft') {
                 document.body.insertAdjacentHTML('afterbegin', `
