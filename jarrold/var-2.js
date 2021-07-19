@@ -230,8 +230,6 @@ let mut = new MutationObserver(function (muts) {
             }
         }
 
-
-
         jQuery(document).on('touchstart', function(){
             $('body').addClass('on-mobile-device');
         });
@@ -286,6 +284,14 @@ let mut = new MutationObserver(function (muts) {
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp - Exit-intent popup',
                 'eventAction': `click on X to close popup`
+            });
+        });
+        $('.modal .btn').on('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': 'click on Complete your order now'
             });
         });
         $(".modal_container").on('click', (e) => {
