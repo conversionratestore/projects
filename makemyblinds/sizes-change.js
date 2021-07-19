@@ -220,7 +220,7 @@ window.onload  = function () {
     #product-options-wrapper .scaled-custom-field label:before {
         right: 34%; }
 }
-@media screen and (min-width: 360px) {
+@media screen and (max-width: 360px) {
     .product-options .btn {
         padding: 14px 10px;}
     .scaled-custom-field .control {
