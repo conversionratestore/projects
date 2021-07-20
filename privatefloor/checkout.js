@@ -55,6 +55,7 @@ $('body').prepend(`
         border-top: 1px solid #DEDEDE;
         padding: 24px 0 14px;
         display: flex;
+        align-items: center;
         justify-content: space-between;}
    #newAddressForm .btn {
         margin-left: auto;
@@ -97,12 +98,14 @@ $('body').prepend(`
         line-height: 12px;
         text-transform: uppercase;
         color: #2B2B2B;
+        padding: 0;
         display: flex;
+        height: fit-content;
         align-items: center;}
    .btn-back img {
         margin-right: 4px;
-        width: 4px;
-        height: 4px;}
+        width: 8px;
+        height: 8px;}
 </style>`);
 
 $('#billingPanel .form-block:first-child').prepend(`
@@ -153,13 +156,12 @@ $('.shipping-address .col-sm-12').eq(0).hide();
 $('.shipping-address').append(`
 <div class="checkout-footer">
     <button class="btn-back" type="button"><img src="https://conversionratestore.github.io/projects/privatefloor/img/arrow-left.svg" alt="arrow icon"> Back to shopping</button>
-    <button class="btn btn-primary ml-auto" type="button">Continue</button>
 </div>`);
+$('.shipping-address .checkout-footer').append($('#support-submit-link'));
 $('.checkout-head .toggle').on('click', function() {
     $('.registerPanel').toggleClass('active');
     $('.order-recipient').toggleClass('active');
 });
-
 
 $('#order-recipient .checkout-footer .btn').on('click', function() {
     if($('#order-recipient input').val() != '' && $('#order-recipient input').val() != isNaN) {
@@ -170,3 +172,18 @@ $('#order-recipient .checkout-footer .btn').on('click', function() {
         $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
     }
 });
+
+$('.shippingData').append(`
+<div class="your-order">
+    <h3 class="title-form2">Your Order</h3>
+    <div class="promocode">
+        <p class="promocode-item">Have promo code?</p>
+        <div class="promocode-drop">
+            <input type="text" placeholder="Enter your coupon code">
+            <button type="button">ok</button>
+        </div>
+    </div>
+</div>`);
+
+$(".your-order").append($('.prices'));
+$(".your-order").append();
