@@ -19,6 +19,8 @@ window.onload  = function () {
             font-size: 22px!important;
             line-height: 130%!important;
             text-align: center;
+            max-width: 346px;
+            margin: 0 auto 20px;
             color: #FFFFFF; }
     </style>`);
     document.querySelector('.js-iphone .js-heading.js-mobile h1').innerHTML = `Keep mosquitoes away `;
