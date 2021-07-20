@@ -1,8 +1,10 @@
-window.onload  = function () {
-    document.querySelectorAll('.spec-table__inner__table tr').forEach((el) => {
-        if (el.querySelector('th').innerHTML === 'Great For:') {
-            if (el.querySelector('td').innerHTML != 'Attic/Loft') {
-                document.body.insertAdjacentHTML('afterbegin', `
+let mut = new MutationObserver(function (muts) {
+    if(document.querySelector('.pill') && document.querySelectorAll('.spec-table__inner__table tr')) {
+        mut.disconnect();
+        document.querySelectorAll('.spec-table__inner__table tr').forEach((el) => {
+            if (el.querySelector('th').innerHTML === 'Great For:') {
+                if (el.querySelector('td').innerHTML != 'Attic/Loft') {
+                    document.body.insertAdjacentHTML('afterbegin', `
                 <style>
                     .wishlist-mobile-wrap {
                         display: none;}
@@ -235,82 +237,89 @@ window.onload  = function () {
                 }
                 </style>`);
 
-                document.querySelector('.page-title-wrapper').insertAdjacentHTML('afterend', `<div class="product-options"></div>`);
-                document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
-                document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
-                document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
-                document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
-                document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
-                document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
-                document.querySelector('.product-options .price-label').innerHTML = 'From';
-                if (document.querySelector('.product-delivery-date')) {
-                    document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
-                }
-                let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
-                for (let i = 0; i < option.length; i++) {
-                    if (!option[i].classList.contains('unit-select')) {
-                        document.querySelector('.option-after').before(option[i]);
+                    document.querySelector('.page-title-wrapper').insertAdjacentHTML('afterend', `<div class="product-options"></div>`);
+                    document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
+                    document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
+                    document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
+                    document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
+                    document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
+                    document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
+                    document.querySelector('.product-options .price-label').innerHTML = 'From';
+                    if (document.querySelector('.product-delivery-date')) {
+                        document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
                     }
-                }
-                document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin', '<span class="your-text">Your price: </span>');
-                document.querySelector('.options-fields').insertAdjacentHTML('beforebegin', '<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
-                document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
-                    el.insertAdjacentHTML('afterend', `<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
-                });
-                document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
-                    if (window.matchMedia("(max-width: 768px)").matches) {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — PDP sizes change improvement mobile',
-                            'eventAction': 'Click on Get instant price button'
-                        });
-                    } else {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — PDP sizes change improvement desktop',
-                            'eventAction': 'Click on Get instant price button'
-                        });
-                    }
-                    document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
-                        if (el.value == '') {
-                            el.classList.remove('valid');
-                            el.classList.add('mage-error');
-                            el.closest('.control').querySelector('div.mage-error').style.display = 'block';
-                        } else {
-                            el.classList.remove('mage-error');
-                            el.classList.add('valid');
-                            el.closest('.control').querySelector('div.mage-error').style.display = 'none';
-                            if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
-                                e.target.hidden = true;
-                                document.querySelector('.options-fields').classList.add('active');
-                            }
+                    let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
+                    for (let i = 0; i < option.length; i++) {
+                        if (!option[i].classList.contains('unit-select')) {
+                            document.querySelector('.option-after').before(option[i]);
                         }
-                    });
-                });
-
-                document.querySelector('.options-fields #product-addtocart-button').addEventListener('click', () => {
-                    if (window.matchMedia("(max-width: 768px)").matches) {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — PDP sizes change improvement mobile',
-                            'eventAction': 'Click on Add to basket new'
-                        });
-                    } else {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — PDP sizes change improvement desktop',
-                            'eventAction': 'Click on Add to basket new'
-                        });
                     }
-                })
+                    document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin', '<span class="your-text">Your price: </span>');
+                    document.querySelector('.options-fields').insertAdjacentHTML('beforebegin', '<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
+                    document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+                        el.insertAdjacentHTML('afterend', `<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
+                    });
+                    document.querySelector('.btn-get-instant').addEventListener('click', (e) => {
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                                'eventAction': 'Click on Get instant price button'
+                            });
+                        } else {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                                'eventAction': 'Click on Get instant price button'
+                            });
+                        }
+                        document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
+                            if (el.value == '') {
+                                el.classList.remove('valid');
+                                el.classList.add('mage-error');
+                                el.closest('.control').querySelector('div.mage-error').style.display = 'block';
+                            } else {
+                                el.classList.remove('mage-error');
+                                el.classList.add('valid');
+                                el.closest('.control').querySelector('div.mage-error').style.display = 'none';
+                                if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
+                                    e.target.hidden = true;
+                                    document.querySelector('.options-fields').classList.add('active');
+                                }
+                            }
+                        });
+                    });
+
+                    document.querySelector('.options-fields #product-addtocart-button').addEventListener('click', () => {
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp — PDP sizes change improvement mobile',
+                                'eventAction': 'Click on Add to basket new'
+                            });
+                        } else {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp — PDP sizes change improvement desktop',
+                                'eventAction': 'Click on Add to basket new'
+                            });
+                        }
+                    })
+                }
             }
-        }
-    });
-};
+        });
+    }
+
+});
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     (function(h,o,t,j,a,r){
