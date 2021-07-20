@@ -1,6 +1,6 @@
 $('body').prepend(`
 <style>
-    .sub-title-form, .registerPanel, .order-recipient  {
+    .sub-title-form, .registerPanel, .order-recipient, .shipping-address  {
         display: none;}
     .line-vert {
         border: 0;
@@ -91,6 +91,18 @@ $('body').prepend(`
         font-size: 14px;
         line-height: 16px;
         color: #2B2B2B;}
+   .btn-back {
+        border-bottom: 1px solid #2B2B2B;
+        font-size: 9px;
+        line-height: 12px;
+        text-transform: uppercase;
+        color: #2B2B2B;
+        display: flex;
+        align-items: center;}
+   .btn-back img {
+        margin-right: 4px;
+        width: 4px;
+        height: 4px;}
 </style>`);
 
 $('#billingPanel .form-block:first-child').prepend(`
@@ -130,8 +142,31 @@ $('.registerPanel').prepend(`
     <h3 class="title-form2">Log In</h3>
     <p class="small-text">Alredy doesn't have an account? <span class="underline toggle"> Sign Up</span> </p>
 </div>`);
-// $('.').prepend(`<div class="shipping-address"></div>`);
-$('.checkout-head .toggle').on('click', () => {
+$('#registerPanel').after(`<div class="shipping-address" id="shipping-address"></div>`);
+
+$('.shipping-address').append($('.form-block').eq(1));
+$('.shipping-address').append($('#shippingPanelSummary'));
+$('.shipping-address').append($('.form-group.clearfix'));
+$('.shipping-address').append($('.conditionsAccept'));
+$('.shipping-address .col-sm-12').eq(0).hide();
+
+$('.shipping-address').append(`
+<div class="checkout-footer">
+    <button class="btn-back" type="button"><img src="https://conversionratestore.github.io/projects/privatefloor/img/arrow-left.svg" alt="arrow icon"> Back to shopping</button>
+    <button class="btn btn-primary ml-auto" type="button">Continue</button>
+</div>`);
+$('.checkout-head .toggle').on('click', function() {
     $('.registerPanel').toggleClass('active');
     $('.order-recipient').toggleClass('active');
+});
+
+
+$('#order-recipient .checkout-footer .btn').on('click', function() {
+    if($('#order-recipient input').val() != '' && $('#order-recipient input').val() != isNaN) {
+        $('#order-recipient').css('display','none');
+        $('.express-checkout').css('display','none');
+        $('#shipping-address').css('display','block');
+        $('.cart-steps__main-block .step.step-active').removeClass('step-active');
+        $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
+    }
 });
