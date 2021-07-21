@@ -1,12 +1,12 @@
-let style = `
+document.body.insertAdjacentHTML('afterbegin', `
     <style>
+        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img {
+            display: none;}
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0; }
         input[type=number] {
             -moz-appearance: textfield;}
-        .left {
-            display: none;}
         .checkout-left h2.title, .checkout-left .title{
             padding-left: 0;}
         h2.title, .title {
@@ -19,7 +19,7 @@ let style = `
         button {
             border: none;
             cursor: pointer;}
-        .btn {
+        .btn, #login_btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
             background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
             border: 0.5px solid #780F11;
             border-radius: 4px;
@@ -33,15 +33,25 @@ let style = `
             display: flex;
             justify-content: center;
             align-items: center;}
+        #step1_form div[align="right"] input {
+            max-width: 224px!important;
+            padding: 0;
+            width: 100%;
+            margin: 0!important;}
+        #step1_form div[align="right"] {
+            margin: 30px 0 0 0!important;
+            clear: both;
+            position: relative;}
+        .address_book_new .small_block .head2 {
+            font-size: 12px!important;}
         .btn.big {
             font-size: 24px;
             width: 100%;
             line-height: 49px;}
         .btn img {
             margin-left: 5px;}
-        .payment {
-            padding-top: 40px;
-            width: calc(100% - 20px);}
+        #mainbody {
+            padding-top: 40px;}
         h3.title3, .title3 {
             text-align: left;
             font-weight: 600;
@@ -50,6 +60,7 @@ let style = `
             text-transform: capitalize;
             color: #222222}
         .quantity-btn {
+            display: none;
             font-size: 18px;
             line-height: 22px;
             text-align: center;
@@ -57,6 +68,8 @@ let style = `
             background-color: transparent;
             color: #666666;
             padding: 2px 0;}
+        #mainbody .quantity-btn  {
+            display: block;}
         .quantity-btn[disabled] {
             color: #CCCCCC;}
         .quantity {
@@ -76,14 +89,12 @@ let style = `
             width: 25px;}
         .checkout-product .quantity-btn {
             width: 25px;}
-        .quantity-row {
+        #mainbody .quantity-row {
+            padding-left: 0 ;
             display: flex;}
         .checkout-left {
             max-width: 542px;
             padding: 0;
-            // display: grid;
-            // justify-content: space-between;
-            // grid-template-rows: 0fr 0fr 1fr;
             width: calc(100% - 304px);}
         .checkout-left .form {
             display: none;}
@@ -146,16 +157,28 @@ let style = `
             flex-wrap: wrap;}
         .form-col {
             min-width: 224px;}
-        .form-name {
+        .myAccount label, #editor_fields label {
             font-weight: normal;
             font-size: 12px;
             line-height: 14px;
             margin-bottom: 10px;
             display: block;
             color: #CCCCCC;}
-        .form-input {
+        .myAccount {
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;}
+        .myAccountright {
+            display: none;
+            width: 100%; }
+        .myAccountleft {
+            width: 100%; }
+        .registerOnLogin {
+            padding: 0;}
+        .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select {
             width: -webkit-fill-available;
             background: #EDEDED;
+            height: auto;
             border: 0.5px solid #CCCCCC;
             font-style: normal;
             font-weight: normal;
@@ -163,8 +186,10 @@ let style = `
             line-height: 20px;
             color: #666666;
             padding: 9px 10px;
+            margin-bottom: 20px;
             border-radius: 4px;}
         .checkout-right_head {
+            padding: 22px 0 15px;
             border-bottom: 0.5px solid #CCCCCC;}
         .checkout-right_head .link {
             font-weight: 600;
@@ -223,7 +248,7 @@ let style = `
             font-size: 18px;
             line-height: 22px;
             color: #000000;}   
-        .form-input::-webkit-input-placeholder, .form-input:-moz-placeholder, .form-input::-moz-placeholder, .form-input:-ms-input-placeholder {
+        input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {
             font-size: 16px;
             line-height: 20px;
             color: #666666;
@@ -286,19 +311,19 @@ let style = `
             background-size: 25px;}
         .select.small select{
             padding: 4px 10px;}
-        .checkbox {
-            display: none;}
+        [type="checkbox"], #make_primary[type="checkbox"] {
+            display: none!important;}
         .check {
             background: #EDEDED no-repeat center / 80%;
             border: 0.5px solid #CCCCCC;
             display: block;
-            margin: 0 8px 0 30px;
+            margin: 0 8px 0 0;
             width: 20px;
             height: 20px;}
-        .checkbox:checked ~ .check {
+        [type="checkbox"]:checked ~ .check {
             background-image: url('https://i.ibb.co/Tm0B3v0/Vector.png');}
         .check+span {
-            font-weight: 450;
+            color: #222222;
             font-size: 14px;
             line-height: 17px;}
         .promotional-code input {
@@ -385,7 +410,7 @@ let style = `
             line-height: 15px;
             color: #000000;}
         .valign-center {
-            display: flex;
+            display: flex!important;
             align-items: center;}
         .p-0 {
             padding: 0!important;}
@@ -401,278 +426,136 @@ let style = `
             margin-left: 0!important;}
         .mr-10 {
             margin-right: 10px;}
-    </style>
-`
+        .registerOnLogin {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; }
+        .registerOnLogin dd {
+            padding: 0!important;
+            margin-bottom: 20px;
+            width: 50%;
+            max-width: 224px; }
+        .myAccountleft .registerOnLogin button {
+            background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+            border: none;
+            border-radius: 4px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 42px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-transform: capitalize;
+            color: #FFFFFF;
+            padding: 0 30px;
+            position: relative;}
+        .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after {
+            content: '';
+            margin-left: 4px;
+            background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
+            width: 24px;
+            height: 24px; }
+        #step1_form div[align="right"]:after {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;}
+        .address_book_new .small_block {
+            width: 50%!important;
+            clear: both;
+            max-width: 224px; }
+        .address_book_new .ship_small {
+            margin-left: 0!important;}
+        .address_book_new .small_block .radio_content {
+            z-index: 2;}
+        .address_book_new .small_block .head {
+            display: none; } 
+        .editor_left, .editor_right {
+            display: flex!important;
+            flex-wrap: wrap;
+            justify-content: space-between; 
+            width: 100%!important;}
+        .editor_left div, .editor_right div{
+            width: 100%;
+            max-width: 224px;}
+        .address_book_new .editor .editor_right {
+            margin-top: 20px;
+            padding-left: 0!important;}
+        #step1_form {
+            padding-bottom: 20px;}
+        .address_book_new .small_block .radio_content .radio_cont .edit {
+            padding-top: 0;}
+    </style>`);
 
-document.body.insertAdjacentHTML('afterbegin', style);
+let step = `
+<div class="flex-center-between">
+    <div class="step active">
+        <div class="step-circle">1</div>
+        <p class="step-text">Personal information</p>
+    </div>
+    <div class="step">
+        <div class="step-circle">2</div>
+        <p class="step-text">Shipping information</p>
+    </div>
+</div>`;
 
-let checkout = `
+document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
 <div class="flex-between">
     <div class="checkout-left">
         <div class="checkout-left_head flex-center-between">
             <h2 class="title">New client</h2>
-            <a href="#" class="link">Returning client</a>
+            <p class="link log active">Returning client</p>
         </div>
-        <div class="flex-center-between">
-            <div class="step active">
-                <div class="step-circle">1</div>
-                <p class="step-text">Personal information</p>
-            </div>
-            <div class="step">
-                <div class="step-circle">2</div>
-                <p class="step-text">Shipping information</p>
-            </div>
-        </div>
-        <form class="form active">
-            <div class="form-row">
-                <div class="form-col">
-                    <label class="form-name">Your Name*</label>
-                    <input type="text" placeholder="Name" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Email*</label>
-                    <input type="email" placeholder="email@mail.com" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Your Surname*</label>
-                    <input type="text" placeholder="Surname" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Password*</label>
-                    <div class="relative">
-                        <input type="password" class="form-input" required>
-                        <button class="btn-eye" type="button"></button>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-auto">     
-                <button type="submit" class="btn">Choose Shipping Method <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="arrow"></button>
-            </div>
-        </form>
-        <form class="form ">
-            <h3 class="title3 pb-0">Shipping info</h3>
-            <div class="form-row">
-                <div class="form-col">
-                    <label class="form-name">Country*</label>
-                    <div class="select">
-                        <select class="" id="state" onchange="if (!window.__cfRLUnblockHandlers) return false; onChangeField(this);">
-                            <option value="Select State" selected style="color: #666666;opacity: 0.5;">Select State</option>
-                            <option value="AL">ALABAMA</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Adress line*</label>
-                    <input type="email" placeholder="email@mail.com" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">State* (Only applicable to US)</label>
-                    <input type="text" placeholder="State" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Zip / Postal Code*</label>
-                    <input type="text" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">City*</label>
-                    <input type="text" placeholder="City" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Phone*</label>
-                    <input type="text" class="form-input" required>
-                </div>
-            </div>
-            <div class="mt-auto">
-                <button type="submit" class="btn">Next <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="arrow"></button>
-            </div>
-        </form>
-        <form class="form">
-            <div class="valign-center pt-3">
-                <h3 class="title3 p-0">Billing info</h3>
-                <label class="valign-center">
-                    <input type="checkbox" class="checkbox">
-                    <span class="check"></span>
-                    <span>Copy from Shipping info</span>
-                </label>
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <label class="form-name">Country*</label>
-                    <div class="select">
-                        <select class="" id="state" onchange="if (!window.__cfRLUnblockHandlers) return false; onChangeField(this);">
-                            <option value="Select State" selected style="color: #666666;opacity: 0.5;">Select State</option>
-                            <option value="AL">ALABAMA</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Adress line*</label>
-                    <input type="email" placeholder="email@mail.com" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">State* (Only applicable to US)</label>
-                    <input type="text" placeholder="State" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Zip / Postal Code*</label>
-                    <input type="text" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">City*</label>
-                    <input type="text" placeholder="City" class="form-input" required>
-                </div>
-                <div class="form-col">
-                    <label class="form-name">Phone*</label>
-                    <input type="text" class="form-input" required>
-                </div>
-            </div>
-            <div class="mt-auto">
-                <button type="submit" class="btn">Next <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="arrow"></button>
-            </div>
-        </form>
-        <form class="form">
-            <h3 class="title3">Delivery Method</h3>
-            <div class="delivery-methods">
-                <label class="valign-center">
-                    <input type="radio" name="radio-delivery-method" class="checkbox" checked>
-                    <span class="radio"></span>
-                    <span>
-                        <span class="c-red"> Standard:</span>       
-                        <span class="price">$8.49</span> 
-                        (Free if your order total is more than $400)
-                    </span>
-                </label>
-                <label class="valign-center">
-                    <input type="radio" name="radio-delivery-method" class="checkbox">
-                    <span class="radio"></span>
-                    <span>
-                        <span class="c-red">3 Business Days:</span>       
-                        <span class="price">$18.49</span> 
-                    </span>
-                </label>
-                <label class="valign-center">
-                    <input type="radio" name="radio-delivery-method" class="checkbox">
-                    <span class="radio"></span>
-                    <span>
-                        <span class="c-red">2 Business Days:</span>       
-                        <span class="price">$35.00</span> 
-                    </span>
-                </label>
-                <label class="valign-center">
-                    <input type="radio" name="radio-delivery-method" class="checkbox">
-                    <span class="radio"></span>
-                    <span>
-                        <span class="c-red">Next Business Days:</span>       
-                        <span class="price">$56.00</span> 
-                    </span>
-                </label>
-            </div>
-            <div class="flex-center-between promotional-code">
-                <p><b>Promotional Code </b> (Optional):</p>
-                <input type="text" class="form-input">
-            </div>
-            <div class="mt-auto">
-                <button type="submit" class="btn">Next <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="arrow"></button>
-            </div>
-        </form>
-        <form class="form ">
-            <div class="valign-center pt-3">
-                <h3 class="title3">Card Details</h3>
-                <label class="valign-center">
-                    <input type="checkbox" class="checkbox">
-                    <span class="check"></span>
-                    <span>Remember my card for fututre transactions</span>
-                </label>
-            </div>
-            <div>
-                <div class="form-col max-385">
-                    <label class="form-name">Name on Card:*</label>
-                    <input type="text" class="form-input " required>
-                </div>
-                <div class="card">
-                    <label class="form-name">Credit/Debit card:*</label>
-                    <div class="flex-between">
-                        <img src="https://i.ibb.co/6wvN9NF/card-type.png" alt="card type">
-                        <input type="number" class="form-input input-number" placeholder="card number">
-                        <input type="number" class="form-input input-date" placeholder="mm/yy">
-                        <input type="number" class="form-input input-cvv" placeholder="cvv">
-                    </div>
-                </div>
-            </div>
-            <div class="form-col">
-                <label class="form-name">Comments on your order:</label>
-                <input type="text" class="form-input bg-none">
-            </div>
-            <h3 class="title3 pb-0">Easy and convenient period reordering</h3>
-            <p class="text-small">If you want to have your medical supplies reordered on a regular basis, use our reordering feature to place your order automatically and have it sent once per your preferred period.</p>
-            <div class="d-flex pt-3">
-                <label class="valign-center mr-10">
-                    <input type="checkbox" class="checkbox">
-                    <span class="check ml-0"></span>
-                    <span>Yes, please delivery my order every:</span>
-                </label>
-                <div class="select small">
-                    <select>
-                        <option value=""></option>
-                    </select>
-                </div>
-            </div>
-            <div class="mt-auto">
-                <button type="submit" class="btn big">Proceed</button>
-            </div>
-        </form>
     </div>
     <div class="checkout-right">
-        <div class="checkout-right_head flex-center-between">
-            <h3 class="title3">Your order</h3>
-            <a href="#" class="link">Returning client</a>
+        <div>
+            <div class="checkout-right_head flex-center-between">
+                <h3 class="title3">Your order</h3>
+                <a href="#" class="link">Returning client</a>
+            </div>
+            <div class="checkout-right_body"></div>
         </div>
-        <div class="checkout-right_body"> </div>
         <div class="checkout-right_footer">
             <div class="altTd total-headings">
                 <p><b>Sub Total:</b></p> 
-                <p><b>Shipping:</b></p> 
-                <p><b>Promocode:</b></p> 
                 <p><b>Grand Total:</b></p> 
             </div>
             <div class="altTd total-values">
-                <p>$ <b> ${justunoCart.subtotal }</b></p>   
-                <p>$ <b> ${justunoCart.subtotal }</b></p>
-                <p>- $ <b> ${justunoCart.subtotal }</b></p>   
-                <p>$ <b> ${justunoCart.total }</b></p>
+                <p>$ <b></b></p>   
+                <p>$ <b></b></p>
             </div>
         </div>
     </div>
-</div>
-`
+</div>`);
 
-document.querySelector('.payment').insertAdjacentHTML('afterbegin', checkout);
-
-for (let i = 0; i < justunoCartItems.length; i++) {
-    let product = `
-        <div class="d-flex checkout-product">
-            <a href="#" class="checkout-product_img"> <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/159009020613764049015ec6d9de9200c.jpg" alt="Image Of ${justunoCartItems[i].name}"></a>
-            <div class="flex-column">
-                <div class="flex-between">
-                    <a href="#">${justunoCartItems[i].name}</a>
-                    <button class="remove" type="button"></button>
-                </div>
-                <div class="flex-center-between">
-                    <div class="quantity-row">
-                        <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                        <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
-                        <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+if(localStorage.getItem('productsStored')) {
+    let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+    for (let i = 0; i < justunoCartItems.length; i++) {
+        let product = `
+            <div class="d-flex checkout-product">
+                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
+                <div class="flex-column">
+                    <div class="flex-between">
+                        <a href="#">${justunoCartItems[i].title}</a>
+                        <button class="remove" type="button"></button>
                     </div>
-                    <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                        <b>${justunoCartItems[i].price}</b>
+                    <div class="flex-center-between">
+                        <div class="quantity-row">
+                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                        </div>
+                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
+                            <b>${justunoCartItems[i].price}</b>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    `
-    document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);   
+        `
+        document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+    }
 }
-
 document.querySelectorAll('.remove').forEach((item, index) => {
     item.addEventListener('click', () => {
         item.closest('.checkout-product').remove();
@@ -682,16 +565,16 @@ document.querySelectorAll('.remove').forEach((item, index) => {
 });
 
 function sumTotalPrice() {
-    let sum = 0;  
+    let sum = 0;
     document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
         sum += parseFloat(totalPrice.innerHTML);
         document.querySelectorAll('.total-values b').forEach((totalValues) => {
             totalValues.innerHTML = `${sum.toFixed(2)}`;
         });
-        justunoCart.total = sum.toFixed(2);
-        justunoCart.subtotal = sum.toFixed(2);
     });
 }
+
+sumTotalPrice();
 
 document.querySelectorAll('.quantity-row').forEach((quantity) => {
     quantity.querySelectorAll('.quantity-btn').forEach((button) => {
@@ -706,7 +589,7 @@ document.querySelectorAll('.quantity-row').forEach((quantity) => {
                     button.disabled = true;
                 } else {
                     button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                } 
+                }
             }
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
             sumTotalPrice();
@@ -724,3 +607,73 @@ document.querySelectorAll('.btn-eye').forEach((item) => {
         item.previousElementSibling.setAttribute('type', type);
     });
 });
+if (document.querySelector('.myAccount')) {
+
+    document.querySelector('.checkout-left_head').after(document.querySelector('.myAccount'));
+    document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
+    <label class="valign-center">
+        <span class="check"></span>
+        <span>Email Me Order Updates and Specials</span>
+    </label>`);
+    document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
+    document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
+    document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
+    document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Register Now!`;
+    document.querySelector('#login_btn').innerHTML = `LOGIN`;
+    document.querySelector('.log').addEventListener('click', (e) => {
+        let _this = e.target;
+        _this.classList.toggle('active');
+        if (_this.classList.contains('active')) {
+            _this.innerHTML = 'Returning client';
+            document.querySelector('.myAccountright').style.display = 'none';
+            document.querySelector('.myAccountleft').style.display = 'block';
+        } else {
+            _this.innerHTML = 'Returning new client';
+            document.querySelector('.myAccountleft').style.display = 'none';
+            document.querySelector('.myAccountright').style.display = 'block';
+        }
+    });
+}
+if (location.pathname == '/checkout/step1') {
+    let productsStored = [];
+    document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+        productsStored.push({
+            'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+            'quantity': el.closest('tr').querySelector('.product-quantity').value,
+            'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+            'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+            'img_src': el.querySelector('a img').getAttribute('src'),
+            'link': el.querySelector('.product-description a').getAttribute('href'),
+            'title': el.querySelector('.product-description a').innerHTML,
+        });
+        localStorage.setItem('productsStored', JSON.stringify(productsStored));
+    });
+
+    document.querySelector('.payment').style.display = 'none';
+    document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
+    document.querySelectorAll('.step')[0].classList.remove('active');
+    document.querySelectorAll('.step')[1].classList.add('active');
+    document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+    document.querySelector('.checkout-left_head .log ').style.display = 'none';
+    document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
+    document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+    document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+    document.querySelectorAll('#step1_form div[align="right"] input')[1].setAttribute('type','button');
+    document.querySelectorAll('#step1_form div[align="right"] input')[1].value = 'Next';
+    document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+}
+if(location.pathname == '/checkout/step2') {
+    document.body.insertAdjacentHTML('afterbegin', `
+    <style>
+    .payment h3 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        text-transform: capitalize;
+        color: #222222;
+        border-bottom: 0.5px solid #CCCCCC;
+    }
+    </style>`);
+    document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
+    document.querySelector('.payment h3').insertAdjacentHTML('afterend', step);
+}
