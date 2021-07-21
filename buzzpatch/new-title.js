@@ -24,7 +24,7 @@ window.onload  = function () {
             color: #FFFFFF; }
     </style>`);
     document.querySelector('.js-iphone .js-heading.js-mobile h1').innerHTML = `Keep mosquitoes away `;
-    document.querySelector('.js-iphone .js-heading.js-mobile h1').insertAdjacentHTML('afterend',`<p class="title-span">For up to 72 hours with natural anti-mosquitoes patches</p>`)
+    document.querySelector('.js-iphone .js-heading.js-mobile h1').insertAdjacentHTML('afterend',`<p class="title-span">For up to 72 hours with natural<br>anti-mosquitoes patches</p>`)
 };
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
