@@ -1,6 +1,6 @@
 document.body.insertAdjacentHTML('afterbegin', `
     <style>
-        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment {
+        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
             display: none;}
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -53,7 +53,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         .btn img {
             margin-left: 5px;}
         #mainbody {
-            padding-top: 40px;}
+            padding: 40px 0;}
         h3.title3, .title3 {
             text-align: left;
             font-weight: 600;
@@ -665,14 +665,16 @@ if (location.pathname == '/checkout/step1') {
     document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
     document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
     document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-    document.querySelectorAll('#step1_form div[align="right"] input')[1].setAttribute('type','button');
-    document.querySelectorAll('#step1_form div[align="right"] input')[1].value = 'Next';
+
     document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
+    document.querySelector('.btn.big').addEventListener('click', () => {
+        document.querySelector('form div[align="right"] input').click();
+    });
 }
 if(location.pathname == '/checkout/step2') {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
-    
     .altPayment, #mainbody .checkout-left_head {
         display: none;}
     .primaryInfo {
@@ -714,8 +716,6 @@ if(location.pathname == '/checkout/step2') {
         max-width: 270px;}
     .promocode-block i {
         font-size: 14px; }
-    form div[align="right"] input{
-        padding-right: 0!important;}
     .primaryInfo .title{
         padding-top: 14px;
         font-size: 18px;
@@ -732,13 +732,56 @@ if(location.pathname == '/checkout/step2') {
     document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
     document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
-    document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'));
+    document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
+    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
+    document.querySelector('.btn.big').addEventListener('click', () => {
+        document.querySelector('form div[align="right"] input').click();
+    });
 }
 if(location.pathname == '/checkout/step3') {
     document.body.insertAdjacentHTML('afterbegin',`<style>
         .payment h3, .checkout-left_head .link  {
             display: none;}
+        .primaryInfo {
+            font-family: 'Arial', sans-serif;
+            width: 100%;
+            border: none;}
+        .primaryInfo dl {
+            width: 100%;
+            margin: 0;}
+        .primaryInfo div{
+            margin-left: 0!important; }
+        div.cc-recurring {
+            padding: 10px 0;}
+        .primaryInfo dl dd {
+            font-family: 'Arial', sans-serif; }
+        .primaryInfo dl input, .primaryInfo dl textarea {
+            background: #EDEDED;
+            border: 0.5px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 11px 20px; }
+        primaryInfo dl textarea {
+            height: 40px;}
+        #recurring_billing_period {
+                padding: 0 10px;
+            background: #EDEDED;
+            border: 0.5px solid #CCCCCC;
+            box-sizing: border-box;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 4px;
+            width: 160px!important;}
+        .cc-recurring-setting {
+            font-weight: 500;
+            font-size: 14px; }
+        .allow-up-to-60 {
+            white-space: break-spaces; }
     </style>`);
     document.querySelector('.checkout-left_head .title').innerHTML = 'Credit Card Information';
     document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+
+    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
+    document.querySelector('.btn.big').addEventListener('click', () => {
+        document.querySelector('form div[align="right"] input').click();
+    });
 }
