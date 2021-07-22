@@ -527,7 +527,7 @@ window.onload  = function () {
             <div>
                 <div class="checkout-right_head flex-center-between">
                     <h3 class="title3">Your order</h3>
-                    <a href="#" class="link">Returning client</a>
+<!--                    <a href="#" class="link">Returning client</a>-->
                 </div>
                 <div class="checkout-right_body"></div>
             </div>
