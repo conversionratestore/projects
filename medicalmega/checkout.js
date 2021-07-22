@@ -100,6 +100,8 @@ window.onload  = function () {
             padding-left: 0 ;
             display: flex;}
         .checkout-left {
+            display: flex;
+            flex-direction: column;
             max-width: 542px;
             padding: 0;
             width: calc(100% - 304px);}
@@ -461,6 +463,7 @@ window.onload  = function () {
         .btn-next  {
             max-width: 224px;
             margin-left: auto;
+            margin-top: auto;
             width: 100%;}
         .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
             content: '';
