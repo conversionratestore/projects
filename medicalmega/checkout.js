@@ -45,6 +45,8 @@ window.onload  = function () {
             margin: 30px 0 0 0!important;
             clear: both;
             position: relative;}
+        #step1_form div.copy_bill[align="right"] {
+            margin-top: 0!important;}
         .address_book_new .small_block .head2 {
             font-size: 12px!important;}
         .btn.big {
