@@ -438,6 +438,7 @@ window.onload  = function () {
             width: 50%;
             max-width: 224px; }
         .myAccountleft .registerOnLogin button {
+            width: 100%;
             background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
             border: none;
             border-radius: 4px;
@@ -452,6 +453,8 @@ window.onload  = function () {
             color: #FFFFFF;
             padding: 0 30px;
             position: relative;}
+        .myAccountleft .registerOnLogin dd:last-child {
+            margin-left: auto;}
         .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
             content: '';
             margin-left: 4px;
