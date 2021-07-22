@@ -457,6 +457,10 @@ window.onload  = function () {
             position: relative;}
         .myAccountleft .registerOnLogin dd:last-child {
             margin-left: auto;}
+        .btn-next  {
+            max-width: 224px;
+            margin-left: auto;
+            width: 100%;}
         .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
             content: '';
             margin-left: 4px;
@@ -673,7 +677,7 @@ window.onload  = function () {
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
 
         document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
+        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
         document.querySelector('.btn.big').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
