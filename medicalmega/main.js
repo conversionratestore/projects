@@ -627,7 +627,7 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
 
-    if (document.querySelector('.by_num span').innerHTML == '0') {
+    if (document.querySelector('.by_num span').innerHTML == '0' && document.querySelector('.by_num span')) {
         localStorage.setItem('productsStored', '');
     }
     if (document.querySelector('.by_num span').innerHTML != '0') {
