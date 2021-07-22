@@ -209,7 +209,6 @@ window.onload  = function () {
             padding: 0 20px;
             border-radius: 4px;}
         .checkout-right_body {
-            max-height: 308px;
             margin: 10px -10px 0 0;
             padding: 5px 10px 15px 0;
             overflow-y: auto;
@@ -677,7 +676,6 @@ window.onload  = function () {
         document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
         document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-
         document.querySelector('.bill_small').parentElement.classList.add('flex-between');
         document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
         document.querySelector('.btn.big').addEventListener('click', () => {
