@@ -716,6 +716,8 @@ window.onload  = function () {
         font-size: 18px;
         color: #222222;
         padding: 0;}
+    .primaryInfo li p {
+        line-height: 1;}
     .primaryInfo li input {
         width: 20px;
         height: 20px; }
@@ -753,8 +755,8 @@ window.onload  = function () {
 
         document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
         document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
-        document.querySelector('.btn.big').addEventListener('click', () => {
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
+        document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
     }
