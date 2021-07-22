@@ -1,4 +1,5 @@
-document.body.insertAdjacentHTML('afterbegin', `
+window.onload  = function () {
+    document.body.insertAdjacentHTML('afterbegin', `
     <style>
         .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
             display: none;}
@@ -785,3 +786,4 @@ if(location.pathname == '/checkout/step3') {
         document.querySelector('form div[align="right"] input').click();
     });
 }
+};
