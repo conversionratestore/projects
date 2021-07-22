@@ -591,7 +591,6 @@ window.onload  = function () {
         });
     });
 
-
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
         quantity.querySelectorAll('.quantity-btn').forEach((button) => {
             button.addEventListener('click', () => {
@@ -688,6 +687,10 @@ window.onload  = function () {
     if(location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
+    .quantity-row {
+        pointer-events: none;}
+    .remove, #mainbody .quantity-btn {
+        display: none;}
     .primaryInfo li {
         display: flex;
         align-items: center;}
