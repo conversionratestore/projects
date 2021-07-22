@@ -689,8 +689,10 @@ window.onload  = function () {
     <style>
     .quantity-row {
         pointer-events: none;}
-    .remove, #mainbody .quantity-btn {
-        display: none;}
+    .remove{
+        display: none}
+    #mainbody .quantity-btn {
+        opacity: 0.3;}
     .primaryInfo li {
         display: flex;
         align-items: center;}
