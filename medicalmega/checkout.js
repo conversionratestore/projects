@@ -504,45 +504,45 @@ window.onload  = function () {
     </style>`);
 
     let step = `
-<div class="flex-center-between">
-    <div class="step active">
-        <div class="step-circle">1</div>
-        <p class="step-text">Personal information</p>
-    </div>
-    <div class="step">
-        <div class="step-circle">2</div>
-        <p class="step-text">Shipping information</p>
-    </div>
-</div>`;
+    <div class="flex-center-between">
+        <div class="step active">
+            <div class="step-circle">1</div>
+            <p class="step-text">Personal information</p>
+        </div>
+        <div class="step">
+            <div class="step-circle">2</div>
+            <p class="step-text">Shipping information</p>
+        </div>
+    </div>`;
 
     document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
-<div class="flex-between">
-    <div class="checkout-left">
-        <div class="checkout-left_head flex-center-between">
-            <h2 class="title">New client</h2>
-            <p class="link log active">Returning client</p>
-        </div>
-    </div>
-    <div class="checkout-right">
-        <div>
-            <div class="checkout-right_head flex-center-between">
-                <h3 class="title3">Your order</h3>
-                <a href="#" class="link">Returning client</a>
-            </div>
-            <div class="checkout-right_body"></div>
-        </div>
-        <div class="checkout-right_footer">
-            <div class="altTd total-headings">
-                <p><b>Sub Total:</b></p> 
-                <p><b>Grand Total:</b></p> 
-            </div>
-            <div class="altTd total-values">
-                <p>$ <b></b></p>   
-                <p>$ <b></b></p>
+    <div class="flex-between">
+        <div class="checkout-left">
+            <div class="checkout-left_head flex-center-between">
+                <h2 class="title">New client</h2>
+                <p class="link log active">Returning client</p>
             </div>
         </div>
-    </div>
-</div>`);
+        <div class="checkout-right">
+            <div>
+                <div class="checkout-right_head flex-center-between">
+                    <h3 class="title3">Your order</h3>
+                    <a href="#" class="link">Returning client</a>
+                </div>
+                <div class="checkout-right_body"></div>
+            </div>
+            <div class="checkout-right_footer">
+                <div class="altTd total-headings">
+                    <p><b>Sub Total:</b></p> 
+                    <p><b>Grand Total:</b></p> 
+                </div>
+                <div class="altTd total-values">
+                    <p>$ <b></b></p>   
+                    <p>$ <b></b></p>
+                </div>
+            </div>
+        </div>
+    </div>`);
 
     if(localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
@@ -572,14 +572,6 @@ window.onload  = function () {
         }
     }
 
-    document.querySelectorAll('.remove').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            item.closest('.checkout-product').remove();
-            justunoCartItems.splice(index, 1);
-            sumTotalPrice();
-        });
-    });
-
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
@@ -591,6 +583,14 @@ window.onload  = function () {
     }
 
     sumTotalPrice();
+    document.querySelectorAll('.remove').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            item.closest('.checkout-product').remove();
+            justunoCartItems.splice(index, 1);
+            sumTotalPrice();
+        });
+    });
+
 
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
         quantity.querySelectorAll('.quantity-btn').forEach((button) => {
