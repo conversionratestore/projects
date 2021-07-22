@@ -688,6 +688,9 @@ window.onload  = function () {
     if(location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
+    .primaryInfo li {
+        display: flex;
+        align-items: center;}
     .altPayment, #mainbody .checkout-left_head {
         display: none;}
     .primaryInfo {
@@ -716,8 +719,12 @@ window.onload  = function () {
     .primaryInfo li input {
         width: 20px;
         height: 20px; }
-    .primaryInfo li i, .cutoffTimeNote span {
+    .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
         font-size: 18px;}
+    .primaryInfo li strong {
+        margin-left: 5px;}
+     #2_3_days {
+        padding-left: 0!important;}
     .promoCode {
         margin: 0;
         background: #EDEDED;
