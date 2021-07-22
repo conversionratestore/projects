@@ -20,7 +20,7 @@ window.onload  = function () {
         button {
             border: none;
             cursor: pointer;}
-        .payment {
+        .payment,  #login_btn {
             width: 100%;}
         .btn, #login_btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
             background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
