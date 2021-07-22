@@ -1,6 +1,6 @@
 document.body.insertAdjacentHTML('afterbegin', `
     <style>
-        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img {
+        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment {
             display: none;}
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -19,6 +19,8 @@ document.body.insertAdjacentHTML('afterbegin', `
         button {
             border: none;
             cursor: pointer;}
+        .payment {
+            width: 100%;}
         .btn, #login_btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
             background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
             border: 0.5px solid #780F11;
@@ -556,6 +558,7 @@ if(localStorage.getItem('productsStored')) {
         document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
     }
 }
+
 document.querySelectorAll('.remove').forEach((item, index) => {
     item.addEventListener('click', () => {
         item.closest('.checkout-product').remove();
@@ -634,20 +637,24 @@ if (document.querySelector('.myAccount')) {
         }
     });
 }
+
 if (location.pathname == '/checkout/step1') {
-    let productsStored = [];
-    document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-        productsStored.push({
-            'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-            'quantity': el.closest('tr').querySelector('.product-quantity').value,
-            'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-            'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-            'img_src': el.querySelector('a img').getAttribute('src'),
-            'link': el.querySelector('.product-description a').getAttribute('href'),
-            'title': el.querySelector('.product-description a').innerHTML,
+
+    if (document.querySelectorAll('.payment table.altPayment tr')) {
+        let productsStored = [];
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
-        localStorage.setItem('productsStored', JSON.stringify(productsStored));
-    });
+    }
 
     document.querySelector('.payment').style.display = 'none';
     document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
@@ -665,15 +672,73 @@ if (location.pathname == '/checkout/step1') {
 if(location.pathname == '/checkout/step2') {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
+    
+    .altPayment, #mainbody .checkout-left_head {
+        display: none;}
+    .primaryInfo {
+        border: none;
+        width: 100%;}
+    .primaryInfo ul {
+        padding-top: 20px;
+        padding-left: 0; }
     .payment h3 {
         font-weight: 600;
         font-size: 24px;
         line-height: 29px;
         text-transform: capitalize;
         color: #222222;
-        border-bottom: 0.5px solid #CCCCCC;
-    }
+        border-bottom: 0.5px solid #CCCCCC;}
+    .primaryInfo label {
+        padding-left: 0;}
+    .promocode-block {
+        justify-content: space-between;
+        align-items: center;
+        display: flex;}
+    .promocode-block label {
+        font-size: 18px;
+        color: #222222;
+        padding: 0;}
+    .primaryInfo li input {
+        width: 20px;
+        height: 20px; }
+    .primaryInfo li i, .cutoffTimeNote span {
+        font-size: 18px;}
+    .promoCode {
+        margin: 0;
+        background: #EDEDED;
+        border: 0.5px solid #CCCCCC;
+        border-radius: 4px;
+        padding: 11px 20px;
+        height: auto;
+        width: 100%;
+        max-width: 270px;}
+    .promocode-block i {
+        font-size: 14px; }
+    form div[align="right"] input{
+        padding-right: 0!important;}
+    .primaryInfo .title{
+        padding-top: 14px;
+        font-size: 18px;
+        line-height: 25px; }
     </style>`);
+
     document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
     document.querySelector('.payment h3').insertAdjacentHTML('afterend', step);
+    document.querySelectorAll('.step')[0].classList.remove('active');
+    document.querySelectorAll('.step')[1].classList.add('active');
+
+    document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+    document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
+    document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
+
+    document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
+    document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'));
+}
+if(location.pathname == '/checkout/step3') {
+    document.body.insertAdjacentHTML('afterbegin',`<style>
+        .payment h3, .checkout-left_head .link  {
+            display: none;}
+    </style>`);
+    document.querySelector('.checkout-left_head .title').innerHTML = 'Credit Card Information';
+    document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
 }
