@@ -47,6 +47,8 @@ window.onload  = function () {
             position: relative;}
         #step1_form div.copy_bill[align="right"] {
             margin-top: 0!important;}
+        #step1_form div.copy_bill[align="right"]:after {
+            content: none; }
         .address_book_new .small_block .head2 {
             font-size: 12px!important;}
         .btn.big {
