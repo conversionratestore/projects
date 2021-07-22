@@ -491,7 +491,7 @@ window.onload  = function () {
             padding-top: 0;}
     </style>`);
 
-let step = `
+    let step = `
 <div class="flex-center-between">
     <div class="step active">
         <div class="step-circle">1</div>
@@ -503,7 +503,7 @@ let step = `
     </div>
 </div>`;
 
-document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
+    document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
 <div class="flex-between">
     <div class="checkout-left">
         <div class="checkout-left_head flex-center-between">
@@ -532,10 +532,10 @@ document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
     </div>
 </div>`);
 
-if(localStorage.getItem('productsStored')) {
-    let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
-    for (let i = 0; i < justunoCartItems.length; i++) {
-        let product = `
+    if(localStorage.getItem('productsStored')) {
+        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+        for (let i = 0; i < justunoCartItems.length; i++) {
+            let product = `
             <div class="d-flex checkout-product">
                 <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
                 <div class="flex-column">
@@ -556,125 +556,125 @@ if(localStorage.getItem('productsStored')) {
                 </div>
             </div>
         `
-        document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+        }
     }
-}
 
-document.querySelectorAll('.remove').forEach((item, index) => {
-    item.addEventListener('click', () => {
-        item.closest('.checkout-product').remove();
-        justunoCartItems.splice(index, 1);
-        sumTotalPrice();
-    });
-});
-
-function sumTotalPrice() {
-    let sum = 0;
-    document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
-        sum += parseFloat(totalPrice.innerHTML);
-        document.querySelectorAll('.total-values b').forEach((totalValues) => {
-            totalValues.innerHTML = `${sum.toFixed(2)}`;
+    document.querySelectorAll('.remove').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            item.closest('.checkout-product').remove();
+            justunoCartItems.splice(index, 1);
+            sumTotalPrice();
         });
     });
-}
 
-sumTotalPrice();
+    function sumTotalPrice() {
+        let sum = 0;
+        document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
+            sum += parseFloat(totalPrice.innerHTML);
+            document.querySelectorAll('.total-values b').forEach((totalValues) => {
+                totalValues.innerHTML = `${sum.toFixed(2)}`;
+            });
+        });
+    }
 
-document.querySelectorAll('.quantity-row').forEach((quantity) => {
-    quantity.querySelectorAll('.quantity-btn').forEach((button) => {
-        button.addEventListener('click', () => {
-            if (button.className == 'quantity-btn quantity-btn_plus') {
-                button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
-                button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-            }
-            if (button.className == 'quantity-btn quantity-btn_minus') {
-                if (button.nextElementSibling.value < 2) {
-                    button.nextElementSibling.value = 1;
-                    button.disabled = true;
-                } else {
-                    button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+    sumTotalPrice();
+
+    document.querySelectorAll('.quantity-row').forEach((quantity) => {
+        quantity.querySelectorAll('.quantity-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                if (button.className == 'quantity-btn quantity-btn_plus') {
+                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
+                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
                 }
-            }
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.nextElementSibling.value = 1;
+                        button.disabled = true;
+                    } else {
+                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                    }
+                }
+                quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                sumTotalPrice();
+            });
+        });
+        document.querySelector('.checkout-right_body').addEventListener('change', () => {
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
             sumTotalPrice();
         });
     });
-    document.querySelector('.checkout-right_body').addEventListener('change', () => {
-        quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-        sumTotalPrice();
-    });
-});
 
-document.querySelectorAll('.btn-eye').forEach((item) => {
-    item.addEventListener('click', () => {
-        const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
-        item.previousElementSibling.setAttribute('type', type);
+    document.querySelectorAll('.btn-eye').forEach((item) => {
+        item.addEventListener('click', () => {
+            const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
+            item.previousElementSibling.setAttribute('type', type);
+        });
     });
-});
-if (document.querySelector('.myAccount')) {
+    if (document.querySelector('.myAccount')) {
 
-    document.querySelector('.checkout-left_head').after(document.querySelector('.myAccount'));
-    document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
+        document.querySelector('.checkout-left_head').after(document.querySelector('.myAccount'));
+        document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
     <label class="valign-center">
         <span class="check"></span>
         <span>Email Me Order Updates and Specials</span>
     </label>`);
-    document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
-    document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-    document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
-    document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Register Now!`;
-    document.querySelector('#login_btn').innerHTML = `LOGIN`;
-    document.querySelector('.log').addEventListener('click', (e) => {
-        let _this = e.target;
-        _this.classList.toggle('active');
-        if (_this.classList.contains('active')) {
-            _this.innerHTML = 'Returning client';
-            document.querySelector('.myAccountright').style.display = 'none';
-            document.querySelector('.myAccountleft').style.display = 'block';
-        } else {
-            _this.innerHTML = 'Returning new client';
-            document.querySelector('.myAccountleft').style.display = 'none';
-            document.querySelector('.myAccountright').style.display = 'block';
-        }
-    });
-}
-
-if (location.pathname == '/checkout/step1') {
-
-    if (document.querySelectorAll('.payment table.altPayment tr')) {
-        let productsStored = [];
-        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-            productsStored.push({
-                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                'img_src': el.querySelector('a img').getAttribute('src'),
-                'link': el.querySelector('.product-description a').getAttribute('href'),
-                'title': el.querySelector('.product-description a').innerHTML,
-            });
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
+        document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
+        document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
+        document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Register Now!`;
+        document.querySelector('#login_btn').innerHTML = `LOGIN`;
+        document.querySelector('.log').addEventListener('click', (e) => {
+            let _this = e.target;
+            _this.classList.toggle('active');
+            if (_this.classList.contains('active')) {
+                _this.innerHTML = 'Returning client';
+                document.querySelector('.myAccountright').style.display = 'none';
+                document.querySelector('.myAccountleft').style.display = 'block';
+            } else {
+                _this.innerHTML = 'Returning new client';
+                document.querySelector('.myAccountleft').style.display = 'none';
+                document.querySelector('.myAccountright').style.display = 'block';
+            }
         });
     }
 
-    document.querySelector('.payment').style.display = 'none';
-    document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
-    document.querySelectorAll('.step')[0].classList.remove('active');
-    document.querySelectorAll('.step')[1].classList.add('active');
-    document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
-    document.querySelector('.checkout-left_head .log ').style.display = 'none';
-    document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
-    document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-    document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+    if (location.pathname == '/checkout/step1') {
 
-    document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
-    document.querySelector('.btn.big').addEventListener('click', () => {
-        document.querySelector('form div[align="right"] input').click();
-    });
-}
-if(location.pathname == '/checkout/step2') {
-    document.body.insertAdjacentHTML('afterbegin', `
+        if (document.querySelectorAll('.payment table.altPayment tr')) {
+            let productsStored = [];
+            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+                productsStored.push({
+                    'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                    'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                    'img_src': el.querySelector('a img').getAttribute('src'),
+                    'link': el.querySelector('.product-description a').getAttribute('href'),
+                    'title': el.querySelector('.product-description a').innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            });
+        }
+
+        document.querySelector('.payment').style.display = 'none';
+        document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
+        document.querySelectorAll('.step')[0].classList.remove('active');
+        document.querySelectorAll('.step')[1].classList.add('active');
+        document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+        document.querySelector('.checkout-left_head .log ').style.display = 'none';
+        document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
+        document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+        document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+
+        document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+        document.querySelector('.step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
+        document.querySelector('.btn.big').addEventListener('click', () => {
+            document.querySelector('form div[align="right"] input').click();
+        });
+    }
+    if(location.pathname == '/checkout/step2') {
+        document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .altPayment, #mainbody .checkout-left_head {
         display: none;}
@@ -723,24 +723,24 @@ if(location.pathname == '/checkout/step2') {
         line-height: 25px; }
     </style>`);
 
-    document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
-    document.querySelector('.payment h3').insertAdjacentHTML('afterend', step);
-    document.querySelectorAll('.step')[0].classList.remove('active');
-    document.querySelectorAll('.step')[1].classList.add('active');
+        document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
+        document.querySelector('.payment h3').insertAdjacentHTML('afterend', step);
+        document.querySelectorAll('.step')[0].classList.remove('active');
+        document.querySelectorAll('.step')[1].classList.add('active');
 
-    document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
-    document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
-    document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
+        document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+        document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
+        document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
-    document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
-    document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
-    document.querySelector('.btn.big').addEventListener('click', () => {
-        document.querySelector('form div[align="right"] input').click();
-    });
-}
-if(location.pathname == '/checkout/step3') {
-    document.body.insertAdjacentHTML('afterbegin',`<style>
+        document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
+        document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next big">Next</button>`)
+        document.querySelector('.btn.big').addEventListener('click', () => {
+            document.querySelector('form div[align="right"] input').click();
+        });
+    }
+    if(location.pathname == '/checkout/step3') {
+        document.body.insertAdjacentHTML('afterbegin',`<style>
         .payment h3, .checkout-left_head .link  {
             display: none;}
         .primaryInfo {
@@ -778,12 +778,12 @@ if(location.pathname == '/checkout/step3') {
         .allow-up-to-60 {
             white-space: break-spaces; }
     </style>`);
-    document.querySelector('.checkout-left_head .title').innerHTML = 'Credit Card Information';
-    document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+        document.querySelector('.checkout-left_head .title').innerHTML = 'Credit Card Information';
+        document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
 
-    document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
-    document.querySelector('.btn.big').addEventListener('click', () => {
-        document.querySelector('form div[align="right"] input').click();
-    });
-}
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
+        document.querySelector('.btn.big').addEventListener('click', () => {
+            document.querySelector('form div[align="right"] input').click();
+        });
+    }
 };
