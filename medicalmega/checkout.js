@@ -592,8 +592,9 @@ window.onload  = function () {
     });
 
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
-        quantity.querySelectorAll('.quantity-btn').forEach((button) => {
+        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
             button.addEventListener('click', () => {
+                document.querySelectorAll('.altPayment tr .input-update')[index + 1].click();
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
