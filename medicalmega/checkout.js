@@ -629,10 +629,12 @@ window.onload  = function () {
             _this.classList.toggle('active');
             if (_this.classList.contains('active')) {
                 _this.innerHTML = 'Returning client';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'New Client';
                 document.querySelector('.myAccountright').style.display = 'none';
                 document.querySelector('.myAccountleft').style.display = 'block';
             } else {
                 _this.innerHTML = 'Returning new client';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Client';
                 document.querySelector('.myAccountleft').style.display = 'none';
                 document.querySelector('.myAccountright').style.display = 'block';
             }
@@ -640,7 +642,6 @@ window.onload  = function () {
     }
 
     if (location.pathname == '/checkout/step1') {
-
         if (document.querySelectorAll('.payment table.altPayment tr')) {
             let productsStored = [];
             document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
