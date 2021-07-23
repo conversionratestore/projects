@@ -555,40 +555,7 @@ window.onload  = function () {
     }
 
     sumTotalPrice();
-    document.querySelectorAll('.remove').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            item.closest('.checkout-product').remove();
-            justunoCartItems.splice(index, 1);
-            sumTotalPrice();
-        });
-    });
-
-    document.querySelectorAll('.quantity-row').forEach((quantity) => {
-        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.altPayment tr .input-update')[index + 1].click();
-                if (button.className == 'quantity-btn quantity-btn_plus') {
-                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
-                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-                }
-                if (button.className == 'quantity-btn quantity-btn_minus') {
-                    if (button.nextElementSibling.value < 2) {
-                        button.nextElementSibling.value = 1;
-                        button.disabled = true;
-                    } else {
-                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                    }
-                }
-                quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                sumTotalPrice();
-            });
-        });
-        document.querySelector('.checkout-right_body').addEventListener('change', () => {
-            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-            sumTotalPrice();
-        });
-    });
-
+    
     document.querySelectorAll('.btn-eye').forEach((item) => {
         item.addEventListener('click', () => {
             const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -813,4 +780,36 @@ window.onload  = function () {
             document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
         }
     }
+    document.querySelectorAll('.remove').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            item.closest('.checkout-product').remove();
+            justunoCartItems.splice(index, 1);
+            sumTotalPrice();
+        });
+    });
+    document.querySelectorAll('.quantity-row').forEach((quantity) => {
+        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.altPayment tr .input-update')[index + 1].click();
+                if (button.className == 'quantity-btn quantity-btn_plus') {
+                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
+                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+                }
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.nextElementSibling.value = 1;
+                        button.disabled = true;
+                    } else {
+                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                    }
+                }
+                quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                sumTotalPrice();
+            });
+        });
+        document.querySelector('.checkout-right_body').addEventListener('change', () => {
+            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+            sumTotalPrice();
+        });
+    });
 };
