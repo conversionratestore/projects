@@ -222,6 +222,7 @@ input[type=number] {
     position: relative;
     margin-bottom: 26px; }
 .checkout-footer {
+    width: 100%;
     border-top: 1px solid #DEDEDE;
     padding: 24px 0 14px;
     display: flex;
@@ -263,12 +264,18 @@ input[type=number] {
     padding: 0;}
 .registerPanel.active {
     display: block;}
-.userLoginForm {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;}
 .show-password {
-    right: -3px;}
+    background-image: url("../img/show-password.png");
+    background-position: 0 0;
+    height: 24px;
+    position: absolute;
+    bottom: 50%;
+    width: 26px;
+    transform: translateY(50%);
+    cursor: pointer;
+    right: -33px;}
+.show-password.active {
+    background-position: 0 -24px;}
 #registerPanel > form > div:nth-child(6) {
     margin-left: auto;}
 .password-forgotten-wrap {

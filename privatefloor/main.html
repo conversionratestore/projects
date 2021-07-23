@@ -28,99 +28,95 @@
             </div>
         </div>
     </div>
-    <form class="form-content" method="post" >
+    <div class="form-content">
         <div class="form-row">
             <div class="form-left">
-                <div class="form-block first">
-                    <fieldset class="express-checkout">
-                        <legend>express checkout</legend>
-                        <div class="content-center">
-                            <a href="#">
-                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-black.png"
-                                     alt="pay icon">
-                            </a>
-                            <a href="#">
-                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-white.png"
-                                     alt="pay icon">
-                            </a>
-                        </div>
-                    </fieldset>
-                    <div id="order-recipient" class="order-recipient active">
-                        <div class="checkout-head">
-                            <h3 class="title-form2">Order Recipient</h3>
-                            <p class="small-text">Alredy have an account? <span
-                                    class="underline toggle"> Log In</span></p>
-                        </div>
-                        <div class="row row-30">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div><label class="label-style required hidden-xs" for="address_firstName">First
-                                        Name</label> <input type="text" id="address_firstName"
-                                                            name="address[firstName]" required="required"
-                                                            class="form-control required-field" placeholder="First Name*"></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div><label class="label-style required hidden-xs" for="address_lastName">Last
-                                        Name</label> <input type="text" id="address_lastName"
-                                                            name="address[lastName]" required="required"
-                                                            class="form-control required-field" placeholder="Last Name*"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-30">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div><label class="label-style required hidden-xs" for="address_email">Email</label>
-                                        <input type="email" id="address_email" name="address[email]"
-                                               required="required" class="form-control" placeholder="Email Adress"></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <div>
-                                        <label class="label-style required hidden-xs" for="address_phoneNumber">Phone</label>
-                                        <input type="text" id="address_phoneNumber" name="address[phoneNumber]" required="required" class="form-control required-field" placeholder="Phone">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="checkout-footer hidden-xs">
-                            <button class="btn ">Continue</button>
-                        </div>
+                <fieldset class="express-checkout">
+                    <legend>express checkout</legend>
+                    <div class="content-center">
+                        <a href="#">
+                            <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-black.png"
+                                 alt="pay icon">
+                        </a>
+                        <a href="#">
+                            <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-white.png"
+                                 alt="pay icon">
+                        </a>
                     </div>
-
-
-                </div>
-                <div class="registerPanel" id="registerPanel">
+                </fieldset>
+                <form id="order-recipient" class="order-recipient active">
                     <div class="checkout-head">
-                        <h3 class="title-form2">Log In</h3>
-                        <p class="small-text">Alredy doesn't have an account? <span class="underline toggle"> Sign Up</span>
-                        </p>
+                        <h3 class="title-form2">Order Recipient</h3>
+                        <p class="small-text">Alredy have an account? <span
+                                class="underline toggle"> Log In</span></p>
                     </div>
-                    <form class="userLoginForm row row-30" action="/login_check" method="POST">
-                        <div class="row row-30">
-                            <div class="form-group col-sm-6">
-                                <label for="username" class="userLoginLabel label-style hidden-xs">Email:</label>
-                                <input type="text" id="username" value="" required
-                                       class="userLoginInput form-control" placeholder="Email Address">
+                    <div class="row row-30">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div>
+                                    <label class="label-style required hidden-xs" for="address_firstName">First Name</label>
+                                    <input type="text" id="address_firstName" name="address[firstName]" required class="form-control required-field" placeholder="First Name*">
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label for="password" class="userLoginLabel label-style hidden-xs">Password</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div><label class="label-style required hidden-xs" for="address_lastName">Last Name</label>
+                                    <input type="text" id="address_lastName" name="address[lastName]" required class="form-control required-field" placeholder="Last Name*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-30">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div><label class="label-style required hidden-xs" for="address_email">Email</label>
+                                    <input type="email" id="address_email" name="address[email]"
+                                           required="required" class="form-control" placeholder="Email Adress"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div>
+                                    <label class="label-style required hidden-xs" for="address_phoneNumber">Phone</label>
+                                    <input type="text" id="address_phoneNumber" name="address[phoneNumber]" required="required" class="form-control required-field" placeholder="Phone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <input type="password" required
-                                       class="userLoginInput form-control" id="password"n placeholder="Password">
-                                <a hreflang="en" class="password-forgotten" data-toggle="modal"
-                                   data-target="#passwordModal" href="">Password forgotten?</a>
-                                <div class="show-password"></div>
+                    <div class="checkout-footer hidden-xs">
+                        <button type="submit" class="btn next-step2">Continue</button>
+                    </div>
+                </form>
+                <div class="registerPanel" id="registerPanel">
+                    <form class="userLoginForm" action="/login_check" method="POST">
+                        <div class="checkout-head">
+                            <h3 class="title-form2">Log In</h3>
+                            <p class="small-text">Alredy doesn't have an account? <span class="underline toggle"> Sign Up</span>
+                            </p>
+                        </div>
+                        <div class="row row-30">
+                            <div class="col-sm-6">
+                                <div class="form-group ">
+                                    <label for="username" class="userLoginLabel label-style hidden-xs">Email:</label>
+                                    <input type="text" id="username" value="" required class="userLoginInput form-control" placeholder="Email Address">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="password" class="userLoginLabel label-style hidden-xs">Password</label>
+                                    <input type="password" required class="userLoginInput form-control" id="password" placeholder="Password">
+                                    <a hreflang="en" class="password-forgotten" data-toggle="modal"
+                                       data-target="#passwordModal" href="">Password forgotten?</a>
+                                    <div class="show-password"></div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="checkout-footer hidden-xs">
-                            <button class="btn ">Continue</button>
+                            <button type="submit" class="btn next-step2">Continue</button>
                         </div>
-
                     </form>
                 </div>
                 <div class="shipping-address" id="shipping-address">
@@ -378,9 +374,7 @@
                         <a hreflang="en" nohref="" class="btn btn-md" id="support-submit-link" style="width: 156px;">CONTINUE &nbsp; &gt;</a>
                     </div>
                 </div>
-
             </div>
-
 
             <div class="your-order">
                 <h3 class="title-form2">Your Order</h3>
@@ -490,7 +484,7 @@
         </div>
 
 
-    </form>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
