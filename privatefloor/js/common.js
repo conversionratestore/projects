@@ -20,19 +20,6 @@ $(document).ready(function () {
         $(this).siblings().slideToggle(300);
     });
 
-    function showHide(item, itemActive) {
-        $(`${item}`).on('click', function() {
-            if ($(`${item} input`).prop('checked')) {
-                $(`${itemActive}`).addClass('active');
-            } else {
-                $(`${itemActive}`).removeClass('active');
-            }
-        });
-    }
-showHide('.ship_checkboxCompany', '.editAddressFormCart');
-showHide('.bill_checkboxCompany', '.bill_registerCompany');
-showHide('.bill_checkboxCompany', '.bill_eori');
-
 $('[data-button]').on('click', function() {
     let _this = $(this);
     let attr = $(this).data('button');

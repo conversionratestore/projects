@@ -33,10 +33,10 @@ input, textarea {
     padding-top: 8px;
     margin-bottom: 17px;
 }
-.editAddressFormCart, .bill_registerCompany, .bill_eori {
+.editAddressFormCart, .bill_registerCompany_eori {
     display: block;
 }
-.editAddressFormCart.active, .bill_registerCompany.active, .bill_eori.active {
+.editAddressFormCart.active, .bill_registerCompany_eori.active {
     display: none;
 }
 .fw-normal {

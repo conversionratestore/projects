@@ -36,11 +36,11 @@
                         <legend>express checkout</legend>
                         <div class="content-center">
                             <a href="#">
-                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-black.svg"
+                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-black.png"
                                      alt="pay icon">
                             </a>
                             <a href="#">
-                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-white.svg"
+                                <img src="https://conversionratestore.github.io/projects/privatefloor/img/buy-button-white.png"
                                      alt="pay icon">
                             </a>
                         </div>
@@ -318,16 +318,18 @@
                             </div>
                             <div class="row row-30">
                                 <div class="col-sm-12">
-                                    <div class="form-group bill_checkboxCompany">
-                                        <label class="checkbox-label">
+                                    <div class="form-group bill_checkboxCompany" data-button="bill_registerCompany_eori">
+                                        <label class="checkbox-label" data-button="bill_eori">
                                             <input type="checkbox" checked="checked" class="checkbox">
                                             <span class="check"></span>
                                             <span class="fw-normal">Are you a business / company ?</span>
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row row-30 bill_registerCompany_eori active" data-item="bill_registerCompany_eori">
                                 <div class="col-sm-12">
-                                    <div id="bill_registerCompany" class="form-group bill_registerCompany active">
+                                    <div id="bill_registerCompany" class="form-group">
                                         <div>
                                             <label for="address_billing_registerCompany"
                                                     class="required fw-normal">Company Registration Number</label>
@@ -338,7 +340,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div id="bill_eori" class="form-group bill_eori active">
+                                    <div id="bill_eori" class="form-group ">
                                         <div><label style="width: 100%;" for="address_billing_eori"
                                                     class="required fw-normal">EORI</label> <input type="text"
                                                                                          id="address_billing_eori"
@@ -492,6 +494,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/checkout.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
