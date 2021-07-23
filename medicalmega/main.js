@@ -586,8 +586,8 @@ window.onload  = function () {
                             <b style="font-size:17px;">Grand Total:</b>
                         </td>
                         <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
-                            <b>$ 7.25</b><br>
-                            <b style="font-size:17px;">$7.25</b>
+                            <b>$ 0.00</b><br>
+                            <b style="font-size:17px;">$0.00</b>
                         </td>
                     </tr>
                 </tbody>
