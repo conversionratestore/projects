@@ -544,34 +544,6 @@ window.onload  = function () {
         </div>
     </div>`);
 
-    if(localStorage.getItem('productsStored')) {
-        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
-        for (let i = 0; i < justunoCartItems.length; i++) {
-            let product = `
-            <div class="d-flex checkout-product">
-                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
-                <div class="flex-column">
-                    <div class="flex-between">
-                        <a href="#">${justunoCartItems[i].title}</a>
-                        <button class="remove" type="button"></button>
-                    </div>
-                    <div class="flex-center-between">
-                        <div class="quantity-row">
-                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
-                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                        </div>
-                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                            <b>${justunoCartItems[i].price}</b>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `
-            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
-        }
-    }
-
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
@@ -812,5 +784,33 @@ window.onload  = function () {
         document.querySelector('.btn.big').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
+    }
+
+    if(localStorage.getItem('productsStored')) {
+        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+        for (let i = 0; i < justunoCartItems.length; i++) {
+            let product = `
+            <div class="d-flex checkout-product">
+                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
+                <div class="flex-column">
+                    <div class="flex-between">
+                        <a href="#">${justunoCartItems[i].title}</a>
+                        <button class="remove" type="button"></button>
+                    </div>
+                    <div class="flex-center-between">
+                        <div class="quantity-row">
+                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                        </div>
+                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
+                            <b>${justunoCartItems[i].price}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+        }
     }
 };
