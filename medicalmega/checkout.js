@@ -792,6 +792,15 @@ window.onload  = function () {
     });
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
         quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+            if (button.className == 'quantity-btn quantity-btn_minus') {
+                if (button.nextElementSibling.value < 2) {
+                    button.nextElementSibling.value = 1;
+                    button.disabled = true;
+                } else {
+                    button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                    button.disabled = false;
+                }
+            }
             button.addEventListener('click', () => {
                 document.querySelectorAll('.altPayment tr .input-update')[index].click();
                 if (button.className == 'quantity-btn quantity-btn_plus') {
