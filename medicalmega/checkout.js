@@ -783,7 +783,9 @@ window.onload  = function () {
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
+            let pathname = location.pathname;
             document.querySelectorAll('.altPayment tr .product-quantity-form a')[index].click();
+            window.location = pathname;
             // item.closest('.checkout-product').remove();
             // justunoCartItems.splice(index, 1);
             sumTotalPrice();
