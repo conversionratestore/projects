@@ -779,13 +779,12 @@ window.onload  = function () {
             document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
             sumTotalPrice();
         }
-
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
             let pathname = location.pathname;
             document.querySelectorAll('.altPayment tr .product-quantity-form a')[index].click();
-            window.location = pathname;
+            // window.location = pathname;
             // item.closest('.checkout-product').remove();
             // justunoCartItems.splice(index, 1);
             sumTotalPrice();
@@ -794,7 +793,7 @@ window.onload  = function () {
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
         quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
             button.addEventListener('click', () => {
-                document.querySelectorAll('.altPayment tr .input-update')[index + 1].click();
+                document.querySelectorAll('.altPayment tr .input-update')[index].click();
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
