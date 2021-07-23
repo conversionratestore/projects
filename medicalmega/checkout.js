@@ -775,11 +775,11 @@ window.onload  = function () {
                         </div>
                     </div>
                 </div>
-            </div>
-        `
+            </div>`;
             document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+            sumTotalPrice();
         }
-        sumTotalPrice();
+      
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
