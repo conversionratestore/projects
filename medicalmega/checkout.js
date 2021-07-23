@@ -783,10 +783,10 @@ window.onload  = function () {
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
-            item.closest('.checkout-product').remove();
-            justunoCartItems.splice(index, 1);
-            sumTotalPrice();
             document.querySelectorAll('.altPayment tr .product-quantity-form a')[index].click();
+            // item.closest('.checkout-product').remove();
+            // justunoCartItems.splice(index, 1);
+            sumTotalPrice();
         });
     });
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
