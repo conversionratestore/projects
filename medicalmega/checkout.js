@@ -794,10 +794,8 @@ window.onload  = function () {
         quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
             if (button.className == 'quantity-btn quantity-btn_minus') {
                 if (button.nextElementSibling.value < 2) {
-                    button.nextElementSibling.value = 1;
                     button.disabled = true;
                 } else {
-                    button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
                     button.disabled = false;
                 }
             }
@@ -818,7 +816,7 @@ window.onload  = function () {
                         document.querySelectorAll('.altPayment tr .input-update')[index].click();
                     }
                 }
-                
+
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                 sumTotalPrice();
             });
