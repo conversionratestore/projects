@@ -555,7 +555,7 @@ window.onload  = function () {
     }
 
     sumTotalPrice();
-    
+
     document.querySelectorAll('.btn-eye').forEach((item) => {
         item.addEventListener('click', () => {
             const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -785,6 +785,7 @@ window.onload  = function () {
             item.closest('.checkout-product').remove();
             justunoCartItems.splice(index, 1);
             sumTotalPrice();
+            document.querySelectorAll('.altPayment tr .product-quantity-form a')[index - 1].click();
         });
     });
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
