@@ -188,9 +188,10 @@ let mut = new MutationObserver(function (muts) {
                         min-height: 51px;
                         margin-bottom: 15px;}
                 @media screen and (min-width: 992px) {
-                .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
-                    flex-direction: row;
-                }
+                    .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
+                        flex-direction: row;}
+                    .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-info-price {
+                        padding-bottom: 0!important; }
                     .options-fields .option-field {
                         flex-direction: row;
                         align-items: center;}
