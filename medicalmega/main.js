@@ -653,9 +653,9 @@ window.onload  = function () {
     document.querySelector('.shoppingcart').addEventListener('click', (e) => {
         e.preventDefault();
         document.querySelector('.popup').classList.add('isActive');
-        // if (!document.querySelectorAll('.popup__product')) {
-        //     document.querySelector('.popup__bottom .flex-center').style.display = 'none';
-        // }
+        if (!document.querySelectorAll('.popup__product')) {
+            document.querySelector('.popup__bottom .flex-center').style.display = 'none';
+        }
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
