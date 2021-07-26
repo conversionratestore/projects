@@ -148,7 +148,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;}
 input[type=number] {
     -moz-appearance: textfield;}
-.registerPanel, .order-recipient, .shipping-address, .pull-right.prices tr:last-child  {
+.userLoginForm, .order-recipient, .shipping-address, .pull-right.prices tr:last-child  {
     display: none;}
 
 .express-checkout {
@@ -259,10 +259,10 @@ input[type=number] {
     margin-top: 10px;}
 .btn:hover {
     color: #ffffff!important;}
-.cartcontainer .registerPanel {
+.cartcontainer .userLoginForm {
     width: 100%;
     padding: 0;}
-.registerPanel.active {
+.userLoginForm.active {
     display: block;}
 .show-password {
     background-image: url("../img/show-password.png");
@@ -276,7 +276,7 @@ input[type=number] {
     right: -33px;}
 .show-password.active {
     background-position: 0 -24px;}
-#registerPanel > form > div:nth-child(6) {
+#userLoginForm > form > div:nth-child(6) {
     margin-left: auto;}
 .password-forgotten-wrap {
     position: absolute;
@@ -285,7 +285,7 @@ input[type=number] {
     margin: 0;}
 .order-recipient.active {
     display: block;}
-.registerPanel h3 {
+.userLoginForm h3 {
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;

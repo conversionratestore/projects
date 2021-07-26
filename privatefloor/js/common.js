@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.checkout-head .toggle').on('click', function() {
-        $('.registerPanel').toggleClass('active');
+        $('.userLoginForm').toggleClass('active');
         $('.order-recipient').toggleClass('active');
     });
 
@@ -27,9 +27,9 @@ $(document).ready(function () {
         //submit if fail never got set to true
         if ( ! fail ) {
             //process form here.
-            $('#order-recipient').css('display','none');
+            $('#order-recipient').removeClass('active');
             $('.express-checkout').css('display','none');
-            $('.registerPanel ').css('display','none');
+            $('.userLoginForm ').removeClass('active');
             $('#shipping-address').css('display','block');
             $('.cart-steps__main-block .step.step-active').removeClass('step-active');
             $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
@@ -39,6 +39,13 @@ $(document).ready(function () {
 
     });
 
+    $('.btn-back').on('click', function () {
+        $('#order-recipient').addClass('active');
+        $('.express-checkout').css('display','block');
+        $('#shipping-address').css('display','none');
+        $('.cart-steps__main-block .step').eq(0).addClass('step-active');
+        $('.cart-steps__main-block .step').eq(1).addClass('step-next').removeClass('step-active');
+    });
     $('.promocode-item').on('click', function () {
         $(this).toggleClass('active');
         $(this).siblings().slideToggle(300);
