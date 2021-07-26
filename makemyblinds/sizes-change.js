@@ -134,7 +134,7 @@ let mut = new MutationObserver(function (muts) {
                         letter-spacing: 0.180451px;
                         color: #232849;
                         margin-top: 25px;}
-                   .options-fields .price-label, .options-fields .price-original{
+                   .options-fields .price-original{
                         display: none;}
                    .options-fields .price-container {
                         display: flex;
@@ -151,7 +151,7 @@ let mut = new MutationObserver(function (muts) {
                         color: #232849;}
                    .from-price .price-wrapper  {
                         color: #2E3560;}
-                   .options-fields .your-text {
+                   .options-fields .price-label {
                         font-family: 'Barlow', sans-serif;
                         font-style: normal;
                         font-weight: 500;
@@ -254,7 +254,6 @@ let mut = new MutationObserver(function (muts) {
                             document.querySelector('.option-after').before(option[i]);
                         }
                     }
-                    document.querySelector('.options-fields .price-wrapper ').insertAdjacentHTML('beforebegin', '<span class="your-text">Your price: </span>');
                     document.querySelector('.options-fields').insertAdjacentHTML('beforebegin', '<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
                     document.querySelectorAll('.product-options-wrapper .product-custom-option.input-text').forEach((el) => {
                         el.insertAdjacentHTML('afterend', `<div for="${el.getAttribute('id')}" generated="true" class="mage-error" id="${el.getAttribute('id')}-error" style="display: none;">This is a required field.</div>`)
