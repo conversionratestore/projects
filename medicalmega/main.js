@@ -650,22 +650,24 @@ window.onload  = function () {
             }
         }
     }
-
-    document.querySelector('.shoppingcart').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.popup').classList.add('isActive');
-        if (document.querySelector('.popup .body table tbody').innerHTML == '') {
-            document.querySelector('.popup__bottom .flex-center').style.display = 'none';
-        } else {
-            document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
-        }
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-            'eventAction': 'click on shopping cart'
+    if (document.querySelector('.shoppingcart')) {
+        document.querySelector('.shoppingcart').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.popup').classList.add('isActive');
+            if (document.querySelector('.popup .body table tbody').innerHTML == '') {
+                document.querySelector('.popup__bottom .flex-center').style.display = 'none';
+            } else {
+                document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
+            }
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on shopping cart'
+            });
         });
-    });
+    }
+
 
     if (document.querySelector('#cart_box a')) {
         document.querySelectorAll('#cart_box a')[0].setAttribute('onclick','');
