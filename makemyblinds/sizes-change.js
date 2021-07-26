@@ -168,6 +168,7 @@ let mut = new MutationObserver(function (muts) {
                     .btn-get-instant {
                         margin: 0 0 25px 0; }
                     .options-fields {
+                        width: 100%;
                         opacity: 0;
                         height: 0;
                         pointer-events: none;
