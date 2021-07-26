@@ -199,7 +199,7 @@ window.onload  = function () {
             padding: 9px 10px;
             margin-bottom: 20px;
             border-radius: 4px;}
-        div.myAccountleft > form > dd:nth-child(6) {
+        div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
             margin-left: auto;}
         .checkout-right_head {
             padding: 22px 0 15px;
