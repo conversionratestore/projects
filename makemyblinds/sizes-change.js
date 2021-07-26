@@ -190,6 +190,9 @@ let mut = new MutationObserver(function (muts) {
                         justify-content: center;
                         min-height: 51px;
                         margin-bottom: 15px;}
+                    .catalog-product-view #product-options-wrapper .tooltip-question {
+                        width: 20px;
+                        height: 20px; }
                 @media screen and (min-width: 992px) {
                     .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
                         flex-direction: row;}
