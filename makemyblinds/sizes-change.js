@@ -153,6 +153,7 @@ let mut = new MutationObserver(function (muts) {
                         letter-spacing: -0.005em;
                         color: #232849;}
                    .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
+                        justify-content: space-between;
                         align-items: flex-end; }
                    .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-label {
                         font-family: 'Barlow', sans-serif;
