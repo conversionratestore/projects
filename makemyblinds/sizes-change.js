@@ -148,7 +148,7 @@ let mut = new MutationObserver(function (muts) {
                         font-style: normal;
                         font-weight: 500;
                         font-size: 49px;
-                        line-height: 50px;
+                        line-height: 48px;
                         text-align: right;
                         letter-spacing: -0.005em;
                         color: #232849;}
@@ -163,6 +163,7 @@ let mut = new MutationObserver(function (muts) {
                         line-height: 31px;
                         letter-spacing: 0.0015em;
                         color: #232849;
+                        margin-bottom: 0;
                         margin-right: 8px;}
                    .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-social-links, .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
                         padding-bottom: 0!important;}
