@@ -250,7 +250,7 @@ let mut = new MutationObserver(function (muts) {
                     document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
                     document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
                     document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
-                    document.querySelector('.option-after').after(document.querySelector('.product-options-bottom'));
+                    // document.querySelector('.option-after').after(document.querySelector('.product-options-bottom'));
                     if (document.querySelector('.product-delivery-date')) {
                         document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
                     }
