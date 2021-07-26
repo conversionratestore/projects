@@ -143,8 +143,8 @@ let mut = new MutationObserver(function (muts) {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;}
-                   .options-fields .price-wrapper  {
-                         font-family: 'Barlow-medium',Arial,Helvetica,sans-serif;
+                   .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper {
+                        font-family: 'Barlow-medium',Arial,Helvetica,sans-serif;
                         font-style: normal;
                         font-weight: 500;
                         font-size: 49px;
@@ -152,9 +152,9 @@ let mut = new MutationObserver(function (muts) {
                         text-align: right;
                         letter-spacing: -0.005em;
                         color: #232849;}
-                   .from-price .price-wrapper  {
-                        color: #2E3560;}
-                   .options-fields .price-label {
+                   .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
+                        align-items: flex-end; }
+                   .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-label {
                         font-family: 'Barlow', sans-serif;
                         font-style: normal;
                         font-weight: 500;
