@@ -656,6 +656,8 @@ window.onload  = function () {
         document.querySelector('.popup').classList.add('isActive');
         if (document.querySelector('.popup .body table tbody').innerHTML == '') {
             document.querySelector('.popup__bottom .flex-center').style.display = 'none';
+        } else {
+            document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
         }
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
