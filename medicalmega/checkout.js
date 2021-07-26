@@ -608,7 +608,12 @@ window.onload  = function () {
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             });
         }
-
+        document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+        div.myAccountleft > form > dd:nth-child(6) {
+            margin-left: auto;
+        }
+        </style>`);
         document.querySelector('.payment').style.display = 'none';
         document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
         document.querySelectorAll('.step')[0].classList.remove('active');
@@ -757,7 +762,7 @@ window.onload  = function () {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
         for (let i = 0; i < justunoCartItems.length; i++) {
             let product = `
-            <div class="d-flex checkout-product">
+            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
                 <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
                 <div class="flex-column">
                     <div class="flex-between">
@@ -784,6 +789,13 @@ window.onload  = function () {
         item.addEventListener('click', () => {
             let pathname = location.pathname;
             document.querySelectorAll('.altPayment tr .product-quantity-form a')[index].click();
+            // fetch('https://medicalmega.com/checkout/step1', {
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //     },
+            //     method: "POST",
+            //     body: `product_quantity=${item.closest('.checkout-product').querySelector('.quantity').value}&cp_id=${906907}&product_type=variant&remove_from_cart=remove_from_cart&option_id=101271`
+            // })
             // window.location = pathname;
             // item.closest('.checkout-product').remove();
             // justunoCartItems.splice(index, 1);
