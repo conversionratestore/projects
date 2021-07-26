@@ -630,7 +630,7 @@ window.onload  = function () {
     if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML == '0') {
         localStorage.setItem('productsStored', '');
     }
-    if (document.querySelector('.by_num span').innerHTML != '0') {
+    if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML != '0') {
         let cartItems = JSON.parse(localStorage.getItem("productsStored"));
         if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
