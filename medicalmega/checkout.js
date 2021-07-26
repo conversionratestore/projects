@@ -593,6 +593,15 @@ window.onload  = function () {
     }
 
     if (location.pathname == '/checkout/step1') {
+        if (!document.querySelectorAll('.checkout-product')) {
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+            .checkout-right {
+                display: none;
+            }
+            </style>`);
+            document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
+        }
         if (document.querySelectorAll('.payment table.altPayment tr')) {
             let productsStored = [];
             document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
