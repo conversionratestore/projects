@@ -1,7 +1,9 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
-        .registerOnLogin dt, .left, .mainleft, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
+        #mainbody {
+            background: transparent; }
+        .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
             display: none;}
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -197,6 +199,8 @@ window.onload  = function () {
             padding: 9px 10px;
             margin-bottom: 20px;
             border-radius: 4px;}
+        div.myAccountleft > form > dd:nth-child(6) {
+            margin-left: auto;}
         .checkout-right_head {
             padding: 22px 0 15px;
             border-bottom: 0.5px solid #CCCCCC;}
@@ -617,12 +621,7 @@ window.onload  = function () {
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             });
         }
-        document.body.insertAdjacentHTML('afterbegin', `
-        <style>
-        div.myAccountleft > form > dd:nth-child(6) {
-            margin-left: auto;
-        }
-        </style>`);
+
         document.querySelector('.payment').style.display = 'none';
         document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
         document.querySelectorAll('.step')[0].classList.remove('active');
