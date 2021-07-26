@@ -81,6 +81,8 @@ let mut = new MutationObserver(function (muts) {
                     .scaled-custom-field .control  {
                         max-width: 218px;}
                    .catalog-product-view #product-options-wrapper .fieldset {
+                    width: 100%;}
+                   .catalog-product-view #product-options-wrapper .scaled-custom-field {
                         width: 100%;
                         max-width: 416px;}
                    .catalog-product-view #product-options-wrapper .scaled-custom-field label {
