@@ -191,7 +191,7 @@ let mut = new MutationObserver(function (muts) {
                     .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
                         flex-direction: row;}
                     .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-info-price {
-                        padding-bottom: 0!important; }
+                        padding-bottom: 0!important; } 
                     .options-fields .option-field {
                         flex-direction: row;
                         align-items: center;}
@@ -257,7 +257,7 @@ let mut = new MutationObserver(function (muts) {
                     let option = document.querySelectorAll('.catalog-product-view #product-options-wrapper .option-field');
                     for (let i = 0; i < option.length; i++) {
                         if (!option[i].classList.contains('unit-select')) {
-                            document.querySelector('.option-after').after(option[i]);
+                            document.querySelector('.option-after').before(option[i]);
                         }
                     }
                     document.querySelector('.options-fields').insertAdjacentHTML('beforebegin', '<button type="button" class="btn-get-instant btn primary">GET INSTANT PRICE</button>');
