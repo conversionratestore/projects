@@ -155,11 +155,14 @@ let mut = new MutationObserver(function (muts) {
                         font-family: 'Barlow', sans-serif;
                         font-style: normal;
                         font-weight: 500;
-                        font-size: 26px;
+                        font-size: 26px!important;
                         line-height: 31px;
                         letter-spacing: 0.0015em;
                         color: #232849;
                         margin-right: 8px;}
+                   .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-social-links, .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
+                        padding-bottom: 0!important;
+                    }
                     .btn-get-instant {
                         margin: 0; }
                     .options-fields {
@@ -185,6 +188,9 @@ let mut = new MutationObserver(function (muts) {
                         min-height: 51px;
                         margin-bottom: 15px;}
                 @media screen and (min-width: 992px) {
+                .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
+                    flex-direction: row;
+                }
                     .options-fields .option-field {
                         flex-direction: row;
                         align-items: center;}
