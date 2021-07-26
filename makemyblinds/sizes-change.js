@@ -24,7 +24,7 @@ let mut = new MutationObserver(function (muts) {
                     .from-price .price-original {
                         text-decoration: line-through;
                         display: none; }
-                    .from-price .price {
+                    .from-price {
                         font-weight: 500;
                         padding-right: 7px;
                         font-size: 49px;
@@ -238,13 +238,12 @@ let mut = new MutationObserver(function (muts) {
                 </style>`);
 
                     document.querySelector('.page-title-wrapper').insertAdjacentHTML('afterend', `<div class="product-options"></div>`);
-                    document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price">${document.querySelector('.product-info-price').innerHTML}</div>`);
+                    document.querySelector('.product-options').insertAdjacentHTML('afterbegin', `<div class="from-price"><p class="price-label">From</p>${document.querySelector('.product-info-price .price-wrapper .price').innerHTML}</div>`);
                     document.querySelector('.from-price').after(document.querySelector('.product-social-links'));
                     document.querySelector('.htm-trigger').insertAdjacentHTML('beforebegin', `<p class="product-options-text">Enter your <span> width </span>  and <span> drop </span> to get a price</p>`);
                     document.querySelector('.htm-trigger').after(document.querySelector('.pill'));
                     document.querySelector('.product-options-wrapper').insertAdjacentHTML('afterend', `<div class="options-fields"><div class="option-after"></div></div>`);
                     document.querySelector('.option-after').after(document.querySelector('.bottom-actions__row'));
-                    document.querySelector('.product-options .price-label').innerHTML = 'From';
                     if (document.querySelector('.product-delivery-date')) {
                         document.querySelector('.hp_strip__container').before(document.querySelector('.product-delivery-date'));
                     }
