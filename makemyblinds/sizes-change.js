@@ -6,6 +6,8 @@ let mut = new MutationObserver(function (muts) {
                 if (el.querySelector('td').innerHTML != 'Attic/Loft') {
                     document.body.insertAdjacentHTML('afterbegin', `
                 <style>
+                    .product-options-bottom {
+                        display: none;}
                     .wishlist-mobile-wrap {
                         display: none;}
                     .product-options {
@@ -298,6 +300,7 @@ let mut = new MutationObserver(function (muts) {
                                 if (!document.querySelector('.product-options-wrapper .product-custom-option.input-text.mage-error')) {
                                     e.target.hidden = true;
                                     document.querySelector('.options-fields').classList.add('active');
+                                    document.querySelector('.product-options-bottom').style.display = 'block';
                                     document.querySelector('.product-options .from-price').style.opacity = '0';
                                 }
                             }
