@@ -19,8 +19,10 @@ let mut = new MutationObserver(function (muts) {
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                mut.disconnect();
+                let basketList = [];
+                localStorage.setItem('basketList', '');
                 if (doc.querySelectorAll('.cart-table tbody tr .square')) {
-                    mut.disconnect();
                     doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
                         basketList.push({
                             'title': el.querySelector('.desc a').innerHTML,
@@ -31,7 +33,7 @@ let mut = new MutationObserver(function (muts) {
                         localStorage.setItem('basketList', JSON.stringify(basketList));
                     });
                 } else {
-                    let basketList = [];
+                    basketList = [];
                     localStorage.setItem('basketList', '');
                 }
             }
