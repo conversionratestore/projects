@@ -77,6 +77,7 @@ let mut = new MutationObserver(function (muts) {
            }
         </style>`);
         $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
+     
         if (localStorage.getItem('basketList') != '') {
             $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
         }
@@ -299,26 +300,34 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
+
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
             if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== null) {
+                mut.disconnect();
                 setTimeout(() => {
                     $(".modal").addClass('active');
                     sessionStorage.setItem('modal', '');
                 }, 20000);
             }
 
-            function addEvent(obj, evt, fn) {
-                if (obj.addEventListener) {
-                    obj.addEventListener(evt, fn, false);
-                } else if (obj.attachEvent) {
-                    obj.attachEvent("on" + evt, fn);
-                }
-            }
             if (window.matchMedia("(max-width: 1024px)").matches) {
+                mut.disconnect();
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
+                function addEvent(obj, evt, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(evt, fn, false);
+                    } else if (obj.attachEvent) {
+                        obj.attachEvent("on" + evt, fn);
+                    }
+                }
                 addEvent(document, 'mouseout', function(evt) {
                     if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== null) {
+                        mut.disconnect();
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             $(".modal").addClass('active');
                             sessionStorage.setItem('modal', '');
