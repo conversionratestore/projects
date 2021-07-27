@@ -239,22 +239,29 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 
 }).then(res => res.json()).then(data => console.log(data))
 
-fetch('https://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=1', {
+fetch("https://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=20", {
     headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer 46q6oqm37chhxvqd8y6l0iaawqa6xyfh"
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": `Bearer n9i7w3ff7t5bc7vhtuh41yb3pfvvo76t`,
+        // "Access-Control-Allow-Origin": "*/*",
+        // "current_page": 1,
+        // "page_size": 10,
+        // "Pragma": "no-cache",
+        // "Connection": "keep-alive",
+        // "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        // "Server": "cloudflare"
     },
-    method: "POST",
-    body: JSON.stringify( {
-        "username": "conversionrate",
-        "password": "gasmaj-mornut-sowZy9"
-    })
-}).then(res => res.json()).then(data => console.log(data))
+    method: "GET",
+    mode: "cors"
+}).then(res => res.json()).then(data => {console.log('data from server', JSON.stringify(data))}).catch(err => {
+    console.log('Failed fetch ', err);
+});
 
 
-// fetch('http://makemyblinds.co.uk/rest/V1/products', {
+// fetch("http://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=2", {
 //     headers: {
 //         'Content-Type': 'application/json',
+//         "Authorization": "Bearer n8diss2gfemcv203anuvs5mz6k0i3uoc",
 //     },
 //     method: "GET",
 // }).then((data) => {
