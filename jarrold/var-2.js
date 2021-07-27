@@ -21,9 +21,6 @@ let mut = new MutationObserver(function (muts) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                 if (doc.querySelectorAll('.cart-table tbody tr .square')) {
                     mut.disconnect();
-                    let basketList = [];
-                    localStorage.setItem('basketList', '');
-
                     doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
                         basketList.push({
                             'title': el.querySelector('.desc a').innerHTML,
@@ -33,6 +30,9 @@ let mut = new MutationObserver(function (muts) {
                         });
                         localStorage.setItem('basketList', JSON.stringify(basketList));
                     });
+                } else {
+                    let basketList = [];
+                    localStorage.setItem('basketList', '');
                 }
             }
         }
