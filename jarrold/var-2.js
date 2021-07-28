@@ -13,8 +13,6 @@ let mut = new MutationObserver(function (muts) {
         }
         http.send(null);
     })();
-    let basketList = [];
-    localStorage.setItem('basketList', '');
     (function(){
         var http = new XMLHttpRequest();
         http.open('GET', 'https://www.jarrold.co.uk/basket');
@@ -22,6 +20,8 @@ let mut = new MutationObserver(function (muts) {
             if (this.readyState == 4 && this.status == 200) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
 
+                let basketList = [];
+                localStorage.setItem('basketList', '');
                 if (doc.querySelectorAll('.cart-table tbody tr .square')) {
                     mut.disconnect();
                     doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
@@ -306,9 +306,9 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            // $('.btn.bag').on('click', function () {
-            //     $('.modal').addClass('hide');
-            // });
+            $('.btn.bag').on('click', function () {
+                $('.modal').addClass('hide');
+            });
 
             setTimeout(() => {
                 if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
