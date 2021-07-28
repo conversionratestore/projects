@@ -40,7 +40,10 @@ let mut = new MutationObserver(function (muts) {
         }
         http.send(null);
     })();
+    if (window.location.pathname.includes('basket')) {
 
+
+    }
     if (document.querySelector('#page_header_CPR')) {
         mut.disconnect();
 
@@ -81,9 +84,10 @@ let mut = new MutationObserver(function (muts) {
             $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
         }
     }
-    if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
-        mut.disconnect();
-        $('body').eq(0).prepend(`<style>
+    setTimeout(function () {
+        if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
+            mut.disconnect();
+            $('body').eq(0).prepend(`<style>
         .modal {
             background: rgba(0, 0, 0, 0.59);
             position: fixed;
@@ -199,7 +203,7 @@ let mut = new MutationObserver(function (muts) {
             color: #000000;
             letter-spacing: 0.05em;}
         </style>`);
-        $('body').eq(0).append(`
+            $('body').eq(0).append(`
         <div class="modal">
             <div class="modal_container">
                 <div class="modal_top">
@@ -216,9 +220,9 @@ let mut = new MutationObserver(function (muts) {
             </div> 
         </div>`);
 
-        let basketList = JSON.parse(localStorage.getItem('basketList'));
-        for (let i = 0; i < basketList.length; i++) {
-            $('.modal_products').append(`
+            let basketList = JSON.parse(localStorage.getItem('basketList'));
+            for (let i = 0; i < basketList.length; i++) {
+                $('.modal_products').append(`
             <li>
                 <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
                 <div class="flex-center-between">
@@ -226,108 +230,110 @@ let mut = new MutationObserver(function (muts) {
                     <p class="product-price">${basketList[i].price}</p>
                 </div>
             </li>`);
-            if (document.querySelectorAll('.modal_img img')[i]){
-                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
-                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
-            }
-        }
-
-        jQuery(document).on('touchstart', function(){
-            $('body').addClass('on-mobile-device');
-        });
-
-        function myScrollSpeedFunction(){
-            if(jQuery('body').hasClass('on-mobile-device') ){
-                if(my_scroll() < -200){
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                        $(".modal").addClass('active');
-                        sessionStorage.setItem('modal', '');
-                    }
+                if (document.querySelectorAll('.modal_img img')[i]){
+                    let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
+                    document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
                 }
             }
-        }
 
-        var my_scroll = (function() {
-            var last_position, new_position, timer, delta, delay = 50;
-
-            function clear() {
-                last_position = null;
-                delta = 0;
-            }
-
-            clear();
-
-            return function(){
-                new_position = window.scrollY;
-                if (last_position != null){
-                    delta = new_position -  last_position;
-                }
-                last_position = new_position;
-                clearTimeout(timer);
-                timer = setTimeout(clear, delay);
-                return delta;
-            };
-        })();
-        $(".modal").on('click', (e) => {
-            e.stopImmediatePropagation();
-            $('.modal').removeClass('active');
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup',
-                'eventAction': `click on the background to close popup`
+            jQuery(document).on('touchstart', function(){
+                $('body').addClass('on-mobile-device');
             });
-        });
-        $(".close").on('click', (e) => {
-            e.stopImmediatePropagation();
-            $('.modal').removeClass('active');
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup',
-                'eventAction': `click on X to close popup`
-            });
-        });
-        $('.modal .btn').on('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup',
-                'eventAction': 'click on Complete your order now'
-            });
-        });
-        $(".modal_container").on('click', (e) => {
-            e.stopPropagation();
-        });
-        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                setTimeout(() => {
-                    $(".modal").addClass('active');
-                    sessionStorage.setItem('modal', '');
-                }, 20000);
-            }
 
-            function addEvent(obj, evt, fn) {
-                if (obj.addEventListener) {
-                    obj.addEventListener(evt, fn, false);
-                } else if (obj.attachEvent) {
-                    obj.attachEvent("on" + evt, fn);
-                }
-            }
-            if (window.matchMedia("(max-width: 1024px)").matches) {
-                jQuery(document).on('scroll', myScrollSpeedFunction);
-            } else {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                        if (evt.toElement == null && evt.relatedTarget == null) {
+            function myScrollSpeedFunction(){
+                if(jQuery('body').hasClass('on-mobile-device') ){
+                    if(my_scroll() < -200){
+                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                             $(".modal").addClass('active');
                             sessionStorage.setItem('modal', '');
-                        };
+                        }
                     }
+                }
+            }
+
+            var my_scroll = (function() {
+                var last_position, new_position, timer, delta, delay = 50;
+
+                function clear() {
+                    last_position = null;
+                    delta = 0;
+                }
+
+                clear();
+
+                return function(){
+                    new_position = window.scrollY;
+                    if (last_position != null){
+                        delta = new_position -  last_position;
+                    }
+                    last_position = new_position;
+                    clearTimeout(timer);
+                    timer = setTimeout(clear, delay);
+                    return delta;
+                };
+            })();
+            $(".modal").on('click', (e) => {
+                e.stopImmediatePropagation();
+                $('.modal').removeClass('active');
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup',
+                    'eventAction': `click on the background to close popup`
                 });
+            });
+            $(".close").on('click', (e) => {
+                e.stopImmediatePropagation();
+                $('.modal').removeClass('active');
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup',
+                    'eventAction': `click on X to close popup`
+                });
+            });
+            $('.modal .btn').on('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup',
+                    'eventAction': 'click on Complete your order now'
+                });
+            });
+            $(".modal_container").on('click', (e) => {
+                e.stopPropagation();
+            });
+            if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                    setTimeout(() => {
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
+                    }, 20000);
+                }
+
+                function addEvent(obj, evt, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(evt, fn, false);
+                    } else if (obj.attachEvent) {
+                        obj.attachEvent("on" + evt, fn);
+                    }
+                }
+                if (window.matchMedia("(max-width: 1024px)").matches) {
+                    jQuery(document).on('scroll', myScrollSpeedFunction);
+                } else {
+                    addEvent(document, 'mouseout', function(evt) {
+                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                            if (evt.toElement == null && evt.relatedTarget == null) {
+                                $(".modal").addClass('active');
+                                sessionStorage.setItem('modal', '');
+                            };
+                        }
+                    });
+                }
             }
         }
-    }
+    }, 100);
+   
 });
 
 mut.observe(document, {
