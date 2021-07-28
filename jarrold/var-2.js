@@ -301,12 +301,13 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1') && localStorage.getItem('basketList') !== '') {
-            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                setTimeout(() => {
+           setTimeout(() => { 
+               if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                     $(".modal").addClass('active');
                     sessionStorage.setItem('modal', '');
-                }, 20000);
-            }
+               }
+           }, 20000);
+          
 
             function addEvent(obj, evt, fn) {
                 if (obj.addEventListener) {
