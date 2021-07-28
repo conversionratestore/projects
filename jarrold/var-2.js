@@ -23,7 +23,7 @@ let mut = new MutationObserver(function (muts) {
                     basketList = [];
                     localStorage.setItem('basketList', '');
                 }
-                 if (localStorage.getItem('basketList') === '' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
+                if (localStorage.getItem('basketList') === '' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
                     sessionStorage.clear();
                 }
                 console.log(basketList)
@@ -155,37 +155,20 @@ let mut = new MutationObserver(function (muts) {
     </style>`);
         $('body').eq(0).append(`
         <div class="modal">
-        <div class="modal_container">
-            <div class="modal_top">
-                <button type="button" class="close"></button>
-                <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
-                <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
-                <ul class="modal_products"></ul>
-            </div>
-            <div class="notification">
-                <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
-                <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
-            </div>
-            <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
-        </div> 
-    </div>`);
-
-        let basketList = JSON.parse(localStorage.getItem('basketList'));
-        for (let i = 0; i < basketList.length; i++) {
-            $('.modal_products').append(`
-            <li>
-                <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
-                <div class="flex-center-between">
-                    <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
-                    <p class="product-price">${basketList[i].price}</p>
+            <div class="modal_container">
+                <div class="modal_top">
+                    <button type="button" class="close"></button>
+                    <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
+                    <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
+                    <ul class="modal_products"></ul>
                 </div>
-            </li>`);
-            if (document.querySelectorAll('.modal_img img')[i]){
-                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
-                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
-            }
-        }
-
+                <div class="notification">
+                    <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
+                    <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
+                </div>
+                <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
+            </div> 
+        </div>`);
         jQuery(document).on('touchstart', function(){
             $('body').addClass('on-mobile-device');
         });
@@ -222,6 +205,7 @@ let mut = new MutationObserver(function (muts) {
                 return delta;
             };
         })();
+
         $(".modal").on('click', (e) => {
             e.stopImmediatePropagation();
             $('.modal').removeClass('active');
@@ -253,43 +237,62 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            $('.btn.bag').on('click', function () {
-                $('.modal').addClass('hide');
-            });
-
-            setTimeout(() => {
-                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                    $(".modal").addClass('active');
-                    sessionStorage.setItem('modal', '');
-                }
-            }, 20000);
-
-            function addEvent(obj, evt, fn) {
-                if (obj.addEventListener) {
-                    obj.addEventListener(evt, fn, false);
-                } else if (obj.attachEvent) {
-                    obj.attachEvent("on" + evt, fn);
-                }
+        
+        let basketList = JSON.parse(localStorage.getItem('basketList'));
+        for (let i = 0; i < basketList.length; i++) {
+            $('.modal_products').append(`
+            <li>
+                <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
+                <div class="flex-center-between">
+                    <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
+                    <p class="product-price">${basketList[i].price}</p>
+                </div>
+            </li>`);
+            if (document.querySelectorAll('.modal_img img')[i]){
+                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
+                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
             }
-            if (window.matchMedia("(max-width: 1024px)").matches) {
-                jQuery(document).on('scroll', myScrollSpeedFunction);
-            } else {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (!document.querySelector('.modal.hide')) {
+
+            if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+                $('.btn.bag').on('click', function () {
+                    $('.modal').addClass('hide');
+                });
+
+                setTimeout(() => {
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
+                    }
+                }, 20000);
+
+                function addEvent(obj, evt, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(evt, fn, false);
+                    } else if (obj.attachEvent) {
+                        obj.attachEvent("on" + evt, fn);
+                    }
+                }
+                if (window.matchMedia("(max-width: 1024px)").matches) {
+                    jQuery(document).on('scroll', myScrollSpeedFunction);
+                } else {
+                    addEvent(document, 'mouseout', function(evt) {
+                        // if (!document.querySelector('.modal.hide')) {
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                                 $(".modal").addClass('active');
                                 sessionStorage.setItem('modal', '');
                             }
                         }
-                    } else {
-                        sessionStorage.setItem('modal', '');
-                    }
-                });
+                        // } else {
+                        //     sessionStorage.setItem('modal', '');
+                        // }
+                    });
+                }
+
             }
 
         }
+       
     }
 });
 
