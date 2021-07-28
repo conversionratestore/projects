@@ -23,6 +23,7 @@ let mut = new MutationObserver(function (muts) {
                     basketList = [];
                     localStorage.setItem('basketList', '');
                 }
+                console.log(basketList)
             }
         }
         http.send(null);
