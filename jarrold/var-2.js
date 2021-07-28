@@ -104,6 +104,10 @@ let mut = new MutationObserver(function (muts) {
     .modal.active {
         opacity: 1;
         pointer-events: auto;}
+     .modal.hide {
+        opacity: 0!important;
+        pointer-events: none!important;
+     }
     .modal_container {
         position: relative;
         margin: auto;
@@ -303,39 +307,37 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            let clickEvent = false;
             $('.btn.bag').on('click', function () {
-                clickEvent = true;
-            }, false);
+                $('.modal').addClass('hide');
+            });
 
-            if (clickEvent != true) {
-                setTimeout(() => {
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                        $(".modal").addClass('active');
-                        sessionStorage.setItem('modal', '');
-                    }
-                }, 20000);
-
-                function addEvent(obj, evt, fn) {
-                    if (obj.addEventListener) {
-                        obj.addEventListener(evt, fn, false);
-                    } else if (obj.attachEvent) {
-                        obj.attachEvent("on" + evt, fn);
-                    }
+            setTimeout(() => {
+                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                    $(".modal").addClass('active');
+                    sessionStorage.setItem('modal', '');
                 }
-                if (window.matchMedia("(max-width: 1024px)").matches) {
-                    jQuery(document).on('scroll', myScrollSpeedFunction);
-                } else {
-                    addEvent(document, 'mouseout', function(evt) {
-                        if (evt.toElement == null && evt.relatedTarget == null) {
-                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                                $(".modal").addClass('active');
-                                sessionStorage.setItem('modal', '');
-                            }
-                        }
-                    });
+            }, 20000);
+
+            function addEvent(obj, evt, fn) {
+                if (obj.addEventListener) {
+                    obj.addEventListener(evt, fn, false);
+                } else if (obj.attachEvent) {
+                    obj.attachEvent("on" + evt, fn);
                 }
             }
+            if (window.matchMedia("(max-width: 1024px)").matches) {
+                jQuery(document).on('scroll', myScrollSpeedFunction);
+            } else {
+                addEvent(document, 'mouseout', function(evt) {
+                    if (evt.toElement == null && evt.relatedTarget == null) {
+                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                            $(".modal").addClass('active');
+                            sessionStorage.setItem('modal', '');
+                        }
+                    }
+                });
+            }
+
         }
     }
 });
