@@ -1,20 +1,6 @@
 let mut = new MutationObserver(function (muts) {
     (function(){
         var http = new XMLHttpRequest();
-        http.open('GET', 'https://www.jarrold.co.uk/my-account?view=wishlist');
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                if (doc.querySelectorAll('.cart-table tbody tr')) {
-                    mut.disconnect();
-                    $('.favorites span').html(doc.querySelectorAll('.cart-table tbody tr').length);
-                }
-            }
-        }
-        http.send(null);
-    })();
-    (function(){
-        var http = new XMLHttpRequest();
         http.open('GET', 'https://www.jarrold.co.uk/basket');
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -41,48 +27,6 @@ let mut = new MutationObserver(function (muts) {
         }
         http.send(null);
     })();
-
-
-    if (document.querySelector('#page_header_CPR')) {
-        mut.disconnect();
-
-        $('body').eq(0).prepend(`<style>
-            .favorites {
-                margin-right: 5px;}
-            .favorites:before {
-                background: url(https://conversionratestore.github.io/projects/jarrold/img/heart.svg) no-repeat center / 22px 19px;}
-            .favorites span {
-                position: absolute;
-                display: block!important;
-                top: 10px;
-                left: 0;
-                right: 0;
-                font-weight: 600;
-                font-size: 9px;
-                line-height: 12px;
-                color: #4B2A4D; }
-           @media screen and (min-width: 992px) {
-               body.scroll #head a.favorites strong {
-                    height: 0;
-                    overflow: hidden;
-               }
-               body.scroll .favorites{
-                    padding-top: 30px!important;
-               }
-               #head header .l div[id]>a:before, #head header .r div[id]>a:before, #head header .l>label:before, #head header .r>label:before, #head header .l>a:before, #head header .r>a:before {
-                    min-height: 34px;
-               }
-               #head header .r {
-                    display: flex;
-                    align-items: center;
-               }
-           }
-        </style>`);
-        $('#page_header_CPR').prepend(`<a href="https://www.jarrold.co.uk/my-account?view=wishlist" class="favorites"><strong>Favorites</strong><span>0</span></a>`)
-        if (localStorage.getItem('basketList') != '') {
-            $('.favorites span').html(JSON.parse(localStorage.getItem('basketList')).length);
-        }
-    }
 
     if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
