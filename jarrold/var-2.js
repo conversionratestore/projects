@@ -300,14 +300,14 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1') && localStorage.getItem('basketList') !== '') {
-           setTimeout(() => { 
+        if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+           setTimeout(() => {
                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                     $(".modal").addClass('active');
                     sessionStorage.setItem('modal', '');
                }
            }, 20000);
-          
+
 
             function addEvent(obj, evt, fn) {
                 if (obj.addEventListener) {
@@ -320,11 +320,11 @@ let mut = new MutationObserver(function (muts) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
                 addEvent(document, 'mouseout', function(evt) {
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                        if (evt.toElement == null && evt.relatedTarget == null) {
+                    if (evt.toElement == null && evt.relatedTarget == null) {
+                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                             $(".modal").addClass('active');
                             sessionStorage.setItem('modal', '');
-                        };
+                        }
                     }
                 });
             }
