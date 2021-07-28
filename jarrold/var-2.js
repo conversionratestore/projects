@@ -106,8 +106,7 @@ let mut = new MutationObserver(function (muts) {
         pointer-events: auto;}
      .modal.hide {
         opacity: 0!important;
-        pointer-events: none!important;
-     }
+        pointer-events: none!important;}
     .modal_container {
         position: relative;
         margin: auto;
@@ -307,9 +306,9 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-            $('.btn.bag').on('click', function () {
-                $('.modal').addClass('hide');
-            });
+            // $('.btn.bag').on('click', function () {
+            //     $('.modal').addClass('hide');
+            // });
 
             setTimeout(() => {
                 if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
