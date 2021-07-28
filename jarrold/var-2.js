@@ -301,37 +301,40 @@ let mut = new MutationObserver(function (muts) {
             e.stopPropagation();
         });
         if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
-           setTimeout(() => {
-               if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                    $(".modal").addClass('active');
-                    sessionStorage.setItem('modal', '');
-               }
-           }, 20000);
-
-
-            function addEvent(obj, evt, fn) {
-                if (obj.addEventListener) {
-                    obj.addEventListener(evt, fn, false);
-                } else if (obj.attachEvent) {
-                    obj.attachEvent("on" + evt, fn);
-                }
-            }
-            if (window.matchMedia("(max-width: 1024px)").matches) {
-                jQuery(document).on('scroll', myScrollSpeedFunction);
-            } else {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (evt.toElement == null && evt.relatedTarget == null) {
-                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                            $(".modal").addClass('active');
-                            sessionStorage.setItem('modal', '');
-                        }
+            let clickEvent = false;
+            $('.btn.bag').on('click', function () {
+                clickEvent = true;
+            }, false);
+            if (clickEvent != true) {
+                let start = setTimeout(() => {
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
                     }
-                });
+                }, 20000);
+
+                function addEvent(obj, evt, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(evt, fn, false);
+                    } else if (obj.attachEvent) {
+                        obj.attachEvent("on" + evt, fn);
+                    }
+                }
+                if (window.matchMedia("(max-width: 1024px)").matches) {
+                    jQuery(document).on('scroll', myScrollSpeedFunction);
+                } else {
+                    addEvent(document, 'mouseout', function(evt) {
+                        if (evt.toElement == null && evt.relatedTarget == null) {
+                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                                $(".modal").addClass('active');
+                                sessionStorage.setItem('modal', '');
+                            }
+                        }
+                    });
+                }
             }
         }
     }
-
-
 });
 
 mut.observe(document, {
