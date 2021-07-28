@@ -274,7 +274,6 @@ let mut = new MutationObserver(function (muts) {
             } else {
                 addEvent(document, 'mouseout', function(evt) {
                     if (!document.querySelector('.modal.hide')) {
-                        sessionStorage.clear();
                         if (evt.toElement == null && evt.relatedTarget == null) {
                             if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
                                 $(".modal").addClass('active');
