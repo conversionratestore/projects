@@ -273,11 +273,16 @@ let mut = new MutationObserver(function (muts) {
                 jQuery(document).on('scroll', myScrollSpeedFunction);
             } else {
                 addEvent(document, 'mouseout', function(evt) {
-                    if (evt.toElement == null && evt.relatedTarget == null) {
-                        if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
-                            $(".modal").addClass('active');
-                            sessionStorage.setItem('modal', '');
+                    if (!document.querySelector('.modal.hide')) {
+                        sessionStorage.clear();
+                        if (evt.toElement == null && evt.relatedTarget == null) {
+                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                                $(".modal").addClass('active');
+                                sessionStorage.setItem('modal', '');
+                            }
                         }
+                    } else {
+                        sessionStorage.setItem('modal', '');
                     }
                 });
             }
