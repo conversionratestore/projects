@@ -164,65 +164,74 @@ let block = `
 
 `
 
-document.body.insertAdjacentHTML('afterbegin', style)
-document.querySelector('.recomendedmedical').insertAdjacentHTML('beforebegin',block)
-let sel = document.querySelectorAll('select[name="qauntry"]')[5].cloneNode(true)
-document.querySelector('.schedule>p').appendChild(sel)
+let start = setInterval(function () {
+    if (document.querySelector('.recomendedmedical') && document.querySelectorAll('select[name="qauntry"]')[5]) {
+        clearInterval(start)
 
-document.querySelector('.money_back select').addEventListener('change', function (e) {
-    document.querySelectorAll('select[name="qauntry"]')[5].value = this.value
-    let d = e.target.options[e.target.selectedIndex].dataset.value;
-    document.querySelector('.ship-destination__span--date').innerHTML = d
-    setDateDelivery(d)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — PDP money back guarantee',
-        'eventAction': 'Click on Ship to selection',
-        'eventLabel': 'newSelect'
-    });
-})
+        document.body.insertAdjacentHTML('afterbegin', style)
+        document.querySelector('.recomendedmedical').insertAdjacentHTML('beforebegin',block)
+        let sel = document.querySelectorAll('select[name="qauntry"]')[5].cloneNode(true)
+        document.querySelector('.schedule>p').appendChild(sel)
 
-document.querySelectorAll('select[name="qauntry"]')[5].addEventListener('change', function (e) {
-    document.querySelector('.money_back select').value = this.value
-    let d = e.target.options[e.target.selectedIndex].dataset.value;
-    setDateDelivery(d)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — PDP money back guarantee',
-        'eventAction': 'Click on Ship to selection',
-        'eventLabel': 'oldSelect'
-    });
-})
+        document.querySelector('.money_back select').addEventListener('change', function (e) {
+            document.querySelectorAll('select[name="qauntry"]')[5].value = this.value
+            let d = e.target.options[e.target.selectedIndex].dataset.value;
+            document.querySelector('.ship-destination__span--date').innerHTML = d
+            setDateDelivery(d)
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP money back guarantee',
+                'eventAction': 'Click on Ship to selection',
+                'eventLabel': 'newSelect'
+            });
+        })
 
-let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        document.querySelectorAll('select[name="qauntry"]')[5].addEventListener('change', function (e) {
+            document.querySelector('.money_back select').value = this.value
+            let d = e.target.options[e.target.selectedIndex].dataset.value;
+            setDateDelivery(d)
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP money back guarantee',
+                'eventAction': 'Click on Ship to selection',
+                'eventLabel': 'oldSelect'
+            });
+        })
 
-function setDateDelivery (str) {
-    let parseStr = str.split(' ').filter((item) => item !== '-')
-    let day = new Date().getDate()
-    let month = new Date().getMonth()
-    let year = new Date().getFullYear()
-    let day1 = +parseStr[0]
-    let day2 = +parseStr[2]
-    let month1 = monthTable.indexOf(parseStr[1])
-    let month2 = monthTable.indexOf(parseStr[3])
-    let date = new Date(year, month, day);
-    let date1 = new Date(year, month1, day1);
-    let date2 = new Date(year, month2, day2);
-    let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
-    let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
-    let daysLag3 = new Date(date.setDate(date.getDate() + 30));
+        let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-    document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
-    document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
-    document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
-    document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()}, ${daysLag3.getFullYear()}`
-}
+        function setDateDelivery (str) {
+            let parseStr = str.split(' ').filter((item) => item !== '-')
+            let day = new Date().getDate()
+            let month = new Date().getMonth()
+            let year = new Date().getFullYear()
+            let day1 = +parseStr[0]
+            let day2 = +parseStr[2]
+            let month1 = monthTable.indexOf(parseStr[1])
+            let month2 = monthTable.indexOf(parseStr[3])
+            let date = new Date(year, month, day);
+            let date1 = new Date(year, month1, day1);
+            let date2 = new Date(year, month2, day2);
+            let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
+            let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
+            let daysLag3 = new Date(date.setDate(date.getDate() + 30));
 
-let firstStr = document.querySelector('.ship-destination__span--date').innerText
+            document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
+            document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
+            document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
+            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()}, ${daysLag3.getFullYear()}`
+        }
 
-setDateDelivery(firstStr);
+        let firstStr = document.querySelector('.ship-destination__span--date').innerText
+
+        setDateDelivery(firstStr);
+        
+    }
+}, 100);
+
+
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
