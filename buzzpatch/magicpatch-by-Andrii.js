@@ -30,7 +30,7 @@ let start = setInterval(() => {
                         margin: 0 1em;
                     }
         
-                    header .navbar {
+                    .js-main header .navbar {
                         padding: 15px !important;
                     }
                     header .js-title, 
