@@ -69,6 +69,9 @@ let start = setInterval(() => {
                     .js-mobile.wave-bg {                        
                         margin-top: -115px;
                     }
+                    .js-mobile.wave-bg img{
+                        width: 100%;
+                    }
                     #flowers .col-sm-4,
                     .effectiveness .col-sm-4 {
                         width: 25%;
