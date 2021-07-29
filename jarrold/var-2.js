@@ -21,7 +21,7 @@ let mut = new MutationObserver(function (muts) {
                     });
                 } else {
                     basketList = [];
-                    localStorage.setItem('basketList', '');
+                    localStorage.setItem('basketList', basketList);
                 }
                 if (localStorage.getItem('basketList') === '' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
                     sessionStorage.clear();
@@ -237,7 +237,7 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-        
+
         let basketList = JSON.parse(localStorage.getItem('basketList'));
         for (let i = 0; i < basketList.length; i++) {
             $('.modal_products').append(`
@@ -292,7 +292,7 @@ let mut = new MutationObserver(function (muts) {
             }
 
         }
-       
+
     }
 });
 
