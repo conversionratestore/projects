@@ -118,6 +118,7 @@ let start = setInterval(() => {
                         padding: 0 10px;
                         font-weight: bold;
                         font-size: 16px;
+                        transform: scale(1.3);
                     }
                     .material-free p::after {
                         position: absolute;
@@ -129,6 +130,7 @@ let start = setInterval(() => {
                         padding: 0 10px;
                         font-weight: bold;
                         font-size: 16px;
+                        transform: scale(1.3);
                     }
                     .itch-advantages-wrapper {
                         text-align:center;
@@ -197,14 +199,14 @@ let start = setInterval(() => {
                         position: absolute;
                         content: url("https://conversionratestore.github.io/projects/buzzpatch/img/Vector4.svg");
                         top: -70px;
-                        left: -50px;
+                        left: -74px;
                         z-index: -1;
                     }
                     .second-step::after {
                         position: absolute;
                         content: url("https://conversionratestore.github.io/projects/buzzpatch/img/Vector5.svg");
                         bottom: -70px;
-                        left: -50px;
+                        left: -88px;
                         z-index: -1;
                     }
                     .step-content {
