@@ -740,7 +740,7 @@ let start = setInterval(() => {
                 autoHeight: true,
             });
         }
-    }, 200);
+    }, 100);
 
     let navInterval = setInterval(() => {
         if (document.querySelector('.tns-nav')) {
