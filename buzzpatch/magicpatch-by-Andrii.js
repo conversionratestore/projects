@@ -335,6 +335,7 @@ let start = setInterval(() => {
                         background-color: #999999; 
                         border-radius: 50%;
                         margin: 0 10px;
+                        padding: 0;
                         width: 12px;
                         height: 12px;
                     }
