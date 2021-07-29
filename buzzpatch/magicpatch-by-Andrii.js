@@ -740,7 +740,7 @@ let start = setInterval(() => {
                 autoHeight: true,
             });
         }
-    }, 100);
+    }, 200);
 
     let navInterval = setInterval(() => {
         if (document.querySelector('.tns-nav')) {
@@ -759,7 +759,7 @@ let start = setInterval(() => {
         <img class="days" src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/30day.png?v=1618147802">
     `,
     );
-}, 200);
+}, 100);
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
