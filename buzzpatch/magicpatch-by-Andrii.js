@@ -117,8 +117,7 @@ let start = setInterval(() => {
                         background: #ECEEF0;
                         padding: 0 10px;
                         font-weight: bold;
-                        font-size: 16px;
-                        transform: scale(1.3);
+                        font-size: 16px;                        
                     }
                     .material-free p::after {
                         position: absolute;
@@ -130,7 +129,6 @@ let start = setInterval(() => {
                         padding: 0 10px;
                         font-weight: bold;
                         font-size: 16px;
-                        transform: scale(1.3);
                     }
                     .itch-advantages-wrapper {
                         text-align:center;
@@ -201,6 +199,7 @@ let start = setInterval(() => {
                         top: -70px;
                         left: -74px;
                         z-index: -1;
+                        transform: scale(1.3);
                     }
                     .second-step::after {
                         position: absolute;
@@ -208,6 +207,7 @@ let start = setInterval(() => {
                         bottom: -70px;
                         left: -88px;
                         z-index: -1;
+                        transform: scale(1.3);
                     }
                     .step-content {
                         min-width: 121px;
