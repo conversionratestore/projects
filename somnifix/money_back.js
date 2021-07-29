@@ -165,7 +165,7 @@ let block = `
 `
 
 let start = setInterval(function () {
-    if (document.querySelector('.recomendedmedical') && document.querySelectorAll('select[name="qauntry"]')[5]) {
+    if (document.querySelector('.recomendedmedical') && document.querySelector('.ship-destination__span--date')) {
         clearInterval(start)
 
         document.body.insertAdjacentHTML('afterbegin', style)
@@ -227,7 +227,7 @@ let start = setInterval(function () {
         let firstStr = document.querySelector('.ship-destination__span--date').innerText
 
         setDateDelivery(firstStr);
-        
+
     }
 }, 100);
 
