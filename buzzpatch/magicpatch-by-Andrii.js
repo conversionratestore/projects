@@ -63,7 +63,7 @@ let start = setInterval(() => {
                         background: #eceef0;
                         z-index: 1;
                         position: relative;
-                        margin-top: -30%;
+                        margin-top: -35%;
                         padding-bottom: 0;
                     }
                     .js-mobile.wave-bg {                        
