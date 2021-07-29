@@ -335,7 +335,7 @@ let start = setInterval(() => {
                         background-color: #999999; 
                         border-radius: 50%;
                         margin: 0 10px;
-                        width: 10px;
+                        width: 12px;
                         height: 12px;
                     }
                     .tns-nav button.tns-nav-active {
