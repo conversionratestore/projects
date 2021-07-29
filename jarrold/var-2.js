@@ -23,7 +23,7 @@ let mut = new MutationObserver(function (muts) {
                     basketList = [];
                     localStorage.setItem('basketList', basketList);
                 }
-                if (localStorage.getItem('basketList') === '' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
+                if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
                     sessionStorage.clear();
                 }
                 console.log(basketList)
