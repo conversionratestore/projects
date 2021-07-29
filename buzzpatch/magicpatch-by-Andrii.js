@@ -43,7 +43,8 @@ let start = setInterval(() => {
                         text-align: left !important;
                     }
                     header nav .js-btn.btn-primary {
-                        padding: 12px 28% !important;
+                        font-size: 16px;
+                        padding: 14px 26% !important;
                     }
                     header .js-heading .js-btn.btn-primary {
                         margin-top: 0 !important;
@@ -86,6 +87,9 @@ let start = setInterval(() => {
                         letter-spacing: 0;
                         text-align: left;
                         margin-bottom: 0;
+                    }
+                    .material-free {
+                        margin-top: 30px;
                     }
                     .material-free p {
                         position: relative;
@@ -249,6 +253,7 @@ let start = setInterval(() => {
                         font-size: 18px !important;
                         line-height: 150% !important;
                         color: #212529;
+                        margin: 0;
                     }
                     .faqs.faqs_active .js-title {
                         margin-bottom: 20px;
@@ -296,7 +301,7 @@ let start = setInterval(() => {
                        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
                     }
                     .carousel__slide {
-                        padding: 25px;
+                        padding: 30px;
                         background: #FFFFFF;                       
                         border-radius: 12px;
                     }
@@ -343,7 +348,7 @@ let start = setInterval(() => {
                         background-color: #FF3C7F;                         
                     }
                     .package h2{
-                        font-size: 36px;
+                        font-size: 36px !important;
                     }
                     .package p {
                         color: #6F6F6F;
@@ -356,9 +361,13 @@ let start = setInterval(() => {
                     .package .bestseller {
                         border-radius: 3px 3px 0px 0px;
                     }
-                    
+                    .package .grey {
+                        padding: 15px 10px 20px!important;
+                    }
                     .js-packs input[type="radio"] + label {
                         border-radius: 6px !important;
+                        font-size: 20px !important;
+                        padding: 22px 15px;
                     }
                     .js-packs input[type="radio"]:not(input[type="radio"]:first-child) + label {
                         border-radius: 0 6px 6px 6px !important;
