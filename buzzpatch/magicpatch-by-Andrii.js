@@ -263,13 +263,13 @@ let start = setInterval(() => {
                         border: none !important;
                     }
                     .faqs.faqs_active .card-link {
-                        background-image: url("https://conversionratestore.github.io/projects/buzzpatch/img/vector-minus.svg");
+                        background-image: url("https://cdn.shopify.com/s/files/1/0387/0749/4956/files/plus.svg?v=1620275333");
                         background-size: 18px;
                         background-position: left center;
                         background-repeat: no-repeat;
                     }
-                    .faqs.faqs_active .card-link.collapsed {
-                        background-image: url("https://cdn.shopify.com/s/files/1/0387/0749/4956/files/plus.svg?v=1620275333");                        
+                    .faqs.faqs_active #js-accordion .card-link:hover {
+                        color: red;
                     }
                     .faqs.faqs_active #js-accordion p {
                         font-size: 14px !important;                        
