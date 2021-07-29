@@ -43,7 +43,7 @@ let start = setInterval(() => {
                         text-align: left !important;
                     }
                     header nav .js-btn.btn-primary {
-                        font-size: 16px;
+                        font-size: 16px !important;
                         padding: 14px 26% !important;
                     }
                     header .js-heading .js-btn.btn-primary {
