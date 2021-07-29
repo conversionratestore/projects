@@ -68,6 +68,8 @@ let start = setInterval(() => {
                     }
                     .js-mobile.wave-bg {
                         width: 100%;
+                        margin: 0;
+                        padding: 0;
                         margin-top: -115px;
                     }
                     #flowers .col-sm-4,
