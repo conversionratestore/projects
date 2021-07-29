@@ -341,8 +341,8 @@ let start = setInterval(() => {
                         border-radius: 50%;
                         margin: 0 10px;
                         padding: 0;
-                        width: 12px;
-                        height: 12px;
+                        width: 10px;
+                        height: 10px;
                     }
                     .tns-nav button.tns-nav-active {
                         background-color: #FF3C7F;                         
@@ -360,6 +360,7 @@ let start = setInterval(() => {
                     }
                     .package .bestseller {
                         border-radius: 3px 3px 0px 0px;
+                        padding: 3px 20px !important;
                     }
                     .package .grey {
                         padding: 15px 10px 20px!important;
@@ -367,7 +368,7 @@ let start = setInterval(() => {
                     .js-packs input[type="radio"] + label {
                         border-radius: 6px !important;
                         font-size: 20px !important;
-                        padding: 22px 15px;
+                        padding: 22px 15px !important;
                     }
                     .js-packs input[type="radio"]:not(input[type="radio"]:first-child) + label {
                         border-radius: 0 6px 6px 6px !important;
@@ -440,7 +441,7 @@ let start = setInterval(() => {
                 </div> 
                 <div class="row">
                     <div class="col-sm-12">
-                    <p><br>Our Itch Relief Patches contain no chemicals. They work kinesthetically!</p>
+                    <p style="font-size: 18px !important;"><br>Our Itch Relief Patches contain no chemicals. They work kinesthetically!</p>
                     </div>
                 </div>
                 <div class="row material-free">
