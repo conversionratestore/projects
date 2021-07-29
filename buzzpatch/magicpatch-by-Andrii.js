@@ -425,7 +425,7 @@ let start = setInterval(() => {
         );
 
         document.querySelector('.js-heading .col-lg-7 img').src = 'https://conversionratestore.github.io/projects/buzzpatch/img/itch-relief-patches.png';
-        document.querySelector('.js-heading .col-lg-7 img').style.cssText = 'height: 200px; object-fit: cover;';
+        document.querySelector('.js-heading .col-lg-7 img').style.cssText = 'height: 220px; object-fit: cover;';
 
         document.querySelector('section.js-mobile').insertAdjacentHTML(
             'afterend',
