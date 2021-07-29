@@ -31,127 +31,128 @@ let mut = new MutationObserver(function (muts) {
         http.send(null);
     })();
 
-    if (localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
+    if (localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
         $('body').eq(0).prepend(`<style>
-    .modal {
-        background: rgba(0, 0, 0, 0.59);
-        position: fixed;
-        left: 0;
-        top: 0;
-        display: inline-flex;
-        overflow-y: auto;
-        opacity: 0;
-        padding: 16px;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        z-index: 9999;
-        height: 100vh;
-        width: 100%;}
-    .modal.active {
-        opacity: 1;
-        pointer-events: auto;}
-     .modal.hide {
-        opacity: 0!important;
-        pointer-events: none!important;}
-    .modal_container {
-        position: relative;
-        margin: auto;
-        display: block;
-        max-width: 323px;
-        height: fit-content;
-        background: #FFFFFF;
-        box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
-        border-radius: 5px;}
-    .modal_top {
-        padding: 40px 15px 0 15px;}
-    .notification {
-        border-top: 1px dashed #E5E5E5;
-        padding: 21px 30px;
-        display: flex;
-        align-items: center;}
-    .notification p {
-        margin: 0 0 0 15px;
-        font-size: 12px;
-        line-height: 18px;
-        color: #CDCDCD;}
-    .notification img {
-        width: 40px;
-        height: 21px;
-        flex-shrink: 0;}
-    .modal .btn {
-        background: #4B2A4D;
-        border-radius: 0px 0px 5px 5px;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 54px;
-        height: 54px;
-        text-align: center;
-        text-transform: uppercase;
-        width: 100%!important;
-        color: #FFFFFF;}
-    .close {
-        position: absolute;
-        right: -16px;
-        top: -16px;
-        background: url('https://conversionratestore.github.io/projects/jarrold/img/close.svg') no-repeat center / contain;
-        width: 33px;
-        height: 33px;
-        border: none;
-        margin-left: auto;
-        display: block;}
-    .modal_title {
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-        letter-spacing: 0.055em;
-        text-transform: uppercase;
-        margin-bottom: 13px;
-        color: #2F2F2F;}
-    .modal_title span {
-        display: block;
-        font-size: 13px; }
-    .modal_info {
-        background: #F8F8F8;
-        border: 1px solid #eae8e8;
-        border-radius: 6px;
-        max-width: 263px;
-        text-align: center;
-        padding: 4px 20px;
-        margin: 0 auto;}
-    .modal_products {
-        max-height: 250px;
-        overflow-y: auto;
-        padding: 5px 15px 0;
-        margin: 0;
-        list-style-type: none;}
-    .modal_products li {
-        padding: 20px 0;}
-    .modal_products img {
-        height: 100px;
-        width: 100%;
-        margin: 0 auto 20px;
-        display: block;
-        object-fit: contain;}
-    .modal_img {
-        display: block;}
-    .flex-center-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;}
-    .product-title {
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        padding-right: 15px;
-        color: #000000;}
-    .product-price {
-        font-size: 20px;
-        line-height: 20px;
-        color: #000000;
-        letter-spacing: 0.05em;}
-    </style>`);
+            .modal {
+                background: rgba(0, 0, 0, 0.59);
+                position: fixed;
+                left: 0;
+                top: 0;
+                display: inline-flex;
+                overflow-y: auto;
+                opacity: 0;
+                padding: 16px;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                z-index: 9999;
+                height: 100vh;
+                width: 100%;}
+            .modal.active {
+                opacity: 1;
+                pointer-events: auto;}
+             .modal.hide {
+                opacity: 0!important;
+                pointer-events: none!important;}
+            .modal_container {
+                position: relative;
+                margin: auto;
+                display: block;
+                max-width: 323px;
+                height: fit-content;
+                background: #FFFFFF;
+                box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
+                border-radius: 5px;}
+            .modal_top {
+                padding: 40px 15px 0 15px;}
+            .notification {
+                border-top: 1px dashed #E5E5E5;
+                padding: 21px 30px;
+                display: flex;
+                align-items: center;}
+            .notification p {
+                margin: 0 0 0 15px;
+                font-size: 12px;
+                line-height: 18px;
+                color: #CDCDCD;}
+            .notification img {
+                width: 40px;
+                height: 21px;
+                flex-shrink: 0;}
+            .modal .btn {
+                background: #4B2A4D;
+                border-radius: 0px 0px 5px 5px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 54px;
+                height: 54px;
+                text-align: center;
+                text-transform: uppercase;
+                width: 100%!important;
+                color: #FFFFFF;}
+            .close {
+                position: absolute;
+                right: -16px;
+                top: -16px;
+                background: url('https://conversionratestore.github.io/projects/jarrold/img/close.svg') no-repeat center / contain;
+                width: 33px;
+                height: 33px;
+                border: none;
+                margin-left: auto;
+                display: block;}
+            .modal_title {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 22px;
+                text-align: center;
+                letter-spacing: 0.055em;
+                text-transform: uppercase;
+                margin-bottom: 13px;
+                color: #2F2F2F;}
+            .modal_title span {
+                display: block;
+                font-size: 13px; }
+            .modal_info {
+                background: #F8F8F8;
+                border: 1px solid #eae8e8;
+                border-radius: 6px;
+                max-width: 263px;
+                text-align: center;
+                padding: 4px 20px;
+                margin: 0 auto;}
+            .modal_products {
+                max-height: 250px;
+                overflow-y: auto;
+                padding: 5px 15px 0;
+                margin: 0;
+                list-style-type: none;}
+            .modal_products li {
+                padding: 20px 0;}
+            .modal_products img {
+                height: 100px;
+                width: 100%;
+                margin: 0 auto 20px;
+                display: block;
+                object-fit: contain;}
+            .modal_img {
+                display: block;}
+            .flex-center-between {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;}
+            .product-title {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                padding-right: 15px;
+                color: #000000;}
+            .product-price {
+                font-size: 20px;
+                line-height: 20px;
+                color: #000000;
+                letter-spacing: 0.05em;}
+            </style>
+        `);
         $('body').eq(0).append(`
         <div class="modal">
             <div class="modal_container">
@@ -236,7 +237,7 @@ let mut = new MutationObserver(function (muts) {
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
-
+        console.log(localStorage.getItem('basketList'))
         let basketList = JSON.parse(localStorage.getItem('basketList'));
         for (let i = 0; i < basketList.length; i++) {
             $('.modal_products').append(`
