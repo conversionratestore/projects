@@ -7,7 +7,7 @@ let mut = new MutationObserver(function (muts) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
 
                 let basketList = [];
-                localStorage.setItem('basketList', '');
+                localStorage.setItem('basketList', JSON.stringify(basketList));
                 if (doc.querySelectorAll('.cart-table tbody tr .square')) {
                     mut.disconnect();
                     doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
@@ -21,18 +21,17 @@ let mut = new MutationObserver(function (muts) {
                     });
                 } else {
                     basketList = [];
-                    localStorage.setItem('basketList', basketList);
+                    localStorage.setItem('basketList', JSON.stringify(basketList));
                 }
                 if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
                     sessionStorage.clear();
                 }
-                console.log(basketList)
             }
         }
         http.send(null);
     })();
 
-    if (localStorage.getItem('basketList') != '' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
+    if (localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
         $('body').eq(0).prepend(`<style>
     .modal {
@@ -176,7 +175,7 @@ let mut = new MutationObserver(function (muts) {
         function myScrollSpeedFunction(){
             if(jQuery('body').hasClass('on-mobile-device') ){
                 if(my_scroll() < -200){
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
                     }
@@ -259,7 +258,7 @@ let mut = new MutationObserver(function (muts) {
                 });
 
                 setTimeout(() => {
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
                     }
@@ -278,7 +277,7 @@ let mut = new MutationObserver(function (muts) {
                     addEvent(document, 'mouseout', function(evt) {
                         // if (!document.querySelector('.modal.hide')) {
                         if (evt.toElement == null && evt.relatedTarget == null) {
-                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '') {
+                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
                                 $(".modal").addClass('active');
                                 sessionStorage.setItem('modal', '');
                             }
