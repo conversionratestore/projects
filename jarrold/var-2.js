@@ -48,7 +48,7 @@ let mut = new MutationObserver(function (muts) {
 
     if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
-        $('body').eq(0).prepend(`<style>
+        document.body.insertAdjacentHTML('afterbegin',`<style>
             .modal {
                 background: rgba(0, 0, 0, 0.59);
                 position: fixed;
@@ -168,7 +168,7 @@ let mut = new MutationObserver(function (muts) {
                 letter-spacing: 0.05em;}
             </style>
         `);
-        $('body').eq(0).append(`
+        document.body.insertAdjacentHTML('beforeend', `
         <div class="modal">
             <div class="modal_container">
                 <div class="modal_top">
