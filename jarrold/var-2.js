@@ -38,10 +38,12 @@ let mut = new MutationObserver(function (muts) {
 
     if(document.querySelectorAll('.core h1')){
         let name = document.querySelectorAll('.core h1').innerText
+        let cart = localStorage.getItem('basketList')
         console.log('hello', localStorage.getItem('basketList').includes(name))
+        console.log(name, cart)
     }
 
-    
+
 
     if (localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
