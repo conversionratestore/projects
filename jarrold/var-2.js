@@ -36,6 +36,8 @@ let mut = new MutationObserver(function (muts) {
         http.send(null);
     })();
 
+    console.log('hello', localStorage.getItem('basketList').includes(document.querySelectorAll('.core h1')))
+
     if (localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
         $('body').eq(0).prepend(`<style>
@@ -261,7 +263,6 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
                 $('.btn.bag').on('click', function () {
                     $('.modal').addClass('hide');
-                    sessionStorage.removeItem('modal')
                 });
 
                 setTimeout(() => {
