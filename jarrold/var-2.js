@@ -273,6 +273,7 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
                 $('.btn.bag').on('click', function () {
                     $('.modal').addClass('hide');
+                    inCart = true
                 });
 
                 setTimeout(() => {
