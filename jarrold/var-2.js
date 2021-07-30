@@ -1,56 +1,6 @@
-let mut = new MutationObserver(function (muts) {
 
-    console.log('mutation')
-
-    if(document.querySelector('#page_header_CPR span').innerText === '0') {
-        localStorage.setItem('basketList', '[]');
-    }
-
-    (function(){
-        var http = new XMLHttpRequest();
-        http.open('GET', 'https://www.jarrold.co.uk/basket');
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-
-                let basketList = [];
-                localStorage.setItem('basketList', JSON.stringify(basketList));
-                if (doc.querySelectorAll('.cart-table tbody tr .square')) {
-                    mut.disconnect();
-                    doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
-                        basketList.push({
-                            'title': el.querySelector('.desc a').innerHTML,
-                            'link': el.querySelector('.desc a').getAttribute('href'),
-                            'price': el.querySelector('td.text-right').innerHTML,
-                            'image': el.querySelector('.square').innerHTML,
-                        });
-                        localStorage.setItem('basketList', JSON.stringify(basketList));
-                    });
-                } else {
-                    basketList = [];
-                    localStorage.setItem('basketList', JSON.stringify(basketList));
-                }
-                if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
-                    sessionStorage.clear();
-                }
-            }
-        }
-        http.send(null);
-    })();
-
-    let inCart =  false
-
-    if(document.querySelector('.core h1')){
-        let name = document.querySelector('.core h1').innerText
-        if (localStorage.getItem('basketList').includes(name)) {
-            inCart = true
-        }
-    }
-
-
-    if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
-        mut.disconnect();
-        document.body.insertAdjacentHTML('afterbegin',`<style>
+let style = `
+<style>
             .modal {
                 background: rgba(0, 0, 0, 0.59);
                 position: fixed;
@@ -168,9 +118,10 @@ let mut = new MutationObserver(function (muts) {
                 line-height: 20px;
                 color: #000000;
                 letter-spacing: 0.05em;}
-            </style>
-        `);
-        document.body.insertAdjacentHTML('beforeend', `
+       </style>
+`
+
+let popup = `
         <div class="modal">
             <div class="modal_container">
                 <div class="modal_top">
@@ -185,7 +136,96 @@ let mut = new MutationObserver(function (muts) {
                 </div>
                 <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
             </div> 
-        </div>`);
+        </div>
+`
+
+document.body.insertAdjacentHTML('afterbegin', style);
+document.body.insertAdjacentHTML('beforeend', popup);
+
+
+
+let mut = new MutationObserver(function (muts) {
+
+    console.log('mutation')
+
+    if(document.querySelector('#page_header_CPR span').innerText === '0') {
+        localStorage.setItem('basketList', '[]');
+    }
+
+    (function(){
+        var http = new XMLHttpRequest();
+        http.open('GET', 'https://www.jarrold.co.uk/basket');
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+
+                let basketList = [];
+                localStorage.setItem('basketList', JSON.stringify(basketList));
+                if (doc.querySelectorAll('.cart-table tbody tr .square')) {
+                    mut.disconnect();
+                    doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
+                        basketList.push({
+                            'title': el.querySelector('.desc a').innerHTML,
+                            'link': el.querySelector('.desc a').getAttribute('href'),
+                            'price': el.querySelector('td.text-right').innerHTML,
+                            'image': el.querySelector('.square').innerHTML,
+                        });
+                        localStorage.setItem('basketList', JSON.stringify(basketList));
+                    });
+                } else {
+                    basketList = [];
+                    localStorage.setItem('basketList', JSON.stringify(basketList));
+                }
+                if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
+                    sessionStorage.clear();
+                }
+                
+                startCheckCart()
+            }
+        }
+        http.send(null);
+    })();
+    
+});
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1885763,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'exit_intent_popup');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - Exit-intent popup',
+    'eventAction': 'loaded'
+});
+
+
+function startCheckCart() {
+
+    let inCart =  false
+
+    if(document.querySelector('.core h1')){
+        let name = document.querySelector('.core h1').innerText
+        if (localStorage.getItem('basketList').includes(name)) {
+            inCart = true
+        }
+    }
+
+    if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
+        mut.disconnect();
+
         jQuery(document).on('touchstart', function(){
             $('body').addClass('on-mobile-device');
         });
@@ -295,12 +335,12 @@ let mut = new MutationObserver(function (muts) {
                 } else {
                     addEvent(document, 'mouseout', function(evt) {
                         if (!document.querySelector('.modal.hide')) {
-                        if (evt.toElement == null && evt.relatedTarget == null) {
-                            if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
-                                $(".modal").addClass('active');
-                                sessionStorage.setItem('modal', '');
+                            if (evt.toElement == null && evt.relatedTarget == null) {
+                                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
+                                    $(".modal").addClass('active');
+                                    sessionStorage.setItem('modal', '');
+                                }
                             }
-                        }
                         }
                         //     sessionStorage.setItem('modal', '');
                         // }
@@ -312,27 +352,5 @@ let mut = new MutationObserver(function (muts) {
         }
 
     }
-});
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
-
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1885763,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'exit_intent_popup');
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp - Exit-intent popup',
-    'eventAction': 'loaded'
-});
+}
