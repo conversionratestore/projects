@@ -1,4 +1,9 @@
 let mut = new MutationObserver(function (muts) {
+
+    if(document.querySelector('#page_header_CPR span').innerText === '0') {
+        localStorage.setItem('basketList', '[]');
+    }
+
     (function(){
         var http = new XMLHttpRequest();
         http.open('GET', 'https://www.jarrold.co.uk/basket');
