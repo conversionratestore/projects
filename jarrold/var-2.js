@@ -185,8 +185,6 @@ let mut = new MutationObserver(function (muts) {
     if(document.querySelector('#page_header_CPR span').innerText === '0') {
         localStorage.setItem('basketList', '[]');
     }
-
-    startCheckCart()
     
 });
 
