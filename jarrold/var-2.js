@@ -1,5 +1,7 @@
 let mut = new MutationObserver(function (muts) {
 
+    console.log('mutation')
+
     if(document.querySelector('#page_header_CPR span').innerText === '0') {
         localStorage.setItem('basketList', '[]');
     }
@@ -44,7 +46,13 @@ let mut = new MutationObserver(function (muts) {
             inCart = true
         }
     }
-    
+
+    if (document.querySelector('.pop .h4')) {
+        if (document.querySelector('.core h1').innerText.includes(document.querySelector('.pop .h4').innerText)) {
+            inCart = true
+        }
+    }
+
 
     if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
