@@ -35,18 +35,16 @@ let mut = new MutationObserver(function (muts) {
         }
         http.send(null);
     })();
-    
+
     let inCart =  false
 
     if(document.querySelector('.core h1')){
         let name = document.querySelector('.core h1').innerText
-        let cart = localStorage.getItem('basketList')
-        console.log('hello', localStorage.getItem('basketList').includes(name))
-        console.log(name, cart)
-        inCart = true
+        if (localStorage.getItem('basketList').includes(name)) {
+            inCart = true
+        }
     }
-
-
+    
 
     if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
         mut.disconnect();
