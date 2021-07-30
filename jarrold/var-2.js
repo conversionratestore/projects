@@ -1,3 +1,37 @@
+(function(){
+    var http = new XMLHttpRequest();
+    http.open('GET', 'https://www.jarrold.co.uk/basket');
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+
+            let basketList = [];
+            localStorage.setItem('basketList', JSON.stringify(basketList));
+            if (doc.querySelectorAll('.cart-table tbody tr .square')) {
+                mut.disconnect();
+                doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
+                    basketList.push({
+                        'title': el.querySelector('.desc a').innerHTML,
+                        'link': el.querySelector('.desc a').getAttribute('href'),
+                        'price': el.querySelector('td.text-right').innerHTML,
+                        'image': el.querySelector('.square').innerHTML,
+                    });
+                    localStorage.setItem('basketList', JSON.stringify(basketList));
+                });
+            } else {
+                basketList = [];
+                localStorage.setItem('basketList', JSON.stringify(basketList));
+            }
+            if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
+                sessionStorage.clear();
+            }
+
+            startCheckCart()
+        }
+    }
+    http.send(null);
+})();
+
 
 let style = `
 <style>
@@ -152,39 +186,7 @@ let mut = new MutationObserver(function (muts) {
         localStorage.setItem('basketList', '[]');
     }
 
-    (function(){
-        var http = new XMLHttpRequest();
-        http.open('GET', 'https://www.jarrold.co.uk/basket');
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-
-                let basketList = [];
-                localStorage.setItem('basketList', JSON.stringify(basketList));
-                if (doc.querySelectorAll('.cart-table tbody tr .square')) {
-                    mut.disconnect();
-                    doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
-                        basketList.push({
-                            'title': el.querySelector('.desc a').innerHTML,
-                            'link': el.querySelector('.desc a').getAttribute('href'),
-                            'price': el.querySelector('td.text-right').innerHTML,
-                            'image': el.querySelector('.square').innerHTML,
-                        });
-                        localStorage.setItem('basketList', JSON.stringify(basketList));
-                    });
-                } else {
-                    basketList = [];
-                    localStorage.setItem('basketList', JSON.stringify(basketList));
-                }
-                if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
-                    sessionStorage.clear();
-                }
-                
-                startCheckCart()
-            }
-        }
-        http.send(null);
-    })();
+    startCheckCart()
     
 });
 
