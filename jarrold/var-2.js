@@ -36,8 +36,8 @@ let mut = new MutationObserver(function (muts) {
         http.send(null);
     })();
 
-    if(document.querySelectorAll('.core h1')){
-        let name = document.querySelectorAll('.core h1').innerText
+    if(document.querySelector('.core h1')){
+        let name = document.querySelector('.core h1').innerText
         let cart = localStorage.getItem('basketList')
         console.log('hello', localStorage.getItem('basketList').includes(name))
         console.log(name, cart)
