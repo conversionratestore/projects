@@ -226,7 +226,7 @@ document.querySelector(".btn-close").addEventListener('click', (e) => {
 document.querySelector(".popup-container").addEventListener('click', (e) => {
     e.stopPropagation();
 });
-
+let token = [];
 fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
@@ -237,36 +237,22 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         "password": "gasmaj-mornut-sowZy9"
     })
 
-}).then(res => res.json()).then(data => console.log(data))
-
-fetch("https://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=20", {
-    headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "Authorization": `Bearer n9i7w3ff7t5bc7vhtuh41yb3pfvvo76t`,
-        // "Access-Control-Allow-Origin": "*/*",
-        // "current_page": 1,
-        // "page_size": 10,
-        // "Pragma": "no-cache",
-        // "Connection": "keep-alive",
-        // "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-        // "Server": "cloudflare"
-    },
-    method: "GET",
-    mode: "cors"
-}).then(res => res.json()).then(data => {console.log('data from server', JSON.stringify(data))}).catch(err => {
+}).then(res => res.json()).then(data => {
+    token.push(data);
+    console.log('data from server', token[0]);
+    fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=category_id&searchCriteria[filterGroups][0][filters][0][value]=2& searchCriteria[filterGroups][0][filters][0][conditionType]=eq& searchCriteria[sortOrders][0][field]=created_at& searchCriteria[sortOrders][0][direction]=DESC& searchCriteria[pageSize]=6& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file]]", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token[0]}`
+        }
+    }).then(res => res.json()).then(data => {console.log('data from server', data)}).catch(err => {
+        console.log('Failed fetch ', err);
+    });
+}).catch(err => {
     console.log('Failed fetch ', err);
 });
 
-
-// fetch("http://makemyblinds.co.uk/rest/V1/products?searchCriteria[page_size]=2", {
-//     headers: {
-//         'Content-Type': 'application/json',
-//         "Authorization": "Bearer n8diss2gfemcv203anuvs5mz6k0i3uoc",
-//     },
-//     method: "GET",
-// }).then((data) => {
-//     console.log(data)
-// })
 
 // let arrSolution = [];
 // let hrefSolutionItem = document.querySelectorAll('.submenu-solution-col:first-child .submenu-solution-item');
