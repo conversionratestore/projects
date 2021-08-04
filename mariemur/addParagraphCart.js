@@ -45,17 +45,19 @@ const target = document.querySelector('.cart-modal__inner');
 // create an observer instance
 let observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
-        if (!localStorage.getItem('region')) {
-            fetch('http://ipinfo.io?token=2b19e029d686d7').then(res => res.json()).then(function (data) {
-                let region = data.timezone.split('/')[0].toLowerCase();
-                localStorage.setItem('region', region);
+        if (!document.querySelector('.moneyback-guarantee')) {
+            if (!localStorage.getItem('region')) {
+                fetch('http://ipinfo.io?token=2b19e029d686d7').then(res => res.json()).then(function (data) {
+                    let region = data.timezone.split('/')[0].toLowerCase();
+                    localStorage.setItem('region', region);
 
+                    drawParagraph(region);
+                });
+            } else {
+                let region = localStorage.getItem('region');
                 drawParagraph(region);
-            });
-        } else {
-            let region = localStorage.getItem('region');
-            drawParagraph(region);
-        }
+            }
+        }        
     });
 });
 
