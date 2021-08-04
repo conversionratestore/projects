@@ -19,32 +19,32 @@ document.head.insertAdjacentHTML('beforeend', `
     </style>
 `);
 
+function drawParagraph(reg) {
+    if (document.querySelector('.cart-modal__total')) {
+        let total = document.querySelector('.cart-modal__total');
+
+        let paragraphEU = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Hustle free returns is size doesn’t match</p>`;
+        let paragraphUS = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Free returns if size doesn’t match</p>`;
+
+        switch (reg) {
+            case 'america':
+                total.insertAdjacentHTML('afterend', paragraphUS);
+                break;
+            case 'europe':
+                total.insertAdjacentHTML('afterend', paragraphEU);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 // select the target node
 const target = document.querySelector('.cart-modal__inner');
 
 // create an observer instance
 let observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
-        function drawParagraph(reg) {
-            if (document.querySelector('.cart-modal__total')) {
-                let total = document.querySelector('.cart-modal__total');
-
-                let paragraphEU = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Hustle free returns is size doesn’t match</p>`;
-                let paragraphUS = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Free returns if size doesn’t match</p>`;
-
-                switch (reg) {
-                    case 'america':
-                        total.insertAdjacentHTML('afterend', paragraphUS);
-                        break;
-                    case 'europe':
-                        total.insertAdjacentHTML('afterend', paragraphEU);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
         if (!localStorage.getItem('region')) {
             fetch('http://ipinfo.io?token=2b19e029d686d7').then(res => res.json()).then(function (data) {
                 let region = data.timezone.split('/')[0].toLowerCase();
@@ -87,4 +87,3 @@ window.hj = window.hj || function () {
     (hj.q = hj.q || []).push(arguments);
 };
 hj('trigger', 'pl_cart_change_mobile');
-
