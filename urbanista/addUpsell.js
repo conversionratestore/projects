@@ -100,11 +100,11 @@ document.head.insertAdjacentHTML('beforeend', `
     </style>
 `);
 
-let linkCustom = document.createElement('link');
-linkCustom.href =
+let myCustomlink = document.createElement('link');
+myCustomlink.href =
     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-linkCustom.rel = 'stylesheet';
-document.head.appendChild(linkCustom);
+myCustomlink.rel = 'stylesheet';
+document.head.appendChild(myCustomlink);
 
 let scriptCustom = document.createElement('script');
 scriptCustom.src =
