@@ -10,7 +10,7 @@ for (let i = 0; i < arrLink.length; i++) {
                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                 products.push({
                     "title": doc.querySelector('.page-title .base').innerHTML,
-                    "img": doc.querySelectorAll('.fotorama__active img')[1].getAttribute('src'),
+                    "img": doc.querySelector('.fotorama__active img').getAttribute('src'),
                     "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
                     "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
                     "price": doc.querySelector('.price').innerHTML.replace('€','')
