@@ -100,6 +100,8 @@ document.head.insertAdjacentHTML('beforeend', `
     </style>
 `);
 
+const language = window.location.pathname.split('/')[1]
+
 let myCustomlink = document.createElement('link');
 myCustomlink.href =
     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -168,7 +170,7 @@ let start = setInterval(function () {
                     }, 200);
 
                     document.querySelector('.info__title').addEventListener('click', () => {
-                        location.href = 'https://www.urbanista.com/eu/lyon';
+                        location.href = `https://www.urbanista.com/${language}/lyon`;
 
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
@@ -180,7 +182,7 @@ let start = setInterval(function () {
                     });
 
                     document.querySelector('.info__btn').addEventListener('click', () => {
-                        location.href = 'https://www.urbanista.com/eu/lyon';
+                        location.href = `https://www.urbanista.com/${language}/lyon`;
 
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
