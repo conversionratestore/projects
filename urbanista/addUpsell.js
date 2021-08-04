@@ -112,14 +112,18 @@ scriptCustom.src =
 scriptCustom.async = false;
 document.head.appendChild(scriptCustom);
 
-// select the target node
-const target = document.querySelectorAll('.block-content')[1];
+let start = setInterval(function () {
+    if (document.querySelectorAll('.block-content')[1]) {
+        clearInterval(start);
+
+        // select the target node
+        const target = document.querySelectorAll('.block-content')[1];
 
 // create an observer instance
-let observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-        if (document.querySelector('.minicart-items-wrapper') && !document.querySelector('.lyon-item')) {
-            document.querySelector('.minicart-items-wrapper').insertAdjacentHTML('afterend', `
+        let observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (document.querySelector('.minicart-items-wrapper') && !document.querySelector('.lyon-item')) {
+                    document.querySelector('.minicart-items-wrapper').insertAdjacentHTML('afterend', `
             <div class="lyon-item">
                 <p class="lyon-item__title">Add Power bank <br>to Never run out of charging</p>
                 <div class="lyon-item__slider-wrapper">
@@ -141,72 +145,77 @@ let observer = new MutationObserver(function (mutations) {
                 </div>
             </div>
         `);
-            // activate tiny slider
-            let categoryInterval = setInterval(() => {
-                if (typeof tns == 'function' && document.querySelector('.lyon-item__slider')) {
-                    clearInterval(categoryInterval);
+                    // activate tiny slider
+                    let categoryInterval = setInterval(() => {
+                        if (typeof tns == 'function' && document.querySelector('.lyon-item__slider')) {
+                            clearInterval(categoryInterval);
 
-                    let sliderCategories = tns({
-                        container: '.lyon-item__slider',
-                        items: 1,
-                        autoplay: false,
-                        controls: true,
-                        prevButton: document.querySelector('.lyon-item__arrow_prev'),
-                        nextButton: document.querySelector('.lyon-item__arrow_next'),
-                        loop: false,
-                        autoplayButton: false,
-                        autoplayButtonOutput: false,
-                        nav: false,
-                        preventScrollOnTouch: 'auto',
-                        swipeAngle: 30
+                            let sliderCategories = tns({
+                                container: '.lyon-item__slider',
+                                items: 1,
+                                autoplay: false,
+                                controls: true,
+                                prevButton: document.querySelector('.lyon-item__arrow_prev'),
+                                nextButton: document.querySelector('.lyon-item__arrow_next'),
+                                loop: false,
+                                autoplayButton: false,
+                                autoplayButtonOutput: false,
+                                nav: false,
+                                preventScrollOnTouch: 'auto',
+                                swipeAngle: 30
+                            });
+                        }
+                    }, 200);
+
+                    document.querySelector('.info__title').addEventListener('click', () => {
+                        location.href = 'https://www.urbanista.com/eu/lyon';
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
+                            'eventAction': 'Click on product name',
+                            'eventLabel': 'Checkout popup'
+                        });
+                    });
+
+                    document.querySelector('.info__btn').addEventListener('click', () => {
+                        location.href = 'https://www.urbanista.com/eu/lyon';
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
+                            'eventAction': 'Click on Add to cart button',
+                            'eventLabel': 'Checkout popup'
+                        });
+                    });
+
+                    document.querySelectorAll('.lyon-item__arrow').forEach(arrow => {
+                        arrow.addEventListener('click', () => {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
+                                'eventAction': 'Click on arrows',
+                                'eventLabel': 'Checkout popup'
+                            });
+                        });
                     });
                 }
-            }, 200);
-
-            document.querySelector('.info__title').addEventListener('click', () => {
-                location.href = 'https://www.urbanista.com/eu/lyon';
-
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
-                    'eventAction': 'Click on product name',
-                    'eventLabel': 'Checkout popup'
-                });
             });
-
-            document.querySelector('.info__btn').addEventListener('click', () => {
-                location.href = 'https://www.urbanista.com/eu/lyon';
-
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
-                    'eventAction': 'Click on Add to cart button',
-                    'eventLabel': 'Checkout popup'
-                });
-            });
-
-            document.querySelectorAll('.lyon-item__arrow').forEach(arrow => {
-                arrow.addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Add an upsell to the checkout popup mobile',
-                        'eventAction': 'Click on arrows',
-                        'eventLabel': 'Checkout popup'
-                    });
-                });
-            });
-        }
-    });
-});
+        });
 
 // configuration of the observer:
-const config = {attributes: true, childList: true, characterData: true};
+        const config = {attributes: true, childList: true, characterData: true};
 
 // pass in the target node, as well as the observer options
-observer.observe(target, config);
+        observer.observe(target, config);
+
+    }
+
+}, 100);
+
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
