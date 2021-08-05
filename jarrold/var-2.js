@@ -316,13 +316,6 @@ function startCheckCart() {
                     inCart = true
                 });
 
-                setTimeout(() => {
-                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
-                        $(".modal").addClass('active');
-                        sessionStorage.setItem('modal', '');
-                    }
-                }, 20000);
-
                 function addEvent(obj, evt, fn) {
                     if (obj.addEventListener) {
                         obj.addEventListener(evt, fn, false);
