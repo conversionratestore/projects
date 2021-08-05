@@ -100,12 +100,12 @@ document.body.insertAdjacentHTML('afterbegin', `
         pointer-events: auto; }
     .popup .tns-outer {
         margin: 0 auto;
-        max-width: 176px; }
+        max-width: 536px; }
     .popup .card {
         box-shadow: 0 2px 6px rgba(0,0,0,0.05);}
     .popup-container {
         position: relative;
-        max-width: 343px;
+        max-width: 801px;
         width: 100%;
         margin: auto;
         background: #FFFFFF;
@@ -238,6 +238,12 @@ document.body.insertAdjacentHTML('afterbegin', `
     .tns-nav button.tns-nav-active {
         background: #191919;}
         @media screen and (max-width: 768px) {
+            .popup-container {
+                position: relative;
+                max-width: 343px;}
+            .popup .tns-outer {
+                margin: 0 auto;
+                max-width: 176px; }
             .product-mobile-title .wishlist-mobile-wrap {
                 display: none; }
             .hp_strip__container {
@@ -308,6 +314,9 @@ document.body.insertAdjacentHTML('afterbegin', `
             }
         }
 </style>`);
+window.addEventListener('error', function(e) {
+    console.log(e);
+}, true);
 
 document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
 document.querySelector('.catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper').insertAdjacentHTML('beforebegin', `<p class="your-text">Your price </p>`);
@@ -333,14 +342,14 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk) {
             items: amountMob,
             autoplay: false,
             controls: true,
-            loop: true,
+            loop: false,
             autoplayButton: false,
             autoplayButtonOutput: false,
             mouseDrag: true,
             preventScrollOnTouch: 'auto',
             swipeAngle: false,
             responsive: {
-                991: {
+                769: {
                     items: amountTablet,
                     nav: true,
                 },
@@ -628,30 +637,30 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 
         for (let i = 0; i < 12; i++) {
             if (randomItems[0]["items"] != null) {
-                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (betterSleepItems[0]["items"] != null) {
-                card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (thermalItems[0]["items"] != null) {
-                card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (fireRetardantItems[0]["items"] != null) {
-                card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (noDrillItems[0]["items"] != null) {
-                card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (cordlessItems[0]["items"] != null) {
-                card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
             if (privacyItems[0]["items"] != null) {
-                card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][0]["custom_attributes"][3]["value"]);
+                card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
         }
         for (let i = 0; i < 6; i++) {
             if (perfectFit[0]["items"] != null) {
-                card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][0]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'))
+                card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'))
             }
         }
         tnsInitialization('category-slider',2,3,4);
@@ -668,20 +677,20 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 
 
-// (function(h,o,t,j,a,r){
-//     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-//     h._hjSettings={hjid:1709958,hjsv:6};
-//     a=o.getElementsByTagName('head')[0];
-//     r=o.createElement('script');r.async=1;
-//     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-//     a.appendChild(r);
-// })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-// window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-// hj('trigger', 'pdp_exit_intent_mobile');
-//
-// window.dataLayer = window.dataLayer || [];
-// dataLayer.push({
-//     'event': 'event-to-ga',
-//     'eventCategory': 'Exp — PDP improvement exit intent mobile',
-//     'eventAction': 'loaded'
-// });
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1709958,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'pdp_exit_intent_mobile');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+    'eventAction': 'loaded'
+});
