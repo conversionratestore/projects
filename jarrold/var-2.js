@@ -1,687 +1,356 @@
-document.body.insertAdjacentHTML('afterbegin', `
-<style>
+(function(){
+    var http = new XMLHttpRequest();
+    http.open('GET', 'https://www.jarrold.co.uk/basket');
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var doc = new DOMParser().parseFromString(this.responseText, "text/html");
 
-    .your-text {
-        display: none;}
-    .catalog-product-view .product-info-main .media {
-        position: relative;}
-    .product-great {
-        display: flex;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        z-index: 3;
-        padding: 0 15px 0 5px;}
-    .product-great-item {
-        background: #66CCCC;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-        border-radius: 19px;
-        padding: 7.5px 8px;
-        margin-left: 10px;
-        margin-bottom: 10px;
-        letter-spacing: 0.15px;
-        color: #232849;
-        font-size: 14px;}
-    .card {
-        background: #FFFFFF;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-        border-radius: 8px;
-        padding: 16px 8px;
-        line-height: 120%;
-        max-width: 248px;
-        margin: 0 auto;
-        font-family: 'Barlow', sans-serif;
-        font-style: normal;
-        position: relative; }
-    .card_bottom {
-        padding: 0 8px;}
-    .card img {
-        margin: 0 auto 12px;
-        width: 100%;
-        height: 267px;
-        object-fit: cover;}
-    .card a {
-        display: block;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 0.0018em;
-        color: #141729;
-        margin-bottom: 16px; }
-    .card a.card-title span {
-        display: block;
-        min-height: 38.4px;
-        padding: 0 8px;}
-    .card-price {
-        font-weight: 600;
-        font-size: 14px;
-        letter-spacing: 0.180451px;
-        color: #66CCCC;
-        margin-bottom: 21px;}
-    a.btn-view {
-        width: 100%;
-        font-weight: 600;
-        font-size: 14px;
-        display: block;
-        line-height: 38px;
-        text-align: center;
-        text-transform: uppercase;
-        color: #232847!important;
-        border: 1px solid #141729;
-        border-radius: 8px; }
-    .btn-order {
-        font-family: 'Barlow-medium', sans-serif;
-        width: 100%;
-        border-radius: 8px;
-        background: #232849;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 40px;
-        text-transform: uppercase;
-        color: #FFFFFF;
-        margin-top: 10px;}
-    .popup {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: inline-flex;
-        background: rgba(81, 81, 81, 0.73);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        padding: 14px;
-        z-index: 999;}
-    .popup.active {
-        opacity: 1;
-        pointer-events: auto; }
-    .popup .tns-outer {
-        margin: 0 auto;
-        max-width: 176px; }
-    .popup .card {
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);}
-    .popup-container {
-        position: relative;
-        max-width: 343px;
-        width: 100%;
-        margin: auto;
-        background: #FFFFFF;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
-        border-radius: 8px;
-        padding: 16px 24px 60px;}
-    .popup .tns-controls {
-        bottom: 44px; }
-    .popup .tns-nav {
-        bottom: 48px;}
-    .btn-close {
-        width: 13px;
-        height: 13px;
-        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/close.svg') no-repeat center / contain;
-        display: block;
-        margin: 0 -8px 12px auto; }
-    .popup-title {
-        text-align: center;
-        font-family: 'Barlow', sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 32px;
-        line-height: 30px;
-        letter-spacing: 0.0015em;
-        text-transform: uppercase;
-        color: #232847; }
-    .popup-title span {
-        display: block;
-        margin-top: 10px;
-        font-size: 18px;
-        line-height: 22px;
-        font-weight: normal;}
-    .category {
-        position: relative;
-        display: none;
-        padding: 40px 10px 0; }
-    .category:nth-child(-n+3) {
-        display: block;}
-    .categories {
-        order: 1;
-        width: 100%;
-        max-width: 1204px;
-        margin: 30px auto 0;}
-    .categories.show .category{
-        display: block!important;}
-    .tns-controls {
-        top: 50px;
-        position: absolute;
-        right: 0;
-        z-index: 1;
-        padding: 0 32px;
-        display: flex;}
-    .product-specs--new .container {
-        display: flex;
-        flex-direction: column; }
-    .category-title {
-        padding: 0 22px;
-        font-family: 'Barlow-medium', sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 50px;
-        line-height: 60px;
-        color: #232849;}
-    .view-more {
-        font-family: 'Overpass', sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 150%;
-        letter-spacing: 0.15px;
-        text-decoration-line: underline;
-        padding: 12px 44px 12px 16px;
-        display: block;
-        margin-left: auto;
-        background: url('https://conversionratestore.github.io/projects/makemyblinds/img/arrow.svg') no-repeat right 24px center / 8px;
-        color: #232849;}
-    .category-slider {
-        padding: 32px 0 44px;
-        position: relative;}
-    .slider {
-        padding: 20px 0}
-    .slide {
-        padding: 0 5px;}
-    .card a.btn {
-        border: 1px solid #141729;
-        padding: 11px 17px;
-        margin-bottom: 0;
-        font-weight: 600;
-        font-size: 14px;
-        border-radius: 8px;
-        line-height: 110.4%;
-        background: transparent;
-        box-shadow: none;
-        width: 100%;
-        min-width: auto;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        display: flex;}
-    .card a.btn:hover {
-        background: #141729;
-        color: #fff;}
-    .card .product-social-links i.mmb-icon.love {
-        font-size: 1.3em !important; }
-    .tns-controls [aria-controls], .tns-controls [data-action] {
-        width: 40px;
-        height: 40px;
-        margin-left: 10px;
-        border-radius: 50%;
-        user-select: none;
-        color: transparent;
-        transition: all 0.3s ease;
-        background: #C4C4C4 url('https://conversionratestore.github.io/projects/makemyblinds/img/arrow-right.svg') no-repeat center / 30%;}
-    .tns-controls [aria-controls]:hover, .tns-controls [data-action]:hover {
-        background-color: #AAAAAA;}
-    .tns-controls [data-controls="prev"] {
-        transform: scaleX(-1);}
-    .tns-nav {
-        position: absolute;
-        left: 50%;
-        z-index: 2;
-        transform: translateX(-50%);
-        bottom: 13px;}
-    .tns-nav button {
-        margin: 0 4px;
-        background: #C4C4C4;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%; }
-    .tns-nav button.tns-nav-active {
-        background: #191919;}
-        @media screen and (max-width: 768px) {
-            .product-mobile-title .wishlist-mobile-wrap {
-                display: none; }
-            .hp_strip__container {
-                margin: 0 -16px;
-                width: calc(100% + 32px);}
-            .hp_strip__container ul i {
-                display: block;}
-            .product-options-wrapper, .htm-trigger, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-label, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-original {
-                display: none; }
-            .your-text {
-                display: block;
-                font-family: 'Barlow', sans-serif;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 14px;
-                line-height: 1;
-                letter-spacing: 0.0015em;
-                color: #232849;
-                margin-right: 8px; }
-            .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
-                flex-direction: row;
-                align-items: center;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row {
-                flex-wrap: wrap;
-                width: 100%;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .btn {
-                width: 100%;
-                margin: 0;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
-                margin-top: 0!important;}
-            .bottom-actions__row {
-                display: block; }
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-social-links, .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
-                width: 100%;}
-            .bottom-actions__row .product-social-links {
-                order: 2;}
-            .category-slider {
-                padding-top: 29px;}
-            .category-title {
-                padding: 0;
-                font-size: 32px;
-                line-height: 120%;
-                text-align: center;}
-            .card img {
-                height: 183px;}
-            .popup .tns-controls {
-                padding: 0 24px; }
-            .tns-controls {
-                padding: 0;
-                width: 100%;
-                top: auto; 
-                bottom: 10px;
-                justify-content: space-between; }
-            .tns-controls [aria-controls], .tns-controls [data-action] {
-                margin: 0;
-                width: 24px;
-                height: 24px;}
-            .tns-controls [aria-controls]:hover, .tns-controls [data-action]:hover {
-                background-color: #141729;  }
-            .categories {
-                margin-top: 0;
-                order: inherit;}
-            .product-specs--new {
-                padding-top: 0;
+            let basketList = [];
+            localStorage.setItem('basketList', JSON.stringify(basketList));
+            if (doc.querySelectorAll('.cart-table tbody tr .square')) {
+                mut.disconnect();
+                doc.querySelectorAll('.cart-table tbody tr').forEach(el => {
+                    basketList.push({
+                        'title': el.querySelector('.desc a').innerHTML,
+                        'link': el.querySelector('.desc a').getAttribute('href'),
+                        'price': el.querySelector('td.text-right').innerHTML,
+                        'image': el.querySelector('.square').innerHTML,
+                    });
+                    localStorage.setItem('basketList', JSON.stringify(basketList));
+                });
+            } else {
+                basketList = [];
+                localStorage.setItem('basketList', JSON.stringify(basketList));
             }
-            .category {
-                padding: 40px 0 0;
+            if (localStorage.getItem('basketList') === '[]' && document.querySelector('#page_header_CPR span').innerHTML == '0') {
+                sessionStorage.clear();
             }
-        }
-</style>`);
 
-document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
-document.querySelector('.catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper').insertAdjacentHTML('beforebegin', `<p class="your-text">Your price </p>`);
-let linkCustom = document.createElement('link');
-linkCustom.href =
-    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-linkCustom.rel = 'stylesheet';
-document.head.appendChild(linkCustom);
-
-let scriptCustom = document.createElement('script');
-scriptCustom.src =
-    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-scriptCustom.async = false;
-document.head.appendChild(scriptCustom);
-
-function tnsInitialization(item,amountMob,amountTablet,amountDesk) {
-    document.querySelectorAll(`.${item}`).forEach(slider => {
-        if (slider.innerHTML === '') {
-            slider.closest('.category').remove();
-        }
-        tns({
-            container: slider,
-            items: amountMob,
-            autoplay: false,
-            controls: true,
-            loop: true,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            preventScrollOnTouch: 'auto',
-            swipeAngle: false,
-            responsive: {
-                991: {
-                    items: amountTablet,
-                    nav: true,
-                },
-                1024: {
-                    items: amountDesk,
-                    nav: false,
-                }
-            }
-        });
-    });
-}
-
-function card(index,img,name,price,link) {
-    let card = `
-    <div class="slide">
-         <div class="card">
-            <div class="product-great"></div>
-            <a href="${link}.html" class="card-title">
-                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                <span>${name}</span>
-            </a>
-            <div class="card_bottom">
-                <div class="card-price">£${price}</div>
-                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-            </div>
-        </div>
-    </div>`;
-    if (index != 'popup') {
-        document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-    } else {
-        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-    }
-
-}
-
-document.body.insertAdjacentHTML('beforeend', `
-<div class="popup">
-    <div class="popup-container">
-       <button class="btn-close" type="button"></button>
-        <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
-        <div class="slider"></div>
-    </div>
-</div>`);
-
-let greatForId = [
-    {
-        name: 'Bathroom',
-        value: '6'
-    },
-    {
-        name: 'Living Room',
-        value: '7'
-    },
-    {
-        name: 'Kitchen',
-        value: '8'
-    },
-    {
-        name: 'Bedroom',
-        value: '9'
-    },
-    {
-        name: 'BiFold Doors',
-        value: '67'
-    },
-    {
-        name: 'Conservatories',
-        value: '68'
-    },
-    {
-        name: 'French Doors',
-        value: '69'
-    },
-    {
-        name: 'Patio',
-        value: '70'
-    },
-    {
-        name: 'Attic/Loft',
-        value: '71'
-    },
-    {
-        name: 'Children',
-        value: '223'
-    },
-    {
-        name: 'Dining Room',
-        value: '224'
-    },
-    {
-        name: 'Nursery',
-        value: '225'
-    },
-    {
-        name: 'Office',
-        value: '226'
-    }
-]
-
-document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
-    if(el.querySelector('th').innerHTML === 'Great For:') {
-        let tdSplit = el.querySelector('td').innerHTML.split(', ');
-        for (let i = 0; i < tdSplit.length; i++) {
-            document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
+            startCheckCart()
         }
     }
-});
-
-function myScrollSpeedFunction(){
-    if(document.body.classList.contains('mobile')) {
-        if(my_scroll() < -200){
-            document.querySelector(".popup").classList.add('active');
-        }
-    }
-}
-
-var my_scroll = (function() {
-    var last_position, new_position, timer, delta, delay = 50;
-
-    function clear() {
-        last_position = null;
-        delta = 0;
-    }
-
-    clear();
-
-    return function(){
-        new_position = window.scrollY;
-        if (last_position != null){
-            delta = new_position -  last_position;
-        }
-        last_position = new_position;
-        clearTimeout(timer);
-        timer = setTimeout(clear, delay);
-        return delta;
-    };
+    http.send(null);
 })();
 
-window.addEventListener('scroll', myScrollSpeedFunction);
 
-document.querySelector(".btn-close").addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-    document.querySelector('.popup').classList.remove('active');
-});
-document.querySelector(".popup-container").addEventListener('click', (e) => {
-    e.stopPropagation();
-});
-document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+let style = `
+<style>
+            .modal {
+                background: rgba(0, 0, 0, 0.59);
+                position: fixed;
+                left: 0;
+                top: 0;
+                display: inline-flex;
+                overflow-y: auto;
+                opacity: 0;
+                padding: 16px;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                z-index: 9999;
+                height: 100vh;
+                width: 100%;}
+            .modal.active {
+                opacity: 1;
+                pointer-events: auto;}
+             .modal.hide {
+                opacity: 0!important;
+                pointer-events: none!important;}
+            .modal_container {
+                position: relative;
+                margin: auto;
+                display: block;
+                max-width: 323px;
+                height: fit-content;
+                background: #FFFFFF;
+                box-shadow: 0px 0px 6px 2px rgba(190, 190, 190, 0.25);
+                border-radius: 5px;}
+            .modal_top {
+                padding: 40px 15px 0 15px;}
+            .notification {
+                border-top: 1px dashed #E5E5E5;
+                padding: 21px 30px;
+                display: flex;
+                align-items: center;}
+            .notification p {
+                margin: 0 0 0 15px;
+                font-size: 12px;
+                line-height: 18px;
+                color: #CDCDCD;}
+            .notification img {
+                width: 40px;
+                height: 21px;
+                flex-shrink: 0;}
+            .modal .btn {
+                background: #4B2A4D;
+                border-radius: 0px 0px 5px 5px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 54px;
+                height: 54px;
+                text-align: center;
+                text-transform: uppercase;
+                width: 100%!important;
+                color: #FFFFFF;}
+            .close {
+                position: absolute;
+                right: -16px;
+                top: -16px;
+                background: url('https://conversionratestore.github.io/projects/jarrold/img/close.svg') no-repeat center / contain;
+                width: 33px;
+                height: 33px;
+                border: none;
+                margin-left: auto;
+                display: block;}
+            .modal_title {
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 22px;
+                text-align: center;
+                letter-spacing: 0.055em;
+                text-transform: uppercase;
+                margin-bottom: 13px;
+                color: #2F2F2F;}
+            .modal_title span {
+                display: block;
+                font-size: 13px; }
+            .modal_info {
+                background: #F8F8F8;
+                border: 1px solid #eae8e8;
+                border-radius: 6px;
+                max-width: 263px;
+                text-align: center;
+                padding: 4px 20px;
+                margin: 0 auto;}
+            .modal_products {
+                max-height: 250px;
+                overflow-y: auto;
+                padding: 5px 15px 0;
+                margin: 0;
+                list-style-type: none;}
+            .modal_products li {
+                padding: 20px 0;}
+            .modal_products img {
+                height: 100px;
+                width: 100%;
+                margin: 0 auto 20px;
+                display: block;
+                object-fit: contain;}
+            .modal_img {
+                display: block;}
+            .flex-center-between {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;}
+            .product-title {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 16px;
+                padding-right: 15px;
+                color: #000000;}
+            .product-price {
+                font-size: 20px;
+                line-height: 20px;
+                color: #000000;
+                letter-spacing: 0.05em;}
+       </style>
+`
 
-let token = [];
+let popup = `
+        <div class="modal">
+            <div class="modal_container">
+                <div class="modal_top">
+                    <button type="button" class="close"></button>
+                    <h2 class="modal_title">It’s almost yours!<span>Only one step left:</span></h2>
+                    <div class="modal_info">This is a popular choice, <br> we may run out of stock soon </div>
+                    <ul class="modal_products"></ul>
+                </div>
+                <div class="notification">
+                    <img src="https://conversionratestore.github.io/projects/jarrold/img/notification.svg" alt="notification icon">
+                    <p>We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now</p>
+                </div>
+                <a href="https://www.jarrold.co.uk/checkout" class="btn">complete my order now</a>
+            </div> 
+        </div>
+`
 
-let thermalItems = [],
-    privacyItems = [],
-    cordlessItems = [],
-    noDrillItems = [],
-    betterSleepItems = [],
-    fireRetardantItems = [],
-    randomItems = [],
-    perfectFit = [];
+document.body.insertAdjacentHTML('afterbegin', style);
+document.body.insertAdjacentHTML('beforeend', popup);
 
-fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
-    headers: {
-        "Content-Type": "application/json",
-    },
-    method: "POST",
-    body: JSON.stringify( {
-        "username": "conversionrate",
-        "password": "gasmaj-mornut-sowZy9"
-    })
 
-}).then(res => res.json()).then(data => {
-    token.push(data);
-    console.log('token: ', token[0]);
 
-    let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Thermal', data);
-        thermalItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
+let mut = new MutationObserver(function (muts) {
 
-    let request2 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=232& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Privacy', data);
-        privacyItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
+    console.log('mutation')
 
-    let request3 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=229& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Cordless', data);
-        cordlessItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-    let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Better sleep', data);
-        betterSleepItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-
-    let request5 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=231&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('No Drill', data);
-        noDrillItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-
-    let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Fire Retardant', data);
-        fireRetardantItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-    let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('randomItems', data);
-        randomItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-    let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=6& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Perfect Fit', data);
-        perfectFit.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-
-    Promise.all([request1,request2,request3,request4,request5,request6,request7, request8]).then(res => {
-        let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
-        for (let i = 0; i < titleArr.length; i++) {
-            document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-            <div class="category">
-                <h3 class="category-title">${titleArr[i]}</h3>
-                <div class="category-slider"></div>
-            </div>`);
-        }
-
-        for (let i = 0; i < 12; i++) {
-            if (randomItems[0]["items"] != null) {
-                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (betterSleepItems[0]["items"] != null) {
-                card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (thermalItems[0]["items"] != null) {
-                card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (fireRetardantItems[0]["items"] != null) {
-                card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (noDrillItems[0]["items"] != null) {
-                card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (cordlessItems[0]["items"] != null) {
-                card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-            if (privacyItems[0]["items"] != null) {
-                card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][0]["custom_attributes"][3]["value"]);
-            }
-        }
-        for (let i = 0; i < 6; i++) {
-            if (perfectFit[0]["items"] != null) {
-                card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][0]["custom_attributes"][3]["value"])
-            }
-        }
-        tnsInitialization('category-slider',2,3,4);
-        tnsInitialization('slider',1,2,2);
-        document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-
-        document.querySelector('.view-more').addEventListener('click', (e) => {
-            e.target.hidden = true;
-            document.querySelector('.categories').classList.add('show');
-        });
-    });
-}).catch(err => {
-    console.log('Failed fetch ', err);
+    if(document.querySelector('#page_header_CPR span').innerText === '0') {
+        localStorage.setItem('basketList', '[]');
+    }
+    
 });
 
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1709958,hjsv:6};
+    h._hjSettings={hjid:1885763,hjsv:6};
     a=o.getElementsByTagName('head')[0];
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'pdp_exit_intent_mobile');
+hj('trigger', 'exit_intent_popup');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+    'eventCategory': 'Exp - Exit-intent popup',
     'eventAction': 'loaded'
 });
+
+
+function startCheckCart() {
+
+    let inCart =  false
+
+    if(document.querySelector('.core h1')){
+        let name = document.querySelector('.core h1').innerText
+        if (localStorage.getItem('basketList').includes(name)) {
+            inCart = true
+        }
+    }
+
+    if (!inCart && localStorage.getItem('basketList') && localStorage.getItem('basketList') != '[]' && !window.location.pathname.includes('basket') && !window.location.pathname.includes('my-account?view=wishlist')) {
+        mut.disconnect();
+
+        jQuery(document).on('touchstart', function(){
+            $('body').addClass('on-mobile-device');
+        });
+
+        function myScrollSpeedFunction(){
+            if(jQuery('body').hasClass('on-mobile-device') ){
+                if(my_scroll() < -200){
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
+                    }
+                }
+            }
+        }
+
+        var my_scroll = (function() {
+            var last_position, new_position, timer, delta, delay = 50;
+
+            function clear() {
+                last_position = null;
+                delta = 0;
+            }
+
+            clear();
+
+            return function(){
+                new_position = window.scrollY;
+                if (last_position != null){
+                    delta = new_position -  last_position;
+                }
+                last_position = new_position;
+                clearTimeout(timer);
+                timer = setTimeout(clear, delay);
+                return delta;
+            };
+        })();
+
+        $(".modal").on('click', (e) => {
+            e.stopImmediatePropagation();
+            $('.modal').removeClass('active');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': `click on the background to close popup`
+            });
+        });
+        $(".close").on('click', (e) => {
+            e.stopImmediatePropagation();
+            $('.modal').removeClass('active');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': `click on X to close popup`
+            });
+        });
+        $('.modal .btn').on('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Exit-intent popup',
+                'eventAction': 'click on Complete your order now'
+            });
+        });
+        $(".modal_container").on('click', (e) => {
+            e.stopPropagation();
+        });
+        console.log(localStorage.getItem('basketList'))
+        let basketList = JSON.parse(localStorage.getItem('basketList'));
+        for (let i = 0; i < basketList.length; i++) {
+            $('.modal_products').append(`
+            <li>
+                <a href="${basketList[i].link}" class="modal_img">${basketList[i].image}</a>
+                <div class="flex-center-between">
+                    <a href="${basketList[i].link}" class="product-title">${basketList[i].title}</a>
+                    <p class="product-price">${basketList[i].price}</p>
+                </div>
+            </li>`);
+            if (document.querySelectorAll('.modal_img img')[i]){
+                let dataScr = document.querySelectorAll('.modal_img img')[i].getAttribute('data-src');
+                document.querySelectorAll('.modal_img img')[i].setAttribute('src', dataScr);
+            }
+
+            if (document.querySelector('#product h1') && basketList[i].title != document.querySelector('#product h1').innerHTML || !document.querySelector('#product h1')) {
+                $('.btn.bag').on('click', function () {
+                    $('.modal').addClass('hide');
+                    inCart = true
+                });
+
+                setTimeout(() => {
+                    if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
+                        $(".modal").addClass('active');
+                        sessionStorage.setItem('modal', '');
+                    }
+                }, 20000);
+
+                function addEvent(obj, evt, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(evt, fn, false);
+                    } else if (obj.attachEvent) {
+                        obj.attachEvent("on" + evt, fn);
+                    }
+                }
+                if (window.matchMedia("(max-width: 1024px)").matches) {
+                    jQuery(document).on('scroll', myScrollSpeedFunction);
+                } else {
+                    addEvent(document, 'mouseout', function(evt) {
+                        if (!document.querySelector('.modal.hide')) {
+                            if (evt.toElement == null && evt.relatedTarget == null) {
+                                if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
+                                    $(".modal").addClass('active');
+                                    sessionStorage.setItem('modal', '');
+                                }
+                            }
+                        }
+                        //     sessionStorage.setItem('modal', '');
+                        // }
+                    });
+                }
+
+            }
+
+        }
+
+    }
+
+}
