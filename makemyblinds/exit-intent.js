@@ -470,14 +470,22 @@ function card(index,img,name,price,link) {
 
 }
 
-function eventsCategories(elem,eventCategory,eventAction,media) {
+function eventsCategories(elem,eventAction) {
     document.querySelectorAll(elem).forEach((el) => {
         el.addEventListener('click', () => {
-            if (window.matchMedia(`(${media})`).matches) {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
-                    'eventCategory': eventCategory,
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
                     'eventAction': eventAction,
                     'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
                 });
@@ -632,13 +640,13 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 
 }).then(res => res.json()).then(data => {
     token.push(data);
-    console.log('token: ', token[0]);
+    console.log('token: ', data);
 
     let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
@@ -651,7 +659,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
@@ -664,7 +672,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
@@ -676,7 +684,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
@@ -689,7 +697,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
@@ -702,7 +710,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
@@ -714,7 +722,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('randomItems', data);
@@ -726,7 +734,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${data}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Perfect Fit', data);
@@ -787,16 +795,32 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
                     'eventCategory': 'Exp — PDP improvement exit intent mobile',
                     'eventAction': 'Click on View more button',
                 });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': 'Click on View more button',
+                });
             }
         });
 
-        eventsCategories('.category .card-title','Exp — PDP improvement exit intent mobile','Click on product from listing','max-width: 768px');  
-        eventsCategories('.tns-controls button','Exp — PDP improvement exit intent mobile','Click on arrows button listing','max-width: 768px');
-        eventsCategories('.tns-nav button','Exp — PDP improvement exit intent mobile','Click on dots button listing','max-width: 768px');
-        eventsCategories('.category .card .btn','Exp — PDP improvement exit intent mobile','Click on View Product button listing','max-width: 768px');
-        eventsPopup('.popup .card-title','Exp — PDP improvement exit intent mobile','Click on product from','max-width: 768px');
-        eventsPopup('.popup .btn','Exp — PDP improvement exit intent mobile','Click on View product white button','max-width: 768px');
-        eventsPopup('.popup .tns-controls button','Exp — PDP improvement exit intent mobile','Click on arrows button','max-width: 768px');
+        eventsCategories('.category .card-title','Click on product from listing');  
+        eventsCategories('.tns-controls button','Click on arrows button listing');
+        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .card .btn','Click on View Product button listing');
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
+        sessionStorage.setItem('modal','true');
+        window.addeventlistener('mouseout', (evt) => {
+            if (evt.toElement == null && evt.relatedTarget == null) {
+                if (localStorage.getItem('modal') !== 'false') {
+                    document(".popup").classList.add('active');
+                    sessionStorage.setItem('modal', 'false');
+                }
+            }
+        });
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -810,6 +834,13 @@ document.querySelector(".btn-close").addEventListener('click', (e) => {
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — PDP improvement exit intent mobile',
+            'eventAction': 'Click on exit cross button',
+        });
+    } else {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — PDP improvement exit intent desktop',
             'eventAction': 'Click on exit cross button',
         });
     }
@@ -848,4 +879,21 @@ if (window.matchMedia("(max-width: 768px)").matches) {
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
         hj('trigger', 'pdp_exit_intent_mobile');
+} else {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP improvement exit intent desktop',
+        'eventAction': 'loaded'
+    });
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('trigger', 'pdp_exit_intent_desktop');
 }
