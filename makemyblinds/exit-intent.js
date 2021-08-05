@@ -1,6 +1,5 @@
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
-
     .your-text {
         display: none;}
     .catalog-product-view .product-info-main .media {
@@ -151,10 +150,12 @@ document.body.insertAdjacentHTML('afterbegin', `
         margin: 30px auto 0;}
     .categories.show .category{
         display: block!important;}
+    .category .tns-controls {
+        top: 50px; }
     .tns-controls {
-        top: 50px;
         position: absolute;
         right: 0;
+        bottom: 10px;
         z-index: 1;
         padding: 0 32px;
         display: flex;}
@@ -179,6 +180,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         text-decoration-line: underline;
         padding: 12px 28px 12px 16px;
         display: block;
+        margin-right: 25px;
         margin-left: auto;
         background: url('https://conversionratestore.github.io/projects/makemyblinds/img/arrow.svg') no-repeat right 10px center / 8px;
         color: #232849;}
@@ -210,10 +212,13 @@ document.body.insertAdjacentHTML('afterbegin', `
         color: #fff;}
     .card .product-social-links i.mmb-icon.love {
         font-size: 1.3em !important; }
-    .tns-controls [aria-controls], .tns-controls [data-action] {
-        width: 40px;
-        height: 40px;
+    .category .tns-controls [aria-controls], .tns-controls [data-action] {
         margin-left: 10px;
+        width: 40px;
+        height: 40px; }
+    .tns-controls [aria-controls], .tns-controls [data-action] {
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         user-select: none;
         color: transparent;
@@ -237,7 +242,14 @@ document.body.insertAdjacentHTML('afterbegin', `
         border-radius: 50%; }
     .tns-nav button.tns-nav-active {
         background: #191919;}
+    .your-box {
+        display: none;}
         @media screen and (max-width: 768px) {
+            .page-title-wrapper {
+                display: none;}
+            .product-details {
+                padding-bottom: 40px;
+                border-top: 1px solid #DEDEDE;}
             .popup-container {
                 position: relative;
                 max-width: 343px;}
@@ -251,8 +263,6 @@ document.body.insertAdjacentHTML('afterbegin', `
                 width: calc(100% + 32px);}
             .hp_strip__container ul i {
                 display: block;}
-            .product-options-wrapper, .htm-trigger, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-label, .catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-original {
-                display: none; }
             .your-text {
                 display: block;
                 font-family: 'Barlow', sans-serif;
@@ -263,20 +273,48 @@ document.body.insertAdjacentHTML('afterbegin', `
                 letter-spacing: 0.0015em;
                 color: #232849;
                 margin-right: 8px; }
-            .catalog-product-view .product-info-main .product-details .bottom-actions .price-container {
-                flex-direction: row;
+            .main .price-container {
+                font-family: 'Barlow-medium', sans-serif;
+                margin-bottom: 25px;
+                display: flex;
+                justify-content: space-between;
                 align-items: center;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row {
+            .main .price-label {
+                font-weight: 500;
+                font-size: 26px;
+                line-height: 31px;
+                letter-spacing: 0.0015em; }
+            .product-info-price {
+                width: 100%; }
+            .main .price-wrapper  {
+                font-style: normal;
+                font-weight: 500;
+                font-size: 49px;
+                line-height: 59px;
+                letter-spacing: -0.005em;
+                padding-left: 10px;
+                color: #232849; }
+            .catalog-product-view .product-details .bottom-actions .bottom-actions__row {
+                display: flex;
                 flex-wrap: wrap;
                 width: 100%;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .btn {
+            .box-tocart {
+                width: 100%; }
+            .catalog-product-view .product-details .bottom-actions .bottom-actions__row .btn, .your-box .btn {
                 width: 100%;
-                margin: 0;}
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
-                margin-top: 0!important;}
+                letter-spacing: 0.180451px;
+                margin: 0;
+                wodth: 100%;
+                font-family: "Barlow-medium", sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                padding: 12px;
+                margin: 0 0 15px 0!important;}
             .bottom-actions__row {
                 display: block; }
-            .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .product-social-links, .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
+            .catalog-product-view .product-details .bottom-actions .bottom-actions__row .product-social-links, .catalog-product-view .product-info-main .product-details .bottom-actions .bottom-actions__row .box-tocart {
                 width: 100%;}
             .bottom-actions__row .product-social-links {
                 order: 2;}
@@ -291,13 +329,13 @@ document.body.insertAdjacentHTML('afterbegin', `
                 height: 183px;}
             .popup .tns-controls {
                 padding: 0 24px; }
+            .category .tns-controls{
+                top: auto;}
             .tns-controls {
                 padding: 0;
                 width: 100%;
-                top: auto; 
-                bottom: 10px;
                 justify-content: space-between; }
-            .tns-controls [aria-controls], .tns-controls [data-action] {
+            .category .tns-controls [aria-controls], .tns-controls [data-action] {
                 margin: 0;
                 width: 24px;
                 height: 24px;}
@@ -307,19 +345,66 @@ document.body.insertAdjacentHTML('afterbegin', `
                 margin: 0 auto 20px;
                 order: inherit;}
             .product-specs--new {
-                padding-top: 0;
-            }
+                padding-top: 0; }
             .category {
-                padding: 40px 0 0;
-            }
+                padding: 40px 0 0; }
+            .view-more{
+                margin-right: 0;}
+            .scaled-custom-field {
+                width: calc(50% - 18px);}
+            .product-addto-links a:last-child  {
+                display: none;}
+            .your-box {
+                display: block;
+                padding: 10px 16px; }
+            .your-box .price-container {
+                justify-content: flex-start; }
+            .your-box .price-label {
+                font-size: 16px; }
+            .free-priority {
+                margin: 10px 0; }
+            .product-delivery-date {
+                display: flex;
+                font-family: 'Overpass',Arial,Helvetica,sans-serif;
+                margin-top: 17px; 
+                margin-bottom: 10px; }
+            .product-delivery-date__fast-track {
+                flex: 1;
+                background-color: #6cc;
+                border-radius: 4px;
+                padding: 10px 18px;
+                color: #fff;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                min-height: 51px; }
+            .product-delivery-date p {
+                font-weight: 300;
+                font-size: 13px;
+                line-height: 19px; }
         }
+        @media screen and (max-width: 360px) {
+            .catalog-product-view #product-options-wrapper .scaled-custom-field label span i {
+                font-size: 17px;}
+        }
+            
 </style>`);
-window.addEventListener('error', function(e) {
-    console.log(e);
-}, true);
+document.querySelectorAll('.box-tocart')[1].hidden = true;
+
+document.querySelector('.hp_strip').insertAdjacentHTML('beforebegin', `<div class="your-box">
+    ${document.querySelector('.price-box').innerHTML}
+    <button type="button" class="btn">Add to basket</button>
+    <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
+</div>`);
+if (document.querySelector('.product-delivery-date')) {
+    document.querySelector('.your-box .product-social-links').after(document.querySelector('.product-delivery-date'));
+}
+if (document.querySelector('.free-priority')) {
+    document.querySelector('.your-box .product-social-links').after(document.querySelector('.free-priority'));
+}
 
 document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
-document.querySelector('.catalog-product-view .product-info-main .product-details .bottom-actions .price-container .price-wrapper').insertAdjacentHTML('beforebegin', `<p class="your-text">Your price </p>`);
+document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
 let linkCustom = document.createElement('link');
 linkCustom.href =
     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -666,7 +751,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         tnsInitialization('category-slider',2,3,4);
         tnsInitialization('slider',1,2,2);
         document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-
+     
         document.querySelector('.view-more').addEventListener('click', (e) => {
             e.target.hidden = true;
             document.querySelector('.categories').classList.add('show');
@@ -674,6 +759,22 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
+});
+if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
+}
+
+document.querySelector('.your-box .btn').addEventListener('click', () => {
+    const scrollTarget = document.querySelector('.product-details');
+    const topOffset = document.querySelector('.page-header').offsetHeight;
+    const elementPosition = scrollTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - topOffset;
+
+    window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth'
+    });
+
 });
 
 
