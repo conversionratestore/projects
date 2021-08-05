@@ -470,14 +470,37 @@ function card(index,img,name,price,link) {
 
 }
 
-document.body.insertAdjacentHTML('beforeend', `
-<div class="popup">
-    <div class="popup-container">
-       <button class="btn-close" type="button"></button>
-        <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
-        <div class="slider"></div>
-    </div>
-</div>`);
+function eventsCategories(elem,eventCategory,eventAction,media) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(${media})`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': eventCategory,
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            }
+        });
+    })
+}
+
+function eventsPopup(elem,eventCategory,eventAction,media) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(${media})`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': eventCategory,
+                    'eventAction': eventAction,
+                    'eventLabel': `Exit intent popup`
+                });
+            }
+        });
+    })
+}
 
 let greatForId = [
     {
@@ -575,14 +598,16 @@ var my_scroll = (function() {
 
 window.addEventListener('scroll', myScrollSpeedFunction);
 
-document.querySelector(".btn-close").addEventListener('click', (e) => {
-    e.stopImmediatePropagation();
-    document.querySelector('.popup').classList.remove('active');
-});
-document.querySelector(".popup-container").addEventListener('click', (e) => {
-    e.stopPropagation();
-});
 document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+        
+document.body.insertAdjacentHTML('beforeend', `
+<div class="popup">
+    <div class="popup-container">
+    <button class="btn-close" type="button"></button>
+        <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
+        <div class="slider"></div>
+    </div>
+</div>`);
 
 let token = [];
 
@@ -755,15 +780,43 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         document.querySelector('.view-more').addEventListener('click', (e) => {
             e.target.hidden = true;
             document.querySelector('.categories').classList.add('show');
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': 'Click on View more button',
+                });
+            }
         });
+
+        eventsCategories('.category .card-title','Exp — PDP improvement exit intent mobile','Click on product from listing','max-width: 768px');  
+        eventsCategories('.tns-controls button','Exp — PDP improvement exit intent mobile','Click on arrows button listing','max-width: 768px');
+        eventsCategories('.tns-nav button','Exp — PDP improvement exit intent mobile','Click on dots button listing','max-width: 768px');
+        eventsCategories('.category .card .btn','Exp — PDP improvement exit intent mobile','Click on View Product button listing','max-width: 768px');
+        eventsPopup('.popup .card-title','Exp — PDP improvement exit intent mobile','Click on product from','max-width: 768px');
+        eventsPopup('.popup .btn','Exp — PDP improvement exit intent mobile','Click on View product white button','max-width: 768px');
+        eventsPopup('.popup .tns-controls button','Exp — PDP improvement exit intent mobile','Click on arrows button','max-width: 768px');
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
-if (window.matchMedia("(max-width: 768px)").matches) {
-    document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
-}
 
+document.querySelector(".btn-close").addEventListener('click', (e) => {
+    e.stopImmediatePropagation();
+    document.querySelector('.popup').classList.remove('active');
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — PDP improvement exit intent mobile',
+            'eventAction': 'Click on exit cross button',
+        });
+    }
+});
+document.querySelector(".popup-container").addEventListener('click', (e) => {
+    e.stopPropagation();
+});
 document.querySelector('.your-box .btn').addEventListener('click', () => {
     const scrollTarget = document.querySelector('.product-details');
     const topOffset = document.querySelector('.page-header').offsetHeight;
@@ -774,24 +827,25 @@ document.querySelector('.your-box .btn').addEventListener('click', () => {
         top: offsetPosition,
         behavior: 'smooth'
     });
-
 });
 
+if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1709958,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'pdp_exit_intent_mobile');
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP improvement exit intent mobile',
-    'eventAction': 'loaded'
-});
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — PDP improvement exit intent mobile',
+        'eventAction': 'loaded'
+    });
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1709958,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('trigger', 'pdp_exit_intent_mobile');
+}
