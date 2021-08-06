@@ -1,6 +1,6 @@
 
 let mut = new MutationObserver(function (muts) {
-    if(document.querySelector('.post-post_content') || document.querySelectorAll('#popular .d-flex')) {
+    if(document.querySelector('.post-post_content') || document.querySelector('#popular .d-flex')) {
         mut.disconnect();
         let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
         let products = [
