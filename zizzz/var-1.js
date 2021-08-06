@@ -1,50 +1,49 @@
+let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
+let products = [
+    // {
+    //     "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
+    //     "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
+    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
+    //     "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
+    //     "reviewsCount": '4',
+    //     "price": '49,00 €'
+    // },
+    // {
+    //     "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
+    //     "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
+    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
+    //     "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
+    //     "reviewsCount": '3',
+    //     "price": '65,00 €'
+    // },
+    // {
+    //     "link": '',
+    //     "title": '',
+    //     "img": '',
+    //     "reviewsHref": '',
+    //     "reviewsCount": '',
+    //     "price": ''
+    // },
+    // {
+    //     "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
+    //     "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
+    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
+    //     "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
+    //     "reviewsCount": '13',
+    //     "price": '159,00 €'
+    // }
 
-let mut = new MutationObserver(function (muts) {
-    if(document.querySelector('.post-post_content') || document.querySelector('#popular .d-flex')) {
-        mut.disconnect();
-        let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
-        let products = [
-            // {
-            //     "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
-            //     "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
-            //     "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
-            //     "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
-            //     "reviewsCount": '4',
-            //     "price": '49,00 €'
-            // },
-            // {
-            //     "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
-            //     "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
-            //     "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
-            //     "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
-            //     "reviewsCount": '3',
-            //     "price": '65,00 €'
-            // },
-            // {
-            //     "link": '',
-            //     "title": '',
-            //     "img": '',
-            //     "reviewsHref": '',
-            //     "reviewsCount": '',
-            //     "price": ''
-            // },
-            // {
-            //     "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
-            //     "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
-            //     "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
-            //     "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
-            //     "reviewsCount": '13',
-            //     "price": '159,00 €'
-            // }
-
-        ];
-        for (let i = 0; i < arrLink.length; i++) {
-            (function(){
-                var http = new XMLHttpRequest();
-                http.open('GET', `${arrLink[i]}`);
-                http.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+];
+for (let i = 0; i < arrLink.length; i++) {
+    (function(){
+        var http = new XMLHttpRequest();
+        http.open('GET', `${arrLink[i]}`);
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                let mut = new MutationObserver(function (muts) {
+                    if (document.querySelector('#popular .d-flex')) {
+                        mut.disconnect();
                         products.push({
                             "title": doc.querySelector('.page-title .base').innerHTML,
                             "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
@@ -53,11 +52,84 @@ let mut = new MutationObserver(function (muts) {
                             "price": doc.querySelector('.price').innerHTML.replace('€','')
                         })
                         // localStorage.setItem('products', JSON.stringify(products));
+               
+                   
+                        document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
+                <li class="item product product-item"> 
+                    <div class="product-item-info" data-container="product-grid"> 
+                        <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
+                            <span class="product-image-container" style="width:240px;">
+                            <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                                <img class="product-image-photo" data-pagespeed-high-res-src="${products[i].img}" max-width="240" max-height="300" alt="${products[i].title}" data-pagespeed-url-hash="339194918" src="${products[i].img}">
+                            </span>
+                            </span>
+                        </a> 
+                        <div class="product details product-item-details"> 
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link" href="${arrLink[i]}">${products[i].title}</a>
+                            </strong> 
+                            <div class="product-reviews-summary short"> 
+                            <div class="rating-summary">
+                                <span class="label"><span>Bewertung:</span></span> 
+                                <div class="rating-result" title="100.00%">
+                                <span style="width:100.00%"><span>100.00%</span></span>
+                                </div>
+                            </div>
+                            <div class="reviews-actions">
+                                <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
+                                <span>Review</span>
+                                </a>
+                            </div>
+                            </div> 
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542"> 
+                            <span class="price-container price-final_price tax weee"> <span class="price-label">Price</span> 
+                            <span id="product-price-542" data-price-amount="${products[i].price}" data-price-type="finalPrice" class="price-wrapper ">
+                                <span class="price">${products[i].price}&nbsp;€</span>
+                            </span> 
+                            </span> 
+                        </div>
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions">
+                            <div class="actions-primary"> 
+                                <form data-role="tocart-form" data-product-sku="19Z501" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s/product/542/" method="post">
+                                <input type="hidden" name="product" value="542">
+                                <input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,">
+                                <input name="form_key" type="hidden" value="XANnrqqwbFfDDRLR"> 
+                                <button type="submit" data-preorder="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/checkout\/cart\/add\/uenc\/aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s\/product\/542\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" title="In den Warenkorb" class="action tocart primary">
+                                    <span>in the cart</span>
+                                </button>
+                                </form>
+                            </div>
+                            <div data-role="add-to-links" class="actions-secondary"> 
+                                <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button">
+                                <span>Zur Wunschliste hinzufügen</span>
+                                </a> 
+                                <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button">
+                                <span>Zur Vergleichsliste hinzufügen</span>
+                                </a> 
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div> 
+                </li>`);
+
                     }
-                }
-                http.send(null);
-            })();
+                });
+                mut.observe(document, {
+                    childList: true,
+                    subtree: true
+                });
+                
+            }
         }
+        http.send(null);
+    })();
+}
+let mut = new MutationObserver(function (muts) {
+    if(document.querySelector('.post-post_content') ) {
+        mut.disconnect();
+     
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .banner {
@@ -145,71 +217,8 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.post-list-content').classList.add('col-sm-12');
 
 
-        // let products = JSON.parse(localStorage.getItem('products'));
-        for (let i = 0; i < products.length; i++) {
-                console.log(products[i]);
-                document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
-                <li class="item product product-item"> 
-                    <div class="product-item-info" data-container="product-grid"> 
-                        <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
-                            <span class="product-image-container" style="width:240px;">
-                            <span class="product-image-wrapper" style="padding-bottom: 125%;">
-                                <img class="product-image-photo" data-pagespeed-high-res-src="${products[i].img}" max-width="240" max-height="300" alt="${products[i].title}" data-pagespeed-url-hash="339194918" src="${products[i].img}">
-                            </span>
-                            </span>
-                        </a> 
-                        <div class="product details product-item-details"> 
-                            <strong class="product name product-item-name">
-                                <a class="product-item-link" href="${arrLink[i]}">${products[i].title}</a>
-                            </strong> 
-                            <div class="product-reviews-summary short"> 
-                            <div class="rating-summary">
-                                <span class="label"><span>Bewertung:</span></span> 
-                                <div class="rating-result" title="100.00%">
-                                <span style="width:100.00%"><span>100.00%</span></span>
-                                </div>
-                            </div>
-                            <div class="reviews-actions">
-                                <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
-                                <span>Review</span>
-                                </a>
-                            </div>
-                            </div> 
-                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542"> 
-                            <span class="price-container price-final_price tax weee"> <span class="price-label">Price</span> 
-                            <span id="product-price-542" data-price-amount="${products[i].price}" data-price-type="finalPrice" class="price-wrapper ">
-                                <span class="price">${products[i].price}&nbsp;€</span>
-                            </span> 
-                            </span> 
-                        </div>
-                        <div class="product-item-inner">
-                            <div class="product actions product-item-actions">
-                            <div class="actions-primary"> 
-                                <form data-role="tocart-form" data-product-sku="19Z501" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s/product/542/" method="post">
-                                <input type="hidden" name="product" value="542">
-                                <input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,">
-                                <input name="form_key" type="hidden" value="XANnrqqwbFfDDRLR"> 
-                                <button type="submit" data-preorder="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/checkout\/cart\/add\/uenc\/aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s\/product\/542\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" title="In den Warenkorb" class="action tocart primary">
-                                    <span>in the cart</span>
-                                </button>
-                                </form>
-                            </div>
-                            <div data-role="add-to-links" class="actions-secondary"> 
-                                <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button">
-                                <span>Zur Wunschliste hinzufügen</span>
-                                </a> 
-                                <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button">
-                                <span>Zur Vergleichsliste hinzufügen</span>
-                                </a> 
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div> 
-                </li>`);
-            }
-
     }
+
 
 
 });
