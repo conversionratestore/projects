@@ -1,6 +1,13 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
+    .popup .product-great{
+        padding: 0;}
+    .popup .product-great a {
+        padding: 2.5px 8px;
+        font-size: 12px;
+        margin-bottom: 5px;
+        margin-left: 5px;}
     .your-text {
         display: none;}
     .catalog-product-view .product-info-main .media {
@@ -796,7 +803,7 @@ window.onload  = function () {
                     card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
                 }
             }
-         
+
             tnsInitialization('category-slider',2,3,4);
             tnsInitialization('slider',1,2,2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
