@@ -112,6 +112,10 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
     }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
     if(document.querySelector('.popular .d-flex')) {
         mut.disconnect();
         for (let i = 0; i < products.length; i++) {
