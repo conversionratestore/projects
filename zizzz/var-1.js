@@ -1,7 +1,7 @@
 let mut = new MutationObserver(function (muts) {
     if(document.querySelector('.post-post_content')) {
         mut.disconnect();
-        let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/sommer-schlafsack-90.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']
+        let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
         let products = [];
         for (let i = 0; i <= arrLink.length; i++) {
             (function(){
@@ -12,7 +12,7 @@ let mut = new MutationObserver(function (muts) {
                         var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                         products.push({
                             "title": doc.querySelector('.page-title .base').innerHTML,
-                            "img": 'img', //doc.querySelectorAll('.fotorama__stage__frame img')[0].getAttribute('src')
+                            "img": doc.querySelectorAll('.fotorama__stage__frame')[0].getAttribute('href'),
                             "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
                             "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
                             "price": doc.querySelector('.price').innerHTML.replace('€','')
