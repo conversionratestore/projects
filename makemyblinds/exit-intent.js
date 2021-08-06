@@ -880,6 +880,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.product-info-price .price')) {
         mut.disconnect();
         console.log('Mutation disconnect');
+        console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     }
 });
