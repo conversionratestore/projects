@@ -792,9 +792,7 @@ window.onload  = function () {
             }
             for (let i = 0; i < 6; i++) {
                 if (perfectFit[0]["items"] != null) {
-                    console.log(perfectFit[0]["items"][i]["custom_attributes"][48]["value"]);
-                    card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'))
-
+                    card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
                 }
             }
             tnsInitialization('category-slider',2,3,4);
