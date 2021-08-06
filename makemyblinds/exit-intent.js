@@ -876,7 +876,10 @@ window.onload  = function () {
 };
 
 let mut = new MutationObserver(function (muts) {
-    document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+    if (document.querySelector('.product-info-price .price')) {
+        mut.disconnect();
+        document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+    }
 });
 mut.observe(document, {
     childList: true,
