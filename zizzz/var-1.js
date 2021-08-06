@@ -110,17 +110,14 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
 
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
+    }
 
-        if(localStorage.getItem('products')) {
-            mut.disconnect();
-            let products = JSON.parse(localStorage.getItem('products'));
-            for (let i = 0; i < products.length; i++) {
-                console.log(products[i]);
-                document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
+    if(localStorage.getItem('products')) {
+        mut.disconnect();
+        let products = JSON.parse(localStorage.getItem('products'));
+        for (let i = 0; i < products.length; i++) {
+            console.log(products[i]);
+            document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
                 <li class="item product product-item"> 
                     <div class="product-item-info" data-container="product-grid"> 
                         <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
@@ -179,7 +176,6 @@ let mut = new MutationObserver(function (muts) {
                         </div>
                     </div> 
                 </li>`);
-            }
         }
     }
 });
