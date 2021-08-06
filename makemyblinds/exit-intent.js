@@ -229,7 +229,7 @@ Promise.all([getToken]).then(res => {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5,request6, request8]).then(res => { //request7
-        window.onload  = function () {
+        
             document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .your-text {
@@ -878,7 +878,7 @@ Promise.all([getToken]).then(res => {
             //         }
             //     }
             // });
-        };
+        
     });
 });
 
