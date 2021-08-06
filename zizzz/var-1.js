@@ -18,6 +18,8 @@ let mut = new MutationObserver(function (muts) {
                             "price": doc.querySelector('.price').innerHTML.replace('€','')
                         })
 
+                        localStorage.setItem('products', JSON.stringify(products));
+
                     }
                 }
                 http.send(null);
@@ -109,7 +111,7 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
-        
+
         mut.observe(document, {
             childList: true,
             subtree: true
@@ -183,7 +185,7 @@ let mut = new MutationObserver(function (muts) {
             }
         }
     }
-   
+
 });
 mut.observe(document, {
     childList: true,
