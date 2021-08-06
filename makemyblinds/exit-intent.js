@@ -873,21 +873,11 @@ window.onload  = function () {
             behavior: 'smooth'
         });
     });
-};
-
-let mut = new MutationObserver(function (muts) {
-    console.log('Mutation');
-    if (document.querySelector('.product-info-price .price')) {
-        mut.disconnect();
-        console.log('Mutation disconnect');
+    document.querySelector('.product-details').addEventListener('change', () => {
         console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
-    }
-});
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+    })
+};
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
