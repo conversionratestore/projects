@@ -874,6 +874,15 @@ window.onload  = function () {
         });
     });
 };
+
+let mut = new MutationObserver(function (muts) {
+    document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+});
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
+
 if (window.matchMedia("(max-width: 768px)").matches) {
     document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
 
