@@ -105,8 +105,7 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner1.png' alt='banner'></a>`);
-        document.querySelectorAll('h2')[5].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner2.png' alt='banner'></a>`);
+        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
         document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
 
 
