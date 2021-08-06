@@ -586,7 +586,8 @@ window.onload  = function () {
         if(document.body.classList.contains('mobile')) {
             if (!document.querySelector(".popup").classList.contains('was')) {
                 if(my_scroll() < -200){
-                    document.querySelector(".popup").classList.add('active was');
+                    document.querySelector(".popup").classList.add('active');
+                    document.querySelector(".popup").classList.add('was');
                 }
             }
         }
@@ -619,13 +620,13 @@ window.onload  = function () {
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
 
     document.body.insertAdjacentHTML('beforeend', `
-<div class="popup">
-    <div class="popup-container">
-    <button class="btn-close" type="button"></button>
-        <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
-        <div class="slider"></div>
-    </div>
-</div>`);
+    <div class="popup">
+        <div class="popup-container">
+        <button class="btn-close" type="button"></button>
+            <h2 class="popup-title">Don’t leave!<span>We have a lot more to offer</span></h2>
+            <div class="slider"></div>
+        </div>
+    </div>`);
 
     let token = [];
 
