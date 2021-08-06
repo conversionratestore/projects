@@ -287,7 +287,7 @@ window.onload  = function () {
                 letter-spacing: 0.0015em; }
             .product-info-price {
                 width: 100%; }
-            .main .price-wrapper  {
+            .main .product-options-bottom .price-wrapper, .your-box .price-wrapper{
                 font-style: normal;
                 font-weight: 500;
                 font-size: 49px;
@@ -295,7 +295,7 @@ window.onload  = function () {
                 letter-spacing: -0.005em;
                 padding-left: 10px;
                 color: #232849; }
-            .main .price-wrapper span {
+            .main .product-options-bottom .price-wrapper span, .your-box .price-wrapper span{
                 color: #232849;}
             .catalog-product-view .product-details .bottom-actions .bottom-actions__row {
                 display: flex;
@@ -876,7 +876,9 @@ window.onload  = function () {
 };
 
 let mut = new MutationObserver(function (muts) {
-    document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+    if (document.querySelector('.product-details')) {
+        document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+    }
 });
 mut.observe(document, {
     childList: true,
