@@ -115,6 +115,7 @@ let mut = new MutationObserver(function (muts) {
     if(document.querySelector('.popular .d-flex')) {
         mut.disconnect();
         for (let i = 0; i < products.length; i++) {
+            products[i];
             document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
             <li class="item product product-item"> 
                 <div class="product-item-info" data-container="product-grid"> 
