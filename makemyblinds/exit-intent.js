@@ -470,9 +470,7 @@ window.onload  = function () {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            document.querySelector('.popup .product-great').insertAdjacentHTML('beforeend', `
-            <a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a>
-            <a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`);
+            document.querySelector('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
         }
     }
 
@@ -798,6 +796,7 @@ window.onload  = function () {
                     card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
                 }
             }
+         
             tnsInitialization('category-slider',2,3,4);
             tnsInitialization('slider',1,2,2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
