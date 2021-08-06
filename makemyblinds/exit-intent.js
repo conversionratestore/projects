@@ -1,6 +1,6 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
-<style>
+    <style>
     .your-text {
         display: none;}
     .catalog-product-view .product-info-main .media {
@@ -287,7 +287,7 @@ window.onload  = function () {
                 letter-spacing: 0.0015em; }
             .product-info-price {
                 width: 100%; }
-            .main .price-wrapper  {
+            .main .product-options-bottom .price-wrapper, .your-box .price-wrapper{
                 font-style: normal;
                 font-weight: 500;
                 font-size: 49px;
@@ -295,6 +295,8 @@ window.onload  = function () {
                 letter-spacing: -0.005em;
                 padding-left: 10px;
                 color: #232849; }
+            .main .product-options-bottom .price-wrapper span, .your-box .price-wrapper span{
+                color: #232849;}
             .catalog-product-view .product-details .bottom-actions .bottom-actions__row {
                 display: flex;
                 flex-wrap: wrap;
@@ -392,11 +394,12 @@ window.onload  = function () {
 </style>`);
     document.querySelectorAll('.box-tocart')[1].hidden = true;
 
-    document.querySelector('.hp_strip').insertAdjacentHTML('beforebegin', `<div class="your-box">
-    ${document.querySelector('.price-box').innerHTML}
-    <button type="button" class="btn">Add to basket</button>
-    <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
-</div>`);
+    document.querySelector('.hp_strip').insertAdjacentHTML('beforebegin', `
+    <div class="your-box">
+        ${document.querySelector('.price-box').innerHTML}
+        <button type="button" class="btn">Add to basket</button>
+        <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
+    </div>`);
     if (document.querySelector('.product-delivery-date')) {
         document.querySelector('.your-box .product-social-links').after(document.querySelector('.product-delivery-date'));
     }
@@ -871,6 +874,15 @@ window.onload  = function () {
         });
     });
 };
+
+let mut = new MutationObserver(function (muts) {
+    document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
+});
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
+
 if (window.matchMedia("(max-width: 768px)").matches) {
     document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
 
