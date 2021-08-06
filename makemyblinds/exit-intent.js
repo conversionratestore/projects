@@ -652,15 +652,15 @@ window.onload  = function () {
             "password": "gasmaj-mornut-sowZy9"
         })
 
-    }).then(res => res.json()).then(data => {
-        token.push(data);
-        console.log('token: ', data);
+    }).then(res => res.json()).then(datatoken => {
+        token.push(datatoken);
+        console.log('token: ', datatoken);
 
         let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Thermal', data);
@@ -673,7 +673,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Privacy', data);
@@ -686,7 +686,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Cordless', data);
@@ -698,7 +698,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Better sleep', data);
@@ -711,7 +711,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('No Drill', data);
@@ -724,7 +724,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Fire Retardant', data);
@@ -736,7 +736,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('randomItems', data);
@@ -748,7 +748,7 @@ window.onload  = function () {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${data}`
+                "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
             console.log('Perfect Fit', data);
