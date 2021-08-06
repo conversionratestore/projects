@@ -231,7 +231,7 @@ Promise.all([getToken]).then(res => {
     Promise.all([request1,request2,request3,request4,request5,request6, request8]).then(res => { //request7
         window.onload  = function () {
             if (document.querySelector('.categories')) {
-                
+
 
             let titleArr = ['Privacy Blinds', 'Cordless Blinds', 'No Drill Blinds', 'Fire Retardant Blinds', 'Thermal Blinds', 'Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
@@ -242,7 +242,7 @@ Promise.all([getToken]).then(res => {
                 </div>`);
             }
             }
-            if (document.querySelector('.category-slider')) {
+            if (document.querySelectorAll('.category-slider')) {
             for (let i = 0; i < 12; i++) {
                 if (randomItems[0]["items"] != null) {
                     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
