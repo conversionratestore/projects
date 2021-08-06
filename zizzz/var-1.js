@@ -3,7 +3,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/sommer-schlafsack-90.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']
         let products = [];
-        for (let i = 0; i < arrLink.length; i++) {
+        for (let i = 0; i <= arrLink.length; i++) {
             (function(){
                 var http = new XMLHttpRequest();
                 http.open('GET', `${arrLink[i]}`);
