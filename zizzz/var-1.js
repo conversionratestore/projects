@@ -119,6 +119,8 @@ let mut = new MutationObserver(function (muts) {
 
         if(localStorage.getItem('products')) {
             mut.disconnect();
+            let products = JSON.parse(localStorage.getItem('products'));
+
             console.log(products);
             console.log(document.querySelector('#popular .d-flex'));
             for (let i = 0; i < products.length; i++) {
