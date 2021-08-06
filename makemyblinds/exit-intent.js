@@ -99,17 +99,6 @@ function eventsPopup(elem,eventAction) {
     })
 }
 
-function myScrollSpeedFunction(){
-    if(document.body.classList.contains('mobile')) {
-        if (!document.querySelector(".popup").classList.contains('was')) {
-            if(my_scroll() < -200){
-                document.querySelector(".popup").classList.add('active');
-                document.querySelector(".popup").classList.add('was');
-            }
-        }
-    }
-}
-
 let token = [];
 
 let thermalItems = [],
@@ -726,6 +715,17 @@ Promise.all([getToken]).then(res => {
                     }
                 }
             });
+
+            function myScrollSpeedFunction(){
+                if(document.body.classList.contains('mobile')) {
+                    if (!document.querySelector(".popup").classList.contains('was')) {
+                        if(my_scroll() < -200){
+                            document.querySelector(".popup").classList.add('active');
+                            document.querySelector(".popup").classList.add('was');
+                        }
+                    }
+                }
+            }
 
             var my_scroll = (function() {
                 var last_position, new_position, timer, delta, delay = 50;
