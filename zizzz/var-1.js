@@ -12,7 +12,7 @@ let mut = new MutationObserver(function (muts) {
                         var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                         products.push({
                             "title": doc.querySelector('.page-title .base').innerHTML,
-                            "img": doc.querySelectorAll('.fotorama__stage__frame')[0].getAttribute('href'),
+                            "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
                             "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
                             "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
                             "price": doc.querySelector('.price').innerHTML.replace('€','')
