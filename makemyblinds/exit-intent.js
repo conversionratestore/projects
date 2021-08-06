@@ -229,7 +229,7 @@ Promise.all([getToken]).then(res => {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5,request6, request8]).then(res => { //request7
-        
+
             document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .your-text {
@@ -810,34 +810,39 @@ Promise.all([getToken]).then(res => {
                     <div class="category-slider"></div>
                 </div>`);
             }
-            for (let i = 0; i < 12; i++) {
-                if (randomItems[0]["items"] != null) {
-                    card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (betterSleepItems[0]["items"] != null) {
-                    card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"], betterSleepItems[0]["items"][i]["price"], betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (thermalItems[0]["items"] != null) {
-                    card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"], thermalItems[0]["items"][i]["price"], thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (fireRetardantItems[0]["items"] != null) {
-                    card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"], fireRetardantItems[0]["items"][i]["price"], fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (noDrillItems[0]["items"] != null) {
-                    card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"], noDrillItems[0]["items"][i]["price"], noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (cordlessItems[0]["items"] != null) {
-                    card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"], cordlessItems[0]["items"][i]["price"], cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-                if (privacyItems[0]["items"] != null) {
-                    card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"], privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                }
-            }
-            for (let i = 0; i < 6; i++) {
-                if (perfectFit[0]["items"] != null) {
-                    card('popup', perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"], perfectFit[0]["items"][i]["name"], perfectFit[0]["items"][i]["price"], perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt', '').replace('bifold', 'matt'))
+            if (document.querySelectorAll('.category-slider')) {
+                for (let i = 0; i < 12; i++) {
+                    if (randomItems[0]["items"] != null) {
+                        card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (betterSleepItems[0]["items"] != null) {
+                        card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"], betterSleepItems[0]["items"][i]["price"], betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (thermalItems[0]["items"] != null) {
+                        card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"], thermalItems[0]["items"][i]["price"], thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (fireRetardantItems[0]["items"] != null) {
+                        card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"], fireRetardantItems[0]["items"][i]["price"], fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (noDrillItems[0]["items"] != null) {
+                        card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"], noDrillItems[0]["items"][i]["price"], noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (cordlessItems[0]["items"] != null) {
+                        card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"], cordlessItems[0]["items"][i]["price"], cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
+                    if (privacyItems[0]["items"] != null) {
+                        card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"], privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    }
                 }
             }
+            if (document.querySelectorAll('.popup .slider')) {
+                for (let i = 0; i < 6; i++) {
+                    if (perfectFit[0]["items"] != null) {
+                        card('popup', perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"], perfectFit[0]["items"][i]["name"], perfectFit[0]["items"][i]["price"], perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt', '').replace('bifold', 'matt'))
+                    }
+                }
+            }
+           
             tnsInitialization('category-slider', 2, 3, 4);
             tnsInitialization('slider', 1, 2, 2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend', `<button type="button" class="view-more">View more</button>`)
@@ -878,7 +883,7 @@ Promise.all([getToken]).then(res => {
             //         }
             //     }
             // });
-        
+
     });
 });
 
