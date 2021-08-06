@@ -117,7 +117,7 @@ let mut = new MutationObserver(function (muts) {
             subtree: true
         });
 
-        if(document.querySelector('#popular .d-flex')) {
+        if(localStorage.getItem('products')) {
             mut.disconnect();
             console.log(products);
             console.log(document.querySelector('#popular .d-flex'));
