@@ -470,6 +470,9 @@ window.onload  = function () {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+            document.querySelector('.popup .product-great').insertAdjacentHTML('beforeend', `
+            <a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a>
+            <a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`);
         }
     }
 
