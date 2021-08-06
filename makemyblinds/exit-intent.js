@@ -1,4 +1,5 @@
-document.body.insertAdjacentHTML('afterbegin', `
+window.onload  = function () {
+    document.body.insertAdjacentHTML('afterbegin', `
 <style>
     .your-text {
         display: none;}
@@ -859,7 +860,7 @@ document.querySelector('.your-box .btn').addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
-
+};
 if (window.matchMedia("(max-width: 768px)").matches) {
     document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
 
