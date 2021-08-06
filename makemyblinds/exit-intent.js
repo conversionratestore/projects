@@ -876,8 +876,10 @@ window.onload  = function () {
 };
 
 let mut = new MutationObserver(function (muts) {
+    console.log('Mutation');
     if (document.querySelector('.product-info-price .price')) {
         mut.disconnect();
+        console.log('Mutation disconnect');
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     }
 });
