@@ -16,17 +16,9 @@ for (let i = 0; i < arrLink.length; i++) {
                     "price": doc.querySelector('.price').innerHTML.replace('€','')
                 })
 
-            }
-        }
-        http.send(null);
-    })();
-
-}
-
-let mut = new MutationObserver(function (muts) {
-    if(document.querySelector('.post-post_content')) {
-        mut.disconnect();
-        document.body.insertAdjacentHTML('afterbegin',`
+                if(document.querySelector('.post-post_content')) {
+                    mut.disconnect();
+                    document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .banner {
                 display: block;
@@ -106,21 +98,13 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
-        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
+                    document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
+                    document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
 
-        document.querySelector('.post-list-content').classList.remove('col-sm-8');
-        document.querySelector('.post-list-content').classList.add('col-sm-12');
-    }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    if(document.querySelector('.popular .d-flex')) {
-        mut.disconnect();
-        for (let i = 0; i < products.length; i++) {
-            console.log(products[i]);
-            document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
+                    document.querySelector('.post-list-content').classList.remove('col-sm-8');
+                    document.querySelector('.post-list-content').classList.add('col-sm-12');
+
+                    document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
             <li class="item product product-item"> 
                 <div class="product-item-info" data-container="product-grid"> 
                     <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
@@ -179,10 +163,12 @@ let mut = new MutationObserver(function (muts) {
                     </div>
                 </div> 
             </li>`);
+                    
+                }
+
+            }
         }
-    }
-});
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+        http.send(null);
+    })();
+
+}
