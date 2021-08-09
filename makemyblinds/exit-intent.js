@@ -778,7 +778,7 @@ window.onload  = function () {
         </div>
     </div>`);
 
-    Promise.all([promiseAllRequest()]).then(res => {
+    Promise.all([promiseAllRequest(request)]).then(res => {
         let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
         for (let i = 0; i < titleArr.length; i++) {
             document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
