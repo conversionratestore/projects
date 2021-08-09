@@ -58,12 +58,6 @@ let mut = new MutationObserver(function (muts) {
                 list-style-type: none;
                 padding: 0 4px;
                 width: 24%;}
-            #popular .product-item-details {
-                height: 100%;
-                display: flex;
-                flex-direction: column;}
-            #popular .product-item-name {
-                margin-bottom: auto;}
             #popular .product-item-name {
                 text-align: center; }
             #popular .product-reviews-summary {
@@ -110,6 +104,7 @@ let mut = new MutationObserver(function (muts) {
                     margin-bottom: 10px;
                     width: 49%;}
                 #popular .product-item-info {
+                    max-width: 155px;
                     margin: 0 auto;}
                 #popular .product-image-photo {
                     height: 100%;}
