@@ -105,8 +105,9 @@ let mut = new MutationObserver(function (muts) {
                 text-align: center;
                 max-width: 290px;
                 margin: 0 auto;
-                color: #000000;
-            }
+                color: #000000; }
+            #popular .product-item-name {
+                min-height: 64px;}
             @media only screen and (max-width: 880px) {
                 #popular .product-item {
                     margin-bottom: 10px;
