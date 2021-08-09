@@ -591,8 +591,10 @@ window.onload  = function () {
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
-            for (let i = 0; i < 3; i++) {
-                document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
+            for (let i = 0; i < tdSplit.length; i++) {
+                if (i < 3) {
+                    document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
+                }
             }
         }
     });
@@ -776,10 +778,10 @@ window.onload  = function () {
             let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-            <div class="category">
-                <h3 class="category-title">${titleArr[i]}</h3>
-                <div class="category-slider"></div>
-            </div>`);
+                <div class="category">
+                    <h3 class="category-title">${titleArr[i]}</h3>
+                    <div class="category-slider"></div>
+                </div>`);
             }
 
             for (let i = 0; i < 12; i++) {
