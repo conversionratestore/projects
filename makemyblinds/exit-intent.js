@@ -201,7 +201,7 @@ window.onload  = function () {
         padding: 0 5px;}
     .card a.btn {
         border: 1px solid #141729;
-        padding: 11px 17px;
+        padding: 11px;
         margin-bottom: 0;
         font-weight: 600;
         font-size: 14px;
@@ -396,6 +396,8 @@ window.onload  = function () {
         @media screen and (max-width: 360px) {
             .catalog-product-view #product-options-wrapper .scaled-custom-field label span i {
                 font-size: 17px;}
+            .catalog-product-view #product-options-wrapper .fieldset .scaled-custom-field {
+                margin-right: 14px;}
         }
             
 </style>`);
