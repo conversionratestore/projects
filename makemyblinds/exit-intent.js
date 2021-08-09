@@ -301,8 +301,10 @@ window.onload  = function () {
                 line-height: 59px;
                 letter-spacing: -0.005em;
                 padding-left: 10px;
+                opacity: 1!important;
                 color: #232849!important;}
             .main .product-options-bottom .price-wrapper span, .your-box .price-wrapper span{
+                opacity: 1!important;
                 color: #232849!important;}
             .catalog-product-view .product-details .bottom-actions .bottom-actions__row {
                 display: flex;
