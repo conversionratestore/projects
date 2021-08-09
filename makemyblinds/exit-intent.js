@@ -595,7 +595,7 @@ window.onload  = function () {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i]) {
                         console.log(tdSplit[i] + '==' + greatForId[key]["name"])
-                        document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
+                        document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]["value"]}" data-name="${greatForId[key]["name"]}">${tdSplit[i]}</a>`);
                     }
                 }
             }
