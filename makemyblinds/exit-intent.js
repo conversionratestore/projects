@@ -460,19 +460,19 @@ window.onload  = function () {
 
     function card(index,img,name,price,link) {
         let card = `
-    <div class="slide">
-         <div class="card">
-            <div class="product-great"></div>
-            <a href="${link}.html" class="card-title">
-                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                <span>${name}</span>
-            </a>
-            <div class="card_bottom">
-                <div class="card-price">£${price}</div>
-                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+        <div class="slide">
+             <div class="card">
+                <div class="product-great"></div>
+                <a href="${link}.html" class="card-title">
+                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                    <span>${name}</span>
+                </a>
+                <div class="card_bottom">
+                    <div class="card-price">£${price}</div>
+                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+                </div>
             </div>
-        </div>
-    </div>`;
+        </div>`;
         if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
@@ -587,7 +587,7 @@ window.onload  = function () {
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
-            for (let i = 0; i < tdSplit.length; i++) {
+            for (let i = 0; i < 3; i++) {
                 document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
             }
         }
