@@ -137,7 +137,7 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
+        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="https://www.zizzz.ch/de/shop.html" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
         document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
 
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
