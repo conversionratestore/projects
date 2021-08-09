@@ -590,17 +590,19 @@ window.onload  = function () {
 
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
-            let tdSplit = el.querySelector('td').innerHTML.split(', ');
-            // for (let i = 0; i < tdSplit.length; i++) {
-            for (let key in greatForId) {
-                if (greatForId[key]["name"] == tdSplit[key]) {
-                    console.log(tdSplit[key] + '==' + greatForId[key]["name"])
+            let tdSplit = el.querySelector('td').
+            innerHTML.split(', ');
+            for (let i = 0; i < tdSplit.length; i++) {
+                for (let key in greatForId) {
+                    if (greatForId[key]["name"] == tdSplit[i]) {
+                        console.log(tdSplit[key] + '==' + greatForId[key]["name"])
+                    }
                 }
             }
             for (let i = 0; i < tdSplit.length; i++) {
-                if (tdSplit[i] == greatForId[i].name) {
+                // if (tdSplit[i] == greatForId[i].name) {
                     document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
-                }
+                // }
             }
         }
     });
