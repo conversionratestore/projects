@@ -52,12 +52,17 @@ let mut = new MutationObserver(function (muts) {
                 justify-content: space-between;
                 display: flex;}
             #popular {
-                margin: 0 -15px;
-            }
-            
+                margin: 0 -15px; }
             #popular .product-item {
                 list-style-type: none;
+                padding: 0 4px;
                 width: 24%;}
+            #popular .product-item-details {
+                height: 100%;
+                display: flex;
+                flex-direction: column;}
+            #popular .product-item-name {
+                margin-bottom: auto;}
             #popular .product-item-name {
                 text-align: center; }
             #popular .product-reviews-summary {
@@ -178,8 +183,6 @@ let mut = new MutationObserver(function (muts) {
             </li>`);
         }
     }
-
-
 });
 mut.observe(document, {
     childList: true,
