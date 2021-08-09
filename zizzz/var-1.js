@@ -1,7 +1,7 @@
 let products = [
     {
         "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
-        "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
+        "title": 'Bettwäsche – Bettbezug aus Bio-Baumwolle (Perkal) – Weiß & Grau – 6 Größen bestellbar ab',
         "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
         "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
         "reviewsCount": '4',
@@ -10,7 +10,7 @@ let products = [
     },
     {
         "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
-        "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
+        "title": 'Sommerschlafsack In the Woods / 6-24 Monate (90cm)',
         "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
         "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
         "reviewsCount": '3',
@@ -19,7 +19,7 @@ let products = [
     },
     {
         "link": 'https://www.zizzz.de/shop/duck-down-pillows.html',
-        "title": 'ENTENDAUNEN KISSEN – VERSCHIEDENE GRÖSSEN AB',
+        "title": 'Entendaunen Kissen – Verschiedene Grössen ab',
         "img": 'https://www.zizzz.de/pub/media/catalog/product/d/o/down_pillow_one.jpg',
         "reviewsHref": 'https://www.zizzz.de/shop/duck-down-pillows.html#reviews',
         "reviewsCount": '7',
@@ -28,7 +28,7 @@ let products = [
     },
     {
         "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
-        "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
+        "title": 'Atmungsaktive Bio Schafwolldecken – 4 Jahreszeiten – Leicht und Luftig',
         "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
         "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
         "reviewsCount": '13',
