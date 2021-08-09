@@ -139,12 +139,10 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="https://www.zizzz.ch/de/shop.html" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
         document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
-
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
 
         for (let i = 0; i < products.length; i++) {
-            console.log(products[i]);
             document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
             <li class="item product product-item"> 
                 <div class="product-item-info" data-container="product-grid"> 
@@ -187,8 +185,7 @@ let mut = new MutationObserver(function (muts) {
                 </div> 
             </li>`);
         }
-
-
+        
         for (let i = 0; i < document.querySelectorAll('#popular .product-item-name').length; i++) {
             document.querySelectorAll('#popular .product-item-photo, #popular .product-item-name')[i].addEventListener('click',() => {
                 window.dataLayer = window.dataLayer || [];
