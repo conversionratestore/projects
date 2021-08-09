@@ -592,8 +592,8 @@ window.onload  = function () {
         if(el.querySelector('th').innerHTML === 'Great For:') {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
             // for (let i = 0; i < tdSplit.length; i++) {
-            for (let key of greatForId) {
-                console.log(tdSplit[key] + '==' + greatForId["name"])
+            for (let key in greatForId) {
+                console.log(tdSplit[index] + '==' + greatForId[key]["name"])
             }
             for (let i = 0; i < tdSplit.length; i++) {
                 if (tdSplit[i] == greatForId[i].name) {
