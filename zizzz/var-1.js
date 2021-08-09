@@ -1,60 +1,59 @@
 let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
 let products = [
-    // {
-    //     "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
-    //     "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
-    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
-    //     "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
-    //     "reviewsCount": '4',
-    //     "price": '49,00 €'
-    // },
-    // {
-    //     "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
-    //     "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
-    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
-    //     "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
-    //     "reviewsCount": '3',
-    //     "price": '65,00 €'
-    // },
-    // {
-    //     "link": '',
-    //     "title": '',
-    //     "img": '',
-    //     "reviewsHref": '',
-    //     "reviewsCount": '',
-    //     "price": ''
-    // },
-    // {
-    //     "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
-    //     "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
-    //     "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
-    //     "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
-    //     "reviewsCount": '13',
-    //     "price": '159,00 €'
-    // }
-
+    {
+        "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
+        "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
+        "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
+        "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
+        "reviewsCount": '4',
+        "price": '49,00 €'
+    },
+    {
+        "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
+        "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
+        "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
+        "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
+        "reviewsCount": '3',
+        "price": '65,00 €'
+    },
+    {
+        "link": '',
+        "title": '',
+        "img": '',
+        "reviewsHref": '',
+        "reviewsCount": '',
+        "price": ''
+    },
+    {
+        "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
+        "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
+        "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
+        "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
+        "reviewsCount": '13',
+        "price": '159,00 €'
+    }
 ];
-for (let i = 0; i < arrLink.length; i++) {
-    (function(){
-        var http = new XMLHttpRequest();
-        http.open('GET', `${arrLink[i]}`);
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                products.push({
-                    "title": doc.querySelector('.page-title .base').innerHTML,
-                    "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
-                    "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
-                    "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
-                    "price": doc.querySelector('.price').innerHTML.replace('€','')
-                })
-                localStorage.setItem('products', JSON.stringify(products));
-
-            }
-        }
-        http.send(null);
-    })();
-}
+// for (let i = 0; i < arrLink.length; i++) {
+//     (function(){
+//         var http = new XMLHttpRequest();
+//         http.open('GET', `${arrLink[i]}`);
+//         http.onreadystatechange = function () {
+//             if (this.readyState == 4 && this.status == 200) {
+//                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+//                 products.push({
+//                     "title": doc.querySelector('.page-title .base').innerHTML,
+//                     "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
+//                     "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
+//                     "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
+//                     "price": doc.querySelector('.price').innerHTML.replace('€','')
+//                 })
+//                 localStorage.setItem('products', JSON.stringify(products));
+//
+//             }
+//         }
+//         http.send(null);
+//     })();
+// }
 let mut = new MutationObserver(function (muts) {
     if(document.querySelector('.post-post_content') ) {
         mut.disconnect();
@@ -144,10 +143,10 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
-    }
-    if(localStorage.getItem('products')) {
-        mut.disconnect();
-        let products = JSON.parse(localStorage.getItem('products'));
+    // }
+    // if(localStorage.getItem('products')) {
+    //     mut.disconnect();
+        // let products = JSON.parse(localStorage.getItem('products'));
         for (let i = 0; i < products.length; i++) {
             console.log(products[i]);
             document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
@@ -192,7 +191,7 @@ let mut = new MutationObserver(function (muts) {
                                     <input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,">
                                     <input name="form_key" type="hidden" value="XANnrqqwbFfDDRLR"> 
                                     <button type="submit" data-preorder="{&quot;action&quot;:&quot;https:\/\/www.zizzz.de\/checkout\/cart\/add\/uenc\/aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9iYWJ5c2NobGFmc2Fjay9zY2hsYWZzYWNrLTExMC5odG1s\/product\/542\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;542&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2YzJodmNDOWlZV0o1YzJOb2JHRm1jMkZqYXk5elkyaHNZV1p6WVdOckxURXhNQzVvZEcxcy9wcm9kdWN0LzU0Mi8,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" title="In den Warenkorb" class="action tocart primary">
-                                        <span>in the cart</span>
+                                        <span>In den Warenkorb</span>
                                     </button>
                                     </form>
                                 </div>
