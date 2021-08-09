@@ -403,7 +403,7 @@ window.onload  = function () {
 </style>`);
     document.querySelectorAll('.box-tocart')[1].hidden = true;
 
-    document.querySelector('.hp_strip').insertAdjacentHTML('beforebegin', `
+    document.querySelector('.product-info-main').insertAdjacentHTML('afterend', `
     <div class="your-box">
         ${document.querySelector('.price-box').innerHTML}
         <button type="button" class="btn">Add to basket</button>
