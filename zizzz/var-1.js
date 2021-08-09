@@ -95,9 +95,12 @@ let mut = new MutationObserver(function (muts) {
                 display: block;
                 text-align: center; }
             #popular h3 {
-                font-weight: 700;
-                line-height: 25px;
-                padding: 21px 0 15px;
+                font-family: 'Varela Round', sans-serif;
+                font-weight: 400;
+                line-height: 29px;
+                font-size: 20px;
+                text-transform: uppercase;
+                padding: 20px 0;
                 text-align: center;
                 max-width: 290px;
                 margin: 0 auto;
@@ -134,7 +137,7 @@ let mut = new MutationObserver(function (muts) {
         </style>`);
 
         document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
-        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
+        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
 
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
