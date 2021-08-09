@@ -596,7 +596,7 @@ window.onload  = function () {
                 console.log(tdSplit[key] + '==' + greatForId["name"])
             }
             for (let i = 0; i < tdSplit.length; i++) {
-                if (tdSplit[i] == greatForId[i]) {
+                if (tdSplit[i] == greatForId[i].name) {
                     document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
                 }
             }
