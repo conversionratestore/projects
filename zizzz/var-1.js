@@ -54,6 +54,7 @@ let mut = new MutationObserver(function (muts) {
             #popular {
                 margin: 0 -15px; }
             #popular .product-item {
+                display: inherit;
                 list-style-type: none;
                 padding: 0 4px;
                 width: 24%;}
