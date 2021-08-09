@@ -132,57 +132,54 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelector('.post-list-content').classList.remove('col-sm-8');
         document.querySelector('.post-list-content').classList.add('col-sm-12');
-    // }
-    // if(localStorage.getItem('products')) {
-    //     mut.disconnect();
-        // let products = JSON.parse(localStorage.getItem('products'));
+
         for (let i = 0; i < products.length; i++) {
             console.log(products[i]);
             document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
-                    <li class="item product product-item"> 
-                        <div class="product-item-info" data-container="product-grid"> 
-                            <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
-                                <span class="product-image-container" style="width:240px;">
-                                <span class="product-image-wrapper" style="padding-bottom: 125%;">
-                                    <img class="product-image-photo" data-pagespeed-high-res-src="${products[i].img}" max-width="240" max-height="300" alt="${products[i].title}" src="${products[i].img}">
-                                </span>
-                                </span>
-                            </a> 
-                            <div class="product details product-item-details"> 
-                                <strong class="product name product-item-name">
-                                    <a class="product-item-link" href="${arrLink[i]}">${products[i].title}</a>
-                                </strong> 
-                                <div class="product-reviews-summary short"> 
-                                    <div class="rating-summary">
-                                        <span class="label"><span>Bewertung:</span></span> 
-                                        <div class="rating-result" title="100.00%">
-                                            <span style="width:100.00%"><span>100.00%</span></span>
-                                        </div>
-                                    </div>
-                                    <div class="reviews-actions">
-                                        <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
-                                            <span>Rezensionen</span>
-                                        </a>
-                                    </div>
-                                </div> 
-                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542"> 
-                                    <span class="price-container price-final_price tax weee"> 
-                                        <span class="price-label">Price</span> 
-                                        <span id="product-price-542" data-price-amount="${products[i].price}" data-price-type="finalPrice" class="price-wrapper">
-                                            <span class="price">${products[i].price}&nbsp;</span>
-                                        </span> 
-                                    </span> 
-                                </div>
-                                <div class="product-item-inner">
-                                    <div class="product actions product-item-actions">
-                                       ${products[i].actions}
-                                    </div>
+            <li class="item product product-item"> 
+                <div class="product-item-info" data-container="product-grid"> 
+                    <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
+                        <span class="product-image-container" style="width:240px;">
+                        <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                            <img class="product-image-photo" data-pagespeed-high-res-src="${products[i].img}" max-width="240" max-height="300" alt="${products[i].title}" src="${products[i].img}">
+                        </span>
+                        </span>
+                    </a> 
+                    <div class="product details product-item-details"> 
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link" href="${arrLink[i]}">${products[i].title}</a>
+                        </strong> 
+                        <div class="product-reviews-summary short"> 
+                            <div class="rating-summary">
+                                <span class="label"><span>Bewertung:</span></span> 
+                                <div class="rating-result" title="100.00%">
+                                    <span style="width:100.00%"><span>100.00%</span></span>
                                 </div>
                             </div>
+                            <div class="reviews-actions">
+                                <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
+                                    <span>Rezensionen</span>
+                                </a>
+                            </div>
                         </div> 
-                    </li>`);
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542"> 
+                            <span class="price-container price-final_price tax weee"> 
+                                <span class="price-label">Price</span> 
+                                <span id="product-price-542" data-price-amount="${products[i].price}" data-price-type="finalPrice" class="price-wrapper">
+                                    <span class="price">${products[i].price}&nbsp;</span>
+                                </span> 
+                            </span> 
+                        </div>
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions">${products[i].actions}</div>
+                        </div>
+                    </div>
+                </div> 
+            </li>`);
         }
     }
+
+
 });
 mut.observe(document, {
     childList: true,
