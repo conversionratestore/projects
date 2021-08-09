@@ -789,30 +789,30 @@ window.onload  = function () {
         }
 
         for (let i = 0; i < 12; i++) {
-            if (randomItems[0]["items"] != null && randomItems[0] != undefined) {
+            if (randomItems[0]["items"] != null && randomItems[0] != undefined && randomItems[0]["items"] != undefined) {
                 card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (betterSleepItems[0]["items"] != null && betterSleepItems[0] != undefined) {
+            if (betterSleepItems[0]["items"] != undefined && betterSleepItems[0]["items"] != null && betterSleepItems[0] != undefined) {
                 card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (thermalItems[0]["items"] != null && thermalItems[0] != undefined) {
+            if (thermalItems[0]["items"] != undefined && thermalItems[0]["items"] != null && thermalItems[0] != undefined) {
                 card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (fireRetardantItems[0]["items"] != null && fireRetardantItems[0] != undefined) {
+            if (fireRetardantItems[0]["items"] != undefined && fireRetardantItems[0]["items"] != null && fireRetardantItems[0] != undefined) {
                 card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (noDrillItems[0]["items"] != null && noDrillItems[0] != undefined) {
+            if (noDrillItems[0]["items"] != undefined && noDrillItems[0]["items"] != null && noDrillItems[0] != undefined) {
                 card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (cordlessItems[0]["items"] != null && cordlessItems[0] != undefined) {
+            if (cordlessItems[0]["items"] != undefined && cordlessItems[0]["items"] != null && cordlessItems[0] != undefined) {
                 card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-            if (privacyItems[0]["items"] != null && privacyItems[0] != undefined) {
+            if (privacyItems[0]["items"] != undefined && privacyItems[0]["items"] != null && privacyItems[0] != undefined) {
                 card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
         }
         for (let i = 0; i < 6; i++) {
-            if (perfectFit[0]["items"] != null && perfectFit[0] != undefined) {
+            if (perfectFit[0]["items"] != undefined && perfectFit[0]["items"] != null && perfectFit[0] != undefined) {
                 card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
             }
         }
