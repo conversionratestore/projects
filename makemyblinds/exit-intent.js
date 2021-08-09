@@ -594,7 +594,7 @@ window.onload  = function () {
             for (let i = 0; i < tdSplit.length; i++) {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i]) {
-                        console.log(tdSplit[key] + '==' + greatForId[key]["name"])
+                        console.log(tdSplit[i] + '==' + greatForId[key]["name"])
                     }
                 }
             }
