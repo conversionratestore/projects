@@ -602,7 +602,7 @@ window.onload  = function () {
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
-            if (!document.querySelector(".popup").classList.contains('was')) {
+            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
                 if(my_scroll() < -200){
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
