@@ -593,7 +593,7 @@ window.onload  = function () {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
             for (let i = 0; i < tdSplit.length; i++) {
                 if (i < 3) {
-                    document.querySelector('.product-great').insertAdjacentHTML('beforeend', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
+                    document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[i].value}" data-name="${greatForId[i].name}">${tdSplit[i]}</a>`);
                 }
             }
         }
