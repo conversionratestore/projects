@@ -291,9 +291,9 @@ window.onload  = function () {
                 font-weight: 500;
                 font-size: 26px;
                 line-height: 31px;
-                letter-spacing: 0.0015em; }
+                letter-spacing: 0.0015em;}
             .product-info-price {
-                width: 100%; }
+                width: 100%;}
             .main .product-options-bottom .price-wrapper, .your-box .price-wrapper{
                 font-style: normal;
                 font-weight: 500;
@@ -301,9 +301,9 @@ window.onload  = function () {
                 line-height: 59px;
                 letter-spacing: -0.005em;
                 padding-left: 10px;
-                color: #232849; }
+                color: #232849!important;}
             .main .product-options-bottom .price-wrapper span, .your-box .price-wrapper span{
-                color: #232849;}
+                color: #232849!important;}
             .catalog-product-view .product-details .bottom-actions .bottom-actions__row {
                 display: flex;
                 flex-wrap: wrap;
