@@ -62,7 +62,8 @@ let mut = new MutationObserver(function (muts) {
                 padding: 0 4px;
                 width: 24%;}
             #popular .product-item-name {
-            font-size: 12px;
+                font-size: 11px; 
+                min-height: 58px;
                 text-align: center; }
             #popular .product-reviews-summary {
                 flex-wrap: wrap;
@@ -79,19 +80,17 @@ let mut = new MutationObserver(function (muts) {
             #popular .product-item-actions {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                padding: 5px;}
-            .product-item-actions .actions-secondary {
-                padding-top: 5px; }
+                padding: 5px 11px;}
             #popular .product-item-actions .actions-primary+.actions-secondary>.action {
                 line-height: 1;
                 width: 20px;}
             #popular .product-item-actions .actions-primary+.actions-secondary>.action:before {
-            font-size: 13px;}
+                font-size: 12px;}
             #popular .product-item .tocart {
-                padding: 7px 10px;
-                font-size: 1.2rem;}
+                padding: 5px 7px;
+                font-size: 7px;}
             #popular .product-item span.price-container {
                 display: block;
                 text-align: center; }
@@ -106,8 +105,6 @@ let mut = new MutationObserver(function (muts) {
                 max-width: 290px;
                 margin: 0 auto;
                 color: #000000; }
-            #popular .product-item-name {
-                min-height: 64px;}
             @media only screen and (max-width: 880px) {
                 #popular .product-item {
                     margin-bottom: 10px;
