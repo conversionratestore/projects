@@ -593,7 +593,7 @@ window.onload  = function () {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
             // for (let i = 0; i < tdSplit.length; i++) {
             for (let key in greatForId) {
-                console.log(tdSplit[index] + '==' + greatForId[key]["name"])
+                console.log(tdSplit[key] + '==' + greatForId[key]["name"])
             }
             for (let i = 0; i < tdSplit.length; i++) {
                 if (tdSplit[i] == greatForId[i].name) {
