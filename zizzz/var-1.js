@@ -47,6 +47,9 @@ let mut = new MutationObserver(function (muts) {
                 display: block;
                 margin-top: 20px;
                 width: 100%;}
+            .banner img {
+                display: block;
+                margin: 0 auto;}
             .d-flex {
                 flex-wrap: wrap;
                 justify-content: space-between;
