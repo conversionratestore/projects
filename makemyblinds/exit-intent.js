@@ -756,6 +756,7 @@ window.onload  = function () {
                 "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
+            randomItems = [];
             console.log('randomItems', data);
             randomItems.push(data);
         }).catch(err => {
