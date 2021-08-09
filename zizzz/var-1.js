@@ -1,155 +1,56 @@
 let arrLink = ['https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html','https://www.zizzz.de/shop/kissen-40x80.html','https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html']; //'https://www.zizzz.de/sommer-schlafsack-90.html',
 let products = [
-    {
-        "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
-        "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
-        "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
-        "reviewsCount": '4',
-        "price": '49,00 €'
-    },
-    {
-        "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
-        "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
-        "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
-        "reviewsCount": '3',
-        "price": '65,00 €'
-    },
-    {
-        "link": '',
-        "title": '',
-        "img": '',
-        "reviewsHref": '',
-        "reviewsCount": '',
-        "price": ''
-    },
-    {
-        "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
-        "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
-        "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
-        "reviewsCount": '13',
-        "price": '159,00 €'
-    }
+//     {
+//         "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
+//         "title": 'BETTWÄSCHE – BETTBEZUG AUS BIO-BAUMWOLLE (PERKAL) – WEISS & GRAU – 6 GRÖSSEN BESTELLBAR AB',
+//         "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
+//         "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
+//         "reviewsCount": '4',
+//         "price": '49,00 €'
+//     },
+//     {
+//         "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
+//         "title": 'SOMMERSCHLAFSACK IN THE WOODS / 6-24 MONATE (90CM)',
+//         "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
+//         "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
+//         "reviewsCount": '3',
+//         "price": '65,00 €'
+//     },
+//     {
+//         "link": '',
+//         "title": '',
+//         "img": '',
+//         "reviewsHref": '',
+//         "reviewsCount": '',
+//         "price": ''
+//     },
+//     {
+//         "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
+//         "title": 'ATMUNGSAKTIVE BIO SCHAFWOLLDECKEN – 4 JAHRESZEITEN – LEICHT UND LUFTIG',
+//         "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
+//         "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
+//         "reviewsCount": '13',
+//         "price": '159,00 €'
+//     }
 ];
-// for (let i = 0; i < arrLink.length; i++) {
-//     (function(){
-//         var http = new XMLHttpRequest();
-//         http.open('GET', `${arrLink[i]}`);
-//         http.onreadystatechange = function () {
-//             if (this.readyState == 4 && this.status == 200) {
-//                 var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-//                 products.push({
-//                     "title": doc.querySelector('.page-title .base').innerHTML,
-//                     "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
-//                     "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
-//                     "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
-//                     "price": doc.querySelector('.price').innerHTML.replace('€','')
-//                 })
-//                 localStorage.setItem('products', JSON.stringify(products));
-//
-//             }
-//         }
-//         http.send(null);
-//     })();
-// }
-let mut = new MutationObserver(function (muts) {
-    if(document.querySelector('.post-post_content') ) {
-        mut.disconnect();
-
-        document.body.insertAdjacentHTML('afterbegin',`
-        <style>
-            .banner {
-                display: block;
-                margin-top: 20px;
-                width: 100%;}
-            .d-flex {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                display: flex;}
-            #popular .product-item {
-                list-style-type: none;
-                width: 24%;}
-            #popular .product-item-name {
-                text-align: center; }
-            #popular .product-reviews-summary {
-                display: flex;
-                justify-content: center; }
-            #popular .rating-summary .rating-result {
-                width: auto;}
-            #popular .rating-summary .rating-result>span:before, #popular .rating-summary .rating-result:before {
-                font-size: 10px; }
-            #popular .product-item .product-reviews-summary .reviews-actions {
-                display: flex;
-                align-items: center;
-                margin-top: 0;}
-            #popular .product-item-actions {
-                display: flex;;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px;}
-            #popular .product-item-actions .actions-primary+.actions-secondary>.action {
-                line-height: 1;
-                width: 20px;}
-            #popular .product-item-actions .actions-primary+.actions-secondary>.action:before {
-            font-size: 13px;}
-            #popular .product-item .tocart {
-                padding: 7px 10px;
-                font-size: 1.2rem;}
-            #popular .product-item span.price-container {
-                display: block;
-                text-align: center; }
-            #popular h3 {
-                font-weight: 700;
-                line-height: 25px;
-                padding: 21px 0 15px;
-                text-align: center;
-                max-width: 290px;
-                margin: 0 auto;
-                color: #000000;
-            }
-            @media only screen and (max-width: 880px) {
-                #popular .product-item {
-                    margin-bottom: 10px;
-                    width: 49%;}
-                #popular .product-item-info {
-                    margin: 0 auto;}
-                #popular .product-image-photo {
-                    height: 100%;}
-                #popular .product-image-wrapper {
-                    padding-bottom: 70%!important; }
-                #popular .product-item .price-box {
-                    margin: 10px 0;}
-            }
-            @media only screen and (max-width: 767px) {
-                #popular .product-item {
-                    margin-bottom: 10px;
-                    width: 24%;}
-            
-            }
-            @media only screen and (max-width: 660px) {
-                #popular .product-item {
-                    width: 49%; }
-            }
-            @media only screen and (max-width: 375px) {
-                .d-flex {
-                    margin: 0 -25px;}
-            }
-        </style>`);
-
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
-        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
-
-        document.querySelector('.post-list-content').classList.remove('col-sm-8');
-        document.querySelector('.post-list-content').classList.add('col-sm-12');
-    // }
-    // if(localStorage.getItem('products')) {
-    //     mut.disconnect();
-        // let products = JSON.parse(localStorage.getItem('products'));
-        for (let i = 0; i < products.length; i++) {
-            console.log(products[i]);
-            document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
+for (let i = 0; i < arrLink.length; i++) {
+    (function(){
+        var http = new XMLHttpRequest();
+        http.open('GET', `${arrLink[i]}`);
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                products.push({
+                    "title": doc.querySelector('.page-title .base').innerHTML,
+                    "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
+                    "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
+                    "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
+                    "price": doc.querySelector('.price').innerHTML
+                })
+                localStorage.setItem('products', JSON.stringify(products));
+                for (let i = 0; i < products.length; i++) {
+                    console.log(products[i]);
+                    document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
                     <li class="item product product-item"> 
                         <div class="product-item-info" data-container="product-grid"> 
                             <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
@@ -209,7 +110,108 @@ let mut = new MutationObserver(function (muts) {
                         </div> 
                     </li>`);
 
+                }
+            }
         }
+        http.send(null);
+    })();
+}
+let mut = new MutationObserver(function (muts) {
+    if(document.querySelector('.post-post_content') ) {
+        mut.disconnect();
+
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+            .banner {
+                display: block;
+                margin-top: 20px;
+                width: 100%;}
+            .d-flex {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                display: flex;}
+            #popular {
+                margin: 0 -15px;
+            }
+            #popular .product-item {
+                list-style-type: none;
+                width: 24%;}
+            #popular .product-item-name {
+                text-align: center; }
+            #popular .product-reviews-summary {
+                display: flex;
+                justify-content: center; }
+            #popular .rating-summary .rating-result {
+                width: auto;}
+            #popular .rating-summary .rating-result>span:before, #popular .rating-summary .rating-result:before {
+                font-size: 10px; }
+            #popular .product-item .product-reviews-summary .reviews-actions {
+                display: flex;
+                align-items: center;
+                margin-top: 0;}
+            #popular .product-item-actions {
+                display: flex;;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px;}
+            #popular .product-item-actions .actions-primary+.actions-secondary>.action {
+                line-height: 1;
+                width: 20px;}
+            #popular .product-item-actions .actions-primary+.actions-secondary>.action:before {
+            font-size: 13px;}
+            #popular .product-item .tocart {
+                padding: 7px 10px;
+                font-size: 1.2rem;}
+            #popular .product-item span.price-container {
+                display: block;
+                text-align: center; }
+            #popular h3 {
+                font-weight: 700;
+                line-height: 25px;
+                padding: 21px 0 15px;
+                text-align: center;
+                max-width: 290px;
+                margin: 0 auto;
+                color: #000000;
+            }
+            @media only screen and (max-width: 880px) {
+                #popular .product-item {
+                    margin-bottom: 10px;
+                    width: 49%;}
+                #popular .product-item-info {
+                    margin: 0 auto;}
+                #popular .product-image-photo {
+                    height: 100%;}
+                #popular .product-image-wrapper {
+                    padding-bottom: 70%!important; }
+                #popular .product-item .price-box {
+                    margin: 10px 0;}
+            }
+            @media only screen and (max-width: 767px) {
+                #popular .product-item {
+                    margin-bottom: 10px;
+                    width: 24%;}
+            }
+            @media only screen and (max-width: 660px) {
+                #popular .product-item {
+                    width: 49%; }
+            }
+            @media only screen and (max-width: 375px) {
+                .d-flex {
+                    margin: 0 -25px;}
+            }
+        </style>`);
+
+        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="#" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
+        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Most purchased products for the best baby sleep</h3><div class="d-flex"></div></div>`);
+
+        document.querySelector('.post-list-content').classList.remove('col-sm-8');
+        document.querySelector('.post-list-content').classList.add('col-sm-12');
+    // }
+    // if(localStorage.getItem('products')) {
+    //     mut.disconnect();
+        // let products = JSON.parse(localStorage.getItem('products'));
+
     }
 
 
