@@ -592,6 +592,9 @@ window.onload  = function () {
             }
         }
     });
+    if (document.querySelector('.badge-fast-track')) {
+        document.querySelector('.product-great').style.padding = `0 60px 0 5px`;
+    }
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
