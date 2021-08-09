@@ -593,9 +593,9 @@ window.onload  = function () {
             let tdSplit = el.querySelector('td').innerHTML.split(', ');
             for (let i = 0; i < tdSplit.length; i++) {
                 for (let key in greatForId) {
-                    if (greatForId[key]["name"] == tdSplit[i]) {
+                    if (greatForId[key]["name"] == tdSplit[i] && i < 3) {
                         console.log(tdSplit[i] + '==' + greatForId[key]["name"])
-                        document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]["value"]}" data-name="${greatForId[key]["name"]}">${tdSplit[i]}</a>`);
+                        document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]['value']}" data-name="${greatForId[key]['name']}">${tdSplit[i]}</a>`);
                     }
                 }
             }
