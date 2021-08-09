@@ -590,8 +590,7 @@ window.onload  = function () {
 
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
-            let tdSplit = el.querySelector('td').
-            innerHTML.split(', ');
+            let tdSplit = el.querySelector('td').innerHTML.split(', ');
             for (let i = 0; i < tdSplit.length; i++) {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i]) {
