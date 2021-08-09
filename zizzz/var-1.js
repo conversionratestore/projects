@@ -187,9 +187,67 @@ let mut = new MutationObserver(function (muts) {
                 </div> 
             </li>`);
         }
+
+
+        for (let i = 0; i < document.querySelectorAll('#popular .product-item-name').length; i++) {
+            document.querySelectorAll('#popular .product-item-photo, #popular .product-item-name')[i].addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PL advertising mobile',
+                    'eventAction': 'Click on product',
+                    'eventLabel': 'Section popular products'
+                });
+            });
+            document.querySelectorAll('.reviews-actions')[i].addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PL advertising mobile',
+                    'eventAction': 'Click on review button',
+                    'eventLabel': 'Section popular products'
+                });
+            });
+            document.querySelectorAll('.towishlist')[i].addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PL advertising mobile',
+                    'eventAction': 'Click Add to favorites button',
+                    'eventLabel': 'Section popular products'
+                });
+            });
+            document.querySelectorAll('.tocompare')[i].addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PL advertising mobile',
+                    'eventAction': 'Click on Compare button',
+                    'eventLabel': 'Section popular products'
+                });
+            });
+        }
     }
 });
 mut.observe(document, {
     childList: true,
     subtree: true
 });
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — PL advertising mobile',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1652922,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'pl_advertising_mobile');
