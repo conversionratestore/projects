@@ -45,7 +45,7 @@ for (let i = 0; i < arrLink.length; i++) {
                     "img": doc.querySelectorAll('.product img')[0].getAttribute('src'),
                     "reviewsHref": doc.querySelector('.reviews-actions .view').getAttribute('href'),
                     "reviewsCount": doc.querySelector('.reviews-actions .view span').innerHTML,
-                    "price": doc.querySelector('.price').innerHTML
+                    "price": doc.querySelector('.price').innerHTML,
                 })
                 localStorage.setItem('products', JSON.stringify(products));
                 for (let i = 0; i < products.length; i++) {
@@ -56,13 +56,13 @@ for (let i = 0; i < arrLink.length; i++) {
                             <a href="${arrLink[i]}" class="product photo product-item-photo" tabindex="-1"> 
                                 <span class="product-image-container" style="width:240px;">
                                 <span class="product-image-wrapper" style="padding-bottom: 125%;">
-                                    <img class="product-image-photo" data-pagespeed-high-res-src="${products[i].img}" max-width="240" max-height="300" alt="${products[i].title}" data-pagespeed-url-hash="339194918" src="${products[i].img}">
+                                    <img class="product-image-photo" data-pagespeed-high-res-src="${doc.querySelectorAll('.product img')[0].getAttribute('src')}" max-width="240" max-height="300" alt="${doc.querySelector('.page-title .base').innerHTML}" data-pagespeed-url-hash="339194918" src="${doc.querySelectorAll('.product img')[0].getAttribute('src')}">
                                 </span>
                                 </span>
                             </a> 
                             <div class="product details product-item-details"> 
                                 <strong class="product name product-item-name">
-                                    <a class="product-item-link" href="${arrLink[i]}">${products[i].title}</a>
+                                    <a class="product-item-link" href="${arrLink[i]}">${doc.querySelector('.page-title .base').innerHTML}</a>
                                 </strong> 
                                 <div class="product-reviews-summary short"> 
                                 <div class="rating-summary">
@@ -72,7 +72,7 @@ for (let i = 0; i < arrLink.length; i++) {
                                     </div>
                                 </div>
                                 <div class="reviews-actions">
-                                    <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
+                                    <a class="action view" href="${doc.querySelector('.reviews-actions .view').getAttribute('href')}">${doc.querySelector('.reviews-actions .view span').innerHTML}&nbsp;
                                     <span>Review</span>
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@ for (let i = 0; i < arrLink.length; i++) {
                                 <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542"> 
                                 <span class="price-container price-final_price tax weee"> <span class="price-label">Price</span> 
                                 <span id="product-price-542" data-price-amount="${products[i].price}" data-price-type="finalPrice" class="price-wrapper ">
-                                    <span class="price">${products[i].price}&nbsp;€</span>
+                                    <span class="price">${doc.querySelector('.price').innerHTML}&nbsp;</span>
                                 </span> 
                                 </span> 
                             </div>
