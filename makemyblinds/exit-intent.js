@@ -397,7 +397,7 @@ window.onload  = function () {
             .catalog-product-view #product-options-wrapper .scaled-custom-field label span i {
                 font-size: 17px;}
             .catalog-product-view #product-options-wrapper .fieldset .scaled-custom-field {
-                margin-right: 14px;}
+                margin-right: 12px;}
         }
             
 </style>`);
