@@ -765,7 +765,7 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=6& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes]`, {
+        let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=8& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes]`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -778,7 +778,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        Promise.all([request1,request2,request3,request4,request5,request6,request7, request8]).then(res => {
+        // Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
             let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
@@ -857,7 +857,7 @@ window.onload  = function () {
             //         }
             //     }
             // });
-        });
+        // });
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
