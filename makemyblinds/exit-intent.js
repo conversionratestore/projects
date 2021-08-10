@@ -643,8 +643,6 @@ window.onload  = function () {
         };
     })();
 
-    window.addEventListener('scroll', myScrollSpeedFunction);
-
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
 
     document.body.insertAdjacentHTML('beforeend', `
@@ -878,6 +876,8 @@ window.onload  = function () {
 
             tnsInitialization('category-slider',2,3,4);
             tnsInitialization('slider',1,2,2);
+
+            window.addEventListener('scroll', myScrollSpeedFunction);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
             document.querySelectorAll('.category-slider').forEach((el) => {
                 if(el.querySelectorAll('.slide').length == 0) {
