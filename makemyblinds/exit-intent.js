@@ -466,7 +466,7 @@ window.onload  = function () {
         let card = `
         <div class="slide">
              <div class="card">
-                <div class="product-great"></div>
+               
                 <a href="${link}.html" class="card-title">
                     <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
                     <span>${name}</span>
@@ -481,8 +481,8 @@ window.onload  = function () {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            document.querySelectorAll('.popup .product-great').forEach((el) => {
-                el.innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
+            document.querySelectorAll('.popup .card').forEach((el) => {
+                el.insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a></div>`);
             });
         }
         document.querySelectorAll('.category .card-price').forEach((el) => {
