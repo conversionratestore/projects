@@ -477,12 +477,12 @@ window.onload  = function () {
                 </div>
             </div>
         </div>`;
-        if (index != 'popup') {
+        // if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        } else {
-            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
-        }
+        // } else {
+        //     document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        //     document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
+        // }
     }
 
     function eventsCategories(elem,eventAction) {
@@ -844,8 +844,8 @@ window.onload  = function () {
             //     }
             // }
 
-            
-            tnsInitialization('slider',1,2,2);
+
+            // tnsInitialization('slider',1,2,2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
             document.querySelector('.view-more').addEventListener('click', (e) => {
