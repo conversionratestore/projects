@@ -758,7 +758,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Thermal', data);
             thermalItems.push(data);
-            localStorage.setItem('thermalItems', JSON.stringify(thermalItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -772,7 +771,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Privacy', data);
             privacyItems.push(data);
-            localStorage.setItem('privacyItems', JSON.stringify(privacyItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -786,7 +784,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Cordless', data);
             cordlessItems.push(data);
-            localStorage.setItem('cordlessItems', JSON.stringify(cordlessItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -799,7 +796,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Better sleep', data);
             betterSleepItems.push(data);
-            localStorage.setItem('betterSleepItems', JSON.stringify(betterSleepItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -813,7 +809,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('No Drill', data);
             noDrillItems.push(data);
-            localStorage.setItem('noDrillItems', JSON.stringify(noDrillItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -827,7 +822,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Fire Retardant', data);
             fireRetardantItems.push(data);
-            localStorage.setItem('fireRetardantItems', JSON.stringify(fireRetardantItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -840,12 +834,13 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('randomItems', data);
             randomItems.push(data);
-            localStorage.setItem('randomItems', JSON.stringify(randomItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
 
         Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
+            let items = [...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
+            localStorage.setItem('randomItems', JSON.stringify(items));
             let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
