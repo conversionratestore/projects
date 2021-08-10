@@ -488,11 +488,6 @@ window.onload  = function () {
                 el.closest('.slide').remove();
             }
         })
-        // document.querySelectorAll('.category-slider').forEach((el) => {
-        //     if(el.querySelectorAll('.slide').length == 0) {
-        //         el.closest('.category').remove();
-        //     }
-        // });
     }
 
     function eventsCategories(elem,eventAction) {
@@ -882,7 +877,11 @@ window.onload  = function () {
             tnsInitialization('category-slider',2,3,4);
             tnsInitialization('slider',1,2,2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-
+            document.querySelectorAll('.category-slider').forEach((el) => {
+                if(el.querySelectorAll('.slide').length == 0) {
+                    el.closest('.category').remove();
+                }
+            });
             document.querySelector('.view-more').addEventListener('click', (e) => {
                 e.target.hidden = true;
                 document.querySelector('.categories').classList.add('show');
