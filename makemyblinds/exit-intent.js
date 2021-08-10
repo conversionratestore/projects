@@ -731,7 +731,7 @@ window.onload  = function () {
         ];
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link);
-        document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
+        document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
 
 
