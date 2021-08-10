@@ -668,7 +668,7 @@ window.onload  = function () {
         perfectFit = [
             {
                 link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/cache/945c9b46c160116643b651ba87fbb352/s/h/shot_1_57.jpg',
+                img: '/s/h/shot_1_57.jpg',
                 title: 'Simply Brilliant White with Jasmine White Tape',
                 price: '9.99',
                 greatFor: 'Bathroom',
@@ -677,7 +677,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg',
+                img: '/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg',
                 title: 'Editions Brilliant White with Lilly Tapes',
                 price: '£11.99',
                 greatFor: 'Bedroom',
@@ -685,7 +685,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/i/s/iso_full.jpg',
+                img: '/i/s/iso_full.jpg',
                 title: 'Matt Soft White Perfect Fit',
                 price: '19.99',
                 greatFor: 'Conservatories',
@@ -693,7 +693,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/7/_/7_cam_kitchen_mid_angle_door_tr1679_11092019_1.jpg',
+                img: '/7/_/7_cam_kitchen_mid_angle_door_tr1679_11092019_1.jpg',
                 title: 'Anthracite Grey Perfect Fit',
                 price: '29.99',
                 greatFor: 'Conservatories',
@@ -701,7 +701,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/n/angl_dsfdfsded_d_sdsdsdoor.jpg',
+                img: '/a/n/angl_dsfdfsded_d_sdsdsdoor.jpg',
                 title: 'Gloss Pure White Perfect Fit',
                 price: '19.99',
                 greatFor: 'Conservatories',
@@ -709,7 +709,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_glacier_shadow_tape_08202019.jpg',
+                img: '/9/_/9_bathroom_scene_detail03_glacier_shadow_tape_08202019.jpg',
                 title: 'Real Wood Bliss White with Charcoal Tape',
                 price: '12.99',
                 greatFor: 'Bedroom',
@@ -717,7 +717,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_shark_grey_fixed.jpg',
+                img: '/a/m/amor_shark_grey_fixed.jpg',
                 title: 'Amor Shark Grey Roller Blind',
                 price: '9.95',
                 greatFor: 'Bathroom',
@@ -725,7 +725,7 @@ window.onload  = function () {
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_white_lotus_fixed.jpg',
+                img: '/a/m/amor_white_lotus_fixed.jpg',
                 title: 'Amor White Lotus Roller Blind',
                 price: '9.99',
                 greatFor: 'Kitchen',
@@ -735,6 +735,7 @@ window.onload  = function () {
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].greatFor,perfectFit[i].idGreatFor);
     }
+    tnsInitialization('slider',1,2,2);
 
     fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         headers: {
@@ -875,7 +876,7 @@ window.onload  = function () {
             }
 
             tnsInitialization('category-slider',2,3,4);
-            tnsInitialization('slider',1,2,2);
+            
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
             document.querySelectorAll('.category-slider').forEach((el) => {
                 if(el.querySelectorAll('.slide').length == 0) {
