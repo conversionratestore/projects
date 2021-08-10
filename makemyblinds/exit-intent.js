@@ -962,10 +962,13 @@ window.onload  = function () {
         console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     })
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
+    }
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
-    document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
+    
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
