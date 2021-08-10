@@ -477,11 +477,14 @@ window.onload  = function () {
                 </div>
             </div>
         </div>`;
-        if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        } else {
+       //  if (index != 'popup') {
+       // } else {
+       //  }
+        if (greatFor && idGreatFor) {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
+            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
+        } else {
+            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         }
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
