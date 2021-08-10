@@ -482,7 +482,7 @@ window.onload  = function () {
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
             document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
-         
+
         }
         document.querySelectorAll('.card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
@@ -673,7 +673,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/s/h/shot_1_57.jpg',
                 title: 'Simply Brilliant White with Jasmine White Tape',
-                price: '£9.99',
+                price: '9.99',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
 
@@ -690,7 +690,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/i/s/iso_full.jpg',
                 title: 'Matt Soft White Perfect Fit',
-                price: '£19.99',
+                price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
             },
@@ -698,7 +698,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/7/_/7_cam_kitchen_mid_angle_door_tr1679_11092019_1.jpg',
                 title: 'Anthracite Grey Perfect Fit',
-                price: '£29.99',
+                price: '29.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
             },
@@ -706,7 +706,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/n/angl_dsfdfsded_d_sdsdsdoor.jpg',
                 title: 'Gloss Pure White Perfect Fit',
-                price: '£19.99',
+                price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
             },
@@ -714,7 +714,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_glacier_shadow_tape_08202019.jpg',
                 title: 'Real Wood Bliss White with Charcoal Tape',
-                price: '£12.99',
+                price: '12.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
             },
@@ -722,7 +722,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_shark_grey_fixed.jpg',
                 title: 'Amor Shark Grey Roller Blind',
-                price: '£9.95',
+                price: '9.95',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
             },
@@ -730,7 +730,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind.html',
                 img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_white_lotus_fixed.jpg',
                 title: 'Amor White Lotus Roller Blind',
-                price: '£9.99',
+                price: '9.99',
                 greatFor: 'Kitchen',
                 idGreatFor: '8',
             }
