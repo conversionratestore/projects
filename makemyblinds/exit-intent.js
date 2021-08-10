@@ -676,7 +676,7 @@ window.onload  = function () {
                 link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes',
                 img: '/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg',
                 title: 'Editions Brilliant White with Lilly Tapes',
-                price: '£11.99',
+                price: '11.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
             },
