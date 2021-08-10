@@ -488,11 +488,11 @@ window.onload  = function () {
                 el.closest('.slide').remove();
             }
         })
-        document.querySelectorAll('.category-slider').forEach((el) => {
-            if(el.querySelectorAll('.slide').length == 0) {
-                el.closest('.category').remove();
-            }
-        });
+        // document.querySelectorAll('.category-slider').forEach((el) => {
+        //     if(el.querySelectorAll('.slide').length == 0) {
+        //         el.closest('.category').remove();
+        //     }
+        // });
     }
 
     function eventsCategories(elem,eventAction) {
