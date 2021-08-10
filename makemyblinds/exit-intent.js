@@ -442,7 +442,13 @@ window.onload  = function () {
         'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
-
+    function addEvent(obj, evt, fn) {
+        if (obj.addEventListener) {
+            obj.addEventListener(evt, fn, false);
+        } else if (obj.attachEvent) {
+            obj.attachEvent("on" + evt, fn);
+        }
+    }
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
@@ -926,6 +932,15 @@ window.onload  = function () {
             //         }
             //     }
             // });
+
+            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
+                addEvent(document, 'mouseout', function(evt) {
+                    if (evt.toElement == null && evt.relatedTarget == null) {
+                        document.querySelector(".popup").classList.add('active');
+                        document.querySelector(".popup").classList.add('was');
+                    }
+                });
+            }
         });
     }).catch(err => {
         console.log('Failed fetch ', err);
