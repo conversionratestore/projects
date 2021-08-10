@@ -252,6 +252,16 @@ window.onload  = function () {
         background: #191919;}
     .your-box {
         display: none;}
+        @media screen and (min-width: 769px) {
+            .popup .tns-controls {
+                width: 100%;
+                padding: 0 5px;
+                width: 100%;
+                justify-content: space-between;
+                max-width: 536px;
+                transform: translateX(50%);
+                right: 50%;}
+        }
         @media screen and (max-width: 768px) {
             .page-title-wrapper {
                 display: none;}
