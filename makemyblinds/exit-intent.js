@@ -778,7 +778,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        // Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
+        Promise.resolve([request1,request2,request3,request4,request5,request6,request7]).then(res => {
             let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
@@ -857,7 +857,7 @@ window.onload  = function () {
             //         }
             //     }
             // });
-        // });
+        });
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
