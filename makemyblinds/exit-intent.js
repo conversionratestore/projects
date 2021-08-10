@@ -460,11 +460,6 @@ window.onload  = function () {
                 }
             });
         });
-        document.querySelectorAll('.category-slider').forEach((el) => {
-            if(!el.querySelector('.slide')) {
-                el.closest('.category').remove();
-            }
-        });
     }
 
     function card(index,img,name,price,link,greatFor,idGreatFor) {
@@ -493,6 +488,11 @@ window.onload  = function () {
                 el.closest('.slide').remove();
             }
         })
+        document.querySelectorAll('.category-slider').forEach((el) => {
+            if(!el.querySelectorAll('.slide')) {
+                el.closest('.category').remove();
+            }
+        });
     }
 
     function eventsCategories(elem,eventAction) {
