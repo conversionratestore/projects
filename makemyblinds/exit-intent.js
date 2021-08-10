@@ -253,10 +253,11 @@ window.onload  = function () {
     .your-box {
         display: none;}
         @media screen and (min-width: 769px) {
+            .popup .slide {
+                padding: 0 20px; }
             .popup .tns-controls {
                 width: 100%;
-                padding: 0 5px;
-                width: 100%;
+                padding: 0 20px;
                 justify-content: space-between;
                 max-width: 536px;
                 transform: translateX(50%);
