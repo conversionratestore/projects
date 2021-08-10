@@ -681,7 +681,7 @@ window.onload  = function () {
                 idGreatFor: '9',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html',
+                link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit',
                 img: '/i/s/iso_full.jpg',
                 title: 'Matt Soft White Perfect Fit',
                 price: '19.99',
@@ -697,7 +697,7 @@ window.onload  = function () {
                 idGreatFor: '68',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit.html',
+                link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit',
                 img: '/a/n/angl_dsfdfsded_d_sdsdsdoor.jpg',
                 title: 'Gloss Pure White Perfect Fit',
                 price: '19.99',
