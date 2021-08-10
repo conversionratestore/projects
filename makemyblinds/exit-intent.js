@@ -600,14 +600,14 @@ window.onload  = function () {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i] && i < 3) {
                         console.log(tdSplit[i] + '==' + greatForId[key]["name"])
-                        document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]['value']}" data-name="${greatForId[key]['name']}">${tdSplit[i]}</a>`);
+                        document.querySelector('.product .product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]['value']}" data-name="${greatForId[key]['name']}">${tdSplit[i]}</a>`);
                     }
                 }
             }
         }
     });
     if (document.querySelector('.badge-fast-track')) {
-        document.querySelector('.product-great').style.padding = `0 60px 0 5px`;
+        document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
 
     function myScrollSpeedFunction(){
