@@ -482,6 +482,7 @@ window.onload  = function () {
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
             document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
+            tnsInitialization('slider',1,2,2);
         }
         document.querySelectorAll('.card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
@@ -736,7 +737,7 @@ window.onload  = function () {
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].greatFor,perfectFit[i].idGreatFor);
     }
-    tnsInitialization('slider',1,2,2);
+
     fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         headers: {
             "Content-Type": "application/json",
