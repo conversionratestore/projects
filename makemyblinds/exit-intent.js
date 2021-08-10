@@ -650,7 +650,7 @@ window.onload  = function () {
         </div>
     </div>`);
     let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
-    for (let i = 0; i < titleArr.length; i++) {           
+    for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
         <div class="category">
             <h3 class="category-title">${titleArr[i]}</h3>
@@ -771,7 +771,8 @@ window.onload  = function () {
             for (let i = 0; i < 12; i++) {
                 card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
             }
-       
+            tnsInitialization('category-slider',2,3,4);
+
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
