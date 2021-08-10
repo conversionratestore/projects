@@ -464,7 +464,7 @@ window.onload  = function () {
     function card(index,img,name,price,link,status) {
         let card = `
         <div class="slide">
-             <div class="card" hidden="${status=='2'?'true':'false'}">
+             <div class="card" ${status=='2'?'hidden':''}>
                 <a href="${link}.html" class="card-title">
                     <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
                     <span>${name}</span>
