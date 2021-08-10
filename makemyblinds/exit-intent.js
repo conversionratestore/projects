@@ -664,7 +664,7 @@ window.onload  = function () {
         randomItems = [],
         perfectFit = [
             {
-                link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html',
+                link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape',
                 img: '/s/h/shot_1_57.jpg',
                 title: 'Simply Brilliant White with Jasmine White Tape',
                 price: '9.99',
@@ -673,7 +673,7 @@ window.onload  = function () {
 
             },
             {
-                link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html',
+                link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes',
                 img: '/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg',
                 title: 'Editions Brilliant White with Lilly Tapes',
                 price: '£11.99',
@@ -689,7 +689,7 @@ window.onload  = function () {
                 idGreatFor: '68',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html',
+                link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit',
                 img: '/7/_/7_cam_kitchen_mid_angle_door_tr1679_11092019_1.jpg',
                 title: 'Anthracite Grey Perfect Fit',
                 price: '29.99',
@@ -705,7 +705,7 @@ window.onload  = function () {
                 idGreatFor: '68',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape.html',
+                link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape',
                 img: '/9/_/9_bathroom_scene_detail03_glacier_shadow_tape_08202019.jpg',
                 title: 'Real Wood Bliss White with Charcoal Tape',
                 price: '12.99',
@@ -713,7 +713,7 @@ window.onload  = function () {
                 idGreatFor: '9',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind.html',
+                link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind',
                 img: '/a/m/amor_shark_grey_fixed.jpg',
                 title: 'Amor Shark Grey Roller Blind',
                 price: '9.95',
@@ -721,7 +721,7 @@ window.onload  = function () {
                 idGreatFor: '6',
             },
             {
-                link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind.html',
+                link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind',
                 img: '/a/m/amor_white_lotus_fixed.jpg',
                 title: 'Amor White Lotus Roller Blind',
                 price: '9.99',
