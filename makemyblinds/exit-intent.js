@@ -825,7 +825,7 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]`, {
+        let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value]]`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -841,7 +841,7 @@ window.onload  = function () {
         Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
             let items = [...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
             localStorage.setItem('randomItems', JSON.stringify(items));
-            let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
+            let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
                 <div class="category">
