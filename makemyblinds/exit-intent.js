@@ -489,7 +489,7 @@ window.onload  = function () {
             }
         })
         document.querySelectorAll('.category-slider').forEach((el) => {
-            if(!el.querySelectorAll('.slide')) {
+            if(el.querySelectorAll('.slide').length == 0) {
                 el.closest('.category').remove();
             }
         });
