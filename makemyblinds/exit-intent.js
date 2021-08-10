@@ -462,7 +462,7 @@ window.onload  = function () {
         });
     }
 
-    function card(index,img,name,price,link) {
+    function card(index,img,name,price,link,greatFor,idGreatFor) {
         let card = `
         <div class="slide">
              <div class="card">
@@ -481,7 +481,7 @@ window.onload  = function () {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
+            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a>`;
         }
     }
 
@@ -660,8 +660,77 @@ window.onload  = function () {
         betterSleepItems = [],
         fireRetardantItems = [],
         randomItems = [],
-        perfectFit = [];
+        perfectFit = [
+            {
+                link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/s/h/shot_1_57.jpg',
+                title: 'Simply Brilliant White with Jasmine White Tape',
+                price: '£9.99',
+                greatFor: 'Bathroom',
+                idGreatFor: '6',
 
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg',
+                title: 'Editions Brilliant White with Lilly Tapes',
+                price: '£11.99',
+                greatFor: 'Bedroom',
+                idGreatFor: '9',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/i/s/iso_full.jpg',
+                title: 'Matt Soft White Perfect Fit',
+                price: '£19.99',
+                greatFor: 'Conservatories',
+                idGreatFor: '68',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/7/_/7_cam_kitchen_mid_angle_door_tr1679_11092019_1.jpg',
+                title: 'Anthracite Grey Perfect Fit',
+                price: '£29.99',
+                greatFor: 'Conservatories',
+                idGreatFor: '68',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/n/angl_dsfdfsded_d_sdsdsdoor.jpg',
+                title: 'Gloss Pure White Perfect Fit',
+                price: '£19.99',
+                greatFor: 'Conservatories',
+                idGreatFor: '68',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_glacier_shadow_tape_08202019.jpg',
+                title: 'Real Wood Bliss White with Charcoal Tape',
+                price: '£12.99',
+                greatFor: 'Bedroom',
+                idGreatFor: '9',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_shark_grey_fixed.jpg',
+                title: 'Amor Shark Grey Roller Blind',
+                price: '£9.95',
+                greatFor: 'Bathroom',
+                idGreatFor: '6',
+            },
+            {
+                link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind.html',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/a/m/amor_white_lotus_fixed.jpg',
+                title: 'Amor White Lotus Roller Blind',
+                price: '£9.99',
+                greatFor: 'Kitchen',
+                idGreatFor: '8',
+            }
+        ];
+    for (let i = 0; i < 8; i++) {
+        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].greatFor,perfectFit[i].idGreatFor);
+    }
+    tnsInitialization('slider',1,2,2);
     fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         headers: {
             "Content-Type": "application/json",
@@ -765,20 +834,8 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=6& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes]`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${datatoken}`
-            }
-        }).then(res => res.json()).then(data => {
-            console.log('Perfect Fit', data);
-            perfectFit.push(data);
-        }).catch(err => {
-            console.log('Failed fetch ', err);
-        });
 
-        Promise.all([request1,request2,request3,request4,request5,request6,request7, request8]).then(res => {
+        Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
             let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
             for (let i = 0; i < titleArr.length; i++) {
                 document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
@@ -811,14 +868,9 @@ window.onload  = function () {
                     card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
                 }
             }
-            for (let i = 0; i < 6; i++) {
-                if (perfectFit[0]["items"] != null) {
-                    card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
-                }
-            }
 
             tnsInitialization('category-slider',2,3,4);
-            tnsInitialization('slider',1,2,2);
+
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
             document.querySelector('.view-more').addEventListener('click', (e) => {
