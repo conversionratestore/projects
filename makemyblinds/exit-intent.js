@@ -788,7 +788,6 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-ы
         Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
 
 
