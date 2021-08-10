@@ -462,7 +462,7 @@ window.onload  = function () {
         });
     }
 
-    function card(index,img,name,price,link,greatFor,idGreatFor) {
+    function card(index,img,name,price,link) {
         let card = `
         <div class="slide">
              <div class="card">
@@ -481,11 +481,7 @@ window.onload  = function () {
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
-        if(greatFor) {
-            document.querySelectorAll('.popup .card').forEach((el) => {
-                el.insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a></div>`);
-            });
-        }
+
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
                 el.closest('.slide').remove();
@@ -734,8 +730,8 @@ window.onload  = function () {
             }
         ];
     for (let i = 0; i < 8; i++) {
-        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].greatFor,perfectFit[i].idGreatFor);
-
+        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link);
+        document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
 
 
