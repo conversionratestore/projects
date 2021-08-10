@@ -432,7 +432,7 @@ window.onload  = function () {
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
 
-    function tnsInitialization(item,amountMob,amountTablet,amountDesk) {
+    function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
                 slider.closest('.category').remove();
@@ -455,7 +455,7 @@ window.onload  = function () {
                     },
                     1024: {
                         items: amountDesk,
-                        nav: false,
+                        nav: navDesk,
                     }
                 }
             });
@@ -869,8 +869,8 @@ window.onload  = function () {
                 }
             }
 
-            tnsInitialization('category-slider',2,3,4);
-            tnsInitialization('slider',1,2,2);
+            tnsInitialization('category-slider',2,3,4,false);
+            tnsInitialization('slider',1,2,2,true);
 
             window.addEventListener('scroll', myScrollSpeedFunction);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
