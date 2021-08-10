@@ -463,7 +463,7 @@ window.onload  = function () {
     }
     function card(index,img,name,price,link,status) {
         let card = `
-        <div class="slide" ${status=='2'?'hidden':''}>
+        <div class="slide">
              <div class="card">
                 <a href="${link}.html" class="card-title">
                     <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
@@ -475,12 +475,14 @@ window.onload  = function () {
                 </div>
             </div>
         </div>`;
-        if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        } else {
-            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        if (status != '2') {
+            if (index != 'popup') {
+                document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            } else {
+                document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+            }
         }
-
+        
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
                 el.closest('.slide').remove();
