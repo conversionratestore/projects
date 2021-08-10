@@ -461,7 +461,7 @@ window.onload  = function () {
             });
         });
     }
-    function card(index,img,name,price,link,status) {
+    function card(index,img,name,price,link) {
         let card = `
         <div class="slide">
              <div class="card">
@@ -475,14 +475,12 @@ window.onload  = function () {
                 </div>
             </div>
         </div>`;
-        if (status != '2') {
-            if (index != 'popup') {
-                document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-            } else {
-                document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            }
+        if (index != 'popup') {
+            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+        } else {
+            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
-        
+
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
                 el.closest('.slide').remove();
@@ -669,7 +667,6 @@ window.onload  = function () {
                 price: '9.99',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes',
@@ -678,7 +675,6 @@ window.onload  = function () {
                 price: '11.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit',
@@ -687,7 +683,6 @@ window.onload  = function () {
                 price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit',
@@ -696,7 +691,6 @@ window.onload  = function () {
                 price: '29.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit',
@@ -705,7 +699,6 @@ window.onload  = function () {
                 price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape',
@@ -714,7 +707,6 @@ window.onload  = function () {
                 price: '12.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind',
@@ -723,7 +715,6 @@ window.onload  = function () {
                 price: '9.95',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
-                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind',
@@ -732,8 +723,6 @@ window.onload  = function () {
                 price: '9.99',
                 greatFor: 'Kitchen',
                 idGreatFor: '8',
-                status: '1'
-
             }
         ];
     for (let i = 0; i < 8; i++) {
@@ -755,7 +744,7 @@ window.onload  = function () {
         token.push(datatoken);
         console.log('token: ', datatoken);
 
-        let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -768,7 +757,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        let request2 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=232& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request2 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=232&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -781,7 +770,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        let request3 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=229& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request3 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=229&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -793,7 +782,7 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -806,7 +795,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        let request5 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=231&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request5 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=231&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -819,7 +808,7 @@ window.onload  = function () {
             console.log('Failed fetch ', err);
         });
 
-        let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+        let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -831,7 +820,7 @@ window.onload  = function () {
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
+        let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
