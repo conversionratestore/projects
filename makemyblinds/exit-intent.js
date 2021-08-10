@@ -460,6 +460,11 @@ window.onload  = function () {
                 }
             });
         });
+        document.querySelectorAll('.category-slider').forEach((el) => {
+            if(!el.querySelector('.slide')) {
+                el.closest('.category').remove();
+            }
+        });
     }
 
     function card(index,img,name,price,link,greatFor,idGreatFor) {
@@ -486,14 +491,8 @@ window.onload  = function () {
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
                 el.closest('.slide').remove();
-              
             }
         })
-        document.querySelectorAll('.category').forEach((el) => {
-            if(!el.querySelector('.slide')) {
-                el.remove();
-            }
-        });
     }
 
     function eventsCategories(elem,eventAction) {
