@@ -933,14 +933,14 @@ window.onload  = function () {
             //     }
             // });
 
-            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
-                addEvent(document, 'mouseout', function(evt) {
-                    if (evt.toElement == null && evt.relatedTarget == null) {
+           addEvent(document, 'mouseout', function(evt) {
+               if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
+                   if (evt.toElement == null && evt.relatedTarget == null) {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                     }
-                });
-            }
+               }
+           });
         });
     }).catch(err => {
         console.log('Failed fetch ', err);
