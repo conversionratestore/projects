@@ -668,7 +668,7 @@ window.onload  = function () {
         perfectFit = [
             {
                 link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html',
-                img: 'https://www.makemyblinds.co.uk/media/catalog/product/s/h/shot_1_57.jpg',
+                img: 'https://www.makemyblinds.co.uk/media/catalog/product/cache/945c9b46c160116643b651ba87fbb352/s/h/shot_1_57.jpg',
                 title: 'Simply Brilliant White with Jasmine White Tape',
                 price: '9.99',
                 greatFor: 'Bathroom',
