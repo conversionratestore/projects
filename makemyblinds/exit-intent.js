@@ -758,6 +758,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Thermal', data);
             thermalItems.push(data);
+            localStorage.setItem('thermalItems', JSON.stringify(thermalItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -771,6 +772,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Privacy', data);
             privacyItems.push(data);
+            localStorage.setItem('privacyItems', JSON.stringify(privacyItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -784,6 +786,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Cordless', data);
             cordlessItems.push(data);
+            localStorage.setItem('cordlessItems', JSON.stringify(cordlessItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -796,6 +799,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Better sleep', data);
             betterSleepItems.push(data);
+            localStorage.setItem('betterSleepItems', JSON.stringify(betterSleepItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -809,6 +813,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('No Drill', data);
             noDrillItems.push(data);
+            localStorage.setItem('noDrillItems', JSON.stringify(noDrillItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -822,6 +827,7 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Fire Retardant', data);
             fireRetardantItems.push(data);
+            localStorage.setItem('fireRetardantItems', JSON.stringify(fireRetardantItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -832,9 +838,9 @@ window.onload  = function () {
                 "Authorization": `Bearer ${datatoken}`
             }
         }).then(res => res.json()).then(data => {
-            randomItems = [];
             console.log('randomItems', data);
             randomItems.push(data);
+            localStorage.setItem('randomItems', JSON.stringify(randomItems));
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
