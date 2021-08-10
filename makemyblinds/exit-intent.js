@@ -477,12 +477,12 @@ window.onload  = function () {
                 </div>
             </div>
         </div>`;
-        // if (index != 'popup') {
+        if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        // } else {
-        //     document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-        //     document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
-        // }
+        } else {
+            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+            document.querySelectorAll('.popup .product-great').innerHTML = `<a href="https://www.makemyblinds.co.uk/blinds/Conservatories" class="product-great-item" data-id="6" data-name="Bathroom">Conservatories</a><a href="https://www.makemyblinds.co.uk/blinds/Patio" class="product-great-item" data-id="7" data-name="Living Room">Patio</a>`;
+        }
     }
 
     function eventsCategories(elem,eventAction) {
@@ -594,6 +594,7 @@ window.onload  = function () {
             for (let i = 0; i < tdSplit.length; i++) {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i] && i < 3) {
+                        console.log(tdSplit[i] + '==' + greatForId[key]["name"])
                         document.querySelector('.product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]['value']}" data-name="${greatForId[key]['name']}">${tdSplit[i]}</a>`);
                     }
                 }
@@ -649,14 +650,7 @@ window.onload  = function () {
             <div class="slider"></div>
         </div>
     </div>`);
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
-    for (let i = 0; i < titleArr.length; i++) {
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-        <div class="category">
-            <h3 class="category-title">${titleArr[i]}</h3>
-            <div class="category-slider"></div>
-        </div>`);
-    }
+
     let token = [];
 
     let thermalItems = [],
@@ -691,10 +685,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Thermal', data);
             thermalItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -708,10 +698,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Privacy', data);
             privacyItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -725,10 +711,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Cordless', data);
             cordlessItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -741,10 +723,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Better sleep', data);
             betterSleepItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"], betterSleepItems[0]["items"][i]["price"], betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -758,10 +736,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('No Drill', data);
             noDrillItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -775,10 +749,6 @@ window.onload  = function () {
         }).then(res => res.json()).then(data => {
             console.log('Fire Retardant', data);
             fireRetardantItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
@@ -792,60 +762,63 @@ window.onload  = function () {
             randomItems = [];
             console.log('randomItems', data);
             randomItems.push(data);
-            for (let i = 0; i < 12; i++) {
-                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
-            }
-            tnsInitialization('category-slider',2,3,4);
-
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
-        // let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=8& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes]`, {
-        //     method: "GET",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": `Bearer ${datatoken}`
-        //     }
-        // }).then(res => res.json()).then(data => {
-        //     console.log('Perfect Fit', data);
-        //     perfectFit.push(data);
-        // }).catch(err => {
-        //     console.log('Failed fetch ', err);
-        // });
-        Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
+        let request8 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=fit_type&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=239&searchCriteria[pageSize]=6& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes]`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${datatoken}`
+            }
+        }).then(res => res.json()).then(data => {
+            console.log('Perfect Fit', data);
+            perfectFit.push(data);
+        }).catch(err => {
+            console.log('Failed fetch ', err);
+        });
 
+        Promise.all([request1,request2,request3,request4,request5,request6,request7, request8]).then(res => {
+            let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[document.querySelectorAll('.product-great-item').length - 1].dataset.name}`];
+            for (let i = 0; i < titleArr.length; i++) {
+                document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
+                <div class="category">
+                    <h3 class="category-title">${titleArr[i]}</h3>
+                    <div class="category-slider"></div>
+                </div>`);
+            }
 
-            // for (let i = 0; i < 12; i++) {
-                // if (randomItems[0]["items"] != null) {
-                //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (betterSleepItems[0]["items"] != null) {
-                //     card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (thermalItems[0]["items"] != null) {
-                //     card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (fireRetardantItems[0]["items"] != null) {
-                //     card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (noDrillItems[0]["items"] != null) {
-                //     card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (cordlessItems[0]["items"] != null) {
-                //     card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-                // if (privacyItems[0]["items"] != null) {
-                //     card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
-                // }
-            // }
-            // for (let i = 0; i < 6; i++) {
-            //     if (perfectFit[0]["items"] != null) {
-            //         card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
-            //     }
-            // }
+            for (let i = 0; i < 12; i++) {
+                if (randomItems[0]["items"] != null) {
+                    card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (betterSleepItems[0]["items"] != null) {
+                    card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (thermalItems[0]["items"] != null) {
+                    card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (fireRetardantItems[0]["items"] != null) {
+                    card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (noDrillItems[0]["items"] != null) {
+                    card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (cordlessItems[0]["items"] != null) {
+                    card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+                if (privacyItems[0]["items"] != null) {
+                    card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                }
+            }
+            for (let i = 0; i < 6; i++) {
+                if (perfectFit[0]["items"] != null) {
+                    card('popup',perfectFit[0]["items"][i]["media_gallery_entries"][0]["file"],perfectFit[0]["items"][i]["name"],perfectFit[0]["items"][i]["price"],perfectFit[0]["items"][i]["custom_attributes"][3]["value"].replace('-matt','').replace('bifold','matt'));
+                }
+            }
 
-
-            // tnsInitialization('slider',1,2,2);
+            tnsInitialization('category-slider',2,3,4);
+            tnsInitialization('slider',1,2,2);
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
             document.querySelector('.view-more').addEventListener('click', (e) => {
