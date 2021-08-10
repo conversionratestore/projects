@@ -480,11 +480,11 @@ window.onload  = function () {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-            if(greatFor) {
-                document.querySelectorAll('.popup .card').forEach((el) => {
-                    el.insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a></div>`);
-                });
-            }
+        }
+        if(greatFor) {
+            document.querySelectorAll('.popup .card').forEach((el) => {
+                el.insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${greatFor}" class="product-great-item" data-id="${idGreatFor}" data-name="${greatFor}">${greatFor}</a></div>`);
+            });
         }
         document.querySelectorAll('.category .card-price').forEach((el) => {
             if(el.innerHTML === '£0') {
