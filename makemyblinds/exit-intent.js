@@ -734,8 +734,9 @@ window.onload  = function () {
         ];
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].greatFor,perfectFit[i].idGreatFor);
+        tnsInitialization('slider',1,2,2);
     }
-    tnsInitialization('slider',1,2,2);
+
 
     fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         headers: {
@@ -876,7 +877,7 @@ window.onload  = function () {
             }
 
             tnsInitialization('category-slider',2,3,4);
-            
+
             document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
             document.querySelectorAll('.category-slider').forEach((el) => {
                 if(el.querySelectorAll('.slide').length == 0) {
