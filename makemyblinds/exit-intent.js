@@ -461,11 +461,10 @@ window.onload  = function () {
             });
         });
     }
-
-    function card(index,img,name,price,link) {
+    function card(index,img,name,price,link,status) {
         let card = `
         <div class="slide">
-             <div class="card">
+             <div class="card" hidden="${status=='2'?'true':'false'}">
                 <a href="${link}.html" class="card-title">
                     <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
                     <span>${name}</span>
@@ -488,7 +487,6 @@ window.onload  = function () {
             }
         })
     }
-
     function eventsCategories(elem,eventAction) {
         document.querySelectorAll(elem).forEach((el) => {
             el.addEventListener('click', () => {
@@ -512,7 +510,6 @@ window.onload  = function () {
             });
         })
     }
-
     function eventsPopup(elem,eventAction) {
         document.querySelectorAll(elem).forEach((el) => {
             el.addEventListener('click', () => {
@@ -670,7 +667,7 @@ window.onload  = function () {
                 price: '9.99',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
-
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes',
@@ -679,6 +676,7 @@ window.onload  = function () {
                 price: '11.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit',
@@ -687,6 +685,7 @@ window.onload  = function () {
                 price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit',
@@ -695,6 +694,7 @@ window.onload  = function () {
                 price: '29.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit',
@@ -703,6 +703,7 @@ window.onload  = function () {
                 price: '19.99',
                 greatFor: 'Conservatories',
                 idGreatFor: '68',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape',
@@ -711,6 +712,7 @@ window.onload  = function () {
                 price: '12.99',
                 greatFor: 'Bedroom',
                 idGreatFor: '9',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind',
@@ -719,6 +721,7 @@ window.onload  = function () {
                 price: '9.95',
                 greatFor: 'Bathroom',
                 idGreatFor: '6',
+                status: '1'
             },
             {
                 link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind',
@@ -727,10 +730,12 @@ window.onload  = function () {
                 price: '9.99',
                 greatFor: 'Kitchen',
                 idGreatFor: '8',
+                status: '1'
+
             }
         ];
     for (let i = 0; i < 8; i++) {
-        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link);
+        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
 
@@ -851,25 +856,25 @@ window.onload  = function () {
 
             for (let i = 0; i < 12; i++) {
                 if (randomItems[0]["items"] != null) {
-                    card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"],randomItems[0]["items"][i]["price"],randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
                 }
                 if (betterSleepItems[0]["items"] != null) {
-                    card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(1, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"], betterSleepItems[0]["items"][i]["status"]);
                 }
                 if (thermalItems[0]["items"] != null) {
-                    card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(2, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"],thermalItems[0]["items"][i]["status"]);
                 }
                 if (fireRetardantItems[0]["items"] != null) {
-                    card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(3, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"],fireRetardantItems[0]["items"][i]["status"]);
                 }
                 if (noDrillItems[0]["items"] != null) {
-                    card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"],noDrillItems[0]["items"][i]["status"]);
                 }
                 if (cordlessItems[0]["items"] != null) {
-                    card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(5, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"],cordlessItems[0]["items"][i]["status"]);
                 }
                 if (privacyItems[0]["items"] != null) {
-                    card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"]);
+                    card(6, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"], privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"],privacyItems[0]["items"][i]["status"]);
                 }
             }
 
