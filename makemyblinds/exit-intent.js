@@ -821,6 +821,7 @@ window.onload  = function () {
             title: 'Thermal Blinds', 
             id: '176'
         }
+    ];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title" data-id="${titleArr[i].id}">${titleArr[i].title}</h3><div class="category-slider"></div></div>`);
     }
