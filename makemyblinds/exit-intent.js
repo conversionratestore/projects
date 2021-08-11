@@ -927,7 +927,7 @@ window.onload  = function () {
         for (let n = 0; n < items.length; n++) {
         //     console.log(itemsLocalStorage.length)
             for (let i = 0; i < 12; i++) {
-                // console.log(itemsLocalStorage[0]["items"][i])
+                console.log(items[n+1]["items"][i]);
                 card(n+1, items[n]["items"][i]["media_gallery_entries"][0]["file"], items[n]["items"][i]["name"],items[n]["items"][i]["price"],items[n]["items"][i]["custom_attributes"][3]["value"], items[i]["items"][i]["status"]);
                 // if (n == (itemsLocalStorage.length - 1) && i == 11) {
                 //     tnsInitialization('category-slider',2,3,4,false);
