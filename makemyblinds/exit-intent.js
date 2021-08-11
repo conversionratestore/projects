@@ -1,12 +1,6 @@
 let token = [];
 
-let thermalItems = [],
-    privacyItems = [],
-    cordlessItems = [],
-    noDrillItems = [],
-    betterSleepItems = [],
-    fireRetardantItems = [],
-    randomItems = [],
+let randomItems = [],
     perfectFit = [
         {
             link: 'https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape',
@@ -97,7 +91,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
-        thermalItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -111,7 +104,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
-        privacyItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -125,7 +117,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
-        cordlessItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -138,7 +129,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
-        betterSleepItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -152,7 +142,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
-        noDrillItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -166,31 +155,18 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
-        fireRetardantItems.push(data);
         items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
-        // items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
-      
         localStorage.setItem('items', JSON.stringify(items));
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
 
-// Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
-//
-//     items.push(...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems);
-//     // window.onload  = function () {
-//     console.log('localStorage items: ' + items);
-//     localStorage.setItem('items', JSON.stringify(items));
-//     // };
-// });
-
 window.onload  = function () {
-
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
@@ -603,8 +579,7 @@ window.onload  = function () {
                 font-size: 17px;}
             .catalog-product-view #product-options-wrapper .fieldset .scaled-custom-field {
                 margin-right: 12px;}
-        }
-            
+        }    
 </style>`);
     let linkCustom = document.createElement('link');
     linkCustom.href =
@@ -823,82 +798,18 @@ window.onload  = function () {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
 
-    // Array.observe(items, () => {
-        // if (thermalItems.length != 0 && privacyItem.length != 0 ) {
-            for (let i = 0; i < 12; i++) {
-                console.log(items[0]["items"][i]);
-                console.log(JSON.parse(localStorage.getItem('items'))[0]["items"][i]);
-                let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
-                card(1, itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
-                card(2, itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
-                card(3, itemsLocalStorage[2]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["items"][i]["name"],itemsLocalStorage[2]["items"][i]["price"],itemsLocalStorage[2]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["items"][i]["status"]);
-                card(4, itemsLocalStorage[3]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["items"][i]["name"],itemsLocalStorage[3]["items"][i]["price"],itemsLocalStorage[3]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["items"][i]["status"]);
-                card(5, itemsLocalStorage[4]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["items"][i]["name"],itemsLocalStorage[4]["items"][i]["price"],itemsLocalStorage[4]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["items"][i]["status"]);
-                card(6, itemsLocalStorage[5]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["items"][i]["name"],itemsLocalStorage[5]["items"][i]["price"],itemsLocalStorage[5]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["items"][i]["status"]);
-            }
-        // }
-      
-    // });
-
-        // items.addEventListener('change', function(event) {
-        //     console.log('change items: ' + items)
-        //     for (let i = 0; i < 12; i++) {
-        //         console.log('localStorage items: ' + items[1][0]["items"][i]);
-        //     }
-        //   });
-        //   let proxied = new Proxy(items, [{
-        //     get: function(target, prop) {
-        //       console.log({
-        //         type: "get",
-        //         target,
-        //         prop
-        //       });
-        //       return Reflect.get(target, prop);
-        //     },
-        //     set: function(target, prop, value) {
-        //       console.log({
-        //         type: "set",
-        //         target,
-        //         prop,
-        //         value
-        //       });
-        //       return Reflect.set(target, prop, value);
-        //     }
-        //   }]);
-        //   console.log('localStorage items: ' + proxied);
-        //   let items = [];
-        //   items.push(proxied);
-        //   console.log('localStorage items: ' + items);
-
-
-  
-                // for (let i = 0; i < 12; i++) {
-                //     console.log('localStorage items: ' + items[1][0]["items"][i]);
-                //     console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
-                //     console.log('localStorage privacyItems: ' + privacyItems[0]["items"][i]);
-                //     console.log('localStorage cordlessItems: ' + cordlessItems[0]["items"][i]);
-                //     console.log('localStorage noDrillItems: ' + noDrillItems[0]["items"][i]);
-                //     console.log('localStorage betterSleepItems: ' + betterSleepItems[0]["items"][i]);
-                //     console.log('localStorage fireRetardantItems: ' + fireRetardantItems[0]["items"][i]);
-             
-
-                    // card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
-                    // card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
-                    // card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
-                    // card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
-                    // card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
-                    // card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
-                    // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
-                // }
-
-
-    // if(items.length != 0) {
-    //     console.log('items.length != 0');
-    //
-    // } else {
-    //     console.log('items.length == 0');
-    // }
-
+    for (let i = 0; i < 12; i++) {
+        console.log(items[0]["items"][i]);
+        console.log(JSON.parse(localStorage.getItem('items'))[0]["items"][i]);
+        let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
+        card(1, itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
+        card(2, itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
+        card(3, itemsLocalStorage[2]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["items"][i]["name"],itemsLocalStorage[2]["items"][i]["price"],itemsLocalStorage[2]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["items"][i]["status"]);
+        card(4, itemsLocalStorage[3]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["items"][i]["name"],itemsLocalStorage[3]["items"][i]["price"],itemsLocalStorage[3]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["items"][i]["status"]);
+        card(5, itemsLocalStorage[4]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["items"][i]["name"],itemsLocalStorage[4]["items"][i]["price"],itemsLocalStorage[4]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["items"][i]["status"]);
+        card(6, itemsLocalStorage[5]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["items"][i]["name"],itemsLocalStorage[5]["items"][i]["price"],itemsLocalStorage[5]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["items"][i]["status"]);
+    }
+   
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
