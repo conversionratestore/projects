@@ -865,13 +865,14 @@ window.onload  = function () {
                     <div class="category-slider"></div>
                 </div>`);
     }
-
     window.addEventListener('scroll', myScrollSpeedFunction);
    document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
             el.closest('.category').remove();
         }
     });
+    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
+
     document.querySelector('.view-more').addEventListener('click', (e) => {
         e.target.hidden = true;
         document.querySelector('.categories').classList.add('show');
@@ -890,7 +891,7 @@ window.onload  = function () {
                 'eventAction': 'Click on View more button',
             });
         }
-    });
+   });
 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
@@ -915,7 +916,6 @@ window.onload  = function () {
     // for (let i = 0; i < 12; i++) {
     //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
     // }
-    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
     // window.addEventListener('storage', () => {
     //     if (localStorage.getItem('items')) {
