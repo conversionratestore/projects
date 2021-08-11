@@ -795,7 +795,7 @@ window.onload  = function () {
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
     
-    let titleArr = ['No Drill Blinds','Blinds for Better Sleep','Cordless Blinds','Fire Retardant Blinds','Privacy Blinds','Thermal Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+    let titleArr = ['Blinds for Better Sleep','Cordless Blinds','Fire Retardant Blinds','Privacy Blinds','Thermal Blinds','No Drill Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
