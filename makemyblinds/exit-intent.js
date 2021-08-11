@@ -167,7 +167,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
         let items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
         // window.onload  = function () {
-        console.log('localStorage items: ' + items);
+        console.log('localStorage items: ' + JSON.stringify(items));
         localStorage.setItem('items', JSON.stringify(items));
         // };
     });
