@@ -964,10 +964,9 @@ window.onload  = function () {
         console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     })
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
+    if (window.matchMedia("(max-width: 768px)").matches && document.querySelector('.product-specs--new .tabs')) {
+        document.querySelector('.categories').after(document.querySelector('.product-details'));
     }
-
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
