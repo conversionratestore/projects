@@ -828,16 +828,26 @@ window.onload  = function () {
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
+
+    items.push(thermalItems);
+    items.push(privacyItems);
+    items.push(cordlessItems);
+    items.push(noDrillItems);
+    items.push(betterSleepItems);
+    items.push(fireRetardantItems);
     // Array.observe(items, () => {
-    //     for (let i = 0; i < 12; i++) {
-    //         card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
-    //         card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
-    //         card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
-    //         card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
-    //         card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
-    //         card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
-    //         // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
-    //     }
+        if (thermalItems.length != 0 && privacyItem.length != && ) {
+            for (let i = 0; i < 12; i++) {
+                card(1, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"], thermalItems[0]["items"][i]["status"]);
+                card(2, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"],privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"], privacyItems[0]["items"][i]["status"]);
+                card(3, cordlessItems[0]["items"][i]["media_gallery_entries"][0]["file"], cordlessItems[0]["items"][i]["name"],cordlessItems[0]["items"][i]["price"],cordlessItems[0]["items"][i]["custom_attributes"][3]["value"], cordlessItems[0]["items"][i]["status"]);
+                card(4, noDrillItems[0]["items"][i]["media_gallery_entries"][0]["file"], noDrillItems[0]["items"][i]["name"],noDrillItems[0]["items"][i]["price"],noDrillItems[0]["items"][i]["custom_attributes"][3]["value"], noDrillItems[0]["items"][i]["status"]);
+                card(5, betterSleepItems[0]["items"][i]["media_gallery_entries"][0]["file"], betterSleepItems[0]["items"][i]["name"],betterSleepItems[0]["items"][i]["price"],betterSleepItems[0]["items"][i]["custom_attributes"][3]["value"], betterSleepItems[0]["items"][i]["status"]);
+                card(6, fireRetardantItems[0]["items"][i]["media_gallery_entries"][0]["file"], fireRetardantItems[0]["items"][i]["name"],fireRetardantItems[0]["items"][i]["price"],fireRetardantItems[0]["items"][i]["custom_attributes"][3]["value"], fireRetardantItems[0]["items"][i]["status"]);
+                // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
+            }
+        }
+      
     // });
 
         // items.addEventListener('change', function(event) {
