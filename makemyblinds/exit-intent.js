@@ -168,7 +168,7 @@ Promise.all([fetch]).then(res => {
     });
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
 
-        items.push({...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
+        items.push(...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems);
         // window.onload  = function () {
         console.log('localStorage items: ' + items);
         localStorage.setItem('items', JSON.stringify(items));
