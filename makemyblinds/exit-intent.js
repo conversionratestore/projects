@@ -172,17 +172,17 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-    Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
-        // let items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
-
-        // for (let i = 0; i < ; i++) {
-        //
-        // }
-        console.log('localStorage items length: ' + items.length);
-        console.log('localStorage items: ' + items);
-        localStorage.setItem('items', JSON.stringify(items));
-
-    });
+    // Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
+    //     // let items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
+    //
+    //     // for (let i = 0; i < ; i++) {
+    //     //
+    //     // }
+    //     console.log('localStorage items length: ' + items.length);
+    //     console.log('localStorage items: ' + items);
+    //     localStorage.setItem('items', JSON.stringify(items));
+    //
+    // });
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
@@ -808,8 +808,7 @@ window.onload  = function () {
             value: '226'
         }
     ]
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep']; //, `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`
-
+    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
 
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
@@ -828,7 +827,6 @@ window.onload  = function () {
 
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
-
         console.log(titleArr[i]);
     }
 
