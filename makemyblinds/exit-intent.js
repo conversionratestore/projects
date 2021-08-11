@@ -647,16 +647,15 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-            console.log('card name: ' + name);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
 
-        // document.querySelectorAll('.category .card-price').forEach((el) => {
-        //     if(el.innerHTML === '£0') {
-        //         el.closest('.slide').remove();
-        //     }
-        // })
+        document.querySelectorAll('.category .card-price').forEach((el) => {
+            if(el.innerHTML === '£0') {
+                el.closest('.slide').remove();
+            }
+        })
     }
 
     function eventsCategories(elem,eventAction) {
@@ -796,14 +795,12 @@ window.onload  = function () {
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
     
-    let titleArr = ['Fire Retardant Blinds','No Drill Blinds','Blinds for Better Sleep','Cordless Blinds','Privacy Blinds','Thermal Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+    let titleArr = ['No Drill Blinds','Blinds for Better Sleep','Cordless Blinds','Fire Retardant Blinds','Privacy Blinds','Thermal Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
 
     for (let i = 0; i < 12; i++) {
-        console.log(items[0]["items"][i]);
-        console.log(JSON.parse(localStorage.getItem('items'))[0]["items"][i]);
         let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
         card(1, itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
         card(2, itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
@@ -952,7 +949,6 @@ window.onload  = function () {
         });
     });
     document.querySelector('.product-details').addEventListener('change', () => {
-        console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
     eventsCategories('.category .card-title','Click on product from listing');
