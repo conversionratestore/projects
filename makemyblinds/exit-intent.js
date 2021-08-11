@@ -684,11 +684,11 @@ window.onload  = function () {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
 
-        document.querySelectorAll('.category .card-price').forEach((el) => {
-            if(el.innerHTML === '£0') {
-                el.closest('.slide').remove();
-            }
-        })
+        // document.querySelectorAll('.category .card-price').forEach((el) => {
+        //     if(el.innerHTML === '£0') {
+        //         el.closest('.slide').remove();
+        //     }
+        // })
     }
 
     function eventsCategories(elem,eventAction) {
@@ -844,7 +844,7 @@ window.onload  = function () {
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
                     tnsInitialization('slider',1,2,2,true);
-                    
+
                 }
             }
         }
