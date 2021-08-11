@@ -1,5 +1,5 @@
 let token = [];
-let items = [];
+
 let thermalItems = [],
     privacyItems = [],
     cordlessItems = [],
@@ -73,6 +73,8 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
+
+let items = [];
 fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
