@@ -163,20 +163,8 @@ fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', 
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-    let request7 = fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('randomItems', data);
-        randomItems.push(data);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-
-    Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
+    
+    Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
         items.push({...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
         // window.onload  = function () {
             console.log('localStorage items: ' + items);
@@ -188,11 +176,7 @@ fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', 
 });
 
 window.onload  = function () {
-
-    // localStorage.setItem('items', JSON.stringify(items));
-    console.log('localStorage items: ' + items);
-
-
+    
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
@@ -853,7 +837,6 @@ window.onload  = function () {
         };
     })();
 
-    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
 
     document.body.insertAdjacentHTML('beforeend', `
     <div class="popup">
@@ -868,6 +851,8 @@ window.onload  = function () {
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
 
     }
+    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+
     let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
@@ -934,7 +919,7 @@ window.onload  = function () {
                 console.log(itemsLocalStorage.length)
                 for (let i = 0; i < 12; i++) {
                     console.log(itemsLocalStorage[n]["items"][i])
-                    card(n, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
+                    card(n+1, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
                     // if (n == (itemsLocalStorage.length - 1) && i == 11) {
                     //     tnsInitialization('category-slider',2,3,4,false);
                     // }
@@ -945,6 +930,24 @@ window.onload  = function () {
         }
     // })
 
+    // localStorage.setItem('items', JSON.stringify(items));
+    console.log('localStorage items: ' + items);
+
+    fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token[0]}`
+        }
+    }).then(res => res.json()).then(data => {
+        console.log('randomItems', data);
+        randomItems.push(data);
+        for (let i = 0; i < 12; i++) {
+            card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+        }
+    }).catch(err => {
+        console.log('Failed fetch ', err);
+    });
 
     document.querySelector(".popup-container").addEventListener('click', (e) => {
         e.stopPropagation();
