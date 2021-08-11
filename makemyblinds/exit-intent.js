@@ -601,9 +601,9 @@ window.onload  = function () {
     }
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
-            // if (slider.innerHTML === '') {
-            //     slider.closest('.category').remove();
-            // }
+            if (slider.innerHTML === '') {
+                slider.closest('.category').remove();
+            }
             tns({
                 container: slider,
                 items: amountMob,
