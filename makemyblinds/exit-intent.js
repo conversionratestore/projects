@@ -819,11 +819,8 @@ window.onload  = function () {
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
 
     for (let i = 0; i < titleArr.length; i++) {
-        console.log(titleArr[i]);
-        // let category = `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`;
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
    
-        console.log(document.querySelector('.categories'));
         console.log(titleArr[i]);
     }
 
@@ -879,11 +876,11 @@ window.onload  = function () {
     }
 
     window.addEventListener('scroll', myScrollSpeedFunction);
-    document.querySelectorAll('.category-slider').forEach((el) => {
-        if(el.querySelectorAll('.slide').length == 0) {
-            el.closest('.category').remove();
-        }
-    });
+    // document.querySelectorAll('.category-slider').forEach((el) => {
+    //     if(el.querySelectorAll('.slide').length == 0) {
+    //         el.closest('.category').remove();
+    //     }
+    // });
     document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
     document.querySelector('.view-more').addEventListener('click', (e) => {
