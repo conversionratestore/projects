@@ -91,7 +91,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
-        items.push(data);
+        items.push({data,'idCategory': '176'});
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -104,7 +104,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
-        items.push(data);
+        items.push({data,'idCategory': '232'});
       
     }).catch(err => {
         console.log('Failed fetch ', err);
@@ -118,11 +118,12 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
-        items.push(data);
+        items.push({data,'idCategory': '229'});
          
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
+
     let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
@@ -131,8 +132,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
-        items.push(data);
-      
+        items.push({data,'idCategory': '241'});
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -145,7 +145,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
-        items.push(data);
+        items.push({data,'idCategory': '231'});
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -158,7 +158,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
-        items.push(data);
+        items.push({data,'idCategory': '183'});
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -795,10 +795,34 @@ window.onload  = function () {
     });
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
-    
-    let titleArr = ['Blinds for Better Sleep','Cordless Blinds','Fire Retardant Blinds','Privacy Blinds','Thermal Blinds','No Drill Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+                
+    let titleArr = [ 
+        {
+            title: 'Blinds for Better Sleep',
+            id: '241'
+        },
+        {
+            title: 'Cordless Blinds',
+            id: '229'
+        },
+        {
+            title: 'Fire Retardant Blinds', 
+            id: '183'
+        },
+        {
+            title: 'Privacy Blinds', 
+            id: '232'
+        },
+        {
+            title: 'No Drill Blinds', 
+            id: '231'
+        },
+        {
+            title: 'Thermal Blinds', 
+            id: '176'
+        }
     for (let i = 0; i < titleArr.length; i++) {
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
+        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title" data-id="${titleArr[i].id}">${titleArr[i].title}</h3><div class="category-slider"></div></div>`);
     }
 
     for (let i = 0; i < 12; i++) {
