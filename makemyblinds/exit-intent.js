@@ -675,8 +675,12 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            console.log('card: ' + card);
+            console.log('card index: ' + index);
+            console.log('card name: ' + name);
+            console.log('card link: ' + link);
             tnsInitialization('category-slider',2,3,4,false);
-
+        
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
