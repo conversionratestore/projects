@@ -813,6 +813,18 @@ window.onload  = function () {
         }
     });
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+
+    if(document.querySelector('.categories')) {
+        for (let i = 0; i < titleArr.length; i++) {
+            console.log(titleArr[i]);
+            document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
+                    <div class="category">
+                        <h3 class="category-title">${titleArr[i]}</h3>
+                        <div class="category-slider"></div>
+                    </div>`);
+        }
+    }
 
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
@@ -995,15 +1007,6 @@ window.onload  = function () {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
 
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
-    for (let i = 0; i < titleArr.length; i++) {
-        console.log(titleArr[i]);
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-                    <div class="category">
-                        <h3 class="category-title">${titleArr[i]}</h3>
-                        <div class="category-slider"></div>
-                    </div>`);
-    }
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
