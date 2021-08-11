@@ -638,7 +638,7 @@ window.onload  = function () {
             </div>
         </div>`;
         if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            // document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
@@ -649,6 +649,21 @@ window.onload  = function () {
             }
         })
     }
+
+    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep']; //, `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`
+
+    if(document.querySelector('.categories')) {
+        for (let i = 0; i < titleArr.length; i++) {
+            console.log(titleArr[i]);
+            document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
+                <div class="category">
+                    <h3 class="category-title">${titleArr[i]}</h3>
+                    <div class="category-slider"></div>
+                </div>`);
+        }
+    }
+    
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
@@ -812,19 +827,7 @@ window.onload  = function () {
             }
         }
     });
-    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep']; //, `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`
 
-    if(document.querySelector('.categories')) {
-        for (let i = 0; i < titleArr.length; i++) {
-            console.log(titleArr[i]);
-            document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-                <div class="category">
-                    <h3 class="category-title">${titleArr[i]}</h3>
-                    <div class="category-slider"></div>
-                </div>`);
-        }
-    }
 
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
@@ -907,13 +910,6 @@ window.onload  = function () {
         }
     });
 
-    eventsCategories('.category .card-title','Click on product from listing');
-    eventsCategories('.tns-controls button','Click on arrows button listing');
-    eventsCategories('.tns-nav button','Click on dots button listing');
-    eventsCategories('.category .card .btn','Click on View Product button listing');
-    eventsPopup('.popup .card-title','Click on product from');
-    eventsPopup('.popup .btn','Click on View product white button');
-    eventsPopup('.popup .tns-controls button','Click on arrows button');
 
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
@@ -1007,6 +1003,14 @@ window.onload  = function () {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
 
+
+    eventsCategories('.category .card-title','Click on product from listing');
+    eventsCategories('.tns-controls button','Click on arrows button listing');
+    eventsCategories('.tns-nav button','Click on dots button listing');
+    eventsCategories('.category .card .btn','Click on View Product button listing');
+    eventsPopup('.popup .card-title','Click on product from');
+    eventsPopup('.popup .btn','Click on View product white button');
+    eventsPopup('.popup .tns-controls button','Click on arrows button');
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
