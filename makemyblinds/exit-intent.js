@@ -678,7 +678,7 @@ window.onload  = function () {
             console.log('card: ' + card);
             console.log('card index: ' + index);
             console.log('card name: ' + name);
-            console.log('card link: ' + link);    
+            console.log('card link: ' + link);
             tnsInitialization('category-slider',2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -957,12 +957,13 @@ window.onload  = function () {
     if(items.length != 0) {
         console.log('items.length != 0');
         for (let i = 0; i < 12; i++) {
-            card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
-            card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
-            card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
-            card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
-            card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
-            card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
+            card(2, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
+            // card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
+            // card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
+            // card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
+            // card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
+            // card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
+            // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
         }
     }
 
