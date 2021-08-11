@@ -678,7 +678,9 @@ window.onload  = function () {
             console.log('card: ' + card);
             console.log('card index: ' + index);
             console.log('card name: ' + name);
-            console.log('card link: ' + link);
+            console.log('card link: ' + link);    
+            tnsInitialization('category-slider',2,3,4,false);
+
 
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -844,14 +846,14 @@ window.onload  = function () {
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
                     tnsInitialization('slider',1,2,2,true);
-                    
+
                 }
             }
         }
     }
 
     var my_scroll = (function() {
-        
+
         var last_position, new_position, timer, delta, delay = 50;
 
         function clear() {
@@ -963,7 +965,6 @@ window.onload  = function () {
             card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
             card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
             card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
-            tnsInitialization('category-slider',2,3,4,false);
         }
     }
 
