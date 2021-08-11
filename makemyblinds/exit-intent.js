@@ -866,10 +866,6 @@ window.onload  = function () {
                 </div>`);
     }
 
-
-    tnsInitialization('category-slider',2,3,4,false);
-    tnsInitialization('slider',1,2,2,true);
-
     window.addEventListener('scroll', myScrollSpeedFunction);
    document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
@@ -934,6 +930,8 @@ window.onload  = function () {
         // }
     // })
 
+    tnsInitialization('category-slider',2,3,4,false);
+    tnsInitialization('slider',1,2,2,true);
     document.querySelector(".btn-close").addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         document.querySelector('.popup').classList.remove('active');
