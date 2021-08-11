@@ -680,17 +680,15 @@ window.onload  = function () {
             console.log('card name: ' + name);
             console.log('card link: ' + link);    
             tnsInitialization('category-slider',2,3,4,false);
-
-
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
 
-        document.querySelectorAll('.category .card-price').forEach((el) => {
-            if(el.innerHTML === '£0') {
-                el.closest('.slide').remove();
-            }
-        })
+        // document.querySelectorAll('.category .card-price').forEach((el) => {
+        //     if(el.innerHTML === '£0') {
+        //         el.closest('.slide').remove();
+        //     }
+        // })
     }
 
     function eventsCategories(elem,eventAction) {
