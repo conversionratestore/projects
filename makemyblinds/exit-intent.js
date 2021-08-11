@@ -176,7 +176,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         items.push(noDrillItems);
         items.push(betterSleepItems);
         items.push(fireRetardantItems);
-        items.push(randomItems);
         console.log('localStorage items length: ' + items.length);
         console.log('localStorage items: ' + items);
         localStorage.setItem('items', JSON.stringify(items));
@@ -686,8 +685,6 @@ window.onload  = function () {
         //         el.closest('.slide').remove();
         //     }
         // })
-        tnsInitialization('category-slider',2,3,4,false);
-
     }
 
     function eventsCategories(elem,eventAction) {
@@ -843,7 +840,6 @@ window.onload  = function () {
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
                     tnsInitialization('slider',1,2,2,true);
-
                 }
             }
         }
@@ -919,9 +915,9 @@ window.onload  = function () {
         }
     });
 
-    // for (let i = 0; i < 12; i++) {
-    //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-    // }
+    for (let i = 0; i < 12; i++) {
+        card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+    }
 
     // window.addEventListener('storage', () => {
     // if (items) {
@@ -956,13 +952,12 @@ window.onload  = function () {
     if(items.length != 0) {
         console.log('items.length != 0');
         for (let i = 0; i < 12; i++) {
-            card(2, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
-            console.log( card(2, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]));
-            // card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
-            // card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
-            // card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
-            // card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
-            // card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
+            card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
+            card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
+            card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
+            card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
+            card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
+            card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
             // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
         }
     }
