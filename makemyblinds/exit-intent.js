@@ -624,6 +624,32 @@ window.onload  = function () {
             obj.attachEvent("on" + evt, fn);
         }
     }
+    function card(index,img,name,price,link) {
+        let card = `
+        <div class="slide">
+             <div class="card">
+                <a href="${link}.html" class="card-title">
+                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                    <span>${name}</span>
+                </a>
+                <div class="card_bottom">
+                    <div class="card-price">£${price}</div>
+                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+                </div>
+            </div>
+        </div>`;
+        if (index != 'popup') {
+            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+        } else {
+            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        }
+
+        document.querySelectorAll('.category .card-price').forEach((el) => {
+            if(el.innerHTML === '£0') {
+                el.closest('.slide').remove();
+            }
+        })
+    }
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
@@ -652,32 +678,6 @@ window.onload  = function () {
                 }
             });
         });
-    }
-    function card(index,img,name,price,link) {
-        let card = `
-        <div class="slide">
-             <div class="card">
-                <a href="${link}.html" class="card-title">
-                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                    <span>${name}</span>
-                </a>
-                <div class="card_bottom">
-                    <div class="card-price">£${price}</div>
-                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-                </div>
-            </div>
-        </div>`;
-        if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        } else {
-            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-        }
-
-        document.querySelectorAll('.category .card-price').forEach((el) => {
-            if(el.innerHTML === '£0') {
-                el.closest('.slide').remove();
-            }
-        })
     }
     function eventsCategories(elem,eventAction) {
         document.querySelectorAll(elem).forEach((el) => {
