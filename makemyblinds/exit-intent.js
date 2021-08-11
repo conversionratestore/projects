@@ -645,7 +645,7 @@ window.onload  = function () {
             </div>
         </div>`;
         if (index != 'popup') {
-            // document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
