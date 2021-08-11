@@ -663,7 +663,7 @@ window.onload  = function () {
                 </div>`);
         }
     }
-    
+
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
@@ -827,8 +827,7 @@ window.onload  = function () {
             }
         }
     });
-
-
+    
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
@@ -866,8 +865,7 @@ window.onload  = function () {
             return delta;
         };
     })();
-
-
+    
     document.body.insertAdjacentHTML('beforeend', `
     <div class="popup">
         <div class="popup-container">
@@ -888,28 +886,28 @@ window.onload  = function () {
             el.closest('.category').remove();
         }
     });
-    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-
-    document.querySelector('.view-more').addEventListener('click', (e) => {
-        e.target.hidden = true;
-        document.querySelector('.categories').classList.add('show');
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                'eventAction': 'Click on View more button',
-            });
-        } else {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                'eventAction': 'Click on View more button',
-            });
-        }
-    });
-
+    // document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
+    //
+    // document.querySelector('.view-more').addEventListener('click', (e) => {
+    //     e.target.hidden = true;
+    //     document.querySelector('.categories').classList.add('show');
+    //     if (window.matchMedia("(max-width: 768px)").matches) {
+    //         window.dataLayer = window.dataLayer || [];
+    //         dataLayer.push({
+    //             'event': 'event-to-ga',
+    //             'eventCategory': 'Exp — PDP improvement exit intent mobile',
+    //             'eventAction': 'Click on View more button',
+    //         });
+    //     } else {
+    //         window.dataLayer = window.dataLayer || [];
+    //         dataLayer.push({
+    //             'event': 'event-to-ga',
+    //             'eventCategory': 'Exp — PDP improvement exit intent desktop',
+    //             'eventAction': 'Click on View more button',
+    //         });
+    //     }
+    // });
+    //
 
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
