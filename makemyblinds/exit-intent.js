@@ -675,7 +675,6 @@ window.onload  = function () {
         if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
             console.log('card name: ' + name);
-            tnsInitialization('category-slider',2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
@@ -980,6 +979,7 @@ window.onload  = function () {
             console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
             card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
+        tnsInitialization('category-slider',2,3,4,false);
 
     }).catch(err => {
         console.log('Failed fetch ', err);
