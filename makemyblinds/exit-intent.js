@@ -97,6 +97,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
         thermalItems.push(data);
+        items.push(thermalItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -110,6 +111,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
         privacyItems.push(data);
+        items.push(privacyItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -123,6 +125,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
         cordlessItems.push(data);
+        items.push(cordlessItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -135,6 +138,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
         betterSleepItems.push(data);
+        items.push(betterSleepItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -148,6 +152,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
         noDrillItems.push(data);
+        items.push(noDrillItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -161,26 +166,13 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
         fireRetardantItems.push(data);
+        items.push(fireRetardantItems);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
         // items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
-
-        // for (let i = 0; i < ; i++) {
-        //
-        // }
-        items.push(thermalItems);
-        items.push(privacyItems);
-        items.push(cordlessItems);
-        items.push(noDrillItems);
-        items.push(betterSleepItems);
-        items.push(fireRetardantItems);
-        console.log('localStorage items length: ' + items.length);
-
-  
         localStorage.setItem('items', JSON.stringify(items));
-
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -680,11 +672,11 @@ window.onload  = function () {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
 
-        // document.querySelectorAll('.category .card-price').forEach((el) => {
-        //     if(el.innerHTML === '£0') {
-        //         el.closest('.slide').remove();
-        //     }
-        // })
+        document.querySelectorAll('.category .card-price').forEach((el) => {
+            if(el.innerHTML === '£0') {
+                el.closest('.slide').remove();
+            }
+        })
     }
 
     function eventsCategories(elem,eventAction) {
