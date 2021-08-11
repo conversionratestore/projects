@@ -840,6 +840,7 @@ window.onload  = function () {
     // });
 
         items.addEventListener('change', function(event) {
+            console.log('change items: ' + items)
             for (let i = 0; i < 12; i++) {
                 console.log('localStorage items: ' + items[1][0]["items"][i]);
             }
