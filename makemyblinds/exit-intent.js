@@ -816,6 +816,7 @@ window.onload  = function () {
 
     let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
+        console.log(titleArr[i]);
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
                 <div class="category">
                     <h3 class="category-title">${titleArr[i]}</h3>
