@@ -916,7 +916,7 @@ window.onload  = function () {
     // }
     document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
-    window.addEventListener('storage', () => {
+    // window.addEventListener('storage', () => {
         if (localStorage.getItem('items')) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
             for (let n = 0; n < itemsLocalStorage.length; n++) {
@@ -925,7 +925,7 @@ window.onload  = function () {
                 }
             }
         }
-    })
+    // })
 
     document.querySelector(".btn-close").addEventListener('click', (e) => {
         e.stopImmediatePropagation();
