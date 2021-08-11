@@ -864,7 +864,7 @@ window.onload  = function () {
               return Reflect.set(target, prop, value);
             }
           }]);
-          console.log('localStorage items: ' + JSON.stringify(proxied));
+          console.log('localStorage items: ' + proxied);
           items = proxied;
           console.log('localStorage items: ' + items);
 
