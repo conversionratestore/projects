@@ -847,7 +847,7 @@ window.onload  = function () {
         //         target[property] = value;
         //         console.log("Set %s to %o", property, value);
                 for (let i = 0; i < 12; i++) {
-                    console.log('localStorage items: ' + items[0][1]["items"][i]);
+                    console.log('localStorage items: ' + items[1][0]["items"][i]);
                     console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
                     console.log('localStorage privacyItems: ' + privacyItems[0]["items"][i]);
                     console.log('localStorage cordlessItems: ' + cordlessItems[0]["items"][i]);
