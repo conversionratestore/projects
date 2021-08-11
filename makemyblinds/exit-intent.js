@@ -970,12 +970,6 @@ window.onload  = function () {
 
 };
 
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
-
 if (window.matchMedia("(max-width: 768px)").matches) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
