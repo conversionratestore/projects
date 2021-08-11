@@ -679,8 +679,7 @@ window.onload  = function () {
             console.log('card index: ' + index);
             console.log('card name: ' + name);
             console.log('card link: ' + link);
-            tnsInitialization('category-slider',2,3,4,false);
-        
+
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
@@ -845,12 +844,15 @@ window.onload  = function () {
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
                     tnsInitialization('slider',1,2,2,true);
+                    
                 }
             }
         }
     }
 
     var my_scroll = (function() {
+
+        tnsInitialization('category-slider',2,3,4,false);
         var last_position, new_position, timer, delta, delay = 50;
 
         function clear() {
