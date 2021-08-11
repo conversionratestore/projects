@@ -328,6 +328,26 @@ let mut = new MutationObserver(function (muts) {
                 });
             });
         }
+
+        document.querySelector('.banner img').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PL advertising mobile',
+                'eventAction': 'Click on banner',
+                'eventLabel': 'Section day sleep banner'
+            });
+        })
+
+        document.querySelector('.banner .banner__btn').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PL advertising mobile',
+                'eventAction': 'Click on Zu den Produkten button',
+                'eventLabel': 'Section day sleep banner'
+            });
+        })
     }
 });
 mut.observe(document, {
