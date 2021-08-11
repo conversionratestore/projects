@@ -823,12 +823,6 @@ window.onload  = function () {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
 
-    items.push(thermalItems);
-    items.push(privacyItems);
-    items.push(cordlessItems);
-    items.push(noDrillItems);
-    items.push(betterSleepItems);
-    items.push(fireRetardantItems);
     // Array.observe(items, () => {
         if (thermalItems.length != 0 && privacyItem.length != 0 ) {
             for (let i = 0; i < 12; i++) {
