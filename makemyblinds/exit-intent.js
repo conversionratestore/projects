@@ -687,7 +687,7 @@ window.onload  = function () {
             }
         })
     }
-    
+
     function eventsCategories(elem,eventAction) {
         document.querySelectorAll(elem).forEach((el) => {
             el.addEventListener('click', () => {
@@ -923,12 +923,7 @@ window.onload  = function () {
     // if (items) {
 
         // let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
-        for (let n = 0; n < items.length; n++) {
-        //     console.log(itemsLocalStorage.length)
-            for (let i = 0; i < items[n][0]["items"].length; i++) {
-                card(n+1, items[n][0]["items"][i]["media_gallery_entries"][0]["file"], items[n][0]["items"][i]["name"],items[n][0]["items"][i]["price"],items[n][0]["items"][i]["custom_attributes"][3]["value"], items[i][0]["items"][i]["status"]);
-            }
-        }
+
     // } else {
     //     console.log('not itemsLocalStorage')
     // }
@@ -950,10 +945,16 @@ window.onload  = function () {
             console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
             card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
+        
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-
+    for (let n = 0; n < items.length; n++) {
+        //     console.log(itemsLocalStorage.length)
+        for (let i = 0; i < items[n][0]["items"].length; i++) {
+            card(n+1, items[n][0]["items"][i]["media_gallery_entries"][0]["file"], items[n][0]["items"][i]["name"],items[n][0]["items"][i]["price"],items[n][0]["items"][i]["custom_attributes"][3]["value"], items[i][0]["items"][i]["status"]);
+        }
+    }
     document.querySelector(".popup-container").addEventListener('click', (e) => {
         e.stopPropagation();
     });
