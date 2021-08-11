@@ -915,10 +915,6 @@ window.onload  = function () {
         }
     });
 
-    for (let i = 0; i < 12; i++) {
-        card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-    }
-
     // window.addEventListener('storage', () => {
     // if (items) {
 
