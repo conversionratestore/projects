@@ -912,6 +912,9 @@ window.onload  = function () {
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
+        if (i == 7) {
+            tnsInitialization('slider',1,2,2,true);
+        }
     }
     // for (let i = 0; i < 12; i++) {
     //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
@@ -919,7 +922,7 @@ window.onload  = function () {
 
     // window.addEventListener('storage', () => {
         if (localStorage.getItem('items')) {
-           
+
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
             for (let n = 0; n < itemsLocalStorage.length; n++) {
                 console.log(itemsLocalStorage.length)
@@ -934,7 +937,7 @@ window.onload  = function () {
     // })
 
     tnsInitialization('category-slider',2,3,4,false);
-    tnsInitialization('slider',1,2,2,true);
+   
     document.querySelector(".btn-close").addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         document.querySelector('.popup').classList.remove('active');
