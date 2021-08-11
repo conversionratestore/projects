@@ -827,6 +827,7 @@ window.onload  = function () {
                 if(my_scroll() < -200){
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
+                    tnsInitialization('slider',1,2,2,true);
                 }
             }
         }
@@ -868,7 +869,6 @@ window.onload  = function () {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
 
-        tnsInitialization('slider',1,2,2,true);
     }
     let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
@@ -919,6 +919,7 @@ window.onload  = function () {
             if (evt.toElement == null && evt.relatedTarget == null) {
                 document.querySelector(".popup").classList.add('active');
                 document.querySelector(".popup").classList.add('was');
+                tnsInitialization('slider',1,2,2,true);
             }
         }
     });
