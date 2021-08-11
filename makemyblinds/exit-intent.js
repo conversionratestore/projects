@@ -820,12 +820,12 @@ window.onload  = function () {
 
     for (let i = 0; i < titleArr.length; i++) {
         console.log(titleArr[i]);
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-                <div class="category">
+        let category = `<div class="category">
                     <h3 class="category-title">${titleArr[i]}</h3>
                     <div class="category-slider"></div>
-                </div>`);
-        console.log(document.querySelector('.categories'));
+                </div>`;
+        document.querySelector('.categories').insertAdjacentHTML('afterbegin', category[i]);
+        console.log(category[i]);
     }
 
     if (document.querySelector('.badge-fast-track')) {
