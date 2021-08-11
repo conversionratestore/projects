@@ -179,7 +179,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('localStorage items length: ' + items.length);
         for (const key in items) {
             // if (Object.hasOwnProperty.call(items, key)) {
-                console.log('localStorage items: ' + Object.keys(items));
+                console.log('localStorage items: ' + Object.keys(items[0]));
                 
             // }
         }
