@@ -865,7 +865,8 @@ window.onload  = function () {
             }
           }]);
           console.log('localStorage items: ' + proxied);
-          items = proxied;
+          let items = [];
+          items.push(proxied);
           console.log('localStorage items: ' + items);
 
 
