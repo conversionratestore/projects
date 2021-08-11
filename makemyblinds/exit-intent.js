@@ -1,5 +1,5 @@
 let token = [];
-
+let items = [];
 let thermalItems = [],
     privacyItems = [],
     cordlessItems = [],
@@ -177,7 +177,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     });
 
     Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
-        let items = [...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
+        items = [...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
         localStorage.setItem('items', JSON.stringify(items));
         console.log('localStorage items: ' + items);
     });
@@ -186,6 +186,8 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 
 window.onload  = function () {
+    localStorage.setItem('items', JSON.stringify(items));
+    console.log('localStorage items: ' + items);
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
