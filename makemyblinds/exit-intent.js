@@ -847,13 +847,13 @@ window.onload  = function () {
         //         target[property] = value;
         //         console.log("Set %s to %o", property, value);
                 for (let i = 0; i < 12; i++) {
-                    console.log('localStorage items: ' + items[i]);
-                    console.log('localStorage thermalItems: ' + thermalItems[i]);
-                    console.log('localStorage privacyItems: ' + privacyItems[i]);
-                    console.log('localStorage cordlessItems: ' + cordlessItems[i]);
-                    console.log('localStorage noDrillItems: ' + noDrillItems[i]);
-                    console.log('localStorage betterSleepItems: ' + betterSleepItems[i]);
-                    console.log('localStorage fireRetardantItems: ' + fireRetardantItems[i]);
+                    console.log('localStorage items: ' + items[0][1]["items"][i]);
+                    console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
+                    console.log('localStorage privacyItems: ' + privacyItems[0]["items"][i]);
+                    console.log('localStorage cordlessItems: ' + cordlessItems[0]["items"][i]);
+                    console.log('localStorage noDrillItems: ' + noDrillItems[0]["items"][i]);
+                    console.log('localStorage betterSleepItems: ' + betterSleepItems[0]["items"][i]);
+                    console.log('localStorage fireRetardantItems: ' + fireRetardantItems[0]["items"][i]);
              
 
                     // card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
