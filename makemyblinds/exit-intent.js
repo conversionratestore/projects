@@ -73,7 +73,7 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-    
+
 let items = [];
 
 fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
@@ -98,7 +98,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
         thermalItems.push(data);
-        items.push(thermalItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -112,7 +112,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
         privacyItems.push(data);
-        items.push(privacyItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -126,7 +126,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
         cordlessItems.push(data);
-        items.push(cordlessItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -139,7 +139,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
         betterSleepItems.push(data);
-        items.push(betterSleepItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -153,7 +153,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
         noDrillItems.push(data);
-        items.push(noDrillItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -167,7 +167,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
         fireRetardantItems.push(data);
-        items.push(fireRetardantItems);
+        items.push(data);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
