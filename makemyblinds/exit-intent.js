@@ -866,8 +866,7 @@ window.onload  = function () {
     tnsInitialization('slider',1,2,2,true);
 
     window.addEventListener('scroll', myScrollSpeedFunction);
-    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-    document.querySelectorAll('.category-slider').forEach((el) => {
+   document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
             el.closest('.category').remove();
         }
@@ -915,6 +914,7 @@ window.onload  = function () {
     // for (let i = 0; i < 12; i++) {
     //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
     // }
+    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
     window.addEventListener('storage', () => {
         if (localStorage.getItem('items')) {
