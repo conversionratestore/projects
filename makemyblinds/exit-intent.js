@@ -73,7 +73,7 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
+fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
     },
@@ -163,7 +163,7 @@ fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', 
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-    
+
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
         items.push({...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
         // window.onload  = function () {
@@ -176,7 +176,7 @@ fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', 
 });
 
 window.onload  = function () {
-    
+
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
