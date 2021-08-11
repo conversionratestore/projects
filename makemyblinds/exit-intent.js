@@ -748,7 +748,6 @@ window.onload  = function () {
     document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
     document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
 
-
     let greatForId = [
         {
             name: 'Bathroom',
@@ -810,7 +809,6 @@ window.onload  = function () {
             for (let i = 0; i < tdSplit.length; i++) {
                 for (let key in greatForId) {
                     if (greatForId[key]["name"] == tdSplit[i] && i < 3) {
-                        console.log(tdSplit[i] + '==' + greatForId[key]["name"])
                         document.querySelector('.product .product-great').insertAdjacentHTML('afterbegin', `<a href="https://www.makemyblinds.co.uk/blinds/${tdSplit[i]}" class="product-great-item" data-id="${greatForId[key]['value']}" data-name="${greatForId[key]['name']}">${tdSplit[i]}</a>`);
                     }
                 }
