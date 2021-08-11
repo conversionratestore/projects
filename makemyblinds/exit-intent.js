@@ -179,7 +179,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
         let items = [...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
         localStorage.setItem('items', JSON.stringify(items));
-        console.log(items);
+        console.log('localStorage items: ' + items);
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
