@@ -845,7 +845,7 @@ window.onload  = function () {
         //         console.log('localStorage items: ' + items[1][0]["items"][i]);
         //     }
         //   });
-          let proxied = new Proxy(items, {
+          let proxied = new Proxy(items, [{
             get: function(target, prop) {
               console.log({
                 type: "get",
@@ -863,8 +863,13 @@ window.onload  = function () {
               });
               return Reflect.set(target, prop, value);
             }
-          });
-          console.log('localStorage items: ' + proxied);
+          }]);
+          console.log('localStorage items: ' + JSON.stringify(proxied));
+          items = proxied;
+          console.log('localStorage items: ' + items);
+
+
+  
                 // for (let i = 0; i < 12; i++) {
                 //     console.log('localStorage items: ' + items[1][0]["items"][i]);
                 //     console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
