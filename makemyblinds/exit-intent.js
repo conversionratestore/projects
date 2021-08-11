@@ -812,6 +812,16 @@ window.onload  = function () {
             }
         }
     });
+    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
+
+    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+    for (let i = 0; i < titleArr.length; i++) {
+        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
+                <div class="category">
+                    <h3 class="category-title">${titleArr[i]}</h3>
+                    <div class="category-slider"></div>
+                </div>`);
+    }
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
@@ -864,16 +874,7 @@ window.onload  = function () {
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
 
     }
-    document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
 
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
-    for (let i = 0; i < titleArr.length; i++) {
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
-                <div class="category">
-                    <h3 class="category-title">${titleArr[i]}</h3>
-                    <div class="category-slider"></div>
-                </div>`);
-    }
     window.addEventListener('scroll', myScrollSpeedFunction);
     document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
