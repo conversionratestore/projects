@@ -600,25 +600,6 @@ window.onload  = function () {
         }
             
 </style>`);
-    document.querySelectorAll('.box-tocart')[1].hidden = true;
-    if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
-    }
-    document.querySelector('.product-info-main').insertAdjacentHTML('afterend', `
-    <div class="your-box">
-        ${document.querySelector('.price-box').innerHTML}
-        <button type="button" class="btn">Add to basket</button>
-        <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
-    </div>`);
-    if (document.querySelector('.product-delivery-date')) {
-        document.querySelector('.your-box .product-social-links').after(document.querySelector('.product-delivery-date'));
-    }
-    if (document.querySelector('.free-priority')) {
-        document.querySelector('.your-box .product-social-links').after(document.querySelector('.free-priority'));
-    }
-
-    document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
-    document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
     let linkCustom = document.createElement('link');
     linkCustom.href =
         'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -738,6 +719,27 @@ window.onload  = function () {
             });
         })
     }
+    
+    document.querySelectorAll('.box-tocart')[1].hidden = true;
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.product-specs--new .tabs').before(document.querySelector('.product-details'));
+    }
+    document.querySelector('.product-info-main').insertAdjacentHTML('afterend', `
+    <div class="your-box">
+        ${document.querySelector('.price-box').innerHTML}
+        <button type="button" class="btn">Add to basket</button>
+        <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
+    </div>`);
+    if (document.querySelector('.product-delivery-date')) {
+        document.querySelector('.your-box .product-social-links').after(document.querySelector('.product-delivery-date'));
+    }
+    if (document.querySelector('.free-priority')) {
+        document.querySelector('.your-box .product-social-links').after(document.querySelector('.free-priority'));
+    }
+
+    document.querySelector('.product.media').insertAdjacentHTML('afterbegin', `<div class="product-great"></div>`);
+    document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
+
 
     let greatForId = [
         {
