@@ -1,3 +1,5 @@
+let token = [];
+let items = [];
 let thermalItems = [],
     privacyItems = [],
     cordlessItems = [],
@@ -71,8 +73,6 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-
-let items = [];
 fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
@@ -862,6 +862,12 @@ window.onload  = function () {
             <div class="slider"></div>
         </div>
     </div>`);
+    for (let i = 0; i < 8; i++) {
+        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
+        document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
+
+        tnsInitialization('slider',1,2,2,true);
+    }
     let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
@@ -871,7 +877,7 @@ window.onload  = function () {
                 </div>`);
     }
     window.addEventListener('scroll', myScrollSpeedFunction);
-    document.querySelectorAll('.category-slider').forEach((el) => {
+   document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
             el.closest('.category').remove();
         }
@@ -896,7 +902,7 @@ window.onload  = function () {
                 'eventAction': 'Click on View more button',
             });
         }
-    });
+   });
 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
@@ -914,33 +920,28 @@ window.onload  = function () {
             }
         }
     });
-    for (let i = 0; i < 8; i++) {
-        card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
-        document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
 
-        // tnsInitialization('slider',1,2,2,true);
-    }
     // for (let i = 0; i < 12; i++) {
     //     card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
     // }
 
     // window.addEventListener('storage', () => {
-    if (localStorage.getItem('items')) {
+        if (localStorage.getItem('items')) {
 
-        let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
-        for (let n = 0; n < itemsLocalStorage.length; n++) {
-            console.log(itemsLocalStorage.length)
-            for (let i = 0; i < 12; i++) {
-                console.log(itemsLocalStorage[n]["items"][i])
-                card(n, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
-                // if (n == (itemsLocalStorage.length - 1) && i == 11) {
-                //     tnsInitialization('category-slider',2,3,4,false);
-                // }
+            let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
+            for (let n = 0; n < itemsLocalStorage.length; n++) {
+                console.log(itemsLocalStorage.length)
+                for (let i = 0; i < 12; i++) {
+                    console.log(itemsLocalStorage[n]["items"][i])
+                    card(n, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
+                    // if (n == (itemsLocalStorage.length - 1) && i == 11) {
+                    //     tnsInitialization('category-slider',2,3,4,false);
+                    // }
+                }
             }
+        } else {
+            console.log('not itemsLocalStorage')
         }
-    } else {
-        console.log('not itemsLocalStorage')
-    }
     // })
 
 
