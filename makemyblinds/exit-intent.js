@@ -950,8 +950,12 @@ window.onload  = function () {
         console.log('randomItems', data);
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
-            card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-        }
+            if (document.querySelectorAll('.category-slider')[0]) {
+                console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
+                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+
+            }
+       }
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
