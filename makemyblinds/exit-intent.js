@@ -105,6 +105,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
         items.push(data);
+      
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -118,6 +119,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
         items.push(data);
+         
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -130,6 +132,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
         items.push(data);
+      
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -792,8 +795,8 @@ window.onload  = function () {
     });
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
-
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
+    
+    let titleArr = ['Fire Retardant Blinds','No Drill Blinds','Blinds for Better Sleep','Cordless Blinds','Privacy Blinds','Thermal Blinds', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
     }
