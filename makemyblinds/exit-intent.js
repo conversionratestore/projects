@@ -74,7 +74,7 @@ let thermalItems = [],
         }
     ];
 
-let items = [];
+
 fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
@@ -165,8 +165,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
-
-        items = [...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems];
+        let items = [...thermalItems, ...privacyItems, ...cordlessItems, ...noDrillItems, ...betterSleepItems, ...fireRetardantItems];
         // window.onload  = function () {
         console.log('localStorage items: ' + items);
         localStorage.setItem('items', JSON.stringify(items));
