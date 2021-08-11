@@ -73,7 +73,7 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
+let fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
     },
@@ -186,11 +186,11 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 
 window.onload  = function () {
-
-    localStorage.setItem('items', JSON.stringify(items));
-    console.log('localStorage items: ' + items);
-
-
+    Promise.all([fetch]).then(res => {
+        localStorage.setItem('items', JSON.stringify(items));
+        console.log('localStorage items: ' + items);
+    });
+    
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
