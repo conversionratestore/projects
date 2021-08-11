@@ -838,22 +838,21 @@ window.onload  = function () {
     //         // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
     //     }
     // });
-    // (function() {
 
-        // a proxy for our array
-        // new Proxy(items, {
-        
-        //     set: function(target, property, value, receiver) {
-        //         target[property] = value;
-        //         console.log("Set %s to %o", property, value);
-                for (let i = 0; i < 12; i++) {
-                    console.log('localStorage items: ' + items[1][0]["items"][i]);
-                    console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
-                    console.log('localStorage privacyItems: ' + privacyItems[0]["items"][i]);
-                    console.log('localStorage cordlessItems: ' + cordlessItems[0]["items"][i]);
-                    console.log('localStorage noDrillItems: ' + noDrillItems[0]["items"][i]);
-                    console.log('localStorage betterSleepItems: ' + betterSleepItems[0]["items"][i]);
-                    console.log('localStorage fireRetardantItems: ' + fireRetardantItems[0]["items"][i]);
+        items.addEventListener('change', function(event) {
+            for (let i = 0; i < 12; i++) {
+                console.log('localStorage items: ' + items[1][0]["items"][i]);
+            }
+          });
+    
+                // for (let i = 0; i < 12; i++) {
+                //     console.log('localStorage items: ' + items[1][0]["items"][i]);
+                //     console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
+                //     console.log('localStorage privacyItems: ' + privacyItems[0]["items"][i]);
+                //     console.log('localStorage cordlessItems: ' + cordlessItems[0]["items"][i]);
+                //     console.log('localStorage noDrillItems: ' + noDrillItems[0]["items"][i]);
+                //     console.log('localStorage betterSleepItems: ' + betterSleepItems[0]["items"][i]);
+                //     console.log('localStorage fireRetardantItems: ' + fireRetardantItems[0]["items"][i]);
              
 
                     // card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
@@ -863,11 +862,8 @@ window.onload  = function () {
                     // card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
                     // card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
                     // card(7, items[6][0]["items"][i]["media_gallery_entries"][0]["file"], items[6][0]["items"][i]["name"],items[6][0]["items"][i]["price"],items[6][0]["items"][i]["custom_attributes"][3]["value"], items[6][0]["items"][i]["status"]);
-                }
-                // return true;
-        //     }
-        // });
-    // })();
+                // }
+
 
     // if(items.length != 0) {
     //     console.log('items.length != 0');
