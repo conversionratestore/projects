@@ -26,15 +26,10 @@ function drawParagraph(reg) {
         let paragraphEU = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Hustle free returns is size doesn’t match</p>`;
         let paragraphUS = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Free returns if size doesn’t match</p>`;
 
-        switch (reg) {
-            case 'america':
-                total.insertAdjacentHTML('afterend', paragraphUS);
-                break;
-            case 'europe':
-                total.insertAdjacentHTML('afterend', paragraphEU);
-                break;
-            default:
-                break;
+        if (reg === 'america') {
+            total.insertAdjacentHTML('afterend', paragraphUS);
+        } else {
+            total.insertAdjacentHTML('afterend', paragraphEU);
         }
     }
 }
@@ -57,7 +52,7 @@ let observer = new MutationObserver(function (mutations) {
                 let region = localStorage.getItem('region');
                 drawParagraph(region);
             }
-        }        
+        }
     });
 });
 
