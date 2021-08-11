@@ -1,59 +1,143 @@
-let products = [
+const productsAll = [
     {
-        "link": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html',
-        "title": 'Bettwäsche – Bettbezug aus Bio-Baumwolle (Perkal) – Weiß & Grau – 6 Größen bestellbar ab',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/c/l/clara-53.jpeg',
-        "reviewsHref": 'https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html#reviews',
-        "reviewsCount": '4',
-        "price": '49,00',
-        "actions": ` <div class="actions-primary"><form data-role="tocart-form" data-product-sku="19Z433-440 Duvet Cover Percale white&amp;grey" action="https://www.zizzz.de/shop/duvetanzug-biobaumwolle-weiss.html?options=cart" method="post"><input type="hidden" name="product" value="486"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9kdXZldGFuenVnLWJpb2JhdW13b2xsZS13ZWlzcy5odG1sP29wdGlvbnM9Y2FydA,,"><input name="form_key" type="hidden" value="Sw5UdW7WlnkbQMoK"> <button type="submit" data-preorder="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/shop\\/duvetanzug-biobaumwolle-weiss.html?options=cart&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;486&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC9kdXZldGFuenVnLWJpb2JhdW13b2xsZS13ZWlzcy5odG1sP29wdGlvbnM9Y2FydA,,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button><input class="swatch-input super-attribute-select" name="super_attribute[293]" type="text" value="" data-selector="super_attribute[293]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form></div> <div data-role="add-to-links" class="actions-secondary">  <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;486&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC1hbGwtcHJvZHVjdHMvYmV0dHdhZXNjaGUvYmV0dGJlenVnLmh0bWw,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;486&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvc2hvcC1hbGwtcHJvZHVjdHMvYmV0dHdhZXNjaGUvYmV0dGJlenVnLmh0bWw,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a></div>`
+        'link': 'https://www.zizzz.de/babyschlafsack-blue-stripes-0-6-monate-70cm.html',
+        'title': 'Babyschlafsack Blue Stripes / 0-6 Monate (70cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/b/l/blue_stripes_70_cm_final.jpg',
+        'reviewsCount': '1',
+        'price': '89,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk%2C/product/540/" method="post"><input type="hidden" name="product" value="540"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRa0ZDV1ZORFNFeEJSbE5CUTBzclFreFZSU3RUVkZKSlVFVlRLeVV5Umlzd0xUWXJUVTlPUVZSRkt5VXlPRGN3UTAwbE1qayUyQy9wcm9kdWN0LzU0MC8,"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;540&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;540&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
     },
     {
-        "link": 'https://www.zizzz.de/sommer-schlafsack-90.html',
-        "title": 'Sommerschlafsack In the Woods / 6-24 Monate (90cm)',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/p/a/packshot_illustration_19z540_inthewoods_6-24m-08.png',
-        "reviewsHref": 'https://www.zizzz.de/sommer-schlafsack-90.html#reviews',
-        "reviewsCount": '3',
-        "price": '65,00',
-        "actions": `<div class="actions-primary"><form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9U09NTUVSU0NITEFGU0FDSytJTitUSEUrV09PRFMrJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk%2C/product/544/" method="post"><input type="hidden" name="product" value="544"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlVMDlOVFVWU1UwTklURUZHVTBGRFN5dEpUaXRVU0VVclYwOVBSRk1ySlRKR0t6WXRNalFyVFU5T1FWUkZLeVV5T0Rrd1EwMGxNamslMkMvcHJvZHVjdC81NDQv"><input name="form_key" type="hidden" value="Sw5UdW7WlnkbQMoK"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div><div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;544&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9U09NTUVSU0NITEFGU0FDSytJTitUSEUrV09PRFMrJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;544&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9U09NTUVSU0NITEFGU0FDSytJTitUSEUrV09PRFMrJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>`
+        'link': 'https://www.zizzz.de/shop-all-products/babyschlafsack/babyschlafsack-test-90.html',
+        'title': 'Babyschlafsack Frog Ragnar D. / 6-24 Monate (90cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/6/-/6-24_green_frog_version_finale.jpg',
+        'reviewsCount': '27',
+        'price': '99,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srRlJPRytSQUdOQVIrRC4rJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk%2C/product/14/" method="post"><input type="hidden" name="product" value="14"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRa0ZDV1ZORFNFeEJSbE5CUTBzclJsSlBSeXRTUVVkT1FWSXJSQzRySlRKR0t6WXRNalFyVFU5T1FWUkZLeVV5T0Rrd1EwMGxNamslMkMvcHJvZHVjdC8xNC8,"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;14&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srRlJPRytSQUdOQVIrRC4rJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;14&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srRlJPRytSQUdOQVIrRC4rJTJGKzYtMjQrTU9OQVRFKyUyODkwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
     },
     {
-        "link": 'https://www.zizzz.de/shop/duck-down-pillows.html',
-        "title": 'Entendaunen Kissen – Verschiedene Grössen ab',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/d/o/down_pillow_one.jpg',
-        "reviewsHref": 'https://www.zizzz.de/shop/duck-down-pillows.html#reviews',
-        "reviewsCount": '7',
-        "price": '49,00',
-        "actions": `<div class="actions-primary"><form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9RU5URU5EQVVORU4rS0lTU0VOKyVFMiU4MCU5MytWRVJTQ0hJRURFTkUrR1IlQzMlOTZTU0VOK0FC/product/744/" method="post"><input type="hidden" name="product" value="744"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlSVTVVUlU1RVFWVk9SVTRyUzBsVFUwVk9LeVZGTWlVNE1DVTVNeXRXUlZKVFEwaEpSVVJGVGtVclIxSWxRek1sT1RaVFUwVk9LMEZDL3Byb2R1Y3QvNzQ0Lw,,"><input name="form_key" type="hidden" value="Sw5UdW7WlnkbQMoK"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button><input class="swatch-input super-attribute-select" name="super_attribute[293]" type="text" value="" data-selector="super_attribute[293]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form></div><div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;744&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9RU5URU5EQVVORU4rS0lTU0VOKyVFMiU4MCU5MytWRVJTQ0hJRURFTkUrR1IlQzMlOTZTU0VOK0FC&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;744&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9RU5URU5EQVVORU4rS0lTU0VOKyVFMiU4MCU5MytWRVJTQ0hJRURFTkUrR1IlQzMlOTZTU0VOK0FC&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a></div>`
+        'link': 'https://www.zizzz.de/schlafsack-110-cm.html',
+        'title': 'Babyschlafsack Roter Luftballon / 24-48 Monate (110cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/2/4/24-48m_red_balloon_baby_sleeping_bag_front_porini_iv2.png',
+        'reviewsCount': '29',
+        'price': '109,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srUk9URVIrTFVGVEJBTExPTislMkYrMjQtNDgrTU9OQVRFKyUyODExMENNJTI5/product/22/" method="post"><input type="hidden" name="product" value="22"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRa0ZDV1ZORFNFeEJSbE5CUTBzclVrOVVSVklyVEZWR1ZFSkJURXhQVGlzbE1rWXJNalF0TkRnclRVOU9RVlJGS3lVeU9ERXhNRU5OSlRJNS9wcm9kdWN0LzIyLw,,"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;22&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srUk9URVIrTFVGVEJBTExPTislMkYrMjQtNDgrTU9OQVRFKyUyODExMENNJTI5&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;22&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srUk9URVIrTFVGVEJBTExPTislMkYrMjQtNDgrTU9OQVRFKyUyODExMENNJTI5&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
     },
     {
-        "link": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html',
-        "title": 'Atmungsaktive Bio Schafwolldecken – 4 Jahreszeiten – Leicht und Luftig',
-        "img": 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/s/w/swisswool_duvet_image_with_bag_2.jpg',
-        "reviewsHref": 'https://www.zizzz.de/shop/swisswool-duvets-4-seasons-eu.html#reviews',
-        "reviewsCount": '13',
-        "price": '159,00',
-        "actions": `<div class="actions-primary"><form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QVRNVU5HU0FLVElWRStCSU8rU0NIQUZXT0xMREVDS0VOKyVFMiU4MCU5Mys0K0pBSFJFU1pFSVRFTislRTIlODAlOTMrTEVJQ0hUK1VORCtMVUZUSUc%2C/product/752/" method="post"><input type="hidden" name="product" value="752"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRVlJOVlU1SFUwRkxWRWxXUlN0Q1NVOHJVME5JUVVaWFQweE1SRVZEUzBWT0t5VkZNaVU0TUNVNU15czBLMHBCU0ZKRlUxcEZTVlJGVGlzbFJUSWxPREFsT1RNclRFVkpRMGhVSzFWT1JDdE1WVVpVU1VjJTJDL3Byb2R1Y3QvNzUyLw,,"><input name="form_key" type="hidden" value="Sw5UdW7WlnkbQMoK"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button><input class="swatch-input super-attribute-select" name="super_attribute[293]" type="text" value="" data-selector="super_attribute[293]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form></div><div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;752&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QVRNVU5HU0FLVElWRStCSU8rU0NIQUZXT0xMREVDS0VOKyVFMiU4MCU5Mys0K0pBSFJFU1pFSVRFTislRTIlODAlOTMrTEVJQ0hUK1VORCtMVUZUSUc,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;752&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QVRNVU5HU0FLVElWRStCSU8rU0NIQUZXT0xMREVDS0VOKyVFMiU4MCU5Mys0K0pBSFJFU1pFSVRFTislRTIlODAlOTMrTEVJQ0hUK1VORCtMVUZUSUc,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a></div>`
-    }
-];
+        'link': 'https://www.zizzz.de/schlafsack-stern-130.html',
+        'title': 'Kinderschlafsack Glücksstern / 4-6 Jahre (130cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/f/i/finalprodpics_shop_24-48_sin_sombra_1100x1100_10_1.jpg',
+        'reviewsCount': '9',
+        'price': '129,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9S2luZGVyc2NobGFmc2FjaytHbCVDMyVCQ2Nrc3N0ZXJuKyUyRis0LTYrSmFocmUrJTI4MTMwY20lMjk%2C/product/360/" method="post"><input type="hidden" name="product" value="360"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlTMmx1WkdWeWMyTm9iR0ZtYzJGamF5dEhiQ1ZETXlWQ1EyTnJjM04wWlhKdUt5VXlSaXMwTFRZclNtRm9jbVVySlRJNE1UTXdZMjBsTWprJTJDL3Byb2R1Y3QvMzYwLw,,"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;360&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9S2luZGVyc2NobGFmc2FjaytHbCVDMyVCQ2Nrc3N0ZXJuKyUyRis0LTYrSmFocmUrJTI4MTMwY20lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;360&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9S2luZGVyc2NobGFmc2FjaytHbCVDMyVCQ2Nrc3N0ZXJuKyUyRis0LTYrSmFocmUrJTI4MTMwY20lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
+    },
+]
+
+const productsBaby = [
+    {
+        'link': 'https://www.zizzz.de/babyschlafsack-blue-stripes-0-6-monate-70cm.html',
+        'title': 'Babyschlafsack Blue Stripes / 0-6 Monate (70cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/b/l/blue_stripes_70_cm_final.jpg',
+        'reviewsCount': '1',
+        'price': '89,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk%2C/product/540/" method="post"><input type="hidden" name="product" value="540"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRa0ZDV1ZORFNFeEJSbE5CUTBzclFreFZSU3RUVkZKSlVFVlRLeVV5Umlzd0xUWXJUVTlPUVZSRkt5VXlPRGN3UTAwbE1qayUyQy9wcm9kdWN0LzU0MC8,"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;540&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;540&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srQkxVRStTVFJJUEVTKyUyRiswLTYrTU9OQVRFKyUyODcwQ00lMjk,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
+    },
+    // {
+    //     'link': 'https://www.zizzz.com/baby-blanket-frog-ragnar-d-size-natural-swiss-wool-and-cotton105-x75-cm.html',
+    //     'title': 'BABY BLANKET FROG RAGNAR D.',
+    //     'img': 'https://www.zizzz.com/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/b/l/blanket_frog_kermit_green_5-white2adj500px.jpg',
+    //     'reviewsCount': '5',
+    //     'price': '59,00',
+    //     'actions': `
+    //         <div class="actions-primary"> <div class="stock unavailable"><span>Out of stock</span></div> </div>
+    //         <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Add to Wish List" aria-label="Add to Wish List" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.com\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;19&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouY29tL2NhdGFsb2dzZWFyY2gvcmVzdWx0Lz9xPUJBQlkrQkxBTktFVCtGUk9HK1JBR05BUitELg,,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Add to Wish List</span></a> <a href="#" class="action tocompare" title="Add to Compare" aria-label="Add to Compare" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.com\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;19&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouY29tL2NhdGFsb2dzZWFyY2gvcmVzdWx0Lz9xPUJBQlkrQkxBTktFVCtGUk9HK1JBR05BUitELg,,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Add to Compare</span></a> </div>
+    //     `
+    // },
+    // {
+    //     'link': 'https://www.zizzz.com/confort-object-rabbit-appleseed.html ',
+    //     'title': 'Comfort object Rabbit Appleseed',
+    //     'img': 'https://www.zizzz.com/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/p/a/packshot_doudou_appleseed.jpg',
+    //     'reviewsCount': '3',
+    //     'price': '19,00',
+    //     'actions': `
+    //         <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.com/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouY29tL2NhdGFsb2dzZWFyY2gvcmVzdWx0Lz9xPUNPTUZPUlQrT0JKRUNUK1JBQkJJVCtBUFBMRVNFRUQ%2C/product/328/" method="post"><input type="hidden" name="product" value="328"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouY29tL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTkzZDNjdWVtbDZlbm91WTI5dEwyTmhkR0ZzYjJkelpXRnlZMmd2Y21WemRXeDBMejl4UFVOUFRVWlBVbFFyVDBKS1JVTlVLMUpCUWtKSlZDdEJVRkJNUlZORlJVUSUyQy9wcm9kdWN0LzMyOC8,"><input name="form_key" type="hidden" value="hryuLlVk3nz9vk5S"> <button type="submit" title="Add to Cart" class="action tocart primary"><span>Add to Cart</span></button></form></div>
+    //         <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Add to Wish List" aria-label="Add to Wish List" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.com\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;328&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouY29tL2NhdGFsb2dzZWFyY2gvcmVzdWx0Lz9xPUNPTUZPUlQrT0JKRUNUK1JBQkJJVCtBUFBMRVNFRUQ,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Add to Wish List</span></a> <a href="#" class="action tocompare" title="Add to Compare" aria-label="Add to Compare" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.com\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;328&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouY29tL2NhdGFsb2dzZWFyY2gvcmVzdWx0Lz9xPUNPTUZPUlQrT0JKRUNUK1JBQkJJVCtBUFBMRVNFRUQ,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Add to Compare</span></a> </div>
+    //     `
+    // },
+    {
+        'link': 'https://www.zizzz.de/baby-schlafsack-stern.html \n',
+        'title': 'Babyschlafsack Glücksstern / 6-24 Monate (90cm)',
+        'img': 'https://www.zizzz.de/pub/media/catalog/product/cache/c765a4d669c886d3d06da4793fdc6b0d/f/i/finalprodpics_shop_6-24_sin_sombra_1100x1100_15_1.jpg',
+        'reviewsCount': '31',
+        'price': '99,00',
+        'actions': `
+            <div class="actions-primary"> <form data-role="tocart-form" action="https://www.zizzz.de/checkout/cart/add/uenc/aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srR0wlQzMlOUNDS1NTVEVSTislMkYrNi0yNCtNT05BVEUrJTI4OTBDTSUyOQ%2C%2C/product/247/" method="post"><input type="hidden" name="product" value="247"><input type="hidden" name="uenc" value="aHR0cHM6Ly93d3cueml6enouZGUvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OTNkM2N1ZW1sNmVub3VaR1V2WTJGMFlXeHZaM05sWVhKamFDOXlaWE4xYkhRdlAzRTlRa0ZDV1ZORFNFeEJSbE5CUTBzclIwd2xRek1sT1VORFMxTlRWRVZTVGlzbE1rWXJOaTB5TkN0TlQwNUJWRVVySlRJNE9UQkRUU1V5T1ElMkMlMkMvcHJvZHVjdC8yNDcv"><input name="form_key" type="hidden" value="Fq0B8Wz0H4JnFDYT"> <button type="submit" title="In den Warenkorb" class="action tocart primary"><span>In den Warenkorb</span></button></form></div>
+            <div data-role="add-to-links" class="actions-secondary"> <a href="#" class="action towishlist" title="Zur Wunschliste hinzufügen" aria-label="Zur Wunschliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/wishlist\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;247&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srR0wlQzMlOUNDS1NTVEVSTislMkYrNi0yNCtNT05BVEUrJTI4OTBDTSUyOQ,,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" data-action="add-to-wishlist" role="button"><span>Zur Wunschliste hinzufügen</span></a> <a href="#" class="action tocompare" title="Zur Vergleichsliste hinzufügen" aria-label="Zur Vergleichsliste hinzufügen" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.zizzz.de\\/catalog\\/product_compare\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;247&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cueml6enouZGUvY2F0YWxvZ3NlYXJjaC9yZXN1bHQvP3E9QkFCWVNDSExBRlNBQ0srR0wlQzMlOUNDS1NTVEVSTislMkYrNi0yNCtNT05BVEUrJTI4OTBDTSUyOQ,,&quot;,&quot;preorder&quot;:{&quot;status&quot;:0}}}" role="button"><span>Zur Vergleichsliste hinzufügen</span></a> </div>
+        `
+    },
+]
 
 let mut = new MutationObserver(function (muts) {
-    if(document.querySelector('.post-post_content') ) {
+    if (document.querySelector('.post-post_content')) {
         mut.disconnect();
 
-        document.body.insertAdjacentHTML('afterbegin',`
+        document.body.insertAdjacentHTML('afterbegin', `
         <style>
             .banner {
                 display: block;
                 margin-top: 20px;
-                width: 100%;}
+                width: 100%;
+                background: #F5F4F3;
+                text-align: center;
+            }
             .banner img {
                 display: block;
-                margin: 0 auto;}
+                width: 100%;
+                margin: 0 auto;
+            }
+            .banner__title {
+                margin: 15px;
+                color: #616666;
+                font-size: 22px;
+                font-family: 'Varela Round', sans-serif;
+                line-height: 26px;
+                text-align: center;
+                text-transform: uppercase;       
+            }
+            .banner__btn {
+                display: inline-block;
+                padding: 15px 20px;
+                margin-bottom: 15px;
+                color: #FFFFFF !important;
+                background: #E32128;
+                border: 1px solid #e32128;                
+                font-weight: bold;
+                font-size: 14px;              
+            }
+            .banner__btn:hover {
+                color: #e32128 !important;
+                background: #FFFFFF;                
+            }
             .d-flex {
                 flex-wrap: wrap;
                 justify-content: space-between;
-                display: flex;}
+                display: flex;
+            }
             #popular {
                 margin: 0 -15px; }
             #popular .product-item {
@@ -63,7 +147,7 @@ let mut = new MutationObserver(function (muts) {
                 width: 24%;}
             #popular .product-item-name {
                 font-size: 11px; 
-                min-height: 58px;
+                /*min-height: 58px;*/
                 text-align: center; }
             #popular .product-reviews-summary {
                 flex-wrap: wrap;
@@ -137,13 +221,26 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        document.querySelectorAll('h2')[0].insertAdjacentHTML('beforebegin',`<a href="https://www.zizzz.ch/de/shop.html" class="banner"><img src='https://conversionratestore.github.io/projects/zizzz/img/banner-mini.jpg' alt='banner'></a>`);
-        document.querySelectorAll('h2')[2].insertAdjacentHTML('beforebegin',`<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
-        document.querySelector('.post-list-content').classList.remove('col-sm-8');
-        document.querySelector('.post-list-content').classList.add('col-sm-12');
+        const banner = `
+            <div class="banner">
+                <a href="https://www.zizzz.de/shop/babyschlafsack/babyschlafsack-grosse-70.html">
+                    <img src='https://conversionratestore.github.io/projects/zizzz/img/banner-baby.png' alt='banner'>
+                </a>
+                <p class="banner__title">Wünschen sich einen besseren Schlaf für Ihr Baby?</p>
+                <a class="banner__btn" href="https://www.zizzz.de/shop/babyschlafsack/babyschlafsack-grosse-70.html">Zu den Produkten</a>
+            </div>            
+        `;
 
-        for (let i = 0; i < products.length; i++) {
-            document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
+        const isBabyPost =  window.location.pathname.split('post/')[1] === 'baby-schlafen-tagsuber.html';
+
+        function drawTemplate(header, products) {
+            document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
+            document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+            document.querySelector('.post-list-content').classList.remove('col-sm-8');
+            document.querySelector('.post-list-content').classList.add('col-sm-12');
+
+            for (let i = 0; i < products.length; i++) {
+                document.querySelector('#popular .d-flex').insertAdjacentHTML('beforeend', `
             <li class="item product product-item"> 
                 <div class="product-item-info" data-container="product-grid"> 
                     <a href="${products[i].link}" class="product photo product-item-photo" tabindex="-1"> 
@@ -165,7 +262,7 @@ let mut = new MutationObserver(function (muts) {
                                 </div>
                             </div>
                             <div class="reviews-actions">
-                                <a class="action view" href="${products[i].reviewsHref}">${products[i].reviewsCount}&nbsp;
+                                <a class="action view" href="${products[i].link}#reviews">${products[i].reviewsCount}&nbsp;
                                     <span>Rezensionen</span>
                                 </a>
                             </div>
@@ -184,10 +281,17 @@ let mut = new MutationObserver(function (muts) {
                     </div>
                 </div> 
             </li>`);
+            }
         }
-        
+
+        if (isBabyPost) {
+            drawTemplate('h3', productsBaby)
+        } else {
+            drawTemplate('h2', productsAll)
+        }
+
         for (let i = 0; i < document.querySelectorAll('#popular .product-item-name').length; i++) {
-            document.querySelectorAll('#popular .product-item-photo, #popular .product-item-name')[i].addEventListener('click',() => {
+            document.querySelectorAll('#popular .product-item-photo, #popular .product-item-name')[i].addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
@@ -196,7 +300,7 @@ let mut = new MutationObserver(function (muts) {
                     'eventLabel': 'Section popular products'
                 });
             });
-            document.querySelectorAll('.reviews-actions')[i].addEventListener('click',() => {
+            document.querySelectorAll('.reviews-actions')[i].addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
@@ -205,7 +309,7 @@ let mut = new MutationObserver(function (muts) {
                     'eventLabel': 'Section popular products'
                 });
             });
-            document.querySelectorAll('.towishlist')[i].addEventListener('click',() => {
+            document.querySelectorAll('.towishlist')[i].addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
@@ -214,7 +318,7 @@ let mut = new MutationObserver(function (muts) {
                     'eventLabel': 'Section popular products'
                 });
             });
-            document.querySelectorAll('.tocompare')[i].addEventListener('click',() => {
+            document.querySelectorAll('.tocompare')[i].addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
@@ -238,13 +342,18 @@ dataLayer.push({
     'eventAction': 'loaded'
 });
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1652922,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+(function (h, o, t, j, a, r) {
+    h.hj = h.hj || function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+    };
+    h._hjSettings = {hjid: 1652922, hjsv: 6};
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
     a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj = window.hj || function () {
+    (hj.q = hj.q || []).push(arguments);
+};
 hj('trigger', 'pl_advertising_mobile');
