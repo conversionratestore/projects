@@ -827,7 +827,7 @@ window.onload  = function () {
             }
         }
     });
-    
+
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
@@ -865,7 +865,7 @@ window.onload  = function () {
             return delta;
         };
     })();
-    
+
     document.body.insertAdjacentHTML('beforeend', `
     <div class="popup">
         <div class="popup-container">
@@ -943,7 +943,7 @@ window.onload  = function () {
     // })
 
     // localStorage.setItem('items', JSON.stringify(items));
-    console.log('localStorage items: ' + items);
+    // console.log('localStorage items: ' + items);
 
     fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
         method: "GET",
