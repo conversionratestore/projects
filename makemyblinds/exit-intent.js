@@ -807,7 +807,6 @@ window.onload  = function () {
             value: '226'
         }
     ]
-    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
 
     document.querySelectorAll('.spec-table__inner__table tr').forEach((el, index) => {
         if(el.querySelector('th').innerHTML === 'Great For:') {
@@ -823,7 +822,8 @@ window.onload  = function () {
     });
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
-
+    
+    let titleArr = ['Privacy Blinds','Cordless Blinds','No Drill Blinds','Fire Retardant Blinds','Thermal Blinds','Blinds for Better Sleep', `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i]}</h3><div class="category-slider"></div></div>`);
         console.log(titleArr[i]);
