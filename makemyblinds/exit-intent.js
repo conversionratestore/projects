@@ -73,7 +73,7 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
+let fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
     },
@@ -86,12 +86,15 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 }).then(res => res.json()).then(datatoken => {
     token.push(datatoken);
     console.log('token: ', datatoken);
-
+}).catch(err => {
+    console.log('Failed fetch ', err);
+});
+Promise.all([fetch]).then(res => {
     let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
@@ -104,7 +107,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
@@ -117,7 +120,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
@@ -129,7 +132,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
@@ -142,7 +145,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
@@ -155,7 +158,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
+            "Authorization": `Bearer ${token[0]}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
@@ -163,16 +166,14 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
-        items.push({...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
+
+        items.push({...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
         // window.onload  = function () {
-            console.log('localStorage items: ' + items);
-            localStorage.setItem('items', JSON.stringify(items));
+        console.log('localStorage items: ' + items);
+        localStorage.setItem('items', JSON.stringify(items));
         // };
     });
-}).catch(err => {
-    console.log('Failed fetch ', err);
 });
 
 window.onload  = function () {
