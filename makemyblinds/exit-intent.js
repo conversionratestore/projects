@@ -170,9 +170,9 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         // for (let i = 0; i < ; i++) {
         //
         // }
-            console.log('localStorage items length: ' + items.length);
-            console.log('localStorage items: ' + JSON.stringify(items));
-            localStorage.setItem('items', JSON.stringify(items));
+        console.log('localStorage items length: ' + items.length);
+        console.log('localStorage items: ' + JSON.parse(items));
+        localStorage.setItem('items', JSON.stringify(items));
 
     });
 }).catch(err => {
@@ -875,7 +875,7 @@ window.onload  = function () {
                 </div>`);
     }
     window.addEventListener('scroll', myScrollSpeedFunction);
-   document.querySelectorAll('.category-slider').forEach((el) => {
+    document.querySelectorAll('.category-slider').forEach((el) => {
         if(el.querySelectorAll('.slide').length == 0) {
             el.closest('.category').remove();
         }
@@ -900,7 +900,7 @@ window.onload  = function () {
                 'eventAction': 'Click on View more button',
             });
         }
-   });
+    });
 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
@@ -925,22 +925,22 @@ window.onload  = function () {
     // }
 
     // window.addEventListener('storage', () => {
-        if (localStorage.getItem('items')) {
+    if (localStorage.getItem('items')) {
 
-            let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
-            for (let n = 0; n < itemsLocalStorage.length; n++) {
-                console.log(itemsLocalStorage.length)
-                for (let i = 0; i < 12; i++) {
-                    console.log(itemsLocalStorage[n]["items"][i])
-                    card(n+1, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
-                    // if (n == (itemsLocalStorage.length - 1) && i == 11) {
-                    //     tnsInitialization('category-slider',2,3,4,false);
-                    // }
-                }
+        let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
+        for (let n = 0; n < itemsLocalStorage.length; n++) {
+            console.log(itemsLocalStorage.length)
+            for (let i = 0; i < 12; i++) {
+                console.log(itemsLocalStorage[n]["items"][i])
+                card(n+1, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
+                // if (n == (itemsLocalStorage.length - 1) && i == 11) {
+                //     tnsInitialization('category-slider',2,3,4,false);
+                // }
             }
-        } else {
-            console.log('not itemsLocalStorage')
         }
+    } else {
+        console.log('not itemsLocalStorage')
+    }
     // })
 
     // localStorage.setItem('items', JSON.stringify(items));
