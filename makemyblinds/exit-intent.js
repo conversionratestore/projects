@@ -632,9 +632,9 @@ window.onload  = function () {
     }
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
-            if (slider.innerHTML === '') {
-                slider.closest('.category').remove();
-            }
+            // if (slider.innerHTML === '') {
+            //     slider.closest('.category').remove();
+            // }
             tns({
                 container: slider,
                 items: amountMob,
@@ -675,10 +675,7 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-            console.log('card: ' + card);
-            console.log('card index: ' + index);
             console.log('card name: ' + name);
-            console.log('card link: ' + link);
             tnsInitialization('category-slider',2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -689,6 +686,8 @@ window.onload  = function () {
         //         el.closest('.slide').remove();
         //     }
         // })
+        tnsInitialization('category-slider',2,3,4,false);
+
     }
 
     function eventsCategories(elem,eventAction) {
