@@ -945,16 +945,20 @@ window.onload  = function () {
             console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
             card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
-        
+
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-    for (let n = 0; n < items.length; n++) {
-        //     console.log(itemsLocalStorage.length)
-        for (let i = 0; i < items[n][0]["items"].length; i++) {
-            card(n+1, items[n][0]["items"][i]["media_gallery_entries"][0]["file"], items[n][0]["items"][i]["name"],items[n][0]["items"][i]["price"],items[n][0]["items"][i]["custom_attributes"][3]["value"], items[i][0]["items"][i]["status"]);
-        }
+
+    for (let i = 0; i < 12; i++) {
+        card(1, items[0][0]["items"][i]["media_gallery_entries"][0]["file"], items[0][0]["items"][i]["name"],items[0][0]["items"][i]["price"],items[0][0]["items"][i]["custom_attributes"][3]["value"], items[0][0]["items"][i]["status"]);
+        card(2, items[1][0]["items"][i]["media_gallery_entries"][0]["file"], items[1][0]["items"][i]["name"],items[1][0]["items"][i]["price"],items[1][0]["items"][i]["custom_attributes"][3]["value"], items[1][0]["items"][i]["status"]);
+        card(3, items[2][0]["items"][i]["media_gallery_entries"][0]["file"], items[2][0]["items"][i]["name"],items[2][0]["items"][i]["price"],items[2][0]["items"][i]["custom_attributes"][3]["value"], items[2][0]["items"][i]["status"]);
+        card(4, items[3][0]["items"][i]["media_gallery_entries"][0]["file"], items[3][0]["items"][i]["name"],items[3][0]["items"][i]["price"],items[3][0]["items"][i]["custom_attributes"][3]["value"], items[3][0]["items"][i]["status"]);
+        card(5, items[4][0]["items"][i]["media_gallery_entries"][0]["file"], items[4][0]["items"][i]["name"],items[4][0]["items"][i]["price"],items[4][0]["items"][i]["custom_attributes"][3]["value"], items[4][0]["items"][i]["status"]);
+        card(6, items[5][0]["items"][i]["media_gallery_entries"][0]["file"], items[5][0]["items"][i]["name"],items[5][0]["items"][i]["price"],items[5][0]["items"][i]["custom_attributes"][3]["value"], items[5][0]["items"][i]["status"]);
     }
+    
     document.querySelector(".popup-container").addEventListener('click', (e) => {
         e.stopPropagation();
     });
