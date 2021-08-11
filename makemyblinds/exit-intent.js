@@ -918,7 +918,8 @@ window.onload  = function () {
     // }
 
     // window.addEventListener('storage', () => {
-    //     if (localStorage.getItem('items')) {
+        if (localStorage.getItem('items')) {
+           
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'));
             for (let n = 0; n < itemsLocalStorage.length; n++) {
                 console.log(itemsLocalStorage.length)
@@ -927,7 +928,9 @@ window.onload  = function () {
                     card(n, itemsLocalStorage[n]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[n]["items"][i]["name"],itemsLocalStorage[n]["items"][i]["price"],itemsLocalStorage[n]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[n]["items"][i]["status"]);
                 }
             }
-        // }
+        } else {
+            console.log('not itemsLocalStorage')
+        }
     // })
 
     tnsInitialization('category-slider',2,3,4,false);
