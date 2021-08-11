@@ -828,13 +828,13 @@ window.onload  = function () {
             for (let i = 0; i < 12; i++) {
                 console.log(items[0]["items"][i]);
                 console.log(JSON.parse(localStorage.getItem('items'))[0]["items"][i]);
-                let items = JSON.parse(localStorage.getItem('items'))
-                card(1, items[0]["items"][i]["media_gallery_entries"][0]["file"], items[0]["items"][i]["name"],items[0]["items"][i]["price"],items[0]["items"][i]["custom_attributes"][3]["value"], items[0]["items"][i]["status"]);
-                card(2, items[1]["items"][i]["media_gallery_entries"][0]["file"], items[1]["items"][i]["name"],items[1]["items"][i]["price"],items[1]["items"][i]["custom_attributes"][3]["value"], items[1]["items"][i]["status"]);
-                card(3, items[2]["items"][i]["media_gallery_entries"][0]["file"], items[2]["items"][i]["name"],items[2]["items"][i]["price"],items[2]["items"][i]["custom_attributes"][3]["value"], items[2]["items"][i]["status"]);
-                card(4, items[3]["items"][i]["media_gallery_entries"][0]["file"], items[3]["items"][i]["name"],items[3]["items"][i]["price"],items[3]["items"][i]["custom_attributes"][3]["value"], items[3]["items"][i]["status"]);
-                card(5, items[4]["items"][i]["media_gallery_entries"][0]["file"], items[4]["items"][i]["name"],items[4]["items"][i]["price"],items[4]["items"][i]["custom_attributes"][3]["value"], items[4]["items"][i]["status"]);
-                card(6, items[5]["items"][i]["media_gallery_entries"][0]["file"], items[5]["items"][i]["name"],items[5]["items"][i]["price"],items[5]["items"][i]["custom_attributes"][3]["value"], items[5]["items"][i]["status"]);
+                let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
+                card(1, itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
+                card(2, itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
+                card(3, itemsLocalStorage[2]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["items"][i]["name"],itemsLocalStorage[2]["items"][i]["price"],itemsLocalStorage[2]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["items"][i]["status"]);
+                card(4, itemsLocalStorage[3]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["items"][i]["name"],itemsLocalStorage[3]["items"][i]["price"],itemsLocalStorage[3]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["items"][i]["status"]);
+                card(5, itemsLocalStorage[4]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["items"][i]["name"],itemsLocalStorage[4]["items"][i]["price"],itemsLocalStorage[4]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["items"][i]["status"]);
+                card(6, itemsLocalStorage[5]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["items"][i]["name"],itemsLocalStorage[5]["items"][i]["price"],itemsLocalStorage[5]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["items"][i]["status"]);
             }
         // }
       
