@@ -656,6 +656,7 @@ window.onload  = function () {
     if(document.querySelector('.categories')) {
         for (let i = 0; i < titleArr.length; i++) {
             console.log(titleArr[i]);
+            console.log(document.querySelector('.categories'));
             document.querySelector('.categories').insertAdjacentHTML('afterbegin', `
                 <div class="category">
                     <h3 class="category-title">${titleArr[i]}</h3>
@@ -877,7 +878,6 @@ window.onload  = function () {
     for (let i = 0; i < 8; i++) {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
-
     }
 
     window.addEventListener('scroll', myScrollSpeedFunction);
@@ -886,28 +886,28 @@ window.onload  = function () {
             el.closest('.category').remove();
         }
     });
-    // document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
-    //
-    // document.querySelector('.view-more').addEventListener('click', (e) => {
-    //     e.target.hidden = true;
-    //     document.querySelector('.categories').classList.add('show');
-    //     if (window.matchMedia("(max-width: 768px)").matches) {
-    //         window.dataLayer = window.dataLayer || [];
-    //         dataLayer.push({
-    //             'event': 'event-to-ga',
-    //             'eventCategory': 'Exp — PDP improvement exit intent mobile',
-    //             'eventAction': 'Click on View more button',
-    //         });
-    //     } else {
-    //         window.dataLayer = window.dataLayer || [];
-    //         dataLayer.push({
-    //             'event': 'event-to-ga',
-    //             'eventCategory': 'Exp — PDP improvement exit intent desktop',
-    //             'eventAction': 'Click on View more button',
-    //         });
-    //     }
-    // });
-    //
+    document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
+
+    document.querySelector('.view-more').addEventListener('click', (e) => {
+        e.target.hidden = true;
+        document.querySelector('.categories').classList.add('show');
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                'eventAction': 'Click on View more button',
+            });
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                'eventAction': 'Click on View more button',
+            });
+        }
+    });
+
 
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
