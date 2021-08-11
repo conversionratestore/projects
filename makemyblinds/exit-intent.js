@@ -88,7 +88,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 }).then(res => res.json()).then(datatoken => {
     token.push(datatoken);
     console.log('token: ', datatoken);
-    let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -101,7 +101,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
 
-    let request2 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=232&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request2 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=232& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
 
-    let request3 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=229&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request3 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=229& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -126,7 +126,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-    let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request4 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_opacity&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=241&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -139,7 +139,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
 
-    let request5 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=231&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request5 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=231&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -152,7 +152,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
 
-    let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -928,7 +928,7 @@ window.onload  = function () {
     // localStorage.setItem('items', JSON.stringify(items));
     // console.log('localStorage items: ' + items);
 
-    fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
+    fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
