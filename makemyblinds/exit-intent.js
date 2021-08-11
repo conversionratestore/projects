@@ -646,7 +646,7 @@ window.onload  = function () {
             </div>
         </div>`;
         if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            document.querySelector(`.category-title[data-id="${index}"] .category-slider`).insertAdjacentHTML('afterbegin', card);
             tnsInitialization('category-slider',2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -820,6 +820,10 @@ window.onload  = function () {
         {
             title: 'Thermal Blinds', 
             id: '176'
+        }, 
+        {
+            title: `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`,
+            id: 'random'
         }
     ];
     for (let i = 0; i < titleArr.length; i++) {
@@ -828,12 +832,12 @@ window.onload  = function () {
 
     for (let i = 0; i < 12; i++) {
         let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
-        card(1, itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
-        card(2, itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
-        card(3, itemsLocalStorage[2]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["items"][i]["name"],itemsLocalStorage[2]["items"][i]["price"],itemsLocalStorage[2]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["items"][i]["status"]);
-        card(4, itemsLocalStorage[3]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["items"][i]["name"],itemsLocalStorage[3]["items"][i]["price"],itemsLocalStorage[3]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["items"][i]["status"]);
-        card(5, itemsLocalStorage[4]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["items"][i]["name"],itemsLocalStorage[4]["items"][i]["price"],itemsLocalStorage[4]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["items"][i]["status"]);
-        card(6, itemsLocalStorage[5]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["items"][i]["name"],itemsLocalStorage[5]["items"][i]["price"],itemsLocalStorage[5]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["items"][i]["name"],itemsLocalStorage[0]["items"][i]["price"],itemsLocalStorage[0]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[1]["idCategory"], itemsLocalStorage[1]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["items"][i]["name"],itemsLocalStorage[1]["items"][i]["price"],itemsLocalStorage[1]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["items"][i]["name"],itemsLocalStorage[2]["items"][i]["price"],itemsLocalStorage[2]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["items"][i]["name"],itemsLocalStorage[3]["items"][i]["price"],itemsLocalStorage[3]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["items"][i]["name"],itemsLocalStorage[4]["items"][i]["price"],itemsLocalStorage[4]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["items"][i]["name"],itemsLocalStorage[5]["items"][i]["price"],itemsLocalStorage[5]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["items"][i]["status"]);
     }
    
     if (document.querySelector('.badge-fast-track')) {
@@ -932,7 +936,7 @@ window.onload  = function () {
         console.log('randomItems', data);
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
-            card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+            card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
         tnsInitialization('category-slider',2,3,4,false);
     }).catch(err => {
