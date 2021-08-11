@@ -178,19 +178,21 @@ let fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/toke
 
     Promise.all([request1,request2,request3,request4,request5,request6,request7]).then(res => {
         items.push({...randomItems,...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems});
-        console.log('localStorage items: ' + items);
-        localStorage.setItem('items', JSON.stringify(items));
+        window.onload  = function () {
+            console.log('localStorage items: ' + items);
+            localStorage.setItem('items', JSON.stringify(items));
+        };
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
 
 window.onload  = function () {
-    Promise.all([fetch]).then(res => {
-        localStorage.setItem('items', JSON.stringify(items));
-        console.log('localStorage items: ' + items);
-    });
-    
+
+    // localStorage.setItem('items', JSON.stringify(items));
+    console.log('localStorage items: ' + items);
+
+
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
