@@ -171,7 +171,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         //
         // }
         console.log('localStorage items length: ' + items.length);
-        console.log('localStorage items: ' + JSON.parse(items));
+        console.log('localStorage items: ' + JSON.stringify(items));
         localStorage.setItem('items', JSON.stringify(items));
 
     });
