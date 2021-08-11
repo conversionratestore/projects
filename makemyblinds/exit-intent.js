@@ -826,7 +826,7 @@ window.onload  = function () {
     // Array.observe(items, () => {
         // if (thermalItems.length != 0 && privacyItem.length != 0 ) {
             for (let i = 0; i < 12; i++) {
-                console.log(items[0]["items"][i]));
+                console.log(items[0]["items"][i]);
                 console.log(JSON.parse(localStorage.getItem('items'))[0]["items"][i]);
                 // card(1, thermalItems[0]["items"][i]["media_gallery_entries"][0]["file"], thermalItems[0]["items"][i]["name"],thermalItems[0]["items"][i]["price"],thermalItems[0]["items"][i]["custom_attributes"][3]["value"], thermalItems[0]["items"][i]["status"]);
                 // card(2, privacyItems[0]["items"][i]["media_gallery_entries"][0]["file"], privacyItems[0]["items"][i]["name"],privacyItems[0]["items"][i]["price"],privacyItems[0]["items"][i]["custom_attributes"][3]["value"], privacyItems[0]["items"][i]["status"]);
