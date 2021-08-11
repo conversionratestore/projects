@@ -177,7 +177,12 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         items.push(betterSleepItems);
         items.push(fireRetardantItems);
         console.log('localStorage items length: ' + items.length);
-        console.log('localStorage items: ' + items);
+        for (const key in items) {
+            // if (Object.hasOwnProperty.call(items, key)) {
+                console.log('localStorage items: ' + items[key]);
+            // }
+        }
+  
         localStorage.setItem('items', JSON.stringify(items));
 
     });
@@ -865,9 +870,9 @@ window.onload  = function () {
             }
           }]);
           console.log('localStorage items: ' + proxied);
-          let items = [];
-          items.push(proxied);
-          console.log('localStorage items: ' + items);
+        //   let items = [];
+        //   items.push(proxied);
+        //   console.log('localStorage items: ' + items);
 
 
   
