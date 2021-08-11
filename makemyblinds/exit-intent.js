@@ -153,6 +153,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('No Drill', data);
         noDrillItems.push(data);
         items.push(data);
+        console.log('items', items);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -167,6 +168,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Fire Retardant', data);
         fireRetardantItems.push(data);
         items.push(data);
+        console.log('items', items);
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
