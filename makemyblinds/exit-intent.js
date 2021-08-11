@@ -630,33 +630,6 @@ window.onload  = function () {
             obj.attachEvent("on" + evt, fn);
         }
     }
-    function card(index,img,name,price,link) {
-        let card = `
-        <div class="slide">
-             <div class="card">
-                <a href="${link}.html" class="card-title">
-                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                    <span>${name}</span>
-                </a>
-                <div class="card_bottom">
-                    <div class="card-price">£${price}</div>
-                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-                </div>
-            </div>
-        </div>`;
-        if (index != 'popup') {
-            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
-        } else {
-            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-        }
-
-        document.querySelectorAll('.category .card-price').forEach((el) => {
-            if(el.innerHTML === '£0') {
-                el.closest('.slide').remove();
-            }
-        })
-    }
-
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         document.querySelectorAll(`.${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
@@ -686,6 +659,36 @@ window.onload  = function () {
             });
         });
     }
+    function card(index,img,name,price,link) {
+        let card = `
+        <div class="slide">
+             <div class="card">
+                <a href="${link}.html" class="card-title">
+                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                    <span>${name}</span>
+                </a>
+                <div class="card_bottom">
+                    <div class="card-price">£${price}</div>
+                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+                </div>
+            </div>
+        </div>`;
+        if (index != 'popup') {
+            document.querySelectorAll('.category-slider')[index].insertAdjacentHTML('afterbegin', card);
+            tnsInitialization('category-slider',2,3,4,false);
+
+        } else {
+            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        }
+
+        document.querySelectorAll('.category .card-price').forEach((el) => {
+            if(el.innerHTML === '£0') {
+                el.closest('.slide').remove();
+            }
+        })
+    }
+
+   
     function eventsCategories(elem,eventAction) {
         document.querySelectorAll(elem).forEach((el) => {
             el.addEventListener('click', () => {
@@ -903,7 +906,6 @@ window.onload  = function () {
         }
     });
 
-
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
             if (evt.toElement == null && evt.relatedTarget == null) {
@@ -925,11 +927,7 @@ window.onload  = function () {
         for (let n = 0; n < items.length; n++) {
         //     console.log(itemsLocalStorage.length)
             for (let i = 0; i < 12; i++) {
-                console.log(items[n+1][0]["items"][i]);
                 card(n+1, items[n][0]["items"][i]["media_gallery_entries"][0]["file"], items[n][0]["items"][i]["name"],items[n][0]["items"][i]["price"],items[n][0]["items"][i]["custom_attributes"][3]["value"], items[i][0]["items"][i]["status"]);
-                // if (n == (itemsLocalStorage.length - 1) && i == 11) {
-                //     tnsInitialization('category-slider',2,3,4,false);
-                // }
             }
         }
     // } else {
@@ -950,12 +948,9 @@ window.onload  = function () {
         console.log('randomItems', data);
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
-            if (document.querySelectorAll('.category-slider')[0]) {
-                console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
-                card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-
-            }
-       }
+            console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
+            card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+        }
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
