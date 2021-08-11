@@ -976,15 +976,12 @@ window.onload  = function () {
         console.log('randomItems', data);
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
-            console.log('randomItems: ' + randomItems[0]["items"][i]["name"]);
             card(0, randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
         tnsInitialization('category-slider',2,3,4,false);
-
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-
 
     document.querySelector(".popup-container").addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1025,8 +1022,6 @@ window.onload  = function () {
         console.log(document.querySelector('.product-info-price .price').innerHTML);
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
-
-
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
