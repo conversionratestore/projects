@@ -86,15 +86,11 @@ let fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/toke
 }).then(res => res.json()).then(datatoken => {
     token.push(datatoken);
     console.log('token: ', datatoken);
-}).catch(err => {
-    console.log('Failed fetch ', err);
-});
-Promise.all([fetch]).then(res => {
     let request1 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=176&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[filter_groups][0][filters][0][value]=1& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Thermal', data);
@@ -107,7 +103,7 @@ Promise.all([fetch]).then(res => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
@@ -120,7 +116,7 @@ Promise.all([fetch]).then(res => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
@@ -132,7 +128,7 @@ Promise.all([fetch]).then(res => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Better sleep', data);
@@ -145,7 +141,7 @@ Promise.all([fetch]).then(res => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('No Drill', data);
@@ -158,7 +154,7 @@ Promise.all([fetch]).then(res => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
+            "Authorization": `Bearer ${datatoken}`
         }
     }).then(res => res.json()).then(data => {
         console.log('Fire Retardant', data);
@@ -171,10 +167,21 @@ Promise.all([fetch]).then(res => {
         items.push(...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems);
         // window.onload  = function () {
         console.log('localStorage items: ' + items);
-        localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('items', JSON.stringify(...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems));
         // };
     });
+}).catch(err => {
+    console.log('Failed fetch ', err);
 });
+
+// Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
+//
+//     items.push(...thermalItems,...privacyItems,...cordlessItems,...noDrillItems,...betterSleepItems,...fireRetardantItems);
+//     // window.onload  = function () {
+//     console.log('localStorage items: ' + items);
+//     localStorage.setItem('items', JSON.stringify(items));
+//     // };
+// });
 
 window.onload  = function () {
 
