@@ -73,7 +73,7 @@ let thermalItems = [],
             idGreatFor: '8',
         }
     ];
-let fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
+fetch = fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     headers: {
         "Content-Type": "application/json",
     },
