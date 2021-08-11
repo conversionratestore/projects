@@ -839,13 +839,32 @@ window.onload  = function () {
     //     }
     // });
 
-        items.addEventListener('change', function(event) {
-            console.log('change items: ' + items)
-            for (let i = 0; i < 12; i++) {
-                console.log('localStorage items: ' + items[1][0]["items"][i]);
+        // items.addEventListener('change', function(event) {
+        //     console.log('change items: ' + items)
+        //     for (let i = 0; i < 12; i++) {
+        //         console.log('localStorage items: ' + items[1][0]["items"][i]);
+        //     }
+        //   });
+          let proxied = new Proxy(items, {
+            get: function(target, prop) {
+              console.log({
+                type: "get",
+                target,
+                prop
+              });
+              return Reflect.get(target, prop);
+            },
+            set: function(target, prop, value) {
+              console.log({
+                type: "set",
+                target,
+                prop,
+                value
+              });
+              return Reflect.set(target, prop, value);
             }
           });
-    
+          console.log('localStorage items: ' + proxied);
                 // for (let i = 0; i < 12; i++) {
                 //     console.log('localStorage items: ' + items[1][0]["items"][i]);
                 //     console.log('localStorage thermalItems: ' + thermalItems[0]["items"][i]);
