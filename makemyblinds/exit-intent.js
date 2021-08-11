@@ -186,8 +186,11 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 
 window.onload  = function () {
-    localStorage.setItem('items', JSON.stringify(items));
-    console.log('localStorage items: ' + items);
+    if (items.length == 7) {
+        localStorage.setItem('items', JSON.stringify(items));
+        console.log('localStorage items: ' + items);
+    }
+
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .popup .product-great{
