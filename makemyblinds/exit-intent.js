@@ -650,7 +650,7 @@ window.onload  = function () {
             // console.log('index != popup and card: ' + name + ' в slider = ' + index)
             // if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length < 12) {
             //     console.log('length: ' + document.querySelector(`.category-slider[data-id='${index}'] .slide`).length)
-                tnsInitialization('.category-slider',2,3,4,false);
+                // tnsInitialization('.category-slider',2,3,4,false);
             // }
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -660,6 +660,10 @@ window.onload  = function () {
             if(el.innerHTML === '£0') {
                 el.closest('.slide').remove();
             }
+        })
+        document.querySelector('.categories').addEventListener('change', () => {
+            console.log('changed');
+            tnsInitialization('.category-slider',2,3,4,false);
         })
     }
 
