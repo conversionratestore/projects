@@ -971,23 +971,27 @@ window.onload  = function () {
         }
     });
 
-    fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token[0]}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('randomItems', data);
-        randomItems.push(data);
-        for (let i = 0; i < 12; i++) {
-            card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-        }
-        tnsInitialization('.category-slider',2,3,4,false);
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-
+    if(document.querySelectorAll('.product-great-item')[0]){
+        console.log('find');
+        fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token[0]}`
+            }
+        }).then(res => res.json()).then(data => {
+            console.log('randomItems', data);
+            randomItems.push(data);
+            for (let i = 0; i < 12; i++) {
+                card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
+            }
+            tnsInitialization('.category-slider',2,3,4,false);
+        }).catch(err => {
+            console.log('Failed fetch ', err);
+        });
+    } else {
+        console.log('no find ' + document.querySelectorAll('.product-great-item')[0]);
+    }
     document.querySelector(".popup-container").addEventListener('click', (e) => {
         e.stopPropagation();
     });
