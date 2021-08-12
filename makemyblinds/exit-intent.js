@@ -987,7 +987,7 @@ window.onload  = function () {
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' ) {
             if (evt.toElement == null && evt.relatedTarget == null) {
-                if (document.querySelectorAll('.popup .slider .slide'))
+                if (document.querySelectorAll('.popup .slider .slide')) {
                     setTimeout(() => {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
