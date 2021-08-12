@@ -646,7 +646,8 @@ window.onload  = function () {
             </div>
         </div>`;
         if (index != 'popup') {
-            document.querySelector(`.category-slider[data-id='${index}'] `).insertAdjacentHTML('afterbegin', card);
+            document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+            tnsInitialization(`.category-slider[data-id='${index}']`,2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
@@ -656,6 +657,8 @@ window.onload  = function () {
                 el.closest('.slide').remove();
             }
         })
+        
+       
     }
 
     function eventsCategories(elem,eventAction) {
@@ -837,12 +840,9 @@ window.onload  = function () {
         card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
         card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
         card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]);
-      
+        
     }
-    if (document.querySelectorAll('.category-slider')) {
-        tnsInitialization('category-slider',2,3,4,false);
-    }
-   
+
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
