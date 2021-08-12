@@ -102,7 +102,7 @@ let mut = new MutationObserver(function (muts) {
             #popular .product-item-name {
                 margin: 0;
                 font-size: 11px; 
-                min-height: 42px;
+                min-height: 43px;
                 text-align: center; }
             #popular .product-reviews-summary {
                 flex-wrap: wrap;
