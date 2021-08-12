@@ -313,7 +313,7 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (randomItems != [] && document.querySelector('.category-slider[data-id="random"]').innerHTML == "") {
+    if (randomItems != [] && document.querySelector('.category-slider[data-id="random"]').innerHTML == "" && document.querySelectorAll('.product-great-item')[0]) {
         mut.disconnect();
         tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
     }
