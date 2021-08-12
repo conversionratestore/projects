@@ -168,7 +168,120 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    } else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
+}
+function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
+    document.querySelectorAll(`${item}`).forEach(slider => {
+        if (slider.innerHTML === '') {
+            slider.closest('.category').remove();
+        }
+        tns({
+            container: slider,
+            items: amountMob,
+            autoplay: false,
+            controls: true,
+            loop: false,
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            preventScrollOnTouch: 'auto',
+            swipeAngle: false,
+            responsive: {
+                769: {
+                    items: amountTablet,
+                    nav: true,
+                },
+                1024: {
+                    items: amountDesk,
+                    nav: navDesk,
+                }
+            }
+        });
+    });
+}
+function card(index,img,name,price,link) {
+    let card = `
+    <div class="slide">
+         <div class="card">
+            <a href="${link}.html" class="card-title">
+                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                <span>${name}</span>
+            </a>
+            <div class="card_bottom">
+                <div class="card-price">£${price}</div>
+                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+            </div>
+        </div>
+    </div>`;
+    if (index != 'popup') {
+        document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+        // console.log('index != popup and card: ' + name + ' в slider = ' + index)
+        // if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length < 12) {
+        //     console.log('length: ' + document.querySelector(`.category-slider[data-id='${index}'] .slide`).length)
+            // tnsInitialization('.category-slider',2,3,4,false);
+        // }
+    } else {
+        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+    }
 
+    document.querySelectorAll('.category .card-price').forEach((el) => {
+        if(el.innerHTML === '£0') {
+            el.closest('.slide').remove();
+        }
+    })
+}
+
+function eventsCategories(elem,eventAction) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            }
+        });
+    })
+}
+function eventsPopup(elem,eventAction) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Exit intent popup`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': eventAction,
+                    'eventLabel': `Exit intent popup`
+                });
+            }
+        });
+    })
+}
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
@@ -595,120 +708,6 @@ window.onload  = function () {
         'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
     scriptCustom.async = false;
     document.head.appendChild(scriptCustom);
-    function addEvent(obj, evt, fn) {
-        if (obj.addEventListener) {
-            obj.addEventListener(evt, fn, false);
-        } else if (obj.attachEvent) {
-            obj.attachEvent("on" + evt, fn);
-        }
-    }
-    function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
-        document.querySelectorAll(`${item}`).forEach(slider => {
-            if (slider.innerHTML === '') {
-                slider.closest('.category').remove();
-            }
-            tns({
-                container: slider,
-                items: amountMob,
-                autoplay: false,
-                controls: true,
-                loop: false,
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-                responsive: {
-                    769: {
-                        items: amountTablet,
-                        nav: true,
-                    },
-                    1024: {
-                        items: amountDesk,
-                        nav: navDesk,
-                    }
-                }
-            });
-        });
-    }
-    function card(index,img,name,price,link) {
-        let card = `
-        <div class="slide">
-             <div class="card">
-                <a href="${link}.html" class="card-title">
-                    <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                    <span>${name}</span>
-                </a>
-                <div class="card_bottom">
-                    <div class="card-price">£${price}</div>
-                    <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-                </div>
-            </div>
-        </div>`;
-        if (index != 'popup') {
-            document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-            // console.log('index != popup and card: ' + name + ' в slider = ' + index)
-            // if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length < 12) {
-            //     console.log('length: ' + document.querySelector(`.category-slider[data-id='${index}'] .slide`).length)
-                // tnsInitialization('.category-slider',2,3,4,false);
-            // }
-        } else {
-            document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-        }
-
-        document.querySelectorAll('.category .card-price').forEach((el) => {
-            if(el.innerHTML === '£0') {
-                el.closest('.slide').remove();
-            }
-        })
-    }
-
-    function eventsCategories(elem,eventAction) {
-        document.querySelectorAll(elem).forEach((el) => {
-            el.addEventListener('click', () => {
-                if (window.matchMedia(`(max-width: 768px)`).matches) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                        'eventAction': eventAction,
-                        'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                    });
-                } else {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                        'eventAction': eventAction,
-                        'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                    });
-                }
-            });
-        })
-    }
-    function eventsPopup(elem,eventAction) {
-        document.querySelectorAll(elem).forEach((el) => {
-            el.addEventListener('click', () => {
-                if (window.matchMedia(`(max-width: 768px)`).matches) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                        'eventAction': eventAction,
-                        'eventLabel': `Exit intent popup`
-                    });
-                } else {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                        'eventAction': eventAction,
-                        'eventLabel': `Exit intent popup`
-                    });
-                }
-            });
-        })
-    }
 
     document.querySelectorAll('.box-tocart')[1].hidden = true;
     if (window.matchMedia("(max-width: 768px)").matches) {
@@ -993,21 +992,19 @@ window.onload  = function () {
     eventsPopup('.popup .card-title','Click on product from');
     eventsPopup('.popup .btn','Click on View product white button');
     eventsPopup('.popup .tns-controls button','Click on arrows button');
-
-    let mut = new MutationObserver(function (muts) {
-        if (document.querySelector('.category-slider')) {
-            mut.disconnect();
-            tnsInitialization('.category-slider',2,3,4,false);
-        }
-    });
-    
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
 };
 
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelectorAll('.category-slider') && document.querySelectorAll('.category-slider').length == 5) {
+        mut.disconnect();
+        tnsInitialization('.category-slider',2,3,4,false);
+    }
+});
 
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     window.dataLayer = window.dataLayer || [];
