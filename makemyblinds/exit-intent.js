@@ -284,8 +284,12 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
                     card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
                     // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
                 }
+            }
+            if (document.querySelectorAll('.category-slider .slide')) {
+                mut.disconnect();
                 tnsInitialization('.category-slider',2,3,4,false);
             }
+           
         });
 
         mut.observe(document, {
