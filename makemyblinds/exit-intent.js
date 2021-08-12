@@ -647,11 +647,9 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-            // if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length <= 12) {
-            //     tnsInitialization(`.category-slider[data-id='${index}']`,2,3,4,false);
-            // }
-            
-       
+            if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length <= 12) {
+                tnsInitialization(`.category-slider[data-id='${index}']`,2,3,4,false);
+            }
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
