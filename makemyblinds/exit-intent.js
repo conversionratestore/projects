@@ -1,3 +1,110 @@
+
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    } else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
+}
+function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
+    document.querySelectorAll(`${item}`).forEach(slider => {
+        tns({
+            container: slider,
+            items: amountMob,
+            autoplay: false,
+            controls: true,
+            loop: false,
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            preventScrollOnTouch: 'auto',
+            swipeAngle: false,
+            responsive: {
+                769: {
+                    items: amountTablet,
+                    nav: true,
+                },
+                1024: {
+                    items: amountDesk,
+                    nav: navDesk,
+                }
+            }
+        });
+    });
+}
+function card(index,img,name,price,link) {
+    let card = `
+    <div class="slide">
+         <div class="card">
+            <a href="${link}.html" class="card-title">
+                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                <span>${name}</span>
+            </a>
+            <div class="card_bottom">
+                <div class="card-price">£${price}</div>
+                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+            </div>
+        </div>
+    </div>`;
+    if (index != 'popup') {
+        document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+    } else {
+        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+    }
+
+    document.querySelectorAll('.category .card-price').forEach((el) => {
+        if(el.innerHTML === '£0') {
+            el.closest('.slide').remove();
+        }
+    })
+}
+function eventsCategories(elem,eventAction) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            }
+        });
+    })
+}
+function eventsPopup(elem,eventAction) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Exit intent popup`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': eventAction,
+                    'eventLabel': `Exit intent popup`
+                });
+            }
+        });
+    })
+}
+
 let token = [];
 
 let randomItems = [],
@@ -165,116 +272,30 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
         localStorage.setItem('items', JSON.stringify(items));
         tnsInitialization('.category-slider',2,3,4,false);
+        let mut = new MutationObserver(function (muts) {
+            console.log('mutation')
+            if (document.querySelectorAll('.category-slider')) {
+                mut.disconnect();
+                for (let i = 0; i < 12; i++) {
+                    let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
+                    card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
+                    card(JSON.parse(localStorage.getItem('items'))[1]["idCategory"], itemsLocalStorage[1]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["data"]["items"][i]["name"],itemsLocalStorage[1]["data"]["items"][i]["price"],itemsLocalStorage[1]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["data"]["items"][i]["status"]);
+                    card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["data"]["items"][i]["name"],itemsLocalStorage[2]["data"]["items"][i]["price"],itemsLocalStorage[2]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["data"]["items"][i]["status"]);
+                    card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
+                    card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
+                    // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
+                }
+            }
+        });
+
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
 });
-function addEvent(obj, evt, fn) {
-    if (obj.addEventListener) {
-        obj.addEventListener(evt, fn, false);
-    } else if (obj.attachEvent) {
-        obj.attachEvent("on" + evt, fn);
-    }
-}
-function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
-    document.querySelectorAll(`${item}`).forEach(slider => {
-        tns({
-            container: slider,
-            items: amountMob,
-            autoplay: false,
-            controls: true,
-            loop: false,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            preventScrollOnTouch: 'auto',
-            swipeAngle: false,
-            responsive: {
-                769: {
-                    items: amountTablet,
-                    nav: true,
-                },
-                1024: {
-                    items: amountDesk,
-                    nav: navDesk,
-                }
-            }
-        });
-    });
-}
-function card(index,img,name,price,link) {
-    let card = `
-    <div class="slide">
-         <div class="card">
-            <a href="${link}.html" class="card-title">
-                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                <span>${name}</span>
-            </a>
-            <div class="card_bottom">
-                <div class="card-price">£${price}</div>
-                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-            </div>
-        </div>
-    </div>`;
-    if (index != 'popup') {
-        document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-    } else {
-        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-    }
-
-    document.querySelectorAll('.category .card-price').forEach((el) => {
-        if(el.innerHTML === '£0') {
-            el.closest('.slide').remove();
-        }
-    })
-}
-
-function eventsCategories(elem,eventAction) {
-    document.querySelectorAll(elem).forEach((el) => {
-        el.addEventListener('click', () => {
-            if (window.matchMedia(`(max-width: 768px)`).matches) {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                    'eventAction': eventAction,
-                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                });
-            } else {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                    'eventAction': eventAction,
-                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                });
-            }
-        });
-    })
-}
-function eventsPopup(elem,eventAction) {
-    document.querySelectorAll(elem).forEach((el) => {
-        el.addEventListener('click', () => {
-            if (window.matchMedia(`(max-width: 768px)`).matches) {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                    'eventAction': eventAction,
-                    'eventLabel': `Exit intent popup`
-                });
-            } else {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                    'eventAction': eventAction,
-                    'eventLabel': `Exit intent popup`
-                });
-            }
-        });
-    })
-}
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
