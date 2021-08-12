@@ -309,7 +309,11 @@ let mut = new MutationObserver(function (muts) {
        
         tnsInitialization('.category-slider',2,3,4,false);
     }
-    if (randomItems != []) {
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+    if (randomItems != [] && document.querySelector('.category-slider[data-id="random"]').innerHTML == "") {
         mut.disconnect();
         tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
     }
