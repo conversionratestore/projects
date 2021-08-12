@@ -830,7 +830,7 @@ window.onload  = function () {
     }
 
     if (localStorage.getItem('items')) {
-        tnsInitialization('.category-slider',2,3,4,false);
+        // tnsInitialization('.category-slider',2,3,4,false);
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
             card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
