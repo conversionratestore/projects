@@ -226,11 +226,6 @@ function card(index,img,name,price,link) {
         if(el.innerHTML === '£0') {
             el.closest('.slide').remove();
         }
-        document.querySelectorAll('.category-slider').forEach((slider) => {
-            if (slider.innerHTML === "") {
-                slider.closest('.category').remove();
-            }
-        })
     })
 }
 
