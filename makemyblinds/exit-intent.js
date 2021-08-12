@@ -120,6 +120,7 @@ let randomItems = [],
             price: '9.99',
             greatFor: 'Bathroom',
             idGreatFor: '6',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes',
@@ -128,6 +129,7 @@ let randomItems = [],
             price: '11.99',
             greatFor: 'Bedroom',
             idGreatFor: '9',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit',
@@ -136,6 +138,7 @@ let randomItems = [],
             price: '19.99',
             greatFor: 'Conservatories',
             idGreatFor: '68',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit',
@@ -144,6 +147,7 @@ let randomItems = [],
             price: '29.99',
             greatFor: 'Conservatories',
             idGreatFor: '68',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/gloss-pure-white-perfect-fit',
@@ -152,6 +156,7 @@ let randomItems = [],
             price: '19.99',
             greatFor: 'Conservatories',
             idGreatFor: '68',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/real-wood-bliss-white-with-charcoal-tape',
@@ -160,6 +165,7 @@ let randomItems = [],
             price: '12.99',
             greatFor: 'Bedroom',
             idGreatFor: '9',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/amor-shark-grey-roller-blind',
@@ -168,6 +174,7 @@ let randomItems = [],
             price: '9.95',
             greatFor: 'Bathroom',
             idGreatFor: '6',
+            status: 1
         },
         {
             link: 'https://www.makemyblinds.co.uk/amor-white-lotus-roller-blind',
@@ -176,6 +183,7 @@ let randomItems = [],
             price: '9.99',
             greatFor: 'Kitchen',
             idGreatFor: '8',
+            status: 1
         }
     ];
 
