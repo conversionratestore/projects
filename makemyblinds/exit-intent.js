@@ -272,40 +272,41 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
         localStorage.setItem('items', JSON.stringify(items));
         tnsInitialization('.category-slider',2,3,4,false);
-        let mut = new MutationObserver(function (muts) {
-            console.log('mutation')
-            if (document.querySelectorAll('.category-slider')[5]) {
-                mut.disconnect();
-                console.log('mut.disconnect 1');
-                // localStorage.setItem('items', JSON.stringify(items));
-                // tnsInitialization('.category-slider',2,3,4,false);
-                for (let i = 0; i < 12; i++) {
-                    let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
-                    card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
-                    card(JSON.parse(localStorage.getItem('items'))[1]["idCategory"], itemsLocalStorage[1]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["data"]["items"][i]["name"],itemsLocalStorage[1]["data"]["items"][i]["price"],itemsLocalStorage[1]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["data"]["items"][i]["status"]);
-                    card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["data"]["items"][i]["name"],itemsLocalStorage[2]["data"]["items"][i]["price"],itemsLocalStorage[2]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["data"]["items"][i]["status"]);
-                    card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
-                    card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
-                    // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
-                }
-            
-            }
-            // if (document.querySelectorAll('.category-slider') ) {
-            //     mut.disconnect();
-            //     console.log('mut.disconnect 2');
-            //     localStorage.setItem('items', JSON.stringify(items));
-            //     tnsInitialization('.category-slider',2,3,4,false);
-            // }
-           
-        });
-        
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
+     
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
+});
+let mut = new MutationObserver(function (muts) {
+    console.log('mutation')
+    if (document.querySelectorAll('.category-slider')[5] && localStorage.getItem('items')) {
+        mut.disconnect();
+        console.log('mut.disconnect 1');
+        // localStorage.setItem('items', JSON.stringify(items));
+        tnsInitialization('.category-slider',2,3,4,false);
+        for (let i = 0; i < 12; i++) {
+            let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
+            card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
+            card(JSON.parse(localStorage.getItem('items'))[1]["idCategory"], itemsLocalStorage[1]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["data"]["items"][i]["name"],itemsLocalStorage[1]["data"]["items"][i]["price"],itemsLocalStorage[1]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["data"]["items"][i]["status"]);
+            card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["data"]["items"][i]["name"],itemsLocalStorage[2]["data"]["items"][i]["price"],itemsLocalStorage[2]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["data"]["items"][i]["status"]);
+            card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
+            card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
+            // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
+        }
+    
+    }
+    // if (document.querySelectorAll('.category-slider') ) {
+    //     mut.disconnect();
+    //     console.log('mut.disconnect 2');
+    //     localStorage.setItem('items', JSON.stringify(items));
+    //     tnsInitialization('.category-slider',2,3,4,false);
+    // }
+   
+});
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
 });
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
