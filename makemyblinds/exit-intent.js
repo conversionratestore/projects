@@ -476,6 +476,7 @@ window.onload  = function () {
         background: url('https://conversionratestore.github.io/projects/makemyblinds/img/arrow.svg') no-repeat right 10px center / 8px;
         color: #232849;}
     .category-slider {
+        display: flex;
         padding: 32px 0 44px;
         position: relative;}
     .slider {
