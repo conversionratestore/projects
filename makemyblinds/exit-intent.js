@@ -603,7 +603,7 @@ window.onload  = function () {
         }
     }
     function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
-        document.querySelectorAll(`.${item}`).forEach(slider => {
+        document.querySelectorAll(`${item}`).forEach(slider => {
             if (slider.innerHTML === '') {
                 slider.closest('.category').remove();
             }
@@ -647,7 +647,7 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-            tnsInitialization(`category-slider[data-id='${index}']`,2,3,4,false);
+            tnsInitialization(`.category-slider[data-id='${index}']`,2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         }
@@ -853,7 +853,7 @@ window.onload  = function () {
                 if(my_scroll() < -200){
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
-                    tnsInitialization('slider',1,2,2,true);
+                    tnsInitialization('.slider',1,2,2,true);
                 }
             }
         }
@@ -924,7 +924,7 @@ window.onload  = function () {
             if (evt.toElement == null && evt.relatedTarget == null) {
                 document.querySelector(".popup").classList.add('active');
                 document.querySelector(".popup").classList.add('was');
-                tnsInitialization('slider',1,2,2,true);
+                tnsInitialization('.slider',1,2,2,true);
             }
         }
     });
@@ -940,7 +940,7 @@ window.onload  = function () {
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
             card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-            tnsInitialization('category-slider',2,3,4,false);
+            // tnsInitialization(`.category-slider[data-id='random']`,2,3,4,false);
         }
         
     }).catch(err => {
