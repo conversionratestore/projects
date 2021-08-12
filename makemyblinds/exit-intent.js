@@ -225,6 +225,9 @@ function card(index,img,name,price,link) {
     document.querySelectorAll('.category .card-price').forEach((el) => {
         if(el.innerHTML === '£0') {
             el.closest('.slide').remove();
+            console.log(el.closest('.slide') !== undefined)
+            console.log(el.closest('.slide'))
+            console.log(el.closest('.slide').length)
         }
     })
 }
