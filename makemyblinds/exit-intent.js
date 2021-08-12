@@ -646,7 +646,7 @@ window.onload  = function () {
             </div>
         </div>`;
         if (index != 'popup') {
-            document.querySelector(`.category[data-id="${index}"] .category-slider`).insertAdjacentHTML('afterbegin', card);
+            document.querySelector(`.category-slider[data-id='${index}'] `).insertAdjacentHTML('afterbegin', card);
             tnsInitialization('category-slider',2,3,4,false);
         } else {
             document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
@@ -827,7 +827,7 @@ window.onload  = function () {
         }
     ];
     for (let i = 0; i < titleArr.length; i++) {
-        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category" data-id="${titleArr[i].id}"><h3 class="category-title">${titleArr[i].title}</h3><div class="category-slider"></div></div>`);
+        document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i].title}</h3><div class="category-slider" data-id="${titleArr[i].id}"></div></div>`);
     }
 
     for (let i = 0; i < 12; i++) {
