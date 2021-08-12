@@ -290,7 +290,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     console.log('Failed fetch ', err);
 });
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.category-slider') && localStorage.getItem('items') && document.querySelectorAll('.category-slider')[5].innerHTML == "") {
+    if (document.querySelectorAll('.category-slider') && localStorage.getItem('items') && document.querySelectorAll('.category-slider').innerHTML == "") {
         mut.disconnect();
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
@@ -578,6 +578,8 @@ window.onload  = function () {
                 right: 50%;}
         }
         @media screen and (max-width: 768px) {
+            .slide {
+                width: calc(8.33333%);}
             .page-title-wrapper {
                 display: none;}
             .product-details {
