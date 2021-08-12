@@ -178,9 +178,6 @@ function addEvent(obj, evt, fn) {
 }
 function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
     document.querySelectorAll(`${item}`).forEach(slider => {
-        if (slider.innerHTML === '') {
-            slider.closest('.category').remove();
-        }
         tns({
             container: slider,
             items: amountMob,
@@ -221,11 +218,6 @@ function card(index,img,name,price,link) {
     </div>`;
     if (index != 'popup') {
         document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-        // console.log('index != popup and card: ' + name + ' в slider = ' + index)
-        // if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length < 12) {
-        //     console.log('length: ' + document.querySelector(`.category-slider[data-id='${index}'] .slide`).length)
-            // tnsInitialization('.category-slider',2,3,4,false);
-        // }
     } else {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
     }
@@ -841,7 +833,14 @@ window.onload  = function () {
         card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["data"]["items"][i]["name"],itemsLocalStorage[2]["data"]["items"][i]["price"],itemsLocalStorage[2]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["data"]["items"][i]["status"]);
         card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
         card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
-        card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]);
+        card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
+        if (i == 12) {
+            document.querySelector(`.category-slider`).forEach((el) => {
+                if (el.innerHTML === "") {
+                    el.closest('.category').remove();
+                }
+            })
+        }
     }
 
     if (document.querySelector('.badge-fast-track')) {
@@ -941,7 +940,6 @@ window.onload  = function () {
         randomItems.push(data);
         for (let i = 0; i < 12; i++) {
             card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
-            // tnsInitialization(`.category-slider[data-id='random']`,2,3,4,false);
         }
         
     }).catch(err => {
@@ -994,21 +992,6 @@ window.onload  = function () {
     eventsPopup('.popup .btn','Click on View product white button');
     eventsPopup('.popup .tns-controls button','Click on arrows button');
 };
-
-// let mut = new MutationObserver(function (muts) {
-//     console.log('mutation');
-//     if (document.querySelectorAll('.category-slider .slide')) {
-//         mut.disconnect();
-//         console.log(' mut.disconnect');
-//         console.log(document.querySelectorAll('.category-slider .slide'));
-//         tnsInitialization('.category-slider',2,3,4,false);
-//     }
-// });
-
-// mut.observe(document, {
-//     childList: true,
-//     subtree: true
-// });
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     window.dataLayer = window.dataLayer || [];
