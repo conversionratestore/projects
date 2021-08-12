@@ -912,7 +912,7 @@ window.onload  = function () {
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
-            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelector('.popup .slider .slide')) {
+            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelectorAll('.popup .slider .slide')) {
                 if(my_scroll() < -200){
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
@@ -986,7 +986,7 @@ window.onload  = function () {
     });
 
     addEvent(document, 'mouseout', function(evt) {
-        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelector('.popup .slider .slide')) {
+        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelectorAll('.popup .slider .slide')) {
             if (evt.toElement == null && evt.relatedTarget == null) {
                 document.querySelector(".popup").classList.add('active');
                 document.querySelector(".popup").classList.add('was');
