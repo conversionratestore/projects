@@ -228,7 +228,7 @@ function card(index,img,name,price,link) {
         }
     })
 
-    document.querySelector(`.category-slider`).forEach((el) => {
+    document.querySelectorAll(`.category-slider`).forEach((el) => {
         if (el.innerHTML === "") {
             el.closest('.category').remove();
         }
