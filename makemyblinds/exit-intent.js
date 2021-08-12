@@ -458,6 +458,7 @@ window.onload  = function () {
         line-height: 22px;
         font-weight: normal;}
     .category {
+        overflow: hidden;
         position: relative;
         display: none;
         padding: 40px 10px 0; }
