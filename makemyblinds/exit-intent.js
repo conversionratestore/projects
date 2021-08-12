@@ -225,10 +225,12 @@ function card(index,img,name,price,link) {
     document.querySelectorAll('.category .card-price').forEach((el) => {
         if(el.innerHTML === '£0') {
             el.closest('.slide').remove();
-            if (el.closest('.category-slider').innerHTML === "") {
-                el.closest('.category').remove();
-            }
         }
+        document.querySelectorAll('.category-slider').forEach((slider) => {
+            if (slider.innerHTML === "") {
+                slider.closest('.category').remove();
+            }
+        })
     })
 }
 
