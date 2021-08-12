@@ -647,7 +647,9 @@ window.onload  = function () {
         </div>`;
         if (index != 'popup') {
             document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+            console.log('index != popup and card: ' + card + ' в slider = index')
             if (document.querySelector(`.category-slider[data-id='${index}'] .slide`).length <= 12) {
+                console.log('length: ' + document.querySelector(`.category-slider[data-id='${index}'] .slide`).length)
                 tnsInitialization(`.category-slider[data-id='${index}']`,2,3,4,false);
             }
         } else {
