@@ -876,7 +876,7 @@ window.onload  = function () {
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i].title}</h3><div class="category-slider" data-id="${titleArr[i].id}"></div></div>`);
     }
-  }
+  
     // document.querySelector('.categories').insertAdjacentHTML('afterbegin',`<div class="category"><h3 class="category-title">Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}</h3><div class="category-slider" data-id="random"></div></div>`)
     if (localStorage.getItem('items')) {
         for (let i = 0; i < 12; i++) {
