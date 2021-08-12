@@ -309,14 +309,14 @@ let mut = new MutationObserver(function (muts) {
        
         tnsInitialization('.category-slider',2,3,4,false);
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    if (document.querySelectorAll('.category-slider[data-id="random"] .slide') && document.querySelectorAll('.product-great-item')[0]) {
-        mut.disconnect();
-        tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
-    }
+    // mut.observe(document, {
+    //     childList: true,
+    //     subtree: true
+    // });
+    // if (document.querySelectorAll('.category-slider[data-id="random"] .slide') && document.querySelectorAll('.product-great-item')[0]) {
+    //     mut.disconnect();
+    //     tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
+    // }
 });
 
 mut.observe(document, {
