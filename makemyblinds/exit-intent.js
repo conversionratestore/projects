@@ -218,6 +218,11 @@ function card(index,img,name,price,link) {
     </div>`;
     if (index != 'popup') {
         document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+        document.querySelectorAll(`.category-slider[data-id='${index}']`).forEach((el) => {
+            if (el.innerHTML === "") {
+                el.closest('.category').remove();
+            }
+        })
     } else {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
     }
@@ -228,11 +233,7 @@ function card(index,img,name,price,link) {
         }
     })
 
-    document.querySelectorAll(`.category-slider`).forEach((el) => {
-        if (el.innerHTML === "") {
-            el.closest('.category').remove();
-        }
-    })
+  
 }
 
 function eventsCategories(elem,eventAction) {
