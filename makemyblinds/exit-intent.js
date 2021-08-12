@@ -294,7 +294,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     console.log('Failed fetch ', err);
 });
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] && localStorage.getItem('items') && JSON.parse(localStorage.getItem('items')).length == 5 && document.querySelectorAll('.category-slider')[5].innerHTML == "" ) {
+    if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] && localStorage.getItem('items') && document.querySelectorAll('.category-slider')[5].innerHTML == "" ) {
         mut.disconnect();
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
