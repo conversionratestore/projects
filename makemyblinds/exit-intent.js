@@ -579,7 +579,7 @@ window.onload  = function () {
         }
         @media screen and (max-width: 768px) {
             .slide {
-                width: calc(8.33333%);}
+                width: 50%;}
             .page-title-wrapper {
                 display: none;}
             .product-details {
