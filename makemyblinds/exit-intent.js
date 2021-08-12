@@ -987,9 +987,11 @@ window.onload  = function () {
     addEvent(document, 'mouseout', function(evt) {
         if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelectorAll('.popup .slider .slide')) {
             if (evt.toElement == null && evt.relatedTarget == null) {
-                document.querySelector(".popup").classList.add('active');
-                document.querySelector(".popup").classList.add('was');
-                tnsInitialization('.slider',1,2,2,true);
+                setTimeout(() => {
+                    document.querySelector(".popup").classList.add('active');
+                    document.querySelector(".popup").classList.add('was');
+                    tnsInitialization('.slider',1,2,2,true);
+                }, 100);
             }
         }
     });
