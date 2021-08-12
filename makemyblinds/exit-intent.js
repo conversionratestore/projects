@@ -993,9 +993,10 @@ window.onload  = function () {
 };
 let mut = new MutationObserver(function (muts) {
     console.log('mutation')
-    if (document.querySelectorAll('.category-slider')[5] && !localStorage.getItem('items')) {
+    if (document.querySelectorAll('.category-slider')[5]) {
         mut.disconnect();
         console.log('mut.disconnect 1');
+        localStorage.setItem('items', JSON.stringify(items));
         tnsInitialization('.category-slider',2,3,4,false);
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
@@ -1008,11 +1009,12 @@ let mut = new MutationObserver(function (muts) {
         }
     
     }
-    if (document.querySelectorAll('.category-slider') ) {
-        mut.disconnect();
-        console.log('mut.disconnect 2');
-        tnsInitialization('.category-slider',2,3,4,false);
-    }
+    // if (document.querySelectorAll('.category-slider') ) {
+    //     mut.disconnect();
+    //     console.log('mut.disconnect 2');
+    //     localStorage.setItem('items', JSON.stringify(items));
+    //     tnsInitialization('.category-slider',2,3,4,false);
+    // }
    
 });
 
