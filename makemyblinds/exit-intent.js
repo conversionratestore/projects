@@ -303,6 +303,14 @@ let mut = new MutationObserver(function (muts) {
         }
         tnsInitialization('.category-slider',2,3,4,false);
     }
+    if(document.querySelectorAll('.category-slider')[1].innerHTML != "") {
+        mut.disconnect();
+        tnsInitialization('.category-slider',2,3,4,false);
+    }
+    if(document.querySelectorAll('.category-slider')[2].innerHTML != "") {
+        mut.disconnect();
+        tnsInitialization('.category-slider',2,3,4,false);
+    }
 });
 
 mut.observe(document, {
