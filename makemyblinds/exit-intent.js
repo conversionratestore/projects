@@ -178,10 +178,6 @@ function addEvent(obj, evt, fn) {
 }
 function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
     document.querySelectorAll(`${item}`).forEach(slider => {
-        if (slider.innerHTML === "") {
-            console.log(slider);
-            slider.closest('.category').remove();
-        }
         tns({
             container: slider,
             items: amountMob,
@@ -230,9 +226,10 @@ function card(index,img,name,price,link) {
         if(el.innerHTML === '£0') {
             el.closest('.slide').remove();
         }
+        if (el.closest('.category-slider').innerHTML === "") {
+            el.closest('.category').remove();
+        }
     })
-
-  
 }
 
 function eventsCategories(elem,eventAction) {
