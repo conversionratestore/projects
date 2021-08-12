@@ -912,7 +912,7 @@ window.onload  = function () {
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
-            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
+            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelector('.popup .slider .slide')) {
                 if(my_scroll() < -200){
                     document.querySelector(".popup").classList.add('active');
                     document.querySelector(".popup").classList.add('was');
@@ -957,6 +957,9 @@ window.onload  = function () {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
+    setTimeout(() => {
+
+    },100)
 
     window.addEventListener('scroll', myScrollSpeedFunction);
 
@@ -983,7 +986,7 @@ window.onload  = function () {
     });
 
     addEvent(document, 'mouseout', function(evt) {
-        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
+        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelector('.popup .slider .slide')) {
             if (evt.toElement == null && evt.relatedTarget == null) {
                 document.querySelector(".popup").classList.add('active');
                 document.querySelector(".popup").classList.add('was');
