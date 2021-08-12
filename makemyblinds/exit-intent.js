@@ -150,19 +150,19 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
 
-    let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${datatoken}`
-        }
-    }).then(res => res.json()).then(data => {
-        console.log('Fire Retardant', data);
-        items.push({data,'idCategory': '183'});
-    }).catch(err => {
-        console.log('Failed fetch ', err);
-    });
-    Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
+    // let request6 = fetch("https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=master_properties&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=183&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]", {
+    //     method: "GET",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": `Bearer ${datatoken}`
+    //     }
+    // }).then(res => res.json()).then(data => {
+    //     console.log('Fire Retardant', data);
+    //     items.push({data,'idCategory': '183'});
+    // }).catch(err => {
+    //     console.log('Failed fetch ', err);
+    // });
+    Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
         localStorage.setItem('items', JSON.stringify(items));
         tnsInitialization('.category-slider',2,3,4,false);
     });
