@@ -661,10 +661,6 @@ window.onload  = function () {
                 el.closest('.slide').remove();
             }
         })
-        document.querySelector('.categories').addEventListener('change', () => {
-            console.log('changed');
-            tnsInitialization('.category-slider',2,3,4,false);
-        })
     }
 
     function eventsCategories(elem,eventAction) {
@@ -997,7 +993,21 @@ window.onload  = function () {
     eventsPopup('.popup .card-title','Click on product from');
     eventsPopup('.popup .btn','Click on View product white button');
     eventsPopup('.popup .tns-controls button','Click on arrows button');
+
+    let mut = new MutationObserver(function (muts) {
+        if (document.querySelector('.category-slider')) {
+            mut.disconnect();
+            tnsInitialization('.category-slider',2,3,4,false);
+        }
+    });
+    
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
 };
+
+
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     window.dataLayer = window.dataLayer || [];
