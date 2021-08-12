@@ -985,13 +985,15 @@ window.onload  = function () {
     });
 
     addEvent(document, 'mouseout', function(evt) {
-        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelectorAll('.popup .slider .slide')) {
+        if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' ) {
             if (evt.toElement == null && evt.relatedTarget == null) {
-                setTimeout(() => {
-                    document.querySelector(".popup").classList.add('active');
-                    document.querySelector(".popup").classList.add('was');
-                    tnsInitialization('.slider',1,2,2,true);
-                }, 100);
+                if (document.querySelectorAll('.popup .slider .slide'))
+                    setTimeout(() => {
+                        document.querySelector(".popup").classList.add('active');
+                        document.querySelector(".popup").classList.add('was');
+                        tnsInitialization('.slider',1,2,2,true);
+                    }, 100);
+                }
             }
         }
     });
