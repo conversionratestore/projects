@@ -941,6 +941,8 @@ window.onload  = function () {
             card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
         
+        tnsInitialization('.category-slider',2,3,4,false);
+        
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
