@@ -294,7 +294,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     console.log('Failed fetch ', err);
 });
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] &&localStorage.getItem('items') && document.querySelectorAll('.category-slider')[5].innerHTML == "") {
+    if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] &&localStorage.getItem('items') && document.querySelectorAll('.category-slider')[5].innerHTML == "" ) {
         mut.disconnect();
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
@@ -987,7 +987,7 @@ window.onload  = function () {
 
     if(document.querySelectorAll('.product-great-item')[0]){
         console.log('find');
-        fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
+        fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
