@@ -996,7 +996,7 @@ window.onload  = function () {
 
 let mut = new MutationObserver(function (muts) {
     console.log('mutation');
-    if (document.querySelectorAll('.category-slider') && document.querySelectorAll('.category-slider').length == 5 && document.querySelectorAll('.category-slider .slide').length == 12 ) {
+    if (document.querySelectorAll('.category-slider .slide')) {
         mut.disconnect();
         console.log(' mut.disconnect')
         tnsInitialization('.category-slider',2,3,4,false);
