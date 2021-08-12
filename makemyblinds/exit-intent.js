@@ -275,7 +275,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     });
     Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
         localStorage.setItem('items', JSON.stringify(items));
-        // tnsInitialization('.category-slider',2,3,4,false);
+        tnsInitialization('.category-slider',2,3,4,false);
 
         // if (document.querySelectorAll('.category-slider') && document.querySelectorAll('.category-slider').innerHTML == "") {
         //     for (let i = 0; i < 12; i++) {
