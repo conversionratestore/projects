@@ -164,6 +164,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     });
     Promise.all([request1,request2,request3,request4,request5,request6]).then(res => {
         localStorage.setItem('items', JSON.stringify(items));
+        tnsInitialization('.category-slider',2,3,4,false);
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -994,20 +995,20 @@ window.onload  = function () {
     eventsPopup('.popup .tns-controls button','Click on arrows button');
 };
 
-let mut = new MutationObserver(function (muts) {
-    console.log('mutation');
-    if (document.querySelectorAll('.category-slider .slide')) {
-        mut.disconnect();
-        console.log(' mut.disconnect');
-        console.log(document.querySelectorAll('.category-slider .slide'));
-        tnsInitialization('.category-slider',2,3,4,false);
-    }
-});
+// let mut = new MutationObserver(function (muts) {
+//     console.log('mutation');
+//     if (document.querySelectorAll('.category-slider .slide')) {
+//         mut.disconnect();
+//         console.log(' mut.disconnect');
+//         console.log(document.querySelectorAll('.category-slider .slide'));
+//         tnsInitialization('.category-slider',2,3,4,false);
+//     }
+// });
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+// mut.observe(document, {
+//     childList: true,
+//     subtree: true
+// });
 
 if (window.matchMedia("(max-width: 768px)").matches) {
     window.dataLayer = window.dataLayer || [];
