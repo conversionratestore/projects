@@ -324,8 +324,7 @@ mut.observe(document, {
     subtree: true
 });
 window.onload  = function () {
-    document.body.insertAdjacentHTML('afterbegin', `
-    <style>
+    document.body.insertAdjacentHTML('afterbegin', `<style>
     .popup .product-great{
         padding: 0;}
     .popup .product-great a {
@@ -986,7 +985,7 @@ window.onload  = function () {
     });
 
     if(document.querySelectorAll('.product-great-item')[0]){
-        console.log('find');
+        console.log('find' + document.querySelectorAll('.product-great-item')[0].dataset.id);
         fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}&searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
             method: "GET",
             headers: {
@@ -999,7 +998,7 @@ window.onload  = function () {
             for (let i = 0; i < 12; i++) {
                 card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
             }
-            tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
+           
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
