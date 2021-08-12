@@ -998,7 +998,8 @@ let mut = new MutationObserver(function (muts) {
     console.log('mutation');
     if (document.querySelectorAll('.category-slider .slide')) {
         mut.disconnect();
-        console.log(' mut.disconnect')
+        console.log(' mut.disconnect');
+        console.log(document.querySelectorAll('.category-slider .slide'));
         tnsInitialization('.category-slider',2,3,4,false);
     }
 });
