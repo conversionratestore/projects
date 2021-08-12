@@ -958,7 +958,7 @@ window.onload  = function () {
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
     setTimeout(() => {
-
+        tnsInitialization('.slider',1,2,2,true);
     },100)
 
     window.addEventListener('scroll', myScrollSpeedFunction);
