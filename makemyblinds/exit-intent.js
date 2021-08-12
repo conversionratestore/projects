@@ -317,14 +317,14 @@ let mut = new MutationObserver(function (muts) {
         }
        
     }
-    // mut.observe(document, {
-    //     childList: true,
-    //     subtree: true
-    // });
-    // if (document.querySelectorAll('.category-slider[data-id="random"] .slide') && document.querySelectorAll('.product-great-item')[0]) {
-    //     mut.disconnect();
-    //     tnsInitialization('.category-slider[data-id="random"]',2,3,4,false);
-    // }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+    if (document.querySelectorAll('.popup .slider .slide')) {
+        mut.disconnect();
+        tnsInitialization('.slider',1,2,2,true);
+    }
 });
 
 mut.observe(document, {
