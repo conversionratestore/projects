@@ -827,7 +827,6 @@ window.onload  = function () {
     ];
     for (let i = 0; i < titleArr.length; i++) {
         document.querySelector('.categories').insertAdjacentHTML('afterbegin', `<div class="category"><h3 class="category-title">${titleArr[i].title}</h3><div class="category-slider" data-id="${titleArr[i].id}"></div></div>`);
-        tnsInitialization('category-slider',2,3,4,false);
     }
 
     for (let i = 0; i < 12; i++) {
