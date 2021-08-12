@@ -569,6 +569,7 @@ window.onload  = function () {
         display: none;}
         @media screen and (min-width: 769px) {
             .popup .slide {
+                width: 50%;
                 padding: 0 20px; }
             .popup .tns-controls {
                 width: 100%;
@@ -577,6 +578,12 @@ window.onload  = function () {
                 max-width: 536px;
                 transform: translateX(50%);
                 right: 50%;}
+            .slide {
+                width: 33%;}
+        }
+        @media screen and (min-width: 1025x) {
+            .slide {
+                width: 25%;}
         }
         @media screen and (max-width: 768px) {
             .slide {
