@@ -912,11 +912,13 @@ window.onload  = function () {
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
-            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '' && document.querySelectorAll('.popup .slider .slide')) {
-                if(my_scroll() < -200){
-                    document.querySelector(".popup").classList.add('active');
-                    document.querySelector(".popup").classList.add('was');
-                    tnsInitialization('.slider',1,2,2,true);
+            if (!document.querySelector(".popup").classList.contains('was') && document.querySelector('.popup .slider').innerHTML != '') {
+                if(my_scroll() < -200 && document.querySelectorAll('.popup .slider .slide')){
+                    setTimeout(() => {
+                        document.querySelector(".popup").classList.add('active');
+                        document.querySelector(".popup").classList.add('was');
+                        tnsInitialization('.slider',1,2,2,true);
+                    }, 100);
                 }
             }
         }
@@ -957,9 +959,6 @@ window.onload  = function () {
         card('popup',perfectFit[i].img,perfectFit[i].title,perfectFit[i].price,perfectFit[i].link,perfectFit[i].status);
         document.querySelectorAll('.popup .card')[i].insertAdjacentHTML('afterbegin',` <div class="product-great"><a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor}" class="product-great-item" data-id="${perfectFit[i].idGreatFor}" data-name="${perfectFit[i].greatFor}">${perfectFit[i].greatFor}</a></div>`);
     }
-    setTimeout(() => {
-        tnsInitialization('.slider',1,2,2,true);
-    },100)
 
     window.addEventListener('scroll', myScrollSpeedFunction);
 
