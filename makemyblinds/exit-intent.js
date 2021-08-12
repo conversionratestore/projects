@@ -53,6 +53,7 @@ function card(index,img,name,price,link,satus) {
         });
     } else {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        tnsInitialization('.slider',1,2,2,true);
     }
 
     document.querySelectorAll('.category .card-price').forEach((el) => {
