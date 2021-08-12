@@ -285,7 +285,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
                     // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
                 }
             }
-            if (document.querySelectorAll('.category-slider .slide')) {
+            if (document.querySelectorAll('.category-slider .slide') && !document.querySelectorAll('.category-slider[data-id="random"] .slide')) {
                 mut.disconnect();
                 tnsInitialization('.category-slider',2,3,4,false);
             }
@@ -964,9 +964,7 @@ window.onload  = function () {
         for (let i = 0; i < 12; i++) {
             card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
         }
-        
         tnsInitialization('.category-slider',2,3,4,false);
-        
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
