@@ -270,11 +270,10 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     //     console.log('Failed fetch ', err);
     // });
     Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
-        localStorage.setItem('items', JSON.stringify(items));
-      
         let mut = new MutationObserver(function (muts) {
             console.log('mutation')
             if (document.querySelectorAll('.category-slider') && !localStorage.getItem('items')) {
+                localStorage.setItem('items', JSON.stringify(items));
                 mut.disconnect();
                 for (let i = 0; i < 12; i++) {
                     let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
@@ -862,7 +861,7 @@ window.onload  = function () {
         }
         tnsInitialization('.category-slider',2,3,4,false);
     }
-    
+
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
