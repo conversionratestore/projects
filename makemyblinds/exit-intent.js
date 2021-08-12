@@ -838,8 +838,8 @@ window.onload  = function () {
         card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
     }
 
-    document.querySelector('.category-slider[data-id="183"]').hidden = true;
-    
+    document.querySelector('.category-slider[data-id="183"]').closest('.category').style.display = 'none';
+
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
     }
@@ -897,7 +897,7 @@ window.onload  = function () {
     document.querySelector('.categories').insertAdjacentHTML('beforeend',`<button type="button" class="view-more">View more</button>`)
 
     document.querySelector('.view-more').addEventListener('click', (e) => {
-        e.target.hidden = true;
+        e.target.style.display = 'none';
         document.querySelector('.categories').classList.add('show');
         if (window.matchMedia("(max-width: 768px)").matches) {
             window.dataLayer = window.dataLayer || [];
