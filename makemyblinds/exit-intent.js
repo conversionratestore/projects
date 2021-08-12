@@ -994,6 +994,7 @@ let mut = new MutationObserver(function (muts) {
     console.log('mutation')
     if (document.querySelectorAll('.category-slider') && !localStorage.getItem('items')) {
         mut.disconnect();
+        console.log('mut.disconnect 1');
         for (let i = 0; i < 12; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
             card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
@@ -1007,6 +1008,7 @@ let mut = new MutationObserver(function (muts) {
     }
     if (document.querySelectorAll('.category-slider .slide') && !document.querySelectorAll('.category-slider[data-id="random"] .slide')) {
         mut.disconnect();
+        console.log('mut.disconnect 2');
         tnsInitialization('.category-slider',2,3,4,false);
     }
    
