@@ -178,6 +178,10 @@ function addEvent(obj, evt, fn) {
 }
 function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
     document.querySelectorAll(`${item}`).forEach(slider => {
+        if (slider.innerHTML === "") {
+            console.log(slider);
+            slider.closest('.category').remove();
+        }
         tns({
             container: slider,
             items: amountMob,
@@ -218,11 +222,6 @@ function card(index,img,name,price,link) {
     </div>`;
     if (index != 'popup') {
         document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-        document.querySelectorAll(`.category-slider[data-id='${index}']`).forEach((el) => {
-            if (el.innerHTML === "") {
-                el.closest('.category').remove();
-            }
-        })
     } else {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
     }
