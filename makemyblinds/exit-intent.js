@@ -279,6 +279,9 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 let mut = new MutationObserver(function (muts) {
     console.log('mutation')
+    // if (!ocalStorage.getItem('items')) {
+    //     localStorage.setItem('items', JSON.stringify(items));
+    // }
     if (document.querySelectorAll('.category-slider')[5] && localStorage.getItem('items')) {
         mut.disconnect();
         console.log('mut.disconnect 1');
@@ -295,12 +298,10 @@ let mut = new MutationObserver(function (muts) {
         }
     
     }
-    // if (document.querySelectorAll('.category-slider') ) {
-    //     mut.disconnect();
-    //     console.log('mut.disconnect 2');
-    //     localStorage.setItem('items', JSON.stringify(items));
-    //     tnsInitialization('.category-slider',2,3,4,false);
-    // }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
    
 });
 
