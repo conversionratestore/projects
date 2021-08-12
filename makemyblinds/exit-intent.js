@@ -581,7 +581,7 @@ window.onload  = function () {
             .slide {
                 width: 33%;}
         }
-        @media screen and (min-width: 1025x) {
+        @media screen and (min-width: 1025px) {
             .slide {
                 width: 25%;}
         }
