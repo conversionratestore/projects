@@ -278,7 +278,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 });
 let mut = new MutationObserver(function (muts) {
     console.log('mutation')
-    if (!ocalStorage.getItem('items')) {
+    if (!localStorage.getItem('items')) {
         mut.disconnect();
         localStorage.setItem('items', JSON.stringify(items));
     }
