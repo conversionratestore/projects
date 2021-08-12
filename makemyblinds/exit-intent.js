@@ -482,6 +482,7 @@ window.onload  = function () {
     .slider {
         padding: 20px 0}
     .slide {
+        flex-shrink: 0;
         padding: 0 5px;}
     .card a.btn {
         border: 1px solid #141729;
