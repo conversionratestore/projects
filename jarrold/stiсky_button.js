@@ -348,10 +348,42 @@ if (document.querySelector(".upc")) {
 
 function openButtonPopUp() {
   document.body.insertAdjacentHTML("afterbegin", buttons);
-  document.querySelector("[data-modal-open]").addEventListener("click", toggleModal);
-  document.querySelector("[data-modal-close]").addEventListener("click", toggleModal);
+  document.querySelector("[data-modal-open]").addEventListener("click", function () {
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Add to bag button sticky block",
+    });
+    //
+
+    toggleModal();
+  });
+
+  document.querySelector("[data-modal-close]").addEventListener("click", function () {
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Exit cross button sticky block",
+    });
+    //
+
+    toggleModal();
+  });
 
   document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Add to bag button sticky block",
+    });
+    //
+
     toggleModal();
 
     document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
@@ -493,6 +525,16 @@ function openButtonPopUp() {
 
   function scroll() {
     window.addEventListener("scroll", () => {
+      //
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — Stiсky button mobile",
+        eventAction: "Scroll depth PDP",
+        eventLabel: "{{Scroll Depth Threshold}} {{Scroll Depth Units}}",
+      });
+      //
+
       let scroll = document.documentElement.clientHeight;
       let offset = document.querySelector("#page_MainContent_product_detail_btnAddBag").getBoundingClientRect().top;
 
@@ -502,6 +544,19 @@ function openButtonPopUp() {
     });
   }
   scroll();
+
+  document.querySelector("#page_MainContent_product_detail_btnAddBag").addEventListener("click", function () {
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Add to bag button PDP",
+    });
+    //
+
+    console.log("Click Add to bag button PDP");
+  });
 }
 
 function createButtonList() {
@@ -524,7 +579,32 @@ function createButtonList() {
       );
     });
   });
-};
+
+  document.querySelectorAll(".btn-open-list").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      //
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — Stiсky button mobile",
+        eventAction: "Click Add to bag button PLP",
+      });
+      //
+
+      console.log("Click Add to bag button PLP");
+    });
+  });
+}
+
+//
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp — Stiсky button mobile",
+  eventAction: "loaded",
+});
+//
 
 (function (h, o, t, j, a, r) {
   h.hj =
