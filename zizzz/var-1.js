@@ -192,7 +192,12 @@ let mut = new MutationObserver(function (muts) {
             if(document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
-            } else {
+            }
+            else if (document.querySelectorAll('h4')[0]){
+                document.querySelectorAll('h4')[0].insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('h4')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+            }
+            else {
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
                 if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
