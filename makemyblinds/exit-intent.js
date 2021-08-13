@@ -348,7 +348,7 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
+    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track') && document.querySelectorAll('.product .product-great')) {
         mut.disconnect();
         console.log('mut.disconnect')
         if (window.matchMedia("(min-width: 769px)").matches) {
@@ -359,7 +359,6 @@ let mut = new MutationObserver(function (muts) {
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     } 
-  
 });
 
 mut.observe(document, {
@@ -1098,16 +1097,16 @@ window.onload  = function () {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
 
-    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
-        console.log('loaded true')
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            console.log('loaded true min 769')
-            document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
-        } else {
-            console.log('loaded true max 768')
-            document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
-        }
-    } 
+    // if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
+    //     console.log('loaded true')
+    //     if (window.matchMedia("(min-width: 769px)").matches) {
+    //         console.log('loaded true min 769')
+    //         document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
+    //     } else {
+    //         console.log('loaded true max 768')
+    //         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
+    //     }
+    // } 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
