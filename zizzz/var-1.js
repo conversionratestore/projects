@@ -190,27 +190,46 @@ let mut = new MutationObserver(function (muts) {
 
         function drawTemplate(header) {
             if(document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
+                console.log('1');
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             }
             else if (document.querySelectorAll('h4')[0]){
+                console.log('2');
                 document.querySelectorAll('h4')[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll('h4')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             }
             else if (document.querySelectorAll('h5')[0]){
-                document.querySelectorAll('h5')[0].insertAdjacentHTML('beforebegin', banner);
-                if(document.querySelectorAll('h5')[0].nextElementSibling) {
-                    document.querySelectorAll('h5')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                console.log('3');
+                if(!document.querySelectorAll('.mpcss h5')[0]) {
+                    document.querySelectorAll('h5')[0].insertAdjacentHTML('beforebegin', banner);
+                    if(document.querySelectorAll('h5')[0].nextElementSibling) {
+                        console.log('3.1');
+                        document.querySelectorAll('h5')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    } else {
+                        console.log('3.2');
+                        document.querySelector('.banner').insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    }
                 } else {
-                    document.querySelector('.banner').insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    console.log('3else');
+                    document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
+                    if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
+                        console.log('3else');
+                        document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    } else {
+                        console.log('3else');
+                        document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    }
                 }
             }
             else {
+                console.log('4');
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
-                console.log('ssss');
                 if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
+                    console.log('4.1');
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 } else {
+                    console.log('4.2');
                     document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 }
             }
