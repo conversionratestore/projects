@@ -189,13 +189,12 @@ let mut = new MutationObserver(function (muts) {
         const isBabyPost = window.location.pathname.split('post/')[1] === 'baby-schlafen-tagsuber.html';
 
         function drawTemplate(header) {
-
             if(document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             } else {
-                document.querySelectorAll('p')[1].insertAdjacentHTML('beforebegin', banner);
-                document.querySelectorAll('p')[5].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             }
 
             document.querySelector('.post-list-content').classList.remove('col-sm-8');
