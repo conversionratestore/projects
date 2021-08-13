@@ -338,6 +338,7 @@ let mut = new MutationObserver(function (muts) {
         });
 
         document.querySelector('.banner .banner__btn').addEventListener('click', () => {
+            console.log('ssssssssss');
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
