@@ -53,7 +53,7 @@ let mut = new MutationObserver(function (muts) {
         <style>
             .banner {
                 display: block;
-                margin-top: 20px;
+                margin: 20px 0;
                 width: 100%;
                 background: #F5F4F3;
                 text-align: center;
