@@ -350,9 +350,12 @@ let mut = new MutationObserver(function (muts) {
     });
     if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
         mut.disconnect();
+        console.log('mut.disconnect')
         if (window.matchMedia("(min-width: 769px)").matches) {
+            console.log('mut.disconnect min 769')
             document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
         } else {
+            console.log('mut.disconnect max 768')
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     } 
@@ -1096,10 +1099,12 @@ window.onload  = function () {
     });
 
     if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
-        mut.disconnect();
+        console.log('loaded true')
         if (window.matchMedia("(min-width: 769px)").matches) {
+            console.log('loaded true min 769')
             document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
         } else {
+            console.log('loaded true max 768')
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     } 
