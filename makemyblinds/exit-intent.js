@@ -348,7 +348,7 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track') && document.querySelectorAll('.product .product-great')) {
+    if (document.querySelector('.badge-circle') && document.querySelectorAll('.product .product-great')) {
         mut.disconnect();
         if (window.matchMedia("(min-width: 769px)").matches) {
             document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
@@ -1093,7 +1093,7 @@ window.onload  = function () {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
 
-    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track') && document.querySelector('.product .product-great')) {
+    if (document.querySelector('.badge-circle') && document.querySelector('.product .product-great')) {
         if (window.matchMedia("(min-width: 769px)").matches) {
             document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
         } else {
