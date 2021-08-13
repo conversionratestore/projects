@@ -194,7 +194,7 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             } else {
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
-                if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p').nextElementSibling) {
+                if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 } else {
                     document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
