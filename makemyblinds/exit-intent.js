@@ -348,11 +348,12 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.badge-fast-track')) {
+    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
         mut.disconnect();
-        document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         if (window.matchMedia("(min-width: 769px)").matches) {
             document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
+        } else {
+            document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     } 
   
@@ -1093,6 +1094,15 @@ window.onload  = function () {
     document.querySelector('.product-details').addEventListener('change', () => {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
+
+    if (document.querySelector('.badge-circle.badge-dark-blue.badge-fast-track')) {
+        mut.disconnect();
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
+        } else {
+            document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
+        }
+    } 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
