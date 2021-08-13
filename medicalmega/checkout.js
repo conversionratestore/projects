@@ -1,4 +1,4 @@
-let mut = new MutationObserver(function (muts) {
+window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
         .title_head {
