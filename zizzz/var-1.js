@@ -197,7 +197,7 @@ let mut = new MutationObserver(function (muts) {
                 if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p').nextElementSibling) {
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 } else {
-                    document.querySelector('.banner').insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 }
             }
 
