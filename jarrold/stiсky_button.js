@@ -526,13 +526,13 @@ function openButtonPopUp() {
   function scroll() {
     window.addEventListener("scroll", () => {
       //
-      window.dataLayer = window.dataLayer || [];
-      dataLayer.push({
-        event: "event-to-ga",
-        eventCategory: "Exp — Stiсky button mobile",
-        eventAction: "Scroll depth PDP",
-        eventLabel: "{{Scroll Depth Threshold}} {{Scroll Depth Units}}",
-      });
+      // window.dataLayer = window.dataLayer || [];
+      // dataLayer.push({
+      //   event: "event-to-ga",
+      //   eventCategory: "Exp — Stiсky button mobile",
+      //   eventAction: "Scroll depth PDP",
+      //   eventLabel: "{{Scroll Depth Threshold}} {{Scroll Depth Units}}",
+      // });
       //
 
       let scroll = document.documentElement.clientHeight;
@@ -545,18 +545,18 @@ function openButtonPopUp() {
   }
   scroll();
 
-  document.querySelector("#page_MainContent_product_detail_btnAddBag").addEventListener("click", function () {
-    //
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp — Stiсky button mobile",
-      eventAction: "Click Add to bag button PDP",
-    });
-    //
+  // document.querySelector("#page_MainContent_product_detail_btnAddBag").addEventListener("click", function () {
+  //   //
+  //   window.dataLayer = window.dataLayer || [];
+  //   dataLayer.push({
+  //     event: "event-to-ga",
+  //     eventCategory: "Exp — Stiсky button mobile",
+  //     eventAction: "Click Add to bag button PDP",
+  //   });
+  //   //
 
-    console.log("Click Add to bag button PDP");
-  });
+  //   console.log("Click Add to bag button PDP");
+  // });
 }
 
 function createButtonList() {
