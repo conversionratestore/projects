@@ -328,6 +328,15 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
+    
+    if (document.querySelector('.badge-fast-track')) {
+        mut.disconnect();
+        document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
+        }
+    } 
+  
 });
 
 mut.observe(document, {
@@ -932,12 +941,6 @@ window.onload  = function () {
         }
     }
 
-    if (document.querySelector('.badge-fast-track')) {
-        document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
-    } 
-    if (document.querySelector('.badge-fast-track') && window.matchMedia("(min-width: 769px)").matches) {
-        document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
-    }
 
     function myScrollSpeedFunction(){
         if(document.body.classList.contains('mobile')) {
