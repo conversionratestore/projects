@@ -346,6 +346,12 @@ if (document.querySelector(".upc")) {
   openButtonPopUp();
 }
 
+function toggleModal() {
+  document.body.classList.toggle("modal-open");
+  document.querySelector("[data-modal]").classList.toggle("is-hidden");
+  document.querySelector("[data-modal-open]").classList.toggle("hidden");
+}
+
 function openButtonPopUp() {
   document.body.insertAdjacentHTML("afterbegin", buttons);
   document.querySelector("[data-modal-open]").addEventListener("click", function () {
@@ -388,12 +394,6 @@ function openButtonPopUp() {
 
     document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
   });
-
-  function toggleModal() {
-    document.body.classList.toggle("modal-open");
-    document.querySelector("[data-modal]").classList.toggle("is-hidden");
-    document.querySelector("[data-modal-open]").classList.toggle("hidden");
-  }
 
   document.querySelectorAll(".specifics label").forEach((el) => {
     if (el.innerText.toLowerCase().includes(`colour`)) {
@@ -625,3 +625,20 @@ window.hj =
     (hj.q = hj.q || []).push(arguments);
   };
 hj("trigger", "sticky_button_mobile");
+
+//
+let scriptCustom = document.createElement("script");
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js";
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+setTimeout(function () {
+  $(".modal-form").swipe({
+    swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+      if (direction === "down") {
+        toggleModal();
+      }
+      console.log(direction);
+    },
+  });
+}, 500);
