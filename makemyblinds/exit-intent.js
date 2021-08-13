@@ -291,6 +291,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] && localStorage.getItem('items') && JSON.parse(localStorage.getItem('items')).length == 5 && document.querySelectorAll('.category-slider')[5].innerHTML == "") {
         mut.disconnect();
+        
         let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
         for (let i = 0; i < itemsLocalStorage[0]["data"]["items"].length; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
@@ -354,6 +355,11 @@ window.onload  = function () {
     , nowICanSeeLocalStorageChangeEvents
     , false
 );
+    window.addEventListener('storage', () => {
+        // When local storage changes, dump the list to
+        // the console.
+        console.log(JSON.parse(window.localStorage.getItem('items')));
+    });
     document.body.insertAdjacentHTML('afterbegin', `<style>
     .popup .product-great{
         padding: 0;}
