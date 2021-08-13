@@ -902,6 +902,7 @@ window.onload  = function () {
         //     card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
         //     // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
         // }
+        let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
         for (let i = 0; i < itemsLocalStorage[0]["data"]["items"].length; i++) {
             let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
             card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
