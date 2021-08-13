@@ -23,7 +23,7 @@ function drawParagraph(reg) {
     if (document.querySelector('.cart-modal__total')) {
         let total = document.querySelector('.cart-modal__total');
 
-        let paragraphEU = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Hustle free returns is size doesn’t match</p>`;
+        let paragraphEU = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Hustle free returns if size doesn’t match</p>`;
         let paragraphUS = `<p class="moneyback-guarantee"><span class="moneyback__text_red">14 days money-back guarantee</span><br>Free returns if size doesn’t match</p>`;
 
         if (reg === 'america') {
