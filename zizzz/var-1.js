@@ -198,17 +198,16 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelectorAll('h4')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
             }
             else if (document.querySelectorAll('h5')[0]){
-                console.log('ss');
                 document.querySelectorAll('h5')[0].insertAdjacentHTML('beforebegin', banner);
                 if(document.querySelectorAll('h5')[0].nextElementSibling) {
                     document.querySelectorAll('h5')[0].nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 } else {
-                    document.querySelector('banner').insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
+                    document.querySelector('.banner').insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 }
-                
             }
             else {
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
+                console.log('ssss');
                 if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`);
                 } else {
