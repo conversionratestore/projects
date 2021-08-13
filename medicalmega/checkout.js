@@ -1,6 +1,14 @@
-window.onload  = function () {
+let mut = new MutationObserver(function (muts) {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
+        .title_head {
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 27px;
+            padding: 20px 0;
+            text-transform: capitalize;
+            color: #C23D31;
+            border-bottom: 0.5px solid #CCCCCC;}
         #mainbody {
             background: transparent; }
         .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
@@ -131,32 +139,6 @@ window.onload  = function () {
             display: flex;
             justify-content: space-between;
             align-items: center;}
-        .step {
-            display: flex;
-            padding: 20px 0;
-            align-items: center;}
-        .step p {
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 17px;
-            text-transform: capitalize;
-            color: #000000;
-            opacity: 0.3;
-            margin-top: 0;}
-        .step-circle {
-            border-radius: 50%;
-            width: 36px;
-            font-weight: bold;
-            font-size: 18px;
-            line-height: 36px;
-            text-align: center;
-            color: #FFFFFF;
-            margin-right: 10px;
-            background: #CCCCCC;}
-        .step.active .step-circle {
-            background: #C23D31;}
-        .step.active p{
-            opacity: 1;}
         .form-row {
             padding-top: 20px;
             margin-bottom: auto;
@@ -480,6 +462,8 @@ window.onload  = function () {
             top: 50%;
             transform: translateY(-50%);
             right: 20px;}
+        .address_book_new {
+            padding: 20px 0 0 0; }
         .address_book_new .small_block {
             width: 50%!important;
             clear: both;
@@ -505,27 +489,26 @@ window.onload  = function () {
             padding-bottom: 20px;}
         .address_book_new .small_block .radio_content .radio_cont .edit {
             padding-top: 0;}
+        .btn-back {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 19px;
+            display: flex;
+            align-items: center;
+            text-decoration-line: underline;
+            padding: 10px 19px;
+            background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLight.svg') no-repeat left center / 18px;
+        }
     </style>`);
-
-    let step = `
-    <div class="flex-center-between">
-        <div class="step active">
-            <div class="step-circle">1</div>
-            <p class="step-text">Personal information</p>
-        </div>
-        <div class="step">
-            <div class="step-circle">2</div>
-            <p class="step-text">Shipping information</p>
-        </div>
-    </div>`;
 
     document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
     <div class="flex-between">
         <div class="checkout-left">
             <div class="checkout-left_head flex-center-between">
-                <h2 class="title">New client</h2>
+                <h2 class="title">Registration</h2>
                 <p class="link log active">Returning client</p>
             </div>
+            <div class="title_head">Personal information</div>
         </div>
         <div class="checkout-right">
             <div>
@@ -568,28 +551,27 @@ window.onload  = function () {
     });
     if (document.querySelector('.myAccount')) {
 
-        document.querySelector('.checkout-left_head').after(document.querySelector('.myAccount'));
+        document.querySelector('.title_head').after(document.querySelector('.myAccount'));
         document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
-    <label class="valign-center">
-        <span class="check"></span>
-        <span>Email Me Order Updates and Specials</span>
-    </label>`);
+        <label class="valign-center">
+            <span class="check"></span>
+            <span>Email Me Order Updates and Specials</span>
+        </label>`);
         document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
         document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-        document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
         document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Register Now!`;
         document.querySelector('#login_btn').innerHTML = `LOGIN`;
         document.querySelector('.log').addEventListener('click', (e) => {
             let _this = e.target;
             _this.classList.toggle('active');
             if (_this.classList.contains('active')) {
-                _this.innerHTML = 'Returning client';
-                document.querySelector('.checkout-left_head .title').innerHTML = 'New Client';
+                _this.innerHTML = 'Sign in';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
                 document.querySelector('.myAccountright').style.display = 'none';
                 document.querySelector('.myAccountleft').style.display = 'block';
             } else {
-                _this.innerHTML = 'Returning new client';
-                document.querySelector('.checkout-left_head .title').innerHTML = 'Client';
+                _this.innerHTML = 'Registration';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                 document.querySelector('.myAccountleft').style.display = 'none';
                 document.querySelector('.myAccountright').style.display = 'block';
             }
@@ -622,13 +604,12 @@ window.onload  = function () {
             });
         }
 
-        document.querySelector('.payment').style.display = 'none';
-        document.querySelector('.checkout-left_head').insertAdjacentHTML('afterend', step);
-        document.querySelectorAll('.step')[0].classList.remove('active');
-        document.querySelectorAll('.step')[1].classList.add('active');
+        document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+        document.querySelector('.title_head').innerHTML = 'Billing Information';
+        document.querySelector('.payment h3 ').style.display = 'none';
+        document.querySelector('#editor_block').style.display = 'block';
         document.querySelector('.checkout-left_head .log ').style.display = 'none';
-        document.querySelectorAll('.checkout-left .flex-center-between')[1].after(document.querySelector('#step1_form'));
         document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('.bill_small').parentElement.classList.add('flex-between');
@@ -703,9 +684,7 @@ window.onload  = function () {
     </style>`);
 
         document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
-        document.querySelector('.payment h3').insertAdjacentHTML('afterend', step);
-        document.querySelectorAll('.step')[0].classList.remove('active');
-        document.querySelectorAll('.step')[1].classList.add('active');
+        document.querySelector('.payment h3').insertAdjacentHTML('afterend', head);
 
         document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
         document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
@@ -713,10 +692,11 @@ window.onload  = function () {
 
         document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
         document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
+        document.querySelector('.ship_small')
     }
     if(location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
