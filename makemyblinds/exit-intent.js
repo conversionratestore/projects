@@ -334,32 +334,9 @@ mut.observe(document, {
     childList: true,
     subtree: true
 });
-function nowICanSeeLocalStorageChangeEvents( e ) {
-    console.log(
-        "subscriber: "    + e.currentTarget.nodeName + "\n" +
-        "timestamp: "     + e.detail.timestamp + " (" + new Date( e.detail.timestamp ) + ")" + "\n" +
-        "prefix: "        + e.detail.prefix    + "\n" +
-        "message: "       + e.detail.message   + "\n" +
-        "method: "        + e.detail.method    + "\n" +
-        "key: "           + e.detail.key       + "\n" +
-        "old value: "     + e.detail.oldval    + "\n" +
-        "new value: "     + e.detail.newval    + "\n" +
-        "old data type: " + e.detail.oldtype   + "\n" +
-        "new data type: " + e.detail.newtype
-    );
-};
 
 window.onload  = function () {
-    document.addEventListener(
-    "localDataStorage"
-    , nowICanSeeLocalStorageChangeEvents
-    , false
-);
-    window.addEventListener('storage', () => {
-        // When local storage changes, dump the list to
-        // the console.
-        console.log(JSON.parse(window.localStorage.getItem('items')));
-    });
+
     document.body.insertAdjacentHTML('afterbegin', `<style>
     .popup .product-great{
         padding: 0;}
@@ -957,6 +934,9 @@ window.onload  = function () {
 
     if (document.querySelector('.badge-fast-track')) {
         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
+    } 
+    if (document.querySelector('.badge-fast-track') && window.matchMedia("(min-width: 769px)").matches) {
+        document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
     }
 
     function myScrollSpeedFunction(){
