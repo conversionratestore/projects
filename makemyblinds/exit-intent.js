@@ -31,6 +31,42 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
                 }
             }
         });
+
+        slider.querySelectorAll('.card-title').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsPopup('Click on product from');
+            })
+        })
+        document.querySelectorAll('.popup .tns-controls button').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsPopup('Click on arrows button');
+            })
+        })
+        slider.querySelectorAll('.card .btn').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsPopup('Click on View product white button');
+            })
+        })
+        document.querySelectorAll('.category .card-title').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsCategories('Click on product from listing');
+            })
+        })
+        document.querySelectorAll('.tns-controls button').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsCategories('Click on arrows button listing');
+            })
+        })
+        document.querySelectorAll('.tns-nav button').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsCategories('Click on dots button listing');
+            })
+        })
+        document.querySelectorAll('.category .card .btn').forEach(el => {
+            el.addEventListener('click', () => {
+                eventsCategories('Click on View Product button listing');
+            })
+        })
     });
 }
 function card(index,img,name,price,link,satus) {
@@ -353,7 +389,7 @@ let mut = new MutationObserver(function (muts) {
     });
     // if (document.querySelectorAll('.tns-nav button') && document.querySelectorAll('.tns-controls button') && document.querySelectorAll('.category .card-title')) {
     //     mut.disconnect();
-    //   
+    //
 
         // eventsPopup('.popup .card-title','Click on product from');
         // eventsPopup('.popup .btn','Click on View product white button');
@@ -1108,43 +1144,6 @@ window.onload  = function () {
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     }
-
-    document.querySelectorAll('.popup .card-title').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on product from');
-        })
-    })
-    document.querySelectorAll('.popup .tns-controls button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on arrows button');
-        })
-    })
-    document.querySelectorAll('.popup .btn').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on View product white button');
-        })
-    })
-    document.querySelectorAll('.category .card-title').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on product from listing');
-        })
-    })
-    document.querySelectorAll('.tns-controls button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on arrows button listing');
-        })
-    })
-    document.querySelectorAll('.tns-nav button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on dots button listing');
-        })
-    })
-    document.querySelectorAll('.category .card .btn').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on View Product button listing');
-        })
-    })
-
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
