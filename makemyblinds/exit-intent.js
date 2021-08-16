@@ -83,10 +83,7 @@ function eventsCategories(eventAction) {
     }
 }
 function eventsPopup(elem,eventAction) {
-    console.log('eventsPopup' + elem + ' - ' + eventAction);
     document.querySelectorAll(`${elem}`).forEach((el) => {
-
-        console.log('eventsPopup' + el + ' - ' + eventAction);
         el.addEventListener('click', () => {
             if (window.matchMedia(`(max-width: 768px)`).matches) {
                 window.dataLayer = window.dataLayer || [];
@@ -311,7 +308,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
                 eventsCategories('Click on arrows button listing');
             });
         })
-        
+
         // eventsCategories('.tns-nav button','Click on dots button listing');
         // eventsCategories('.category .card .btn','Click on View Product button listing');
         eventsPopup('.popup .card-title','Click on product from');
