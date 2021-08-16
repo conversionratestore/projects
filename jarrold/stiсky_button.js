@@ -265,8 +265,9 @@ let style12 = /*html*/ `
   top: 50%;
   left: 0;
   content: "";
-  width: 34px;
-  border-top: solid 1px #333;
+  // min-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
   transform-origin: center;
   transform: rotate(45deg);
 }
@@ -276,8 +277,9 @@ let style12 = /*html*/ `
   top: 50%;
   left: 0;
   content: "";
-  width: 34px;
-  border-top: solid 1px #333;
+  // min-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
   transform-origin: center;
   transform: rotate(-45deg);
 }
@@ -401,6 +403,7 @@ function openButtonPopUp() {
 
       if (document.querySelectorAll(".variants.form .square").length > 0) {
         addSpanColor();
+        addBtnColorWithoutSpan();
       } else {
         addBtnColorWithoutSpan();
       }
@@ -433,23 +436,25 @@ function openButtonPopUp() {
         let btnColorWithoutSpan = el.closest(".specifics").querySelectorAll(".controls button");
 
         btnColorWithoutSpan.forEach((i) => {
-          let active = "";
-          let textContent = i.textContent;
-          let dizabledBtn = "";
+          if (i.children.length === 0) {
+            let active = "";
+            let textContent = i.textContent;
+            let dizabledBtn = "";
 
-          if (i.classList.contains("on")) {
-            active = "active-color-variant";
+            if (i.classList.contains("on")) {
+              active = "active-color-variant";
+            }
+
+            if (i.getAttribute("disabled")) {
+              dizabledBtn = "disabled-btn";
+            }
+
+            document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
+
+            document.querySelectorAll(".disabled-btn").forEach((item) => {
+              item.setAttribute("disabled", "disabled");
+            });
           }
-
-          if (i.getAttribute("disabled")) {
-            dizabledBtn = "disabled-btn";
-          }
-
-          document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
-
-          document.querySelectorAll(".disabled-btn").forEach((item) => {
-            item.setAttribute("disabled", "disabled");
-          });
         });
       }
     }
