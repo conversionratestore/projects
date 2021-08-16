@@ -260,9 +260,9 @@ let style12 = /*html*/ `
   position: relative;
 }
 
-.dizabled-background {
-  background: #f9f9f9 !important;
-}
+// .dizabled-background {
+//   background: #f9f9f9 !important;
+// }
 
 .disabled-btn::after {
   position: absolute;
@@ -277,6 +277,35 @@ let style12 = /*html*/ `
 }
 
 .disabled-btn::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
+
+.dizabled-background {
+  position: relative;
+  background: #f9f9f9 !important;
+}
+
+.dizabled-background::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+  max-width: 32px;
+  width: 100%;
+  border-top: solid 2px #333;
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+
+.dizabled-background::before {
   position: absolute;
   top: 50%;
   left: 0;
@@ -452,7 +481,7 @@ function openButtonPopUp() {
             }
 
             if (i.getAttribute("disabled")) {
-              dizabledBtn = "disabled-btn";
+              // dizabledBtn = "disabled-btn";
               dizabledBackground = "dizabled-background";
             }
 
@@ -483,7 +512,7 @@ function openButtonPopUp() {
           }
 
           if (i.closest(`button`).getAttribute("disabled")) {
-            dizabledBtn = "disabled-btn";
+            // dizabledBtn = "disabled-btn";
             dizabledBackground = "dizabled-background";
           }
 
