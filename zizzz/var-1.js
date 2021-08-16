@@ -202,35 +202,27 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelectorAll('.post-post_content h4')[2].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll('.post-post_content p')[11].insertAdjacentHTML('beforebegin', productsList);
             } else if (document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
-                console.log('1');
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll(`.post-post_content ${header}`)[2]
                     ? document.querySelectorAll(`.post-post_content ${header}`)[2].insertAdjacentHTML('beforebegin', productsList)
                     : document.querySelectorAll(`.post-post_content ${header}`)[1].insertAdjacentHTML('beforebegin', productsList);
             } else if (document.querySelectorAll('h4')[0]) {
-                console.log('2');
                 document.querySelectorAll('h4')[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll('h4')[0].nextElementSibling.insertAdjacentHTML('afterend', productsList);
             } else if (document.querySelectorAll('h5')[0]) {
-                console.log('3');
                 if (!document.querySelectorAll('.mpcss h5')[0]) {
                     document.querySelectorAll('h5')[0].insertAdjacentHTML('beforebegin', banner);
                     if (document.querySelectorAll('h5')[0].nextElementSibling) {
-                        console.log('3.1');
                         document.querySelectorAll('h5')[0].nextElementSibling.insertAdjacentHTML('afterend', productsList);
                     } else {
-                        console.log('3.2');
                         document.querySelector('.banner').insertAdjacentHTML('afterend', productsList);
                     }
                 } else {
-                    console.log('3else');
                     if (document.querySelectorAll('.post-post_content strong')[1]) {
                         document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
                         if (document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
-                            console.log('3else');
                             document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                         } else {
-                            console.log('3else');
                             document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                         }
                     } else {
@@ -239,13 +231,10 @@ let mut = new MutationObserver(function (muts) {
                     }
                 }
             } else {
-                console.log('4');
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
                 if (document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
-                    console.log('4.1');
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                 } else {
-                    console.log('4.2');
                     document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                 }
             }
@@ -354,7 +343,6 @@ let mut = new MutationObserver(function (muts) {
         });
 
         document.querySelector('.banner .banner__btn').addEventListener('click', () => {
-            console.log('ssssssssss');
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
