@@ -487,7 +487,7 @@ function openButtonPopUp() {
 
             document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
 
-            document.querySelectorAll(".disabled-btn").forEach((item) => {
+            document.querySelectorAll(".dizabled-background").forEach((item) => {
               item.setAttribute("disabled", "disabled");
             });
           }
@@ -520,7 +520,7 @@ function openButtonPopUp() {
             .querySelector(".check-size")
             .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBtn} ${active}">${textContent}</button>`);
 
-          document.querySelectorAll(".disabled-btn").forEach((item) => {
+          document.querySelectorAll(".dizabled-background").forEach((item) => {
             item.setAttribute("disabled", "disabled");
           });
         });
