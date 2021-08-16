@@ -258,6 +258,9 @@ let style12 = /*html*/ `
 
 .disabled-btn {
   position: relative;
+}
+
+.dizabled-background {
   background: #f9f9f9 !important;
 }
 
