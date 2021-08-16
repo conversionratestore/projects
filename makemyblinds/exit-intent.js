@@ -11,6 +11,7 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         tns({
             container: slider,
             items: amountMob,
+            axis: "horizontal",
             autoplay: false,
             controls: true,
             loop: false,
