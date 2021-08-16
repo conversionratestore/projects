@@ -32,38 +32,6 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
         });
     });
 }
-function card(index,img,name,price,link,satus) {
-    let card = `
-    <div class="slide" data-status="${satus}">
-         <div class="card">
-            <a href="${link}.html" class="card-title">
-                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
-                <span>${name}</span>
-            </a>
-            <div class="card_bottom">
-                <div class="card-price">£${price}</div>
-                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
-            </div>
-        </div>
-    </div>`;
-    if (index != 'popup') {
-        document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
-        document.querySelectorAll('[data-status="2"]').forEach((el) => {
-            el.remove();
-        });
-    } else {
-        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
-        eventsPopup('.popup .card-title','Click on product from');
-        eventsPopup('.popup .btn','Click on View product white button');
-    }
-
-    document.querySelectorAll('.category .card-price').forEach((el) => {
-        if(el.innerHTML === '£0') {
-            el.closest('.slide').remove();
-        }
-    })
-
-}
 function eventsCategories(elem,eventAction) {
     document.querySelectorAll(`${elem}`).forEach((el) => {
         el.addEventListener('click', () => {
@@ -111,6 +79,37 @@ function eventsPopup(elem,eventAction) {
     })
 }
 
+function card(index,img,name,price,link,satus) {
+    let card = `
+    <div class="slide" data-status="${satus}">
+         <div class="card">
+            <a href="${link}.html" class="card-title">
+                <img src="https://www.makemyblinds.co.uk/media/catalog/product${img}" alt="${name}">
+                <span>${name}</span>
+            </a>
+            <div class="card_bottom">
+                <div class="card-price">£${price}</div>
+                <a href="${link}.html" class="btn">VIEW PRODUCT</a>
+            </div>
+        </div>
+    </div>`;
+    if (index != 'popup') {
+        document.querySelector(`.category-slider[data-id='${index}']`).insertAdjacentHTML('afterbegin', card);
+        document.querySelectorAll('[data-status="2"]').forEach((el) => {
+            el.remove();
+        });
+    } else {
+        document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+    }
+
+    document.querySelectorAll('.category .card-price').forEach((el) => {
+        if(el.innerHTML === '£0') {
+            el.closest('.slide').remove();
+        }
+    })
+}
 let token = [];
 
 let randomItems = [],
@@ -346,7 +345,6 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.popup .slider .slide')) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
-
         eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
     mut.observe(document, {
@@ -957,6 +955,8 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
+
+                        eventsPopup('.popup .tns-controls button','Click on arrows button');
                     }, 100);
                 }
             }
@@ -1031,6 +1031,8 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
+
+                        eventsPopup('.popup .tns-controls button','Click on arrows button');
                     }, 100);
                 }
             }
