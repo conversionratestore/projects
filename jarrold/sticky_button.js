@@ -476,6 +476,7 @@ function openButtonPopUp() {
           let active = "";
           let textContent = i.textContent;
           let dizabledBtn = "";
+          let dizabledBackground = "";
 
           if (i.classList.contains("on")) {
             active = "active-size-variant";
@@ -483,6 +484,7 @@ function openButtonPopUp() {
 
           if (i.closest(`button`).getAttribute("disabled")) {
             dizabledBtn = "disabled-btn";
+            dizabledBackground = "dizabled-background";
           }
 
           document
