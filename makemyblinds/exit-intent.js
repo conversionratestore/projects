@@ -31,43 +31,43 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
                 }
             }
         });
-
-        slider.querySelectorAll('.card-title').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsPopup('Click on product from');
-            })
-        })
-        document.querySelectorAll('.popup .tns-controls button').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsPopup('Click on arrows button');
-            })
-        })
-        slider.querySelectorAll('.card .btn').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsPopup('Click on View product white button');
-            })
-        })
-        document.querySelectorAll('.category .card-title').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsCategories('Click on product from listing');
-            })
-        })
-        document.querySelectorAll('.tns-controls button').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsCategories('Click on arrows button listing');
-            })
-        })
-        document.querySelectorAll('.tns-nav button').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsCategories('Click on dots button listing');
-            })
-        })
-        document.querySelectorAll('.category .card .btn').forEach(el => {
-            el.addEventListener('click', () => {
-                eventsCategories('Click on View Product button listing');
-            })
-        })
     });
+
+    document.querySelectorAll('.popup .card-title').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsPopup('Click on product from');
+        })
+    })
+    document.querySelectorAll('.popup .tns-controls button').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsPopup('Click on arrows button');
+        })
+    })
+    document.querySelectorAll('.popup .card .btn').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsPopup('Click on View product white button');
+        })
+    })
+    document.querySelectorAll('.category .card-title').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsCategories('Click on product from listing');
+        })
+    })
+    document.querySelectorAll('.tns-controls button').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsCategories('Click on arrows button listing');
+        })
+    })
+    document.querySelectorAll('.tns-nav button').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsCategories('Click on dots button listing');
+        })
+    })
+    document.querySelectorAll('.category .card .btn').forEach(el => {
+        el.addEventListener('click', () => {
+            eventsCategories('Click on View Product button listing');
+        })
+    })
 }
 function card(index,img,name,price,link,satus) {
     let card = `
