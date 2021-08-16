@@ -450,7 +450,7 @@ function openButtonPopUp() {
 
             if (i.getAttribute("disabled")) {
               dizabledBtn = "disabled-btn";
-              dizabledBackground = "dizabledBackground";
+              dizabledBackground = "dizabled-background";
             }
 
             document.querySelector(".check-color").insertAdjacentHTML("beforeend", `<button type="button" class="color-variant colors-btn ${active}">${textContent}</button>`);
