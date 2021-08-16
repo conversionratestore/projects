@@ -65,14 +65,14 @@ function card(index,img,name,price,link,satus) {
 }
 function eventsCategories(elem,eventAction) {
     console.log('eventsCategories' + elem + ' - ' + eventAction);
-    document.querySelectorAll(elem).forEach((el) => {
+    document.querySelectorAll(`${elem}`).forEach((el) => {
         el.addEventListener('click', () => {
             if (window.matchMedia(`(max-width: 768px)`).matches) {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                    'eventAction': eventAction,
+                    'eventAction': `${eventAction}`,
                     'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
                 });
             } else {
@@ -80,7 +80,7 @@ function eventsCategories(elem,eventAction) {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                    'eventAction': eventAction,
+                    'eventAction': `${eventAction}`,
                     'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
                 });
             }
@@ -89,14 +89,16 @@ function eventsCategories(elem,eventAction) {
 }
 function eventsPopup(elem,eventAction) {
     console.log('eventsPopup' + elem + ' - ' + eventAction);
-    document.querySelectorAll(elem).forEach((el) => {
+    document.querySelectorAll(`${elem}`).forEach((el) => {
+
+        console.log('eventsPopup' + el + ' - ' + eventAction);
         el.addEventListener('click', () => {
             if (window.matchMedia(`(max-width: 768px)`).matches) {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                    'eventAction': eventAction,
+                    'eventAction': `${eventAction}`,
                     'eventLabel': `Exit intent popup`
                 });
             } else {
@@ -104,7 +106,7 @@ function eventsPopup(elem,eventAction) {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                    'eventAction': eventAction,
+                    'eventAction': `${eventAction}`,
                     'eventLabel': `Exit intent popup`
                 });
             }
