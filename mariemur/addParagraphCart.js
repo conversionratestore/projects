@@ -34,26 +34,30 @@ function drawParagraph(reg) {
     }
 }
 
+function updateTemplate() {
+    if (!document.querySelector('.moneyback-guarantee')) {
+        if (!localStorage.getItem('region')) {
+            fetch('http://ipinfo.io?token=2b19e029d686d7').then(res => res.json()).then(function (data) {
+                let region = data.timezone.split('/')[0].toLowerCase();
+                localStorage.setItem('region', region);
+
+                drawParagraph(region);
+            });
+        } else {
+            let region = localStorage.getItem('region');
+            drawParagraph(region);
+        }
+    }
+}
+
+updateTemplate();
+
 // select the target node
 const target = document.querySelector('.cart-modal');
 
 // create an observer instance
-let observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-        if (!document.querySelector('.moneyback-guarantee')) {
-            if (!localStorage.getItem('region')) {
-                fetch('http://ipinfo.io?token=2b19e029d686d7').then(res => res.json()).then(function (data) {
-                    let region = data.timezone.split('/')[0].toLowerCase();
-                    localStorage.setItem('region', region);
-
-                    drawParagraph(region);
-                });
-            } else {
-                let region = localStorage.getItem('region');
-                drawParagraph(region);
-            }
-        }
-    });
+let observer = new MutationObserver(function (mutations) {   
+    updateTemplate();
 });
 
 // configuration of the observer:
