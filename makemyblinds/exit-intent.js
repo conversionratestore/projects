@@ -64,7 +64,6 @@ function card(index,img,name,price,link,satus) {
 
 }
 function eventsCategories(elem,eventAction) {
-    console.log('eventsCategories' + elem + ' - ' + eventAction);
     document.querySelectorAll(`${elem}`).forEach((el) => {
         el.addEventListener('click', () => {
             if (window.matchMedia(`(max-width: 768px)`).matches) {
@@ -305,6 +304,14 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
             card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
         }
         tnsInitialization('.category-slider',2,3,4,false);
+
+        eventsCategories('.category .card-title','Click on product from listing');
+        eventsCategories('.tns-controls button','Click on arrows button listing');
+        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .card .btn','Click on View Product button listing');
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -944,11 +951,6 @@ window.onload  = function () {
         for (let i = 0; i < itemsLocalStorage[4]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
         }
-
-        eventsCategories('.category .card-title','Click on product from listing');
-        eventsCategories('.tns-controls button','Click on arrows button listing');
-        eventsCategories('.tns-nav button','Click on dots button listing');
-        eventsCategories('.category .card .btn','Click on View Product button listing');
     }
 
     function myScrollSpeedFunction(){
@@ -959,10 +961,6 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
-
-                        eventsPopup('.popup .card-title','Click on product from');
-                        eventsPopup('.popup .btn','Click on View product white button');
-                        eventsPopup('.popup .tns-controls button','Click on arrows button');
                     }, 100);
                 }
             }
@@ -1037,10 +1035,6 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
-
-                        eventsPopup ('.popup .card-title','Click on product from');
-                        eventsPopup('.popup .btn','Click on View product white button');
-                        eventsPopup('.popup .tns-controls button','Click on arrows button');
                     }, 100);
                 }
             }
@@ -1116,7 +1110,6 @@ window.onload  = function () {
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     }
-
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
