@@ -1,4 +1,3 @@
-
 function addEvent(obj, evt, fn) {
     if (obj.addEventListener) {
         obj.addEventListener(evt, fn, false);
@@ -32,42 +31,6 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
             }
         });
     });
-
-    document.querySelectorAll('.popup .card-title').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on product from');
-        })
-    })
-    document.querySelectorAll('.popup .tns-controls button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on arrows button');
-        })
-    })
-    document.querySelectorAll('.popup .card .btn').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsPopup('Click on View product white button');
-        })
-    })
-    document.querySelectorAll('.category .card-title').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on product from listing');
-        })
-    })
-    document.querySelectorAll('.tns-controls button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on arrows button listing');
-        })
-    })
-    document.querySelectorAll('.tns-nav button').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on dots button listing');
-        })
-    })
-    document.querySelectorAll('.category .card .btn').forEach(el => {
-        el.addEventListener('click', () => {
-            eventsCategories('Click on View Product button listing');
-        })
-    })
 }
 function card(index,img,name,price,link,satus) {
     let card = `
@@ -99,43 +62,54 @@ function card(index,img,name,price,link,satus) {
     })
 
 }
-function eventsCategories(eventAction) {
-    if (window.matchMedia(`(max-width: 768px)`).matches) {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP improvement exit intent mobile',
-            'eventAction': `${eventAction}`,
-            'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+function eventsCategories(elem,eventAction) {
+    document.querySelectorAll(`${elem}`).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': `${eventAction}`,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': `${eventAction}`,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            }
         });
-    } else {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP improvement exit intent desktop',
-            'eventAction': `${eventAction}`,
-            'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-        });
-    }
+    })
 }
-function eventsPopup(eventAction) {
-    if (window.matchMedia(`(max-width: 768px)`).matches) {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP improvement exit intent mobile',
-            'eventAction': `${eventAction}`,
-            'eventLabel': `Exit intent popup`
+function eventsPopup(elem,eventAction) {
+    console.log('eventsPopup' + elem + ' - ' + eventAction);
+    document.querySelectorAll(`${elem}`).forEach((el) => {
+
+        console.log('eventsPopup' + el + ' - ' + eventAction);
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': `${eventAction}`,
+                    'eventLabel': `Exit intent popup`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': `${eventAction}`,
+                    'eventLabel': `Exit intent popup`
+                });
+            }
         });
-    } else {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP improvement exit intent desktop',
-            'eventAction': `${eventAction}`,
-            'eventLabel': `Exit intent popup`
-        });
-    }
+    })
 }
 
 let token = [];
@@ -330,6 +304,13 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
         tnsInitialization('.category-slider',2,3,4,false);
 
+        eventsCategories('.category .card-title','Click on product from listing');
+        eventsCategories('.tns-controls button','Click on arrows button listing');
+        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .card .btn','Click on View Product button listing');
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -383,22 +364,6 @@ let mut = new MutationObserver(function (muts) {
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    // if (document.querySelectorAll('.tns-nav button') && document.querySelectorAll('.tns-controls button') && document.querySelectorAll('.category .card-title')) {
-    //     mut.disconnect();
-    //
-
-        // eventsPopup('.popup .card-title','Click on product from');
-        // eventsPopup('.popup .btn','Click on View product white button');
-        // eventsPopup('.popup .tns-controls button','Click on arrows button');
-        // eventsCategories('.category .card-title','Click on product from listing');
-        // eventsCategories('.tns-controls button','Click on arrows button listing');
-        // eventsCategories('.tns-nav button','Click on dots button listing');
-        // eventsCategories('.category .card .btn','Click on View Product button listing');
-    // }
 });
 
 mut.observe(document, {
