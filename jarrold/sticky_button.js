@@ -258,6 +258,7 @@ let style12 = /*html*/ `
 
 .disabled-btn {
   position: relative;
+  background: #f9f9f9 !important;
 }
 
 .disabled-btn::after {
@@ -265,7 +266,7 @@ let style12 = /*html*/ `
   top: 50%;
   left: 0;
   content: "";
-  // min-width: 32px;
+  max-width: 32px;
   width: 100%;
   border-top: solid 2px #333;
   transform-origin: center;
@@ -277,12 +278,13 @@ let style12 = /*html*/ `
   top: 50%;
   left: 0;
   content: "";
-  // min-width: 32px;
+  max-width: 32px;
   width: 100%;
   border-top: solid 2px #333;
   transform-origin: center;
   transform: rotate(-45deg);
 }
+
 
   </style>
 `;
