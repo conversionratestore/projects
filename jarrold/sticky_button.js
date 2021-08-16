@@ -518,7 +518,7 @@ function openButtonPopUp() {
 
           document
             .querySelector(".check-size")
-            .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBtn} ${active}">${textContent}</button>`);
+            .insertAdjacentHTML("beforeend", `<button type="button" class="size-variant size-variant-btn ${dizabledBackground} ${active}">${textContent}</button>`);
 
           document.querySelectorAll(".dizabled-background").forEach((item) => {
             item.setAttribute("disabled", "disabled");
