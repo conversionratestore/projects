@@ -220,7 +220,7 @@ function drawTepmlate() {
     }
 }
 
-drawTepmlate()
+drawTepmlate();
 
 let start = setInterval(function () {
     if (document.querySelectorAll('.block-content')[1]) {
@@ -231,7 +231,7 @@ let start = setInterval(function () {
 
         // create an observer instance
         let observer = new MutationObserver(function (mutations) {
-            mutations(drawTepmlate());
+            drawTepmlate();
         });
 
 // configuration of the observer:
