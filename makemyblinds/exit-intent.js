@@ -305,11 +305,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         }
         tnsInitialization('.category-slider',2,3,4,false);
 
-
-        eventsCategories('.category .card-title','Click on product from listing');
-        eventsCategories('.tns-controls button','Click on arrows button listing');
-        eventsCategories('.tns-nav button','Click on dots button listing');
-        eventsCategories('.category .card .btn','Click on View Product button listing');
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -341,6 +336,10 @@ let mut = new MutationObserver(function (muts) {
         }
         // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
 
+        eventsCategories('.category .card-title','Click on product from listing');
+        eventsCategories('.tns-controls button','Click on arrows button listing');
+        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .card .btn','Click on View Product button listing');
     }
     mut.observe(document, {
         childList: true,
@@ -350,6 +349,9 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
 
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
     mut.observe(document, {
         childList: true,
