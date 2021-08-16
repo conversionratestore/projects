@@ -1,4 +1,4 @@
-window.onload  = function () {
+// window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
         .title_head {
@@ -11,6 +11,8 @@ window.onload  = function () {
             border-bottom: 0.5px solid #CCCCCC;}
         #mainbody {
             background: transparent; }
+        .payment {
+            padding-bottom: 0;}
         .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
             display: none;}
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -56,6 +58,8 @@ window.onload  = function () {
             clear: both;
             position: relative;}
         #step1_form div.copy_bill[align="right"] {
+            margin: 30px 0 24px 0!important;
+            float: left;
             margin-top: 0!important;}
         #step1_form div.copy_bill[align="right"]:after {
             content: none; }
@@ -471,6 +475,7 @@ window.onload  = function () {
         .address_book_new .ship_small {
             margin-left: 0!important;}
         .address_book_new .small_block .radio_content {
+        width: auto;
             z-index: 2;}
         .address_book_new .small_block .head {
             display: none; } 
@@ -487,8 +492,10 @@ window.onload  = function () {
             padding-left: 0!important;}
         #step1_form {
             padding-bottom: 20px;}
+        .address_book_new .small_block .radio_content .radio_cont {
+            font-size: 14px!important;}
         .address_book_new .small_block .radio_content .radio_cont .edit {
-            padding-top: 0;}
+            padding-top: 0!important;}
         .btn-back {
             font-weight: bold;
             font-size: 14px;
@@ -497,7 +504,10 @@ window.onload  = function () {
             align-items: center;
             text-decoration-line: underline;
             padding: 10px 19px;
-            background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLight.svg') no-repeat left center / 18px;
+            background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg') no-repeat left center / 18px;
+        }
+        .address_book_new .editor .title {
+            display: none;
         }
     </style>`);
 
@@ -614,10 +624,8 @@ window.onload  = function () {
 
         document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
-        document.querySelector('.title_head').innerHTML = 'Shipping information';
         document.querySelector('.payment h3 ').style.display = 'none';
         document.querySelector('.checkout-left_head').style.display = 'none';
-        document.querySelector('.ship_small .head2').click();
         document.querySelector('.checkout-left_head .log ').style.display = 'none';
         document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
@@ -632,13 +640,21 @@ window.onload  = function () {
         document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
             document.querySelector('.title_head').innerHTML = 'Shipping information';
         });
+        if (document.querySelectorAll('.editLink')) {
+            document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
+            document.querySelector('.address_book_new .editor .title').style.display = 'block';
+            document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
+        } else {
+            document.querySelector('.ship_small .head2:last-child').click();
+            document.querySelector('.title_head').innerHTML = 'Shipping information';
+        }
     }
     if(location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .quantity-row {
         pointer-events: none;}
-    .remove{
+    .remove, .payment h3, .primaryInfo h2{
         display: none}
     #mainbody .quantity-btn {
         opacity: 0.3;}
@@ -696,12 +712,17 @@ window.onload  = function () {
         padding-top: 14px;
         font-size: 18px;
         line-height: 25px; }
+   .payment {
+        height: 100%;}
+   .payment form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;}
     </style>`);
 
-        document.querySelector('.payment h3').innerHTML = 'Shipping Options With Maximum In-Hands Date';
-        document.querySelector('.payment h3').insertAdjacentHTML('afterend', head);
-
-        document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+        document.querySelector('.title_head').innerHTML = 'Delivery Method';
+        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
         document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
         document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
@@ -711,12 +732,14 @@ window.onload  = function () {
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
-        document.querySelector('.ship_small')
+        document.querySelector('.btn-back').addEventListener('click', () => {
+            window.location = '/checkout/step1';
+        });
     }
     if(location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
-        .payment h3, .checkout-left_head .link  {
-            display: none;}
+        .payment h3, .checkout-left_head {
+            display: none!important;}
         .primaryInfo {
             font-family: 'Arial', sans-serif;
             width: 100%;
@@ -735,7 +758,9 @@ window.onload  = function () {
             border: 0.5px solid #CCCCCC;
             border-radius: 4px;
             padding: 11px 20px; }
-        primaryInfo dl textarea {
+        .primaryInfo dl textarea {
+            background: #FFFFFF;}
+        .primaryInfo dl textarea {
             height: 40px;}
         #recurring_billing_period {
                 padding: 0 10px;
@@ -751,14 +776,52 @@ window.onload  = function () {
             font-size: 14px; }
         .allow-up-to-60 {
             white-space: break-spaces; }
+       .primaryInfo label, .card-details {
+            display: flex;
+            align-items: center;}
+       .card-details p{
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            text-transform: capitalize;
+            color: #222222;
+            margin: 0 25px 0 0;}
+       .auto-reorder-header {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            margin-bottom: 2px;
+            color: #222222;}
+       .cc-recurring {
+            font-size: 12px;
+            line-height: 16px;}
+       .cc-recurring br {
+            display: none; }
+       .cc-recurring-setting {
+            display: block;
+            padding-top: 15px;}
+       .label-check {
+        padding: 0;
+       }
     </style>`);
-        document.querySelector('.checkout-left_head .title').innerHTML = 'Credit Card Information';
-        document.querySelector('.checkout-left_head').after(document.querySelector('.payment.in_center'));
+        document.querySelector('.title_head').innerHTML = 'Payment method';
+        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
 
         document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
         document.querySelector('.btn.big').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
+        document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+        document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
+        document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+        document.querySelector('.label-check .check').after(document.querySelector('#cc-recurring-check'));
+
+        document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`)
+        document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
+        document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
+
+
     }
 
     if(localStorage.getItem('productsStored')) {
@@ -798,7 +861,6 @@ window.onload  = function () {
                 body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
             })
             item.closest('.checkout-product').remove();
-
             sumTotalPrice();
         });
     });
@@ -840,4 +902,4 @@ window.onload  = function () {
             sumTotalPrice();
         });
     });
-};
+// };
