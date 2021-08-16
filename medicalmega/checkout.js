@@ -227,7 +227,7 @@ window.onload  = function () {
         .checkout-product a {
             font-size: 10px;
             display: inline-flex;
-            line-height: 12px;
+            line-height: 14px;
             max-width: 125px;
             color: #000000;}
         .remove {
@@ -238,7 +238,7 @@ window.onload  = function () {
             display: flex;
             justify-content: space-between;}
         .total-price {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 18px;
             line-height: 22px;
             color: #000000;}   
@@ -463,7 +463,7 @@ window.onload  = function () {
             transform: translateY(-50%);
             right: 20px;}
         .address_book_new {
-            padding: 20px 0 0 0; }
+            padding: 20px 0 0 0!important; }
         .address_book_new .small_block {
             width: 50%!important;
             clear: both;
@@ -514,7 +514,7 @@ window.onload  = function () {
             <div>
                 <div class="checkout-right_head flex-center-between">
                     <h3 class="title3">Your order</h3>
-<!--                    <a href="#" class="link">Returning client</a>-->
+                    <a href="https://medicalmega.com/" class="link">Back to Shopping</a>
                 </div>
                 <div class="checkout-right_body"></div>
             </div>
@@ -587,6 +587,14 @@ window.onload  = function () {
             }
             </style>`);
             document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
+        } else {
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+                #editor_fields div:nth-child(4){
+                    display: none; } 
+                #editor_fields .editor_right div:nth-child(6){
+                    display: none; }
+            </style>`);
         }
         if (document.querySelectorAll('.payment table.altPayment tr')) {
             let productsStored = [];
@@ -606,9 +614,10 @@ window.onload  = function () {
 
         document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
-        document.querySelector('.title_head').innerHTML = 'Billing Information';
+        document.querySelector('.title_head').innerHTML = 'Shipping information';
         document.querySelector('.payment h3 ').style.display = 'none';
-        document.querySelector('#editor_block').style.display = 'block';
+        document.querySelector('.checkout-left_head').style.display = 'none';
+        document.querySelector('.ship_small .head2').click();
         document.querySelector('.checkout-left_head .log ').style.display = 'none';
         document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
@@ -616,6 +625,12 @@ window.onload  = function () {
         document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelectorAll('form div[align="right"] input')[1].click();
+        });
+        document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+            document.querySelector('.title_head').innerHTML = 'Billing Information';
+        });
+        document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+            document.querySelector('.title_head').innerHTML = 'Shipping information';
         });
     }
     if(location.pathname == '/checkout/step2') {
@@ -760,7 +775,7 @@ window.onload  = function () {
                     <div class="flex-center-between">
                         <div class="quantity-row">
                             <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity" readonly>
                             <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                         </div>
                         <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
@@ -775,18 +790,15 @@ window.onload  = function () {
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
-            let pathname = location.pathname;
-            document.querySelectorAll('.altPayment tr .product-quantity-form a')[index].click();
-            // fetch('https://medicalmega.com/checkout/step1', {
-            //     headers: {
-            //         'Content-Type': 'application/x-www-form-urlencoded',
-            //     },
-            //     method: "POST",
-            //     body: `product_quantity=${item.closest('.checkout-product').querySelector('.quantity').value}&cp_id=${906907}&product_type=variant&remove_from_cart=remove_from_cart&option_id=101271`
-            // })
-            // window.location = pathname;
-            // item.closest('.checkout-product').remove();
-            // justunoCartItems.splice(index, 1);
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
+            })
+            item.closest('.checkout-product').remove();
+
             sumTotalPrice();
         });
     });
@@ -803,8 +815,6 @@ window.onload  = function () {
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-                    document.querySelectorAll('.altPayment tr .product-quantity')[index].value = parseInt(button.previousElementSibling.value) + 1;
-                    document.querySelectorAll('.altPayment tr .input-update')[index].click();
                 }
                 if (button.className == 'quantity-btn quantity-btn_minus') {
                     if (button.nextElementSibling.value < 2) {
@@ -812,11 +822,15 @@ window.onload  = function () {
                         button.disabled = true;
                     } else {
                         button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                        document.querySelectorAll('.altPayment tr .product-quantity')[index].value = parseInt(button.nextElementSibling.value) - 1;
-                        document.querySelectorAll('.altPayment tr .input-update')[index].click();
                     }
                 }
-
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                })
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                 sumTotalPrice();
             });
