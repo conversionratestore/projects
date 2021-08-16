@@ -331,6 +331,11 @@ let mut = new MutationObserver(function (muts) {
             tnsInitialization('.category-slider',2,3,4,false);
         }
         // card(JSON.parse(localStorage.getItem('items'))[5]["idCategory"], itemsLocalStorage[5]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[5]["data"]["items"][i]["name"],itemsLocalStorage[5]["data"]["items"][i]["price"],itemsLocalStorage[5]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[5]["data"]["items"][i]["status"]); 
+
+        eventsCategories('.category .card-title','Click on product from listing');
+        eventsCategories('.tns-controls button','Click on arrows button listing');
+        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .card .btn','Click on View Product button listing');
     }
     mut.observe(document, {
         childList: true,
@@ -339,6 +344,9 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.popup .slider .slide')) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
     mut.observe(document, {
         childList: true,
@@ -1097,13 +1105,7 @@ window.onload  = function () {
             document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
         }
     }
-    eventsCategories('.category .card-title','Click on product from listing');
-    eventsCategories('.tns-controls button','Click on arrows button listing');
-    eventsCategories('.tns-nav button','Click on dots button listing');
-    eventsCategories('.category .card .btn','Click on View Product button listing');
-    eventsPopup('.popup .card-title','Click on product from');
-    eventsPopup('.popup .btn','Click on View product white button');
-    eventsPopup('.popup .tns-controls button','Click on arrows button');
+
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
