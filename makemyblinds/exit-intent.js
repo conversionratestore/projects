@@ -55,7 +55,6 @@ function card(index,img,name,price,link,satus) {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
         eventsPopup('.popup .card-title','Click on product from');
         eventsPopup('.popup .btn','Click on View product white button');
-        eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
 
     document.querySelectorAll('.category .card-price').forEach((el) => {
@@ -347,6 +346,8 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.popup .slider .slide')) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
+
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
     mut.observe(document, {
         childList: true,
@@ -1052,6 +1053,11 @@ window.onload  = function () {
                 card('random', randomItems[0]["items"][i]["media_gallery_entries"][0]["file"], randomItems[0]["items"][i]["name"], randomItems[0]["items"][i]["price"], randomItems[0]["items"][i]["custom_attributes"][3]["value"], randomItems[0]["items"][i]["status"]);
             }
             tnsInitialization('.category-slider',2,3,4,false);
+
+            eventsCategories('.category .card-title','Click on product from listing');
+            eventsCategories('.tns-controls button','Click on arrows button listing');
+            eventsCategories('.tns-nav button','Click on dots button listing');
+            eventsCategories('.category .card .btn','Click on View Product button listing');
         }).catch(err => {
             console.log('Failed fetch ', err);
         });
