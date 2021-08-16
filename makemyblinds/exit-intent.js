@@ -53,6 +53,9 @@ function card(index,img,name,price,link,satus) {
         });
     } else {
         document.querySelector('.popup .slider').insertAdjacentHTML('beforeend', card);
+        eventsPopup('.popup .card-title','Click on product from');
+        eventsPopup('.popup .btn','Click on View product white button');
+        eventsPopup('.popup .tns-controls button','Click on arrows button');
     }
 
     document.querySelectorAll('.category .card-price').forEach((el) => {
@@ -86,10 +89,7 @@ function eventsCategories(elem,eventAction) {
     })
 }
 function eventsPopup(elem,eventAction) {
-    console.log('eventsPopup' + elem + ' - ' + eventAction);
     document.querySelectorAll(`${elem}`).forEach((el) => {
-
-        console.log('eventsPopup' + el + ' - ' + eventAction);
         el.addEventListener('click', () => {
             if (window.matchMedia(`(max-width: 768px)`).matches) {
                 window.dataLayer = window.dataLayer || [];
@@ -308,9 +308,6 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         eventsCategories('.tns-controls button','Click on arrows button listing');
         eventsCategories('.tns-nav button','Click on dots button listing');
         eventsCategories('.category .card .btn','Click on View Product button listing');
-        eventsPopup('.popup .card-title','Click on product from');
-        eventsPopup('.popup .btn','Click on View product white button');
-        eventsPopup('.popup .tns-controls button','Click on arrows button');
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -350,7 +347,6 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.popup .slider .slide')) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
-
     }
     mut.observe(document, {
         childList: true,
