@@ -186,26 +186,36 @@ let mut = new MutationObserver(function (muts) {
             </div>            
         `;
 
-        const productsList = `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`
+        const productsList = `<div id="popular"><h3 class="fw-bold">Beliebte Produkte</h3><div class="d-flex"></div></div>`;
 
         const isBabyPost = window.location.pathname.split('post/')[1] === 'baby-schlafen-tagsuber.html';
+        const pathnamePost = window.location.pathname.split('post/')[1];
 
         function drawTemplate(header) {
-            if(document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
+            if (pathnamePost === 'bei-larm-schlafen1.html') {
+                document.querySelectorAll('.post-post_content h5')[1].insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('.post-post_content h4')[2].insertAdjacentHTML('beforebegin', productsList);
+            } else if (pathnamePost === 'tips-fuer-besseren-schlaf.html') {
+                document.querySelectorAll('.post-post_content p')[1].insertAdjacentHTML('beforebegin', banner);
+                document.querySelector('.post-post_content ol').insertAdjacentHTML('afterend', productsList);
+            } else if (pathnamePost === '5-jahre-zizzz.html') {
+                document.querySelectorAll('.post-post_content h4')[2].insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('.post-post_content p')[11].insertAdjacentHTML('beforebegin', productsList);
+            } else if (document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
                 console.log('1');
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
-                document.querySelectorAll(header)[2].insertAdjacentHTML('beforebegin', productsList);
-            }
-            else if (document.querySelectorAll('h4')[0]){
+                document.querySelectorAll(`.post-post_content ${header}`)[2]
+                    ? document.querySelectorAll(`.post-post_content ${header}`)[2].insertAdjacentHTML('beforebegin', productsList)
+                    : document.querySelectorAll(`.post-post_content ${header}`)[1].insertAdjacentHTML('beforebegin', productsList);
+            } else if (document.querySelectorAll('h4')[0]) {
                 console.log('2');
                 document.querySelectorAll('h4')[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll('h4')[0].nextElementSibling.insertAdjacentHTML('afterend', productsList);
-            }
-            else if (document.querySelectorAll('h5')[0]){
+            } else if (document.querySelectorAll('h5')[0]) {
                 console.log('3');
-                if(!document.querySelectorAll('.mpcss h5')[0]) {
+                if (!document.querySelectorAll('.mpcss h5')[0]) {
                     document.querySelectorAll('h5')[0].insertAdjacentHTML('beforebegin', banner);
-                    if(document.querySelectorAll('h5')[0].nextElementSibling) {
+                    if (document.querySelectorAll('h5')[0].nextElementSibling) {
                         console.log('3.1');
                         document.querySelectorAll('h5')[0].nextElementSibling.insertAdjacentHTML('afterend', productsList);
                     } else {
@@ -214,9 +224,9 @@ let mut = new MutationObserver(function (muts) {
                     }
                 } else {
                     console.log('3else');
-                    if(document.querySelectorAll('.post-post_content strong')[1]) {
+                    if (document.querySelectorAll('.post-post_content strong')[1]) {
                         document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
-                        if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
+                        if (document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
                             console.log('3else');
                             document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                         } else {
@@ -228,11 +238,10 @@ let mut = new MutationObserver(function (muts) {
                         document.querySelector('.banner').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                     }
                 }
-            }
-            else {
+            } else {
                 console.log('4');
                 document.querySelectorAll('.post-post_content strong')[1].closest('p').nextElementSibling.insertAdjacentHTML('afterend', banner);
-                if(document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
+                if (document.querySelectorAll('.post-post_content strong')[3]?.closest('p')?.nextElementSibling) {
                     console.log('4.1');
                     document.querySelectorAll('.post-post_content strong')[3].closest('p').nextElementSibling.insertAdjacentHTML('afterend', productsList);
                 } else {
