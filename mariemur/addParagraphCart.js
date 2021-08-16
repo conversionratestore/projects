@@ -35,7 +35,7 @@ function drawParagraph(reg) {
 }
 
 // select the target node
-const target = document.querySelector('.cart-modal__inner');
+const target = document.querySelector('.cart-modal');
 
 // create an observer instance
 let observer = new MutationObserver(function (mutations) {
