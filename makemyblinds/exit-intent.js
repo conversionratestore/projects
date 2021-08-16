@@ -303,8 +303,8 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         tnsInitialization('.category-slider',2,3,4,false);
 
         eventsCategories('.category .card-title','Click on product from listing');
-        eventsCategories('.tns-controls button','Click on arrows button listing');
-        eventsCategories('.tns-nav button','Click on dots button listing');
+        eventsCategories('.category .tns-controls button','Click on arrows button listing');
+        eventsCategories('.category .tns-nav button','Click on dots button listing');
         eventsCategories('.category .card .btn','Click on View Product button listing');
     });
 }).catch(err => {
@@ -1057,8 +1057,8 @@ window.onload  = function () {
             tnsInitialization('.category-slider',2,3,4,false);
 
             eventsCategories('.category .card-title','Click on product from listing');
-            eventsCategories('.tns-controls button','Click on arrows button listing');
-            eventsCategories('.tns-nav button','Click on dots button listing');
+            eventsCategories('.category .tns-controls button','Click on arrows button listing');
+            eventsCategories('.category .tns-nav button','Click on dots button listing');
             eventsCategories('.category .card .btn','Click on View Product button listing');
         }).catch(err => {
             console.log('Failed fetch ', err);
