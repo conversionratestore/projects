@@ -197,7 +197,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
-//              //display: none;
+                display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -238,7 +238,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
-//              //padding-left: 24px;
+                padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
@@ -434,13 +434,6 @@ window.onload  = function () {
                         button.nextElementSibling.value = +button.nextElementSibling.value - 1;
                     }
                 }
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=variant`
-                })
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
             });
