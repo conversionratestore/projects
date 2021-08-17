@@ -690,12 +690,8 @@ window.onload  = function () {
     if(location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
-    .quantity-row {
-        pointer-events: none;}
     .remove, .payment h3, .primaryInfo h2{
         display: none}
-    #mainbody .quantity-btn {
-        opacity: 0.3;}
     .primaryInfo li {
         display: flex;
         align-items: center;}
