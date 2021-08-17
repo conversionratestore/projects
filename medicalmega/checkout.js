@@ -640,7 +640,7 @@ window.onload  = function () {
             document.querySelectorAll('form div[align="right"] input')[1].click();
         });
 
-        if (!document.querySelector('.editLink').innerHTML) {
+        if (document.querySelector('.editLink') == null) {
             document.querySelector('.ship_small .head2:last-child').click();
             document.querySelector('.title_head').innerHTML = 'Shipping information';
             document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
