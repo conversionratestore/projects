@@ -517,7 +517,7 @@ window.onload  = function () {
         <div class="checkout-left">
             <div class="checkout-left_head flex-center-between">
                 <h2 class="title">Registration</h2>
-                <p class="link log active">Returning client</p>
+                <p class="link log active">Sign In</p>
             </div>
             <div class="title_head">Personal information</div>
         </div>
@@ -570,8 +570,8 @@ window.onload  = function () {
         </label>`);
         document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
         document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-        document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Register Now!`;
-        document.querySelector('#login_btn').innerHTML = `LOGIN`;
+        document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
+        document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
         document.querySelector('.log').addEventListener('click', (e) => {
             let _this = e.target;
             _this.classList.toggle('active');
@@ -580,6 +580,13 @@ window.onload  = function () {
                 document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
                 document.querySelector('.myAccountright').style.display = 'none';
                 document.querySelector('.myAccountleft').style.display = 'block';
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Sign In button',
+                    'eventLabel': 'Section Registration'
+                });
             } else {
                 _this.innerHTML = 'Registration';
                 document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
@@ -911,4 +918,32 @@ window.onload  = function () {
             sumTotalPrice();
         });
     });
+    document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Alternative checkout desktop',
+            'eventAction': 'Click Back to Shoping button',
+            'eventLabel': 'Section Your order'
+        });
+    })
+
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1483840,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'alternative_checkout_desktop');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Alternative checkout desktop',
+    'eventAction': 'loaded'
+});
