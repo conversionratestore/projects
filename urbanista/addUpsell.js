@@ -135,6 +135,16 @@ const text = {
     ]
 };
 
+let pricePDP;
+
+if (language === 'se') {
+    pricePDP = '399 kr'
+} else if (language === 'uk') {
+    pricePDP = '£39.99';
+} else {
+    pricePDP = '€39.99';
+}
+
 function drawTepmlate() {
     if (document.querySelector('.minicart-items-wrapper') && !document.querySelector('.lyon-item')) {
         document.querySelector('.minicart-items-wrapper').insertAdjacentHTML('afterend', `
@@ -154,7 +164,7 @@ function drawTepmlate() {
                                 <p class="info__title">Lyon</p>
                                 <p class="info__type">${text[language] ? text[language][1] : text['en'][1]}</p>
                                 <p class="info__description">${text[language] ? text[language][2] : text['en'][2]}</p>
-                                <p class="info__price">${language === 'se' ? '399 kr' : '€39.99'}</p>
+                                <p class="info__price">${pricePDP}</p>
                                 <button class="info__btn">${text[language] ? text[language][3] : text['en'][3]}</button>
                             </div>
                         </div>
