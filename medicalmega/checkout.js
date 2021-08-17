@@ -572,6 +572,15 @@ window.onload  = function () {
         document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
         document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
         document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
+        document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Choose Shipping Method button',
+                'eventLabel': 'Section Registration'
+            });
+        });
         document.querySelector('.log').addEventListener('click', (e) => {
             let _this = e.target;
             _this.classList.toggle('active');
@@ -854,7 +863,7 @@ window.onload  = function () {
                     <div class="flex-center-between">
                         <div class="quantity-row">
                             <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity" readonly>
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
                             <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                         </div>
                         <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
@@ -869,6 +878,13 @@ window.onload  = function () {
     }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Exit Cross button',
+                'eventLabel': 'Section Your order'
+            });
             fetch('/cart.html', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -879,6 +895,25 @@ window.onload  = function () {
             item.closest('.checkout-product').remove();
             sumTotalPrice();
         });
+    });
+
+    document.querySelectorAll('.checkout-product .quantity').forEach(el => {
+        el.addEventListener('change', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Change on amount of items',
+                'eventLabel': 'Section Your order'
+            });
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+            })
+        })
     });
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
         quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
@@ -893,6 +928,14 @@ window.onload  = function () {
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on plus of items',
+                        'eventLabel': 'Section Your order'
+                    });
                 }
                 if (button.className == 'quantity-btn quantity-btn_minus') {
                     if (button.nextElementSibling.value < 2) {
@@ -901,7 +944,16 @@ window.onload  = function () {
                     } else {
                         button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
                     }
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on minus of items',
+                        'eventLabel': 'Section Your order'
+                    });
                 }
+
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
