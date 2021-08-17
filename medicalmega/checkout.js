@@ -1,4 +1,4 @@
-// window.onload  = function () {
+window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
         .title_head {
@@ -316,6 +316,7 @@
             border: 0.5px solid #CCCCCC;
             display: block;
             margin: 0 8px 0 0;
+            flex-shrink: 0;
             width: 20px;
             height: 20px;}
         [type="checkbox"]:checked ~ .check {
@@ -772,14 +773,21 @@
             border-radius: 4px;
             width: 160px!important;}
         .cc-recurring-setting {
+            display: flex;
+            align-items: center;
             font-weight: 500;
             font-size: 14px; }
         .allow-up-to-60 {
+            display: none;
             white-space: break-spaces; }
        .primaryInfo label, .card-details {
             display: flex;
             align-items: center;}
+       .primaryInfo label {
+            width: 100%;}
+       
        .card-details p{
+            white-space: nowrap;
             font-weight: bold;
             font-size: 18px;
             line-height: 25px;
@@ -798,12 +806,8 @@
             line-height: 16px;}
        .cc-recurring br {
             display: none; }
-       .cc-recurring-setting {
-            display: block;
-            padding-top: 15px;}
        .label-check {
-        padding: 0;
-       }
+            padding: 15px 0 0 0!important; }
     </style>`);
         document.querySelector('.title_head').innerHTML = 'Payment method';
         document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
@@ -815,12 +819,12 @@
         document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
         document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
-        document.querySelector('.label-check .check').after(document.querySelector('#cc-recurring-check'));
+        document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
+        document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
 
-        document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`)
+        document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
         document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
         document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
-
 
     }
 
@@ -902,4 +906,4 @@
             sumTotalPrice();
         });
     });
-// };
+};
