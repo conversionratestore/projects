@@ -114,6 +114,18 @@ document.head.appendChild(scriptCustom);
 
 const language = window.location.pathname.split('/')[1];
 
+let pricePDP;
+
+if (language === 'se') {
+    pricePDP = '399 kr'
+} else if (language === 'uk') {
+    pricePDP = '£39.99';
+} else {
+    pricePDP = '€39.99';
+}
+
+console.log(pricePDP);
+
 const text = {
     en: [
         `Add Power bank<br>to Never run out of charging`,
@@ -134,16 +146,6 @@ const text = {
         'Se produkt'
     ]
 };
-
-let pricePDP;
-
-if (language === 'se') {
-    pricePDP = '399 kr'
-} else if (language === 'uk') {
-    pricePDP = '£39.99';
-} else {
-    pricePDP = '€39.99';
-}
 
 function drawTepmlate() {
     if (document.querySelector('.minicart-items-wrapper') && !document.querySelector('.lyon-item')) {
