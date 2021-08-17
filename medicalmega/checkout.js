@@ -601,6 +601,10 @@ window.onload  = function () {
         } else {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+                .payment {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column; }
                 #editor_fields div:nth-child(4){
                     display: none; } 
                 #editor_fields .editor_right div:nth-child(6){
@@ -636,7 +640,7 @@ window.onload  = function () {
             document.querySelectorAll('form div[align="right"] input')[1].click();
         });
 
-        if (!document.querySelectorAll('.editLink')) {
+        if (!document.querySelectorAll('.editLink').innerHTML) {
             document.querySelector('.ship_small .head2:last-child').click();
             document.querySelector('.title_head').innerHTML = 'Shipping information';
             document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
