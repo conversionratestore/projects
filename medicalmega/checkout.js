@@ -635,19 +635,20 @@ window.onload  = function () {
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelectorAll('form div[align="right"] input')[1].click();
         });
-        document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
-            document.querySelector('.title_head').innerHTML = 'Billing Information';
-        });
-        document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+   
+        if (!document.querySelectorAll('.editLink')) {
+            document.querySelector('.ship_small .head2:last-child').click();
             document.querySelector('.title_head').innerHTML = 'Shipping information';
-        });
-        if (document.querySelectorAll('.editLink')) {
+        } else {
             document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
             document.querySelector('.address_book_new .editor .title').style.display = 'block';
             document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
-        } else {
-            document.querySelector('.ship_small .head2:last-child').click();
-            document.querySelector('.title_head').innerHTML = 'Shipping information';
+            document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+                document.querySelector('.title_head').innerHTML = 'Billing Information';
+            });
+            document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+                document.querySelector('.title_head').innerHTML = 'Shipping information';
+            });
         }
     }
     if(location.pathname == '/checkout/step2') {
