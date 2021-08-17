@@ -654,6 +654,13 @@ window.onload  = function () {
         document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelectorAll('form div[align="right"] input')[1].click();
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Next button',
+                'eventLabel': 'Section Shipping information'
+            });
         });
 
         if (document.querySelector('.editLink') == null) {
@@ -670,6 +677,15 @@ window.onload  = function () {
             document.querySelector('.address_book_new .editor .title').style.display = 'block';
             document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
         }
+        document.querySelector('.copy_bill label').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Copy from Billing info field',
+                'eventLabel': 'Section Shipping information'
+            });
+        });
     }
     if(location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
@@ -755,8 +771,36 @@ window.onload  = function () {
             document.querySelector('form div[align="right"] input').click();
         });
         document.querySelector('.btn-back').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Back button',
+                'eventLabel': 'Section Delivery Method'
+            });
             window.location = '/checkout/step1';
         });
+        document.querySelectorAll('#ship_options li').forEach((el, i) => {
+            el.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': `Pick ${el.querySelector('i'.innerHTML)}`,
+                    'eventLabel': 'Section Delivery method'
+                });
+            });
+        });
+        document.querySelector('.promoCode').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click on Promotional Code field',
+                'eventLabel': 'Section Delivery method'
+            });
+        });
+
     }
     if(location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -846,7 +890,24 @@ window.onload  = function () {
         document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
         document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
         document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
-
+        document.querySelector('.card-details label').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Remember my card field',
+                'eventLabel': 'Section Payment method'
+            });
+        });
+        document.querySelector('.label-check').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Pick regular reorder',
+                'eventLabel': 'Section Payment method'
+            });
+        });
     }
 
     if(localStorage.getItem('productsStored')) {
