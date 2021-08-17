@@ -635,20 +635,20 @@ window.onload  = function () {
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelectorAll('form div[align="right"] input')[1].click();
         });
-   
+
         if (!document.querySelectorAll('.editLink')) {
             document.querySelector('.ship_small .head2:last-child').click();
             document.querySelector('.title_head').innerHTML = 'Shipping information';
-        } else {
-            document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
-            document.querySelector('.address_book_new .editor .title').style.display = 'block';
-            document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
             document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
                 document.querySelector('.title_head').innerHTML = 'Billing Information';
             });
             document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
                 document.querySelector('.title_head').innerHTML = 'Shipping information';
             });
+        } else {
+            document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
+            document.querySelector('.address_book_new .editor .title').style.display = 'block';
+            document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
         }
     }
     if(location.pathname == '/checkout/step2') {
