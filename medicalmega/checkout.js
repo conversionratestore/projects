@@ -450,6 +450,8 @@ window.onload  = function () {
             padding: 0 30px;
             position: relative;}
         .myAccountleft .registerOnLogin dd:last-child {
+            max-width: 100%;
+            width: fit-content;
             margin-left: auto;}
         .btn-next  {
             max-width: 224px;
