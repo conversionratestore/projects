@@ -198,7 +198,8 @@ window.onload  = function () {
             font-size: 14px;
             line-height: 17px;}   
         .checkout-right {
-            display: grid;
+            // display: grid;
+            height: fit-content;
             width: 304px;
             background: rgba(238, 238, 238, 0.5);
             padding: 0 20px;
@@ -735,8 +736,8 @@ window.onload  = function () {
         font-size: 18px;}
     .primaryInfo li strong {
         margin-left: 5px;}
-     #2_3_days {
-        padding-left: 0!important;}
+    .primaryInfo #2_3_days {
+        padding: 5px 0 0 0!important;}
     .promoCode {
         margin: 0;
         background: #EDEDED;
@@ -930,7 +931,7 @@ window.onload  = function () {
                             <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                         </div>
                         <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                            <b>${justunoCartItems[i].price}</b>
+                            <b>${justunoCartItems[i].price * justunoCartItems[i].quantity}</b>
                         </div>
                     </div>
                 </div>
