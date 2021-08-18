@@ -34,22 +34,14 @@ document.head.insertAdjacentHTML('beforeend', `
         .product-price .price {
             text-align: right;
         } 
-        .money{
-            color: #5E5E5E;
+        .money.money_sale{
+            color: #5E5E5E !important;
             font-weight: 300;
             font-size: 12px !important;
             line-height: 14px;
             letter-spacing: 0.3px;
             text-decoration: line-through;
-        }       
-        /* .money:not('.cart-modal__total .money'){*/
-        /*    color: #5E5E5E;*/
-        /*    font-weight: 300;*/
-        /*    font-size: 12px !important;*/
-        /*    line-height: 14px;*/
-        /*    letter-spacing: 0.3px;*/
-        /*    text-decoration: line-through;*/
-        /*}*/
+        }    
         .price_sale {
             margin-top: 5px;
             color: #A60B00;
@@ -69,7 +61,7 @@ document.head.insertAdjacentHTML('beforeend', `
             display: inline-block;
         }
         .price_sale {
-            margin: 0 0 0 5px;
+            margin: 0 5px 0;
         }
         .price-look {
             width: 28%;
@@ -85,18 +77,16 @@ const elementsArray = ['.product-price .money', '.product-list__box-price .price
 
 // draw my template function
 function drawSale(element) {
-    let saleSpan = '';
-
-    if (element === '.product-price .money') {
-        saleSpan = ' <br><span>(10% off)</span>';
-    }
+    let isTitlePrice = element === '.product-price .money';
 
     document.querySelectorAll(element).forEach(price => {
         let valueInString = price.innerText.split('$')[1];
         let num = parseFloat(valueInString);
         let val = num - (num * .10);
 
-        price.insertAdjacentHTML('afterend', `<p class="price_sale">$${val.toFixed(2)}${saleSpan}</p>`);
+        isTitlePrice
+            ? price.insertAdjacentHTML('beforebegin', `<p class="price_sale">$${val.toFixed(2)}<br><span>(10% off)</span></p>`)
+            : price.insertAdjacentHTML('afterend', `<p class="price_sale">$${val.toFixed(2)}</p>`);
 
         if (price.closest('b')) {
             price.closest('b').style.cssText = `text-align: right;`;
@@ -108,6 +98,16 @@ function drawSale(element) {
 for (let i = 0; i < elementsArray.length; i++) {
     drawSale(elementsArray[i]);
 }
+
+document.querySelectorAll('.money').forEach(money => {
+    money.classList.add('money_sale');
+});
+
+document.querySelectorAll('.af_tag').forEach(coupon => {
+    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+        coupon.classList.add('coupon_hidden');
+    }
+});
 
 /* create observers */
 
@@ -144,6 +144,7 @@ secondObserver.observe(newTarget, newConfig);
 /* timer */
 document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span></span></p></div>');
 
+
 const twentyFourHours = 24 * 60 * 60;
 const display = document.querySelector('.header .countdown span');
 
@@ -164,7 +165,15 @@ function startTimer(duration, display) {
             clearInterval(timerInterval);
 
             document.querySelector('.countdown').remove();
+            document.querySelectorAll('.price_sale').forEach(sale => {
+                sale.remove();
+            });
 
+            document.querySelectorAll('.money').forEach(money => {
+                money.classList.remove('money_sale');
+            });
+
+            document.querySelector('.reviews-prod-title').style.cssText = 'margin-top: 0;';
         }
     }, 1000);
 }
