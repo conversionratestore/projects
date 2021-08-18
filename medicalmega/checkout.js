@@ -543,7 +543,7 @@ window.onload  = function () {
                 </div>
                 <div class="altTd total-values">
                     <p>$ <b></b></p>   
-                    <p> <b></b></p>
+                    <p>$ <b></b></p>
                 </div>
             </div>
         </div>
@@ -557,7 +557,7 @@ window.onload  = function () {
                 if(totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
                 } else {
-                    totalValues.innerHTML = document.querySelectorAll('.altPayment .total-values b')[1].innerHTML;
+                    totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
                 }
             });
         });
