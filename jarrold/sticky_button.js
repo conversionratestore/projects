@@ -9,7 +9,7 @@ let style12 = /*html*/ `
 }
 
 #search-modal {
-  z-index: 1054 !important;
+  z-index: 1054;
 }
 
 .button-pop-up {
@@ -652,11 +652,13 @@ function createButtonList() {
       });
     }
   });
+
+  clickListener();
 }
 
 function createButtonListSearch() {
   document.querySelectorAll(`#search-modal`).forEach((item) => {
-    if (!document.querySelector("#search-modal .btn-open-list")) {
+    if (!document.querySelector("#search-modal .ais-Hits-item:first-child .btn-open-list")) {
       console.log(`createButtonListSearch`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
@@ -670,24 +672,28 @@ function createButtonListSearch() {
       });
     }
   });
+
+  clickListener();
 }
 
-document.querySelectorAll(".btn-open-list").forEach((btn) => {
-  btn.addEventListener("click", function (e) {
-    console.log(`Click Add to bag button PLP`);
-    e.preventDefault();
-    //
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp — Stiсky button mobile",
-      eventAction: "Click Add to bag button PLP",
-    });
-    //
+function clickListener() {
+  document.querySelectorAll(".btn-open-list").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      console.log(`Click Add to bag button PLP`);
+      e.preventDefault();
+      //
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — Stiсky button mobile",
+        eventAction: "Click Add to bag button PLP",
+      });
+      //
 
-    toggleModal();
+      toggleModal();
+    });
   });
-});
+}
 
 //
 window.dataLayer = window.dataLayer || [];
@@ -735,7 +741,8 @@ setTimeout(function () {
 }, 500);
 
 //
-let target = document.body;
+// let target = document.body;
+let target = document.querySelector("#search-modal");
 
 const config = {
   childList: true,
@@ -744,6 +751,7 @@ const config = {
 
 const callback = function (mutationsList) {
   if (document.querySelector("#search-modal")) {
+    console.log(`mutationsList`);
     observer.disconnect();
     createButtonListSearch();
     observer.observe(target, config);
