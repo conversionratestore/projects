@@ -553,7 +553,7 @@ window.onload  = function () {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
             sum += parseFloat(totalPrice.innerHTML);
-            document.querySelectorAll('.checkout-right_body .total-values b').forEach((totalValues, totalIndex) => {
+            document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
                 if(totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
                 } else {
