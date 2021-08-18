@@ -656,9 +656,8 @@ function createButtonList() {
 
 function createButtonListSearch() {
   document.querySelectorAll(`#search-modal`).forEach((item) => {
-    // console.log(`item`, item);
     if (!document.querySelector("#search-modal .btn-open-list")) {
-      // console.log(`createButtonListSearch`);
+      console.log(`createButtonListSearch`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -675,6 +674,7 @@ function createButtonListSearch() {
 
 document.querySelectorAll(".btn-open-list").forEach((btn) => {
   btn.addEventListener("click", function (e) {
+    console.log(`Click Add to bag button PLP`);
     e.preventDefault();
     //
     window.dataLayer = window.dataLayer || [];
