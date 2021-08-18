@@ -656,9 +656,9 @@ function createButtonList() {
 
 function createButtonListSearch() {
   document.querySelectorAll(`#search-modal`).forEach((item) => {
-    console.log(`item`, item);
+    // console.log(`item`, item);
     if (!document.querySelector("#search-modal .btn-open-list")) {
-      console.log(`createButtonListSearch`);
+      // console.log(`createButtonListSearch`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
