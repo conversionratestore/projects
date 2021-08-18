@@ -543,7 +543,7 @@ window.onload  = function () {
                 </div>
                 <div class="altTd total-values">
                     <p>$ <b></b></p>   
-                    <p>$ <b></b></p>
+                    <p> <b></b></p>
                 </div>
             </div>
         </div>
