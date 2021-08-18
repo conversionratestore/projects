@@ -641,7 +641,7 @@ window.onload  = function () {
     .your-box {
         display: none;}
         @media screen and (min-width: 769px) {
-            .popup .product-great {
+            .popup .product-great-item:last-child {
                 display: none; }
             .popup .slide {
                 width: 50%;
