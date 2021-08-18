@@ -639,6 +639,7 @@ function createButtonList() {
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
     if (!document.querySelector(".btn-open-list")) {
+      console.log(`createButtonList`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -680,7 +681,7 @@ function createButtonListSearch() {
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
     if (!document.querySelector("#search-modal .btn-open-list")) {
-      console.log(`object`);
+      console.log(`createButtonListSearch`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
