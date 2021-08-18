@@ -670,15 +670,15 @@ function createButtonList() {
 }
 
 function createButtonListSearch() {
-  let parentDiv = ".product-grid";
-  let products = "products";
+  // let parentDiv = ".product-grid";
+  // let products = "products";
 
-  if (document.querySelector(".ais-Hits-list")) {
-    parentDiv = "#hits";
-    products = "ais-Hits-list";
-  }
+  // if (document.querySelector(".ais-Hits-list")) {
+  //   parentDiv = "#hits";
+  //   products = "ais-Hits-list";
+  // }
 
-  document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
+  document.querySelectorAll(`#search-modal`).forEach((item) => {
     if (!document.querySelector("#search-modal .btn-open-list")) {
       console.log(`object`);
       item.querySelectorAll("li").forEach((i) => {
