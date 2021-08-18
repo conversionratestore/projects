@@ -631,11 +631,15 @@ window.onload  = function () {
                 .payment {
                     height: 100%;
                     display: flex;
-                    flex-direction: column; }
+                    flex-direction: column;}
                 #editor_fields div:nth-child(4){
-                    display: none; } 
+                    display: none;} 
                 #editor_fields .editor_right div:nth-child(6){
-                    display: none; }
+                    display: none;}
+                .quantity-row {
+                    pointer-events: none;}
+                .quantity-btn  {
+                    color: #CCCCCC;}
             </style>`);
         }
         if (document.querySelectorAll('.payment table.altPayment tr')) {
