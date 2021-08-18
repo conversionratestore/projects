@@ -652,22 +652,6 @@ function createButtonList() {
       });
     }
   });
-
-  document.querySelectorAll(".btn-open-list").forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      //
-      window.dataLayer = window.dataLayer || [];
-      dataLayer.push({
-        event: "event-to-ga",
-        eventCategory: "Exp — Stiсky button mobile",
-        eventAction: "Click Add to bag button PLP",
-      });
-      //
-
-      toggleModal();
-    });
-  });
 }
 
 function createButtonListSearch() {
@@ -688,6 +672,22 @@ function createButtonListSearch() {
     }
   });
 }
+
+document.querySelectorAll(".btn-open-list").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    //
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — Stiсky button mobile",
+      eventAction: "Click Add to bag button PLP",
+    });
+    //
+
+    toggleModal();
+  });
+});
 
 //
 window.dataLayer = window.dataLayer || [];
