@@ -768,8 +768,8 @@ window.onload  = function () {
     .quantity-row {
         pointer-events: none;}
     .quantity-btn  {
-        color: #CCCCCC;}
-        </style>`);
+        color: #CCCCCC!important;}
+    </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
         document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
@@ -866,7 +866,7 @@ window.onload  = function () {
        .remove {
             display: none }
        .quantity-btn {
-            color: #CCCCCC;}
+            color: #CCCCCC!important;}
        .quantity-row {
             pointer-events: none; }
        .card-details p{
