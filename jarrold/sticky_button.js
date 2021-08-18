@@ -321,12 +321,8 @@ let style12 = /*html*/ `
   </style>
 `;
 
-let buttons = /*html*/ `
-   <div class="button-pop-up">
-      <button class="btn-open" data-modal-open>add to bag</button>
-    </div>
-
-    <div class="backdrop-modal is-hidden" data-modal>
+let modalForm = /*html*/ `
+<div class="backdrop-modal is-hidden" data-modal>
       <form class="modal-form">
        <span class="border-bottom-span"></span>
 
@@ -373,6 +369,7 @@ let pickSize = /*html*/ `
 `;
 
 document.head.insertAdjacentHTML("afterbegin", style12);
+document.body.insertAdjacentHTML("afterbegin", modalForm);
 
 if (document.querySelector(".product-grid")) {
   createButtonList();
@@ -385,11 +382,59 @@ if (document.querySelector(".upc")) {
 function toggleModal() {
   document.body.classList.toggle("modal-open");
   document.querySelector("[data-modal]").classList.toggle("is-hidden");
-  document.querySelector("[data-modal-open]").classList.toggle("hidden");
+
+  if (document.querySelector(".upc")) {
+    document.querySelector("[data-modal-open]").classList.toggle("hidden");
+  }
 }
 
+document.querySelector("[data-modal-close]").addEventListener("click", function () {
+  let action = "Click Exit cross button PLP";
+
+  if (document.querySelector(".upc")) {
+    action = "Click Exit cross button sticky block";
+  }
+
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Stiсky button mobile",
+    eventAction: action,
+  });
+  //
+
+  toggleModal();
+});
+
+document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
+  let action = "Click Choose button PLP";
+
+  if (document.querySelector(".upc")) {
+    action = "Click Add to bag button sticky block";
+    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+  }
+
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Stiсky button mobile",
+    eventAction: action,
+  });
+  //
+
+  toggleModal();
+});
+
 function openButtonPopUp() {
-  document.body.insertAdjacentHTML("afterbegin", buttons);
+  document.body.insertAdjacentHTML(
+    "afterbegin",
+    ` <div class="button-pop-up">
+      <button class="btn-open" data-modal-open>add to bag</button>
+    </div>`
+  );
+
   document.querySelector("[data-modal-open]").addEventListener("click", function () {
     //
     window.dataLayer = window.dataLayer || [];
@@ -401,34 +446,6 @@ function openButtonPopUp() {
     //
 
     toggleModal();
-  });
-
-  document.querySelector("[data-modal-close]").addEventListener("click", function () {
-    //
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp — Stiсky button mobile",
-      eventAction: "Click Exit cross button sticky block",
-    });
-    //
-
-    toggleModal();
-  });
-
-  document.querySelector(".custom-add-to-bag").addEventListener("click", function () {
-    //
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp — Stiсky button mobile",
-      eventAction: "Click Add to bag button sticky block",
-    });
-    //
-
-    toggleModal();
-
-    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
   });
 
   document.querySelectorAll(".specifics label").forEach((el) => {
@@ -473,7 +490,6 @@ function openButtonPopUp() {
           if (i.children.length === 0) {
             let active = "";
             let textContent = i.textContent;
-            let dizabledBtn = "";
             let dizabledBackground = "";
 
             if (i.classList.contains("on")) {
@@ -481,7 +497,6 @@ function openButtonPopUp() {
             }
 
             if (i.getAttribute("disabled")) {
-              // dizabledBtn = "disabled-btn";
               dizabledBackground = "dizabled-background";
             }
 
@@ -504,7 +519,6 @@ function openButtonPopUp() {
         btnSize.forEach((i) => {
           let active = "";
           let textContent = i.textContent;
-          let dizabledBtn = "";
           let dizabledBackground = "";
 
           if (i.classList.contains("on")) {
@@ -512,7 +526,6 @@ function openButtonPopUp() {
           }
 
           if (i.closest(`button`).getAttribute("disabled")) {
-            // dizabledBtn = "disabled-btn";
             dizabledBackground = "dizabled-background";
           }
 
@@ -598,7 +611,6 @@ function openButtonPopUp() {
   //   });
   //   //
 
-  //   console.log("Click Add to bag button PDP");
   // });
 }
 
@@ -618,7 +630,7 @@ function createButtonList() {
       i.insertAdjacentHTML(
         "beforeend",
         `<div class="box-btn-list">
-        <button class="btn-open-list">add to bag</button>
+        <button class="btn-open-list" data-modal-open>add to bag</button>
       </div>`
       );
     });
@@ -636,7 +648,7 @@ function createButtonList() {
       });
       //
 
-      console.log("Click Add to bag button PLP");
+      toggleModal();
     });
   });
 }
@@ -682,7 +694,25 @@ setTimeout(function () {
       if (direction === "down") {
         toggleModal();
       }
-      console.log(direction);
     },
   });
 }, 500);
+
+//
+
+// let bearerToken = "";
+// function getFetch() {
+//   let url = `https://api.divendo/store/products`;
+//   let result = fetch(url)
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((store) => {
+//       return console.log(store.products);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+
+//   return result;
+// }
