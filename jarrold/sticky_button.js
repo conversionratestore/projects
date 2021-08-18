@@ -638,16 +638,18 @@ function createButtonList() {
   }
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-    item.querySelectorAll("li").forEach((i) => {
-      i.style.justifyContent = "space-between";
-      i.style.display = "flex";
-      i.insertAdjacentHTML(
-        "beforeend",
-        `<div class="box-btn-list">
+    if (!document.querySelector("#search-modal .btn-open-list")) {
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.style.display = "flex";
+        i.insertAdjacentHTML(
+          "beforeend",
+          `<div class="box-btn-list">
         <button class="btn-open-list" data-modal-open>add to bag</button>
       </div>`
-      );
-    });
+        );
+      });
+    }
   });
 
   document.querySelectorAll(".btn-open-list").forEach((btn) => {
@@ -721,7 +723,7 @@ const config = {
 };
 
 const callback = function (mutationsList) {
-  if (!document.querySelector("#search-modal.btn-open-list")) {
+  if (!document.querySelector("#search-modal .btn-open-list")) {
     observer.disconnect();
     createButtonList();
     observer.observe(target, config);
