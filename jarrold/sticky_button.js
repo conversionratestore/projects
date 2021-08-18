@@ -699,6 +699,25 @@ setTimeout(function () {
 }, 500);
 
 //
+let target = document.body;
+
+const config = {
+  childList: true,
+  subtree: true,
+};
+
+const callback = function (mutationsList) {
+  if (!document.querySelector(".btn-open-list")) {
+    createButtonList();
+  }
+  console.log(mutationsList);
+};
+
+let observer = new MutationObserver(callback);
+
+observer.observe(target, config);
+
+//
 
 // let bearerToken = "";
 // function getFetch() {
