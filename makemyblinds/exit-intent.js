@@ -360,10 +360,10 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
+    // mut.observe(document, {
+    //     childList: true,
+    //     subtree: true
+    // });
     // if (document.querySelector('.badge-circle') && document.querySelectorAll('.product .product-great')) {
     //     mut.disconnect();
     //     if (window.matchMedia("(min-width: 769px)").matches) {
