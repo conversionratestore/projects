@@ -993,8 +993,8 @@ window.onload  = function () {
                 },
                 method: "POST",
                 body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
-            }).then(res => res.json()).then(data => {
-                console.log(data)
+            }).then(data => {
+                console.log(data);
                 pushStored();
             })
         })
@@ -1045,8 +1045,8 @@ window.onload  = function () {
                     },
                     method: "POST",
                     body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
-                }).then(res => res.json()).then(data => {
-                    console.log(data)
+                }).then(data => {
+                    console.log(data);
                     pushStored();
                 })
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
