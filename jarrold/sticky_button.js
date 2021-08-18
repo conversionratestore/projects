@@ -1,5 +1,9 @@
 let style12 = /*html*/ `
  <style>
+#navxs{
+  z-index: 99995 !important;
+}
+
 .button-pop-up {
   position: fixed;
   bottom: 0;
