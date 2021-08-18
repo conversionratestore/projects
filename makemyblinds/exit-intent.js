@@ -993,6 +993,9 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
+                        eventsPopup('.popup .card-title','Click on product from');
+                        eventsPopup('.popup .btn','Click on View product white button');
+                        eventsPopup('.popup .tns-controls button','Click on arrows button');
                     }, 100);
                 }
             }
@@ -1080,6 +1083,11 @@ window.onload  = function () {
                         document.querySelector(".popup").classList.add('active');
                         document.querySelector(".popup").classList.add('was');
                         tnsInitialization('.slider',1,2,2,true);
+
+                        eventsPopup('.popup .card-title','Click on product from');
+                        eventsPopup('.popup .btn','Click on View product white button');
+                        eventsPopup('.popup .tns-controls button','Click on arrows button');
+
                     }, 100);
                 }
             }
@@ -1159,9 +1167,9 @@ window.onload  = function () {
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
-    eventsPopup('.popup .card-title','Click on product from');
-    eventsPopup('.popup .btn','Click on View product white button');
-    eventsPopup('.popup .tns-controls button','Click on arrows button');
+    // eventsPopup('.popup .card-title','Click on product from');
+    // eventsPopup('.popup .btn','Click on View product white button');
+    // eventsPopup('.popup .tns-controls button','Click on arrows button');
 
 };
 
