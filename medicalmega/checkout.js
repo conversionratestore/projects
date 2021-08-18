@@ -549,6 +549,23 @@ window.onload  = function () {
         </div>
     </div>`);
 
+    function pushStored() {
+        if (document.querySelectorAll('.payment table.altPayment tr')) {
+            let productsStored = [];
+            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+                productsStored.push({
+                    'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                    'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                    'img_src': el.querySelector('a img').getAttribute('src'),
+                    'link': el.querySelector('.product-description a').getAttribute('href'),
+                    'title': el.querySelector('.product-description a').innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            });
+        }
+    }
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
@@ -615,7 +632,6 @@ window.onload  = function () {
             }
         });
     }
-
     if (location.pathname == '/checkout/step1') {
         if (!document.querySelectorAll('.checkout-product')) {
             document.body.insertAdjacentHTML('afterbegin', `
@@ -638,21 +654,7 @@ window.onload  = function () {
                     display: none;}
             </style>`);
         }
-        if (document.querySelectorAll('.payment table.altPayment tr')) {
-            let productsStored = [];
-            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-                productsStored.push({
-                    'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                    'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                    'img_src': el.querySelector('a img').getAttribute('src'),
-                    'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            });
-        }
+        pushStored();
         document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
         document.querySelector('.payment h3 ').style.display = 'none';
@@ -1032,6 +1034,7 @@ window.onload  = function () {
                         'eventLabel': 'Section Your order'
                     });
                 }
+                pushStored();
 
                 fetch('/cart.html', {
                     headers: {
@@ -1047,6 +1050,7 @@ window.onload  = function () {
         document.querySelector('.checkout-right_body').addEventListener('change', () => {
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
             sumTotalPrice();
+            pushStored();
         });
     });
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
