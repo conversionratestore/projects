@@ -201,6 +201,12 @@ let mut = new MutationObserver(function (muts) {
             } else if (pathnamePost === '5-jahre-zizzz.html') {
                 document.querySelectorAll('.post-post_content h4')[2].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll('.post-post_content p')[11].insertAdjacentHTML('beforebegin', productsList);
+            } else if (pathnamePost === 'babys-durchschlafen.html') {
+                document.querySelectorAll('.post-post_content h3')[0].insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('.post-post_content h3')[1].insertAdjacentHTML('beforebegin', productsList);
+            } else if (pathnamePost === 'farben-und-schlaf.html') {
+                document.querySelectorAll('.post-post_content h3')[0].insertAdjacentHTML('beforebegin', banner);
+                document.querySelectorAll('.post-post_content h3')[1].insertAdjacentHTML('beforebegin', productsList);
             } else if (document.querySelectorAll(header)[2] && document.querySelectorAll(header)[2]) {
                 document.querySelectorAll(header)[0].insertAdjacentHTML('beforebegin', banner);
                 document.querySelectorAll(`.post-post_content ${header}`)[2]
