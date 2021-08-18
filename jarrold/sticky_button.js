@@ -1,13 +1,22 @@
 let style12 = /*html*/ `
  <style>
-#navxs{
-  z-index: 99995 !important;
+#navxs {
+  z-index: 1060 !important;
+}
+
+#scrolltop {
+  z-index: 1050 !important;
+}
+
+#search-modal {
+  z-index: 1054 !important;
 }
 
 .button-pop-up {
   position: fixed;
   bottom: 0;
-  z-index: 99988;
+  // z-index: 99988;
+  z-index: 1052;
   padding: 15px;
 
   width: 100%;
@@ -103,7 +112,8 @@ let style12 = /*html*/ `
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 99999;
+  // z-index: 99999;
+  z-index: 1053;
 
   width: 100%;
   height: 100%;
