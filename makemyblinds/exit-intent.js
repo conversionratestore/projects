@@ -364,14 +364,14 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.badge-circle') && document.querySelectorAll('.product .product-great')) {
-        mut.disconnect();
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
-        } else {
-            document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
-        }
-    } 
+    // if (document.querySelector('.badge-circle') && document.querySelectorAll('.product .product-great')) {
+    //     mut.disconnect();
+    //     if (window.matchMedia("(min-width: 769px)").matches) {
+    //         document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
+    //     } else {
+    //         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
+    //     }
+    // } 
 });
 
 mut.observe(document, {
@@ -392,6 +392,7 @@ window.onload  = function () {
     .catalog-product-view .product-info-main .media {
         position: relative;}
     .popup .product-great {
+        padding: 0;
         justify-content: center;}
     .product-great {
         display: flex;
@@ -402,7 +403,7 @@ window.onload  = function () {
         margin-top: 25px;
         width: 100%;
         z-index: 3;
-        padding: 0;}
+        padding: 0 16px;}
     .product-great-item {
         border: 1px solid #232849;
         border-radius: 100px;
