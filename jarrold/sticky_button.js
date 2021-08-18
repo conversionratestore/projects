@@ -738,7 +738,7 @@ const config = {
 };
 
 const callback = function (mutationsList) {
-  if (document.querySelector("#search-modal")) {
+  if (!document.querySelector("#search-modal .btn-open-list")) {
     observer.disconnect();
     createButtonList();
     observer.observe(target, config);
