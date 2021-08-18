@@ -132,6 +132,7 @@ window.onload  = function () {
             border-bottom: 0.5px solid #CCCCCC;
             padding: 15px 0;}
         .link {
+            cursor: pointer;
             font-style: normal;
             font-weight: 450;
             font-size: 18px;
@@ -186,6 +187,8 @@ window.onload  = function () {
             margin-bottom: 20px;
             border-radius: 4px;}
         div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
+            max-width: 100%;
+            width: fit-content;
             margin-left: auto;}
         .checkout-right_head {
             padding: 22px 0 15px;
@@ -201,8 +204,9 @@ window.onload  = function () {
             padding: 0 20px;
             border-radius: 4px;}
         .checkout-right_body {
-            margin: 10px -10px 0 0;
-            padding: 5px 10px 15px 0;
+            max-height: 333px;
+            margin: 0 -10px 0 0;
+            padding: 10px 10px 15px 0;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #CCCCCC #666666;}
