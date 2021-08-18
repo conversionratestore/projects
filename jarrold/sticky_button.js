@@ -638,7 +638,7 @@ function createButtonList() {
   }
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-    if (!document.querySelector(".btn-open-list") || !document.querySelector("#search-modal .btn-open-list")) {
+    if (!document.querySelector(".btn-open-list")) {
       console.log(`createButtonList`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
@@ -670,31 +670,24 @@ function createButtonList() {
   });
 }
 
-// function createButtonListSearch() {
-//   let parentDiv = ".product-grid";
-//   let products = "products";
-
-//   if (document.querySelector(".ais-Hits-list")) {
-//     parentDiv = "#hits";
-//     products = "ais-Hits-list";
-//   }
-
-//   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-//     if (!document.querySelector("#search-modal .btn-open-list")) {
-//       console.log(`createButtonListSearch`);
-//       item.querySelectorAll("li").forEach((i) => {
-//         i.style.justifyContent = "space-between";
-//         i.style.display = "flex";
-//         i.insertAdjacentHTML(
-//           "beforeend",
-//           `<div class="box-btn-list">
-//         <button class="btn-open-list" data-modal-open>add to bag</button>
-//       </div>`
-//         );
-//       });
-//     }
-//   });
-// }
+function createButtonListSearch() {
+  document.querySelectorAll(`#search-modal`).forEach((item) => {
+    console.log(`item`, item);
+    if (!document.querySelector("#search-modal .btn-open-list")) {
+      console.log(`createButtonListSearch`);
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.style.display = "flex";
+        i.insertAdjacentHTML(
+          "beforeend",
+          `<div class="box-btn-list">
+        <button class="btn-open-list" data-modal-open>add to bag</button>
+      </div>`
+        );
+      });
+    }
+  });
+}
 
 //
 window.dataLayer = window.dataLayer || [];
@@ -752,7 +745,7 @@ const config = {
 const callback = function (mutationsList) {
   if (document.querySelector("#search-modal")) {
     observer.disconnect();
-    createButtonList();
+    createButtonListSearch();
     observer.observe(target, config);
   }
 };
