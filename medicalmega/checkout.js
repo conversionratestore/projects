@@ -705,9 +705,11 @@ window.onload  = function () {
     .altPayment, #mainbody .checkout-left_head {
         display: none;}
     .primaryInfo {
+        color: transparent;
         border: none;
         width: 100%;}
     .primaryInfo ul {
+        color: #171717;
         padding-top: 20px;
         padding-left: 0; }
     .payment h3 {
@@ -736,8 +738,6 @@ window.onload  = function () {
         font-size: 18px;}
     .primaryInfo li strong {
         margin-left: 5px;}
-    .primaryInfo #2_3_days {
-        padding: 5px 0 0 0!important;}
     .promoCode {
         margin: 0;
         background: #EDEDED;
@@ -760,6 +760,8 @@ window.onload  = function () {
         flex-direction: column;
         justify-content: space-between;
         height: 100%;}
+    #2_3_days {
+        padding: 5px 0 0 0!important;}
     </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
@@ -770,6 +772,8 @@ window.onload  = function () {
         document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
         document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
         document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
+       
+        document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
@@ -931,7 +935,7 @@ window.onload  = function () {
                             <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                         </div>
                         <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                            <b>${justunoCartItems[i].price * justunoCartItems[i].quantity}</b>
+                            <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
                         </div>
                     </div>
                 </div>
