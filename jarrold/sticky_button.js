@@ -113,7 +113,7 @@ let style12 = /*html*/ `
   bottom: 0;
   left: 0;
   // z-index: 99999;
-  z-index: 1053;
+  z-index: 1055;
 
   width: 100%;
   height: 100%;
@@ -330,7 +330,6 @@ let style12 = /*html*/ `
   transform-origin: center;
   transform: rotate(-45deg);
 }
-
 
   </style>
 `;
