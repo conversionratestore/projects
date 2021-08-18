@@ -636,10 +636,6 @@ window.onload  = function () {
                     display: none;} 
                 #editor_fields .editor_right div:nth-child(6){
                     display: none;}
-                .quantity-row {
-                    pointer-events: none;}
-                .quantity-btn  {
-                    color: #CCCCCC;}
             </style>`);
         }
         if (document.querySelectorAll('.payment table.altPayment tr')) {
@@ -769,9 +765,10 @@ window.onload  = function () {
         height: 100%;}
     #2_3_days {
         padding: 5px 0 0 0!important;}
-    .quantity-btn {
-
-    }
+    .quantity-row {
+        pointer-events: none;}
+    .quantity-btn  {
+        color: #CCCCCC;}
         </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
