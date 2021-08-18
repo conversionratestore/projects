@@ -708,9 +708,10 @@ const config = {
 
 const callback = function (mutationsList) {
   if (!document.querySelector(".btn-open-list")) {
+    observer.disconnect();
     createButtonList();
+    observer.observe(target, config);
   }
-  console.log(mutationsList);
 };
 
 let observer = new MutationObserver(callback);
