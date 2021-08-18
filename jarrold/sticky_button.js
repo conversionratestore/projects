@@ -638,8 +638,7 @@ function createButtonList() {
   }
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-    if (!document.querySelector(".btn-open-list") || !document.querySelector("#search-modal .btn-open-list")) {
-      console.log(`object`);
+    if (!document.querySelector(".btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -667,6 +666,32 @@ function createButtonList() {
 
       toggleModal();
     });
+  });
+}
+
+function createButtonListSearch() {
+  let parentDiv = ".product-grid";
+  let products = "products";
+
+  if (document.querySelector(".ais-Hits-list")) {
+    parentDiv = "#hits";
+    products = "ais-Hits-list";
+  }
+
+  document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
+    if (!document.querySelector("#search-modal .btn-open-list")) {
+      console.log(`object`);
+      item.querySelectorAll("li").forEach((i) => {
+        i.style.justifyContent = "space-between";
+        i.style.display = "flex";
+        i.insertAdjacentHTML(
+          "beforeend",
+          `<div class="box-btn-list">
+        <button class="btn-open-list" data-modal-open>add to bag</button>
+      </div>`
+        );
+      });
+    }
   });
 }
 
@@ -726,7 +751,7 @@ const config = {
 const callback = function (mutationsList) {
   if (!document.querySelector("#search-modal .btn-open-list")) {
     observer.disconnect();
-    createButtonList();
+    createButtonListSearch();
     observer.observe(target, config);
   }
 };
