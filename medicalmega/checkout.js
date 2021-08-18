@@ -863,7 +863,12 @@ window.onload  = function () {
             align-items: center;}
        .primaryInfo label {
             width: 100%;}
-       
+       .remove {
+            display: none }
+       .quantity-btn {
+            color: #CCCCCC;}
+       .quantity-row {
+            pointer-events: none; }
        .card-details p{
             white-space: nowrap;
             font-weight: bold;
