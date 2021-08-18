@@ -884,7 +884,6 @@ window.onload  = function () {
         document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
         document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
         document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
-
         document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
         document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
         document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
@@ -924,7 +923,7 @@ window.onload  = function () {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
 
         console.log(justunoCartItems);
-        
+
         for (let i = 0; i < justunoCartItems.length; i++) {
             let product = `
             <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
@@ -950,6 +949,7 @@ window.onload  = function () {
             sumTotalPrice();
         }
     }
+
     // if(localStorage.getItem('productsStored')) {
     //     let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
     //     for (let i = 0; i < justunoCartItems.length; i++) {
@@ -977,6 +977,7 @@ window.onload  = function () {
     //         sumTotalPrice();
     //     }
     // }
+
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
