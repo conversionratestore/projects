@@ -638,7 +638,7 @@ function createButtonList() {
   }
 
   document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-    if (!document.querySelector(".btn-open-list")) {
+    if (!document.querySelector("#search-modal.btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -723,7 +723,7 @@ const config = {
 };
 
 const callback = function (mutationsList) {
-  if (!document.querySelector("#search-modal .btn-open-list")) {
+  if (!document.querySelector("#search-modal.btn-open-list")) {
     observer.disconnect();
     createButtonList();
     observer.observe(target, config);
