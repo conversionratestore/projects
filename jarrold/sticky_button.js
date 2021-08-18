@@ -637,35 +637,20 @@ function createButtonList() {
     products = "ais-Hits-list";
   }
 
-  if (!document.querySelector(".btn-open-list")) {
-    document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
+  document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
+    if (!document.querySelector(".btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
         i.insertAdjacentHTML(
           "beforeend",
           `<div class="box-btn-list">
-          <button class="btn-open-list" data-modal-open>add to bag</button>
-        </div>`
+        <button class="btn-open-list" data-modal-open>add to bag</button>
+      </div>`
         );
       });
-    });
-  }
-
-  // document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
-  //   if (!document.querySelector(".btn-open-list")) {
-  //     item.querySelectorAll("li").forEach((i) => {
-  //       i.style.justifyContent = "space-between";
-  //       i.style.display = "flex";
-  //       i.insertAdjacentHTML(
-  //         "beforeend",
-  //         `<div class="box-btn-list">
-  //       <button class="btn-open-list" data-modal-open>add to bag</button>
-  //     </div>`
-  //       );
-  //     });
-  //   }
-  // });
+    }
+  });
 
   document.querySelectorAll(".btn-open-list").forEach((btn) => {
     btn.addEventListener("click", function (e) {
