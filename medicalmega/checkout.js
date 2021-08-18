@@ -638,21 +638,6 @@ window.onload  = function () {
                     display: none; }
             </style>`);
         }
-        if (document.querySelectorAll('.payment table.altPayment tr')) {
-            let productsStored = [];
-            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-                productsStored.push({
-                    'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                    'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                    'img_src': el.querySelector('a img').getAttribute('src'),
-                    'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            });
-        }
 
         document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
@@ -766,7 +751,10 @@ window.onload  = function () {
         height: 100%;}
     #2_3_days {
         padding: 5px 0 0 0!important;}
-    </style>`);
+    .quantity-btn {
+
+    }
+        </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
         document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
@@ -811,7 +799,6 @@ window.onload  = function () {
                 'eventLabel': 'Section Delivery method'
             });
         });
-
     }
     if(location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -884,7 +871,7 @@ window.onload  = function () {
             display: none; }
        .label-check {
             padding: 15px 0 0 0!important; }
-    </style>`);
+        </style>`);
         document.querySelector('.title_head').innerHTML = 'Payment method';
         document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
 
@@ -920,7 +907,21 @@ window.onload  = function () {
             });
         });
     }
-
+    if (document.querySelectorAll('.payment table.altPayment tr')) {
+        let productsStored = [];
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
+    }
     if(localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
         for (let i = 0; i < justunoCartItems.length; i++) {
@@ -1051,7 +1052,6 @@ window.onload  = function () {
             'eventLabel': 'Section Your order'
         });
     })
-
 };
 
 (function(h,o,t,j,a,r){
