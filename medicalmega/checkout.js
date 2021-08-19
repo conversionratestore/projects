@@ -679,6 +679,7 @@ window.onload  = function () {
                 'eventAction': 'Click Next button',
                 'eventLabel': 'Section Shipping information'
             });
+            pushProductsStored();
         });
 
         if (document.querySelector('.editLink') == null) {
@@ -1043,7 +1044,6 @@ window.onload  = function () {
                         'eventLabel': 'Section Your order'
                     });
                 }
-                pushProductsStored();
                       
                 fetch('/cart.html', {
                     headers: {
@@ -1057,12 +1057,10 @@ window.onload  = function () {
             });
         });
         document.querySelector('.checkout-right_body').addEventListener('change', () => {
-            pushProductsStored();
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
             sumTotalPrice();
         });
     });
-
             
     if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
         let productsStored = [];
