@@ -1065,7 +1065,7 @@ window.onload  = function () {
     });
 
             
-    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
