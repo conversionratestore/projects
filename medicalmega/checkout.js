@@ -936,24 +936,36 @@ window.onload  = function () {
             });
         });
     }
-        
-    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
-        pushProductsStored();
-    } else {
-        let productsStored = [];
-        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-            productsStored.push({
-                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                'img_src': el.querySelector('a img').getAttribute('src'),
-                'link': el.querySelector('.product-description a').getAttribute('href'),
-                'title': el.querySelector('.product-description a').innerHTML,
-            });
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
-        });
+    
+    if (localStorage.getItem('productsStored')) {
+        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+        for (let i = 0; i < justunoCartItems.length; i++) {
+            let product = `
+            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
+                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
+                <div class="flex-column">
+                    <div class="flex-between">
+                        <a href="#">${justunoCartItems[i].title}</a>
+                        <button class="remove" type="button"></button>
+                    </div>
+                    <div class="flex-center-between">
+                        <div class="quantity-row">
+                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                        </div>
+                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
+                            <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+            sumTotalPrice();
+        }
+        // justunoCartItems = [];
     }
+
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
@@ -1052,33 +1064,23 @@ window.onload  = function () {
         });
     });
 
-    if (localStorage.getItem('productsStored')) {
-        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
-        for (let i = 0; i < justunoCartItems.length; i++) {
-            let product = `
-            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
-                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
-                <div class="flex-column">
-                    <div class="flex-between">
-                        <a href="#">${justunoCartItems[i].title}</a>
-                        <button class="remove" type="button"></button>
-                    </div>
-                    <div class="flex-center-between">
-                        <div class="quantity-row">
-                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
-                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                        </div>
-                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                            <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
-            sumTotalPrice();
-        }
-        // justunoCartItems = [];
+            
+    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
+        pushProductsStored();
+    } else {
+        let productsStored = [];
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
     }
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
