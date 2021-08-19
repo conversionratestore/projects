@@ -740,26 +740,44 @@ setTimeout(function () {
 }, 500);
 
 //
-// let target = document.body;
-let target = document.querySelector("#search-modal");
-
-const config = {
-  childList: true,
-  subtree: true,
-};
 
 const callback = function (mutationsList) {
   if (document.querySelector("#search-modal")) {
     console.log(`mutationsList`);
     observer.disconnect();
     createButtonListSearch();
-    observer.observe(target, config);
+    observer.observe(document.querySelector("#search-modal"), {
+      childList: true,
+      subtree: true,
+    });
   }
 };
 
 let observer = new MutationObserver(callback);
 
-observer.observe(target, config);
+observer.observe(document.querySelector("#search-modal"), {
+  childList: true,
+  subtree: true,
+});
+
+const callbackSort = function (mutationsList) {
+  if (document.querySelector(".sort")) {
+    console.log(`callbackSort`);
+    observer.disconnect();
+    createButtonListSearch();
+    observer.observe(document.querySelector(".sort"), {
+      childList: true,
+      subtree: true,
+    });
+  }
+};
+
+let observerSort = new MutationObserver(callbackSort);
+
+observerSort.observe(document.querySelector(".sort"), {
+  childList: true,
+  subtree: true,
+});
 
 //
 
