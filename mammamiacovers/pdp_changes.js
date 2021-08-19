@@ -193,7 +193,7 @@ let start = setInterval(function () {
     if(document.querySelector('.product-single__price__notes') && document.querySelector('.product-single__ready-to-ship-text') && document.querySelector('.satcb_btn')) {
         clearInterval(start)
         exp();
-        document.body.style.opacity = '1 !important'
+        document.body.style.opacity = '1'
     }
 }, 100)
 
