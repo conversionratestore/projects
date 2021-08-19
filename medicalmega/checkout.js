@@ -706,7 +706,7 @@ window.onload  = function () {
             });
         });
     }
-    if(location.pathname == '/checkout/step2') {
+    if (location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .remove, .payment h3, .primaryInfo h2{
@@ -824,7 +824,7 @@ window.onload  = function () {
             });
         });
     }
-    if(location.pathname == '/checkout/step3') {
+    if (location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
         .payment h3, .checkout-left_head {
             display: none!important;}
@@ -936,7 +936,24 @@ window.onload  = function () {
             });
         });
     }
-
+        
+    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
+        pushProductsStored();
+    } else {
+        let productsStored = [];
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
+    }
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
@@ -1034,24 +1051,7 @@ window.onload  = function () {
             sumTotalPrice();
         });
     });
-        
-    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
-        pushProductsStored();
-    } else {
-        let productsStored = [];
-        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-            productsStored.push({
-                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                'img_src': el.querySelector('a img').getAttribute('src'),
-                'link': el.querySelector('.product-description a').getAttribute('href'),
-                'title': el.querySelector('.product-description a').innerHTML,
-            });
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
-        });
-    }
+
     if (localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
         for (let i = 0; i < justunoCartItems.length; i++) {
