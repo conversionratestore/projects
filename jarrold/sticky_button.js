@@ -760,9 +760,11 @@ observer.observe(document.querySelector("#search-modal"), {
   subtree: true,
 });
 
-document.querySelector(".sort").addEventListener("change", function () {
-  console.log(`change`);
-  createButtonList();
+document.querySelectorAll(".sort .form").forEach((el) => {
+  el.addEventListener("change", function () {
+    console.log(`change`);
+    createButtonList();
+  });
 });
 
 document.querySelector(".filter-xs").addEventListener("change", function () {
