@@ -554,15 +554,15 @@ window.onload  = function () {
 
     function pushProductsStored() {
         let productsStored = [];
-        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+        document.querySelectorAll('.checkout-product').forEach((product) => {
             productsStored.push({
-                'product_id': button.closest('.checkout-product').dataset.id,
-                'quantity': button.closest('.quantity-row').querySelector('.quantity').value,
-                'price': button.closest('.checkout-product').querySelector('.total-price').dataset.price,
-                'product_variant_id': button.closest('.checkout-product').dataset.variantId,
-                'img_src': button.closest('.checkout-product').querySelector('a img').getAttribute('src'),
-                'link': button.closest('.checkout-product').querySelectorAll('a')[0].getAttribute('href'),
-                'title': button.closest('.checkout-product').querySelector('.flex-between a').innerHTML,
+                'product_id': product.dataset.id,
+                'quantity': product.querySelector('.quantity').value,
+                'price': product.querySelector('.total-price').dataset.price,
+                'product_variant_id': product.dataset.variantId,
+                'img_src': product.querySelector('a img').getAttribute('src'),
+                'link': product.querySelectorAll('a')[0].getAttribute('href'),
+                'title': product.querySelector('.flex-between a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
