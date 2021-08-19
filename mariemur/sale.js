@@ -32,9 +32,6 @@ document.head.insertAdjacentHTML('beforeend', `
          .cart-modal__box-option .money{
             font-size: 12px !important; 
         }
-        .price-look .price_sale {
-            margin-right: 5px;
-        }
         .price-look .price_sale, .money:not(.cart-modal__total-price .money) {
             font-size: 17px;
         }
@@ -81,7 +78,9 @@ document.head.insertAdjacentHTML('beforeend', `
          .money:not(.cart-modal__total-price .money) {
             display: inline-block;
         }
-        .cart-modal__box-option-row .price_sale {
+        .cart-modal__box-option-row .price_sale,
+         .product-list__box-price .price_sale
+         {
             margin: 0 5px 0 0;
         }
         .price-look {
