@@ -563,7 +563,7 @@ window.onload  = function () {
                 'product_variant_id': product.dataset.variantId,
                 'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
                 'link': product.querySelector('.checkout-product_img').getAttribute('href'),
-                'title': product.querySelector('.flex-between a').innerHTML,
+                'title': product.querySelectorAll('.flex-between a')[1].innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
