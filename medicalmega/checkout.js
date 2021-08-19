@@ -1049,6 +1049,8 @@ window.onload  = function () {
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
+    } else {
+        pushProductsStored();
     }
     if (localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
