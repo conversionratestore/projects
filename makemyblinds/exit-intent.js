@@ -804,6 +804,12 @@ window.onload  = function () {
                 font-weight: 300;
                 font-size: 13px;
                 line-height: 19px; }
+            .flex-price {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+            }
         }
         @media screen and (max-width: 360px) {
             .catalog-product-view #product-options-wrapper .scaled-custom-field label span i {
