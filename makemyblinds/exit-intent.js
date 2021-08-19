@@ -1163,8 +1163,8 @@ window.onload  = function () {
     if (window.matchMedia("(max-width: 768px)").matches) {
         console.log(document.querySelector('.bottom-actions__row .price-original').innerHTML);
         // if (document.querySelector('.bottom-actions__row .price-original').innerHTML != "") {
-            document.querySelector('.bottom-actions__row .price-box').before(`<div class="flex-price"><p class="your-price">Your price</p></div>`)
-            document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
+            document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`)
+            document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
         // } else {
         //     document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
         // }
