@@ -760,24 +760,14 @@ observer.observe(document.querySelector("#search-modal"), {
   subtree: true,
 });
 
-const callbackSort = function (mutationsList) {
-  console.log(`callbackSort`);
-  if (document.querySelector(".sort")) {
-    console.log(`callbackSort`);
-    observerSort.disconnect();
-    createButtonList();
-    observerSort.observe(document.querySelector(".sort"), {
-      childList: true,
-      subtree: true,
-    });
-  }
-};
+document.querySelector(".sort").addEventListener("change", function () {
+  console.log(`change`);
+  createButtonList();
+});
 
-let observerSort = new MutationObserver(callbackSort);
-
-observerSort.observe(document.querySelector(".sort"), {
-  childList: true,
-  subtree: true,
+document.querySelector(".filter-xs").addEventListener("change", function () {
+  console.log(`change`);
+  createButtonList();
 });
 
 //
