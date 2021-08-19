@@ -1065,9 +1065,7 @@ window.onload  = function () {
     });
 
             
-    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
-        pushProductsStored();
-    } else {
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
@@ -1081,7 +1079,7 @@ window.onload  = function () {
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
-    }
+    } 
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
