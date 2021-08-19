@@ -171,9 +171,7 @@ let style = `
             align-items: center;
         }
         
-        .main {
-            opacity: 0;
-        }
+
         
     </style>
 `
