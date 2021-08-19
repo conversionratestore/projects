@@ -1035,7 +1035,9 @@ window.onload  = function () {
         });
     });
         
-    if (document.querySelectorAll('.payment table.altPayment tr') && document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
+    if (!document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value) {
+        pushProductsStored();
+    } else {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
@@ -1049,8 +1051,6 @@ window.onload  = function () {
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
-    } else {
-        pushProductsStored();
     }
     if (localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
