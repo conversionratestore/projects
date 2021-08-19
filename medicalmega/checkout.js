@@ -187,9 +187,12 @@ window.onload  = function () {
             margin-bottom: 20px;
             border-radius: 4px;}
         div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
-            max-width: 100%;
+           
             width: fit-content;
             margin-left: auto;}
+            div.myAccountright > form > dd:nth-child(5){
+                max-width: 100%;
+            }
         .checkout-right_head {
             padding: 22px 0 15px;
             border-bottom: 0.5px solid #CCCCCC;}
@@ -550,7 +553,7 @@ window.onload  = function () {
     </div>`);
 
     function pushStored() {
-        if (document.querySelectorAll('.payment table.altPayment tr')) {
+        if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
             let productsStored = [];
             document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
                 productsStored.push({
@@ -565,7 +568,11 @@ window.onload  = function () {
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             });
         }
+        else {
+
+        }
     }
+    
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
@@ -573,7 +580,8 @@ window.onload  = function () {
             document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
                 if(totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
-                } else {
+                } 
+                if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
                     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
                 }
             });
