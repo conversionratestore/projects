@@ -178,8 +178,7 @@ let style = `
     </style>
 `
 
-document.body.insertAdjacentHTML('afterbegin', style)
-
+document.querySelector('.main').style.opacity = '0'
 let block = `
     <ul class="new_specifics">
         <li><span>100% polyester which ensures high durability of the fabric</span></li>
@@ -199,6 +198,7 @@ let start = setInterval(function () {
 
 
 function exp() {
+    document.body.insertAdjacentHTML('afterbegin', style)
 
     let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
 
