@@ -1160,13 +1160,15 @@ window.onload  = function () {
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
-    console.log(document.querySelector('.product-info-price .price-label').innerHTML);
-    if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
-        document.querySelector('.product-info-price .price-label').style.display = 'none';
-        document.querySelector('.price-original').after(`<div class="flex-price"><span class="your-price">Your price</span></div>`)
-        document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
-    } else {
-        document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        console.log(document.querySelector('.product-info-price .price-label').innerHTML);
+        if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
+            document.querySelector('.product-info-price .price-label').style.display = 'none';
+            document.querySelector('.price-original').after(`<div class="flex-price"><span class="your-price">Your price</span></div>`)
+            document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
+        } else {
+            document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
+        }
     }
 };
 
