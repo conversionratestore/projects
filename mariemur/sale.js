@@ -66,6 +66,10 @@ document.head.insertAdjacentHTML('beforeend', `
             font-size: 18px;
             letter-spacing: 0.3px;
         }
+        .product-list__box-price  .price_sale {
+            font-size: 17px;
+            font-weight: 300;
+        }
          .price_sale {
             font-weight: 700;
             font-size: 12px;
@@ -103,8 +107,8 @@ if (!window.localStorage.getItem('startDate')) {
     intervalTime = currentDate - window.localStorage.getItem('startDate');
 }
 
-// let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
-let twentyFourHours = 25;
+let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
+// let twentyFourHours = 25;
 
 if (twentyFourHours >= 0) {
     // elements on the site
