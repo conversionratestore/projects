@@ -567,7 +567,6 @@ window.onload  = function () {
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
     }
-    pushProductsStored();
     
     function sumTotalPrice() {
         let sum = 0;
