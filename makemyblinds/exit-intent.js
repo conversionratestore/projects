@@ -360,18 +360,6 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
-    // mut.observe(document, {
-    //     childList: true,
-    //     subtree: true
-    // });
-    // if (document.querySelector('.badge-circle') && document.querySelectorAll('.product .product-great')) {
-    //     mut.disconnect();
-    //     if (window.matchMedia("(min-width: 769px)").matches) {
-    //         document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
-    //     } else {
-    //         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
-    //     }
-    // } 
 });
 
 mut.observe(document, {
@@ -1154,23 +1142,12 @@ window.onload  = function () {
     document.querySelector('.product-details').addEventListener('change', () => {
         document.querySelector('.your-box .price').innerHTML = document.querySelector('.product-info-price .price').innerHTML;
     });
-
-    // if (document.querySelector('.badge-circle') && document.querySelector('.product .product-great')) {
-    //     if (window.matchMedia("(min-width: 769px)").matches) {
-    //         document.querySelector('.product .product-great').style.padding = `0 95px 0 5px`;
-    //     } else {
-    //         console.log('loaded true max 768')
-    //         document.querySelector('.product .product-great').style.padding = `0 60px 0 5px`;
-    //     }
-    // } 
     eventsCategories('.category .card-title','Click on product from listing');
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
-    // eventsPopup('.popup .card-title','Click on product from');
-    // eventsPopup('.popup .btn','Click on View product white button');
-    // eventsPopup('.popup .tns-controls button','Click on arrows button');
 
+    document.querySelector('.product-info-price .price-label').innerHTML = 'Your price';
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
