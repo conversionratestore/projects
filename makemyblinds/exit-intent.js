@@ -810,6 +810,16 @@ window.onload  = function () {
                 width: 100%;
                 justify-content: space-between;
             }
+            .your-price {
+                margin-bottom: 25px;
+                font-family: 'Barlow-medium', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 26px;
+                line-height: 31px;
+                letter-spacing: 0.0015em;
+                color: #232849;
+            }
         }
         @media screen and (max-width: 360px) {
             .catalog-product-view #product-options-wrapper .scaled-custom-field label span i {
