@@ -630,7 +630,7 @@ window.onload  = function () {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': 'Click Sign In button',
+                    'eventAction': `Click Sign In button`,
                     'eventLabel': 'Section Registration'
                 });
             } else {
@@ -638,6 +638,13 @@ window.onload  = function () {
                 document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                 document.querySelector('.myAccountleft').style.display = 'none';
                 document.querySelector('.myAccountright').style.display = 'block';
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': `Click Registration button`,
+                    'eventLabel': 'Section Sign In'
+                });
             }
         });
     }
