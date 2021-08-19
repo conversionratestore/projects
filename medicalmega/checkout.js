@@ -554,6 +554,7 @@ window.onload  = function () {
 
     function pushProductsStored() {
         let productsStored = [];
+        localStorage.setItem('productsStored', '');
         document.querySelectorAll('.checkout-product').forEach((product) => {
             productsStored.push({
                 'product_id': product.dataset.id,
@@ -663,6 +664,7 @@ window.onload  = function () {
         }
         // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
             let productsStored = [];
+            localStorage.setItem('productsStored', '');
             document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
                 productsStored.push({
                     'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
