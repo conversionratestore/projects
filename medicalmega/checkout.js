@@ -679,7 +679,6 @@ window.onload  = function () {
                 'eventAction': 'Click Next button',
                 'eventLabel': 'Section Shipping information'
             });
-            // pushProductsStored();
         });
 
         if (document.querySelector('.editLink') == null) {
@@ -1062,7 +1061,7 @@ window.onload  = function () {
         });
     });
             
-    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== undefined) {
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]') && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
