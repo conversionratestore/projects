@@ -804,8 +804,8 @@ window.onload  = function () {
     });
 
     if (window.location.pathname == '/') {
-        document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
-        document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/n6Qc6LM/banner.jpg');
+        document.querySelector('.homeslider__img').setAttribute('src', 'https://conversionratestore.github.io/projects/medicalmega/img/banner.png');
+        document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://conversionratestore.github.io/projects/medicalmega/img/banner.png');
 
         document.querySelectorAll('.gallery').forEach( (item, index) => {
             let galleryWrapper = document.createElement('div');
