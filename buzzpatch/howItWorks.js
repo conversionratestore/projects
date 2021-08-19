@@ -34,7 +34,7 @@ window.onload  = function () {
     </style>`);
 
     document.querySelector('.effectiveness .ziplock').insertAdjacentHTML('beforebegin',`
-    < id="how-it-works">
+    <div id="how-it-works">
             <h3 class="js-title text-dark">how it works <img src="https://conversionratestore.github.io/projects/buzzpatch/img/buzzpatch.svg" alt="image"></h3>
             <div class="item">
                 <img src="https://conversionratestore.github.io/projects/buzzpatch/img/tshirt.svg" alt="image">
