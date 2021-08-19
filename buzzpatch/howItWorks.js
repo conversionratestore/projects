@@ -40,7 +40,7 @@ window.onload  = function () {
                 <p class="text-center">Buzzpatch effectively protects you and your child from mosquito bites.</p>
             </div>
             <div class="item">
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/component.svg" alt="image">
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/сomponent72.svg" alt="image">
                 <p class="text-center">The harmless alternative of existing methods. Buzzpatch is effective 
                 up to 72 hours.</p>
             </div>
