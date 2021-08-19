@@ -371,7 +371,8 @@ let mut = new MutationObserver(function (muts) {
     });
     if (document.querySelector('.main .product-info-price .price-label').innerHTML == 'Was') {
         mut.disconnect();
-        document.querySelector('.main .product-info-price .price-label').innerHTML = 'Your price';
+        document.querySelector('.product-info-price .price-wrapper .price-label').style.display = 'none';
+        document.querySelector('.product-info-price .price-wrapper').insertAdjacentHTML('afterbegin','<span class="your-price">Your price</span>');
     }
     
 });
