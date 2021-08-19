@@ -137,9 +137,15 @@ let style = `
     </style>
 `
 
+let link = `
+<div class="navbar-item header__item " data-navlink-handle="guarantee"> 
+    <a href="#" class="navbar-link header__link  is-arrowless to_money_back">guarantee</a>
+</div>
+`
+
 let block = `
 
-    <div class="money_back">
+    <div class="money_back" id="money_back">
         <h2>Money back guarantee</h2>
         <div class="schedule">
             <p>Ship to:</p>
@@ -167,6 +173,20 @@ let block = `
 let start = setInterval(function () {
     if (document.querySelector('.recomendedmedical') && document.querySelector('.ship-destination__span--date')) {
         clearInterval(start)
+
+        document.querySelector('nav.header__menu-items').insertAdjacentHTML('beforeend', link)
+
+        document.querySelector('.to_money_back').addEventListener('click', function (e) {
+            e.preventDefault()
+            document.querySelector('#money_back').scrollIntoView({behavior: "smooth"})
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — PDP money back guarantee',
+                'eventAction': 'Click on GUARANTEE button',
+                'eventLabel': 'Section megamenu'
+            });
+        })
 
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('.recomendedmedical').insertAdjacentHTML('beforebegin',block)
