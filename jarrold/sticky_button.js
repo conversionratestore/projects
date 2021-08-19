@@ -764,7 +764,7 @@ const callbackSort = function (mutationsList) {
   if (document.querySelector("#sortby")) {
     console.log(`callbackSort`);
     observerSort.disconnect();
-    createButtonListSearch();
+    createButtonList();
     observerSort.observe(document.querySelector("#sortby"), {
       childList: true,
       subtree: true,
