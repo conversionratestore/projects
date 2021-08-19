@@ -628,15 +628,15 @@ function openButtonPopUp() {
 }
 
 function createButtonList() {
-  let parentDiv = ".product-grid";
-  let products = "products";
+  // let parentDiv = ".product-grid";
+  // let products = "products";
 
-  if (document.querySelector(".ais-Hits-list")) {
-    parentDiv = "#hits";
-    products = "ais-Hits-list";
-  }
+  // if (document.querySelector(".ais-Hits-list")) {
+  //   parentDiv = "#hits";
+  //   products = "ais-Hits-list";
+  // }
 
-  document.querySelectorAll(`${parentDiv} .${products}`).forEach((item) => {
+  document.querySelectorAll(`article`).forEach((item) => {
     if (!document.querySelector(".btn-open-list")) {
       console.log(`createButtonList`);
       item.querySelectorAll("li").forEach((i) => {
@@ -766,14 +766,18 @@ if (document.querySelector(".ais-SortBy-select")) {
   btnSort = ".ais-SortBy-select";
 }
 
-document.querySelector(btnSort).addEventListener("change", function () {
-  console.log(`change`);
+let mut = new MutationObserver((muts) => {
+  mut.disconnect();
   createButtonList();
+  mut.observe(document.querySelector("article"), {
+    childList: true,
+    subtree: true,
+  });
 });
 
-document.querySelector(".filter-xs").addEventListener("change", function () {
-  console.log(`change`);
-  createButtonList();
+mut.observe(document.querySelector("article"), {
+  childList: true,
+  subtree: true,
 });
 
 //
