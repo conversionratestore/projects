@@ -18,9 +18,12 @@ document.head.insertAdjacentHTML('beforeend', `
             text-transform: uppercase;            
             color: #FFFFFF;
             margin-left: 15px;
-        }
+        }        
         .price-look .price_sale {
             margin-right: 5px;
+        }
+        .price-look .price_sale, .money {
+            font-size: 17px;
         }
         .product-price .price_sale {
             display: block;
@@ -88,8 +91,8 @@ if (!window.localStorage.getItem('startDate')) {
     interval = currentDate - window.localStorage.getItem('startDate');
 }
 
-// let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
-let twentyFourHours = 60;
+let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
+// let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
