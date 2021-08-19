@@ -250,6 +250,7 @@ window.onload  = function () {
             display: flex;
             justify-content: space-between;}
         .total-price {
+            tex-align: right;
             font-weight: 700;
             font-size: 18px;
             line-height: 22px;
