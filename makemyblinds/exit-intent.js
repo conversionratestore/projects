@@ -365,15 +365,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    if (document.querySelector('.main .product-info-price .price-label').innerHTML == 'Was') {
-        mut.disconnect();
-        document.querySelector('.product-info-price .price-wrapper .price-label').style.display = 'none';
-        document.querySelector('.product-info-price .price-wrapper').insertAdjacentHTML('afterbegin','<span class="your-price">Your price</span>');
-    }
+
     
 });
 
@@ -859,7 +851,6 @@ window.onload  = function () {
     }
     document.querySelector('.product.media').insertAdjacentHTML('beforeend','<div class="product-great"><p>Best for</p></div>')
 
-    document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
 
     let greatForId = [
         {
@@ -1163,7 +1154,12 @@ window.onload  = function () {
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
-
+    if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
+        document.querySelector('.product-info-price .price-wrapper .price-label').style.display = 'none';
+        document.querySelector('.product-info-price .price-wrapper').insertAdjacentHTML('afterbegin','<span class="your-price">Your price</span>');
+    } else {
+        document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
+    }
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
