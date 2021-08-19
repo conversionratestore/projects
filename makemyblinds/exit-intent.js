@@ -6,6 +6,29 @@ function addEvent(obj, evt, fn) {
         obj.attachEvent("on" + evt, fn);
     }
 }
+function eventsCategories(elem,eventAction) {
+    document.querySelectorAll(elem).forEach((el) => {
+        el.addEventListener('click', () => {
+            if (window.matchMedia(`(max-width: 768px)`).matches) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            } else {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
+                    'eventAction': eventAction,
+                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
+                });
+            }
+        });
+    })
+}
 function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
     document.querySelectorAll(`${item}`).forEach(slider => {
         tns({
@@ -31,6 +54,10 @@ function tnsInitialization(item,amountMob,amountTablet,amountDesk,navDesk) {
             }
         });
     });
+    eventsCategories('.category .card-title','Click on product from listing');
+    eventsCategories('.tns-controls button','Click on arrows button listing');
+    eventsCategories('.tns-nav button','Click on dots button listing');
+    eventsCategories('.category .card .btn','Click on View Product button listing');
 }
 function card(index,img,name,price,link,satus) {
     let card = `
@@ -62,29 +89,7 @@ function card(index,img,name,price,link,satus) {
     })
     
 }
-function eventsCategories(elem,eventAction) {
-    document.querySelectorAll(elem).forEach((el) => {
-        el.addEventListener('click', () => {
-            if (window.matchMedia(`(max-width: 768px)`).matches) {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent mobile',
-                    'eventAction': eventAction,
-                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                });
-            } else {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — PDP improvement exit intent desktop',
-                    'eventAction': eventAction,
-                    'eventLabel': `Section ${el.closest('.category').querySelector('.category-title').innerHTML}`
-                });
-            }
-        });
-    })
-}
+
 function eventsPopup(elem,eventAction) {
     document.querySelectorAll(elem).forEach((el) => {
         el.addEventListener('click', () => {
