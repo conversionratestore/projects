@@ -762,11 +762,11 @@ observer.observe(document.querySelector("#search-modal"), {
 
 const callbackSort = function (mutationsList) {
   console.log(`callbackSort`);
-  if (document.querySelector("#sortby")) {
+  if (document.querySelector(".sort")) {
     console.log(`callbackSort`);
     observerSort.disconnect();
     createButtonList();
-    observerSort.observe(document.querySelector("#sortby"), {
+    observerSort.observe(document.querySelector(".sort"), {
       childList: true,
       subtree: true,
     });
@@ -775,7 +775,7 @@ const callbackSort = function (mutationsList) {
 
 let observerSort = new MutationObserver(callbackSort);
 
-observerSort.observe(document.querySelector("#sortby"), {
+observerSort.observe(document.querySelector(".sort"), {
   childList: true,
   subtree: true,
 });
