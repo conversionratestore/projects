@@ -1013,6 +1013,7 @@ window.onload  = function () {
                 if (button.className == 'quantity-btn quantity-btn_minus') {
                     if (button.nextElementSibling.value < 2) {
                         button.nextElementSibling.value = 1;
+
                         button.disabled = true;
                     } else {
                         button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
@@ -1030,8 +1031,11 @@ window.onload  = function () {
                 for (var i = 0; i < productsStored.length; i++) {
                     console.log(productsStored[i])
                     if (productsStored[i].product_id == button.closest(".checkout-product").dataset.id) {
-                        console.log(productsStored[i])
-                        JSON.parse(localStorage.getItem('productsStored'))[i].quantity = button.closest('.quantity-row').querySelector('.quantity').value;
+                        console.log("product_id: " + productsStored[i].product_id);
+                        console.log("list id: " + button.closest(".checkout-product").dataset.id);
+                        console.log(productsStored[i].quantity );
+                        productsStored[i].quantity = button.closest('.quantity-row').querySelector('.quantity').value;
+                        console.log(productsStored[i].quantity );
                     }
                 }
               
