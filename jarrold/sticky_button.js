@@ -761,6 +761,7 @@ observer.observe(document.querySelector("#search-modal"), {
 });
 
 const callbackSort = function (mutationsList) {
+  console.log(`callbackSort`);
   if (document.querySelector(".sort #sortby")) {
     console.log(`callbackSort`);
     observerSort.disconnect();
