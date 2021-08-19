@@ -364,9 +364,9 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
+    if (document.querySelector('.main .product-info-price .price-label').innerHTML == 'Was') {
         mut.disconnect();
-        document.querySelector('.product-info-price .price-label').innerHTML = 'Your price';
+        document.querySelector('.main .product-info-price .price-label').innerHTML = 'Your price';
     }
     
 });
