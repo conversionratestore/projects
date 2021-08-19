@@ -1,5 +1,5 @@
 let startInterval = setInterval(() => {
-    if(document.querySelector('shopify-section')) {
+    if(document.querySelector('.shopify-section')) {
         clearInterval(startInterval);
 
         document.head.insertAdjacentHTML('beforeend', `
