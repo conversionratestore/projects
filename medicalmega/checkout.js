@@ -1043,7 +1043,7 @@ window.onload  = function () {
                         'eventLabel': 'Section Your order'
                     });
                 }
-         
+                pushProductsStored();
                       
                 fetch('/cart.html', {
                     headers: {
