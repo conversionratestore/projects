@@ -47,4 +47,29 @@ window.onload  = function () {
             <a href="#getNow" class="btn js-btn btn-primary get-it dark">Get it now!</a>
         </div>
     </section>`);
+    document.querySelector('#how-it-works .btn').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - How it works update mobile',
+            'eventAction': 'Click on Get it now button',
+            'eventLabel': 'How it works field'
+        });
+    });
 };
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2247058,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'how_it_works_update_mobile');
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - How it works update mobile',
+    'eventAction': 'loaded'
+});
