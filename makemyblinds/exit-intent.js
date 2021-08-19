@@ -1163,7 +1163,7 @@ window.onload  = function () {
     if (window.matchMedia("(max-width: 768px)").matches) {
         console.log(document.querySelector('.bottom-actions__row .price-original').innerHTML);
         // if (document.querySelector('.bottom-actions__row .price-original').innerHTML != "") {
-            document.querySelector('.price-original').after(`<div class="flex-price"><span class="your-price">Your price</span></div>`)
+            document.querySelector('.bottom-actions__row .price-box').before(`<div class="flex-price"><p class="your-price">Your price</p></div>`)
             document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
         // } else {
         //     document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
