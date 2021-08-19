@@ -184,7 +184,7 @@ let block = `
 `
 
 let start = setInterval(function () {
-    if(document.querySelector('.product-single__price__notes')) {
+    if(document.querySelector('.product-single__price__notes') && document.querySelector('.product-single__ready-to-ship-text')) {
         clearInterval(start)
         exp();
     }
