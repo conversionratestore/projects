@@ -763,9 +763,9 @@ observer.observe(document.querySelector("#search-modal"), {
 const callbackSort = function (mutationsList) {
   if (document.querySelector("#sortby")) {
     console.log(`callbackSort`);
-    observer.disconnect();
+    observerSort.disconnect();
     createButtonListSearch();
-    observer.observe(document.querySelector("#sortby"), {
+    observerSort.observe(document.querySelector("#sortby"), {
       childList: true,
       subtree: true,
     });
