@@ -651,6 +651,8 @@ window.onload  = function () {
                 width: 25%;}
         }
         @media screen and (max-width: 768px) {
+            .price-original {
+                display: none; }
             .slide {
                 width: 50%;}
             .page-title-wrapper {
