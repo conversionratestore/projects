@@ -1062,7 +1062,7 @@ window.onload  = function () {
         });
     });
             
-    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== undefined) {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
