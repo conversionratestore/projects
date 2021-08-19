@@ -23,6 +23,7 @@ document.head.insertAdjacentHTML('beforeend', `
             margin-top: -35px;
         }  
         .product-price .price_sale {
+            display: block;
             margin: 5px 0 0;
             font-weight: 300;
             font-size: 18px;
@@ -34,6 +35,9 @@ document.head.insertAdjacentHTML('beforeend', `
         .product-price .price {
             text-align: right;
         } 
+        .money:not(.cart-modal__box-option .money) {
+            font-size: 17px !important;
+        }
         .money.money_sale{
             color: #5E5E5E !important;
             font-weight: 300;
@@ -61,7 +65,7 @@ document.head.insertAdjacentHTML('beforeend', `
             display: inline-block;
         }
         .price_sale {
-            margin: 0 5px 0;
+            margin: 0 5px 0 0;
         }
         .price-look {
             width: 28%;
@@ -72,113 +76,162 @@ document.head.insertAdjacentHTML('beforeend', `
     </style>
 `);
 
-// elements on the site
-const elementsArray = ['.product-price .money', '.product-list__box-price .price .money', '.cart-modal__box .money'];
+let interval = 0;
 
-// draw my template function
-function drawSale(element) {
-    let isTitlePrice = element === '.product-price .money';
+// check 24 hours session
+if (!window.localStorage.getItem('startDate')) {
+    window.localStorage.setItem('startDate', Date.now().toString());
+} else {
+    currentDate = Date.now();
+    window.localStorage.setItem('currentDate', currentDate.toString());
 
-    document.querySelectorAll(element).forEach(price => {
-        let valueInString = price.innerText.split('$')[1];
-        let num = parseFloat(valueInString);
-        let val = num - (num * .10);
-
-        isTitlePrice
-            ? price.insertAdjacentHTML('beforebegin', `<p class="price_sale">$${val.toFixed(2)}<br><span>(10% off)</span></p>`)
-            : price.insertAdjacentHTML('afterend', `<p class="price_sale">$${val.toFixed(2)}</p>`);
-
-        if (price.closest('b')) {
-            price.closest('b').style.cssText = `text-align: right;`;
-        }
-    });
+    interval = currentDate - window.localStorage.getItem('startDate');
 }
 
-// call drawSale function for each element from array
-for (let i = 0; i < elementsArray.length; i++) {
-    drawSale(elementsArray[i]);
-}
+let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
 
-document.querySelectorAll('.money').forEach(money => {
-    money.classList.add('money_sale');
-});
+if (twentyFourHours >= 0) {
+    // elements on the site
+    const elementsArray = ['.product-price .money', '.product-list__box-price .price .money', '.cart-modal__box .money'];
 
-document.querySelectorAll('.af_tag').forEach(coupon => {
-    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-        coupon.classList.add('coupon_hidden');
-    }
-});
+    // draw my template function
+    function drawSale(element) {
+        let isTitlePrice = element === '.product-price .money';
 
-/* create observers */
+        document.querySelectorAll(element).forEach(price => {
+            console.log(price);
+            if (!price.classList.contains('money_sale')) {
+                let valueInString = price.innerText.split('$')[1];
+                let num = parseFloat(valueInString);
+                let val = num - (num * .10);
 
-// select the target node
-const newTarget = document.querySelector('.cart-modal');
+                price.classList.add('money_sale');
 
-// create an observer instance
-let newObserver = new MutationObserver(function (mutations) {
-    document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-    document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+                isTitlePrice
+                    ? price.insertAdjacentHTML('afterend', `<p class="price_sale">$${val.toFixed(2)}<br><span>(10% off)</span></p>`)
+                    : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">$${val.toFixed(2)}</p>`);
 
-    newObserver.disconnect();
-});
-
-// create second observer instance
-let secondObserver = new MutationObserver(function (mutations) {
-    let removeCoupon = setInterval(() => {
-        clearInterval(removeCoupon);
-        document.querySelectorAll('.af_tag').forEach(coupon => {
-            if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-                coupon.classList.add('coupon_hidden');
+                if (price.closest('b')) {
+                    price.closest('b').style.cssText = `text-align: right;`;
+                }
             }
         });
-    }, 100);
-});
+    }
 
-// configuration of the observer:
-const newConfig = {attributes: true, childList: true, characterData: true};
+    // call drawSale function for each element from array
+    for (let i = 0; i < elementsArray.length; i++) {
+        drawSale(elementsArray[i]);
+    }
 
-// pass in the target node, as well as the observer options
-newObserver.observe(newTarget, newConfig);
-secondObserver.observe(newTarget, newConfig);
-
-/* timer */
-document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span></span></p></div>');
-
-
-const twentyFourHours = 24 * 60 * 60;
-const display = document.querySelector('.header .countdown span');
-
-function startTimer(duration, display) {
-    let timer = duration, hours, minutes, seconds;
-    let timerInterval = setInterval(function () {
-        hours = parseInt((timer / 3600) % 24, 10);
-        minutes = parseInt((timer / 60) % 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        hours = hours < 10 ? '0' + hours : hours;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        display.innerText = `${hours}:${minutes}:${seconds}`;
-
-        if (--timer < 0) {
-            clearInterval(timerInterval);
-
-            document.querySelector('.countdown').remove();
-            document.querySelectorAll('.price_sale').forEach(sale => {
-                sale.remove();
-            });
-
-            document.querySelectorAll('.money').forEach(money => {
-                money.classList.remove('money_sale');
-            });
-
-            document.querySelector('.reviews-prod-title').style.cssText = 'margin-top: 0;';
+    document.querySelectorAll('.af_tag').forEach(coupon => {
+        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+            coupon.classList.add('coupon_hidden');
         }
-    }, 1000);
+    });
+
+    /* create observers */
+
+    // select the target node
+    const newTarget = document.querySelector('.cart-modal');
+    const secondTarget = document.querySelector('.cart-modal__inner');
+
+    // create an observer instance
+    let newObserver = new MutationObserver(function (mutations) {
+        let addCoupon = setInterval(() => {
+            if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
+                clearInterval(addCoupon);
+
+                document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+                document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+
+                newObserver.disconnect();
+            }
+        }, 100);
+    });
+
+    // create second observer instance
+    let secondObserver = new MutationObserver(function (mutations) {
+        let removeCoupon = setInterval(() => {
+            if (document.querySelector('.af_coupon_text.af_coupon_code')) {
+                clearInterval(removeCoupon);
+                document.querySelectorAll('.af_tag').forEach(coupon => {
+                    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                        coupon.classList.add('coupon_hidden');
+                    }
+                });
+                console.log('works');
+                drawSale(elementsArray[2]);
+            }
+        }, 100);
+    });
+
+    let thirdObserver = new MutationObserver(function (mutations) {
+        document.querySelectorAll('.price_sale').forEach(sale => {
+            sale.remove();
+        });
+
+        document.querySelectorAll('.money').forEach(money => {
+            money.classList.remove('money_sale');
+        });
+    });
+
+    // configuration of the observer:
+    const newConfig = {attributes: true, childList: true, characterData: true};
+
+    // pass in the target node, as well as the observer options
+    newObserver.observe(newTarget, newConfig);
+    secondObserver.observe(secondTarget, newConfig);
+
+    /* timer */
+    document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
+
+    const display = document.querySelector('.header .countdown span');
+
+    function startTimer(duration, display) {
+        let timer = duration, hours, minutes, seconds;
+        let timerInterval = setInterval(function () {
+            hours = parseInt((timer / 3600) % 24, 10);
+            minutes = parseInt((timer / 60) % 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            display.innerText = `${hours}:${minutes}:${seconds}`;
+
+            if (--timer < 0) {
+                clearInterval(timerInterval);
+
+                newObserver.disconnect();
+
+                CDSetupInit.removeIndividualCoupon('MM10CRO', this);
+
+                document.querySelector('.countdown').remove();
+
+                document.querySelectorAll('.price_sale').forEach(sale => {
+                    sale.remove();
+                });
+
+                document.querySelectorAll('.money').forEach(money => {
+                    money.classList.remove('money_sale');
+                });
+
+                document.querySelector('#af_cart_slider').classList.add('coupon_hidden');
+
+                secondObserver.disconnect();
+                thirdObserver.observe(secondTarget, newConfig);
+                thirdObserver.disconnect();
+
+                document.querySelector('#af_cart_slider').classList.remove('coupon_hidden');
+                document.querySelector('.reviews-prod-title').style.cssText = 'margin-top: 0;';
+            }
+        }, 1000);
+    }
+
+    startTimer(twentyFourHours, display);
 }
 
-startTimer(twentyFourHours, display);
 
 // hotjar events
 window.dataLayer = window.dataLayer || [];
