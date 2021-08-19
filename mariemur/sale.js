@@ -115,6 +115,7 @@ let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
 if (twentyFourHours >= 0) {
     // elements on the site
     const elementsArray = ['.product-price span .money', '.product-list__box-price .price span .money', '.cart-modal__box span .money'];
+    const dynamicElementsArray = ['.product-price .money', '.product-list__box-price .price .money', '.cart-modal__box .money'];
 
     // draw my template function
     function drawSale(element) {
@@ -143,7 +144,6 @@ if (twentyFourHours >= 0) {
                     }
                 });
             }
-
         }, 100);
 
     }
@@ -184,9 +184,17 @@ if (twentyFourHours >= 0) {
     /* create observers */
 
     // select the target node
+    const loadMoreTarget = document.querySelector('.catalog-more')
     const secondTarget = document.querySelector('.cart-modal__inner');
 
-    // create second observer instance
+    // create observers instance
+    let loadMoreObserver = new MutationObserver(function (mutations) {
+        // call drawSale function for each element from array
+        for (let i = 0; i < elementsArray.length; i++) {
+            drawSale(dynamicElementsArray[i]);
+        }
+    });
+
     let secondObserver = new MutationObserver(function (mutations) {
         let addCouponInterval = setInterval(() => {
             addCoupon(addCouponInterval);
@@ -207,6 +215,7 @@ if (twentyFourHours >= 0) {
     const newConfig = {attributes: true, childList: true, characterData: true};
 
     // pass in the target node, as well as the observer options
+    loadMoreObserver.observe(loadMoreTarget, newConfig);
     secondObserver.observe(secondTarget, newConfig);
 
     /* timer */
