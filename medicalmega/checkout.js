@@ -569,7 +569,7 @@ window.onload  = function () {
                     'title': el.querySelector('.product-description a').innerHTML,
                 });
                 
-                console.log('productsStored: ' + productsStored);
+                console.log('productsStored pushed: ' + productsStored);
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
 
                 console.log('localStorage: ' + JSON.parse(localStorage.getItem('productsStored'))[0].quantity);
