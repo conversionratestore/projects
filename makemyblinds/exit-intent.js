@@ -787,6 +787,7 @@ window.onload  = function () {
             .your-box .price-label span {
                 display: none;
                 font-size: 13px;
+                line-htight: 1;
                 color: gray;}
             .free-priority {
                 margin: 10px 0; }
@@ -860,12 +861,10 @@ window.onload  = function () {
     }
     document.querySelector('.product-info-main').insertAdjacentHTML('afterend', `
     <div class="your-box">
-
         ${document.querySelector('.price-box').innerHTML}
         <button type="button" class="btn">Add to basket</button>
         <div class="product-social-links">${document.querySelector('.product-social-links').innerHTML}</div>
     </div>`);
-    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was ${document.querySelector('.bottom-actions__row .price-original').innerHTML}</span>`
     if (document.querySelector('.product-delivery-date')) {
         document.querySelector('.your-box .product-social-links').after(document.querySelector('.product-delivery-date'));
     }
@@ -1179,9 +1178,9 @@ window.onload  = function () {
     eventsCategories('.category .card .btn','Click on View Product button listing');
     if (window.matchMedia("(max-width: 768px)").matches) {
         document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`);
-        document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
-       
+        document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));   
     }
+    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was ${document.querySelector('.bottom-actions__row .price-original').innerHTML}</span>`;
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
