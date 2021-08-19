@@ -679,6 +679,7 @@ window.onload  = function () {
                 'eventAction': 'Click Next button',
                 'eventLabel': 'Section Shipping information'
             });
+            pushProductsStored();
         });
 
         if (document.querySelector('.editLink') == null) {
