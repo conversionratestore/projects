@@ -34,8 +34,7 @@ window.onload  = function () {
     </style>`);
 
     document.querySelector('.effectiveness .ziplock').insertAdjacentHTML('beforebegin',`
-    <div id="how-it-works">
-        <div class="container">
+    < id="how-it-works">
             <h3 class="js-title text-dark">how it works <img src="https://conversionratestore.github.io/projects/buzzpatch/img/buzzpatch.svg" alt="image"></h3>
             <div class="item">
                 <img src="https://conversionratestore.github.io/projects/buzzpatch/img/tshirt.svg" alt="image">
@@ -51,7 +50,7 @@ window.onload  = function () {
                 up to 72 hours.</p>
             </div>
             <a href="#getNow" class="btn js-btn btn-primary get-it dark">Get it now!</a>
-        </div>
+        
     </div>`);
     document.querySelector('#how-it-works .btn').addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
