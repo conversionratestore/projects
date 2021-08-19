@@ -760,7 +760,13 @@ observer.observe(document.querySelector("#search-modal"), {
   subtree: true,
 });
 
-document.querySelector("#sortby").addEventListener("change", function () {
+let btnSort = "#sortby";
+
+if (document.querySelector(".ais-SortBy-select")) {
+  btnSort = ".ais-SortBy-select";
+}
+
+document.querySelector(btnSort).addEventListener("change", function () {
   console.log(`change`);
   createButtonList();
 });
