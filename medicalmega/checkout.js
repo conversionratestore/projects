@@ -567,6 +567,7 @@ window.onload  = function () {
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
     }
+    pushProductsStored();
     
     function sumTotalPrice() {
         let sum = 0;
@@ -1034,7 +1035,7 @@ window.onload  = function () {
         });
     });
         
-    if (document.querySelectorAll('.payment table.altPayment tr')) {
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
