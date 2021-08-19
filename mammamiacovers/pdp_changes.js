@@ -197,7 +197,12 @@ document.querySelectorAll('.o-layout__item')[1].classList.value = 'o-layout__ite
 document.querySelectorAll('.js-cart-replace')[1].insertAdjacentHTML('afterend', `<div class="options_select"></div>`)
 
 document.querySelector('.options_select').append(document.querySelector('.product-single__form'))
-$('.product-single__photo.product-single__photo--large').slick('setPosition')
+let slider = setInterval(function () {
+    if(typeof $ === 'function') {
+        clearInterval(slider)
+        $('.product-single__photo.product-single__photo--large').slick('setPosition')
+    }
+}, 50)
 
 document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
 document.querySelector('.product-single__classic-title').insertAdjacentHTML('afterend', `<p class="selected_options">Color:<span>${color}</span> Size:<span>${size}</span></p>`)
@@ -212,6 +217,7 @@ document.querySelector('.new_specifics').insertAdjacentElement('afterend',btns)
 
 document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
     item.addEventListener('click', function () {
+        console.log('hello')
         document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
 
         window.dataLayer = window.dataLayer || [];
