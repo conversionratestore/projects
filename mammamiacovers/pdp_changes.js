@@ -12,8 +12,6 @@ let style = `
         
         .product-single__bottom .o-layout__item:first-child {
             width: 30%;
-            min-width: ;
-            
         }
         .product-single__bottom .o-layout__item:last-child {
             width: 70%;
@@ -185,100 +183,111 @@ let block = `
     </ul>
 `
 
-let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
-
-document.body.insertAdjacentHTML('afterbegin', style)
-
-let color = document.querySelector('.js-swatch-variant-title_color').innerText
-let size = document.querySelector('.types .product-single__swatch__sub-title').innerText
-
-document.querySelectorAll('.o-layout__item')[0].classList.value = 'o-layout__item'
-document.querySelectorAll('.o-layout__item')[1].classList.value = 'o-layout__item'
-document.querySelectorAll('.js-cart-replace')[1].insertAdjacentHTML('afterend', `<div class="options_select"></div>`)
-
-document.querySelector('.options_select').append(document.querySelector('.product-single__form'))
-let slider = setInterval(function () {
-    if(typeof $ === 'function') {
-        clearInterval(slider)
-        $('.product-single__photo.product-single__photo--large').slick('setPosition')
+let start = setInterval(function () {
+    if(document.querySelector('.product-single__price__notes')) {
+        clearInterval(start)
+        exp();
     }
-}, 50)
-
-document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
-document.querySelector('.product-single__classic-title').insertAdjacentHTML('afterend', `<p class="selected_options">Color:<span>${color}</span> Size:<span>${size}</span></p>`)
-document.querySelector('.afterpay-paragraph').after(document.querySelector('.product-single__reviews-stars'))
-document.querySelector('.product-single__price__notes').insertAdjacentHTML('beforebegin', block)
-document.querySelector('.afterpay-logo-link').after(document.querySelector('.afterpay-klarna'))
-
-let btns = document.querySelector('.product-single__add.js-product-buttons').cloneNode(true)
-
-document.querySelector('.new_specifics').insertAdjacentElement('afterend',btns)
+}, 100)
 
 
-document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
-    item.addEventListener('click', function () {
-        console.log('hello')
-        document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
+function exp() {
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: PDP with benefits',
-            'eventAction': `Click on ${item.closest('.product-single__swatch__item--color').querySelector('input').value} color`
-        });
-    })
-})
+    let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
 
-document.querySelectorAll('.similar .sizes__item').forEach(item => {
-    item.addEventListener('click', function () {
-        let txt = item.querySelector('.sizes__text').innerText
+    document.body.insertAdjacentHTML('afterbegin', style)
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: PDP with benefits',
-            'eventAction': `Click on ${txt} collection`
-        });
-    })
-})
+    let color = document.querySelector('.js-swatch-variant-title_color').innerText
+    let size = document.querySelector('.types .product-single__swatch__sub-title').innerText
 
-document.querySelectorAll('.types__item').forEach(item => {
-    item.addEventListener('click', function () {
-        let txt = item.querySelector('.types__text').innerText
+    document.querySelectorAll('.o-layout__item')[0].classList.value = 'o-layout__item'
+    document.querySelectorAll('.o-layout__item')[1].classList.value = 'o-layout__item'
+    document.querySelectorAll('.js-cart-replace')[1].insertAdjacentHTML('afterend', `<div class="options_select"></div>`)
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: PDP with benefits',
-            'eventAction': `Click on ${txt} sizer`
-        });
-    })
-})
+    document.querySelector('.options_select').append(document.querySelector('.product-single__form'))
+    let slider = setInterval(function () {
+        if (typeof $ === 'function') {
+            clearInterval(slider)
+            $('.product-single__photo.product-single__photo--large').slick('setPosition')
+        }
+    }, 50)
 
-document.querySelectorAll('.similar+#sizes .sizes__item').forEach(item => {
-    item.addEventListener('click', function () {
-        let txt = item.querySelector('.sizes__text').innerText
+    document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
+    document.querySelector('.product-single__classic-title').insertAdjacentHTML('afterend', `<p class="selected_options">Color:<span>${color}</span> Size:<span>${size}</span></p>`)
+    document.querySelector('.afterpay-paragraph').after(document.querySelector('.product-single__reviews-stars'))
+    document.querySelector('.product-single__price__notes').insertAdjacentHTML('beforebegin', block)
+    document.querySelector('.afterpay-logo-link').after(document.querySelector('.afterpay-klarna'))
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: PDP with benefits',
-            'eventAction': `Click on ${txt} type`
-        });
-    })
-})
+    let btns = document.querySelector('.product-single__add.js-product-buttons').cloneNode(true)
 
-document.querySelectorAll('.product-single__price button').forEach(item => {
-    item.addEventListener('click', function () {
-        let btnClass = item.classList.value
+    document.querySelector('.new_specifics').insertAdjacentElement('afterend', btns)
 
-        document.querySelectorAll('form .product-single__add button').forEach(item => {
-            if(item.classList.value === btnClass) {
-                item.click()
-            }
+
+    document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
+        item.addEventListener('click', function () {
+            console.log('hello')
+            document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${item.closest('.product-single__swatch__item--color').querySelector('input').value} color`
+            });
         })
     })
-});
+
+    document.querySelectorAll('.similar .sizes__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.sizes__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} collection`
+            });
+        })
+    })
+
+    document.querySelectorAll('.types__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.types__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} sizer`
+            });
+        })
+    })
+
+    document.querySelectorAll('.similar+#sizes .sizes__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.sizes__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} type`
+            });
+        })
+    })
+
+    document.querySelectorAll('.product-single__price button').forEach(item => {
+        item.addEventListener('click', function () {
+            let btnClass = item.classList.value
+
+            document.querySelectorAll('form .product-single__add button').forEach(item => {
+                if (item.classList.value === btnClass) {
+                    item.click()
+                }
+            })
+        })
+    });
+}
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
