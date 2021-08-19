@@ -1034,7 +1034,7 @@ window.onload  = function () {
         });
     });
         
-    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
+    if (document.querySelectorAll('.payment table.altPayment tr')) {
         let productsStored = [];
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
@@ -1075,6 +1075,7 @@ window.onload  = function () {
             document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
             sumTotalPrice();
         }
+        // justunoCartItems = [];
     }
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
