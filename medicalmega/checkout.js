@@ -1,857 +1,1080 @@
 window.onload  = function () {
-    let style = `
-        <style>
-            button {
-                outline: none;}
-            input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0; }
-            input[type=number] {
-                -moz-appearance: textfield;}
-            .homeslider__container {
-                margin-bottom: 20px!important;
-                margin-left: 10px!important;}
-            .gallery {
-                margin: 13px 0 0 10px;
-                display: flex;}
-            .gallery dd span {
-                width: 100%;
-                height: 140px;
-                margin-bottom: 5px;
-                display: inline-flex;}
-            .gallery dd span a {
-                margin: auto;}
-            .gallery dd a {
-                word-break: break-word;}
-            .gallery dd a br {
-                display: none;}
-            .gallery dd {
-                width: 140px;
-                line-height: 15px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                text-align: left;}
-            .gallery dd b {
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: flex-end;
-                font-weight: 600;
-                font-size: 18px;
-                padding-top: 7px;
-                margin: auto 0 0;
-                line-height: 1;}
-            .gallery dd b s{
-                font-weight: 450;
-                font-size: 12px;
-                line-height: 15px;
-                text-decoration-line: line-through;
-                margin-left: 5px;
-                color: #9E9E9E;}
-            .gallery-parent {
-                padding-bottom: 30px;}
-            h2.title, .title {
-                text-align: left;
-                padding-left: 10px;
-                font-size: 24px;
-                line-height: 29px;
-                font-weight: 600;
-                color: #222222;
-                text-transform: capitalize;}
-            .homepage-container {
-                display: grid;}
-            .trustpilot-widget-container {
-                order: 3;}
-            .add-to-cart {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 8px 0 0;
-                width: 100%;}
-            .add-to-cart button {
-                color: #FFFFFF;
-                padding: 0 9px;
-                margin-bottom: 0;
-                line-height: 33px!important;
-                outline: none;
-                cursor: pointer;
-                background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
-                border: 0.5px solid #780F11;
-                border-radius: 4px;
-                font-weight: 600;
-                font-size: 14px;
-                text-align: center;
-                text-transform: capitalize;}
-            .add-to-cart input {
-                font-size: 18px;
-                line-height: 20px;
-                color: #000000;
-                padding: 6.5px 0;
-                width: 33px;
-                text-align: center;
-                background: #EEEEEE;
-                border: 0.5px solid #CCCCCC;
-                border-radius: 4px;}   
-            .show-more {
-                width: calc(100% - 213px);
-                padding: 0 28px;
-                font-weight: 450;
-                font-size: 15px;
-                line-height: 33px;
-                text-align: center;
-                text-transform: capitalize;
-                color: #666666;
-                display: block;
-                margin: 20px 0 0 10px;
-                background: #EEEEEE;
-                border: 0.5px solid #CCCCCC;
-                border-radius: 4px;}     
-            .popup {
-                position: fixed;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100vh;
-                z-index: 999999;
-                display: inline-flex;
-                overflow-y: auto;
-                background: rgba(64, 62, 62, 0.46);
-                opacity: 0;
-                pointer-events: none;
-                transition: all 0.3s ease;}
-            .popup.isActive {
-                opacity: 1;
-                pointer-events: auto;}
-            .popup__container {
-                margin: auto;
-                background: #FFFFFF;
-                border-radius: 4px;
-                max-width: 622px;
-                width: 100%;
-                padding: 20px 20px 40px;}
-            .close {
-                position: relative;
-                width: 46px;
-                height: 46px;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;}
-            .close:before, .close:after {
-                content: '';
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                background-color: #DADADA;
-                width: 20px;
-                height: 2px;}
-            .close:before {
-                transform: translate(-50%,-50%) rotate(45.2deg);}
-            .close:after {
-                transform: translate(-50%,-50%) rotate(-45.2deg);} 
-            .popup__head {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;}
-            .popup .altPayment {
-                width: 100%;}
-            .popup .product-description b a br{
-                display: none; }
-            .popup h2.title, .title {
-                padding-left: 0;}
-            h3.title3, .title3 {
-                text-align: left;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 22px;
-                text-transform: capitalize;
-                color: #222222}
-            .popup .altPayment th {
-                padding: 16px 0;
-                border-bottom-color: #EEEEEE;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 17px;
-                text-transform: capitalize;
-                color: #CCCCCC;
-                border-left: none;}
-            .popup .altPayment, .popup table.altPayment td {
-                border: none}
-            .popup__product-total {
-                background: #EEEEEE;
-                border: 1px solid #EEEEEE;}
-            .altPayment td .product-cell-inner span {
-                flex-shrink: 0;
-                border: 0.5px solid #EEEEEE;
-                padding: 0; 
-                width: 98px;
-                height: 98px;}
-            .popup__product div.product-cell-inner {
-                padding: 0 10px 0 0;
-                display: flex;}
-            .popup table.altPayment p.product-description{
-                width: fit-content;
-                word-break: break-word;
-                margin-top: 0;}
-            .popup table.altPayment td {
-                padding: 0;}
-            .popup table.altPayment .popup__product td {
-                padding: 0 0 10px 0; }
-            .quantity-btn {
-                display: none;
-                width: 28px;
-                cursor: pointer;
-                font-size: 18px;
-                line-height: 22px;
-                text-align: center;
-                text-transform: capitalize;
-                background-color: transparent;
-                color: #666666;
-                border: none;
-                padding: 2px 0;}
-            .quantity-btn[disabled] {
-                color: #CCCCCC;}
-            .quantity {
-                background: #FFFFFF;
-                border: 0.5px solid #CCCCCC;
-                width: 30px;
-                font-size: 14px;
-                line-height: 17px;
-                text-align: center;
-                padding: 5px 0;
-                color: #000000;}
-            .quantity:focus, .quantity[type='number']:focus, .quantity[type='number'] {
-                pointer-events: none!important; }
-            .popup .altTd b {
-                font-weight: 450;
-                font-size: 18px;
-                text-align: right;
-                text-transform: capitalize;
-                color: #222222;}
-            .popup .altTd.total-values b {
-                font-weight: 600;}
-            .popup .altTd b:first-child {
-                font-size: 14px;
-                text-transform: capitalize;
-                color: #666666;
-                margin-bottom: 5px;
-                font-weight: 400;}
-            .popup .altTd.total-values b:first-child {
-                font-weight: 450;}
-            .quantity-row {
-                padding-left: 24px;
-                display: flex;}
-            .flex-center {
-                display: flex;
-                align-items: center;}
-            .popup .unit-price, .popup .total-price {
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 29px;
-                color: #000000;}
-            .popup .unit-price b{
-                font-weight: normal;}
-            .popup .total-price {
-                font-weight: 600;}
-            .popup .total-price b {
-                font-weight: 600;}
-            .popup .continue-shopping {
-                display: flex; 
-                background-color: transparent;
-                align-items: center;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 17px;
-                border: none;
-                text-decoration-line: underline;
-                text-transform: capitalize;
-                color: #222222;}
-            .btn {
-                background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
-                border: 0.5px solid #780F11;
-                border-radius: 4px;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 33px;
-                text-align: center;
-                text-transform: uppercase;
-                color: #FFFFFF;
-                padding: 0 22px;
-                display: flex;
-                align-items: center;}
-            .btn img {
-                margin-left: 5px;}
-            .popup__bottom {
-                // margin-bottom: 30px;
-                padding: 20px 0;
-                border-bottom: 0.5px solid #EEEEEE;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;}
-            .popup img#checkout-button {
-                margin-top: 0;
-                width: 18px;
-                height: 18px;}
-            div.paypal-button, div.or-text, div.checkout {
-                padding: 0;}
-            .body table {
-                scrollbar-width: thin;
-                scrollbar-color: #CCCCCC #666666;}
-            .body table::-webkit-scrollbar{
-                background: #CCCCCC;
-                width: 4px;
-                height: 4px;}
-            .body table::-webkit-scrollbar-thumb{
-                background: #666666;}
-            .slider-gallery{
-                max-width: 510px;
-                margin: 0 auto;
-                padding-top: 15px;}
-            .gallery .swiper-slide {
-                padding: 0 10px 0 0;
-                width: calc(25% - 10px);}
-            .gallery .swiper-slide:last-child {
-                padding: 0;}
-            .gallery .swiper-slide a {
-                font-size: 10px;
-                line-height: 12px;}
-            .gallery .swiper-slide b  {
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 17px;}
-            .gallery .swiper-slide .add-to-cart button{
-                font-size: 12px;
-                line-height: 28px!important;
-                padding: 0 5px;}
-            .gallery .swiper-slide .add-to-cart input{
-                padding: 4px 0; }
-            .swiper-container {
-                position: relative;}
-            .swiper-button-prev, .swiper-button-next {
-                position: absolute;
-                border: none;
-                cursor: pointer;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 36px;
-                height: 36px;
-                background: no-repeat center / contain}
-            .swiper-button-prev {
-                left: 0;
-                background-image: url('https://i.ibb.co/m0Lv3wp/expand-more-24px.png');}
-            .swiper-button-next {
-                right: 0;
-                background-image: url('https://i.ibb.co/v4MXXdd/expand-more-24px-1.png');}
-            .gallery .swiper-slide {
-                flex-shrink: 0;
-                clear: both;}
-            .slider-gallery {
-                overflow-x: auto;
-                display: flex;}
-            .slider-gallery::-webkit-scrollbar {
-                display: none;}
-            .before, .after {
-                position: absolute;
-                display: block;
-                width: 25%;
-                padding: 0;
-                margin-top: 15px;
-                width: calc(25% - 10px);
-                margin-right: 10px;
-                flex-shrink: 0;
-                clear: both;}
-            .before {
-                margin-left: calc(50% - 10px);}
-            .after {
-                margin-left: calc(75% - 10px);}
-            .slider-gallery .product-card {
-                width: 117px;
-                flex-shrink: 0; }
-            .slider-gallery .product-card .add-to-cart button {
-                font-size: 12px;
-                padding: 0 4px;
-                line-height: 31px!important;}
-            .slider-gallery .product-card .add-to-cart input {
-                padding: 5.5px 0;}
-            .bought-products {
-                padding-top: 30px;}
-            .slider-gallery.gallery .product-card span {
-                height: 120px;
-                width: 120px;}
-            .slider-gallery.gallery .product-card img {
-                max-height: 120px;
-                width: 100%;
-                object-fit: contain;}
-            .add-to-cart[disabled] {
-                opacity: 0.6;
+    document.body.insertAdjacentHTML('afterbegin', `
+    <style>
+        .title_head {
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 27px;
+            padding: 20px 0;
+            text-transform: capitalize;
+            color: #C23D31;
+            border-bottom: 0.5px solid #CCCCCC;}
+        #mainbody {
+            background: transparent; }
+        .payment {
+            padding-bottom: 0;}
+        .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
+            display: none;}
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0; }
+        input[type=number] {
+            -moz-appearance: textfield;}
+        .checkout-left h2.title, .checkout-left .title{
+            padding-left: 0;}
+        h2.title, .title {
+            text-align: left;
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 600;
+            color: #222222;
+            text-transform: capitalize;}
+        button {
+            border: none;
+            cursor: pointer;}
+        .payment,  #login_btn {
+            width: 100%;}
+        .btn, #login_btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
+            background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+            border: 0.5px solid #780F11;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 33px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            padding: 0 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+        #step1_form div[align="right"] input {
+            max-width: 224px!important;
+            padding: 0;
+            width: 100%;
+            margin: 0!important;}
+        #step1_form div[align="right"] {
+            margin: 30px 0 0 0!important;
+            clear: both;
+            position: relative;}
+        #step1_form div.copy_bill[align="right"] {
+            margin: 30px 0 24px 0!important;
+            float: left;
+            margin-top: 0!important;}
+        #step1_form div.copy_bill[align="right"]:after {
+            content: none; }
+        .address_book_new .small_block .head2 {
+            font-size: 12px!important;}
+        .btn.big {
+            font-size: 24px;
+            width: 100%;
+            line-height: 49px;}
+        .btn img {
+            margin-left: 5px;}
+        #mainbody {
+            padding: 40px 0;}
+        h3.title3, .title3 {
+            text-align: left;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;
+            text-transform: capitalize;
+            color: #222222}
+        .quantity-btn {
+            display: none;
+            font-size: 18px;
+            line-height: 22px;
+            text-align: center;
+            text-transform: capitalize;
+            background-color: transparent;
+            color: #666666;
+            padding: 2px 0;}
+        #mainbody .quantity-btn  {
+            display: block;}
+        .quantity-btn[disabled] {
+            color: #CCCCCC;}
+        .quantity {
+            background: #FFFFFF;
+            border: 0.5px solid #CCCCCC;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+            color: #000000;}
+        .checkout-product {
+            padding: 15px 0;
+            border-bottom: 0.5px solid #EEEEEE;}
+        .checkout-product:last-child {
+            border: none;}
+        .checkout-product .quantity {
+            padding: 4px 0;
+            width: 25px;}
+        .checkout-product .quantity-btn {
+            width: 25px;}
+        #mainbody .quantity-row {
+            padding-left: 0 ;
+            display: flex;}
+        .checkout-left {
+            display: flex;
+            flex-direction: column;
+            max-width: 542px;
+            padding: 0;
+            width: calc(100% - 304px);}
+        .checkout-left .form {
+            display: none;}
+        .checkout-left .form.active {
+            display: grid;
+            grid-template-rows: 0fr 1fr 0fr;}
+        .checkout-left .form .btn{
+            margin-left: auto;
+            min-width: 224px;
+            margin-top: 30px;}
+        .checkout-left_head {
+            border-bottom: 0.5px solid #CCCCCC;
+            padding: 15px 0;}
+        .link {
+            cursor: pointer;
+            font-style: normal;
+            font-weight: 450;
+            font-size: 18px;
+            line-height: 22px;
+            text-decoration-line: underline;
+            text-transform: capitalize;
+            color: #C23D31;}
+        .flex-center-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;}
+        .form-row {
+            padding-top: 20px;
+            margin-bottom: auto;
+            display: grid;
+            flex-wrap: wrap;
+            grid-column-gap: 93px;
+            grid-row-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            flex-wrap: wrap;}
+        .form-col {
+            min-width: 224px;}
+        .myAccount label, #editor_fields label {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 14px;
+            margin-bottom: 10px;
+            display: block;
+            color: #CCCCCC;}
+        .myAccount {
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;}
+        .myAccountright {
+            display: none;
+            width: 100%; }
+        .myAccountleft {
+            width: 100%; }
+        .registerOnLogin {
+            padding: 0;}
+        .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select {
+            width: -webkit-fill-available;
+            background: #EDEDED;
+            height: auto;
+            border: 0.5px solid #CCCCCC;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 20px;
+            color: #666666;
+            padding: 9px 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;}
+        div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
+           
+            width: fit-content;
+            margin-left: auto;}
+            div.myAccountright > form > dd:nth-child(5){
+                max-width: 100%;
             }
-        </style>
-    `;
+        .checkout-right_head {
+            padding: 22px 0 15px;
+            border-bottom: 0.5px solid #CCCCCC;}
+        .checkout-right_head .link {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;}   
+        .checkout-right {
+            // display: grid;
+            height: fit-content;
+            width: 304px;
+            background: rgba(238, 238, 238, 0.5);
+            padding: 0 20px;
+            border-radius: 4px;}
+        .checkout-right_body {
+            max-height: 333px;
+            margin: 0 -10px 0 0;
+            padding: 10px 10px 15px 0;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #CCCCCC #666666;}
+        .checkout-right_body::-webkit-scrollbar{
+            background: #CCCCCC;
+            width: 4px;
+            height: 4px;}
+        .checkout-right_body::-webkit-scrollbar-thumb{
+            background: #666666;}
+        .d-flex {
+            display: flex;}
+        .flex-column {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;}
+        .checkout-product_img {
+            border: 0.5px solid #EEEEEE;
+            background-color: #fff;
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            margin-right: 10px;}
+        .checkout-product_img img {
+            margin: auto;}
+        .checkout-product a {
+            font-size: 10px;
+            display: inline-flex;
+            line-height: 14px;
+            max-width: 125px;
+            color: #000000;}
+        .remove {
+            width: 18px;
+            height: 18px;
+            background: url('https://i.ibb.co/RDTZtyZ/X.png') no-repeat center / contain;}
+        .flex-between {
+            display: flex;
+            justify-content: space-between;}
+        .total-price {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 22px;
+            color: #000000;}   
+        input::-webkit-input-placeholder, input:-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder {
+            font-size: 16px;
+            line-height: 20px;
+            color: #666666;
+            opacity: 0.5; }
+        .checkout-right_footer {
+            display: flex;
+            justify-content: space-between;
+            margin: auto -20px 0;
+            padding: 20px;
+            background: #222222;
+            border-radius: 0px 0px 4px 4px;}
+        .checkout-right_footer .altTd p, {
+            display: block;}
+        .checkout-right_footer .altTd p, .checkout-right_footer .altTd p b {
+            font-style: normal;
+            text-transform: capitalize;
+            margin-bottom: 17px;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 17px;
+            color: #CCCCCC;}
+        .checkout-right_footer .altTd p:last-child, .checkout-right_footer .altTd p:last-child b {
+            margin-bottom: 0;
+            padding-top: 10px;
+            font-weight: 450;
+            font-size: 24px;
+            line-height: 29px;
+            color: #FFFFFF;}
+        .total-values {
+            text-align: right;}
+        .relative{
+            position: relative;}
+        .btn-eye {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 40px;
+            border: 0.5px solid #CCCCCC;
+            background: #CCCCCC url('https://i.ibb.co/PQqLsQw/Eye.png') no-repeat center / 18px;
+            border-radius: 0px 4px 4px 0px;}
+        .select select{
+            background: transparent;
+            width: -webkit-fill-available;
+            border: 0.5px solid #CCCCCC;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 20px;
+            color: #666666;
+            padding: 10px;
+            appearance: none;
+            border-radius: 4px;
+            color: #666666;}
+        .select {
+            min-width: 160px;
+            background: #EDEDED url('https://i.ibb.co/vHQtXct/expand-more-24px-2.png') no-repeat right center / 36px;
+            position: relative;}
+        .select.small {
+            background-size: 25px;}
+        .select.small select{
+            padding: 4px 10px;}
+        [type="checkbox"], #make_primary[type="checkbox"] {
+            display: none!important;}
+        .check {
+            background: #EDEDED no-repeat center / 80%;
+            border: 0.5px solid #CCCCCC;
+            display: block;
+            margin: 0 8px 0 0;
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;}
+        [type="checkbox"]:checked ~ .check {
+            background-image: url('https://i.ibb.co/Tm0B3v0/Vector.png');}
+        .check+span {
+            color: #222222;
+            font-size: 14px;
+            line-height: 17px;}
+        .promotional-code input {
+            max-width: 290px;}
+        .promotional-code p{
+            margin: 0;
+            font-weight: 400;}
+        .promotional-code p b {
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 600;}
+        .radio {
+            width: 20px;
+            height: 20px;
+            position: relative;
+            display: block;
+            border-radius: 50%;
+            margin-right: 6px;
+            background: #EEEEEE;
+            border: 1px solid #CCCCCC;}
+        .radio:before, .radio:after {
+            content: none;
+            position: absolute;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);}
+        .radio:before {
+            border: 2px solid #C23D31;
+            width: 100%;
+            height: 100%;}
+        .radio:after {
+            background: #C23D31;
+            width: 10px;
+            height: 10px;}
+        .checkbox:checked ~ .radio:after, .checkbox:checked ~ .radio:before {
+            content: '';}
+        .delivery-methods label {
+            margin-bottom: 20px;}
+        .delivery-methods label span {
+            font-size: 14px;
+            line-height: 17px;}
+        .delivery-methods label span span{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;}
+        .c-red {
+            color: #C23D31;}
+        .max-385 {
+            max-width: 385px;}
+        .card {
+            margin: 20px 0;}
+        .card img {
+            width: 50px;
+            height: 40px;
+            margin-right: 15px;}
+        .card input{
+            font-size: 18px;
+            line-height: 21px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 7px;}
+        .card input::-webkit-input-placeholder, .card input:-moz-placeholder, .card input::-moz-placeholder, .card input:-ms-input-placeholder {
+            font-size: 18px;
+            line-height: 21px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #666666;
+            opacity: 0.5; }
+        .input-number {
+            width: 54%}
+        .input-date {
+            text-align: center;
+            width: 13%;}
+        .input-cvv {
+            text-align: center;
+            width: 8%;}
+        .bg-none {
+            background-color: transparent;}
+        .text-small {
+            margin-top: 5px!important;
+            font-style: normal;
+            font-weight: normal!important;
+            line-height: 15px;
+            color: #000000;}
+        .valign-center {
+            display: flex!important;
+            align-items: center;}
+        .p-0 {
+            padding: 0!important;}
+        .pb-0 {
+            padding-bottom: 0!important;}
+        .pb-20 {
+            padding-bottom: 20;}
+        .pt-3 {
+            padding-top: 15px;}
+        .mt-auto {
+            margin-top: auto;}
+        .ml-0 {
+            margin-left: 0!important;}
+        .mr-10 {
+            margin-right: 10px;}
+        .registerOnLogin {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; }
+        .registerOnLogin dd {
+            padding: 0!important;
+            width: 50%;
+            max-width: 224px; }
+        .myAccountleft .registerOnLogin button {
+            width: 100%;
+            background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+            border: none;
+            border-radius: 4px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 42px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-transform: capitalize;
+            color: #FFFFFF;
+            padding: 0 30px;
+            position: relative;}
+        .myAccountleft .registerOnLogin dd:last-child {
+            max-width: 100%;
+            width: fit-content;
+            margin-left: auto;}
+        .btn-next  {
+            max-width: 224px;
+            margin-left: auto;
+            margin-top: auto;
+            width: 100%;}
+        .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
+            content: '';
+            margin-left: 4px;
+            background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
+            width: 24px;
+            height: 24px; }
+        #step1_form div[align="right"]:after {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;}
+        .address_book_new {
+            padding: 20px 0 0 0!important; }
+        .address_book_new .small_block {
+            width: 50%!important;
+            clear: both;
+            max-width: 224px; }
+        .address_book_new .ship_small {
+            margin-left: 0!important;}
+        .address_book_new .small_block .radio_content {
+        width: auto;
+            z-index: 2;}
+        .address_book_new .small_block .head {
+            display: none; } 
+        .editor_left, .editor_right {
+            display: flex!important;
+            flex-wrap: wrap;
+            justify-content: space-between; 
+            width: 100%!important;}
+        .editor_left div, .editor_right div{
+            width: 100%;
+            max-width: 224px;}
+        .address_book_new .editor .editor_right {
+            margin-top: 20px;
+            padding-left: 0!important;}
+        #step1_form {
+            padding-bottom: 20px;}
+        .address_book_new .small_block .radio_content .radio_cont {
+            font-size: 14px!important;}
+        .address_book_new .small_block .radio_content .radio_cont .edit {
+            padding-top: 0!important;}
+        .btn-back {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 19px;
+            display: flex;
+            align-items: center;
+            text-decoration-line: underline;
+            padding: 10px 19px;
+            background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg') no-repeat left center / 18px;
+        }
+        .address_book_new .editor .title {
+            display: none;
+        }
+    </style>`);
 
-    document.body.insertAdjacentHTML('afterbegin', style);
+    document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
+    <div class="flex-between">
+        <div class="checkout-left">
+            <div class="checkout-left_head flex-center-between">
+                <h2 class="title">Registration</h2>
+                <p class="link log active">Sign In</p>
+            </div>
+            <div class="title_head">Personal information</div>
+        </div>
+        <div class="checkout-right">
+            <div>
+                <div class="checkout-right_head flex-center-between">
+                    <h3 class="title3">Your order</h3>
+                    <a href="https://medicalmega.com/" class="link">Back to Shopping</a>
+                </div>
+                <div class="checkout-right_body"></div>
+            </div>
+            <div class="checkout-right_footer">
+                <div class="altTd total-headings">
+                    <p><b>Sub Total:</b></p> 
+                    <p><b>Grand Total:</b></p> 
+                </div>
+                <div class="altTd total-values">
+                    <p>$ <b></b></p>   
+                    <p>$ <b></b></p>
+                </div>
+            </div>
+        </div>
+    </div>`);
 
-    let productsStored = [];
-    let productsStoredUpdate = [];
 
+    
     function sumTotalPrice() {
         let sum = 0;
-        document.querySelectorAll('.total-price b').forEach((totalPrice) => {
+        document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
             sum += parseFloat(totalPrice.innerHTML);
-            document.querySelectorAll('.total-values b').forEach((totalValues) => {
-                totalValues.innerHTML = `$ ${sum.toFixed(2)}`;
+            document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
+                if(totalIndex === 0) {
+                    totalValues.innerHTML = `${sum.toFixed(2)}`;
+                } else {
+                    if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
+                        totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
+                    } else {
+                        totalValues.innerHTML = `${sum.toFixed(2)}`;
+                    }
+                }
+               
             });
         });
     }
 
-    function quantityFun(el) {
-        if (el.querySelector('.quantity').value < 2) {
-            el.querySelector('.quantity').value = 1;
-            el.querySelector('.quantity-btn_minus').disabled = true;
-        } else {
-            el.querySelector('.quantity-btn_minus').disabled = false;
-        }
-        el.querySelector('.quantity-row').addEventListener('change', () => {
-            if (el.querySelector('.quantity').value < 2) {
-                el.querySelector('.quantity').value = 1;
-                el.querySelector('.quantity-btn_minus').disabled = true;
+    sumTotalPrice();
+
+    document.querySelectorAll('.btn-eye').forEach((item) => {
+        item.addEventListener('click', () => {
+            const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
+            item.previousElementSibling.setAttribute('type', type);
+        });
+    });
+    if (document.querySelector('.myAccount')) {
+
+        document.querySelector('.title_head').after(document.querySelector('.myAccount'));
+        document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
+        <label class="valign-center">
+            <span class="check"></span>
+            <span>Email Me Order Updates and Specials</span>
+        </label>`);
+        document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
+        document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
+        document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
+        document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
+        document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Choose Shipping Method button',
+                'eventLabel': 'Section Registration'
+            });
+        });
+        document.querySelector('.log').addEventListener('click', (e) => {
+            let _this = e.target;
+            _this.classList.toggle('active');
+            if (_this.classList.contains('active')) {
+                _this.innerHTML = 'Sign in';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
+                document.querySelector('.myAccountright').style.display = 'none';
+                document.querySelector('.myAccountleft').style.display = 'block';
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Sign In button',
+                    'eventLabel': 'Section Registration'
+                });
             } else {
-                el.querySelector('.quantity-btn_minus').disabled = false;
+                _this.innerHTML = 'Registration';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
+                document.querySelector('.myAccountleft').style.display = 'none';
+                document.querySelector('.myAccountright').style.display = 'block';
             }
-            el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+        });
+    }
+    if (location.pathname == '/checkout/step1') {
+        if (!document.querySelectorAll('.checkout-product')) {
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+            .checkout-right {
+                display: none;
+            }
+            </style>`);
+            document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
+        } else {
+            document.body.insertAdjacentHTML('afterbegin', `
+            <style>
+                .payment {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;}
+                #editor_fields div:nth-child(4){
+                    display: none;} 
+                #editor_fields .editor_right div:nth-child(6){
+                    display: none;}
+            </style>`);
+        }
+        document.querySelector('.title_head').after(document.querySelector('.payment'));
+        document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+        document.querySelector('.payment h3 ').style.display = 'none';
+        document.querySelector('.checkout-left_head').style.display = 'none';
+        document.querySelector('.checkout-left_head .log ').style.display = 'none';
+        document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+        document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+        document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
+        document.querySelector('.btn-next').addEventListener('click', () => {
+            document.querySelectorAll('form div[align="right"] input')[1].click();
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Next button',
+                'eventLabel': 'Section Shipping information'
+            });
+        });
+
+        if (document.querySelector('.editLink') == null) {
+            document.querySelector('.ship_small .head2:last-child').click();
+            document.querySelector('.title_head').innerHTML = 'Shipping information';
+            document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+                document.querySelector('.title_head').innerHTML = 'Billing Information';
+            });
+            document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+                document.querySelector('.title_head').innerHTML = 'Shipping information';
+            });
+        } else {
+            document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
+            document.querySelector('.address_book_new .editor .title').style.display = 'block';
+            document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
+        }
+        document.querySelector('.copy_bill label').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Copy from Billing info field',
+                'eventLabel': 'Section Shipping information'
+            });
+        });
+    }
+    if(location.pathname == '/checkout/step2') {
+        document.body.insertAdjacentHTML('afterbegin', `
+    <style>
+    .remove, .payment h3, .primaryInfo h2{
+        display: none}
+    .primaryInfo li {
+        display: flex;
+        align-items: center;}
+    .altPayment, #mainbody .checkout-left_head {
+        display: none;}
+    .primaryInfo {
+        color: transparent;
+        border: none;
+        width: 100%;}
+    .primaryInfo ul {
+        color: #171717;
+        padding-top: 20px;
+        padding-left: 0; }
+    .payment h3 {
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        text-transform: capitalize;
+        color: #222222;
+        border-bottom: 0.5px solid #CCCCCC;}
+    .primaryInfo label {
+        padding-left: 0;}
+    .promocode-block {
+        justify-content: space-between;
+        align-items: center;
+        display: flex;}
+    .promocode-block label {
+        font-size: 18px;
+        color: #222222;
+        padding: 0;}
+    .primaryInfo li p {
+        line-height: 1;}
+    .primaryInfo li input {
+        width: 20px;
+        height: 20px; }
+    .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
+        font-size: 18px;}
+    .primaryInfo li strong {
+        margin-left: 5px;}
+    .promoCode {
+        margin: 0;
+        background: #EDEDED;
+        border: 0.5px solid #CCCCCC;
+        border-radius: 4px;
+        padding: 11px 20px;
+        height: auto;
+        width: 100%;
+        max-width: 270px;}
+    .promocode-block i {
+        font-size: 14px; }
+    .primaryInfo .title{
+        padding-top: 14px;
+        font-size: 18px;
+        line-height: 25px; }
+   .payment {
+        height: 100%;}
+   .payment form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;}
+    #2_3_days {
+        padding: 5px 0 0 0!important;}
+    .quantity-row {
+        pointer-events: none;}
+    .quantity-btn  {
+        color: #CCCCCC!important;}
+    </style>`);
+
+        document.querySelector('.title_head').innerHTML = 'Delivery Method';
+        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+        document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
+        document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
+
+        document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
+        document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
+       
+        document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
+        document.querySelector('.btn-next').addEventListener('click', () => {
+            document.querySelector('form div[align="right"] input').click();
+        });
+        document.querySelector('.btn-back').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Back button',
+                'eventLabel': 'Section Delivery Method'
+            });
+            window.location = '/checkout/step1';
+        });
+        document.querySelectorAll('#ship_options li').forEach((el, i) => {
+            el.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': `Pick ${el.querySelector('i'.innerHTML)}`,
+                    'eventLabel': 'Section Delivery method'
+                });
+            });
+        });
+        document.querySelector('.promoCode').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click on Promotional Code field',
+                'eventLabel': 'Section Delivery method'
+            });
+        });
+    }
+    if(location.pathname == '/checkout/step3') {
+        document.body.insertAdjacentHTML('afterbegin',`<style>
+        .payment h3, .checkout-left_head {
+            display: none!important;}
+        .primaryInfo {
+            font-family: 'Arial', sans-serif;
+            width: 100%;
+            border: none;}
+        .primaryInfo dl {
+            width: 100%;
+            margin: 0;}
+        .primaryInfo div{
+            margin-left: 0!important; }
+        div.cc-recurring {
+            padding: 10px 0;}
+        .primaryInfo dl dd {
+            font-family: 'Arial', sans-serif; }
+        .primaryInfo dl input, .primaryInfo dl textarea {
+            background: #EDEDED;
+            border: 0.5px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 11px 20px; }
+        .primaryInfo dl textarea {
+            background: #FFFFFF;}
+        .primaryInfo dl textarea {
+            height: 40px;}
+        #recurring_billing_period {
+                padding: 0 10px;
+            background: #EDEDED;
+            border: 0.5px solid #CCCCCC;
+            box-sizing: border-box;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 4px;
+            width: 160px!important;}
+        .cc-recurring-setting {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 14px; }
+        .allow-up-to-60 {
+            display: none;
+            white-space: break-spaces; }
+       .primaryInfo label, .card-details {
+            display: flex;
+            align-items: center;}
+       .primaryInfo label {
+            width: 100%;}
+       .remove {
+            display: none }
+       .quantity-btn {
+            color: #CCCCCC!important;}
+       .quantity-row {
+            pointer-events: none; }
+       .card-details p{
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            text-transform: capitalize;
+            color: #222222;
+            margin: 0 25px 0 0;}
+       .auto-reorder-header {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 25px;
+            margin-bottom: 2px;
+            color: #222222;}
+       .cc-recurring {
+            font-size: 12px;
+            line-height: 16px;}
+       .cc-recurring br {
+            display: none; }
+       .label-check {
+            padding: 15px 0 0 0!important; }
+        </style>`);
+        document.querySelector('.title_head').innerHTML = 'Payment method';
+        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
+        document.querySelector('.btn.big').addEventListener('click', () => {
+            document.querySelector('form div[align="right"] input').click();
+        });
+        document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+        document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
+        document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+        document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
+        document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
+
+        document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
+        document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
+        document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
+        document.querySelector('.card-details label').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Remember my card field',
+                'eventLabel': 'Section Payment method'
+            });
+        });
+        document.querySelector('.label-check').addEventListener('click',() => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Pick regular reorder',
+                'eventLabel': 'Section Payment method'
+            });
+        });
+    }
+    
+    if(localStorage.getItem('productsStored')) {
+        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+        for (let i = 0; i < justunoCartItems.length; i++) {
+            let product = `
+            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
+                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
+                <div class="flex-column">
+                    <div class="flex-between">
+                        <a href="#">${justunoCartItems[i].title}</a>
+                        <button class="remove" type="button"></button>
+                    </div>
+                    <div class="flex-center-between">
+                        <div class="quantity-row">
+                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                        </div>
+                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
+                            <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+            sumTotalPrice();
+        }
+    }
+    document.querySelectorAll('.remove').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Exit Cross button',
+                'eventLabel': 'Section Your order'
+            });
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
+            })
+            item.closest('.checkout-product').remove();
             sumTotalPrice();
         });
-        el.querySelectorAll('.quantity-btn').forEach((button) => {
-            button.addEventListener('click', (event) => {
-                event.stopImmediatePropagation();
+    });
+
+    document.querySelectorAll('.checkout-product .quantity').forEach(el => {
+        el.addEventListener('change', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Change on amount of items',
+                'eventLabel': 'Section Your order'
+            });
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+            })
+        })
+    });
+    document.querySelectorAll('.quantity-row').forEach((quantity) => {
+        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+            if (button.className == 'quantity-btn quantity-btn_minus') {
+                if (button.nextElementSibling.value < 2) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            }
+            button.addEventListener('click', () => {
                 if (button.className == 'quantity-btn quantity-btn_plus') {
-                    button.previousElementSibling.value = +button.previousElementSibling.value + 1;
+                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on plus of items',
+                        'eventLabel': 'Section Your order'
+                    });
                 }
                 if (button.className == 'quantity-btn quantity-btn_minus') {
                     if (button.nextElementSibling.value < 2) {
                         button.nextElementSibling.value = 1;
                         button.disabled = true;
                     } else {
-                        button.nextElementSibling.value = +button.nextElementSibling.value - 1;
+                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                    }
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on minus of items',
+                        'eventLabel': 'Section Your order'
+                    });
+                }
+                let productsStored = JSON.parse(localStorage.getItem('productsStored'))
+                for (var i = 0; i < productsStored.length; i++) {
+                    console.log(productsStored[i])
+                    if (productsStored[i].product_id == button.closest(".checkout-product").dataset.id) {
+                        console.log(productsStored[i])
+                        JSON.parse(localStorage.getItem('productsStored'))[i].quantity = button.closest('.quantity-row').querySelector('.quantity').value;
                     }
                 }
-                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                sumTotalPrice();
-            });
-        });
-    }
-
-    function addToCart() {
-        document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
-                let valueP = 1;
-                valueP = +item.nextElementSibling.value,
-                    num = +document.querySelector('.by_num span').innerHTML;
-                document.querySelector('.by_num span').innerHTML = num + valueP;
-
-                let parent = item.parentElement.closest('dd'),
-                    srcImgProduct = parent.querySelector('img').src,
-                    altImgProduct = parent.querySelector('img').alt,
-                    titleProduct = parent.querySelectorAll('a')[1].innerHTML,
-                    linkProduct = parent.querySelectorAll('a')[1].href,
-                    priceProductAll = parent.querySelector('b').innerHTML,
-                    splPrice = priceProductAll.split('$');
-
-                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
-                    productId = item.closest('.product-card').getAttribute('data-product-id');
-
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                    'eventAction': 'click on button — add to cart',
-                    'eventQuantity': `${valueP}`
-                });
-
-                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
-                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,parent.querySelector('b s') ? splPrice[2]: splPrice[1]);
-                }
-
-                if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
-                    document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
-                        el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value);
-                    });
-                }
-
-                document.querySelector('.popup').classList.add('isActive');
-
-                productsStored = [];
-                localStorage.setItem('productsStored', '');
-
-                document.querySelectorAll(`.popup__product`).forEach((el) => {
-                    quantityFun(el);
-                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                    sumTotalPrice();
-                    productsStored.push({
-                        'product_id': el.getAttribute('data-product-id'),
-                        'quantity': el.querySelector('.quantity').value,
-                        'price': el.querySelector('.unit-price b').innerHTML,
-                        'product_variant_id': el.getAttribute('data-product-variant-id'),
-                        'img_src': el.querySelector('a img').getAttribute('src'),
-                        'link': el.querySelector('.product-description a').getAttribute('href'),
-                        'title': el.querySelector('.product-description a').innerHTML,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                });
-
+              
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                    body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
                 })
-            });
-        });
-
-        document.querySelectorAll('.add-to-cart').forEach( (item) => {
-            item.addEventListener('change', () => {
-                if (item.querySelector('input').value <= 1) {
-                    item.querySelector('input').value = 1;
-                }
-            });
-        });
-    }
-
-    function addProduct(id,varId,link,imgSrc,title,quantity,price) {
-        let newElementProduct = `
-        <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
-            <td width="44%">
-                <div class="product-cell-inner">
-                    <span> 
-                        <a href="${link}">
-                            <img src="${imgSrc}" alt="${title}">
-                        </a>
-                    </span>
-                    <p class="product-description" align="left">
-                        <b>
-                            <a href="${link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${title}</a>
-                        </b>
-                    </p>
-                </div>
-            </td>
-            <td width="22%" align="left">
-                <div class="quantity-row">
-                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                    <input type="text" name="quantity" value="0" class="quantity" data-val="${quantity}" readonly>
-                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                </div>
-            </td>
-            <td width="17%" class="unit-price" align="left">$ <b>${price}</b></td>
-            <td width="17%" class="total-price" align="left">$ <b></b></td>
-        </tr> `;
-        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-    }
-
-    function quantityChenged(el){
-        productsStoredUpdate.unshift({
-            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
-            'quantity': el.closest('.popup__product').querySelector('.quantity').value,
-            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
-            'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
-        });
-        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
-    }
-
-    let popupShoppingCart = `
-    <div class="popup">
-        <div class="popup__container">
-            <div class="popup__head">
-                <h2 class="title">Shopping cart</h2>
-                <button class="close" type="button"></button>
-            </div>
-            <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
-                <tbody>
-                    <tr id="header-row">
-                        <th align="left" width="44%">Product Name</th>
-                        <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
-                        <th align="left" width="17%">Price</th>
-                        <th align="left" width="17%">Total</th>
-                    </tr>
-                    <tr class="body">
-                        <td colspan="4" style="padding-top: 10px;">
-                            <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
-                        </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="popup__product-total">
-                        <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
-                            <b>Sub Total :</b><br>
-                            <b style="font-size:17px;">Grand Total:</b>
-                        </td>
-                        <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
-                            <b>$ 0.00</b><br>
-                            <b style="font-size:17px;">$0.00</b>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="popup__bottom">
-                <button type="button" class="continue-shopping">
-                    <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
-                    Back to Shopping
-                </button>
-                <div class="flex-center">
-                    <div class="paypal-button">
-                        <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
-                            <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
-                        </form>
-                    </div>
-                    <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
-                        OR</p>
-                    </div>
-                    <div class="checkout">
-                        <a class="btn" href="https://medicalmega.com/checkout/step1">
-                            Checkout Now
-                            <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="bought-products">
-                <h3 class="title3">Also bought with this products</h3>
-                <div class="swiper-container">
-                    <dl class="slider-gallery gallery"></dl>
-                    <button class="swiper-button-prev" type="button"></button>
-                    <button class="swiper-button-next" type="button"></button>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-    document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
-
-    if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML == '0') {
-        localStorage.setItem('productsStored', '');
-    }
-    if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML != '0') {
-        let cartItems = JSON.parse(localStorage.getItem("productsStored"));
-        if (cartItems) {
-            for (let i = 0; i < cartItems.length; i++) {
-                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                    addProduct(cartItems[i].product_id,cartItems[i].product_variant_id,cartItems[i].link,cartItems[i].img_src,cartItems[i].title,cartItems[i].quantity,cartItems[i].price)
-                }
-                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
-                        el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
-                        quantityFun(el);
-                    });
-                }
-
-                document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                 sumTotalPrice();
-            }
-        }
-    }
-    if (document.querySelector('.shoppingcart')) {
-        document.querySelector('.shoppingcart').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.popup').classList.add('isActive');
-            if (document.querySelector('.popup .body table tbody').innerHTML == '') {
-                document.querySelector('.popup__bottom .flex-center').style.display = 'none';
-            } else {
-                document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
-            }
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on shopping cart'
             });
         });
-    }
-
-
-    if (document.querySelector('#cart_box a')) {
-        document.querySelectorAll('#cart_box a')[0].setAttribute('onclick','');
-        document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-
-            let id = document.querySelector('[name="product_id"]').value,
-                varId = document.querySelector('[name="product_variant_id"]').value,
-                link = window.location.href,
-                imgSrc = document.querySelector('.product_img').getAttribute('src'),
-                title = document.querySelectorAll('.center h3')[0].innerHTML,
-                quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
-                price = document.querySelector('.product-price').innerHTML.replace('$','');
-
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `product_variant_id=${varId}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
-            })
-
-            if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
-                addProduct(id,varId,link,imgSrc,title,quantity,price);
-            }
-
-            if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
-                document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
-                    el.querySelector('.quantity').value = parseInt(quantity) + parseInt(el.querySelector('.quantity').value);
-                });
-            }
-
-            productsStored = [];
-            localStorage.setItem('productsStored', '');
-
-            document.querySelectorAll(`.popup__product`).forEach((el) => {
-                quantityFun(el);
-                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
-                sumTotalPrice();
-                productsStored.push({
-                    'product_id': el.getAttribute('data-product-id'),
-                    'quantity': el.querySelector('.quantity').value,
-                    'price': el.querySelector('.unit-price b').innerHTML,
-                    'product_variant_id': el.getAttribute('data-product-variant-id'),
-                    'img_src': el.querySelector('a img').getAttribute('src'),
-                    'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
-            })
-            document.querySelector('.popup').classList.add('isActive');
-
+        document.querySelector('.checkout-right_body').addEventListener('change', () => {
+            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+            sumTotalPrice();
+        });
+    });
+    if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
+        let productsStored = [];
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
     }
-
-    document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');
+    document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
-            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-            'eventAction': 'click on button — back to shopping'
+            'eventCategory': 'Exp — Alternative checkout desktop',
+            'eventAction': 'Click Back to Shoping button',
+            'eventLabel': 'Section Your order'
         });
-    });
-
-    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-            'eventAction': 'click on button — checkout now'
-        });
-    });
-
-    let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
-    for (let i = 0; i < arrLinks.length; i++) {
-        (function(){
-            var http = new XMLHttpRequest();
-            http.open('GET', `${arrLinks[i]}`);
-            http.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                    document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
-                    <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
-                        <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
-                        <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
-                        <b> ${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s') : ''} 
-                        ${doc.querySelector('.type2 .product-price') ? doc.querySelector('.type2 .product-price').innerHTML : ''}</b>
-                        <form action="https://medicalmega.com/cart.html" method="post">
-                            <input type="hidden" name="product_id" value="${doc.querySelector('[name="product_id"]').value}">
-                            <input type="hidden" name="product_variant_id" value="${doc.querySelector('[name="product_variant_id"]').value}">
-                            <input type="hidden" name="quantity" value="1">
-                        </form>
-                        <div class="add-to-cart" ${!doc.querySelector('.type2 .product-price') ? 'disabled' : ''}><button type="button">add to cart</button><input type="number" value="1"></div>
-                    </dd>`);
-                    if (i === 0) {
-                        addToCart()
-                    }
-                }
-            }
-            http.send(null);
-        })()
-    }
-
-    let container = document.querySelector('.slider-gallery');
-
-    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function(){
-            container.scrollLeft -= 26;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
-
-    document.querySelector('.swiper-button-next').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function() {
-            container.scrollLeft += 26;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
-
-    document.querySelector('.popup .body').addEventListener('change', () => {
-        productsStoredUpdate = [];
-        localStorage.setItem('productsStoredUpdate', '');
-        document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
-    });
-
-    if (window.location.pathname == '/') {
-        document.querySelector('.homeslider__img').setAttribute('src', 'https://i.ibb.co/jk3V4wy/banner.png');
-        document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://i.ibb.co/jk3V4wy/banner.png');
-
-        document.querySelectorAll('.gallery').forEach( (item, index) => {
-            let galleryWrapper = document.createElement('div');
-            galleryWrapper.className = 'gallery-parent';
-
-            let htmlTitle = `<h2 class="title"></h2>`;
-            if (index < 6) {
-                galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
-            }
-
-            item.parentNode.appendChild(galleryWrapper);
-
-            return galleryWrapper.appendChild(item);
-        });
-
-        const galleryDd = document.querySelectorAll('.gallery dd');
-        for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`); }
-
-        const galleryParent = document.querySelectorAll('.gallery-parent');
-        for (let i = 0; i < galleryParent.length; i++) {
-            if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`); }
-        }
-
-        const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'],
-            galleryTitle = document.querySelectorAll('.title'),
-            showMore = document.querySelectorAll('.show-more');
-        showMore.forEach( (item) => {
-            item.addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                    'eventAction': 'click on button — show more'
-                });
-            });
-        });
-        for (let i = 0; i < arrTitle.length; i++) {
-            galleryTitle[i].innerHTML = arrTitle[i];
-            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
-            if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
-        }
-    }
-
-    document.querySelector('.popup .close').addEventListener('click', () => {
-        document.querySelector('.popup').classList.remove('isActive');
-    });
+    })
 };
 
 (function(h,o,t,j,a,r){
@@ -863,11 +1086,11 @@ window.onload  = function () {
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'PL_and_cart_improvements');
+hj('trigger', 'alternative_checkout_desktop');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+    'eventCategory': 'Exp — Alternative checkout desktop',
     'eventAction': 'loaded'
 });
