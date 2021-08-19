@@ -171,7 +171,7 @@ let style = `
             align-items: center;
         }
         
-        body {
+        .main {
             opacity: 0;
         }
         
@@ -193,7 +193,7 @@ let start = setInterval(function () {
     if(document.querySelector('.product-single__price__notes') && document.querySelector('.product-single__ready-to-ship-text') && document.querySelector('.satcb_btn')) {
         clearInterval(start)
         exp();
-        document.body.style.opacity = '1'
+        document.querySelector('.main').style.opacity = '1'
     }
 }, 100)
 
