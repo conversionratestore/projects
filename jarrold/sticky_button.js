@@ -628,17 +628,8 @@ function openButtonPopUp() {
 }
 
 function createButtonList() {
-  // let parentDiv = ".product-grid";
-  // let products = "products";
-
-  // if (document.querySelector(".ais-Hits-list")) {
-  //   parentDiv = "#hits";
-  //   products = "ais-Hits-list";
-  // }
-
   document.querySelectorAll(`article`).forEach((item) => {
     if (!document.querySelector(".btn-open-list")) {
-      console.log(`createButtonList`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -658,7 +649,6 @@ function createButtonList() {
 function createButtonListSearch() {
   document.querySelectorAll(`#search-modal`).forEach((item) => {
     if (!document.querySelector("#search-modal .ais-Hits-item:first-child .btn-open-list")) {
-      console.log(`createButtonListSearch`);
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
@@ -678,7 +668,6 @@ function createButtonListSearch() {
 function clickListener() {
   document.querySelectorAll(".btn-open-list").forEach((btn) => {
     btn.addEventListener("click", function (e) {
-      console.log(`Click Add to bag button PLP`);
       e.preventDefault();
       //
       window.dataLayer = window.dataLayer || [];
@@ -741,9 +730,8 @@ setTimeout(function () {
 
 //
 
-const callback = function (mutationsList) {
+let observer = new MutationObserver(() => {
   if (document.querySelector("#search-modal")) {
-    console.log(`mutationsList`);
     observer.disconnect();
     createButtonListSearch();
     observer.observe(document.querySelector("#search-modal"), {
@@ -751,20 +739,12 @@ const callback = function (mutationsList) {
       subtree: true,
     });
   }
-};
-
-let observer = new MutationObserver(callback);
+});
 
 observer.observe(document.querySelector("#search-modal"), {
   childList: true,
   subtree: true,
 });
-
-let btnSort = "#sortby";
-
-if (document.querySelector(".ais-SortBy-select")) {
-  btnSort = ".ais-SortBy-select";
-}
 
 let mut = new MutationObserver((muts) => {
   mut.disconnect();
