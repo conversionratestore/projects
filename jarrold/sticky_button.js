@@ -381,6 +381,11 @@ let pickSize = /*html*/ `
 </div>
 `;
 
+let btnAddToBag = /*html*/ `
+<div class="box-btn-list">
+ <button class="btn-open-list" data-modal-open>add to bag</button>
+</div>`;
+
 document.head.insertAdjacentHTML("afterbegin", style12);
 document.body.insertAdjacentHTML("afterbegin", modalForm);
 
@@ -633,12 +638,7 @@ function createButtonList() {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
-        i.insertAdjacentHTML(
-          "beforeend",
-          `<div class="box-btn-list">
-        <button class="btn-open-list" data-modal-open>add to bag</button>
-      </div>`
-        );
+        i.insertAdjacentHTML("beforeend", btnAddToBag);
       });
     }
   });
@@ -652,12 +652,7 @@ function createButtonListSearch() {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
         i.style.display = "flex";
-        i.insertAdjacentHTML(
-          "beforeend",
-          `<div class="box-btn-list">
-        <button class="btn-open-list" data-modal-open>add to bag</button>
-      </div>`
-        );
+        i.insertAdjacentHTML("beforeend", btnAddToBag);
       });
     }
   });
