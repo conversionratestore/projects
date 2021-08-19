@@ -360,6 +360,15 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+    if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
+        mut.disconnect();
+        document.querySelector('.product-info-price .price-label').innerHTML = 'Your price';
+    }
+    
 });
 
 mut.observe(document, {
@@ -1149,7 +1158,6 @@ window.onload  = function () {
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
 
-    document.querySelector('.product-info-price .price-label').innerHTML = 'Your price';
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
