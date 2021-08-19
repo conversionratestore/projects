@@ -210,15 +210,16 @@ let btns = document.querySelector('.product-single__add.js-product-buttons').clo
 document.querySelector('.new_specifics').insertAdjacentElement('afterend',btns)
 
 
-document.querySelectorAll('.product-single__swatch__item--color').forEach(item => {
+document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
     item.addEventListener('click', function () {
-        document.querySelector('.selected_options span:first-child').innerText = item.querySelector('input').value
+        console.log('hello')
+        document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp: PDP with benefits',
-            'eventAction': `Click on ${item.querySelector('input').value} color`
+            'eventAction': `Click on ${item.closest('.product-single__swatch__item--color').querySelector('input').value} color`
         });
     })
 })
