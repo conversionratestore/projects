@@ -727,7 +727,7 @@ window.onload  = function () {
     if (location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
-    .remove, .payment h3, .primaryInfo h2{
+    .payment h3, .primaryInfo h2{
         display: none}
     .primaryInfo li {
         display: flex;
@@ -891,8 +891,6 @@ window.onload  = function () {
             align-items: center;}
        .primaryInfo label {
             width: 100%;}
-       .remove {
-            display: none }
        .quantity-btn {
             color: #CCCCCC!important;}
     //    .quantity-row {
