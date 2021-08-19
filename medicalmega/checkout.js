@@ -561,7 +561,7 @@ window.onload  = function () {
                 'price': product.querySelector('.total-price').dataset.price,
                 'product_variant_id': product.dataset.variantId,
                 'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
-                'link': product.querySelectorAll('a')[0].getAttribute('href'),
+                'link': product.querySelector('.checkout-product_img').getAttribute('href'),
                 'title': product.querySelector('.flex-between a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
