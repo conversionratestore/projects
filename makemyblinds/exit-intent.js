@@ -1157,7 +1157,8 @@ window.onload  = function () {
     console.log(document.querySelector('.product-info-price .price-label').innerHTML);
     if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
         document.querySelector('.product-info-price .price-label').style.display = 'none';
-        document.querySelector('.bottom-actions__row .price-wrapper').insertAdjacentHTML('afterbegin','<span class="your-price">Your price</span>');
+        document.querySelector('.price-original').after(`<div class="flex-price"><span class="your-price">Your price</span></div>`)
+        document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
     } else {
         document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
     }
