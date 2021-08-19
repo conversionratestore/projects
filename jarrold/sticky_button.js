@@ -760,7 +760,7 @@ observer.observe(document.querySelector("#search-modal"), {
   subtree: true,
 });
 
-document.querySelectorAll(".sort .form").forEach((el) => {
+document.querySelectorAll(".select").forEach((el) => {
   el.addEventListener("change", function () {
     console.log(`change`);
     createButtonList();
