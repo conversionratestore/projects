@@ -1,8 +1,4 @@
-let startInterval = setInterval(() => {
-    if(document.querySelector('.shopify-section')) {
-        clearInterval(startInterval);
-
-        document.head.insertAdjacentHTML('beforeend', `
+document.head.insertAdjacentHTML('beforeend', `
     <style class="custom-style">
         .countdown {
             padding: 8px;
@@ -101,32 +97,36 @@ let startInterval = setInterval(() => {
     </style>
 `);
 
-        let intervalTime = 0;
+let intervalTime = 0;
 
 // check 24 hours session
-        if (!window.localStorage.getItem('startDate')) {
-            window.localStorage.setItem('startDate', Date.now().toString());
-        } else {
-            let currentDate = Date.now();
-            window.localStorage.setItem('currentDate', currentDate.toString());
+if (!window.localStorage.getItem('startDate')) {
+    window.localStorage.setItem('startDate', Date.now().toString());
+} else {
+    let currentDate = Date.now();
+    window.localStorage.setItem('currentDate', currentDate.toString());
 
-            intervalTime = currentDate - window.localStorage.getItem('startDate');
-        }
+    intervalTime = currentDate - window.localStorage.getItem('startDate');
+}
 
-        let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
+let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
 // let twentyFourHours = 25;
 
-        if (twentyFourHours >= 0) {
-            // elements on the site
-            const elementsArray = ['.product-price .money', '.product-list__box-price .price .money', '.cart-modal__box .money'];
+if (twentyFourHours >= 0) {
+    // elements on the site
+    const elementsArray = ['.product-price span .money', '.product-list__box-price .price span .money', '.cart-modal__box span .money'];
 
-            // draw my template function
-            function drawSale(element) {
-                let isTitlePrice = element === '.product-price .money';
-                console.log(element);
+    // draw my template function
+    function drawSale(element) {
+        let isTitlePrice = element === '.product-price .money';
+        console.log(element);
+
+        let drawSaleInterval = setInterval(() => {
+            if (elementsArray[0] || elementsArray[1] || elementsArray[2]) {
+                clearInterval(drawSaleInterval);
                 document.querySelectorAll(element).forEach(price => {
                     if (!price.classList.contains('money_sale')) {
-                        console.log('without class', price);
+
                         let valueInString = price.innerText.split('$')[1];
                         let num = parseFloat(valueInString);
                         let val = num - (num * .10);
@@ -144,52 +144,97 @@ let startInterval = setInterval(() => {
                 });
             }
 
-            // call drawSale function for each element from array
-            for (let i = 0; i < elementsArray.length; i++) {
-                drawSale(elementsArray[i]);
-            }
+        }, 100);
 
-            function addCoupon(intervalName) {
-                if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
-                    clearInterval(intervalName);
+    }
 
-                    document.querySelector('.af_cd_setup').style.opacity = '0';
-                    document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-                    document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+    // call drawSale function for each element from array
+    for (let i = 0; i < elementsArray.length; i++) {
+        drawSale(elementsArray[i]);
+    }
 
-                    let saleInterval = setInterval(() => {
-                        if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
-                            clearInterval(saleInterval);
+    function addCoupon(intervalName) {
+        if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
+            clearInterval(intervalName);
 
-                            document.querySelector('.af_cd_setup').style.opacity = '100%';
+            document.querySelector('.af_cd_setup').style.opacity = '0';
+            document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+            document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
 
-                            document.querySelectorAll('.af_tag').forEach(coupon => {
-                                if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-                                    coupon.classList.add('coupon_hidden');
-                                }
-                            });
+            let saleInterval = setInterval(() => {
+                if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
+                    clearInterval(saleInterval);
 
-                            drawSale(elementsArray[2]);
+                    document.querySelector('.af_cd_setup').style.opacity = '100%';
+
+                    document.querySelectorAll('.af_tag').forEach(coupon => {
+                        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                            coupon.classList.add('coupon_hidden');
                         }
-                    }, 100);
+                    });
+
+                    drawSale(elementsArray[2]);
                 }
-            }
+            }, 100);
+        }
+    }
 
-            addCoupon()
+    addCoupon();
 
-            /* create observers */
+    /* create observers */
 
-            // select the target node
-            const secondTarget = document.querySelector('.cart-modal__inner');
+    // select the target node
+    const secondTarget = document.querySelector('.cart-modal__inner');
 
-            // create second observer instance
-            let secondObserver = new MutationObserver(function (mutations) {
-                let addCouponInterval = setInterval(() => {
-                    addCoupon(addCouponInterval)
-                }, 100);
-            });
+    // create second observer instance
+    let secondObserver = new MutationObserver(function (mutations) {
+        let addCouponInterval = setInterval(() => {
+            addCoupon(addCouponInterval);
+        }, 100);
+    });
 
-            let thirdObserver = new MutationObserver(function (mutations) {
+    let thirdObserver = new MutationObserver(function (mutations) {
+        document.querySelectorAll('.price_sale').forEach(sale => {
+            sale.remove();
+        });
+
+        document.querySelectorAll('.money').forEach(money => {
+            money.classList.remove('money_sale');
+        });
+    });
+
+    // configuration of the observer:
+    const newConfig = {attributes: true, childList: true, characterData: true};
+
+    // pass in the target node, as well as the observer options
+    secondObserver.observe(secondTarget, newConfig);
+
+    /* timer */
+    document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
+
+    const display = document.querySelector('.header .countdown span');
+
+    function startTimer(duration, display) {
+        let timer = duration, hours, minutes, seconds;
+        let timerInterval = setInterval(function () {
+            hours = parseInt((timer / 3600) % 24, 10);
+            minutes = parseInt((timer / 60) % 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            display.innerText = `${hours}:${minutes}:${seconds}`;
+
+            if (--timer < 0) {
+
+                clearInterval(timerInterval);
+
+                CDSetupInit.removeIndividualCoupon('MM10CRO', this);
+
+                document.querySelector('.countdown').remove();
+
                 document.querySelectorAll('.price_sale').forEach(sale => {
                     sale.remove();
                 });
@@ -197,59 +242,17 @@ let startInterval = setInterval(() => {
                 document.querySelectorAll('.money').forEach(money => {
                     money.classList.remove('money_sale');
                 });
-            });
 
-            // configuration of the observer:
-            const newConfig = {attributes: true, childList: true, characterData: true};
-
-            // pass in the target node, as well as the observer options
-            secondObserver.observe(secondTarget, newConfig);
-
-            /* timer */
-            document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
-
-            const display = document.querySelector('.header .countdown span');
-
-            function startTimer(duration, display) {
-                let timer = duration, hours, minutes, seconds;
-                let timerInterval = setInterval(function () {
-                    hours = parseInt((timer / 3600) % 24, 10);
-                    minutes = parseInt((timer / 60) % 60, 10);
-                    seconds = parseInt(timer % 60, 10);
-
-                    hours = hours < 10 ? '0' + hours : hours;
-                    minutes = minutes < 10 ? '0' + minutes : minutes;
-                    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-                    display.innerText = `${hours}:${minutes}:${seconds}`;
-
-                    if (--timer < 0) {
-
-                        clearInterval(timerInterval);
-
-                        CDSetupInit.removeIndividualCoupon('MM10CRO', this);
-
-                        document.querySelector('.countdown').remove();
-
-                        document.querySelectorAll('.price_sale').forEach(sale => {
-                            sale.remove();
-                        });
-
-                        document.querySelectorAll('.money').forEach(money => {
-                            money.classList.remove('money_sale');
-                        });
-
-                        secondObserver.disconnect();
-                        thirdObserver.observe(secondTarget, newConfig);
-                        thirdObserver.disconnect();
-                    }
-                }, 1000);
+                secondObserver.disconnect();
+                thirdObserver.observe(secondTarget, newConfig);
+                thirdObserver.disconnect();
             }
-
-            startTimer(twentyFourHours, display);
-        }
+        }, 1000);
     }
-}, 100)
+
+    startTimer(twentyFourHours, display);
+}
+
 
 // hotjar events
 window.dataLayer = window.dataLayer || [];
