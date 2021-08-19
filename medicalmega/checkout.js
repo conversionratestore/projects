@@ -1042,7 +1042,6 @@ window.onload  = function () {
                     });
                 }
          
-                pushProductsStored();
                       
                 fetch('/cart.html', {
                     headers: {
