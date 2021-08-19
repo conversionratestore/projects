@@ -791,10 +791,10 @@ window.onload  = function () {
         height: 100%;}
     #2_3_days {
         padding: 5px 0 0 0!important;}
-    .quantity-row {
-        pointer-events: none;}
-    .quantity-btn  {
-        color: #CCCCCC!important;}
+    // .quantity-row {
+    //     pointer-events: none;}
+    // .quantity-btn  {
+    //     color: #CCCCCC!important;}
     </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
@@ -808,6 +808,7 @@ window.onload  = function () {
        
         document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
         document.querySelector('.btn-next').addEventListener('click', () => {
+            pushProductsStored();
             document.querySelector('form div[align="right"] input').click();
         });
         document.querySelector('.btn-back').addEventListener('click', () => {
@@ -893,8 +894,8 @@ window.onload  = function () {
             display: none }
        .quantity-btn {
             color: #CCCCCC!important;}
-       .quantity-row {
-            pointer-events: none; }
+    //    .quantity-row {
+    //         pointer-events: none; }
        .card-details p{
             white-space: nowrap;
             font-weight: bold;
@@ -980,7 +981,6 @@ window.onload  = function () {
             document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
             sumTotalPrice();
         }
-        // justunoCartItems = [];
     }
 
     document.querySelectorAll('.remove').forEach((item, index) => {
@@ -1079,7 +1079,6 @@ window.onload  = function () {
         });
     });
             
-
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
