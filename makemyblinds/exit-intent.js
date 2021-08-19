@@ -658,8 +658,8 @@ window.onload  = function () {
                 width: 25%;}
         }
         @media screen and (max-width: 768px) {
-            .price-original {
-                display: none; }
+            .price-original, .bottom-actions__row .price-label {
+                display: none!important; }
             .slide {
                 width: 50%;}
             .page-title-wrapper {
@@ -1162,13 +1162,12 @@ window.onload  = function () {
     eventsCategories('.category .card .btn','Click on View Product button listing');
     if (window.matchMedia("(max-width: 768px)").matches) {
         console.log(document.querySelector('.bottom-actions__row .price-original').innerHTML);
-        if (document.querySelector('.bottom-actions__row .price-original').innerHTML != "") {
-            document.querySelector('.product-info-price .price-label').style.display = 'none';
+        // if (document.querySelector('.bottom-actions__row .price-original').innerHTML != "") {
             document.querySelector('.price-original').after(`<div class="flex-price"><span class="your-price">Your price</span></div>`)
             document.querySelector('.flex-price .your-price').after(document.querySelector('.bottom-actions__row .price-wrapper'));
-        } else {
-            document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
-        }
+        // } else {
+        //     document.querySelector('.bottom-actions__row .price-label').innerHTML = 'Your price';
+        // }
     }
 };
 
