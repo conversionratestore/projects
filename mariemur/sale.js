@@ -91,7 +91,7 @@ document.head.insertAdjacentHTML('beforeend', `
     </style>
 `);
 
-let interval = 0;
+let intervalTime = 0;
 
 // check 24 hours session
 if (!window.localStorage.getItem('startDate')) {
@@ -100,7 +100,7 @@ if (!window.localStorage.getItem('startDate')) {
     let currentDate = Date.now();
     window.localStorage.setItem('currentDate', currentDate.toString());
 
-    interval = currentDate - window.localStorage.getItem('startDate');
+    intervalTime = currentDate - window.localStorage.getItem('startDate');
 }
 
 // let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
@@ -139,11 +139,33 @@ if (twentyFourHours >= 0) {
         drawSale(elementsArray[i]);
     }
 
-    document.querySelectorAll('.af_tag').forEach(coupon => {
-        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-            coupon.classList.add('coupon_hidden');
+    function addCoupon(intervalName) {
+        if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
+            clearInterval(intervalName);
+
+            document.querySelector('.af_cd_setup').style.opacity = '0';
+            document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+            document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+
+            let saleInterval = setInterval(() => {
+                if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
+                    clearInterval(saleInterval);
+
+                    document.querySelector('.af_cd_setup').style.opacity = '100%';
+
+                    document.querySelectorAll('.af_tag').forEach(coupon => {
+                        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                            coupon.classList.add('coupon_hidden');
+                        }
+                    });
+
+                    drawSale(elementsArray[2]);
+                }
+            }, 100);
         }
-    });
+    }
+
+    addCoupon()
 
     /* create observers */
 
@@ -152,30 +174,8 @@ if (twentyFourHours >= 0) {
 
     // create second observer instance
     let secondObserver = new MutationObserver(function (mutations) {
-        let addCoupon = setInterval(() => {
-            if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
-                clearInterval(addCoupon);
-
-                document.querySelector('.af_cd_setup').style.opacity = '0';
-                document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-                document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
-
-                let saleInterval = setInterval(() => {
-                    if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
-                        clearInterval(saleInterval);
-
-                        document.querySelector('.af_cd_setup').style.opacity = '100%';
-
-                        document.querySelectorAll('.af_tag').forEach(coupon => {
-                            if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-                                coupon.classList.add('coupon_hidden');
-                            }
-                        });
-
-                        drawSale(elementsArray[2]);
-                    }
-                }, 100);
-            }
+        let addCouponInterval = setInterval(() => {
+            addCoupon(addCouponInterval)
         }, 100);
     });
 
