@@ -212,7 +212,6 @@ document.querySelector('.new_specifics').insertAdjacentElement('afterend',btns)
 
 document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
     item.addEventListener('click', function () {
-        console.log('hello')
         document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
 
         window.dataLayer = window.dataLayer || [];
