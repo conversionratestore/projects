@@ -553,8 +553,11 @@ window.onload  = function () {
     </div>`);
 
     function pushStored() {
+        console.log('function pushStored')
         if (document.querySelectorAll('.payment table.altPayment [name="cp_id"]')) {
+            console.log('true [name="cp_id"]')
             let productsStored = [];
+            console.log('productsStored: ' + productsStored);
             document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
                 productsStored.push({
                     'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
@@ -566,6 +569,8 @@ window.onload  = function () {
                     'title': el.querySelector('.product-description a').innerHTML,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
+
+                console.log('localStorage: ' + JSON.parse(localStorage.getItem('productsStored')));
             });
         }
         else {
