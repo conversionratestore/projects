@@ -6,6 +6,12 @@ window.onload  = function () {
     }
     #how-it-works .js-title {
         letter-spacing: 0.02em;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 120%;
+        font-family: 'DINEngschrift LT', sans-serif;
+        margin-top: 20px;
     } 
     #how-it-works .item p {
         line-height: 150%!important;
@@ -27,8 +33,8 @@ window.onload  = function () {
     }
     </style>`);
 
-    document.querySelector('#flowers').insertAdjacentHTML('afterend',`
-    <section id="how-it-works">
+    document.querySelector('.effectiveness .ziplock').insertAdjacentHTML('beforebegin',`
+    <div id="how-it-works">
         <div class="container">
             <h3 class="js-title text-dark">how it works <img src="https://conversionratestore.github.io/projects/buzzpatch/img/buzzpatch.svg" alt="image"></h3>
             <div class="item">
@@ -46,7 +52,7 @@ window.onload  = function () {
             </div>
             <a href="#getNow" class="btn js-btn btn-primary get-it dark">Get it now!</a>
         </div>
-    </section>`);
+    </div>`);
     document.querySelector('#how-it-works .btn').addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
