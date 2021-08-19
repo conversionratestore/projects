@@ -633,7 +633,13 @@ function openButtonPopUp() {
 }
 
 function createButtonList() {
-  document.querySelectorAll(`article`).forEach((item) => {
+  let parentDiv = ".product-grid";
+
+  if (document.querySelector(".ais-Hits-list")) {
+    parentDiv = "#hits";
+  }
+
+  document.querySelectorAll(`article ${parentDiv}`).forEach((item) => {
     if (!document.querySelector(".btn-open-list")) {
       item.querySelectorAll("li").forEach((i) => {
         i.style.justifyContent = "space-between";
