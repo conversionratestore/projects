@@ -568,9 +568,11 @@ window.onload  = function () {
                     'link': el.querySelector('.product-description a').getAttribute('href'),
                     'title': el.querySelector('.product-description a').innerHTML,
                 });
+                
+                console.log('productsStored: ' + productsStored);
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
 
-                console.log('localStorage: ' + JSON.parse(localStorage.getItem('productsStored')));
+                console.log('localStorage: ' + JSON.parse(localStorage.getItem('productsStored'))[0].quantity);
             });
         }
         else {
