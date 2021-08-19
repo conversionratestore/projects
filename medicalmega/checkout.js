@@ -1075,7 +1075,9 @@ window.onload  = function () {
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
-    } 
+    } else {
+        pushProductsStored();
+    }
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
