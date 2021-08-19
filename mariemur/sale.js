@@ -81,7 +81,7 @@ document.head.insertAdjacentHTML('beforeend', `
          .money:not(.cart-modal__total-price .money) {
             display: inline-block;
         }
-        .price_sale {
+        .cart-modal__box-option-row .price_sale {
             margin: 0 5px 0 0;
         }
         .price-look {
