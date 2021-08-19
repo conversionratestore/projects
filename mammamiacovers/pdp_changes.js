@@ -201,7 +201,7 @@ function exp() {
     let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
 
     let color = document.querySelector('.js-swatch-variant-title_color').innerText
-    let size = document.querySelector('.types .product-single__swatch__sub-title').innerText
+    let size = document.querySelector('.types .product-single__swatch__sub-title')?.innerText
 
     document.querySelectorAll('.o-layout__item')[0].classList.value = 'o-layout__item'
     document.querySelectorAll('.o-layout__item')[1].classList.value = 'o-layout__item'
