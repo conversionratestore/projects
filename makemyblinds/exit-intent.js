@@ -1154,6 +1154,7 @@ window.onload  = function () {
     eventsCategories('.tns-controls button','Click on arrows button listing');
     eventsCategories('.tns-nav button','Click on dots button listing');
     eventsCategories('.category .card .btn','Click on View Product button listing');
+    console.log(document.querySelector('.product-info-price .price-label').innerHTML);
     if (document.querySelector('.product-info-price .price-label').innerHTML == 'Was') {
         document.querySelector('.product-info-price .price-label').style.display = 'none';
         document.querySelector('.bottom-actions__row .price-wrapper').insertAdjacentHTML('afterbegin','<span class="your-price">Your price</span>');
