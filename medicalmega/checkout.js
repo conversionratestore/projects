@@ -995,6 +995,7 @@ window.onload  = function () {
                 'eventAction': 'Change on amount of items',
                 'eventLabel': 'Section Your order'
             });
+            pushStored();
             fetch('/cart.html', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
