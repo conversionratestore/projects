@@ -19,9 +19,9 @@ document.head.insertAdjacentHTML('beforeend', `
             color: #FFFFFF;
             margin-left: 15px;
         }
-        .reviews-prod-title {
-            margin-top: -35px;
-        }  
+        .price-look .price_sale {
+            margin-right: 5px;
+        }
         .product-price .price_sale {
             display: block;
             margin: 5px 0 0;
@@ -36,7 +36,7 @@ document.head.insertAdjacentHTML('beforeend', `
             text-align: right;
         } 
         .money:not(.cart-modal__box-option .money) {
-            font-size: 17px !important;
+            font-size: 17px;
         }
         .money.money_sale{
             color: #5E5E5E !important;
@@ -68,7 +68,7 @@ document.head.insertAdjacentHTML('beforeend', `
             margin: 0 5px 0 0;
         }
         .price-look {
-            width: 28%;
+            width: 30%;
         }
         .coupon_hidden {
             display: none !important;
@@ -88,7 +88,8 @@ if (!window.localStorage.getItem('startDate')) {
     interval = currentDate - window.localStorage.getItem('startDate');
 }
 
-let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
+// let twentyFourHours = (24 * 60 * 60) - (interval / 1000);
+let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
@@ -224,7 +225,6 @@ if (twentyFourHours >= 0) {
                 thirdObserver.disconnect();
 
                 document.querySelector('#af_cart_slider').classList.remove('coupon_hidden');
-                document.querySelector('.reviews-prod-title').style.cssText = 'margin-top: 0;';
             }
         }, 1000);
     }
