@@ -580,10 +580,14 @@ window.onload  = function () {
             document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
                 if(totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
-                } 
-                if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
-                    totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
+                } else {
+                    if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
+                        totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
+                    } else {
+                        totalValues.innerHTML = `${sum.toFixed(2)}`;
+                    }
                 }
+               
             });
         });
     }
