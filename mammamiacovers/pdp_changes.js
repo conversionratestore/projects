@@ -171,8 +171,14 @@ let style = `
             align-items: center;
         }
         
+        body {
+            opacity: 0;
+        }
+        
     </style>
 `
+
+document.body.insertAdjacentHTML('afterbegin', style)
 
 let block = `
     <ul class="new_specifics">
@@ -187,6 +193,7 @@ let start = setInterval(function () {
     if(document.querySelector('.product-single__price__notes') && document.querySelector('.product-single__ready-to-ship-text') && document.querySelector('.satcb_btn')) {
         clearInterval(start)
         exp();
+        document.body.style.opacity = '1 !important'
     }
 }, 100)
 
@@ -194,8 +201,6 @@ let start = setInterval(function () {
 function exp() {
 
     let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
-
-    document.body.insertAdjacentHTML('afterbegin', style)
 
     let color = document.querySelector('.js-swatch-variant-title_color').innerText
     let size = document.querySelector('.types .product-single__swatch__sub-title').innerText
