@@ -985,7 +985,7 @@ window.onload  = function () {
                 },
                 method: "POST",
                 body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
-            })
+            }).then(res => pushStored())
             item.closest('.checkout-product').remove();
             sumTotalPrice();
         });
@@ -1007,10 +1007,7 @@ window.onload  = function () {
                 },
                 method: "POST",
                 body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
-            }).then(data => {
-                console.log(data);
-                pushStored();
-            })
+            }).then(res => pushStored())
         })
     });
     document.querySelectorAll('.quantity-row').forEach((quantity) => {
@@ -1052,17 +1049,14 @@ window.onload  = function () {
                     });
                 }
                
-
+                pushStored();
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
                     body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
-                }).then(data => {
-                    console.log(data);
-                    pushStored();
-                })
+                }).then(res => pushStored())
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                 sumTotalPrice();
             });
