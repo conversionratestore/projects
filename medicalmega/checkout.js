@@ -1033,9 +1033,13 @@ window.onload  = function () {
                     if (productsStored[i].product_id == button.closest(".checkout-product").dataset.id) {
                         console.log("product_id: " + productsStored[i].product_id);
                         console.log("list id: " + button.closest(".checkout-product").dataset.id);
-                        console.log(productsStored[i].quantity );
+                        console.log("productsStored[i].quantity before: " + productsStored[i].quantity );
+
+                        console.log("this quantity.value: " + button.closest('.quantity-row').querySelector('.quantity').value);
+
                         productsStored[i].quantity = button.closest('.quantity-row').querySelector('.quantity').value;
-                        console.log(productsStored[i].quantity );
+
+                        console.log("productsStored[i].quantity after: " + productsStored[i].quantity );
                     }
                 }
               
