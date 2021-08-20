@@ -129,30 +129,30 @@ if (twentyFourHours >= 0) {
         // let drawSaleInterval = setInterval(function() {
         //     if (element[0] || element[1] || element[2]) {
         //         clearInterval(drawSaleInterval);
-                document.querySelectorAll(element).forEach(price => {
-                    if (!price.classList.contains('money_sale')) {
+        document.querySelectorAll(element).forEach(price => {
+            if (!price.classList.contains('money_sale')) {
 
-                        let valueInString = price.innerText.split('$')[1];
-                        let num = parseFloat(valueInString.replace(/,/g, ''));
-                        let val = num - (num * .10);
+                let valueInString = price.innerText.split('$')[1];
+                let num = parseFloat(valueInString.replace(/,/g, ''));
+                let val = num - (num * .10);
 
-                        price.classList.add('money_sale');
+                price.classList.add('money_sale');
 
-                        isTitlePrice
-                            ? price.insertAdjacentHTML('afterend', `<p class="price_sale">${formatter.format(val.toFixed(2))}<br><span>(10% off)</span></p>`)
-                            : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">${formatter.format(val.toFixed(2))}</p>`);
+                isTitlePrice
+                    ? price.insertAdjacentHTML('afterend', `<p class="price_sale">${formatter.format(val.toFixed(2))}<br><span>(10% off)</span></p>`)
+                    : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">${formatter.format(val.toFixed(2))}</p>`);
 
-                        if (price.closest('b')) {
-                            price.closest('b').style.cssText = `text-align: right;`;
-                        }
-                    }
+                if (price.closest('b')) {
+                    price.closest('b').style.cssText = `text-align: right;`;
+                }
+            }
 
-                    if (document.querySelector('.cart-modal__box-option-row b .money_sale .price_sale')) {
-                        document.querySelectorAll('.cart-modal__box-option-row b .money_sale .price_sale').forEach(price => {
-                            price.remove();
-                        });
-                    }
+            if (document.querySelector('.cart-modal__box-option-row b .money_sale .price_sale')) {
+                document.querySelectorAll('.cart-modal__box-option-row b .money_sale .price_sale').forEach(price => {
+                    price.remove();
                 });
+            }
+        });
         //     }
         // }, 100);
 
@@ -163,30 +163,28 @@ if (twentyFourHours >= 0) {
         drawSale(elementsArray[i]);
     }
 
-    function addCoupon(intervalName) {
-        if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
-            clearInterval(intervalName);
+    function addCoupon() {
+        secondObserver.disconnect();
 
-            document.querySelector('.af_cd_setup').style.opacity = '0';
-            document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-            document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+        document.querySelector('.af_cd_setup').style.opacity = '0';
+        document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+        document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
 
-            let saleInterval = setInterval(() => {
-                if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
-                    clearInterval(saleInterval);
+        let saleInterval = setInterval(() => {
+            if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
+                clearInterval(saleInterval);
 
-                    document.querySelector('.af_cd_setup').style.opacity = '100%';
+                document.querySelector('.af_cd_setup').style.opacity = '100%';
 
-                    document.querySelectorAll('.af_tag').forEach(coupon => {
-                        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-                            coupon.classList.add('coupon_hidden');
-                        }
-                    });
+                document.querySelectorAll('.af_tag').forEach(coupon => {
+                    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                        coupon.classList.add('coupon_hidden');
+                    }
+                });
 
-                    drawSale(elementsArray[2]);
-                }
-            }, 100);
-        }
+                drawSale(elementsArray[2]);
+            }
+        }, 100);
     }
 
     addCoupon();
@@ -214,12 +212,14 @@ if (twentyFourHours >= 0) {
 
     // create observers instance
     let secondObserver = new MutationObserver(function (mutations) {
-        let addCouponInterval = setInterval(() => {
-            addCoupon(addCouponInterval);
-        }, 100);
+        // let addCouponInterval = setInterval(() => {
+        addCoupon();
+        // }, 100);
     });
 
     let thirdObserver = new MutationObserver(function (mutations) {
+        thirdObserver.disconnect();
+
         document.querySelectorAll('.price_sale').forEach(sale => {
             sale.remove();
         });
@@ -268,7 +268,7 @@ if (twentyFourHours >= 0) {
 
                 secondObserver.disconnect();
                 thirdObserver.observe(secondTarget, newConfig);
-                thirdObserver.disconnect();
+
             }
         }, 1000);
     }
