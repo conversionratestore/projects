@@ -129,30 +129,30 @@ if (twentyFourHours >= 0) {
         // let drawSaleInterval = setInterval(function() {
         //     if (element[0] || element[1] || element[2]) {
         //         clearInterval(drawSaleInterval);
-                document.querySelectorAll(element).forEach(price => {
-                    if (!price.classList.contains('money_sale')) {
+        document.querySelectorAll(element).forEach(price => {
+            if (!price.classList.contains('money_sale')) {
 
-                        let valueInString = price.innerText.split('$')[1];
-                        let num = parseFloat(valueInString.replace(/,/g, ''));
-                        let val = num - (num * .10);
+                let valueInString = price.innerText.split('$')[1];
+                let num = parseFloat(valueInString.replace(/,/g, ''));
+                let val = num - (num * .10);
 
-                        price.classList.add('money_sale');
+                price.classList.add('money_sale');
 
-                        isTitlePrice
-                            ? price.insertAdjacentHTML('afterend', `<p class="price_sale">${formatter.format(val.toFixed(2))}<br><span>(10% off)</span></p>`)
-                            : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">${formatter.format(val.toFixed(2))}</p>`);
+                isTitlePrice
+                    ? price.insertAdjacentHTML('afterend', `<p class="price_sale">${formatter.format(val.toFixed(2))}<br><span>(10% off)</span></p>`)
+                    : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">${formatter.format(val.toFixed(2))}</p>`);
 
-                        if (price.closest('b')) {
-                            price.closest('b').style.cssText = `text-align: right;`;
-                        }
-                    }
+                if (price.closest('b')) {
+                    price.closest('b').style.cssText = `text-align: right;`;
+                }
+            }
 
-                    if (document.querySelector('.cart-modal__box-option-row b .money_sale .price_sale')) {
-                        document.querySelectorAll('.cart-modal__box-option-row b .money_sale .price_sale').forEach(price => {
-                            price.remove();
-                        });
-                    }
+            if (document.querySelector('.cart-modal__box-option-row b .money_sale .price_sale')) {
+                document.querySelectorAll('.cart-modal__box-option-row b .money_sale .price_sale').forEach(price => {
+                    price.remove();
                 });
+            }
+        });
         //     }
         // }, 100);
 
@@ -182,8 +182,6 @@ if (twentyFourHours >= 0) {
                             coupon.classList.add('coupon_hidden');
                         }
                     });
-
-                    drawSale(elementsArray[2]);
                 }
             }, 100);
         }
@@ -191,13 +189,30 @@ if (twentyFourHours >= 0) {
 
     addCoupon();
 
+
+    let mut = new MutationObserver(muts => {
+        mut.disconnect()
+        drawSale(elementsArray[2])
+        mut.observe({
+            attributes: true,
+            childList: true,
+            subtree: true
+        })
+    })
+
+    mut.observe(secondTarget,{
+        attributes: true,
+        childList: true,
+        subtree: true
+    })
+
     /* create observers */
 
     // select the target node
-    const loadMoreTarget = document.querySelector('.catalog-content');
+    const loadMoreTarget = document.querySelector('.cart-modal');
 
     // configuration of the observer:
-    const newConfig = {attributes: true, childList: true, characterData: true};
+    const newConfig = {attributes: true, childList: true, subtree: true};
 
     // if exist create observer
     if (loadMoreTarget) {
