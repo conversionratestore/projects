@@ -176,7 +176,14 @@ let style = `
     </style>
 `
 
-document.querySelector('.main').style.opacity = '0'
+let hide = setInterval(function () {
+    if(document.querySelector('.main')) {
+        clearInterval(hide)
+        document.querySelector('.main').style.opacity = '0'
+    }
+}, 10)
+
+
 let block = `
     <ul class="new_specifics">
         <li><span>100% polyester which ensures high durability of the fabric</span></li>
@@ -202,7 +209,7 @@ function exp() {
 
     let color = document.querySelector('.js-swatch-variant-title_color').innerText
     let size = (document.querySelector('.types .product-single__swatch__sub-title'))?
-        document.querySelector('.types .product-single__swatch__sub-title').innerText : 
+        document.querySelector('.types .product-single__swatch__sub-title').innerText :
         document.querySelectorAll('.product-single__swatch')[1].querySelector('input:checked').value
 
     document.querySelectorAll('.o-layout__item')[0].classList.value = 'o-layout__item'
@@ -293,7 +300,7 @@ function exp() {
         })
     });
     document.querySelector('.main').style.opacity = '1'
-}
+};
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
