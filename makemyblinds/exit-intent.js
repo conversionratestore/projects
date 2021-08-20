@@ -365,14 +365,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    if (document.querySelector('.your-box .price-label')&& document.querySelector('.bottom-actions__row .flex-price .price-original') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
-        mut.disconnect();
-        document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
-    }
+
 });
 
 mut.observe(document, {
@@ -1192,11 +1185,13 @@ window.onload  = function () {
         document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`);
         document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
     }
-    
-    if (document.querySelector('.your-box .price-label')&& document.querySelector('.bottom-actions__row .flex-price .price-original') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
-        console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
-        document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
-    }
+    let build = setInterval(function() {
+        if (document.querySelector('.your-box .price-label')&& document.querySelector('.bottom-actions__row .flex-price .price-original') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
+            clearInterval(build);
+            console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
+            document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
+        }
+    }, 100);
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
