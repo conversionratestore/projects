@@ -232,6 +232,7 @@ function startCheckCart() {
                             'eventAction': 'loaded'
                         });
                         $(".modal").addClass('active');
+                        eventClickProductModal();
                         sessionStorage.setItem('modal', '');
                     }
                 }
@@ -289,14 +290,16 @@ function startCheckCart() {
             });
         });
 
-        $(".modal_products li a").on('click', (e) => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Exit-intent popup ',
-                'eventAction': 'Click on product in Exit-intent popup'
+        function eventClickProductModal() {
+            $(".modal_products li a").on('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Exit-intent popup ',
+                    'eventAction': 'Click on product in Exit-intent popup'
+                });
             });
-        });
+        }
 
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
@@ -344,6 +347,7 @@ function startCheckCart() {
                                         'eventAction': 'loaded'
                                     });
                                     $(".modal").addClass('active');
+                                    eventClickProductModal();
                                     sessionStorage.setItem('modal', '');
                                 }
                             }
