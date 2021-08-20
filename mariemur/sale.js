@@ -109,8 +109,8 @@ if (!window.localStorage.getItem('startDate')) {
     intervalTime = currentDate - window.localStorage.getItem('startDate');
 }
 
-let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-// let twentyFourHours = 60;
+// let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
+let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
