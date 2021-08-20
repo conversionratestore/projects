@@ -74,7 +74,7 @@ document.head.insertAdjacentHTML('beforeend', `
         .price_sale span {
             font-size: 14px;
         }
-         .price_sale,
+         .price_sale:not(.catalog.js-collections .price_sale),
          .money:not(.cart-modal__total-price .money) {
             display: inline-block;
         }
@@ -110,12 +110,11 @@ if (!window.localStorage.getItem('startDate')) {
 }
 
 let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-// let twentyFourHours = 25;
+// let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
     const elementsArray = ['.product-price span .money', '.product-list__box-price .price span .money', '.cart-modal__box span .money'];
-    const dynamicElementsArray = ['.product-price .money', '.product-list__box-price .price .money', '.cart-modal__box .money'];
 
     // draw my template function
     function drawSale(element) {
@@ -184,17 +183,25 @@ if (twentyFourHours >= 0) {
     /* create observers */
 
     // select the target node
-    const loadMoreTarget = document.querySelector('.catalog-more')
+    const loadMoreTarget = document.querySelector('.catalog-content');
+
+    // configuration of the observer:
+    const newConfig = {attributes: true, childList: true, characterData: true};
+
+    // if exist create observer
+    if(loadMoreTarget) {
+        let loadMoreObserver = new MutationObserver(function (mutations) {
+            // call drawSale function for each element from array
+            drawSale('.product-list__box-price .price .money');
+        });
+
+        loadMoreObserver.observe(loadMoreTarget, newConfig);
+    }
+
+    // select the second target node
     const secondTarget = document.querySelector('.cart-modal__inner');
 
     // create observers instance
-    let loadMoreObserver = new MutationObserver(function (mutations) {
-        // call drawSale function for each element from array
-        for (let i = 0; i < elementsArray.length; i++) {
-            drawSale(dynamicElementsArray[i]);
-        }
-    });
-
     let secondObserver = new MutationObserver(function (mutations) {
         let addCouponInterval = setInterval(() => {
             addCoupon(addCouponInterval);
@@ -211,11 +218,7 @@ if (twentyFourHours >= 0) {
         });
     });
 
-    // configuration of the observer:
-    const newConfig = {attributes: true, childList: true, characterData: true};
-
     // pass in the target node, as well as the observer options
-    loadMoreObserver.observe(loadMoreTarget, newConfig);
     secondObserver.observe(secondTarget, newConfig);
 
     /* timer */
