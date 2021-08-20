@@ -132,6 +132,7 @@ if (twentyFourHours >= 0) {
         //         clearInterval(drawSaleInterval);
         document.querySelectorAll(element).forEach(price => {
             if (!(price.classList.value === 'money money_sale')) {
+                console.log(price)
 
                 let valueInString = price.innerText.split('$')[1];
                 let num = parseFloat(valueInString.replace(/,/g, ''));
