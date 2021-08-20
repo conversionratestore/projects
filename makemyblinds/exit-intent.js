@@ -369,7 +369,8 @@ let mut = new MutationObserver(function (muts) {
         childList: true,
         subtree: true
     });
-    if (document.querySelector('.your-box .price-label') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
+    if (document.querySelector('.your-box .price-label')&& document.querySelector('.bottom-actions__row .flex-price .price-original') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
+        mut.disconnect();
         document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
     }
 });
