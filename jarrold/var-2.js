@@ -176,8 +176,6 @@ let popup = `
 document.body.insertAdjacentHTML('afterbegin', style);
 document.body.insertAdjacentHTML('beforeend', popup);
 
-
-
 let mut = new MutationObserver(function (muts) {
 
     console.log('mutation')
@@ -204,13 +202,6 @@ mut.observe(document, {
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('trigger', 'exit_intent_popup');
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp - Exit-intent popup',
-    'eventAction': 'loaded'
-});
-
 
 function startCheckCart() {
 
@@ -236,9 +227,9 @@ function startCheckCart() {
                     if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
-                            'eventCategory': 'Exp - Exit-intent popup mobile',
-                            'eventAction': `Exit-intent popup activation`,
-                            'eventLabel': 'Exit-intent popup mobile'
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - Exit-intent popup',
+                            'eventAction': 'loaded'
                         });
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
@@ -297,7 +288,7 @@ function startCheckCart() {
                 'eventAction': 'click on Complete your order now'
             });
         });
-        
+
         $(".modal_products li a").on('click', (e) => {
             window.dataLayer = window.dataLayer || [];
             if (window.matchMedia("(min-width: 769px)").matches) {
@@ -356,9 +347,9 @@ function startCheckCart() {
                                 if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
                                     window.dataLayer = window.dataLayer || [];
                                     dataLayer.push({
-                                        'eventCategory': 'Exp - Exit-intent popup desktop',
-                                        'eventAction': `Exit-intent popup activation`,
-                                        'eventLabel': 'Exit-intent popup desktop'
+                                        'event': 'event-to-ga',
+                                        'eventCategory': 'Exp - Exit-intent popup',
+                                        'eventAction': 'loaded'
                                     });
                                     $(".modal").addClass('active');
                                     sessionStorage.setItem('modal', '');
