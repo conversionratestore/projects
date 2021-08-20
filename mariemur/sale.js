@@ -126,9 +126,9 @@ if (twentyFourHours >= 0) {
     function drawSale(element) {
         let isTitlePrice = element === '.product-price .money';
 
-        let drawSaleInterval = setInterval(function() {
-            if (element[0] || element[1] || element[2]) {                
-                clearInterval(drawSaleInterval);
+        // let drawSaleInterval = setInterval(function() {
+        //     if (element[0] || element[1] || element[2]) {
+        //         clearInterval(drawSaleInterval);
                 document.querySelectorAll(element).forEach(price => {
                     if (!price.classList.contains('money_sale')) {
 
@@ -153,8 +153,8 @@ if (twentyFourHours >= 0) {
                         });
                     }
                 });
-            }
-        }, 100);
+        //     }
+        // }, 100);
 
     }
 
