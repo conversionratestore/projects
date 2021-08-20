@@ -125,7 +125,7 @@ if (twentyFourHours >= 0) {
     // draw my template function
     function drawSale(element) {
         console.log('drawSale')
-        let isTitlePrice = element.closest('.row-title-price');
+        let isTitlePrice = document.querySelector(element).closest('.row-title-price');
 
         // let drawSaleInterval = setInterval(function() {
         //     if (element[0] || element[1] || element[2]) {
