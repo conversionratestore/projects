@@ -118,8 +118,8 @@ const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
-let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-// let twentyFourHours = 60;
+// let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
+let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
@@ -170,23 +170,23 @@ if (twentyFourHours >= 0) {
     function addCoupon() {
 
 
-            document.querySelector('.af_cd_setup').style.opacity = '0';
-            document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-            document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+        document.querySelector('.af_cd_setup').style.opacity = '0';
+        document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+        document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
 
-            let saleInterval = setInterval(() => {
-                if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
-                    clearInterval(saleInterval);
+        let saleInterval = setInterval(() => {
+            if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
+                clearInterval(saleInterval);
 
-                    document.querySelector('.af_cd_setup').style.opacity = '100%';
+                document.querySelector('.af_cd_setup').style.opacity = '100%';
 
-                    document.querySelectorAll('.af_tag').forEach(coupon => {
-                        if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-                            coupon.classList.add('coupon_hidden');
-                        }
-                    });
-                }
-            }, 100);
+                document.querySelectorAll('.af_tag').forEach(coupon => {
+                    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                        coupon.classList.add('coupon_hidden');
+                    }
+                });
+            }
+        }, 100);
 
     }
 
