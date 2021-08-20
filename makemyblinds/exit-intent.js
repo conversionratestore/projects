@@ -788,7 +788,7 @@ window.onload  = function () {
             .your-box .price-label span {
                 font-family: 'Barlow', sans-serif;
                 font-size: 10px;
-                line-htight: 1;
+                line-height: 1;
                 color: #AAAAAA;}
             .your-box .price-label span span {
                 font-family: 'Barlow-medium',sans-serif;
@@ -1184,7 +1184,8 @@ window.onload  = function () {
         document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`);
         document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
     }
-    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .price-original').innerHTML}</span></span>`;
+    console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
+    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
