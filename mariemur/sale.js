@@ -93,9 +93,9 @@ document.head.insertAdjacentHTML('beforeend', `
         .coupon_hidden {
             display: none !important;
         }
-        .cart-modal__box-option-row b .price_sale:first-child {
-            display: none !important;
-        }
+        /*.cart-modal__box-option-row b .price_sale:first-child {*/
+        /*    display: none !important;*/
+        /*}*/
         /*.cart-modal__box-option-row b .price_sale {*/
         /*    display: none !important;*/
         /*}*/
