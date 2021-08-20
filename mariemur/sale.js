@@ -114,7 +114,7 @@ let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
-    const elementsArray = ['.product-price span .money', '.product-list__box-price .price span .money', '.cart-modal__box span .money'];
+    const elementsArray = ['.product-price span .money', '.product-list__box-price .price span .money', '.cart-modal__box .price span .money'];
 
     // draw my template function
     function drawSale(element) {
