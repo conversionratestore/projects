@@ -175,6 +175,11 @@ if (twentyFourHours >= 0) {
         }, 100);
     }
 
+    const config = {
+        attributes: true,
+        childList: true,
+        subtree: true
+    };
 
     let mut = new MutationObserver(muts => {
         mut.disconnect();
@@ -182,18 +187,10 @@ if (twentyFourHours >= 0) {
             console.log(elementsArray[i]);
             drawSale(elementsArray[i]);
         }
-        mut.observe(document.querySelector('.cart-modal'), {
-            attributes: true,
-            childList: true,
-            subtree: true
-        });
+        mut.observe(document.querySelector('.cart-modal'), config);
     });
 
-    mut.observe(document.querySelector('.cart-modal'), {
-        attributes: true,
-        childList: true,
-        subtree: true
-    });
+    mut.observe(document.querySelector('.cart-modal'), config);
 
     /* create observers */
 
@@ -210,15 +207,10 @@ if (twentyFourHours >= 0) {
             }
         });
 
-        loadMoreObserver.observe(loadMoreTarget, {
-            attributes: true,
-            childList: true,
-            subtree: true
-        });
+        loadMoreObserver.observe(loadMoreTarget, config);
     }
 
     // create observers instance
-
     let addCouponInterval = setInterval(() => {
         if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
             clearInterval(addCouponInterval);
@@ -268,14 +260,16 @@ if (twentyFourHours >= 0) {
                     sale.remove();
                 });
 
-                document.querySelector('.custom-style').remove()
+                document.querySelector('.custom-style').remove();
+
+                document.head.insertAdjacentHTML('beforeend', `
+                    <style>.price .money { font-size: 17px !important; }</style>`);
             }
         }, 1000);
     }
 
     startTimer(twentyFourHours, display);
 }
-
 
 // hotjar events
 window.dataLayer = window.dataLayer || [];
