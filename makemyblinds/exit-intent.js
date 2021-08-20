@@ -365,8 +365,13 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         tnsInitialization('.slider',1,2,2,true);
     }
-
-
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+    if (document.querySelector('.your-box .price-label') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
+        document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
+    }
 });
 
 mut.observe(document, {
@@ -1187,7 +1192,7 @@ window.onload  = function () {
         document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
     }
     console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
-    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
+
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
