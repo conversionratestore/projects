@@ -92,6 +92,10 @@ document.head.insertAdjacentHTML('beforeend', `
        
         .coupon_hidden {
             display: none !important;
+        }
+        
+        .af_tag:first-child {
+            display: none;
         }        
     </style>
 `);
@@ -189,7 +193,6 @@ if (twentyFourHours >= 0) {
 
     let mut = new MutationObserver(muts => {
         mut.disconnect()
-        drawSale(elementsArray[2])
         for (let i = 0; i < elementsArray.length; i++) {
             console.log(elementsArray[i])
             drawSale(elementsArray[i]);
@@ -208,7 +211,7 @@ if (twentyFourHours >= 0) {
     })
 
     /* create observers */
-  
+
     // select the target node
     const loadMoreTarget = document.querySelector('.catalog-content');
 
