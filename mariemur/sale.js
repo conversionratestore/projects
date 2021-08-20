@@ -126,8 +126,8 @@ if (twentyFourHours >= 0) {
     function drawSale(element) {
         let isTitlePrice = element === '.product-price .money';
 
-        let drawSaleInterval = setInterval(() => {
-            if (elementsArray[0] || elementsArray[1] || elementsArray[2]) {
+        let drawSaleInterval = setInterval(function() {
+            if (element[0] || element[1] || element[2]) {                
                 clearInterval(drawSaleInterval);
                 document.querySelectorAll(element).forEach(price => {
                     if (!price.classList.contains('money_sale')) {
