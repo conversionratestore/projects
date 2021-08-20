@@ -94,9 +94,9 @@ document.head.insertAdjacentHTML('beforeend', `
             display: none !important;
         }
         
-        .cart-modal__box-option-row b .price_sale {
-            display: none !important;
-        }
+        /*.cart-modal__box-option-row b .price_sale {*/
+        /*    display: none !important;*/
+        /*}*/
         
         .cart-modal__box-option-row b .money_sale .price_sale {
             display: inline-block !important;
