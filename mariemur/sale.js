@@ -128,7 +128,7 @@ if (twentyFourHours >= 0) {
                     if (!price.classList.contains('money_sale')) {
 
                         let valueInString = price.innerText.split('$')[1];
-                        let num = parseFloat(valueInString);
+                        let num = parseFloat(valueInString.replace(/,/g, ''));
                         let val = num - (num * .10);
 
                         price.classList.add('money_sale');
