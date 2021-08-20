@@ -123,9 +123,9 @@ if (twentyFourHours >= 0) {
     //const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money', '.cart-modal__box-option-row b span.money', '.cart-modal__box-option-row span span.money', ];
 
     // draw my template function
-    function drawSale(element, cart) {
+    function drawSale(element) {
         console.log('drawSale')
-        let isTitlePrice = element === '.product-price .money';
+        let isTitlePrice = element.closest('.row-title-price');
 
         // let drawSaleInterval = setInterval(function() {
         //     if (element[0] || element[1] || element[2]) {
