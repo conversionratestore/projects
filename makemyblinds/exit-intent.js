@@ -791,6 +791,7 @@ window.onload  = function () {
                 line-height: 1;
                 color: #AAAAAA;}
             .your-box .price-label span span {
+                text-decoration: line-through;
                 display: inline;
                 font-family: 'Barlow-medium',sans-serif;
                 font-size: 14px;}
