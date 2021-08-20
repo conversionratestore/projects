@@ -187,8 +187,6 @@ if (twentyFourHours >= 0) {
 
     }
 
-    addCoupon();
-
 
     let mut = new MutationObserver(muts => {
         mut.disconnect()
