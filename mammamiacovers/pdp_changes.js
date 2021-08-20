@@ -171,7 +171,9 @@ let style = `
             align-items: center;
         }
         
-
+        .line_line+.sizes {
+            margin-bottom: 15px;
+        }
         
     </style>
 `
@@ -233,7 +235,7 @@ function exp() {
     let btns = document.querySelector('.product-single__add.js-product-buttons').cloneNode(true)
 
     document.querySelector('.new_specifics').insertAdjacentElement('afterend', btns)
-
+    document.querySelector('.types').after(document.querySelector('.line_line').nextElementSibling)
 
     document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
         item.addEventListener('click', function () {
@@ -299,6 +301,7 @@ function exp() {
             })
         })
     });
+
     document.querySelector('.main').style.opacity = '1'
 };
 
