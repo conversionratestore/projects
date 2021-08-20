@@ -234,7 +234,7 @@ function startCheckCart() {
             if(jQuery('body').hasClass('on-mobile-device') ){
                 if(my_scroll() < -200){
                     if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
-                       window.dataLayer = window.dataLayer || [];
+                        window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
                             'eventCategory': 'Exp - Exit-intent popup mobile',
                             'eventAction': `Exit-intent popup activation`,
@@ -297,6 +297,24 @@ function startCheckCart() {
                 'eventAction': 'click on Complete your order now'
             });
         });
+        
+        $(".modal_products li a").on('click', (e) => {
+            window.dataLayer = window.dataLayer || [];
+            if (window.matchMedia("(min-width: 769px)").matches) {
+                dataLayer.push({
+                    'eventCategory': 'Exp - Exit-intent popup desktop',
+                    'eventAction': `Click on product in Exit-intent popup`,
+                    'eventLabel': 'Exit-intent popup desktop'
+                });
+            } else {
+                dataLayer.push({
+                    'eventCategory': 'Exp - Exit-intent popup mobile',
+                    'eventAction': `Click on product in Exit-intent popup`,
+                    'eventLabel': 'Exit-intent popup mobile'
+                });
+            }
+        });
+
         $(".modal_container").on('click', (e) => {
             e.stopPropagation();
         });
