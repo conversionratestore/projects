@@ -1192,8 +1192,11 @@ window.onload  = function () {
         document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`);
         document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
     }
-    console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
-
+    
+    if (document.querySelector('.your-box .price-label')&& document.querySelector('.bottom-actions__row .flex-price .price-original') && document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML != "") {
+        console.log(document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML);
+        document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .flex-price .price-original').innerHTML}</span></span>`;
+    }
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
