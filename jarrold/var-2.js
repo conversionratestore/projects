@@ -290,14 +290,15 @@ function startCheckCart() {
         });
 
         $(".modal_products li a").on('click', (e) => {
-            window.dataLayer = window.dataLayer || [];
             if (window.matchMedia("(min-width: 769px)").matches) {
+                window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup desktop',
                     'eventAction': 'Click on product in Exit-intent popup'
                 });
             } else {
+                window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup mobile',
