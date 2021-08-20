@@ -87,7 +87,7 @@ function card(index,img,name,price,link,satus) {
             el.closest('.slide').remove();
         }
     })
-    
+
 }
 
 function eventsPopup(elem,eventAction) {
@@ -245,7 +245,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Privacy', data);
         items.push({data,'idCategory': '232'});
-      
+
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -259,7 +259,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
     }).then(res => res.json()).then(data => {
         console.log('Cordless', data);
         items.push({data,'idCategory': '229'});
-         
+
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
@@ -303,19 +303,19 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
         console.log('Failed fetch ', err);
     });
     Promise.all([request1,request2,request3,request4,request5]).then(res => { //,request6
-        localStorage.setItem('items', JSON.stringify(items));     
+        localStorage.setItem('items', JSON.stringify(items));
         let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
         for (let i = 0; i < itemsLocalStorage[0]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
-       
+
         }
         for (let i = 0; i < itemsLocalStorage[1]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[1]["idCategory"], itemsLocalStorage[1]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[1]["data"]["items"][i]["name"],itemsLocalStorage[1]["data"]["items"][i]["price"],itemsLocalStorage[1]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[1]["data"]["items"][i]["status"]);
-           
+
         }
         for (let i = 0; i < itemsLocalStorage[2]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[2]["idCategory"], itemsLocalStorage[2]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[2]["data"]["items"][i]["name"],itemsLocalStorage[2]["data"]["items"][i]["price"],itemsLocalStorage[2]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[2]["data"]["items"][i]["status"]);
-       
+
         }
         for (let i = 0; i < itemsLocalStorage[3]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[3]["idCategory"], itemsLocalStorage[3]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[3]["data"]["items"][i]["name"],itemsLocalStorage[3]["data"]["items"][i]["price"],itemsLocalStorage[3]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[3]["data"]["items"][i]["status"]);
@@ -325,7 +325,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
             card(JSON.parse(localStorage.getItem('items'))[4]["idCategory"], itemsLocalStorage[4]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[4]["data"]["items"][i]["name"],itemsLocalStorage[4]["data"]["items"][i]["price"],itemsLocalStorage[4]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[4]["data"]["items"][i]["status"]);
 
         }
-        tnsInitialization('.category-slider',2,3,4,false);   
+        tnsInitialization('.category-slider',2,3,4,false);
     });
 }).catch(err => {
     console.log('Failed fetch ', err);
@@ -333,7 +333,7 @@ fetch('https://www.makemyblinds.co.uk/rest/V1/integration/admin/token', {
 let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.category-slider')[5] && document.querySelectorAll('.category-slider')[0] && localStorage.getItem('items') && JSON.parse(localStorage.getItem('items')).length == 5 && document.querySelectorAll('.category-slider')[5].innerHTML == "") {
         mut.disconnect();
-        
+
         let itemsLocalStorage = JSON.parse(localStorage.getItem('items'))
         for (let i = 0; i < itemsLocalStorage[0]["data"]["items"].length; i++) {
             card(JSON.parse(localStorage.getItem('items'))[0]["idCategory"], itemsLocalStorage[0]["data"]["items"][i]["media_gallery_entries"][0]["file"], itemsLocalStorage[0]["data"]["items"][i]["name"],itemsLocalStorage[0]["data"]["items"][i]["price"],itemsLocalStorage[0]["data"]["items"][i]["custom_attributes"][3]["value"], itemsLocalStorage[0]["data"]["items"][i]["status"]);
@@ -366,7 +366,7 @@ let mut = new MutationObserver(function (muts) {
         tnsInitialization('.slider',1,2,2,true);
     }
 
-    
+
 });
 
 mut.observe(document, {
@@ -480,6 +480,7 @@ window.onload  = function () {
         pointer-events: none;
         transition: all 0.3s ease;
         padding: 14px;
+        overflow-y: auto;
         z-index: 999;}
     .popup.active {
         opacity: 1;
@@ -785,10 +786,13 @@ window.onload  = function () {
                 text-align: right;
                 font-size: 16px; }
             .your-box .price-label span {
-                display: none;
-                font-size: 13px;
+                font-family: 'Barlow', sans-serif;
+                font-size: 10px;
                 line-htight: 1;
-                color: gray;}
+                color: #AAAAAA;}
+            .your-box .price-label span span {
+                font-family: 'Barlow-medium',sans-serif;
+                font-size: 14px;}
             .free-priority {
                 margin: 10px 0; }
             .product-delivery-date {
@@ -943,8 +947,8 @@ window.onload  = function () {
     });
 
     document.querySelector('.product-specs--new .container').insertAdjacentHTML('afterbegin', `<div class="categories"></div>`);
-                
-    let titleArr = [ 
+
+    let titleArr = [
         {
             title: 'Blinds for Better Sleep',
             id: '241'
@@ -958,17 +962,17 @@ window.onload  = function () {
         //     id: '183'
         // },
         {
-            title: 'Privacy Blinds', 
+            title: 'Privacy Blinds',
             id: '232'
         },
         {
-            title: 'No Drill Blinds', 
+            title: 'No Drill Blinds',
             id: '231'
         },
         {
-            title: 'Thermal Blinds', 
+            title: 'Thermal Blinds',
             id: '176'
-        }, 
+        },
         {
             title: `Blinds for ${document.querySelectorAll('.product-great-item')[0].dataset.name}`,
             id: 'random'
@@ -1060,7 +1064,7 @@ window.onload  = function () {
             <a href="https://www.makemyblinds.co.uk/blinds/${perfectFit[i].greatFor2}" class="product-great-item" data-id="${perfectFit[i].idGreatFor2}" data-name="${perfectFit[i].greatFor2}">${perfectFit[i].greatFor2}</a>
         </div>`);
     }
-    
+
 
     window.addEventListener('scroll', myScrollSpeedFunction);
 
@@ -1114,7 +1118,7 @@ window.onload  = function () {
 
     if(document.querySelectorAll('.product-great-item')[0]){
         console.log('find' + document.querySelectorAll('.product-great-item')[0].dataset.id);
-    
+
         fetch(`https://www.makemyblinds.co.uk/rest/V1/products?searchCriteria[filter_groups][0][filters][0][field]=status&searchCriteria[sortOrders][0][field]=increment_id&searchCriteria[filter_groups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][field]=great_for&searchCriteria[filterGroups][0][filters][0][condition_type]=finset&searchCriteria[filterGroups][0][filters][0][value]=${document.querySelectorAll('.product-great-item')[0].dataset.id}& searchCriteria[pageSize]=12& searchCriteria[currentPage]=1&fields=items[name,price,media_gallery_entries[file],custom_attributes[value],status]`, {
             method: "GET",
             headers: {
@@ -1178,9 +1182,9 @@ window.onload  = function () {
     eventsCategories('.category .card .btn','Click on View Product button listing');
     if (window.matchMedia("(max-width: 768px)").matches) {
         document.querySelector('.bottom-actions__row .product-info-price').insertAdjacentHTML('afterbegin',`<div class="flex-price"><p class="your-price">Your price</p></div>`);
-        document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));   
+        document.querySelector('.flex-price .your-price').after(document.querySelector('.price-box'));
     }
-    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was ${document.querySelector('.bottom-actions__row .price-original').innerHTML}</span>`;
+    document.querySelector('.your-box .price-label').innerHTML = `Your price <span>Was <span>${document.querySelector('.bottom-actions__row .price-original').innerHTML}</span></span>`;
 };
 
 if (window.matchMedia("(max-width: 768px)").matches) {
