@@ -93,9 +93,9 @@ document.head.insertAdjacentHTML('beforeend', `
         .coupon_hidden {
             display: none !important;
         }        
-        #af_tagged_discounts div.af_tag:first-child() {
-            display: none !important;
-        }
+        /*#af_tagged_discounts div.af_tag:first-child() {*/
+        /*    display: none !important;*/
+        /*}*/
     </style>
 `);
 
@@ -173,26 +173,20 @@ if (twentyFourHours >= 0) {
                 document.querySelector('.af_cd_setup').style.opacity = '0';
                 document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
                 document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
-
-                drawSale(elementsArray[2]);
             }
         }, 100);
 
-        // let saleInterval = setInterval(() => {
-        //     if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
-        //         clearInterval(saleInterval);
-        //
-        //         document.querySelector('.af_cd_setup').style.opacity = '100%';
-        //
-        //         document.querySelectorAll('.af_tag').forEach(coupon => {
-        //             if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
-        //                 coupon.classList.add('coupon_hidden');
-        //             }
-        //         });
-        //
-        //
-        //     }
-        // }, 100);
+        let saleInterval = setInterval(() => {
+            if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
+                clearInterval(saleInterval);
+                document.querySelector('.af_cd_setup').style.opacity = '100%';
+                document.querySelectorAll('.af_tag').forEach(coupon => {
+                    if (coupon.querySelector('.af_coupon_text.af_coupon_code').innerText === 'MM10CRO') {
+                        coupon.classList.add('coupon_hidden');
+                    }
+                });
+            }
+        }, 100);
     }
 
     addCoupon();
@@ -221,10 +215,15 @@ if (twentyFourHours >= 0) {
     // create observers instance
     let secondObserver = new MutationObserver(function (mutations) {
         secondObserver.disconnect();
-        // let addCouponInterval = setInterval(() => {
         addCoupon();
-        // }, 100);
     });
+
+    let priceCartObserver = new MutationObserver(function (mutations) {
+        drawSale(elementsArray[2]);
+    });
+
+
+    
 
     let thirdObserver = new MutationObserver(function (mutations) {
         thirdObserver.disconnect();
@@ -240,6 +239,7 @@ if (twentyFourHours >= 0) {
 
     // pass in the target node, as well as the observer options
     secondObserver.observe(secondTarget, newConfig);
+    priceCartObserver.observe(secondTarget, newConfig);
 
     /* timer */
     document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
