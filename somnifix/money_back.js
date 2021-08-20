@@ -1,274 +1,320 @@
 let style = `
     <style>
-        .money_back {
-            padding: 100px 0;
-            background-color: #f8f8f8;
+    
+        .container.container--medium {
+            max-width: 1440px;
         }
         
-        .money_back .flx {
+        .product-single__bottom>.o-layout,
+         .product-single__bottom .o-layout__item:last-child>div:first-child {
+            display: flex;
+        }
+        
+        .product-single__bottom .o-layout__item:first-child {
+            width: 30%;
+        }
+        .product-single__bottom .o-layout__item:last-child {
+            width: 70%;
+        }
+        .product-single__bottom .o-layout__item:last-child>div:first-child>.js-cart-replace {
+            width: 55%;
+        } 
+        .product-single__bottom .o-layout__item:last-child>div:first-child>.options_select {
+            width: 45%;
+        }
+        
+        .product-single__swatch__item--color .product-single__swatch__label,
+        .types__link--image,
+        .sizes__link--image {
+            width: 63px;
+            height: 63px;
+        }
+        
+        .product-single__swatch__item--color .product-single__swatch__label__graphic {
+            width: 55px;
+            height: 55px;
+        }
+        
+        .types__item {
+            width: auto;
+        }
+        
+        #sizes {
+            width: 100%;
+        }
+        
+        .faq__accordion__item {
+            margin-left: 0 !important;
+        }
+        
+        .product-single__classic-title h1 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+        
+        .product-single__bottom .o-layout .o-layout__item:first-child .js-cart-replace {
+            border-top: 10px solid #A8034F;
+            padding: 0 !important;
+            margin-left: 30px;
+        }
+        
+        .product-single__bottom .o-layout .o-layout__item .product-single__box, .selected_options {
+            background: #fdf4f8;
+            padding: 0 20px;
+        }
+        
+        .product-single__classic-title {
+            padding: 30px 20px;
+            background: #fdf4f8;
+        }
+        
+        .product-single__content-text {
+            background-color: #fff;
+        }
+        .product-description__container {
+            font-size: 14px;
+            line-height: 19px;
+        }
+        
+        .product-description__container li {
+            margin-bottom: 25px;
+        }
+        
+        .product-single__reviews-stars {
+            margin-top: 0;
+            padding-top: 10px;
+        }
+        
+        .selected_options {
+            font-size: 16px;
+            color: #212121;
+            margin-bottom: 0;
+        }
+        
+        .selected_options span {
+            color: #999999;
+            display:inline-block;
+            padding: 0 5px;
+        }
+        
+        .selected_options+.product-single__reviews-stars {
+            display: none;
+        }
+        
+        .product-single__reviews-stars {
+            padding: 0 !important;
+        }
+        
+        .product-single__price-text {
+            font-size: 18px;
+            margin: 0;
+            padding: 10px 0;
+            justify-content:space-between;
+            width: 100%;    
+        }
+        
+        .ready_ship {
+            color: #34A853;
+            margin-left: 30px;
+        }
+        
+        .ready_ship img {
+            margin-right: 7px;
+        }
+        
+        .afterpay-klarna__info, .afterpay-link {
+            display: none !important;
+        }
+        .new_specifics {
+            background: #fdf4f8;
+            margin-left: 20px;
+        }
+        .new_specifics li {
+            color: #A8034F;
+        }
+        
+        .new_specifics li span {
+            color: #212121;
+        }
+        .loox-rating {
+            text-align: left;
+        }
+        
+        .product-single__share-items,
+         form .product-single__add, 
+         form .product-single__ready-to-ship-note{
+            display: none;
+        }
+        
+        .afterpay-klarna {
+            display: inline-flex;
+        }
+        
+        .product-single--minimal .product-single__price .afterpay-paragraph {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .product-single__bottom .afterpay-text1 {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .product-single__bottom .loox-icon.loox-star {
+            font-size: 20px;
+            margin-right: 3px;
+        }
+        
+        .product-single__bottom .loox-rating {
             display: flex;
             align-items: center;
-            justify-content: space-around;
         }
         
-        .money_back>* {
-            width: 95%;
-            margin: 0 auto;
-            max-width: 1200px;
-        }
-        
-        .money_back h2 {
-            text-align: center;
-            margin-bottom: 60px;
-            color: #000000;
-            font-size: 36px;
-            font-weight: 700;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        .money_back .schedule {
-            background-color: #fff;
-            border-radius: 25px;
-            margin-bottom: 60px;
-            padding: 30px 10%;
-        }
-        
-        .money_back .schedule select {
-            width: fit-content;
-        }
-        
-        .money_back .spots {
-            color: #1E415F;
-            font-size: 18px;
-            font-weight: 700;
-        }
-        
-        .money_back .spots>p {
-            width: 200px;
-            text-align: center;
-            padding: 50px 35px;
-            line-height: 1.1;
-        }
-        .money_back .spots>p:first-child {
-           background: url("https://conversionratestore.github.io/projects/somnifix/img/spot1.svg") center center no-repeat;
-           background-size: contain;
-        }
-        
-        .money_back .spots>p:nth-child(2) {
-           background: url("https://conversionratestore.github.io/projects/somnifix/img/spot2.svg") center center no-repeat;
-           background-size: contain;
-        }
-        
-        .money_back .spots>p:last-child {
-           background: url("https://conversionratestore.github.io/projects/somnifix/img/spot3.svg") center center no-repeat;
-           background-size: contain;
-        }
-        
-        .money_back .delivery_time {
-            position:relative;
-        }
-        
-        .money_back .delivery_time>div:not(.line) {
-            position:absolute;
-            top: -70px;
-            width: fit-content;
-        }
-        
-        .money_back .delivery_time>div:nth-child(3) {
-            left: 20%;
-        }
-        
-        .money_back .delivery_time>div:last-child {
-            left: 65%;
-        }
-        
-        .money_back .delivery_time>div:not(.line)>p:first-child {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1E415F;
-        }
-        
-        .money_back .delivery_time>div:not(.line)>p:nth-child(2) {
-            font-size: 14px;
-            color: #1E415F;
-        }
-        
-        .money_back .delivery_time>div:not(.line)>p:last-child {
-            font-size: 14px;
-            margin-top: 30px;
-            color: #6aadc4;
-        }
-        
-        .money_back .line {
-            margin: 85px 0 35px;
-            height: 10px;
-            width: 100%;
-            background-color: #E3F4FF;
-            border-radius: 10px;
-            position:relative;
-        }
-        
-        .money_back .line span {
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #2374B5;
-            position:absolute;
-            top: -5px;
-            left: 0;
-        }
-        
-        .money_back .line span.point2 {
-            left: calc(20% - 10px);
-        }
-        
-        .money_back .line span.point3 {
-            left: calc(65% - 10px);
-        }
-        
-        .money_back .line p {
-            height: 10px;
-            width: 65%;
-            background-color: #2374b5;
-            border-radius: 10px;
-        }
+
         
     </style>
 `
 
-let link = `
-<div class="navbar-item header__item " data-navlink-handle="guarantee"> 
-    <a href="#" class="navbar-link header__link  is-arrowless to_money_back">guarantee</a>
-</div>
-`
+let hide = setInterval(function () {
+    if(document.querySelector('.main')) {
+        clearInterval(hide)
+        document.querySelector('.main').style.opacity = '0'
+    }
+}, 10)
+
 
 let block = `
-
-    <div class="money_back" id="money_back">
-        <h2>Money back guarantee</h2>
-        <div class="schedule">
-            <p>Ship to:</p>
-            <div class="delivery_time">
-                <div class="line">
-                    <span class="point1"></span>
-                    <span class="point2"></span>
-                    <span class="point3"></span>
-                    <p></p>
-                </div>
-                <div><p>Buy SomniFix</p><p>Today</p><p class="today">Jun 17, 2021</p></div>
-                <div><p>Delivery</p><p>1-4 days</p><p class="delivery_date">Jun 18-21, 2021</p></div>
-                <div><p>100% money back guarantee through</p><p>After 30 days</p><p class="money_back_date">Jul 17, 2021</p></div>
-            </div>
-        </div>
-        <div class="flx spots">
-            <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>Free US shipping and returns</p>
-            <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>30-day money back guarantee</p>
-            <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>Made in USA</p>
-        </div>
-    </div>
-
+    <ul class="new_specifics">
+        <li><span>100% polyester which ensures high durability of the fabric</span></li>
+        <li><span>Extremely soft and pleasant to touch fabric</span></li>
+        <li><span>Luxury looks and supreme quality</span></li>
+        <li><span>Pet and kids friendly</span></li>
+    </ul>
 `
 
 let start = setInterval(function () {
-    if (document.querySelector('.recomendedmedical') && document.querySelector('.ship-destination__span--date')) {
+    if(document.querySelector('.product-single__price__notes') && document.querySelector('.product-single__ready-to-ship-text') && document.querySelector('.satcb_btn')) {
         clearInterval(start)
-
-        document.querySelector('nav.header__menu-items').insertAdjacentHTML('beforeend', link)
-
-        document.querySelector('.to_money_back').addEventListener('click', function (e) {
-            e.preventDefault()
-            document.querySelector('#money_back').scrollIntoView({behavior: "smooth"})
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee',
-                'eventAction': 'Click on GUARANTEE button',
-                'eventLabel': 'Section megamenu'
-            });
-        })
-
-        document.body.insertAdjacentHTML('afterbegin', style)
-        document.querySelector('.recomendedmedical').insertAdjacentHTML('beforebegin',block)
-        let sel = document.querySelectorAll('select[name="qauntry"]')[5].cloneNode(true)
-        document.querySelector('.schedule>p').appendChild(sel)
-
-        document.querySelector('.money_back select').addEventListener('change', function (e) {
-            document.querySelectorAll('select[name="qauntry"]')[5].value = this.value
-            let d = e.target.options[e.target.selectedIndex].dataset.value;
-            document.querySelector('.ship-destination__span--date').innerHTML = d
-            setDateDelivery(d)
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee',
-                'eventAction': 'Click on Ship to selection',
-                'eventLabel': 'newSelect'
-            });
-        })
-
-        document.querySelectorAll('select[name="qauntry"]')[5].addEventListener('change', function (e) {
-            document.querySelector('.money_back select').value = this.value
-            let d = e.target.options[e.target.selectedIndex].dataset.value;
-            setDateDelivery(d)
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee',
-                'eventAction': 'Click on Ship to selection',
-                'eventLabel': 'oldSelect'
-            });
-        })
-
-        let monthTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-        function setDateDelivery (str) {
-            let parseStr = str.split(' ').filter((item) => item !== '-')
-            let day = new Date().getDate()
-            let month = new Date().getMonth()
-            let year = new Date().getFullYear()
-            let day1 = +parseStr[0]
-            let day2 = +parseStr[2]
-            let month1 = monthTable.indexOf(parseStr[1])
-            let month2 = monthTable.indexOf(parseStr[3])
-            let date = new Date(year, month, day);
-            let date1 = new Date(year, month1, day1);
-            let date2 = new Date(year, month2, day2);
-            let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
-            let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
-            let daysLag3 = new Date(date.setDate(date.getDate() + 30));
-
-            document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
-            document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
-            document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
-            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()}, ${daysLag3.getFullYear()}`
-        }
-
-        let firstStr = document.querySelector('.ship-destination__span--date').innerText
-
-        setDateDelivery(firstStr);
-
+        exp();
+        document.querySelector('.main').style.opacity = '1'
     }
-}, 100);
+}, 100)
 
 
+function exp() {
+    document.body.insertAdjacentHTML('afterbegin', style)
+
+    let readyText = document.querySelector('.product-single__ready-to-ship-text').innerText
+
+    let color = document.querySelector('.js-swatch-variant-title_color').innerText
+    let size = (document.querySelector('.types .product-single__swatch__sub-title'))?
+        document.querySelector('.types .product-single__swatch__sub-title').innerText :
+        document.querySelectorAll('.product-single__swatch')[1].querySelector('input:checked').value
+
+    document.querySelectorAll('.o-layout__item')[0].classList.value = 'o-layout__item'
+    document.querySelectorAll('.o-layout__item')[1].classList.value = 'o-layout__item'
+    document.querySelectorAll('.js-cart-replace')[1].insertAdjacentHTML('afterend', `<div class="options_select"></div>`)
+
+    document.querySelector('.options_select').append(document.querySelector('.product-single__form'))
+    // let slider = setInterval(function () {
+    //     if (typeof $ === 'function') {
+    //         clearInterval(slider)
+    //         $('.product-single__photo.product-single__photo--large').slick('setPosition')
+    //     }
+    // }, 50)
+
+    document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
+    document.querySelector('.product-single__classic-title').insertAdjacentHTML('afterend', `<p class="selected_options">Color:<span>${color}</span> Size:<span>${size}</span></p>`)
+    document.querySelector('.afterpay-paragraph').after(document.querySelector('.product-single__reviews-stars'))
+    document.querySelector('.product-single__price__notes').insertAdjacentHTML('beforebegin', block)
+    document.querySelector('.afterpay-logo-link').after(document.querySelector('.afterpay-klarna'))
+
+    let btns = document.querySelector('.product-single__add.js-product-buttons').cloneNode(true)
+
+    document.querySelector('.new_specifics').insertAdjacentElement('afterend', btns)
+
+
+    document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
+        item.addEventListener('click', function () {
+            console.log('hello')
+            document.querySelector('.selected_options span:first-child').innerText = item.closest('.product-single__swatch__item--color').querySelector('input').value
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${item.closest('.product-single__swatch__item--color').querySelector('input').value} color`
+            });
+        })
+    })
+
+    document.querySelectorAll('.similar .sizes__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.sizes__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} collection`
+            });
+        })
+    })
+
+    document.querySelectorAll('.types__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.types__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} sizer`
+            });
+        })
+    })
+
+    document.querySelectorAll('.similar+#sizes .sizes__item').forEach(item => {
+        item.addEventListener('click', function () {
+            let txt = item.querySelector('.sizes__text').innerText
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with benefits',
+                'eventAction': `Click on ${txt} type`
+            });
+        })
+    })
+
+    document.querySelectorAll('.product-single__price button').forEach(item => {
+        item.addEventListener('click', function () {
+            let btnClass = item.classList.value
+
+            document.querySelectorAll('form .product-single__add button').forEach(item => {
+                if (item.classList.value === btnClass) {
+                    item.click()
+                }
+            })
+        })
+    });
+    document.querySelector('.main').style.opacity = '1'
+}
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1271698,hjsv:6};
+    h._hjSettings={hjid:2425703,hjsv:6};
     a=o.getElementsByTagName('head')[0];
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-hj('trigger', 'pdp_money_back_guarantee');
+hj('trigger', 'pdp_with_benefits');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP money back guarantee',
+    'eventCategory': 'Exp: PDP with benefits',
     'eventAction': 'loaded'
 });
-
-
