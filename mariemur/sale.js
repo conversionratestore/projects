@@ -164,9 +164,15 @@ if (twentyFourHours >= 0) {
     }
 
     function addCoupon() {
-        document.querySelector('.af_cd_setup').style.opacity = '0';
-        document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
-        document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+        let saleIntervalField = setInterval(() => {
+            if(document.querySelector('.af_cd_setup') && document.querySelector('#af_custom_coupon_text_popup')) {
+                clearInterval(saleIntervalField);
+                document.querySelector('.af_cd_setup').style.opacity = '0';
+                document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
+                document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
+            }
+        }, 100)
+
 
         let saleInterval = setInterval(() => {
             if (document.querySelector('.af_money.af_new_price') && document.querySelector('.af_coupon_text.af_coupon_code')) {
