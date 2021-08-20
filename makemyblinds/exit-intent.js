@@ -786,11 +786,13 @@ window.onload  = function () {
                 text-align: right;
                 font-size: 16px; }
             .your-box .price-label span {
+                display: block;
                 font-family: 'Barlow', sans-serif;
                 font-size: 10px;
                 line-height: 1;
                 color: #AAAAAA;}
             .your-box .price-label span span {
+                display: inline;
                 font-family: 'Barlow-medium',sans-serif;
                 font-size: 14px;}
             .free-priority {
