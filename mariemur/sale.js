@@ -204,7 +204,10 @@ if (twentyFourHours >= 0) {
     })
 
     /* create observers */
-
+    for (let i = 0; i < elementsArray.length; i++) {
+        console.log(elementsArray[i])
+        drawSale(elementsArray[i]);
+    }
     // select the target node
     const loadMoreTarget = document.querySelector('.catalog-content');
 
