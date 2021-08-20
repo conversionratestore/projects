@@ -1020,7 +1020,7 @@ window.onload  = function () {
                         eventsPopup('.popup .card-title','Click on product from');
                         eventsPopup('.popup .btn','Click on View product white button');
                         eventsPopup('.popup .tns-controls button','Click on arrows button');
-                    }, 100);
+                    }, 200);
                 }
             }
         }
@@ -1112,7 +1112,7 @@ window.onload  = function () {
                         eventsPopup('.popup .btn','Click on View product white button');
                         eventsPopup('.popup .tns-controls button','Click on arrows button');
 
-                    }, 100);
+                    }, 200);
                 }
             }
         }
