@@ -190,6 +190,10 @@ if (twentyFourHours >= 0) {
     let mut = new MutationObserver(muts => {
         mut.disconnect()
         drawSale(elementsArray[2])
+        for (let i = 0; i < elementsArray.length; i++) {
+            console.log(elementsArray[i])
+            drawSale(elementsArray[i]);
+        }
         mut.observe(document.querySelector('.cart-modal'),{
             attributes: true,
             childList: true,
@@ -204,10 +208,7 @@ if (twentyFourHours >= 0) {
     })
 
     /* create observers */
-    for (let i = 0; i < elementsArray.length; i++) {
-        console.log(elementsArray[i])
-        drawSale(elementsArray[i]);
-    }
+  
     // select the target node
     const loadMoreTarget = document.querySelector('.catalog-content');
 
