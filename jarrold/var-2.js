@@ -234,6 +234,12 @@ function startCheckCart() {
             if(jQuery('body').hasClass('on-mobile-device') ){
                 if(my_scroll() < -200){
                     if (sessionStorage.getItem('modal') === null && localStorage.getItem('basketList') !== '[]') {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - Exit-intent popup mobile',
+                            'eventAction': `Show Exit-intent popup`
+                        });
                         $(".modal").addClass('active');
                         sessionStorage.setItem('modal', '');
                     }
@@ -333,7 +339,7 @@ function startCheckCart() {
                                     window.dataLayer = window.dataLayer || [];
                                     dataLayer.push({
                                         'event': 'event-to-ga',
-                                        'eventCategory': 'Exp - Exit-intent popup',
+                                        'eventCategory': 'Exp - Exit-intent popup desktop',
                                         'eventAction': `Show Exit-intent popup`
                                     });
                                     $(".modal").addClass('active');
