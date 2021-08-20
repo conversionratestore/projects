@@ -162,6 +162,7 @@ if (twentyFourHours >= 0) {
 
     // call drawSale function for each element from array
     for (let i = 0; i < elementsArray.length; i++) {
+        console.log(elementsArray[i])
         drawSale(elementsArray[i]);
     }
 
