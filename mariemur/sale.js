@@ -93,14 +93,16 @@ document.head.insertAdjacentHTML('beforeend', `
         .coupon_hidden {
             display: none !important;
         }
-        
+        .cart-modal__box-option-row b .price_sale:first-child {
+            display: none !important;
+        }
         /*.cart-modal__box-option-row b .price_sale {*/
         /*    display: none !important;*/
         /*}*/
         
-        .cart-modal__box-option-row b .money_sale .price_sale {
-            display: inline-block !important;
-        }
+        /*.cart-modal__box-option-row b .money_sale .price_sale {*/
+        /*    display: inline-block !important;*/
+        /*}*/
         
     </style>
 `);
@@ -128,7 +130,8 @@ let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
-    const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money', '.cart-modal__box-option-row b span.money', '.cart-modal__box-option-row span span.money', ];
+    const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money'];
+    //const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money', '.cart-modal__box-option-row b span.money', '.cart-modal__box-option-row span span.money', ];
 
     // draw my template function
     function drawSale(element) {
