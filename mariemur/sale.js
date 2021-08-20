@@ -119,7 +119,7 @@ let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
 
 if (twentyFourHours >= 0) {
     // elements on the site
-    const elementsArray = ['.product-price .price span span.money[data-currency-usd]', '.product-list__box-price .price span .money[data-currency-usd]',  '.product-list__box-price .price span .money[data-currency-usd]', '.cart-modal__box-option-row .money[data-currency-usd]'];
+    const elementsArray = ['.product-price .price span span.money[data-currency-usd]', '.product-list__box-price .price span .money[data-currency-usd]',  '.product-list__box-price .price span.money[data-currency-usd]', '.cart-modal__box-option-row .money[data-currency-usd]'];
     //const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money', '.cart-modal__box-option-row b span.money', '.cart-modal__box-option-row span span.money', ];
 
     // draw my template function
