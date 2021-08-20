@@ -95,11 +95,11 @@ document.head.insertAdjacentHTML('beforeend', `
         }
         
         .cart-modal__box-option-row b .price_sale {
-            display: none;
+            display: none !important;
         }
         
         .cart-modal__box-option-row b .money_sale .price_sale {
-            display: none;
+            display: inline-block !important;
         }
         
     </style>
