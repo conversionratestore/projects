@@ -92,18 +92,7 @@ document.head.insertAdjacentHTML('beforeend', `
        
         .coupon_hidden {
             display: none !important;
-        }
-        /*.cart-modal__box-option-row b .price_sale:first-child {*/
-        /*    display: none !important;*/
-        /*}*/
-        /*.cart-modal__box-option-row b .price_sale {*/
-        /*    display: none !important;*/
-        /*}*/
-        
-        /*.cart-modal__box-option-row b .money_sale .price_sale {*/
-        /*    display: inline-block !important;*/
-        /*}*/
-        
+        }        
     </style>
 `);
 
@@ -125,8 +114,8 @@ const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
-// let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-let twentyFourHours = 60;
+let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
+// let twentyFourHours = 60;
 
 if (twentyFourHours >= 0) {
     // elements on the site
@@ -280,6 +269,7 @@ if (twentyFourHours >= 0) {
     }
 
     startTimer(twentyFourHours, display);
+    document.querySelector('.cart-modal__box-option-row b .money_sale .price_sale').remove()
 }
 
 
