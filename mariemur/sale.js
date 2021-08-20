@@ -164,7 +164,7 @@ if (twentyFourHours >= 0) {
     }
 
     function addCoupon() {
-        
+
 
             document.querySelector('.af_cd_setup').style.opacity = '0';
             document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
@@ -183,7 +183,7 @@ if (twentyFourHours >= 0) {
                     });
                 }
             }, 100);
-        
+
     }
 
     addCoupon();
@@ -209,7 +209,7 @@ if (twentyFourHours >= 0) {
 
     // select the target node
     const loadMoreTarget = document.querySelector('.cart-modal');
-    
+
 
     // if exist create observer
     if (loadMoreTarget) {
@@ -218,18 +218,21 @@ if (twentyFourHours >= 0) {
             drawSale('.product-list__box-price .price .money');
         });
 
-        loadMoreObserver.observe(loadMoreTarget, newConfig);
+        loadMoreObserver.observe(loadMoreTarget, {
+            attributes: true,
+            childList: true,
+            subtree: true});
     }
 
     // create observers instance
-    
+
     let addCouponInterval = setInterval(() => {
         if (document.querySelector('#af_custom_coupon_text_popup') && document.querySelector('#af_custom_apply_coupon_trigger_popup')) {
             clearInterval(addCouponInterval)
             addCoupon()
         }
     }, 500);
-    
+
 
     let thirdObserver = new MutationObserver(function (mutations) {
         document.querySelectorAll('.price_sale').forEach(sale => {
@@ -240,7 +243,7 @@ if (twentyFourHours >= 0) {
             money.classList.remove('money_sale');
         });
     });
-    
+
 
     /* timer */
     document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
