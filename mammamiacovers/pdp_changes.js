@@ -171,7 +171,7 @@ let style = `
             align-items: center;
         }
         
-        .line_line+.sizes {
+        .types+.sizes {
             margin-bottom: 15px;
         }
         
