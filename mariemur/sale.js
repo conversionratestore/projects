@@ -193,7 +193,7 @@ if (twentyFourHours >= 0) {
     let mut = new MutationObserver(muts => {
         mut.disconnect()
         drawSale(elementsArray[2])
-        mut.observe({
+        mut.observe(document.querySelector('.cart-modal'),{
             attributes: true,
             childList: true,
             subtree: true
