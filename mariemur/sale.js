@@ -123,14 +123,14 @@ if (twentyFourHours >= 0) {
     //const elementsArray = ['.product-price .price span span.money', '.product-list__box-price .price span .money', '.cart-modal__box-option-row b span.money', '.cart-modal__box-option-row span span.money', ];
 
     // draw my template function
-    function drawSale(element) {
+    function drawSale(element, cart) {
         let isTitlePrice = element === '.product-price .money';
 
         // let drawSaleInterval = setInterval(function() {
         //     if (element[0] || element[1] || element[2]) {
         //         clearInterval(drawSaleInterval);
         document.querySelectorAll(element).forEach(price => {
-            if (!price.classList.contains('money_sale') && price.querySelector('.price_sale')) {
+            if (!price.classList.contains('money_sale')) {
 
                 let valueInString = price.innerText.split('$')[1];
                 let num = parseFloat(valueInString.replace(/,/g, ''));
