@@ -200,7 +200,7 @@ if (twentyFourHours >= 0) {
         })
     })
 
-    mut.observe(secondTarget,{
+    mut.observe(document.querySelector('.cart-modal'),{
         attributes: true,
         childList: true,
         subtree: true
