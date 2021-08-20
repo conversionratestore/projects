@@ -109,6 +109,12 @@ if (!window.localStorage.getItem('startDate')) {
     intervalTime = currentDate - window.localStorage.getItem('startDate');
 }
 
+// Create our number formatter.
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 // let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
 let twentyFourHours = 60;
 
@@ -134,8 +140,8 @@ if (twentyFourHours >= 0) {
                         price.classList.add('money_sale');
 
                         isTitlePrice
-                            ? price.insertAdjacentHTML('afterend', `<p class="price_sale">$${val.toFixed(2)}<br><span>(10% off)</span></p>`)
-                            : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">$${val.toFixed(2)}</p>`);
+                            ? price.insertAdjacentHTML('afterend', `<p class="price_sale">${formatter.format(val.toFixed(2))}<br><span>(10% off)</span></p>`)
+                            : price.insertAdjacentHTML('beforebegin', `<p class="price_sale">${formatter.format(val.toFixed(2))}</p>`);
 
                         if (price.closest('b')) {
                             price.closest('b').style.cssText = `text-align: right;`;
