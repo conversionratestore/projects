@@ -293,15 +293,15 @@ function startCheckCart() {
             window.dataLayer = window.dataLayer || [];
             if (window.matchMedia("(min-width: 769px)").matches) {
                 dataLayer.push({
+                    'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup desktop',
-                    'eventAction': `Click on product in Exit-intent popup`,
-                    'eventLabel': 'Exit-intent popup desktop'
+                    'eventAction': 'Click on product in Exit-intent popup'
                 });
             } else {
                 dataLayer.push({
+                    'event': 'event-to-ga',
                     'eventCategory': 'Exp - Exit-intent popup mobile',
-                    'eventAction': `Click on product in Exit-intent popup`,
-                    'eventLabel': 'Exit-intent popup mobile'
+                    'eventAction': 'Click on product in Exit-intent popup'
                 });
             }
         });
