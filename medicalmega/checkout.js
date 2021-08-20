@@ -569,7 +569,7 @@ window.onload  = function () {
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
     }
-    
+
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
@@ -584,7 +584,7 @@ window.onload  = function () {
                         totalValues.innerHTML = `${sum.toFixed(2)}`;
                     }
                 }
-               
+
             });
         });
     }
@@ -648,7 +648,7 @@ window.onload  = function () {
             }
         });
     }
-    if (location.pathname == '/checkout/step1') {
+    if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
         if (!document.querySelectorAll('.checkout-product')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
@@ -671,21 +671,21 @@ window.onload  = function () {
             </style>`);
         }
         // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
-            let productsStored = [];
-            localStorage.setItem('productsStored', '');
-            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-                productsStored.push({
-                    'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
-                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                    'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
-                    'img_src': el.querySelector('a img').getAttribute('src'),
-                    'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
-                });
-                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        let productsStored = [];
+        localStorage.setItem('productsStored', '');
+        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+            productsStored.push({
+                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'img_src': el.querySelector('a img').getAttribute('src'),
+                'link': el.querySelector('.product-description a').getAttribute('href'),
+                'title': el.querySelector('.product-description a').innerHTML,
             });
-        // } 
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
+        // }
         document.querySelector('.title_head').after(document.querySelector('.payment'));
         document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
         document.querySelector('.payment h3 ').style.display = 'none';
@@ -813,7 +813,7 @@ window.onload  = function () {
         document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
         document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
         document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
-       
+
         document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
         document.querySelector('.btn-next').addEventListener('click', () => {
             pushProductsStored();
@@ -960,7 +960,7 @@ window.onload  = function () {
             });
         });
     }
-    
+
     if (localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
         for (let i = 0; i < justunoCartItems.length; i++) {
@@ -1067,7 +1067,7 @@ window.onload  = function () {
                         'eventLabel': 'Section Your order'
                     });
                 }
-                      
+
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -1084,7 +1084,7 @@ window.onload  = function () {
             sumTotalPrice();
         });
     });
-            
+
     document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
