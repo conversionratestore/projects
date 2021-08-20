@@ -124,6 +124,7 @@ if (twentyFourHours >= 0) {
 
     // draw my template function
     function drawSale(element, cart) {
+        console.log('drawSale')
         let isTitlePrice = element === '.product-price .money';
 
         // let drawSaleInterval = setInterval(function() {
