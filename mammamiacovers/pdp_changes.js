@@ -235,7 +235,11 @@ function exp() {
     let btns = document.querySelector('.product-single__add.js-product-buttons').cloneNode(true)
 
     document.querySelector('.new_specifics').insertAdjacentElement('afterend', btns)
-    document.querySelector('.types').after(document.querySelector('.line_line').nextElementSibling)
+    if (document.querySelector('.types')){
+        document.querySelector('.types').after(document.querySelector('.line_line').nextElementSibling)
+    } else {
+        document.querySelector('.similar').after(document.querySelector('.line_line').nextElementSibling)
+    }
 
     document.querySelectorAll('.product-single__swatch__item--color .product-single__swatch__label').forEach(item => {
         item.addEventListener('click', function () {
