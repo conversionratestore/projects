@@ -207,21 +207,21 @@ if (twentyFourHours >= 0) {
     /* create observers */
 
     // select the target node
-    const loadMoreTarget = document.querySelector('.cart-modal');
-
-
-    // if exist create observer
-    if (loadMoreTarget) {
-        let loadMoreObserver = new MutationObserver(function (mutations) {
-            // call drawSale function for each element from array
-            drawSale('.product-list__box-price .price .money');
-        });
-
-        loadMoreObserver.observe(loadMoreTarget, {
-            attributes: true,
-            childList: true,
-            subtree: true});
-    }
+    // const loadMoreTarget = document.querySelector('.cart-modal');
+    //
+    //
+    // // if exist create observer
+    // if (loadMoreTarget) {
+    //     let loadMoreObserver = new MutationObserver(function (mutations) {
+    //         // call drawSale function for each element from array
+    //         drawSale('.product-list__box-price .price .money');
+    //     });
+    //
+    //     loadMoreObserver.observe(loadMoreTarget, {
+    //         attributes: true,
+    //         childList: true,
+    //         subtree: true});
+    // }
 
     // create observers instance
 
