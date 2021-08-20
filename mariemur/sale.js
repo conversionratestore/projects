@@ -164,8 +164,6 @@ if (twentyFourHours >= 0) {
     }
 
     function addCoupon() {
-        secondObserver.disconnect();
-
         document.querySelector('.af_cd_setup').style.opacity = '0';
         document.querySelector('#af_custom_coupon_text_popup').value = 'MM10CRO';
         document.querySelector('#af_custom_apply_coupon_trigger_popup').click();
@@ -212,6 +210,7 @@ if (twentyFourHours >= 0) {
 
     // create observers instance
     let secondObserver = new MutationObserver(function (mutations) {
+        secondObserver.disconnect();
         // let addCouponInterval = setInterval(() => {
         addCoupon();
         // }, 100);
