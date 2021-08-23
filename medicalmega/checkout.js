@@ -589,7 +589,7 @@ window.onload  = function () {
                     // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
                     //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
                     // } else {
-                    totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML - document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
+                    totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML) - parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
                     // }
                 }
             });
