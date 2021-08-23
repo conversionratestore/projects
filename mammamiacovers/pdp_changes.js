@@ -219,12 +219,15 @@ function exp() {
     document.querySelectorAll('.js-cart-replace')[1].insertAdjacentHTML('afterend', `<div class="options_select"></div>`)
 
     document.querySelector('.options_select').append(document.querySelector('.product-single__form'))
-    // let slider = setInterval(function () {
-    //     if (typeof $ === 'function') {
-    //         clearInterval(slider)
-    //         $('.product-single__photo.product-single__photo--large').slick('setPosition')
-    //     }
-    // }, 50)
+    setTimeout(function () {
+        let slider = setInterval(function () {
+            if (typeof $ === 'function') {
+                clearInterval(slider)
+                $('.product-single__photo.product-single__photo--large').slick('setPosition')
+            }
+        }, 50)
+    }, 2000)
+    
 
     document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
     document.querySelector('.product-single__classic-title').insertAdjacentHTML('afterend', `<p class="selected_options">Color:<span>${color}</span> Size:<span>${size}</span></p>`)
