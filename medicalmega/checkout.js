@@ -267,7 +267,7 @@ window.onload  = function () {
             display: flex;
             justify-content: space-between;
             margin: auto -20px 0;
-            padding: 20px;
+            padding: 17px 20px;
             background: #222222;
             border-radius: 0px 0px 4px 4px;}
         .checkout-right_footer .altTd p, {
@@ -970,7 +970,7 @@ window.onload  = function () {
         });
     }
 
-    if (document.querySelector('.altPayment .total-values')) {
+    if (document.querySelector('.altPayment .total-values br')) {
         document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')).toFixed(2);      
     }
     if (localStorage.getItem('productsStored')) {
