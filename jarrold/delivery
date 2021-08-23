@@ -1,0 +1,373 @@
+let styleSet = /*html*/ `
+<style>
+
+
+.upc{
+text-align:center;
+}
+
+
+@media (min-width: 992px){
+.upc{
+text-align:start;
+max-width: 200px;
+}
+
+.summ{
+max-width: 300px;
+}
+
+.controls{
+max-width: 300px;
+}
+}
+
+.hidden {
+  display: none;
+}
+
+.accent-text-random{
+color:#E62B8A;
+}
+
+.price-more{
+font-weight:700;
+}
+
+.delivery-box-mobile{
+justify-content:center;
+margin-top:28px;
+margin-bottom:28px;
+font-weight: 400;
+font-size: 14px;
+line-height: 1;
+align-items: center;
+text-align: center;
+color: #2C8081;
+}
+
+  
+.text-block-more{
+line-height: 1.7;
+text-align: center;
+}
+
+.delivery-svg-mobile{
+margin-right: 0.7em;
+vertical-align: text-bottom;
+}
+
+.delivery-svg-mobile-more{
+margin-right:5px;
+vertical-align: text-bottom;
+}
+
+.information-box-mobile{
+padding:0;
+margin-top:20px;
+margin-bottom:28px;
+text-align: center;
+list-style: none;
+font-weight: 400;
+font-size: 12px;
+line-height: 1.17;
+color: #8E8E8E;
+}
+
+.list-text:first-child{
+margin-bottom:8px;
+}
+
+.params-span{
+font-weight: 600;
+font-size: 13px;
+}
+
+/* Desktop */
+
+.price {
+position: relative;
+}
+
+.controls{
+align-items:center;
+}
+@media (max-width: 1200px){
+    .delivery-box{
+    width:0;
+    }
+}
+
+.delivery-box{
+display: block;
+position: absolute;
+top: 0;
+right: 0;
+padding:20px;
+width:180px;
+border:2px dashed #E5E5E5;
+
+font-weight: 400;
+font-size: 14px;
+line-height: 1.4;
+align-items: center;
+text-align: center;
+color: #2C8081;
+}
+
+.delivery-svg{
+vertical-align: baseline;
+}
+
+.text-span{
+display: block;
+color:#E62B8A;
+}
+
+.information-box{
+text-align:start;
+margin:0;
+padding:0;
+list-style: none;
+font-weight: 400;
+font-size: 12px;
+line-height: 1.17;
+color: #8E8E8E;
+}
+
+</style>
+`;
+
+document.head.insertAdjacentHTML("beforeend", styleSet);
+
+hurryUp();
+renderDelivery();
+
+function renderDelivery() {
+  if (window.innerWidth <= 768) {
+    if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
+      document.querySelector("delivery-box").classList.add("hidden");
+      document.querySelector("information-box").classList.add("hidden");
+    }
+    mobileVersion();
+  } else {
+    if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
+      document.querySelector("delivery-box-mobile").classList.add("hidden");
+      document.querySelector("information-box-mobile").classList.add("hidden");
+    }
+    desktopVersion();
+  }
+}
+
+// // LocalStor
+// let localStorText = getRandomIntInclusive(1, 9);
+
+// localStorage.setItem(textRandom, JSON.stringify(localStorText));
+
+// if (document.querySelector(".accent-text-random")) {
+//   localStorText.push({
+//     textRandom: document.querySelector(".accent-text-random").textContent,
+//   });
+// }
+
+// Hurry up
+function hurryUp() {
+  if (document.querySelector(".stock.instock")) {
+    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${getRandomIntInclusive(1, 9)} left</span> in Stock.</p>`;
+  }
+  function getRandomIntInclusive(min, max) {
+    minNamber = Math.ceil(min);
+    maxNamber = Math.floor(max);
+    return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+  }
+}
+
+// includesText
+function includesText(text, informationBox) {
+  if (text.innerText.toLowerCase().includes("model height") || text.innerText.toLowerCase().includes("is wearing")) {
+    let paramsSpan = text.innerText.toLowerCase().includes(": ") ? text.innerText.split(": ") : text.innerText.split("size ");
+    let and = text.innerText.toLowerCase().includes(": ") ? ": " : "size ";
+    document
+      .querySelector(`.${informationBox}`)
+      .insertAdjacentHTML("beforeend", `<li class="list-text">${paramsSpan[0]}${and}<span class="params-span">${paramsSpan[1]}</span></li>`);
+  }
+}
+
+// Mobile
+function mobileVersion() {
+  console.log(`mobileVersion`);
+
+  // deliveryBoxMobile
+  let deliveryBoxMoreMobile = /*html*/ `
+<div class="delivery-box-mobile">
+   <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
+  </p>
+</div>
+`;
+
+  let deliveryBoxMobile = /*html*/ `
+<div class="delivery-box-mobile">
+   <p class="text-block">
+   <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
+    You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
+</div>
+`;
+
+  if (document.querySelector(".upc")) {
+    let now = "rrp";
+
+    if (document.querySelector(".price .now")) {
+      now = "now";
+    }
+
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      console.log(`FetchMobile`);
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+          console.log(customSumm);
+
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
+          }
+        });
+    } else {
+      console.log(`!FetchMobile`);
+      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
+        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
+      }
+    }
+  }
+
+  // informationBox
+  if (document.querySelector(".controls")) {
+    document.querySelector(".controls").insertAdjacentHTML("afterend", `<ul class="information-box-mobile"></ul>`);
+    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+      let informationBox = "information-box-mobile";
+      includesText(text, informationBox);
+    });
+  }
+
+  if (document.querySelector(".information-box-mobile")) {
+    if (!document.querySelector(".information-box-mobile li")) {
+      document.querySelector(".information-box-mobile").classList.add("hidden");
+    }
+  }
+}
+
+// Desktop;
+function desktopVersion() {
+  console.log(`desktopVersion`);
+
+  // deliveryBox
+  let deliveryBoxMore = /*html*/ `
+<div class="delivery-box">
+    <p class="text-block-more-desktop">
+    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
+    </p>
+</div>
+`;
+
+  let deliveryBox = /*html*/ `
+<div class="delivery-box">
+    <p class="text-block-desktop">
+    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
+</div>
+`;
+
+  if (document.querySelector("#variants .price")) {
+    let now = "rrp";
+
+    if (document.querySelector(".price .now")) {
+      now = "now";
+    }
+
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      console.log(`Fetch`);
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+          console.log(customSumm);
+
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          }
+        });
+    } else {
+      console.log(`!Fetch`);
+      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      }
+    }
+  }
+
+  // informationBox
+  if (document.querySelector(".col-sm-8 li")) {
+    document.querySelector(".controls").insertAdjacentHTML("beforeend", `<ul class="information-box"></ul>`);
+
+    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+      let informationBox = "information-box";
+      includesText(text, informationBox);
+    });
+  }
+
+  if (document.querySelector(".information-box")) {
+    if (!document.querySelector(".information-box li")) {
+      document.querySelector(".information-box").classList.add("hidden");
+    }
+  }
+}
+
+let mutArticle = new MutationObserver((muts) => {
+  mutArticle.disconnect();
+  if (!document.querySelector(".accent-text-random")) {
+    hurryUp();
+  }
+
+  // if (
+  //   !document.querySelector(".delivery-box") ||
+  //   !document.querySelector(".information-box") ||
+  //   !document.querySelector(".delivery-box-mobile") ||
+  //   !document.querySelector(".information-box-mobile")
+  // ) {
+  //   renderDelivery();
+  // }
+
+  mutArticle.observe(document.querySelector("article .core"), {
+    childList: true,
+    subtree: true,
+  });
+});
+
+mutArticle.observe(document.querySelector("article .core"), {
+  childList: true,
+  subtree: true,
+});
