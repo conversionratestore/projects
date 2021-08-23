@@ -189,12 +189,14 @@ window.onload  = function () {
             margin-bottom: 20px;
             border-radius: 4px;}
         div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
-           
             width: fit-content;
             margin-left: auto;}
-            div.myAccountright > form > dd:nth-child(5){
-                max-width: 100%;
-            }
+        div.myAccountright > form > dd:nth-child(5){
+            max-width: 100%; }
+        div.myAccountright > form > dd.forgot_password { 
+            width: 50%!important;
+            max-width: 224px!important;
+            margin-left: 0!important; }
         .checkout-right_head {
             padding: 22px 0 15px;
             border-bottom: 0.5px solid #CCCCCC;}
@@ -524,6 +526,9 @@ window.onload  = function () {
         .address_book_new .editor .title {
             display: none;
         }
+        .invaliduser {
+            width: 100%;
+        }
     </style>`);
 
     document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -652,6 +657,15 @@ window.onload  = function () {
                 });
             }
         });
+        if (document.querySelector('.invaliduser')) {
+            document.querySelector('.log').innerHTML = 'Registration';
+            document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
+            document.querySelector('.myAccountleft').style.display = 'none';
+            document.querySelector('.myAccountright').style.display = 'block';
+            document.querySelector('.log').classList.remove('active');
+            document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
+            document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
+        }
     }
     if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
         if (!document.querySelectorAll('.checkout-product')) {
