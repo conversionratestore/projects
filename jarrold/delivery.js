@@ -140,6 +140,15 @@ color: #8E8E8E;
 
 document.head.insertAdjacentHTML("beforeend", styleSet);
 
+// getRandomIntInclusive
+function getRandomIntInclusive(min, max) {
+  minNamber = Math.ceil(min);
+  maxNamber = Math.floor(max);
+  return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+}
+
+let randomeCount = getRandomIntInclusive(1, 9);
+
 hurryUp();
 renderDelivery();
 
@@ -159,26 +168,10 @@ function renderDelivery() {
   }
 }
 
-// // LocalStor
-// let localStorText = getRandomIntInclusive(1, 9);
-
-// localStorage.setItem(textRandom, JSON.stringify(localStorText));
-
-// if (document.querySelector(".accent-text-random")) {
-//   localStorText.push({
-//     textRandom: document.querySelector(".accent-text-random").textContent,
-//   });
-// }
-
 // Hurry up
 function hurryUp() {
   if (document.querySelector(".stock.instock")) {
-    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${getRandomIntInclusive(1, 9)} left</span> in Stock.</p>`;
-  }
-  function getRandomIntInclusive(min, max) {
-    minNamber = Math.ceil(min);
-    maxNamber = Math.floor(max);
-    return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
+    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
   }
 }
 
@@ -195,8 +188,6 @@ function includesText(text, informationBox) {
 
 // Mobile
 function mobileVersion() {
-  console.log(`mobileVersion`);
-
   // deliveryBoxMobile
   let deliveryBoxMoreMobile = /*html*/ `
 <div class="delivery-box-mobile">
@@ -221,13 +212,11 @@ function mobileVersion() {
     }
 
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
-      console.log(`FetchMobile`);
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
           let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
-          console.log(customSumm);
 
           if (customSumm < 50) {
             // NOT FREE SHIPPING
@@ -240,7 +229,6 @@ function mobileVersion() {
           }
         });
     } else {
-      console.log(`!FetchMobile`);
       if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
         // NOT FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
@@ -271,8 +259,6 @@ function mobileVersion() {
 
 // Desktop;
 function desktopVersion() {
-  console.log(`desktopVersion`);
-
   // deliveryBox
   let deliveryBoxMore = /*html*/ `
 <div class="delivery-box">
@@ -297,13 +283,11 @@ function desktopVersion() {
     }
 
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
-      console.log(`Fetch`);
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
           let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
-          console.log(customSumm);
 
           if (customSumm < 50) {
             // NOT FREE SHIPPING
@@ -316,7 +300,6 @@ function desktopVersion() {
           }
         });
     } else {
-      console.log(`!Fetch`);
       if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
         // NOT FREE SHIPPING
         document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
@@ -346,28 +329,50 @@ function desktopVersion() {
   }
 }
 
-let mutArticle = new MutationObserver((muts) => {
-  mutArticle.disconnect();
-  if (!document.querySelector(".accent-text-random")) {
-    hurryUp();
-  }
+// handleClick
+function handleClick() {
+  document.querySelectorAll(".specifics button").forEach((el) => {
+    el.addEventListener("click", function () {
+      setTimeout(function () {
+        if (!document.querySelector(".accent-text-random")) {
+          hurryUp();
+        }
 
-  // if (
-  //   !document.querySelector(".delivery-box") ||
-  //   !document.querySelector(".information-box") ||
-  //   !document.querySelector(".delivery-box-mobile") ||
-  //   !document.querySelector(".information-box-mobile")
-  // ) {
-  //   renderDelivery();
-  // }
-
-  mutArticle.observe(document.querySelector("article .core"), {
-    childList: true,
-    subtree: true,
+        if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
+          renderDelivery();
+          handleClick();
+        }
+      }, 500);
+    });
   });
+}
+
+handleClick();
+
+//
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp — Delivery Size guide mobile",
+  eventAction: "loaded",
 });
 
-mutArticle.observe(document.querySelector("article .core"), {
-  childList: true,
-  subtree: true,
-});
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2369936, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj("trigger", "delivery_size_guide_mobile");
