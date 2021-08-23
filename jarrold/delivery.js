@@ -351,7 +351,7 @@ function handleClick() {
           renderDelivery();
           handleClick();
         }
-      }, 500);
+      }, 200);
     });
   });
 }
