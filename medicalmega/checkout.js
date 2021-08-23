@@ -589,7 +589,7 @@ window.onload  = function () {
                     // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
                     //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
                     // } else {
-                    totalValues.innerHTML = `${sum.toFixed(2) + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML - document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)}`;
+                    totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML - document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
                     // }
                 }
             });
@@ -948,7 +948,7 @@ window.onload  = function () {
         document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
         document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
 
-        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$',''));
+        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')).toFixed(2);
         document.querySelector('.card-details label').addEventListener('click',() => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
