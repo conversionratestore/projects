@@ -875,8 +875,12 @@ window.onload  = function () {
         document.body.insertAdjacentHTML('afterbegin',`<style>
         .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
             display: block!important; }
-        .payment h3, .checkout-left_head {
+        .payment h3, .checkout-left_head, .remove {
             display: none!important;}
+        .quantity-row {
+            pointer-events: none;}
+        .quantity-btn {
+            color: #CCCCCC!important; }
         .primaryInfo {
             font-family: 'Arial', sans-serif;
             width: 100%;
