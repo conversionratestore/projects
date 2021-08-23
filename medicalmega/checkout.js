@@ -990,6 +990,7 @@ window.onload  = function () {
     }
     
     if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
+        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('\n$','')).toFixed(2);      
         document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n- $','')).toFixed(2);
     }
     if (localStorage.getItem('productsStored')) {
