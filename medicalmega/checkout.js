@@ -859,7 +859,7 @@ window.onload  = function () {
     if (location.pathname == '/checkout/step3') {
         document.body.insertAdjacentHTML('afterbegin',`<style>
         .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
-            display: block; }
+            display: block!important; }
         .payment h3, .checkout-left_head {
             display: none!important;}
         .primaryInfo {
