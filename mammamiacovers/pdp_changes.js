@@ -226,7 +226,7 @@ function exp() {
                 $('.product-single__photo.product-single__photo--large').slick('setPosition')
             }
         }, 50)
-    }, 2000)
+    }, 1000)
     
 
     document.querySelectorAll('.js-cart-replace')[0].insertAdjacentHTML('beforebegin', `<div class="ready_ship"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/confirm.svg" alt="confirm">${readyText}</div>`)
