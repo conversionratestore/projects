@@ -209,6 +209,7 @@ window.onload  = function () {
             border-radius: 4px;}
         .checkout-right_body {
             max-height: 333px;
+            min-height: 324px;
             margin: 0 -10px 0 0;
             padding: 10px 10px 15px 0;
             overflow-y: auto;
