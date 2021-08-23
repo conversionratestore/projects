@@ -596,7 +596,6 @@ window.onload  = function () {
         });
     }
 
-
     document.querySelectorAll('.btn-eye').forEach((item) => {
         item.addEventListener('click', () => {
             const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -636,8 +635,8 @@ window.onload  = function () {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': `Click Sign In button`,
-                    'eventLabel': 'Section Registration'
+                    'eventAction': `Click Registration button`,
+                    'eventLabel': 'Section Sign In'
                 });
             } else {
                 _this.innerHTML = 'Registration';
@@ -648,8 +647,8 @@ window.onload  = function () {
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': `Click Registration button`,
-                    'eventLabel': 'Section Sign In'
+                    'eventAction': `Click Sign In button`,
+                    'eventLabel': 'Section Registration'
                 });
             }
         });
