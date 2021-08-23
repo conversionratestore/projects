@@ -278,6 +278,12 @@ if (twentyFourHours >= 0) {
     startTimer(twentyFourHours, display);
 }
 
+setInterval(()=> {
+    if(document.querySelectorAll('.af_money.af_striked_out_price').length > 1) {
+        document.querySelectorAll('.af_money.af_striked_out_price')[0].remove();
+    }
+}, 500)
+
 // hotjar events
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
