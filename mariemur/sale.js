@@ -97,6 +97,13 @@ document.head.insertAdjacentHTML('beforeend', `
         .af_tag:first-child {
             display: none;
         }        
+        
+        .cart-modal__total-price span small.af_money.af_striked_out_price {
+            display: none !important;
+        }
+        .cart-modal__total-price span em small.af_money.af_striked_out_price {
+            display: inline !important;
+        }
     </style>
 `);
 
