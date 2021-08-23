@@ -559,7 +559,7 @@ window.onload  = function () {
                 <div class="altTd total-values">
                     <p>$ <b></b></p>   
                     <p>$ <b>0.00</b></p>   
-                    <p>$ <b>0.00</b></p>   
+                    <p>- $ <b>0.00</b></p>   
                     <p>$ <b></b></p>
                 </div>
             </div>
@@ -985,8 +985,12 @@ window.onload  = function () {
         });
     }
 
-    if (document.querySelectorAll('.altPayment .total-values br').length >= 2) {
+    if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
         document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')).toFixed(2);      
+    }
+    
+    if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
+        document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n- $','')).toFixed(2);
     }
     if (localStorage.getItem('productsStored')) {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
