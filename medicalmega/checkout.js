@@ -116,6 +116,7 @@ window.onload  = function () {
             padding-left: 0 ;
             display: flex;}
         .checkout-left {
+            position: relative;
             display: flex;
             flex-direction: column;
             max-width: 542px;
@@ -664,6 +665,7 @@ window.onload  = function () {
             document.querySelector('.myAccountright').style.display = 'block';
             document.querySelector('.log').classList.remove('active');
             document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
+            document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
             document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
         }
     }
