@@ -1,6 +1,8 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
+        .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
+            display: none;}
         .title_head {
             font-weight: bold;
             font-size: 20px;
@@ -544,10 +546,14 @@ window.onload  = function () {
             <div class="checkout-right_footer">
                 <div class="altTd total-headings">
                     <p><b>Sub Total:</b></p> 
+                    <p><b>Shipping:</b></p> 
+                    <p><b>Promocode:</b></p> 
                     <p><b>Grand Total:</b></p> 
                 </div>
                 <div class="altTd total-values">
                     <p>$ <b></b></p>   
+                    <p>$ <b>0.00</b></p>   
+                    <p>$ <b>0.00</b></p>   
                     <p>$ <b></b></p>
                 </div>
             </div>
@@ -576,21 +582,20 @@ window.onload  = function () {
         document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
             sum += parseFloat(totalPrice.innerHTML);
             document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
-                if(totalIndex === 0) {
+                if (totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
-                } else {
-                    if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
-                        totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
-                    } else {
-                        totalValues.innerHTML = `${sum.toFixed(2)}`;
-                    }
+                } 
+                if (totalIndex === 3) {
+                    // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
+                    //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
+                    // } else {
+                    totalValues.innerHTML = `${sum.toFixed(2) + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML - document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)}`;
+                    // }
                 }
-
             });
         });
     }
 
-    sumTotalPrice();
 
     document.querySelectorAll('.btn-eye').forEach((item) => {
         item.addEventListener('click', () => {
@@ -942,6 +947,8 @@ window.onload  = function () {
         document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
         document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
         document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
+
+        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$',''));
         document.querySelector('.card-details label').addEventListener('click',() => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
@@ -1095,6 +1102,8 @@ window.onload  = function () {
             'eventLabel': 'Section Your order'
         });
     })
+
+    sumTotalPrice();
 };
 
 (function(h,o,t,j,a,r){
