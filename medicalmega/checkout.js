@@ -722,8 +722,9 @@ window.onload  = function () {
         document.querySelector('.btn-next').addEventListener('click', () => {
             if(document.querySelector('#copy_bill').checked) {
                 document.querySelector('.editor .buttons a').click();
+            } else {
+                document.querySelectorAll('form div[align="right"] input')[1].click();
             }
-            document.querySelectorAll('form div[align="right"] input')[1].click();
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
