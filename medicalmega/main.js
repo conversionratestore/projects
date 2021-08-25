@@ -1,6 +1,8 @@
 window.onload  = function () {
     let style = `
         <style>
+            .homeslider__dots {
+                display: none;}
             button {
                 outline: none;}
             input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
