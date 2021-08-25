@@ -178,78 +178,71 @@ let deliveryBox = /*html*/ `
   `;
 
 let now;
-if (document.querySelector("#variants .price")) {
+
+if (document.querySelector("#variants .price") || document.querySelector(".upc")) {
   now = "rrp";
 
   if (document.querySelector(".price .now")) {
     now = "now";
   }
-}
 
-let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
-let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-let customSumm = +(price * qty).toFixed(2);
-console.log(customSumm);
-localStorage.setItem("customSumm", customSumm);
+  let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
+  let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+  let customSumm = +(price * qty).toFixed(2);
+  console.log(customSumm);
+  localStorage.setItem("customSumm", customSumm);
 
-document.head.insertAdjacentHTML("beforeend", styleSet);
+  document.head.insertAdjacentHTML("beforeend", styleSet);
 
-// getRandomIntInclusive
-function getRandomIntInclusive(min, max) {
-  minNamber = Math.ceil(min);
-  maxNamber = Math.floor(max);
-  return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
-}
-
-let randomeCount = getRandomIntInclusive(1, 9);
-
-hurryUp();
-renderDelivery();
-
-function renderDelivery() {
-  if (window.innerWidth <= 768) {
-    if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
-      document.querySelector("delivery-box").classList.add("hidden");
-      document.querySelector("information-box").classList.add("hidden");
-    }
-    mobileVersion();
-  } else {
-    if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
-      document.querySelector("delivery-box-mobile").classList.add("hidden");
-      document.querySelector("information-box-mobile").classList.add("hidden");
-    }
-    desktopVersion();
+  // getRandomIntInclusive
+  function getRandomIntInclusive(min, max) {
+    minNamber = Math.ceil(min);
+    maxNamber = Math.floor(max);
+    return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
   }
-}
 
-// Hurry up
-function hurryUp() {
-  if (document.querySelector(".stock.instock")) {
-    document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
-  }
-}
+  let randomeCount = getRandomIntInclusive(1, 9);
 
-// includesText
-function includesText(text, informationBox) {
-  if (text.innerText.toLowerCase().includes("model height") || text.innerText.toLowerCase().includes("is wearing")) {
-    let paramsSpan = text.innerText.toLowerCase().includes(": ") ? text.innerText.split(": ") : text.innerText.split("size ");
-    let and = text.innerText.toLowerCase().includes(": ") ? ": " : "size ";
-    document
-      .querySelector(`.${informationBox}`)
-      .insertAdjacentHTML("beforeend", `<li class="list-text">${paramsSpan[0]}${and}<span class="params-span">${paramsSpan[1]}</span></li>`);
-  }
-}
+  hurryUp();
+  renderDelivery();
 
-// Mobile
-function mobileVersion() {
-  // deliveryBoxMobile
-
-  if (document.querySelector(".upc")) {
-    let now = "rrp";
-
-    if (document.querySelector(".price .now")) {
-      now = "now";
+  function renderDelivery() {
+    if (window.innerWidth <= 768) {
+      if (document.querySelector("delivery-box") || document.querySelector("information-box")) {
+        document.querySelector("delivery-box").classList.add("hidden");
+        document.querySelector("information-box").classList.add("hidden");
+      }
+      mobileVersion();
+    } else {
+      if (document.querySelector("delivery-box-mobile") || document.querySelector("information-box-mobile")) {
+        document.querySelector("delivery-box-mobile").classList.add("hidden");
+        document.querySelector("information-box-mobile").classList.add("hidden");
+      }
+      desktopVersion();
     }
+  }
+
+  // Hurry up
+  function hurryUp() {
+    if (document.querySelector(".stock.instock")) {
+      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
+    }
+  }
+
+  // includesText
+  function includesText(text, informationBox) {
+    if (text.innerText.toLowerCase().includes("model height") || text.innerText.toLowerCase().includes("is wearing")) {
+      let paramsSpan = text.innerText.toLowerCase().includes(": ") ? text.innerText.split(": ") : text.innerText.split("size ");
+      let and = text.innerText.toLowerCase().includes(": ") ? ": " : "size ";
+      document
+        .querySelector(`.${informationBox}`)
+        .insertAdjacentHTML("beforeend", `<li class="list-text">${paramsSpan[0]}${and}<span class="params-span">${paramsSpan[1]}</span></li>`);
+    }
+  }
+
+  // Mobile
+  function mobileVersion() {
+    // deliveryBoxMobile
 
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
@@ -299,135 +292,135 @@ function mobileVersion() {
       document.querySelector(".information-box-mobile").classList.add("hidden");
     }
   }
-}
 
-// Desktop;
-function desktopVersion() {
-  if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
-    fetch("https://www.jarrold.co.uk/basket")
-      .then((res) => res.text())
-      .then((data) => {
-        let customDocument = new DOMParser().parseFromString(data, "text/html");
-        console.log(customSumm);
-        customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
-        console.log(customSumm);
-        localStorage.customSumm = customSumm;
+  // Desktop;
+  function desktopVersion() {
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          console.log(customSumm);
+          customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+          console.log(customSumm);
+          localStorage.customSumm = customSumm;
 
-        if (customSumm < 50) {
-          // NOT FREE SHIPPING
-          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-          let summDiff = 50 - customSumm;
-          document.querySelector(".price-more").innerText = `£${summDiff}`;
-        } else {
-          // FREE SHIPPING
-          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          }
+        });
+    } else {
+      if (customSumm < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+        let summDiff = 50 - customSumm;
+        document.querySelector(".price-more").innerText = `£${summDiff}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      }
+    }
+
+    setTimeout(() => {
+      document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+        if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+          let summ = +localStorage.getItem("customSumm");
+          let newSumm = summ - price;
+          localStorage.customSumm = newSumm;
+          if (newSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".delivery-box").remove();
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let newSummDiff = 50 - newSumm;
+            document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+          }
         }
       });
-  } else {
-    if (customSumm < 50) {
-      // NOT FREE SHIPPING
-      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-      let summDiff = 50 - customSumm;
-      document.querySelector(".price-more").innerText = `£${summDiff}`;
-    } else {
-      // FREE SHIPPING
-      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
-    }
-  }
 
-  setTimeout(() => {
-    document.querySelector(".controls.qty .dec").addEventListener("click", function () {
-      if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+      document.querySelector(".controls.qty .inc").addEventListener("click", function () {
         let summ = +localStorage.getItem("customSumm");
-        let newSumm = summ - price;
+        let newSumm = summ + price;
         localStorage.customSumm = newSumm;
         if (newSumm < 50) {
           // NOT FREE SHIPPING
-          document.querySelector(".delivery-box").remove();
-          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
           let newSummDiff = 50 - newSumm;
           document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+        } else {
+          // FREE SHIPPING
+          document.querySelector(".delivery-box").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
         }
+      });
+    }, 1000);
+
+    // informationBox
+    if (document.querySelector(".col-sm-8 li")) {
+      document.querySelector(".controls").insertAdjacentHTML("beforeend", `<ul class="information-box"></ul>`);
+
+      document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+        let informationBox = "information-box";
+        includesText(text, informationBox);
+      });
+    }
+
+    if (document.querySelector(".information-box")) {
+      if (!document.querySelector(".information-box li")) {
+        document.querySelector(".information-box").classList.add("hidden");
       }
-    });
-
-    document.querySelector(".controls.qty .inc").addEventListener("click", function () {
-      let summ = +localStorage.getItem("customSumm");
-      let newSumm = summ + price;
-      localStorage.customSumm = newSumm;
-      if (newSumm < 50) {
-        // NOT FREE SHIPPING
-        let newSummDiff = 50 - newSumm;
-        document.querySelector(".price-more").innerText = `£${newSummDiff}`;
-      } else {
-        // FREE SHIPPING
-        document.querySelector(".delivery-box").remove();
-        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
-      }
-    });
-  }, 1000);
-
-  // informationBox
-  if (document.querySelector(".col-sm-8 li")) {
-    document.querySelector(".controls").insertAdjacentHTML("beforeend", `<ul class="information-box"></ul>`);
-
-    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
-      let informationBox = "information-box";
-      includesText(text, informationBox);
-    });
-  }
-
-  if (document.querySelector(".information-box")) {
-    if (!document.querySelector(".information-box li")) {
-      document.querySelector(".information-box").classList.add("hidden");
     }
   }
-}
 
-// handleClick
-function handleClick() {
-  document.querySelectorAll(".specifics button").forEach((el) => {
-    el.addEventListener("click", function () {
-      setTimeout(function () {
-        if (!document.querySelector(".accent-text-random")) {
-          hurryUp();
-        }
+  // handleClick
+  function handleClick() {
+    document.querySelectorAll(".specifics button").forEach((el) => {
+      el.addEventListener("click", function () {
+        setTimeout(function () {
+          if (!document.querySelector(".accent-text-random")) {
+            hurryUp();
+          }
 
-        if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
-          renderDelivery();
-          handleClick();
-        }
-      }, 200);
+          if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
+            renderDelivery();
+            handleClick();
+          }
+        }, 200);
+      });
     });
+  }
+
+  handleClick();
+
+  //
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — Delivery Size guide mobile",
+    eventAction: "loaded",
   });
-}
 
-handleClick();
-
-//
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp — Delivery Size guide mobile",
-  eventAction: "loaded",
-});
-
-(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 2369936, hjsv: 6 };
+    a = o.getElementsByTagName("head")[0];
+    r = o.createElement("script");
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+  window.hj =
+    window.hj ||
     function () {
-      (h.hj.q = h.hj.q || []).push(arguments);
+      (hj.q = hj.q || []).push(arguments);
     };
-  h._hjSettings = { hjid: 2369936, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-window.hj =
-  window.hj ||
-  function () {
-    (hj.q = hj.q || []).push(arguments);
-  };
-hj("trigger", "delivery_size_guide_mobile");
+  hj("trigger", "delivery_size_guide_mobile");
+}
