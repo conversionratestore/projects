@@ -126,9 +126,9 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 // let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-let twentyFourHours = 30;
+let twentyFourHours = 30 - (intervalTime / 1000) ;
 
-if (twentyFourHours >= 0) {
+if (twentyFourHours > 0) {
     // elements on the site
     const elementsArray = ['.product-price .price span span.money[data-currency-usd]', '.product-list__box-price .price span .money[data-currency-usd]', '.product-list__box-price .price span.money[data-currency-usd]', '.cart-modal__box-option-row .money[data-currency-usd]'];
 
