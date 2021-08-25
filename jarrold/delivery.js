@@ -147,6 +147,51 @@ let styleSet = /*html*/ `
 </style>
 `;
 
+let deliveryBoxMoreMobile = /*html*/ `
+<div class="delivery-box-mobile">
+   <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
+  </p>
+</div>
+`;
+
+let deliveryBoxMobile = /*html*/ `
+<div class="delivery-box-mobile">
+   <p class="text-block">
+   <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
+    You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
+</div>
+`;
+
+let deliveryBoxMore = /*html*/ `
+  <div class="delivery-box">
+      <p class="text-block-more-desktop">
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
+      </p>
+  </div>
+  `;
+
+let deliveryBox = /*html*/ `
+  <div class="delivery-box">
+      <p class="text-block-desktop">
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
+  </div>
+  `;
+
+let now;
+if (document.querySelector("#variants .price")) {
+  now = "rrp";
+
+  if (document.querySelector(".price .now")) {
+    now = "now";
+  }
+}
+
+let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
+let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+let customSumm = +(price * qty).toFixed(2);
+console.log(customSumm);
+localStorage.setItem("customSumm", customSumm);
+
 document.head.insertAdjacentHTML("beforeend", styleSet);
 
 // getRandomIntInclusive
@@ -198,20 +243,6 @@ function includesText(text, informationBox) {
 // Mobile
 function mobileVersion() {
   // deliveryBoxMobile
-  let deliveryBoxMoreMobile = /*html*/ `
-<div class="delivery-box-mobile">
-   <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
-  </p>
-</div>
-`;
-
-  let deliveryBoxMobile = /*html*/ `
-<div class="delivery-box-mobile">
-   <p class="text-block">
-   <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
-    You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
-</div>
-`;
 
   if (document.querySelector(".upc")) {
     let now = "rrp";
@@ -225,7 +256,11 @@ function mobileVersion() {
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
-          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
+          let customSumm =
+            +document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value +
+            +customDocument.querySelector("dd.total").innerText.split("£")[1];
+
+          localStorage.setItem("customSumm", customSumm.toFixed(2));
 
           if (customSumm < 50) {
             // NOT FREE SHIPPING
@@ -238,10 +273,10 @@ function mobileVersion() {
           }
         });
     } else {
-      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
+      if (document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value < 50) {
         // NOT FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
-        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
+        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
         document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
       } else {
         // FREE SHIPPING
@@ -268,58 +303,69 @@ function mobileVersion() {
 
 // Desktop;
 function desktopVersion() {
-  // deliveryBox
-  let deliveryBoxMore = /*html*/ `
-<div class="delivery-box">
-    <p class="text-block-more-desktop">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
-    </p>
-</div>
-`;
+  if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+    fetch("https://www.jarrold.co.uk/basket")
+      .then((res) => res.text())
+      .then((data) => {
+        let customDocument = new DOMParser().parseFromString(data, "text/html");
+        console.log(customSumm);
+        customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+        console.log(customSumm);
+        localStorage.customSumm = customSumm;
 
-  let deliveryBox = /*html*/ `
-<div class="delivery-box">
-    <p class="text-block-desktop">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
-</div>
-`;
-
-  if (document.querySelector("#variants .price")) {
-    let now = "rrp";
-
-    if (document.querySelector(".price .now")) {
-      now = "now";
-    }
-
-    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
-      fetch("https://www.jarrold.co.uk/basket")
-        .then((res) => res.text())
-        .then((data) => {
-          let customDocument = new DOMParser().parseFromString(data, "text/html");
-          let customSumm = +document.querySelector(`.${now}`).innerText.split("£")[1] + +customDocument.querySelector("dd.total").innerText.split("£")[1];
-
-          if (customSumm < 50) {
-            // NOT FREE SHIPPING
-            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-            let summDiff = 50 - customSumm;
-            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
-          } else {
-            // FREE SHIPPING
-            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
-          }
-        });
+        if (customSumm < 50) {
+          // NOT FREE SHIPPING
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+          let summDiff = 50 - customSumm;
+          document.querySelector(".price-more").innerText = `£${summDiff}`;
+        } else {
+          // FREE SHIPPING
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+        }
+      });
+  } else {
+    if (customSumm < 50) {
+      // NOT FREE SHIPPING
+      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+      let summDiff = 50 - customSumm;
+      document.querySelector(".price-more").innerText = `£${summDiff}`;
     } else {
-      if (document.querySelector(`.${now}`).innerText.split("£")[1] < 50) {
-        // NOT FREE SHIPPING
-        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1];
-        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
-      } else {
-        // FREE SHIPPING
-        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
-      }
+      // FREE SHIPPING
+      document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
     }
   }
+
+  setTimeout(() => {
+    document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+      if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+        let summ = +localStorage.getItem("customSumm");
+        let newSumm = summ - price;
+        localStorage.customSumm = newSumm;
+        if (newSumm < 50) {
+          // NOT FREE SHIPPING
+          document.querySelector(".delivery-box").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+          let newSummDiff = 50 - newSumm;
+          document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+        }
+      }
+    });
+
+    document.querySelector(".controls.qty .inc").addEventListener("click", function () {
+      let summ = +localStorage.getItem("customSumm");
+      let newSumm = summ + price;
+      localStorage.customSumm = newSumm;
+      if (newSumm < 50) {
+        // NOT FREE SHIPPING
+        let newSummDiff = 50 - newSumm;
+        document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".delivery-box").remove();
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      }
+    });
+  }, 1000);
 
   // informationBox
   if (document.querySelector(".col-sm-8 li")) {
