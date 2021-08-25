@@ -178,7 +178,6 @@ let deliveryBox = /*html*/ `
   `;
 
 let now;
-
 if (document.querySelector("#variants .price") || document.querySelector(".upc")) {
   now = "rrp";
 
@@ -201,7 +200,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
     return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
   }
 
-  let randomeCount = getRandomIntInclusive(1, 9);
+  
 
   hurryUp();
   renderDelivery();
@@ -224,6 +223,8 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
   // Hurry up
   function hurryUp() {
+    let randomeCount = getRandomIntInclusive(1, 9);
+    
     if (document.querySelector(".stock.instock")) {
       document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
     }
@@ -265,7 +266,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
         // NOT FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
         let summDiff = 50 - customSumm;
-        document.querySelector(".price-more").innerText = `£${summDiff}`;
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
       } else {
         // FREE SHIPPING
         document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
@@ -283,7 +284,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
             document.querySelector(".delivery-box").remove();
             document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
             let newSummDiff = 50 - newSumm;
-            document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+            document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
           }
         }
       });
@@ -295,7 +296,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
         if (newSumm < 50) {
           // NOT FREE SHIPPING
           let newSummDiff = 50 - newSumm;
-          document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+          document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
         } else {
           // FREE SHIPPING
           document.querySelector(".delivery-box").remove();
