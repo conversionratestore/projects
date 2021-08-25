@@ -732,8 +732,8 @@ window.onload  = function () {
         });
 
         if (document.querySelector('.editLink') == null) {
-            document.querySelector('.ship_small .head2:last-child').click();
-            document.querySelector('.title_head').innerHTML = 'Shipping information';
+            document.querySelector('.bill_small .head2:last-child').click();
+            document.querySelector('.title_head').innerHTML = 'Billing Information';
             document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
                 document.querySelector('.title_head').innerHTML = 'Billing Information';
             });
