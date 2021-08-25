@@ -242,18 +242,13 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
   // Mobile
   function mobileVersion() {
-    // deliveryBoxMobile
-
     if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
       fetch("https://www.jarrold.co.uk/basket")
         .then((res) => res.text())
         .then((data) => {
           let customDocument = new DOMParser().parseFromString(data, "text/html");
-          let customSumm =
-            +document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value +
-            +customDocument.querySelector("dd.total").innerText.split("£")[1];
-
-          localStorage.setItem("customSumm", customSumm.toFixed(2));
+          customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+          localStorage.customSumm = customSumm;
 
           if (customSumm < 50) {
             // NOT FREE SHIPPING
@@ -266,64 +261,14 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
           }
         });
     } else {
-      if (document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value < 50) {
-        // NOT FREE SHIPPING
-        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
-        let summDiff = 50 - document.querySelector(`.${now}`).innerText.split("£")[1] * +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
-      } else {
-        // FREE SHIPPING
-        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
-      }
-    }
-  }
-
-  // informationBox
-  if (document.querySelector(".controls")) {
-    document.querySelector(".controls").insertAdjacentHTML("afterend", `<ul class="information-box-mobile"></ul>`);
-    document.querySelectorAll(".col-sm-8 li").forEach((text) => {
-      let informationBox = "information-box-mobile";
-      includesText(text, informationBox);
-    });
-  }
-
-  if (document.querySelector(".information-box-mobile")) {
-    if (!document.querySelector(".information-box-mobile li")) {
-      document.querySelector(".information-box-mobile").classList.add("hidden");
-    }
-  }
-
-  // Desktop;
-  function desktopVersion() {
-    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
-      fetch("https://www.jarrold.co.uk/basket")
-        .then((res) => res.text())
-        .then((data) => {
-          let customDocument = new DOMParser().parseFromString(data, "text/html");
-          console.log(customSumm);
-          customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
-          console.log(customSumm);
-          localStorage.customSumm = customSumm;
-
-          if (customSumm < 50) {
-            // NOT FREE SHIPPING
-            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
-            let summDiff = 50 - customSumm;
-            document.querySelector(".price-more").innerText = `£${summDiff}`;
-          } else {
-            // FREE SHIPPING
-            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
-          }
-        });
-    } else {
       if (customSumm < 50) {
         // NOT FREE SHIPPING
-        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMoreMobile);
         let summDiff = 50 - customSumm;
         document.querySelector(".price-more").innerText = `£${summDiff}`;
       } else {
         // FREE SHIPPING
-        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+        document.querySelector(".upc").insertAdjacentHTML("afterend", deliveryBoxMobile);
       }
     }
 
@@ -351,6 +296,86 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
           // NOT FREE SHIPPING
           let newSummDiff = 50 - newSumm;
           document.querySelector(".price-more").innerText = `£${newSummDiff}`;
+        } else {
+          // FREE SHIPPING
+          document.querySelector(".delivery-box").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+        }
+      });
+    }, 1000);
+
+    // informationBox
+    if (document.querySelector(".controls")) {
+      document.querySelector(".controls").insertAdjacentHTML("afterend", `<ul class="information-box-mobile"></ul>`);
+      document.querySelectorAll(".col-sm-8 li").forEach((text) => {
+        let informationBox = "information-box-mobile";
+        includesText(text, informationBox);
+      });
+    }
+
+    if (document.querySelector(".information-box-mobile")) {
+      if (!document.querySelector(".information-box-mobile li")) {
+        document.querySelector(".information-box-mobile").classList.add("hidden");
+      }
+    }
+  }
+
+  // Desktop;
+  function desktopVersion() {
+    if (document.querySelector("#page_header_CPR span").textContent !== `0`) {
+      fetch("https://www.jarrold.co.uk/basket")
+        .then((res) => res.text())
+        .then((data) => {
+          let customDocument = new DOMParser().parseFromString(data, "text/html");
+          customSumm += +(+customDocument.querySelector("dd.total").innerText.split("£")[1]).toFixed(2);
+          localStorage.customSumm = customSumm;
+
+          if (customSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let summDiff = 50 - customSumm;
+            document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+          } else {
+            // FREE SHIPPING
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          }
+        });
+    } else {
+      if (customSumm < 50) {
+        // NOT FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+        let summDiff = 50 - customSumm;
+        document.querySelector(".price-more").innerText = `£${summDiff.toFixed(2)}`;
+      } else {
+        // FREE SHIPPING
+        document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+      }
+    }
+
+    setTimeout(() => {
+      document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+        if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+          let summ = +localStorage.getItem("customSumm");
+          let newSumm = summ - price;
+          localStorage.customSumm = newSumm;
+          if (newSumm < 50) {
+            // NOT FREE SHIPPING
+            document.querySelector(".delivery-box").remove();
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            let newSummDiff = 50 - newSumm;
+            document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
+          }
+        }
+      });
+
+      document.querySelector(".controls.qty .inc").addEventListener("click", function () {
+        let summ = +localStorage.getItem("customSumm");
+        let newSumm = summ + price;
+        localStorage.customSumm = newSumm;
+        if (newSumm < 50) {
+          // NOT FREE SHIPPING
+          let newSummDiff = 50 - newSumm;
+          document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
         } else {
           // FREE SHIPPING
           document.querySelector(".delivery-box").remove();
