@@ -721,7 +721,7 @@ window.onload  = function () {
         document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
         document.querySelector('.btn-next').addEventListener('click', () => {
             if(document.querySelector('#copy_bill').checked) {
-                document.querySelector('.editor_block .buttons a').click();
+                document.querySelector('.editor .buttons a').click();
             }
             document.querySelectorAll('form div[align="right"] input')[1].click();
             window.dataLayer = window.dataLayer || [];
