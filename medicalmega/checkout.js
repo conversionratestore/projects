@@ -741,7 +741,7 @@ window.onload  = function () {
                 document.querySelector('.title_head').innerHTML = 'Shipping information';
             });
         } else {
-            document.querySelector('.title_head').innerHTML = 'Shipping and Billing information';
+            document.querySelector('.title_head').innerHTML = 'Billing and Shipping information';
             document.querySelector('.address_book_new .editor .title').style.display = 'block';
             document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
         }
