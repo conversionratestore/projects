@@ -1,7 +1,7 @@
 window.onload  = function () {
     let style = `
         <style>
-            .homeslider__dots {
+            .homeslider__dots, .popup__product .unit-price p, .popup__product .total-price p {
                 display: none;}
             button {
                 outline: none;}
@@ -544,8 +544,8 @@ window.onload  = function () {
                     <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                 </div>
             </td>
-            <td width="17%" class="unit-price" align="left">$ <b>${price}</b></td>
-            <td width="17%" class="total-price" align="left">$ <b></b></td>
+            <td width="17%" class="unit-price" align="left"><p>Price:</p> $ <b>${price}</b></td>
+            <td width="17%" class="total-price" align="left"><p>Total:</p> $ <b></b></td>
         </tr> `;
         document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
     }
