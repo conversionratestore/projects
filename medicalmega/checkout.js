@@ -590,13 +590,16 @@ window.onload  = function () {
             document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
                 if (totalIndex === 0) {
                     totalValues.innerHTML = `${sum.toFixed(2)}`;
-                } 
+                }
                 if (totalIndex === 3) {
                     // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
                     //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
                     // } else {
                     totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML) - parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
                     // }
+                    if (totalValues.innerHTML.includes('-')) {
+                        totalValues.innerHTML = '0.00'
+                    }
                 }
             });
         });
@@ -990,11 +993,11 @@ window.onload  = function () {
     }
 
     if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
-        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);      
+        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
     }
-    
+
     if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
-        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);      
+        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);
         document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('- $','')).toFixed(2);
     }
     if (localStorage.getItem('productsStored')) {
