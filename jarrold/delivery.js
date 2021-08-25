@@ -200,8 +200,6 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
     return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
   }
 
-  
-
   hurryUp();
   renderDelivery();
 
@@ -224,7 +222,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   // Hurry up
   function hurryUp() {
     let randomeCount = getRandomIntInclusive(1, 9);
-    
+
     if (document.querySelector(".stock.instock")) {
       document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
     }
