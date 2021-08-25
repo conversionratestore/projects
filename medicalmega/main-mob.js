@@ -36,14 +36,18 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     }
 
     @media only screen and (max-width: 1009px)  {
+        .product-description a {
+            color: #666666!important;
+        }
+        .popup .popup__product .unit-price {
+            color: #666666;
+        }
         .bought-products {
             padding-bottom: 30px;
         }
         .popup {
             overflow: hidden;
         }
-        /*.swiper-container .slider-gallery .product-card {*/
-        /*    padding: 15px 15px 0 0;  }*/
         .swiper-container .swiper-button-prev {
             left: -25px;
         }
@@ -53,11 +57,19 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
         .swiper-container .swiper-button-prev, .swiper-container .swiper-button-next {
             background-size: 25px;}
         .swiper-container .slider-gallery {
-            padding: 0;
+            padding: 15px 0 0 0;
             width: 100%;
             max-width: 249px;
             margin: 0 auto!important;
             flex-wrap: nowrap;}
+        .swiper-container .slider-gallery .product-card:last-child {
+            padding-right: 0;
+        }
+        .swiper-container .gallery dd a {
+            color: #666666;
+            font-size: 10px;
+            line-height: 14px;
+        }
         .popup .popup__product .unit-price p, .popup .popup__product .total-price p {
             display: block;
             margin-right: auto;}
@@ -73,6 +85,14 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
             border: none;
             background-color: transparent;
             width: 280px;}
+        .popup__product-total td {
+            width: 100%;
+            white-space: nowrap;
+            padding: 0 0 9px 0!important;
+        }
+        .popup__product-total .total-values {
+            text-align: right;
+        }
         .popup .continue-shopping {
             display: none!important; }
         .popup .popup__bottom {
@@ -135,7 +155,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
             margin: 0 0 0 auto;
             height: 100vh;
             max-width: 320px;
-            padding: 10px 20px 0;
+            padding: 0 20px;
             box-sizing: border-box;
             overflow-x: hidden;
             overflow-y: auto;
@@ -145,8 +165,17 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
         }
         .popup .altTd b:last-child {
             font-weight: 700;
+            font-size: 14px;
+        }
+        .popup__product-total br {
+            line-height: 28px!important;
         }
         .popup__head {
+            background-color: #fff;
+            position: sticky;
+            z-index: 9;
+            top: 0;
+            padding-top: 10px;
             border-bottom: 1px solid #EEEEEE;
         }
         .popup h2.title {
@@ -176,6 +205,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
         .popup__head .close {
             width: 36px;
             height: 36px;
+            right: -13px;
         }
         .popup__head .close:before, .popup__head .close:after  {
             width: 16px;
@@ -189,8 +219,13 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
         }
         .popup table.altPayment p.product-description {
             display: flex;
+            justify-content: space-between;
             flex-direction: column;
             height: 77px;
+        }
+        .popup .quantity {
+            background: #EEEEEE;
+            border-radius: 4px;
         }
     }
     @media only screen and (max-width: 758px)  {
@@ -240,6 +275,59 @@ if (window.matchMedia("(max-width: 1009px)").matches) {
     document.querySelector('.popup__bottom .paypal-button').before(document.querySelector('.popup__product-total'));
     document.querySelector('.popup__bottom').before(document.querySelector('.bought-products'));
     document.querySelector('.bought-products .title3').innerHTML = 'You May Also Like';
+
+    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function(){
+    //         container.scrollLeft -= 26;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
+
+    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function() {
+    //         container.scrollLeft += 27;
+    //         scrollAmount += 11;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
+    // let linkCustom = document.createElement('link');
+    // linkCustom.href =
+    //     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    // linkCustom.rel = 'stylesheet';
+    // document.head.appendChild(linkCustom);
+    //
+    // let scriptCustom = document.createElement('script');
+    // scriptCustom.src =
+    //     'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    // scriptCustom.async = false;
+    // document.head.appendChild(scriptCustom);
+    //
+    // document.querySelectorAll(`.slider-gallery`).forEach(slider => {
+    //     tns({
+    //         container: slider,
+    //         items: 4,
+    //         autoplay: false,
+    //         controls: true,
+    //         loop: false,
+    //         autoplayButton: false,
+    //         autoplayButtonOutput: false,
+    //         mouseDrag: true,
+    //         preventScrollOnTouch: 'auto',
+    //         swipeAngle: false,
+    //         responsive: {
+    //             1009: {
+    //                 items: 1,
+    //             }
+    //         }
+    //     });
+    // });
 }
 if (window.matchMedia("(max-width: 759px)").matches) {
     document.querySelector('.homeslider__img').setAttribute('src', 'https://conversionratestore.github.io/projects/medicalmega/img/banner-mobile.png');
