@@ -125,8 +125,7 @@ const formatter = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
-// let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
-let twentyFourHours = 30 - (intervalTime / 1000) ;
+let twentyFourHours = (24 * 60 * 60) - (intervalTime / 1000);
 
 if (twentyFourHours > 0) {
     // elements on the site
