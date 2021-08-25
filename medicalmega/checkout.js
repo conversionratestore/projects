@@ -718,7 +718,7 @@ window.onload  = function () {
         document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
         document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next" onclick="saveClick(0);">Next</button>`)
+        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next" onclick="saveClick(0); return false;">Next</button>`)
         document.querySelector('.btn-next').addEventListener('click', () => {
             document.querySelectorAll('form div[align="right"] input')[1].click();
             window.dataLayer = window.dataLayer || [];
