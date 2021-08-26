@@ -810,7 +810,8 @@ window.onload  = function () {
         });
     });
 
-    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+    document.querySelector('.popup .checkout .btn').addEventListener('click', (e) => {
+        e.preventDefault();
         if (document.querySelectorAll('.quantity-row')) {
             document.querySelectorAll('.quantity-row').forEach(button => {
                 fetch('/cart.html', {
@@ -819,6 +820,8 @@ window.onload  = function () {
                     },
                     method: "POST",
                     body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
+                }).then(res => {
+                    window.location.pathname = '/checkout/step1';
                 })
             });
         }
