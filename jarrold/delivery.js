@@ -28,6 +28,10 @@ let styleSet = /*html*/ `
    #product p.summ {
     max-width: 190px;
   }
+
+  .marketplace{
+    max-width: 190px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1301px) {
