@@ -762,7 +762,7 @@ window.onload  = function () {
     if (location.pathname == '/checkout/step2') {
         document.body.insertAdjacentHTML('afterbegin', `
     <style>
-    .payment h3, .primaryInfo h2{
+    .payment h3, .primaryInfo h2, .remove{
         display: none}
     .primaryInfo li {
         display: flex;
@@ -827,10 +827,10 @@ window.onload  = function () {
         height: 100%;}
     #2_3_days {
         padding: 5px 0 0 0!important;}
-    // .quantity-row {
-    //     pointer-events: none;}
-    // .quantity-btn  {
-    //     color: #CCCCCC!important;}
+    .quantity-row {
+        pointer-events: none;}
+    .quantity-btn  {
+        color: #CCCCCC!important;}
     </style>`);
 
         document.querySelector('.title_head').innerHTML = 'Delivery Method';
@@ -846,6 +846,9 @@ window.onload  = function () {
         document.querySelector('.btn-next').addEventListener('click', () => {
             pushProductsStored();
             document.querySelector('form div[align="right"] input').click();
+        });
+        document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+            element.setAttribute('readonly');
         });
         document.querySelector('.btn-back').addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
@@ -962,7 +965,7 @@ window.onload  = function () {
         document.querySelector('.title_head').innerHTML = 'Payment method';
         document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
 
-        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">Proceed</button>`)
+        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">COMPLETE THE ORDER</button>`)
         document.querySelector('.btn.big').addEventListener('click', () => {
             document.querySelector('form div[align="right"] input').click();
         });
