@@ -819,7 +819,7 @@ window.onload  = function () {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=update_to_cart`
                 }).then(res => {
                     window.location.pathname = '/checkout/step1';
                 })
