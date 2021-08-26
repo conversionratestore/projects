@@ -996,6 +996,27 @@ window.onload  = function () {
         });
     }
 
+    if(location.pathname == '/checkout/step4') {
+        document.body.insertAdjacentHTML('afterbegin',`<style>
+        .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn{
+            display: none!important;
+        }
+        .payment {
+            margin: 20px 0;
+        }
+        .primaryInfo {
+            width: 100%;
+        }
+        .payment .altprimaryInfo p {
+            width: 250px
+        }
+        .quantity-row {
+            pointer-events: none;
+        }
+        </style>`);
+        document.querySelector('.title_head').innerHTML = 'your order has been placed!';
+        document.querySelector('.title_head').after(document.querySelector('.payment'));
+    }
     if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
         document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
     }
