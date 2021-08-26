@@ -199,7 +199,6 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
-//                 display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -240,7 +239,6 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
-//                 padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
@@ -283,7 +281,6 @@ window.onload  = function () {
             .btn img {
                 margin-left: 5px;}
             .popup__bottom {
-                // margin-bottom: 30px;
                 padding: 20px 0;
                 border-bottom: 0.5px solid #EEEEEE;
                 display: flex;
@@ -353,11 +350,6 @@ window.onload  = function () {
             .gallery .swiper-slide {
                 flex-shrink: 0;
                 clear: both;}
-            /*.slider-gallery {*/
-            /*    overflow-x: auto;*/
-            /*    display: flex;}*/
-            /*.slider-gallery::-webkit-scrollbar {*/
-            /*    display: none;}*/
             .before, .after {
                 position: absolute;
                 display: block;
@@ -372,9 +364,6 @@ window.onload  = function () {
                 margin-left: calc(50% - 10px);}
             .after {
                 margin-left: calc(75% - 10px);}
-            /*.slider-gallery .product-card, #tns1 > .tns-item {*/
-            /*    width: 130px;*/
-            /*    flex-shrink: 0; }*/
              .gallery-parent #tns1 > .tns-item {
                 // width: 25%;
                 padding: 0;
@@ -891,6 +880,291 @@ window.onload  = function () {
         }
     }
 
+    function quantityChenged(el){
+        productsStoredUpdate.unshift({
+            'productid': el.closest('.popup__product').getAttribute('data-product-id'),
+            'quantity': el.closest('.popup__product').querySelector('.quantity').value,
+            'price': el.closest('.popup__product').querySelector('.unit-price b').innerHTML,
+            'variationid': el.closest('.popup__product').getAttribute('data-product-variant-id'),
+        });
+        localStorage.setItem('productsStoredUpdate', JSON.stringify(productsStoredUpdate));
+    }
+
+    let popupShoppingCart = `
+    <div class="popup">
+        <div class="popup__container">
+            <div class="popup__head">
+                <h2 class="title">Shopping cart</h2>
+                <button class="close" type="button"></button>
+            </div>
+            <table class="altPayment" width="98%" border="0" cellspacing="0" cellpadding="5">
+                <tbody>
+                    <tr id="header-row">
+                        <th align="left" width="44%">Product Name</th>
+                        <th align="left" width="22%" style="padding-left: 17px;">Quantity</th>
+                        <th align="left" width="17%">Price</th>
+                        <th align="left" width="17%">Total</th>
+                    </tr>
+                    <tr class="body">
+                        <td colspan="4" style="padding-top: 10px;">
+                            <table style="max-height: 180px;min-height: 130px;overflow-y: auto;display: block;"> <tbody></tbody></table>
+                        </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr class="popup__product-total">
+                        <td class="altTd total-headings" style="padding:18px 10px 18px 0;text-align:right;line-height: 23px;" colspan="3">
+                            <b>Sub Total :</b><br>
+                            <b style="font-size:17px;">Grand Total:</b>
+                        </td>
+                        <td class="altTd total-values" style="padding:18px 0 18px 0;line-height: 23px;" align="left" valign="top">
+                            <b>$ 0.00</b><br>
+                            <b style="font-size:17px;">$0.00</b>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="popup__bottom">
+                <button type="button" class="continue-shopping">
+                    <img src="https://i.ibb.co/6b6CBMg/Arrow-Left.png" alt="Continue" style="margin-right: 4px" wifth="18px" height="18px">
+                    Back to Shopping
+                </button>
+                <div class="flex-center">
+                    <div class="paypal-button">
+                        <form action="https://medicalmega.com/guest-expresscheckout.php" method="POST" target="default" class="paypal-form-button">
+                            <input type="image" name="submit" src="https://i.ibb.co/CJCszqD/btn-paywith-primary-l-1.png" border="0" align="top" alt="Check out with PayPal">
+                        </form>
+                    </div>
+                    <div class="or-text"><p style="color:#222222; font-weight:600; padding: 5px 10px; margin: 0px">
+                        OR</p>
+                    </div>
+                    <div class="checkout">
+                        <a class="btn" href="https://medicalmega.com/checkout/step1">
+                            Checkout Now
+                            <img src="https://i.ibb.co/r5RKgLr/Arrow-Right.png" alt="Continue" id="checkout-button">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bought-products">
+                <h3 class="title3">Also bought with this products</h3>
+                <div class="swiper-container">
+                    <dl class="slider-gallery gallery"></dl>
+                    <button class="swiper-button-prev" type="button"></button>
+                    <button class="swiper-button-next" type="button"></button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', popupShoppingCart);
+
+    if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML == '0') {
+        localStorage.setItem('productsStored', '');
+    }
+    if (document.querySelector('.by_num span') != null && document.querySelector('.by_num span').innerHTML != '0') {
+        let cartItems = JSON.parse(localStorage.getItem("productsStored"));
+        if (cartItems) {
+            for (let i = 0; i < cartItems.length; i++) {
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    addProduct(cartItems[i].product_id,cartItems[i].product_variant_id,cartItems[i].link,cartItems[i].img_src,cartItems[i].title,cartItems[i].quantity,cartItems[i].price)
+                }
+                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
+                        quantityFun(el);
+                    });
+                }
+
+                document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                sumTotalPrice();
+            }
+        }
+    }
+    if (document.querySelector('.shoppingcart')) {
+        document.querySelector('.shoppingcart').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.popup').classList.add('isActive');
+            if (document.querySelector('.popup .body table tbody').innerHTML == '') {
+                document.querySelector('.popup__bottom .flex-center').style.display = 'none';
+            } else {
+                document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
+            }
+
+            tnsInitialization();
+
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                'eventAction': 'click on shopping cart'
+            });
+        });
+    }
+
+    if (document.querySelector('#cart_box a')) {
+        document.querySelectorAll('#cart_box a')[0].setAttribute('onclick','');
+        document.querySelectorAll('#cart_box a')[0].addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            let id = document.querySelector('[name="product_id"]').value,
+                varId = document.querySelector('[name="product_variant_id"]').value,
+                link = window.location.href,
+                imgSrc = document.querySelector('.product_img').getAttribute('src'),
+                title = document.querySelectorAll('.center h3')[0].innerHTML,
+                quantity = document.querySelector('[name="quantity"]').selectedIndex + 1,
+                price = document.querySelector('.product-price').innerHTML.replace('$','');
+
+            fetch('/cart.html', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "POST",
+                body: `product_variant_id=${varId}&quantity=${quantity}&product_id=${id}&add_to_cart=variant`
+            })
+
+            if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+                addProduct(id,varId,link,imgSrc,title,quantity,price);
+            }
+
+            if (document.querySelector(`.popup__product[data-product-id='${id}']`)) {
+                document.querySelectorAll(`.popup__product[data-product-id='${id}']`).forEach((el) => {
+                    el.querySelector('.quantity').value = parseInt(quantity) + parseInt(el.querySelector('.quantity').value);
+                });
+            }
+
+            productsStored = [];
+            localStorage.setItem('productsStored', '');
+
+            document.querySelectorAll(`.popup__product`).forEach((el) => {
+                quantityFun(el);
+                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+                sumTotalPrice();
+                productsStored.push({
+                    'product_id': el.getAttribute('data-product-id'),
+                    'quantity': el.querySelector('.quantity').value,
+                    'price': el.querySelector('.unit-price b').innerHTML,
+                    'product_variant_id': el.getAttribute('data-product-variant-id'),
+                    'img_src': el.querySelector('a img').getAttribute('src'),
+                    'link': el.querySelector('.product-description a').getAttribute('href'),
+                    'title': el.querySelector('.product-description a').innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            })
+            document.querySelector('.popup').classList.add('isActive');
+
+        });
+    }
+
+    document.querySelector('.popup .continue-shopping').addEventListener('click', () => {
+        document.querySelector('.popup').classList.remove('isActive');
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+            'eventAction': 'click on button — back to shopping'
+        });
+    });
+
+    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+            'eventAction': 'click on button — checkout now'
+        });
+    });
+
+    let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
+    for (let i = 0; i < arrLinks.length; i++) {
+        (function(){
+            var http = new XMLHttpRequest();
+            http.open('GET', `${arrLinks[i]}`);
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                    document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
+                    <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
+                        <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
+                        <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
+                        <b> ${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s') : ''} 
+                        ${doc.querySelector('.type2 .product-price') ? doc.querySelector('.type2 .product-price').innerHTML : ''}</b>
+                        <form action="https://medicalmega.com/cart.html" method="post">
+                            <input type="hidden" name="product_id" value="${doc.querySelector('[name="product_id"]').value}">
+                            <input type="hidden" name="product_variant_id" value="${doc.querySelector('[name="product_variant_id"]').value}">
+                            <input type="hidden" name="quantity" value="1">
+                        </form>
+                        <div class="add-to-cart" ${!doc.querySelector('.type2 .product-price') ? 'disabled' : ''}><button type="button">add to cart</button><input type="number" value="1"></div>
+                    </dd>`);
+                    if (i === 0) {
+                        addToCart()
+                    }
+                    if (i === (arrLinks.length - 1)) {
+                        tnsInitialization();
+                    }
+                }
+            }
+            http.send(null);
+        })()
+    }
+
+    document.querySelector('.popup .body').addEventListener('change', () => {
+        productsStoredUpdate = [];
+        localStorage.setItem('productsStoredUpdate', '');
+        document.querySelectorAll('.popup__product .quantity').forEach(el => quantityChenged(el));
+    });
+
+    if (window.location.pathname == '/') {
+        document.querySelector('.homeslider__img').setAttribute('src', 'https://conversionratestore.github.io/projects/medicalmega/img/banner.png');
+        document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://conversionratestore.github.io/projects/medicalmega/img/banner.png');
+
+        document.querySelectorAll('.gallery').forEach( (item, index) => {
+            let galleryWrapper = document.createElement('div');
+            galleryWrapper.className = 'gallery-parent';
+
+            let htmlTitle = `<h2 class="title"></h2>`;
+            if (index < 6) {
+                galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
+            }
+
+            item.parentNode.appendChild(galleryWrapper);
+
+            return galleryWrapper.appendChild(item);
+        });
+
+        const galleryDd = document.querySelectorAll('.gallery dd');
+        for (let i = 0; i < galleryDd.length; i++) { galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`); }
+
+        const galleryParent = document.querySelectorAll('.gallery-parent');
+        for (let i = 0; i < galleryParent.length; i++) {
+            if (i < 5) { galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`); }
+        }
+
+        const arrTitle = ['New products','Ostomy','Wound care','Hand Sanitizing','Protective Gear','All products'],
+            galleryTitle = document.querySelectorAll('.title'),
+            showMore = document.querySelectorAll('.show-more');
+        showMore.forEach( (item) => {
+            item.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — show more'
+                });
+            });
+        });
+        for (let i = 0; i < arrTitle.length; i++) {
+            galleryTitle[i].innerHTML = arrTitle[i];
+            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
+            if (i < 5) { showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`); }
+        }
+    }
+
+    document.querySelector('.popup .close').addEventListener('click', () => {
+        document.querySelector('.popup').classList.remove('isActive');
+    });
     if (window.matchMedia("(max-width: 1009px)").matches) {
         document.querySelector('.paypal-button input[type="image"]').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/pay.png');
         document.querySelector('.popup__bottom .paypal-button').before(document.querySelector('.popup__product-total'));
