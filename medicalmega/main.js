@@ -425,6 +425,23 @@ window.onload  = function () {
         });
     }
 
+    function pushProductsStored() {
+        let productsStored = [];
+        localStorage.setItem('productsStored', '');
+        document.querySelectorAll('.popup__product').forEach((product) => {
+            productsStored.push({
+                'product_id': product.dataset.productId,
+                'quantity': product.querySelector('.quantity').value,
+                'price': product.querySelector('.unit-price b').innerHTML,
+                'product_variant_id': product.dataset.productVariantId,
+                'img_src': product.querySelector('.product-cell-inner span img').getAttribute('src'),
+                'link': product.querySelector('.product-description b a').getAttribute('href'),
+                'title': product.querySelector('.product-description b a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
+    }
+
     function quantityFun(el) {
         if (el.querySelector('.quantity').value < 2) {
             el.querySelector('.quantity').value = 1;
@@ -457,6 +474,14 @@ window.onload  = function () {
                         button.nextElementSibling.value = +button.nextElementSibling.value - 1;
                     }
                 }
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=variant`
+                })
+                pushProductsStored();
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
             });
@@ -718,9 +743,9 @@ window.onload  = function () {
                 autoplayButton: false,
                 autoplayButtonOutput: false,
                 mouseDrag: true,
-                nav: false,
                 preventScrollOnTouch: 'auto',
                 swipeAngle: false,
+                nav: false,
                 responsive: {
                     1009: {
                         items: 4,
