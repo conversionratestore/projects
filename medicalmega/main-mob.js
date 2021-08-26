@@ -1098,7 +1098,7 @@ window.onload  = function () {
                     var doc = new DOMParser().parseFromString(this.responseText, "text/html");
                     document.querySelector('.slider-gallery').insertAdjacentHTML('beforeend',`
                     <dd class="product-card" data-product-id="${doc.querySelector('[name="product_id"]').value}" data-product-variant-id="${doc.querySelector('[name="product_variant_id"]').value}">
-                        <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('img.product_img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
+                        <span><a href="${arrLinks[i]}"><img src="${doc.querySelector('.type1 img').getAttribute('src')}" alt="${doc.querySelectorAll('.center h3')[0].innerHTML}"></a></span>
                         <a href="${arrLinks[i]}">${doc.querySelectorAll('.center h3')[0].innerHTML}</a>
                         <b> ${doc.querySelector('#variant_tag b s') ? doc.querySelector('#variant_tag b s') : ''} 
                         ${doc.querySelector('.type2 .product-price') ? doc.querySelector('.type2 .product-price').innerHTML : ''}</b>
