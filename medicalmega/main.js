@@ -802,7 +802,7 @@ document.head.appendChild(scriptCustom);
 
 
 let categoryInterval = setInterval(() => {
-    if (typeof tns == 'function') {
+    if (typeof tns == 'function' && document.querySelectorAll('.slider-gallery .product-card')) {
         clearInterval(categoryInterval);
 
         let sliderCategories = tns({
