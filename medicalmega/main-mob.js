@@ -1181,10 +1181,10 @@ window.onload  = function () {
         document.querySelector('.popup__bottom').before(document.querySelector('.bought-products'));
         document.querySelector('.bought-products .title3').innerHTML = 'You May Also Like';
 
-        document.querySelectorAll('.add-to-cart').forEach(item => {
+        document.querySelectorAll('.add-to-cart button').forEach(item => {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.product-description b').forEach((el,i) => {
-                    el.after(document.querySelectorAll('.quantity-row')[i]);
+                    el.after(el.closest('.popup__product').querySelector('.quantity-row'));
                 });
             })
         });
