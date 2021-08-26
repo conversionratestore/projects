@@ -199,7 +199,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
-//                 display: none;
+                display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -240,7 +240,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
-//                 padding-left: 24px;
+                padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
