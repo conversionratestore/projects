@@ -364,11 +364,15 @@ window.onload  = function () {
                 margin-left: calc(50% - 10px);}
             .after {
                 margin-left: calc(75% - 10px);}
-             .gallery-parent #tns1 > .tns-item {
+            .gallery-parent #tns1 > .tns-item {
                 // width: 25%;
                 padding: 0;
                 margin: 0 5px;
-             }
+            }
+            .swiper-container #tns1 > .tns-item{
+                width: calc(50% - 10px);
+                margin: 0 5px;
+            }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
                 padding: 0 4px;
