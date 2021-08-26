@@ -410,7 +410,7 @@ window.onload  = function () {
                     margin: 0;
                     box-sizing: border-box;
                 }
-                .gallery-parent {
+                .homepage-container .gallery-parent {
                     padding: 0 22.5px;
                     justify-content: space-between;
                 }
@@ -431,6 +431,9 @@ window.onload  = function () {
             }
         
             @media only screen and (max-width: 1009px)  {
+                .swiper-container {
+                    max-width: 260px;
+                }
                 div.paypal-button, div.or-text, div.checkout{
                     margin: 0!important;
                 }
@@ -591,7 +594,7 @@ window.onload  = function () {
                 .popup table {
                     overflow-x: hidden;
                     display: flex!important;
-                    max-height: calc(100vh - 47px)!important; 
+                    max-height: none!important; 
                 }
                 .popup__head .close {
                     width: 36px;
