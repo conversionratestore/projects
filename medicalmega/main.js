@@ -478,6 +478,7 @@ window.onload  = function () {
                     autoplayButton: false,
                     autoplayButtonOutput: false,
                     mouseDrag: true,
+                    nav: false,
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                     responsive: {
@@ -717,6 +718,7 @@ window.onload  = function () {
                 autoplayButton: false,
                 autoplayButtonOutput: false,
                 mouseDrag: true,
+                nav: false,
                 preventScrollOnTouch: 'auto',
                 swipeAngle: false,
                 responsive: {
