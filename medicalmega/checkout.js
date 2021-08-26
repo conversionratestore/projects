@@ -1019,7 +1019,11 @@ window.onload  = function () {
         </style>`);
         document.querySelector('.title_head').innerHTML = 'your order has been placed!';
         document.querySelector('.title_head').after(document.querySelector('.payment'));
+        document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+            element.setAttribute('readonly');
+        });
     }
+
     if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
         document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
     }
