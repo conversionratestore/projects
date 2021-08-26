@@ -623,6 +623,11 @@ window.onload  = function () {
             <td width="17%" class="total-price" align="left"><p>Total:</p> $ <b></b></td>
         </tr> `;
         document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+        if (window.matchMedia("(max-width: 1009px)").matches) {
+            document.querySelectorAll('.product-description b').forEach((el,i) => {
+                el.after(el.closest('.popup__product').querySelector('.quantity-row'));
+            });
+        }
     }
 
     function quantityChenged(el){
