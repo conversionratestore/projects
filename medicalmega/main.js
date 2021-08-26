@@ -199,7 +199,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
-                display: none;
+//                 display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
