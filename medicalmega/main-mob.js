@@ -1,6 +1,403 @@
 window.onload  = function () {
     let style = `
         <style>
+            .homeslider__dots, .popup__product .unit-price p, .popup__product .total-price p {
+                display: none;}
+            button {
+                outline: none;}
+            input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0; }
+            input[type=number] {
+                -moz-appearance: textfield;}
+            .homeslider__container {
+                margin-bottom: 20px!important;
+                margin-left: 10px!important;}
+            .gallery {
+                margin: 13px 0 0 10px;
+                display: flex;}
+            .gallery dd span {
+                width: 100%;
+                height: 140px;
+                margin-bottom: 5px;
+                display: inline-flex;}
+            .gallery dd span a {
+                margin: auto;}
+            .gallery dd a {
+                word-break: break-word;}
+            .gallery dd a br {
+                display: none;}
+            .gallery dd {
+                width: 140px;
+                line-height: 15px;
+                display: flex!important;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: left;}
+            .gallery dd b {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+                font-weight: 600;
+                font-size: 18px;
+                padding-top: 7px;
+                margin: auto 0 0;
+                line-height: 1;}
+            .gallery dd b s{
+                font-weight: 450;
+                font-size: 12px;
+                line-height: 15px;
+                text-decoration-line: line-through;
+                margin-left: 5px;
+                color: #9E9E9E;}
+            .gallery-parent {
+                padding-bottom: 30px;}
+            h2.title, .title {
+                text-align: left;
+                padding-left: 10px;
+                font-size: 24px;
+                line-height: 29px;
+                font-weight: 600;
+                color: #222222;
+                text-transform: capitalize;}
+            .homepage-container {
+                display: grid;}
+            .trustpilot-widget-container {
+                order: 3;}
+            .add-to-cart {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 8px 0 0;
+                width: 100%;}
+            .add-to-cart button {
+                color: #FFFFFF;
+                padding: 0 9px;
+                margin-bottom: 0;
+                line-height: 33px!important;
+                outline: none;
+                cursor: pointer;
+                background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+                border: 0.5px solid #780F11;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 14px;
+                text-align: center;
+                text-transform: capitalize;}
+            .add-to-cart input {
+                font-size: 18px;
+                line-height: 20px;
+                color: #000000;
+                padding: 6.5px 0;
+                width: 33px;
+                text-align: center;
+                background: #EEEEEE;
+                border: 0.5px solid #CCCCCC;
+                border-radius: 4px;}   
+            .show-more {
+                width: calc(100% - 213px);
+                padding: 0 28px;
+                font-weight: 450;
+                font-size: 15px;
+                line-height: 33px;
+                text-align: center;
+                text-transform: capitalize;
+                color: #666666;
+                display: block;
+                margin: 20px 0 0 10px;
+                background: #EEEEEE;
+                border: 0.5px solid #CCCCCC;
+                border-radius: 4px;}     
+            .popup {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 999999;
+                display: inline-flex;
+                overflow-y: auto;
+                background: rgba(64, 62, 62, 0.46);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;}
+            .popup.isActive {
+                opacity: 1;
+                pointer-events: auto;}
+            .popup__container {
+                margin: auto;
+                background: #FFFFFF;
+                border-radius: 4px;
+                max-width: 622px;
+                width: 100%;
+                padding: 20px 20px 40px;}
+            .close {
+                position: relative;
+                width: 46px;
+                height: 46px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;}
+            .close:before, .close:after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                background-color: #DADADA;
+                width: 20px;
+                height: 2px;}
+            .close:before {
+                transform: translate(-50%,-50%) rotate(45.2deg);}
+            .close:after {
+                transform: translate(-50%,-50%) rotate(-45.2deg);} 
+            .popup__head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;}
+            .popup .altPayment {
+                width: 100%;}
+            .popup .product-description b a br{
+                display: none; }
+            .popup h2.title, .title {
+                padding-left: 0;}
+            h3.title3, .title3 {
+                text-align: left;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 22px;
+                text-transform: capitalize;
+                color: #222222}
+            .popup .altPayment th {
+                padding: 16px 0;
+                border-bottom-color: #EEEEEE;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 17px;
+                text-transform: capitalize;
+                color: #CCCCCC;
+                border-left: none;}
+            .popup .altPayment, .popup table.altPayment td {
+                border: none}
+            .popup__product-total {
+                background: #EEEEEE;
+                border: 1px solid #EEEEEE;}
+            .altPayment td .product-cell-inner span {
+                flex-shrink: 0;
+                border: 0.5px solid #EEEEEE;
+                padding: 0; 
+                width: 98px;
+                height: 98px;}
+            .popup__product div.product-cell-inner {
+                padding: 0 10px 0 0;
+                display: flex;}
+            .popup table.altPayment p.product-description{
+                width: fit-content;
+                word-break: break-word;
+                margin-top: 0;}
+            .popup table.altPayment td {
+                padding: 0;}
+            .popup table.altPayment .popup__product td {
+                padding: 0 0 10px 0; }
+            .quantity-btn {
+//                 display: none;
+                width: 28px;
+                cursor: pointer;
+                font-size: 18px;
+                line-height: 22px;
+                text-align: center;
+                text-transform: capitalize;
+                background-color: transparent;
+                color: #666666;
+                border: none;
+                padding: 2px 0;}
+            .quantity-btn[disabled] {
+                color: #CCCCCC;}
+            .quantity {
+                background: #FFFFFF;
+                border: 0.5px solid #CCCCCC;
+                width: 30px;
+                font-size: 14px;
+                line-height: 17px;
+                text-align: center;
+                padding: 5px 0;
+                color: #000000;}
+            .quantity:focus, .quantity[type='number']:focus, .quantity[type='number'] {
+                pointer-events: none!important; }
+            .popup .altTd b {
+                font-weight: 450;
+                font-size: 18px;
+                text-align: right;
+                text-transform: capitalize;
+                color: #222222;}
+            .popup .altTd.total-values b {
+                font-weight: 600;}
+            .popup .altTd b:first-child {
+                font-size: 14px;
+                text-transform: capitalize;
+                color: #666666;
+                margin-bottom: 5px;
+                font-weight: 400;}
+            .popup .altTd.total-values b:first-child {
+                font-weight: 450;}
+            .quantity-row {
+//                 padding-left: 24px;
+                display: flex;}
+            .flex-center {
+                display: flex;
+                align-items: center;}
+            .popup .unit-price, .popup .total-price {
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 29px;
+                color: #000000;}
+            .popup .unit-price b{
+                font-weight: normal;}
+            .popup .total-price {
+                font-weight: 600;}
+            .popup .total-price b {
+                font-weight: 600;}
+            .popup .continue-shopping {
+                display: flex; 
+                background-color: transparent;
+                align-items: center;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 17px;
+                border: none;
+                text-decoration-line: underline;
+                text-transform: capitalize;
+                color: #222222;}
+            .btn {
+                background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+                border: 0.5px solid #780F11;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 33px;
+                text-align: center;
+                text-transform: uppercase;
+                color: #FFFFFF;
+                padding: 0 22px;
+                display: flex;
+                align-items: center;}
+            .btn img {
+                margin-left: 5px;}
+            .popup__bottom {
+                // margin-bottom: 30px;
+                padding: 20px 0;
+                border-bottom: 0.5px solid #EEEEEE;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;}
+            .popup img#checkout-button {
+                margin-top: 0;
+                width: 18px;
+                height: 18px;}
+            div.paypal-button, div.or-text, div.checkout {
+                padding: 0;}
+            .body table {
+                scrollbar-width: thin;
+                scrollbar-color: #CCCCCC #666666;}
+            .body table::-webkit-scrollbar{
+                background: #CCCCCC;
+                width: 4px;
+                height: 4px;}
+            .body table::-webkit-scrollbar-thumb{
+                background: #666666;}
+            .slider-gallery{
+                overflow: visible!important;
+                /*max-width: 510px;*/
+                margin: 0 auto;
+                padding-top: 15px;}
+            .gallery .swiper-slide {
+                padding: 0 10px 0 0;
+                width: calc(25% - 10px);}
+            .gallery .swiper-slide:last-child {
+                padding: 0;}
+            .gallery .swiper-slide a {
+                font-size: 10px;
+                line-height: 12px;}
+            .gallery .swiper-slide b  {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 17px;}
+            .gallery .swiper-slide .add-to-cart button{
+                font-size: 12px;
+                line-height: 28px!important;
+                padding: 0 5px;}
+            .gallery .swiper-slide .add-to-cart input{
+                padding: 4px 0; }
+            .swiper-container {
+                margin: 0 auto;
+                max-width: 520px;
+                position: relative;}
+            .swiper-container .gallery-parent {
+                padding-bottom: 0; }
+            .swiper-button-prev, .swiper-button-next {
+                position: absolute;
+                border: none;
+                cursor: pointer;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 36px;
+                height: 36px;
+                z-index: 9;
+                display: block!important;
+                background: no-repeat center / contain}
+            .swiper-button-prev {
+                left: -40px;
+                background-image: url('https://i.ibb.co/m0Lv3wp/expand-more-24px.png');}
+            .swiper-button-next {
+                right: -40px;
+                background-image: url('https://i.ibb.co/v4MXXdd/expand-more-24px-1.png');}
+            .gallery .swiper-slide {
+                flex-shrink: 0;
+                clear: both;}
+            /*.slider-gallery {*/
+            /*    overflow-x: auto;*/
+            /*    display: flex;}*/
+            /*.slider-gallery::-webkit-scrollbar {*/
+            /*    display: none;}*/
+            .before, .after {
+                position: absolute;
+                display: block;
+                width: 25%;
+                padding: 0;
+                margin-top: 15px;
+                width: calc(25% - 10px);
+                margin-right: 10px;
+                flex-shrink: 0;
+                clear: both;}
+            .before {
+                margin-left: calc(50% - 10px);}
+            .after {
+                margin-left: calc(75% - 10px);}
+            /*.slider-gallery .product-card, #tns1 > .tns-item {*/
+            /*    width: 130px;*/
+            /*    flex-shrink: 0; }*/
+             .gallery-parent #tns1 > .tns-item {
+                // width: 25%;
+                padding: 0;
+                margin: 0 5px;
+             }
+            .slider-gallery .product-card .add-to-cart button {
+                font-size: 12px;
+                padding: 0 4px;
+                line-height: 31px!important;}
+            .slider-gallery .product-card .add-to-cart input {
+                padding: 5.5px 0;}
+            .bought-products {
+                padding-top: 30px;}
+            .slider-gallery.gallery .product-card span {
+                height: 120px;
+                width: 120px;}
+            .slider-gallery.gallery .product-card img {
+                max-height: 120px;
+                width: 100%;
+                object-fit: contain;}
+            .add-to-cart[disabled] {
+                opacity: 0.6;
+            }
             @media only screen and (max-width: 479px)  {
                 div#banner {
                     margin: 0 auto;
@@ -265,6 +662,235 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
+    let linkCustom = document.createElement('link');
+    linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    linkCustom.rel = 'stylesheet';
+    document.head.appendChild(linkCustom);
+
+    let scriptCustom = document.createElement('script');
+    scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
+
+    let productsStored = [];
+    let productsStoredUpdate = [];
+
+    function tnsInitialization() {
+        let sliderCategories = tns({
+            container: document.querySelector('.slider-gallery'),
+            items: 4,
+            autoplay: false,
+            axis: 'horizontal',
+            controls: true,
+            loop: false,
+            prevButton: document.querySelector('.swiper-button-prev'),
+            nextButton: document.querySelector('.swiper-button-next'),
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            nav: false,
+            preventScrollOnTouch: 'auto',
+            swipeAngle: false,
+            responsive: {
+                1009: {
+                    items: 4,
+                },
+                320: {
+                    items: 2,
+                }
+            }
+        });
+    }
+    function sumTotalPrice() {
+        let sum = 0;
+        document.querySelectorAll('.total-price b').forEach((totalPrice) => {
+            sum += parseFloat(totalPrice.innerHTML);
+            document.querySelectorAll('.total-values b').forEach((totalValues) => {
+                totalValues.innerHTML = `$ ${sum.toFixed(2)}`;
+            });
+        });
+    }
+
+    function pushProductsStored() {
+        let productsStored = [];
+        localStorage.setItem('productsStored', '');
+        document.querySelectorAll('.popup__product').forEach((product) => {
+            productsStored.push({
+                'product_id': product.dataset.productId,
+                'quantity': product.querySelector('.quantity').value,
+                'price': product.querySelector('.unit-price b').innerHTML,
+                'product_variant_id': product.dataset.productVariantId,
+                'img_src': product.querySelector('.product-cell-inner span img').getAttribute('src'),
+                'link': product.querySelector('.product-description b a').getAttribute('href'),
+                'title': product.querySelector('.product-description b a').innerHTML,
+            });
+            localStorage.setItem('productsStored', JSON.stringify(productsStored));
+        });
+    }
+
+    function quantityFun(el) {
+        if (el.querySelector('.quantity').value < 2) {
+            el.querySelector('.quantity').value = 1;
+            el.querySelector('.quantity-btn_minus').disabled = true;
+        } else {
+            el.querySelector('.quantity-btn_minus').disabled = false;
+        }
+        el.querySelector('.quantity-row').addEventListener('change', () => {
+            if (el.querySelector('.quantity').value < 2) {
+                el.querySelector('.quantity').value = 1;
+                el.querySelector('.quantity-btn_minus').disabled = true;
+            } else {
+                el.querySelector('.quantity-btn_minus').disabled = false;
+            }
+            el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+            sumTotalPrice();
+        });
+        el.querySelectorAll('.quantity-btn').forEach((button) => {
+            button.addEventListener('click', (event) => {
+                event.stopImmediatePropagation();
+                if (button.className == 'quantity-btn quantity-btn_plus') {
+                    button.previousElementSibling.value = +button.previousElementSibling.value + 1;
+                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+                }
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.nextElementSibling.value = 1;
+                        button.disabled = true;
+                    } else {
+                        button.nextElementSibling.value = +button.nextElementSibling.value - 1;
+                    }
+                }
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=variant`
+                })
+                pushProductsStored();
+                el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+                sumTotalPrice();
+            });
+        });
+    }
+
+    function addToCart() {
+        document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                
+                document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
+                let valueP = 1;
+                valueP = +item.nextElementSibling.value,
+                    num = +document.querySelector('.by_num span').innerHTML;
+                document.querySelector('.by_num span').innerHTML = num + valueP;
+
+                let parent = item.parentElement.closest('dd'),
+                    srcImgProduct = parent.querySelector('img').src,
+                    altImgProduct = parent.querySelector('img').alt,
+                    titleProduct = parent.querySelectorAll('a')[1].innerHTML,
+                    linkProduct = parent.querySelectorAll('a')[1].href,
+                    priceProductAll = parent.querySelector('b').innerHTML,
+                    splPrice = priceProductAll.split('$');
+
+                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+                    productId = item.closest('.product-card').getAttribute('data-product-id');
+
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+                    'eventAction': 'click on button — add to cart',
+                    'eventQuantity': `${valueP}`
+                });
+
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
+                    addProduct(productId,dataProductVariantId,linkProduct,srcImgProduct,titleProduct,valueP,parent.querySelector('b s') ? splPrice[2]: splPrice[1]);
+                }
+
+                if (document.querySelector(`.popup__product[data-product-id='${productId}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${productId}']`).forEach((el) => {
+                        el.querySelector('.quantity').value = parseInt(item.nextElementSibling.value) + parseInt(el.querySelector('.quantity').value);
+                    });
+                }
+
+                document.querySelector('.popup').classList.add('isActive');
+
+                tnsInitialization();
+
+                productsStored = [];
+                localStorage.setItem('productsStored', '');
+
+                document.querySelectorAll(`.popup__product`).forEach((el) => {
+                    quantityFun(el);
+                    el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
+                    sumTotalPrice();
+                    productsStored.push({
+                        'product_id': el.getAttribute('data-product-id'),
+                        'quantity': el.querySelector('.quantity').value,
+                        'price': el.querySelector('.unit-price b').innerHTML,
+                        'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        'img_src': el.querySelector('a img').getAttribute('src'),
+                        'link': el.querySelector('.product-description a').getAttribute('href'),
+                        'title': el.querySelector('.product-description a').innerHTML,
+                    });
+                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
+                });
+
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                })
+            });
+        });
+
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });
+        });
+    }
+
+    function addProduct(id,varId,link,imgSrc,title,quantity,price) {
+        let newElementProduct = `
+        <tr class="popup__product" data-product-id='${id}' data-product-variant-id='${varId}'>
+            <td width="44%">
+                <div class="product-cell-inner">
+                    <span> 
+                        <a href="${link}">
+                            <img src="${imgSrc}" alt="${title}">
+                        </a>
+                    </span>
+                    <p class="product-description" align="left">
+                        <b>
+                            <a href="${link}" style="font-size:12px;line-height:15px;color:#000000;font-weight: normal;">${title}</a>
+                        </b>
+                    </p>
+                </div>
+            </td>
+            <td width="22%" align="left">
+                <div class="quantity-row">
+                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                    <input type="text" name="quantity" value="0" class="quantity" data-val="${quantity}" readonly>
+                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                </div>
+            </td>
+            <td width="17%" class="unit-price" align="left"><p>Price:</p> $ <b>${price}</b></td>
+            <td width="17%" class="total-price" align="left"><p>Total:</p> $ <b></b></td>
+        </tr> `;
+        document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+        
+        if (window.matchMedia("(max-width: 1009px)").matches) {
+            document.querySelectorAll('.product-description b').forEach((el,i) => {
+                el.after(el.closest('.popup__product').querySelector('.quantity-row'));
+            });
+        }
+    }
+
     if (window.matchMedia("(max-width: 1009px)").matches) {
         document.querySelector('.paypal-button input[type="image"]').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/pay.png');
         document.querySelector('.popup__bottom .paypal-button').before(document.querySelector('.popup__product-total'));
@@ -276,3 +902,21 @@ window.onload  = function () {
         document.querySelector('.homeslider__img').setAttribute('data-cfsrc', 'https://conversionratestore.github.io/projects/medicalmega/img/banner-mobile.png');
     }
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1483840,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'PL_and_cart_improvements');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
+    'eventAction': 'loaded'
+});
