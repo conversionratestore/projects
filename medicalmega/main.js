@@ -386,6 +386,7 @@ window.onload  = function () {
             .slider-gallery .product-card .add-to-cart input {
                 padding: 5.5px 0;}
             .bought-products {
+                overflow: hidden;
                 padding-top: 30px;}
             .slider-gallery.gallery .product-card span {
                 height: 120px;
@@ -397,8 +398,7 @@ window.onload  = function () {
             .add-to-cart[disabled] {
                 opacity: 0.6;
             }
-        </style>
-    `;
+        </style>`;
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -491,30 +491,7 @@ window.onload  = function () {
     function addToCart() {
         document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
-                let sliderCategories = tns({
-                    container: document.querySelector('.slider-gallery'),
-                    items: 4,
-                    autoplay: false,
-                    axis: 'horizontal',
-                    controls: true,
-                    loop: false,
-                    prevButton: document.querySelector('.swiper-button-prev'),
-                    nextButton: document.querySelector('.swiper-button-next'),
-                    autoplayButton: false,
-                    autoplayButtonOutput: false,
-                    mouseDrag: true,
-                    nav: false,
-                    preventScrollOnTouch: 'auto',
-                    swipeAngle: false,
-                    responsive: {
-                        1009: {
-                            items: 4,
-                        },
-                        320: {
-                            items: 2,
-                        }
-                    }
-                });
+                
                 document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
                 let valueP = 1;
                 valueP = +item.nextElementSibling.value,
@@ -731,30 +708,6 @@ window.onload  = function () {
             } else {
                 document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
             }
-            let sliderCategories = tns({
-                container: document.querySelector('.slider-gallery'),
-                items: 4,
-                autoplay: false,
-                axis: 'horizontal',
-                controls: true,
-                loop: false,
-                prevButton: document.querySelector('.swiper-button-prev'),
-                nextButton: document.querySelector('.swiper-button-next'),
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-                nav: false,
-                responsive: {
-                    1009: {
-                        items: 4,
-                    },
-                    320: {
-                        items: 2,
-                    }
-                }
-            });
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
@@ -862,6 +815,32 @@ window.onload  = function () {
                     </dd>`);
                     if (i === 0) {
                         addToCart()
+                    }
+                    if (i === (arrLinks.length - 1)) {
+                        let sliderCategories = tns({
+                            container: document.querySelector('.slider-gallery'),
+                            items: 4,
+                            autoplay: false,
+                            axis: 'horizontal',
+                            controls: true,
+                            loop: false,
+                            prevButton: document.querySelector('.swiper-button-prev'),
+                            nextButton: document.querySelector('.swiper-button-next'),
+                            autoplayButton: false,
+                            autoplayButtonOutput: false,
+                            mouseDrag: true,
+                            nav: false,
+                            preventScrollOnTouch: 'auto',
+                            swipeAngle: false,
+                            responsive: {
+                                1009: {
+                                    items: 4,
+                                },
+                                320: {
+                                    items: 2,
+                                }
+                            }
+                        });
                     }
                 }
             }
