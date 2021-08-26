@@ -414,6 +414,32 @@ window.onload  = function () {
     let productsStored = [];
     let productsStoredUpdate = [];
 
+    function tnsInitialization() {
+        let sliderCategories = tns({
+            container: document.querySelector('.slider-gallery'),
+            items: 4,
+            autoplay: false,
+            axis: 'horizontal',
+            controls: true,
+            loop: false,
+            prevButton: document.querySelector('.swiper-button-prev'),
+            nextButton: document.querySelector('.swiper-button-next'),
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            nav: false,
+            preventScrollOnTouch: 'auto',
+            swipeAngle: false,
+            responsive: {
+                1009: {
+                    items: 4,
+                },
+                320: {
+                    items: 2,
+                }
+            }
+        });
+    }
     function sumTotalPrice() {
         let sum = 0;
         document.querySelectorAll('.total-price b').forEach((totalPrice) => {
@@ -527,6 +553,8 @@ window.onload  = function () {
                 }
 
                 document.querySelector('.popup').classList.add('isActive');
+
+                tnsInitialization();
 
                 productsStored = [];
                 localStorage.setItem('productsStored', '');
@@ -707,6 +735,9 @@ window.onload  = function () {
             } else {
                 document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
             }
+
+            tnsInitialization();
+            
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
@@ -816,30 +847,7 @@ window.onload  = function () {
                         addToCart()
                     }
                     if (i === (arrLinks.length - 1)) {
-                        let sliderCategories = tns({
-                            container: document.querySelector('.slider-gallery'),
-                            items: 4,
-                            autoplay: false,
-                            axis: 'horizontal',
-                            controls: true,
-                            loop: false,
-                            prevButton: document.querySelector('.swiper-button-prev'),
-                            nextButton: document.querySelector('.swiper-button-next'),
-                            autoplayButton: false,
-                            autoplayButtonOutput: false,
-                            mouseDrag: true,
-                            nav: false,
-                            preventScrollOnTouch: 'auto',
-                            swipeAngle: false,
-                            responsive: {
-                                1009: {
-                                    items: 4,
-                                },
-                                320: {
-                                    items: 2,
-                                }
-                            }
-                        });
+                        tnsInitialization();
                     }
                 }
             }
