@@ -240,7 +240,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
-                padding-left: 24px;
+//                 padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
