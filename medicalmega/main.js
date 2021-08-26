@@ -30,7 +30,7 @@ window.onload  = function () {
             .gallery dd {
                 width: 140px;
                 line-height: 15px;
-                display: flex;
+                display: flex!important;
                 flex-direction: column;
                 justify-content: space-between;
                 text-align: left;}
@@ -305,7 +305,8 @@ window.onload  = function () {
             .body table::-webkit-scrollbar-thumb{
                 background: #666666;}
             .slider-gallery{
-                max-width: 510px;
+                overflow: visible!important;
+                /*max-width: 510px;*/
                 margin: 0 auto;
                 padding-top: 15px;}
             .gallery .swiper-slide {
@@ -327,7 +328,11 @@ window.onload  = function () {
             .gallery .swiper-slide .add-to-cart input{
                 padding: 4px 0; }
             .swiper-container {
+                margin: 0 auto;
+                max-width: 520px;
                 position: relative;}
+            .swiper-container .gallery-parent {
+                padding-bottom: 0; }
             .swiper-button-prev, .swiper-button-next {
                 position: absolute;
                 border: none;
@@ -336,21 +341,22 @@ window.onload  = function () {
                 transform: translateY(-50%);
                 width: 36px;
                 height: 36px;
+                z-index: 9;
                 background: no-repeat center / contain}
             .swiper-button-prev {
-                left: 0;
+                left: -40px;
                 background-image: url('https://i.ibb.co/m0Lv3wp/expand-more-24px.png');}
             .swiper-button-next {
-                right: 0;
+                right: -40px;
                 background-image: url('https://i.ibb.co/v4MXXdd/expand-more-24px-1.png');}
             .gallery .swiper-slide {
                 flex-shrink: 0;
                 clear: both;}
-            .slider-gallery {
-                overflow-x: auto;
-                display: flex;}
-            .slider-gallery::-webkit-scrollbar {
-                display: none;}
+            /*.slider-gallery {*/
+            /*    overflow-x: auto;*/
+            /*    display: flex;}*/
+            /*.slider-gallery::-webkit-scrollbar {*/
+            /*    display: none;}*/
             .before, .after {
                 position: absolute;
                 display: block;
@@ -365,9 +371,14 @@ window.onload  = function () {
                 margin-left: calc(50% - 10px);}
             .after {
                 margin-left: calc(75% - 10px);}
-            .slider-gallery .product-card {
-                width: 117px;
-                flex-shrink: 0; }
+            /*.slider-gallery .product-card, #tns1 > .tns-item {*/
+            /*    width: 130px;*/
+            /*    flex-shrink: 0; }*/
+             .gallery-parent #tns1 > .tns-item {
+                width: 25%;
+                padding: 0;
+                margin: 0 5px;
+             }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
                 padding: 0 4px;
@@ -777,27 +788,69 @@ window.onload  = function () {
 
     let container = document.querySelector('.slider-gallery');
 
-    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function(){
-            container.scrollLeft -= 26;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
-            }
-        }, 25);
-    });
+let linkCustom = document.createElement('link');
+linkCustom.href =
+    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+linkCustom.rel = 'stylesheet';
+document.head.appendChild(linkCustom);
 
-    document.querySelector('.swiper-button-next').addEventListener('click', () => {
-        scrollAmount = 0;
-        let slideTimer = setInterval(function() {
-            container.scrollLeft += 26;
-            scrollAmount += 10;
-            if(scrollAmount >= 50){
-                window.clearInterval(slideTimer);
+let scriptCustom = document.createElement('script');
+scriptCustom.src =
+    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+scriptCustom.async = false;
+document.head.appendChild(scriptCustom);
+
+
+let categoryInterval = setInterval(() => {
+    if (typeof tns == 'function') {
+        clearInterval(categoryInterval);
+
+        let sliderCategories = tns({
+            container: container,
+            items: 4,
+            autoplay: false,
+            axis: 'horizontal',
+            controls: true,
+            loop: false,
+            prevButton: document.querySelector('.swiper-button-prev'),
+            nextButton: document.querySelector('.swiper-button-next'),
+            autoplayButton: false,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            preventScrollOnTouch: 'auto',
+            swipeAngle: false,
+            responsive: {
+                1009: {
+                    items: 4,
+                },
+                320: {
+                    items: 2,
+                }
             }
-        }, 25);
-    });
+        });
+    }
+}, 200);
+    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function(){
+    //         container.scrollLeft -= 26;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
+    //
+    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
+    //     scrollAmount = 0;
+    //     let slideTimer = setInterval(function() {
+    //         container.scrollLeft += 26;
+    //         scrollAmount += 10;
+    //         if(scrollAmount >= 50){
+    //             window.clearInterval(slideTimer);
+    //         }
+    //     }, 25);
+    // });
 
     document.querySelector('.popup .body').addEventListener('change', () => {
         productsStoredUpdate = [];
