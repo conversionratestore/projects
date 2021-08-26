@@ -187,7 +187,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
     let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
     let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-    let customSumm = +(price * qty).toFixed(2);
+    let customSumm = +((price * qty).toFixed(2));
 
     localStorage.setItem("customSumm", customSumm);
 
@@ -401,7 +401,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
     }
 
     // handleClick
-    function handleClick() {
+    function handleClick(s) {
         document.querySelectorAll(".specifics button").forEach((el) => {
             el.addEventListener("click", function () {
                 setTimeout(function () {
@@ -410,15 +410,15 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
                     }
 
                     if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
-                        renderDelivery();
-                        handleClick();
+                        renderDelivery(s);
+                        handleClick(s);
                     }
                 }, 200);
             });
         });
     }
 
-    handleClick();
+    handleClick(customSumm);
 
     //
     window.dataLayer = window.dataLayer || [];
