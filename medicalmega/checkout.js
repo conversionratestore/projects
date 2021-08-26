@@ -1013,6 +1013,9 @@ window.onload  = function () {
         .quantity-row {
             pointer-events: none;
         }
+        .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
+            display: block!important;
+        }
         </style>`);
         document.querySelector('.title_head').innerHTML = 'your order has been placed!';
         document.querySelector('.title_head').after(document.querySelector('.payment'));
