@@ -342,6 +342,7 @@ window.onload  = function () {
                 width: 36px;
                 height: 36px;
                 z-index: 9;
+                display: block!important;
                 background: no-repeat center / contain}
             .swiper-button-prev {
                 left: -40px;
@@ -737,7 +738,7 @@ window.onload  = function () {
             }
 
             tnsInitialization();
-            
+
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
@@ -746,7 +747,6 @@ window.onload  = function () {
             });
         });
     }
-
 
     if (document.querySelector('#cart_box a')) {
         document.querySelectorAll('#cart_box a')[0].setAttribute('onclick','');
