@@ -883,6 +883,12 @@ window.onload  = function () {
             <td width="17%" class="total-price" align="left"><p>Total:</p> $ <b></b></td>
         </tr> `;
         document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
+        
+        if (window.matchMedia("(max-width: 1009px)").matches) {
+            document.querySelectorAll('.product-description b').forEach((el,i) => {
+                el.after(el.closest('.popup__product').querySelector('.quantity-row'));
+            });
+        }
     }
 
     function quantityChenged(el){
@@ -1173,21 +1179,21 @@ window.onload  = function () {
 
     
     if (window.matchMedia("(max-width: 1009px)").matches) {
-        document.querySelectorAll('.product-description b').forEach((el,i) => {
-            el.after(document.querySelectorAll('.quantity-row')[i])
-        });
+        // document.querySelectorAll('.product-description b').forEach((el,i) => {
+        //     el.after(document.querySelectorAll('.quantity-row')[i])
+        // });
         document.querySelector('.paypal-button input[type="image"]').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/pay.png');
         document.querySelector('.popup__bottom .paypal-button').before(document.querySelector('.popup__product-total'));
         document.querySelector('.popup__bottom').before(document.querySelector('.bought-products'));
         document.querySelector('.bought-products .title3').innerHTML = 'You May Also Like';
 
-        document.querySelectorAll('.add-to-cart button').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.product-description b').forEach((el,i) => {
-                    el.after(el.closest('.popup__product').querySelector('.quantity-row'));
-                });
-            })
-        });
+        // document.querySelectorAll('.add-to-cart button').forEach(item => {
+        //     item.addEventListener('click', () => {
+        //         document.querySelectorAll('.product-description b').forEach((el,i) => {
+        //             el.after(el.closest('.popup__product').querySelector('.quantity-row'));
+        //         });
+        //     })
+        // });
     }
     if (window.matchMedia("(max-width: 759px)").matches) {
         document.querySelector('.homeslider__img').setAttribute('src', 'https://conversionratestore.github.io/projects/medicalmega/img/banner-mobile.png');
