@@ -375,7 +375,7 @@ window.onload  = function () {
             /*    width: 130px;*/
             /*    flex-shrink: 0; }*/
              .gallery-parent #tns1 > .tns-item {
-                width: 25%;
+                // width: 25%;
                 padding: 0;
                 margin: 0 5px;
              }
