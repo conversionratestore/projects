@@ -501,6 +501,15 @@ window.onload  = function () {
                     }
                 }
                 pushProductsStored();
+
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&ncp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
+                })
+
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
             });
@@ -811,21 +820,6 @@ window.onload  = function () {
     });
 
     document.querySelector('.popup .checkout .btn').addEventListener('click', (e) => {
-        e.preventDefault();
-        if (document.querySelectorAll('.quantity-row')) {
-            document.querySelectorAll('.quantity-row').forEach(button => {
-                fetch('/cart.html', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    method: "POST",
-                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=update_to_cart`
-                }).then(res => {
-                    window.location.pathname = '/checkout/step1';
-                })
-            });
-        }
-       
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
