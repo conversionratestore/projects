@@ -402,6 +402,16 @@ window.onload  = function () {
 
     document.body.insertAdjacentHTML('afterbegin', style);
 
+    let linkCustom = document.createElement('link');
+    linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    linkCustom.rel = 'stylesheet';
+    document.head.appendChild(linkCustom);
+
+    let scriptCustom = document.createElement('script');
+    scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
+
     let productsStored = [];
     let productsStoredUpdate = [];
 
@@ -831,43 +841,6 @@ window.onload  = function () {
             http.send(null);
         })()
     }
-
-    let container = document.querySelector('.slider-gallery');
-
-let linkCustom = document.createElement('link');
-linkCustom.href =
-    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-linkCustom.rel = 'stylesheet';
-document.head.appendChild(linkCustom);
-
-let scriptCustom = document.createElement('script');
-scriptCustom.src =
-    'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-scriptCustom.async = false;
-document.head.appendChild(scriptCustom);
-
-
-    // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function(){
-    //         container.scrollLeft -= 26;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
-    //
-    // document.querySelector('.swiper-button-next').addEventListener('click', () => {
-    //     scrollAmount = 0;
-    //     let slideTimer = setInterval(function() {
-    //         container.scrollLeft += 26;
-    //         scrollAmount += 10;
-    //         if(scrollAmount >= 50){
-    //             window.clearInterval(slideTimer);
-    //         }
-    //     }, 25);
-    // });
 
     document.querySelector('.popup .body').addEventListener('change', () => {
         productsStoredUpdate = [];
