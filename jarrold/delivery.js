@@ -188,7 +188,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
   let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
   let customSumm = +(price * qty).toFixed(2);
-  console.log(customSumm);
+  
   localStorage.setItem("customSumm", customSumm);
 
   document.head.insertAdjacentHTML("beforeend", styleSet);
@@ -279,8 +279,8 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
           localStorage.customSumm = newSumm;
           if (newSumm < 50) {
             // NOT FREE SHIPPING
-            document.querySelector(".delivery-box").remove();
-            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMore);
+            document.querySelector(".delivery-box-mobile").remove();
+            document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMoreMobile);
             let newSummDiff = 50 - newSumm;
             document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
           }
@@ -297,8 +297,8 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
           document.querySelector(".price-more").innerText = `£${newSummDiff.toFixed(2)}`;
         } else {
           // FREE SHIPPING
-          document.querySelector(".delivery-box").remove();
-          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBox);
+          document.querySelector(".delivery-box-mobile").remove();
+          document.querySelector(".price").insertAdjacentHTML("beforeend", deliveryBoxMobile);
         }
       });
     }, 1000);
