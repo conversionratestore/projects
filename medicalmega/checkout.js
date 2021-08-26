@@ -910,8 +910,8 @@ window.onload  = function () {
             background: #FFFFFF;}
         .primaryInfo dl textarea {
             height: 40px;}
-        #recurring_billing_period {
-                padding: 0 10px;
+        #recurring_billing_period, #card_list {
+            padding: 0 10px;
             background: #EDEDED;
             border: 0.5px solid #CCCCCC;
             box-sizing: border-box;
