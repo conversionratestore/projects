@@ -695,7 +695,7 @@ window.onload  = function () {
             </style>`);
         }
         // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
-        // let productsStored = [];
+        let productsStored = [];
         // localStorage.setItem('productsStored', '');
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
