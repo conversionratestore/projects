@@ -1,7 +1,7 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
-        .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
+        .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {
             display: none;}
         .title_head {
             font-weight: bold;
