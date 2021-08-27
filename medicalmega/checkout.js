@@ -170,9 +170,9 @@ window.onload  = function () {
             padding: 20px 0;
             width: 100%;}
         .myAccountright {
-            display: none;
             width: 100%; }
         .myAccountleft {
+            display: none;
             width: 100%; }
         .registerOnLogin {
             padding: 0;}
@@ -536,8 +536,8 @@ window.onload  = function () {
     <div class="flex-between">
         <div class="checkout-left">
             <div class="checkout-left_head flex-center-between">
-                <h2 class="title">Registration</h2>
-                <p class="link log active">Sign In</p>
+                <h2 class="title">Sign In</h2>
+                <p class="link log">Registration</p>
             </div>
             <div class="title_head">Personal information</div>
         </div>
