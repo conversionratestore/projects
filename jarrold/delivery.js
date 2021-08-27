@@ -193,7 +193,7 @@ let now;
 if (document.querySelector("#variants .price") || document.querySelector(".upc")) {
   now = "rrp";
 
-  if (document.querySelector(".price .now")) {
+  if (document.querySelector("#variants .price .now")) {
     now = "now";
   }
 
