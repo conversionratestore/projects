@@ -199,6 +199,7 @@ window.onload  = function () {
             .popup table.altPayment .popup__product td {
                 padding: 0 0 10px 0; }
             .quantity-btn {
+                display: none;
                 width: 28px;
                 cursor: pointer;
                 font-size: 18px;
@@ -239,6 +240,7 @@ window.onload  = function () {
             .popup .altTd.total-values b:first-child {
                 font-weight: 450;}
             .quantity-row {
+                padding-left: 24px;
                 display: flex;}
             .flex-center {
                 display: flex;
@@ -281,6 +283,7 @@ window.onload  = function () {
             .btn img {
                 margin-left: 5px;}
             .popup__bottom {
+                // margin-bottom: 30px;
                 padding: 20px 0;
                 border-bottom: 0.5px solid #EEEEEE;
                 display: flex;
@@ -364,15 +367,11 @@ window.onload  = function () {
                 margin-left: calc(50% - 10px);}
             .after {
                 margin-left: calc(75% - 10px);}
-            .gallery-parent #tns1 > .tns-item {
+             .gallery-parent #tns1 > .tns-item {
                 // width: 25%;
                 padding: 0;
                 margin: 0 5px;
-            }
-            .swiper-container #tns1 > .tns-item{
-                width: calc(50% - 10px);
-                margin: 0 5px;
-            }
+             }
             .slider-gallery .product-card .add-to-cart button {
                 font-size: 12px;
                 padding: 0 4px;
@@ -391,7 +390,7 @@ window.onload  = function () {
             .add-to-cart[disabled] {
                 opacity: 0.6;
             }
-            @media only screen and (max-width: 479px)  {
+              @media only screen and (max-width: 479px)  {
                 div#banner {
                     margin: 0 auto;
                 }
@@ -411,7 +410,7 @@ window.onload  = function () {
                     margin: 24px auto 0;
                 }
                 .mainleft .homeslider__container {
-                    margin: 18px 0 0 0;
+                    margin: 18px 0 0 0!important;
                     width: 100%;
                 }
                 #hdr {
@@ -472,7 +471,6 @@ window.onload  = function () {
                     width: 280px;}
                 .popup__product-total td {
                     width: 100%;
-                    display: table-cell;    
                     white-space: nowrap;
                     padding: 0 0 9px 0!important;
                 }
@@ -615,6 +613,9 @@ window.onload  = function () {
                     background: #EEEEEE;
                     border-radius: 4px;
                 }
+                .homeslider__slide {
+                    margin-bottom: 0!important;
+                }
             }
             @media only screen and (max-width: 758px)  {
                 .homeslider__container, .show-more, .gallery-parent {
@@ -650,6 +651,12 @@ window.onload  = function () {
             @media only screen and (max-width: 360px)  {
                 .gallery-parent {
                     padding: 15px 0 0 0;
+                }
+                .homepage-container .gallery{
+                    padding: 0;
+                }
+                .homepage-container .gallery-parent {
+                    padding: 0 10.5px;
                 }
             }
         </style>`;
@@ -754,14 +761,16 @@ window.onload  = function () {
                         button.nextElementSibling.value = +button.nextElementSibling.value - 1;
                     }
                 }
+                pushProductsStored();
+
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=variant`
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
                 })
-                pushProductsStored();
+
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
             });
@@ -877,7 +886,6 @@ window.onload  = function () {
             <td width="17%" class="total-price" align="left"><p>Total:</p> $ <b></b></td>
         </tr> `;
         document.querySelector('.body table tbody').insertAdjacentHTML('afterbegin', newElementProduct);
-
         if (window.matchMedia("(max-width: 1009px)").matches) {
             document.querySelectorAll('.product-description b').forEach((el,i) => {
                 el.after(el.closest('.popup__product').querySelector('.quantity-row'));
@@ -1059,7 +1067,6 @@ window.onload  = function () {
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             })
             document.querySelector('.popup').classList.add('isActive');
-
         });
     }
 
@@ -1073,7 +1080,7 @@ window.onload  = function () {
         });
     });
 
-    document.querySelector('.popup .checkout .btn').addEventListener('click', () => {
+    document.querySelector('.popup .checkout .btn').addEventListener('click', (e) => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
@@ -1081,6 +1088,7 @@ window.onload  = function () {
             'eventAction': 'click on button — checkout now'
         });
     });
+
 
     let arrLinks = ['https://medicalmega.com/product/gauze-sponge-mckesson-cotton-gauze-8-ply-4-x-4-inch-square-sterile','https://medicalmega.com/product/caring-abd-pad-5-x-9-sterile','https://medicalmega.com/product/healqu-calcium-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-2in-x-2in','https://medicalmega.com/product/healqu-bordered-gauze-dressing-4-x-4','https://medicalmega.com/product/foley-anchor-urinary-catheter-securement-device','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-4-x-4','https://medicalmega.com/product/healqu-xeroform-gauze-dressing-5-x-9','https://medicalmega.com/product/unistrip-glucose-test-strips-for-use-with-one-touch-blood-glucose-monitors','https://medicalmega.com/product/suction-catheter-kit-14-fr12142','https://medicalmega.com/product/bordered-silicone-foam-dressings-4-x-4','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-2-x-2','https://medicalmega.com/product/pulmocare-institutional-1000-ml-ready-to-hang-with-safety-screw-connector-vanilla','https://medicalmega.com/product/healqu-super-absobent-adhesive-dressing-4-x-4','https://medicalmega.com/product/stomahesive-paste-2-oz-tube','https://medicalmega.com/product/aqua-guard-moisture-barrier-7-x-7-retail-display','https://medicalmega.com/product/convatec-gentlecath-intermittent-urinary-catheter-with-straight-tip-14fr-16','https://medicalmega.com/product/airlife-unit-dose-sterile-water-5ml','https://medicalmega.com/product/healqu-silver-alginate-wound-dressing-4-x-5','https://medicalmega.com/product/earloop-procedure-face-mask-blue-case-of-600']
     for (let i = 0; i < arrLinks.length; i++) {
