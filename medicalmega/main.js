@@ -507,7 +507,7 @@ window.onload  = function () {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&ncp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
+                    body: `option_id=${button.closest('.popup__product').dataset.productVariantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.popup__product').dataset.productId}&update_to_cart=1`
                 })
 
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
@@ -519,7 +519,7 @@ window.onload  = function () {
     function addToCart() {
         document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
             item.addEventListener('click', () => {
-                
+
                 document.querySelector('.popup__bottom .flex-center').style.display = 'flex';
                 let valueP = 1;
                 valueP = +item.nextElementSibling.value,
