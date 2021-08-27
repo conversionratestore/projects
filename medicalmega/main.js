@@ -472,6 +472,7 @@ window.onload  = function () {
                 .popup__product-total td {
                     width: 100%;
                     white-space: nowrap;
+                    display: table-cell;
                     padding: 0 0 9px 0!important;
                 }
                 .popup__product-total .total-values {
