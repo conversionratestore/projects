@@ -612,7 +612,6 @@ window.onload  = function () {
         });
     });
     if (document.querySelector('.myAccount')) {
-
         document.querySelector('.title_head').after(document.querySelector('.myAccount'));
         document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
         <label class="valign-center">
@@ -661,7 +660,7 @@ window.onload  = function () {
                 });
             }
         });
-        if (document.querySelector('.invaliduser')) {
+        if (document.querySelector('.myAccountright .invaliduser')) {
             document.querySelector('.log').innerHTML = 'Registration';
             document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
             document.querySelector('.myAccountleft').style.display = 'none';
@@ -670,6 +669,13 @@ window.onload  = function () {
             document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
             document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
             document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
+        }
+        if (document.querySelectorAll('.myAccountleft .error')) {
+            document.querySelector('.log').innerHTML = 'Sign in';
+            document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
+            document.querySelector('.myAccountleft').style.display = 'block';
+            document.querySelector('.myAccountright').style.display = 'none';
+            document.querySelector('.log').classList.add('active');
         }
     }
     if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
