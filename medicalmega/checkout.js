@@ -660,7 +660,7 @@ window.onload  = function () {
                 });
             }
         });
-        if (document.querySelector('.myAccountright .invaliduser')) {
+        if (location.pathname.includes('login')) {
             document.querySelector('.log').innerHTML = 'Registration';
             document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
             document.querySelector('.myAccountleft').style.display = 'none';
@@ -670,7 +670,7 @@ window.onload  = function () {
             document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
             document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
         }
-        if (document.querySelectorAll('.myAccountleft .error')) {
+        if (location.pathname.includes('register')) {
             document.querySelector('.log').innerHTML = 'Sign in';
             document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
             document.querySelector('.myAccountleft').style.display = 'block';
