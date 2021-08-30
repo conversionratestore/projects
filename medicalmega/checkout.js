@@ -537,7 +537,7 @@ window.onload  = function () {
         }
     </style>`);
         document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
-    <div class="flex-between">
+        <div class="flex-between">
         <div class="checkout-left">
             <div class="checkout-left_head flex-center-between">
                 <h2 class="title">Sign In</h2>
@@ -670,8 +670,10 @@ window.onload  = function () {
                 document.querySelector('.myAccountleft').style.display = 'none';
                 document.querySelector('.myAccountright').style.display = 'block';
                 document.querySelector('.log').classList.remove('active');
-                document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
-                document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
+                if (document.querySelector('.invaliduser')) {
+                    document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
+                    document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
+                }
                 document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
             }
             if (location.pathname.includes('register')) {
@@ -1050,25 +1052,25 @@ window.onload  = function () {
             let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
             for (let i = 0; i < justunoCartItems.length; i++) {
                 let product = `
-            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].productid}" data-variant-id="${justunoCartItems[i].variationid}">
-                <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
-                <div class="flex-column">
-                    <div class="flex-between">
-                        <a href="#">${justunoCartItems[i].name}</a>
-                        <button class="remove" type="button"></button>
-                    </div>
-                    <div class="flex-center-between">
-                        <div class="quantity-row">
-                            <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                            <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
-                            <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                <div class="d-flex checkout-product" data-id="${justunoCartItems[i].productid}" data-variant-id="${justunoCartItems[i].variationid}">
+                    <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
+                    <div class="flex-column">
+                        <div class="flex-between">
+                            <a href="#">${justunoCartItems[i].name}</a>
+                            <button class="remove" type="button"></button>
                         </div>
-                        <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                            <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
+                        <div class="flex-center-between">
+                            <div class="quantity-row">
+                                <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
+                                <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                            </div>
+                            <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
+                                <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
                 document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 sumTotalPrice();
             }
