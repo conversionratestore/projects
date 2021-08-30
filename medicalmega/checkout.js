@@ -11,7 +11,7 @@ window.onload  = function () {
                     'variationid': el.querySelector('[name="option_id"]').value,
                     'img_src': el.querySelector('.product-cell-inner a img').getAttribute('src'),
                     'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'name': el.querySelector('.product-description a')[1].innerHTML,
+                    'name': el.querySelector('.product-description a').innerHTML,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             }
