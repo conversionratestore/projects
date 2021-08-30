@@ -876,6 +876,8 @@ window.onload  = function () {
             document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                 element.setAttribute('readonly');
             });
+            document.querySelectorAll('#ship_options li input')[0].setAttribute('checked');
+
             document.querySelector('.btn-back').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
