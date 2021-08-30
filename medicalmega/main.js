@@ -1,6 +1,8 @@
 window.onload  = function () {
     let style = `
         <style>
+            .num_line a:first-child {
+                pointer-events: none;}
             .homeslider__dots, .popup__product .unit-price p, .popup__product .total-price p {
                 display: none;}
             button {
