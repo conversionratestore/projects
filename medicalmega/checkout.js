@@ -571,13 +571,13 @@ window.onload  = function () {
         localStorage.setItem('productsStored', '');
         document.querySelectorAll('.checkout-product').forEach((product) => {
             productsStored.push({
-                'product_id': product.dataset.id,
+                'productid': product.dataset.id,
                 'quantity': product.querySelector('.quantity').value,
                 'price': product.querySelector('.total-price').dataset.price,
-                'product_variant_id': product.dataset.variantId,
+                'variationid': product.dataset.variantId,
                 'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
                 'link': product.querySelector('.checkout-product_img').getAttribute('href'),
-                'title': product.querySelectorAll('.flex-between a')[1].innerHTML,
+                'name': product.querySelectorAll('.flex-between a')[1].innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
@@ -705,13 +705,13 @@ window.onload  = function () {
         // localStorage.setItem('productsStored', '');
         document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
             productsStored.push({
-                'product_id': el.closest('tr').querySelector('[name="cp_id"]').value,
+                'productid': el.closest('tr').querySelector('[name="cp_id"]').value,
                 'quantity': el.closest('tr').querySelector('.product-quantity').value,
                 'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'product_variant_id': el.closest('tr').querySelector('[name="option_id"]').value,
+                'variationid': el.closest('tr').querySelector('[name="option_id"]').value,
                 'img_src': el.querySelector('a img').getAttribute('src'),
                 'link': el.querySelector('.product-description a').getAttribute('href'),
-                'title': el.querySelector('.product-description a').innerHTML,
+                'name': el.querySelector('.product-description a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
@@ -1046,13 +1046,13 @@ window.onload  = function () {
         document.querySelectorAll('.altPayment tr').forEach((el, index) => {
             console.log(el.querySelector('[name="cp_id"]') + ' = ' + el.querySelector('[name="cp_id"]').value);
             productsStored.push({
-                'product_id': el.querySelector('[name="cp_id"]').value,
+                'productid': el.querySelector('[name="cp_id"]').value,
                 'quantity': el.querySelector('.product-quantity').value,
                 'price': el.querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'product_variant_id': el.querySelector('[name="option_id"]').value,
+                'variationid': el.querySelector('[name="option_id"]').value,
                 'img_src': el.querySelector('a img').getAttribute('src'),
                 'link': el.querySelector('.product-description a').getAttribute('href'),
-                'title': el.querySelector('.product-description a').innerHTML,
+                'name': el.querySelector('.product-description a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
 
@@ -1062,11 +1062,11 @@ window.onload  = function () {
         let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
         for (let i = 0; i < justunoCartItems.length; i++) {
             let product = `
-            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].product_id}" data-variant-id="${justunoCartItems[i].product_variant_id}">
+            <div class="d-flex checkout-product" data-id="${justunoCartItems[i].productid}" data-variant-id="${justunoCartItems[i].variationid}">
                 <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
                 <div class="flex-column">
                     <div class="flex-between">
-                        <a href="#">${justunoCartItems[i].title}</a>
+                        <a href="#">${justunoCartItems[i].name}</a>
                         <button class="remove" type="button"></button>
                     </div>
                     <div class="flex-center-between">
