@@ -242,45 +242,45 @@ if (twentyFourHours > 0) {
         if (document.querySelector('.header')) {
             clearInterval(waitHeader);
             document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
+
+            const display = document.querySelector('.header .countdown span');
+
+            function startTimer(duration, display) {
+                let timer = duration, hours, minutes, seconds;
+                let timerInterval = setInterval(function () {
+                    hours = parseInt((timer / 3600) % 24, 10);
+                    minutes = parseInt((timer / 60) % 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    hours = hours < 10 ? '0' + hours : hours;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                    display.innerText = `${hours}:${minutes}:${seconds}`;
+
+                    if (--timer < 0) {
+
+                        clearInterval(timerInterval);
+
+                        CDSetupInit.removeIndividualCoupon('MM10CRO', this);
+
+                        document.querySelector('.countdown').remove();
+
+                        document.querySelectorAll('.price_sale').forEach(sale => {
+                            sale.remove();
+                        });
+
+                        document.querySelector('.custom-style').remove();
+
+                        document.head.insertAdjacentHTML('beforeend', `
+                    <style>.price .money { font-size: 17px !important; }</style>`);
+                    }
+                }, 1000);
+            }
+
+            startTimer(twentyFourHours, display);
         }
     }, 100);
-
-    const display = document.querySelector('.header .countdown span');
-
-    function startTimer(duration, display) {
-        let timer = duration, hours, minutes, seconds;
-        let timerInterval = setInterval(function () {
-            hours = parseInt((timer / 3600) % 24, 10);
-            minutes = parseInt((timer / 60) % 60, 10);
-            seconds = parseInt(timer % 60, 10);
-
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-
-            display.innerText = `${hours}:${minutes}:${seconds}`;
-
-            if (--timer < 0) {
-
-                clearInterval(timerInterval);
-
-                CDSetupInit.removeIndividualCoupon('MM10CRO', this);
-
-                document.querySelector('.countdown').remove();
-
-                document.querySelectorAll('.price_sale').forEach(sale => {
-                    sale.remove();
-                });
-
-                document.querySelector('.custom-style').remove();
-
-                document.head.insertAdjacentHTML('beforeend', `
-                    <style>.price .money { font-size: 17px !important; }</style>`);
-            }
-        }, 1000);
-    }
-
-    startTimer(twentyFourHours, display);
 }
 
 setInterval(() => {
