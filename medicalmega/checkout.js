@@ -1,7 +1,21 @@
 window.onload  = function () {
     if (window.location.pathname.includes('cart.html')) {
-        let cart = justunoCartItems;
-        localStorage.setItem('productsStored', JSON.stringify(cart));
+        let productsStored = [];
+        localStorage.setItem('productsStored', '');
+        document.querySelectorAll('.altPayment tr').forEach((el) => {
+            if (el.querySelector('name="cp_id"')) {
+                productsStored.push({
+                    'productid': el.querySelector('name="cp_id"').value,
+                    'quantity': el.querySelector('.product-quantity').value,
+                    'price': el.querySelector('.unit-price b').innerHTML.replace('$',''),
+                    'variationid': el.querySelector('name="option_id"').value,
+                    'img_src': el.querySelector('.product-cell-inner a img').getAttribute('src'),
+                    'link': el.querySelector('.product-description a').getAttribute('href'),
+                    'name': el.querySelector('.product-description a')[1].innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
+            }
+        });
     }
     if (!window.location.pathname.includes('cart.html')) {
         document.body.insertAdjacentHTML('afterbegin', `
