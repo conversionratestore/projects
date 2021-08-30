@@ -86,9 +86,6 @@ document.head.insertAdjacentHTML('beforeend', `
         {
             margin: 0 5px 0 0;
         }
-        .price-look {
-            width: 30%;
-        }
        
         .coupon_hidden {
             display: none !important;
@@ -98,12 +95,11 @@ document.head.insertAdjacentHTML('beforeend', `
             display: none;
         }        
         
-        /*.cart-modal__total-price span small.af_money.af_striked_out_price {*/
-        /*    display: none !important;*/
-        /*}*/
-        /*.cart-modal__total-price span em small.af_money.af_striked_out_price {*/
-        /*    display: inline !important;*/
-        /*}*/
+        @media screen and (max-width: 767px) {
+            .price-look {
+                width: 50%;
+            }
+        }
     </style>
 `);
 
