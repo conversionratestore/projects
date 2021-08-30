@@ -65,7 +65,7 @@ window.onload  = function () {
             text-align: center;
             text-transform: uppercase;
             color: #FFFFFF;
-            padding: 0 22px;
+            padding: 0 15px;
             display: flex;
             justify-content: center;
             align-items: center;}
@@ -1199,7 +1199,6 @@ window.onload  = function () {
 
         sumTotalPrice();
     }
-
 };
 
 (function(h,o,t,j,a,r){
