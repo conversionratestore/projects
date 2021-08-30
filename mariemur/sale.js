@@ -192,7 +192,12 @@ if (twentyFourHours > 0) {
         mut.observe(document.querySelector('.cart-modal'), config);
     });
 
-    mut.observe(document.querySelector('.cart-modal'), config);
+    let waitTarget = setInterval(() => {
+        if(document.querySelector('.cart-modal')) {
+            clearInterval(waitTarget)
+            mut.observe(document.querySelector('.cart-modal'), config);
+        }
+    }, 100)
 
     /* create observers */
 
