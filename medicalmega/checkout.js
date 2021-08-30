@@ -63,7 +63,7 @@ window.onload  = function () {
             font-size: 14px;
             line-height: 33px;
             text-align: center;
-            text-transform: uppercase;
+            text-transform: capitalize;
             color: #FFFFFF;
             padding: 0 13px;
             display: flex;
