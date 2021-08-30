@@ -718,13 +718,13 @@ window.onload  = function () {
         localStorage.setItem('productsStored', '');
         document.querySelectorAll('.popup__product').forEach((product) => {
             productsStored.push({
-                'product_id': product.dataset.productId,
+                'productid': product.dataset.productId,
                 'quantity': product.querySelector('.quantity').value,
                 'price': product.querySelector('.unit-price b').innerHTML,
-                'product_variant_id': product.dataset.productVariantId,
+                'variationid': product.dataset.productVariantId,
                 'img_src': product.querySelector('.product-cell-inner span img').getAttribute('src'),
                 'link': product.querySelector('.product-description b a').getAttribute('href'),
-                'title': product.querySelector('.product-description b a').innerHTML,
+                'name': product.querySelector('.product-description b a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
         });
@@ -829,13 +829,13 @@ window.onload  = function () {
                     el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                     sumTotalPrice();
                     productsStored.push({
-                        'product_id': el.getAttribute('data-product-id'),
+                        'productid': el.getAttribute('data-product-id'),
                         'quantity': el.querySelector('.quantity').value,
                         'price': el.querySelector('.unit-price b').innerHTML,
-                        'product_variant_id': el.getAttribute('data-product-variant-id'),
+                        'variationid': el.getAttribute('data-product-variant-id'),
                         'img_src': el.querySelector('a img').getAttribute('src'),
                         'link': el.querySelector('.product-description a').getAttribute('href'),
-                        'title': el.querySelector('.product-description a').innerHTML,
+                        'name': el.querySelector('.product-description a').innerHTML,
                     });
                     localStorage.setItem('productsStored', JSON.stringify(productsStored));
                 });
@@ -845,7 +845,7 @@ window.onload  = function () {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&productid=${productId}&add_to_cart=variant`
                 })
             });
         });
@@ -981,17 +981,17 @@ window.onload  = function () {
         let cartItems = JSON.parse(localStorage.getItem("productsStored"));
         if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
-                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                    addProduct(cartItems[i].product_id,cartItems[i].product_variant_id,cartItems[i].link,cartItems[i].img_src,cartItems[i].title,cartItems[i].quantity,cartItems[i].price)
+                if (document.querySelector('.body table tbody').innerHTML == '' || !document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}']`)) {
+                    addProduct(cartItems[i].productid,cartItems[i].variationid,cartItems[i].link,cartItems[i].img_src,cartItems[i].name,cartItems[i].quantity,cartItems[i].price)
                 }
-                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}']`)) {
-                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].product_id}']`).forEach((el) => {
+                if (document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}']`)) {
+                    document.querySelectorAll(`.popup__product[data-product-id='${cartItems[i].productid}']`).forEach((el) => {
                         el.querySelector('.quantity').value = parseInt(cartItems[i].quantity) + parseInt(el.querySelector('.quantity').value); //
                         quantityFun(el);
                     });
                 }
 
-                document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].product_id}'] .unit-price b`).innerHTML)).toFixed(2);
+                document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .total-price b`).innerHTML = (parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .quantity`).value) * parseFloat(document.querySelector(`.popup__product[data-product-id='${cartItems[i].productid}'] .unit-price b`).innerHTML)).toFixed(2);
                 sumTotalPrice();
             }
         }
@@ -1057,13 +1057,13 @@ window.onload  = function () {
                 el.querySelector('.total-price b').innerHTML = `${(parseFloat(el.querySelector('.quantity').value) * parseFloat(el.querySelector('.unit-price b').innerHTML)).toFixed(2)}`;
                 sumTotalPrice();
                 productsStored.push({
-                    'product_id': el.getAttribute('data-product-id'),
+                    'productid': el.getAttribute('data-product-id'),
                     'quantity': el.querySelector('.quantity').value,
                     'price': el.querySelector('.unit-price b').innerHTML,
-                    'product_variant_id': el.getAttribute('data-product-variant-id'),
+                    'variationid': el.getAttribute('data-product-variant-id'),
                     'img_src': el.querySelector('a img').getAttribute('src'),
                     'link': el.querySelector('.product-description a').getAttribute('href'),
-                    'title': el.querySelector('.product-description a').innerHTML,
+                    'name': el.querySelector('.product-description a').innerHTML,
                 });
                 localStorage.setItem('productsStored', JSON.stringify(productsStored));
             })
