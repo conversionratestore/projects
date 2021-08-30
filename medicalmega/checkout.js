@@ -1,5 +1,10 @@
 window.onload  = function () {
-    document.body.insertAdjacentHTML('afterbegin', `
+    if (window.location.pathname.includes('cart.html')) {
+        let cart = justunoCartItems;
+        localStorage.setItem('productsStored', JSON.stringify(cart));
+    }
+    if (!window.location.pathname.includes('cart.html')) {
+        document.body.insertAdjacentHTML('afterbegin', `
     <style>
         .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {
             display: none;}
@@ -531,8 +536,7 @@ window.onload  = function () {
             width: 100%;
         }
     </style>`);
-
-    document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
+        document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
     <div class="flex-between">
         <div class="checkout-left">
             <div class="checkout-left_head flex-center-between">
@@ -566,129 +570,129 @@ window.onload  = function () {
         </div>
     </div>`);
 
-    function pushProductsStored() {
-        let productsStored = [];
-        localStorage.setItem('productsStored', '');
-        document.querySelectorAll('.checkout-product').forEach((product) => {
-            productsStored.push({
-                'productid': product.dataset.id,
-                'quantity': product.querySelector('.quantity').value,
-                'price': product.querySelector('.total-price').dataset.price,
-                'variationid': product.dataset.variantId,
-                'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
-                'link': product.querySelector('.checkout-product_img').getAttribute('href'),
-                'name': product.querySelectorAll('.flex-between a')[1].innerHTML,
+        function pushProductsStored() {
+            let productsStored = [];
+            localStorage.setItem('productsStored', '');
+            document.querySelectorAll('.checkout-product').forEach((product) => {
+                productsStored.push({
+                    'productid': product.dataset.id,
+                    'quantity': product.querySelector('.quantity').value,
+                    'price': product.querySelector('.total-price').dataset.price,
+                    'variationid': product.dataset.variantId,
+                    'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
+                    'link': product.querySelector('.checkout-product_img').getAttribute('href'),
+                    'name': product.querySelectorAll('.flex-between a')[1].innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
             });
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
-        });
-    }
+        }
 
-    function sumTotalPrice() {
-        let sum = 0;
-        document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
-            sum += parseFloat(totalPrice.innerHTML);
-            document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
-                if (totalIndex === 0) {
-                    totalValues.innerHTML = `${sum.toFixed(2)}`;
-                }
-                if (totalIndex === 3) {
-                    // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
-                    //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
-                    // } else {
-                    totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML) - parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
-                    // }
-                    if (totalValues.innerHTML.includes('-')) {
-                        totalValues.innerHTML = '0.00'
+        function sumTotalPrice() {
+            let sum = 0;
+            document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
+                sum += parseFloat(totalPrice.innerHTML);
+                document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
+                    if (totalIndex === 0) {
+                        totalValues.innerHTML = `${sum.toFixed(2)}`;
                     }
-                }
+                    if (totalIndex === 3) {
+                        // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
+                        //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
+                        // } else {
+                        totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML) - parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
+                        // }
+                        if (totalValues.innerHTML.includes('-')) {
+                            totalValues.innerHTML = '0.00'
+                        }
+                    }
+                });
+            });
+        }
+
+        document.querySelectorAll('.btn-eye').forEach((item) => {
+            item.addEventListener('click', () => {
+                const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
+                item.previousElementSibling.setAttribute('type', type);
             });
         });
-    }
-
-    document.querySelectorAll('.btn-eye').forEach((item) => {
-        item.addEventListener('click', () => {
-            const type = item.previousElementSibling.getAttribute('type') === 'password' ? 'text' : 'password';
-            item.previousElementSibling.setAttribute('type', type);
-        });
-    });
-    if (document.querySelector('.myAccount')) {
-        document.querySelector('.title_head').after(document.querySelector('.myAccount'));
-        document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
+        if (document.querySelector('.myAccount')) {
+            document.querySelector('.title_head').after(document.querySelector('.myAccount'));
+            document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
         <label class="valign-center">
             <span class="check"></span>
             <span>Email Me Order Updates and Specials</span>
         </label>`);
-        document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
-        document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-        document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
-        document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
-        document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Choose Shipping Method button',
-                'eventLabel': 'Section Registration'
-            });
-        });
-        document.querySelector('.log').addEventListener('click', (e) => {
-            let _this = e.target;
-            _this.classList.toggle('active');
-            if (_this.classList.contains('active')) {
-                _this.innerHTML = 'Sign in';
-                document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
-                document.querySelector('.myAccountright').style.display = 'none';
-                document.querySelector('.myAccountleft').style.display = 'block';
+            document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
+            document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
+            document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
+            document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
+            document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': `Click Registration button`,
-                    'eventLabel': 'Section Sign In'
+                    'eventAction': 'Click Choose Shipping Method button',
+                    'eventLabel': 'Section Registration'
                 });
-            } else {
-                _this.innerHTML = 'Registration';
+            });
+            document.querySelector('.log').addEventListener('click', (e) => {
+                let _this = e.target;
+                _this.classList.toggle('active');
+                if (_this.classList.contains('active')) {
+                    _this.innerHTML = 'Sign in';
+                    document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
+                    document.querySelector('.myAccountright').style.display = 'none';
+                    document.querySelector('.myAccountleft').style.display = 'block';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': `Click Registration button`,
+                        'eventLabel': 'Section Sign In'
+                    });
+                } else {
+                    _this.innerHTML = 'Registration';
+                    document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
+                    document.querySelector('.myAccountleft').style.display = 'none';
+                    document.querySelector('.myAccountright').style.display = 'block';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': `Click Sign In button`,
+                        'eventLabel': 'Section Registration'
+                    });
+                }
+            });
+            if (location.pathname.includes('login')) {
+                document.querySelector('.log').innerHTML = 'Registration';
                 document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                 document.querySelector('.myAccountleft').style.display = 'none';
                 document.querySelector('.myAccountright').style.display = 'block';
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': `Click Sign In button`,
-                    'eventLabel': 'Section Registration'
-                });
+                document.querySelector('.log').classList.remove('active');
+                document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
+                document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
+                document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
             }
-        });
-        if (location.pathname.includes('login')) {
-            document.querySelector('.log').innerHTML = 'Registration';
-            document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
-            document.querySelector('.myAccountleft').style.display = 'none';
-            document.querySelector('.myAccountright').style.display = 'block';
-            document.querySelector('.log').classList.remove('active');
-            document.querySelector('.invaliduser').closest('dd').setAttribute('style','position: absolute; top: 86px;right: 0;');
-            document.querySelector('.invaliduser').setAttribute('style','text-align: right; width: 100%;');
-            document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
+            if (location.pathname.includes('register')) {
+                document.querySelector('.log').innerHTML = 'Sign in';
+                document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
+                document.querySelector('.myAccountleft').style.display = 'block';
+                document.querySelector('.myAccountright').style.display = 'none';
+                document.querySelector('.log').classList.add('active');
+            }
         }
-        if (location.pathname.includes('register')) {
-            document.querySelector('.log').innerHTML = 'Sign in';
-            document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
-            document.querySelector('.myAccountleft').style.display = 'block';
-            document.querySelector('.myAccountright').style.display = 'none';
-            document.querySelector('.log').classList.add('active');
-        }
-    }
-    if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
-        if (!document.querySelectorAll('.checkout-product')) {
-            document.body.insertAdjacentHTML('afterbegin', `
+        if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
+            if (!document.querySelectorAll('.checkout-product')) {
+                document.body.insertAdjacentHTML('afterbegin', `
             <style>
             .checkout-right {
                 display: none;
             }
             </style>`);
-            document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
-        } else {
-            document.body.insertAdjacentHTML('afterbegin', `
+                document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
+            } else {
+                document.body.insertAdjacentHTML('afterbegin', `
             <style>
                 .payment {
                     height: 100%;
@@ -699,74 +703,74 @@ window.onload  = function () {
                 #editor_fields .editor_right div:nth-child(6){
                     display: none;}
             </style>`);
-        }
-        // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
-        let productsStored = [];
-        // localStorage.setItem('productsStored', '');
-        document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-            productsStored.push({
-                'productid': el.closest('tr').querySelector('[name="cp_id"]').value,
-                'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                'variationid': el.closest('tr').querySelector('[name="option_id"]').value,
-                'img_src': el.querySelector('a img').getAttribute('src'),
-                'link': el.querySelector('.product-description a').getAttribute('href'),
-                'name': el.querySelector('.product-description a').innerHTML,
-            });
-            localStorage.setItem('productsStored', JSON.stringify(productsStored));
-        });
-        // }
-        document.querySelector('.title_head').after(document.querySelector('.payment'));
-        document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
-        document.querySelector('.payment h3 ').style.display = 'none';
-        document.querySelector('.checkout-left_head').style.display = 'none';
-        document.querySelector('.checkout-left_head .log ').style.display = 'none';
-        document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-        document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-        document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-        document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
-        document.querySelector('.btn-next').addEventListener('click', () => {
-            if(document.querySelector('#copy_bill').checked == true) {
-                document.querySelector('.editor .buttons a').click();
-            } else {
-                document.querySelectorAll('form div[align="right"] input')[1].click();
             }
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Next button',
-                'eventLabel': 'Section Shipping information'
+            // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
+            let productsStored = [];
+            // localStorage.setItem('productsStored', '');
+            document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
+                productsStored.push({
+                    'productid': el.closest('tr').querySelector('[name="cp_id"]').value,
+                    'quantity': el.closest('tr').querySelector('.product-quantity').value,
+                    'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
+                    'variationid': el.closest('tr').querySelector('[name="option_id"]').value,
+                    'img_src': el.querySelector('a img').getAttribute('src'),
+                    'link': el.querySelector('.product-description a').getAttribute('href'),
+                    'name': el.querySelector('.product-description a').innerHTML,
+                });
+                localStorage.setItem('productsStored', JSON.stringify(productsStored));
             });
-            pushProductsStored();
-        });
+            // }
+            document.querySelector('.title_head').after(document.querySelector('.payment'));
+            document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+            document.querySelector('.payment h3 ').style.display = 'none';
+            document.querySelector('.checkout-left_head').style.display = 'none';
+            document.querySelector('.checkout-left_head .log ').style.display = 'none';
+            document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+            document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+            document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+            document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
+            document.querySelector('.btn-next').addEventListener('click', () => {
+                if(document.querySelector('#copy_bill').checked == true) {
+                    document.querySelector('.editor .buttons a').click();
+                } else {
+                    document.querySelectorAll('form div[align="right"] input')[1].click();
+                }
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Next button',
+                    'eventLabel': 'Section Shipping information'
+                });
+                pushProductsStored();
+            });
 
-        if (document.querySelector('.editLink') == null) {
-            document.querySelector('.bill_small .head2:last-child').click();
-            document.querySelector('.title_head').innerHTML = 'Billing Information';
-            document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+            if (document.querySelector('.editLink') == null) {
+                document.querySelector('.bill_small .head2:last-child').click();
                 document.querySelector('.title_head').innerHTML = 'Billing Information';
+                document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+                    document.querySelector('.title_head').innerHTML = 'Billing Information';
+                });
+                document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+                    document.querySelector('.title_head').innerHTML = 'Shipping information';
+                });
+            } else {
+                document.querySelector('.title_head').innerHTML = 'Billing and Shipping information';
+                document.querySelector('.address_book_new .editor .title').style.display = 'block';
+                document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
+            }
+            document.querySelector('.copy_bill label').addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Copy from Billing info field',
+                    'eventLabel': 'Section Shipping information'
+                });
             });
-            document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
-                document.querySelector('.title_head').innerHTML = 'Shipping information';
-            });
-        } else {
-            document.querySelector('.title_head').innerHTML = 'Billing and Shipping information';
-            document.querySelector('.address_book_new .editor .title').style.display = 'block';
-            document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
         }
-        document.querySelector('.copy_bill label').addEventListener('click',() => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Copy from Billing info field',
-                'eventLabel': 'Section Shipping information'
-            });
-        });
-    }
-    if (location.pathname == '/checkout/step2') {
-        document.body.insertAdjacentHTML('afterbegin', `
+        if (location.pathname == '/checkout/step2') {
+            document.body.insertAdjacentHTML('afterbegin', `
     <style>
     .payment h3, .primaryInfo h2, .remove{
         display: none}
@@ -839,56 +843,56 @@ window.onload  = function () {
         color: #CCCCCC!important;}
     </style>`);
 
-        document.querySelector('.title_head').innerHTML = 'Delivery Method';
-        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
-        document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
-        document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
+            document.querySelector('.title_head').innerHTML = 'Delivery Method';
+            document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+            document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
+            document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
-        document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
-        document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
+            document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
+            document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
+            document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
 
-        document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
-        document.querySelector('.btn-next').addEventListener('click', () => {
-            pushProductsStored();
-            document.querySelector('form div[align="right"] input').click();
-        });
-        document.querySelectorAll('.quantity-row .quantity').forEach(element => {
-            element.setAttribute('readonly');
-        });
-        document.querySelector('.btn-back').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Back button',
-                'eventLabel': 'Section Delivery Method'
+            document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
+            document.querySelector('.btn-next').addEventListener('click', () => {
+                pushProductsStored();
+                document.querySelector('form div[align="right"] input').click();
             });
-            window.location = '/checkout/step1';
-        });
-        document.querySelectorAll('#ship_options li').forEach((el, i) => {
-            el.addEventListener('click', () => {
+            document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+                element.setAttribute('readonly');
+            });
+            document.querySelector('.btn-back').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
                     'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': `Pick ${el.querySelector('i'.innerHTML)}`,
+                    'eventAction': 'Click Back button',
+                    'eventLabel': 'Section Delivery Method'
+                });
+                window.location = '/checkout/step1';
+            });
+            document.querySelectorAll('#ship_options li').forEach((el, i) => {
+                el.addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': `Pick ${el.querySelector('i'.innerHTML)}`,
+                        'eventLabel': 'Section Delivery method'
+                    });
+                });
+            });
+            document.querySelector('.promoCode').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click on Promotional Code field',
                     'eventLabel': 'Section Delivery method'
                 });
             });
-        });
-        document.querySelector('.promoCode').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click on Promotional Code field',
-                'eventLabel': 'Section Delivery method'
-            });
-        });
-    }
-    if (location.pathname == '/checkout/step3') {
-        document.body.insertAdjacentHTML('afterbegin',`<style>
+        }
+        if (location.pathname == '/checkout/step3') {
+            document.body.insertAdjacentHTML('afterbegin',`<style>
         .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
             display: block!important; }
         .payment h3, .checkout-left_head, .remove {
@@ -968,45 +972,45 @@ window.onload  = function () {
        .label-check {
             padding: 15px 0 0 0!important; }
         </style>`);
-        document.querySelector('.title_head').innerHTML = 'Payment method';
-        document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+            document.querySelector('.title_head').innerHTML = 'Payment method';
+            document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
 
-        document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">COMPLETE THE ORDER</button>`)
-        document.querySelector('.btn.big').addEventListener('click', () => {
-            document.querySelector('form div[align="right"] input').click();
-        });
-        document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-        document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
-        document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
-        document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
-        document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
-
-        document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
-        document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
-        document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
-
-        document.querySelector('.card-details label').addEventListener('click',() => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Remember my card field',
-                'eventLabel': 'Section Payment method'
+            document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">COMPLETE THE ORDER</button>`)
+            document.querySelector('.btn.big').addEventListener('click', () => {
+                document.querySelector('form div[align="right"] input').click();
             });
-        });
-        document.querySelector('.label-check').addEventListener('click',() => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Pick regular reorder',
-                'eventLabel': 'Section Payment method'
-            });
-        });
-    }
+            document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+            document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
+            document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+            document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
+            document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
 
-    if(location.pathname == '/checkout/step4') {
-        document.body.insertAdjacentHTML('afterbegin',`<style>
+            document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
+            document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
+            document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
+
+            document.querySelector('.card-details label').addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Remember my card field',
+                    'eventLabel': 'Section Payment method'
+                });
+            });
+            document.querySelector('.label-check').addEventListener('click',() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Pick regular reorder',
+                    'eventLabel': 'Section Payment method'
+                });
+            });
+        }
+
+        if(location.pathname == '/checkout/step4') {
+            document.body.insertAdjacentHTML('afterbegin',`<style>
         .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn{
             display: none!important;
         }
@@ -1026,29 +1030,26 @@ window.onload  = function () {
             display: block!important;
         }
         </style>`);
-        document.querySelector('.title_head').innerHTML = 'your order has been placed!';
-        document.querySelector('.title_head').after(document.querySelector('.payment'));
-        document.querySelectorAll('.quantity-row .quantity').forEach(element => {
-            element.setAttribute('readonly');
-        });
-    }
+            document.querySelector('.title_head').innerHTML = 'your order has been placed!';
+            document.querySelector('.title_head').after(document.querySelector('.payment'));
+            document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+                element.setAttribute('readonly');
+            });
+        }
 
-    if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
-        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
-    }
+        if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
+            document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
+        }
 
-    if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
-        document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);
-        document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('- $','')).toFixed(2);
-    }
-    if (window.location.pathname.includes('cart.html')) {
-        let cart = justunoCartItems;
-        localStorage.setItem('productsStored', JSON.stringify(cart));
-    }
-    if (localStorage.getItem('productsStored')) {
-        let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
-        for (let i = 0; i < justunoCartItems.length; i++) {
-            let product = `
+        if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
+            document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);
+            document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('- $','')).toFixed(2);
+        }
+
+        if (localStorage.getItem('productsStored')) {
+            let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
+            for (let i = 0; i < justunoCartItems.length; i++) {
+                let product = `
             <div class="d-flex checkout-product" data-id="${justunoCartItems[i].productid}" data-variant-id="${justunoCartItems[i].variationid}">
                 <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
                 <div class="flex-column">
@@ -1068,119 +1069,121 @@ window.onload  = function () {
                     </div>
                 </div>
             </div>`;
-            document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
-            sumTotalPrice();
-        }
-    }
-
-    document.querySelectorAll('.remove').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Exit Cross button',
-                'eventLabel': 'Section Your order'
-            });
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
-            })
-            item.closest('.checkout-product').remove();
-            pushProductsStored();
-            sumTotalPrice();
-        });
-    });
-
-    document.querySelectorAll('.checkout-product .quantity').forEach(el => {
-        el.addEventListener('change', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Change on amount of items',
-                'eventLabel': 'Section Your order'
-            });
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
-            })
-        })
-    });
-    document.querySelectorAll('.quantity-row').forEach((quantity) => {
-        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
-            if (button.className == 'quantity-btn quantity-btn_minus') {
-                if (button.nextElementSibling.value < 2) {
-                    button.disabled = true;
-                } else {
-                    button.disabled = false;
-                }
+                document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+                sumTotalPrice();
             }
-            button.addEventListener('click', () => {
-                if (button.className == 'quantity-btn quantity-btn_plus') {
-                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
-                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+        }
 
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click on plus of items',
-                        'eventLabel': 'Section Your order'
-                    });
-                }
-                if (button.className == 'quantity-btn quantity-btn_minus') {
-                    if (button.nextElementSibling.value < 2) {
-                        button.nextElementSibling.value = 1;
-
-                        button.disabled = true;
-                    } else {
-                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                    }
-
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click on minus of items',
-                        'eventLabel': 'Section Your order'
-                    });
-                }
-
+        document.querySelectorAll('.remove').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Click Exit Cross button',
+                    'eventLabel': 'Section Your order'
+                });
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     method: "POST",
-                    body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                    body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
                 })
+                item.closest('.checkout-product').remove();
+                pushProductsStored();
+                sumTotalPrice();
+            });
+        });
+
+        document.querySelectorAll('.checkout-product .quantity').forEach(el => {
+            el.addEventListener('change', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Alternative checkout desktop',
+                    'eventAction': 'Change on amount of items',
+                    'eventLabel': 'Section Your order'
+                });
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                })
+            })
+        });
+        document.querySelectorAll('.quantity-row').forEach((quantity) => {
+            quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.disabled = true;
+                    } else {
+                        button.disabled = false;
+                    }
+                }
+                button.addEventListener('click', () => {
+                    if (button.className == 'quantity-btn quantity-btn_plus') {
+                        button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
+                        button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — Alternative checkout desktop',
+                            'eventAction': 'Click on plus of items',
+                            'eventLabel': 'Section Your order'
+                        });
+                    }
+                    if (button.className == 'quantity-btn quantity-btn_minus') {
+                        if (button.nextElementSibling.value < 2) {
+                            button.nextElementSibling.value = 1;
+
+                            button.disabled = true;
+                        } else {
+                            button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                        }
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — Alternative checkout desktop',
+                            'eventAction': 'Click on minus of items',
+                            'eventLabel': 'Section Your order'
+                        });
+                    }
+
+                    fetch('/cart.html', {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: "POST",
+                        body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                    })
+                    quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                    sumTotalPrice();
+                });
+            });
+            document.querySelector('.checkout-right_body').addEventListener('change', () => {
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                 sumTotalPrice();
             });
         });
-        document.querySelector('.checkout-right_body').addEventListener('change', () => {
-            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-            sumTotalPrice();
-        });
-    });
 
-    document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp — Alternative checkout desktop',
-            'eventAction': 'Click Back to Shoping button',
-            'eventLabel': 'Section Your order'
-        });
-    })
+        document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Back to Shoping button',
+                'eventLabel': 'Section Your order'
+            });
+        })
 
-    sumTotalPrice();
+        sumTotalPrice();
+    }
+
 };
 
 (function(h,o,t,j,a,r){
