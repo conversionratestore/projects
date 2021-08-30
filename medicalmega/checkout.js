@@ -1041,9 +1041,10 @@ window.onload  = function () {
         document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);
         document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('- $','')).toFixed(2);
     }
-    if (window.location.pathname.includes('cart.html')) {
+    if (window.location.pathname.includes('cart.html') && document.querySelectorAll('.altPayment tr [name="cp_id"]')) {
         let productsStored = [];
-        document.querySelectorAll('.altPayment tr').forEach((el) => {
+        document.querySelectorAll('.altPayment tr').forEach((el, index) => {
+            console.log(el.querySelector('[name="cp_id"]') + ' = ' + el.querySelector('[name="cp_id"]').value);
             productsStored.push({
                 'product_id': el.querySelector('[name="cp_id"]').value,
                 'quantity': el.querySelector('.product-quantity').value,
@@ -1054,6 +1055,7 @@ window.onload  = function () {
                 'title': el.querySelector('.product-description a').innerHTML,
             });
             localStorage.setItem('productsStored', JSON.stringify(productsStored));
+
         })
     }
     if (localStorage.getItem('productsStored')) {
