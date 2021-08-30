@@ -65,7 +65,7 @@ window.onload  = function () {
             text-align: center;
             text-transform: uppercase;
             color: #FFFFFF;
-            padding: 0 15px;
+            padding: 0 13px;
             display: flex;
             justify-content: center;
             align-items: center;}
