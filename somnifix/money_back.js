@@ -144,6 +144,7 @@ let link = `
 `
 
 let block = `
+
     <div class="money_back" id="money_back">
         <h2>Money back guarantee</h2>
         <div class="schedule">
@@ -156,7 +157,7 @@ let block = `
                     <p></p>
                 </div>
                 <div><p>Buy SomniFix</p><p>Today</p><p class="today">Jun 17, 2021</p></div>
-                <div><p>Delivery</p><p>1-4 days</p><p class="delivery_date">Jun 18-21, 2021</p></div>
+                <div><p>Shipping</p><p>1-4 days</p><p class="delivery_date">Jun 18-21, 2021</p></div>
                 <div><p>100% money back guarantee through</p><p>After 30 days</p><p class="money_back_date">Jul 17, 2021</p></div>
             </div>
         </div>
@@ -166,6 +167,7 @@ let block = `
             <p><img src="https://conversionratestore.github.io/projects/somnifix/img/check.svg" alt="check"><br>Made in USA</p>
         </div>
     </div>
+
 `
 
 let start = setInterval(function () {
@@ -234,12 +236,13 @@ let start = setInterval(function () {
             let date2 = new Date(year, month2, day2);
             let daysLag1 = Math.ceil(Math.abs(date1.getTime() - date.getTime()) / (1000 * 3600 * 24));
             let daysLag2 = Math.ceil(Math.abs(date2.getTime() - date.getTime()) / (1000 * 3600 * 24));
-            let daysLag3 = new Date(date.setDate(date.getDate() + 30));
+            let daysLag3 = new Date(date1.setDate(date1.getDate() + 30))
+            let daysLag4 = new Date(date2.setDate(date2.getDate() + 30))
 
             document.querySelector('.delivery_time>div:nth-child(3)>p:nth-child(2)').innerHTML = `${daysLag1}-${daysLag2} days`
             document.querySelector('.delivery_time .today').innerHTML = `${monthTable[month]} ${day}, ${year}`
             document.querySelector('.delivery_time .delivery_date').innerHTML = `${parseStr[1]} ${parseStr[0]} - ${parseStr[3]} ${parseStr[2]}, ${year}`
-            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()}, ${daysLag3.getFullYear()}`
+            document.querySelector('.delivery_time .money_back_date').innerHTML = `${monthTable[daysLag3.getMonth()]} ${daysLag3.getDate()} - ${monthTable[daysLag4.getMonth()]} ${daysLag4.getDate()}, ${daysLag3.getFullYear()}  `
         }
 
         let firstStr = document.querySelector('.ship-destination__span--date').innerText
@@ -268,3 +271,5 @@ dataLayer.push({
     'eventCategory': 'Exp — PDP money back guarantee',
     'eventAction': 'loaded'
 });
+
+
