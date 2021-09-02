@@ -1,37 +1,38 @@
-
 // quantity on change and on click button +/-
 function quantityFun(el) {
-    if (el.querySelector('.quantity').value < 2) {
-        el.querySelector('.quantity').value = 1;
-        el.querySelector('.quantity-btn_minus').disabled = true;
-    } else {
-        el.querySelector('.quantity-btn_minus').disabled = false;
-    }
-    el.querySelector('.quantity-row').addEventListener('change', () => {
+    if (el.querySelector('.quantity')) {
         if (el.querySelector('.quantity').value < 2) {
             el.querySelector('.quantity').value = 1;
             el.querySelector('.quantity-btn_minus').disabled = true;
         } else {
             el.querySelector('.quantity-btn_minus').disabled = false;
         }
-    });
-    el.querySelectorAll('.quantity-btn').forEach((button) => {
-        button.addEventListener('click', (event) => {
-            event.stopImmediatePropagation();
-            if (button.className == 'quantity-btn quantity-btn_plus') {
-                button.previousElementSibling.value = +button.previousElementSibling.value + 1;
-                button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-            }
-            if (button.className == 'quantity-btn quantity-btn_minus') {
-                if (button.nextElementSibling.value < 2) {
-                    button.nextElementSibling.value = 1;
-                    button.disabled = true;
-                } else {
-                    button.nextElementSibling.value = +button.nextElementSibling.value - 1;
-                }
+        el.querySelector('.quantity-row').addEventListener('change', () => {
+            if (el.querySelector('.quantity').value < 2) {
+                el.querySelector('.quantity').value = 1;
+                el.querySelector('.quantity-btn_minus').disabled = true;
+            } else {
+                el.querySelector('.quantity-btn_minus').disabled = false;
             }
         });
-    });
+        el.querySelectorAll('.quantity-btn').forEach((button) => {
+            button.addEventListener('click', (event) => {
+                event.stopImmediatePropagation();
+                if (button.className == 'quantity-btn quantity-btn_plus') {
+                    button.previousElementSibling.value = +button.previousElementSibling.value + 1;
+                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+                }
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.nextElementSibling.value = 1;
+                        button.disabled = true;
+                    } else {
+                        button.nextElementSibling.value = +button.nextElementSibling.value - 1;
+                    }
+                }
+            });
+        });
+    }
 }
 
 //pdp
@@ -39,7 +40,7 @@ if (location.pathname.includes('product')) {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
-            span.dot, #cart_box {
+            span.dot, #cart_box, .product-price, #variant_tag label:nth-child(2) {
                 display: none!important;
             }
             .sticky-btn {
@@ -81,18 +82,19 @@ if (location.pathname.includes('product')) {
                 line-height: 23px;
                 color: #C23D31;
             }
-            .sticky-btn .quantity-row {
+            .sticky-btn_row .quantity-row {
                 padding-left: 0;
             }
-            .sticky-btn .quantity-btn {
+            .sticky-btn_row .quantity-btn {
                 display: block;
                 width: 35px;
                 line-height: 31px;
                 background-color: transparent;
                 border: none;
-                font-size: 20px;
+                font-size: 24px;
+                padding: 0 5px;
             }
-            .sticky-btn .quantity {
+            .sticky-btn_row .quantity {
                 line-height: 23px;
                 font-size: 18px;
                 width: 35px;
@@ -144,8 +146,7 @@ if (location.pathname.includes('product')) {
                 font-size: 10px;
                 line-height: 14px;
                 color: #666666;
-                max-width: 252px;
-                margin: 8px auto 0;
+                margin: 8px auto 40px;
             }
             .topcon form {
                 display: flex;
@@ -164,7 +165,28 @@ if (location.pathname.includes('product')) {
                 padding: 0;
             }
             .type1 p {
-                margin: 10px 0 20px 0;
+                margin: 30px 0 20px 0;
+                font-size: 10px;
+                line-height: 12px;
+                text-align: center;
+                color: #666666;
+            }
+            .sticky-btn_row  .quantity-btn_minus {
+                text-align: left;
+            }
+             .sticky-btn_row  .quantity-btn_plus{
+                text-align: right;
+            }
+            html:first-child .type1 span {
+                line-height: 161px;
+            }
+            .type1 span {
+                height: 161px;
+                padding: 0;
+            }
+            .type2 label {
+                color: #666666;
+                width: 83px;
             }
             @media only screen and (max-width: 360px)  {
                 .sticky-btn_row a {
@@ -191,7 +213,7 @@ if (location.pathname.includes('product')) {
     <div class="sticky-btn_row">
         <div class="quantity-row">
             <button type="button" class="quantity-btn quantity-btn_minus" disabled="">−</button>
-            <input type="text" name="quantity" value="0" class="quantity" data-val="1" readonly>
+            <input type="text" name="quantity" value="1" class="quantity" data-val="1" readonly>
             <button type="button" class="quantity-btn quantity-btn_plus">+</button>
         </div>
         <button type="button" class="add-cart">add to cart</button>
@@ -209,10 +231,6 @@ if (location.pathname.includes('product')) {
     //add row actions in sticky button
     document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
 
-    document.querySelectorAll('.sticky-btn_row').forEach(el => {
-        quantityFun(el); // quantity on change and on click button +/-
-    })
-
     //hide sticky button on scrollY > 200, else show
     document.addEventListener('scroll', (e) => {
         if (window.scrollY > 200) {
@@ -222,13 +240,15 @@ if (location.pathname.includes('product')) {
         }
     });
 
-    //click on add to cart in sticky button
-    document.querySelector('.add-cart').addEventListener('click', () => {
-        //change selected qty block / pdp
-        document.querySelector("#qty_block select").options[document.querySelector("#qty_block select").selectedIndex].value = document.querySelector('.sticky-btn .quantity').value;
-        //imitation click on add to shopping cart / pdp
-        document.querySelectorAll('#cart_box a')[0].click();
-    });
+    //click on add to cart
+    document.querySelectorAll('.add-cart').forEach(el => {
+        el.addEventListener('click', () => {
+            //change selected qty block / pdp
+            document.querySelector("#qty_block select").options[document.querySelector("#qty_block select").selectedIndex].value = el.closest('.sticky-btn_row').querySelector('.quantity').value;
+            //imitation click on add to shopping cart / pdp
+            document.querySelectorAll('#cart_box a')[0].click();
+        });
+    })
 
     //add shipping box
     document.querySelector('.type2').insertAdjacentHTML('afterbegin',`
@@ -239,8 +259,28 @@ if (location.pathname.includes('product')) {
     </div>`);
 
     //add row actions in product
-    document.querySelector('.topcon').insertAdjacentHTML('aftereend', rowActions);
+    document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
+    <div class="price-product">
+        <p>Our Price:</p>
+        <p>${document.querySelector('.product-price').innerHTML}</p>
+    </div>
+    ${rowActions}`);
+
+    //show range, if have product in cart
+    if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0') {
+        document.querySelector('.price-product').insertAdjacentHTML('afterend', `
+        <div class="range-shipping">
+            <p class="range-shipping_text1"><span>$<span>135.00</span></span> left for free Shipping</p>
+            <input type="range" readonly>
+            <p class="range-shipping_text2">Your Order: <span>$<span>15.00</span></span></p>
+        </div>`);
+    }
 
     //add shipping box
     document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>`)
+
+    document.querySelectorAll('.sticky-btn_row').forEach(el => {
+        quantityFun(el); // quantity on change and on click button +/-
+    })
+
 }
