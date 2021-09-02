@@ -282,5 +282,4 @@ if (location.pathname.includes('product')) {
     document.querySelectorAll('.sticky-btn_row').forEach(el => {
         quantityFun(el); // quantity on change and on click button +/-
     })
-
 }
