@@ -297,6 +297,13 @@ document.head.insertAdjacentHTML("beforeend", styleBuzzpatchMob);
 document.querySelector(".container .row.js-heading").insertAdjacentHTML("afterend", divB);
 
 document.querySelector(".compar-btn").addEventListener("click", function (e) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - Buzzpatch: comparison table",
+    eventAction: 'Click on the button "Buy buzzpatch stickers"',
+      });
+    
   e.preventDefault();
 
   let href = this.getAttribute("href").substring(1);
