@@ -200,6 +200,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
   let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
   let customSumm = +(price * qty).toFixed(2);
+  let randomeCount = getRandomIntInclusive(1, 9);
 
   localStorage.setItem("customSumm", customSumm);
 
@@ -232,9 +233,8 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   }
 
   // Hurry up
-  function hurryUp() {
-    let randomeCount = getRandomIntInclusive(1, 9);
 
+  function hurryUp() {
     if (document.querySelector(".stock.instock")) {
       document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
     }
