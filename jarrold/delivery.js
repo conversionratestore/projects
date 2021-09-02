@@ -425,7 +425,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
             renderDelivery(s, p);
             handleClick(s, p, rc);
           }
-        }, 200);
+        }, 350);
       });
     });
   }
