@@ -418,7 +418,7 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".accent-text-random")) {
-            hurryUp();
+            hurryUp(randomeCount);
           }
 
           if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
