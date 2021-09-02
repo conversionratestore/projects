@@ -269,7 +269,7 @@ let divB = /*html*/ `
 <div class="compar-box">
     <h2 class="compar-box-title">Duration of effect</h2>
     <ul class="compar-list">
-        <li class="accent-color compar-link"><span>Up to 8 hours</span></li>
+        <li class="accent-color compar-link"><span>Up to 12 hours</span></li>
         <li class="compar-link"><span>Up to 6 hours</span></li>
         <li class="compar-link"><span>Up to 6 hours</span></li>
         <li class="compar-link"><span>Up to 3 hours</span></li>
@@ -297,13 +297,13 @@ document.head.insertAdjacentHTML("beforeend", styleBuzzpatchMob);
 document.querySelector(".container .row.js-heading").insertAdjacentHTML("afterend", divB);
 
 document.querySelector(".compar-btn").addEventListener("click", function (e) {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - Buzzpatch: comparison table",
     eventAction: 'Click on the button "Buy buzzpatch stickers"',
-      });
-    
+  });
+
   e.preventDefault();
 
   let href = this.getAttribute("href").substring(1);
