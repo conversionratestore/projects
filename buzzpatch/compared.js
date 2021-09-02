@@ -171,16 +171,16 @@ let divB = /*html*/ `
     <h2 class="compar-box-title">Apply to skin</h2>
     <ul class="compar-list">
         <li class="accent-color compar-link">
+            <span>Applied on clothes</span>
+        </li>
+        <li class="compar-link">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/checkin.svg" alt="check">
+        </li>
+        <li class="compar-link">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/checkin.svg" alt="check">
+        </li>
+        <li class="compar-link">
             <span>Airborn</span>
-        </li>
-        <li class="compar-link">
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/checkin.svg" alt="check">
-        </li>
-        <li class="compar-link">
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/checkin.svg" alt="check">
-        </li>
-        <li class="compar-link">
-             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/checkin.svg" alt="check">
         </li>
     </ul>
 </div>
