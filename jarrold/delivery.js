@@ -208,8 +208,8 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
   // getRandomIntInclusive
   function getRandomIntInclusive(min, max) {
-    minNamber = Math.ceil(min);
-    maxNamber = Math.floor(max);
+    let minNamber = Math.ceil(min);
+    let maxNamber = Math.floor(max);
     return Math.floor(Math.random() * (maxNamber - minNamber + 1) + minNamber); //max and min includes
   }
 
