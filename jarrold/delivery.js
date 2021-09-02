@@ -234,9 +234,9 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
 
   // Hurry up
 
-  function hurryUp(randomeCount) {
+  function hurryUp(rc) {
     if (document.querySelector(".stock.instock")) {
-      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${randomeCount} left</span> in Stock.</p>`;
+      document.querySelector(".stock.instock").innerHTML = `<p>Hurry up! Only <span class="accent-text-random">${rc} left</span> in Stock.</p>`;
     }
   }
 
@@ -413,24 +413,24 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   }
 
   // handleClick
-  function handleClick(s, p) {
+  function handleClick(s, p, rc) {
     document.querySelectorAll(".specifics button").forEach((el) => {
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".accent-text-random")) {
-            hurryUp(randomeCount);
+            hurryUp(rc);
           }
 
           if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
             renderDelivery(s, p);
-            handleClick(s, p);
+            handleClick(s, p, rc);
           }
         }, 200);
       });
     });
   }
 
-  handleClick(customSumm, price);
+  handleClick(customSumm, price, randomeCount);
 
   //
   window.dataLayer = window.dataLayer || [];
