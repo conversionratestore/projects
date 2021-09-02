@@ -17,16 +17,16 @@ text-transform: uppercase;
 }
 
 .compar-block{
-background-image: url("https://conversionratestore.github.io/projects/buzzpatch/img/background.svg");
-background-repeat: no-repeat;
-font-family: Proxima Nova;
+
+background: #F1F3F4 url("https://conversionratestore.github.io/projects/buzzpatch/img/bg_white.svg") no-repeat center -1px / 100%;
+
 font-weight: 400;
 font-size: 12px;
 line-height: 1.3;
 text-align: center;
 color: #212529;
-padding-top:90px;
-padding-bottom: 144px;
+padding: 90px 15px 72px 15px;
+margin: 0 -15px 72px -15px;
 }
 
 .copar-title{
@@ -54,7 +54,6 @@ display:flex;
 align-items: stretch;
 margin: 0;
 padding-bottom: 16px;
-
 }
 
 
