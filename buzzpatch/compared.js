@@ -129,6 +129,15 @@ text-decoration: none;
 margin-top:6px;
 }
 
+.list-variant{
+justify-content: flex-end;
+
+}
+
+.span-varian{
+margin-top: 10px;
+}
+
  
 </style>
 `;
@@ -224,9 +233,9 @@ let divB = /*html*/ `
 <div class="compar-box">
     <h2 class="compar-box-title">Toxicity</h2>
     <ul class="compar-list">
-        <li class="accent-color compar-link">
+        <li class="accent-color compar-link list-variant">
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/cross.svg" alt="cross">
-            <span class="span-after-svg">Non toxic</span></li>
+            <span class="span-after-svg span-varian">Non toxic</span></li>
         <li class="compar-link">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 11.9707C8 12.5219 8.44827 12.9707 8.99998 12.9707C9.5517 12.9707 9.99997 12.5219 9.99997 11.9707C9.99997 11.4194 9.5517 10.9707 8.99998 10.9707C8.44827 10.9707 8 11.4194 8 11.9707Z" fill="#212529"/>
