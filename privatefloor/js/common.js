@@ -4,40 +4,40 @@ $(document).ready(function () {
         $('.order-recipient').toggleClass('active');
     });
 
-    $( 'form.userLoginForm, form.order-recipient' ).submit( function( event ) {
-        event.preventDefault();
-
-        //validate fields
-        let fail = false;
-        let fail_log = '';
-        let name;
-        $(this).find( 'select, textarea, input' ).each(function(){
-            if( ! $( this ).prop( 'required' )){
-
-            } else {
-                if ( ! $( this ).val() ) {
-                    fail = true;
-                    name = $( this ).attr( 'name' );
-                    fail_log += name + " is required \n";
-                }
-
-            }
-        });
-
-        //submit if fail never got set to true
-        if ( ! fail ) {
-            //process form here.
-            $('#order-recipient').removeClass('active');
-            $('.express-checkout').css('display','none');
-            $('.userLoginForm ').removeClass('active');
-            $('#shipping-address').css('display','block');
-            $('.cart-steps__main-block .step.step-active').removeClass('step-active');
-            $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
-        } else {
-            alert( fail_log );
-        }
-
-    });
+    // $( 'form.order-recipient' ).submit( function( event ) {
+    //     event.preventDefault();
+    //
+    //     //validate fields
+    //     let fail = false;
+    //     let fail_log = '';
+    //     let name;
+    //     $(this).find( 'select, textarea, input' ).each(function(){
+    //         if( ! $( this ).prop( 'required' )){
+    //
+    //         } else {
+    //             if ( ! $( this ).val() ) {
+    //                 fail = true;
+    //                 name = $( this ).attr( 'name' );
+    //                 fail_log += name + " is required \n";
+    //             }
+    //
+    //         }
+    //     });
+    //
+    //     //submit if fail never got set to true
+    //     if ( ! fail ) {
+    //         //process form here.
+    //         $('#order-recipient').removeClass('active');
+    //         $('.express-checkout').css('display','none');
+    //         $('.userLoginForm ').removeClass('active');
+    //         $('#shipping-address').css('display','block');
+    //         $('.cart-steps__main-block .step.step-active').removeClass('step-active');
+    //         $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
+    //     } else {
+    //         alert( fail_log );
+    //     }
+    //
+    // });
 
     $('.btn-back').on('click', function () {
         $('#order-recipient').addClass('active');
@@ -70,6 +70,64 @@ $(document).ready(function () {
             }
             return attr == 'password' ? 'text' : 'password';
         });
+    });
+
+    $("#resetPassword").click(function(e) {
+        //---------------^---------------
+        var valid = this.form.checkValidity();
+        $("#username").html(valid);
+        if (valid) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).data("href"),
+                type: "POST", //метод отправки
+                data: $("#ajax_form").serialize(),  // Сеарилизуем объект
+                success: function (response) { //Данные отправлены успешно
+                    if(response === false){
+                        $('#danger').show();
+                        $('#error-message').show();
+                        $(".emailResset").addClass("is-inValid");
+                    }else{
+                        $('#sendEmail').hide();
+                        $('#true').show();
+                    }
+                }
+            });
+            return false;
+        }
+    });
+
+    $(".emailResset").keyup(function(){
+        $('#error-message').hide();
+        $('.emailResset').removeClass('is-inValid');
+    });
+
+    $("#btnUseMyCredit").click(function() {
+
+        $.ajax({
+            method: "POST",
+            url: $(this).data("href"),
+            success: function(response) {
+
+                if (response.rStatus === "OK") {
+                    location.reload();
+                } else if (response.rStatus == "ERR") {
+
+                    alert(response.rMessage);
+                }
+            }
+        });
+    });
+
+    $("#btnConfirmPurchase").click(function(e) {
+        var coupon = $("#coupon").val();
+
+        if (coupon) {
+            $("#applyCoupon").click();
+            return;
+        }
+
+        location.href = $(this).attr('data-href');
     });
 });
 
