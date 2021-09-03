@@ -276,6 +276,7 @@ if (location.pathname.includes('product')) {
             }
         </style>`);
 
+    //create element with qty and button
     let rowActions = `
     <div class="sticky-btn_row">
         <div class="quantity-row">
@@ -295,7 +296,7 @@ if (location.pathname.includes('product')) {
         </div>
     </div>`);
 
-    //add row actions in sticky button
+    //add element in sticky button
     document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
 
     //hide sticky button on scrollY > 200, else show
@@ -315,7 +316,7 @@ if (location.pathname.includes('product')) {
         <p>2-3 business days*</p>
     </div>`);
 
-    //add row actions in product
+    //add elements
     document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
     <div class="price-product">
         <p>Our Price:</p>
@@ -342,7 +343,7 @@ if (location.pathname.includes('product')) {
         }
     }
 
-    //add shipping box
+    //add text info
     document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>`)
 
     //click on add to cart
