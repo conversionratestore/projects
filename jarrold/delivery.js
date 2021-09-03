@@ -433,10 +433,16 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
   handleClick(customSumm, price, randomeCount);
 
   //
+  let eventVar = "desktop";
+
+  if (window.innerWidth <= 768) {
+    eventVar = "mobile";
+  }
+
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
     event: "event-to-ga",
-    eventCategory: "Exp — Delivery Size guide mobile",
+    eventCategory: `Exp — Delivery Size guide ${eventVar}`,
     eventAction: "loaded",
   });
 
@@ -458,5 +464,5 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
     function () {
       (hj.q = hj.q || []).push(arguments);
     };
-  hj("trigger", "delivery_size_guide_mobile");
+  hj("trigger", `delivery_size_guide_${eventVar}`);
 }
