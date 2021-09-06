@@ -193,11 +193,11 @@ if (twentyFourHours > 0) {
     });
 
     let checkCartInterval = setInterval(() => {
-        if(document.querySelector('.cart-modal')) {
+        if (document.querySelector('.cart-modal')) {
             clearInterval(checkCartInterval);
             mut.observe(document.querySelector('.cart-modal'), config);
         }
-    }, 100)
+    }, 100);
 
     /* create observers */
 
@@ -239,55 +239,53 @@ if (twentyFourHours > 0) {
 
     /* timer */
     let checkHeaderInterval = setInterval(() => {
-        if(document.querySelector('.header')) {
+        if (document.querySelector('.header') && document.querySelector('.header .countdown span')) {
             clearInterval(checkHeaderInterval);
             document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
-        }
-    }, 100)    
 
-    const display = document.querySelector('.header .countdown span');
+            function startTimer(duration, display) {
+                let timer = duration, hours, minutes, seconds;
+                let timerInterval = setInterval(function () {
+                    hours = parseInt((timer / 3600) % 24, 10);
+                    minutes = parseInt((timer / 60) % 60, 10);
+                    seconds = parseInt(timer % 60, 10);
 
-    function startTimer(duration, display) {
-        let timer = duration, hours, minutes, seconds;
-        let timerInterval = setInterval(function () {
-            hours = parseInt((timer / 3600) % 24, 10);
-            minutes = parseInt((timer / 60) % 60, 10);
-            seconds = parseInt(timer % 60, 10);
+                    hours = hours < 10 ? '0' + hours : hours;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
 
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+                    display.innerText = `${hours}:${minutes}:${seconds}`;
 
-            display.innerText = `${hours}:${minutes}:${seconds}`;
+                    if (--timer < 0) {
 
-            if (--timer < 0) {
+                        clearInterval(timerInterval);
 
-                clearInterval(timerInterval);
+                        CDSetupInit.removeIndividualCoupon('MM10CRO', this);
 
-                CDSetupInit.removeIndividualCoupon('MM10CRO', this);
+                        document.querySelector('.countdown').remove();
 
-                document.querySelector('.countdown').remove();
+                        document.querySelectorAll('.price_sale').forEach(sale => {
+                            sale.remove();
+                        });
 
-                document.querySelectorAll('.price_sale').forEach(sale => {
-                    sale.remove();
-                });
+                        document.querySelector('.custom-style').remove();
 
-                document.querySelector('.custom-style').remove();
-
-                document.head.insertAdjacentHTML('beforeend', `
+                        document.head.insertAdjacentHTML('beforeend', `
                     <style>.price .money { font-size: 17px !important; }</style>`);
+                    }
+                }, 1000);
             }
-        }, 1000);
-    }
 
-    startTimer(twentyFourHours, display);
+            startTimer(twentyFourHours, document.querySelector('.header .countdown span'));
+        }
+    }, 100);
 }
 
-setInterval(()=> {
-    if(document.querySelectorAll('.af_money.af_striked_out_price').length > 1) {
+setInterval(() => {
+    if (document.querySelectorAll('.af_money.af_striked_out_price').length > 1) {
         document.querySelectorAll('.af_money.af_striked_out_price')[0].remove();
     }
-}, 500)
+}, 500);
 
 // hotjar events
 window.dataLayer = window.dataLayer || [];
