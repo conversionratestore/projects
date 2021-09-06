@@ -372,7 +372,7 @@ window.onload  = function () {
                     pointer-events: auto;
                     display: block;
                 }
-                #product_desc.active ul, #product_desc.active div, #product_desc.active h3 {
+                #product_desc.active li, #product_desc.active div, #product_desc.active h3 {
                     height: 100%;
                     opacity: 1;
                     pointer-events: auto;
