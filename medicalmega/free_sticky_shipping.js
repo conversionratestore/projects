@@ -170,7 +170,9 @@ window.onload  = function () {
             'price': justunoCart.subtotal
         })
         localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
-        rangeShipping('.payment','beforebegin');
+        if (justunoCart.subtotal != '0.00') {
+            rangeShipping('.payment','beforebegin');
+        }
     }
 
     //pdp
