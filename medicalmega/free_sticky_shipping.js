@@ -358,6 +358,7 @@ window.onload  = function () {
                     color: #C23D31;
                     background-color: transparent;
                     border: none;
+                    margin: 4px 0;
                 }
                 #product_desc div, #product_desc h3, #product_desc p, #product_desc li  {
                     height: 0;
