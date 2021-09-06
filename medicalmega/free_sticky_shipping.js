@@ -494,7 +494,7 @@ window.onload  = function () {
             quantityFun(el); // quantity on change and on click button +/-
         })
         //read more
-        if (document.getElementById('#product_desc')) {
+        if (document.getElementById('product_desc')) {
             console.log('true')
             if (document.querySelectorAll('#product_desc p')) {
                 console.log('true')
