@@ -359,14 +359,14 @@ window.onload  = function () {
                     background-color: transparent;
                     border: none;
                 }
-                #product_desc div, #product_desc h3, #product_desc p, #product_desc ul  {
+                #product_desc div, #product_desc h3, #product_desc p, #product_desc li  {
                     height: 0;
                     opacity: 0;
                     transition: all 0.3s ease;
                     pointer-events: none;
                     display: none;
                 }
-                #product_desc p:first-child {
+                #product_desc p:first-child, #product_desc li:first-child {
                     height: 100%;
                     opacity: 1;
                     pointer-events: auto;
