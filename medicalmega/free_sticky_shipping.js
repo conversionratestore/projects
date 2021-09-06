@@ -1,3 +1,66 @@
+//styles
+document.body.insertAdjacentHTML('afterbegin',`
+    <style>
+        .homeslider__container {
+            margin-bottom: 40px!important;
+        }
+        .range-shipping-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            color: #171717;
+            padding: 20px 0;
+        }
+        .range-shipping-title  span {
+            display: block;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #666666;
+            margin-top: 8px;
+        }
+        .range-shipping {
+            margin-bottom: 30px;
+        }
+        .range-shipping_text1{
+            text-align: center;
+            font-size: 12px;
+            line-height: 16px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+         .range-shipping_text1 span {
+            color: #C23D31;
+            font-weight: 700;
+         }
+        .range-shipping_text2 {
+            font-size: 12px;
+            line-height: 16px;
+            color: #666666;
+        }
+        .range-shipping_text2  span {
+            color: #000;
+        }
+        .range {
+            width: 100%;
+            background: #EEEEEE;
+            border-radius: 12px;
+            height: 12px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+        .range span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: #C23D31;
+        }
+    </style>`);
+
 // quantity on change and on click button +/-
 function quantityFun(el) {
     if (el.querySelector('.quantity')) {
@@ -35,6 +98,35 @@ function quantityFun(el) {
     }
 }
 
+//range shipping
+function rangeShipping(item,insert) {
+    let subtotal = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
+    document.querySelector(item).insertAdjacentHTML(insert, `
+    <div class="range-shipping" style="padding: 0 7.5px">
+        <p class="range-shipping_text1"><span>$<span>${(150 - subtotal).toFixed(2)}</span></span> left for free Shipping</p>
+        <div class="range"><span style="width: ${subtotal * 100 / 150 + '%'}"></span></div>
+        <p class="range-shipping_text2">Your Order: <span>$<span>${subtotal}</span></span></p>
+    </div>`);
+    if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
+        document.querySelector('.range-shipping').insertAdjacentHTML('beforebegin',`
+          <p class="range-shipping-title">Get Free Shipping
+            <span>You are almost there</span>
+        </p>`)
+    }
+
+    if (subtotal < 150 && subtotal >= 130) {
+        document.querySelector('.range-shipping_text1').innerHTML = `<span>$<span>${(150 - subtotal).toFixed(2)}</span></span>  only left for free Shipping`;
+    }
+    if (subtotal >= 150) {
+        if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
+            document.querySelector('.range-shipping-title').innerHTML = `You Have Free Shipping`;
+            document.querySelector('.range-shipping_text1').remove();
+        } else {
+            document.querySelector('.range-shipping_text1').innerHTML = `You Have Free Shipping`;
+            document.querySelector('.range-shipping_text1').style = `font-weight: bold; font-size: 16px; line-height: 20px;`;
+        }
+    }
+}
 //cart
 if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
     //set localStorage for total price
@@ -43,6 +135,7 @@ if (location.pathname.includes('cart.html') || location.pathname.includes('check
         'price': justunoCart.subtotal
     })
     localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
+    rangeShipping('.payment','beforebegin');
 }
 
 //pdp
@@ -50,6 +143,12 @@ if (location.pathname.includes('product')) {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .center h3, .category {
+                margin-left: 0;
+            }
+            .range-shipping {
+                padding: 0!important;
+            }
             span.dot, #cart_box, .product-price, #variant_tag label:nth-child(2) {
                 display: none!important;
             }
@@ -214,46 +313,38 @@ if (location.pathname.includes('product')) {
                 font-weight: 700;
                 font-size: 21px;
                 line-height: 23px;
-                color: #C23D31;
+                color: #c23d31;
             }
-            .range-shipping {
-                margin-bottom: 30px;
-            }
-            .range-shipping_text1{
-                text-align: center;
+            .read-more {
                 font-size: 12px;
-                line-height: 16px;
-                text-transform: uppercase;
-                margin-bottom: 8px;
-            }
-             .range-shipping_text1 span {
+                line-height: 23px;
+                text-decoration-line: underline;
+                text-transform: capitalize;
                 color: #C23D31;
-                font-weight: 700;
-             }
-            .range-shipping_text2 {
-                font-size: 12px;
-                line-height: 16px;
-                color: #666666;
+                background-color: transparent;
+                border: none;
             }
-            .range-shipping_text2  span {
-                color: #000;
+            #product_desc div, #product_desc h3, #product_desc p, #product_desc ul  {
+                height: 0;
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+                display: none;
             }
-            .range {
-                width: 100%;
-                background: #EEEEEE;
-                border-radius: 12px;
-                height: 12px;
-                position: relative;
-                overflow: hidden;
-                margin-bottom: 4px;
-            }
-            .range span {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 0%;
+            #product_desc p:first-child {
                 height: 100%;
-                background: #C23D31;
+                opacity: 1;
+                pointer-events: auto;
+                display: block;
+            }
+            #product_desc.active ul, #product_desc.active div, #product_desc.active h3 {
+                height: 100%;
+                opacity: 1;
+                pointer-events: auto;
+                display: block;
+            }
+            .btmcon {
+                margin-left: 0!important;
             }
             @media only screen and (max-width: 360px)  {
                 .sticky-btn_row a {
@@ -326,21 +417,7 @@ if (location.pathname.includes('product')) {
 
     //show range, if have product in cart
     if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0') {
-        document.querySelector('.price-product').insertAdjacentHTML('afterend', `
-        <div class="range-shipping">
-            <p class="range-shipping_text1"><span>$<span>${(150 - JSON.parse(localStorage.getItem('yourOrder'))[0].price).toFixed(2)}</span></span> left for free Shipping</p>
-            <div class="range"><span></span></div>
-            <p class="range-shipping_text2">Your Order: <span>$<span>${JSON.parse(localStorage.getItem('yourOrder'))[0].price}</span></span></p>
-        </div>`);
-
-        //fill a range for free Shipping
-        if (JSON.parse(localStorage.getItem('yourOrder'))[0].price >= 150) {
-            document.querySelector('.range span').style.width = '100%';
-            document.querySelector('.range-shipping_text1').innerHTML = 'You Have Free Shipping';
-            document.querySelector('.range-shipping_text1').style.fontWeight = '700';
-        } else {
-            document.querySelector('.range span').style.width = JSON.parse(localStorage.getItem('yourOrder'))[0].price * 100 / 150 + '%';
-        }
+        rangeShipping('.price-product','afterend');
     }
 
     //add text info
@@ -359,4 +436,17 @@ if (location.pathname.includes('product')) {
     document.querySelectorAll('.sticky-btn_row').forEach(el => {
         quantityFun(el); // quantity on change and on click button +/-
     })
+    //read more
+    if (document.querySelector('#product_desc ul')) {
+        document.getElementById('product_desc').insertAdjacentHTML('beforeend',`<button type="button" class="read-more">READ MORE</button>`);
+        document.querySelector('.read-more').addEventListener('click',(e) => {
+            document.querySelector('#product_desc').classList.add('active');
+            e.target.hidden = true;
+        });
+    }
+}
+
+//main
+if (document.querySelector('.homeslider__container')) {
+    rangeShipping('.homeslider__container','afterend');
 }
