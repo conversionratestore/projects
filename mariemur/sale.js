@@ -129,16 +129,10 @@ if (twentyFourHours > 0) {
 
     // draw my template function
     function drawSale(element) {
-        console.log('drawSale');
         let isTitlePrice = document.querySelector(element)?.closest('.row-title-price');
 
-        // let drawSaleInterval = setInterval(function() {
-        //     if (element[0] || element[1] || element[2]) {
-        //         clearInterval(drawSaleInterval);
         document.querySelectorAll(element).forEach(price => {
             if (!(price.classList.value === 'money money_sale')) {
-                console.log(price);
-
                 let valueInString = price.innerText.split('$')[1];
                 let num = parseFloat(valueInString.replace(/,/g, ''));
                 let val = num - (num * .10);
@@ -186,7 +180,6 @@ if (twentyFourHours > 0) {
     let mut = new MutationObserver(muts => {
         mut.disconnect();
         for (let i = 0; i < elementsArray.length; i++) {
-            console.log(elementsArray[i]);
             drawSale(elementsArray[i]);
         }
         mut.observe(document.querySelector('.cart-modal'), config);
@@ -209,7 +202,6 @@ if (twentyFourHours > 0) {
         let loadMoreObserver = new MutationObserver(function (mutations) {
             // call drawSale function for each element from array
             for (let i = 0; i < elementsArray.length; i++) {
-                console.log(elementsArray[i]);
                 drawSale(elementsArray[i]);
             }
         });
