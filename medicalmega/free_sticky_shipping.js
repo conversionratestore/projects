@@ -495,12 +495,14 @@ window.onload  = function () {
         })
         //read more
         if (document.getElementById('#product_desc')) {
-            document.querySelector('#product_desc p').forEach((el) => {
-                if (el.nextElementSibling.querySelector('ul')) {
-                    console.log(el.nextElementSibling.querySelector('ul'));
-                    el.classList.add('active');
-                }
-            });
+            if (document.querySelectorAll('#product_desc p')) {
+                document.querySelectorAll('#product_desc p').forEach((el) => {
+                    if (el.nextElementSibling.querySelector('ul')) {
+                        console.log(el.nextElementSibling.querySelector('ul'));
+                        el.classList.add('active');
+                    }
+                });
+            }
             document.getElementById('product_desc').insertAdjacentHTML('beforeend',`<button type="button" class="read-more">READ MORE</button>`);
             document.querySelector('.read-more').addEventListener('click',(e) => {
                 document.querySelector('#product_desc').classList.add('active');
