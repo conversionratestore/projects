@@ -496,10 +496,11 @@ window.onload  = function () {
         //read more
         if (document.getElementById('product_desc')) {
             if (document.querySelectorAll('#product_desc p')) {
-                document.querySelectorAll('#product_desc p').forEach((el) => {
-                    if (el.nextElementSibling.tagName == 'ul') {
-                        console.log(el.nextElementSibling.tagName == 'ul');
-                        el.classList.add('active');
+                document.querySelectorAll('#product_desc p').forEach((el,i) => {
+                    if (i != (document.querySelectorAll('#product_desc p').length - 1)) {
+                        if(el.nextElementSibling.tagName == 'UL') {
+                            el.classList.add('active');
+                        }
                     }
                 });
             }
