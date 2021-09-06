@@ -495,8 +495,11 @@ window.onload  = function () {
         })
         //read more
         if (document.getElementById('#product_desc')) {
+            console.log('true')
             if (document.querySelectorAll('#product_desc p')) {
+                console.log('true')
                 document.querySelectorAll('#product_desc p').forEach((el) => {
+                    console.log(el);
                     if (el.nextElementSibling.querySelector('ul')) {
                         console.log(el.nextElementSibling.querySelector('ul'));
                         el.classList.add('active');
