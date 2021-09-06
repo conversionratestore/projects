@@ -372,7 +372,7 @@ window.onload  = function () {
                     pointer-events: auto;
                     display: list-item;
                 }
-                #product_desc.active li, #product_desc.active div, #product_desc.active h3 {
+                #product_desc.active li, #product_desc.active div, #product_desc.active h3 , #product_desc p.active{
                     height: 100%;
                     opacity: 1;
                     pointer-events: auto;
@@ -494,7 +494,13 @@ window.onload  = function () {
             quantityFun(el); // quantity on change and on click button +/-
         })
         //read more
-        if (document.querySelector('#product_desc ul')) {
+        if (document.getElementById('#product_desc')) {
+            document.querySelector('#product_desc p').forEach((el) => {
+                if (el.nextElementSibling.querySelector('ul')) {
+                    console.log(el.nextElementSibling.querySelector('ul'));
+                    el.classList.add('active');
+                }
+            });
             document.getElementById('product_desc').insertAdjacentHTML('beforeend',`<button type="button" class="read-more">READ MORE</button>`);
             document.querySelector('.read-more').addEventListener('click',(e) => {
                 document.querySelector('#product_desc').classList.add('active');
