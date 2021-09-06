@@ -501,7 +501,7 @@ window.onload  = function () {
     }
 
     //main
-    if (document.querySelector('.homeslider__container')) {
+    if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0') {
         rangeShipping('.homeslider__container','afterend');
     }
 };
