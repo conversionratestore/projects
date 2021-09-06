@@ -193,11 +193,11 @@ if (twentyFourHours > 0) {
     });
 
     let checkCartInterval = setInterval(() => {
-        if (document.querySelector('.cart-modal')) {
+        if(document.querySelector('.cart-modal')) {
             clearInterval(checkCartInterval);
             mut.observe(document.querySelector('.cart-modal'), config);
         }
-    }, 100);
+    }, 100)
 
     /* create observers */
 
@@ -239,7 +239,7 @@ if (twentyFourHours > 0) {
 
     /* timer */
     let checkHeaderInterval = setInterval(() => {
-        if (document.querySelector('.header') && document.querySelector('.header .countdown span')) {
+        if(document.querySelector('.header')) {
             clearInterval(checkHeaderInterval);
             document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
 
@@ -278,14 +278,18 @@ if (twentyFourHours > 0) {
 
             startTimer(twentyFourHours, document.querySelector('.header .countdown span'));
         }
-    }, 100);
+    }, 100)
+
+
+
+
 }
 
-setInterval(() => {
-    if (document.querySelectorAll('.af_money.af_striked_out_price').length > 1) {
+setInterval(()=> {
+    if(document.querySelectorAll('.af_money.af_striked_out_price').length > 1) {
         document.querySelectorAll('.af_money.af_striked_out_price')[0].remove();
     }
-}, 500);
+}, 500)
 
 // hotjar events
 window.dataLayer = window.dataLayer || [];
