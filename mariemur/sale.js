@@ -196,9 +196,9 @@ if (twentyFourHours > 0) {
         if(document.querySelector('.cart-modal')) {
             clearInterval(checkCartInterval);
             mut.observe(document.querySelector('.cart-modal'), config);
-        }        
-    }, 100)  
-    
+        }
+    }, 100)
+
     /* create observers */
 
     // select the target node
@@ -238,7 +238,12 @@ if (twentyFourHours > 0) {
 
 
     /* timer */
-    document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
+    let checkHeaderInterval = setInterval(() => {
+        if(document.querySelector('.header')) {
+            clearInterval(checkHeaderInterval);
+            document.querySelector('.header').insertAdjacentHTML('afterbegin', '<div class="countdown"><p>Sale: 10% off <span>00:00:00</span></p></div>');
+        }
+    }, 100)    
 
     const display = document.querySelector('.header .countdown span');
 
