@@ -370,13 +370,16 @@ window.onload  = function () {
                     height: 100%;
                     opacity: 1;
                     pointer-events: auto;
-                    display: block;
+                    display: list-item;
                 }
                 #product_desc.active li, #product_desc.active div, #product_desc.active h3 {
                     height: 100%;
                     opacity: 1;
                     pointer-events: auto;
                     display: block;
+                }
+                #product_desc.active li {
+                    display: list-item;
                 }
                 .btmcon {
                     margin-left: 0!important;
