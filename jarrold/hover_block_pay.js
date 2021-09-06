@@ -52,6 +52,7 @@ z-index: 1;
 }
 
 .hover-pay-title{
+font-family: 'Lato', sans-serif !important;
 margin: 20px 0 20px 0 !important;
 font-weight: 600 !important;
 font-size: 14px !important;
@@ -61,15 +62,16 @@ color: #333333 !important;
 }
 
 .hover-pay-text{
+font-family: 'Lato', sans-serif !important;
 font-weight: 400 !important;
-font-size: 14px !important;
+font-size: 15px !important;
 line-height: 1.43 !important;
 text-align: center !important;
 color: #333333 !important;
 }
 
 .btn-pay-flow:hover .hover-pay-block{
-    display:block;
+display:block;
 }
 
 .hover-pay{
@@ -80,6 +82,11 @@ padding: 40px !important;
 
 background: #FFFFFF !important;
 border: 2px solid #266D6E !important;
+}
+
+.hover-pay-img{
+display: block;
+margin: auto;
 }
 
 </style>
@@ -115,20 +122,11 @@ function createPayFlowBtn() {
     "beforebegin",
     `<button class="btn btn-pay-flow" type="button">Pay only <span>£${price.toFixed(2)}</span>
     <div class="hover-pay-block">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay">
+    <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay" class="hover-pay-img">
     <h1 class="hover-pay-title">Pay in 3 equal installments of <span>£${price.toFixed(2)}</h1>
     <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
     </div>
       </button>
     `
-  );
-
-  document.querySelector(".specifics.buttons").insertAdjacentHTML(
-    "afterend",
-    `<div class="hover-pay">
-      <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay">
-      <h1 class="hover-pay-title">Pay in 3 equal installments of <span>£${price.toFixed(2)}</h1>
-      <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
-      </div>`
   );
 }
