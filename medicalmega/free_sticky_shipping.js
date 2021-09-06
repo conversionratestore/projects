@@ -511,6 +511,11 @@ window.onload  = function () {
                 e.target.hidden = true;
             });
         }
+
+        if (document.querySelector('.type2 strong')) {
+            document.querySelector('.topcon').after(document.querySelector('.box_container'));
+            document.querySelector('.topcon').after(document.querySelector('.type2 strong'));
+        }
     }
 
     //main
