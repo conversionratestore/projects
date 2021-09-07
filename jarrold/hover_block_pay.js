@@ -52,14 +52,14 @@ z-index: 3;
 }
 
 .bqg{
-  position: fixed;
-  display:none;
-  background: rgba(51, 51, 51, 0.3) !important;
-  width: 100vw;
-   height: 100vh;
-   top: 0;
-   left: 0;
-   z-index: 2;
+position: fixed;
+display:none;
+background: rgba(51, 51, 51, 0.3) !important;
+width: 100vw;
+height: 100vh;
+top: 0;
+left: 0;
+z-index: 2;
 }
 
 .hover-pay-title{
@@ -84,13 +84,15 @@ color: #333333 !important;
 .btn-pay-flow:hover{
 background: #2c8081 !important;
 color: #fff !important;
+
 }
 
 .btn-pay-flow:hover .bqg {
-  display:block;
+display:block;
  }
 
 .btn-pay-flow:hover .hover-pay-block{
+  
 display:block;
 }
 
