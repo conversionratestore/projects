@@ -185,6 +185,11 @@ if (document.querySelector("#variants .price")) {
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".btn-pay-flow")) {
+            price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
+            qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+            customSummPay = +(price * qty) / 3;
+
+            localStorage.setItem("customSummPay", customSummPay);
             createPayFlowBtn();
             handleClick();
           }
