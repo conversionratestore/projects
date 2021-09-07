@@ -132,6 +132,10 @@ function createPayFlowBtn() {
       </button>
     `
   );
+
+  document.querySelector(".btn-pay-flow").addEventListener("click", function () {
+    document.location = "https://www.jarrold.co.uk/checkout";
+  });
 }
 
 function handleClick() {
@@ -146,7 +150,3 @@ function handleClick() {
     });
   });
 }
-
-document.querySelector(".btn-pay-flow").addEventListener("click", function () {
-  document.location = "https://www.jarrold.co.uk/checkout";
-});
