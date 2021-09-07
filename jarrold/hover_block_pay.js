@@ -102,14 +102,17 @@ let hoverBlockPay = /*html*/ `
 
 document.head.insertAdjacentHTML("beforeend", styleFlow);
 
-document.querySelector(".btn.wish span").textContent = "";
-document.querySelector(".btn.wish").classList.add("btn-wishlist");
+if (document.querySelector(".btn.wish")) {
+  createPayFlowBtn();
+}
 
-createPayFlowBtn();
-
-document.querySelector("[data-pp-message]").style.display = "none";
+handleClick();
 
 function createPayFlowBtn() {
+  document.querySelector(".btn.wish span").textContent = "";
+  document.querySelector(".btn.wish").classList.add("btn-wishlist");
+  document.querySelector("[data-pp-message]").style.display = "none";
+
   let now = "rrp";
 
   if (document.querySelector("#variants .price .now")) {
@@ -129,4 +132,17 @@ function createPayFlowBtn() {
       </button>
     `
   );
+}
+
+function handleClick() {
+  document.querySelectorAll(".specifics button").forEach((el) => {
+    el.addEventListener("click", function () {
+      setTimeout(function () {
+        if (!document.querySelector("btn btn-pay-flow")) {
+          createPayFlowBtn();
+          handleClick();
+        }
+      }, 300);
+    });
+  });
 }
