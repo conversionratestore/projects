@@ -48,7 +48,18 @@ padding: 40px !important;
 
 background: #FFFFFF !important;
 border: 2px solid #266D6E !important;
-z-index: 1;
+z-index: 3;
+}
+
+.bqg{
+  position: fixed;
+  display:none;
+  background: rgba(51, 51, 51, 0.3) !important;
+  width: 100vw;
+   height: 100vh;
+   top: 0;
+   left: 0;
+   z-index: 2;
 }
 
 .hover-pay-title{
@@ -69,6 +80,15 @@ line-height: 1.43 !important;
 text-align: center !important;
 color: #333333 !important;
 }
+
+.btn-pay-flow:hover{
+background: #2c8081 !important;
+color: #fff !important;
+}
+
+.btn-pay-flow:hover .bqg {
+  display:block;
+ }
 
 .btn-pay-flow:hover .hover-pay-block{
 display:block;
@@ -136,6 +156,7 @@ if (document.querySelector("#variants .price")) {
       <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${customSummPay.toFixed(2)}</h1>
       <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
       </div>
+      <div class="bqg"></div>
         </button>
       `
     );
@@ -180,6 +201,7 @@ if (document.querySelector("#variants .price")) {
     });
   }
 
+  // mutation
   function handleClick() {
     document.querySelectorAll(".specifics button").forEach((el) => {
       el.addEventListener("click", function () {
