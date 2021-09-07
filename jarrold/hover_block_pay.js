@@ -123,7 +123,7 @@ function createPayFlowBtn() {
 
   document.querySelector(".specifics.buttons .btn-wishlist").insertAdjacentHTML(
     "beforebegin",
-    `<button class="btn btn-pay-flow" type="button">Pay only <span>£${price.toFixed(2)}</span>
+    `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span>£${price.toFixed(2)}</span>
     <div class="hover-pay-block">
     <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay" class="hover-pay-img">
     <h1 class="hover-pay-title">Pay in 3 equal installments of <span>£${price.toFixed(2)}</h1>
@@ -138,7 +138,7 @@ function handleClick() {
   document.querySelectorAll(".specifics button").forEach((el) => {
     el.addEventListener("click", function () {
       setTimeout(function () {
-        if (!document.querySelector("btn btn-pay-flow")) {
+        if (!document.querySelector(".btn-pay-flow")) {
           createPayFlowBtn();
           handleClick();
         }
@@ -146,3 +146,7 @@ function handleClick() {
     });
   });
 }
+
+document.querySelector(".btn-pay-flow").addEventListener("click", function () {
+  document.location = "https://www.jarrold.co.uk/checkout";
+});
