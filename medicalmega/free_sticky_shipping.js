@@ -135,12 +135,12 @@ window.onload  = function () {
 
     //range shipping
     function rangeShipping(item,insert) {
-        let subtotal = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
+        let total = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
         document.querySelector(item).insertAdjacentHTML(insert, `
         <div class="range-shipping" style="padding: 0 7.5px">
-            <p class="range-shipping_text1"><span>$<span>${(150 - subtotal).toFixed(2)}</span></span> left for free Shipping</p>
-            <div class="range"><span style="width: ${subtotal * 100 / 150 + '%'}"></span></div>
-            <p class="range-shipping_text2">Your Order: <span>$<span>${subtotal}</span></span></p>
+            <p class="range-shipping_text1"><span>$<span>${(150 - total).toFixed(2)}</span></span> left for free Shipping</p>
+            <div class="range"><span style="width: ${total * 100 / 150 + '%'}"></span></div>
+            <p class="range-shipping_text2">Your Order: <span>$<span>${total}</span></span></p>
         </div>`);
         if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
             document.querySelector('.range-shipping').insertAdjacentHTML('beforebegin',`
@@ -149,10 +149,10 @@ window.onload  = function () {
             </p>`)
         }
 
-        if (subtotal < 150 && subtotal >= 130) {
-            document.querySelector('.range-shipping_text1').innerHTML = `<span>$<span>${(150 - subtotal).toFixed(2)}</span></span>  only left for free Shipping`;
+        if (total < 150 && total >= 130) {
+            document.querySelector('.range-shipping_text1').innerHTML = `<span>$<span>${(150 - total).toFixed(2)}</span></span>  only left for free Shipping`;
         }
-        if (subtotal >= 150) {
+        if (total >= 150) {
             if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
                 document.querySelector('.range-shipping-title').innerHTML = `You Have Free Shipping`;
                 document.querySelector('.range-shipping_text1').remove();
@@ -167,10 +167,10 @@ window.onload  = function () {
         //set localStorage for total price
         let yourOrder = [];
         yourOrder.push({
-            'price': justunoCart.subtotal
+            'price': justunoCart.total
         })
         localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
-        if (justunoCart.subtotal != '0.00') {
+        if (justunoCart.total != '0.00') {
             rangeShipping('.payment','beforebegin');
         }
     }
