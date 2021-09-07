@@ -102,91 +102,94 @@ let hoverBlockPay = /*html*/ `
 
 document.head.insertAdjacentHTML("beforeend", styleFlow);
 
-let nowCl = "rrp";
+if (document.querySelector("#variants .price")) {
+  let nowCl = "rrp";
 
-if (document.querySelector("#variants .price .now")) {
-  nowCl = "now";
-}
+  if (document.querySelector("#variants .price .now")) {
+    nowCl = "now";
+  }
 
-let price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
-let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-let customSummPay = +(price * qty) / 3;
+  let price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
+  let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+  let customSummPay = +(price * qty) / 3;
 
-localStorage.setItem("customSummPay", customSummPay);
+  localStorage.setItem("customSummPay", customSummPay);
 
-if (document.querySelector(".btn.wish")) {
-  createPayFlowBtn();
-}
+  if (document.querySelector(".btn.wish")) {
+    createPayFlowBtn();
+  }
 
-handleClick();
+  handleClick();
 
-function createPayFlowBtn() {
-  document.querySelector(".btn.wish span").textContent = "";
-  document.querySelector(".btn.wish").classList.add("btn-wishlist");
-  document.querySelector("[data-pp-message] iframe").style.display = "none";
+  function createPayFlowBtn() {
+    document.querySelector(".btn.wish span").textContent = "";
+    document.querySelector(".btn.wish").classList.add("btn-wishlist");
+    document.querySelector("[data-pp-message] iframe").style.display = "none";
 
-  let customSummPay = +localStorage.getItem("customSummPay");
+    let customSummPay = +localStorage.getItem("customSummPay");
 
-  document.querySelector(".specifics.buttons .btn-wishlist").insertAdjacentHTML(
-    "beforebegin",
-    `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span class="span-text">£${customSummPay.toFixed(2)}</span>
-    <div class="hover-pay-block">
-    <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay" class="hover-pay-img">
-    <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${customSummPay.toFixed(2)}</h1>
-    <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
-    </div>
-      </button>
-    `
-  );
+    document.querySelector(".specifics.buttons .btn-wishlist").insertAdjacentHTML(
+      "beforebegin",
+      `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span class="span-text">£${customSummPay.toFixed(2)}</span>
+      <div class="hover-pay-block">
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay" class="hover-pay-img">
+      <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${customSummPay.toFixed(2)}</h1>
+      <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
+      </div>
+        </button>
+      `
+    );
 
-  setTimeout(() => {
-    document.querySelector(".controls.qty .dec").addEventListener("click", function () {
-      if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+    setTimeout(() => {
+      document.querySelector(".controls.qty .dec").addEventListener("click", function () {
+        if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
+          let customSummPay = +localStorage.getItem("customSummPay");
+          let newSumm = customSummPay - (price * qty) / 3;
+          localStorage.customSummPay = newSumm;
+
+          document.querySelectorAll(".span-text").forEach((el) => {
+            el.innerText = `£${newSumm.toFixed(2)}`;
+          });
+        }
+      });
+
+      document.querySelector(".controls.qty .inc").addEventListener("click", function () {
         let customSummPay = +localStorage.getItem("customSummPay");
-        let newSumm = customSummPay - (price * qty) / 3;
+        let newSumm = customSummPay + (price * qty) / 3;
         localStorage.customSummPay = newSumm;
 
         document.querySelectorAll(".span-text").forEach((el) => {
           el.innerText = `£${newSumm.toFixed(2)}`;
         });
-      }
-    });
-
-    document.querySelector(".controls.qty .inc").addEventListener("click", function () {
-      let customSummPay = +localStorage.getItem("customSummPay");
-      let newSumm = customSummPay + (price * qty) / 3;
-      localStorage.customSummPay = newSumm;
-
-      document.querySelectorAll(".span-text").forEach((el) => {
-        el.innerText = `£${newSumm.toFixed(2)}`;
       });
-    });
-  }, 1000);
+    }, 1000);
 
-  document.querySelector(".btn-pay-flow").addEventListener("click", function () {
-    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+    //   click -> checkout
+    document.querySelector(".btn-pay-flow").addEventListener("click", function () {
+      document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
 
-    setTimeout(() => {
-      if (!document.querySelector("[data-pp-message] .dv-error")) {
-        document.querySelector("#cart-callback").style.display = "none";
+      setTimeout(() => {
+        if (!document.querySelector("[data-pp-message] .dv-error")) {
+          document.querySelector("#cart-callback").style.display = "none";
 
-        setTimeout(() => {
-          document.location = "https://www.jarrold.co.uk/checkout";
-        }, 300);
-      }
-    }, 300);
-  });
-}
-
-function handleClick() {
-  document.querySelectorAll(".specifics button").forEach((el) => {
-    el.addEventListener("click", function () {
-      setTimeout(function () {
-        if (!document.querySelector(".btn-pay-flow")) {
-          createPayFlowBtn();
-          handleClick();
+          setTimeout(() => {
+            document.location = "https://www.jarrold.co.uk/checkout";
+          }, 300);
         }
       }, 300);
     });
-  });
+  }
+
+  function handleClick() {
+    document.querySelectorAll(".specifics button").forEach((el) => {
+      el.addEventListener("click", function () {
+        setTimeout(function () {
+          if (!document.querySelector(".btn-pay-flow")) {
+            createPayFlowBtn();
+            handleClick();
+          }
+        }, 300);
+      });
+    });
+  }
 }
