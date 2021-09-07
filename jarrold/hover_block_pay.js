@@ -109,15 +109,15 @@ if (document.querySelector(".btn.wish")) {
 handleClick();
 
 function createPayFlowBtn() {
-  document.querySelector(".btn.wish span").textContent = "";
-  document.querySelector(".btn.wish").classList.add("btn-wishlist");
-  document.querySelector("[data-pp-message]").style.display = "none";
-
   let now = "rrp";
 
   if (document.querySelector("#variants .price .now")) {
     now = "now";
   }
+
+  document.querySelector(".btn.wish span").textContent = "";
+  document.querySelector(".btn.wish").classList.add("btn-wishlist");
+  document.querySelector("[data-pp-message] iframe").style.display = "none";
 
   let price = +document.querySelector(`.${now}`).innerText.split("£")[1] / 3;
 
@@ -134,7 +134,15 @@ function createPayFlowBtn() {
   );
 
   document.querySelector(".btn-pay-flow").addEventListener("click", function () {
-    document.location = "https://www.jarrold.co.uk/checkout";
+    document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+
+    if (!document.querySelector("[data-pp-message] .dv-error")) {
+      document.querySelector("#cart-callback").style.display = "none";
+
+      setTimeout(() => {
+        document.location = "https://www.jarrold.co.uk/checkout";
+      }, 300);
+    }
   });
 }
 
