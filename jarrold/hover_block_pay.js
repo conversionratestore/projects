@@ -136,13 +136,15 @@ function createPayFlowBtn() {
   document.querySelector(".btn-pay-flow").addEventListener("click", function () {
     document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
 
-    if (!document.querySelector("[data-pp-message] .dv-error")) {
-      document.querySelector("#cart-callback").style.display = "none";
+    setTimeout(() => {
+      if (!document.querySelector("[data-pp-message] .dv-error")) {
+        document.querySelector("#cart-callback").style.display = "none";
 
-      setTimeout(() => {
-        document.location = "https://www.jarrold.co.uk/checkout";
-      }, 300);
-    }
+        setTimeout(() => {
+          document.location = "https://www.jarrold.co.uk/checkout";
+        }, 300);
+      }
+    }, 300);
   });
 }
 
