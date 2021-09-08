@@ -139,7 +139,7 @@
             height: 80px;
         }
         .like-block {
-            padding: 35px 0;
+            padding: 35px 0 0;
         }
         .like-block h3 {
             font-weight: 500;
