@@ -146,12 +146,14 @@ if (document.querySelector("#variants .price")) {
   handleClick();
 
   function createPayFlowBtn() {
+    // Change the "Add to wishlist"
     document.querySelector(".btn.wish span").textContent = "";
     document.querySelector(".btn.wish").classList.add("btn-wishlist");
     document.querySelector("[data-pp-message] iframe").style.display = "none";
 
     let customSummPay = +localStorage.getItem("customSummPay");
 
+    // Add button "Pay only" and Add PayPal hover
     document.querySelector(".specifics.buttons .btn-wishlist").insertAdjacentHTML(
       "beforebegin",
       `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span class="span-text">£${customSummPay.toFixed(2)}</span>
@@ -190,6 +192,13 @@ if (document.querySelector("#variants .price")) {
 
     //   click -> checkout
     document.querySelector(".btn-pay-flow").addEventListener("click", function () {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - hover paypal desktop",
+        eventAction: "Click on Pay only button",
+      });
+
       if (document.querySelector("#page_MainContent_product_detail_txtQuantity").value !== "0") {
         document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
 
@@ -203,6 +212,15 @@ if (document.querySelector("#variants .price")) {
           }
         }, 300);
       }
+    });
+
+    document.querySelector(".btn-pay-flow").addEventListener("mouseenter", function () {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - hover paypal desktopn",
+        eventAction: "PayPal hover appears",
+      });
     });
   }
 
@@ -224,4 +242,31 @@ if (document.querySelector("#variants .price")) {
       });
     });
   }
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - hover paypal desktop",
+    eventAction: "loaded",
+  });
+
+  (function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+      };
+    h._hjSettings = { hjid: 2369936, hjsv: 6 };
+    a = o.getElementsByTagName("head")[0];
+    r = o.createElement("script");
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+  window.hj =
+    window.hj ||
+    function () {
+      (hj.q = hj.q || []).push(arguments);
+    };
+  hj("trigger", "hover_paypal_desktop");
 }
