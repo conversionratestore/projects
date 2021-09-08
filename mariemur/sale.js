@@ -195,7 +195,7 @@ if (twentyFourHours > 0) {
     /* create observers */
 
     // select the target node
-    const loadMoreTarget = document.querySelector('.catalog-more');
+    const loadMoreTarget = document.querySelector('.catalog-content');
 
     // if exist create observer
     if (loadMoreTarget) {
