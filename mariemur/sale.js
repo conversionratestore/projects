@@ -195,15 +195,12 @@ if (twentyFourHours > 0) {
     /* create observers */
 
     // select the target node
-    const loadMoreTarget = document.querySelector('.catalog-content');
+    const loadMoreTarget = document.querySelector('.catalog-more');
 
     // if exist create observer
     if (loadMoreTarget) {
         let loadMoreObserver = new MutationObserver(function (mutations) {
-            // call drawSale function for each element from array
-            for (let i = 0; i < elementsArray.length; i++) {
-                drawSale(elementsArray[i]);
-            }
+                drawSale('.product-list__box-price .price span.money[data-currency-usd]');
         });
 
         loadMoreObserver.observe(loadMoreTarget, config);
