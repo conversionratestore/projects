@@ -235,6 +235,9 @@ if (document.querySelector("#variants .price")) {
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".btn-pay-flow")) {
+            let price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
+            let customSummPay = +price / 3;
+            localStorage.setItem("customSummPay", customSummPay);
             createPayFlowBtn();
             handleClick();
           }
