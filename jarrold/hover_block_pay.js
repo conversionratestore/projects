@@ -134,8 +134,7 @@ if (document.querySelector("#variants .price")) {
   }
 
   let price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
-  let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-  let customSummPay = +(price * qty) / 3;
+  let customSummPay = +price / 3;
 
   localStorage.setItem("customSummPay", customSummPay);
 
@@ -146,6 +145,8 @@ if (document.querySelector("#variants .price")) {
   handleClick();
 
   function createPayFlowBtn() {
+    let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+
     // Change the "Add to wishlist"
     document.querySelector(".btn.wish span").textContent = "";
     document.querySelector(".btn.wish").classList.add("btn-wishlist");
@@ -156,10 +157,10 @@ if (document.querySelector("#variants .price")) {
     // Add button "Pay only" and Add PayPal hover
     document.querySelector(".specifics.buttons .btn-wishlist").insertAdjacentHTML(
       "beforebegin",
-      `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span class="span-text">£${customSummPay.toFixed(2)}</span>
+      `<button type="button"  class="btn btn-pay-flow" type="button">Pay only <span class="span-text">£${(customSummPay * qty).toFixed(2)}</span>
       <div class="hover-pay-block">
       <img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay" class="hover-pay-img">
-      <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${customSummPay.toFixed(2)}</h1>
+      <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${(customSummPay * qty).toFixed(2)}</h1>
       <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
       </div>
       </button>
@@ -169,24 +170,28 @@ if (document.querySelector("#variants .price")) {
     setTimeout(() => {
       document.querySelector(".controls.qty .dec").addEventListener("click", function () {
         if (+document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value > 0) {
-          let customSummPay = +localStorage.getItem("customSummPay");
-          let newSumm = customSummPay - (price * qty) / 3;
-          localStorage.customSummPay = newSumm;
+          setTimeout(() => {
+            let customSummPay = +localStorage.getItem("customSummPay");
+            let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+            let newSumm = customSummPay * qty;
 
-          document.querySelectorAll(".span-text").forEach((el) => {
-            el.innerText = `£${newSumm.toFixed(2)}`;
-          });
+            document.querySelectorAll(".span-text").forEach((el) => {
+              el.innerText = `£${newSumm.toFixed(2)}`;
+            });
+          }, 100);
         }
       });
 
       document.querySelector(".controls.qty .inc").addEventListener("click", function () {
-        let customSummPay = +localStorage.getItem("customSummPay");
-        let newSumm = customSummPay + (price * qty) / 3;
-        localStorage.customSummPay = newSumm;
+        setTimeout(() => {
+          let customSummPay = +localStorage.getItem("customSummPay");
+          let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+          let newSumm = customSummPay * qty;
 
-        document.querySelectorAll(".span-text").forEach((el) => {
-          el.innerText = `£${newSumm.toFixed(2)}`;
-        });
+          document.querySelectorAll(".span-text").forEach((el) => {
+            el.innerText = `£${newSumm.toFixed(2)}`;
+          });
+        }, 100);
       });
     }, 1000);
 
@@ -230,11 +235,6 @@ if (document.querySelector("#variants .price")) {
       el.addEventListener("click", function () {
         setTimeout(function () {
           if (!document.querySelector(".btn-pay-flow")) {
-            price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
-            qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-            customSummPay = +(price * qty) / 3;
-
-            localStorage.setItem("customSummPay", customSummPay);
             createPayFlowBtn();
             handleClick();
           }
