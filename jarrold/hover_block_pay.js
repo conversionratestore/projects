@@ -97,31 +97,23 @@ margin: auto;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-  .hover-pay-block {
-    position: absolute;
-    text-align: center;
-    text-transform: none;
-    bottom: 69px;
-    right: -69px;
-    display: none;
-    width: 268px !important;
-    height: 225px !important;
-    padding: 25px !important;
-    background: #FFFFFF !important;
-    border: 2px solid #266D6E !important;
-    z-index: 3;
+.hover-pay-block {
+position: absolute;
+text-align: center;
+text-transform: none;
+bottom: 69px;
+right: -69px;
+display: none;
+width: 268px !important;
+height: 225px !important;
+padding: 25px !important;
+background: #FFFFFF !important;
+border: 2px solid #266D6E !important;
+z-index: 3;
 }
 }
 
 </style>
-`;
-
-let hoverBlockPay = /*html*/ `
-<div class="hover-pay-block">
-<img src="https://conversionratestore.github.io/projects/jarrold/img/paypal.svg" alt="label pay">
-<h1 class="hover-pay-title">Pay in 3 equal installments of £39.33</h1>
-<p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
-</div>
 `;
 
 document.head.insertAdjacentHTML("beforeend", styleFlow);
@@ -135,7 +127,6 @@ if (document.querySelector("#variants .price")) {
 
   let price = +document.querySelector(`.${nowCl}`).innerText.split("£")[1];
   let customSummPay = +price / 3;
-
   localStorage.setItem("customSummPay", customSummPay);
 
   if (document.querySelector(".btn.wish")) {
@@ -145,13 +136,12 @@ if (document.querySelector("#variants .price")) {
   handleClick();
 
   function createPayFlowBtn() {
-    let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
-
     // Change the "Add to wishlist"
     document.querySelector(".btn.wish span").textContent = "";
     document.querySelector(".btn.wish").classList.add("btn-wishlist");
     document.querySelector("[data-pp-message] iframe").style.display = "none";
 
+    let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
     let customSummPay = +localStorage.getItem("customSummPay");
 
     // Add button "Pay only" and Add PayPal hover
