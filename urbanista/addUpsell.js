@@ -2,7 +2,7 @@ document.head.insertAdjacentHTML('beforeend', `
     <style>
         .lyon-item {
             border-top: 1px solid #E9E9E9;
-            padding: 15px 0;
+            padding: 15px 30px;
             margin-top: 10px;
         }
         .lyon-item__title {
@@ -97,6 +97,10 @@ document.head.insertAdjacentHTML('beforeend', `
         .block-minicart .subtotal {
             background-color: #fff;
         }
+        
+        .minicart-wrapper .bottom {
+            background-color: #fff;
+        }
     </style>
 `);
 
@@ -128,21 +132,21 @@ console.log(pricePDP);
 
 const text = {
     en: [
-        `Add Power bank<br>to Never run out of charging`,
+        `Get wireless charger simplify your charging<br>experience`,
         '(WIRELESS CHARGING)',
-        `Wireless charging station. Charge your<br> iPhones and earphones wirelessly`,
+        `Wireless charging station. Charge your<br>iPhones and earphones wirelessly`,
         'View product'
     ],
     de: [
-        `Füge eine Powerbank hinzu<br>und mache dir nie wieder Sorgen um deinen Akku.`,
+        `Holen Sie sich ein kabelloses Ladegerät, um Ihr Ladungprozeß zu vereinfachen`,
         '(KABELLOSES AUFLADEN)',
-        `Kabellose Ladestation. Lade deine iPhones<br> und In-Ear-Kopfhörer kabellos auf.`,
+        `Kabellose Ladestation. Lade deine iPhones<br>und In-Ear-Kopfhörer kabellos auf.`,
         'Produkt anzeigen'
     ],
     se: [
-        `Lägg till en power bankså slipper<br>du att batteriet tar slut.`,
+        `Förenkla din laddningsupplevelse med en trådlös laddare!`,
         '(SLADDLÖS LADDNING)',
-        `Sladdlös laddningsstation. Ladda dina<br> iPhones och hörlurar trådlöst.`,
+        `Sladdlös laddningsstation. Ladda dina<br>iPhones och hörlurar trådlöst.`,
         'Se produkt'
     ]
 };
