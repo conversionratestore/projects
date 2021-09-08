@@ -39,27 +39,16 @@ text-align: center;
 text-transform: none;
 
 bottom: 69px;
-right: -30px;
+right: -19px;
 display:none;
 
-width: 298px !important;
-height: 248px !important;
-padding: 40px !important;
+width: 274px !important;
+height: 223px !important;
+padding: 28px !important;
 
 background: #FFFFFF !important;
 border: 2px solid #266D6E !important;
 z-index: 3;
-}
-
-.bqg{
-position: fixed;
-display:none;
-background: rgba(51, 51, 51, 0.3) !important;
-width: 100vw;
-height: 100vh;
-top: 0;
-left: 0;
-z-index: 2;
 }
 
 .hover-pay-title{
@@ -67,7 +56,7 @@ font-family: 'Lato', sans-serif !important;
 margin: 20px 0 20px 0 !important;
 font-weight: 600 !important;
 font-size: 14px !important;
-line-height: 1.43 !important;
+line-height: 1.3 !important;
 text-align: center !important;
 color: #333333 !important;
 }
@@ -87,12 +76,8 @@ color: #fff !important;
 
 }
 
-.btn-pay-flow:hover .bqg {
-display:block;
- }
 
 .btn-pay-flow:hover .hover-pay-block{
-  
 display:block;
 }
 
@@ -109,6 +94,23 @@ border: 2px solid #266D6E !important;
 .hover-pay-img{
 display: block;
 margin: auto;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .hover-pay-block {
+    position: absolute;
+    text-align: center;
+    text-transform: none;
+    bottom: 69px;
+    right: -69px;
+    display: none;
+    width: 268px !important;
+    height: 225px !important;
+    padding: 25px !important;
+    background: #FFFFFF !important;
+    border: 2px solid #266D6E !important;
+    z-index: 3;
+}
 }
 
 </style>
@@ -158,8 +160,7 @@ if (document.querySelector("#variants .price")) {
       <h1 class="hover-pay-title">Pay in 3 equal installments of <span class="span-text">£${customSummPay.toFixed(2)}</h1>
       <p class="hover-pay-text">Choose PayPal in the Checkout to buy this product in 3 equal installments</p>
       </div>
-      <div class="bqg"></div>
-        </button>
+      </button>
       `
     );
 
@@ -189,17 +190,19 @@ if (document.querySelector("#variants .price")) {
 
     //   click -> checkout
     document.querySelector(".btn-pay-flow").addEventListener("click", function () {
-      document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
+      if (document.querySelector("#page_MainContent_product_detail_txtQuantity").value !== "0") {
+        document.querySelector("#page_MainContent_product_detail_btnAddBag").click();
 
-      setTimeout(() => {
-        if (!document.querySelector("[data-pp-message] .dv-error")) {
-          document.querySelector("#cart-callback").style.display = "none";
+        setTimeout(() => {
+          if (!document.querySelector("[data-pp-message] .dv-error")) {
+            document.querySelector("#cart-callback").style.display = "none";
 
-          setTimeout(() => {
-            document.location = "https://www.jarrold.co.uk/checkout";
-          }, 300);
-        }
-      }, 300);
+            setTimeout(() => {
+              document.location = "https://www.jarrold.co.uk/checkout";
+            }, 300);
+          }
+        }, 300);
+      }
     });
   }
 
