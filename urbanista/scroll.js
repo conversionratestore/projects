@@ -589,21 +589,23 @@ document.querySelectorAll('.pd-col').forEach(block => {
 
 document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
 
-let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+// let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
 document.querySelectorAll('.slider_custom__text').forEach(item => {
-    item.style.backgroundColor = bgColor;
+    item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 });
 
-if (document.querySelector('.specs_custom')) {
-    document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-}
+setTimeout(() => {
+    if (document.querySelector('.specs_custom')) {
+        document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    }
+}, 1000)
 
 /*
     first observer
 */
 
-document.querySelector('.product-info-main').style.backgroundColor = bgColor;
+document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
 let styleConfig = {attributes: true, attributeFilter: ['style']};
 
@@ -611,8 +613,10 @@ let observer = new MutationObserver(function () {
 
     observer.disconnect();
 
+    console.log('ssss');
+
     if (document.querySelector('.specs_custom')) {
-        document.querySelector('.specs_custom').style.backgroundColor = bgColor;
+        document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
     }
 
     document.querySelectorAll('.slider_custom__text').forEach(item => {
