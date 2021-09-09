@@ -1,15 +1,11 @@
-let startInterval = setInterval(() => {
-    if (document.querySelector('.main-widget') && document.querySelector('.yotpo.yotpo-main-widget') && document.querySelector('.money-banner')) {
-        clearInterval(startInterval);
-        
-        let styleCSS = `
+setTimeout(() => {
+
+
+
+
+
+    let styleCSS = `
     <style>
-        /*.page-main, .breadcrumbs  {*/
-        /*    margin-top: 5px !important;*/
-        /*}*/
-        /*.breadcrumbs {*/
-        /*    margin-top: 20px !important;*/
-        /*}*/
         .product-features {
             display: none;
         }
@@ -277,17 +273,25 @@ let startInterval = setInterval(() => {
         const pathname = window.location.pathname.split('/')[2];
         const pathLocal = window.location.pathname.split('/')[1];
 
-        let textColor = {
-            'eu': 'color',
-            'de': 'farbe',
-            'se': 'färg',
-        };
+        let localisation = {
+            'eu': {
+                'color': 'color',
+                'features': 'Key features',
+            },
+            'de': {
+                'color': 'Farbe',
+                'features': 'Features',
+            },
+            'se': {
+                'color': 'Färg',
+                'features': 'Nyckelfunktioner',
+            },
+        }
 
         document.head.insertAdjacentHTML(`beforeend`, styleCSS);
 
 
         document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
-
 
         /*
          remove bootstrap classes
@@ -313,13 +317,14 @@ let startInterval = setInterval(() => {
         /*
             change specs position
         */
+
         document.querySelectorAll('.TextWidget').forEach(block => {
             if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
                 // remove specs block
                 let arr = [];
 
                 block.querySelectorAll('p').forEach(p => {
-                    if (p.innerText) {
+                    if (p.innerText.length > 2) {
                         console.log(p.innerText);
                         arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
                     }
@@ -344,9 +349,9 @@ let startInterval = setInterval(() => {
 
                 if (document.querySelector('.feature-item')) {
                     let features = document.querySelector('.feature-item').parentElement;
-                    features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">Key Features</p>`);
+                    features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
 
-                    features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Key Features</p>`);
+                    features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
 
                     features.insertAdjacentHTML('afterend', specsCustomBlock);
                 }
@@ -393,11 +398,11 @@ let startInterval = setInterval(() => {
         const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
 
         document.querySelector('.money-banner').after(reviewsBlock);
-        reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+        reviewsBlock?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
 
 
         /* change reviews position */
-        document.querySelector('.main-widget').insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
+        document.querySelector('.main-widget')?.insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
 
 
         /* remove old review title */
@@ -426,6 +431,7 @@ let startInterval = setInterval(() => {
                 'paris': 'Urbanista Paris ger dig ljudkvalitet utöver det vanliga.',
             },
         };
+
 
         function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
             let imagesFirstProduct = '';
@@ -494,7 +500,7 @@ let startInterval = setInterval(() => {
                 break;
         }
 
-        document.querySelector('.yotpo.yotpo-main-widget').insertAdjacentHTML(`afterend`, sliderBlock);
+        document.querySelector('.yotpo.yotpo-main-widget')?.insertAdjacentHTML(`afterend`, sliderBlock);
 
         /* change partners position */
         if (document.querySelector('.product-view-badge').childNodes.length > 1) {
@@ -538,7 +544,7 @@ let startInterval = setInterval(() => {
 
         document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
         <div class="select-color">
-            <p>${textColor[pathLocal] ? textColor[pathLocal] : textColor['eu']}:</p>
+            <p>${localisation[pathLocal].color ? localisation[pathLocal].color : localisation['eu'].color}:</p>
             <div class="swatch-option color"></div>
             <svg class="arrow-down-svg" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
                 <path d="M0.94 0.726562L4 3.7799L7.06 0.726562L8 1.66656L4 5.66656L0 1.66656L0.94 0.726562Z" fill="#333333"/>
@@ -574,7 +580,7 @@ let startInterval = setInterval(() => {
             }
         });
 
-        document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
+        document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
 // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
@@ -677,5 +683,5 @@ let startInterval = setInterval(() => {
                 });
             }
         }, 200);
-    }
-}, 100);
+    
+}, 1000);
