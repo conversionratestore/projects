@@ -394,16 +394,18 @@ let intervalX = setInterval(() => {
     if(document.querySelector('.yotpo.yotpo-main-widget')) {
         clearInterval(intervalX)
         document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+
+        const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
+
+        document.querySelector('.money-banner').after(reviewsBlock);
+        reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
     }
 }, 100)
 
 
 
 /* change reviews position */
-const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
 
-document.querySelector('.money-banner').after(reviewsBlock);
-reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
 
 let checkWidgetInterval = setInterval(() => {
     if (document.querySelector('.main-widget')) {
@@ -507,7 +509,7 @@ switch (pathname) {
         break;
 }
 
-reviewsBlock.insertAdjacentHTML(`afterend`, sliderBlock);
+document.querySelector('.yotpo.yotpo-main-widget').insertAdjacentHTML(`afterend`, sliderBlock);
 
 /* change partners position */
 if (document.querySelector('.product-view-badge').childNodes.length > 1) {
