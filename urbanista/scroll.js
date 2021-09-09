@@ -572,11 +572,11 @@ setTimeout(() => {
     });
 
     // images and text blocks
-    document.querySelectorAll('.pd-row .pd-col').forEach(block => {
+    document.querySelectorAll('.pd-col').forEach(block => {
         if (!block.querySelector('h1')?.innerText === 'SPECS') {
-            
+            let imagesBlock = block.closest('.pd-row');
 
-            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
         }
     });
 
@@ -683,4 +683,4 @@ setTimeout(() => {
             });
         }
     }, 200);
-}, 1500);
+}, 1000);
