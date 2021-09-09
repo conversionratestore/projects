@@ -252,13 +252,9 @@ if (document.querySelector("#variants .price")) {
         eventAction: "PayPal hover appears",
       });
 
-      // hover top
-      if (document.querySelector(".hover-pay-block").getBoundingClientRect().top < 20) {
+      if (window.pageYOffset > 20) {
         document.querySelector(".hover-pay-block").classList.add("hover-pay-block-bottom");
-      }
-
-      // hover bottom
-      if (document.querySelector(".hover-pay-block").getBoundingClientRect().bottom > 596) {
+      } else {
         document.querySelector(".hover-pay-block").classList.remove("hover-pay-block-bottom");
       }
     });
