@@ -571,6 +571,17 @@ setTimeout(() => {
         document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
     });
 
+    document.querySelectorAll('.slider_custom__text').forEach(item => {
+        item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    });
+
+    setTimeout(() => {
+        if (document.querySelector('.specs_custom')) {
+            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+        }
+    }, 1000);
+
+
     // images and text blocks
     // document.querySelectorAll('.product-view-cms .pd-col').forEach(block => {
     //     if (!block.querySelector('h1')?.innerText === 'SPECS') {
@@ -584,26 +595,13 @@ setTimeout(() => {
     //     }
     // });
 
-    document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
-        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
-    })
-    
-    document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
-    document.querySelectorAll('.slider_custom__text').forEach(item => {
-        item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-    });
-
-    setTimeout(() => {
-        if (document.querySelector('.specs_custom')) {
-            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-        }
-    }, 1000);
-
+    
     /*
         first observer
     */
@@ -693,4 +691,10 @@ setTimeout(() => {
             });
         }
     }, 200);
+
+    document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
+        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+    })
+    
+    document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 }, 1500);
