@@ -277,7 +277,7 @@ let textColor = {
     'eu': 'color',
     'de': 'farbe',
     'se': 'färg',
-}
+};
 
 document.head.insertAdjacentHTML(`beforeend`, styleCSS);
 document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
@@ -504,24 +504,32 @@ if (document.querySelector('.product-view-badge').childNodes.length > 1) {
     // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
 }
 
-/* create specs and 90 days links */
-document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
+let specsParagraph = '';
+
+setTimeout(() => {
+    if (document.querySelector('.specs_custom')) {
+        specsParagraph = `<p class="custom-link-section__specs">Specifications</p><hr>`;
+    }
+
+    /* create specs and 90 days links */
+    document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
     <div class="custom-link-section">
-        <p class="custom-link-section__specs">Specifications</p><hr>
+        ${specsParagraph}
         <p class="custom-link-section__risk">90 days risk-free trial</p>
     </div>  
 `);
 
-/* specs and 90 days links scroll logic */
-function scrollTo(paragraph, block) {
-    document.querySelector(paragraph).addEventListener('click', () => {
-        let el = document.querySelector(block).getBoundingClientRect().top - 70;
-        window.scrollBy({top: el, behavior: 'smooth'});
-    });
-}
+    /* specs and 90 days li nks scroll logic */
+    function scrollTo(paragraph, block) {
+        document.querySelector(paragraph)?.addEventListener('click', () => {
+            let el = document.querySelector(block).getBoundingClientRect().top - 70;
+            window.scrollBy({top: el, behavior: 'smooth'});
+        });
+    }
 
-scrollTo('.custom-link-section__specs', '.specs_custom');
-scrollTo('.custom-link-section__risk', '.money-banner');
+    scrollTo('.custom-link-section__specs', '.specs_custom');
+    scrollTo('.custom-link-section__risk', '.money-banner');
+}, 500);
 
 document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
     <div class="select-color">
@@ -542,29 +550,28 @@ let checkElInterval = setInterval(() => {
 }, 100);
 
 window.addEventListener('click', () => {
-    document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.remove('swatch-attribute_visible');
-})
-
-// document.querySelector('.swatch-attribute').addEventListener('click', (event) => {
-//     event.stopPropagation();
-// })
+    if (document.querySelector('.sticky-pdp-cta .swatch-attribute')) {
+        document.querySelector('.sticky-pdp-cta .swatch-attribute').classList.remove('swatch-attribute_visible');
+    }
+});
 
 document.querySelector('.select-color').addEventListener('click', (event) => {
     event.stopPropagation();
     document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
 });
 
-// // images and text section
-// if (document.querySelector('.ImageWidget').closest('.pd-row')) {
-//     document.querySelectorAll('.ImageWidget').forEach(block => {
-//         let imagesBlock = block.closest('.pd-row');
-//         document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
-//     });
-//
-//     document.querySelector('.ImageWidget').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
-// }
+// images and text blocks
+document.querySelectorAll('.pd-col').forEach(block => {
+    if(!block.querySelector('h1')?.innerText === 'SPECS') {
+        let imagesBlock = block.closest('.pd-row')
 
-let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor
+        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+    }
+})
+
+document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
+
+let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
 document.querySelectorAll('.slider_custom__text').forEach(item => {
     item.style.backgroundColor = bgColor;
@@ -578,15 +585,13 @@ if (document.querySelector('.specs_custom')) {
     first observer
 */
 
-document.querySelector('.product-info-main').style.backgroundColor = bgColor
+document.querySelector('.product-info-main').style.backgroundColor = bgColor;
 
 let styleConfig = {attributes: true, attributeFilter: ['style']};
 
 let observer = new MutationObserver(function () {
 
     observer.disconnect();
-
-    console.log('AAAAAAAAAAA');
 
     if (document.querySelector('.specs_custom')) {
         document.querySelector('.specs_custom').style.backgroundColor = bgColor;
