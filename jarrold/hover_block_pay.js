@@ -231,7 +231,7 @@ if (document.querySelector("#variants .price")) {
             createPayFlowBtn();
             handleClick();
           }
-        }, 300);
+        }, 400);
       });
     });
   }
