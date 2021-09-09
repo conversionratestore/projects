@@ -574,13 +574,17 @@ setTimeout(() => {
     // images and text blocks
     document.querySelectorAll('.product-view-cms .pd-col').forEach(block => {
         if (!block.querySelector('h1')?.innerText === 'SPECS') {
-            let imagesBlock = block.closest('.pd-row');
-            imagesBlock.classList.add('custom-parent')
-            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+            block.closest('.pd-row').add('custom-parent');
+            // console.log(imagesBlock);
+            
+            // imagesBlock.classList.add('custom-parent')
+            console.log(block);
+
+            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
         }
     });
 
-    document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+    // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
