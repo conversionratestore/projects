@@ -273,6 +273,12 @@ document.head.appendChild(scriptCustom);
 const pathname = window.location.pathname.split('/')[2];
 const pathLocal = window.location.pathname.split('/')[1];
 
+let textColor = {
+    'en': 'color',
+    'de': 'farbe',
+    'se': 'färg',
+}
+
 document.head.insertAdjacentHTML(`beforeend`, styleCSS);
 document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
 
@@ -329,33 +335,34 @@ document.querySelectorAll('.TextWidget').forEach(block => {
         // hide existing specs block
         block.parentElement.style.display = 'none';
 
-        if(document.querySelector('.feature-item')) {
+        if (document.querySelector('.feature-item')) {
             let features = document.querySelector('.feature-item').parentElement;
             features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">Key Features</p>`);
 
             features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Key Features</p>`);
 
             features.insertAdjacentHTML('afterend', specsCustomBlock);
-        }        
+        }
     }
 });
 
 // delete header
 
 let checkTextWInterval = setInterval(() => {
-    if(document.querySelector('.TextWidget2__container h1')) {
-        clearInterval(checkTextWInterval)
+    if (document.querySelector('.TextWidget2__container h1')) {
+        clearInterval(checkTextWInterval);
         document.querySelectorAll('.TextWidget2__container h1').forEach(h1 => {
-            if(h1.innerText === 'REVIEWS') {
+            if (h1.innerText === 'REVIEWS') {
                 h1.remove();
             }
-        })
-    }    
+        });
+    }
 
-}, 200)
+}, 200);
 
-setTimeout(() => {clearInterval(checkTextWInterval); }, 5000);
-
+setTimeout(() => {
+    clearInterval(checkTextWInterval);
+}, 5000);
 
 document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
 
@@ -365,7 +372,7 @@ document.querySelectorAll('.feature-item p picture').forEach(item => {
 });
 
 /* change 90 days position */
-if(document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
+if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
     let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
     beforeBannerDiv.after(document.querySelector('.money-banner'));
 } else {
@@ -380,12 +387,12 @@ const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
 document.querySelector('.money-banner').after(reviewsBlock);
 reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
 
-let checkWidgetInterval = setInterval(()=>{
-    if(document.querySelector('.main-widget')) {
-        clearInterval(checkWidgetInterval)
+let checkWidgetInterval = setInterval(() => {
+    if (document.querySelector('.main-widget')) {
+        clearInterval(checkWidgetInterval);
         document.querySelector('.main-widget').insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
     }
-}, 100)
+}, 100);
 
 
 /* remove old review title */
@@ -416,29 +423,29 @@ const descriptionText = {
 };
 
 function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
-    let imagesFirstProduct = ''; 
-    let imagesSecondProduct = ''; 
+    let imagesFirstProduct = '';
+    let imagesSecondProduct = '';
 
 
-    if(firstProduct === 'london') {
-        for(i = 1; i <= 4; i++) {
-            imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`
-        }            
-    } else {
-        for(i = 1; i <= 4; i++) {
-            imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`
-        } 
-    }
-
-    if(secondProduct === 'london') {
-        for(i = 1; i <= 4; i++) {
-            imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`
+    if (firstProduct === 'london') {
+        for (i = 1; i <= 4; i++) {
+            imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
         }
     } else {
-        for(i = 1; i <= 4; i++) {
-            imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`
-        }  
-    }    
+        for (i = 1; i <= 4; i++) {
+            imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
+        }
+    }
+
+    if (secondProduct === 'london') {
+        for (i = 1; i <= 4; i++) {
+            imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
+        }
+    } else {
+        for (i = 1; i <= 4; i++) {
+            imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
+        }
+    }
 
     return sliderItems = `
         <p class="swipe-arrow" style="margin: 35px 0;">Other products</p>
@@ -485,14 +492,14 @@ switch (pathname) {
 reviewsBlock.insertAdjacentHTML(`afterend`, sliderBlock);
 
 /* change partners position */
-if(document.querySelector('.product-view-badge').childNodes.length > 1) {
+if (document.querySelector('.product-view-badge').childNodes.length > 1) {
     let partnersBlock = document.querySelector('.product-view-badge');
 
     document.querySelector('.slider_custom').after(partnersBlock);
     partnersBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">partners</p>`);
 
     // partnersBlock.insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`)
-} else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1){
+} else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1) {
     document.querySelector('.product-view-badge').style.display = 'none';
     // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
 }
@@ -518,7 +525,7 @@ scrollTo('.custom-link-section__risk', '.money-banner');
 
 document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
     <div class="select-color">
-        <p>Color: </p>
+        <p>${textColor[pathLocal]}:</p>
         <div class="swatch-option color"></div>
         <svg class="arrow-down-svg" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L7.14706 6.5L12.6471 1" stroke="black"/>
@@ -534,55 +541,69 @@ let checkElInterval = setInterval(() => {
     }
 }, 100);
 
-document.querySelector('.select-color').addEventListener('click', () => {
+
+
+document.body.addEventListener('click', () => {
+    document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.remove('swatch-attribute_visible');
+})
+
+// document.querySelector('.swatch-attribute').addEventListener('click', (event) => {
+//     event.stopPropagation();
+// })
+
+document.querySelector('.select-color').addEventListener('click', (event) => {
+    event.stopPropagation();
     document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
 });
 
 // images and text section
-
-if(document.querySelector('.ImageWidget').closest('.pd-row')) {
-
+if (document.querySelector('.ImageWidget').closest('.pd-row')) {
     document.querySelectorAll('.ImageWidget').forEach(block => {
-        let imagesBlock = block.closest('.pd-row')       
-        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock)
-    })
+        let imagesBlock = block.closest('.pd-row');
+        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+    });
 
     document.querySelector('.ImageWidget').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
 }
 
 document.querySelectorAll('.slider_custom__text').forEach(item => {
-    console.log('sss');
     item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-    console.log('aaa');
 });
+
+if (document.querySelector('.specs_custom')) {
+    document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+}
 
 /*
     first observer
 */
 
- let config = {subtree: true, childList: true};
+let styleConfig = {attributes: true, attributeFilter: ['style']};
 
-// let observer = new MutationObserver(function () {    
-//         // observer.disconnect()
-//         // change bg color
-//         observer.disconnect()
-//         console.log('AAAAAAAAAAA');        
-//         if(document.querySelector('.specs_custom')) {
-//             document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;        
-//         }        
-        
-//         document.querySelectorAll('.slider_custom__text').forEach(item => {
-//             item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
-//         });
-        
-//         observer.observe(document.querySelector('.product-info-main'), config);
-// });
+let observer = new MutationObserver(function () {
 
-// observer.observe(document.querySelector('.product-info-main'), config);
+    observer.disconnect();
+
+    console.log('AAAAAAAAAAA');
+
+    if (document.querySelector('.specs_custom')) {
+        document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    }
+
+    document.querySelectorAll('.slider_custom__text').forEach(item => {
+        item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
+    });
+
+    observer.observe(document.querySelector('.product-info-main'), styleConfig);
+});
+
+observer.observe(document.querySelector('.product-info-main'), styleConfig);
 
 /*
     second observer
 */
+
+let config = {subtree: true, childList: true};
 
 let observerActiveOption = new MutationObserver(function () {
     // change active color in select-color
@@ -613,7 +634,7 @@ let checkCustomSelectInterval = setInterval(function () {
         clearInterval(checkCustomSelectInterval);
         document.querySelectorAll('.sticky-pdp-cta .swatch-option.color').forEach(item => {
             item.addEventListener('click', () => {
-                console.log('sss')
+                console.log('sss');
                 document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
             });
         });
