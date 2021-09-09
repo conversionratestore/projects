@@ -1,7 +1,9 @@
 let startInterval = setInterval(() => {
-    if (document.querySelector('.main-widget') && document.querySelector('.yotpo.yotpo-main-widget') && document.querySelector('.money-banner'))
+    if (document.querySelector('.main-widget') && document.querySelector('.yotpo.yotpo-main-widget') && document.querySelector('.money-banner')) {
+
+
         clearInterval(startInterval);
-    let styleCSS = `
+        let styleCSS = `
     <style>
         /*.page-main, .breadcrumbs  {*/
         /*    margin-top: 5px !important;*/
@@ -255,203 +257,203 @@ let startInterval = setInterval(() => {
         }    
     </style>
 `;
-    /*
-        add tiny slider cdn links
-    */
-    let linkCustom = document.createElement('link');
-    linkCustom.href =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-    linkCustom.rel = 'stylesheet';
-    document.head.appendChild(linkCustom);
+        /*
+            add tiny slider cdn links
+        */
+        let linkCustom = document.createElement('link');
+        linkCustom.href =
+            'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+        linkCustom.rel = 'stylesheet';
+        document.head.appendChild(linkCustom);
 
-    let scriptCustom = document.createElement('script');
-    scriptCustom.src =
-        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-    scriptCustom.async = false;
-    document.head.appendChild(scriptCustom);
+        let scriptCustom = document.createElement('script');
+        scriptCustom.src =
+            'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+        scriptCustom.async = false;
+        document.head.appendChild(scriptCustom);
 
-    /*
-     url splitted variables
-    */
-    const pathname = window.location.pathname.split('/')[2];
-    const pathLocal = window.location.pathname.split('/')[1];
+        /*
+         url splitted variables
+        */
+        const pathname = window.location.pathname.split('/')[2];
+        const pathLocal = window.location.pathname.split('/')[1];
 
-    let textColor = {
-        'eu': 'color',
-        'de': 'farbe',
-        'se': 'färg',
-    };
+        let textColor = {
+            'eu': 'color',
+            'de': 'farbe',
+            'se': 'färg',
+        };
 
-    document.head.insertAdjacentHTML(`beforeend`, styleCSS);
-
-
-    document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+        document.head.insertAdjacentHTML(`beforeend`, styleCSS);
 
 
-    /*
-     remove bootstrap classes
-    */
-    function removeBootClass(colXs, colMd) {
-        document.querySelectorAll(`.product-view-cms .pd-col.${colXs}.${colMd}`).forEach(item => {
-            item.classList.remove('pd-col', colXs, colMd);
-            item.classList.add('feature-item');
-            item.querySelectorAll('p').forEach(p => {
-                p.removeAttribute('style');
+        document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+
+
+        /*
+         remove bootstrap classes
+        */
+        function removeBootClass(colXs, colMd) {
+            document.querySelectorAll(`.product-view-cms .pd-col.${colXs}.${colMd}`).forEach(item => {
+                item.classList.remove('pd-col', colXs, colMd);
+                item.classList.add('feature-item');
+                item.querySelectorAll('p').forEach(p => {
+                    p.removeAttribute('style');
+                });
+                item.querySelectorAll('div').forEach(p => {
+                    p.removeAttribute('style');
+                });
             });
-            item.querySelectorAll('div').forEach(p => {
-                p.removeAttribute('style');
-            });
-        });
-    }
+        }
 
-    removeBootClass('col-xs-6', 'col-md-2');
-    removeBootClass('col-xs-12', 'col-md-2');
-    removeBootClass('col-xs-6', 'col-md-3');
-    removeBootClass('col-xs-12', 'col-md-3');
+        removeBootClass('col-xs-6', 'col-md-2');
+        removeBootClass('col-xs-12', 'col-md-2');
+        removeBootClass('col-xs-6', 'col-md-3');
+        removeBootClass('col-xs-12', 'col-md-3');
 
-    /*
-        change specs position
-    */
-    document.querySelectorAll('.TextWidget').forEach(block => {
-        if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
-            // remove specs block
-            let arr = [];
+        /*
+            change specs position
+        */
+        document.querySelectorAll('.TextWidget').forEach(block => {
+            if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
+                // remove specs block
+                let arr = [];
 
-            block.querySelectorAll('p').forEach(p => {
-                if (p.innerText) {
-                    console.log(p.innerText);
-                    arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
-                }
-            });
+                block.querySelectorAll('p').forEach(p => {
+                    if (p.innerText) {
+                        console.log(p.innerText);
+                        arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
+                    }
+                });
 
-            let pList = '';
+                let pList = '';
 
-            arr.forEach(p => {
-                let indx = p.indexOf(': ', 0) + 1;
-                pList += `<p><span>${p.substr(0, indx)}</span><span>${p.substr(indx)}</span></p><hr>`;
-            });
+                arr.forEach(p => {
+                    let indx = p.indexOf(': ', 0) + 1;
+                    pList += `<p><span>${p.substr(0, indx)}</span><span>${p.substr(indx)}</span></p><hr>`;
+                });
 
-            let specsCustomBlock = `
+                let specsCustomBlock = `
             <div class="specs_custom">
                 <p class="title_custom">Specifications</p>
                 ${pList}
             </div>
         `;
 
-            // hide existing specs block
-            block.parentElement.style.display = 'none';
+                // hide existing specs block
+                block.parentElement.style.display = 'none';
 
-            if (document.querySelector('.feature-item')) {
-                let features = document.querySelector('.feature-item').parentElement;
-                features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">Key Features</p>`);
+                if (document.querySelector('.feature-item')) {
+                    let features = document.querySelector('.feature-item').parentElement;
+                    features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">Key Features</p>`);
 
-                features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Key Features</p>`);
+                    features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Key Features</p>`);
 
-                features.insertAdjacentHTML('afterend', specsCustomBlock);
+                    features.insertAdjacentHTML('afterend', specsCustomBlock);
+                }
             }
-        }
-    });
+        });
 
 // delete header
 
-    let checkTextWInterval = setInterval(() => {
-        if (document.querySelector('.TextWidget2__container h1')) {
+        let checkTextWInterval = setInterval(() => {
+            if (document.querySelector('.TextWidget2__container h1')) {
+                clearInterval(checkTextWInterval);
+                document.querySelectorAll('.TextWidget2__container h1').forEach(h1 => {
+                    if (h1.innerText === 'REVIEWS') {
+                        h1.remove();
+                    }
+                });
+            }
+
+        }, 200);
+
+        setTimeout(() => {
             clearInterval(checkTextWInterval);
-            document.querySelectorAll('.TextWidget2__container h1').forEach(h1 => {
-                if (h1.innerText === 'REVIEWS') {
-                    h1.remove();
-                }
-            });
-        }
+        }, 5000);
 
-    }, 200);
-
-    setTimeout(() => {
-        clearInterval(checkTextWInterval);
-    }, 5000);
-
-    document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
+        document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
 
 // change features style
-    document.querySelectorAll('.feature-item p picture').forEach(item => {
-        item.closest('p').style.cssText = `float: left; margin-right: 15px;`;
-    });
+        document.querySelectorAll('.feature-item p picture').forEach(item => {
+            item.closest('p').style.cssText = `float: left; margin-right: 15px;`;
+        });
 
-    /* change 90 days position */
-    if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
-        let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
-        beforeBannerDiv.after(document.querySelector('.money-banner'));
-    } else {
-
-        document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
-    }
-
-
-    document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
-
-    const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
-
-    document.querySelector('.money-banner').after(reviewsBlock);
-    reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
-
-
-    /* change reviews position */
-    document.querySelector('.main-widget').insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
-
-
-    /* remove old review title */
-    document.querySelectorAll('.pd-row h6 span').forEach(span => {
-        if (span.innerText.toLowerCase() === 'reviews') {
-            span.style.display = 'none';
-        }
-    });
-
-    let sliderItems = '';
-
-    const descriptionText = {
-        'eu': {
-            'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
-            'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
-            'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
-        },
-        'de': {
-            'stockholm-plus': 'Mit den neuen STOCKHOLM der zweiten Generation bekommst du noch mehr als Sound.',
-            'london': 'Die Außenwelt ausschalten – oder ansprechbar bleiben. London sind innovativsten Kopfhörer, die wir je entwickelt haben.',
-            'paris': 'Urbanista Paris bietet dir überragende Klangqualität und Antischall, um dein Klangerlebnis noch mehr zu optimieren.',
-        },
-        'se': {
-            'stockholm-plus': 'Ta ljudet till nästa nivå med en ny, andra generation av STOCKHOLM.',
-            'london': 'Urbanista London är överlägset de mest avancerade hörlurarna vi någonsin har gjort.',
-            'paris': 'Urbanista Paris ger dig ljudkvalitet utöver det vanliga.',
-        },
-    };
-
-    function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
-        let imagesFirstProduct = '';
-        let imagesSecondProduct = '';
-
-
-        if (firstProduct === 'london') {
-            for (i = 1; i <= 4; i++) {
-                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
-            }
+        /* change 90 days position */
+        if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
+            let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
+            beforeBannerDiv.after(document.querySelector('.money-banner'));
         } else {
-            for (i = 1; i <= 4; i++) {
-                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
-            }
+
+            document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
         }
 
-        if (secondProduct === 'london') {
-            for (i = 1; i <= 4; i++) {
-                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
-            }
-        } else {
-            for (i = 1; i <= 4; i++) {
-                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
-            }
-        }
 
-        return sliderItems = `
+        document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+
+        const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
+
+        document.querySelector('.money-banner').after(reviewsBlock);
+        reviewsBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+
+
+        /* change reviews position */
+        document.querySelector('.main-widget').insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
+
+
+        /* remove old review title */
+        document.querySelectorAll('.pd-row h6 span').forEach(span => {
+            if (span.innerText.toLowerCase() === 'reviews') {
+                span.style.display = 'none';
+            }
+        });
+
+        let sliderItems = '';
+
+        const descriptionText = {
+            'eu': {
+                'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
+                'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
+                'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
+            },
+            'de': {
+                'stockholm-plus': 'Mit den neuen STOCKHOLM der zweiten Generation bekommst du noch mehr als Sound.',
+                'london': 'Die Außenwelt ausschalten – oder ansprechbar bleiben. London sind innovativsten Kopfhörer, die wir je entwickelt haben.',
+                'paris': 'Urbanista Paris bietet dir überragende Klangqualität und Antischall, um dein Klangerlebnis noch mehr zu optimieren.',
+            },
+            'se': {
+                'stockholm-plus': 'Ta ljudet till nästa nivå med en ny, andra generation av STOCKHOLM.',
+                'london': 'Urbanista London är överlägset de mest avancerade hörlurarna vi någonsin har gjort.',
+                'paris': 'Urbanista Paris ger dig ljudkvalitet utöver det vanliga.',
+            },
+        };
+
+        function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
+            let imagesFirstProduct = '';
+            let imagesSecondProduct = '';
+
+
+            if (firstProduct === 'london') {
+                for (i = 1; i <= 4; i++) {
+                    imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
+                }
+            } else {
+                for (i = 1; i <= 4; i++) {
+                    imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
+                }
+            }
+
+            if (secondProduct === 'london') {
+                for (i = 1; i <= 4; i++) {
+                    imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
+                }
+            } else {
+                for (i = 1; i <= 4; i++) {
+                    imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
+                }
+            }
+
+            return sliderItems = `
         <p class="swipe-arrow" style="margin: 35px 0;">Other products</p>
         <div class="slider_custom">
             <div class="slider_custom__item">                    
@@ -474,68 +476,68 @@ let startInterval = setInterval(() => {
             <div>        
         </div>
     `;
-    }
-
-    let sliderBlock = ``;
-
-    switch (pathname) {
-        case 'london':
-            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'paris', '3/7/37058');
-            break;
-        case 'stockholm-plus':
-            sliderBlock = drawSliderItems('london', '4/3/43366', 'paris', '3/7/37058');
-            break;
-        case 'paris':
-            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
-            break;
-        default:
-            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
-            break;
-    }
-
-    document.querySelector('.yotpo.yotpo-main-widget').insertAdjacentHTML(`afterend`, sliderBlock);
-
-    /* change partners position */
-    if (document.querySelector('.product-view-badge').childNodes.length > 1) {
-        let partnersBlock = document.querySelector('.product-view-badge');
-
-        document.querySelector('.slider_custom').after(partnersBlock);
-        partnersBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">partners</p>`);
-
-        // partnersBlock.insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`)
-    } else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1) {
-        document.querySelector('.product-view-badge').style.display = 'none';
-        // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
-    }
-
-    let specsParagraph = '';
-
-    setTimeout(() => {
-        if (document.querySelector('.specs_custom')) {
-            specsParagraph = `<p class="custom-link-section__specs">Specifications</p><hr>`;
         }
 
-        /* create specs and 90 days links */
-        document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
+        let sliderBlock = ``;
+
+        switch (pathname) {
+            case 'london':
+                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'paris', '3/7/37058');
+                break;
+            case 'stockholm-plus':
+                sliderBlock = drawSliderItems('london', '4/3/43366', 'paris', '3/7/37058');
+                break;
+            case 'paris':
+                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
+                break;
+            default:
+                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
+                break;
+        }
+
+        document.querySelector('.yotpo.yotpo-main-widget').insertAdjacentHTML(`afterend`, sliderBlock);
+
+        /* change partners position */
+        if (document.querySelector('.product-view-badge').childNodes.length > 1) {
+            let partnersBlock = document.querySelector('.product-view-badge');
+
+            document.querySelector('.slider_custom').after(partnersBlock);
+            partnersBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">partners</p>`);
+
+            // partnersBlock.insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`)
+        } else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1) {
+            document.querySelector('.product-view-badge').style.display = 'none';
+            // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
+        }
+
+        let specsParagraph = '';
+
+        setTimeout(() => {
+            if (document.querySelector('.specs_custom')) {
+                specsParagraph = `<p class="custom-link-section__specs">Specifications</p><hr>`;
+            }
+
+            /* create specs and 90 days links */
+            document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
     <div class="custom-link-section">
         ${specsParagraph}
         <p class="custom-link-section__risk">90 days risk-free trial</p>
     </div>  
 `);
 
-        /* specs and 90 days li nks scroll logic */
-        function scrollTo(paragraph, block) {
-            document.querySelector(paragraph)?.addEventListener('click', () => {
-                let el = document.querySelector(block).getBoundingClientRect().top - 70;
-                window.scrollBy({top: el, behavior: 'smooth'});
-            });
-        }
+            /* specs and 90 days li nks scroll logic */
+            function scrollTo(paragraph, block) {
+                document.querySelector(paragraph)?.addEventListener('click', () => {
+                    let el = document.querySelector(block).getBoundingClientRect().top - 70;
+                    window.scrollBy({top: el, behavior: 'smooth'});
+                });
+            }
 
-        scrollTo('.custom-link-section__specs', '.specs_custom');
-        scrollTo('.custom-link-section__risk', '.money-banner');
-    }, 500);
+            scrollTo('.custom-link-section__specs', '.specs_custom');
+            scrollTo('.custom-link-section__risk', '.money-banner');
+        }, 500);
 
-    document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
+        document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
     <div class="select-color">
         <p>${textColor[pathLocal] ? textColor[pathLocal] : textColor['eu']}:</p>
         <div class="swatch-option color"></div>
@@ -546,134 +548,135 @@ let startInterval = setInterval(() => {
     `);
 
 // add active color to select-color
-    let checkElInterval = setInterval(() => {
-        if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
-            clearInterval(checkElInterval);
-            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
-        }
-    }, 100);
+        let checkElInterval = setInterval(() => {
+            if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
+                clearInterval(checkElInterval);
+                document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+            }
+        }, 100);
 
-    window.addEventListener('click', () => {
-        if (document.querySelector('.sticky-pdp-cta .swatch-attribute')) {
-            document.querySelector('.sticky-pdp-cta .swatch-attribute').classList.remove('swatch-attribute_visible');
-        }
-    });
+        window.addEventListener('click', () => {
+            if (document.querySelector('.sticky-pdp-cta .swatch-attribute')) {
+                document.querySelector('.sticky-pdp-cta .swatch-attribute').classList.remove('swatch-attribute_visible');
+            }
+        });
 
-    document.querySelector('.select-color').addEventListener('click', (event) => {
-        event.stopPropagation();
-        document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
-    });
+        document.querySelector('.select-color').addEventListener('click', (event) => {
+            event.stopPropagation();
+            document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
+        });
 
 // images and text blocks
-    document.querySelectorAll('.pd-col').forEach(block => {
-        if (!block.querySelector('h1')?.innerText === 'SPECS') {
-            let imagesBlock = block.closest('.pd-row');
+        document.querySelectorAll('.pd-col').forEach(block => {
+            if (!block.querySelector('h1')?.innerText === 'SPECS') {
+                let imagesBlock = block.closest('.pd-row');
 
-            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
-        }
-    });
+                document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+            }
+        });
 
-    document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
+        document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
 
 // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
-    document.querySelectorAll('.slider_custom__text').forEach(item => {
-        item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-    });
-
-    setTimeout(() => {
-        if (document.querySelector('.specs_custom')) {
-            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-        }
-    }, 1000);
-
-    /*
-        first observer
-    */
-
-    document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-
-    let styleConfig = {attributes: true, attributeFilter: ['style']};
-
-    let observer = new MutationObserver(function () {
-
-        observer.disconnect();
-
-        console.log('ssss');
-
-        if (document.querySelector('.specs_custom')) {
-            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-        }
-
         document.querySelectorAll('.slider_custom__text').forEach(item => {
-            item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
+            item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+        });
+
+        setTimeout(() => {
+            if (document.querySelector('.specs_custom')) {
+                document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+            }
+        }, 1000);
+
+        /*
+            first observer
+        */
+
+        document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+
+        let styleConfig = {attributes: true, attributeFilter: ['style']};
+
+        let observer = new MutationObserver(function () {
+
+            observer.disconnect();
+
+            console.log('ssss');
+
+            if (document.querySelector('.specs_custom')) {
+                document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+            }
+
+            document.querySelectorAll('.slider_custom__text').forEach(item => {
+                item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
+            });
+
+            observer.observe(document.querySelector('.product-info-main'), styleConfig);
         });
 
         observer.observe(document.querySelector('.product-info-main'), styleConfig);
-    });
 
-    observer.observe(document.querySelector('.product-info-main'), styleConfig);
+        /*
+            second observer
+        */
 
-    /*
-        second observer
-    */
+        let config = {subtree: true, childList: true};
 
-    let config = {subtree: true, childList: true};
+        let observerActiveOption = new MutationObserver(function () {
+            // change active color in select-color
+            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+        });
 
-    let observerActiveOption = new MutationObserver(function () {
-        // change active color in select-color
-        document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
-    });
+        observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
 
-    observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
+        /*
+            third observer
+        */
 
-    /*
-        third observer
-    */
+        let observerCloseColor = new MutationObserver(function () {
+            if (!document.body.classList.contains('sticky-pdp-cta') && document.querySelector('.swatch-attribute_visible')) {
+                observerCloseColor.disconnect();
+                document.querySelector('.swatch-attribute.color.swatch-attribute_visible').classList.remove('swatch-attribute_visible');
+            }
+            observerCloseColor.observe(document.body, config);
+        });
 
-    let observerCloseColor = new MutationObserver(function () {
-        if (!document.body.classList.contains('sticky-pdp-cta') && document.querySelector('.swatch-attribute_visible')) {
-            observerCloseColor.disconnect();
-            document.querySelector('.swatch-attribute.color.swatch-attribute_visible').classList.remove('swatch-attribute_visible');
-        }
         observerCloseColor.observe(document.body, config);
-    });
 
-    observerCloseColor.observe(document.body, config);
+        /* close custom-select on click */
 
-    /* close custom-select on click */
+        let checkCustomSelectInterval = setInterval(function () {
+            if (document.querySelector('.sticky-pdp-cta .swatch-option')) {
+                clearInterval(checkCustomSelectInterval);
 
-    let checkCustomSelectInterval = setInterval(function () {
-        if (document.querySelector('.sticky-pdp-cta .swatch-option')) {
-            clearInterval(checkCustomSelectInterval);
-
-            document.querySelectorAll('.sticky-pdp-cta .swatch-option').forEach(item => {
-                item.addEventListener('click', () => {
-                    document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
+                document.querySelectorAll('.sticky-pdp-cta .swatch-option').forEach(item => {
+                    item.addEventListener('click', () => {
+                        document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
+                    });
                 });
-            });
-        }
-    }, 100);
+            }
+        }, 100);
 
 // slider
-    let categoryInterval = setInterval(() => {
-        if (typeof tns == 'function') {
-            clearInterval(categoryInterval);
-            document.querySelectorAll('.slider_custom__slider').forEach(slider => {
-                tns({
-                    container: slider,
-                    items: 1,
-                    autoplay: false,
-                    controls: true,
-                    loop: false,
-                    autoplayButton: false,
-                    autoplayButtonOutput: false,
-                    nav: true,
-                    navPosition: 'bottom',
-                    preventScrollOnTouch: 'auto',
-                    swipeAngle: 30,
+        let categoryInterval = setInterval(() => {
+            if (typeof tns == 'function') {
+                clearInterval(categoryInterval);
+                document.querySelectorAll('.slider_custom__slider').forEach(slider => {
+                    tns({
+                        container: slider,
+                        items: 1,
+                        autoplay: false,
+                        controls: true,
+                        loop: false,
+                        autoplayButton: false,
+                        autoplayButtonOutput: false,
+                        nav: true,
+                        navPosition: 'bottom',
+                        preventScrollOnTouch: 'auto',
+                        swipeAngle: 30,
+                    });
                 });
-            });
-        }
-    }, 200);
+            }
+        }, 200);
+    }
 }, 100);
