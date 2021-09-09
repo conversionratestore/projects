@@ -580,7 +580,7 @@ setTimeout(() => {
         }
     });
 
-    document.querySelector('.pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+    document.querySelector('.pd-col').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
@@ -683,4 +683,4 @@ setTimeout(() => {
             });
         }
     }, 200);
-}, 1000);
+}, 1500);
