@@ -387,10 +387,17 @@ if (document.querySelector('.specs_custom') || document.querySelector('.feature-
             clearInterval(reviewsInterval)
             document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
         }
-    }, 100)    
+    }, 100)
 }
 
-document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+let intervalX = setInterval(() => {
+    if(document.querySelector('.yotpo.yotpo-main-widget')) {
+        clearInterval(intervalX)
+        document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+    }
+}, 100)
+
+
 
 /* change reviews position */
 const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
