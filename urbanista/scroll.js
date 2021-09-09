@@ -572,17 +572,17 @@ setTimeout(() => {
     });
 
     // images and text blocks
-    document.querySelectorAll('.product-view-cms .pd-col').forEach(block => {
-        if (!block.querySelector('h1')?.innerText === 'SPECS') {
-            block.closest('.pd-row').add('custom-parent');
-            // console.log(imagesBlock);
+    // document.querySelectorAll('.product-view-cms .pd-col').forEach(block => {
+    //     if (!block.querySelector('h1')?.innerText === 'SPECS') {
+    //         block.closest('.pd-row').add('custom-parent');
+    //         // console.log(imagesBlock);
             
-            // imagesBlock.classList.add('custom-parent')
-            console.log(block);
+    //         // imagesBlock.classList.add('custom-parent')
+    //         console.log(block);
 
-            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
-        }
-    });
+    //         document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+    //     }
+    // });
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
