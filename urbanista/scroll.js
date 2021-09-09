@@ -1,9 +1,4 @@
 setTimeout(() => {
-
-
-
-
-
     let styleCSS = `
     <style>
         .product-features {
@@ -250,6 +245,11 @@ setTimeout(() => {
         .swatch-option.selected:not(.sticky-pdp-cta .swatch-option.selected) {
             pointer-events: none;
         }    
+        @media screen and (max-width: 900px) {
+            .catalog-product-view .money-banner {
+                display: block !important
+            }
+          }
     </style>
 `;
         /*
@@ -483,205 +483,204 @@ setTimeout(() => {
     `;
         }
 
-        let sliderBlock = ``;
+    let sliderBlock = ``;
 
-        switch (pathname) {
-            case 'london':
-                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'paris', '3/7/37058');
-                break;
-            case 'stockholm-plus':
-                sliderBlock = drawSliderItems('london', '4/3/43366', 'paris', '3/7/37058');
-                break;
-            case 'paris':
-                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
-                break;
-            default:
-                sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
-                break;
+    switch (pathname) {
+        case 'london':
+            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'paris', '3/7/37058');
+            break;
+        case 'stockholm-plus':
+            sliderBlock = drawSliderItems('london', '4/3/43366', 'paris', '3/7/37058');
+            break;
+        case 'paris':
+            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
+            break;
+        default:
+            sliderBlock = drawSliderItems('stockholm-plus', '4/0/40407', 'london', '4/3/43366');
+            break;
+    }
+
+    document.querySelector('.yotpo.yotpo-main-widget')?.insertAdjacentHTML(`afterend`, sliderBlock);
+
+    /* change partners position */
+    if (document.querySelector('.product-view-badge').childNodes.length > 1) {
+        let partnersBlock = document.querySelector('.product-view-badge');
+
+        document.querySelector('.slider_custom').after(partnersBlock);
+        partnersBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">partners</p>`);
+
+        // partnersBlock.insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`)
+    } else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1) {
+        document.querySelector('.product-view-badge').style.display = 'none';
+        // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
+    }
+
+    let specsParagraph = '';
+
+    setTimeout(() => {
+        if (document.querySelector('.specs_custom')) {
+            specsParagraph = `<p class="custom-link-section__specs">Specifications</p><hr>`;
         }
 
-        document.querySelector('.yotpo.yotpo-main-widget')?.insertAdjacentHTML(`afterend`, sliderBlock);
-
-        /* change partners position */
-        if (document.querySelector('.product-view-badge').childNodes.length > 1) {
-            let partnersBlock = document.querySelector('.product-view-badge');
-
-            document.querySelector('.slider_custom').after(partnersBlock);
-            partnersBlock.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">partners</p>`);
-
-            // partnersBlock.insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`)
-        } else if (document.querySelector('.product-view-badge') && document.querySelector('.product-view-badge').childNodes.length <= 1) {
-            document.querySelector('.product-view-badge').style.display = 'none';
-            // document.querySelector('.slider_custom').insertAdjacentHTML('afterend', `<p class="swipe-arrow">Describe Urbanista</p>`);
-        }
-
-        let specsParagraph = '';
-
-        setTimeout(() => {
-            if (document.querySelector('.specs_custom')) {
-                specsParagraph = `<p class="custom-link-section__specs">Specifications</p><hr>`;
-            }
-
-            /* create specs and 90 days links */
-            document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
-                <div class="custom-link-section">
-                    ${specsParagraph}
-                    <p class="custom-link-section__risk">90 days risk-free trial</p>
-                </div>  
-            `);
-
-            /* specs and 90 days li nks scroll logic */
-            function scrollTo(paragraph, block) {
-                document.querySelector(paragraph)?.addEventListener('click', () => {
-                    let el = document.querySelector(block).getBoundingClientRect().top - 70;
-                    window.scrollBy({top: el, behavior: 'smooth'});
-                });
-            }
-
-            scrollTo('.custom-link-section__specs', '.specs_custom');
-            scrollTo('.custom-link-section__risk', '.money-banner');
-        }, 500);
-
-        document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
-        <div class="select-color">
-            <p>${localisation[pathLocal].color ? localisation[pathLocal].color : localisation['eu'].color}:</p>
-            <div class="swatch-option color"></div>
-            <svg class="arrow-down-svg" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
-                <path d="M0.94 0.726562L4 3.7799L7.06 0.726562L8 1.66656L4 5.66656L0 1.66656L0.94 0.726562Z" fill="#333333"/>
-            </svg>
-        </div>  
+        /* create specs and 90 days links */
+        document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
+            <div class="custom-link-section">
+                ${specsParagraph}
+                <p class="custom-link-section__risk">90 days risk-free trial</p>
+            </div>  
         `);
 
-// add active color to select-color
-        let checkElInterval = setInterval(() => {
-            if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
-                clearInterval(checkElInterval);
-                document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
-            }
-        }, 100);
+        /* specs and 90 days li nks scroll logic */
+        function scrollTo(paragraph, block) {
+            document.querySelector(paragraph)?.addEventListener('click', () => {
+                let el = document.querySelector(block).getBoundingClientRect().top - 70;
+                window.scrollBy({top: el, behavior: 'smooth'});
+            });
+        }
 
-        window.addEventListener('click', () => {
-            if (document.querySelector('.sticky-pdp-cta .swatch-attribute')) {
-                document.querySelector('.sticky-pdp-cta .swatch-attribute').classList.remove('swatch-attribute_visible');
-            }
-        });
+        scrollTo('.custom-link-section__specs', '.specs_custom');
+        scrollTo('.custom-link-section__risk', '.money-banner');
+    }, 500);
 
-        document.querySelector('.select-color').addEventListener('click', (event) => {
-            event.stopPropagation();
-            document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
-        });
+    document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
+    <div class="select-color">
+        <p>${localisation[pathLocal].color ? localisation[pathLocal].color : localisation['eu'].color}:</p>
+        <div class="swatch-option color"></div>
+        <svg class="arrow-down-svg" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
+            <path d="M0.94 0.726562L4 3.7799L7.06 0.726562L8 1.66656L4 5.66656L0 1.66656L0.94 0.726562Z" fill="#333333"/>
+        </svg>
+    </div>  
+    `);
 
-// images and text blocks
-        document.querySelectorAll('.pd-col').forEach(block => {
-            if (!block.querySelector('h1')?.innerText === 'SPECS') {
-                let imagesBlock = block.closest('.pd-row');
+    // add active color to select-color
+    let checkElInterval = setInterval(() => {
+        if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
+            clearInterval(checkElInterval);
+            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+        }
+    }, 100);
 
-                document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
-            }
-        });
+    window.addEventListener('click', () => {
+        if (document.querySelector('.sticky-pdp-cta .swatch-attribute')) {
+            document.querySelector('.sticky-pdp-cta .swatch-attribute').classList.remove('swatch-attribute_visible');
+        }
+    });
 
-        document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+    document.querySelector('.select-color').addEventListener('click', (event) => {
+        event.stopPropagation();
+        document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
+    });
 
-// let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    // images and text blocks
+    document.querySelectorAll('.pd-col').forEach(block => {
+        if (!block.querySelector('h1')?.innerText === 'SPECS') {
+            let imagesBlock = block.closest('.pd-row');
+
+            document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+        }
+    });
+
+    document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+
+    // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+
+    document.querySelectorAll('.slider_custom__text').forEach(item => {
+        item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    });
+
+    setTimeout(() => {
+        if (document.querySelector('.specs_custom')) {
+            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+        }
+    }, 1000);
+
+    /*
+        first observer
+    */
+
+    document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+
+    let styleConfig = {attributes: true, attributeFilter: ['style']};
+
+    let observer = new MutationObserver(function () {
+
+        observer.disconnect();
+
+        console.log('ssss');
+
+        if (document.querySelector('.specs_custom')) {
+            document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+        }
 
         document.querySelectorAll('.slider_custom__text').forEach(item => {
-            item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-        });
-
-        setTimeout(() => {
-            if (document.querySelector('.specs_custom')) {
-                document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-            }
-        }, 1000);
-
-        /*
-            first observer
-        */
-
-        document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-
-        let styleConfig = {attributes: true, attributeFilter: ['style']};
-
-        let observer = new MutationObserver(function () {
-
-            observer.disconnect();
-
-            console.log('ssss');
-
-            if (document.querySelector('.specs_custom')) {
-                document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-            }
-
-            document.querySelectorAll('.slider_custom__text').forEach(item => {
-                item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
-            });
-
-            observer.observe(document.querySelector('.product-info-main'), styleConfig);
+            item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor;
         });
 
         observer.observe(document.querySelector('.product-info-main'), styleConfig);
+    });
 
-        /*
-            second observer
-        */
+    observer.observe(document.querySelector('.product-info-main'), styleConfig);
 
-        let config = {subtree: true, childList: true};
+    /*
+        second observer
+    */
 
-        let observerActiveOption = new MutationObserver(function () {
-            // change active color in select-color
-            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
-        });
+    let config = {subtree: true, childList: true};
 
-        observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
+    let observerActiveOption = new MutationObserver(function () {
+        // change active color in select-color
+        document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+    });
 
-        /*
-            third observer
-        */
+    observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
 
-        let observerCloseColor = new MutationObserver(function () {
-            if (!document.body.classList.contains('sticky-pdp-cta') && document.querySelector('.swatch-attribute_visible')) {
-                observerCloseColor.disconnect();
-                document.querySelector('.swatch-attribute.color.swatch-attribute_visible').classList.remove('swatch-attribute_visible');
-            }
-            observerCloseColor.observe(document.body, config);
-        });
+    /*
+        third observer
+    */
 
+    let observerCloseColor = new MutationObserver(function () {
+        if (!document.body.classList.contains('sticky-pdp-cta') && document.querySelector('.swatch-attribute_visible')) {
+            observerCloseColor.disconnect();
+            document.querySelector('.swatch-attribute.color.swatch-attribute_visible').classList.remove('swatch-attribute_visible');
+        }
         observerCloseColor.observe(document.body, config);
+    });
 
-        /* close custom-select on click */
+    observerCloseColor.observe(document.body, config);
 
-        let checkCustomSelectInterval = setInterval(function () {
-            if (document.querySelector('.sticky-pdp-cta .swatch-option')) {
-                clearInterval(checkCustomSelectInterval);
+    /* close custom-select on click */
 
-                document.querySelectorAll('.sticky-pdp-cta .swatch-option').forEach(item => {
-                    item.addEventListener('click', () => {
-                        document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
-                    });
+    let checkCustomSelectInterval = setInterval(function () {
+        if (document.querySelector('.sticky-pdp-cta .swatch-option')) {
+            clearInterval(checkCustomSelectInterval);
+
+            document.querySelectorAll('.sticky-pdp-cta .swatch-option').forEach(item => {
+                item.addEventListener('click', () => {
+                    document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
                 });
-            }
-        }, 100);
+            });
+        }
+    }, 100);
 
 // slider
-        let categoryInterval = setInterval(() => {
-            if (typeof tns == 'function') {
-                clearInterval(categoryInterval);
-                document.querySelectorAll('.slider_custom__slider').forEach(slider => {
-                    tns({
-                        container: slider,
-                        items: 1,
-                        autoplay: false,
-                        controls: true,
-                        loop: false,
-                        autoplayButton: false,
-                        autoplayButtonOutput: false,
-                        nav: true,
-                        navPosition: 'bottom',
-                        preventScrollOnTouch: 'auto',
-                        swipeAngle: 30,
-                    });
+    let categoryInterval = setInterval(() => {
+        if (typeof tns == 'function') {
+            clearInterval(categoryInterval);
+            document.querySelectorAll('.slider_custom__slider').forEach(slider => {
+                tns({
+                    container: slider,
+                    items: 1,
+                    autoplay: false,
+                    controls: true,
+                    loop: false,
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    nav: true,
+                    navPosition: 'bottom',
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: 30,
                 });
-            }
-        }, 200);
-    
+            });
+        }
+    }, 200);
 }, 1000);
