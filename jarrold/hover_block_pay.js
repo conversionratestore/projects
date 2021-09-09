@@ -254,7 +254,9 @@ if (document.querySelector("#variants .price")) {
 
       if (window.pageYOffset > 20) {
         document.querySelector(".hover-pay-block").classList.add("hover-pay-block-bottom");
-      } else {
+      }
+
+      if (document.querySelector(".hover-pay-block").getBoundingClientRect().bottom > 600) {
         document.querySelector(".hover-pay-block").classList.remove("hover-pay-block-bottom");
       }
     });
