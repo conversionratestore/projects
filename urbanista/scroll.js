@@ -280,7 +280,13 @@ let textColor = {
 };
 
 document.head.insertAdjacentHTML(`beforeend`, styleCSS);
-document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+
+let checkPageTitleInterval = setInterval(() => {
+    if (document.querySelector('.page-title')) {
+        clearInterval(checkPageTitleInterval);
+        document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+    }
+});
 
 /*
  remove bootstrap classes
@@ -562,12 +568,12 @@ document.querySelector('.select-color').addEventListener('click', (event) => {
 
 // images and text blocks
 document.querySelectorAll('.pd-col').forEach(block => {
-    if(!block.querySelector('h1')?.innerText === 'SPECS') {
-        let imagesBlock = block.closest('.pd-row')
+    if (!block.querySelector('h1')?.innerText === 'SPECS') {
+        let imagesBlock = block.closest('.pd-row');
 
         document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
     }
-})
+});
 
 document.querySelector('.pd-col.col-md-6').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
 
