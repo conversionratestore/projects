@@ -51,6 +51,24 @@ border: 2px solid #266D6E !important;
 z-index: 3;
 }
 
+.hover-pay-block-bottom{
+position:absolute;
+text-align: center;
+text-transform: none;
+
+top: 69px;
+right: -19px;
+display:none;
+
+width: 274px !important;
+height: 223px !important;
+padding: 28px !important;
+
+background: #FFFFFF !important;
+border: 2px solid #266D6E !important;
+z-index: 3;
+}
+
 .hover-pay-title{
 font-family: 'Lato', sans-serif !important;
 margin: 20px 0 20px 0 !important;
@@ -76,8 +94,11 @@ color: #fff !important;
 
 }
 
-
 .btn-pay-flow:hover .hover-pay-block{
+display:block;
+}
+
+.btn-pay-flow:hover .hover-pay-block-bottom{
 display:block;
 }
 
@@ -86,7 +107,6 @@ text-align: center;
 width: 298px !important;
 height: 248px !important;
 padding: 40px !important;
-
 background: #FFFFFF !important;
 border: 2px solid #266D6E !important;
 }
@@ -104,6 +124,21 @@ text-transform: none;
 bottom: 69px;
 right: -69px;
 display: none;
+width: 268px !important;
+height: 225px !important;
+padding: 25px !important;
+background: #FFFFFF !important;
+border: 2px solid #266D6E !important;
+z-index: 3;
+}
+
+.hover-pay-block-bottom{
+position:absolute;
+text-align: center;
+text-transform: none;
+top: 69px;
+right: -69px;
+display:none;
 width: 268px !important;
 height: 225px !important;
 padding: 25px !important;
@@ -216,6 +251,16 @@ if (document.querySelector("#variants .price")) {
         eventCategory: "Exp - hover paypal desktopn",
         eventAction: "PayPal hover appears",
       });
+
+      // hover top
+      if (document.querySelector(".hover-pay-block").getBoundingClientRect().top < 20) {
+        document.querySelector(".hover-pay-block").classList.add("hover-pay-block-bottom");
+      }
+
+      // hover bottom
+      if (document.querySelector(".hover-pay-block").getBoundingClientRect().bottom > 596) {
+        document.querySelector(".hover-pay-block").classList.remove("hover-pay-block-bottom");
+      }
     });
   }
 
