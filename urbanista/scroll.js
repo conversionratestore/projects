@@ -554,15 +554,15 @@ document.querySelector('.select-color').addEventListener('click', (event) => {
     document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
 });
 
-// images and text section
-if (document.querySelector('.ImageWidget').closest('.pd-row')) {
-    document.querySelectorAll('.ImageWidget').forEach(block => {
-        let imagesBlock = block.closest('.pd-row');
-        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
-    });
-
-    document.querySelector('.ImageWidget').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
-}
+// // images and text section
+// if (document.querySelector('.ImageWidget').closest('.pd-row')) {
+//     document.querySelectorAll('.ImageWidget').forEach(block => {
+//         let imagesBlock = block.closest('.pd-row');
+//         document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
+//     });
+//
+//     document.querySelector('.ImageWidget').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
+// }
 
 let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor
 
