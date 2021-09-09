@@ -382,7 +382,12 @@ if (document.querySelector('.specs_custom') || document.querySelector('.feature-
     let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
     beforeBannerDiv.after(document.querySelector('.money-banner'));
 } else {
-    document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
+    let reviewsInterval = setInterval(() => {
+        if(document.querySelector('.yotpo.yotpo-main-widget')) {
+            clearInterval(reviewsInterval)
+            document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
+        }
+    }, 100)    
 }
 
 document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
