@@ -584,6 +584,8 @@ setTimeout(() => {
     //     }
     // });
 
+    document.querySelectorAll('.product-view-cms .pd-col')[0].closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
