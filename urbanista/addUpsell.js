@@ -154,27 +154,27 @@ const text = {
 function drawTepmlate() {
     if (document.querySelector('.minicart-items-wrapper') && !document.querySelector('.lyon-item')) {
         document.querySelector('.minicart-items-wrapper').insertAdjacentHTML('afterend', `
-                        <div class="lyon-item">
-                            <p class="lyon-item__title">${text[language] ? text[language][0] : text['en'][0]}</p>
-                            <div class="lyon-item__slider-wrapper">
-                                <div class="lyon-item__slider">
-                                    <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_tilted_product_1.webp" alt="product tilted image"></div>
-                                    <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_front_product_1.webp" alt="product front image"></div>
-                                    <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_charger_coverimg_iphone11_1.webp" alt="product charger iphone image"></div>
-                                </div>
-                                <button class="lyon-item__arrow lyon-item__arrow_prev"><img src="https://conversionratestore.github.io/projects/urbanista/images/arrow_forward.svg" alt="arrow prev"></button>
-                                <button class="lyon-item__arrow lyon-item__arrow_next"><img src="https://conversionratestore.github.io/projects/urbanista/images/arrow_forward.svg" alt="arrow next"></button>
-                            </div>
-                            <div class="lyon-item__info">
-                                <img src="https://conversionratestore.github.io/projects/urbanista/images/circle_in_circle.svg" alt="active color">
-                                <p class="info__title">Lyon</p>
-                                <p class="info__type">${text[language] ? text[language][1] : text['en'][1]}</p>
-                                <p class="info__description">${text[language] ? text[language][2] : text['en'][2]}</p>
-                                <p class="info__price">${pricePDP}</p>
-                                <button class="info__btn">${text[language] ? text[language][3] : text['en'][3]}</button>
-                            </div>
-                        </div>
-                    `);
+            <div class="lyon-item">
+                <p class="lyon-item__title">${text[language] ? text[language][0] : text['en'][0]}</p>
+                <div class="lyon-item__slider-wrapper">
+                    <div class="lyon-item__slider">
+                        <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_tilted_product_1.webp" alt="product tilted image"></div>
+                        <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_front_product_1.webp" alt="product front image"></div>
+                        <div><img src="https://conversionratestore.github.io/projects/urbanista/images/lyon_charger_coverimg_iphone11_1.webp" alt="product charger iphone image"></div>
+                    </div>
+                    <button class="lyon-item__arrow lyon-item__arrow_prev"><img src="https://conversionratestore.github.io/projects/urbanista/images/arrow_forward.svg" alt="arrow prev"></button>
+                    <button class="lyon-item__arrow lyon-item__arrow_next"><img src="https://conversionratestore.github.io/projects/urbanista/images/arrow_forward.svg" alt="arrow next"></button>
+                </div>
+                <div class="lyon-item__info">
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/circle_in_circle.svg" alt="active color">
+                    <p class="info__title">Lyon</p>
+                    <p class="info__type">${text[language] ? text[language][1] : text['en'][1]}</p>
+                    <p class="info__description">${text[language] ? text[language][2] : text['en'][2]}</p>
+                    <p class="info__price">${pricePDP}</p>
+                    <button class="info__btn" formtarget="_blank">${text[language] ? text[language][3] : text['en'][3]}</button>
+                </div>
+            </div>
+        `);
 
         // activate tiny slider
         let categoryInterval = setInterval(() => {
@@ -212,7 +212,7 @@ function drawTepmlate() {
 
         document.querySelector('.info__btn').addEventListener('click', () => {
             location.href = `https://www.urbanista.com/${language}/lyon`;
-
+            
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
