@@ -572,15 +572,13 @@ setTimeout(() => {
     });
 
     // images and text blocks
-    document.querySelectorAll('.pd-col').forEach(block => {
-        if (block.querySelector('h1')?.innerText !== 'SPECS') {
-            let imagesBlock = block.closest('.pd-row');
-
+    document.querySelectorAll('.pd-row .pd-col').forEach(block => {
+        if (block.querySelector('h1')?.innerText !== 'SPECS') {        
             document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
         }
     });
 
-    document.querySelector('.pd-col').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+    document.querySelector('.pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
