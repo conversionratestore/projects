@@ -595,7 +595,17 @@ setTimeout(() => {
     //     }
     // });
 
-
+    document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
+        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+    })
+    
+    let addDescInterval = setInterval(() => {
+        if(document.querySelector('.product-view-cms .pd-row .pd-col')) {
+            clearInterval(addDescInterval)
+            document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+        }
+    }, 100);
+  
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
@@ -691,10 +701,4 @@ setTimeout(() => {
             });
         }
     }, 200);
-
-    document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
-        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
-    })
-    
-    document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 }, 1500);
