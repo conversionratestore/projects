@@ -573,7 +573,7 @@ setTimeout(() => {
 
     // images and text blocks
     document.querySelectorAll('.pd-col').forEach(block => {
-        if (!block.querySelector('h1')?.innerText === 'SPECS') {
+        if (!block.querySelector('h1')?.innerText === 'SPECS' && !block.querySelector('h1')?.innerText === 'FEATURES' && !block.querySelector('h1')?.innerText === 'DESIGN') {
             let imagesBlock = block.closest('.pd-row');
 
             document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(imagesBlock) : document.querySelector('.slider_custom').after(imagesBlock);
