@@ -584,7 +584,11 @@ setTimeout(() => {
     //     }
     // });
 
-    document.querySelectorAll('.product-view-cms .pd-col')[0].closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
+    document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
+        document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+    })
+    
+    document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
