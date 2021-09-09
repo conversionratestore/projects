@@ -1,8 +1,7 @@
 let startInterval = setInterval(() => {
     if (document.querySelector('.main-widget') && document.querySelector('.yotpo.yotpo-main-widget') && document.querySelector('.money-banner')) {
-
-
         clearInterval(startInterval);
+        
         let styleCSS = `
     <style>
         /*.page-main, .breadcrumbs  {*/
@@ -185,7 +184,7 @@ let startInterval = setInterval(() => {
             display: flex;
             opacity: 0;
             left: 0;
-            width: 30%;
+            width: 35%;
             flex-direction: column;
             bottom: 45px;
             background-color: #fff;
@@ -211,7 +210,7 @@ let startInterval = setInterval(() => {
             height: 31px !important;
         }
         .sticky-pdp-cta .product-add-form {
-            width: 70%;
+            width: 65%;
         }
         .sticky-pdp-cta .product-options-bottom,
         .sticky-pdp-cta .action.primary.tocart {
@@ -226,7 +225,7 @@ let startInterval = setInterval(() => {
         }
         .sticky-pdp-cta .select-color {
             display: flex;
-            width: 30%;   
+            width: 35%;   
             height: 45px;
             justify-content: space-around;
             align-items: center;
@@ -519,11 +518,11 @@ let startInterval = setInterval(() => {
 
             /* create specs and 90 days links */
             document.querySelector('.product-options-bottom').insertAdjacentHTML('afterend', `
-    <div class="custom-link-section">
-        ${specsParagraph}
-        <p class="custom-link-section__risk">90 days risk-free trial</p>
-    </div>  
-`);
+                <div class="custom-link-section">
+                    ${specsParagraph}
+                    <p class="custom-link-section__risk">90 days risk-free trial</p>
+                </div>  
+            `);
 
             /* specs and 90 days li nks scroll logic */
             function scrollTo(paragraph, block) {
@@ -538,14 +537,14 @@ let startInterval = setInterval(() => {
         }, 500);
 
         document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
-    <div class="select-color">
-        <p>${textColor[pathLocal] ? textColor[pathLocal] : textColor['eu']}:</p>
-        <div class="swatch-option color"></div>
-        <svg class="arrow-down-svg" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1L7.14706 6.5L12.6471 1" stroke="black"/>
-        </svg>
-    </div>  
-    `);
+        <div class="select-color">
+            <p>${textColor[pathLocal] ? textColor[pathLocal] : textColor['eu']}:</p>
+            <div class="swatch-option color"></div>
+            <svg class="arrow-down-svg" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
+                <path d="M0.94 0.726562L4 3.7799L7.06 0.726562L8 1.66656L4 5.66656L0 1.66656L0.94 0.726562Z" fill="#333333"/>
+            </svg>
+        </div>  
+        `);
 
 // add active color to select-color
         let checkElInterval = setInterval(() => {
