@@ -69,7 +69,7 @@
         #order_form {
             border: 1px solid #e8e8e8;
             border-radius: 0 0 8px 8px;
-            padding: 0 15px;
+            padding: 0 15px 15px;
         }
         .free-samples-modal .block-content .th-button-order {
             position: inherit;
@@ -149,6 +149,9 @@
             font-family: 'Barlow', sans-serif;
             text-align: center;
             margin-bottom: 12px;
+        }
+        .btn-back {
+            align-items: center;
         }
         @media screen and (max-width: 374px) {
             .free-samples-modal .information-block img {
@@ -308,7 +311,6 @@
                     </div>
                 </li>`);
             }
-
         }
     });
 
@@ -336,79 +338,95 @@
         document.querySelector('#order_form input#street_2').closest('.field').style.display = 'none';
         document.querySelector('#order_form input#city').closest('.field').style.display = 'none';
         document.querySelector('#order_form input#zip').closest('.field').style.display = 'none';
-        // document.querySelectorAll('#order_form input').forEach((el) => {
-        //     if (!el.classList.contains('step-1')) {
-        //         console.log(el.closest('.field'));
-        //         el.closest('.field').style.display = 'none';
-        //     }
-        // });
+
         document.querySelector('#address-full-container .field:last-child').after(document.querySelector('#street_1').closest('.field'));
         document.querySelector('#address-full-container .field:last-child').after(document.querySelectorAll('#address-full-container .field')[0]);
 
-        document.querySelector('.btn-continue').addEventListener('click', (e) => {
-            document.querySelectorAll('#order_form input').forEach((el) => {
-                if (el.classList.contains('step-1') && el.dataset.validate.includes('"required": true')) {
-                    if (el.value != '') {
-                        console.log('input != ""');
-                        el.classList.remove('mage-error');
-                        el.removeAttribute('aria-invalid');
-                        el.removeAttribute('aria-describedby');
-                        el.nextElementSibling.remove();
-                        document.querySelector('.guest-order .header-wrapper').innerHTML = '2/2. Delivery Info';
-                        el.closest('.field').style.display = 'none';
-                        document.querySelector('#order_form input#phone').closest('.field').style.display = 'none';
 
-                        document.querySelector('#order_form input#street_1').closest('.field').style.display = 'block';
-                        document.querySelector('#order_form input#street_2').closest('.field').style.display = 'block';
-                        document.querySelector('#order_form input#city').closest('.field').style.display = 'block';
-                        document.querySelector('#order_form input#zip').closest('.field').style.display = 'block';
-                        e.target.hidden = true;
-                    } else {
-                        console.log('mage-error');
+        document.querySelectorAll('.button-yellow')[1].innerHTML = 'GET FREE SAMPLES';
+
+        document.querySelectorAll('.button-yellow')[1].insertAdjacentHTML('afterend',`
+        <button type="button" class="btn-back" style="display: none">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.6466 6.35355C13.8419 6.15829 14.1584 6.15829 14.3537 6.35355L15.057 7.05683C15.2521 7.25194 15.2523 7.56823 15.0574 7.76355L10.8302 12L15.0574 16.2364C15.2523 16.4318 15.2521 16.7481 15.057 16.9432L14.3537 17.6464C14.1584 17.8417 13.8419 17.8417 13.6466 17.6464L8.00016 12L13.6466 6.35355Z" fill="#232849"/>
+            </svg>
+            Back
+        </button>`);
+
+        let inputsStepOne = document.querySelectorAll('#order_form input.step-1'),
+            inputs = document.querySelectorAll('#order_form input'),
+            email = document.querySelector('#email_address');
+
+        let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        document.querySelector('.btn-continue').addEventListener('click', (e) => {
+            inputsStepOne.forEach((el) => {
+                if (el.dataset.validate.includes('"required": true')) {
+                    if (el.value == '') {
+                        if (!el.classList.contains('mage-error')) {
+                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
+                        }
                         el.classList.add('mage-error');
                         el.setAttribute('aria-invalid','true');
                         el.setAttribute('aria-describedby','first_name-error');
-                        el.closest('.control').insertAdjacentHTML('beforeend',`<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="first_name-error">This is a required field.</div>`)
                         el.style.display = 'block';
+                    } else {
+                        el.classList.remove('mage-error');
+                        if (el.closest('.control').querySelector('.mage-error')) {
+                            el.closest('.control').querySelector('.mage-error').remove();
+                        }
+                        el.removeAttribute('aria-invalid');
+                        el.removeAttribute('aria-describedby');
+                    }
+
+                    if(!pattern.test(email.value)) {
+                        if (!email.classList.contains('mage-error')) {
+                            email.closest('.control').insertAdjacentHTML('beforeend', `<div for="email_address" generated="true" class="mage-error" id="email_address-error">Please enter a valid email address.</div>`);
+                        } else {
+                            email.closest('.control').querySelector('#email_address-error').innerHTML = 'Please enter a valid email address.';
+                        }
+                        email.classList.add('mage-error');
+                        email.setAttribute('aria-invalid','true');
+                        email.setAttribute('aria-describedby','first_name-error');
+                    } else {
+                        if (email.classList.contains('mage-error')) {
+                            email.classList.remove('mage-error');
+                            email.removeAttribute('aria-invalid');
+                            email.removeAttribute('aria-describedby');
+                            email.nextElementSibling.remove();
+                        }
+                    }
+                    if (!document.querySelector('.mage-error')) {
+                        for (let i = 0; i < inputs.length; i++) {
+                            if (!inputs[i].classList.contains('step-1')) {
+                                inputs[i].closest('.field').style.display = 'block';
+                                document.querySelector('#region').closest('.field').style.display = 'none';
+                                document.querySelector('#region_id').closest('.field').style.display = 'none';
+                                document.querySelectorAll('.button-yellow')[0].style.display = 'none';
+                                document.querySelectorAll('.button-yellow')[1].style.display = 'block';
+                                document.querySelector('.btn-back').style.display = 'flex';
+                                document.querySelector('.guest-order .header-wrapper').innerHTML = '2/2. Delivery Info';
+                            } else {
+                                inputs[i].closest('.field').style.display = 'none';
+                            }
+                        }
                     }
                 }
             });
         });
 
+        document.querySelector('.btn-back').addEventListener('click', (e) => {
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].classList.contains('step-1')) {
+                    inputs[i].closest('.field').style.display = 'block';
+                    document.querySelectorAll('.button-yellow')[0].style.display = 'block';
+                    document.querySelectorAll('.button-yellow')[1].style.display = 'none';
+                    document.querySelector('.btn-back').style.display = 'none';
+                    document.querySelector('.guest-order .header-wrapper').innerHTML = '1/2. Personal Info';
+                } else {
+                    inputs[i].closest('.field').style.display = 'none';
+                }
+            }
+        });
 
-
-        // $( 'form.order-recipient' ).submit( function( event ) {
-        //     event.preventDefault();
-        //
-        //     //validate fields
-        //     let fail = false;
-        //     let fail_log = '';
-        //     let name;
-        //     $(this).find( 'select, textarea, input' ).each(function(){
-        //         if( ! $( this ).prop( 'required' )){
-        //
-        //         } else {
-        //             if ( ! $( this ).val() ) {
-        //                 fail = true;
-        //                 name = $( this ).attr( 'name' );
-        //                 fail_log += name + " is required \n";
-        //             }
-        //
-        //         }
-        //     });
-        //
-        //     //submit if fail never got set to true
-        //     if ( ! fail ) {
-        //         //process form here.
-        //         $('#order-recipient').removeClass('active');
-        //         $('.express-checkout').css('display','none');
-        //         $('.userLoginForm ').removeClass('active');
-        //         $('#shipping-address').css('display','block');
-        //         $('.cart-steps__main-block .step.step-active').removeClass('step-active');
-        //         $('.cart-steps__main-block .step').eq(1).removeClass('step-next').addClass('step-active');
-        //     } else {
-        //         alert( fail_log );
-        //     }
-        //
-        // });
     }
