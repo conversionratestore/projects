@@ -274,7 +274,7 @@ const pathname = window.location.pathname.split('/')[2];
 const pathLocal = window.location.pathname.split('/')[1];
 
 let textColor = {
-    'en': 'color',
+    'eu': 'color',
     'de': 'farbe',
     'se': 'färg',
 }
@@ -525,7 +525,7 @@ scrollTo('.custom-link-section__risk', '.money-banner');
 
 document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
     <div class="select-color">
-        <p>${textColor[pathLocal]}:</p>
+        <p>${textColor[pathLocal] ? textColor[pathLocal] : textColor['eu']}:</p>
         <div class="swatch-option color"></div>
         <svg class="arrow-down-svg" width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L7.14706 6.5L12.6471 1" stroke="black"/>
@@ -537,13 +537,11 @@ document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
 let checkElInterval = setInterval(() => {
     if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
         clearInterval(checkElInterval);
-        document.querySelector('.select-color .swatch-option.color').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+        document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
     }
 }, 100);
 
-
-
-document.body.addEventListener('click', () => {
+window.addEventListener('click', () => {
     document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.remove('swatch-attribute_visible');
 })
 
@@ -566,8 +564,10 @@ if (document.querySelector('.ImageWidget').closest('.pd-row')) {
     document.querySelector('.ImageWidget').closest('.pd-row').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Describe Urbanista</p>`);
 }
 
+let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor
+
 document.querySelectorAll('.slider_custom__text').forEach(item => {
-    item.style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+    item.style.backgroundColor = bgColor;
 });
 
 if (document.querySelector('.specs_custom')) {
@@ -578,6 +578,8 @@ if (document.querySelector('.specs_custom')) {
     first observer
 */
 
+document.querySelector('.product-info-main').style.backgroundColor = bgColor
+
 let styleConfig = {attributes: true, attributeFilter: ['style']};
 
 let observer = new MutationObserver(function () {
@@ -587,7 +589,7 @@ let observer = new MutationObserver(function () {
     console.log('AAAAAAAAAAA');
 
     if (document.querySelector('.specs_custom')) {
-        document.querySelector('.specs_custom').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
+        document.querySelector('.specs_custom').style.backgroundColor = bgColor;
     }
 
     document.querySelectorAll('.slider_custom__text').forEach(item => {
@@ -607,7 +609,7 @@ let config = {subtree: true, childList: true};
 
 let observerActiveOption = new MutationObserver(function () {
     // change active color in select-color
-    document.querySelector('.select-color .swatch-option.color').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+    document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
 });
 
 observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
@@ -629,12 +631,11 @@ observerCloseColor.observe(document.body, config);
 /* close custom-select on click */
 
 let checkCustomSelectInterval = setInterval(function () {
-    if (document.querySelector('.sticky-pdp-cta .swatch-option.color')) {
-        console.log('ssssss');
+    if (document.querySelector('.sticky-pdp-cta .swatch-option')) {
         clearInterval(checkCustomSelectInterval);
-        document.querySelectorAll('.sticky-pdp-cta .swatch-option.color').forEach(item => {
+
+        document.querySelectorAll('.sticky-pdp-cta .swatch-option').forEach(item => {
             item.addEventListener('click', () => {
-                console.log('sss');
                 document.querySelector('.sticky-pdp-cta .swatch-attribute.color').classList.toggle('swatch-attribute_visible');
             });
         });
