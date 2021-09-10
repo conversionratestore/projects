@@ -513,24 +513,23 @@ window.onload  = function () {
             }
         });
     }
-};
+    //MutationObserver
+    let mut = new MutationObserver(function (muts) {
+        //Your Free Sample Order Swatch
+        console.log('mut')
+        if (document.querySelector('.free-samples-modal._show') ) {
+            mut.disconnect();
+            console.log('mut disconnect')
+            samplesModal();
+        }
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
+    });
 
-//MutationObserver
-let mut = new MutationObserver(function (muts) {
-    //Your Free Sample Order Swatch
-    console.log('mut')
-    if (document.querySelector('.free-samples-modal._show') ) {
-        mut.disconnect();
-        console.log('mut disconnect')
-        samplesModal();
-    }
     mut.observe(document, {
         childList: true,
         subtree: true
     });
-});
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+};
