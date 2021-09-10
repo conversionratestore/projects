@@ -249,17 +249,7 @@ window.onload  = function () {
                 </div>`
         }
     ]
-    function addFreeSample(event) {
-        if (event.innerHTML == 'remove from basket') {
-            event.innerHTML = 'ADD FREE SAMPLE';
-            event.classList.remove('_disable');
-        } else {
-            event.innerHTML = 'remove from basket';
-            event.classList.add('_disable');
-        }
-
-        event.closest('.actions').querySelector('.action').click();
-    }
+   
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
             document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.png" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.png" alt="delivered"></div>`)
@@ -300,7 +290,17 @@ window.onload  = function () {
                     }
                 }
                 
-                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', addFreeSample(event.target));
+                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', (event) => {
+                    if (event.target.innerHTML == 'remove from basket') {
+                        event.target.innerHTML = 'ADD FREE SAMPLE';
+                        event.target.classList.remove('_disable');
+                    } else {
+                        event.target.innerHTML = 'remove from basket';
+                        event.target.classList.add('_disable');
+                    }
+            
+                    event.closest('.actions').querySelector('.action').click();
+                });
             }
         }
     }
