@@ -270,8 +270,8 @@ setTimeout(() => {
     /*
      url splitted variables
     */
-    const pathname = window.location.pathname.split('/')[2];
-    const pathLocal = window.location.pathname.split('/')[1];
+    let pathname = window.location.pathname.split('/')[2];
+    let pathLocal = window.location.pathname.split('/')[1];
 
 
     let localisation = {
@@ -293,6 +293,10 @@ setTimeout(() => {
             'specifications': 'teknik',
             'technical': 'TEKNIK',
         },
+    }
+    
+    if(!localisation[pathLocal]) {
+        pathLocal = 'eu'
     }
 
     document.head.insertAdjacentHTML(`beforeend`, styleCSS);
@@ -325,8 +329,8 @@ setTimeout(() => {
         change specs position
     */
 
-    let specsText = localisation[pathLocal] ? localisation[pathLocal].specifications : localisation['eu'].specifications
-    let technicalText = localisation[pathLocal] ? localisation[pathLocal].technical : localisation['eu'].technical
+    let specsText = localisation[pathLocal].specifications
+    let technicalText = localisation[pathLocal].technical
 
     document.querySelectorAll('.TextWidget').forEach(block => {
 
