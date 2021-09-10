@@ -273,21 +273,25 @@ setTimeout(() => {
         const pathname = window.location.pathname.split('/')[2];
         const pathLocal = window.location.pathname.split('/')[1];
 
+        
         let localisation = {
             'eu': {
                 'color': 'color',
                 'features': 'Key features',
-                'specifications': 'Specifications',
+                'specifications': 'SPECIFICATIONS',
+                'technical': 'TECHNICAL',
             },
             'de': {
                 'color': 'Farbe',
                 'features': 'Features',
-                'specifications': 'Specifications',
+                'specifications': 'SPECIFICATIONS',
+                'technical': 'TECHNICAL',
             },
             'se': {
                 'color': 'Färg',
                 'features': 'Nyckelfunktioner',
                 'specifications': 'teknik',
+                'technical': 'TEKNIK',
             },
         }
 
@@ -321,8 +325,11 @@ setTimeout(() => {
             change specs position
         */
 
+        let specsText = localisation[pathLocal].specifications ? localisation[pathLocal].specifications : localisation['eu'].specifications
+        let technicalText = localisation[pathLocal].technical ? localisation[pathLocal].technical : localisation['eu'].technical
+            
         document.querySelectorAll('.TextWidget').forEach(block => {
-            if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
+            if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText) {
                 // remove specs block
                 let arr = [];
 
@@ -391,7 +398,6 @@ setTimeout(() => {
             let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
             beforeBannerDiv?.after(document.querySelector('.money-banner'));
         } else {
-            console.log('here');
             document.querySelector('.yotpo.yotpo-main-widget')?.before(document.querySelector('.money-banner'));
         }
 
@@ -541,7 +547,6 @@ setTimeout(() => {
         function scrollTo(paragraph, block) {
             document.querySelector(paragraph)?.addEventListener('click', () => {
                 if(paragraph === '.custom-link-section__specs') {
-                    console.log('specs');
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
@@ -550,7 +555,6 @@ setTimeout(() => {
                         'eventLabel': 'Under the add to cart button'
                     });
                 } else if (paragraph === '.custom-link-section__risk') {
-                    console.log('risk');
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
