@@ -600,9 +600,9 @@ setTimeout(() => {
             clearInterval(wait)
 
             for (let index = document.querySelectorAll('.product-view-cms .pd-row .pd-col').length - 1; index >= 0; index--) {
-                document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
-                    document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
-                })
+                let el = document.querySelectorAll('.product-view-cms .pd-row .pd-col')[i]
+                    document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(el) : document.querySelector('.slider_custom').after(el);
+                
               }
 
             
