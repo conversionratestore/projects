@@ -298,7 +298,6 @@ window.onload  = function () {
                         event.target.innerHTML = 'remove from basket';
                         event.target.classList.add('_disable');
                     }
-            
                     event.target.closest('.actions').querySelector('.action').click();
                 });
             }
@@ -524,10 +523,10 @@ window.onload  = function () {
             console.log('mut disconnect')
             samplesModal();
         }
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
+        // mut.observe(document, {
+        //     childList: true,
+        //     subtree: true
+        // });
     });
 
     mut.observe(document, {
