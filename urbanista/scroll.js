@@ -383,7 +383,7 @@ setTimeout(() => {
 
 // change features style
         document.querySelectorAll('.feature-item p picture').forEach(item => {
-            item.closest('p').style.cssText = `float: left; margin-right: 15px;`;
+            item.closest('p').style.cssText = `float: left; margin-right: 15px; height: 100%;`;
         });
 
         /* change 90 days position */
