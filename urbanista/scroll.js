@@ -322,7 +322,7 @@ setTimeout(() => {
         */
 
         document.querySelectorAll('.TextWidget').forEach(block => {
-            if (block.querySelector('h1').innerText.toLowerCase() === (localisation[pathLocal].Specifications).toLowerCase() || block.querySelector('h1').innerText === 'TECHNICAL') {
+            if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
                 // remove specs block
                 let arr = [];
 
