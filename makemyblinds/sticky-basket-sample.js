@@ -257,6 +257,8 @@ window.onload  = function () {
             event.innerHTML = 'remove from basket';
             event.classList.add('_disable');
         }
+
+        event.closest('.actions').querySelector('.action').click();
     }
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
@@ -298,7 +300,7 @@ window.onload  = function () {
                     }
                 }
                 
-                document.querySelectorAll('.like-block .actions .action')[i].addEventListener('click', addFreeSample(event.target));
+                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', addFreeSample(event.target));
             }
         }
     }
