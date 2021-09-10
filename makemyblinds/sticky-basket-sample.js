@@ -481,7 +481,7 @@ window.onload  = function () {
                             email.nextElementSibling.remove();
                         }
                     }
-                    if (!document.querySelector('.mage-error')) {
+                    if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
                             if (!inputs[i].classList.contains('step-1')) {
                                 inputs[i].closest('.field').style.display = 'block';
