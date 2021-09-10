@@ -540,6 +540,25 @@ setTimeout(() => {
         /* specs and 90 days li nks scroll logic */
         function scrollTo(paragraph, block) {
             document.querySelector(paragraph)?.addEventListener('click', () => {
+                if(paragraph === '.custom-link-section__specs') {
+                    console.log('specs');
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Improved PDP mobile',
+                        'eventAction': 'Click on specification',
+                        'eventLabel': 'Under the add to cart button'
+                    });
+                } else if (paragraph === '.custom-link-section__risk') {
+                    console.log('risk');
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Improved PDP mobile',
+                        'eventAction': 'Click on 90 money back guarantee',
+                        'eventLabel': 'Under the add to cart button'
+                    });
+                }
                 let el = document.querySelector(block).getBoundingClientRect().top - 70;
                 window.scrollBy({top: el, behavior: 'smooth'});
             });
@@ -635,8 +654,6 @@ setTimeout(() => {
         first observer
     */
 
-        document.querySelector('#text')
-
     document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
     let styleConfig = {attributes: true, attributeFilter: ['style']};
@@ -721,3 +738,24 @@ setTimeout(() => {
         }
     }, 200);
 }, 1000);
+
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp — Improved PDP mobile',
+      'eventAction': 'loaded'
+  });
+
+
+
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2067583,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('trigger', 'improved_pdp_mobile');
