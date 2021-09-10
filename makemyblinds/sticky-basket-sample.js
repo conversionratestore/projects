@@ -482,8 +482,8 @@ window.onload  = function () {
                         }
                     }
                     for (let i = 0; i < inputs.length; i++) {
-                        if (!document.querySelectorAll('.mage-error')) {
-                            if (!inputs[i].classList.contains('step-1')) {
+                        if (!document.querySelectorAll('.mage-error')[i]) {
+                            if (!inputs[i].classList.contains('step-1') && document.querySelectorAll('#order_form input.step-1')[i].dataset.validate.includes('"required": true').value != '' && document.querySelectorAll('#order_form input.step-1')[i].dataset.validate.includes('"required": true').value != 'undefined') {
                                 inputs[i].closest('.field').style.display = 'block';
                                 document.querySelector('#region').closest('.field').style.display = 'none';
                                 document.querySelector('#region_id').closest('.field').style.display = 'none';
