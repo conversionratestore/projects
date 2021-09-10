@@ -299,7 +299,7 @@ window.onload  = function () {
                         event.target.classList.add('_disable');
                     }
             
-                    event.closest('.actions').querySelector('.action').click();
+                    event.target.closest('.actions').querySelector('.action').click();
                 });
             }
         }
