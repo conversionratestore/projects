@@ -91,15 +91,17 @@ color: #333333 !important;
 .btn-pay-flow:hover{
 background: #2c8081 !important;
 color: #fff !important;
-
+transition: all 0.8s ease 0s;
 }
 
 .btn-pay-flow:hover .hover-pay-block{
 display:block;
+transition: all 0.8s ease 0s;
 }
 
 .btn-pay-flow:hover .hover-pay-block-bottom{
 display:block;
+transition: all 0.8s ease 0s;
 }
 
 .hover-pay{
