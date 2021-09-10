@@ -386,10 +386,10 @@ setTimeout(() => {
         /* change 90 days position */
         if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
             let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
-            beforeBannerDiv.after(document.querySelector('.money-banner'));
+            beforeBannerDiv?.after(document.querySelector('.money-banner'));
         } else {
-
-            document.querySelector('.yotpo.yotpo-main-widget').before(document.querySelector('.money-banner'));
+            console.log('here');
+            document.querySelector('.yotpo.yotpo-main-widget')?.before(document.querySelector('.money-banner'));
         }
 
 
@@ -397,8 +397,12 @@ setTimeout(() => {
 
         const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
 
-        document.querySelector('.money-banner').after(reviewsBlock);
-        reviewsBlock?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+        if(reviewsBlock) {
+            document.querySelector('.money-banner').after(reviewsBlock);
+            reviewsBlock?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+        }
+
+        
 
 
         /* change reviews position */
