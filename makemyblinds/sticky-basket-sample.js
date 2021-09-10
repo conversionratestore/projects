@@ -284,11 +284,12 @@ window.onload  = function () {
                         <span class="product-item-name">${like[i].name}</span>
                         <div class="actions">
                             <a class="view" href="${like[i].href}">View product</a>
-                            <button type="button" class="button-yellow" onclick="addFreeSample(event.target)">ADD FREE SAMPLE</button>
+                            <button type="button" class="button-yellow">ADD FREE SAMPLE</button>
                             ${like[i].actionLiks}
                         </div>
                     </div>
                 </li>`);
+                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', addFreeSample(event.target));
                 for (let j = 0; j < item.length; j++) {
                     if(like[i].src == item[j].getAttribute('src')) {
                         console.log(like[i].src + " == " + item[j].getAttribute('src'));
