@@ -602,29 +602,29 @@ setTimeout(() => {
     //     }
     // });
 
-    let wait = setInterval(() => {
-        if(document.querySelector('.slider_custom')) {
-            clearInterval(wait)
+    // let wait = setInterval(() => {
+    //     if(document.querySelector('.slider_custom')) {
+    //         clearInterval(wait)
 
-            for (let index = document.querySelectorAll('.product-view-cms .pd-row .pd-col').length - 1; index >= 0; index--) {
-                let el = document.querySelectorAll('.product-view-cms .pd-row .pd-col')[i]
-                    document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(el) : document.querySelector('.slider_custom').after(el);
+    //         for (let index = document.querySelectorAll('.product-view-cms .pd-row .pd-col').length - 1; index >= 0; index--) {
+    //             let el = document.querySelectorAll('.product-view-cms .pd-row .pd-col')[i]
+    //                 document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(el) : document.querySelector('.slider_custom').after(el);
                 
-              }
+    //           }
 
             
-        }
+    //     }
         
-    }, 100);
+    // }, 100);
 
-    // document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
     
-    let addDescInterval = setInterval(() => {
-        if(document.querySelector('.product-view-cms .pd-row .pd-col')) {
-            clearInterval(addDescInterval)
+    
+    // let addDescInterval = setInterval(() => {
+    //     if(document.querySelector('.product-view-cms .pd-row .pd-col')) {
+    //         clearInterval(addDescInterval)
             document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
-        }
-    }, 100);
+    //     }
+    // }, 100);
   
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
