@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .actions .button-yellow._disable {
+            background-color: #e7e7e7;
+        }
         .free-samples-modal div.right, [hidden], .freesamples-index-index .guest-order .actions-toolbar .note, .like-block .product-social-links{
             display: none;
         }
@@ -354,9 +357,6 @@ window.onload  = function () {
                 margin-right: 8px;
                 width: 20px;
                 height: 20px;}
-            .actions .button-yellow._disable {
-                background-color: #e7e7e7;
-            }
         </style>`);
 
         // create/add sticky btns
