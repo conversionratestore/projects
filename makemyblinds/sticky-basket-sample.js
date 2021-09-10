@@ -257,8 +257,6 @@ window.onload  = function () {
             event.innerHTML = 'remove from basket';
             event.classList.add('_disable');
         }
-
-        event.closest('.actions').querySelector('.action').click();
     }
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
@@ -289,7 +287,6 @@ window.onload  = function () {
                         </div>
                     </div>
                 </li>`);
-                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', addFreeSample(event.target));
                 for (let j = 0; j < item.length; j++) {
                     if(like[i].src == item[j].getAttribute('src')) {
                         console.log(like[i].src + " == " + item[j].getAttribute('src'));
@@ -300,6 +297,8 @@ window.onload  = function () {
                         document.querySelectorAll('.product-like-item .action')[i].setAttribute('title','Remove'); // Add to Wish List
                     }
                 }
+                
+                document.querySelectorAll('.like-block .actions .action')[i].addEventListener('click', addFreeSample(event.target));
             }
         }
     }
