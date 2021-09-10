@@ -122,7 +122,7 @@ let style = `
         .new_specifics li span {
             color: #212121;
         }
-        .loox-rating {
+        .product-single__box .loox-rating {
             text-align: left;
         }
         
