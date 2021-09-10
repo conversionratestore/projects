@@ -507,7 +507,7 @@ setTimeout(() => {
             break;
     }
 
-    document.querySelector('.yotpo.yotpo-main-widget')?.insertAdjacentHTML(`afterend`, sliderBlock);
+    document.querySelector('.yotpo.yotpo-main-widget') ? document.querySelector('.yotpo.yotpo-main-widget').insertAdjacentHTML(`afterend`, sliderBlock) : document.querySelector('.money-banner').insertAdjacentHTML(`afterend`, sliderBlock);
 
     /* change partners position */
     if (document.querySelector('.product-view-badge').childNodes.length > 1) {
