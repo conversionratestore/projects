@@ -598,9 +598,14 @@ setTimeout(() => {
     let wait = setInterval(() => {
         if(document.querySelector('.slider_custom')) {
             clearInterval(wait)
-            document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
-                document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').before(block) : document.querySelector('.slider_custom').before(block);
-            })
+
+            for (let index = document.querySelectorAll('.product-view-cms .pd-row .pd-col').length - 1; index >= 0; index--) {
+                document.querySelectorAll('.product-view-cms .pd-row .pd-col').forEach(block => {
+                    document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(block) : document.querySelector('.slider_custom').after(block);
+                })
+              }
+
+            
         }
         
     }, 100);
