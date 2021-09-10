@@ -252,226 +252,229 @@ setTimeout(() => {
           }
     </style>
 `;
-        /*
-            add tiny slider cdn links
-        */
-        let linkCustom = document.createElement('link');
-        linkCustom.href =
-            'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-        linkCustom.rel = 'stylesheet';
-        document.head.appendChild(linkCustom);
+    /*
+        add tiny slider cdn links
+    */
+    let linkCustom = document.createElement('link');
+    linkCustom.href =
+        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+    linkCustom.rel = 'stylesheet';
+    document.head.appendChild(linkCustom);
 
-        let scriptCustom = document.createElement('script');
-        scriptCustom.src =
-            'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-        scriptCustom.async = false;
-        document.head.appendChild(scriptCustom);
+    let scriptCustom = document.createElement('script');
+    scriptCustom.src =
+        'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+    scriptCustom.async = false;
+    document.head.appendChild(scriptCustom);
 
-        /*
-         url splitted variables
-        */
-        const pathname = window.location.pathname.split('/')[2];
-        const pathLocal = window.location.pathname.split('/')[1];
-
-        
-        let localisation = {
-            'eu': {
-                'color': 'color',
-                'features': 'Key features',
-                'specifications': 'SPECIFICATIONS',
-                'technical': 'TECHNICAL',
-            },
-            'de': {
-                'color': 'Farbe',
-                'features': 'Features',
-                'specifications': 'SPECIFICATIONS',
-                'technical': 'TECHNICAL',
-            },
-            'se': {
-                'color': 'Färg',
-                'features': 'Nyckelfunktioner',
-                'specifications': 'teknik',
-                'technical': 'TEKNIK',
-            },
-        }
-
-        document.head.insertAdjacentHTML(`beforeend`, styleCSS);
+    /*
+     url splitted variables
+    */
+    const pathname = window.location.pathname.split('/')[2];
+    const pathLocal = window.location.pathname.split('/')[1];
 
 
-        document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+    let localisation = {
+        'eu': {
+            'color': 'color',
+            'features': 'Key features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+        },
+        'de': {
+            'color': 'Farbe',
+            'features': 'Features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+        },
+        'se': {
+            'color': 'Färg',
+            'features': 'Nyckelfunktioner',
+            'specifications': 'teknik',
+            'technical': 'TEKNIK',
+        },
+    }
 
-        /*
-         remove bootstrap classes
-        */
-        function removeBootClass(colXs, colMd) {
-            document.querySelectorAll(`.product-view-cms .pd-col.${colXs}.${colMd}`).forEach(item => {
-                item.classList.remove('pd-col', colXs, colMd);
-                item.classList.add('feature-item');
-                item.querySelectorAll('p').forEach(p => {
-                    p.removeAttribute('style');
-                });
-                item.querySelectorAll('div').forEach(p => {
-                    p.removeAttribute('style');
-                });
+    document.head.insertAdjacentHTML(`beforeend`, styleCSS);
+
+
+    document.querySelector('.page-title').insertAdjacentElement('afterend', document.querySelector('.product-info-price'));
+
+    /*
+     remove bootstrap classes
+    */
+    function removeBootClass(colXs, colMd) {
+        document.querySelectorAll(`.product-view-cms .pd-col.${colXs}.${colMd}`).forEach(item => {
+            item.classList.remove('pd-col', colXs, colMd);
+            item.classList.add('feature-item');
+            item.querySelectorAll('p').forEach(p => {
+                p.removeAttribute('style');
             });
-        }
+            item.querySelectorAll('div').forEach(p => {
+                p.removeAttribute('style');
+            });
+        });
+    }
 
-        removeBootClass('col-xs-6', 'col-md-2');
-        removeBootClass('col-xs-12', 'col-md-2');
-        removeBootClass('col-xs-6', 'col-md-3');
-        removeBootClass('col-xs-12', 'col-md-3');
+    removeBootClass('col-xs-6', 'col-md-2');
+    removeBootClass('col-xs-12', 'col-md-2');
+    removeBootClass('col-xs-6', 'col-md-3');
+    removeBootClass('col-xs-12', 'col-md-3');
 
-        /*
-            change specs position
-        */
+    /*
+        change specs position
+    */
 
-        let specsText = localisation[pathLocal].specifications ? localisation[pathLocal].specifications : localisation['eu'].specifications
-        let technicalText = localisation[pathLocal].technical ? localisation[pathLocal].technical : localisation['eu'].technical
-            
-        document.querySelectorAll('.TextWidget').forEach(block => {
-            if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText) {
-                // remove specs block
-                let arr = [];
+    let specsText = localisation[pathLocal] ? localisation[pathLocal].specifications : localisation['eu'].specifications
+    let technicalText = localisation[pathLocal] ? localisation[pathLocal].technical : localisation['eu'].technical
 
-                block.querySelectorAll('p').forEach(p => {
-                    if (p.innerText.length > 2) {
-                        console.log(p.innerText);
-                        arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
-                    }
-                });
+    document.querySelectorAll('.TextWidget').forEach(block => {
 
-                let pList = '';
+        if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText) {
+            // remove specs block
+            let arr = [];
 
-                arr.forEach(p => {
-                    let indx = p.indexOf(': ', 0) + 1;
-                    pList += `<p><span>${p.substr(0, indx)}</span><span>${p.substr(indx)}</span></p><hr>`;
-                });
+            block.querySelectorAll('p').forEach(p => {
+                if (p.innerText.length > 2) {
+                    console.log(p.innerText);
+                    arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
+                }
+            });
 
-                let specsCustomBlock = `
+            let pList = '';
+
+            arr.forEach(p => {
+                let indx = p.indexOf(': ', 0) + 1;
+                pList += `<p><span>${p.substr(0, indx)}</span><span>${p.substr(indx)}</span></p><hr>`;
+            });
+
+            let specsCustomBlock = `
             <div class="specs_custom">
                 <p class="title_custom">Specifications</p>
                 ${pList}
             </div>
         `;
 
-                // hide existing specs block
-                block.parentElement.style.display = 'none';
+            // hide existing specs block
+            block.parentElement.style.display = 'none';
 
-                if (document.querySelector('.feature-item')) {
-                    let features = document.querySelector('.feature-item').parentElement;
-                    features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
+            if (document.querySelector('.feature-item')) {
+                let features = document.querySelector('.feature-item').parentElement;
+                features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
 
-                    features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
+                features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal].features ? localisation[pathLocal].features : localisation['eu'].features}</p>`);
 
-                    features.insertAdjacentHTML('afterend', specsCustomBlock);
-                }
+                features.insertAdjacentHTML('afterend', specsCustomBlock);
             }
-        });
+        }
+    });
 
 // delete header
 
-        let checkTextWInterval = setInterval(() => {
-            if (document.querySelector('.TextWidget2__container h1')) {
-                clearInterval(checkTextWInterval);
-                document.querySelectorAll('.TextWidget2__container h1').forEach(h1 => {
-                    if (h1.innerText === 'REVIEWS') {
-                        h1.remove();
-                    }
-                });
-            }
-
-        }, 200);
-
-        setTimeout(() => {
+    let checkTextWInterval = setInterval(() => {
+        if (document.querySelector('.TextWidget2__container h1')) {
             clearInterval(checkTextWInterval);
-        }, 5000);
+            document.querySelectorAll('.TextWidget2__container h1').forEach(h1 => {
+                if (h1.innerText === 'REVIEWS') {
+                    h1.remove();
+                }
+            });
+        }
 
-        document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
+    }, 200);
+
+    setTimeout(() => {
+        clearInterval(checkTextWInterval);
+    }, 5000);
+
+    document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
 
 // change features style
-        document.querySelectorAll('.feature-item p picture').forEach(item => {
-            item.closest('p').style.cssText = `float: left; margin-right: 15px; height: 100%;`;
-        });
+    document.querySelectorAll('.feature-item p picture').forEach(item => {
+        item.closest('p').style.cssText = `float: left; margin-right: 15px; height: 100%;`;
+    });
 
-        /* change 90 days position */
-        if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
-            let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
-            beforeBannerDiv?.after(document.querySelector('.money-banner'));
+
+
+    /* change 90 days position */
+    if (document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement) {
+        let beforeBannerDiv = document.querySelector('.specs_custom') || document.querySelector('.feature-item')?.parentElement;
+        beforeBannerDiv?.after(document.querySelector('.money-banner'));
+    } else {
+        document.querySelector('.yotpo.yotpo-main-widget')?.before(document.querySelector('.money-banner'));
+    }
+
+
+    document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+
+    const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
+
+    if(reviewsBlock) {
+        document.querySelector('.money-banner').after(reviewsBlock);
+        reviewsBlock?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+    }
+
+
+
+
+    /* change reviews position */
+    document.querySelector('.main-widget')?.insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
+
+
+    /* remove old review title */
+    document.querySelectorAll('.pd-row h6 span').forEach(span => {
+        if (span.innerText.toLowerCase() === 'reviews') {
+            span.style.display = 'none';
+        }
+    });
+
+    let sliderItems = '';
+
+    const descriptionText = {
+        'eu': {
+            'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
+            'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
+            'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
+        },
+        'de': {
+            'stockholm-plus': 'Mit den neuen STOCKHOLM der zweiten Generation bekommst du noch mehr als Sound.',
+            'london': 'Die Außenwelt ausschalten – oder ansprechbar bleiben. London sind innovativsten Kopfhörer, die wir je entwickelt haben.',
+            'paris': 'Urbanista Paris bietet dir überragende Klangqualität und Antischall, um dein Klangerlebnis noch mehr zu optimieren.',
+        },
+        'se': {
+            'stockholm-plus': 'Ta ljudet till nästa nivå med en ny, andra generation av STOCKHOLM.',
+            'london': 'Urbanista London är överlägset de mest avancerade hörlurarna vi någonsin har gjort.',
+            'paris': 'Urbanista Paris ger dig ljudkvalitet utöver det vanliga.',
+        },
+    };
+
+
+    function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
+        let imagesFirstProduct = '';
+        let imagesSecondProduct = '';
+
+
+        if (firstProduct === 'london') {
+            for (i = 1; i <= 4; i++) {
+                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
+            }
         } else {
-            document.querySelector('.yotpo.yotpo-main-widget')?.before(document.querySelector('.money-banner'));
+            for (i = 1; i <= 4; i++) {
+                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
+            }
         }
 
-
-        document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
-
-        const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
-
-        if(reviewsBlock) {
-            document.querySelector('.money-banner').after(reviewsBlock);
-            reviewsBlock?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-bottom: 50px;">Reviews</p>`);
+        if (secondProduct === 'london') {
+            for (i = 1; i <= 4; i++) {
+                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
+            }
+        } else {
+            for (i = 1; i <= 4; i++) {
+                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
+            }
         }
 
-        
-
-
-        /* change reviews position */
-        document.querySelector('.main-widget')?.insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">Reviews</p>`);
-
-
-        /* remove old review title */
-        document.querySelectorAll('.pd-row h6 span').forEach(span => {
-            if (span.innerText.toLowerCase() === 'reviews') {
-                span.style.display = 'none';
-            }
-        });
-
-        let sliderItems = '';
-
-        const descriptionText = {
-            'eu': {
-                'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
-                'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
-                'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
-            },
-            'de': {
-                'stockholm-plus': 'Mit den neuen STOCKHOLM der zweiten Generation bekommst du noch mehr als Sound.',
-                'london': 'Die Außenwelt ausschalten – oder ansprechbar bleiben. London sind innovativsten Kopfhörer, die wir je entwickelt haben.',
-                'paris': 'Urbanista Paris bietet dir überragende Klangqualität und Antischall, um dein Klangerlebnis noch mehr zu optimieren.',
-            },
-            'se': {
-                'stockholm-plus': 'Ta ljudet till nästa nivå med en ny, andra generation av STOCKHOLM.',
-                'london': 'Urbanista London är överlägset de mest avancerade hörlurarna vi någonsin har gjort.',
-                'paris': 'Urbanista Paris ger dig ljudkvalitet utöver det vanliga.',
-            },
-        };
-
-
-        function drawSliderItems(firstProduct, firstProductImg, secondProduct, secondProductImg) {
-            let imagesFirstProduct = '';
-            let imagesSecondProduct = '';
-
-
-            if (firstProduct === 'london') {
-                for (i = 1; i <= 4; i++) {
-                    imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
-                }
-            } else {
-                for (i = 1; i <= 4; i++) {
-                    imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
-                }
-            }
-
-            if (secondProduct === 'london') {
-                for (i = 1; i <= 4; i++) {
-                    imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
-                }
-            } else {
-                for (i = 1; i <= 4; i++) {
-                    imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
-                }
-            }
-
-            return sliderItems = `
+        return sliderItems = `
         <p class="swipe-arrow" style="margin: 35px 0;">Other products</p>
         <div class="slider_custom">
             <div class="slider_custom__item">                    
@@ -494,7 +497,7 @@ setTimeout(() => {
             <div>        
         </div>
     `;
-        }
+    }
 
     let sliderBlock = ``;
 
@@ -617,7 +620,7 @@ setTimeout(() => {
     //     if (!block.querySelector('h1')?.innerText === 'SPECS') {
     //         block.closest('.pd-row').add('custom-parent');
     //         // console.log(imagesBlock);
-            
+
     //         // imagesBlock.classList.add('custom-parent')
     //         console.log(block);
 
@@ -632,28 +635,28 @@ setTimeout(() => {
     //         for (let index = document.querySelectorAll('.product-view-cms .pd-row .pd-col').length - 1; index >= 0; index--) {
     //             let el = document.querySelectorAll('.product-view-cms .pd-row .pd-col')[i]
     //                 document.querySelector('.product-view-badge')?.childNodes.length > 1 ? document.querySelector('.product-view-badge').after(el) : document.querySelector('.slider_custom').after(el);
-                
+
     //           }
 
-            
+
     //     }
-        
-    // }, 100);    
-    
+
+    // }, 100);
+
     // let addDescInterval = setInterval(() => {
     //     if(document.querySelector('.product-view-cms .pd-row .pd-col')) {
     //         clearInterval(addDescInterval)
     //        document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
     //     }
     // }, 100);
-  
+
 
     // document.querySelector('.custom-parent').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     document.querySelector('.product-view-cms .pd-row .pd-col').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">Description</p>`);
 
     // let bgColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
-    
+
     /*
         first observer
     */
@@ -744,22 +747,22 @@ setTimeout(() => {
 }, 1000);
 
 
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-      'event': 'event-to-ga',
-      'eventCategory': 'Exp — Improved PDP mobile',
-      'eventAction': 'loaded'
-  });
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Improved PDP mobile',
+    'eventAction': 'loaded'
+});
 
 
 
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2067583,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-        hj('trigger', 'improved_pdp_mobile');
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2067583,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'improved_pdp_mobile');
