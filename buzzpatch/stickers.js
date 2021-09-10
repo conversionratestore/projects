@@ -33,10 +33,10 @@ color: #0C0B0B;
 }
 
 .stickers-question-list{
-font-weight: 700;
-font-size: 18px;
-line-height: 1.3;
-color: #212529;
+font-weight: 600;
+font-size: 18px !important;
+line-height: 1.3 !important;
+color: #212529 !important;
 
 }
 
@@ -47,7 +47,7 @@ text-align:start;
 
 .add-person-list{
 display:flex;
-width: calc((100%* 3) / 4);
+flex-wrap: wrap;
 }
 
 .stickers-select{
@@ -57,25 +57,36 @@ border: 1px solid #D9D9D9 !important;
 box-sizing: border-box !important;
 border-radius: 5px !important;
 padding: 9px 5px 9px 20px !important;
-
-font-family: Proxima Nova;
-font-weight: 600 !important;
+font-weight: 500 !important;
 font-size: 14px !important;
 line-height: 1.3 !important;
 color: #212529 !important;
+overflow:scroll;
 }
 
 .select-var{
 margin-bottom: 40px;
 }
 
-
+.add-person-flexbox{
+width: 30%;
+margin-top: 10px;
+}
 .add-person-flexbox:not(:last-child){
-margin-right:12px;
+margin-right: 10px;
+}
+
+.add-person-block{
+font-weight: 600 !important;
+font-size: 14px !important;
+line-height: 1.3 !important;
+color: #212529 !important;
+margin-bottom: 4px !important;
+text-align: start !important;
 }
 
 .add-person-btn{
-margin-top: 28px;
+margin-top: 20px;
 margin-bottom: 8px;
 width: 44px;
 height: 44px;
@@ -225,6 +236,11 @@ color: #000000 !important;
 margin-bottom:9px;
 }
 
+
+.hidden {
+  display: none;
+}
+
 </style>
 `;
 
@@ -235,8 +251,11 @@ let buzzpatchStickersOne = /*html*/ `
         <ol class="stickers-question-list">
             <li class="select-var">
                 <p class="stickers-question">How  many people do you need Buzzpatch stickers for?</p>
-                <select class="stickers-select">
-                    <option selected value="">3 people</option>
+                <select class="stickers-select" data-person>
+                    <option selected value="1">1 person</option>
+                    <option value="2">2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4 people</option>
                 </select>
             </li>
             <li class="select-var">
@@ -244,101 +263,146 @@ let buzzpatchStickersOne = /*html*/ `
                 <div class="add-person-list">
                     <div class="add-person-flexbox">
                         <p class="add-person-block">Person 1</p>
-                        <select class="stickers-select">
-                            <option selected value="">3</option>
+                        <select class="stickers-select" data-age>
+                            <option selected value="30">0 - 2</option>
+                            <option value="60">3 - 5</option>
+                            <option value="120">6 +</option>
                         </select>
                     </div>
-
-                    <div class="add-person-flexbox">
+                    <div class="add-person-flexbox hidden">
                         <p class="add-person-block">Person 2</p>
-                        <select class="stickers-select">
-                            <option selected value="">12</option>
+                        <select class="stickers-select" data-age>
+                            <option selected value="30">0 - 2</option>
+                            <option value="60">3 - 5</option>
+                            <option value="120">6 +</option>
                         </select>
                     </div>
-
-                    <div class="add-person-flexbox">
+                    <div class="add-person-flexbox hidden">
                         <p class="add-person-block">Person 3</p>
-                        <select class="stickers-select">
-                            <option selected value="">16</option>
+                        <select class="stickers-select" data-age>
+                            <option selected value="30">0 - 2</option>
+                            <option value="60">3 - 5</option>
+                            <option value="120">6 +</option>
+                        </select>
+                    </div>
+                    <div class="add-person-flexbox hidden">
+                        <p class="add-person-block">Person 4</p>
+                        <select class="stickers-select" data-age>
+                            <option selected value="30">0 - 2</option>
+                            <option value="60">3 - 5</option>
+                            <option value="120">6 +</option>
                         </select>
                     </div>
                 </div>
-
+<!-- 
                 <button class="add-person-btn">
                     <svg class="add-person-svg" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="#0C0B0B"/>
                     </svg>
                 </button>
 
-                <p class="add-person-title">add person</p>
+                <p class="add-person-title">add person</p> -->
             </li>
             <li class="select-var">
                 <p class="stickers-question">How  many months per year does the mosquito season last?</p>
-                <select class="stickers-select">
-                    <option selected value="">3 months</option>
+                <select class="stickers-select" data-month>
+                    <option selected value="1">1 month</option>
+                    <option value="2">2 months</option>
+                    <option value="3">3 months</option>
+                    <option value="4">3+ months</option>
                 </select>
             </li>
         </ol>
         <a class="stickers-btn btn-first">calculate how many do i need</a>
     </div>
+
+    <div class="stickers-block-two hidden">
+        <h2 class="stickers-title">You are recommended <span class="acc-color">3 packs</span> that contain <span class="acc-color">180</span> stickers</h2>
+        <p class="stickers-pack">60 stickers in 1 pack</p>
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stickers.svg" alt="stickers">
+
+        <p class="stickers-price">$36.00 (40% OFF)</p>
+        <p class="stickers-foreach-text">$12 for each pack</p>
+
+        <div class="flex-btn">
+            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy 3 packs</a>
+            <a class="stickers-btn small-btn other">see other packs</a>
+        </div>
+
+        <div class="parent-border">
+            <div class="flex-box-total">
+                <p class="flex-text-total">Mosquito season duration:</p>
+                <span class="flex-span-total">3 months</span>
+            </div>
+            <div class="flex-box-total">
+                <p class="flex-text-total">Total number of Buzzpatch stickers required:</p>
+                <span class="flex-span-total">180 stickers</span>
+            </div>
+        </div>
+        <div>
+            <p class="text-season">Person <span>1</span> requires <span class="acc-color">30 stickers</span> per season</p>
+            <p class="text-season">Person <span>2</span> requires <span class="acc-color">75 stickers</span> per season</p>
+            <p class="text-season">Person <span>3</span> requires <span class="acc-color">85 stickers</span> per season</p>
+        </div>
+    </div>
 </section>
-`;
-
-let buzzpatchStickersPageTwo = /*html*/ `
-<div class="stickers-block-two">
-    <h2 class="stickers-title">You are recommended <span class="acc-color">3 packs</span> that contain <span class="acc-color">180</span> stickers</h2>
-    <p class="stickers-pack">60 stickers in 1 pack</p>
-    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stickers.svg" alt="stickers">
-
-    <p class="stickers-price">$36.00 (40% OFF)</p>
-    <p class="stickers-foreach-text">$12 for each pack</p>
-
-    <div class="flex-btn">
-        <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy 3 packs</a>
-        <a href="#getNow" class="stickers-btn small-btn other">see other packs</a>
-    </div>
-
-    <div class="parent-border">
-        <div class="flex-box-total">
-            <p class="flex-text-total">Mosquito season duration:</p>
-            <span class="flex-span-total">3 months</span>
-        </div>
-        <div class="flex-box-total">
-            <p class="flex-text-total">Total number of Buzzpatch stickers required:</p>
-            <span class="flex-span-total">180 stickers</span>
-        </div>
-    </div>
-    <div>
-        <p class="text-season">Person <span>1</span> requires <span class="acc-color">30 stickers</span> per season</p>
-        <p class="text-season">Person <span>2</span> requires <span class="acc-color">75 stickers</span> per season</p>
-        <p class="text-season">Person <span>3</span> requires <span class="acc-color">85 stickers</span> per season</p>
-    </div>
-</div>
 `;
 
 document.head.insertAdjacentHTML("beforeend", styleBuzzpatchstickers);
 document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStickersOne);
 
-document.querySelector(".btn-first").addEventListener("click", function () {
-  document.querySelector(".stickers-block-first").innerHTML = "";
-  document.querySelector(".stickers-main-title").insertAdjacentHTML("afterend", buzzpatchStickersPageTwo);
+const redirectUrl = [
+  {
+    firstPackage: "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl",
+    secondPackage: "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9",
+    thirdPackage: "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw",
+    fourthPack: "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw",
+  },
+];
+
+calculateSummForPack();
+
+//  variant Person
+document.querySelector("[data-person]").addEventListener("change", function () {
+  document.querySelectorAll(".add-person-flexbox").forEach((el, idx) => {
+    if (+document.querySelector("[data-person]").value > idx) {
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  });
 });
 
-if (document.querySelector(".stickers-block-two")) {
-  document.querySelector(".other").addEventListener("click", function (e) {
-    e.preventDefault();
+//
 
-    let href = this.getAttribute("href").substring(1);
-
-    const scrollTarget = document.getElementById(href);
-
-    const topOffset = 0;
-    const elementPosition = scrollTarget.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - topOffset;
-
-    window.scrollBy({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
+function calculateSummForPack() {
+  let total = 0;
+  document.querySelectorAll("[data-age]").forEach((el, idx) => {
+    if (!el.closest(".add-person-flexbox").classList.contains("hidden")) {
+      total += +el[idx].value;
+    }
   });
+  console.log(`total`, total);
+
+  let monthValue = +document.querySelector("[data-month]").value;
+  let calcSumm = total * monthValue;
+  console.log(`calcSumm`, calcSumm);
 }
+
+// calculate how many do i need
+document.querySelector(".btn-first").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.querySelector(".stickers-block-first").classList.add("hidden");
+  document.querySelector(".stickers-block-two").classList.remove("hidden");
+  console.log(`object`);
+});
+
+// see other packs
+document.querySelector(".other").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  document.querySelector("#getNow").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
+});
