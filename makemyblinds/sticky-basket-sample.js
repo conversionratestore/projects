@@ -1,3 +1,4 @@
+window.onload  = function () { 
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -8,7 +9,7 @@
             background-color: rgba(0,0,0,0.2)!important;
         }
         .information-block {
-            justify-content: space-between;
+            justify-content: space-around;
         }
         .free-samples-modal .information-block img {
             width: 100%;
@@ -186,7 +187,7 @@
         {
             href: `https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html?queryID=a061dcc569e4380d4255414f370cc43f&objectID=2728&indexName=mmblive_en_en_products`,
             name: `Simply Brilliant White with Jasmine White Tape`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019_1_1.jpg`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019_1_1.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
@@ -197,7 +198,7 @@
         {
             href: `https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html?queryID=661afbbd917722dd994b949cfb1ddfdb&objectID=562&indexName=mmblive_en_en_products`,
             name: `Anthracite Grey Perfect Fit`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/0/1/01_cam_frnt_close_tr1679_11092019_1.jpg`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_slat_tr1679_11092019_1.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
@@ -208,7 +209,7 @@
         {
             href: `https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html`,
             name: `Matt Soft White Perfect Fit`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/i/s/iso_full.jpg`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/s/w/swatch_11_1.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
@@ -219,7 +220,7 @@
         {
             href: `https://www.makemyblinds.co.uk/simply-brilliant-white-embossed-with-jasmine-white-tapes.html?queryID=e066bf8d91c669a1c27704384556777c&objectID=2729&indexName=mmblive_en_en_products`,
             name: `Simply Brilliant White Embossed with Jasmine White Tapes`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019_1.jpg`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019_1.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
@@ -233,7 +234,7 @@
         {
             href: `https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html`,
             name: `Editions Brilliant White with Lilly Tapes`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/9/_/9_bathroom_scene_detail03_serene_cotton_tape_08202019.jpg`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
@@ -245,9 +246,7 @@
                 </div>`
         }
     ]
-
     function addFreeSample(event) {
-        console.log('click');
         if (event.innerHTML == 'remove from basket') {
             event.innerHTML = 'ADD FREE SAMPLE';
             event.classList.remove('_disable');
@@ -256,13 +255,10 @@
             event.classList.add('_disable');
         }
 
-
         event.closest('.actions').querySelector('.action').click();
     }
-
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
-            console.log('true');
             document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.png" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.png" alt="delivered"></div>`)
             document.querySelector('#freesamples-modal .th-button-carry').before(document.querySelector('.samples-block-wrapper .th-button-order'));
             document.querySelector('#freesamples-modal .th-button-carry').innerHTML = 'SAVE & KEEP LOOKING';
@@ -273,6 +269,8 @@
                     <h3>You may also like to add</h3>
                     <ol class="product-like-items"></ol>
                 </div>`);
+                
+            let item = document.querySelectorAll('#wishlist-sidebar .product-image-photo');
             for (let i = 0; i < like.length; i++) {
                 document.querySelector('.product-like-items').insertAdjacentHTML('beforeend',`
                 <li class="product-like-item">
@@ -288,19 +286,17 @@
                         </div>
                     </div>
                 </li>`);
-                document.querySelectorAll('#wishlist-sidebar .product-item-name').forEach((el,index) => {
-                    if(like[i].name == el.innerHTML) {
+                for (let j = 0; j < item.length; j++) {
+                    if(like[i].src == item[j].getAttribute('src')) {
+                        console.log(like[i].src + " == " + item[j].getAttribute('src'));
                         document.querySelectorAll('.product-like-item .button-yellow')[i].innerHTML = 'remove from basket';
                         document.querySelectorAll('.product-like-item .button-yellow')[i].classList.add('_disable');
+                        document.querySelectorAll('.product-like-item .action')[i].classList.add('active');
+                        document.querySelectorAll('.product-like-item .action')[i].dataset.action = 'remote-in-wishlist'; // add-to-wishlist
+                        document.querySelectorAll('.product-like-item .action')[i].setAttribute('title','Remove'); // Add to Wish List
                     }
-                })
+                }
             }
-
-
-            // for (let i = 0; i < like.length; i++) {
-            //
-            // }
-
         }
     }
     samplesModal();
@@ -358,8 +354,8 @@
                 margin-right: 8px;
                 width: 20px;
                 height: 20px;}
-            .actions ._disable {
-                pointer-events: auto;
+            .actions .button-yellow._disable {
+                background-color: #e7e7e7;
             }
         </style>`);
 
@@ -406,26 +402,6 @@
 
     }
 
-
-    //MutationObserver
-    let mut = new MutationObserver(function (muts) {
-        //Your Free Sample Order Swatch
-        console.log('mut')
-        if (document.querySelector('.free-samples-modal._show') ) {
-            mut.disconnect();
-            console.log('mut disconnect')
-            samplesModal();
-        }
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
-    });
-
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
 
     if (window.location.pathname.includes('freesamples')) {
         //change title form
@@ -537,3 +513,24 @@
             }
         });
     }
+};
+
+//MutationObserver
+let mut = new MutationObserver(function (muts) {
+    //Your Free Sample Order Swatch
+    console.log('mut')
+    if (document.querySelector('.free-samples-modal._show') ) {
+        mut.disconnect();
+        console.log('mut disconnect')
+        samplesModal();
+    }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+});
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
