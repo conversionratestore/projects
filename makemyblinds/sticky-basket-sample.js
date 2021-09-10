@@ -481,8 +481,8 @@ window.onload  = function () {
                             email.nextElementSibling.remove();
                         }
                     }
-                    if (!document.querySelector('.mage-error')) {
-                        for (let i = 0; i < inputs.length; i++) {
+                    for (let i = 0; i < inputs.length; i++) {
+                        if (!document.querySelectorAll('.mage-error')) {
                             if (!inputs[i].classList.contains('step-1') && inputs[i].classList.contains('step-1').value != '') {
                                 inputs[i].closest('.field').style.display = 'block';
                                 document.querySelector('#region').closest('.field').style.display = 'none';
