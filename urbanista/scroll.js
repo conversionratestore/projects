@@ -277,14 +277,17 @@ setTimeout(() => {
             'eu': {
                 'color': 'color',
                 'features': 'Key features',
+                'specifications': 'Specifications',
             },
             'de': {
                 'color': 'Farbe',
                 'features': 'Features',
+                'specifications': 'Specifications',
             },
             'se': {
                 'color': 'Färg',
                 'features': 'Nyckelfunktioner',
+                'specifications': 'teknik',
             },
         }
 
@@ -319,7 +322,7 @@ setTimeout(() => {
         */
 
         document.querySelectorAll('.TextWidget').forEach(block => {
-            if (block.querySelector('h1').innerText === 'SPECIFICATIONS' || block.querySelector('h1').innerText === 'TECHNICAL') {
+            if (block.querySelector('h1').innerText.toLowerCase() === (localisation[pathLocal].Specifications).toLowerCase() || block.querySelector('h1').innerText === 'TECHNICAL') {
                 // remove specs block
                 let arr = [];
 
@@ -632,6 +635,8 @@ setTimeout(() => {
     /*
         first observer
     */
+
+        document.querySelector('#text')
 
     document.querySelector('.product-info-main').style.backgroundColor = document.querySelector('.product-info-main').style.backgroundColor || getComputedStyle(document.querySelector('.product-info-main')).backgroundColor;
 
