@@ -403,7 +403,7 @@ window.onload  = function () {
 
     }
 
-
+    //freesamples
     if (window.location.pathname.includes('freesamples')) {
         //change title form
         document.querySelector('.guest-order .header-wrapper').innerHTML = '1/2. Personal Info';
@@ -447,8 +447,11 @@ window.onload  = function () {
         document.querySelector('.btn-continue').addEventListener('click', (e) => {
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
+                    console.log("includes required: true")
                     if (el.value == '') {
+                        console.log("value == ''")
                         if (!el.classList.contains('mage-error')) {
+                            console.log("not error with value == ''")
                             el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
                         }
                         el.classList.add('mage-error');
@@ -456,8 +459,10 @@ window.onload  = function () {
                         el.setAttribute('aria-describedby','first_name-error');
                         el.style.display = 'block';
                     } else {
+                        console.log("value != ''")
                         el.classList.remove('mage-error');
                         if (el.closest('.control').querySelector('.mage-error')) {
+                            console.log("remove error")
                             el.closest('.control').querySelector('.mage-error').remove();
                         }
                         el.removeAttribute('aria-invalid');
@@ -482,6 +487,7 @@ window.onload  = function () {
                         }
                     }
                     if (!document.querySelector('.step-1.mage-error')) {
+                        console.log('not error')
                         for (let i = 0; i < inputs.length; i++) {
                             if (!inputs[i].classList.contains('step-1')) {
                                 inputs[i].closest('.field').style.display = 'block';
