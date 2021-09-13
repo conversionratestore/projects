@@ -7,7 +7,7 @@ font-weight: 500;
 }
 
 .stickers-block p{
-    margin:0;
+margin:0;
 }
 
 .stickers-block{
@@ -18,7 +18,7 @@ line-height: 1.3;
 text-align: center;
 color: #212529;
 padding: 90px 15px 72px 15px;
-margin: 0 0 60px 0;
+margin: 0 0 50px 0;
 }
 
 .stickers-main-title{
@@ -37,7 +37,6 @@ font-weight: 600;
 font-size: 18px !important;
 line-height: 1.3 !important;
 color: #212529 !important;
-
 }
 
 .stickers-question{
@@ -72,6 +71,7 @@ margin-bottom: 40px;
 width: 30%;
 margin-top: 10px;
 }
+
 .add-person-flexbox:not(:last-child){
 margin-right: 10px;
 }
@@ -108,7 +108,6 @@ text-align: center !important;
 letter-spacing: 0.05em !important;
 text-transform: uppercase !important;
 color: #0C0B0B !important;
-
 }
 
 .stickers-title{
@@ -165,12 +164,10 @@ text-align: center;
 letter-spacing: 0.05em;
 text-transform: uppercase;
 color: #FFFFFF !important;
-
 background: #FF3C7F;
 box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
 border-radius: 52px;
 border: 1px solid #FF3C7F;
-
 cursor: pointer;
 outline: none;
 }
@@ -189,17 +186,17 @@ max-width: 165px;
 }
 
 .parent-border{
-    border-top: 1px solid #D9D9D9;
-    border-bottom: 1px solid #D9D9D9;
-    margin-bottom:20px;
-    padding: 20px 0;
+border-top: 1px solid #D9D9D9;
+border-bottom: 1px solid #D9D9D9;
+margin-bottom:20px;
+padding: 20px 0;
 }
 
 .flex-box-total{
-    display: flex;
-    text-align: start;
-    justify-content: space-between;
-    align-items: center;
+display: flex;
+text-align: start;
+justify-content: space-between;
+align-items: center;
 }
 
 .flex-box-total:not(:last-child){
@@ -236,9 +233,8 @@ color: #000000 !important;
 margin-bottom:9px;
 }
 
-
 .hidden {
-  display: none;
+display: none;
 }
 
 </style>
@@ -322,7 +318,7 @@ let buzzpatchStickersOne = /*html*/ `
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stickers.svg" alt="stickers">
 
         <p class="stickers-price discount-var">$36.00 (40% OFF)</p>
-        <p class="stickers-foreach-text prive-var">$12 for each pack</p>
+        <p class="stickers-foreach-text each-var">$12 for each pack</p>
 
         <div class="flex-btn">
             <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy 3 packs</a>
@@ -389,7 +385,7 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     document.querySelector(".packs-var").textContent = `1 pack`;
     document.querySelector(".stickers-var").textContent = `60`;
     document.querySelector(".discount-var").textContent = `$14.99 (25% OFF)`;
-    document.querySelector(".prive-var").textContent = `$14.99 for each pack`;
+    document.querySelector(".each-var").textContent = `$14.99 for each pack`;
 
     document.querySelector(".total-month-var").textContent = selectedText;
     document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
@@ -400,7 +396,7 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     document.querySelector(".packs-var").textContent = `2 packs`;
     document.querySelector(".stickers-var").textContent = `120`;
     document.querySelector(".discount-var").textContent = `$27.00 (32.5% OFF)`;
-    document.querySelector(".prive-var").textContent = `$13.5 for each pack`;
+    document.querySelector(".each-var").textContent = `$13.5 for each pack`;
 
     document.querySelector(".total-month-var").textContent = selectedText;
     document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
@@ -411,7 +407,7 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     document.querySelector(".packs-var").textContent = `3 packs`;
     document.querySelector(".stickers-var").textContent = `180`;
     document.querySelector(".discount-var").textContent = `$36.00 (40% OFF)`;
-    document.querySelector(".prive-var").textContent = `$12.00 for each pack`;
+    document.querySelector(".each-var").textContent = `$12.00 for each pack`;
 
     document.querySelector(".total-month-var").textContent = selectedText;
     document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
@@ -422,7 +418,7 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     document.querySelector(".packs-var").textContent = `4 packs`;
     document.querySelector(".stickers-var").textContent = `240`;
     document.querySelector(".discount-var").textContent = `$42.00 (47.5% OFF)`;
-    document.querySelector(".prive-var").textContent = `$10.5 for each pack`;
+    document.querySelector(".each-var").textContent = `$10.5 for each pack`;
 
     document.querySelector(".total-month-var").textContent = selectedText;
     document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
