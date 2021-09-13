@@ -297,6 +297,14 @@ window.onload  = function () {
                     } else {
                         event.target.innerHTML = 'remove from basket';
                         event.target.classList.add('_disable');
+                        
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp - uiimprovements mobile',
+                        'eventAction': 'Click on add sample Button, upsale section',
+                        'eventLabel': 'Form on page Your Free Sample Order'
+                        });
                     }
                     event.target.closest('.actions').querySelector('.action').click();
                 });
@@ -394,6 +402,14 @@ window.onload  = function () {
             } else {
                 e.target.innerHTML = 'ORDER FREE SAMPLE';
             }
+            
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - uiimprovements mobile',
+            'eventAction': 'Click on the order Free sample button',
+            'eventLabel': 'Near to the add to basket button'
+            });
             document.querySelector('.wishlist-mobile-wrap .towishlist').click();
         })
         //click on ADD TO BASKET
@@ -402,7 +418,6 @@ window.onload  = function () {
         })
 
     }
-
 
     if (window.location.pathname.includes('freesamples')) {
         //change title form
@@ -445,6 +460,13 @@ window.onload  = function () {
         let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         document.querySelector('.btn-continue').addEventListener('click', (e) => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - uiimprovements mobile',
+            'eventAction': 'Click on add sample Button, upsale section',
+            'eventLabel': 'Form on page Your Free Sample Order'
+            });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
                     if (el.value == '') {
@@ -513,7 +535,37 @@ window.onload  = function () {
                 }
             }
         });
+        document.querySelectorAll('#order_form .actions-toolbar button')[1].addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - uiimprovements mobile',
+            'eventAction': 'Click on the get free smaples button',
+            'eventLabel': 'Form on page Your Free Sample Order'
+            });
+        })
     }
+
+
+    document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp - uiimprovements mobile',
+        'eventAction': 'Click on the Order free sample button',
+        'eventLabel': 'Popup: Your free sample order swatch'
+        });
+    })
+    document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp - uiimprovements mobile',
+        'eventAction': 'Click on the Save and Keep looking button',
+        'eventLabel': 'Popup: Your free sample order swatch'
+        });
+    })
+
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
@@ -532,3 +584,21 @@ window.onload  = function () {
         subtree: true
     });
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1709958,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'uiimprovements_mobile');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - uiimprovements mobile',
+    'eventAction': 'loaded'
+});
