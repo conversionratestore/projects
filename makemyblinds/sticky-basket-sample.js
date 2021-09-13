@@ -523,16 +523,18 @@ window.onload  = function () {
                     }
                     if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
-                            if (inputs[i].closest('.field') && !inputs[i].classList.contains('step-1')) {
-                                inputs[i].closest('.field').style.display = 'block';
-                                document.querySelector('#region').closest('.field').style.display = 'none';
-                                document.querySelector('#region_id').closest('.field').style.display = 'none';
-                                document.querySelectorAll('.button-yellow')[0].style.display = 'none';
-                                document.querySelectorAll('.button-yellow')[1].style.display = 'block';
-                                document.querySelector('.btn-back').style.display = 'flex';
-                                document.querySelector('.guest-order .header-wrapper').innerHTML = '2/2. Delivery Info';
-                            } else {
-                                inputs[i].closest('.field').style.display = 'none';
+                            if (inputs[i].closest('.field')) {
+                                if (!inputs[i].classList.contains('step-1')) {
+                                    inputs[i].closest('.field').style.display = 'block';
+                                    document.querySelector('#region').closest('.field').style.display = 'none';
+                                    document.querySelector('#region_id').closest('.field').style.display = 'none';
+                                    document.querySelectorAll('.button-yellow')[0].style.display = 'none';
+                                    document.querySelectorAll('.button-yellow')[1].style.display = 'block';
+                                    document.querySelector('.btn-back').style.display = 'flex';
+                                    document.querySelector('.guest-order .header-wrapper').innerHTML = '2/2. Delivery Info';
+                                } else {
+                                    inputs[i].closest('.field').style.display = 'none';
+                                }
                             }
                         }
                     }
