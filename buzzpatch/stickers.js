@@ -313,54 +313,43 @@ let buzzpatchStickersOne = /*html*/ `
                 </select>
             </li>
         </ol>
-        <a class="stickers-btn btn-first">calculate how many do i need</a>
+        <button class="stickers-btn btn-first">calculate how many do i need</button>
     </div>
 
     <div class="stickers-block-two hidden">
-        <h2 class="stickers-title">You are recommended <span class="acc-color">3 packs</span> that contain <span class="acc-color">180</span> stickers</h2>
+        <h2 class="stickers-title">You are recommended <span class="acc-color packs-var">3 packs</span> that contain <span class="acc-color stickers-var">180</span> stickers</h2>
         <p class="stickers-pack">60 stickers in 1 pack</p>
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stickers.svg" alt="stickers">
 
-        <p class="stickers-price">$36.00 (40% OFF)</p>
-        <p class="stickers-foreach-text">$12 for each pack</p>
+        <p class="stickers-price discount-var">$36.00 (40% OFF)</p>
+        <p class="stickers-foreach-text prive-var">$12 for each pack</p>
 
         <div class="flex-btn">
             <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy 3 packs</a>
-            <a class="stickers-btn small-btn other">see other packs</a>
+            <button class="stickers-btn small-btn other">see other packs</button>
         </div>
 
         <div class="parent-border">
             <div class="flex-box-total">
                 <p class="flex-text-total">Mosquito season duration:</p>
-                <span class="flex-span-total">3 months</span>
+                <span class="flex-span-total total-month-var">3 months</span>
             </div>
             <div class="flex-box-total">
                 <p class="flex-text-total">Total number of Buzzpatch stickers required:</p>
-                <span class="flex-span-total">180 stickers</span>
+                <span class="flex-span-total total-summ-var">180 stickers</span>
             </div>
         </div>
-        <div>
+        <!-- <div>
             <p class="text-season">Person <span>1</span> requires <span class="acc-color">30 stickers</span> per season</p>
             <p class="text-season">Person <span>2</span> requires <span class="acc-color">75 stickers</span> per season</p>
             <p class="text-season">Person <span>3</span> requires <span class="acc-color">85 stickers</span> per season</p>
-        </div>
+        </div> -->
     </div>
 </section>
 `;
 
 document.head.insertAdjacentHTML("beforeend", styleBuzzpatchstickers);
 document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStickersOne);
-
-const redirectUrl = [
-  {
-    firstPackage: "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl",
-    secondPackage: "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9",
-    thirdPackage: "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw",
-    fourthPack: "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw",
-  },
-];
-
-calculateSummForPack();
 
 //  variant Person
 document.querySelector("[data-person]").addEventListener("change", function () {
@@ -373,34 +362,85 @@ document.querySelector("[data-person]").addEventListener("change", function () {
   });
 });
 
-//
-
 function calculateSummForPack() {
   let total = 0;
-  document.querySelectorAll("[data-age]").forEach((el, idx) => {
-    if (!el.closest(".add-person-flexbox").classList.contains("hidden")) {
-      total += +el[idx].value;
-    }
+
+  document.querySelectorAll(".add-person-flexbox:not(.hidden) [data-age]").forEach((el, idx) => {
+    console.log(`value`, +el.value);
+    total += +el.value;
   });
   console.log(`total`, total);
 
   let monthValue = +document.querySelector("[data-month]").value;
   let calcSumm = total * monthValue;
   console.log(`calcSumm`, calcSumm);
+
+  return calcSumm;
 }
 
 // calculate how many do i need
-document.querySelector(".btn-first").addEventListener("click", function (e) {
-  e.preventDefault();
+document.querySelector(".btn-first").addEventListener("click", function () {
+  let summ = calculateSummForPack();
+
+  let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text;
+
+  if (60 >= summ) {
+    console.log(`1 pack`);
+    document.querySelector(".packs-var").textContent = `1 pack`;
+    document.querySelector(".stickers-var").textContent = `60`;
+    document.querySelector(".discount-var").textContent = `$14.99 (25% OFF)`;
+    document.querySelector(".prive-var").textContent = `$14.99 for each pack`;
+
+    document.querySelector(".total-month-var").textContent = selectedText;
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl");
+  } else if (120 >= summ) {
+    console.log(`2 pack`);
+    document.querySelector(".packs-var").textContent = `2 packs`;
+    document.querySelector(".stickers-var").textContent = `120`;
+    document.querySelector(".discount-var").textContent = `$27.00 (32.5% OFF)`;
+    document.querySelector(".prive-var").textContent = `$13.5 for each pack`;
+
+    document.querySelector(".total-month-var").textContent = selectedText;
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9");
+  } else if (180 >= summ) {
+    console.log(`3 pack`);
+    document.querySelector(".packs-var").textContent = `3 packs`;
+    document.querySelector(".stickers-var").textContent = `180`;
+    document.querySelector(".discount-var").textContent = `$36.00 (40% OFF)`;
+    document.querySelector(".prive-var").textContent = `$12.00 for each pack`;
+
+    document.querySelector(".total-month-var").textContent = selectedText;
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw");
+  } else {
+    console.log(`4 pack`);
+    document.querySelector(".packs-var").textContent = `4 packs`;
+    document.querySelector(".stickers-var").textContent = `240`;
+    document.querySelector(".discount-var").textContent = `$42.00 (47.5% OFF)`;
+    document.querySelector(".prive-var").textContent = `$10.5 for each pack`;
+
+    document.querySelector(".total-month-var").textContent = selectedText;
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw");
+  }
+
   document.querySelector(".stickers-block-first").classList.add("hidden");
   document.querySelector(".stickers-block-two").classList.remove("hidden");
-  console.log(`object`);
+
+  document.querySelector(".stickers-main-title").scrollIntoView({
+    block: "start",
+    behavior: "smooth",
+  });
 });
 
 // see other packs
-document.querySelector(".other").addEventListener("click", function (e) {
-  e.preventDefault();
-
+document.querySelector(".other").addEventListener("click", function () {
   document.querySelector("#getNow").scrollIntoView({
     block: "start",
     behavior: "smooth",
