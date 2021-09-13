@@ -17,8 +17,8 @@ font-size: 14px;
 line-height: 1.3;
 text-align: center;
 color: #212529;
-padding: 90px 15px 72px 15px;
-margin: 0 0 50px 0;
+padding: 90px 15px 52px 15px;
+margin: 0 0 52px 0;
 }
 
 .stickers-main-title{
@@ -187,8 +187,6 @@ max-width: 165px;
 
 .parent-border{
 border-top: 1px solid #D9D9D9;
-border-bottom: 1px solid #D9D9D9;
-margin-bottom:20px;
 padding: 20px 0;
 }
 
@@ -321,7 +319,7 @@ let buzzpatchStickersOne = /*html*/ `
         <p class="stickers-foreach-text each-var">$12 for each pack</p>
 
         <div class="flex-btn">
-            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy 3 packs</a>
+            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var">3 packs</span></a>
             <button class="stickers-btn small-btn other">see other packs</button>
         </div>
 
@@ -358,6 +356,7 @@ document.querySelector("[data-person]").addEventListener("change", function () {
   });
 });
 
+// calculate Summ For Pack
 function calculateSummForPack() {
   let total = 0;
 
@@ -381,8 +380,9 @@ document.querySelector(".btn-first").addEventListener("click", function () {
   let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text;
 
   if (60 >= summ) {
-    console.log(`1 pack`);
-    document.querySelector(".packs-var").textContent = `1 pack`;
+    document.querySelectorAll(".packs-var").forEach((el) => {
+      el.textContent = `1 pack`;
+    });
     document.querySelector(".stickers-var").textContent = `60`;
     document.querySelector(".discount-var").textContent = `$14.99 (25% OFF)`;
     document.querySelector(".each-var").textContent = `$14.99 for each pack`;
@@ -392,8 +392,9 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
     document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl");
   } else if (120 >= summ) {
-    console.log(`2 pack`);
-    document.querySelector(".packs-var").textContent = `2 packs`;
+    document.querySelectorAll(".packs-var").forEach((el) => {
+      el.textContent = `2 packs`;
+    });
     document.querySelector(".stickers-var").textContent = `120`;
     document.querySelector(".discount-var").textContent = `$27.00 (32.5% OFF)`;
     document.querySelector(".each-var").textContent = `$13.5 for each pack`;
@@ -403,8 +404,9 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
     document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9");
   } else if (180 >= summ) {
-    console.log(`3 pack`);
-    document.querySelector(".packs-var").textContent = `3 packs`;
+    document.querySelectorAll(".packs-var").forEach((el) => {
+      el.textContent = `3 packs`;
+    });
     document.querySelector(".stickers-var").textContent = `180`;
     document.querySelector(".discount-var").textContent = `$36.00 (40% OFF)`;
     document.querySelector(".each-var").textContent = `$12.00 for each pack`;
@@ -414,13 +416,19 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
     document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw");
   } else {
-    console.log(`4 pack`);
-    document.querySelector(".packs-var").textContent = `4 packs`;
+    document.querySelectorAll(".packs-var").forEach((el) => {
+      el.textContent = `4 packs`;
+    });
     document.querySelector(".stickers-var").textContent = `240`;
     document.querySelector(".discount-var").textContent = `$42.00 (47.5% OFF)`;
     document.querySelector(".each-var").textContent = `$10.5 for each pack`;
 
     document.querySelector(".total-month-var").textContent = selectedText;
+
+    if (summ >= 240) {
+      summ = 240;
+    }
+
     document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
 
     document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw");
