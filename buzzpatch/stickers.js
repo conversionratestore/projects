@@ -18,7 +18,7 @@ line-height: 1.3;
 text-align: center;
 color: #212529;
 padding: 90px 15px 72px 15px;
-margin: 0 0 72px 0;
+margin: 0 0 60px 0;
 }
 
 .stickers-main-title{
