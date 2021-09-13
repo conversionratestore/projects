@@ -2,6 +2,13 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .hp_strip__container ul i {
+            display: block;
+        }
+        .hp_strip__container {
+            margin: 0 -16px;
+            width: calc(100% + 32px);
+        }
         .actions .button-yellow._disable {
             background-color: #e7e7e7;
         }
