@@ -200,7 +200,7 @@ if (twentyFourHours > 0) {
     // if exist create observer
     if (loadMoreTarget) {
         let loadMoreObserver = new MutationObserver(function (mutations) {
-                drawSale('.product-list__box-price .price span.money[data-currency-usd]');
+            drawSale('.product-list__box-price .price span.money[data-currency-usd]');
         });
 
         loadMoreObserver.observe(loadMoreTarget, config);
@@ -224,7 +224,6 @@ if (twentyFourHours > 0) {
             money.classList.remove('money_sale');
         });
     });
-
 
     /* timer */
     let checkHeaderInterval = setInterval(() => {
@@ -250,6 +249,8 @@ if (twentyFourHours > 0) {
                         clearInterval(timerInterval);
 
                         CDSetupInit.removeIndividualCoupon('MM10CRO', this);
+                        CDSetupInit.removeIndividualCoupon('MM10CRO-2', this);
+                        CDSetupInit.removeIndividualCoupon('MM10CRO-3', this);
 
                         document.querySelector('.countdown').remove();
 
