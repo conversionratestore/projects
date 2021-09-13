@@ -334,6 +334,15 @@ window.onload  = function () {
                 padding: 16px;
                 display: flex;
                 z-index: 999999;
+                opacity: 0;
+                transition: all 0.3s ease;
+                transform: translateY(20px);
+                pointer-events: none;
+            }
+            .sticky-btns.active {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
             }
             .sticky-btns button {
                 border-radius: 8px;
@@ -416,6 +425,15 @@ window.onload  = function () {
         document.querySelector('.sticky-btns .btn-yellow').addEventListener('click', () => {
             document.querySelector('#product-addtocart-button').click();
         })
+
+        //hide sticky button on scrollY > 200, else show
+        document.addEventListener('scroll', (e) => {
+            if (window.scrollY > 200) {
+                document.querySelector('.sticky-btns').classList.add('active');
+            } else {
+                document.querySelector('.sticky-btns').classList.remove('active');
+            }
+        });
 
     }
 
