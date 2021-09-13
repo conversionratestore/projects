@@ -347,12 +347,41 @@ document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStick
 
 //  variant Person
 document.querySelector("[data-person]").addEventListener("change", function () {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - How many stickers need mobile",
+    eventAction: "Click on dropdown toggle in question 1",
+  });
+
   document.querySelectorAll(".add-person-flexbox").forEach((el, idx) => {
     if (+document.querySelector("[data-person]").value > idx) {
       el.classList.remove("hidden");
     } else {
       el.classList.add("hidden");
     }
+  });
+});
+
+//  variant Age
+document.querySelectorAll("[data-age]").forEach((el) => {
+  el.addEventListener("change", function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - How many stickers need mobile",
+      eventAction: "Click on dropdown toggle in question 2",
+    });
+  });
+});
+
+//  variant Month
+document.querySelector("[data-month]").addEventListener("change", function () {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - How many stickers need mobile",
+    eventAction: "Click on dropdown toggle in question 3",
   });
 });
 
@@ -373,8 +402,15 @@ function calculateSummForPack() {
   return calcSumm;
 }
 
-// calculate how many do i need
+// btn calculate how many do i need
 document.querySelector(".btn-first").addEventListener("click", function () {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - How many stickers need mobile",
+    eventAction: "Click on button calculate how many do you need",
+  });
+
   let summ = calculateSummForPack();
 
   let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text;
@@ -443,10 +479,54 @@ document.querySelector(".btn-first").addEventListener("click", function () {
   });
 });
 
-// see other packs
+// button buy 1-4 packs
+document.querySelector("a.small-btn").addEventListener("click", function () {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - How many stickers need mobile",
+    eventAction: "Click on button buy 3 packs",
+  });
+});
+
+// btn see other packs
 document.querySelector(".other").addEventListener("click", function () {
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - How many stickers need mobile",
+    eventAction: "Click on button see other packs",
+  });
+
   document.querySelector("#getNow").scrollIntoView({
     block: "start",
     behavior: "smooth",
   });
 });
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp - с",
+  eventAction: "loaded",
+});
+
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2247058, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj("trigger", "how_many_stickers_need_mobile");
