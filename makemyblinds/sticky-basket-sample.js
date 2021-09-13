@@ -505,7 +505,7 @@ window.onload  = function () {
                     }
                     if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
-                            if (!inputs[i].classList.contains('step-1')) {
+                            if (inputs[i].closest('.field') && !inputs[i].classList.contains('step-1')) {
                                 inputs[i].closest('.field').style.display = 'block';
                                 document.querySelector('#region').closest('.field').style.display = 'none';
                                 document.querySelector('#region_id').closest('.field').style.display = 'none';
