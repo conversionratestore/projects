@@ -38,7 +38,7 @@ font-size: 18px !important;
 line-height: 1.3 !important;
 color: #212529 !important;
 margin-left: 30px !important;
-margin-right: 5px !important;
+margin-right: 10px !important;
 }
 
 .stickers-question{
