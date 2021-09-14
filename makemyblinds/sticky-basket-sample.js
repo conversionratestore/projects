@@ -1,4 +1,4 @@
-window.onload  = function () { 
+window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -256,7 +256,7 @@ window.onload  = function () {
                 </div>`
         }
     ]
-   
+
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
             document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.png" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.png" alt="delivered"></div>`)
@@ -269,7 +269,7 @@ window.onload  = function () {
                     <h3>You may also like to add</h3>
                     <ol class="product-like-items"></ol>
                 </div>`);
-                
+
             let item = document.querySelectorAll('#wishlist-sidebar .product-image-photo');
             for (let i = 0; i < like.length; i++) {
                 document.querySelector('.product-like-items').insertAdjacentHTML('beforeend',`
@@ -296,7 +296,7 @@ window.onload  = function () {
                         document.querySelectorAll('.product-like-item .action')[i].setAttribute('title','Remove'); // Add to Wish List
                     }
                 }
-                
+
                 document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', (event) => {
                     if (event.target.innerHTML == 'remove from basket') {
                         event.target.innerHTML = 'ADD FREE SAMPLE';
@@ -304,13 +304,13 @@ window.onload  = function () {
                     } else {
                         event.target.innerHTML = 'remove from basket';
                         event.target.classList.add('_disable');
-                        
+
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp - uiimprovements mobile',
-                        'eventAction': 'Click on add sample Button, upsale section',
-                        'eventLabel': 'Form on page Your Free Sample Order'
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - uiimprovements mobile',
+                            'eventAction': 'Click on add sample Button, upsale section',
+                            'eventLabel': 'Form on page Your Free Sample Order'
                         });
                     }
                     event.target.closest('.actions').querySelector('.action').click();
@@ -418,13 +418,13 @@ window.onload  = function () {
             } else {
                 e.target.innerHTML = 'ORDER FREE SAMPLE';
             }
-            
+
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - uiimprovements mobile',
-            'eventAction': 'Click on the order Free sample button',
-            'eventLabel': 'Near to the add to basket button'
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - uiimprovements mobile',
+                'eventAction': 'Click on the order Free sample button',
+                'eventLabel': 'Near to the add to basket button'
             });
             document.querySelector('.wishlist-mobile-wrap .towishlist').click();
         })
@@ -482,36 +482,20 @@ window.onload  = function () {
             inputs = document.querySelectorAll('#order_form input'),
             email = document.querySelector('#email_address');
 
-        let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let patternNumber = /^[0-9]+$/;
 
         document.querySelector('.btn-continue').addEventListener('click', (e) => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - uiimprovements mobile',
-            'eventAction': 'Click on add sample Button, upsale section',
-            'eventLabel': 'Form on page Your Free Sample Order'
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - uiimprovements mobile',
+                'eventAction': 'Click on add sample Button, upsale section',
+                'eventLabel': 'Form on page Your Free Sample Order'
             });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
-                    if (el.value == '') {
-                        if (!el.classList.contains('mage-error')) {
-                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
-                        }
-                        el.classList.add('mage-error');
-                        el.setAttribute('aria-invalid','true');
-                        el.setAttribute('aria-describedby','first_name-error');
-                        el.style.display = 'block';
-                    } else {
-                        el.classList.remove('mage-error');
-                        if (el.closest('.control').querySelector('.mage-error')) {
-                            el.closest('.control').querySelector('.mage-error').remove();
-                        }
-                        el.removeAttribute('aria-invalid');
-                        el.removeAttribute('aria-describedby');
-                    }
-
-                    if(!pattern.test(email.value)) {
+                    if(!patternEmail.test(email.value)) {
                         if (!email.classList.contains('mage-error')) {
                             email.closest('.control').insertAdjacentHTML('beforeend', `<div for="email_address" generated="true" class="mage-error" id="email_address-error">Please enter a valid email address.</div>`);
                         } else {
@@ -527,6 +511,38 @@ window.onload  = function () {
                             email.removeAttribute('aria-describedby');
                             email.nextElementSibling.remove();
                         }
+                    }
+                    if (patternNumber.test(el.value)) {
+                        if (!el.classList.contains('mage-error')) {
+                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">Сan't contain digits only data</div>`)
+                        }
+                        el.classList.add('mage-error');
+                        el.setAttribute('aria-invalid','true');
+                        el.setAttribute('aria-describedby','first_name-error');
+                        el.style.display = 'block';
+                    } else {
+                        el.classList.remove('mage-error');
+                        if (el.closest('.control').querySelector('.mage-error')) {
+                            el.closest('.control').querySelector('.mage-error').remove();
+                        }
+                        el.removeAttribute('aria-invalid');
+                        el.removeAttribute('aria-describedby');
+                    }
+                    if (el.value == '') {
+                        if (!el.classList.contains('mage-error')) {
+                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
+                        }
+                        el.classList.add('mage-error');
+                        el.setAttribute('aria-invalid','true');
+                        el.setAttribute('aria-describedby','first_name-error');
+                        el.style.display = 'block';
+                    } else {
+                        el.classList.remove('mage-error');
+                        if (el.closest('.control').querySelector('.mage-error')) {
+                            el.closest('.control').querySelector('.mage-error').remove();
+                        }
+                        el.removeAttribute('aria-invalid');
+                        el.removeAttribute('aria-describedby');
                     }
                     if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
@@ -565,10 +581,10 @@ window.onload  = function () {
         document.querySelectorAll('#order_form .actions-toolbar button')[1].addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - uiimprovements mobile',
-            'eventAction': 'Click on the get free smaples button',
-            'eventLabel': 'Form on page Your Free Sample Order'
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - uiimprovements mobile',
+                'eventAction': 'Click on the get free smaples button',
+                'eventLabel': 'Form on page Your Free Sample Order'
             });
         })
     }
@@ -577,19 +593,19 @@ window.onload  = function () {
     document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp - uiimprovements mobile',
-        'eventAction': 'Click on the Order free sample button',
-        'eventLabel': 'Popup: Your free sample order swatch'
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - uiimprovements mobile',
+            'eventAction': 'Click on the Order free sample button',
+            'eventLabel': 'Popup: Your free sample order swatch'
         });
     })
     document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp - uiimprovements mobile',
-        'eventAction': 'Click on the Save and Keep looking button',
-        'eventLabel': 'Popup: Your free sample order swatch'
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - uiimprovements mobile',
+            'eventAction': 'Click on the Save and Keep looking button',
+            'eventLabel': 'Popup: Your free sample order swatch'
         });
     })
 
@@ -620,8 +636,8 @@ window.onload  = function () {
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('trigger', 'uiimprovements_mobile');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'uiimprovements_mobile');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
