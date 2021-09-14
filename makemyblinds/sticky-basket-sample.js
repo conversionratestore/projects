@@ -5,14 +5,20 @@ window.onload  = function () {
         .free-samples-modal .samples-block {
             position: relative;
         }
+        .free-samples-modal .samples-block.before:before {
+            opacity: 1;
+        }
         .free-samples-modal .samples-block:before {
+            opacity: 0;
+            transition: opacity 0.3s ease;
             content: '';
             position: absolute;
             left: 0;
-            bottom: 0;
-            height: 100px;
+            bottom: 0; 
+            height: 140px;
             width: 100%;
-            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.2) 30%);
+            pointer-events: none;
+            background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0));
         }
         #launcher.active {
             bottom: 80px!important;
@@ -640,6 +646,13 @@ window.onload  = function () {
                     'eventAction': 'Click on the Save and Keep looking button',
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
+            })
+            document.addEventListener('scroll', (e) => {
+                if (document.querySelector('#wishlist-sidebar').scrollHeight - document.querySelector('#wishlist-sidebar').scrollTop === document.querySelector('#wishlist-sidebar').clientHeight) {
+                    document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
+                } else {
+                    document.querySelector('.free-samples-modal .samples-block').classList.add('before');
+                }
             })
         }
         mut.observe(document, {
