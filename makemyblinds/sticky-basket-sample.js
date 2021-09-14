@@ -3,7 +3,7 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
         .control input[type=number] {
-            width: 100%
+            max-width: 100%;
         }
         .hp_strip__container ul i {
             display: block;
