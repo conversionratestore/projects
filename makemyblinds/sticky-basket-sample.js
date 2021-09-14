@@ -2,10 +2,10 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
-        #wishlist-sidebar {
+        .free-samples-modal .samples-block {
             position: relative;
         }
-        #wishlist-sidebar:before {
+        .free-samples-modal .samples-block:before {
             content: '';
             position: absolute;
             left: 0;
