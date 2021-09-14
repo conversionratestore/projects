@@ -5,6 +5,7 @@ window.onload  = function () {
         .free-samples-modal .product-items {
             margin: 15px -10px 0 0;
             padding: 0 5px 0 0;
+            overflow-y: scroll;
             appearance: none;
             -webkit-appearance: none;
         }
@@ -622,7 +623,7 @@ window.onload  = function () {
             });
         })
     }
-    
+
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
