@@ -2,6 +2,10 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        #launcher.active {
+            bottom: 80px!important;
+            transition: bottom 0.3s ease;
+        }
         .control input[type=number] {
             max-width: 100%;
         }
@@ -343,7 +347,7 @@ window.onload  = function () {
                 background: #FFFFFF;
                 padding: 16px;
                 display: flex;
-                z-index: 999999;
+                z-index: 9;
                 opacity: 0;
                 transition: all 0.3s ease;
                 transform: translateY(20px);
@@ -440,11 +444,12 @@ window.onload  = function () {
         document.addEventListener('scroll', (e) => {
             if (window.scrollY > 200) {
                 document.querySelector('.sticky-btns').classList.add('active');
+                document.querySelector('#launcher').classList.add('active');
             } else {
                 document.querySelector('.sticky-btns').classList.remove('active');
+                document.querySelector('#launcher').classList.remove('active');
             }
         });
-
     }
 
     if (window.location.pathname.includes('freesamples')) {
