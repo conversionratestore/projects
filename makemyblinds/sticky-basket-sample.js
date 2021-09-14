@@ -467,10 +467,11 @@ window.onload  = function () {
         document.querySelector('#order_form input#city').closest('.field').style.display = 'none';
         document.querySelector('#order_form input#zip').closest('.field').style.display = 'none';
 
+        //change position btns
         document.querySelector('#address-full-container .field:last-child').after(document.querySelector('#street_1').closest('.field'));
         document.querySelector('#address-full-container .field:last-child').after(document.querySelectorAll('#address-full-container .field')[0]);
 
-
+        //change text btn
         document.querySelectorAll('.button-yellow')[1].innerHTML = 'GET FREE SAMPLES';
 
         document.querySelectorAll('.button-yellow')[1].insertAdjacentHTML('afterend',`
@@ -501,7 +502,7 @@ window.onload  = function () {
             });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
-                    if (el.value == '') {
+                    if (el.value == '' && !patternNumber.test(el.value)) {
                         if (!el.classList.contains('mage-error')) {
                             el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
                         }
@@ -594,7 +595,6 @@ window.onload  = function () {
             });
         })
     }
-
 
     document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
         window.dataLayer = window.dataLayer || [];
