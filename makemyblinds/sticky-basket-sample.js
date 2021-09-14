@@ -2,6 +2,17 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        #wishlist-sidebar {
+            position: relative;
+        }
+        #wishlist-sidebar:before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 60px;
+            width: 100%;
+            background: linear-gradient(0deg, rgba(152, 207, 195, 1) 60%, rgba(255, 255, 255, 0) 40%);
+        }
         #launcher.active {
             bottom: 80px!important;
             transition: bottom 0.3s ease;
