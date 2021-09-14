@@ -5,6 +5,9 @@ window.onload  = function () {
         .free-samples-modal .product-items::-webkit-scrollbar {
             width: 6px;
         }
+        .free-samples-modal .product-items::-webkit-scrollbar-thumb {
+            background-color: #e8e8e8;
+        }
         #launcher.active {
             bottom: 80px!important;
             transition: bottom 0.3s ease;
