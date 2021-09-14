@@ -3,7 +3,8 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
         .free-samples-modal .product-items::-webkit-scrollbar {
-            width: 6px;
+            width: 6px!important;
+            display: block!important;
         }
         .free-samples-modal .product-items::-webkit-scrollbar-thumb {
             background-color: #e8e8e8;
