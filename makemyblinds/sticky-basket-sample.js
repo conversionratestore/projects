@@ -17,6 +17,7 @@ window.onload  = function () {
             bottom: 0; 
             height: 140px;
             width: 100%;
+            z-index: 2;
             pointer-events: none;
             background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0));
         }
