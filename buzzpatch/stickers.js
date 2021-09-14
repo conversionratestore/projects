@@ -315,7 +315,7 @@ let buzzpatchStickersOne = /*html*/ `
     <div class="stickers-block-two hidden">
         <h2 class="stickers-title">You are recommended <span class="acc-color packs-var">3 packs</span> that contain <span class="acc-color stickers-var">180</span> stickers</h2>
         <p class="stickers-pack">60 stickers in 1 pack</p>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sticker.png" alt="stickers" width=225>
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sticker.png" alt="stickers" width="225">
 
         <p class="stickers-price discount-var">$36.00 (40% OFF)</p>
         <p class="stickers-foreach-text each-var">$12 for each pack</p>
