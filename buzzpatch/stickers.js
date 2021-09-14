@@ -577,9 +577,9 @@ function scrolling(upSelector) {
       speed;
 
     if (to > from) {
-      speed = 10;
+      speed = 30;
     } else {
-      speed = -10;
+      speed = -30;
     }
 
     let move = setInterval(function () {
