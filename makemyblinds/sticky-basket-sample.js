@@ -6,6 +6,7 @@ window.onload  = function () {
             position: relative;
         }
         #wishlist-sidebar:before {
+            content: '';
             position: absolute;
             left: 0;
             bottom: 0;
