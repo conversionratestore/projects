@@ -478,6 +478,8 @@ window.onload  = function () {
             Back
         </button>`);
 
+        document.querySelector("#phone").setAttribute('type','number');
+        
         let inputsStepOne = document.querySelectorAll('#order_form input.step-1'),
             inputs = document.querySelectorAll('#order_form input'),
             email = document.querySelector('#email_address');
@@ -495,7 +497,7 @@ window.onload  = function () {
             });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
-                  
+
                     if (el.value == '') {
                         if (!el.classList.contains('mage-error')) {
                             el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
