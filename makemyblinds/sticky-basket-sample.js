@@ -10,9 +10,9 @@ window.onload  = function () {
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 60px;
+            height: 80px;
             width: 100%;
-            background: linear-gradient(0deg, rgba(152, 207, 195, 1) 60%, rgba(255, 255, 255, 0) 40%);
+            background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.2) 30%);
         }
         #launcher.active {
             bottom: 80px!important;
