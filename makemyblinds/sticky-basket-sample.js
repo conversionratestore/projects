@@ -576,6 +576,10 @@ window.onload  = function () {
         });
 
         document.querySelector('.btn-back').addEventListener('click', (e) => {
+            document.querySelector('.guest-order').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
             for (let i = 0; i < inputs.length; i++) {
                 if (inputs[i].classList.contains('step-1')) {
                     inputs[i].closest('.field').style.display = 'block';
@@ -587,10 +591,6 @@ window.onload  = function () {
                     inputs[i].closest('.field').style.display = 'none';
                 }
             }
-            document.querySelector('.guest-order').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
         });
         document.querySelectorAll('#order_form .actions-toolbar button')[1].addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
