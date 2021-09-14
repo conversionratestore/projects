@@ -2,26 +2,6 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
-        .free-samples-modal .product-items {
-            margin: 15px -10px 0 0;
-            padding: 0 5px 0 0;
-            appearance: none!important;
-            -webkit-appearance: none!important;
-        }
-        .free-samples-modal .product-items::-webkit-scrollbar {
-            appearance: none!important;
-            -webkit-appearance: none!important;
-            width: 4px!important;
-            display: block!important;
-        }
-        .free-samples-modal .product-items::-webkit-scrollbar-thumb {
-            appearance: none!important;
-            -webkit-appearance: none!important;
-            display: block!important;
-            background-color: #bfbfbf!important;
-            width: 4px!important;
-            border-radius: 4px!important;
-        }
         #launcher.active {
             bottom: 80px!important;
             transition: bottom 0.3s ease;
@@ -522,7 +502,7 @@ window.onload  = function () {
             dataLayer.push({
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp - uiimprovements mobile',
-                'eventAction': 'Click on add sample Button, upsale section',
+                'eventAction': 'Click on the continue button',
                 'eventLabel': 'Form on page Your Free Sample Order'
             });
             inputsStepOne.forEach((el) => {
