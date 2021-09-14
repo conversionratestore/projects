@@ -192,7 +192,8 @@ window.onload  = function () {
                 height: 60px;
             }
             .product-like-item .button-yellow {
-                max-width: 98px;
+                max-width: 102px;
+                padding: 7px 3px;
             }
             .like-block h3 {
                 font-size: 24px;
