@@ -647,7 +647,7 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
-            document.addEventListener('scroll', (e) => {
+            document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
                 if (document.querySelector('#wishlist-sidebar').scrollHeight - document.querySelector('#wishlist-sidebar').scrollTop === document.querySelector('#wishlist-sidebar').clientHeight) {
                     document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
                 } else {
