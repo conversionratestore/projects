@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .control input[type=number] {
+            width: 100%
+        }
         .hp_strip__container ul i {
             display: block;
         }
@@ -479,7 +482,7 @@ window.onload  = function () {
         </button>`);
 
         document.querySelector("#phone").setAttribute('type','number');
-        
+
         let inputsStepOne = document.querySelectorAll('#order_form input.step-1'),
             inputs = document.querySelectorAll('#order_form input'),
             email = document.querySelector('#email_address');
