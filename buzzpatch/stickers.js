@@ -37,6 +37,7 @@ font-weight: 600;
 font-size: 18px !important;
 line-height: 1.3 !important;
 color: #212529 !important;
+margin-left: 30px !important;
 }
 
 .stickers-question{
