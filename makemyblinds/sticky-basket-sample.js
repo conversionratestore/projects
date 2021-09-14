@@ -17,7 +17,9 @@ window.onload  = function () {
         .free-samples-modal .product-items::-webkit-scrollbar-thumb {
             appearance: none;
             -webkit-appearance: none;
+            display: block!important;
             background-color: #bfbfbf;
+            width: 4px!important;
             border-radius: 4px;
         }
         #launcher.active {
