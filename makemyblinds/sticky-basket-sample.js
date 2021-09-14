@@ -622,32 +622,32 @@ window.onload  = function () {
             });
         })
     }
-
-    document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - uiimprovements mobile',
-            'eventAction': 'Click on the Order free sample button',
-            'eventLabel': 'Popup: Your free sample order swatch'
-        });
-    })
-    document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - uiimprovements mobile',
-            'eventAction': 'Click on the Save and Keep looking button',
-            'eventLabel': 'Popup: Your free sample order swatch'
-        });
-    })
-
+    
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
-        if (document.querySelector('.free-samples-modal._show') ) {
+        if (document.querySelector('.free-samples-modal._show') && document.querySelectorAll('.th-button-carry')[0]) {
             mut.disconnect();
             samplesModal();
+
+            document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - uiimprovements mobile',
+                    'eventAction': 'Click on the Order free sample button',
+                    'eventLabel': 'Popup: Your free sample order swatch'
+                });
+            })
+            document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - uiimprovements mobile',
+                    'eventAction': 'Click on the Save and Keep looking button',
+                    'eventLabel': 'Popup: Your free sample order swatch'
+                });
+            })
         }
         mut.observe(document, {
             childList: true,
