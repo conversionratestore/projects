@@ -11,7 +11,7 @@ window.onload  = function () {
         .free-samples-modal .samples-block:before {
             opacity: 0;
             transition: opacity 0.3s ease;
-            content: '';
+            /*content: '';*/
             position: absolute;
             left: 0;
             bottom: 0; 
