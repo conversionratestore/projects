@@ -568,6 +568,11 @@ window.onload  = function () {
                     }
                 }
             });
+
+            document.querySelector('.guest-order').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         });
 
         document.querySelector('.btn-back').addEventListener('click', (e) => {
@@ -582,6 +587,10 @@ window.onload  = function () {
                     inputs[i].closest('.field').style.display = 'none';
                 }
             }
+            document.querySelector('.guest-order').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         });
         document.querySelectorAll('#order_form .actions-toolbar button')[1].addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
