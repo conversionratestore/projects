@@ -262,7 +262,7 @@ window.onload  = function () {
 
     function samplesModal() {
         if (document.querySelector('.samples-block-wrapper .th-button-order')) {
-            document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.svg" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.png" alt="delivered"></div>`)
+            document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.svg" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.svg" alt="delivered"></div>`)
             document.querySelector('#freesamples-modal .th-button-carry').before(document.querySelector('.samples-block-wrapper .th-button-order'));
             document.querySelector('#freesamples-modal .th-button-carry').innerHTML = 'SAVE & KEEP LOOKING';
 
