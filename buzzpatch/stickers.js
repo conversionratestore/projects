@@ -491,55 +491,12 @@ document.querySelector("a.small-btn").addEventListener("click", function () {
 });
 
 // btn see other packs
-// document.querySelector(".other").addEventListener("click", function () {
-//   window.dataLayer = window.dataLayer || [];
-//   dataLayer.push({
-//     event: "event-to-ga",
-//     eventCategory: "Exp - How many stickers need mobile",
-//     eventAction: "Click on button see other packs",
-//   });
-
-//   document.querySelector("#getNow").scrollIntoView({
-//     block: "start",
-//     behavior: "smooth",
-//   });
-// });
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp - с",
-  eventAction: "loaded",
-});
-
-(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      (h.hj.q = h.hj.q || []).push(arguments);
-    };
-  h._hjSettings = { hjid: 2247058, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-window.hj =
-  window.hj ||
-  function () {
-    (hj.q = hj.q || []).push(arguments);
-  };
-hj("trigger", "how_many_stickers_need_mobile");
-
-//  /////////////////////////////////////////////////////////////////
-// Pure js scrolling
 scrolling(".other");
 
+// Pure js scrolling
 function scrolling(upSelector) {
   // Scrolling with raf
-
-  let links = document.querySelectorAll('[href^="#"]'),
+  let links = document.querySelectorAll(upSelector),
     speed = 0.3;
 
   links.forEach((link) => {
@@ -578,65 +535,31 @@ function scrolling(upSelector) {
       }
     });
   });
-
-  // const upElem = document.querySelector(upSelector);
-
-  // const element = document.documentElement,
-  //   body = document.body;
-
-  // function calcScroll() {
-  //   upElem.addEventListener("click", function (e) {
-  //     window.dataLayer = window.dataLayer || [];
-  //     dataLayer.push({
-  //       event: "event-to-ga",
-  //       eventCategory: "Exp - How many stickers need mobile",
-  //       eventAction: "Click on button see other packs",
-  //     });
-
-  //     let scrollTop = Math.round(body.scrollTop || element.scrollTop);
-
-  //     if (this.hash !== "") {
-  //       e.preventDefault();
-
-  //       let hashElement = document.querySelector(this.hash),
-  //         hashElementTop = 0;
-
-  //       while (hashElement.offsetParent) {
-  //         hashElementTop += hashElement.offsetTop;
-  //         hashElement = hashElement.offsetParent;
-  //       }
-
-  //       hashElementTop = Math.round(hashElementTop);
-
-  //       smoothScroll(scrollTop, hashElementTop, this.hash);
-  //     }
-  //   });
-  // }
-
-  // function smoothScroll(from, to, hash) {
-  //   let timeInterval = 1,
-  //     prevScrollTop,
-  //     speed;
-
-  //   if (to > from) {
-  //     speed = 30;
-  //   } else {
-  //     speed = -30;
-  //   }
-
-  //   let move = setInterval(function () {
-  //     let scrollTop = Math.round(body.scrollTop || element.scrollTop);
-
-  //     if (prevScrollTop === scrollTop || (to > from && scrollTop >= to) || (to < from && scrollTop <= to)) {
-  //       clearInterval(move);
-  //       history.replaceState(history.state, document.title, location.href.replace(/#.*$/g, "") + hash);
-  //     } else {
-  //       body.scrollTop += speed;
-  //       element.scrollTop += speed;
-  //       prevScrollTop = scrollTop;
-  //     }
-  //   }, timeInterval);
-  // }
-
-  // calcScroll();
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp - с",
+  eventAction: "loaded",
+});
+
+(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      (h.hj.q = h.hj.q || []).push(arguments);
+    };
+  h._hjSettings = { hjid: 2247058, hjsv: 6 };
+  a = o.getElementsByTagName("head")[0];
+  r = o.createElement("script");
+  r.async = 1;
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+  a.appendChild(r);
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+window.hj =
+  window.hj ||
+  function () {
+    (hj.q = hj.q || []).push(arguments);
+  };
+hj("trigger", "how_many_stickers_need_mobile");
