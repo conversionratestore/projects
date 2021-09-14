@@ -502,7 +502,7 @@ window.onload  = function () {
             });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
-                    if (el.value == '' && !patternNumber.test(el.value)) {
+                    if (el.value == '') {
                         if (!el.classList.contains('mage-error')) {
                             el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
                         }
@@ -543,14 +543,7 @@ window.onload  = function () {
                         el.setAttribute('aria-invalid','true');
                         el.setAttribute('aria-describedby','first_name-error');
                         el.style.display = 'block';
-                    } else {
-                        el.classList.remove('mage-error');
-                        if (el.closest('.control').querySelector('.mage-error')) {
-                            el.closest('.control').querySelector('.mage-error').remove();
-                        }
-                        el.removeAttribute('aria-invalid');
-                        el.removeAttribute('aria-describedby');
-                    }
+                    } 
                     if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
                             if (inputs[i].closest('.field')) {
