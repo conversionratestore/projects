@@ -454,7 +454,7 @@ window.onload  = function () {
         document.querySelector('.actions-toolbar').insertAdjacentHTML('afterbegin',`<button type="button" class="button-yellow btn-continue">CONTINUE</button>`);
         //hidden button send
         document.querySelectorAll('#order_form .actions-toolbar button')[1].hidden = true;
-
+        document.querySelectorAll('#order_form .actions-toolbar button')[1].classList.add('check');
         //add class for step 1
         document.querySelector('#order_form input#first_name').classList.add('step-1');
         document.querySelector('#order_form input#last_name').classList.add('step-1');
@@ -543,7 +543,7 @@ window.onload  = function () {
                         el.setAttribute('aria-invalid','true');
                         el.setAttribute('aria-describedby','first_name-error');
                         el.style.display = 'block';
-                    } 
+                    }
                     if (!document.querySelector('.step-1.mage-error')) {
                         for (let i = 0; i < inputs.length; i++) {
                             if (inputs[i].closest('.field')) {
@@ -563,6 +563,28 @@ window.onload  = function () {
                     }
                 }
             });
+        });
+
+        document.querySelector('#order_form .actions-toolbar button.check').addEventListener('click', (e) => {
+            e.preventDefault();
+
+            for (let i = 0; i < inputs.length; i++) {
+                if (!patternNumber.test(inputs[i].value)) {
+                    e.click();
+                } else {
+                    if (inputs[i].closest('.field')) {
+                        if (!inputs[i].classList.contains('step-1')) {
+                            if (!inputs[i].classList.contains('mage-error')) {
+                                inputs[i].closest('.control').insertAdjacentHTML('beforeend', `<div for="${inputs[i].getAttribute('name')}" generated="true" class="mage-error" id="${inputs[i].getAttribute('name')}-error">Сan't contain digits only data</div>`)
+                            }
+                            inputs[i].classList.add('mage-error');
+                            inputs[i].setAttribute('aria-invalid','true');
+                            inputs[i].setAttribute('aria-describedby','first_name-error');
+                            // inputs[i].style.display = 'block';
+                        }
+                    }
+                }
+            }
         });
 
         document.querySelector('.btn-back').addEventListener('click', (e) => {
