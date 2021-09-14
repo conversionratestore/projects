@@ -565,27 +565,27 @@ window.onload  = function () {
             });
         });
 
-        document.querySelector('#order_form .actions-toolbar button.check').addEventListener('click', (e) => {
-            e.preventDefault();
-
-            for (let i = 0; i < inputs.length; i++) {
-                if (!patternNumber.test(inputs[i].value)) {
-                    e.click();
-                } else {
-                    if (inputs[i].closest('.field')) {
-                        if (!inputs[i].classList.contains('step-1')) {
-                            if (!inputs[i].classList.contains('mage-error')) {
-                                inputs[i].closest('.control').insertAdjacentHTML('beforeend', `<div for="${inputs[i].getAttribute('name')}" generated="true" class="mage-error" id="${inputs[i].getAttribute('name')}-error">Сan't contain digits only data</div>`)
-                            }
-                            inputs[i].classList.add('mage-error');
-                            inputs[i].setAttribute('aria-invalid','true');
-                            inputs[i].setAttribute('aria-describedby','first_name-error');
-                            // inputs[i].style.display = 'block';
-                        }
-                    }
-                }
-            }
-        });
+        // document.querySelector('#order_form .actions-toolbar button.check').addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //
+        //     for (let i = 0; i < inputs.length; i++) {
+        //         if (!patternNumber.test(inputs[i].value)) {
+        //             e.click();
+        //         } else {
+        //             if (inputs[i].closest('.field')) {
+        //                 if (!inputs[i].classList.contains('step-1')) {
+        //                     if (!inputs[i].classList.contains('mage-error')) {
+        //                         inputs[i].closest('.control').insertAdjacentHTML('beforeend', `<div for="${inputs[i].getAttribute('name')}" generated="true" class="mage-error" id="${inputs[i].getAttribute('name')}-error">Сan't contain digits only data</div>`)
+        //                     }
+        //                     inputs[i].classList.add('mage-error');
+        //                     inputs[i].setAttribute('aria-invalid','true');
+        //                     inputs[i].setAttribute('aria-describedby','first_name-error');
+        //                     // inputs[i].style.display = 'block';
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
 
         document.querySelector('.btn-back').addEventListener('click', (e) => {
             for (let i = 0; i < inputs.length; i++) {
