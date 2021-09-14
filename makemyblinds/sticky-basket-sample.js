@@ -10,7 +10,7 @@ window.onload  = function () {
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 80px;
+            height: 100px;
             width: 100%;
             background: linear-gradient(0deg, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.2) 30%);
         }
