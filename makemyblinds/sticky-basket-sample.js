@@ -5,23 +5,22 @@ window.onload  = function () {
         .free-samples-modal .product-items {
             margin: 15px -10px 0 0;
             padding: 0 5px 0 0;
-            overflow-y: scroll;
-            appearance: none;
-            -webkit-appearance: none;
+            appearance: none!important;
+            -webkit-appearance: none!important;
         }
         .free-samples-modal .product-items::-webkit-scrollbar {
-            appearance: none;
-            -webkit-appearance: none;
+            appearance: none!important;
+            -webkit-appearance: none!important;
             width: 4px!important;
             display: block!important;
         }
         .free-samples-modal .product-items::-webkit-scrollbar-thumb {
-            appearance: none;
-            -webkit-appearance: none;
+            appearance: none!important;
+            -webkit-appearance: none!important;
             display: block!important;
-            background-color: #bfbfbf;
+            background-color: #bfbfbf!important;
             width: 4px!important;
-            border-radius: 4px;
+            border-radius: 4px!important;
         }
         #launcher.active {
             bottom: 80px!important;
