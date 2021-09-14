@@ -321,7 +321,7 @@ let buzzpatchStickersOne = /*html*/ `
 
         <div class="flex-btn">
             <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var">3 packs</span></a>
-            <button class="stickers-btn small-btn other">see other packs</button>
+            <a href="#getNow"" class="stickers-btn small-btn other">see other packs</a>
         </div>
 
         <div class="parent-border">
@@ -491,19 +491,19 @@ document.querySelector("a.small-btn").addEventListener("click", function () {
 });
 
 // btn see other packs
-document.querySelector(".other").addEventListener("click", function () {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp - How many stickers need mobile",
-    eventAction: "Click on button see other packs",
-  });
+// document.querySelector(".other").addEventListener("click", function () {
+//   window.dataLayer = window.dataLayer || [];
+//   dataLayer.push({
+//     event: "event-to-ga",
+//     eventCategory: "Exp - How many stickers need mobile",
+//     eventAction: "Click on button see other packs",
+//   });
 
-  document.querySelector("#getNow").scrollIntoView({
-    block: "start",
-    behavior: "smooth",
-  });
-});
+//   document.querySelector("#getNow").scrollIntoView({
+//     block: "start",
+//     behavior: "smooth",
+//   });
+// });
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
@@ -531,3 +531,112 @@ window.hj =
     (hj.q = hj.q || []).push(arguments);
   };
 hj("trigger", "how_many_stickers_need_mobile");
+
+//  /////////////////////////////////////////////////////////////////
+// Pure js scrolling
+scrolling(".other");
+
+function scrolling(upSelector) {
+  // Scrolling with raf
+
+  let links = document.querySelectorAll('[href^="#"]'),
+    speed = 0.3;
+
+  links.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - How many stickers need mobile",
+        eventAction: "Click on button see other packs",
+      });
+
+      event.preventDefault();
+
+      let widthTop = document.documentElement.scrollTop,
+        hash = this.hash,
+        toBlock = document.querySelector(hash).getBoundingClientRect().top,
+        start = null;
+
+      requestAnimationFrame(step);
+
+      function step(time) {
+        if (start === null) {
+          start = time;
+        }
+
+        let progress = time - start,
+          r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock);
+
+        document.documentElement.scrollTo(0, r);
+
+        if (r != widthTop + toBlock) {
+          requestAnimationFrame(step);
+        } else {
+          location.hash = hash;
+        }
+      }
+    });
+  });
+
+  // const upElem = document.querySelector(upSelector);
+
+  // const element = document.documentElement,
+  //   body = document.body;
+
+  // function calcScroll() {
+  //   upElem.addEventListener("click", function (e) {
+  //     window.dataLayer = window.dataLayer || [];
+  //     dataLayer.push({
+  //       event: "event-to-ga",
+  //       eventCategory: "Exp - How many stickers need mobile",
+  //       eventAction: "Click on button see other packs",
+  //     });
+
+  //     let scrollTop = Math.round(body.scrollTop || element.scrollTop);
+
+  //     if (this.hash !== "") {
+  //       e.preventDefault();
+
+  //       let hashElement = document.querySelector(this.hash),
+  //         hashElementTop = 0;
+
+  //       while (hashElement.offsetParent) {
+  //         hashElementTop += hashElement.offsetTop;
+  //         hashElement = hashElement.offsetParent;
+  //       }
+
+  //       hashElementTop = Math.round(hashElementTop);
+
+  //       smoothScroll(scrollTop, hashElementTop, this.hash);
+  //     }
+  //   });
+  // }
+
+  // function smoothScroll(from, to, hash) {
+  //   let timeInterval = 1,
+  //     prevScrollTop,
+  //     speed;
+
+  //   if (to > from) {
+  //     speed = 30;
+  //   } else {
+  //     speed = -30;
+  //   }
+
+  //   let move = setInterval(function () {
+  //     let scrollTop = Math.round(body.scrollTop || element.scrollTop);
+
+  //     if (prevScrollTop === scrollTop || (to > from && scrollTop >= to) || (to < from && scrollTop <= to)) {
+  //       clearInterval(move);
+  //       history.replaceState(history.state, document.title, location.href.replace(/#.*$/g, "") + hash);
+  //     } else {
+  //       body.scrollTop += speed;
+  //       element.scrollTop += speed;
+  //       prevScrollTop = scrollTop;
+  //     }
+  //   }, timeInterval);
+  // }
+
+  // calcScroll();
+}
