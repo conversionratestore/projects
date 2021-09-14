@@ -2,12 +2,17 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .free-samples-modal .product-items {
+            margin: 15px -10px 0 0;
+            padding: 0 5px 0 0;
+        }
         .free-samples-modal .product-items::-webkit-scrollbar {
-            width: 6px!important;
+            width: 4px!important;
             display: block!important;
         }
         .free-samples-modal .product-items::-webkit-scrollbar-thumb {
-            background-color: #e8e8e8;
+            background-color: #bfbfbf;
+            border-radius: 4px;
         }
         #launcher.active {
             bottom: 80px!important;
