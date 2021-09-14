@@ -495,6 +495,23 @@ window.onload  = function () {
             });
             inputsStepOne.forEach((el) => {
                 if (el.dataset.validate.includes('"required": true')) {
+                  
+                    if (el.value == '') {
+                        if (!el.classList.contains('mage-error')) {
+                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
+                        }
+                        el.classList.add('mage-error');
+                        el.setAttribute('aria-invalid','true');
+                        el.setAttribute('aria-describedby','first_name-error');
+                        el.style.display = 'block';
+                    } else {
+                        el.classList.remove('mage-error');
+                        if (el.closest('.control').querySelector('.mage-error')) {
+                            el.closest('.control').querySelector('.mage-error').remove();
+                        }
+                        el.removeAttribute('aria-invalid');
+                        el.removeAttribute('aria-describedby');
+                    }
                     if(!patternEmail.test(email.value)) {
                         if (!email.classList.contains('mage-error')) {
                             email.closest('.control').insertAdjacentHTML('beforeend', `<div for="email_address" generated="true" class="mage-error" id="email_address-error">Please enter a valid email address.</div>`);
@@ -515,22 +532,6 @@ window.onload  = function () {
                     if (patternNumber.test(el.value)) {
                         if (!el.classList.contains('mage-error')) {
                             el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">Сan't contain digits only data</div>`)
-                        }
-                        el.classList.add('mage-error');
-                        el.setAttribute('aria-invalid','true');
-                        el.setAttribute('aria-describedby','first_name-error');
-                        el.style.display = 'block';
-                    } else {
-                        el.classList.remove('mage-error');
-                        if (el.closest('.control').querySelector('.mage-error')) {
-                            el.closest('.control').querySelector('.mage-error').remove();
-                        }
-                        el.removeAttribute('aria-invalid');
-                        el.removeAttribute('aria-describedby');
-                    }
-                    if (el.value == '') {
-                        if (!el.classList.contains('mage-error')) {
-                            el.closest('.control').insertAdjacentHTML('beforeend', `<div for="${el.getAttribute('name')}" generated="true" class="mage-error" id="${el.getAttribute('name')}-error">This is a required field.</div>`)
                         }
                         el.classList.add('mage-error');
                         el.setAttribute('aria-invalid','true');
