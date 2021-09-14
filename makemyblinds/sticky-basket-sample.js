@@ -5,12 +5,18 @@ window.onload  = function () {
         .free-samples-modal .product-items {
             margin: 15px -10px 0 0;
             padding: 0 5px 0 0;
+            appearance: none;
+            -webkit-appearance: none;
         }
         .free-samples-modal .product-items::-webkit-scrollbar {
+            appearance: none;
+            -webkit-appearance: none;
             width: 4px!important;
             display: block!important;
         }
         .free-samples-modal .product-items::-webkit-scrollbar-thumb {
+            appearance: none;
+            -webkit-appearance: none;
             background-color: #bfbfbf;
             border-radius: 4px;
         }
