@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .free-samples-modal .product-items::-webkit-scrollbar {
+            width: 6px;
+        }
         #launcher.active {
             bottom: 80px!important;
             transition: bottom 0.3s ease;
