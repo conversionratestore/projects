@@ -31,7 +31,7 @@ window.onload  = function () {
             pointer-events: none;
             background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0));
         }
-        #launcher.active {
+        #launcher.active, #notice-cookie-block.active {
             bottom: 80px!important;
             transition: bottom 0.3s ease;
         }
@@ -483,9 +483,11 @@ window.onload  = function () {
             if (window.scrollY > 200) {
                 document.querySelector('.sticky-btns').classList.add('active');
                 document.querySelector('#launcher').classList.add('active');
+                document.querySelector('#notice-cookie-block').classList.add('active');
             } else {
                 document.querySelector('.sticky-btns').classList.remove('active');
                 document.querySelector('#launcher').classList.remove('active');
+                document.querySelector('#notice-cookie-block').classList.remove('active');
             }
         });
     }
