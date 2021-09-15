@@ -362,7 +362,7 @@ window.onload  = function () {
                     setTimeout(() => {
                         document.body.classList.remove('ajax-loading');
                         document.body.setAttribute('aria-busy', 'false');
-                    },1000);
+                    },1300);
 
                 });
             }
