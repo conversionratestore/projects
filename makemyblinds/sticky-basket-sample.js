@@ -3,7 +3,7 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
         .free-samples-modal .product-items {
-            max-height: 393px;
+            max-height: 295px;
         }
         .free-samples-modal .product-items .product-item .product-item-photo {
             width: 100%;
@@ -653,13 +653,13 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
-            if (document.querySelectorAll('.product-item').length > 4) {
+            if (document.querySelectorAll('.product-item').length > 3) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             } else {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
             }
             document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
-                if ((e.target.scrollHeight - e.target.scrollTop).toFixed(0) == e.target.clientHeight) {
+                if (Math.ceil(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {
                     document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
                 } else {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
