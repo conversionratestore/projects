@@ -154,13 +154,15 @@ justify-content: space-around;
 }
 
 .stickers-btn{
-display: inline-block;
+display: inline-flex;
 width: 100%;
 max-width: 343px;
-padding: 25px 20px;
+height: 65px;
+align-items: center;
+justify-content: center;
 font-family: DINEngschrift LT;
 font-weight: 400;
-font-size: 16px;
+font-size: 14px;
 line-height: 1;
 text-align: center;
 letter-spacing: 0.05em;
@@ -174,6 +176,17 @@ cursor: pointer;
 outline: none;
 }
 
+
+@media (max-width: 321px) {
+.stickers-title {
+font-size: 23px !important;
+}
+
+.modal-form-stickers{
+padding: 30px 20px !important;
+}
+}
+
 .stickers-btn.other{
 background: #FFFFFF;
 color: #FF3C7F !important;
@@ -183,13 +196,13 @@ margin-left: 5px !important;
 }
 
 .stickers-btn.small-btn{
-margin: 40px 0;
+margin: 0 0 40px 0;
 max-width: 165px;
 }
 
 .parent-border{
 border-top: 1px solid #D9D9D9;
-padding: 20px 0;
+padding: 20px 0 0 0;
 }
 
 .flex-box-total{
@@ -210,6 +223,7 @@ font-weight: 600 !important;
 font-size: 14px !important;
 line-height: 130% !important;
 color: #212529 !important;
+margin: 0 !important;
 }
 
 
@@ -235,6 +249,76 @@ margin-bottom:9px;
 
 .hidden {
 display: none;
+}
+
+
+.backdrop-modal {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 1055;
+width: 100%;
+height: 100%;
+opacity: 1;
+overflow-y: scroll;
+background-color: rgba(0, 0, 0, 0.59);
+transition: all 0.8s ease 0s;
+}
+
+.backdrop-modal.is-hidden {
+opacity: 0;
+pointer-events: none;
+}
+
+.modal-form-stickers {
+display: flex;
+min-height: 100%;
+align-items: center;
+justify-content: center;
+padding: 30px 10px;
+}
+
+.modal-form-content{
+position: relative;
+max-width: 343px;
+margin-right: auto;
+margin-left: auto;
+background-color: #FFFFFF;
+text-align: center;
+transition: all 0.8s ease 0s;
+}
+
+.modal-open {
+overflow: hidden;
+}
+
+.btn-close-popup {
+position: absolute;
+top: -16px;
+right: -10px;
+display: flex;
+padding: 0;
+margin: 0;
+width: 30px;
+height: 30px;
+
+justify-content: center;
+align-items: center;
+border: 1px solid #181818;
+border-radius: 50%;
+outline: none;
+cursor: pointer;
+color: white;
+background-color: #181818;
+box-shadow: 0px 4px 12px rgb(213 202 202 / 76%);
+}
+
+.icon-close-popup {
+fill: currentColor;
+}
+
+.popup-box-stickers{
+padding: 30px 15px 30px 15px;
 }
 
 </style>
@@ -311,40 +395,53 @@ let buzzpatchStickersOne = /*html*/ `
         </ol>
         <button class="stickers-btn btn-first">calculate how many do i need</button>
     </div>
-
-    <div class="stickers-block-two hidden">
-        <h2 class="stickers-title">You are recommended <span class="acc-color packs-var">3 packs</span> that contain <span class="acc-color stickers-var">180</span> stickers</h2>
-        <p class="stickers-pack">60 stickers in 1 pack</p>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sticker.png" alt="stickers" width="225">
-
-        <p class="stickers-price discount-var">$36.00 (40% OFF)</p>
-        <p class="stickers-foreach-text each-var">$12 for each pack</p>
-
-        <div class="flex-btn">
-            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var">3 packs</span></a>
-            <a href="#getNow"" class="stickers-btn small-btn other">see other packs</a>
-        </div>
-
-        <div class="parent-border">
-            <div class="flex-box-total">
-                <p class="flex-text-total">Mosquito season duration:</p>
-                <span class="flex-span-total total-month-var">3 months</span>
-            </div>
-            <div class="flex-box-total">
-                <p class="flex-text-total">Total number of Buzzpatch stickers required:</p>
-                <span class="flex-span-total total-summ-var">180 stickers</span>
-            </div>
-        </div>
-        <!-- <div>
-            <p class="text-season">Person <span>1</span> requires <span class="acc-color">30 stickers</span> per season</p>
-            <p class="text-season">Person <span>2</span> requires <span class="acc-color">75 stickers</span> per season</p>
-            <p class="text-season">Person <span>3</span> requires <span class="acc-color">85 stickers</span> per season</p>
-        </div> -->
-    </div>
 </section>
 `;
 
+let popUpStickers = /*html*/ `
+<div class="backdrop-modal is-hidden" data-modal>
+  <form class="modal-form-stickers">
+    <div class=modal-form-content>
+      <div class="popup-box-stickers">
+        <button type="button" class="btn-close-popup">
+          <svg class="icon-close-popup" width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.90473 1.12841L5.59556 4.43758L8.96715 7.80917L7.79109 8.98522L4.41951 5.61364L1.12656 8.90659L0.068036 7.84807L3.36099 4.55512L0.0129204 1.20705L1.18897 0.0309971L4.53704 3.37906L7.84621 0.0698909L8.90473 1.12841Z" fill="#ffffff"/>
+          </svg>          
+        </button>
+
+        <div class="stickers-block-two">
+          <h2 class="stickers-title">You are recommended <span class="acc-color packs-var">3 packs</span> that contain <span class="acc-color stickers-var">180</span> stickers</h2>
+          <p class="stickers-pack">60 stickers in 1 pack</p>
+          <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sticker.png" alt="stickers" width="225">
+
+          <p class="stickers-price discount-var">$36.00 (40% OFF)</p>
+          <p class="stickers-foreach-text each-var">$12 for each pack</p>
+
+          <div class="flex-btn">
+            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var">3 packs</span></a>
+            <a href="#getNow"" class="stickers-btn small-btn other">see other packs</a>
+          </div>
+
+          <div class="parent-border">
+            <div class="flex-box-total">
+              <p class="flex-text-total">Mosquito season duration:</p>
+              <span class="flex-span-total total-month-var">3 months</span>
+            </div>
+
+            <div class="flex-box-total">
+              <p class="flex-text-total">Total number of Buzzpatch stickers required:</p>
+              <span class="flex-span-total total-summ-var">180 stickers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
 document.head.insertAdjacentHTML("beforeend", styleBuzzpatchstickers);
+document.body.insertAdjacentHTML("afterbegin", popUpStickers);
 document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStickersOne);
 
 //  variant Person
@@ -413,6 +510,8 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     eventAction: "Click on button calculate how many do you need",
   });
 
+  showModalStickers();
+
   let summ = calculateSummForPack();
 
   let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text;
@@ -471,25 +570,19 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
     document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw");
   }
-
-  document.querySelector(".stickers-block-first").classList.add("hidden");
-  document.querySelector(".stickers-block-two").classList.remove("hidden");
-
-  document.querySelector(".stickers-main-title").scrollIntoView({
-    block: "start",
-    behavior: "smooth",
-  });
 });
 
 // button buy 1-4 packs
-document.querySelector("a.small-btn").addEventListener("click", function () {
-  window.dataLayer = window.dataLayer || [];
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp - How many stickers need mobile",
-    eventAction: "Click on button buy 3 packs",
+if (document.querySelector("a.small-btn")) {
+  document.querySelector("a.small-btn").addEventListener("click", function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - How many stickers need mobile",
+      eventAction: "Click on button buy 3 packs",
+    });
   });
-});
+}
 
 // btn see other packs
 scrolling(".other");
@@ -498,7 +591,7 @@ scrolling(".other");
 function scrolling(upSelector) {
   // Scrolling with raf
   let links = document.querySelectorAll(upSelector),
-    speed = 0.3;
+    speed = 0.9;
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
@@ -508,6 +601,9 @@ function scrolling(upSelector) {
         eventCategory: "Exp - How many stickers need mobile",
         eventAction: "Click on button see other packs",
       });
+
+      document.querySelector(".backdrop-modal").classList.add("is-hidden");
+      document.body.style.overflow = "";
 
       event.preventDefault();
 
@@ -564,3 +660,25 @@ window.hj =
     (hj.q = hj.q || []).push(arguments);
   };
 hj("trigger", "how_many_stickers_need_mobile");
+
+// show Modal Stickers
+function showModalStickers() {
+  document.querySelector(".btn-close-popup").addEventListener("click", function () {
+    document.querySelector(".backdrop-modal").classList.add("is-hidden");
+    document.body.style.overflow = "";
+  });
+
+  document.querySelector(".modal-form-stickers").addEventListener("click", function (e) {
+    if (e.target === document.querySelector(".modal-form-stickers")) {
+      document.querySelector(".backdrop-modal").classList.add("is-hidden");
+      document.body.style.overflow = "";
+    }
+  });
+
+  showModal(".backdrop-modal");
+
+  function showModal(selector) {
+    document.querySelector(selector).classList.remove("is-hidden");
+    document.body.style.overflow = "hidden";
+  }
+}
