@@ -664,6 +664,13 @@ hj("trigger", "how_many_stickers_need_mobile");
 // show Modal Stickers
 function showModalStickers() {
   document.querySelector(".btn-close-popup").addEventListener("click", function () {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - How many stickers need mobile",
+      eventAction: "Click on button close popup",
+    });
+
     document.querySelector(".backdrop-modal").classList.add("is-hidden");
     document.body.style.overflow = "";
   });
