@@ -595,7 +595,7 @@ scrolling(".other");
 function scrolling(upSelector) {
   // Scrolling with raf
   let links = document.querySelectorAll(upSelector),
-    speed = 0.7;
+    speed = 0.5;
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
