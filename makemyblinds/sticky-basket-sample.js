@@ -11,7 +11,7 @@ window.onload  = function () {
         .free-samples-modal .samples-block:before {
             opacity: 0;
             transition: opacity 0.3s ease;
-            /*content: '';*/
+            content: '';
             position: absolute;
             left: 0;
             bottom: 0; 
@@ -648,8 +648,13 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
+            if (document.querySelectorAll('.product-item').length > 5) {
+                document.querySelector('.free-samples-modal .samples-block').classList.add('before');
+            } else {
+                document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
+            }
             document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
-                if (document.querySelector('#wishlist-sidebar').scrollHeight - document.querySelector('#wishlist-sidebar').scrollTop === document.querySelector('#wishlist-sidebar').clientHeight) {
+                if (e.scrollHeight - e.scrollTop === e.clientHeight) {
                     document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
                 } else {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
