@@ -326,7 +326,7 @@ margin-left: 3px;
 }
 
 </style>
-`;
+`
 
 let buzzpatchStickersOne = /*html*/ `
 <section class="stickers-block">
@@ -400,7 +400,7 @@ let buzzpatchStickersOne = /*html*/ `
         <button class="stickers-btn btn-first">calculate how many do i need</button>
     </div>
 </section>
-`;
+`
 
 let popUpStickers = /*html*/ `
 <div class="backdrop-modal is-hidden" data-modal>
@@ -442,254 +442,246 @@ let popUpStickers = /*html*/ `
     </div>
   </form>
 </div>
-`;
+`
 
-document.head.insertAdjacentHTML("beforeend", styleBuzzpatchstickers);
-document.body.insertAdjacentHTML("afterbegin", popUpStickers);
-document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStickersOne);
+document.head.insertAdjacentHTML("beforeend", styleBuzzpatchstickers)
+document.body.insertAdjacentHTML("afterbegin", popUpStickers)
+document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStickersOne)
 
 //  variant Person
 document.querySelector("[data-person]").addEventListener("change", function () {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on dropdown toggle in question 1",
-  });
+  })
 
   document.querySelectorAll(".add-person-flexbox").forEach((el, idx) => {
     if (+document.querySelector("[data-person]").value > idx) {
-      el.classList.remove("hidden");
+      el.classList.remove("hidden")
     } else {
-      el.classList.add("hidden");
+      el.classList.add("hidden")
     }
-  });
-});
+  })
+})
 
 //  variant Age
 document.querySelectorAll("[data-age]").forEach((el) => {
   el.addEventListener("change", function () {
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - How many stickers need mobile",
       eventAction: "Click on dropdown toggle in question 2",
-    });
-  });
-});
+    })
+  })
+})
 
 //  variant Month
 document.querySelector("[data-month]").addEventListener("change", function () {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on dropdown toggle in question 3",
-  });
-});
+  })
+})
 
 // calculate Summ For Pack
 function calculateSummForPack() {
-  let total = 0;
+  let total = 0
 
   document.querySelectorAll(".add-person-flexbox:not(.hidden) [data-age]").forEach((el, idx) => {
-    console.log(`value`, +el.value);
-    total += +el.value;
-  });
-  console.log(`total`, total);
+    console.log(`value`, +el.value)
+    total += +el.value
+  })
+  console.log(`total`, total)
 
-  let monthValue = +document.querySelector("[data-month]").value;
-  let calcSumm = total * monthValue;
-  console.log(`calcSumm`, calcSumm);
+  let monthValue = +document.querySelector("[data-month]").value
+  let calcSumm = total * monthValue
+  console.log(`calcSumm`, calcSumm)
 
-  return calcSumm;
+  return calcSumm
 }
 
 // btn calculate how many do i need
 document.querySelector(".btn-first").addEventListener("click", function () {
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on button calculate how many do you need",
-  });
+  })
 
-  showModalStickers();
+  showModalStickers()
 
-  let summ = calculateSummForPack();
+  let summ = calculateSummForPack()
 
-  let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text;
+  let selectedText = document.querySelector("[data-month]").options[document.querySelector("[data-month]").selectedIndex].text
 
   if (60 >= summ) {
     document.querySelectorAll(".packs-var").forEach((el) => {
-      el.textContent = `1 pack`;
-    });
-    document.querySelector(".stickers-var").textContent = `60`;
-    document.querySelector(".discount-var").textContent = `$14.99 (25% OFF)`;
-    document.querySelector(".each-var").textContent = `$14.99 for each pack`;
+      el.textContent = `1 pack`
+    })
+    document.querySelector(".stickers-var").textContent = `60`
+    document.querySelector(".discount-var").textContent = `$14.99 (25% OFF)`
+    document.querySelector(".each-var").textContent = `$14.99 for each pack`
 
-    document.querySelector(".total-month-var").textContent = selectedText;
-    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+    document.querySelector(".total-month-var").textContent = selectedText
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`
 
-    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl");
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/ZusYB2LRugSE6FJGQ9Xl")
   } else if (120 >= summ) {
     document.querySelectorAll(".packs-var").forEach((el) => {
-      el.textContent = `2 packs`;
-    });
-    document.querySelector(".stickers-var").textContent = `120`;
-    document.querySelector(".discount-var").textContent = `$27.00 (32.5% OFF)`;
-    document.querySelector(".each-var").textContent = `$13.5 for each pack`;
+      el.textContent = `2 packs`
+    })
+    document.querySelector(".stickers-var").textContent = `120`
+    document.querySelector(".discount-var").textContent = `$27.00 (32.5% OFF)`
+    document.querySelector(".each-var").textContent = `$13.5 for each pack`
 
-    document.querySelector(".total-month-var").textContent = selectedText;
-    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+    document.querySelector(".total-month-var").textContent = selectedText
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`
 
-    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9");
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/7Bgb8Ox8zIEicZJYJxY9")
   } else if (180 >= summ) {
     document.querySelectorAll(".packs-var").forEach((el) => {
-      el.textContent = `3 packs`;
-    });
-    document.querySelector(".stickers-var").textContent = `180`;
-    document.querySelector(".discount-var").textContent = `$36.00 (40% OFF)`;
-    document.querySelector(".each-var").textContent = `$12.00 for each pack`;
+      el.textContent = `3 packs`
+    })
+    document.querySelector(".stickers-var").textContent = `180`
+    document.querySelector(".discount-var").textContent = `$36.00 (40% OFF)`
+    document.querySelector(".each-var").textContent = `$12.00 for each pack`
 
-    document.querySelector(".total-month-var").textContent = selectedText;
-    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+    document.querySelector(".total-month-var").textContent = selectedText
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`
 
-    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw");
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw")
   } else {
     document.querySelectorAll(".packs-var").forEach((el) => {
-      el.textContent = `4 packs`;
-    });
-    document.querySelector(".stickers-var").textContent = `240`;
-    document.querySelector(".discount-var").textContent = `$42.00 (47.5% OFF)`;
-    document.querySelector(".each-var").textContent = `$10.5 for each pack`;
+      el.textContent = `4 packs`
+    })
+    document.querySelector(".stickers-var").textContent = `240`
+    document.querySelector(".discount-var").textContent = `$42.00 (47.5% OFF)`
+    document.querySelector(".each-var").textContent = `$10.5 for each pack`
 
-    document.querySelector(".total-month-var").textContent = selectedText;
+    document.querySelector(".total-month-var").textContent = selectedText
 
     if (summ >= 240) {
-      summ = 240;
+      summ = 240
     }
 
-    document.querySelector(".total-summ-var").textContent = `${summ} stickers`;
+    document.querySelector(".total-summ-var").textContent = `${summ} stickers`
 
-    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw");
+    document.querySelector("a.small-btn").setAttribute("href", "https://buzzpatch.com/a/secure/checkout/4jpyLOrOz8c9rVMspZBw")
   }
-});
+})
 
 // button buy 1-4 packs
 if (document.querySelector("a.small-btn")) {
   document.querySelector("a.small-btn").addEventListener("click", function () {
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - How many stickers need mobile",
       eventAction: "Click on button buy 3 packs",
-    });
-  });
+    })
+  })
 }
 
 // btn see other packs
-scrolling(".other");
+scrolling(".other")
 
 // Pure js scrolling
 function scrolling(upSelector) {
   // Scrolling with raf
   let links = document.querySelectorAll(upSelector),
-    speed = 0.5;
+    speed = 0.5
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || []
       dataLayer.push({
         event: "event-to-ga",
         eventCategory: "Exp - How many stickers need mobile",
         eventAction: "Click on button see other packs",
-      });
+      })
 
-      document.querySelector(".backdrop-modal").classList.add("is-hidden");
-      document.body.style.overflow = "";
+      document.querySelector(".backdrop-modal").classList.add("is-hidden")
+      document.body.style.overflow = ""
 
-      event.preventDefault();
+      event.preventDefault()
 
       let widthTop = document.documentElement.scrollTop,
         hash = this.hash,
         toBlock = document.querySelector(hash).getBoundingClientRect().top,
-        start = null;
+        start = null
 
-      requestAnimationFrame(step);
+      requestAnimationFrame(step)
 
       function step(time) {
         if (start === null) {
-          start = time;
+          start = time
         }
 
         let progress = time - start,
-          r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock);
+          r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock)
 
-        document.documentElement.scrollTo(0, r);
+        document.documentElement.scrollTo(0, r)
 
         if (r != widthTop + toBlock) {
-          requestAnimationFrame(step);
+          requestAnimationFrame(step)
         } else {
-          location.hash = hash;
+          location.hash = hash
         }
       }
-    });
-  });
+    })
+  })
 }
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
   eventCategory: "Exp - с",
   eventAction: "loaded",
-});
-
-(function (h, o, t, j, a, r) {
+})
+;(function (h, o, t, j, a, r) {
   h.hj =
     h.hj ||
     function () {
-      (h.hj.q = h.hj.q || []).push(arguments);
-    };
-  h._hjSettings = { hjid: 2247058, hjsv: 6 };
-  a = o.getElementsByTagName("head")[0];
-  r = o.createElement("script");
-  r.async = 1;
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-  a.appendChild(r);
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 2247058, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
 window.hj =
   window.hj ||
   function () {
-    (hj.q = hj.q || []).push(arguments);
-  };
-hj("trigger", "how_many_stickers_need_mobile");
+    ;(hj.q = hj.q || []).push(arguments)
+  }
+hj("trigger", "how_many_stickers_need_mobile")
 
 // show Modal Stickers
 function showModalStickers() {
   document.querySelector(".btn-close-popup").addEventListener("click", function () {
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - How many stickers need mobile",
       eventAction: "Click on button close popup",
-    });
+    })
 
-    document.querySelector(".backdrop-modal").classList.add("is-hidden");
-    document.body.style.overflow = "";
-  });
+    document.querySelector(".backdrop-modal").classList.add("is-hidden")
+    document.body.style.overflow = ""
+  })
 
-  // document.querySelector(".modal-form-stickers").addEventListener("click", function (e) {
-  //   if (e.target === document.querySelector(".modal-form-stickers")) {
-  //     document.querySelector(".backdrop-modal").classList.add("is-hidden");
-  //     document.body.style.overflow = "";
-  //   }
-  // });
-
-  showModal(".backdrop-modal");
+  showModal(".backdrop-modal")
 
   function showModal(selector) {
-    document.querySelector(selector).classList.remove("is-hidden");
-    document.body.style.overflow = "hidden";
+    document.querySelector(selector).classList.remove("is-hidden")
+    document.body.style.overflow = "hidden"
   }
 }
