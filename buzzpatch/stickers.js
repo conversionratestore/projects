@@ -679,12 +679,12 @@ function showModalStickers() {
     document.body.style.overflow = "";
   });
 
-  document.querySelector(".modal-form-stickers").addEventListener("click", function (e) {
-    if (e.target === document.querySelector(".modal-form-stickers")) {
-      document.querySelector(".backdrop-modal").classList.add("is-hidden");
-      document.body.style.overflow = "";
-    }
-  });
+  // document.querySelector(".modal-form-stickers").addEventListener("click", function (e) {
+  //   if (e.target === document.querySelector(".modal-form-stickers")) {
+  //     document.querySelector(".backdrop-modal").classList.add("is-hidden");
+  //     document.body.style.overflow = "";
+  //   }
+  // });
 
   showModal(".backdrop-modal");
 
