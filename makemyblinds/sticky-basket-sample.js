@@ -1,7 +1,16 @@
+//class="ajax-loading" , aria-busy="true"
+//aria-busy="false"
+
+//<div class="loading-mask" data-role="loader" style="display: none;"><div class="loader"><img alt="Loading..." src="https://www.makemyblinds.co.uk/static/version1631688544/frontend/Creation/mmb_child/en_GB/images/loader-2.gif"><p>Please wait...</p></div></div>
+
 window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .ajax-loading .loading-mask{
+            display: flex;
+            z-index: 99999999;
+        }
         .free-samples-modal .product-items {
             max-height: 295px;
         }
@@ -345,7 +354,16 @@ window.onload  = function () {
                             'eventLabel': 'Form on page Your Free Sample Order'
                         });
                     }
+
                     event.target.closest('.actions').querySelector('.action').click();
+                    document.body.classList.add('ajax-loading');
+                    document.body.setAttribute('aria-busy', 'true');
+
+                    setTimeout(() => {
+                        document.body.classList.remove('ajax-loading');
+                        document.body.setAttribute('aria-busy', 'false');
+                    },1000);
+
                 });
             }
         }
