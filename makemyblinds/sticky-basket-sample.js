@@ -653,7 +653,7 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
-            if (document.querySelectorAll('.product-item').length > 5) {
+            if (document.querySelectorAll('.product-item').length > 4) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             } else {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
