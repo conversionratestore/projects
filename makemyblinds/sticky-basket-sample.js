@@ -654,12 +654,12 @@ window.onload  = function () {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
             }
             document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
-                console.log('scroll: ' + e);
-                if (e.scrollHeight - e.scrollTop === e.clientHeight) {
+
+                if ((e.scrollHeight - e.scrollTop).toFixed(0) == e.clientHeight) {
                     console.log('true');
-                    console.log(e.scrollHeight - e.scrollTop + "===" + e.clientHeight);
                     document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
                 } else {
+                    console.log(e.scrollHeight - e.scrollTop + "===" + e.clientHeight);
                     console.log('false');
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
