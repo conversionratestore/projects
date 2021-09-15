@@ -654,12 +654,10 @@ window.onload  = function () {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
             }
             document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
-
-                if ((e.scrollHeight - e.scrollTop).toFixed(0) == e.clientHeight) {
+                if ((document.querySelector('#wishlist-sidebar').scrollHeight - document.querySelector('#wishlist-sidebar').scrollTop).toFixed(0) == document.querySelector('#wishlist-sidebar').clientHeight) {
                     console.log('true');
                     document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
                 } else {
-                    console.log(e.scrollHeight - e.scrollTop + "===" + e.clientHeight);
                     console.log('false');
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
