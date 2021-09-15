@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        .free-samples-modal .product-items {
+            max-height: 393px;
+        }
         .free-samples-modal .product-items .product-item .product-item-photo {
             width: 100%;
         }
