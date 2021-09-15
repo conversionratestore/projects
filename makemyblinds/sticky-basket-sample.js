@@ -1,8 +1,3 @@
-//class="ajax-loading" , aria-busy="true"
-//aria-busy="false"
-
-//<div class="loading-mask" data-role="loader" style="display: none;"><div class="loader"><img alt="Loading..." src="https://www.makemyblinds.co.uk/static/version1631688544/frontend/Creation/mmb_child/en_GB/images/loader-2.gif"><p>Please wait...</p></div></div>
-
 window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
