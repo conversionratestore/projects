@@ -646,7 +646,7 @@ function scrolling(upSelector) {
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
-  eventCategory: "Exp - с",
+  eventCategory: "Exp - How many stickers need mobile",
   eventAction: "loaded",
 })
 ;(function (h, o, t, j, a, r) {
