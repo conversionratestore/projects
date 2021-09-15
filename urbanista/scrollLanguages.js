@@ -229,6 +229,7 @@ setTimeout(() => {
             font-size: 12px;
             letter-spacing: 0.4px;
             text-transform: uppercase;
+            line-height: normal;
         }
         .select-color .swatch-option {
             width: 20px !important;
@@ -244,7 +245,7 @@ setTimeout(() => {
         }            
         .swatch-option.selected:not(.sticky-pdp-cta .swatch-option.selected) {
             pointer-events: none;
-        }    
+        }  
         @media screen and (max-width: 900px) {
             .catalog-product-view .money-banner {
                 display: block !important
@@ -369,7 +370,11 @@ setTimeout(() => {
             block.querySelectorAll('p').forEach(p => {
                 if (p.innerText.length > 2) {
                     console.log(p.innerText);
-                    arr = p.innerText.replace(/(earbud.\n|28mA±-\n)/g, '<br>').split(/\n/g,);
+                    arr = p.innerText
+                        .replace(/(earbud.\n)/g, 'earbud.<br>')
+                        .replace(/(28mA±-\n)/g, '28mA±-<br>')
+                        .replace(/(hörlur,\n)/g, 'hörlur,<br>')
+                        .split(/\n/g,);
                 }
             });
 
@@ -382,7 +387,7 @@ setTimeout(() => {
 
             let specsCustomBlock = `
             <div class="specs_custom">
-                <p class="title_custom">Specifications</p>
+                <p class="title_custom">${localisation[pathLocal]?.specifications}</p>
                 ${pList}
             </div>
         `;
@@ -419,7 +424,7 @@ setTimeout(() => {
         clearInterval(checkTextWInterval);
     }, 5000);
 
-    document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">Specifications</p>`);
+    document.querySelector('.specs_custom')?.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow" style="margin-top: 10px;">${localisation[pathLocal]?.specifications}</p>`);
 
 // change features style
     document.querySelectorAll('.feature-item p picture').forEach(item => {
@@ -436,7 +441,7 @@ setTimeout(() => {
     }
 
 
-    document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">90 DAY RISK-FREE TRIAL</p>`);
+    document.querySelector('.money-banner').insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.risk}</p>`);
 
     const reviewsBlock = document.querySelector('.yotpo.yotpo-main-widget');
 
@@ -543,7 +548,7 @@ setTimeout(() => {
 
     setTimeout(() => {
         if (document.querySelector('.specs_custom')) {
-            specsParagraph = `<p class="custom-link-section__specs">${localisation[pathLocal]?.specifications}</p><hr>`;
+            specsParagraph = `<p class="custom-link-section__specs">${localisation[pathLocal]?.specifications.toLowerCase()}</p><hr>`;
         }
 
         /* create specs and 90 days links */
