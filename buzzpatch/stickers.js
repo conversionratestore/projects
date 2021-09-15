@@ -178,6 +178,11 @@ outline: none;
 
 
 @media (max-width: 321px) {
+.stickers-select{
+font-size: 12px !important;
+padding: 9px 5px 9px 10px !important;
+}
+
 .stickers-title {
 font-size: 23px !important;
 }
