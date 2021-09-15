@@ -472,11 +472,6 @@ window.onload  = function () {
                 'eventLabel': 'Near to the add to basket button'
             });
             document.querySelector('.wishlist-mobile-wrap .towishlist').click();
-            if (document.querySelectorAll('.product-item').length > 3) {
-                document.querySelector('.free-samples-modal .samples-block').classList.add('before');
-            } else {
-                document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
-            }
         })
         //click on ADD TO BASKET
         document.querySelector('.sticky-btns .btn-yellow').addEventListener('click', () => {
@@ -673,7 +668,7 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
-            if (document.querySelectorAll('.product-item').length > 3) {
+            if (document.querySelectorAll('.samples-block .product-item').length > 3) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             } else {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
