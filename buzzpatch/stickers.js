@@ -321,6 +321,10 @@ fill: currentColor;
 padding: 30px 15px 30px 15px;
 }
 
+.margin-indent{
+margin-left: 3px;
+}
+
 </style>
 `;
 
@@ -418,7 +422,7 @@ let popUpStickers = /*html*/ `
           <p class="stickers-foreach-text each-var">$12 for each pack</p>
 
           <div class="flex-btn">
-            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var">3 packs</span></a>
+            <a href="https://buzzpatch.com/a/secure/checkout/x89M9vTnQhNJyK4KKpcw" class="stickers-btn small-btn">Buy <span class="packs-var margin-indent">3 packs</span></a>
             <a href="#getNow"" class="stickers-btn small-btn other">see other packs</a>
           </div>
 
