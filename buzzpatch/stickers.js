@@ -455,11 +455,14 @@ document.querySelector("#faqs").insertAdjacentHTML("beforebegin", buzzpatchStick
 
 //  variant Person
 document.querySelector("[data-person]").addEventListener("change", function () {
+  let valueDataPerson = this.value
+
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on dropdown toggle in question 1",
+    eventLabel: `Person(s) ${valueDataPerson}`,
   })
 
   document.querySelectorAll(".add-person-flexbox").forEach((el, idx) => {
@@ -472,24 +475,30 @@ document.querySelector("[data-person]").addEventListener("change", function () {
 })
 
 //  variant Age
-document.querySelectorAll("[data-age]").forEach((el) => {
+document.querySelectorAll("[data-age]").forEach((el, i) => {
   el.addEventListener("change", function () {
+    let valueDataAge = el.options[el.selectedIndex].text
+
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - How many stickers need mobile",
-      eventAction: "Click on dropdown toggle in question 2",
+      eventAction: `Click on dropdown toggle in question 2 (Person ${i + 1})`,
+      eventLabel: valueDataAge,
     })
   })
 })
 
 //  variant Month
-document.querySelector("[data-month]").addEventListener("change", function () {
+document.querySelector("[data-month]").addEventListener("change", function (e) {
+  let valueDataMonth = this.value
+  console.log(valueDataMonth)
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on dropdown toggle in question 3",
+    eventLabel: `Month ${valueDataMonth}`,
   })
 })
 
