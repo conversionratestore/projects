@@ -589,9 +589,9 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
 // button buy 1-4 packs
 if (document.querySelector("a.small-btn")) {
-  let a = document.querySelector("a.small-btn").textContent
-
   document.querySelector("a.small-btn").addEventListener("click", function () {
+    let a = document.querySelector("a.small-btn").textContent
+
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
