@@ -1,29 +1,5 @@
 document.body.insertAdjacentHTML('afterbegin',`
     <style>
-    
-        @font-face {
-            font-family: oakes;
-            src: url(../fonts/Oakes/Oakes-Grotesk-Light.otf) format('opentype');
-            font-stretch: normal;
-            font-weight: 300;
-            font-style: normal
-        }
-        
-        @font-face {
-            font-family: oakes;
-            src: url(../fonts/Oakes/Oakes-Grotesk-Regular.otf) format('opentype');
-            font-stretch: normal;
-            font-weight: 400;
-            font-style: normal
-        }
-        
-        @font-face {
-            font-family: oakes;
-            src: url(../fonts/Oakes/Oakes-Grotesk-Bold.otf) format('opentype');
-            font-stretch: normal;
-            font-weight: 700;
-            font-style: normal
-        }
         *, *::before, *::after {
               -webkit-box-sizing: border-box;
               box-sizing: border-box; 
@@ -191,18 +167,61 @@ document.body.insertAdjacentHTML('afterbegin',`
             color: #FFFFFF;
             width: 64px;
         }
-    </style>`)
+    </style>`);
 
-//document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`)
+if (document.querySelector('#amasty-shopby-product-list')) {
+    document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
+}
+
+let colorObj = {
+    273: '#e4cbc3',
+    331: '#181b1a',
+    332: '#f4f4f4',
+    333: '#265564',
+    335: '#dbdbdb',
+    336: '#f31221',
+    338: '#dedede',
+    343: '#b1ac6f',
+    345: '#d75299',
+    347: '#ff33cf',
+    348: '#edb2ce',
+    387: '#686b3d',
+    499: '#1a1a1a',
+    6019: '#f3f2f1',
+    6020: '#2c3e60',
+    6149: '#0096cc',
+    6209: '#bababa',
+    6292: '#825759',
+    6296: '#265e5d',
+    6297: '#8f303b',
+    6324: '#d7c2b6',
+    6338: '#dcc99a',
+    6339: '#ba4282',
+    6340: '#5acdae',
+    6341: '#e7695b',
+    6342: '#6f4a76',
+    6343: '#234d95',
+};
 
 let select = `
 <div class="select">
     <select>
         <option value="London" selected>London</option>
         <option value="Miami">Miami</option>
+        <option value="Lisbon">Lisbon</option>
+        <option value="Los-Angeles">Los Angeles</option>
+        <option value="Seoul">Seoul</option>
+        <option value="Paris">Paris</option>
+        <option value="stockholm-plus">Stockholm Plus</option>        
+        <option value="Boston">Boston</option>
+        <option value="Sydney">Sydney</option>
+        <option value="Athens">Athens</option>
+        <option value="San-Francisco">San Francisco</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Berlin">Berlin</option>
+        <option value="sydney_hm">Sydney &M Home Edition</option>
     </select>
-</div>
-`
+</div>`;
 
 let page = `
 <div class="compare-wrapper">
@@ -212,7 +231,6 @@ let page = `
         <div class="left compare-col">
             ${select}
            <div class="card"></div>
-            
         </div>
         <div class="right compare-col">
             ${select}
@@ -225,11 +243,9 @@ let page = `
     </ul>
 </div>`;
 
-document.body.insertAdjacentHTML('afterbegin', page);
-
 function setCards(el) {
     let optionSelected = el.options[el.selectedIndex].value;
-    fetch(`https://www.urbanista.com/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=sku&searchCriteria[filterGroups][0][filters][0][value]=${optionSelected}&fields=items[name,price,media_gallery_entries[file],custom_attributes[subtitle]]`, {
+    fetch(`https://www.urbanista.com/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=sku&searchCriteria[filterGroups][0][filters][0][value]=${optionSelected}&fields=items[name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]]`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -237,42 +253,47 @@ function setCards(el) {
         }
     }).then(res => res.json()).then(data => {
         console.log(data);
+        let href = `https://www.urbanista.com/eu/${data["items"][0]["name"].split(' ').join('')}`;
+
         el.closest('.compare-col').querySelector('.card').innerHTML = `
-                <a href="#" class="card-img">
-                    <img src="https://www.urbanista.com/media/catalog/product${data["items"][0]["media_gallery_entries"][0]["file"]}" alt="image product">
-                </a>
-                <div class="card-content">
-                    <div class="row-colors">
-                        <label class="label-color">
-                            <input type="radio" name="radio1" class="checkbox" checked>
-                            <span class="check-color">
-                                <span style="background-color: #1A1A1A"></span>
-                            </span>
-                        </label>
+            <a href="${href}" class="card-img">
+                <img src="https://www.urbanista.com/media/catalog/product${data["items"][0]["media_gallery_entries"][0]["file"]}" alt="image product">
+            </a>
+            <div class="card-content">
+                <div class="row-colors"></div>
+                <a href="${href}" class="card-title">${data["items"][0]["name"]}</a>
+                <p class="card-additional"></p>
+                <p class="card-price">$${data["items"][0]["price"]}</p>
+                <button type="button" class="btn-buy">Buy</button>
+                <a href="${href}" class="sea-more">Learn more ></a>
+            </div>
+        </div>`;
+        for (const dataKey in data["items"][0]["custom_attributes"]) {
+            el.closest('.compare-col').querySelector('.card-additional').innerHTML = data["items"][0]["custom_attributes"][dataKey]["value"];
+        }
+        let idColors = data["items"][0]["extension_attributes"]["configurable_product_options"][0]["values"];
+
+        for (const colorKey in colorObj) {
+            for (const dataKey in idColors) {
+                if (idColors[dataKey]["value_index"] == colorKey) {
+                    console.log(idColors[dataKey]["value_index"] + " = " + colorKey);
+                    el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('beforeend',`
                         <label class="label-color">
                             <input type="radio" name="radio1" class="checkbox">
                             <span class="check-color">
-                                <span style="background-color: #2C3E60"></span>
+                                <span style="background-color: ${colorObj[colorKey]}"></span>
                             </span>
-                        </label>
-                    </div>
-                    <a href="#" class="card-title">${data["items"][0]["name"]}</a>
-                    <p class="card-additional">${data["items"][0]["custom_attributes"]["subtitle"]}</p>
-                    <p class="card-price">$${data["items"][0]["price"]}</p>
-                    <button type="button" class="btn-buy">Buy</button>
-                    <a href="#" class="sea-more">Learn more ></a>
-                </div>
-            </div>`
-        // console.log(data["items"][0]["price"])
-        // console.log(data["items"][0]["media_gallery_entries"][0]["file"])
-        // console.log(data["items"][0]["custom_attributes"]["value"])
-        // el.closest('.compare-col').querySelector('.card-img img').setAttribute('src',)
-        // el.closest('.compare-col').querySelector('.card-title').innerHTML =
-        // el.closest('.compare-col').querySelector('.card-additional').innerHTML = ;
+                        </label>`);
+                }
+            }
+        }
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
-}
+};
+
+document.body.insertAdjacentHTML('afterbegin', page);
+
 document.querySelectorAll('select').forEach((el) => {
     setCards(el);
     el.addEventListener('change', () => {
