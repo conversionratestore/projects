@@ -87,7 +87,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             margin-right: 0;
         }
         .select {
-            background: url('https://conversionratestore.github.io/projects/urbanista/images/arrow-down-new.svg') no-repeat right 12px center / 12px;
+            background: url('https://conversionratestore.github.io/projects/urbanista/images/arrow-down.svg') no-repeat right 12px center / 12px;
             margin: 28px 0 13px;
         }
         .select select{
@@ -132,11 +132,16 @@ document.body.insertAdjacentHTML('afterbegin',`
         .check-color {
             border: 2px solid #CCCCCC;
             display: block;
-            width: 21px;
-            height: 21px;
+            width: 19px;
+            height: 19px;
             border-radius: 50%;
+            position: relative;
         }
         .check-color span {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
             display: block;
             width: 16px;
             height: 16px;
@@ -172,6 +177,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             margin-bottom: 8px;
         }
         .btn-buy {
+            cursor: pointer;
             display: block;
             margin: 0 auto;
             background: #1A1A1A;
@@ -205,9 +211,35 @@ let page = `
     <div class="compare-row">
         <div class="left compare-col">
             ${select}
-            <div class="card">
+           <div class="card"></div>
+            
+        </div>
+        <div class="right compare-col">
+            ${select}
+           <div class="card"></div>
+        </div>
+    </div>
+    <h2 class="page-title">Summary</h2>
+    <ul class="summary">
+        <li class="summary-item"></li>
+    </ul>
+</div>`;
+
+document.body.insertAdjacentHTML('afterbegin', page);
+
+function setCards(el) {
+    let optionSelected = el.options[el.selectedIndex].value;
+    fetch(`https://www.urbanista.com/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=sku&searchCriteria[filterGroups][0][filters][0][value]=${optionSelected}&fields=items[name,price,media_gallery_entries[file],custom_attributes[subtitle]]`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
+        }
+    }).then(res => res.json()).then(data => {
+        console.log(data);
+        el.closest('.compare-col').querySelector('.card').innerHTML = `
                 <a href="#" class="card-img">
-                    <img src="img" alt="image product">
+                    <img src="https://www.urbanista.com/media/catalog/product${data["items"][0]["media_gallery_entries"][0]["file"]}" alt="image product">
                 </a>
                 <div class="card-content">
                     <div class="row-colors">
@@ -224,45 +256,27 @@ let page = `
                             </span>
                         </label>
                     </div>
-                    <a href="#" class="card-title">name</a>
-                    <p class="card-additional">(additional)</p>
-                    <p class="card-price">$119</p>
+                    <a href="#" class="card-title">${data["items"][0]["name"]}</a>
+                    <p class="card-additional">${data["items"][0]["custom_attributes"]["subtitle"]}</p>
+                    <p class="card-price">$${data["items"][0]["price"]}</p>
                     <button type="button" class="btn-buy">Buy</button>
                     <a href="#" class="sea-more">Learn more ></a>
                 </div>
-            </div>
-        </div>
-        <div class="right compare-col">
-            ${select}
-            <div class="card">
-                <a href="#" class="card-img">
-                    <img src="img" alt="image product">
-                </a>
-                <div class="card-content">
-                    <div class="row-colors">
-                        <label class="label-color">
-                            <input type="radio" name="radio2" class="checkbox" checked>
-                            <span class="check-color"><span style="background-color: #E4CBC3"></span></span>
-                        </label>
-                        <label class="label-color">
-                            <input type="radio" name="radio2" class="checkbox">
-                            <span class="check-color"><span style="background-color: #825759"></span></span>
-                        </label>
-                    </div>
-                    <a href="#" class="card-title">name2</a>
-                    <p class="card-additional">(additional2)</p>
-                    <p class="card-price">$119</p>
-                    <button type="button" class="btn-buy">Buy</button>
-                    <a href="#" class="sea-more">Learn more ></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <h2 class="page-title">Summary</h2>
-    <ul class="summary">
-        <li class="summary-item"></li>
-    </ul>
-</div>`;
-
-document.body.insertAdjacentHTML('afterbegin', page);
+            </div>`
+        // console.log(data["items"][0]["price"])
+        // console.log(data["items"][0]["media_gallery_entries"][0]["file"])
+        // console.log(data["items"][0]["custom_attributes"]["value"])
+        // el.closest('.compare-col').querySelector('.card-img img').setAttribute('src',)
+        // el.closest('.compare-col').querySelector('.card-title').innerHTML =
+        // el.closest('.compare-col').querySelector('.card-additional').innerHTML = ;
+    }).catch(err => {
+        console.log('Failed fetch ', err);
+    });
+}
+document.querySelectorAll('select').forEach((el) => {
+    setCards(el);
+    el.addEventListener('change', () => {
+        setCards(el);
+    });
+});
 
