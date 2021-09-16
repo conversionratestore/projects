@@ -87,7 +87,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             margin-right: 0;
         }
         .select {
-            background: url('/img/arrow-down-new.svg') no-repeat right 12px center / 12px;
+            background: url('https://conversionratestore.github.io/projects/urbanista/images/arrow-down-new.svg') no-repeat right 12px center / 12px;
             margin: 28px 0 13px;
         }
         .select select{
@@ -265,3 +265,4 @@ let page = `
 </div>`;
 
 document.body.insertAdjacentHTML('afterbegin', page);
+
