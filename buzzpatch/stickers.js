@@ -492,7 +492,7 @@ document.querySelectorAll("[data-age]").forEach((el, i) => {
 //  variant Month
 document.querySelector("[data-month]").addEventListener("change", function (e) {
   let valueDataMonth = this.value
-  console.log(valueDataMonth)
+
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
@@ -507,14 +507,11 @@ function calculateSummForPack() {
   let total = 0
 
   document.querySelectorAll(".add-person-flexbox:not(.hidden) [data-age]").forEach((el, idx) => {
-    console.log(`value`, +el.value)
     total += +el.value
   })
-  console.log(`total`, total)
 
   let monthValue = +document.querySelector("[data-month]").value
   let calcSumm = total * monthValue
-  console.log(`calcSumm`, calcSumm)
 
   return calcSumm
 }
