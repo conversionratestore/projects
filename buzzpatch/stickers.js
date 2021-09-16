@@ -402,7 +402,7 @@ let buzzpatchStickersOne = /*html*/ `
                 </select>
             </li>
         </ol>
-        <button class="stickers-btn btn-first">calculate how many do i need</button>
+        <button class="stickers-btn btn-first">Calculate how many I need</button>
     </div>
 </section>
 `
@@ -516,7 +516,7 @@ function calculateSummForPack() {
   return calcSumm
 }
 
-// btn calculate how many do i need
+// btn calculate how many i need
 document.querySelector(".btn-first").addEventListener("click", function () {
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
