@@ -589,12 +589,15 @@ document.querySelector(".btn-first").addEventListener("click", function () {
 
 // button buy 1-4 packs
 if (document.querySelector("a.small-btn")) {
+  let a = document.querySelector("a.small-btn").textContent
+
   document.querySelector("a.small-btn").addEventListener("click", function () {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - How many stickers need mobile",
-      eventAction: "Click on button buy 3 packs",
+      eventAction: `Click on button buy packs`,
+      eventLabel: a,
     })
   })
 }
