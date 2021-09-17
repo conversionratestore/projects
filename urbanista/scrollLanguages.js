@@ -408,7 +408,7 @@ setTimeout(() => {
 
             features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
 
-            features.insertAdjacentHTML('afterend', specsCustomBlock);
+            features.insertAdjacentHTML('afterend', document.querySelector('.specs_custom'));
             console.log('4');
         }
     }, 100)
@@ -590,7 +590,7 @@ setTimeout(() => {
                 }
 
                 if (pathLocal === 'se') {
-                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 120, behavior: 'smooth'});
+                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 125, behavior: 'smooth'});
                 } else {
                     window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 70, behavior: 'smooth'});
                 }
