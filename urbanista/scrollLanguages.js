@@ -361,14 +361,12 @@ setTimeout(() => {
     let specsText = localisation[pathLocal]?.specifications;
     let technicalText = localisation[pathLocal]?.technical;
 
-    console.log('1');
-
     document.querySelectorAll('.TextWidget').forEach(block => {
-        console.log('2');
-        
+
+        if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText || pathname === 'miami') {
             // remove specs block
             let arr = [];
-            console.log('3');
+
             block.querySelectorAll('p').forEach(p => {
                 if (p.innerText.length > 2) {
                     console.log(p.innerText);
@@ -398,20 +396,20 @@ setTimeout(() => {
             block.parentElement.style.display = 'none';
 
             if (document.querySelector('.feature-item')) {
-                let features = document.querySelector('.feature-item').parentElement;
-                // features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
-                //
-                // features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
-
-                features.insertAdjacentHTML('afterend', specsCustomBlock);
-                console.log('4');
+                document.querySelector('.feature-item').parentElement.insertAdjacentHTML('afterend', specsCustomBlock);
             }
-            console.log('1');
-        
+        }
     });
 
-// delete header
+    // add swipe-arrow
 
+    let features = document.querySelector('.feature-item').parentElement;
+    features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
+    features.querySelector('.feature-item').parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
+
+
+
+    // delete header
     let checkTextWInterval = setInterval(() => {
         if (document.querySelector('.TextWidget2__container h1')) {
             clearInterval(checkTextWInterval);
