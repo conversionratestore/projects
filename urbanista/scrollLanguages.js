@@ -164,11 +164,17 @@ setTimeout(() => {
             font-size: 9px;
             line-height: 10px;
         }
+        .slider_custom__text a {
+            display: block;
+            color: #333;
+            text-decoration: none !important;
+        }
         .slider__title {
             font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;       
             line-height: normal;     
+            margin-bottom: 5px;
         }
         
         .sticky-pdp-cta .swatch-attribute.color {
