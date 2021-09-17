@@ -365,7 +365,7 @@ setTimeout(() => {
 
     document.querySelectorAll('.TextWidget').forEach(block => {
         console.log('2');
-
+        
             // remove specs block
             let arr = [];
             console.log('3');
@@ -397,19 +397,18 @@ setTimeout(() => {
             // hide existing specs block
             block.parentElement.style.display = 'none';
 
-            console.log('5');
-    });
+            if (document.querySelector('.feature-item')) {
+                let features = document.querySelector('.feature-item').parentElement;
+                // features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
+                //
+                // features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
 
-    setTimeout(() => {
-            let features = document.querySelector('.feature-item').parentElement;
-            features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
-
-            features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
-
-            features.insertAdjacentHTML('afterend', document.querySelector('.specs_custom'));
-            console.log('4');
+                features.insertAdjacentHTML('afterend', specsCustomBlock);
+                console.log('4');
+            }
+            console.log('1');
         
-    }, 1000)
+    });
 
 // delete header
 
@@ -586,7 +585,7 @@ setTimeout(() => {
                 }
 
                 if (pathLocal === 'se') {
-                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 125, behavior: 'smooth'});
+                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 120, behavior: 'smooth'});
                 } else {
                     window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 70, behavior: 'smooth'});
                 }
