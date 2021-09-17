@@ -232,13 +232,13 @@ window.onload  = function () {
 
     let like = [
         {
-            href: `https://www.makemyblinds.co.uk/simply-brilliant-white-with-jasmine-white-tape.html?queryID=a061dcc569e4380d4255414f370cc43f&objectID=2728&indexName=mmblive_en_en_products`,
-            name: `Simply Brilliant White with Jasmine White Tape`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019_1_1.png`,
+            href: `https://www.makemyblinds.co.uk/editions-brilliant-white.html?queryID=64311411bce32e4e3df4124e0bd7e1ed&objectID=1466&indexName=mmblive_en_en_products`,
+            name: `Editions Brilliant White`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_08052019.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:2728,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3NpbXBseS1icmlsbGlhbnQtd2hpdGUtd2l0aC1qYXNtaW5lLXdoaXRlLXRhcGUuaHRtbD9xdWVyeUlEPWEwNjFkY2M1NjllNDM4MGQ0MjU1NDE0ZjM3MGNjNDNmJm9iamVjdElEPTI3MjgmaW5kZXhOYW1lPW1tYmxpdmVfZW5fZW5fcHJvZHVjdHM,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECHPF003&quot;,&quot;name&quot;:&quot;Simply Brilliant White with Jasmine White Tape&quot;,&quot;price&quot;:8.99}" data-event-label="Simply Brilliant White with Jasmine White Tape" title="Add to Wish List"><i class="mmb-icon love"></i><span>Free sample</span></div>
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1466,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2VkaXRpb25zLWJyaWxsaWFudC13aGl0ZS5odG1sP3F1ZXJ5SUQ9NjQzMTE0MTFiY2UzMmU0ZTNkZjQxMjRlMGJkN2UxZWQmb2JqZWN0SUQ9MTQ2NiZpbmRleE5hbWU9bW1ibGl2ZV9lbl9lbl9wcm9kdWN0cw,,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECSER001&quot;,&quot;name&quot;:&quot;Editions Brilliant White&quot;,&quot;price&quot;:8.99}" data-event-label="Editions Brilliant White"><i class="mmb-icon love"></i><span>Free sample</span></div>
                     </div>
                 </div>`
         },
@@ -254,13 +254,13 @@ window.onload  = function () {
                 </div>`
         },
         {
-            href: `https://www.makemyblinds.co.uk/matt-soft-white-perfect-fit.html`,
-            name: `Matt Soft White Perfect Fit`,
-            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/s/w/swatch_11_1.png`,
+            href: `https://www.makemyblinds.co.uk/snow-white-blackout-honeycomb-perfect-fit.html?queryID=74ea35882409f4377f91acbb3ddd2ab9&objectID=1839&indexName=mmblive_en_en_products`,
+            name: `Snow White Blackout Honeycomb Perfect Fit`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_frnt_closeup_04_honeycomb_aurora_blackout_snow_white_01282020.png`,
             actionLiks: `
                 <div class="product-social-links">
                     <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:2618,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL21hdHQtc29mdC13aGl0ZS1wZXJmZWN0LWZpdC5odG1s&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECPFP001&quot;,&quot;name&quot;:&quot; Matt Soft White Perfect Fit&quot;,&quot;price&quot;:19.99}" data-event-label=" Matt Soft White Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1839,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3Nub3ctd2hpdGUtYmxhY2tvdXQtaG9uZXljb21iLXBlcmZlY3QtZml0Lmh0bWw_cXVlcnlJRD03NGVhMzU4ODI0MDlmNDM3N2Y5MWFjYmIzZGRkMmFiOSZvYmplY3RJRD0xODM5JmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;AuroBOSnowWhite&quot;,&quot;name&quot;:&quot;Snow White Blackout Honeycomb Perfect Fit&quot;,&quot;price&quot;:23.74}" data-event-label="Snow White Blackout Honeycomb Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
                     </div>
                 </div>`
         },
