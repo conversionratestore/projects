@@ -245,7 +245,7 @@ let page = `
 
 function setCards(el) {
     let optionSelected = el.options[el.selectedIndex].value;
-    fetch(`https://www.urbanista.com/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=sku&searchCriteria[filterGroups][0][filters][0][value]=${optionSelected}&fields=items[name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]]`, {
+    fetch(`https://www.urbanista.com/rest/V1/products/${optionSelected}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -253,25 +253,25 @@ function setCards(el) {
         }
     }).then(res => res.json()).then(data => {
         console.log(data);
-        let href = `https://www.urbanista.com/eu/${data["items"][0]["name"].split(' ').join('')}`;
+        let href = `https://www.urbanista.com/eu/${data["name"].split(' ').join('')}`;
 
         el.closest('.compare-col').querySelector('.card').innerHTML = `
             <a href="${href}" class="card-img">
-                <img src="https://www.urbanista.com/media/catalog/product${data["items"][0]["media_gallery_entries"][0]["file"]}" alt="image product">
+                <img src="https://www.urbanista.com/media/catalog/product${data["media_gallery_entries"][0]["file"]}" alt="image product">
             </a>
             <div class="card-content">
                 <div class="row-colors"></div>
-                <a href="${href}" class="card-title">${data["items"][0]["name"]}</a>
+                <a href="${href}" class="card-title">${data["name"]}</a>
                 <p class="card-additional"></p>
-                <p class="card-price">$${data["items"][0]["price"]}</p>
+                <p class="card-price">$${data["price"]}</p>
                 <button type="button" class="btn-buy">Buy</button>
                 <a href="${href}" class="sea-more">Learn more ></a>
             </div>
         </div>`;
-        for (const dataKey in data["items"][0]["custom_attributes"]) {
-            el.closest('.compare-col').querySelector('.card-additional').innerHTML = data["items"][0]["custom_attributes"][dataKey]["value"];
+        for (const dataKey in data["custom_attributes"]) {
+            el.closest('.compare-col').querySelector('.card-additional').innerHTML = data["custom_attributes"][dataKey]["value"];
         }
-        let idColors = data["items"][0]["extension_attributes"]["configurable_product_options"][0]["values"];
+        let idColors = data["extension_attributes"]["configurable_product_options"][0]["values"];
 
         for (const colorKey in colorObj) {
             for (const dataKey in idColors) {
