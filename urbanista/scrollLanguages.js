@@ -400,7 +400,7 @@ setTimeout(() => {
             console.log('5');
     });
 
-    let x = setInterval(() => {
+    setTimeout(() => {
         if (document.querySelector('.feature-item')) {
             clearInterval(x)
             let features = document.querySelector('.feature-item').parentElement;
@@ -411,9 +411,7 @@ setTimeout(() => {
             features.insertAdjacentHTML('afterend', document.querySelector('.specs_custom'));
             console.log('4');
         }
-    }, 100)
-
-
+    }, 1000)
 
 // delete header
 
