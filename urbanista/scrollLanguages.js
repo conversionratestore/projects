@@ -361,12 +361,14 @@ setTimeout(() => {
     let specsText = localisation[pathLocal]?.specifications;
     let technicalText = localisation[pathLocal]?.technical;
 
-    document.querySelectorAll('.TextWidget').forEach(block => {
+    console.log('1');
 
-        if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText) {
+    document.querySelectorAll('.TextWidget').forEach(block => {
+        console.log('2');
+
             // remove specs block
             let arr = [];
-
+            console.log('3');
             block.querySelectorAll('p').forEach(p => {
                 if (p.innerText.length > 2) {
                     console.log(p.innerText);
@@ -395,16 +397,23 @@ setTimeout(() => {
             // hide existing specs block
             block.parentElement.style.display = 'none';
 
-            if (document.querySelector('.feature-item')) {
-                let features = document.querySelector('.feature-item').parentElement;
-                features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
-
-                features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
-
-                features.insertAdjacentHTML('afterend', specsCustomBlock);
-            }
-        }
+            console.log('5');
     });
+
+    let x = setInterval(() => {
+        if (document.querySelector('.feature-item')) {
+            clearInterval(x)
+            let features = document.querySelector('.feature-item').parentElement;
+            features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
+
+            features.parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
+
+            features.insertAdjacentHTML('afterend', specsCustomBlock);
+            console.log('4');
+        }
+    }, 100)
+
+
 
 // delete header
 
@@ -579,8 +588,13 @@ setTimeout(() => {
                         'eventLabel': 'Under the add to cart button'
                     });
                 }
-                let el = document.querySelector(block).getBoundingClientRect().top - 70;
-                window.scrollBy({top: el, behavior: 'smooth'});
+
+                if (pathLocal === 'se') {
+                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 120, behavior: 'smooth'});
+                } else {
+                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 70, behavior: 'smooth'});
+                }
+
             });
         }
 
