@@ -167,7 +167,8 @@ setTimeout(() => {
         .slider__title {
             font-size: 14px;
             font-weight: 700;
-            text-transform: uppercase;            
+            text-transform: uppercase;       
+            line-height: normal;     
         }
         
         .sticky-pdp-cta .swatch-attribute.color {
@@ -363,9 +364,10 @@ setTimeout(() => {
 
     document.querySelectorAll('.TextWidget').forEach(block => {
 
-        if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText || pathname === 'miami') {
+        if (block.querySelector('h1').innerText === specsText || block.querySelector('h1').innerText === technicalText || block.querySelector('h1').innerText === 'SPECIFICATIONS') {
             // remove specs block
             let arr = [];
+            let pList = '';
 
             block.querySelectorAll('p').forEach(p => {
                 if (p.innerText.length > 2) {
@@ -378,19 +380,16 @@ setTimeout(() => {
                 }
             });
 
-            let pList = '';
-
             arr.forEach(p => {
                 let indx = p.indexOf(': ', 0) + 1;
                 pList += `<p><span>${p.substr(0, indx)}</span><span>${p.substr(indx)}</span></p><hr>`;
             });
 
             let specsCustomBlock = `
-            <div class="specs_custom">
-                <p class="title_custom">${localisation[pathLocal]?.specifications}</p>
-                ${pList}
-            </div>
-        `;
+                <div class="specs_custom">
+                    <p class="title_custom">${localisation[pathLocal]?.specifications}</p>
+                    ${pList}
+                </div>`;
 
             // hide existing specs block
             block.parentElement.style.display = 'none';
@@ -406,7 +405,6 @@ setTimeout(() => {
     let features = document.querySelector('.feature-item').parentElement;
     features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
     features.querySelector('.feature-item').parentElement.insertAdjacentHTML('beforebegin', `<p class="swipe-arrow">${localisation[pathLocal]?.features}</p>`);
-
 
 
     // delete header
@@ -453,7 +451,16 @@ setTimeout(() => {
     }
 
     /* change reviews position */
-    document.querySelector('.main-widget')?.insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">${localisation[pathLocal]?.reviews}</p>`);
+    let reviewsBlockInterval = setInterval(() => {
+        if (document.querySelector('.main-widget')) {
+            clearInterval(reviewsBlockInterval);
+            document.querySelector('.main-widget').insertAdjacentHTML('beforebegin', `<p class="title_custom" style="margin:0 0 10px 27px;">${localisation[pathLocal]?.reviews}</p>`);
+        }
+    }, 100);
+
+    setTimeout(() => {
+        clearInterval(reviewsBlockInterval);
+    }, 2000);
 
     /* remove old review title */
     document.querySelectorAll('.pd-row h6 span').forEach(span => {
@@ -507,7 +514,7 @@ setTimeout(() => {
                </div>
                <div class="slider_custom__text">
                     <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" class="slider__title">${secondProduct.replace(/-/g, ' ')}</p>
-                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" >${localisation[pathLocal]?.productDescription[secondProduct]}}</p>
+                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" >${localisation[pathLocal]?.productDescription[secondProduct]}</p>
                </div>    
             <div>        
         </div>
@@ -583,9 +590,15 @@ setTimeout(() => {
                 }
 
                 if (pathLocal === 'se') {
-                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 125, behavior: 'smooth'});
+                    window.scrollBy({
+                        top: document.querySelector(block).getBoundingClientRect().top - 125,
+                        behavior: 'smooth'
+                    });
                 } else {
-                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 70, behavior: 'smooth'});
+                    window.scrollBy({
+                        top: document.querySelector(block).getBoundingClientRect().top - 70,
+                        behavior: 'smooth'
+                    });
                 }
 
             });
@@ -701,6 +714,20 @@ setTimeout(() => {
             });
         }
     }, 100);
+
+    // document.querySelectorAll('.slider_custom__item').forEach(item => {
+    //     item.addEventListener('click', () => {
+    //        
+    //         window.dataLayer = window.dataLayer || [];
+    //         dataLayer.push({
+    //             'event': 'event-to-ga',
+    //             'eventCategory': 'Exp — Improved PDP mobile',
+    //             'eventAction': 'Click on 90 money back guarantee',
+    //             'eventLabel': 'Under the add to cart button'
+    //         });
+    //
+    //     })
+    // })
 
 // slider
     let categoryInterval = setInterval(() => {
