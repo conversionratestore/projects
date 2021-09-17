@@ -583,7 +583,7 @@ setTimeout(() => {
                 }
 
                 if (pathLocal === 'se') {
-                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 120, behavior: 'smooth'});
+                    window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 125, behavior: 'smooth'});
                 } else {
                     window.scrollBy({top: document.querySelector(block).getBoundingClientRect().top - 70, behavior: 'smooth'});
                 }
