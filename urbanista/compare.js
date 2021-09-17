@@ -173,6 +173,64 @@ if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
 
+// "data": [
+//         {"event":"productDetail","ecommerce":
+//             {"currencyCode":"EUR","detail":
+//                     {
+//                         "products":[
+//                             {"id":"43366","name":"London Burgundy Red","p_id":"3397","category":"All Products","price":149},
+//                             {"id":"39029","name":"London Midnight Black","p_id":"2172","category":"All Products","price":149},
+//                             {"id":"39223","name":"London Rose Gold","p_id":"2173","category":"All Products","price":149},
+//                             {"id":"41457","name":"London White Pearl","p_id":"2170","category":"All Products","price":149},
+//                             {"id":"41458","name":"London Dark Sapphire","p_id":"2171","category":"All Products","price":149},
+//                             {"id":"london","name":"London","p_id":"2169","category":"All Products","price":149}
+//                         ]
+//                     }
+//             }
+//         }
+// ],
+// {
+//     "*": {
+//     "enhancedDataLayer": {
+//         "dataLayerName": "dataLayer",
+//             "data": [
+//                 {"event":"productDetail","ecommerce":
+//                         {"currencyCode":"EUR","detail":
+//                                 {"products":[
+//                                     {"id":"44257","name":"Miami Pearl White","p_id":"3474","category":"Urbanista Root Category","price":149},
+//                                     {"id":"44256","name":"Miami Midnight Black","p_id":"3475","category":"Urbanista Root Category","price":149},
+//                                     {"id":"44260","name":"Miami Teal Green","p_id":"3476","category":"Urbanista Root Category","price":149},
+//                                     {"id":"44259","name":"Miami Ruby Red","p_id":"3477","category":"Urbanista Root Category","price":149},
+//                                     {"id":"Miami","name":"Miami","p_id":"3473","category":"Urbanista Root Category","price":149}]}}}],
+//             "productLists": []            }
+// }
+// }
+// {
+//     "*": {
+//     "enhancedDataLayer": {
+//         "dataLayerName": "dataLayer",
+//             "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
+//             {"id":"46171","name":"Lisbon Coral Peach","p_id":"4086","category":"In-Ear","price":49.9},
+//             {"id":"46170","name":"Lisbon Vanilla Cream","p_id":"4085","category":"In-Ear","price":49.9},
+//             {"id":"46169","name":"Lisbon Blush Pink","p_id":"4084","category":"In-Ear","price":49.9},
+//             {"id":"45383","name":"Lisbon Mint Green","p_id":"4083","category":"In-Ear","price":49.9},
+//             {"id":"45382","name":"Lisbon Midnight Black","p_id":"4081","category":"In-Ear","price":49.9},
+//             {"id":"lisbon","name":"Lisbon","p_id":"4087","category":"In-Ear","price":49.9}]}}}],
+//             "productLists": []            }
+// }
+// }
+
+// {
+//     "*": {
+//     "enhancedDataLayer": {
+//         "dataLayerName": "dataLayer",
+//             "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
+//             {"id":"46203","name":"Los Angeles Sand Gold","p_id":"4020","category":"Noise Cancellation (ANC)","price":199},
+//             {"id":"45381","name":"Los Angeles Midnight Black","p_id":"4072","category":"Noise Cancellation (ANC)","price":199},
+//             {"id":"los-angeles","name":"Los Angeles","p_id":"4021","category":"Noise Cancellation (ANC)","price":199}]}}}],
+//             "productLists": []            }
+// }
+// }
 let colorObj = {
     273: '#e4cbc3',
     331: '#181b1a',
@@ -204,12 +262,12 @@ let colorObj = {
 };
 
 let select = `
-<div class="select">
+<div class="select" data-id="43366,41458,41457,39029,39223">
     <select>
-        <option value="London" selected>London</option>
-        <option value="Miami">Miami</option>
-        <option value="Lisbon">Lisbon</option>
-        <option value="Los-Angeles">Los Angeles</option>
+        <option value="London" data-id="43366,41458,41457,39029,39223" selected>London</option>
+        <option value="Miami" data-id="44259,44260,44257,44256">Miami</option>
+        <option value="Lisbon" data-id="46171,45383,46169,46170,45382">Lisbon</option>
+        <option value="Los-Angeles" data-id="46203,45381">Los Angeles</option>
         <option value="Seoul">Seoul</option>
         <option value="Paris">Paris</option>
         <option value="stockholm-plus">Stockholm Plus</option>        
@@ -244,51 +302,78 @@ let page = `
 </div>`;
 
 function setCards(el) {
-    let optionSelected = el.options[el.selectedIndex].value;
-    fetch(`https://www.urbanista.com/rest/V1/products/${optionSelected}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
+
+    let optionSelected = el.options[el.selectedIndex].value,
+        selectedIdOne = el.options[el.selectedIndex].dataset.id.split(',')[0];
+
+    console.log(selectedIdOne)
+    el.closest('.select').setAttribute('data-id', `${el.options[el.selectedIndex].dataset.id}`);
+
+    fetch(`https://www.urbanista.com/rest/V1/products/${selectedIdOne}?fields=sku,price,name,media_gallery_entries[file],custom_attributes[color,subtitle]`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
         }
-    }).then(res => res.json()).then(data => {
-        console.log(data);
-        let href = `https://www.urbanista.com/eu/${data["name"].split(' ').join('')}`;
-
+    }).then(resItem => resItem.json()).then(dataItem => {
+        console.log(dataItem)
+        el.closest('.compare-col').querySelector('.card').setAttribute('data-id',dataItem["sku"])
         el.closest('.compare-col').querySelector('.card').innerHTML = `
-            <a href="${href}" class="card-img">
-                <img src="https://www.urbanista.com/media/catalog/product${data["media_gallery_entries"][0]["file"]}" alt="image product">
+            <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img">
+                <img src="https://www.urbanista.com/media/catalog/product${dataItem["media_gallery_entries"][0]["file"]}" alt="${dataItem["name"]}">
             </a>
             <div class="card-content">
-                <div class="row-colors"></div>
-                <a href="${href}" class="card-title">${data["name"]}</a>
+                <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
+                <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-title">${dataItem["name"]}</a>
                 <p class="card-additional"></p>
-                <p class="card-price">$${data["price"]}</p>
+                <p class="card-price">$${dataItem["price"]}</p>
                 <button type="button" class="btn-buy">Buy</button>
-                <a href="${href}" class="sea-more">Learn more ></a>
+                <a href="https://www.urbanista.com/eu/${optionSelected}" class="sea-more">Learn more ></a>
             </div>
         </div>`;
-        for (const dataKey in data["custom_attributes"]) {
-            el.closest('.compare-col').querySelector('.card-additional').innerHTML = data["custom_attributes"][dataKey]["value"];
+        for (const dataKeyItem in dataItem["custom_attributes"]) {
+            if (dataItem["custom_attributes"][dataKeyItem]["attribute_code"] == "subtitle") {
+                el.closest('.compare-col').querySelector('.card-additional').innerHTML = dataItem["custom_attributes"][dataKeyItem]["value"];
+            } else {
+                el.closest('.compare-col').querySelector('.card').setAttribute('data-color', dataItem["custom_attributes"][dataKeyItem]["value"]);
+            }
         }
-        let idColors = data["extension_attributes"]["configurable_product_options"][0]["values"];
 
-        for (const colorKey in colorObj) {
-            for (const dataKey in idColors) {
-                if (idColors[dataKey]["value_index"] == colorKey) {
-                    console.log(idColors[dataKey]["value_index"] + " = " + colorKey);
-                    el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('beforeend',`
+        fetch(`https://www.urbanista.com/rest/V1/products/${optionSelected}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
+            }
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+            let idColors = data["extension_attributes"]["configurable_product_options"][0]["values"];
+
+            for (const colorKey in colorObj) {
+                for (const dataKey in idColors) {
+                    if (idColors[dataKey]["value_index"] == colorKey) {
+                        el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin',`
                         <label class="label-color">
-                            <input type="radio" name="radio1" class="checkbox">
+                            <input type="radio" name="radio${1}" class="checkbox">
                             <span class="check-color">
                                 <span style="background-color: ${colorObj[colorKey]}"></span>
                             </span>
                         </label>`);
+                    }
                 }
             }
-        }
-    }).catch(err => {
-        console.log('Failed fetch ', err);
+            let checkbox = el.closest('.compare-col').querySelectorAll('.checkbox');
+            for (let i = 0; i < checkbox.length; i++) {
+                checkbox[i].setAttribute('data-id',`${el.closest('.select').dataset.id.split(',')[i]}`)
+                if (checkbox[i].dataset.id === el.closest('.compare-col').querySelector('.card').dataset.id ) {
+                    checkbox[i].setAttribute('checked','true');
+                }
+            }
+        }).catch(err => {
+            console.log('Failed fetch ', err);
+        });
+    }).catch(errItem => {
+        console.log('Failed fetch ', errItem);
     });
 };
 
@@ -300,4 +385,3 @@ document.querySelectorAll('select').forEach((el) => {
         setCards(el);
     });
 });
-
