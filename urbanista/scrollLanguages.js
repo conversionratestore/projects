@@ -401,8 +401,6 @@ setTimeout(() => {
     });
 
     setTimeout(() => {
-        if (document.querySelector('.feature-item')) {
-            clearInterval(x)
             let features = document.querySelector('.feature-item').parentElement;
             features.insertAdjacentHTML('afterbegin', `<p class="title_custom" style="margin-left: 27px;">${localisation[pathLocal]?.features}</p>`);
 
@@ -410,7 +408,7 @@ setTimeout(() => {
 
             features.insertAdjacentHTML('afterend', document.querySelector('.specs_custom'));
             console.log('4');
-        }
+        
     }, 1000)
 
 // delete header
