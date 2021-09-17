@@ -478,21 +478,21 @@ setTimeout(() => {
 
         if (firstProduct === 'london') {
             for (i = 1; i <= 4; i++) {
-                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image">`;
+                imagesFirstProduct += `<a href='https://www.urbanista.com/${pathLocal}/${firstProduct}' target="_blank"><img src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}_1.webp" alt="pdp image"></a>`;
             }
         } else {
             for (i = 1; i <= 4; i++) {
-                imagesFirstProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image">`;
+                imagesFirstProduct += `<a href='https://www.urbanista.com/${pathLocal}/${firstProduct}' target="_blank"><img src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${firstProductImg}_${i}.webp" alt="pdp image"></a>`;
             }
         }
 
         if (secondProduct === 'london') {
             for (i = 1; i <= 4; i++) {
-                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image">`;
+                imagesSecondProduct += `<a href='https://www.urbanista.com/${pathLocal}/${secondProduct}' target="_blank"><img src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}_1.webp" alt="pdp image"></a>`;
             }
         } else {
             for (i = 1; i <= 4; i++) {
-                imagesSecondProduct += `<img onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image">`;
+                imagesSecondProduct += `<a href='https://www.urbanista.com/${pathLocal}/${secondProduct}' target="_blank"><img src="https://www.urbanista.com/media/catalog/product/cache/6c07725d11cf11164242a71cef72688e/${secondProductImg}_${i}.webp" alt="pdp image"></a>`;
             }
         }
 
@@ -504,8 +504,8 @@ setTimeout(() => {
                     ${imagesFirstProduct}
                 </div>         
                 <div class="slider_custom__text">
-                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';" class="slider__title">${firstProduct.replace(/-/g, ' ')}</p>
-                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${firstProduct}';">${localisation[pathLocal]?.productDescription[firstProduct]}</p>
+                    <a href='https://www.urbanista.com/${pathLocal}/${firstProduct}' target="_blank" class="slider__title">${firstProduct.replace(/-/g, ' ')}</a>
+                    <a href='https://www.urbanista.com/${pathLocal}/${firstProduct}' target="_blank">${localisation[pathLocal]?.productDescription[firstProduct]}</a>
                 </div>                       
             </div>
             <div class="slider_custom__item">                   
@@ -513,8 +513,8 @@ setTimeout(() => {
                     ${imagesSecondProduct}
                </div>
                <div class="slider_custom__text">
-                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" class="slider__title">${secondProduct.replace(/-/g, ' ')}</p>
-                    <p onclick="location.href='https://www.urbanista.com/${pathLocal}/${secondProduct}';" >${localisation[pathLocal]?.productDescription[secondProduct]}</p>
+                    <a href='https://www.urbanista.com/${pathLocal}/${secondProduct}' target="_blank" class="slider__title">${secondProduct.replace(/-/g, ' ')}</a>
+                    <a href='https://www.urbanista.com/${pathLocal}/${secondProduct}' target="_blank">${localisation[pathLocal]?.productDescription[secondProduct]}</a>
                </div>    
             <div>        
         </div>
@@ -611,7 +611,7 @@ setTimeout(() => {
     document.querySelector('.product-add-form').insertAdjacentHTML('beforebegin', `
         <div class="select-color">
             <p>${localisation[pathLocal]?.color}:</p>
-            <div class="swatch-option color"></div>
+            <div class="swatch-option"></div>
             <svg class="arrow-down-svg" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
                 <path d="M0.94 0.726562L4 3.7799L7.06 0.726562L8 1.66656L4 5.66656L0 1.66656L0.94 0.726562Z" fill="#333333"/>
             </svg>
@@ -622,7 +622,12 @@ setTimeout(() => {
     let checkElInterval = setInterval(() => {
         if (document.querySelector('.swatch-attribute .swatch-option.selected')) {
             clearInterval(checkElInterval);
-            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+
+            if (document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor === 'initial') {
+                document.querySelector('.select-color .swatch-option').style.backgroundColor = '#686C3D';
+            } else {
+                document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+            }
         }
     }, 100);
 
@@ -682,7 +687,11 @@ setTimeout(() => {
 
     let observerActiveOption = new MutationObserver(function () {
         // change active color in select-color
-        document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+        if (document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor === 'initial') {
+            document.querySelector('.select-color .swatch-option').style.backgroundColor = '#686C3D';
+        } else {
+            document.querySelector('.select-color .swatch-option').style.backgroundColor = document.querySelector('.swatch-attribute .swatch-option.selected').style.backgroundColor;
+        }
     });
 
     observerActiveOption.observe(document.querySelector('.swatch-attribute'), config);
@@ -715,19 +724,17 @@ setTimeout(() => {
         }
     }, 100);
 
-    // document.querySelectorAll('.slider_custom__item').forEach(item => {
-    //     item.addEventListener('click', () => {
-    //        
-    //         window.dataLayer = window.dataLayer || [];
-    //         dataLayer.push({
-    //             'event': 'event-to-ga',
-    //             'eventCategory': 'Exp — Improved PDP mobile',
-    //             'eventAction': 'Click on 90 money back guarantee',
-    //             'eventLabel': 'Under the add to cart button'
-    //         });
-    //
-    //     })
-    // })
+    document.querySelectorAll('.slider_custom__item').forEach(item => {
+        item.addEventListener('click', () => {
+            let namePDP = item.querySelector('.slider__title').innerText;
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Improved PDP mobile',
+                'eventAction': `Click on ${namePDP} upsell`,
+            });
+        });
+    });
 
 // slider
     let categoryInterval = setInterval(() => {
