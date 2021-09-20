@@ -223,7 +223,6 @@ margin-bottom: 20px;
 
 .flex-text-total{
 max-width: 57%;
-font-family: Proxima Nova !important;
 font-weight: 600 !important;
 font-size: 14px !important;
 line-height: 130% !important;
