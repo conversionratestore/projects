@@ -490,15 +490,6 @@ window.onload  = function () {
                 document.querySelector('#notice-cookie-block').classList.remove('active');
             }
         });
-
-        // if (document.querySelector('.wishlist-mobile-wrap') && document.querySelectorAll('.product-item')) {
-        //     document.querySelectorAll('.product-item').forEach((el) => {
-        //         if (document.querySelector('.btn-white.saved') && el.getAttribute('id').replace('item_','') != document.querySelector('[name="product"]').value) {
-        //             document.querySelector('.btn-white.saved').click()
-        //         }
-        //     });
-        // }
-
     }
 
     if (window.location.pathname.includes('freesamples')) {
