@@ -162,7 +162,7 @@ align-items: center;
 justify-content: center;
 font-family: DINEngschrift LT;
 font-weight: 400;
-font-size: 14px;
+font-size: 16px;
 line-height: 1;
 text-align: center;
 letter-spacing: 0.05em;
@@ -335,7 +335,7 @@ margin-left: 3px;
 
 let buzzpatchStickersOne = /*html*/ `
 <section class="stickers-block">
-    <h1 class="stickers-main-title">how many buzzpatch stickers do you need to protect your children?</h1>
+    <h1 class="stickers-main-title">how many buzzpatch stickers do you need to protect your family?</h1>
     <div class="stickers-block-first">
         <ol class="stickers-question-list">
             <li class="select-var">
