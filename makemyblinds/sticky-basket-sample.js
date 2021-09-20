@@ -491,13 +491,21 @@ window.onload  = function () {
             }
         });
 
-        if (document.querySelector('.wishlist-mobile-wrap') && document.querySelectorAll('.product-item')) {
-            document.querySelectorAll('.product-item').forEach((el) => {
-                if (document.querySelector('.btn-white.saved') && el.getAttribute('id').replace('item_','') != document.querySelector('[name="product"]').value) {
-                    document.querySelector('.btn-white.saved').click()
+        // if (document.querySelector('.wishlist-mobile-wrap') && document.querySelectorAll('.product-item')) {
+        //     document.querySelectorAll('.product-item').forEach((el) => {
+        //         if (document.querySelector('.btn-white.saved') && el.getAttribute('id').replace('item_','') != document.querySelector('[name="product"]').value) {
+        //             document.querySelector('.btn-white.saved').click()
+        //         }
+        //     });
+        // }
+        document.querySelectorAll('.btn-remove').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (el.dataset.itemId == document.querySelector('[name="product"]').value) {
+                    e.target.click();
                 }
-            });
-        }
+            })
+        })
     }
 
     if (window.location.pathname.includes('freesamples')) {
