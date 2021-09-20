@@ -14,7 +14,7 @@ window.onload  = function () {
                 padding: 20px 0 15px;
             }
             .range-shipping {
-                margin-bottom: 30px;
+                margin-bottom: 15px;
             }
             .range-shipping_text1{
                 text-align: center;
