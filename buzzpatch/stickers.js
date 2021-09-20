@@ -222,7 +222,6 @@ margin-bottom: 20px;
 }
 
 .flex-text-total{
-font-family: 'Roboto', sans-serif !important;
 max-width: 57%;
 font-weight: 600 !important;
 font-size: 14px !important;
