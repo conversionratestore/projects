@@ -502,7 +502,8 @@ window.onload  = function () {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
                 if (el.dataset.itemId == document.querySelector('[name="product"]').value) {
-                    e.target.click();
+                    document.querySelector('.btn-white.saved').click()
+                    el.click();
                 }
             })
         })
