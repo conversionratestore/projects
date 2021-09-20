@@ -298,6 +298,38 @@ setTimeout(() => {
             'partners': 'partners',
             'description': 'description',
         },
+        'uk': {
+            'productDescription': {
+                'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
+                'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
+                'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
+            },
+            'color': 'color',
+            'features': 'Key features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+            'risk': '90 days risk-free trial',
+            'reviews': 'REVIEWS',
+            'other': 'Other Products',
+            'partners': 'partners',
+            'description': 'description',
+        },
+        'au': {
+            'productDescription': {
+                'stockholm-plus': 'Go beyond the sound with the new, second-generation STOCKHOLM.',
+                'london': 'Silence the outside world or let the sound in – London is by far the most advanced earphones we’ve ever made.',
+                'paris': 'Urbanista Paris gives you superior sound quality, boosted with a passive noise cancellation to improve your sound experience even more.',
+            },
+            'color': 'color',
+            'features': 'Key features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+            'risk': '90 days risk-free trial',
+            'reviews': 'REVIEWS',
+            'other': 'Other Products',
+            'partners': 'partners',
+            'description': 'description',
+        },
         'de': {
             'productDescription': {
                 'stockholm-plus': 'Mit den neuen STOCKHOLM der zweiten Generation bekommst du noch mehr als Sound.',
