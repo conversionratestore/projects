@@ -11,7 +11,7 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 16px;
                 color: #171717;
-                padding: 20px 0 15px;
+                padding: 20px 0 12px;
             }
             .range-shipping {
                 margin-bottom: 15px;
@@ -257,15 +257,15 @@ window.onload  = function () {
                 }
                 .shipping-box {
                     font-size: 12px;
-                    text-align: center;
                     background: #FFFFFF;
                     border: 1px solid #666666;
                     border-radius: 4px;
-                    padding: 15px ;
+                    padding: 10px 14px 7px;
                 }
                 .shipping-box img {
                     width: 35px;
                     height: 26px;
+                    margin-right: 10px;
                 }
                 .shipping-box p {
                     line-height: 16px;
@@ -276,7 +276,6 @@ window.onload  = function () {
                     font-size: 14px;
                     line-height: 16px!important;
                     color: #C23D31;
-                    margin: 8px 0;
                 }
                 .info {
                     font-size: 10px;
@@ -377,6 +376,11 @@ window.onload  = function () {
                 .btmcon {
                     margin-left: 0!important;
                 }
+                .align-center {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
                 @media only screen and (max-width: 360px)  {
                     .sticky-btn_row a {
                         padding-right: 15px;
@@ -431,10 +435,12 @@ window.onload  = function () {
         });
 
         //add shipping box
-        document.querySelector('.type2').insertAdjacentHTML('afterbegin',`
+        document.querySelector('.type2').insertAdjacentHTML('beforeend',`
         <div class="shipping-box">
-            <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
-            <p class="text-red">Estimated shipping </p>
+            <div class="align-center">
+                <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
+                <p class="text-red">Estimated shipping </p>
+            </div>
             <p>2-3 business days*</p>
         </div>`);
 
