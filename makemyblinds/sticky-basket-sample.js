@@ -498,15 +498,7 @@ window.onload  = function () {
         //         }
         //     });
         // }
-        document.querySelectorAll('.btn-remove').forEach(el => {
-            el.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (el.getAttribute('data-item-id') === document.querySelector('[name="product"]').value) {
-                    document.querySelector('.btn-white.saved').click()
-                    el.click();
-                }
-            })
-        })
+
     }
 
     if (window.location.pathname.includes('freesamples')) {
@@ -697,6 +689,9 @@ window.onload  = function () {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
             })
+            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`)) {
+                document.querySelector('.btn-white.saved').click();
+            }
         }
         mut.observe(document, {
             childList: true,
