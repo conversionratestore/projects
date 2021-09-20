@@ -281,6 +281,18 @@ setTimeout(() => {
             'specifications': 'SPECIFICATIONS',
             'technical': 'TECHNICAL',
         },
+        'uk': {
+            'color': 'color',
+            'features': 'Key features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+        },
+        'au': {
+            'color': 'color',
+            'features': 'Key features',
+            'specifications': 'SPECIFICATIONS',
+            'technical': 'TECHNICAL',
+        },
         'de': {
             'color': 'Farbe',
             'features': 'Features',
