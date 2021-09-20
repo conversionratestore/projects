@@ -1,3 +1,4 @@
+window.onload  = function () {
 let styleBuzzpatchstickers = /*html*/ `
 <style>
 
@@ -651,7 +652,7 @@ function scrolling(upSelector) {
     })
   })
 }
-
+};
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
@@ -699,3 +700,4 @@ function showModalStickers() {
     document.body.style.overflow = "hidden"
   }
 }
+
