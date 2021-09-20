@@ -8,18 +8,10 @@ window.onload  = function () {
             .range-shipping-title {
                 text-align: center;
                 font-weight: 700;
-                font-size: 16px;
-                line-height: 20px;
-                color: #171717;
-                padding: 20px 0;
-            }
-            .range-shipping-title  span {
-                display: block;
-                font-weight: 400;
-                font-size: 12px;
+                font-size: 14px;
                 line-height: 16px;
-                color: #666666;
-                margin-top: 8px;
+                color: #171717;
+                padding: 20px 0 15px;
             }
             .range-shipping {
                 margin-bottom: 30px;
@@ -29,15 +21,15 @@ window.onload  = function () {
                 font-size: 12px;
                 line-height: 16px;
                 text-transform: uppercase;
-                margin-bottom: 8px;
+                margin-bottom: 5px;
             }
              .range-shipping_text1 span {
                 color: #C23D31;
                 font-weight: 700;
              }
             .range-shipping_text2 {
-                font-size: 12px;
-                line-height: 16px;
+                font-size: 10px;
+                line-height: 14px;
                 color: #666666;
             }
             .range-shipping_text2  span {
@@ -47,7 +39,7 @@ window.onload  = function () {
                 width: 100%;
                 background: #EEEEEE;
                 border-radius: 12px;
-                height: 12px;
+                height: 8px;
                 position: relative;
                 overflow: hidden;
                 margin-bottom: 4px;
@@ -144,9 +136,7 @@ window.onload  = function () {
         </div>`);
         if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
             document.querySelector('.range-shipping').insertAdjacentHTML('beforebegin',`
-              <p class="range-shipping-title">Get Free Shipping
-                <span>You are almost there</span>
-            </p>`)
+              <p class="range-shipping-title">Get Free Shipping</p>`)
         }
 
         if (total < 150 && total >= 130) {
