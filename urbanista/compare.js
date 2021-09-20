@@ -58,6 +58,7 @@ document.body.insertAdjacentHTML('afterbegin',`
         .compare-col {
             width: calc(50% - 9px);
             margin-right: 18px;
+            margin-bottom: 35px;
         }
         .compare-col:last-child {
             margin-right: 0;
@@ -78,7 +79,6 @@ document.body.insertAdjacentHTML('afterbegin',`
             padding: 0 20px 0 12px;
         }
         .card {
-            margin-bottom: 35px;
             border: 1px solid #E8E8E8;
         }
         .card-img {
@@ -93,6 +93,10 @@ document.body.insertAdjacentHTML('afterbegin',`
         }
         .card-content {
             padding: 5px 12px 20px;
+            display: inline-flex;
+            min-height: 175px;
+            flex-direction: column;
+            width: 100%
         }
         .row-colors {
             display: flex;
@@ -151,6 +155,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             line-height: 16px;
             color: #000000;
             margin-bottom: 8px;
+            margin-top: auto;
         }
         .btn-buy {
             cursor: pointer;
@@ -173,64 +178,20 @@ if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
 
-// "data": [
-//         {"event":"productDetail","ecommerce":
-//             {"currencyCode":"EUR","detail":
-//                     {
-//                         "products":[
-//                             {"id":"43366","name":"London Burgundy Red","p_id":"3397","category":"All Products","price":149},
-//                             {"id":"39029","name":"London Midnight Black","p_id":"2172","category":"All Products","price":149},
-//                             {"id":"39223","name":"London Rose Gold","p_id":"2173","category":"All Products","price":149},
-//                             {"id":"41457","name":"London White Pearl","p_id":"2170","category":"All Products","price":149},
-//                             {"id":"41458","name":"London Dark Sapphire","p_id":"2171","category":"All Products","price":149},
-//                             {"id":"london","name":"London","p_id":"2169","category":"All Products","price":149}
-//                         ]
-//                     }
-//             }
+//   "*": {
+//             "enhancedDataLayer": {
+//                 "dataLayerName": "dataLayer",
+//                 "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
+//                 {"id":"26808","name":"Berlin Dark Clown","p_id":"780","category":"All Products","price":39.99},
+//                 {"id":"26811","name":"Berlin Rose Gold","p_id":"783","category":"All Products","price":39.99},
+//                 {"id":"26809","name":"Berlin Fluffy Cloud","p_id":"781","category":"All Products","price":39.99},
+//                 {"id":"32125","name":"Berlin Lucky Rainbow","p_id":"782","category":"All Products","price":39.99},
+//                 {"id":"berlin","name":"Berlin","p_id":"862","category":"All Products","price":39.99}]}}}],
+//                 "productLists": []            }
 //         }
-// ],
-// {
-//     "*": {
-//     "enhancedDataLayer": {
-//         "dataLayerName": "dataLayer",
-//             "data": [
-//                 {"event":"productDetail","ecommerce":
-//                         {"currencyCode":"EUR","detail":
-//                                 {"products":[
-//                                     {"id":"44257","name":"Miami Pearl White","p_id":"3474","category":"Urbanista Root Category","price":149},
-//                                     {"id":"44256","name":"Miami Midnight Black","p_id":"3475","category":"Urbanista Root Category","price":149},
-//                                     {"id":"44260","name":"Miami Teal Green","p_id":"3476","category":"Urbanista Root Category","price":149},
-//                                     {"id":"44259","name":"Miami Ruby Red","p_id":"3477","category":"Urbanista Root Category","price":149},
-//                                     {"id":"Miami","name":"Miami","p_id":"3473","category":"Urbanista Root Category","price":149}]}}}],
-//             "productLists": []            }
-// }
-// }
-// {
-//     "*": {
-//     "enhancedDataLayer": {
-//         "dataLayerName": "dataLayer",
-//             "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
-//             {"id":"46171","name":"Lisbon Coral Peach","p_id":"4086","category":"In-Ear","price":49.9},
-//             {"id":"46170","name":"Lisbon Vanilla Cream","p_id":"4085","category":"In-Ear","price":49.9},
-//             {"id":"46169","name":"Lisbon Blush Pink","p_id":"4084","category":"In-Ear","price":49.9},
-//             {"id":"45383","name":"Lisbon Mint Green","p_id":"4083","category":"In-Ear","price":49.9},
-//             {"id":"45382","name":"Lisbon Midnight Black","p_id":"4081","category":"In-Ear","price":49.9},
-//             {"id":"lisbon","name":"Lisbon","p_id":"4087","category":"In-Ear","price":49.9}]}}}],
-//             "productLists": []            }
-// }
-// }
+//
+//     {
 
-// {
-//     "*": {
-//     "enhancedDataLayer": {
-//         "dataLayerName": "dataLayer",
-//             "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
-//             {"id":"46203","name":"Los Angeles Sand Gold","p_id":"4020","category":"Noise Cancellation (ANC)","price":199},
-//             {"id":"45381","name":"Los Angeles Midnight Black","p_id":"4072","category":"Noise Cancellation (ANC)","price":199},
-//             {"id":"los-angeles","name":"Los Angeles","p_id":"4021","category":"Noise Cancellation (ANC)","price":199}]}}}],
-//             "productLists": []            }
-// }
-// }
 let colorObj = {
     273: '#e4cbc3',
     331: '#181b1a',
@@ -260,7 +221,6 @@ let colorObj = {
     6342: '#6f4a76',
     6343: '#234d95',
 };
-
 let select = `
 <div class="select" data-id="43366,41458,41457,39029,39223">
     <select>
@@ -268,16 +228,16 @@ let select = `
         <option value="Miami" data-id="44259,44260,44257,44256">Miami</option>
         <option value="Lisbon" data-id="46171,45383,46169,46170,45382">Lisbon</option>
         <option value="Los-Angeles" data-id="46203,45381">Los Angeles</option>
-        <option value="Seoul">Seoul</option>
-        <option value="Paris">Paris</option>
-        <option value="stockholm-plus">Stockholm Plus</option>        
-        <option value="Boston">Boston</option>
-        <option value="Sydney">Sydney</option>
-        <option value="Athens">Athens</option>
-        <option value="San-Francisco">San Francisco</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Berlin">Berlin</option>
-        <option value="sydney_hm">Sydney &M Home Edition</option>
+        <option value="Seoul" data-id="45428,45429,45385,45384">Seoul</option>
+        <option value="Paris" data-id="37058,37061,37059,37060">Paris</option>
+        <option value="stockholm-plus" data-id="40411,40407,40410,40408,40409">Stockholm Plus</option>        
+        <option value="Boston" data-id="21315">Boston</option>
+        <option value="Sydney" data-id="36773,37041,36772,36774">Sydney</option>
+        <option value="Athens" data-id="35327">Athens</option>
+        <option value="San-Francisco" data-id="26018,18537,19563,30944,18534,21506,19313,18536,18535">San Francisco</option>
+        <option value="Madrid" data-id="30269,30268,30271">Madrid</option>
+        <option value="Berlin" data-id="32125,26809,26808,26811">Berlin</option>
+        <option value="sydney_hm" data-id="39151">Sydney &M Home Edition</option>
     </select>
 </div>`;
 
@@ -301,7 +261,7 @@ let page = `
     </ul>
 </div>`;
 
-function setCards(el) {
+function setCards(el,index) {
 
     let optionSelected = el.options[el.selectedIndex].value,
         selectedIdOne = el.options[el.selectedIndex].dataset.id.split(',')[0];
@@ -354,7 +314,7 @@ function setCards(el) {
                     if (idColors[dataKey]["value_index"] == colorKey) {
                         el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin',`
                         <label class="label-color">
-                            <input type="radio" name="radio${1}" class="checkbox">
+                            <input type="radio" name="radio${index==0?'1':'2'}" class="checkbox">
                             <span class="check-color">
                                 <span style="background-color: ${colorObj[colorKey]}"></span>
                             </span>
@@ -379,9 +339,9 @@ function setCards(el) {
 
 document.body.insertAdjacentHTML('afterbegin', page);
 
-document.querySelectorAll('select').forEach((el) => {
-    setCards(el);
+document.querySelectorAll('select').forEach((el,index) => {
+    setCards(el,index);
     el.addEventListener('change', () => {
-        setCards(el);
+        setCards(el,index);
     });
 });
