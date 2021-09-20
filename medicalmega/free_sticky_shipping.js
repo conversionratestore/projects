@@ -260,7 +260,7 @@ window.onload  = function () {
                     background: #FFFFFF;
                     border: 1px solid #666666;
                     border-radius: 4px;
-                    padding: 10px 14px 7px;
+                    padding: 10px 12px 7px;
                     margin-top: 11px;
                 }
                 .shipping-box img {
