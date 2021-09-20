@@ -261,6 +261,7 @@ window.onload  = function () {
                     border: 1px solid #666666;
                     border-radius: 4px;
                     padding: 10px 14px 7px;
+                    margin-top: 11px;
                 }
                 .shipping-box img {
                     width: 35px;
