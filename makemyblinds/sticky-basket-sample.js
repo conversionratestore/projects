@@ -689,7 +689,7 @@ window.onload  = function () {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
             })
-            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`)) {
+            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
                 document.querySelector('.btn-white.saved').click();
             }
         }
