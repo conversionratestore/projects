@@ -500,8 +500,8 @@ window.onload  = function () {
         // }
         document.querySelectorAll('.btn-remove').forEach(el => {
             el.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (el.dataset.itemId == document.querySelector('[name="product"]').value) {
+                e.stopPropagation();
+                if (el.getAttribute('data-item-id') === document.querySelector('[name="product"]').value) {
                     document.querySelector('.btn-white.saved').click()
                     el.click();
                 }
