@@ -491,6 +491,13 @@ window.onload  = function () {
             }
         });
 
+        if (document.querySelector('.wishlist-mobile-wrap') && document.querySelectorAll('.product-item')) {
+            document.querySelectorAll('.product-item').forEach((el) => {
+                if (document.querySelector('.btn-white.saved') && el.getAttribute('id').replace('item_','') != document.querySelector('[name="product"]').value) {
+                    document.querySelector('.btn-white.saved').click()
+                }
+            });
+        }
     }
 
     if (window.location.pathname.includes('freesamples')) {
@@ -681,18 +688,6 @@ window.onload  = function () {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
             })
-        }
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
-        if (document.querySelector('.wishlist-mobile-wrap') && document.querySelectorAll('.product-item')) {
-            mut.disconnect();
-            document.querySelectorAll('.product-item').forEach((el) => {
-                if (document.querySelector('.btn-white.saved') && el.getAttribute('id').replace('item_','') != document.querySelector('[name="product"]').value) {
-                    document.querySelector('.btn-white.saved').click()
-                }
-            });
         }
         mut.observe(document, {
             childList: true,
