@@ -286,6 +286,7 @@ window.onload  = function () {
                 }
                 .topcon form {
                     display: flex;
+                    flex-wrap: wrap;
                 }
                 fieldset.topcon div.type1, fieldset.topcon div.type2 {
                     width: 140px;
@@ -512,8 +513,8 @@ window.onload  = function () {
         }
 
         if (document.querySelector('.type2 strong')) {
-            document.querySelector('.topcon').after(document.querySelector('.box_container'));
-            document.querySelector('.topcon').after(document.querySelector('.type2 strong'));
+            document.querySelector('.type2').after(document.querySelector('.box_container'));
+            document.querySelector('.type2').after(document.querySelector('.type2 strong'));
         }
     }
 
