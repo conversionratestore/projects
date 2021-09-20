@@ -739,6 +739,18 @@ setTimeout(() => {
         }
     }, 100);
 
+    document.querySelectorAll('.slider_custom__item').forEach(item => {
+        item.addEventListener('click', () => {
+            let namePDP = item.querySelector('.slider__title').innerText;
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Improved PDP mobile',
+                'eventAction': `Click on ${namePDP} upsell`,
+            });
+        });
+    });
+
 // slider
     let categoryInterval = setInterval(() => {
         if (typeof tns == 'function') {
