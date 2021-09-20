@@ -162,7 +162,7 @@ align-items: center;
 justify-content: center;
 font-family: 'DINEngschrift LT', sans-serif;
 font-weight: 400;
-font-size: 16px !important;
+font-size: 17px !important;
 line-height: 1;
 text-align: center;
 letter-spacing: 0.05em;
