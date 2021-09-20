@@ -281,7 +281,7 @@ window.onload  = function () {
                     font-size: 10px;
                     line-height: 14px;
                     color: #666666;
-                    margin: 8px auto 40px;
+                    padding: 0 0 40px;
                 }
                 .topcon form {
                     display: flex;
@@ -458,7 +458,7 @@ window.onload  = function () {
         }
 
         //add text info
-        document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*Sometimes by technical reasons delivery can took a bit longer up to 7 days. </p>`)
+        document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*In rare times, for technical reasons delivery might take up to 7 days.</p>`)
 
         //click on add to cart
         document.querySelectorAll('.add-cart').forEach(el => {
