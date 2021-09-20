@@ -682,6 +682,10 @@ window.onload  = function () {
             })
             if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
                 document.querySelector('.btn-white.saved').click();
+                document.querySelector('.loading-mask').style.display = 'none!important';
+                // setTimeout(()=> {
+                //     document.querySelector('.loading-mask').style.display = 'none';
+                // },100)
             }
         }
         mut.observe(document, {
