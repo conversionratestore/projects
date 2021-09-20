@@ -102,7 +102,7 @@ vertical-align: unset;
 }
 
 .add-person-title{
-font-family: 'DINEngschrift LT';
+font-family: DINEngschrift LT;
 font-weight: 400 !important;
 font-size: 16px !important;
 line-height: 1 !important;
@@ -160,7 +160,7 @@ max-width: 343px;
 height: 65px;
 align-items: center;
 justify-content: center;
-font-family: 'DINEngschrift LT';
+font-family: DINEngschrift LT;
 font-weight: 400;
 font-size: 16px !important;
 line-height: 1;
@@ -233,7 +233,7 @@ margin: 0 !important;
 
 
 .flex-span-total{
-font-family: 'DINEngschrift LT' !important;
+font-family: DINEngschrift LT !important;
 font-size: 20px !important;
 line-height: 1.2 !important;
 letter-spacing: 0.02em !important;
