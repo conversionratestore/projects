@@ -681,12 +681,10 @@ window.onload  = function () {
                 }
             })
             if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
-
-                document.querySelector('.loading-mask').style.display = 'none!important';
-                document.querySelector('.btn-white.saved').click();
-                // setTimeout(()=> {
-                //     document.querySelector('.loading-mask').style.display = 'none';
-                // },100)
+                document.querySelector('.btn-white').classList.remove('saved');
+                document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
             }
         }
         mut.observe(document, {
