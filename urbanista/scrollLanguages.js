@@ -198,6 +198,9 @@ setTimeout(() => {
         .sticky-pdp-cta .swatch-attribute .swatch-title {
             display: none !important;
         }
+        .swatch-option {
+            display: inline-block !important;
+        }
         .sticky-pdp-cta .swatch-option {
             margin: 10px 40% !important;
             width: 25px !important;
