@@ -491,6 +491,8 @@ window.onload  = function () {
                 document.querySelector('#notice-cookie-block').classList.remove('active');
             }
         });
+
+
     }
 
     if (window.location.pathname.includes('freesamples')) {
@@ -643,87 +645,88 @@ window.onload  = function () {
             });
         })
     }
-};
 
 //MutationObserver
-let mut = new MutationObserver(function (muts) {
-    //Your Free Sample Order Swatch
-    if (document.querySelector('.free-samples-modal') && document.querySelectorAll('.th-button-carry')[0] && document.querySelector('.free-samples-modal .samples-block')) {
-        mut.disconnect();
-        samplesModal();
+    let mut = new MutationObserver(function (muts) {
+        //Your Free Sample Order Swatch
+        if (document.querySelector('.free-samples-modal') && document.querySelectorAll('.th-button-carry')[0] && document.querySelector('.free-samples-modal .samples-block')) {
+            mut.disconnect();
+            samplesModal();
 
-        document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - uiimprovements mobile',
-                'eventAction': 'Click on the Order free sample button',
-                'eventLabel': 'Popup: Your free sample order swatch'
-            });
-        })
-        document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - uiimprovements mobile',
-                'eventAction': 'Click on the Save and Keep looking button',
-                'eventLabel': 'Popup: Your free sample order swatch'
-            });
-        })
-        if (document.querySelectorAll('.samples-block .product-item').length > 3 && !document.querySelector('.free-samples-modal .samples-block.before')) {
-            document.querySelector('.free-samples-modal .samples-block').classList.add('before');
-        } else {
-            document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
-        }
-        document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
-            if (Math.ceil(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {
-                document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
-            } else {
+            document.querySelectorAll('.th-button-order')[0].addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - uiimprovements mobile',
+                    'eventAction': 'Click on the Order free sample button',
+                    'eventLabel': 'Popup: Your free sample order swatch'
+                });
+            })
+            document.querySelectorAll('.th-button-carry')[0].addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - uiimprovements mobile',
+                    'eventAction': 'Click on the Save and Keep looking button',
+                    'eventLabel': 'Popup: Your free sample order swatch'
+                });
+            })
+            if (document.querySelectorAll('.samples-block .product-item').length > 3 && !document.querySelector('.free-samples-modal .samples-block.before')) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
+            } else {
+                document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
             }
-        })
-        if (document.querySelector('.product-mobile-title')) {
-            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
-                document.querySelector('.btn-white').classList.remove('saved');
-                document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
-                document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
-                document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
-                document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
+            document.querySelector('#wishlist-sidebar').addEventListener('scroll', (e) => {
+                if (Math.ceil(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight) {
+                    document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
+                } else {
+                    document.querySelector('.free-samples-modal .samples-block').classList.add('before');
+                }
+            })
+            if (document.querySelector('.product-mobile-title')) {
+                if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
+                    document.querySelector('.btn-white').classList.remove('saved');
+                    document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
+                    document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
+                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
+                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
+                }
             }
         }
-    }
+
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
+
+        // if (document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
+        //     mut.disconnect();
+        //     document.querySelectorAll('.product-item').forEach(el => {
+        //         let id = el.getAttribute('id').replace('item_','');
+        //
+        //         if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
+        //             let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
+        //
+        //             towishListActive.classList.remove('active');
+        //             towishListActive.setAttribute('title','Add to Wish List');
+        //             towishListActive.setAttribute('aria-label','Add to Wish List');
+        //             towishListActive.setAttribute('data-action','add-to-wishlist');
+        //         }
+        //     })
+        // }
+        //
+        // mut.observe(document, {
+        //     childList: true,
+        //     subtree: true
+        // });
+    });
 
     mut.observe(document, {
         childList: true,
         subtree: true
     });
+};
 
-    // if (document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
-    //     mut.disconnect();
-    //     document.querySelectorAll('.product-item').forEach(el => {
-    //         let id = el.getAttribute('id').replace('item_','');
-    //
-    //         if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
-    //             let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
-    //
-    //             towishListActive.classList.remove('active');
-    //             towishListActive.setAttribute('title','Add to Wish List');
-    //             towishListActive.setAttribute('aria-label','Add to Wish List');
-    //             towishListActive.setAttribute('data-action','add-to-wishlist');
-    //         }
-    //     })
-    // }
-    //
-    // mut.observe(document, {
-    //     childList: true,
-    //     subtree: true
-    // });
-});
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
