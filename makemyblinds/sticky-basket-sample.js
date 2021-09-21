@@ -1,4 +1,3 @@
-
 let like = [
     {
         href: `https://www.makemyblinds.co.uk/editions-brilliant-white.html?queryID=64311411bce32e4e3df4124e0bd7e1ed&objectID=1466&indexName=mmblive_en_en_products`,
@@ -705,8 +704,9 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             }
         })
-        actionSave();
+        
     }
+    actionSave();
     mut.observe(document, {
         childList: true,
         subtree: true
