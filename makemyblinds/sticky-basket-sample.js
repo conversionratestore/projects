@@ -698,7 +698,7 @@ window.onload  = function () {
                 let id = el.getAttribute('id').replace('item_','');
 
                 if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
-                    let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
+                    let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist');
 
                     towishListActive.classList.remove('active');
                     towishListActive.setAttribute('title','Add to Wish List');
