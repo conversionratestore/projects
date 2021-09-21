@@ -64,7 +64,6 @@ let styleSet = /*html*/ `
   font-size: 14px;
   line-height: 1;
   align-items: center;
-  text-align: center;
   color: #2c8081;
 }
 
@@ -74,7 +73,7 @@ let styleSet = /*html*/ `
 }
 
 .delivery-svg-mobile {
-  margin-right: 0.7em;
+  margin-right: 0.5em;
   vertical-align: text-bottom;
 }
 
@@ -122,7 +121,7 @@ let styleSet = /*html*/ `
   top: 0;
   width: 180px;
   right: 0;
-  padding: 20px;
+  padding: 20px 5px 5px 20px;
   border: 2px dashed #e5e5e5;
 
   font-weight: 400;
@@ -155,14 +154,79 @@ let styleSet = /*html*/ `
   color: #8e8e8e;
 }
 
+.text-block-desktop, .text-block{
+margin: 0 !important;
+}
+
+
+
+.apply-span{
+  margin-top:10px !important;
+  display:block !important;
+  text-align:end !important;
+  font-weight: 400 !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  color: #8E8E8E !important;
+}
+
+.apply-span-mobile{
+  display:block !important;
+  text-align:end !important;
+  font-weight: 400 !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  color: #8E8E8E !important;
+}
+
+.apply-span-mobile-more{
+  position: absolute;
+  bottom: 4px;
+  right: -57px;
+  font-weight: 400 !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  color: #8E8E8E !important;
+  
+}
+
+.flex-more-mobile{
+display:flex !important;
+justify-content: flex-start !important;
+
+}
+
+.flex-more-mobile .svg-mobile-more{
+  margin-right: 16px !important;
+}
+
+.flex-more-mobile .text-block-more-mobile{
+  position: relative;
+  text-align:start !important;
+}
+
+@media (max-width: 321px) {
+  .apply-span-mobile-more{
+    position: unset;
+    margin-left:0;
+    display: block;
+    text-align: end !important;
+  }
+
+  .flex-more-mobile .text-block-more-mobile{
+    position: unset;  
+  }
+}
 
 </style>
 `;
 
 let deliveryBoxMoreMobile = /*html*/ `
-<div class="delivery-box-mobile">
-   <p class="text-block-more">You've got to spend <span class="price-more">£30</span> more <br><img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more"> to get <span class="accent-text-random">FREE SHIPPING</span> for this order
-  </p>
+<div class="delivery-box-mobile flex-more-mobile">
+  <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile-more svg-mobile-more">
+  <p class="text-block-more text-block-more-mobile">You've got to spend <span class="price-more">£30</span> more to get <br><span class="accent-text-random">FREE SHIPPING</span> for this order
+  <span class="apply-span-mobile-more">*conditions apply</span>
+</p>
 </div>
 `;
 
@@ -171,6 +235,7 @@ let deliveryBoxMobile = /*html*/ `
    <p class="text-block">
    <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg-mobile">
     You've got <span class="accent-text-random">FREE SHIPPING</span> for this order</p>
+    <span class="apply-span-mobile">*conditions apply</span>
 </div>
 `;
 
@@ -179,6 +244,7 @@ let deliveryBoxMore = /*html*/ `
       <p class="text-block-more-desktop">
       <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got to spend <span class="price-more">£30</span> more to get <br><span class="text-span">FREE SHIPPING</span><br>for this order
       </p>
+      <span class="apply-span">*conditions apply</span>
   </div>
   `;
 
@@ -186,6 +252,7 @@ let deliveryBox = /*html*/ `
   <div class="delivery-box">
       <p class="text-block-desktop">
       <img src="https://conversionratestore.github.io/projects/jarrold/img/delivery.svg" alt="delivery-car" class="delivery-svg"><br>You've got <br><span class="text-span">FREE SHIPPING</span><br>for this order</p>
+      <span class="apply-span">*conditions apply</span>
   </div>
   `;
 
@@ -422,8 +489,13 @@ if (document.querySelector("#variants .price") || document.querySelector(".upc")
           }
 
           if (!document.querySelector(".delivery-box") && !document.querySelector(".delivery-box-mobile")) {
-            renderDelivery(s, p);
-            handleClick(s, p, rc);
+            let price = +document.querySelector(`.${now}`).innerText.split("£")[1];
+            let qty = +document.querySelector(".controls.qty #page_MainContent_product_detail_txtQuantity").value;
+            let customSumm = +(price * qty).toFixed(2);
+          
+            localStorage.setItem("customSumm", customSumm);
+            renderDelivery(customSumm, price);
+            handleClick(customSumm, price, rc);
           }
         }, 350);
       });
