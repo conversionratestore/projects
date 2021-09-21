@@ -2,7 +2,7 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
-            .out-of-stock__message {
+            p.out-of-stock__message {
                 width: 100%!important;
                 font-size: 15px;
             }
