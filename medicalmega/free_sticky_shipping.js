@@ -423,9 +423,10 @@ window.onload  = function () {
             <button type="button" class="add-cart">add to cart</button>
         </div>`;
 
-        //add sticky button in body
-        
+
         if (document.querySelector('.product-price')) {
+
+            //add sticky button in body
             document.body.insertAdjacentHTML('beforeend',`
             <div class="sticky-btn active">
                 <div class="sticky-btn_row">
@@ -433,10 +434,10 @@ window.onload  = function () {
                     <p class="sticky-btn_price">${document.querySelector('.product-price').innerHTML}</p>
                 </div>
             </div>`);
+            //add element in sticky button
+            document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
         }
 
-        //add element in sticky button
-        document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
 
         //hide sticky button on scrollY > 200, else show
         document.addEventListener('scroll', (e) => {
