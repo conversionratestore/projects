@@ -256,6 +256,9 @@ setTimeout(() => {
         .swatch-option.selected:not(.sticky-pdp-cta .swatch-option.selected) {
             pointer-events: none;
         }  
+        .custom_fc_frame {
+            bottom: 30px !important;
+        }
         @media screen and (max-width: 900px) {
             .catalog-product-view .money-banner {
                 display: block !important
