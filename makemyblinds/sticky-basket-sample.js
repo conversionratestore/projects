@@ -707,6 +707,10 @@ window.onload  = function () {
                 }
             })
         }
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
     });
 
     mut.observe(document, {
