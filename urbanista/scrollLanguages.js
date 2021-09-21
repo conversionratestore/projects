@@ -257,7 +257,7 @@ setTimeout(() => {
             pointer-events: none;
         }  
         .custom_fc_frame {
-            bottom: 30px !important;
+            bottom: 45px !important;
         }
         @media screen and (max-width: 900px) {
             .catalog-product-view .money-banner {
