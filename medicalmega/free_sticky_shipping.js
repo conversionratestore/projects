@@ -2,6 +2,14 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .out-of-stock__message {
+                width: 100%!important;
+                font-size: 15px;
+            }
+            .out-of-stock__box {
+                width: 100%!important;
+                margin: 18px 0 0 0!important;
+            }
             .homeslider__container {
                 margin-bottom: 40px!important;
             }
