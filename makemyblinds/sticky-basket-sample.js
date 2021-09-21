@@ -692,7 +692,7 @@ window.onload  = function () {
             childList: true,
             subtree: true
         });
-        if (document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
+        if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
             mut.disconnect();
             document.querySelectorAll('.product-item').forEach(el => {
                 let id = el.getAttribute('id').replace('item_','');
