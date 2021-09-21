@@ -466,7 +466,7 @@ window.onload  = function () {
         }
 
         //show range, if have product in cart
-        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0') {
+        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price')) {
             rangeShipping('.price-product','afterend');
         }
 
