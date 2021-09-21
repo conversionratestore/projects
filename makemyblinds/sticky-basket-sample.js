@@ -702,9 +702,10 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.querySelectorAll('.product-item').forEach(el => {
             let id = el.getAttribute('id').replace('item_','');
-            let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
+         
+            if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
+                let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
 
-            if (!document.querySelector(`.result[data-objectid="${id}"]`) && towishListActive) {
                 towishListActive.classList.remove('active');
                 towishListActive.setAttribute('title','Add to Wish List');
                 towishListActive.setAttribute('aria-label','Add to Wish List');
