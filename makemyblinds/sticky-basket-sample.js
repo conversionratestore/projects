@@ -671,7 +671,7 @@ let mut = new MutationObserver(function (muts) {
                 'eventLabel': 'Popup: Your free sample order swatch'
             });
         })
-        if (document.querySelectorAll('.samples-block .product-item').length > 3) {
+        if (document.querySelectorAll('.samples-block .product-item').length > 3 && !document.querySelector('.free-samples-modal .samples-block.before')) {
             document.querySelector('.free-samples-modal .samples-block').classList.add('before');
         } else {
             document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
