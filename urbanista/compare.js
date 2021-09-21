@@ -94,7 +94,6 @@ document.body.insertAdjacentHTML('afterbegin',`
         .card-content {
             padding: 5px 12px 20px;
             display: inline-flex;
-            min-height: 175px;
             flex-direction: column;
             width: 100%
         }
@@ -148,6 +147,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             color: #9A9A9A;
             margin-bottom: 8px;
             text-transform: uppercase;
+            min-height: 11.5px;
         }
         .card-price {
             font-weight: bold;
@@ -177,20 +177,6 @@ document.body.insertAdjacentHTML('afterbegin',`
 if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
-
-//   "*": {
-//             "enhancedDataLayer": {
-//                 "dataLayerName": "dataLayer",
-//                 "data": [{"event":"productDetail","ecommerce":{"currencyCode":"EUR","detail":{"products":[
-//                 {"id":"26808","name":"Berlin Dark Clown","p_id":"780","category":"All Products","price":39.99},
-//                 {"id":"26811","name":"Berlin Rose Gold","p_id":"783","category":"All Products","price":39.99},
-//                 {"id":"26809","name":"Berlin Fluffy Cloud","p_id":"781","category":"All Products","price":39.99},
-//                 {"id":"32125","name":"Berlin Lucky Rainbow","p_id":"782","category":"All Products","price":39.99},
-//                 {"id":"berlin","name":"Berlin","p_id":"862","category":"All Products","price":39.99}]}}}],
-//                 "productLists": []            }
-//         }
-//
-//     {
 
 let colorObj = {
     273: '#e4cbc3',
@@ -222,22 +208,22 @@ let colorObj = {
     6343: '#234d95',
 };
 let select = `
-<div class="select" data-id="43366,41458,41457,39029,39223">
+<div class="select">
     <select>
-        <option value="London" data-id="43366,41458,41457,39029,39223" selected>London</option>
-        <option value="Miami" data-id="44259,44260,44257,44256">Miami</option>
-        <option value="Lisbon" data-id="46171,45383,46169,46170,45382">Lisbon</option>
-        <option value="Los-Angeles" data-id="46203,45381">Los Angeles</option>
-        <option value="Seoul" data-id="45428,45429,45385,45384">Seoul</option>
-        <option value="Paris" data-id="37058,37061,37059,37060">Paris</option>
-        <option value="stockholm-plus" data-id="40411,40407,40410,40408,40409">Stockholm Plus</option>        
-        <option value="Boston" data-id="21315">Boston</option>
-        <option value="Sydney" data-id="36773,37041,36772,36774">Sydney</option>
-        <option value="Athens" data-id="35327">Athens</option>
-        <option value="San-Francisco" data-id="26018,18537,19563,30944,18534,21506,19313,18536,18535">San Francisco</option>
-        <option value="Madrid" data-id="30269,30268,30271">Madrid</option>
-        <option value="Berlin" data-id="32125,26809,26808,26811">Berlin</option>
-        <option value="sydney_hm" data-id="39151">Sydney &M Home Edition</option>
+        <option value="London" selected>London</option>
+        <option value="Miami">Miami</option>
+        <option value="Lisbon">Lisbon</option>
+        <option value="Los-Angeles">Los Angeles</option>
+        <option value="Seoul">Seoul</option>
+        <option value="Paris">Paris</option>
+        <option value="stockholm-plus">Stockholm Plus</option>        
+        <option value="Boston">Boston</option>
+        <option value="Sydney">Sydney</option>
+        <option value="Athens">Athens</option>
+        <option value="San-Francisco">San Francisco</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Berlin">Berlin</option>
+        <option value="sydney_hm">Sydney &M Home Edition</option>
     </select>
 </div>`;
 
@@ -263,75 +249,96 @@ let page = `
 
 function setCards(el,index) {
 
-    let optionSelected = el.options[el.selectedIndex].value,
-        selectedIdOne = el.options[el.selectedIndex].dataset.id.split(',')[0];
+    let optionSelected = el.options[el.selectedIndex].value;
 
-    console.log(selectedIdOne)
+    console.log(optionSelected)
     el.closest('.select').setAttribute('data-id', `${el.options[el.selectedIndex].dataset.id}`);
 
-    fetch(`https://www.urbanista.com/rest/V1/products/${selectedIdOne}?fields=sku,price,name,media_gallery_entries[file],custom_attributes[color,subtitle]`, {
+    fetch(`https://www.urbanista.com/rest/V1/configurable-products/${optionSelected}/children?fields=sku,price,name,custom_attributes[color,subtitle,grid_image]`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
         }
     }).then(resItem => resItem.json()).then(dataItem => {
-        console.log(dataItem)
+        console.log(dataItem);
+        // console.log(dataItem[0]["custom_attributes"][0]);
+
         el.closest('.compare-col').querySelector('.card').setAttribute('data-id',dataItem["sku"])
         el.closest('.compare-col').querySelector('.card').innerHTML = `
-            <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img">
-                <img src="https://www.urbanista.com/media/catalog/product${dataItem["media_gallery_entries"][0]["file"]}" alt="${dataItem["name"]}">
-            </a>
+            <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img"></a>
             <div class="card-content">
                 <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
-                <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-title">${dataItem["name"]}</a>
+                <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-title">${dataItem[0]["name"]}</a>
                 <p class="card-additional"></p>
-                <p class="card-price">$${dataItem["price"]}</p>
+                <p class="card-price">$${dataItem[0]["price"]}</p>
                 <button type="button" class="btn-buy">Buy</button>
                 <a href="https://www.urbanista.com/eu/${optionSelected}" class="sea-more">Learn more ></a>
             </div>
         </div>`;
-        for (const dataKeyItem in dataItem["custom_attributes"]) {
-            if (dataItem["custom_attributes"][dataKeyItem]["attribute_code"] == "subtitle") {
-                el.closest('.compare-col').querySelector('.card-additional').innerHTML = dataItem["custom_attributes"][dataKeyItem]["value"];
-            } else {
-                el.closest('.compare-col').querySelector('.card').setAttribute('data-color', dataItem["custom_attributes"][dataKeyItem]["value"]);
-            }
-        }
 
-        fetch(`https://www.urbanista.com/rest/V1/products/${optionSelected}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
-            }
-        }).then(res => res.json()).then(data => {
-            console.log(data);
-            let idColors = data["extension_attributes"]["configurable_product_options"][0]["values"];
-
-            for (const colorKey in colorObj) {
-                for (const dataKey in idColors) {
-                    if (idColors[dataKey]["value_index"] == colorKey) {
-                        el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin',`
-                        <label class="label-color">
-                            <input type="radio" name="radio${index==0?'1':'2'}" class="checkbox">
+        for (let i = 0; i < dataItem.length; i++) {
+            let attrObj = dataItem[i]["custom_attributes"];
+            for (const key in attrObj) {
+                for (const dataKey in colorObj) {
+                    if (attrObj[key]["attribute_code"] === "color" && dataKey === attrObj[key]["value"]) {
+                        el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin', `
+                        <label class="label-color"  data-id="${dataItem[i]["sku"]}">
+                            <input type="radio" name="radio${index == 0 ? '1' : '2'}" class="checkbox">
                             <span class="check-color">
-                                <span style="background-color: ${colorObj[colorKey]}"></span>
+                                <span style="background-color: ${colorObj[dataKey]}"></span>
                             </span>
                         </label>`);
                     }
                 }
-            }
-            let checkbox = el.closest('.compare-col').querySelectorAll('.checkbox');
-            for (let i = 0; i < checkbox.length; i++) {
-                checkbox[i].setAttribute('data-id',`${el.closest('.select').dataset.id.split(',')[i]}`)
-                if (checkbox[i].dataset.id === el.closest('.compare-col').querySelector('.card').dataset.id ) {
-                    checkbox[i].setAttribute('checked','true');
+                if (attrObj[key]["attribute_code"] === "subtitle") {
+                    console.log(attrObj[key]["value"]);
+                    el.closest('.compare-col').querySelector('.card-additional').innerHTML = attrObj[key]["value"];
+                }
+                if (attrObj[key]["attribute_code"] === "grid_image") {
+                    console.log(attrObj[key]["value"]);
+                    el.closest('.compare-col').querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}" alt="${dataItem[i]["name"]}">`
                 }
             }
-        }).catch(err => {
-            console.log('Failed fetch ', err);
-        });
+        }
+
+        el.closest('.compare-col').querySelectorAll('.label-color').forEach((label) => {
+            label.addEventListener('change', () => {
+
+                // fetch(`https://www.urbanista.com/rest/V1/products/${label.dataset.id}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
+                //     method: "GET",
+                //     headers: {
+                //         "Content-Type": "application/json",
+                //         "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
+                //     }
+                // }).then(res => res.json()).then(data => {
+                //     console.log(data);
+                //
+                // }).catch(err => {
+                //     console.log('Failed fetch ', err);
+                // });
+            })
+        })
+        //     for (const dataKey in idColors) {
+        //         if (idColors[dataKey]["value_index"] == colorKey) {
+        //             el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin',`
+        //                 <label class="label-color">
+        //                     <input type="radio" name="radio${index==0?'1':'2'}" class="checkbox">
+        //                     <span class="check-color">
+        //                         <span style="background-color: ${colorObj[colorKey]}"></span>
+        //                     </span>
+        //                 </label>`);
+        //         }
+        //     }
+
+        // let checkbox = el.closest('.compare-col').querySelectorAll('.checkbox');
+        // for (let i = 0; i < checkbox.length; i++) {
+        //     checkbox[i].setAttribute('data-id',`${el.closest('.select').dataset.id.split(',')[i]}`)
+        //     if (checkbox[i].dataset.id === el.closest('.compare-col').querySelector('.card').dataset.id ) {
+        //         checkbox[i].setAttribute('checked','true');
+        //     }
+        // }
+
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
