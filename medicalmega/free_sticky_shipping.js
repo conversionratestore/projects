@@ -423,9 +423,7 @@ window.onload  = function () {
             <button type="button" class="add-cart">add to cart</button>
         </div>`;
 
-
         if (document.querySelector('.product-price')) {
-
             //add sticky button in body
             document.body.insertAdjacentHTML('beforeend',`
             <div class="sticky-btn active">
@@ -437,7 +435,6 @@ window.onload  = function () {
             //add element in sticky button
             document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
         }
-
 
         //hide sticky button on scrollY > 200, else show
         document.addEventListener('scroll', (e) => {
@@ -459,12 +456,14 @@ window.onload  = function () {
         </div>`);
 
         //add elements
-        document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
-        <div class="price-product">
-            <p>Our Price:</p>
-            <p>${document.querySelector('.product-price').innerHTML}</p>
-        </div>
-        ${rowActions}`);
+        if (document.querySelector('.product-price')) {
+            document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
+            <div class="price-product">
+                <p>Our Price:</p>
+                <p>${document.querySelector('.product-price').innerHTML}</p>
+            </div>
+            ${rowActions}`);
+        }
 
         //show range, if have product in cart
         if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0') {
