@@ -646,7 +646,7 @@ window.onload  = function () {
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
-        if (document.querySelector('.free-samples-modal._show') && document.querySelectorAll('.th-button-carry')[0]) {
+        if (document.querySelector('.free-samples-modal') && document.querySelectorAll('.th-button-carry')[0]) {
             mut.disconnect();
             samplesModal();
 
