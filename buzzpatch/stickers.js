@@ -523,6 +523,7 @@ document.querySelector(".btn-first").addEventListener("click", function () {
     event: "event-to-ga",
     eventCategory: "Exp - How many stickers need mobile",
     eventAction: "Click on button calculate how many do you need",
+    eventLabel: ``,
   })
 
   showModalStickers()
@@ -618,6 +619,7 @@ function scrolling(upSelector) {
         event: "event-to-ga",
         eventCategory: "Exp - How many stickers need mobile",
         eventAction: "Click on button see other packs",
+        eventLabel: ``,
       })
 
       document.querySelector(".backdrop-modal").classList.add("is-hidden")
@@ -657,6 +659,7 @@ dataLayer.push({
   event: "event-to-ga",
   eventCategory: "Exp - How many stickers need mobile",
   eventAction: "loaded",
+  eventLabel: ``,
 })
 ;(function (h, o, t, j, a, r) {
   h.hj =
