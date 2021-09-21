@@ -424,13 +424,16 @@ window.onload  = function () {
         </div>`;
 
         //add sticky button in body
-        document.body.insertAdjacentHTML('beforeend',`
-        <div class="sticky-btn active">
-            <div class="sticky-btn_row">
-                <a href="#">${document.querySelectorAll('.center h3')[0].innerHTML}</a>
-                <p class="sticky-btn_price">${document.querySelector('.product-price').innerHTML}</p>
-            </div>
-        </div>`);
+        
+        if (document.querySelector('.product-price')) {
+            document.body.insertAdjacentHTML('beforeend',`
+            <div class="sticky-btn active">
+                <div class="sticky-btn_row">
+                    <a href="#">${document.querySelectorAll('.center h3')[0].innerHTML}</a>
+                    <p class="sticky-btn_price">${document.querySelector('.product-price').innerHTML}</p>
+                </div>
+            </div>`);
+        }
 
         //add element in sticky button
         document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
