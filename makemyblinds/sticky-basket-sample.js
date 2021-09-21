@@ -132,28 +132,6 @@ function samplesModal() {
     }
 }
 
-function actionSave() {
-    if (document.querySelector('.product-mobile-title')) {
-        if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
-            document.querySelector('.btn-white').classList.remove('saved');
-            document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
-            document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
-            document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
-            document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
-        }
-    }
-    if (document.querySelectorAll('.hp-popular-blinds-item') && document.querySelectorAll('.product-item')) {
-        document.querySelectorAll('.product-item').forEach(el => {
-            let id = el.getAttribute('id').replace('item_','');
-            if (!document.querySelector(`.hp-popular-blinds-item._product-id-${id}`) && document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist.active`)) {
-                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).classList.remove('active');
-                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).setAttribute('title','Add to Wish List');
-                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).setAttribute('data-action','add-to-wishlist');
-            }
-        })
-    }
-}
-
 window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
@@ -704,9 +682,34 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             }
         })
-
-        actionSave();
+        if (document.querySelector('.product-mobile-title')) {
+            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
+                document.querySelector('.btn-white').classList.remove('saved');
+                document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
+                document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
+            }
+        }
     }
+    
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+    
+    if (document.querySelectorAll('.hp-popular-blinds-item') && document.querySelectorAll('.product-item')) {
+        mut.disconnect();
+        document.querySelectorAll('.product-item').forEach(el => {
+            let id = el.getAttribute('id').replace('item_','');
+            if (!document.querySelector(`.hp-popular-blinds-item._product-id-${id}`) && document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist.active`)) {
+                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).classList.remove('active');
+                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).setAttribute('title','Add to Wish List');
+                document.querySelector(`.hp-popular-blinds-item._product-id-${id} .action.towishlist`).setAttribute('data-action','add-to-wishlist');
+            }
+        })
+    }
+    
     mut.observe(document, {
         childList: true,
         subtree: true
