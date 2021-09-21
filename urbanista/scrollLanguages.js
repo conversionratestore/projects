@@ -415,7 +415,6 @@ setTimeout(() => {
 
             block.querySelectorAll('p').forEach(p => {
                 if (p.innerText.length > 2) {
-                    console.log(p.innerText);
                     arr = p.innerText
                         .replace(/(earbud.\n)/g, 'earbud.<br>')
                         .replace(/(28mA±-\n)/g, '28mA±-<br>')
