@@ -788,6 +788,9 @@ window.onload  = function () {
         if (location.pathname == '/checkout/step2') {
             document.body.insertAdjacentHTML('afterbegin', `
     <style>
+    .holiday {
+        margin: 15px 0 0 0!important;
+    }
     .payment h3, .primaryInfo h2, .remove{
         display: none}
     .primaryInfo li {
@@ -877,6 +880,8 @@ window.onload  = function () {
                 element.setAttribute('readonly');
             });
             document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
+
+            document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
 
             document.querySelector('.btn-back').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
