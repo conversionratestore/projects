@@ -1,137 +1,3 @@
-let like = [
-    {
-        href: `https://www.makemyblinds.co.uk/editions-brilliant-white.html?queryID=64311411bce32e4e3df4124e0bd7e1ed&objectID=1466&indexName=mmblive_en_en_products`,
-        name: `Editions Brilliant White`,
-        src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_08052019.png`,
-        actionLiks: `
-                <div class="product-social-links">
-                    <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1466,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2VkaXRpb25zLWJyaWxsaWFudC13aGl0ZS5odG1sP3F1ZXJ5SUQ9NjQzMTE0MTFiY2UzMmU0ZTNkZjQxMjRlMGJkN2UxZWQmb2JqZWN0SUQ9MTQ2NiZpbmRleE5hbWU9bW1ibGl2ZV9lbl9lbl9wcm9kdWN0cw,,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECSER001&quot;,&quot;name&quot;:&quot;Editions Brilliant White&quot;,&quot;price&quot;:8.99}" data-event-label="Editions Brilliant White"><i class="mmb-icon love"></i><span>Free sample</span></div>
-                    </div>
-                </div>`
-    },
-    {
-        href: `https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html?queryID=661afbbd917722dd994b949cfb1ddfdb&objectID=562&indexName=mmblive_en_en_products`,
-        name: `Anthracite Grey Perfect Fit`,
-        src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_slat_tr1679_11092019_1.png`,
-        actionLiks: `
-                <div class="product-social-links">
-                    <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:562,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2JpZm9sZC1zdG9ybXktZ3JleS1zYXRpbi1wZXJmZWN0LWZpdC5odG1sP3F1ZXJ5SUQ9NjYxYWZiYmQ5MTc3MjJkZDk5NGI5NDljZmIxZGRmZGImb2JqZWN0SUQ9NTYyJmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;PTR25.1695&quot;,&quot;name&quot;:&quot;Anthracite Grey Perfect Fit&quot;,&quot;price&quot;:29.99}" data-event-label="Anthracite Grey Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
-                    </div>
-                </div>`
-    },
-    {
-        href: `https://www.makemyblinds.co.uk/snow-white-blackout-honeycomb-perfect-fit.html?queryID=74ea35882409f4377f91acbb3ddd2ab9&objectID=1839&indexName=mmblive_en_en_products`,
-        name: `Snow White Blackout Honeycomb Perfect Fit`,
-        src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_frnt_closeup_04_honeycomb_aurora_blackout_snow_white_01282020.png`,
-        actionLiks: `
-                <div class="product-social-links">
-                    <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1839,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3Nub3ctd2hpdGUtYmxhY2tvdXQtaG9uZXljb21iLXBlcmZlY3QtZml0Lmh0bWw_cXVlcnlJRD03NGVhMzU4ODI0MDlmNDM3N2Y5MWFjYmIzZGRkMmFiOSZvYmplY3RJRD0xODM5JmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;AuroBOSnowWhite&quot;,&quot;name&quot;:&quot;Snow White Blackout Honeycomb Perfect Fit&quot;,&quot;price&quot;:23.74}" data-event-label="Snow White Blackout Honeycomb Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
-                    </div>
-                </div>`
-    },
-    {
-        href: `https://www.makemyblinds.co.uk/simply-brilliant-white-embossed-with-jasmine-white-tapes.html?queryID=e066bf8d91c669a1c27704384556777c&objectID=2729&indexName=mmblive_en_en_products`,
-        name: `Simply Brilliant White Embossed with Jasmine White Tapes`,
-        src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019_1.png`,
-        actionLiks: `
-                <div class="product-social-links">
-                    <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:2729,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3NpbXBseS1icmlsbGlhbnQtd2hpdGUtZW1ib3NzZWQtd2l0aC1qYXNtaW5lLXdoaXRlLXRhcGVzLmh0bWw_cXVlcnlJRD1lMDY2YmY4ZDkxYzY2OWExYzI3NzA0Mzg0NTU2Nzc3YyZvYmplY3RJRD0yNzI5JmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECHPF004&quot;,&quot;name&quot;:&quot;Simply Brilliant White Embossed with Jasmine White Tapes&quot;,&quot;price&quot;:8.99}" data-event-label="Simply Brilliant White Embossed with Jasmine White Tapes">
-                            <i class="mmb-icon love"></i>
-                            <span>Free sample</span>
-                        </div>
-                    </div>
-                </div>`
-    },
-    {
-        href: `https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html`,
-        name: `Editions Brilliant White with Lilly Tapes`,
-        src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019.png`,
-        actionLiks: `
-                <div class="product-social-links">
-                    <div class="product-addto-links" data-role="add-to-links">
-                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1467,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2VkaXRpb25zLWJyaWxsaWFudC13aGl0ZS13aXRoLWxpbGx5LXRhcGVzLmh0bWw,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECFWSER002&quot;,&quot;name&quot;:&quot;Editions Brilliant White with Lilly Tapes&quot;,&quot;price&quot;:11.99}" data-event-label="Editions Brilliant White with Lilly Tapes">
-                            <i class="mmb-icon love"></i>
-                            <span>Free sample</span>
-                        </div>
-                    </div>
-                </div>`
-    }
-]
-
-function samplesModal() {
-    if (document.querySelector('.samples-block-wrapper .th-button-order')) {
-        document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.svg" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.svg" alt="delivered"></div>`)
-        document.querySelector('#freesamples-modal .th-button-carry').before(document.querySelector('.samples-block-wrapper .th-button-order'));
-        document.querySelector('#freesamples-modal .th-button-carry').innerHTML = 'SAVE & KEEP LOOKING';
-
-        //create/add block "You may also like to add"
-        document.querySelector('.samples-block-wrapper').insertAdjacentHTML('afterend',`
-                <div class="like-block">
-                    <h3>You may also like to add</h3>
-                    <ol class="product-like-items"></ol>
-                </div>`);
-
-        let item = document.querySelectorAll('#wishlist-sidebar .product-image-photo');
-        for (let i = 0; i < like.length; i++) {
-            document.querySelector('.product-like-items').insertAdjacentHTML('beforeend',`
-                <li class="product-like-item">
-                    <a class="link" href="${like[i].href}" title="${like[i].name}">
-                         <img src="${like[i].src}" alt="${like[i].name}">
-                    </a>
-                    <div class="product-item-details">
-                        <span class="product-item-name">${like[i].name}</span>
-                        <div class="actions">
-                            <a class="view" href="${like[i].href}">View product</a>
-                            <button type="button" class="button-yellow">ADD FREE SAMPLE</button>
-                            ${like[i].actionLiks}
-                        </div>
-                    </div>
-                </li>`);
-            for (let j = 0; j < item.length; j++) {
-                if(like[i].src == item[j].getAttribute('src')) {
-                    document.querySelectorAll('.product-like-item .button-yellow')[i].innerHTML = 'remove from basket';
-                    document.querySelectorAll('.product-like-item .button-yellow')[i].classList.add('_disable');
-                    document.querySelectorAll('.product-like-item .action')[i].classList.add('active');
-                    document.querySelectorAll('.product-like-item .action')[i].dataset.action = 'remote-in-wishlist'; // add-to-wishlist
-                    document.querySelectorAll('.product-like-item .action')[i].setAttribute('title','Remove'); // Add to Wish List
-                }
-            }
-
-            document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', (event) => {
-                if (event.target.innerHTML == 'remove from basket') {
-                    event.target.innerHTML = 'ADD FREE SAMPLE';
-                    event.target.classList.remove('_disable');
-                } else {
-                    event.target.innerHTML = 'remove from basket';
-                    event.target.classList.add('_disable');
-
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp - uiimprovements mobile',
-                        'eventAction': 'Click on add sample Button, upsale section',
-                        'eventLabel': 'Form on page Your Free Sample Order'
-                    });
-                }
-
-                event.target.closest('.actions').querySelector('.action').click();
-                document.body.classList.add('ajax-loading');
-                document.body.setAttribute('aria-busy', 'true');
-
-                setTimeout(() => {
-                    document.body.classList.remove('ajax-loading');
-                    document.body.setAttribute('aria-busy', 'false');
-                },1300);
-
-            });
-        }
-    }
-}
-
 window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
@@ -364,6 +230,139 @@ window.onload  = function () {
         }
     </style>`);
 
+    let like = [
+        {
+            href: `https://www.makemyblinds.co.uk/editions-brilliant-white.html?queryID=64311411bce32e4e3df4124e0bd7e1ed&objectID=1466&indexName=mmblive_en_en_products`,
+            name: `Editions Brilliant White`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_08052019.png`,
+            actionLiks: `
+                <div class="product-social-links">
+                    <div class="product-addto-links" data-role="add-to-links">
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1466,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2VkaXRpb25zLWJyaWxsaWFudC13aGl0ZS5odG1sP3F1ZXJ5SUQ9NjQzMTE0MTFiY2UzMmU0ZTNkZjQxMjRlMGJkN2UxZWQmb2JqZWN0SUQ9MTQ2NiZpbmRleE5hbWU9bW1ibGl2ZV9lbl9lbl9wcm9kdWN0cw,,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECSER001&quot;,&quot;name&quot;:&quot;Editions Brilliant White&quot;,&quot;price&quot;:8.99}" data-event-label="Editions Brilliant White"><i class="mmb-icon love"></i><span>Free sample</span></div>
+                    </div>
+                </div>`
+        },
+        {
+            href: `https://www.makemyblinds.co.uk/bifold-stormy-grey-satin-perfect-fit.html?queryID=661afbbd917722dd994b949cfb1ddfdb&objectID=562&indexName=mmblive_en_en_products`,
+            name: `Anthracite Grey Perfect Fit`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_slat_tr1679_11092019_1.png`,
+            actionLiks: `
+                <div class="product-social-links">
+                    <div class="product-addto-links" data-role="add-to-links">
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:562,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2JpZm9sZC1zdG9ybXktZ3JleS1zYXRpbi1wZXJmZWN0LWZpdC5odG1sP3F1ZXJ5SUQ9NjYxYWZiYmQ5MTc3MjJkZDk5NGI5NDljZmIxZGRmZGImb2JqZWN0SUQ9NTYyJmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;PTR25.1695&quot;,&quot;name&quot;:&quot;Anthracite Grey Perfect Fit&quot;,&quot;price&quot;:29.99}" data-event-label="Anthracite Grey Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
+                    </div>
+                </div>`
+        },
+        {
+            href: `https://www.makemyblinds.co.uk/snow-white-blackout-honeycomb-perfect-fit.html?queryID=74ea35882409f4377f91acbb3ddd2ab9&objectID=1839&indexName=mmblive_en_en_products`,
+            name: `Snow White Blackout Honeycomb Perfect Fit`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/0/10_cam_frnt_closeup_04_honeycomb_aurora_blackout_snow_white_01282020.png`,
+            actionLiks: `
+                <div class="product-social-links">
+                    <div class="product-addto-links" data-role="add-to-links">
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1839,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3Nub3ctd2hpdGUtYmxhY2tvdXQtaG9uZXljb21iLXBlcmZlY3QtZml0Lmh0bWw_cXVlcnlJRD03NGVhMzU4ODI0MDlmNDM3N2Y5MWFjYmIzZGRkMmFiOSZvYmplY3RJRD0xODM5JmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;AuroBOSnowWhite&quot;,&quot;name&quot;:&quot;Snow White Blackout Honeycomb Perfect Fit&quot;,&quot;price&quot;:23.74}" data-event-label="Snow White Blackout Honeycomb Perfect Fit"><i class="mmb-icon love"></i><span>Free sample</span></div>
+                    </div>
+                </div>`
+        },
+        {
+            href: `https://www.makemyblinds.co.uk/simply-brilliant-white-embossed-with-jasmine-white-tapes.html?queryID=e066bf8d91c669a1c27704384556777c&objectID=2729&indexName=mmblive_en_en_products`,
+            name: `Simply Brilliant White Embossed with Jasmine White Tapes`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019_1.png`,
+            actionLiks: `
+                <div class="product-social-links">
+                    <div class="product-addto-links" data-role="add-to-links">
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:2729,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL3NpbXBseS1icmlsbGlhbnQtd2hpdGUtZW1ib3NzZWQtd2l0aC1qYXNtaW5lLXdoaXRlLXRhcGVzLmh0bWw_cXVlcnlJRD1lMDY2YmY4ZDkxYzY2OWExYzI3NzA0Mzg0NTU2Nzc3YyZvYmplY3RJRD0yNzI5JmluZGV4TmFtZT1tbWJsaXZlX2VuX2VuX3Byb2R1Y3Rz&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECHPF004&quot;,&quot;name&quot;:&quot;Simply Brilliant White Embossed with Jasmine White Tapes&quot;,&quot;price&quot;:8.99}" data-event-label="Simply Brilliant White Embossed with Jasmine White Tapes">
+                            <i class="mmb-icon love"></i>
+                            <span>Free sample</span>
+                        </div>
+                    </div>
+                </div>`
+        },
+        {
+            href: `https://www.makemyblinds.co.uk/editions-brilliant-white-with-lilly-tapes.html`,
+            name: `Editions Brilliant White with Lilly Tapes`,
+            src: `https://www.makemyblinds.co.uk/media/catalog/product/cache/4247834bb84982110ac29942aee83e94/1/3/13_bathroom_scene_protruding_slat_serene_cotton_tape_08052019.png`,
+            actionLiks: `
+                <div class="product-social-links">
+                    <div class="product-addto-links" data-role="add-to-links">
+                        <div class="action towishlist btn plain full-width blue-text" data-post="{&quot;action&quot;:&quot;https:\\/\\/www.makemyblinds.co.uk\\/freesamples\\/index\\/add\\/&quot;,&quot;data&quot;:{&quot;product&quot;:1467,&quot;uenc&quot;:&quot;aHR0cHM6Ly93d3cubWFrZW15YmxpbmRzLmNvLnVrL2VkaXRpb25zLWJyaWxsaWFudC13aGl0ZS13aXRoLWxpbGx5LXRhcGVzLmh0bWw,&quot;}}" data-action="add-to-wishlist" data-event="addToWishlist" data-event-attributes="{&quot;id&quot;:&quot;DECFWSER002&quot;,&quot;name&quot;:&quot;Editions Brilliant White with Lilly Tapes&quot;,&quot;price&quot;:11.99}" data-event-label="Editions Brilliant White with Lilly Tapes">
+                            <i class="mmb-icon love"></i>
+                            <span>Free sample</span>
+                        </div>
+                    </div>
+                </div>`
+        }
+    ]
+
+    function samplesModal() {
+        if (document.querySelector('.samples-block-wrapper .th-button-order')) {
+            document.querySelector('.information-block').insertAdjacentHTML('beforeend',`<div class="imgs-block"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/excellent.svg" alt="Excellent"><img src="https://conversionratestore.github.io/projects/makemyblinds/img/delivered.svg" alt="delivered"></div>`)
+            document.querySelector('#freesamples-modal .th-button-carry').before(document.querySelector('.samples-block-wrapper .th-button-order'));
+            document.querySelector('#freesamples-modal .th-button-carry').innerHTML = 'SAVE & KEEP LOOKING';
+
+            //create/add block "You may also like to add"
+            document.querySelector('.samples-block-wrapper').insertAdjacentHTML('afterend',`
+                <div class="like-block">
+                    <h3>You may also like to add</h3>
+                    <ol class="product-like-items"></ol>
+                </div>`);
+
+            let item = document.querySelectorAll('#wishlist-sidebar .product-image-photo');
+            for (let i = 0; i < like.length; i++) {
+                document.querySelector('.product-like-items').insertAdjacentHTML('beforeend',`
+                <li class="product-like-item">
+                    <a class="link" href="${like[i].href}" title="${like[i].name}">
+                         <img src="${like[i].src}" alt="${like[i].name}">
+                    </a>
+                    <div class="product-item-details">
+                        <span class="product-item-name">${like[i].name}</span>
+                        <div class="actions">
+                            <a class="view" href="${like[i].href}">View product</a>
+                            <button type="button" class="button-yellow">ADD FREE SAMPLE</button>
+                            ${like[i].actionLiks}
+                        </div>
+                    </div>
+                </li>`);
+                for (let j = 0; j < item.length; j++) {
+                    if(like[i].src == item[j].getAttribute('src')) {
+                        document.querySelectorAll('.product-like-item .button-yellow')[i].innerHTML = 'remove from basket';
+                        document.querySelectorAll('.product-like-item .button-yellow')[i].classList.add('_disable');
+                        document.querySelectorAll('.product-like-item .action')[i].classList.add('active');
+                        document.querySelectorAll('.product-like-item .action')[i].dataset.action = 'remote-in-wishlist'; // add-to-wishlist
+                        document.querySelectorAll('.product-like-item .action')[i].setAttribute('title','Remove'); // Add to Wish List
+                    }
+                }
+
+                document.querySelectorAll('.like-block .button-yellow')[i].addEventListener('click', (event) => {
+                    if (event.target.innerHTML == 'remove from basket') {
+                        event.target.innerHTML = 'ADD FREE SAMPLE';
+                        event.target.classList.remove('_disable');
+                    } else {
+                        event.target.innerHTML = 'remove from basket';
+                        event.target.classList.add('_disable');
+
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - uiimprovements mobile',
+                            'eventAction': 'Click on add sample Button, upsale section',
+                            'eventLabel': 'Form on page Your Free Sample Order'
+                        });
+                    }
+
+                    event.target.closest('.actions').querySelector('.action').click();
+                    document.body.classList.add('ajax-loading');
+                    document.body.setAttribute('aria-busy', 'true');
+
+                    setTimeout(() => {
+                        document.body.classList.remove('ajax-loading');
+                        document.body.setAttribute('aria-busy', 'false');
+                    },1300);
+
+                });
+            }
+        }
+    }
     samplesModal();
     //pdp
     if (document.querySelector('.product-mobile-title')) {
@@ -491,8 +490,6 @@ window.onload  = function () {
                 document.querySelector('#notice-cookie-block').classList.remove('active');
             }
         });
-
-
     }
 
     if (window.location.pathname.includes('freesamples')) {
@@ -646,10 +643,10 @@ window.onload  = function () {
         })
     }
 
-//MutationObserver
+    //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
-        if (document.querySelector('.free-samples-modal') && document.querySelectorAll('.th-button-carry')[0] && document.querySelector('.free-samples-modal .samples-block')) {
+        if (document.querySelector('.free-samples-modal._show') && document.querySelectorAll('.th-button-carry')[0]) {
             mut.disconnect();
             samplesModal();
 
@@ -671,7 +668,7 @@ window.onload  = function () {
                     'eventLabel': 'Popup: Your free sample order swatch'
                 });
             })
-            if (document.querySelectorAll('.samples-block .product-item').length > 3 && !document.querySelector('.free-samples-modal .samples-block.before')) {
+            if (document.querySelectorAll('.samples-block .product-item').length > 3) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             } else {
                 document.querySelector('.free-samples-modal .samples-block').classList.remove('before');
@@ -683,42 +680,18 @@ window.onload  = function () {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
             })
-            if (document.querySelector('.product-mobile-title')) {
-                if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
-                    document.querySelector('.btn-white').classList.remove('saved');
-                    document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
-                    document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
-                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
-                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
-                }
+            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
+                document.querySelector('.btn-white').classList.remove('saved');
+                document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
+                document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
+                document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
             }
         }
-
         mut.observe(document, {
             childList: true,
             subtree: true
         });
-
-        // if (document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
-        //     mut.disconnect();
-        //     document.querySelectorAll('.product-item').forEach(el => {
-        //         let id = el.getAttribute('id').replace('item_','');
-        //
-        //         if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
-        //             let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
-        //
-        //             towishListActive.classList.remove('active');
-        //             towishListActive.setAttribute('title','Add to Wish List');
-        //             towishListActive.setAttribute('aria-label','Add to Wish List');
-        //             towishListActive.setAttribute('data-action','add-to-wishlist');
-        //         }
-        //     })
-        // }
-        //
-        // mut.observe(document, {
-        //     childList: true,
-        //     subtree: true
-        // });
     });
 
     mut.observe(document, {
@@ -726,7 +699,6 @@ window.onload  = function () {
         subtree: true
     });
 };
-
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
