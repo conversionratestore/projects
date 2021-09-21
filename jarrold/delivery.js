@@ -182,7 +182,7 @@ margin: 0 !important;
 .apply-span-mobile-more{
   position: absolute;
   bottom: 4px;
-  right: -57px;
+  right: 0;
   font-weight: 400 !important;
   font-size: 10px !important;
   line-height: 1.2 !important;
@@ -191,6 +191,7 @@ margin: 0 !important;
 }
 
 .flex-more-mobile{
+position: relative;
 display:flex !important;
 justify-content: flex-start !important;
 
@@ -201,7 +202,7 @@ justify-content: flex-start !important;
 }
 
 .flex-more-mobile .text-block-more-mobile{
-  position: relative;
+ 
   text-align:start !important;
 }
 
@@ -213,7 +214,7 @@ justify-content: flex-start !important;
     text-align: end !important;
   }
 
-  .flex-more-mobile .text-block-more-mobile{
+  .flex-more-mobile{
     position: unset;  
   }
 }
