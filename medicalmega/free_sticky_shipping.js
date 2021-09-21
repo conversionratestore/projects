@@ -445,18 +445,17 @@ window.onload  = function () {
             }
         });
 
-        //add shipping box
-        document.querySelector('.type2').insertAdjacentHTML('beforeend',`
-        <div class="shipping-box">
-            <div class="align-center">
-                <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
-                <p class="text-red">Estimated shipping </p>
-            </div>
-            <p>2-3 business days*</p>
-        </div>`);
-
         //add elements
         if (document.querySelector('.product-price')) {
+            //add shipping box
+            document.querySelector('.type2').insertAdjacentHTML('beforeend',`
+            <div class="shipping-box">
+                <div class="align-center">
+                    <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
+                    <p class="text-red">Estimated shipping </p>
+                </div>
+                <p>2-3 business days*</p>
+            </div>`);
             document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
             <div class="price-product">
                 <p>Our Price:</p>
