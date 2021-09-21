@@ -177,6 +177,248 @@ document.body.insertAdjacentHTML('afterbegin',`
 if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
+let productSpecs = {
+    'london': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5h',
+        'playtime': '25h',
+        'standby': '120h',
+        'earbuds': '45mAh',
+        'chargingCase': '400mAh',
+        'workingRange': '10m +',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '9.00dBm',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '91dB',
+        'codec': 'HSP, HFP, A2DP, AVRCP',
+    },
+    'miami': {
+        'bluetooth': '5.0',
+        'chargingTime': '',
+        'playtime': '50h',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '9.00dBm',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': '',
+    },
+    'los-angeles': {
+        'bluetooth': '5.0',
+        'chargingTime': '',
+        'playtime': '',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '10m +',
+        'micDistance': '',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': 'SBC, AAC',
+    },
+    'lisbon': {
+        'bluetooth': '5.2',
+        'chargingTime': '',
+        'playtime': '27h',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '10m +',
+        'micDistance': '',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': 'SBC, AAC',
+    },
+    'seoul': {
+        'bluetooth': '5.2',
+        'chargingTime': '',
+        'playtime': '32h',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '10m +',
+        'micDistance': '',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': 'SBC, AAC',
+    },
+    'paris': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5h',
+        'playtime': '20h',
+        'standby': '110h',
+        'earbuds': '30mAh',
+        'chargingCase': '300mAh',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '-6dB ± 4dB',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '103dB+/- 3dB at 1kHz',
+        'snr': '98.3dB',
+        'codec': 'SBC, AAC, APTX',
+    },
+    'stockholm-plus': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5h',
+        'playtime': '20h',
+        'standby': '60h',
+        'earbuds': '30mAh',
+        'chargingCase': '500mAh',
+        'workingRange': '10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '8.00dBm',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107dB+/- 3dB at 1kHz',
+        'snr': '91dB',
+        'codec': 'HSP, HFP, A2DP, AVRCP',
+    },
+    'boston': {
+        'bluetooth': '5.0',
+        'chargingTime': '',
+        'playtime': '6h',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': '',
+    },
+    'sydney': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5h',
+        'playtime': '5h',
+        'standby': '30 days',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '4Ω ± 3%',
+        'sensibility': '80dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': 'SBC, MP3, AAC',
+    },
+    'athens': {
+        'bluetooth': '5.0',
+        'chargingTime': '1h',
+        'playtime': '32h',
+        'standby': '400h',
+        'earbuds': '50mAh',
+        'chargingCase': '',
+        'workingRange': '10m +',
+        'micDistance': '20cm',
+        'frequency': '20Hz - 20KHz',
+        'power': '7.70dBm',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '80.891dB',
+        'codec': 'HSP, HFP, A2DP, AVRCP, APTX',
+    },
+    'new-york': {
+        'bluetooth': '4.1',
+        'chargingTime': 'Micro USB, <2.5hrs charging time',
+        'playtime': '16h with ANC, 25h without ANC',
+        'standby': '700h',
+        'earbuds': '50mAh',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '94dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': '',
+    },
+    'san-francisco': {
+        'bluetooth': '',
+        'chargingTime': '',
+        'playtime': '',
+        'standby': '',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '',
+        'frequency': '20Hz - 20KHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '',
+        'snr': '',
+        'codec': '',
+    },
+    'madrid': {
+        'bluetooth': '4.0',
+        'chargingTime': 'Micro USB, about 1,5h charging time',
+        'playtime': '4h',
+        'standby': '100h',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '102dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': '',
+    },
+    'berlin': {
+        'bluetooth': '4.0',
+        'chargingTime': 'Micro USB, about 1,5h charging time',
+        'playtime': '4h',
+        'standby': '100h',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '',
+        'micDistance': '',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '103dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': '',
+    },
+    'sydney_hm': {
+        'bluetooth': '5.0',
+        'chargingTime': '1,5h',
+        'playtime': '5hrs',
+        'standby': '30 days',
+        'earbuds': '',
+        'chargingCase': '',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '80 - 20.000 KHz',
+        'power': '',
+        'impedance': '4Ω ± 15%',
+        'sensibility': '80dB+/- 3dB at 1kHz',
+        'snr': '',
+        'codec': 'SBC, MP3, AAC',
+    },
+};
 
 let colorObj = {
     273: '#e4cbc3',
@@ -248,11 +490,8 @@ let page = `
 </div>`;
 
 function setCards(el,index) {
-
+    let elCol = el.closest('.compare-col');
     let optionSelected = el.options[el.selectedIndex].value;
-
-    console.log(optionSelected)
-    el.closest('.select').setAttribute('data-id', `${el.options[el.selectedIndex].dataset.id}`);
 
     fetch(`https://www.urbanista.com/rest/V1/configurable-products/${optionSelected}/children?fields=sku,price,name,custom_attributes[color,subtitle,grid_image]`, {
         method: "GET",
@@ -262,10 +501,9 @@ function setCards(el,index) {
         }
     }).then(resItem => resItem.json()).then(dataItem => {
         console.log(dataItem);
-        // console.log(dataItem[0]["custom_attributes"][0]);
 
-        el.closest('.compare-col').querySelector('.card').setAttribute('data-id',dataItem["sku"])
-        el.closest('.compare-col').querySelector('.card').innerHTML = `
+        elCol.querySelector('.card').setAttribute('data-id',dataItem[0]["sku"])
+        elCol.querySelector('.card').innerHTML = `
             <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img"></a>
             <div class="card-content">
                 <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
@@ -282,9 +520,9 @@ function setCards(el,index) {
             for (const key in attrObj) {
                 for (const dataKey in colorObj) {
                     if (attrObj[key]["attribute_code"] === "color" && dataKey === attrObj[key]["value"]) {
-                        el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin', `
+                        elCol.querySelector('.row-colors').insertAdjacentHTML('beforeend', `
                         <label class="label-color"  data-id="${dataItem[i]["sku"]}">
-                            <input type="radio" name="radio${index == 0 ? '1' : '2'}" class="checkbox">
+                            <input type="radio" name="radio${index == 0 ? '1' : '2'}" class="checkbox" ${i == 0 ? 'checked' : ''}>
                             <span class="check-color">
                                 <span style="background-color: ${colorObj[dataKey]}"></span>
                             </span>
@@ -292,53 +530,34 @@ function setCards(el,index) {
                     }
                 }
                 if (attrObj[key]["attribute_code"] === "subtitle") {
-                    console.log(attrObj[key]["value"]);
-                    el.closest('.compare-col').querySelector('.card-additional').innerHTML = attrObj[key]["value"];
+                    elCol.querySelector('.card-additional').innerHTML = attrObj[key]["value"];
                 }
                 if (attrObj[key]["attribute_code"] === "grid_image") {
-                    console.log(attrObj[key]["value"]);
-                    el.closest('.compare-col').querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}" alt="${dataItem[i]["name"]}">`
+                    elCol.querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${dataItem[0]["custom_attributes"][key]["value"]}" alt="${dataItem[0]["name"]}">`
                 }
+
+                elCol.querySelectorAll('.label-color').forEach((label) => {
+                    label.addEventListener('change', () => {
+                        let idLabel = label.getAttribute('data-id');
+                        if (dataItem[i]["sku"] == idLabel) {
+                            console.log(dataItem[i]["sku"] == idLabel)
+                            
+                            
+                            //!!!!!!!
+                            if (attrObj[key]["attribute_code"] === "grid_image") {
+                                console.log(dataItem[i]["custom_attributes"][key]["value"])
+                                elCol.querySelector('.card-img img').setAttribute('src', `https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}`);
+
+                            }
+                        
+                        
+                            elCol.querySelector('.card-img img').setAttribute('alt',`${dataItem[i]["name"]}`);
+                            elCol.querySelector('.card-title').innerHTML = dataItem[i]["name"];
+                        }
+                    })
+                })
             }
         }
-
-        el.closest('.compare-col').querySelectorAll('.label-color').forEach((label) => {
-            label.addEventListener('change', () => {
-
-                // fetch(`https://www.urbanista.com/rest/V1/products/${label.dataset.id}?fields=name,price,media_gallery_entries[file],custom_attributes[subtitle],extension_attributes[configurable_product_options[values]]`, {
-                //     method: "GET",
-                //     headers: {
-                //         "Content-Type": "application/json",
-                //         "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
-                //     }
-                // }).then(res => res.json()).then(data => {
-                //     console.log(data);
-                //
-                // }).catch(err => {
-                //     console.log('Failed fetch ', err);
-                // });
-            })
-        })
-        //     for (const dataKey in idColors) {
-        //         if (idColors[dataKey]["value_index"] == colorKey) {
-        //             el.closest('.compare-col').querySelector('.row-colors').insertAdjacentHTML('afterbegin',`
-        //                 <label class="label-color">
-        //                     <input type="radio" name="radio${index==0?'1':'2'}" class="checkbox">
-        //                     <span class="check-color">
-        //                         <span style="background-color: ${colorObj[colorKey]}"></span>
-        //                     </span>
-        //                 </label>`);
-        //         }
-        //     }
-
-        // let checkbox = el.closest('.compare-col').querySelectorAll('.checkbox');
-        // for (let i = 0; i < checkbox.length; i++) {
-        //     checkbox[i].setAttribute('data-id',`${el.closest('.select').dataset.id.split(',')[i]}`)
-        //     if (checkbox[i].dataset.id === el.closest('.compare-col').querySelector('.card').dataset.id ) {
-        //         checkbox[i].setAttribute('checked','true');
-        //     }
-        // }
-
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
