@@ -692,6 +692,21 @@ window.onload  = function () {
             childList: true,
             subtree: true
         });
+        if (document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
+            mut.disconnect();
+            document.querySelectorAll('.product-item').forEach(el => {
+                let id = el.getAttribute('id').replace('item_','');
+
+                if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
+                    let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active');
+
+                    towishListActive.classList.remove('active');
+                    towishListActive.setAttribute('title','Add to Wish List');
+                    towishListActive.setAttribute('aria-label','Add to Wish List');
+                    towishListActive.setAttribute('data-action','add-to-wishlist');
+                }
+            })
+        }
     });
 
     mut.observe(document, {
