@@ -704,9 +704,9 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelector('.free-samples-modal .samples-block').classList.add('before');
             }
         })
-        
+
+        actionSave();
     }
-    actionSave();
     mut.observe(document, {
         childList: true,
         subtree: true
