@@ -256,7 +256,7 @@ setTimeout(() => {
         .swatch-option.selected:not(.sticky-pdp-cta .swatch-option.selected) {
             pointer-events: none;
         }  
-        .custom_fc_frame {
+        #fc_frame, #fc_frame.fc-widget-small {
             bottom: 45px !important;
         }
         @media screen and (max-width: 900px) {
