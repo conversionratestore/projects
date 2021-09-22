@@ -136,7 +136,7 @@ let magicpatchTable = /*html*/ `
         <div class="magicpatch-box">
             <ul class="magicpatch-list">
                 <li class="magicpatch-link list-var">
-                    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magicpatch.svg" alt="magicpatch">
+                    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magicpatch-natural.svg" alt="magicpatch">
                     <span class="accent-color-red magicpatch-span-after-svg">Magicpatch</span>
                 </li>
 
