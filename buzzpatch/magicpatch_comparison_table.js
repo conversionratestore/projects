@@ -23,10 +23,15 @@ let megicpatchStyle = /*html*/ `
             margin-top:6px;
         }
 
+        .magicpatch-img{
+            text-align: center;
+        }
+
         .magicpatch-section{
             background: #F1F3F4 url("https://conversionratestore.github.io/projects/buzzpatch/img/bg_white.svg") no-repeat center -1px / 100%;
             text-align: center;
             padding: 90px 15px 72px 15px;
+            margin-bottom: 52px;
         }
 
         .magicpatch-primary-title{
@@ -37,7 +42,7 @@ let megicpatchStyle = /*html*/ `
             letter-spacing: 0.02em;
             text-transform: uppercase;
             color: #0C0B0B !important;
-            margin-bottom: 40px;
+            margin: 25px 0 40px 0;
         }
 
         .magicpatch-box{
@@ -114,10 +119,18 @@ let megicpatchStyle = /*html*/ `
             margin-top: 40px;
         }
 
+        .megicpatch-btn:hover{
+            text-decoration: unset;
+        }
+
     </style>
 `
 let magicpatchTable = /*html*/ `
+    <div class="magicpatch-img">
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magicpatch-a.png" alt="magicpatch" width="282">
+    </div>
     <section class="magicpatch-section">
+
         <h2 class="magicpatch-primary-title">MAGICpatch <br> vs other itch relievers</h2>
         <div class="magicpatch-box">
             <ul class="magicpatch-list">
@@ -247,6 +260,7 @@ document.querySelector('#purchase').insertAdjacentHTML('beforebegin', magicpatch
 
 document.querySelector('#included').innerHTML=''
 
+
 // btn megicpatch-btn
 scrolling(".megicpatch-btn")
 
@@ -257,6 +271,13 @@ function scrolling(upSelector) {
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp - Magicpatches comparison table',
+            'eventAction': 'Click on button buy buzzpatch stickers'
+        });
+
       event.preventDefault()
 
       let widthTop = document.documentElement.scrollTop,
@@ -285,3 +306,21 @@ function scrolling(upSelector) {
     })
   })
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - Magicpatches comparison table',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2247058,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'magicpatches_comparison_table');
