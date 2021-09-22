@@ -647,10 +647,10 @@ window.onload  = function () {
             mut2.disconnect();
             document.querySelectorAll('.product-item').forEach(el => {
                 let id = el.getAttribute('id').replace('item_','');
-    
+
                 if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
                     let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist');
-    
+
                     towishListActive.classList.remove('active');
                     towishListActive.setAttribute('title','Add to Wish List');
                     towishListActive.setAttribute('aria-label','Add to Wish List');
@@ -700,19 +700,21 @@ window.onload  = function () {
                     document.querySelector('.free-samples-modal .samples-block').classList.add('before');
                 }
             })
-            if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
-                document.querySelector('.btn-white').classList.remove('saved');
-                document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
-                document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
-                document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
-                document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
+            if (document.querySelector('.product-info-main')) {
+                if (!document.querySelector(`.btn-remove[data-item-id="${document.querySelector('[name="product"]').value}"]`) && document.querySelector('.btn-white.saved')) {
+                    document.querySelector('.btn-white').classList.remove('saved');
+                    document.querySelector('.btn-white').innerHTML = 'ORDER FREE SAMPLE';
+                    document.querySelector('.wishlist-mobile-wrap a').classList.remove('active');
+                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('data-action','add-to-wishlist');
+                    document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
+                }
             }
         }
         mut.observe(document, {
             childList: true,
             subtree: true
         });
-   
+
     });
 
     mut.observe(document, {
