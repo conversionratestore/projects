@@ -132,14 +132,12 @@ window.onload  = function () {
                     if (index == 0) {
                         document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
                         if (document.querySelectorAll('.quantity')[1].value < 2) {
-                            button.nextElementSibling.value = 1;
-                            button.disabled = true;
+                            el.querySelector('.quantity-btn.quantity-btn_minus')[1].disabled = true;
                         }
                     } else {
                         document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                         if (document.querySelectorAll('.quantity')[0].value < 2) {
-                            button.nextElementSibling.value = 1;
-                            button.disabled = true;
+                            el.querySelector('.quantity-btn.quantity-btn_minus')[0].disabled = true;
                         }
                     }
                 });
@@ -541,21 +539,6 @@ window.onload  = function () {
             document.querySelector('.type2').after(document.querySelector('.box_container'));
             document.querySelector('.type2').after(document.querySelector('.type2 strong'));
         }
-
-        //change all quantity
-        // document.querySelectorAll('.quantity-row').forEach((el,index) => {
-        //     el.querySelector('button').addEventListener('click', () => {
-        //         console.log('click')
-        //         console.log(el.querySelector('.quantity').value)
-        //         if (index == 0) {
-        //             console.log(el.value)
-        //             document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
-        //         } else {
-        //             console.log(el.value)
-        //             document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
-        //         }
-        //     })
-        // })
     }
 
     //main
