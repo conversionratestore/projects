@@ -31,10 +31,6 @@ window.onload  = function () {
             pointer-events: none;
             background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0));
         }
-        #launcher.active, #notice-cookie-block.active {
-            bottom: 80px!important;
-            transition: bottom 0.3s ease;
-        }
         .control input[type=number] {
             max-width: 100%;
         }
@@ -369,6 +365,10 @@ window.onload  = function () {
         //styles
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            #launcher, #notice-cookie-block {
+                bottom: 80px!important;
+                transition: bottom 0.3s ease;
+            }
             body:not(.freesamples-index-index):not(.lightcheckout-index-index):not(.checkout-onepage-success):not(.checkout-klarna-index) .page-header {
                 z-index: 9999999;
             }
@@ -386,15 +386,6 @@ window.onload  = function () {
                 padding: 16px;
                 display: flex;
                 z-index: 9;
-                opacity: 0;
-                transition: all 0.3s ease;
-                transform: translateY(20px);
-                pointer-events: none;
-            }
-            .sticky-btns.active {
-                opacity: 1;
-                transform: translateY(0);
-                pointer-events: auto;
             }
             .sticky-btns button {
                 border-radius: 8px;
@@ -477,19 +468,6 @@ window.onload  = function () {
         document.querySelector('.sticky-btns .btn-yellow').addEventListener('click', () => {
             document.querySelector('#product-addtocart-button').click();
         })
-
-        //hide sticky button on scrollY > 200, else show
-        document.addEventListener('scroll', (e) => {
-            if (window.scrollY > 200) {
-                document.querySelector('.sticky-btns').classList.add('active');
-                document.querySelector('#launcher').classList.add('active');
-                document.querySelector('#notice-cookie-block').classList.add('active');
-            } else {
-                document.querySelector('.sticky-btns').classList.remove('active');
-                document.querySelector('#launcher').classList.remove('active');
-                document.querySelector('#notice-cookie-block').classList.remove('active');
-            }
-        });
     }
 
     if (window.location.pathname.includes('freesamples')) {
@@ -643,33 +621,6 @@ window.onload  = function () {
         })
     }
 
-    // if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
-    //     document.querySelectorAll('.btn-remove.action').forEach(el => {
-    //         el.addEventListener('click',(e) => {
-    //             console.log('click')
-    //             // e.stopPropagation();
-    //             let id = el.getAttribute('data-item-id');
-    //             document.querySelectorAll(`.result-content a[data-objectid="${id}"]`).forEach(item => {
-    //                 item.classList.remove('active');
-    //                 item.setAttribute('title','Add to Wish List');
-    //                 item.setAttribute('data-action','add-to-wishlist');
-    //             })
-    //             // e.target.click();
-    //         })
-    //     })
-        // document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
-        //     let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
-        //     if (!document.querySelector(`#item_${id}`)) {
-        //         el.classList.remove('active');
-        //         el.setAttribute('title','Add to Wish List');
-        //         el.setAttribute('data-action','add-to-wishlist');
-        //     } else {
-        //         el.classList.add('active');
-        //         el.setAttribute('title','Remove');
-        //         el.setAttribute('data-action','remote-in-wishlist');
-        //     }
-        // })
-    // }
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
