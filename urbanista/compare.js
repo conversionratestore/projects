@@ -13,6 +13,27 @@ document.body.insertAdjacentHTML('afterbegin',`
             text-decoration: none;
             display: block;
         }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+        }
+        [hidden] {
+            visibility: hidden;
+        }
+        .colors-plus {
+            margin-right: 7px;
+            margin-bottom: 6px;
+            display: block;
+            border: 2px solid #CCCCCC;
+            font-size: 18px;
+            line-height: 15px;
+            font-weight: 600;
+            text-align: center;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            position: relative;
+        }
         .compare-wrapper {
             padding: 29px 9px;
         }
@@ -484,7 +505,7 @@ let page = `
         </div>
     </div>
     <h2 class="page-title">Summary</h2>
-    <ul class="summary"></ul>
+    <ul class="summary"> </ul>
 </div>`;
 
 function setCards(el,index) {
@@ -500,18 +521,19 @@ function setCards(el,index) {
     }).then(resItem => resItem.json()).then(dataItem => {
         console.log(dataItem);
 
-        elCol.querySelector('.card').setAttribute('data-id',dataItem[0]["sku"])
         elCol.querySelector('.card').innerHTML = `
             <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img"></a>
             <div class="card-content">
-                <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
+                <div class="flex-center">
+                    <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
+                    <a href="https://www.urbanista.com/eu/${optionSelected}" class="colors-plus">+</a>
+                </div>
                 <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-title">${dataItem[0]["name"]}</a>
                 <p class="card-additional"></p>
                 <p class="card-price">$${dataItem[0]["price"]}</p>
                 <button type="button" class="btn-buy">Buy</button>
                 <a href="https://www.urbanista.com/eu/${optionSelected}" class="sea-more">Learn more ></a>
-            </div>
-        </div>`;
+            </div>`;
 
         for (let i = 0; i < dataItem.length; i++) {
             let attrObj = dataItem[i]["custom_attributes"];
@@ -519,7 +541,7 @@ function setCards(el,index) {
                 for (const dataKey in colorObj) {
                     if (attrObj[key]["attribute_code"] === "color" && dataKey === attrObj[key]["value"]) {
                         elCol.querySelector('.row-colors').insertAdjacentHTML('beforeend', `
-                        <label class="label-color"  data-id="${dataItem[i]["sku"]}">
+                        <label class="label-color" data-id="${dataItem[i]["sku"]}">
                             <input type="radio" name="radio${index == 0 ? '1' : '2'}" class="checkbox" ${i == 0 ? 'checked' : ''}>
                             <span class="check-color">
                                 <span style="background-color: ${colorObj[dataKey]}"></span>
@@ -535,7 +557,14 @@ function setCards(el,index) {
                 }
             }
 
-            elCol.querySelectorAll('.label-color').forEach((label) => {
+            elCol.querySelectorAll('.label-color').forEach((label, index) => {
+                if (index >= 5) {
+                    label.hidden = true;
+                    document.querySelector('.colors-plus').hidden = false;
+                } else {
+                    document.querySelector('.colors-plus').hidden = true;
+
+                }
                 label.addEventListener('change', () => {
                     let idLabel = label.getAttribute('data-id');
                     if (dataItem[i]["sku"] == idLabel) {
@@ -549,11 +578,61 @@ function setCards(el,index) {
                     }
                 })
             })
+
         }
-        
+
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
+
+    // for (const key in productSpecs) {
+    //     for (let i = 0; i < Object.keys(productSpecs[key]).length; i++) {
+    //         console.log(Object.keys(productSpecs[key]).length)
+    //         document.querySelector('.summary').insertAdjacentHTML('beforeend',`
+    //         <li class="summary-item">
+    //             <h4 class="summary-title">title ${Object.keys(productSpecs[key])[i]}</h4>
+    //             <div class="summary-row">
+    //                 <p class="summary-one"></p>
+    //                 <img src="" alt="icon">
+    //                 <p class="summary-two"></p>
+    //             </div>
+    //         </li>`)
+    //
+    //         if (key == optionSelected) {
+    //             for (const keyItem in productSpecs[key]) {
+    //                 if (index == 0) {
+    //                     // console.log('1: ' + productSpecs[key][keyItem])
+    //                     document.querySelectorAll('.summary-one').forEach(one => {
+    //                         one.innerHTML = productSpecs[key][keyItem];
+    //                         console.log('1: ' + productSpecs[key][keyItem])
+    //                     })
+    //                 } else {
+    //                     // console.log('2: ' + productSpecs[key][keyItem])
+    //                     document.querySelectorAll('.summary-two').forEach(two => {
+    //                         two.innerHTML = productSpecs[key][keyItem];
+    //                         console.log('2: ' + productSpecs[key][keyItem])
+    //                     })
+    //                 }
+    //             }
+    //             // for (const keyItem in productSpecs[key]) {
+    //             //     console.log([keyItem])
+    //             //     console.log(productSpecs[key][keyItem])
+    //             // document.querySelector('.summary').insertAdjacentHTML('beforeend',`
+    //             // <li class="summary-item">
+    //             //     <h4 class="summary-title">${productSpecs[key][keyItem]}</h4>
+    //             //     <div class="summary-row">
+    //             //         <p class="summary-one"></p>
+    //             //         <img src="" alt="icon">
+    //             //         <p class="summary-two"></p>
+    //             //     </div>
+    //             // </li>`)
+    //
+    //             // }
+    //         }
+    //     }
+    //
+    //     return false;
+    // }
 
 };
 
@@ -565,45 +644,3 @@ document.querySelectorAll('select').forEach((el,index) => {
         setCards(el,index);
     });
 });
-function summary() {
-    for (const key in productSpecs) {
-        // if (key == optionSelected) {
-        document.querySelector('.summary').insertAdjacentHTML('beforeend',`
-            <li class="summary-item">
-                <h4 class="summary-title">title ${key}</h4>
-                <div class="summary-row">
-                    <p class="summary-one"></p>
-                    <img src="" alt="icon">
-                    <p class="summary-two"></p>
-                </div>
-            </li>`)
-        // for (const keyItem in productSpecs[key]) {
-        //     console.log([keyItem])
-        //     console.log(productSpecs[key][keyItem])
-        // document.querySelector('.summary').insertAdjacentHTML('beforeend',`
-        // <li class="summary-item">
-        //     <h4 class="summary-title">${productSpecs[key][keyItem]}</h4>
-        //     <div class="summary-row">
-        //         <p class="summary-one"></p>
-        //         <img src="" alt="icon">
-        //         <p class="summary-two"></p>
-        //     </div>
-        // </li>`)
-        //             // if (index == 0) {
-        //             //     // console.log('1: ' + productSpecs[key][keyItem])
-        //             //     document.querySelectorAll('.summary-one').forEach(el => {
-        //             //         el.innerHTML = productSpecs[key][keyItem];
-        //             //         console.log('1: ' + productSpecs[key][keyItem])
-        //             //     })
-        //             // } else {
-        //             //     // console.log('2: ' + productSpecs[key][keyItem])
-        //             //     document.querySelectorAll('.summary-two').forEach(el => {
-        //             //         el.innerHTML = productSpecs[key][keyItem];
-        //             //         console.log('2: ' + productSpecs[key][keyItem])
-        //             //     })
-        //             // }
-        // }
-        // }
-    }
-}
-// summary();
