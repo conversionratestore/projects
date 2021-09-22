@@ -132,12 +132,12 @@ window.onload  = function () {
                     if (index == 0) {
                         document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
                         if (document.querySelectorAll('.quantity')[1].value < 2) {
-                            el.querySelector('.quantity-btn.quantity-btn_minus')[1].disabled = true;
+                            el.querySelector('.quantity-btn.quantity-btn_minus')[1].disabled = false;
                         }
                     } else {
                         document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                         if (document.querySelectorAll('.quantity')[0].value < 2) {
-                            el.querySelector('.quantity-btn.quantity-btn_minus')[0].disabled = true;
+                            el.querySelector('.quantity-btn.quantity-btn_minus')[0].disabled = false;
                         }
                     }
                 });
