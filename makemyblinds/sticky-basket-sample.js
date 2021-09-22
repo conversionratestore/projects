@@ -693,14 +693,14 @@ window.onload  = function () {
                 document.querySelectorAll('.btn-remove.action').forEach(el => {
                     el.addEventListener('click',(e) => {
                         console.log('click')
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         let id = el.getAttribute('data-item-id');
                         document.querySelectorAll(`.result-content a[data-objectid"${id}"]`).forEach(item => {
                             item.classList.remove('active');
                             item.setAttribute('title','Add to Wish List');
                             item.setAttribute('data-action','add-to-wishlist');
                         })
-                        el.click();
+                        // e.target.click();
                     })
                 })
                 // document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
@@ -722,7 +722,7 @@ window.onload  = function () {
             subtree: true
         });
 
-      
+
 
     });
 
