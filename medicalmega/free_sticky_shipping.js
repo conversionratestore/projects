@@ -78,13 +78,6 @@ window.onload  = function () {
                 } else {
                     el.querySelector('.quantity-btn_minus').disabled = false;
                 }
-                if (index == 0) {
-                    console.log(el.querySelector('.quantity').value)
-                    document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
-                } else {
-                    console.log(el.querySelector('.quantity').value)
-                    document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
-                }
             });
             el.querySelectorAll('.quantity-btn').forEach((button) => {
                 button.addEventListener('click', (event) => {
@@ -134,6 +127,14 @@ window.onload  = function () {
                                 'eventLabel': 'Near the button Add to cart on PDP'
                             });
                         }
+                    }
+                    
+                    if (index == 0) {
+                        console.log(el.querySelector('.quantity').value)
+                        document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+                    } else {
+                        console.log(el.querySelector('.quantity').value)
+                        document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                     }
                 });
             });
