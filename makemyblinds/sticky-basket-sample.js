@@ -661,6 +661,10 @@ window.onload  = function () {
                 }
             })
         }
+        mut2.observe(document, {
+            childList: true,
+            subtree: true
+        });
     });
     mut2.observe(document, {
         childList: true,
