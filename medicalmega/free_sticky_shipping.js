@@ -177,7 +177,7 @@ window.onload  = function () {
         //set localStorage for total price
         let yourOrder = [];
         yourOrder.push({
-            'price': justunoCart.total
+            'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
         })
         localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
         if (justunoCart.total != '0.00') {
