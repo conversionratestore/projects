@@ -642,30 +642,7 @@ window.onload  = function () {
             });
         })
     }
-    let mut2 = new MutationObserver(function (muts) {
-        console.log("mut2");
-        if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
-            mut2.disconnect();
-            console.log("mut2.disconnect");
-            document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
-                let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
-                if (!document.querySelector(`#item_${id}`)) {
-                    el.classList.remove('active');
-                    el.setAttribute('title','Add to Wish List');
-                    el.setAttribute('aria-label','Add to Wish List');
-                    el.setAttribute('data-action','add-to-wishlist');
-                }
-            })
-        }
-        mut2.observe(document, {
-            childList: true,
-            subtree: true
-        });
-    });
-    mut2.observe(document, {
-        childList: true,
-        subtree: true
-    });
+
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
@@ -717,7 +694,23 @@ window.onload  = function () {
             childList: true,
             subtree: true
         });
-
+        if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
+            mut.disconnect();
+            console.log("mut2.disconnect");
+            document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
+                let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
+                if (!document.querySelector(`#item_${id}`)) {
+                    el.classList.remove('active');
+                    el.setAttribute('title','Add to Wish List');
+                    el.setAttribute('aria-label','Add to Wish List');
+                    el.setAttribute('data-action','add-to-wishlist');
+                }
+            })
+        }
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
     });
 
     mut.observe(document, {
