@@ -531,9 +531,13 @@ window.onload  = function () {
         //change all quantity
         document.querySelectorAll('.quantity').forEach((el,index) => {
             el.addEventListener('change', () => {
+                console.log('change')
+                console.log(el.value)
                 if (index == 0) {
+                    console.log(el.value)
                     document.querySelectorAll('.quantity')[1].value = el.value;
                 } else {
+                    console.log(el.value)
                     document.querySelectorAll('.quantity')[0].value = el.value;
                 }
             })
