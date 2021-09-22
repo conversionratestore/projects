@@ -485,9 +485,17 @@ let page = `
     </div>
     <h2 class="page-title">Summary</h2>
     <ul class="summary">
-        <li class="summary-item"></li>
     </ul>
 </div>`;
+
+let summary = `<li class="summary-item">
+    <h4 class="summary-title"></h4>
+    <div class="summary-row">
+        <p class="summary-one"></p>
+        <img src="" alt="icon">
+        <p class="summary-two"></p>
+    </div>
+</li>`;
 
 function setCards(el,index) {
     let elCol = el.closest('.compare-col');
@@ -535,29 +543,25 @@ function setCards(el,index) {
                 if (attrObj[key]["attribute_code"] === "grid_image") {
                     elCol.querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${dataItem[0]["custom_attributes"][key]["value"]}" alt="${dataItem[0]["name"]}">`
                 }
-
-                elCol.querySelectorAll('.label-color').forEach((label) => {
-                    label.addEventListener('change', () => {
-                        let idLabel = label.getAttribute('data-id');
-                        if (dataItem[i]["sku"] == idLabel) {
-                            console.log(dataItem[i]["sku"] == idLabel)
-                            
-                            
-                            //!!!!!!!
-                            if (attrObj[key]["attribute_code"] === "grid_image") {
-                                console.log(dataItem[i]["custom_attributes"][key]["value"])
-                                elCol.querySelector('.card-img img').setAttribute('src', `https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}`);
-
-                            }
-                        
-                        
-                            elCol.querySelector('.card-img img').setAttribute('alt',`${dataItem[i]["name"]}`);
-                            elCol.querySelector('.card-title').innerHTML = dataItem[i]["name"];
-                        }
-                    })
-                })
             }
+
+            elCol.querySelectorAll('.label-color').forEach((label) => {
+                label.addEventListener('change', () => {
+                    let idLabel = label.getAttribute('data-id');
+                    if (dataItem[i]["sku"] == idLabel) {
+                        for (const key in attrObj) {
+                            if (attrObj[key]["attribute_code"] === "grid_image") {
+                                elCol.querySelector('.card-img img').setAttribute('src', `https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}`);
+                            }
+                        }
+                        elCol.querySelector('.card-img img').setAttribute('alt',`${dataItem[i]["name"]}`);
+                        elCol.querySelector('.card-title').innerHTML = dataItem[i]["name"];
+                    }
+                })
+            })
         }
+
+
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
