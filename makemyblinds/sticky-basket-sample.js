@@ -643,6 +643,33 @@ window.onload  = function () {
         })
     }
 
+    if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
+        document.querySelectorAll('.btn-remove.action').forEach(el => {
+            el.addEventListener('click',(e) => {
+                console.log('click')
+                // e.stopPropagation();
+                let id = el.getAttribute('data-item-id');
+                document.querySelectorAll(`.result-content a[data-objectid="${id}"]`).forEach(item => {
+                    item.classList.remove('active');
+                    item.setAttribute('title','Add to Wish List');
+                    item.setAttribute('data-action','add-to-wishlist');
+                })
+                // e.target.click();
+            })
+        })
+        // document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
+        //     let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
+        //     if (!document.querySelector(`#item_${id}`)) {
+        //         el.classList.remove('active');
+        //         el.setAttribute('title','Add to Wish List');
+        //         el.setAttribute('data-action','add-to-wishlist');
+        //     } else {
+        //         el.classList.add('active');
+        //         el.setAttribute('title','Remove');
+        //         el.setAttribute('data-action','remote-in-wishlist');
+        //     }
+        // })
+    }
     //MutationObserver
     let mut = new MutationObserver(function (muts) {
         //Your Free Sample Order Swatch
@@ -689,41 +716,7 @@ window.onload  = function () {
                     document.querySelector('.wishlist-mobile-wrap a').setAttribute('title','Add to Wish List');
                 }
             }
-            if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
-                document.querySelectorAll('.btn-remove.action').forEach(el => {
-                    el.addEventListener('click',(e) => {
-                        console.log('click')
-                        // e.stopPropagation();
-                        let id = el.getAttribute('data-item-id');
-                        document.querySelectorAll(`.result-content a[data-objectid="${id}"]`).forEach(item => {
-                            item.classList.remove('active');
-                            item.setAttribute('title','Add to Wish List');
-                            item.setAttribute('data-action','add-to-wishlist');
-                        })
-                        // e.target.click();
-                    })
-                })
-                // document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
-                //     let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
-                //     if (!document.querySelector(`#item_${id}`)) {
-                //         el.classList.remove('active');
-                //         el.setAttribute('title','Add to Wish List');
-                //         el.setAttribute('data-action','add-to-wishlist');
-                //     } else {
-                //         el.classList.add('active');
-                //         el.setAttribute('title','Remove');
-                //         el.setAttribute('data-action','remote-in-wishlist');
-                //     }
-                // })
-            }
         }
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
-
-
-
     });
 
     mut.observe(document, {
