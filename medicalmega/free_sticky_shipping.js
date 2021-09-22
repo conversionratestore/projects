@@ -63,7 +63,7 @@ window.onload  = function () {
         </style>`);
 
     // quantity on change and on click button +/-
-    function quantityFun(el) {
+    function quantityFun(el,index) {
         if (el.querySelector('.quantity')) {
             if (el.querySelector('.quantity').value < 2) {
                 el.querySelector('.quantity').value = 1;
@@ -77,6 +77,13 @@ window.onload  = function () {
                     el.querySelector('.quantity-btn_minus').disabled = true;
                 } else {
                     el.querySelector('.quantity-btn_minus').disabled = false;
+                }
+                if (index == 0) {
+                    console.log(el.querySelector('.quantity').value)
+                    document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+                } else {
+                    console.log(el.querySelector('.quantity').value)
+                    document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                 }
             });
             el.querySelectorAll('.quantity-btn').forEach((button) => {
@@ -502,8 +509,8 @@ window.onload  = function () {
             });
         })
 
-        document.querySelectorAll('.sticky-btn_row').forEach(el => {
-            quantityFun(el); // quantity on change and on click button +/-
+        document.querySelectorAll('.sticky-btn_row').forEach((el,index) => {
+            quantityFun(el,index); // quantity on change and on click button +/-
         })
         //read more
         if (document.getElementById('product_desc')) {
@@ -529,19 +536,19 @@ window.onload  = function () {
         }
 
         //change all quantity
-        document.querySelectorAll('.quantity-row').forEach((el,index) => {
-            el.querySelector('button').addEventListener('click', () => {
-                console.log('click')
-                console.log(el.querySelector('.quantity').value)
-                if (index == 0) {
-                    console.log(el.value)
-                    document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
-                } else {
-                    console.log(el.value)
-                    document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
-                }
-            })
-        })
+        // document.querySelectorAll('.quantity-row').forEach((el,index) => {
+        //     el.querySelector('button').addEventListener('click', () => {
+        //         console.log('click')
+        //         console.log(el.querySelector('.quantity').value)
+        //         if (index == 0) {
+        //             console.log(el.value)
+        //             document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+        //         } else {
+        //             console.log(el.value)
+        //             document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
+        //         }
+        //     })
+        // })
     }
 
     //main
