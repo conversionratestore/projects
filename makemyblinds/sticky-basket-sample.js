@@ -644,20 +644,16 @@ window.onload  = function () {
     }
     let mut2 = new MutationObserver(function (muts) {
         console.log("mut2");
-        if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content') && document.querySelectorAll('.product-item')) {
+        if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
             mut2.disconnect();
             console.log("mut2.disconnect");
-            document.querySelectorAll('.product-item').forEach(el => {
-                let id = el.getAttribute('id').replace('item_','');
-                console.log(id);
-
-                if (document.querySelectorAll(`.result`) && !document.querySelector(`.result[data-objectid="${id}"]`) && document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist.active')) {
-                    let towishListActive = document.querySelector(`.result[data-objectid="${id}"]`).closest('.result-content').querySelector('.action.towishlist');
-                    console.log(towishListActive);
-                    towishListActive.classList.remove('active');
-                    towishListActive.setAttribute('title','Add to Wish List');
-                    towishListActive.setAttribute('aria-label','Add to Wish List');
-                    towishListActive.setAttribute('data-action','add-to-wishlist');
+            document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
+                let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
+                if (!document.querySelector(`#item_${id}`)) {
+                    el.classList.remove('active');
+                    el.setAttribute('title','Add to Wish List');
+                    el.setAttribute('aria-label','Add to Wish List');
+                    el.setAttribute('data-action','add-to-wishlist');
                 }
             })
         }
