@@ -695,7 +695,7 @@ window.onload  = function () {
                         console.log('click')
                         // e.stopPropagation();
                         let id = el.getAttribute('data-item-id');
-                        document.querySelectorAll(`.result-content a[data-objectid"${id}"]`).forEach(item => {
+                        document.querySelectorAll(`.result-content a[data-objectid="${id}"]`).forEach(item => {
                             item.classList.remove('active');
                             item.setAttribute('title','Add to Wish List');
                             item.setAttribute('data-action','add-to-wishlist');
