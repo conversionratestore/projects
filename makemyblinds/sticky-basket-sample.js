@@ -696,14 +696,16 @@ window.onload  = function () {
         });
         if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
             mut.disconnect();
-            console.log("mut2.disconnect");
             document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
                 let id = el.getAttribute('data-post').split('"product":"')[1].split('","uenc')[0];
                 if (!document.querySelector(`#item_${id}`)) {
                     el.classList.remove('active');
                     el.setAttribute('title','Add to Wish List');
-                    el.setAttribute('aria-label','Add to Wish List');
                     el.setAttribute('data-action','add-to-wishlist');
+                } else {
+                    el.classList.add('active');
+                    el.setAttribute('title','Remove');
+                    el.setAttribute('data-action','remote-in-wishlist');
                 }
             })
         }
