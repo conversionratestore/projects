@@ -14,7 +14,7 @@ let megicpatchStyle = /*html*/ `
             font-size: 14px;
             line-height: 1.14;
             text-align: center;
-            letter-spacing: 0.015em;
+            letter-spacing: 0.015em !important;
             text-transform: uppercase;
             color: #008DD6;
         }
@@ -62,7 +62,7 @@ let megicpatchStyle = /*html*/ `
             line-height: 1.43;
             text-align: center;
             text-transform: unset;
-            letter-spacing: unset;
+            letter-spacing: unset !important;
             color: #212529 !important;
         }
 
@@ -88,7 +88,7 @@ let megicpatchStyle = /*html*/ `
             font-size: 12px;
             line-height: 1.6;
             text-align: center;
-            letter-spacing: unset;
+            letter-spacing: unset !important;
             color: #212529;
             padding: 5px;
         }
