@@ -646,13 +646,15 @@ window.onload  = function () {
     if (location.pathname.includes('blinds') && document.querySelectorAll('.result-content .towishlist.active') && document.querySelectorAll('.product-item')) {
 
         document.querySelectorAll('.btn-remove.action').forEach(el => {
-            el.addEventListener('click',() => {
+            el.addEventListener('click',(e) => {
+                e.stopPropagation();
                 let id = el.getAttribute('data-item-id');
                 document.querySelectorAll(`.result-content a[data-objectid"${id}"]`).forEach(item => {
                     item.classList.remove('active');
                     item.setAttribute('title','Add to Wish List');
                     item.setAttribute('data-action','add-to-wishlist');
                 })
+                el.click();
             })
         })
         // document.querySelectorAll('.result-content .towishlist.active').forEach(el => {
