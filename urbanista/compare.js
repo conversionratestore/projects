@@ -452,19 +452,19 @@ let colorObj = {
 let select = `
 <div class="select">
     <select>
-        <option value="London" selected>London</option>
-        <option value="Miami">Miami</option>
-        <option value="Lisbon">Lisbon</option>
-        <option value="Los-Angeles">Los Angeles</option>
-        <option value="Seoul">Seoul</option>
-        <option value="Paris">Paris</option>
+        <option value="london" selected>London</option>
+        <option value="miami">Miami</option>
+        <option value="lisbon">Lisbon</option>
+        <option value="los-angeles">Los Angeles</option>
+        <option value="seoul">Seoul</option>
+        <option value="paris">Paris</option>
         <option value="stockholm-plus">Stockholm Plus</option>        
-        <option value="Boston">Boston</option>
-        <option value="Sydney">Sydney</option>
-        <option value="Athens">Athens</option>
-        <option value="San-Francisco">San Francisco</option>
-        <option value="Madrid">Madrid</option>
-        <option value="Berlin">Berlin</option>
+        <option value="boston">Boston</option>
+        <option value="sydney">Sydney</option>
+        <option value="athens">Athens</option>
+        <option value="san-francisco">San Francisco</option>
+        <option value="madrid">Madrid</option>
+        <option value="berlin">Berlin</option>
         <option value="sydney_hm">Sydney &M Home Edition</option>
     </select>
 </div>`;
@@ -484,18 +484,8 @@ let page = `
         </div>
     </div>
     <h2 class="page-title">Summary</h2>
-    <ul class="summary">
-    </ul>
+    <ul class="summary"></ul>
 </div>`;
-
-let summary = `<li class="summary-item">
-    <h4 class="summary-title"></h4>
-    <div class="summary-row">
-        <p class="summary-one"></p>
-        <img src="" alt="icon">
-        <p class="summary-two"></p>
-    </div>
-</li>`;
 
 function setCards(el,index) {
     let elCol = el.closest('.compare-col');
@@ -560,11 +550,11 @@ function setCards(el,index) {
                 })
             })
         }
-
-
+        
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
+
 };
 
 document.body.insertAdjacentHTML('afterbegin', page);
@@ -575,3 +565,45 @@ document.querySelectorAll('select').forEach((el,index) => {
         setCards(el,index);
     });
 });
+function summary() {
+    for (const key in productSpecs) {
+        // if (key == optionSelected) {
+        document.querySelector('.summary').insertAdjacentHTML('beforeend',`
+            <li class="summary-item">
+                <h4 class="summary-title">title ${key}</h4>
+                <div class="summary-row">
+                    <p class="summary-one"></p>
+                    <img src="" alt="icon">
+                    <p class="summary-two"></p>
+                </div>
+            </li>`)
+        // for (const keyItem in productSpecs[key]) {
+        //     console.log([keyItem])
+        //     console.log(productSpecs[key][keyItem])
+        // document.querySelector('.summary').insertAdjacentHTML('beforeend',`
+        // <li class="summary-item">
+        //     <h4 class="summary-title">${productSpecs[key][keyItem]}</h4>
+        //     <div class="summary-row">
+        //         <p class="summary-one"></p>
+        //         <img src="" alt="icon">
+        //         <p class="summary-two"></p>
+        //     </div>
+        // </li>`)
+        //             // if (index == 0) {
+        //             //     // console.log('1: ' + productSpecs[key][keyItem])
+        //             //     document.querySelectorAll('.summary-one').forEach(el => {
+        //             //         el.innerHTML = productSpecs[key][keyItem];
+        //             //         console.log('1: ' + productSpecs[key][keyItem])
+        //             //     })
+        //             // } else {
+        //             //     // console.log('2: ' + productSpecs[key][keyItem])
+        //             //     document.querySelectorAll('.summary-two').forEach(el => {
+        //             //         el.innerHTML = productSpecs[key][keyItem];
+        //             //         console.log('2: ' + productSpecs[key][keyItem])
+        //             //     })
+        //             // }
+        // }
+        // }
+    }
+}
+// summary();
