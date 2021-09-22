@@ -340,7 +340,7 @@ let productSpecs = {
     },
     'new-york': {
         'bluetooth': '4.1',
-        'chargingTime': 'Micro USB, <2.5hrs charging time',
+        'chargingTime': '<2.5hrs',
         'playtime': '16h with ANC, 25h without ANC',
         'standby': '700h',
         'earbuds': '50mAh',
@@ -372,7 +372,7 @@ let productSpecs = {
     },
     'madrid': {
         'bluetooth': '4.0',
-        'chargingTime': 'Micro USB, about 1,5h charging time',
+        'chargingTime': '1,5h',
         'playtime': '4h',
         'standby': '100h',
         'earbuds': '',
@@ -388,7 +388,7 @@ let productSpecs = {
     },
     'berlin': {
         'bluetooth': '4.0',
-        'chargingTime': 'Micro USB, about 1,5h charging time',
+        'chargingTime': '1,5h',
         'playtime': '4h',
         'standby': '100h',
         'earbuds': '',
