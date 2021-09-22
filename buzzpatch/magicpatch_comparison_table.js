@@ -8,7 +8,7 @@ let megicpatchStyle = /*html*/ `
             color: #12B889;
         }
 
-        .accent-color-red{
+        .accent-color-blue{
             font-family: 'Din Condensed', Roboto, sans-serif;
             font-weight: 400;
             font-size: 14px;
@@ -16,7 +16,7 @@ let megicpatchStyle = /*html*/ `
             text-align: center;
             letter-spacing: 0.015em;
             text-transform: uppercase;
-            color: #FF3C81;
+            color: #008DD6;
         }
 
         .magicpatch-span-after-svg{
@@ -139,7 +139,7 @@ let magicpatchTable = /*html*/ `
             <ul class="magicpatch-list">
                 <li class="magicpatch-link list-var">
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/magicpatch-natural.png" alt="magicpatch" width="38" height="38">
-                    <span class="accent-color-red magicpatch-span-after-svg">Magicpatch</span>
+                    <span class="accent-color-blue magicpatch-span-after-svg">Magicpatch</span>
                 </li>
 
                 <li class="magicpatch-link list-var">
