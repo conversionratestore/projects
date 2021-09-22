@@ -529,9 +529,9 @@ window.onload  = function () {
         }
 
         //change all quantity
-        document.querySelectorAll('.quantity').forEach((el,index) => {
-            el.addEventListener('change', () => {
-                console.log('change')
+        document.querySelectorAll('.quantity-row').forEach((el,index) => {
+            el.addEventListener('click', () => {
+                console.log('click')
                 console.log(el.value)
                 if (index == 0) {
                     console.log(el.value)
