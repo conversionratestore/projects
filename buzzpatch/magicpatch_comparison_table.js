@@ -268,7 +268,7 @@ scrolling(".megicpatch-btn")
 // Pure js scrolling
 function scrolling(upSelector) {
   let links = document.querySelectorAll(upSelector),
-    speed = 0.6
+    speed = 0.5
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
