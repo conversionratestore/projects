@@ -17,9 +17,7 @@ document.body.insertAdjacentHTML('afterbegin',`
             display: flex;
             justify-content: center;
         }
-        [hidden] {
-            visibility: hidden;
-        }
+
         .colors-plus {
             margin-right: 7px;
             margin-bottom: 6px;
@@ -560,9 +558,9 @@ function setCards(el,index) {
             elCol.querySelectorAll('.label-color').forEach((label, index) => {
                 if (index >= 5) {
                     label.hidden = true;
-                    document.querySelector('.colors-plus').hidden = false;
+                    document.querySelector('.colors-plus').style.display = 'block';
                 } else {
-                    document.querySelector('.colors-plus').hidden = true;
+                    document.querySelector('.colors-plus').style.display = 'none';
 
                 }
                 label.addEventListener('change', () => {
