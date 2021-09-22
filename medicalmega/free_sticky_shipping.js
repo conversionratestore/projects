@@ -532,13 +532,13 @@ window.onload  = function () {
         document.querySelectorAll('.quantity-row').forEach((el,index) => {
             el.addEventListener('click', () => {
                 console.log('click')
-                console.log(el.value)
+                console.log(el.querySelector('.quantity').value)
                 if (index == 0) {
                     console.log(el.value)
-                    document.querySelectorAll('.quantity')[1].value = el.value;
+                    document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
                 } else {
                     console.log(el.value)
-                    document.querySelectorAll('.quantity')[0].value = el.value;
+                    document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                 }
             })
         })
