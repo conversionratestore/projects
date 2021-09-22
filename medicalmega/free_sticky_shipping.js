@@ -530,7 +530,7 @@ window.onload  = function () {
 
         //change all quantity
         document.querySelectorAll('.quantity-row').forEach((el,index) => {
-            el.addEventListener('click', () => {
+            el.querySelector('button').addEventListener('click', () => {
                 console.log('click')
                 console.log(el.querySelector('.quantity').value)
                 if (index == 0) {
