@@ -35,6 +35,7 @@ let megicpatchStyle = /*html*/ `
         }
 
         .magicpatch-primary-title{
+            max-width: 290px;
             font-weight: normal;
             font-size: 42px;
             line-height: 1.24;
@@ -42,7 +43,7 @@ let megicpatchStyle = /*html*/ `
             letter-spacing: 0.02em;
             text-transform: uppercase;
             color: #0C0B0B !important;
-            margin: 25px 0 40px 0;
+            margin: 25px auto 40px auto;
         }
 
         .magicpatch-box{
@@ -267,7 +268,7 @@ scrolling(".megicpatch-btn")
 // Pure js scrolling
 function scrolling(upSelector) {
   let links = document.querySelectorAll(upSelector),
-    speed = 0.8
+    speed = 0.6
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
