@@ -128,13 +128,19 @@ window.onload  = function () {
                             });
                         }
                     }
-                    
+
                     if (index == 0) {
-                        console.log(el.querySelector('.quantity').value)
                         document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+                        if (document.querySelectorAll('.quantity')[1].value < 2) {
+                            button.nextElementSibling.value = 1;
+                            button.disabled = true;
+                        }
                     } else {
-                        console.log(el.querySelector('.quantity').value)
                         document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
+                        if (document.querySelectorAll('.quantity')[0].value < 2) {
+                            button.nextElementSibling.value = 1;
+                            button.disabled = true;
+                        }
                     }
                 });
             });
