@@ -527,6 +527,17 @@ window.onload  = function () {
             document.querySelector('.type2').after(document.querySelector('.box_container'));
             document.querySelector('.type2').after(document.querySelector('.type2 strong'));
         }
+
+        //change all quantity
+        document.querySelectorAll('.quantity').forEach((el,index) => {
+            el.addEventListener('change', () => {
+                if (index == 0) {
+                    document.querySelectorAll('.quantity')[1].value = el.value;
+                } else {
+                    document.querySelectorAll('.quantity')[0].value = el.value;
+                }
+            })
+        })
     }
 
     //main
