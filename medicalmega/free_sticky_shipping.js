@@ -2,6 +2,14 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            p.out-of-stock__message {
+                width: 100%!important;
+                font-size: 15px;
+            }
+            .out-of-stock__box {
+                width: 100%!important;
+                margin: 18px 0 0 0!important;
+            }
             .homeslider__container {
                 margin-bottom: 40px!important;
             }
@@ -55,7 +63,7 @@ window.onload  = function () {
         </style>`);
 
     // quantity on change and on click button +/-
-    function quantityFun(el) {
+    function quantityFun(el,index) {
         if (el.querySelector('.quantity')) {
             if (el.querySelector('.quantity').value < 2) {
                 el.querySelector('.quantity').value = 1;
@@ -119,6 +127,14 @@ window.onload  = function () {
                                 'eventLabel': 'Near the button Add to cart on PDP'
                             });
                         }
+                    }
+                    
+                    if (index == 0) {
+                        console.log(el.querySelector('.quantity').value)
+                        document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+                    } else {
+                        console.log(el.querySelector('.quantity').value)
+                        document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
                     }
                 });
             });
@@ -415,17 +431,18 @@ window.onload  = function () {
             <button type="button" class="add-cart">add to cart</button>
         </div>`;
 
-        //add sticky button in body
-        document.body.insertAdjacentHTML('beforeend',`
-        <div class="sticky-btn active">
-            <div class="sticky-btn_row">
-                <a href="#">${document.querySelectorAll('.center h3')[0].innerHTML}</a>
-                <p class="sticky-btn_price">${document.querySelector('.product-price').innerHTML}</p>
-            </div>
-        </div>`);
-
-        //add element in sticky button
-        document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
+        if (document.querySelector('.product-price')) {
+            //add sticky button in body
+            document.body.insertAdjacentHTML('beforeend',`
+            <div class="sticky-btn active">
+                <div class="sticky-btn_row">
+                    <a href="#">${document.querySelectorAll('.center h3')[0].innerHTML}</a>
+                    <p class="sticky-btn_price">${document.querySelector('.product-price').innerHTML}</p>
+                </div>
+            </div>`);
+            //add element in sticky button
+            document.querySelector('.sticky-btn').insertAdjacentHTML('beforeend', rowActions);
+        }
 
         //hide sticky button on scrollY > 200, else show
         document.addEventListener('scroll', (e) => {
@@ -436,32 +453,34 @@ window.onload  = function () {
             }
         });
 
-        //add shipping box
-        document.querySelector('.type2').insertAdjacentHTML('beforeend',`
-        <div class="shipping-box">
-            <div class="align-center">
-                <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
-                <p class="text-red">Estimated shipping </p>
-            </div>
-            <p>2-3 business days*</p>
-        </div>`);
-
         //add elements
-        document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
-        <div class="price-product">
-            <p>Our Price:</p>
-            <p>${document.querySelector('.product-price').innerHTML}</p>
-        </div>
-        ${rowActions}`);
+        if (document.querySelector('.product-price')) {
+            //add shipping box
+            document.querySelector('.type2').insertAdjacentHTML('beforeend',`
+            <div class="shipping-box">
+                <div class="align-center">
+                    <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
+                    <p class="text-red">Estimated shipping </p>
+                </div>
+                <p>2-3 business days*</p>
+            </div>`);
+            document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
+            <div class="price-product">
+                <p>Our Price:</p>
+                <p>${document.querySelector('.product-price').innerHTML}</p>
+            </div>
+            ${rowActions}`);
+        }
 
         //show range, if have product in cart
-        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0') {
+        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price')) {
             rangeShipping('.price-product','afterend');
         }
 
         //add text info
-        document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*In rare times, for technical reasons delivery might take up to 7 days.</p>`)
-
+        if (document.querySelector('.product-price')) {
+            document.querySelector('.center .sticky-btn_row').insertAdjacentHTML('afterend', `<p class="info">*In rare times, for technical reasons delivery might take up to 7 days.</p>`)
+        }
         //click on add to cart
         document.querySelectorAll('.add-cart').forEach(el => {
             el.addEventListener('click', () => {
@@ -491,8 +510,8 @@ window.onload  = function () {
             });
         })
 
-        document.querySelectorAll('.sticky-btn_row').forEach(el => {
-            quantityFun(el); // quantity on change and on click button +/-
+        document.querySelectorAll('.sticky-btn_row').forEach((el,index) => {
+            quantityFun(el,index); // quantity on change and on click button +/-
         })
         //read more
         if (document.getElementById('product_desc')) {
@@ -516,6 +535,21 @@ window.onload  = function () {
             document.querySelector('.type2').after(document.querySelector('.box_container'));
             document.querySelector('.type2').after(document.querySelector('.type2 strong'));
         }
+
+        //change all quantity
+        // document.querySelectorAll('.quantity-row').forEach((el,index) => {
+        //     el.querySelector('button').addEventListener('click', () => {
+        //         console.log('click')
+        //         console.log(el.querySelector('.quantity').value)
+        //         if (index == 0) {
+        //             console.log(el.value)
+        //             document.querySelectorAll('.quantity')[1].value = el.querySelector('.quantity').value;
+        //         } else {
+        //             console.log(el.value)
+        //             document.querySelectorAll('.quantity')[0].value = el.querySelector('.quantity').value;
+        //         }
+        //     })
+        // })
     }
 
     //main
