@@ -196,8 +196,38 @@ document.body.insertAdjacentHTML('afterbegin',`
 if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
+
+let pathLocal = window.location.pathname.split('/')[1];
+
+const localisation ={
+    'eu': {
+        'bluetooth': 'Bluetooth version',
+    },
+    'uk': {
+        'bluetooth': 'Bluetooth version',
+    },
+    'au': {
+        'bluetooth': 'Bluetooth version',
+    },
+    'de': {},
+    'se': {},
+}
+
+// let a = {
+//     'london': [
+//         {
+//             attributes: 'Bluetooth version',
+//             value: '5.0'
+//         },
+//         {
+//             attributes: 'Charging time',
+//             value: '1.5h'
+//         }
+//     ]
+// }
 let productSpecs = {
     'london': {
+
         'bluetooth': '5.0',
         'chargingTime': '1.5h',
         'playtime': '25h',
@@ -520,17 +550,17 @@ function setCards(el,index) {
         console.log(dataItem);
 
         elCol.querySelector('.card').innerHTML = `
-            <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-img"></a>
+            <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-img"></a>
             <div class="card-content">
                 <div class="flex-center">
                     <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
-                    <a href="https://www.urbanista.com/eu/${optionSelected}" class="colors-plus">+</a>
+                    <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="colors-plus">+</a>
                 </div>
-                <a href="https://www.urbanista.com/eu/${optionSelected}" class="card-title">${dataItem[0]["name"]}</a>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-title">${dataItem[0]["name"]}</a>
                 <p class="card-additional"></p>
                 <p class="card-price">$${dataItem[0]["price"]}</p>
                 <button type="button" class="btn-buy">Buy</button>
-                <a href="https://www.urbanista.com/eu/${optionSelected}" class="sea-more">Learn more ></a>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">Learn more ></a>
             </div>`;
 
         for (let i = 0; i < dataItem.length; i++) {
@@ -576,9 +606,7 @@ function setCards(el,index) {
                     }
                 })
             })
-
         }
-
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
@@ -631,6 +659,15 @@ function setCards(el,index) {
     //
     //     return false;
     // }
+
+
+
+
+
+    console.log(localisation[pathLocal].bluetooth)
+
+
+
 
 };
 
