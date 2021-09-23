@@ -191,6 +191,42 @@ document.body.insertAdjacentHTML('afterbegin', `
             color: #FFFFFF;
             width: 64px;
         }
+        .summary {
+            display: flex;    
+            margin-top: 15px;        
+        }
+        .summary .one,
+        .summary .two {
+            width: 50%;
+            text-align: center;
+        }        
+        .spec-wrapper {
+            position: relative;
+            height: 125px;
+            padding: 30px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border-bottom: 1px solid #E8E8E8;            
+        }
+        .spec-wrapper:first-child {
+            border-top: 1px solid #E8E8E8; 
+        }
+        .spec-wrapper p {
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .specs-title {
+            position: absolute;
+            top: 20px;
+            width: 100%;        
+            margin-left: 100%;            
+        }
+        .spec-wrapper img {
+            position: absolute;
+            bottom: 15px;
+            right: -15px;
+        }
     </style>`);
 
 if (document.querySelector('#amasty-shopby-product-list')) {
@@ -208,6 +244,7 @@ const localisation = {
         'summary': 'Summary',
         'learnMore': 'Learn more >',
         'bluetooth': 'Bluetooth version',
+
     },
     'uk': {},
     'au': {},
@@ -219,19 +256,6 @@ if (!localisation[pathLocal]) {
     pathLocal = 'eu';
 }
 
-
-// let a = {
-//     'london': [
-//         {
-//             attributes: 'Bluetooth version',
-//             value: '5.0'
-//         },
-//         {
-//             attributes: 'Charging time',
-//             value: '1.5h'
-//         }
-//     ]
-// }
 let productSpecs = {
     'london': {
         'bluetooth': '5.0',
@@ -251,66 +275,66 @@ let productSpecs = {
     },
     'miami': {
         'bluetooth': '5.0',
-        'chargingTime': '',
+        'chargingTime': '—',
         'playtime': '50h',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
-        'workingRange': '',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
         'micDistance': '0.5m',
         'frequency': '20Hz - 20KHz',
         'power': '9.00dBm',
         'impedance': '32Ω ± 15%',
         'sensibility': '107+/- 3dB at 1kHz',
-        'snr': '',
-        'codec': '',
+        'snr': '—',
+        'codec': '—',
     },
     'los-angeles': {
         'bluetooth': '5.0',
-        'chargingTime': '',
-        'playtime': '',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
+        'chargingTime': '—',
+        'playtime': '—',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
         'workingRange': '10m +',
-        'micDistance': '',
+        'micDistance': '—',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '107+/- 3dB at 1kHz',
-        'snr': '',
+        'snr': '—',
         'codec': 'SBC, AAC',
     },
     'lisbon': {
         'bluetooth': '5.2',
-        'chargingTime': '',
+        'chargingTime': '—',
         'playtime': '27h',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
         'workingRange': '10m +',
-        'micDistance': '',
+        'micDistance': '—',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '+/- 3dB at 1kHz',
-        'snr': '',
+        'snr': '—',
         'codec': 'SBC, AAC',
     },
     'seoul': {
         'bluetooth': '5.2',
-        'chargingTime': '',
+        'chargingTime': '—',
         'playtime': '32h',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
         'workingRange': '10m +',
-        'micDistance': '',
+        'micDistance': '—',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '+/- 3dB at 1kHz',
-        'snr': '',
+        'snr': '—',
         'codec': 'SBC, AAC',
     },
     'paris': {
@@ -329,7 +353,7 @@ let productSpecs = {
         'snr': '98.3dB',
         'codec': 'SBC, AAC, APTX',
     },
-    'stockholm': {
+    'stockholm-plus': {
         'bluetooth': '5.0',
         'chargingTime': '1.5h',
         'playtime': '20h',
@@ -347,34 +371,34 @@ let productSpecs = {
     },
     'boston': {
         'bluetooth': '5.0',
-        'chargingTime': '',
+        'chargingTime': '—',
         'playtime': '6h',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
-        'workingRange': '',
-        'micDistance': '',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '107dB+/- 3dB at 1kHz',
-        'snr': '',
-        'codec': '',
+        'snr': '—',
+        'codec': '—',
     },
     'sydney': {
         'bluetooth': '5.0',
         'chargingTime': '1.5h',
         'playtime': '5h',
         'standby': '30 days',
-        'earbuds': '',
-        'chargingCase': '',
+        'earbuds': '—',
+        'chargingCase': '—',
         'workingRange': '> 10m',
         'micDistance': '0.5m',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '4Ω ± 3%',
         'sensibility': '80dB+/- 3dB at 1kHz',
-        'snr': '',
+        'snr': '—',
         'codec': 'SBC, MP3, AAC',
     },
     'athens': {
@@ -383,7 +407,7 @@ let productSpecs = {
         'playtime': '32h',
         'standby': '400h',
         'earbuds': '50mAh',
-        'chargingCase': '',
+        'chargingCase': '—',
         'workingRange': '10m +',
         'micDistance': '20cm',
         'frequency': '20Hz - 20KHz',
@@ -399,78 +423,78 @@ let productSpecs = {
         'playtime': '16h with ANC, 25h without ANC',
         'standby': '700h',
         'earbuds': '50mAh',
-        'chargingCase': '',
-        'workingRange': '',
-        'micDistance': '',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
         'frequency': '2.4GHz-2.48GHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '94dB+/- 3dB at 1kHz',
-        'snr': '',
-        'codec': '',
+        'snr': '—',
+        'codec': '—',
     },
     'san-francisco': {
-        'bluetooth': '',
-        'chargingTime': '',
-        'playtime': '',
-        'standby': '',
-        'earbuds': '',
-        'chargingCase': '',
-        'workingRange': '',
-        'micDistance': '',
+        'bluetooth': '—',
+        'chargingTime': '—',
+        'playtime': '—',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
         'frequency': '20Hz - 20KHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
-        'sensibility': '',
-        'snr': '',
-        'codec': '',
+        'sensibility': '—',
+        'snr': '—',
+        'codec': '—',
     },
     'madrid': {
         'bluetooth': '4.0',
         'chargingTime': '1,5h',
         'playtime': '4h',
         'standby': '100h',
-        'earbuds': '',
-        'chargingCase': '',
-        'workingRange': '',
-        'micDistance': '',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
         'frequency': '2.4GHz-2.48GHz',
-        'power': '',
+        'power': '—',
         'impedance': '16Ω ± 15%',
         'sensibility': '102dB+/- 3dB at 1kHz',
-        'snr': '',
-        'codec': '',
+        'snr': '—',
+        'codec': '—',
     },
     'berlin': {
         'bluetooth': '4.0',
         'chargingTime': '1,5h',
         'playtime': '4h',
         'standby': '100h',
-        'earbuds': '',
-        'chargingCase': '',
-        'workingRange': '',
-        'micDistance': '',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
         'frequency': '2.4GHz-2.48GHz',
-        'power': '',
+        'power': '—',
         'impedance': '32Ω ± 15%',
         'sensibility': '103dB+/- 3dB at 1kHz',
-        'snr': '',
-        'codec': '',
+        'snr': '—',
+        'codec': '—',
     },
     'sydney_hm': {
         'bluetooth': '5.0',
         'chargingTime': '1,5h',
         'playtime': '5hrs',
         'standby': '30 days',
-        'earbuds': '',
-        'chargingCase': '',
+        'earbuds': '—',
+        'chargingCase': '—',
         'workingRange': '> 10m',
         'micDistance': '0.5m',
         'frequency': '80 - 20.000 KHz',
-        'power': '',
+        'power': '—',
         'impedance': '4Ω ± 15%',
         'sensibility': '80dB+/- 3dB at 1kHz',
-        'snr': '',
+        'snr': '—',
         'codec': 'SBC, MP3, AAC',
     },
 
@@ -538,14 +562,12 @@ let page = `
             ${select}
            <div class="card"></div>
         </div>
+    </div>    
+    <h2 class="page-title">${localisation[pathLocal]?.summary}</h2>    
+    <div class="summary">             
+        <div class="one"></div>
+        <div class="two"></div>        
     </div>
-    <h2 class="page-title">${localisation[pathLocal]?.summary}</h2>
-    <ul class="summary"> 
-        <li>
-            <p class="one"></p>
-            <p class="two"></p>
-        </li>
-    </ul>
     
 </div>`;
 
@@ -577,7 +599,7 @@ function setCards(el, index) {
                 <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">${localisation[pathLocal]?.learnMore}</a>
             </div>`;
 
-        for (let i = 0; i < dataItem.length; i++) {
+        for (let i = 0; i < 4; i++) {
             let attrObj = dataItem[i]['custom_attributes'];
             for (const key in attrObj) {
                 for (const dataKey in colorObj) {
@@ -622,25 +644,141 @@ function setCards(el, index) {
             });
         }
 
-
-
-
-
-
-
         let productData = productSpecs[optionSelected];
 
-        let compareItem = `
-            <div>
-                <p>${productData.bluetooth}</p>
-                <p>${productData.chargingTime}</p>
-                <p>${productData.playtime}</p>
-            </div>`;
-        if(index == 0) {
-            document.querySelector('.summary .one').innerHTML = compareItem;
+        // let compareItem = `
+        //     <p data-attr="bluetooth">${productData.bluetooth}</p>
+        //     <p data-attr="chargingTime">${productData.chargingTime}</p>
+        //     <p data-attr="playtime">${productData.playtime}</p>
+        //     <p data-attr="standby">${productData.standby}</p>
+        //     <p data-attr="earbuds">${productData.earbuds}</p>
+        //     <p data-attr="chargingCase">${productData.chargingCase}</p>
+        //     <p data-attr="workingRange">${productData.workingRange}</p>
+        //     <p data-attr="frequency">${productData.frequency}</p>
+        //     <p data-attr="power">${productData.power}</p>
+        //     <p data-attr="impedance">${productData.impedance}</p>
+        //     <p data-attr="sensibility">${productData.sensibility}</p>
+        //     <p data-attr="snr">${productData.snr}</p>
+        //     <p data-attr="codec">${productData.codec}</p>
+        // `
+
+        if (index == 0) {
+            document.querySelector('.summary .one').innerHTML = `
+                <div class="spec-wrapper">
+                    <p class="specs-title">Bluetooth version</p>
+                    <p>${productData.bluetooth}</p>
+                     <img src="https://conversionratestore.github.io/projects/urbanista/images/bluetooth.svg" alt="bluetooth">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Charging time</p>
+                    <p>${productData.chargingTime}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/si-glyph_battery-charging.svg" alt="battery">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Total playtime</p>
+                    <p>${productData.playtime}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/headphones.svg" alt="headphones">
+                </div>
+                            
+                <div class="spec-wrapper">
+                    <p class="specs-title">Standby Time</p>
+                    <p>${productData.standby}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/power.svg" alt="power">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Battery (in mAh)</p>
+                    <div>
+                        <p class="earbud">${productData.earbuds} earbud</p>
+                        <p class="case">${productData.chargingCase}<br>charging case</p>       
+                    </div>  
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/battery2.svg" alt="battery2">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Working Range</p>
+                    <p>${productData.workingRange}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/slide.svg" alt="range">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Mic Distance</p>
+                    <p>${productData.micDistance}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/micro.svg" alt="micro">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Frequency Range</p>
+                    <p >${productData.frequency}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/frequency.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">RF Output Power</p>
+                    <p >${productData.power}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/thunderbolt.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Impedance</p>
+                    <p >${productData.impedance}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/resistance.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Sensibility</p>
+                    <p >${productData.sensibility}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/sound.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">SNR</p>
+                    <p >${productData.snr}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/sound-wave.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">Audio Codec</p>
+                    <p >${productData.codec}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/code.svg" alt="frequency">
+                </div>
+            `;
         } else {
-            
-            document.querySelector('.summary .two').innerHTML = compareItem;
+            document.querySelector('.summary .two').innerHTML = `
+                <div class="spec-wrapper">                
+                    <p>${productData.bluetooth}</p>                
+                </div>
+                <div class="spec-wrapper">                
+                    <p>${productData.chargingTime}</p>                
+                </div>
+                <div class="spec-wrapper">                
+                    <p>${productData.playtime}</p>                
+                </div>
+                <div class="spec-wrapper">                    
+                    <p>${productData.standby}</p>                    
+                </div>
+                <div class="spec-wrapper">              
+                    <div>
+                        <p class="earbud">${productData.earbuds} earbud</p>
+                        <p class="case">${productData.chargingCase}<br>charging case</p>       
+                    </div>            
+                </div>
+                <div class="spec-wrapper">                    
+                    <p>${productData.workingRange}</p>                    
+                </div>
+                <div class="spec-wrapper">                    
+                    <p>${productData.micDistance}</p>                    
+                </div>
+                <div class="spec-wrapper">                    
+                    <p >${productData.frequency}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p >${productData.power}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p >${productData.impedance}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p >${productData.sensibility}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p >${productData.snr}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p >${productData.codec}</p>                   
+                </div>
+            `;
         }
 
     }).catch(errItem => {
