@@ -1,4 +1,4 @@
-document.body.insertAdjacentHTML('afterbegin',`
+document.body.insertAdjacentHTML('afterbegin', `
     <style>
         *, *::before, *::after {
               -webkit-box-sizing: border-box;
@@ -194,24 +194,31 @@ document.body.insertAdjacentHTML('afterbegin',`
     </style>`);
 
 if (document.querySelector('#amasty-shopby-product-list')) {
-    document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin',`<a href="#" class="btn-compare">Compare heaphones</a>`);
+    document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin', `<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
 
 let pathLocal = window.location.pathname.split('/')[1];
 
-const localisation ={
+
+const localisation = {
     'eu': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
         'bluetooth': 'Bluetooth version',
     },
-    'uk': {
-        'bluetooth': 'Bluetooth version',
-    },
-    'au': {
-        'bluetooth': 'Bluetooth version',
-    },
+    'uk': {},
+    'au': {},
     'de': {},
     'se': {},
+};
+
+if (!localisation[pathLocal]) {
+    pathLocal = 'eu';
 }
+
 
 // let a = {
 //     'london': [
@@ -227,7 +234,6 @@ const localisation ={
 // }
 let productSpecs = {
     'london': {
-
         'bluetooth': '5.0',
         'chargingTime': '1.5h',
         'playtime': '25h',
@@ -323,7 +329,7 @@ let productSpecs = {
         'snr': '98.3dB',
         'codec': 'SBC, AAC, APTX',
     },
-    'stockholm-plus': {
+    'stockholm': {
         'bluetooth': '5.0',
         'chargingTime': '1.5h',
         'playtime': '20h',
@@ -467,6 +473,7 @@ let productSpecs = {
         'snr': '',
         'codec': 'SBC, MP3, AAC',
     },
+
 };
 
 let colorObj = {
@@ -520,8 +527,8 @@ let select = `
 
 let page = `
 <div class="compare-wrapper">
-    <h2 class="page-title text-center">Compare headphones models</h2>
-    <a href="#" class="sea-more">See all models ></a>
+    <h2 class="page-title text-center">${localisation[pathLocal]?.bluetooth}</h2>
+    <a href="#" class="sea-more">${localisation[pathLocal]?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${select}
@@ -532,19 +539,21 @@ let page = `
            <div class="card"></div>
         </div>
     </div>
-    <h2 class="page-title">Summary</h2>
-    <ul class="summary"> </ul>
+    <h2 class="page-title">${localisation[pathLocal]?.summary}</h2>
+<!--    <ul class="summary"> </ul>-->
+    
 </div>`;
 
-function setCards(el,index) {
+function setCards(el, index) {
     let elCol = el.closest('.compare-col');
     let optionSelected = el.options[el.selectedIndex].value;
+    console.log(el.options[el.selectedIndex]);
 
     fetch(`https://www.urbanista.com/rest/V1/configurable-products/${optionSelected}/children?fields=sku,price,name,custom_attributes[color,subtitle,grid_image]`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer 4p7re7j8e4tzqskprdyuh04628u3vhp1`
         }
     }).then(resItem => resItem.json()).then(dataItem => {
         console.log(dataItem);
@@ -556,20 +565,20 @@ function setCards(el,index) {
                     <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
                     <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="colors-plus">+</a>
                 </div>
-                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-title">${dataItem[0]["name"]}</a>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-title">${dataItem[0]['name']}</a>
                 <p class="card-additional"></p>
-                <p class="card-price">$${dataItem[0]["price"]}</p>
-                <button type="button" class="btn-buy">Buy</button>
-                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">Learn more ></a>
+                <p class="card-price">$${dataItem[0]['price']}</p>
+                <button type="button" class="btn-buy">${localisation[pathLocal]?.buy}</button>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">${localisation[pathLocal]?.learnMore}</a>
             </div>`;
 
         for (let i = 0; i < dataItem.length; i++) {
-            let attrObj = dataItem[i]["custom_attributes"];
+            let attrObj = dataItem[i]['custom_attributes'];
             for (const key in attrObj) {
                 for (const dataKey in colorObj) {
-                    if (attrObj[key]["attribute_code"] === "color" && dataKey === attrObj[key]["value"]) {
+                    if (attrObj[key]['attribute_code'] === 'color' && dataKey === attrObj[key]['value']) {
                         elCol.querySelector('.row-colors').insertAdjacentHTML('beforeend', `
-                        <label class="label-color" data-id="${dataItem[i]["sku"]}">
+                        <label class="label-color" data-id="${dataItem[i]['sku']}">
                             <input type="radio" name="radio${index == 0 ? '1' : '2'}" class="checkbox" ${i == 0 ? 'checked' : ''}>
                             <span class="check-color">
                                 <span style="background-color: ${colorObj[dataKey]}"></span>
@@ -577,11 +586,11 @@ function setCards(el,index) {
                         </label>`);
                     }
                 }
-                if (attrObj[key]["attribute_code"] === "subtitle") {
-                    elCol.querySelector('.card-additional').innerHTML = attrObj[key]["value"];
+                if (attrObj[key]['attribute_code'] === 'subtitle') {
+                    elCol.querySelector('.card-additional').innerHTML = attrObj[key]['value'];
                 }
-                if (attrObj[key]["attribute_code"] === "grid_image") {
-                    elCol.querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${dataItem[0]["custom_attributes"][key]["value"]}" alt="${dataItem[0]["name"]}">`
+                if (attrObj[key]['attribute_code'] === 'grid_image') {
+                    elCol.querySelector('.card-img').innerHTML = `<img src="https://www.urbanista.com/media/catalog/product${dataItem[0]['custom_attributes'][key]['value']}" alt="${dataItem[0]['name']}">`;
                 }
             }
 
@@ -595,18 +604,35 @@ function setCards(el,index) {
                 }
                 label.addEventListener('change', () => {
                     let idLabel = label.getAttribute('data-id');
-                    if (dataItem[i]["sku"] == idLabel) {
+                    if (dataItem[i]['sku'] == idLabel) {
                         for (const key in attrObj) {
-                            if (attrObj[key]["attribute_code"] === "grid_image") {
-                                elCol.querySelector('.card-img img').setAttribute('src', `https://www.urbanista.com/media/catalog/product${attrObj[key]["value"]}`);
+                            if (attrObj[key]['attribute_code'] === 'grid_image') {
+                                elCol.querySelector('.card-img img').setAttribute('src', `https://www.urbanista.com/media/catalog/product${attrObj[key]['value']}`);
                             }
                         }
-                        elCol.querySelector('.card-img img').setAttribute('alt',`${dataItem[i]["name"]}`);
-                        elCol.querySelector('.card-title').innerHTML = dataItem[i]["name"];
+                        elCol.querySelector('.card-img img').setAttribute('alt', `${dataItem[i]['name']}`);
+                        elCol.querySelector('.card-title').innerHTML = dataItem[i]['name'];
                     }
-                })
-            })
+                });
+            });
         }
+
+
+
+
+
+
+
+        let productData = productSpecs[optionSelected];
+
+        let compareItem = `
+            <div>
+                <p>${productData.bluetooth}</p>
+                <p>${productData.chargingTime}</p>
+            </div>`;
+
+        document.querySelector('.compare-wrapper').insertAdjacentHTML('afterend', compareItem);
+
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
@@ -661,21 +687,13 @@ function setCards(el,index) {
     // }
 
 
-
-
-
-    console.log(localisation[pathLocal].bluetooth)
-
-
-
-
 };
 
 document.body.insertAdjacentHTML('afterbegin', page);
 
-document.querySelectorAll('select').forEach((el,index) => {
-    setCards(el,index);
+document.querySelectorAll('select').forEach((el, index) => {
+    setCards(el, index);
     el.addEventListener('change', () => {
-        setCards(el,index);
+        setCards(el, index);
     });
 });
