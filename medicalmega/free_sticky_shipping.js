@@ -2,9 +2,6 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
-            .box_container .box_item {
-                height: auto!important;
-            }
             p.out-of-stock__message {
                 width: 100%!important;
                 font-size: 15px;
@@ -193,6 +190,9 @@ window.onload  = function () {
         //styles
         document.body.insertAdjacentHTML('afterbegin',`
             <style>
+                .box_container .box_item {
+                    height: auto!important;
+                }
                 .center h3, .category {
                     margin-left: 0;
                 }
@@ -541,6 +541,15 @@ window.onload  = function () {
         if (document.querySelector('.type2 strong')) {
             document.querySelector('.type2').after(document.querySelector('.box_container'));
             document.querySelector('.type2').after(document.querySelector('.type2 strong'));
+        }
+
+        if (document.querySelectorAll('.box_item')) {
+            document.querySelectorAll('.box_item').forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelector('.price-product p:last-child').innerHTML = el.querySelector('.item_price').innerHTML;
+                    document.querySelector('.sticky-btn_price').innerHTML = el.querySelector('.item_price').innerHTML;
+                })
+            })
         }
     }
 
