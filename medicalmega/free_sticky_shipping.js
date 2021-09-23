@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .box_container .box_item {
+                height: auto!important;
+            }
             p.out-of-stock__message {
                 width: 100%!important;
                 font-size: 15px;
