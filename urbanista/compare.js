@@ -540,7 +540,12 @@ let page = `
         </div>
     </div>
     <h2 class="page-title">${localisation[pathLocal]?.summary}</h2>
-<!--    <ul class="summary"> </ul>-->
+    <ul class="summary"> 
+        <li>
+            <p class="one"></p>
+            <p class="two"></p>
+        </li>
+    </ul>
     
 </div>`;
 
@@ -629,9 +634,14 @@ function setCards(el, index) {
             <div>
                 <p>${productData.bluetooth}</p>
                 <p>${productData.chargingTime}</p>
+                <p>${productData.playtime}</p>
             </div>`;
-
-        document.querySelector('.compare-wrapper').insertAdjacentHTML('afterend', compareItem);
+        if(index == 0) {
+            document.querySelector('.summary .one').innerHTML = compareItem;
+        } else {
+            
+            document.querySelector('.summary .two').innerHTML = compareItem;
+        }
 
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
