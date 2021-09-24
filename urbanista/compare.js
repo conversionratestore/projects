@@ -203,7 +203,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         .spec-wrapper {
             position: relative;
             height: 125px;
-            padding: 30px;
+            padding: 0 30px 30px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -220,12 +220,18 @@ document.body.insertAdjacentHTML('afterbegin', `
             position: absolute;
             top: 20px;
             width: 100%;        
-            margin-left: 100%;            
+            transform: translateX(-50%);
+            left: 100%;            
+        }
+        .specs-title .case {
+            color: #7E7E7E;
+            font-weight: 400;
         }
         .spec-wrapper img {
             position: absolute;
             bottom: 15px;
-            right: -15px;
+            left: 100%;
+            transform: translateX(-50%);
         }
     </style>`);
 
@@ -244,16 +250,52 @@ const localisation = {
         'summary': 'Summary',
         'learnMore': 'Learn more >',
         'bluetooth': 'Bluetooth version',
-
+        'chargingTime': 'Charging time',
+        'playtime': 'Total playtime',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case'
     },
     'uk': {},
     'au': {},
-    'de': {},
+    'de': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
+        'bluetooth': 'Bluetooth version',
+        'chargingTime': 'Charging time',
+        'playtime': 'Total playtime',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case'
+    },
     'se': {},
 };
 
-if (!localisation[pathLocal]) {
-    pathLocal = 'eu';
+let localisationData = localisation[pathLocal];
+
+if (!localisationData) {
+    localisationData = localisation['eu'];
 }
 
 let productSpecs = {
@@ -497,7 +539,6 @@ let productSpecs = {
         'snr': '—',
         'codec': 'SBC, MP3, AAC',
     },
-
 };
 
 let colorObj = {
@@ -551,8 +592,8 @@ let select = `
 
 let page = `
 <div class="compare-wrapper">
-    <h2 class="page-title text-center">${localisation[pathLocal]?.bluetooth}</h2>
-    <a href="#" class="sea-more">${localisation[pathLocal]?.allModels}</a>
+    <h2 class="page-title text-center">${localisationData?.bluetooth}</h2>
+    <a href="#" class="sea-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${select}
@@ -563,7 +604,7 @@ let page = `
            <div class="card"></div>
         </div>
     </div>    
-    <h2 class="page-title">${localisation[pathLocal]?.summary}</h2>    
+    <h2 class="page-title">${localisationData?.summary}</h2>    
     <div class="summary">             
         <div class="one"></div>
         <div class="two"></div>        
@@ -592,14 +633,14 @@ function setCards(el, index) {
                     <div class="row-colors" data-id="${el.closest('.select').dataset.id}"></div>
                     <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="colors-plus">+</a>
                 </div>
-                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-title">${dataItem[0]['name']}</a>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="card-title">${optionSelected}</a>
                 <p class="card-additional"></p>
                 <p class="card-price">$${dataItem[0]['price']}</p>
-                <button type="button" class="btn-buy">${localisation[pathLocal]?.buy}</button>
-                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">${localisation[pathLocal]?.learnMore}</a>
+                <button type="button" class="btn-buy">${localisationData?.buy}</button>
+                <a href="https://www.urbanista.com/${pathLocal}/${optionSelected}" class="sea-more">${localisationData?.learnMore}</a>
             </div>`;
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < dataItem.length; i++) {
             let attrObj = dataItem[i]['custom_attributes'];
             for (const key in attrObj) {
                 for (const dataKey in colorObj) {
@@ -622,7 +663,7 @@ function setCards(el, index) {
             }
 
             elCol.querySelectorAll('.label-color').forEach((label, index) => {
-                if (index >= 5) {
+                if (index >= 4) {
                     label.hidden = true;
                     document.querySelector('.colors-plus').style.display = 'block';
                 } else {
@@ -638,7 +679,7 @@ function setCards(el, index) {
                             }
                         }
                         elCol.querySelector('.card-img img').setAttribute('alt', `${dataItem[i]['name']}`);
-                        elCol.querySelector('.card-title').innerHTML = dataItem[i]['name'];
+                        elCol.querySelector('.card-title').innerHTML = optionSelected;
                     }
                 });
             });
@@ -646,196 +687,136 @@ function setCards(el, index) {
 
         let productData = productSpecs[optionSelected];
 
-        // let compareItem = `
-        //     <p data-attr="bluetooth">${productData.bluetooth}</p>
-        //     <p data-attr="chargingTime">${productData.chargingTime}</p>
-        //     <p data-attr="playtime">${productData.playtime}</p>
-        //     <p data-attr="standby">${productData.standby}</p>
-        //     <p data-attr="earbuds">${productData.earbuds}</p>
-        //     <p data-attr="chargingCase">${productData.chargingCase}</p>
-        //     <p data-attr="workingRange">${productData.workingRange}</p>
-        //     <p data-attr="frequency">${productData.frequency}</p>
-        //     <p data-attr="power">${productData.power}</p>
-        //     <p data-attr="impedance">${productData.impedance}</p>
-        //     <p data-attr="sensibility">${productData.sensibility}</p>
-        //     <p data-attr="snr">${productData.snr}</p>
-        //     <p data-attr="codec">${productData.codec}</p>
-        // `
-
-        if (index == 0) {
+        if (index === 0) {
             document.querySelector('.summary .one').innerHTML = `
                 <div class="spec-wrapper">
-                    <p class="specs-title">Bluetooth version</p>
-                    <p>${productData.bluetooth}</p>
+                    <p class="specs-title">${localisationData.bluetooth}</p>
+                    <p class="specs-info">${productData.bluetooth}</p>
                      <img src="https://conversionratestore.github.io/projects/urbanista/images/bluetooth.svg" alt="bluetooth">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Charging time</p>
-                    <p>${productData.chargingTime}</p>
+                    <p class="specs-title">${localisationData.chargingTime}</p>
+                    <p class="specs-info">${productData.chargingTime}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/si-glyph_battery-charging.svg" alt="battery">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Total playtime</p>
-                    <p>${productData.playtime}</p>
+                    <p class="specs-title">${localisationData.playtime}</p>
+                    <p class="specs-info">${productData.playtime}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/headphones.svg" alt="headphones">
                 </div>
                             
                 <div class="spec-wrapper">
-                    <p class="specs-title">Standby Time</p>
-                    <p>${productData.standby}</p>
+                    <p class="specs-title">${localisationData.standby}</p>
+                    <p class="specs-info">${productData.standby}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/power.svg" alt="power">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Battery (in mAh)</p>
-                    <div>
-                        <p class="earbud">${productData.earbuds} earbud</p>
-                        <p class="case">${productData.chargingCase}<br>charging case</p>       
+                    <p class="specs-title">${localisationData.battery}</p>
+                    <div>                    
+                        ${productData.earbuds === '—' ? '<p class="specs-info">—</p>' : `<p class="earbud">${productData.earbuds} ${localisationData.earbud}</p><p class="case">${productData.chargingCase}<br>${localisationData.case}</p>`}       
                     </div>  
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/battery2.svg" alt="battery2">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Working Range</p>
-                    <p>${productData.workingRange}</p>
+                    <p class="specs-title">${localisationData.workingRange}</p>
+                    <p class="specs-info">${productData.workingRange}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/slide.svg" alt="range">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Mic Distance</p>
-                    <p>${productData.micDistance}</p>
+                    <p class="specs-title">${localisationData.mic}</p>
+                    <p class="specs-info">${productData.micDistance}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/micro.svg" alt="micro">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Frequency Range</p>
-                    <p >${productData.frequency}</p>
+                    <p class="specs-title">${localisationData.frequency}</p>
+                    <p class="specs-info">${productData.frequency}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/frequency.svg" alt="frequency">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">RF Output Power</p>
-                    <p >${productData.power}</p>
+                    <p class="specs-title">${localisationData.power}</p>
+                    <p class="specs-info">${productData.power}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/thunderbolt.svg" alt="frequency">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Impedance</p>
-                    <p >${productData.impedance}</p>
+                    <p class="specs-title">${localisationData.impedance}</p>
+                    <p class="specs-info">${productData.impedance}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/resistance.svg" alt="frequency">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Sensibility</p>
-                    <p >${productData.sensibility}</p>
+                    <p class="specs-title">${localisationData.sensibility}</p>
+                    <p class="specs-info">${productData.sensibility}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/sound.svg" alt="frequency">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">SNR</p>
-                    <p >${productData.snr}</p>
+                    <p class="specs-title">${localisationData.snr}</p>
+                    <p class="specs-info">${productData.snr}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/sound-wave.svg" alt="frequency">
                 </div>
                 <div class="spec-wrapper">
-                    <p class="specs-title">Audio Codec</p>
-                    <p >${productData.codec}</p>
+                    <p class="specs-title">${localisationData.codec}</p>
+                    <p class="specs-info">${productData.codec}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/code.svg" alt="frequency">
                 </div>
             `;
         } else {
             document.querySelector('.summary .two').innerHTML = `
                 <div class="spec-wrapper">                
-                    <p>${productData.bluetooth}</p>                
+                    <p class="specs-info">${productData.bluetooth}</p>                
                 </div>
                 <div class="spec-wrapper">                
-                    <p>${productData.chargingTime}</p>                
+                    <p class="specs-info">${productData.chargingTime}</p>                
                 </div>
                 <div class="spec-wrapper">                
-                    <p>${productData.playtime}</p>                
+                    <p class="specs-info">${productData.playtime}</p>                
                 </div>
                 <div class="spec-wrapper">                    
-                    <p>${productData.standby}</p>                    
+                    <p class="specs-info">${productData.standby}</p>                    
                 </div>
                 <div class="spec-wrapper">              
                     <div>
-                        <p class="earbud">${productData.earbuds} earbud</p>
-                        <p class="case">${productData.chargingCase}<br>charging case</p>       
+                        ${productData.earbuds === '—' ? '<p class="specs-info">—</p>' : `<p class="earbud">${productData.earbuds} ${localisationData.earbud}</p><p class="case">${productData.chargingCase}<br>${localisationData.case}</p>`}       
                     </div>            
                 </div>
                 <div class="spec-wrapper">                    
-                    <p>${productData.workingRange}</p>                    
+                    <p class="specs-info">${productData.workingRange}</p>                    
                 </div>
                 <div class="spec-wrapper">                    
-                    <p>${productData.micDistance}</p>                    
+                    <p class="specs-info">${productData.micDistance}</p>                    
                 </div>
                 <div class="spec-wrapper">                    
-                    <p >${productData.frequency}</p>                   
+                    <p class="specs-info">${productData.frequency}</p>                   
                 </div>
                 <div class="spec-wrapper">                   
-                    <p >${productData.power}</p>                   
+                    <p class="specs-info">${productData.power}</p>                   
                 </div>
                 <div class="spec-wrapper">                   
-                    <p >${productData.impedance}</p>                   
+                    <p class="specs-info">${productData.impedance}</p>                   
                 </div>
                 <div class="spec-wrapper">                   
-                    <p >${productData.sensibility}</p>                   
+                    <p class="specs-info">${productData.sensibility}</p>                   
                 </div>
                 <div class="spec-wrapper">                   
-                    <p >${productData.snr}</p>                   
+                    <p class="specs-info">${productData.snr}</p>                   
                 </div>
                 <div class="spec-wrapper">                   
-                    <p >${productData.codec}</p>                   
+                    <p class="specs-info">${productData.codec}</p>                   
                 </div>
             `;
         }
 
+        document.querySelectorAll('.one .specs-info').forEach((item, i) => {
+            if (
+                document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
+                document.querySelectorAll('.two .specs-info')[i].innerText === '—'
+            ) {
+                document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+                document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+            }
+        });
     }).catch(errItem => {
         console.log('Failed fetch ', errItem);
     });
-
-    // for (const key in productSpecs) {
-    //     for (let i = 0; i < Object.keys(productSpecs[key]).length; i++) {
-    //         console.log(Object.keys(productSpecs[key]).length)
-    //         document.querySelector('.summary').insertAdjacentHTML('beforeend',`
-    //         <li class="summary-item">
-    //             <h4 class="summary-title">title ${Object.keys(productSpecs[key])[i]}</h4>
-    //             <div class="summary-row">
-    //                 <p class="summary-one"></p>
-    //                 <img src="" alt="icon">
-    //                 <p class="summary-two"></p>
-    //             </div>
-    //         </li>`)
-    //
-    //         if (key == optionSelected) {
-    //             for (const keyItem in productSpecs[key]) {
-    //                 if (index == 0) {
-    //                     // console.log('1: ' + productSpecs[key][keyItem])
-    //                     document.querySelectorAll('.summary-one').forEach(one => {
-    //                         one.innerHTML = productSpecs[key][keyItem];
-    //                         console.log('1: ' + productSpecs[key][keyItem])
-    //                     })
-    //                 } else {
-    //                     // console.log('2: ' + productSpecs[key][keyItem])
-    //                     document.querySelectorAll('.summary-two').forEach(two => {
-    //                         two.innerHTML = productSpecs[key][keyItem];
-    //                         console.log('2: ' + productSpecs[key][keyItem])
-    //                     })
-    //                 }
-    //             }
-    //             // for (const keyItem in productSpecs[key]) {
-    //             //     console.log([keyItem])
-    //             //     console.log(productSpecs[key][keyItem])
-    //             // document.querySelector('.summary').insertAdjacentHTML('beforeend',`
-    //             // <li class="summary-item">
-    //             //     <h4 class="summary-title">${productSpecs[key][keyItem]}</h4>
-    //             //     <div class="summary-row">
-    //             //         <p class="summary-one"></p>
-    //             //         <img src="" alt="icon">
-    //             //         <p class="summary-two"></p>
-    //             //     </div>
-    //             // </li>`)
-    //
-    //             // }
-    //         }
-    //     }
-    //
-    //     return false;
-    // }
-
-
-};
+}
 
 document.body.insertAdjacentHTML('afterbegin', page);
 
