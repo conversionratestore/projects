@@ -186,7 +186,7 @@ window.onload  = function () {
     }
 
     //pdp
-    if (location.pathname.includes('product')) {
+    if (location.pathname.includes('product') || location.pathname.includes('medical')) {
         //styles
         document.body.insertAdjacentHTML('afterbegin',`
             <style>
