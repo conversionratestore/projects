@@ -190,6 +190,9 @@ window.onload  = function () {
         //styles
         document.body.insertAdjacentHTML('afterbegin',`
             <style>
+                span#free-shipping {
+                    font-size: 96%;
+                }
                 .box_container .box_item {
                     height: auto!important;
                 }
