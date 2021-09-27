@@ -233,14 +233,14 @@ document.body.insertAdjacentHTML('afterbegin', `
             left: 100%;
             transform: translateX(-50%);
         }
-    </style>`);
+    </style>
+`);
 
 if (document.querySelector('#amasty-shopby-product-list')) {
     document.querySelector('#amasty-shopby-product-list').insertAdjacentHTML('beforebegin', `<a href="#" class="btn-compare">Compare heaphones</a>`);
 }
 
 let pathLocal = window.location.pathname.split('/')[1];
-
 
 const localisation = {
     'eu': {
@@ -251,7 +251,7 @@ const localisation = {
         'learnMore': 'Learn more >',
         'bluetooth': 'Bluetooth version',
         'chargingTime': 'Charging time',
-        'playtime': 'Total playtime',
+        'playtime': 'Total speltid',
         'standby': 'Standby Time',
         'battery': 'Battery (in mAh)',
         'workingRange': 'Working Range',
@@ -263,11 +263,11 @@ const localisation = {
         'snr': 'SNR',
         'codec': 'Audio Codec',
         'earbud': 'earbud',
-        'case': 'charging case'
+        'case': 'charging case',
+        'hour': 'h',
+
     },
-    'uk': {},
-    'au': {},
-    'de': {
+    'uk': {
         'compare': 'Compare headphones models',
         'allModels': 'See all models >',
         'buy': 'Buy',
@@ -275,7 +275,7 @@ const localisation = {
         'learnMore': 'Learn more >',
         'bluetooth': 'Bluetooth version',
         'chargingTime': 'Charging time',
-        'playtime': 'Total playtime',
+        'playtime': 'Total speltid',
         'standby': 'Standby Time',
         'battery': 'Battery (in mAh)',
         'workingRange': 'Working Range',
@@ -287,9 +287,78 @@ const localisation = {
         'snr': 'SNR',
         'codec': 'Audio Codec',
         'earbud': 'earbud',
-        'case': 'charging case'
+        'case': 'charging case',
+        'hour': 'h',
     },
-    'se': {},
+    'au': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
+        'bluetooth': 'Bluetooth version',
+        'chargingTime': 'Charging time',
+        'playtime': 'Total speltid',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case',
+        'hour': 'h',
+    },
+    'de': {
+        'compare': 'Kopfhörermodelle vergleichen',
+        'allModels': 'Alle Modelle ansehen >',
+        'buy': 'Kaufen',
+        'summary': 'Zusammenfassung',
+        'learnMore': 'Mehr erfahren >',
+        'bluetooth': 'Treiberleistung',
+        'chargingTime': 'Std Ladezeit',
+        'playtime': 'Spielzeit',
+        'standby': 'Standby-Zeit',
+        'battery': 'Akku (mAh)',
+        'workingRange': 'Arbeitsbereich',
+        'mic': 'Mikrofonabstand',
+        'frequency': 'Frequenzbereich',
+        'power': 'HF-Ausgangsleistung',
+        'impedance': 'Impedanz',
+        'sensibility': 'Sensibilität',
+        'snr': 'SNR',
+        'codec': 'Audio-Codec',
+        'earbud': 'ohrhörer',
+        'case': 'Ladekoffer',
+        'hour': 'Stunden'
+    },
+    'se': {
+        'compare': 'Jämför hörlurar',
+        'allModels': 'Se alla modeller >',
+        'buy': 'Köpa',
+        'summary': 'Sammanfattning',
+        'learnMore': 'Läs mer >',
+        'bluetooth': 'Bluetooth -version',
+        'chargingTime': 'Laddningstid',
+        'playtime': 'Speltid',
+        'standby': 'Standby-tid',
+        'battery': 'Batteri (mAh)',
+        'workingRange': 'Arbetsområde',
+        'mic': 'Distans mikrofon',
+        'frequency': 'Frekvensomfång',
+        'power': 'RF -utgångseffekt',
+        'impedance': 'Impedans',
+        'sensibility': 'Känslighet',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'hörlurar',
+        'case': 'laddningsfodral',
+        'hour': 'timmar'
+    },
 };
 
 let localisationData = localisation[pathLocal];
@@ -301,9 +370,9 @@ if (!localisationData) {
 let productSpecs = {
     'london': {
         'bluetooth': '5.0',
-        'chargingTime': '1.5h',
-        'playtime': '25h',
-        'standby': '120h',
+        'chargingTime': '1.5',
+        'playtime': '25',
+        'standby': '120',
         'earbuds': '45mAh',
         'chargingCase': '400mAh',
         'workingRange': '10m +',
@@ -313,12 +382,12 @@ let productSpecs = {
         'impedance': '16Ω ± 15%',
         'sensibility': '107+/- 3dB at 1kHz',
         'snr': '91dB',
-        'codec': 'HSP, HFP, A2DP, AVRCP',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP',
     },
     'miami': {
         'bluetooth': '5.0',
         'chargingTime': '—',
-        'playtime': '50h',
+        'playtime': '50',
         'standby': '—',
         'earbuds': '—',
         'chargingCase': '—',
@@ -350,7 +419,7 @@ let productSpecs = {
     'lisbon': {
         'bluetooth': '5.2',
         'chargingTime': '—',
-        'playtime': '27h',
+        'playtime': '27',
         'standby': '—',
         'earbuds': '—',
         'chargingCase': '—',
@@ -366,7 +435,7 @@ let productSpecs = {
     'seoul': {
         'bluetooth': '5.2',
         'chargingTime': '—',
-        'playtime': '32h',
+        'playtime': '32',
         'standby': '—',
         'earbuds': '—',
         'chargingCase': '—',
@@ -381,9 +450,9 @@ let productSpecs = {
     },
     'paris': {
         'bluetooth': '5.0',
-        'chargingTime': '1.5h',
-        'playtime': '20h',
-        'standby': '110h',
+        'chargingTime': '1.5',
+        'playtime': '20',
+        'standby': '110',
         'earbuds': '30mAh',
         'chargingCase': '300mAh',
         'workingRange': '> 10m',
@@ -393,13 +462,13 @@ let productSpecs = {
         'impedance': '16Ω ± 15%',
         'sensibility': '103dB+/- 3dB at 1kHz',
         'snr': '98.3dB',
-        'codec': 'SBC, AAC, APTX',
+        'codec': 'SBC, AAC,<br>APTX',
     },
     'stockholm-plus': {
         'bluetooth': '5.0',
-        'chargingTime': '1.5h',
-        'playtime': '20h',
-        'standby': '60h',
+        'chargingTime': '1.5',
+        'playtime': '20',
+        'standby': '60',
         'earbuds': '30mAh',
         'chargingCase': '500mAh',
         'workingRange': '10m',
@@ -409,12 +478,12 @@ let productSpecs = {
         'impedance': '32Ω ± 15%',
         'sensibility': '107dB+/- 3dB at 1kHz',
         'snr': '91dB',
-        'codec': 'HSP, HFP, A2DP, AVRCP',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP',
     },
     'boston': {
         'bluetooth': '5.0',
         'chargingTime': '—',
-        'playtime': '6h',
+        'playtime': '6',
         'standby': '—',
         'earbuds': '—',
         'chargingCase': '—',
@@ -429,9 +498,9 @@ let productSpecs = {
     },
     'sydney': {
         'bluetooth': '5.0',
-        'chargingTime': '1.5h',
-        'playtime': '5h',
-        'standby': '30 days',
+        'chargingTime': '1.5',
+        'playtime': '5',
+        'standby': '30',
         'earbuds': '—',
         'chargingCase': '—',
         'workingRange': '> 10m',
@@ -441,13 +510,13 @@ let productSpecs = {
         'impedance': '4Ω ± 3%',
         'sensibility': '80dB+/- 3dB at 1kHz',
         'snr': '—',
-        'codec': 'SBC, MP3, AAC',
+        'codec': 'SBC, MP3,<br>AAC',
     },
     'athens': {
         'bluetooth': '5.0',
-        'chargingTime': '1h',
-        'playtime': '32h',
-        'standby': '400h',
+        'chargingTime': '1',
+        'playtime': '32',
+        'standby': '400',
         'earbuds': '50mAh',
         'chargingCase': '—',
         'workingRange': '10m +',
@@ -457,13 +526,13 @@ let productSpecs = {
         'impedance': '16Ω ± 15%',
         'sensibility': '+/- 3dB at 1kHz',
         'snr': '80.891dB',
-        'codec': 'HSP, HFP, A2DP, AVRCP, APTX',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP, APTX',
     },
     'new-york': {
         'bluetooth': '4.1',
-        'chargingTime': '<2.5hrs',
-        'playtime': '16h with ANC, 25h without ANC',
-        'standby': '700h',
+        'chargingTime': '<2.5',
+        'playtime': '',
+        'standby': '700',
         'earbuds': '50mAh',
         'chargingCase': '—',
         'workingRange': '—',
@@ -493,8 +562,8 @@ let productSpecs = {
     },
     'madrid': {
         'bluetooth': '4.0',
-        'chargingTime': '1,5h',
-        'playtime': '4h',
+        'chargingTime': '1,5',
+        'playtime': '4',
         'standby': '100h',
         'earbuds': '—',
         'chargingCase': '—',
@@ -527,7 +596,7 @@ let productSpecs = {
         'bluetooth': '5.0',
         'chargingTime': '1,5h',
         'playtime': '5hrs',
-        'standby': '30 days',
+        'standby': '30',
         'earbuds': '—',
         'chargingCase': '—',
         'workingRange': '> 10m',
@@ -537,7 +606,7 @@ let productSpecs = {
         'impedance': '4Ω ± 15%',
         'sensibility': '80dB+/- 3dB at 1kHz',
         'snr': '—',
-        'codec': 'SBC, MP3, AAC',
+        'codec': 'SBC, MP3,<br>AAC',
     },
 };
 
@@ -687,6 +756,42 @@ function setCards(el, index) {
 
         let productData = productSpecs[optionSelected];
 
+        let chargingTimeFull = '';
+        let playtimeFull = '';
+        let standbyFull = '';
+
+        if (optionSelected === 'sydney' || optionSelected === 'sydney_hm') {
+            console.log('ssss');
+            switch (pathLocal) {
+                case 'de':
+                    standbyFull = productData.chargingTime + ' Tage';
+                    break;
+                case 'se':
+                    standbyFull = productData.chargingTime + ' dagar';
+                    break;
+                default:
+                    standbyFull = productData.chargingTime + ' days';
+                    break;
+            }
+        } else if (optionSelected === 'new-york') {
+            switch (pathLocal) {
+                case 'de':
+                    playtimeFull = '16 timmar med ANC, 25 timmar utan ANC';
+                    break;
+                case 'se':
+                    playtimeFull = '16 Stunden mit ANC, 25 Stunden ohne ANC';
+                    break;
+                default:
+                    playtimeFull = '16h with ANC, 25h without ANC';
+                    break;
+            }
+        } else {
+            chargingTimeFull = productData.chargingTime === '—' ? productData.chargingTime : productData.chargingTime + localisationData.hour;
+            playtimeFull = productData.playtime === '—' ? productData.playtime : productData.playtime + localisationData.hour;
+            standbyFull = productData.standby === '—' ? productData.standby : productData.standby + localisationData.hour;
+        }
+
+
         if (index === 0) {
             document.querySelector('.summary .one').innerHTML = `
                 <div class="spec-wrapper">
@@ -696,18 +801,17 @@ function setCards(el, index) {
                 </div>
                 <div class="spec-wrapper">
                     <p class="specs-title">${localisationData.chargingTime}</p>
-                    <p class="specs-info">${productData.chargingTime}</p>
+                    <p class="specs-info">${chargingTimeFull}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/si-glyph_battery-charging.svg" alt="battery">
                 </div>
                 <div class="spec-wrapper">
                     <p class="specs-title">${localisationData.playtime}</p>
-                    <p class="specs-info">${productData.playtime}</p>
+                    <p class="specs-info">${playtimeFull}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/headphones.svg" alt="headphones">
-                </div>
-                            
+                </div>                            
                 <div class="spec-wrapper">
                     <p class="specs-title">${localisationData.standby}</p>
-                    <p class="specs-info">${productData.standby}</p>
+                    <p class="specs-info">${standbyFull}</p>
                     <img src="https://conversionratestore.github.io/projects/urbanista/images/power.svg" alt="power">
                 </div>
                 <div class="spec-wrapper">
@@ -764,13 +868,13 @@ function setCards(el, index) {
                     <p class="specs-info">${productData.bluetooth}</p>                
                 </div>
                 <div class="spec-wrapper">                
-                    <p class="specs-info">${productData.chargingTime}</p>                
+                    <p class="specs-info">${chargingTimeFull}</p>                
                 </div>
                 <div class="spec-wrapper">                
-                    <p class="specs-info">${productData.playtime}</p>                
+                    <p class="specs-info">${playtimeFull}</p>                
                 </div>
                 <div class="spec-wrapper">                    
-                    <p class="specs-info">${productData.standby}</p>                    
+                    <p class="specs-info">${standbyFull}</p>                    
                 </div>
                 <div class="spec-wrapper">              
                     <div>
@@ -826,3 +930,29 @@ document.querySelectorAll('select').forEach((el, index) => {
         setCards(el, index);
     });
 });
+
+//
+// document.body.insertAdjacentHTML('afterbegin', `
+//     <style>
+//         .product-item{
+//             display: none !important;
+//         }
+//         .product-item.active{
+//             display: block !important;
+//         }
+//     </style>
+// `);
+//
+// document.querySelectorAll('[data-product-sku]').forEach((el) => {
+//     console.log(el.dataset.productSku);
+//     if (
+//         !el.dataset.productSku.includes('earbud')
+//         && !el.dataset.productSku.includes('gofit')
+//         && !el.dataset.productSku.includes('power')
+//         && !el.dataset.productSku.includes('outlet')
+//     ) {
+//         console.log('------------------');
+//         console.log(el.dataset.productSku);
+//         el.closest('.product-item').classList.add('active');
+//     }
+// });
