@@ -1,0 +1,806 @@
+document.body.insertAdjacentHTML('afterbegin', `
+    <style>
+        .block.widget.block-products-list {
+            background-color: #fff;
+        }
+        .product-items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .products-grid .product-items .product-item {
+            border: 1px solid #E8E8E8;
+            display: none;
+        }
+        select option[disabled] {
+            display: none;
+        }
+        .product-items {
+            display: flex;
+        }
+        .active-0 {
+            display: inline-block !important;
+            order: 0;
+        }
+        .active-1 {
+            display: inline-block !important;
+            order: 1;
+        }
+        .product-features {
+            display: none !important;
+        }
+        .block.widget.block-products-list .swatch-attribute, .block.widget.block-products-list .product-features {
+            padding: 0;
+        }
+        .products-grid .product-items .product-item:nth-child(odd) {
+            margin-right: 5px;
+        }
+        .product-items .product-item-name-price {
+            flex-direction: column;
+            height: auto;
+            align-items: flex-start;
+        }
+        .swatch-option.selected:after {
+            border: 1px solid #0574E4;
+        }
+        .compare-wrapper {
+            padding: 0 10px;
+        }
+        .summary {
+            display: flex;    
+            margin-top: 15px;        
+        }
+        .summary .one,
+        .summary .two {
+            width: 50%;
+            text-align: center;
+        }        
+        .spec-wrapper {
+            position: relative;
+            height: 125px;
+            padding: 0 30px 20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            border-bottom: 1px solid #E8E8E8;            
+        }
+        .spec-wrapper:first-child {
+            border-top: 1px solid #E8E8E8; 
+        }
+        .spec-wrapper p {
+            font-weight: 500;
+            font-size: 16px;
+            margin: 0;
+        }
+        .spec-wrapper p.earbud, 
+        .spec-wrapper p.case {
+            font-size: 14px;
+        }    
+        .case {
+            color: #7E7E7E;
+        }
+        .specs-title {
+            position: absolute;
+            top: 20px;
+            width: 100%;        
+            transform: translateX(-50%);
+            left: 100%;            
+        }
+        .specs-title .case {
+            color: #7E7E7E;
+            font-weight: 400;
+        }
+        .spec-wrapper img {
+            position: absolute;
+            bottom: 15px;
+            left: 100%;
+            transform: translateX(-50%);
+        }
+        .page-title {
+            margin: 0;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 18px;
+            text-transform: uppercase;
+            color: #000000;            
+        }
+        
+        .sea-more {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 13px;
+            text-align: center;
+            text-decoration-line: underline;
+            color: #1A1A1A;
+            margin: 15px auto 0;
+        }
+        .compare-row {
+            display: flex;
+        }
+        .compare-col {
+            width: calc(50% - 9px);
+            margin-right: 18px;
+            margin-bottom: 35px;
+        }
+        .compare-col:last-child {
+            margin-right: 0;
+        }       
+        .select {
+            position: relative;  
+        }
+        .select select {
+                 
+            appearance: none;
+            -webkit-appearance: none;
+            border: 1px solid #D4D4D4;
+            font-size: 16px;
+            line-height: 16px;
+            color: #000000;
+            width: 100%;
+            height: 33px;
+            padding: 0 20px 0 12px;
+        }
+        .select::after {
+            position: absolute;
+            content: url('https://conversionratestore.github.io/projects/urbanista/images/arrow-down.svg');
+            display: block;
+            top: 10px;           
+            right: 10px;
+        }
+        .soldout-label {
+            display: none;
+        }
+    </style>
+`);
+
+let pathLocal = window.location.pathname.split('/')[1];
+
+const localisation = {
+    'eu': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
+        'bluetooth': 'Bluetooth version',
+        'chargingTime': 'Charging time',
+        'playtime': 'Total speltid',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case',
+        'hour': 'h',
+
+    },
+    'uk': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
+        'bluetooth': 'Bluetooth version',
+        'chargingTime': 'Charging time',
+        'playtime': 'Total speltid',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case',
+        'hour': 'h',
+    },
+    'au': {
+        'compare': 'Compare headphones models',
+        'allModels': 'See all models >',
+        'buy': 'Buy',
+        'summary': 'Summary',
+        'learnMore': 'Learn more >',
+        'bluetooth': 'Bluetooth version',
+        'chargingTime': 'Charging time',
+        'playtime': 'Total speltid',
+        'standby': 'Standby Time',
+        'battery': 'Battery (in mAh)',
+        'workingRange': 'Working Range',
+        'mic': 'Mic Distance',
+        'frequency': 'Frequency Range',
+        'power': 'RF Output Power',
+        'impedance': 'Impedance',
+        'sensibility': 'Sensibility',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'earbud',
+        'case': 'charging case',
+        'hour': 'h',
+    },
+    'de': {
+        'compare': 'Kopfhörermodelle vergleichen',
+        'allModels': 'Alle Modelle ansehen >',
+        'buy': 'Kaufen',
+        'summary': 'Zusammenfassung',
+        'learnMore': 'Mehr erfahren >',
+        'bluetooth': 'Treiberleistung',
+        'chargingTime': 'Std Ladezeit',
+        'playtime': 'Spielzeit',
+        'standby': 'Standby-Zeit',
+        'battery': 'Akku (mAh)',
+        'workingRange': 'Arbeitsbereich',
+        'mic': 'Mikrofonabstand',
+        'frequency': 'Frequenzbereich',
+        'power': 'HF-Ausgangsleistung',
+        'impedance': 'Impedanz',
+        'sensibility': 'Sensibilität',
+        'snr': 'SNR',
+        'codec': 'Audio-Codec',
+        'earbud': 'ohrhörer',
+        'case': 'Ladekoffer',
+        'hour': 'Stunden'
+    },
+    'se': {
+        'compare': 'Jämför hörlurar',
+        'allModels': 'Se alla modeller >',
+        'buy': 'Köpa',
+        'summary': 'Sammanfattning',
+        'learnMore': 'Läs mer >',
+        'bluetooth': 'Bluetooth -version',
+        'chargingTime': 'Laddningstid',
+        'playtime': 'Speltid',
+        'standby': 'Standby-tid',
+        'battery': 'Batteri (mAh)',
+        'workingRange': 'Arbetsområde',
+        'mic': 'Distans mikrofon',
+        'frequency': 'Frekvensomfång',
+        'power': 'RF -utgångseffekt',
+        'impedance': 'Impedans',
+        'sensibility': 'Känslighet',
+        'snr': 'SNR',
+        'codec': 'Audio Codec',
+        'earbud': 'hörlurar',
+        'case': 'laddningsfodral',
+        'hour': 'timmar'
+    },
+};
+
+let localisationData = localisation[pathLocal];
+
+if (!localisationData) {
+    localisationData = localisation['eu'];
+}
+
+let productSpecs = {
+    'london': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5',
+        'playtime': '25',
+        'standby': '120',
+        'earbuds': '45mAh',
+        'chargingCase': '400mAh',
+        'workingRange': '10m +',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '9.00dBm',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '91dB',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP',
+    },
+    'miami': {
+        'bluetooth': '5.0',
+        'chargingTime': '—',
+        'playtime': '50',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '9.00dBm',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': '—',
+    },
+    'los-angeles': {
+        'bluetooth': '5.0',
+        'chargingTime': '—',
+        'playtime': '—',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '10m +',
+        'micDistance': '—',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': 'SBC, AAC',
+    },
+    'lisbon': {
+        'bluetooth': '5.2',
+        'chargingTime': '—',
+        'playtime': '27',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '10m +',
+        'micDistance': '—',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': 'SBC, AAC',
+    },
+    'seoul': {
+        'bluetooth': '5.2',
+        'chargingTime': '—',
+        'playtime': '32',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '10m +',
+        'micDistance': '—',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': 'SBC, AAC',
+    },
+    'paris': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5',
+        'playtime': '20',
+        'standby': '110',
+        'earbuds': '30mAh',
+        'chargingCase': '300mAh',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '-6dB ± 4dB',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '103dB+/- 3dB at 1kHz',
+        'snr': '98.3dB',
+        'codec': 'SBC, AAC,<br>APTX',
+    },
+    'stockholm-plus': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5',
+        'playtime': '20',
+        'standby': '60',
+        'earbuds': '30mAh',
+        'chargingCase': '500mAh',
+        'workingRange': '10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '8.00dBm',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107dB+/- 3dB at 1kHz',
+        'snr': '91dB',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP',
+    },
+    'boston': {
+        'bluetooth': '5.0',
+        'chargingTime': '—',
+        'playtime': '6',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '107dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': '—',
+    },
+    'sydney': {
+        'bluetooth': '5.0',
+        'chargingTime': '1.5',
+        'playtime': '5',
+        'standby': '30',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '4Ω ± 3%',
+        'sensibility': '80dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': 'SBC, MP3,<br>AAC',
+    },
+    'athens': {
+        'bluetooth': '5.0',
+        'chargingTime': '1',
+        'playtime': '32',
+        'standby': '400',
+        'earbuds': '50mAh',
+        'chargingCase': '—',
+        'workingRange': '10m +',
+        'micDistance': '20cm',
+        'frequency': '20Hz - 20KHz',
+        'power': '7.70dBm',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '+/- 3dB at 1kHz',
+        'snr': '80.891dB',
+        'codec': 'HSP, HFP,<br>A2DP, AVRCP, APTX',
+    },
+    'new-york': {
+        'bluetooth': '4.1',
+        'chargingTime': '<2.5',
+        'playtime': '',
+        'standby': '700',
+        'earbuds': '50mAh',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '94dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': '—',
+    },
+    'san-francisco': {
+        'bluetooth': '—',
+        'chargingTime': '—',
+        'playtime': '—',
+        'standby': '—',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
+        'frequency': '20Hz - 20KHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '—',
+        'snr': '—',
+        'codec': '—',
+    },
+    'madrid': {
+        'bluetooth': '4.0',
+        'chargingTime': '1,5',
+        'playtime': '4',
+        'standby': '100h',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '—',
+        'impedance': '16Ω ± 15%',
+        'sensibility': '102dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': '—',
+    },
+    'berlin': {
+        'bluetooth': '4.0',
+        'chargingTime': '1,5',
+        'playtime': '4',
+        'standby': '100h',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '—',
+        'micDistance': '—',
+        'frequency': '2.4GHz-2.48GHz',
+        'power': '—',
+        'impedance': '32Ω ± 15%',
+        'sensibility': '103dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': '—',
+    },
+    'sydney_hm': {
+        'bluetooth': '5.0',
+        'chargingTime': '1,5',
+        'playtime': '5',
+        'standby': '30',
+        'earbuds': '—',
+        'chargingCase': '—',
+        'workingRange': '> 10m',
+        'micDistance': '0.5m',
+        'frequency': '80 - 20.000 KHz',
+        'power': '—',
+        'impedance': '4Ω ± 15%',
+        'sensibility': '80dB+/- 3dB at 1kHz',
+        'snr': '—',
+        'codec': 'SBC, MP3,<br>AAC',
+    },
+};
+
+let selectOne = `
+<div class="select">
+    <select>        
+        <option value="london" selected>London</option>
+        <option value="miami">Miami</option>
+        <option value="lisbon">Lisbon</option>
+        <option value="los-angeles">Los Angeles</option>
+        <option value="seoul">Seoul</option>
+        <option value="paris">Paris</option>
+        <option value="stockholm-plus">Stockholm Plus</option>        
+        <option value="boston">Boston</option>
+        <option value="sydney">Sydney</option>
+        <option value="athens">Athens</option>
+        <option value="san-francisco">San Francisco</option>
+        <option value="madrid">Madrid</option>
+        <option value="berlin">Berlin</option>
+        <option value="sydney_hm">Sydney H&M Home Edition</option>
+    </select>
+</div>`;
+
+let selectTwo = `
+<div class="select">
+    <select>        
+        <option value="london" >London</option>
+        <option value="miami" selected>Miami</option>
+        <option value="lisbon">Lisbon</option>
+        <option value="los-angeles">Los Angeles</option>
+        <option value="seoul">Seoul</option>
+        <option value="paris">Paris</option>
+        <option value="stockholm-plus">Stockholm Plus</option>        
+        <option value="boston">Boston</option>
+        <option value="sydney">Sydney</option>
+        <option value="athens">Athens</option>
+        <option value="san-francisco">San Francisco</option>
+        <option value="madrid">Madrid</option>
+        <option value="berlin">Berlin</option>
+        <option value="sydney_hm">Sydney H&M Home Edition</option>
+    </select>
+</div>`;
+
+let page = `
+<div class="compare-wrapper">
+    <h2 class="page-title">${localisationData?.compare}</h2>
+    <a href="#" class="sea-more">${localisationData?.allModels}</a>
+    <div class="compare-row">
+        <div class="left compare-col">
+            ${selectOne}           
+        </div>
+        <div class="right compare-col">
+            ${selectTwo}           
+        </div>
+    </div>    
+</div>`;
+
+let defaultTemplate = document.querySelector('.products-grid');
+
+defaultTemplate.insertAdjacentHTML('beforebegin', page);
+defaultTemplate.insertAdjacentHTML('beforeend', `
+    <h2 class="page-title">${localisationData?.summary}</h2> 
+    <div class="summary">             
+        <div class="one"></div>
+        <div class="two"></div>        
+    </div>
+`);
+
+document.querySelectorAll('.product-item').forEach(item => {
+    if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
+        item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
+    }
+    if (item.querySelector('.swatch-option')) {
+        item.querySelector('.swatch-option').click();
+    }
+    if (item.querySelector('.product-item-info')) {
+        item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+        <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+    }
+});
+
+function setCards(el, index) {
+    let optionSelected = el.options[el.selectedIndex].text.toLowerCase();
+
+    document.querySelectorAll('.product-item-name [title]').forEach((el) => {
+        if (el.getAttribute('title').toLowerCase() === optionSelected && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
+            document.querySelectorAll(`.active-${index}`).forEach((el) => {
+                el.classList.remove(`active-${index}`);
+            });
+            el.closest('.product-item').classList.add(`active-${index}`);
+        }
+    });
+
+    let productData = productSpecs[optionSelected];
+
+    let chargingTimeFull = '';
+    let playtimeFull = '';
+    let standbyFull = '';
+
+    if (optionSelected === 'sydney' || optionSelected === 'sydney_hm') {
+        console.log('ssss');
+        switch (pathLocal) {
+            case 'de':
+                standbyFull = productData.chargingTime + ' Tage';
+                break;
+            case 'se':
+                standbyFull = productData.chargingTime + ' dagar';
+                break;
+            default:
+                standbyFull = productData.chargingTime + ' days';
+                break;
+        }
+    } else if (optionSelected === 'new-york') {
+        switch (pathLocal) {
+            case 'de':
+                playtimeFull = '16 timmar med ANC, 25 timmar utan ANC';
+                break;
+            case 'se':
+                playtimeFull = '16 Stunden mit ANC, 25 Stunden ohne ANC';
+                break;
+            default:
+                playtimeFull = '16h with ANC, 25h without ANC';
+                break;
+        }
+    } else {
+        chargingTimeFull = productData.chargingTime === '—' ? productData.chargingTime : productData.chargingTime + localisationData.hour;
+        playtimeFull = productData.playtime === '—' ? productData.playtime : productData.playtime + localisationData.hour;
+        standbyFull = productData.standby === '—' ? productData.standby : productData.standby + localisationData.hour;
+    }
+
+
+    if (index === 0) {
+        document.querySelector('.summary .one').innerHTML = `
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.bluetooth}</p>
+                    <p class="specs-info">${productData.bluetooth}</p>
+                     <img src="https://conversionratestore.github.io/projects/urbanista/images/bluetooth.svg" alt="bluetooth">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.chargingTime}</p>
+                    <p class="specs-info">${chargingTimeFull}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/si-glyph_battery-charging.svg" alt="battery">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.playtime}</p>
+                    <p class="specs-info">${playtimeFull}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/headphones.svg" alt="headphones">
+                </div>                            
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.standby}</p>
+                    <p class="specs-info">${standbyFull}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/power.svg" alt="power">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.battery}</p>
+                    <div>                    
+                        ${productData.earbuds === '—' ? '<p class="specs-info">—</p>' : `<p class="earbud">${productData.earbuds} ${localisationData.earbud}</p><p class="case">${productData.chargingCase}<br>${localisationData.case}</p>`}       
+                    </div>  
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/battery2.svg" alt="battery2">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.workingRange}</p>
+                    <p class="specs-info">${productData.workingRange}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/slide.svg" alt="range">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.mic}</p>
+                    <p class="specs-info">${productData.micDistance}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/micro.svg" alt="micro">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.frequency}</p>
+                    <p class="specs-info">${productData.frequency}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/frequency.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.power}</p>
+                    <p class="specs-info">${productData.power}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/thunderbolt.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.impedance}</p>
+                    <p class="specs-info">${productData.impedance}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/resistance.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.sensibility}</p>
+                    <p class="specs-info">${productData.sensibility}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/sound.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.snr}</p>
+                    <p class="specs-info">${productData.snr}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/sound-wave.svg" alt="frequency">
+                </div>
+                <div class="spec-wrapper">
+                    <p class="specs-title">${localisationData.codec}</p>
+                    <p class="specs-info">${productData.codec}</p>
+                    <img src="https://conversionratestore.github.io/projects/urbanista/images/code.svg" alt="frequency">
+                </div>
+            `;
+    } else {
+        document.querySelector('.summary .two').innerHTML = `
+                <div class="spec-wrapper">                
+                    <p class="specs-info">${productData.bluetooth}</p>                
+                </div>
+                <div class="spec-wrapper">                
+                    <p class="specs-info">${chargingTimeFull}</p>                
+                </div>
+                <div class="spec-wrapper">                
+                    <p class="specs-info">${playtimeFull}</p>                
+                </div>
+                <div class="spec-wrapper">                    
+                    <p class="specs-info">${standbyFull}</p>                    
+                </div>
+                <div class="spec-wrapper">              
+                    <div>
+                        ${productData.earbuds === '—' ? '<p class="specs-info">—</p>' : `<p class="earbud">${productData.earbuds} ${localisationData.earbud}</p><p class="case">${productData.chargingCase}<br>${localisationData.case}</p>`}       
+                    </div>            
+                </div>
+                <div class="spec-wrapper">                    
+                    <p class="specs-info">${productData.workingRange}</p>                    
+                </div>
+                <div class="spec-wrapper">                    
+                    <p class="specs-info">${productData.micDistance}</p>                    
+                </div>
+                <div class="spec-wrapper">                    
+                    <p class="specs-info">${productData.frequency}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p class="specs-info">${productData.power}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p class="specs-info">${productData.impedance}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p class="specs-info">${productData.sensibility}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p class="specs-info">${productData.snr}</p>                   
+                </div>
+                <div class="spec-wrapper">                   
+                    <p class="specs-info">${productData.codec}</p>                   
+                </div>
+            `;
+    }
+
+    document.querySelectorAll('.one .specs-info').forEach((item, i) => {
+        if (
+            document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
+            document.querySelectorAll('.two .specs-info')[i].innerText === '—'
+        ) {
+            document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+            document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+        }
+    });
+}
+
+document.querySelectorAll('.compare-col select').forEach((el, index) => {
+    setCards(el, index);
+    el.addEventListener('change', () => {
+        setCards(el, index);
+    });
+});
+
+function removeDublicateOption(optionValue, select) {
+    document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
+    document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
+}
+
+removeDublicateOption(document.querySelector('.left.compare-col select').value, 'right');
+removeDublicateOption(document.querySelector('.right.compare-col select').value, 'left');
+
+document.querySelector('.left.compare-col select').addEventListener('change', function () {
+    if (this.value) {
+        removeDublicateOption(this.value, 'right');
+    }
+});
+
+document.querySelector('.right.compare-col select').addEventListener('change', function () {
+    if (this.value) {
+        removeDublicateOption(this.value, 'left');
+    }
+});
+
