@@ -1,5 +1,9 @@
 let paymentFlowWithoutVideoStyle = /*html*/ `
     <style>
+        #hubspot-messages-iframe-container {
+            z-index: 0 !important;
+        }
+
         #hubspot-messages-iframe-container iframe{
             top: -165px !important;
         }
@@ -328,32 +332,62 @@ document.querySelector(".price-flow").innerText = document.querySelector("span#t
 
 // displayed btn
 if(document.querySelector(".apple-pay:not(.ng-hide)")){
-    document.querySelector(".payment-btn-box").insertAdjacentHTML('afterbegin', applePayBtn)
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
     scrolling(".apple-pay-btn")
 }
 
 if(document.querySelector("#payPalRadio")){
-    document.querySelector(".payment-btn-box").insertAdjacentHTML('afterbegin', pallPayBtn)
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', pallPayBtn)
     scrolling(".pall-pay-btn", "#payPalRadio")
 }
 
 if(document.querySelector("#creditCardRadio")){
-    document.querySelector(".payment-btn-box").insertAdjacentHTML('afterbegin', cardPayBtn)
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', cardPayBtn)
     scrolling(".card-pay-btn", "#creditCardRadio")
 }
 
 if(document.querySelector(".google-pay:not(.ng-hide)")){
-    document.querySelector(".payment-btn-box").insertAdjacentHTML('afterbegin', googlePayBtn)
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', googlePayBtn)
     scrolling(".google-pay-btn", "#payment-request-button")
 }
 
 
 // Pure js scrolling
+let eventVar = "desktop";
+
+if (window.innerWidth <= 768) {
+  eventVar = "mobile";
+}
+
 function scrolling( btnSelector, onClick) {
     let btn = document.querySelector(btnSelector)
+    let eLabel = ""
 
     btn.addEventListener("click", (e)=>{
         e.preventDefault()
+
+        if(btnSelector === ".apple-pay-btn"){
+            eLabel='Apple Pay'
+        }
+        if(btnSelector === ".pall-pay-btn"){
+            eLabel='PayPal'
+        }
+        if(btnSelector === ".card-pay-btn"){
+            eLabel='Pay with bank card'
+        }
+        if(btnSelector === ".google-pay-btn"){
+            eLabel='Google Pay'
+        }
+
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': `Exp - hide video block ${eventVar}`,
+        'eventAction': 'Clicks banner buttons',
+        'eventLabel': eLabel
+        });
+        
         document.querySelector(onClick).click()
 
         document.querySelector("#payments").scrollIntoView({block: "center", behavior: "smooth"})
@@ -363,3 +397,23 @@ function scrolling( btnSelector, onClick) {
         }
     })
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': `Exp - hide video block ${eventVar}`,
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2592989,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', `hide_video_block ${eventVar}`)
+
+    
