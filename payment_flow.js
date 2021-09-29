@@ -4,6 +4,14 @@ let paymentFlowStyle = /*html*/ `
             top: -145px !important;
         }
 
+        #paymentForm >.row{
+            display: none;
+        }
+
+        #paymentForm >:nth-child(2){
+            display: none;
+        }
+
         .payment-flow-section{
             position: fixed;
             bottom: 0;
@@ -211,6 +219,8 @@ let paymentFlowStyle = /*html*/ `
 
         }
 
+
+
     </style>
 `
 
@@ -242,7 +252,7 @@ let applePayBtn = /*html*/ `
 `
 
 let pallPayBtn = /*html*/ `
-    <a href="#payPalRadio" class="payment-btn pall-pay-btn">
+    <a href="#payments" class="payment-btn pall-pay-btn">
         <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0)">
                 <path d="M12.1571 5.36919C12.3088 4.19614 12.1571 3.41411 11.5488 2.68794C10.889 1.90591 9.72284 1.51489 8.25275 1.51489H3.94217C3.68867 1.51489 3.3848 1.79419 3.33334 2.07349L1.55884 14.4743C1.55884 14.6977 1.71105 14.977 1.96455 14.977H4.60138L4.44917 16.2059C4.39825 16.4293 4.55046 16.5969 4.75305 16.5969H6.98471C7.23875 16.5969 7.49171 16.4293 7.54263 16.1501V15.9825L7.99871 13.0778V12.9661C8.04963 12.6868 8.30313 12.4633 8.55663 12.4633H8.86159C11.0413 12.4633 12.715 11.5137 13.222 8.72075C13.4755 7.54771 13.3748 6.5981 12.7659 5.92778C12.6137 5.70435 12.3597 5.53677 12.1571 5.36919Z" fill="#009CDE"/>
@@ -276,7 +286,7 @@ let cardPayBtn = /*html*/ `
 `
 
 let googlePayBtn = /*html*/ `
-    <a href="#payment-request-button" class="payment-btn google-pay-btn">
+    <a href="#payments" class="payment-btn google-pay-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="16" viewBox="0 0 437 174">
         <g fill="none" fill-rule="nonzero">
             <path fill="#5F6368" d="M207.2 84.6v50.8h-16.1V10h42.7c10.3-.2 20.2 3.7 27.7 10.9 7.5 6.7 11.7 16.4 11.5 26.4.2 10.1-4 19.8-11.5 26.6-7.5 7.1-16.7 10.7-27.6 10.7h-26.7zm0-59.2v43.8h27c6 .2 11.8-2.2 15.9-6.5 8.5-8.2 8.6-21.7.4-30.2l-.4-.4c-4.1-4.4-9.9-6.8-15.9-6.6l-27-.1zM310.1 46.8c11.9 0 21.3 3.2 28.2 9.5 6.9 6.4 10.3 15.1 10.3 26.2v52.8h-15.4v-11.9h-.7c-6.7 9.8-15.5 14.7-26.6 14.7-9.4 0-17.4-2.8-23.7-8.4-6.2-5.2-9.7-12.9-9.5-21 0-8.9 3.4-15.9 10.1-21.2 6.7-5.3 15.7-7.9 26.9-7.9 9.6 0 17.4 1.8 23.6 5.2v-3.7c0-5.5-2.4-10.7-6.6-14.2-4.3-3.8-9.8-5.9-15.5-5.9-9 0-16.1 3.8-21.4 11.4l-14.2-8.9c7.7-11.1 19.2-16.7 34.5-16.7zm-20.8 62.3c0 4.2 2 8.1 5.3 10.5 3.6 2.8 8 4.3 12.5 4.2 6.8 0 13.3-2.7 18.1-7.5 5.3-5 8-10.9 8-17.7-5-4-12-6-21-6-6.5 0-12 1.6-16.4 4.7-4.3 3.2-6.5 7.1-6.5 11.8zM437 49.6l-53.8 123.6h-16.6l20-43.2-35.4-80.3h17.5l25.5 61.6h.4l24.9-61.6z"/>
@@ -292,44 +302,25 @@ let googlePayBtn = /*html*/ `
 document.head.insertAdjacentHTML("beforeend", paymentFlowStyle)
 document.body.insertAdjacentHTML('afterbegin', paymentFlow)
 
-// displayed without video
-document.querySelector(".video-embed").style.display="none"
-
 // displayed without form information
 document.querySelector("#fname").value = "Conversion"
 document.querySelector("#lname").value = "Rate Store"
 document.querySelector("#email").value = "analytic@conversionrate.store"
 document.querySelector("#phone").value = "0994183099"
-// document.querySelectorAll("#paymentForm input").forEach(((el)=>{
-//     if((el.id="fname") && (el.id="lname") && (el.id="email") && (el.id="phone")){
-//         el.style.display = "none"
-
-//         el.closest("#paymentForm").querySelectorAll("#paymentForm label").forEach((item)=>{
-//             if(item.classList.contains('order-1')){
-//                 item.style.display='none'
-//             }
-//         })
-
-//         el.closest("#paymentForm").querySelectorAll("#paymentForm h4")[0].style.display='none'
-//     }
-// }))
 
 // clone box Payment Methods
-let cloneTitle = document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16").cloneNode(true)
-let clonePayBloke = document.querySelector('#payments').cloneNode(true)
-document.querySelector('#placeOrder').insertAdjacentElement("beforebegin", cloneTitle)
-document.querySelector('#placeOrder').insertAdjacentElement("beforebegin", clonePayBloke)
+document.querySelector('#order-summary-widget').after(document.querySelector('#payments'))
+document.querySelector('#order-summary-widget').after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
 
 // displayed price
-document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent
+document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent + ".00"
 document.querySelector(".price-flow").innerText = document.querySelector("span#total").textContent
 
 // displayed btn
-
-// if(document.querySelector("#")){
-//     document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
-//     scrolling(".apple-pay-btn")
-// }
+if(document.querySelector(".apple-pay:not(.ng-hide)")){
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
+    scrolling(".apple-pay-btn")
+}
 
 if(document.querySelector("#payPalRadio")){
     document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', pallPayBtn)
@@ -341,46 +332,24 @@ if(document.querySelector("#creditCardRadio")){
     scrolling(".card-pay-btn", "#creditCardRadio")
 }
 
-// if(document.querySelector("#payment-request-button")){
-//     document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', googlePayBtn)
-//     scrolling(".google-pay-btn", "#payment-request-button")
-// }
+if(document.querySelector(".google-pay:not(.ng-hide)")){
+    document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', googlePayBtn)
+    scrolling(".google-pay-btn", "#payment-request-button")
+}
 
 
-// Pure js scrolling
-function scrolling(upSelector, radioBtn) {
-  let links = document.querySelectorAll(upSelector)
-  let radioInp = document.querySelector(radioBtn)
-    speed = 0.5
+// scrolling
+function scrolling( btnSelector, onClick) {
+    let btn = document.querySelector(btnSelector)
 
-  links.forEach((link) => {
-    link.addEventListener("click", function (event) {
-        event.preventDefault()
-        radioInp.click()
+    btn.addEventListener("click", (e)=>{
+        e.preventDefault()
+        document.querySelector(onClick).click()
 
-      let widthTop = document.documentElement.scrollTop,
-        hash = this.hash,
-        toBlock = document.querySelector(hash).getBoundingClientRect().top,
-        start = null
+        document.querySelector("#payments").scrollIntoView({block: "center", behavior: "smooth"})
 
-      requestAnimationFrame(step)
-
-      function step(time) {
-        if (start === null) {
-          start = time
+        if(btnSelector === ".pall-pay-btn"){
+            document.querySelector("#placeOrder").click()
         }
-
-        let progress = time - start,
-          r = toBlock < 0 ? Math.max(widthTop - progress / speed, widthTop + toBlock) : Math.min(widthTop + progress / speed, widthTop + toBlock)
-
-        document.documentElement.scrollTo(0, r)
-
-        if (r != widthTop + toBlock) {
-          requestAnimationFrame(step)
-        } else {
-          location.hash = hash
-        }
-      }
     })
-  })
 }
