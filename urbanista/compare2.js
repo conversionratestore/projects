@@ -632,7 +632,7 @@ if (pathName.includes('comparison')) {
             setTimeout(() => {
                 item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                 <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
-            }, 200);
+            }, 1000);
         }
     });
 
