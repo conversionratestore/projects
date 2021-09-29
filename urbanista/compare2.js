@@ -628,12 +628,10 @@ if (pathName.includes('comparison')) {
         if (item.querySelector('.swatch-option')) {
             item.querySelector('.swatch-option').click();
         }
-        if (item.querySelector('.product-item-info')) {
-            setTimeout(() => {
-                item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-                <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
-            }, 1000);
-        }
+        // if (item.querySelector('.product-item-info')) {
+        //     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+        //     <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);            
+        // }
     });
 
     function setCards(el, index) {
