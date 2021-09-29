@@ -35,7 +35,6 @@ let paymentFlowStyle = /*html*/ `
             align-items: baseline;
             justify-content: space-between;
             margin: 0;
-            height: 32px;
         }
 
         .payment-title{
@@ -43,7 +42,8 @@ let paymentFlowStyle = /*html*/ `
             font-weight: 500;
             font-size: 18px;
             line-height: 27px;
-            color: #FFFFFF;         
+            color: #FFFFFF;
+            margin-bottom: 0;         
         }
 
         .discount{
