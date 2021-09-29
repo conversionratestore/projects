@@ -620,24 +620,21 @@ if (pathName.includes('comparison')) {
         <div class="two"></div>        
     </div>
 `);
-    let pdpNameInterval = setInterval(() => {
-        if (document.querySelector('.product-item .product-item-name a')) {
-            clearInterval(pdpNameInterval);
 
-            document.querySelectorAll('.product-item').forEach(item => {
-                if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
-                    item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
-                }
-                if (item.querySelector('.swatch-option')) {
-                    item.querySelector('.swatch-option').click();
-                }
-                if (item.querySelector('.product-item-info')) {
-                    item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-        <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
-                }
-            });
+    document.querySelectorAll('.product-item').forEach(item => {
+        if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
+            item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
         }
-    }, 100);
+        if (item.querySelector('.swatch-option')) {
+            item.querySelector('.swatch-option').click();
+        }
+        if (item.querySelector('.product-item-info')) {
+            setTimeout(() => {
+                item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+                <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+            }, 200);
+        }
+    });
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
