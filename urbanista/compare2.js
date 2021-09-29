@@ -16,6 +16,8 @@ document.body.insertAdjacentHTML('afterbegin', `
         }
         .product-items {
             display: flex;
+            justify-content: space-between;
+            padding: 0;
         }
         .active-0 {
             display: inline-block !important;
@@ -25,29 +27,35 @@ document.body.insertAdjacentHTML('afterbegin', `
             display: inline-block !important;
             order: 1;
         }
+        .compare-wrapper {
+            text-align: center;
+        }
         .product-features {
             display: none !important;
         }
+        .block.widget.block-products-list.list-add-to .product-item-actions form,
         .block.widget.block-products-list .swatch-attribute, .block.widget.block-products-list .product-features {
-            padding: 0;
+            padding: 0 !important;
         }
         .products-grid .product-items .product-item:nth-child(odd) {
-            margin-right: 5px;
+            margin-right: 0;
         }
         .product-items .product-item-name-price {
             flex-direction: column;
             height: auto;
             align-items: flex-start;
         }
+        .swatch-option.selected {
+            pointer-events: none;
+        }
         .swatch-option.selected:after {
             border: 1px solid #0574E4;
         }
-        .compare-wrapper {
+        .block-content {
             padding: 0 10px;
         }
         .summary {
-            display: flex;    
-            margin-top: 15px;        
+            display: flex;         
         }
         .summary .one,
         .summary .two {
@@ -57,14 +65,14 @@ document.body.insertAdjacentHTML('afterbegin', `
         .spec-wrapper {
             position: relative;
             height: 125px;
-            padding: 0 30px 20px;
+            padding: 0 25px 20px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             border-bottom: 1px solid #E8E8E8;            
         }
         .spec-wrapper:first-child {
-            border-top: 1px solid #E8E8E8; 
+            border-top: 1px solid #D5D5D5; 
         }
         .spec-wrapper p {
             font-weight: 500;
@@ -97,38 +105,41 @@ document.body.insertAdjacentHTML('afterbegin', `
         }
         .page-title {
             margin: 0;
+            margin-bottom: 15px;
             font-weight: bold;
             font-size: 18px;
             line-height: 18px;
             text-transform: uppercase;
             color: #000000;            
         }
-        
+        .product-items .product-item-name p {
+            letter-spacing: 0.03em;
+            color: #9A9A9A;
+            font-style: italic;
+            font-weight: 500;
+            font-size: 9px;
+            margin: 8px 0;
+        }
         .sea-more {
             font-weight: 500;
             font-size: 13px;
             line-height: 13px;
             text-align: center;
             text-decoration-line: underline;
-            color: #1A1A1A;
-            margin: 15px auto 0;
+            color: #1A1A1A !important;
+            margin: 0 auto 10px;
         }
         .compare-row {
             display: flex;
+            margin: 30px 0 15px;
         }
-        .compare-col {
-            width: calc(50% - 9px);
-            margin-right: 18px;
-            margin-bottom: 35px;
-        }
-        .compare-col:last-child {
-            margin-right: 0;
-        }       
+        .compare-col:first-child {
+            margin-right: 3%;
+        }      
         .select {
             position: relative;  
         }
-        .select select {
-                 
+        .select select {                 
             appearance: none;
             -webkit-appearance: none;
             border: 1px solid #D4D4D4;
@@ -148,6 +159,26 @@ document.body.insertAdjacentHTML('afterbegin', `
         }
         .soldout-label {
             display: none;
+        }
+        .product-items .product-item-name {
+            text-transform: capitalize;
+        }
+        .product-items .product-item .price-box .price {
+            font-size: 16px;
+        }
+        .swatch-attribute-options {
+            margin: 0;
+            padding: 0;
+        }
+        .action.primary {
+            border-radius: 14px;
+            height: auto;
+            margin: 5px 0 15px;
+            padding: 7px 15px 5px;
+            text-transform: capitalize;
+        }
+        .product-items .product-item .product-item-info {
+            align-content: space-between;
         }
     </style>
 `);
@@ -246,7 +277,7 @@ const localisation = {
         'codec': 'Audio-Codec',
         'earbud': 'ohrhörer',
         'case': 'Ladekoffer',
-        'hour': 'Stunden'
+        'hour': ' Stunden'
     },
     'se': {
         'compare': 'Jämför hörlurar',
@@ -269,7 +300,7 @@ const localisation = {
         'codec': 'Audio Codec',
         'earbud': 'hörlurar',
         'case': 'laddningsfodral',
-        'hour': 'timmar'
+        'hour': ' timmar'
     },
 };
 
@@ -524,40 +555,42 @@ let productSpecs = {
 
 let selectOne = `
 <div class="select">
-    <select>        
-        <option value="london" selected>London</option>
-        <option value="miami">Miami</option>
-        <option value="lisbon">Lisbon</option>
-        <option value="los-angeles">Los Angeles</option>
-        <option value="seoul">Seoul</option>
+    <select>
+        <option value="stockholm-plus" selected>Stockholm Plus</option>
+        <option value="london">London</option>
         <option value="paris">Paris</option>
-        <option value="stockholm-plus">Stockholm Plus</option>        
-        <option value="boston">Boston</option>
-        <option value="sydney">Sydney</option>
+        <option value="los-angeles">Los Angeles</option>
+        <option value="miami">Miami</option>
         <option value="athens">Athens</option>
+        <option value="lisbon">Lisbon</option>
+        <option value="boston">Boston</option>
+        <option value="berlin">Berlin</option>
+        <option value="seoul">Seoul</option>
+        <option value="sydney">Sydney</option>
+        <option value="new-york">New York</option>
         <option value="san-francisco">San Francisco</option>
         <option value="madrid">Madrid</option>
-        <option value="berlin">Berlin</option>
         <option value="sydney_hm">Sydney H&M Home Edition</option>
     </select>
 </div>`;
 
 let selectTwo = `
 <div class="select">
-    <select>        
-        <option value="london" >London</option>
-        <option value="miami" selected>Miami</option>
-        <option value="lisbon">Lisbon</option>
-        <option value="los-angeles">Los Angeles</option>
-        <option value="seoul">Seoul</option>
+    <select>
+        <option value="stockholm-plus">Stockholm Plus</option>
+        <option value="london" selected>London</option>
         <option value="paris">Paris</option>
-        <option value="stockholm-plus">Stockholm Plus</option>        
-        <option value="boston">Boston</option>
-        <option value="sydney">Sydney</option>
+        <option value="los-angeles">Los Angeles</option>
+        <option value="miami">Miami</option>
         <option value="athens">Athens</option>
+        <option value="lisbon">Lisbon</option>
+        <option value="boston">Boston</option>
+        <option value="berlin">Berlin</option>
+        <option value="seoul">Seoul</option>
+        <option value="sydney">Sydney</option>
+        <option value="new-york">New York</option>
         <option value="san-francisco">San Francisco</option>
         <option value="madrid">Madrid</option>
-        <option value="berlin">Berlin</option>
         <option value="sydney_hm">Sydney H&M Home Edition</option>
     </select>
 </div>`;
@@ -579,8 +612,8 @@ let page = `
 let defaultTemplate = document.querySelector('.products-grid');
 
 defaultTemplate.insertAdjacentHTML('beforebegin', page);
-defaultTemplate.insertAdjacentHTML('beforeend', `
-    <h2 class="page-title">${localisationData?.summary}</h2> 
+defaultTemplate.insertAdjacentHTML('afterend', `
+    <h2 class="page-title" style="margin-top: 35px">${localisationData?.summary}</h2> 
     <div class="summary">             
         <div class="one"></div>
         <div class="two"></div>        
@@ -601,10 +634,11 @@ document.querySelectorAll('.product-item').forEach(item => {
 });
 
 function setCards(el, index) {
-    let optionSelected = el.options[el.selectedIndex].text.toLowerCase();
+    let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
+    let optionSelectedValue = el.options[el.selectedIndex].value;
 
     document.querySelectorAll('.product-item-name [title]').forEach((el) => {
-        if (el.getAttribute('title').toLowerCase() === optionSelected && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
+        if (el.getAttribute('title').toLowerCase() === optionSelectedText && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
             document.querySelectorAll(`.active-${index}`).forEach((el) => {
                 el.classList.remove(`active-${index}`);
             });
@@ -612,14 +646,19 @@ function setCards(el, index) {
         }
     });
 
-    let productData = productSpecs[optionSelected];
+    let productData = productSpecs[optionSelectedValue];
+    // console.log(optionSelected);
+    // console.log(productData);
 
     let chargingTimeFull = '';
     let playtimeFull = '';
     let standbyFull = '';
 
-    if (optionSelected === 'sydney' || optionSelected === 'sydney_hm') {
-        console.log('ssss');
+    chargingTimeFull = productData?.chargingTime === '—' ? productData?.chargingTime : productData?.chargingTime + localisationData?.hour;
+    playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour;
+    standbyFull = productData?.standby === '—' ? productData?.standby : productData?.standby + localisationData?.hour;
+
+    if (optionSelectedValue === 'sydney' || optionSelectedValue === 'sydney_hm') {
         switch (pathLocal) {
             case 'de':
                 standbyFull = productData.chargingTime + ' Tage';
@@ -631,7 +670,7 @@ function setCards(el, index) {
                 standbyFull = productData.chargingTime + ' days';
                 break;
         }
-    } else if (optionSelected === 'new-york') {
+    } else if (optionSelectedValue === 'new-york') {
         switch (pathLocal) {
             case 'de':
                 playtimeFull = '16 timmar med ANC, 25 timmar utan ANC';
@@ -643,10 +682,6 @@ function setCards(el, index) {
                 playtimeFull = '16h with ANC, 25h without ANC';
                 break;
         }
-    } else {
-        chargingTimeFull = productData.chargingTime === '—' ? productData.chargingTime : productData.chargingTime + localisationData.hour;
-        playtimeFull = productData.playtime === '—' ? productData.playtime : productData.playtime + localisationData.hour;
-        standbyFull = productData.standby === '—' ? productData.standby : productData.standby + localisationData.hour;
     }
 
 
@@ -767,13 +802,22 @@ function setCards(el, index) {
     }
 
     document.querySelectorAll('.one .specs-info').forEach((item, i) => {
-        if (
-            document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
-            document.querySelectorAll('.two .specs-info')[i].innerText === '—'
-        ) {
-            document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
-            document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
-        }
+        let interval = setInterval(() => {
+            if (document.querySelectorAll('.two .specs-info')[0]) {
+                clearInterval(interval);
+
+                document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
+                document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
+
+                if (
+                    document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
+                    document.querySelectorAll('.two .specs-info')[i].innerText === '—'
+                ) {
+                    document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+                    document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
+                }
+            }
+        }, 100);
     });
 }
 
@@ -803,4 +847,3 @@ document.querySelector('.right.compare-col select').addEventListener('change', f
         removeDublicateOption(this.value, 'left');
     }
 });
-
