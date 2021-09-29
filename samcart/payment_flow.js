@@ -11,6 +11,9 @@ let paymentFlowStyle = /*html*/ `
         #paymentForm >:nth-child(2){
             display: none;
         }
+        #hubspot-messages-iframe-container {
+            z-index: 0 !important;
+        }
 
         .payment-flow-section{
             position: fixed;
@@ -343,9 +346,39 @@ if(document.querySelector(".google-pay:not(.ng-hide)")){
 // scrolling
 function scrolling( btnSelector, onClick) {
     let btn = document.querySelector(btnSelector)
+    let eLabel = ""
+    let eventVar = "desktop";
+
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile";
+    }
+  
 
     btn.addEventListener("click", (e)=>{
         e.preventDefault()
+
+        if(btnSelector === ".apple-pay-btn"){
+            eLabel='Apple Pay'
+        }
+        if(btnSelector === ".pall-pay-btn"){
+            eLabel='PayPal'
+        }
+        if(btnSelector === ".card-pay-btn"){
+            eLabel='Pay with bank card'
+        }
+        if(btnSelector === ".google-pay-btn"){
+            eLabel='Google Pay'
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': `Exp - payment flow update ${eventVar}`,
+        'eventAction': 'Clicks banner buttons',
+        'eventLabel': eLabel
+        });
+
+        
         document.querySelector(onClick).click()
 
         document.querySelector("#payments").scrollIntoView({block: "center", behavior: "smooth"})
@@ -355,3 +388,21 @@ function scrolling( btnSelector, onClick) {
         }
     })
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - payment flow update',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2592989,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'payment_flow_update')
