@@ -39,6 +39,7 @@ let paymentFlowStyle = /*html*/ `
         }
 
         .payment-title{
+            font-family: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 18px;
             line-height: 27px;
@@ -126,6 +127,7 @@ let paymentFlowStyle = /*html*/ `
         }
 
         .card-pay-text{
+            font-family: 'Roboto', sans-serif;
             font-weight: 500;
             font-size: 13px;
             line-height: 15px;
