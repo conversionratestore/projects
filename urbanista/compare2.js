@@ -833,8 +833,8 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         if (
-            document.querySelectorAll('.product-item .product-item-name a')[44].href &&
-            document.querySelectorAll('.product-item')[44].querySelector('.swatch-option')
+            document.querySelectorAll('.product-item .product-item-name a')[42].href &&
+            document.querySelectorAll('.product-item')[42].querySelector('.swatch-option')
         ) {
             clearInterval(start);
 
@@ -842,7 +842,7 @@ if (pathName.includes('comparison')) {
                 if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
                     item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
                 }
-                if (item.querySelector('.swatch-option')) {                    
+                if (item.querySelector('.swatch-option')) {
                     item.querySelector('.swatch-option').click();
                 }
                 if (item.querySelector('.product-item-info')) {
@@ -863,7 +863,7 @@ if (pathName.includes('comparison')) {
                                 document.querySelectorAll('.right.compare-col select option')[0].selected = true;
                             }
 
-                            document.querySelectorAll('.left.compare-col select option').forEach(option => {                                
+                            document.querySelectorAll('.left.compare-col select option').forEach(option => {
                                 if (option.value === compareFromPDP) {
                                     option.selected = true;
                                 }
