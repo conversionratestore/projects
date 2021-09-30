@@ -820,7 +820,7 @@ if (pathName.includes('comparison')) {
             <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
             }
         });
-    }, 250)
+    }, 500)
 
     document.querySelectorAll('.compare-col select').forEach((el, index) => {
         let selectInterval = setInterval(() => {
