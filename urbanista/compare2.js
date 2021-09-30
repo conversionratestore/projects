@@ -807,8 +807,6 @@ if (pathName.includes('comparison')) {
         });
     }
 
-
-
     setTimeout(() => {
 
         document.querySelectorAll('.product-item').forEach(item => {
@@ -824,58 +822,58 @@ if (pathName.includes('comparison')) {
             }
         });
 
-    document.querySelectorAll('.compare-col select').forEach((el, index) => {
-        let selectInterval = setInterval(() => {
-            if (document.querySelectorAll('.left.compare-col select option')[0]) {
-                clearInterval(selectInterval);
+        document.querySelectorAll('.compare-col select').forEach((el, index) => {
+            let selectInterval = setInterval(() => {
+                if (document.querySelectorAll('.left.compare-col select option')[0]) {
+                    clearInterval(selectInterval);
 
-                if (window.localStorage.getItem('compareFromPDP') !== null) {
-                    let compareFromPDP = window.localStorage.getItem('compareFromPDP');
+                    if (window.localStorage.getItem('compareFromPDP') !== null) {
+                        let compareFromPDP = window.localStorage.getItem('compareFromPDP');
 
-                    if (compareFromPDP === 'london') {
-                        document.querySelectorAll('.right.compare-col select option')[0].selected = true;
-                    }
-
-                    document.querySelectorAll('.left.compare-col select option').forEach(option => {
-                        console.log(option.value);
-                        if (option.value === compareFromPDP) {
-                            option.selected = true;
+                        if (compareFromPDP === 'london') {
+                            document.querySelectorAll('.right.compare-col select option')[0].selected = true;
                         }
-                    });
 
-                } else {
-                    document.querySelectorAll('.left.compare-col select option')[0].selected = true;
+                        document.querySelectorAll('.left.compare-col select option').forEach(option => {
+                            console.log(option.value);
+                            if (option.value === compareFromPDP) {
+                                option.selected = true;
+                            }
+                        });
+
+                    } else {
+                        document.querySelectorAll('.left.compare-col select option')[0].selected = true;
+                    }
                 }
-            }
 
-            function removeDuplicateOption(optionValue, select) {
-                document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
-                document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
-            }
-
-            removeDuplicateOption(document.querySelector('.left.compare-col select').value, 'right');
-            removeDuplicateOption(document.querySelector('.right.compare-col select').value, 'left');
-
-            document.querySelector('.left.compare-col select').addEventListener('change', function () {
-                if (this.value) {
-                    removeDuplicateOption(this.value, 'right');
+                function removeDuplicateOption(optionValue, select) {
+                    document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
+                    document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
                 }
+
+                removeDuplicateOption(document.querySelector('.left.compare-col select').value, 'right');
+                removeDuplicateOption(document.querySelector('.right.compare-col select').value, 'left');
+
+                document.querySelector('.left.compare-col select').addEventListener('change', function () {
+                    if (this.value) {
+                        removeDuplicateOption(this.value, 'right');
+                    }
+                });
+
+                document.querySelector('.right.compare-col select').addEventListener('change', function () {
+                    if (this.value) {
+                        removeDuplicateOption(this.value, 'left');
+                    }
+                });
+
+                setCards(el, index);
+
+            }, 100);
+            el.addEventListener('change', () => {
+                setCards(el, index);
             });
-
-            document.querySelector('.right.compare-col select').addEventListener('change', function () {
-                if (this.value) {
-                    removeDuplicateOption(this.value, 'left');
-                }
-            });
-
-            setCards(el, index);
-
-        }, 100);
-        el.addEventListener('change', () => {
-            setCards(el, index);
         });
-    });
-    }, 1000)
+    }, 500);
 } else {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
