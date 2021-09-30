@@ -873,7 +873,7 @@ if (pathName.includes('comparison')) {
                 setCards(el, index);
             });
         });
-    }, 1000);
+    }, 2000);
 } else {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
