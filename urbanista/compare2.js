@@ -856,12 +856,14 @@ if (pathName.includes('comparison')) {
                 }
             });
 
-            document.querySelectorAll('.product-item-actions button').addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp - Comparison option mobile',
-                    'eventAction': 'Click on BUY'
+            document.querySelectorAll('.product-item-actions button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp - Comparison option mobile',
+                        'eventAction': 'Click on BUY'
+                    });
                 });
             });
 
