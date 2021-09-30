@@ -210,6 +210,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
+            'productsUrl': 'eu/all-products'
 
         },
         'uk': {
@@ -234,6 +235,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
+            'productsUrl': 'eu/all-products'
         },
         'au': {
             'compare': 'Compare headphones models',
@@ -257,6 +259,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
+            'productsUrl': 'eu/all-products'
         },
         'de': {
             'compare': 'Kopfhörermodelle vergleichen',
@@ -279,7 +282,8 @@ if (pathName.includes('comparison')) {
             'codec': 'Audio-Codec',
             'earbud': 'ohrhörer',
             'case': 'Ladekoffer',
-            'hour': ' Stunden'
+            'hour': ' Stunden',
+            'productsUrl': 'de/all-products'
         },
         'se': {
             'compare': 'Jämför hörlurar',
@@ -302,7 +306,8 @@ if (pathName.includes('comparison')) {
             'codec': 'Audio Codec',
             'earbud': 'hörlurar',
             'case': 'laddningsfodral',
-            'hour': ' timmar'
+            'hour': ' timmar',
+            'productsUrl': 'se/alla-produkter'
         },
     };
 
@@ -618,7 +623,7 @@ if (pathName.includes('comparison')) {
     let page = `
 <div class="compare-wrapper">
     <h2 class="page-title">${localisationData?.compare}</h2>
-    <a href="#" class="sea-more">${localisationData?.allModels}</a>
+    <a href="${localisationData?.productsUrl}" class="sea-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${selectOne}           
@@ -630,7 +635,7 @@ if (pathName.includes('comparison')) {
 </div>`;
 
     let templateInterval = setInterval(() => {
-        if(document.querySelector('.products-grid')) {
+        if (document.querySelector('.products-grid')) {
             clearInterval(templateInterval);
 
             let defaultTemplate = document.querySelector('.products-grid');
@@ -644,7 +649,7 @@ if (pathName.includes('comparison')) {
         </div>
     `);
         }
-    })
+    });
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -848,6 +853,24 @@ if (pathName.includes('comparison')) {
                 if (item.querySelector('.product-item-info')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                     <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+                    item.querySelector('.product-item-name .sea-more').addEventListener('click', () => {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - Comparison option mobile',
+                            'eventAction': 'Clicks on learn more'
+                        });
+                    })
+                }
+                if(item.querySelector('.product-item-actions')) {
+                    item.querySelector('.product-item-actions button').addEventListener('click',() => {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp - Comparison option mobile',
+                            'eventAction': 'Click on BUY'
+                        });
+                    })
                 }
             });
 
@@ -902,6 +925,14 @@ if (pathName.includes('comparison')) {
             });
         }
     }, 500);
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp - Comparison option mobile',
+        'eventAction': 'Pageview comparison page'
+    });
+
 } else {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
@@ -962,3 +993,39 @@ if (pathName.includes('comparison')) {
         });
     }
 }
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - Comparison option mobile',
+    'eventAction': 'loaded'
+});
+
+(function (h, o, t, j, a, r) {
+    h.hj = h.hj || function () {
+        (h.hj.q = h.hj.q || []).push(arguments);
+    };
+    h._hjSettings = {hjid: 2067583, hjsv: 6};
+    a = o.getElementsByTagName('head')[0];
+    r = o.createElement('script');
+    r.async = 1;
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+window.hj = window.hj || function () {
+    (hj.q = hj.q || []).push(arguments);
+};
+hj('trigger', 'comaparison_option_mobile');
+
+let btnInterval = setInterval(function () {
+    if(document.querySelector('.btn-compare')) {
+        clearInterval(btnInterval)
+        document.querySelector('.btn-compare').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Comparison option mobile',
+                'eventAction': 'Clicks on compare buttons'
+            });
+        })
+    }
+}, 200)
