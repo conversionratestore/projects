@@ -854,16 +854,15 @@ if (pathName.includes('comparison')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                     <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
                 }
-                if (item.querySelector('.product-item-actions')) {
-                    item.querySelector('.product-item-actions button').addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp - Comparison option mobile',
-                            'eventAction': 'Click on BUY'
-                        });
-                    });
-                }
+            });
+
+            document.querySelectorAll('.product-item-actions button').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp - Comparison option mobile',
+                    'eventAction': 'Click on BUY'
+                });
             });
 
             document.querySelectorAll('.product-item-name .sea-more').forEach(link => {
