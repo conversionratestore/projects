@@ -809,7 +809,7 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         if (document.querySelectorAll('.product-item .product-item-name a')[44].href) {
-            if(clearInterval(start))
+            clearInterval(start);
 
             document.querySelectorAll('.product-item').forEach(item => {
                 if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
