@@ -345,6 +345,22 @@ if (pathName.includes('comparison')) {
             'snr': '—',
             'codec': '—',
         },
+        'miami-crystal-edition': {
+            'bluetooth': '5.0',
+            'chargingTime': '—',
+            'playtime': '50',
+            'standby': '—',
+            'earbuds': '—',
+            'chargingCase': '—',
+            'workingRange': '—',
+            'micDistance': '0.5m',
+            'frequency': '20Hz - 20KHz',
+            'power': '',
+            'impedance': '32Ω ± 15%',
+            'sensibility': '107+/- 3dB at 1kHz',
+            'snr': '—',
+            'codec': '—',
+        },
         'los-angeles': {
             'bluetooth': '5.0',
             'chargingTime': '—',
@@ -563,6 +579,7 @@ if (pathName.includes('comparison')) {
         <option value="paris">Paris</option>
         <option value="los-angeles">Los Angeles</option>
         <option value="miami">Miami</option>
+        <option value="miami-crystal-edition">Miami Crystal Edition</option>
         <option value="athens">Athens</option>
         <option value="lisbon">Lisbon</option>
         <option value="boston">Boston</option>
@@ -584,6 +601,7 @@ if (pathName.includes('comparison')) {
         <option value="paris">Paris</option>
         <option value="los-angeles">Los Angeles</option>
         <option value="miami">Miami</option>
+        <option value="miami-crystal-edition">Miami Crystal Edition</option>
         <option value="athens">Athens</option>
         <option value="lisbon">Lisbon</option>
         <option value="boston">Boston</option>
