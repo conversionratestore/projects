@@ -152,7 +152,7 @@ if (pathName.includes('comparison')) {
             color: #000000;
             width: 100%;
             height: 33px;
-            padding: 0 20px 0 12px;
+            padding: 0 29px 0 12px;
         }
         .select::after {
             position: absolute;
