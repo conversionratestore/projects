@@ -175,7 +175,29 @@ if (pathName.includes('comparison')) {
             margin: 0;
             padding: 0;
         }
-        .action.primary {
+        .stock.available {       
+            display: flex;
+            justify-content: center;     
+            
+        }
+        .stock.available span{
+            background: #1a1a1a;
+            border: 1px solid #1a1a1a;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: oakes,Helvetica,Arial,sans-serif;
+            font-weight: 400;
+            padding: 7px 15px;
+            height: 45px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            vertical-align: middle;
+        }
+        .action.primary,
+        .stock.available span{
             border-radius: 14px;
             height: auto;
             margin: 5px 0 15px;
@@ -184,7 +206,7 @@ if (pathName.includes('comparison')) {
         }
         .product-items .product-item .product-item-info {
             align-content: space-between;
-        }
+        }        
     </style>
     `);
 
@@ -879,6 +901,14 @@ if (pathName.includes('comparison')) {
                     setCards(el, index);
                 });
             });
+
+            let seoulInterval = setInterval(() => {
+                if(document.querySelector('.stock.available span')){
+                    clearInterval(seoulInterval);
+
+                    document.querySelector('.stock.available span').innerText = 'Coming soon';
+                }
+            })
         }
     }, 500);
 
