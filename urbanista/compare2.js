@@ -620,7 +620,7 @@ if (pathName.includes('comparison')) {
             <div class="one"></div>
             <div class="two"></div>        
         </div>
-    `);   
+    `);
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -820,7 +820,7 @@ if (pathName.includes('comparison')) {
             <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
             }
         });
-    }, 100)
+    }, 250)
 
     document.querySelectorAll('.compare-col select').forEach((el, index) => {
         let selectInterval = setInterval(() => {
