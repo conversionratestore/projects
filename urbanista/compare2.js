@@ -891,7 +891,6 @@ if (pathName.includes('comparison')) {
                     font-size: 14px;
                     text-align: center;
                     text-transform: uppercase;
-                    text-decoration: none !important;
                     color: #000 !important;
                     border: 1px solid #000;
                 }
@@ -919,27 +918,21 @@ if (pathName.includes('comparison')) {
         document.querySelector(block).insertAdjacentHTML(where, `<a href="https://www.urbanista.com/${pathLocal}/comparison" class="btn-compare">${btnText}</a>`);
     }
 
-    let pageInterval = setInterval({
-        if(pathName) {
-            clearInterval(pathName);
+    if (pathName.includes('all-products')) {
+        addBtn('#amasty-shopby-product-list', 'afterbegin');
+    } else {
+        addBtn('.product-info-main', 'afterend');
 
-            if (pathName.includes('all-products')) {
-                addBtn('#amasty-shopby-product-list', 'afterbegin');
-            } else {
-                addBtn('.product-info-main', 'afterend');
+        let productName = pathName.split(pathLocal + '/')[1];
 
-                let productName = pathName.split(pathLocal + '/')[1];
-
-                if (productName === 'sydney-hmhome') {
-                    productName = 'sydney_hm';
-                } else if (productName === 'losangeles') {
-                    productName = 'los-angeles';
-                }
-
-                document.querySelector('.btn-compare').addEventListener('click', () => {
-                    window.localStorage.setItem('compareFromPDP', productName);
-                });
-            }
+        if (productName === 'sydney-hmhome') {
+            productName = 'sydney_hm';
+        } else if (productName === 'losangeles') {
+            productName = 'los-angeles';
         }
-    }, 100);
+
+        document.querySelector('.btn-compare').addEventListener('click', () => {
+            window.localStorage.setItem('compareFromPDP', productName);
+        });
+    }
 }
