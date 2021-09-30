@@ -838,7 +838,7 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         if (
-            document.querySelectorAll('.product-item .product-item-name a')[42].href &&
+            document.querySelectorAll('.product-item .product-item-name a')[42]?.href &&
             document.querySelectorAll('.product-item')[42].querySelector('.swatch-option')
         ) {
             clearInterval(start);
