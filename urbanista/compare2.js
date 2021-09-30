@@ -853,25 +853,28 @@ if (pathName.includes('comparison')) {
                 if (item.querySelector('.product-item-info')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                     <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
-                    item.querySelector('.product-item-name .sea-more').addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp - Comparison option mobile',
-                            'eventAction': 'Clicks on learn more'
-                        });
-                    })
                 }
-                if(item.querySelector('.product-item-actions')) {
-                    item.querySelector('.product-item-actions button').addEventListener('click',() => {
+                if (item.querySelector('.product-item-actions')) {
+                    item.querySelector('.product-item-actions button').addEventListener('click', () => {
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
                             'event': 'event-to-ga',
                             'eventCategory': 'Exp - Comparison option mobile',
                             'eventAction': 'Click on BUY'
                         });
-                    })
+                    });
                 }
+            });
+
+            document.querySelectorAll('.product-item-name .sea-more').forEach(link => {
+                link.addEventListener('click', () => {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp - Comparison option mobile',
+                        'eventAction': 'Clicks on learn more'
+                    });
+                });
             });
 
             document.querySelectorAll('.compare-col select').forEach((el, index) => {
@@ -1017,8 +1020,8 @@ window.hj = window.hj || function () {
 hj('trigger', 'comaparison_option_mobile');
 
 let btnInterval = setInterval(function () {
-    if(document.querySelector('.btn-compare')) {
-        clearInterval(btnInterval)
+    if (document.querySelector('.btn-compare')) {
+        clearInterval(btnInterval);
         document.querySelector('.btn-compare').addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
@@ -1026,6 +1029,6 @@ let btnInterval = setInterval(function () {
                 'eventCategory': 'Exp - Comparison option mobile',
                 'eventAction': 'Clicks on compare buttons'
             });
-        })
+        });
     }
-}, 200)
+}, 200);
