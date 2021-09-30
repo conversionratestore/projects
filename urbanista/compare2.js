@@ -109,7 +109,7 @@ if (pathName.includes('comparison')) {
             transform: translateX(-50%);
         }
         .page-title {
-            margin: 0 0 15px;
+            margin: 1px 0 15px;
             font-weight: bold;
             font-size: 18px;
             line-height: 18px;
