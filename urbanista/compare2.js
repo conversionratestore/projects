@@ -124,7 +124,7 @@ if (pathName.includes('comparison')) {
             font-size: 9px;
             margin: 8px 0;
         }
-        .sea-more {
+        .see-more {
             font-weight: 500;
             font-size: 13px;
             line-height: 13px;
@@ -623,7 +623,7 @@ if (pathName.includes('comparison')) {
     let page = `
 <div class="compare-wrapper">
     <h2 class="page-title">${localisationData?.compare}</h2>
-    <a href="${localisationData?.productsUrl}" class="sea-more">${localisationData?.allModels}</a>
+    <a href="${localisationData?.productsUrl}" class="see-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${selectOne}           
@@ -852,7 +852,7 @@ if (pathName.includes('comparison')) {
                 }
                 if (item.querySelector('.product-item-info')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-                    <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+                    <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
                 }
             });
 
@@ -867,7 +867,7 @@ if (pathName.includes('comparison')) {
                 });
             });
 
-            document.querySelectorAll('.product-item-name .sea-more').forEach(link => {
+            document.querySelectorAll('.product-item-name .see-more').forEach(link => {
                 link.addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
