@@ -160,6 +160,7 @@ if (pathName.includes('comparison')) {
             display: block;
             top: 10px;           
             right: 10px;
+            pointer-events: none;
         }
         .soldout-label {
             display: none;
