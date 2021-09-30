@@ -259,7 +259,6 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
-            'productsUrl': 'eu/all-products'
         },
         'de': {
             'compare': 'Kopfhörermodelle vergleichen',
@@ -283,7 +282,6 @@ if (pathName.includes('comparison')) {
             'earbud': 'ohrhörer',
             'case': 'Ladekoffer',
             'hour': ' Stunden',
-            'productsUrl': 'de/all-products'
         },
         'se': {
             'compare': 'Jämför hörlurar',
@@ -307,7 +305,6 @@ if (pathName.includes('comparison')) {
             'earbud': 'hörlurar',
             'case': 'laddningsfodral',
             'hour': ' timmar',
-            'productsUrl': 'se/alla-produkter'
         },
     };
 
@@ -623,7 +620,7 @@ if (pathName.includes('comparison')) {
     let page = `
 <div class="compare-wrapper">
     <h2 class="page-title">${localisationData?.compare}</h2>
-    <a href="${localisationData?.productsUrl}" class="see-more">${localisationData?.allModels}</a>
+    <a href=${pathLocal === 'se' ? '/alla-produkter' : '/all-products'} class="see-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${selectOne}           
