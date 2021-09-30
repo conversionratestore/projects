@@ -460,22 +460,6 @@ if (pathName.includes('comparison')) {
             'snr': '—',
             'codec': '—',
         },
-        'sydney': {
-            'bluetooth': '5.0',
-            'chargingTime': '1.5',
-            'playtime': '5',
-            'standby': '30',
-            'earbuds': '—',
-            'chargingCase': '—',
-            'workingRange': '> 10m',
-            'micDistance': '0.5m',
-            'frequency': '20Hz - 20KHz',
-            'power': '—',
-            'impedance': '4Ω ± 3%',
-            'sensibility': '80dB+/- 3dB at 1kHz',
-            'snr': '—',
-            'codec': 'SBC, MP3,<br>AAC',
-        },
         'athens': {
             'bluetooth': '5.0',
             'chargingTime': '1',
@@ -556,22 +540,6 @@ if (pathName.includes('comparison')) {
             'snr': '—',
             'codec': '—',
         },
-        'sydney_hm': {
-            'bluetooth': '5.0',
-            'chargingTime': '1,5',
-            'playtime': '5',
-            'standby': '30',
-            'earbuds': '—',
-            'chargingCase': '—',
-            'workingRange': '> 10m',
-            'micDistance': '0.5m',
-            'frequency': '80 - 20.000 KHz',
-            'power': '—',
-            'impedance': '4Ω ± 15%',
-            'sensibility': '80dB+/- 3dB at 1kHz',
-            'snr': '—',
-            'codec': 'SBC, MP3,<br>AAC',
-        },
     };
 
     let selectOne = `
@@ -587,12 +555,10 @@ if (pathName.includes('comparison')) {
         <option value="lisbon">Lisbon</option>
         <option value="boston">Boston</option>
         <option value="berlin">Berlin</option>
-        <option value="seoul">Seoul</option>
-        <option value="sydney">Sydney</option>
+        <option value="seoul">Seoul</option>        
         <option value="new-york">New York</option>
         <option value="san-francisco">San Francisco</option>
-        <option value="madrid">Madrid</option>
-        <option value="sydney_hm">Sydney H&M Home Edition</option>
+        <option value="madrid">Madrid</option>        
     </select>
 </div>`;
 
@@ -609,20 +575,18 @@ if (pathName.includes('comparison')) {
         <option value="lisbon">Lisbon</option>
         <option value="boston">Boston</option>
         <option value="berlin">Berlin</option>
-        <option value="seoul">Seoul</option>
-        <option value="sydney">Sydney</option>
+        <option value="seoul">Seoul</option>        
         <option value="new-york">New York</option>
         <option value="san-francisco">San Francisco</option>
-        <option value="madrid">Madrid</option>
-        <option value="sydney_hm">Sydney H&M Home Edition</option>
+        <option value="madrid">Madrid</option>        
     </select>
 </div>`;
 
     let page = `
 <div class="compare-wrapper">
     <h2 class="page-title">${localisationData?.compare}</h2>
-    <a href=${pathLocal === 'se' 
-        ? `https://www.urbanista.com/${pathLocal}/alla-produkter` 
+    <a href=${pathLocal === 'se'
+        ? `https://www.urbanista.com/${pathLocal}/alla-produkter`
         : `https://www.urbanista.com/${pathLocal}/all-products`} class="see-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
@@ -674,19 +638,7 @@ if (pathName.includes('comparison')) {
         playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour;
         standbyFull = productData?.standby === '—' ? productData?.standby : productData?.standby + localisationData?.hour;
 
-        if (optionSelectedValue === 'sydney' || optionSelectedValue === 'sydney_hm') {
-            switch (pathLocal) {
-                case 'de':
-                    standbyFull = productData.chargingTime + ' Tage';
-                    break;
-                case 'se':
-                    standbyFull = productData.chargingTime + ' dagar';
-                    break;
-                default:
-                    standbyFull = productData.chargingTime + ' days';
-                    break;
-            }
-        } else if (optionSelectedValue === 'new-york') {
+        if (optionSelectedValue === 'new-york') {
             switch (pathLocal) {
                 case 'de':
                     playtimeFull = '16 timmar med ANC, 25 timmar utan ANC';
@@ -986,9 +938,7 @@ if (pathName.includes('comparison')) {
 
         let productName = pathName.split(pathLocal + '/')[1];
 
-        if (productName === 'sydney-hmhome') {
-            productName = 'sydney_hm';
-        } else if (productName === 'losangeles') {
+        if (productName === 'losangeles') {
             productName = 'los-angeles';
         }
 
