@@ -1,5 +1,6 @@
 let pathLocal = window.location.pathname.split('/')[1];
 let pathName = window.location.pathname;
+
 if (pathName.includes('comparison')) {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
@@ -184,7 +185,7 @@ if (pathName.includes('comparison')) {
             align-content: space-between;
         }
     </style>
-`);
+    `);
 
     const localisation = {
         'eu': {
@@ -614,25 +615,27 @@ if (pathName.includes('comparison')) {
 
     defaultTemplate.insertAdjacentHTML('beforebegin', page);
     defaultTemplate.insertAdjacentHTML('afterend', `
-    <h2 class="page-title" style="margin-top: 35px">${localisationData?.summary}</h2> 
-    <div class="summary">             
-        <div class="one"></div>
-        <div class="two"></div>        
-    </div>
-`);
+        <h2 class="page-title" style="margin-top: 35px">${localisationData?.summary}</h2> 
+        <div class="summary">             
+            <div class="one"></div>
+            <div class="two"></div>        
+        </div>
+    `);
 
-    document.querySelectorAll('.product-item').forEach(item => {
-        if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
-            item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
-        }
-        if (item.querySelector('.swatch-option')) {
-            item.querySelector('.swatch-option').click();
-        }
-        // if (item.querySelector('.product-item-info')) {
-        //     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-        //     <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);            
-        // }
-    });
+    setTimeout(() => {
+        document.querySelectorAll('.product-item').forEach(item => {
+            if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
+                item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
+            }
+            if (item.querySelector('.swatch-option')) {
+                item.querySelector('.swatch-option').click();
+            }
+            if (item.querySelector('.product-item-info')) {
+                item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+            <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+            }
+        });
+    }, 100)
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -649,9 +652,9 @@ if (pathName.includes('comparison')) {
 
         let productData = productSpecs[optionSelectedValue];
 
-        let chargingTimeFull = '';
-        let playtimeFull = '';
-        let standbyFull = '';
+        let chargingTimeFull;
+        let playtimeFull;
+        let standbyFull;
 
         chargingTimeFull = productData?.chargingTime === '—' ? productData?.chargingTime : productData?.chargingTime + localisationData?.hour;
         playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour;
@@ -870,29 +873,29 @@ if (pathName.includes('comparison')) {
             setCards(el, index);
         });
     });
-
-} else {
+} 
+else {
     document.body.insertAdjacentHTML('afterbegin', `
-        <style>
-            .btn-compare {
-                background: #FCFCFC;
-                line-height: 39px;
-                padding: 0;
-                width: 100%;                
-                margin: 15px auto;
-                display: block;
-                font-weight: bold;
-                font-size: 14px;
-                text-align: center;
-                text-transform: uppercase;
-                color: #000 !important;
-                border: 1px solid #000;
-            }
-            #amasty-shopby-product-list .btn-compare {
-                width: calc(100% - 20px);
-            }
-        </style>
-    `);
+            <style>
+                .btn-compare {
+                    background: #FCFCFC;
+                    line-height: 39px;
+                    padding: 0;
+                    width: 100%;                
+                    margin: 15px auto;
+                    display: block;
+                    font-weight: bold;
+                    font-size: 14px;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: #000 !important;
+                    border: 1px solid #000;
+                }
+                #amasty-shopby-product-list .btn-compare {
+                    width: calc(100% - 20px);
+                }
+            </style>
+        `);
 
     let btnText = '';
 
