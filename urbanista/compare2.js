@@ -815,12 +815,12 @@ if (pathName.includes('comparison')) {
             if (item.querySelector('.swatch-option')) {
                 item.querySelector('.swatch-option').click();
             }
-            if (item.querySelector('.product-item-info')) {
+            if (item.querySelector('.product-item-info') && item.querySelector('.product-item-name a')) {
                 item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
             <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
             }
         });
-    }, 500)
+    }, 1000)
 
     document.querySelectorAll('.compare-col select').forEach((el, index) => {
         let selectInterval = setInterval(() => {
