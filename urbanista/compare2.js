@@ -826,7 +826,10 @@ if (pathName.includes('comparison')) {
     }
 
     let start = setInterval(() => {
-        if (document.querySelectorAll('.product-item .product-item-name a')[44].href) {
+        if (
+            document.querySelectorAll('.product-item .product-item-name a')[44].href &&
+            document.querySelectorAll('.product-item')[44].querySelector('.swatch-option') 
+        ) {
             clearInterval(start);
 
             document.querySelectorAll('.product-item').forEach(item => {
@@ -834,11 +837,12 @@ if (pathName.includes('comparison')) {
                     item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
                 }
                 if (item.querySelector('.swatch-option')) {
+                    console.log('ss');
                     item.querySelector('.swatch-option').click();
                 }
                 if (item.querySelector('.product-item-info')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-            <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+                    <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
                 }
             });
 
