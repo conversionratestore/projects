@@ -841,9 +841,9 @@ if (pathName.includes('comparison')) {
                 });
             });
 
-            document.querySelectorAll('.product-item-name .see-more').forEach(link => {
+            document.querySelectorAll('.product-item .see-more').forEach(link => {
                 link.addEventListener('click', () => {
-                    
+
                     console.log('ssss');
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
@@ -905,12 +905,13 @@ if (pathName.includes('comparison')) {
             });
 
             let seoulInterval = setInterval(() => {
-                if(document.querySelector('.stock.available span')){
+                if (document.querySelector('.stock.available span')) {
                     clearInterval(seoulInterval);
-
+                    
+                    document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
                     document.querySelector('.stock.available span').innerText = localisationData?.coming;
                 }
-            })
+            });
         }
     }, 500);
 
