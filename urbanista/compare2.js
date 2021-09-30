@@ -807,20 +807,20 @@ if (pathName.includes('comparison')) {
         });
     }
 
-    setTimeout(() => {
-        document.querySelectorAll('.product-item').forEach(item => {
-            if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
-                item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
-            }
-            if (item.querySelector('.swatch-option')) {
-                item.querySelector('.swatch-option').click();
-            }
-            if (item.querySelector('.product-item-info')) {
-                item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-            <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
-            }
-        });
-    }, 5000)
+    // setTimeout(() => {
+    //     document.querySelectorAll('.product-item').forEach(item => {
+    //         if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
+    //             item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
+    //         }
+    //         if (item.querySelector('.swatch-option')) {
+    //             item.querySelector('.swatch-option').click();
+    //         }
+    //         if (item.querySelector('.product-item-info')) {
+    //             item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+    //         <a href="${item.querySelector('.product-item-name a').href}" class="sea-more">${localisationData?.learnMore}</a>`);
+    //         }
+    //     });
+    // }, 5000)
 
     document.querySelectorAll('.compare-col select').forEach((el, index) => {
         let selectInterval = setInterval(() => {
