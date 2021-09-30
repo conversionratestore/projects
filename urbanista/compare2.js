@@ -233,8 +233,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
-            'productsUrl': 'eu/all-products'
-
+            'coming': 'Coming soon'
         },
         'uk': {
             'compare': 'Compare headphones models',
@@ -258,7 +257,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
-            'productsUrl': 'eu/all-products'
+            'coming': 'Coming soon'
         },
         'au': {
             'compare': 'Compare headphones models',
@@ -282,6 +281,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'earbud',
             'case': 'charging case',
             'hour': 'h',
+            'coming': 'Coming soon'
         },
         'de': {
             'compare': 'Kopfhörermodelle vergleichen',
@@ -305,6 +305,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'ohrhörer',
             'case': 'Ladekoffer',
             'hour': ' Stunden',
+            'coming': 'Kommt bald'
         },
         'se': {
             'compare': 'Jämför hörlurar',
@@ -328,6 +329,7 @@ if (pathName.includes('comparison')) {
             'earbud': 'hörlurar',
             'case': 'laddningsfodral',
             'hour': ' timmar',
+            'coming': 'Kommer snart'
         },
     };
 
@@ -906,7 +908,7 @@ if (pathName.includes('comparison')) {
                 if(document.querySelector('.stock.available span')){
                     clearInterval(seoulInterval);
 
-                    document.querySelector('.stock.available span').innerText = 'Coming soon';
+                    document.querySelector('.stock.available span').innerText = localisationData?.coming;
                 }
             })
         }
