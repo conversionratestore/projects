@@ -628,17 +628,23 @@ if (pathName.includes('comparison')) {
         </div>
     </div>    
 </div>`;
+    
+    let templateInterval = setInterval(() => {
+        if(document.querySelector('.products-grid')) {
+            clearInterval(templateInterval);
 
-    let defaultTemplate = document.querySelector('.products-grid');
+            let defaultTemplate = document.querySelector('.products-grid');
 
-    defaultTemplate.insertAdjacentHTML('beforebegin', page);
-    defaultTemplate.insertAdjacentHTML('afterend', `
+            defaultTemplate.insertAdjacentHTML('beforebegin', page);
+            defaultTemplate.insertAdjacentHTML('afterend', `
         <h2 class="page-title" style="margin-top: 35px">${localisationData?.summary}</h2> 
         <div class="summary">             
             <div class="one"></div>
             <div class="two"></div>        
         </div>
     `);
+        }
+    })    
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -828,7 +834,7 @@ if (pathName.includes('comparison')) {
     let start = setInterval(() => {
         if (
             document.querySelectorAll('.product-item .product-item-name a')[44].href &&
-            document.querySelectorAll('.product-item')[44].querySelector('.swatch-option') 
+            document.querySelectorAll('.product-item')[44].querySelector('.swatch-option')
         ) {
             clearInterval(start);
 
