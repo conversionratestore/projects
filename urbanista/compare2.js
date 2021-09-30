@@ -628,7 +628,7 @@ if (pathName.includes('comparison')) {
         </div>
     </div>    
 </div>`;
-    
+
     let templateInterval = setInterval(() => {
         if(document.querySelector('.products-grid')) {
             clearInterval(templateInterval);
@@ -644,7 +644,7 @@ if (pathName.includes('comparison')) {
         </div>
     `);
         }
-    })    
+    })
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -842,8 +842,7 @@ if (pathName.includes('comparison')) {
                 if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
                     item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
                 }
-                if (item.querySelector('.swatch-option')) {
-                    console.log('ss');
+                if (item.querySelector('.swatch-option')) {                    
                     item.querySelector('.swatch-option').click();
                 }
                 if (item.querySelector('.product-item-info')) {
@@ -864,13 +863,11 @@ if (pathName.includes('comparison')) {
                                 document.querySelectorAll('.right.compare-col select option')[0].selected = true;
                             }
 
-                            document.querySelectorAll('.left.compare-col select option').forEach(option => {
-                                console.log(option.value);
+                            document.querySelectorAll('.left.compare-col select option').forEach(option => {                                
                                 if (option.value === compareFromPDP) {
                                     option.selected = true;
                                 }
                             });
-
                         } else {
                             document.querySelectorAll('.left.compare-col select option')[0].selected = true;
                         }
