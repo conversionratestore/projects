@@ -177,8 +177,7 @@ if (pathName.includes('comparison')) {
         }
         .stock.available {       
             display: flex;
-            justify-content: center;     
-            
+            justify-content: center;                 
         }
         .stock.available span{
             background: #1a1a1a;
@@ -188,8 +187,7 @@ if (pathName.includes('comparison')) {
             display: inline-block;
             font-family: oakes,Helvetica,Arial,sans-serif;
             font-weight: 400;
-            padding: 7px 15px;
-            height: 45px;
+            padding: 4px 15px !important;            
             font-size: 1.2rem;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -845,6 +843,8 @@ if (pathName.includes('comparison')) {
 
             document.querySelectorAll('.product-item-name .see-more').forEach(link => {
                 link.addEventListener('click', () => {
+                    
+                    console.log('ssss');
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
