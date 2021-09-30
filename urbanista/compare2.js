@@ -620,7 +620,9 @@ if (pathName.includes('comparison')) {
     let page = `
 <div class="compare-wrapper">
     <h2 class="page-title">${localisationData?.compare}</h2>
-    <a href=${pathLocal === 'se' ? '/alla-produkter' : '/all-products'} class="see-more">${localisationData?.allModels}</a>
+    <a href=${pathLocal === 'se' 
+        ? `https://www.urbanista.com/${pathLocal}/alla-produkter` 
+        : `https://www.urbanista.com/${pathLocal}/all-products`} class="see-more">${localisationData?.allModels}</a>
     <div class="compare-row">
         <div class="left compare-col">
             ${selectOne}           
