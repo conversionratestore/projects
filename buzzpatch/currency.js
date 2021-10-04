@@ -2,12 +2,14 @@ let total = {
     'ca': {
         'price': '44.0,51.0,33.0,19.0',
         'price-old': '91.0,122.0,61.0,31.0',
-        'pack': '3,4,2,1'
+        'pack': '3,4,2,1',
+        'percent': '51,58,45,38'
     },
     'au': {
         'price': '45.0,52.0,34.0,19.0',
         'price-old': '93.0,124.0,62.0,31.0',
-        'pack': '3,4,2,1'
+        'pack': '3,4,2,1',
+        'percent': '51,58,45,38'
     }
 }
 
@@ -28,11 +30,13 @@ for (const key in total) {
             item.setAttribute('price',`${total[key]['price'].split(',')[i]}`);
             item.setAttribute('price-old',`${total[key]['price-old'].split(',')[i]}`);
             item.setAttribute('pack',`${total[key]['pack'].split(',')[i]}`);
+            item.setAttribute('percent',`${total[key]['percent'].split(',')[i]}`);
 
             function totalFun() {
                 document.querySelector('.prices .js-total .pr').innerHTML = item.getAttribute('price');
                 document.querySelector('.prices .js-regular .js-strike .rp').innerHTML = total[key]['price-old'].split(',')[i];
                 document.querySelector('.prices .js-regular .rs').innerHTML = parseFloat(item.getAttribute('price-old') - item.getAttribute('price')).toFixed(2);
+                document.querySelector('.prices .js-total .ps').innerHTML = item.getAttribute('percent');
             }
             if (item.querySelector('input').checked == true) {
                 totalFun()
