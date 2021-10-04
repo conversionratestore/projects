@@ -1,5 +1,7 @@
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
+    [hidden] {
+        display: none!important; }
     button {
         outline: none;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -202,7 +204,8 @@ if (window.location.pathname == '/') {
         }
         document.querySelector('.view-more').addEventListener('click', (e) => {
             document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
-                el.classList.add('visible')
+                e.target.hidden = true;
+                el.classList.add('visible');
             })
         });
     }
