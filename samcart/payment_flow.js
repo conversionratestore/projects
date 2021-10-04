@@ -325,7 +325,7 @@ window.onload  = function () {
     // displayed btn
     if(document.querySelector(".apple-pay:not(.ng-hide)")){
         document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
-        scrolling(".apple-pay-btn")
+        scrolling(".apple-pay-btn", "#payment-request-button")
     }
     
     if(document.querySelector("#payPalRadio")){
