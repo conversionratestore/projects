@@ -907,7 +907,7 @@ if (pathName.includes('comparison')) {
             let seoulInterval = setInterval(() => {
                 if (document.querySelector('.stock.available span')) {
                     clearInterval(seoulInterval);
-                    
+
                     document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
                     document.querySelector('.stock.available span').innerText = localisationData?.coming;
                 }
@@ -965,19 +965,32 @@ if (pathName.includes('comparison')) {
     }
 
     if (pathName.includes('all-products')) {
-        addBtn('#amasty-shopby-product-list', 'afterbegin');
+        let interval = setInterval(() => {
+            if (document.querySelector('#amasty-shopby-product-list')) {
+                clearInterval(interval);
+
+                addBtn('#amasty-shopby-product-list', 'afterbegin');
+            }
+
+        }, 100);
     } else {
-        addBtn('.product-info-main', 'afterend');
+        let interval = setInterval(() => {
+            if (document.querySelector('.product-info-main')) {
+                clearInterval(interval);
 
-        let productName = pathName.split(pathLocal + '/')[1];
+                addBtn('.product-info-main', 'afterend');
 
-        if (productName === 'losangeles') {
-            productName = 'los-angeles';
-        }
+                let productName = pathName.split(pathLocal + '/')[1];
 
-        document.querySelector('.btn-compare').addEventListener('click', () => {
-            window.localStorage.setItem('compareFromPDP', productName);
-        });
+                if (productName === 'losangeles') {
+                    productName = 'los-angeles';
+                }
+
+                document.querySelector('.btn-compare').addEventListener('click', () => {
+                    window.localStorage.setItem('compareFromPDP', productName);
+                });
+            }
+        }, 100);
     }
 }
 window.dataLayer = window.dataLayer || [];
