@@ -119,12 +119,47 @@ document.body.insertAdjacentHTML('afterbegin', `
         font-size: 20px;
         line-height: 20px;
         padding-top: 30px; }
-    .gallery-parent.viewed .gallery dd:nth-child(n+5) {
+    .gallery-parent.viewed .gallery dd:nth-child(n+5){ //.gallery-parent.ordered .gallery
         display: none!important;}
     .gallery-parent.viewed .gallery dd.visible {
         display: flex!important;}
     .view-more {
         width: calc(100% - 20px);}
+    .id-order {
+        margin: 8px 0 10px 10px;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        color: #C23D31;}
+    .d-flex {
+        display: flex;}
+    .ordered-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 12px 0;
+        margin: 0 10px;
+        border-top: 1px solid #C0C0C0;}
+    .ordered-bottom p {
+        margin-right: 10px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #171717;}
+    .btn-reorder {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 33px;
+        text-align: center;
+        color: #FFFFFF;
+        background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+        border: 1px solid #780F11;
+        border-radius: 4px;
+        max-width: 140px;
+        width: 100%;}
+    .ordered-bottom p.c-gray {
+        margin-bottom: 16px;
+        color: #666666;}
 </style>`);
 
 if (window.location.pathname == '/') {
@@ -209,6 +244,7 @@ if (window.location.pathname == '/') {
             })
         });
     }
+
 }
 
 if (document.querySelectorAll('.add-to-cart')) {
@@ -243,6 +279,7 @@ if (document.querySelectorAll('.add-to-cart')) {
 }
 
 let recentlyViewedProducts = [];
+let recentOrders = [];
 function pushProducts() {
     recentlyViewedProducts.push({
         'productid': document.querySelector('input[name="product_id"]').value,
@@ -273,14 +310,77 @@ if (location.pathname.includes('product')) {
     localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
 }
 
-// (function(){
-//     var http = new XMLHttpRequest();
-//     http.open('GET', `link`);
-//     http.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-//
-//         }
-//     }
-//     http.send(null);
-// })()
+(function(){
+    var http = new XMLHttpRequest();
+    http.open('GET', `https://medicalmega.com/myaccount/orderhistory`);
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var docHistory = new DOMParser().parseFromString(this.responseText, "text/html");
+            let idOrder = docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[0].innerText;
+            (function(){
+                var http = new XMLHttpRequest();
+                http.open('GET', `https://medicalmega.com/vieworder/${idOrder}`);
+                http.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var doc = new DOMParser().parseFromString(this.responseText, "text/html");
+                        doc.querySelectorAll('.order-details-table .order-info-row').forEach((el, i) => {
+                            if (i != doc.querySelectorAll('.order-details-table .order-info-row').length - 1) {
+                                recentOrders.push({
+                                    'productid': '',
+                                    'price': el.querySelectorAll('td')[4].innerText,
+                                    'variationid': '',
+                                    'imgsrc': el.querySelectorAll('td img')[0].getAttribute('src'),
+                                    'href': el.querySelectorAll('td a')[0].href,
+                                    'name': el.querySelectorAll('td img')[0].getAttribute('alt').replace('Image Of ',''),
+                                });
+                            }
+                        })
+                        localStorage.setItem('recentOrders', JSON.stringify(recentOrders));
+
+                        if (localStorage.getItem('recentOrders')) {
+                            document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
+                                <div class="gallery-parent ordered">
+                                    <h2 class="title">Your recent orders</h2>
+                                    <p class="id-order">Order ${idOrder}</p>
+                                    <dl class="gallery"></dl>
+                                    <div class="ordered-bottom">
+                                        <div class="d-flex">
+                                            <div>
+                                                <p class="c-gray">Order date:</p>
+                                                <p class="c-gray">Total:</p>
+                                            </div>
+                                            <div>
+                                                <p>${docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[3].innerText}</p>
+                                                <p>${docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[4].innerText}</p>
+                                            </div>
+                                        </div>
+                                        <a href="https://medicalmega.com/reorder/${idOrder}" class="btn-reorder">Reorder</a>
+                                    </div>
+                                    <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders </a>
+                                </div>`);
+
+                            let recentOrders = JSON.parse(localStorage.getItem('recentOrders'));
+                            for (let i = 0; i < 4; i++) {
+                                document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend',
+                                `<dd class="product-card" data-product-id="${recentOrders[i].productid}" data-product-variant-id="${recentOrders[i].variationid}">
+                                        <span>&nbsp;<a href="${recentOrders[i].href}"><img src="${recentOrders[i].imgsrc}" alt="${recentOrders[i].name}"></a>&nbsp;</span>
+                                        <a href="${recentOrders[i].href}">${recentOrders[i].name}</a>
+                                        <b>${recentOrders[i].price}</b>
+                                        <form action="https://medicalmega.com/cart.html" method="post">
+                                            <input type="hidden" name="product_id" value="${recentOrders[i].productid}">
+                                            <input type="hidden" name="product_variant_id" value="${recentOrders[i].variationid}">
+                                            <input type="hidden" name="quantity" value="1">
+                                        </form>
+                                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                                    </dd>`)
+                            }
+
+                        }
+                    }
+                }
+                http.send(null);
+            })()
+        }
+    }
+    http.send(null);
+})()
