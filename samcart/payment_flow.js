@@ -325,7 +325,7 @@ window.onload  = function () {
     // displayed btn
     if(document.querySelector(".apple-pay:not(.ng-hide)")){
         document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
-        scrolling(".apple-pay-btn", "#payment-request-button")
+        scrolling(".apple-pay-btn", ".apple-pay")
     }
     
     if(document.querySelector("#payPalRadio")){
@@ -340,7 +340,7 @@ window.onload  = function () {
     
     if(document.querySelector(".google-pay:not(.ng-hide)")){
         document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', googlePayBtn)
-        scrolling(".google-pay-btn", "#payment-request-button")
+        scrolling(".google-pay-btn", ".google-pay")
     }
     
     
