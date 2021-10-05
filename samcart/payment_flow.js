@@ -1,6 +1,10 @@
 window.onload  = function () {
     let paymentFlowStyle = /*html*/ `
         <style>
+            body {
+                padding-bottom: 112px !important;
+            }
+
             #hubspot-messages-iframe-container iframe{
                 top: -145px !important;
             }
