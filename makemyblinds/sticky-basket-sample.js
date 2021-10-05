@@ -2,6 +2,9 @@ window.onload  = function () {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
+        #webWidget {
+            z-index: 9999999;
+        }
         .ajax-loading .loading-mask{
             display: flex;
             z-index: 99999999;
