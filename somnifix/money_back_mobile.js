@@ -204,7 +204,8 @@ let start = setInterval(function () {
         document.querySelector('.money_back select').addEventListener('change', function (e) {
             document.querySelectorAll('.country_select')[1].value = this.value
             let d = e.target.options[e.target.selectedIndex].dataset.value;
-            document.querySelector('.delivery_date b').innerHTML = d
+            document.querySelectorAll('.delivery_date b')[0].innerHTML = d
+            document.querySelectorAll('.delivery_date b')[1].innerHTML = d
             setDateDelivery(d)
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
