@@ -27,7 +27,7 @@ window.onload  = function () {
                 let span = item.querySelector('.radio-inline span');
 
                 let spl = span.innerHTML.split(' Each')[0];
-                span.innerHTML = span.innerHTML.replace(spl,`$${(total[key]['price'].split(',')[i] / total[key]['pack'].split(',')[i]).toFixed(2)} ${total[key]['currency'][0]}`);
+                span.innerHTML = span.innerHTML.replace(spl,`$${(total[key]['price'].split(',')[i] / total[key]['pack'].split(',')[i]).toFixed(2)} ${total[key]['currency']}`);
 
                 item.setAttribute('price',`${total[key]['price'].split(',')[i]}`);
                 item.setAttribute('price-old',`${total[key]['price-old'].split(',')[i]}`);
@@ -35,9 +35,9 @@ window.onload  = function () {
                 item.setAttribute('percent',`${total[key]['percent'].split(',')[i]}`);
 
                 function totalFun() {
-                    document.querySelector('.prices .js-total .pr').innerHTML = item.getAttribute('price') + ' ' + total[key]['currency'][0];
-                    document.querySelector('.prices .js-regular .js-strike .rp').innerHTML = total[key]['price-old'].split(',')[i] + ' ' + total[key]['currency'][0];
-                    document.querySelector('.prices .js-regular .rs').innerHTML = parseFloat(item.getAttribute('price-old') - item.getAttribute('price')).toFixed(2)  + ' ' + total[key]['currency'][0];;
+                    document.querySelector('.prices .js-total .pr').innerHTML = item.getAttribute('price') + ' ' + total[key]['currency'];
+                    document.querySelector('.prices .js-regular .js-strike .rp').innerHTML = total[key]['price-old'].split(',')[i] + ' ' + total[key]['currency'];
+                    document.querySelector('.prices .js-regular .rs').innerHTML = parseFloat(item.getAttribute('price-old') - item.getAttribute('price')).toFixed(2)  + ' ' + total[key]['currency'];
                     document.querySelector('.prices .js-total .ps').innerHTML = item.getAttribute('percent');
                 }
                 if (item.querySelector('input').checked == true) {
