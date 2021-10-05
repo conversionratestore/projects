@@ -1,9 +1,6 @@
 window.onload  = function () {
     let paymentFlowStyle = /*html*/ `
-        <style>
-            body {
-                padding-bottom: 112px !important;
-            }
+        <style>        
 
             #hubspot-messages-iframe-container iframe{
                 top: -145px !important;
@@ -19,6 +16,10 @@ window.onload  = function () {
             #hubspot-messages-iframe-container {
                 z-index: 0 !important;
             }
+
+            body{
+                padding-bottom: 95px;
+            }  
     
             .payment-flow-section{
                 position: fixed;
