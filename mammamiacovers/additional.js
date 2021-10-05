@@ -249,14 +249,19 @@ document.body.insertAdjacentHTML('afterbegin',`
         line-height: 18px;
         color: #212121;
     }
-    .measuring-guide {
+    .measuring-guide, .from-fit {
         border: 1px solid #999999;
         border-radius: 5px;
         width: 100%;
         padding: 20px 30px;
+    }
+    .measuring-guide {
         margin: 30px 0 40px;
     }
-    .measuring-guide h2 {
+    .from-fit {
+        margin-bottom: 60px;
+    }
+    .measuring-guide h2, .from-fit h2 {
         font-weight: 900;
         font-size: 40px;
         line-height: 47px;
@@ -264,7 +269,7 @@ document.body.insertAdjacentHTML('afterbegin',`
         color: #212121;
         margin-bottom: 10px;
     }
-    .measuring-guide p {
+    .measuring-guide p, .from-fit p {
         font-weight: 600;
         font-size: 16px;
         line-height: 22px;
@@ -287,13 +292,35 @@ document.body.insertAdjacentHTML('afterbegin',`
         font-weight: bold;
         font-size: 12px;
         line-height: 16px;
+        margin-bottom: 0;
     }
     .img-free-returns {
         width: 100%;
+        max-width: 335px;
+        margin: 0 auto 40px;
         height: auto;
         object-fit: contain;
-        margin-bottom: 40px;
+        display: block;
     }
+    .btn-show-video {
+        background: #212121;
+        line-height: 40px;
+        border: none;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+    .from-fit {
+        border: 1px solid #999999;
+        border-radius: 5px;
+        width: 100%;
+        padding: 20px 30px;
+    }
+
     @media only screen and (max-width: 360px)  {
         .sizes-info {
             padding: 0 10px 20px 10px;
@@ -349,10 +376,12 @@ document.body.insertAdjacentHTML('beforeend',`
 document.querySelector('.popup-video_container .btn-close').after(document.querySelector('.fluid-width-video-wrapper'));
 
 document.querySelector('.btn-close').addEventListener('click', () => {
-    document.querySelector('.popup-video').classList.remove('active')
+    document.querySelector('.popup-video').classList.remove('active');
+    let iframe = document.querySelector('.popup-video iframe');
+    iframe.src = iframe.src;
 });
 
-let arrIcons = ['quality','ships','perfect-fit','pet','installation','washable','sanitized']
+let arrIcons = ['quality','ships','perfect-fit','pet','installation','washable','sanitized'];
 
 for (let i = 0; i < document.querySelectorAll('.product-description__container li strong').length; i++) {
     document.querySelectorAll('.product-description__container li strong')[i].setAttribute('style',`background-image: url(https://conversionratestore.github.io/projects/mammamiacovers/img/${arrIcons[i]}.svg)`)
@@ -368,7 +397,17 @@ document.querySelector('.product-single__content-text').insertAdjacentHTML('afte
         <p>Strech form fit fabric with elasticity of 120%</p>
     </div>
 </div>
-<img class="img-free-returns" src="https://conversionratestore.github.io/projects/mammamiacovers/img/free-returns.png" alt="30 days free returns if size doesn't match">`);
+<img class="img-free-returns" src="https://conversionratestore.github.io/projects/mammamiacovers/img/free-returns.svg" alt="30 days free returns if size doesn't match">
+<button type="button" class="btn-show-video">Learn how it works</button>
+<div class="from-fit">
+    <h2>Form Fit</h2>
+    <p>Fits various loveseat shapes</p>
+    <div class="from-fit_container"></div>
+</div>`);
+
+document.querySelector('.btn-show-video').addEventListener('click', () => {
+    document.querySelector('.popup-video').classList.add('active');
+});
 
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.sizes-types')) {
