@@ -190,7 +190,7 @@ let start = setInterval(function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee mobile',
+                'eventCategory': 'Exp — PDP money back guarantee',
                 'eventAction': 'Click on GUARANTEE button',
                 'eventLabel': 'Section megamenu'
             });
@@ -204,12 +204,12 @@ let start = setInterval(function () {
         document.querySelector('.money_back select').addEventListener('change', function (e) {
             document.querySelectorAll('.country_select')[1].value = this.value
             let d = e.target.options[e.target.selectedIndex].dataset.value;
-            document.querySelector('.ship-destination__span--date').innerHTML = d
+            document.querySelector('.delivery_date b').innerHTML = d
             setDateDelivery(d)
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee mobile',
+                'eventCategory': 'Exp — PDP money back guarantee',
                 'eventAction': 'Click on Ship to selection',
                 'eventLabel': 'newSelect'
             });
@@ -222,7 +222,7 @@ let start = setInterval(function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP money back guarantee mobile',
+                'eventCategory': 'Exp — PDP money back guarantee',
                 'eventAction': 'Click on Ship to selection',
                 'eventLabel': 'oldSelect'
             });
@@ -276,7 +276,7 @@ hj('trigger', 'pdp_money_back_guarantee');
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP money back guarantee mobile',
+    'eventCategory': 'Exp — PDP money back guarantee',
     'eventAction': 'loaded'
 });
 
