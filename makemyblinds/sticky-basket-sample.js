@@ -3,7 +3,7 @@ window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
         #webWidget {
-            z-index: 9999999;
+            z-index: 9999999!important;
         }
         .ajax-loading .loading-mask{
             display: flex;
