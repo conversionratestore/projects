@@ -92,9 +92,9 @@ window.onload  = function () {
             }
     
             .price-flow{
-                font-weight: 500;
-                font-size: 13px;
-                line-height: 15px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
                 color: #F85736;
             }
     
