@@ -17,6 +17,10 @@ window.onload  = function () {
             #paymentForm > div >:nth-child(2){
                 display: none;
             }
+
+            body{
+                padding-bottom: 167px;
+            }
     
             a {
             text-decoration: none;
