@@ -57,6 +57,6 @@ for (const key in total) {
                 totalFun()
             })
         });
-        document.querySelector('#purchase .btn').insertAdjacentHTML('afterend',`<p class="text">All orders are processed in USD. While the content of your product page is currently displayed in ${total[key]['currency']}, you will checkout using USD at the current exchange rate.</p>`)
+        document.querySelector('#purchase .btn').insertAdjacentHTML('afterend',`<p class="text">All orders are processed in USD. While the content of your product page is currently displayed in ${total[key]['currency']}, you will checkout using USD at the average exchange rate</p>`)
     }
 }
