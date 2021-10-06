@@ -20,8 +20,8 @@ document.body.insertAdjacentHTML('afterbegin',`
         display: none;
     }
     .package p.text {
-        font-size: 12px;
-        line-height: 130%;
+        font-size: 12px!important;
+        line-height: 130%!important;
         color: #999999;
         text-align: left;
         max-width: 315px;
