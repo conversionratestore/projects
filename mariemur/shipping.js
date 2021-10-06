@@ -1,181 +1,189 @@
 let startExp = setInterval(() => {
-    if(document.body) {
-        clearInterval(startExp)
+    if (document.body) {
+        clearInterval(startExp);
         document.body.insertAdjacentHTML('afterbegin', `
-<style>
-    .custom-select {
-        position: relative;
+        <style>
+            .custom-select {
+                position: relative;
+            }
+            .custom-select p {
+                margin: 0 0 20px;
+            }
+            .custom-select span.label {        
+                font-weight: 500;
+                font-size: 14px;
+                text-transform: uppercase;
+                color: #000000;
+            }    
+            .custom-select p span.country {
+                position: relative;        
+                padding-right: 20px;
+                border: 0;
+                outline: 0;
+                font-weight: 500;
+                font-size: 14px;
+                font-style: italic;
+                color: #757062;
+                text-decoration: underline;        
+            }
+            .custom-select span.country:after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                content: url("https://conversionratestore.github.io/projects/mariemur/images/arrow-down2.svg");
+                display: block;        
+                transition: all .5s ease;
+            }
+            .custom-select span.country_active:after {
+                transform: scale(1, -1);    
+            }
+            .custom-select ul {
+                position: absolute;
+                height: 0;
+                width: 100%;        
+                padding: 0 30px;
+                overflow: hidden;
+                pointer-events: none;
+                margin: -7px 0 0; 
+                list-style-type: none;
+                background-color: #fff;
+                transition: all .5s ease-in-out;
+                z-index: 1;
+            }
+            .custom-select ul.custom-select_active {
+                height: 335px;
+                pointer-events: auto;
+            }
+            .custom-select ul li {        
+                margin: 15px 0;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                color: #000000;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+            }
+            .custom-select ul li.selected {
+                position: relative;
+                color: #ccc;
+            }
+            .custom-select ul li.selected:after {
+                content: url("https://conversionratestore.github.io/projects/mariemur/images/checkmark.svg") " PICKED";
+                position: absolute;
+                display: block;
+                top: 0;
+                right: 0;   
+                color: #000;     
+            }    
+            .custom-shipping {
+                display: flex;
+                justify-content: space-between;
+                margin: 0;
+                gap: 15px;
+            } 
+            .custom-shipping p {
+                margin: 0;
+                color: #000000;
+                font-weight: normal;
+            }
+            .custom-shipping .title {        
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;        
+                color: #000000;
+            }    
+            .custom-shipping .data {
+                margin-top: 10px;
+                font-size: 12px;        
+            }
+            .flex-wrapper {
+                display: flex;
+            }
+            .shipping_estimate .title {
+                display: inline;
+                width: min-content;
+            }
+            .shipping_estimate .tooltip.tooltip_hide {
+                display: none;
+            }
+            .tooltip-container {
+                display: inline;
+                position: relative;
+                width: 14px;
+                margin: -7px 0 0 2px;
+            }
+            .tooltip-text {      
+                position: absolute;
+                left: -12px;
+                bottom: calc(100% + 14px);
+                width: 175px;
+                padding: 15px;        
+                background-color: #fff;
+                opacity: 0;
+                transition: all .3s ease;
+                pointer-events: none;
+                transform: translateY(10px);
+            }                     
+            .tooltip-text::after {
+                content: '';
+                position: absolute;
+                bottom: -9px;
+                left: 9px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 10px 10px 0 10px;
+                border-color: #ffffff transparent transparent transparent;
+            }
+            .shipping_guarantee .tooltip-text {
+                right: -12px;
+                left: auto;
+            }   
+            .shipping_guarantee .tooltip-text::after {
+                right: 9px;
+                left: auto;
+            }
+            .tooltip-container:hover .tooltip-text{
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .tooltip-text p {
+                margin: 0 0 5px;
+                font-weight: normal;
+                font-size: 12px;
+                color: #000
+            }
+            .tooltip-text a {
+                font-style: italic;
+                font-weight: 500;
+                font-size: 12px;
+                text-decoration-line: underline;
+                color: #757062 !important;
+            }    
+            .custom-shipping .line {        
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .custom-shipping span{
+                display: inline-block;
+                width: 4px;
+                height: 4px;
+                background-color: #D6D6D6;
+            }
+            .custom-shipping span.line_black{
+                width: 18px;
+                background-color: #000;
+            }
+            .custom-shipping .shipping_guarantee .line_black {
+                width: 100%;
+            }
+        </style>
+        `);
     }
-    .custom-select p {
-        margin: 0 0 20px;
-    }
-    .custom-select span.label {        
-        font-weight: 500;
-        font-size: 14px;
-        text-transform: uppercase;
-        color: #000000;
-    }    
-    .custom-select p span.country {
-        position: relative;        
-        padding-right: 20px;
-        border: 0;
-        outline: 0;
-        font-weight: 500;
-        font-size: 14px;
-        font-style: italic;
-        color: #757062;
-        text-decoration: underline;        
-    }
-    .custom-select span.country:after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        content: url("https://conversionratestore.github.io/projects/mariemur/images/arrow-down2.svg");
-        display: block;        
-        transition: all .5s ease;
-    }
-    .custom-select span.country_active:after {
-        transform: scale(1, -1);    
-    }
-    .custom-select ul {
-        position: absolute;
-        height: 0;
-        width: 100%;        
-        padding: 0 30px;
-        overflow: hidden;
-        pointer-events: none;
-        margin: -7px 0 0; 
-        list-style-type: none;
-        background-color: #fff;
-        transition: all .5s ease-in-out;
-        z-index: 1;
-    }
-    .custom-select ul.custom-select_active {
-        height: 335px;
-        pointer-events: auto;
-    }
-    .custom-select ul li {        
-        margin: 15px 0;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        color: #000000;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
-    }
-    .custom-select ul li.selected {
-        position: relative;
-        color: #ccc;
-    }
-    .custom-select ul li.selected:after {
-        content: url("https://conversionratestore.github.io/projects/mariemur/images/checkmark.svg") " PICKED";
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;   
-        color: #000;     
-    }    
-    .custom-shipping {
-        display: flex;
-        justify-content: space-between;
-        margin: 0;
-        gap: 15px;
-    } 
-    .custom-shipping p {
-        margin: 0;
-        color: #000000;
-        font-weight: normal;
-    }
-    .custom-shipping .title {        
-        font-size: 14px;
-        line-height: 16px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;        
-        color: #000000;
-    }    
-    .custom-shipping .data {
-        margin-top: 10px;
-        font-size: 12px;        
-    }
-    .estimate-wrapper {
-        display: flex;
-    }
-    .shipping_estimate .title {
-        display: inline;
-        width: min-content;
-    }
-    .shipping_estimate .tooltip.tooltip_hide {
-        display: none;
-    }
-    .tooltip-container {
-        display: inline;
-        position: relative;
-        width: 14px;
-        margin: -7px 0 0 2px;
-    }
-    .tooltip-text {      
-        position: absolute;
-        left: -12px;
-        bottom: calc(100% + 14px);
-        width: 175px;
-        padding: 15px;        
-        background-color: #fff;
-        opacity: 0;
-        transition: all .3s ease;
-        pointer-events: none;
-        transform: translateY(10px);
-    }
-    .tooltip-text::after {
-        content: '';
-        position: absolute;
-        bottom: -9px;
-        left: 9px;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 10px 10px 0 10px;
-        border-color: #ffffff transparent transparent transparent;
-    }
-    .tooltip-container:hover .tooltip-text{
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .tooltip-text p {
-        margin: 0 0 5px;
-        font-weight: normal;
-        font-size: 12px;
-        color: #000
-    }
-    .tooltip-text a {
-        font-style: italic;
-        font-weight: 500;
-        font-size: 12px;
-        text-decoration-line: underline;
-        color: #757062 !important;
-    }    
-    .custom-shipping .line {        
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-    .custom-shipping span{
-        display: inline-block;
-        width: 4px;
-        height: 4px;
-        background-color: #D6D6D6;
-    }
-    .custom-shipping span.line_black{
-        width: 18px;
-        background-color: #000;
-    }
-    .custom-shipping .shipping_guarantee .line_black {
-        width: 100%;
-    }
-</style>
-`);
-    }
-}, 100)
+}, 100);
 
 function addDays(days) {
     let result = new Date();
@@ -215,7 +223,7 @@ let start = setInterval(() => {
         </div>
    </div>
    <div class="shipping_estimate">
-       <div class="estimate-wrapper">
+       <div class="flex-wrapper">
            <p class="title">Estimated shipment</p>       
            <div class="tooltip-container">
                <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
@@ -237,7 +245,16 @@ let start = setInterval(() => {
         </div>              
    </div>
    <div class="shipping_guarantee">
-       <p class="title">14 days money-back guarantee</p>
+        <div class="flex-wrapper">
+           <p class="title">14 days money-back guarantee</p>    
+           <div class="tooltip-container">
+               <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
+               <div class="tooltip-text">
+                    <p>Please note you have 14 days to return an item from the date you received it. All items returned must be unused, undamaged and in the exact condition as they arrived (including all labels/tags intact). It must also be in the original packaging.</p>
+                    <a href="https://mariemur.com/pages/returns" target="_blank">Return Policy</a>
+               </div>   
+           </div>   
+        </div>        
        <p class="data">${addDays(5 + 14)}</p>
        <div class="line">
             <span class="line_black"></span>
@@ -245,12 +262,10 @@ let start = setInterval(() => {
    </div>
   </div>
 `);
-
         document.querySelector('.custom-select p span.country').addEventListener('click', function () {
             this.classList.toggle('country_active');
             document.querySelector('.custom-select ul').classList.toggle('custom-select_active');
         });
-
 
         document.querySelectorAll('.custom-select ul li').forEach(li => {
             li.addEventListener('click', () => {
