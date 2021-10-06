@@ -100,7 +100,8 @@ let startExp = setInterval(() => {
             .flex-wrapper {
                 display: flex;
             }
-            .shipping_estimate .title {
+            .shipping_estimate .title,
+            .shipping_guarantee .title{
                 display: inline;
                 width: min-content;
             }
