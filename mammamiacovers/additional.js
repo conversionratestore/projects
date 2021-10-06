@@ -84,6 +84,9 @@ document.body.insertAdjacentHTML('afterbegin',`
         color: #212121;
         transition: all 0.3s ease;
     }
+    .sizes-types .sizes__text.wide {
+        text-transform: lowercase;
+    }
     .sizes-types span.sizes__text {
         min-height: 42px;
         padding: 7px 0;
@@ -381,10 +384,10 @@ document.querySelector('.btn-close').addEventListener('click', () => {
     iframe.src = iframe.src;
 });
 
-let arrIcons = ['quality','ships','perfect-fit','pet','installation','washable','sanitized'];
+let arrIcons = ['quality.svg','ships.svg','perfect-fit.svg','pet.svg','installation.svg','washable.svg','sanitized.svg'];
 
 for (let i = 0; i < document.querySelectorAll('.product-description__container li strong').length; i++) {
-    document.querySelectorAll('.product-description__container li strong')[i].setAttribute('style',`background-image: url(https://conversionratestore.github.io/projects/mammamiacovers/img/${arrIcons[i]}.svg)`)
+    document.querySelectorAll('.product-description__container li strong')[i].setAttribute('style',`background-image: url(https://conversionratestore.github.io/projects/mammamiacovers/img/${arrIcons[i]})`)
 }
 
 document.querySelector('.product-single__content-text').insertAdjacentHTML('afterend',`
@@ -408,6 +411,25 @@ document.querySelector('.product-single__content-text').insertAdjacentHTML('afte
 document.querySelector('.btn-show-video').addEventListener('click', () => {
     document.querySelector('.popup-video').classList.add('active');
 });
+
+let objWide = {
+    'armchair': '24"-43" wide',
+    'loveseat': '47"-67" wide',
+    'sofa': '69"-91" wide',
+    'sofa 4 seater': '92"-122" wide',
+    'recliner': '24"-43" wide',
+    'reclining loveseat': '55"-83" wide',
+    'reclining sofa': '63"-91" wide',
+    'ottoman': '20"-32" wide',
+    'pillow': '18"-18"',
+    'chaise lounge': '32"-48" wide',
+    'bed': '32"-47" wide ',
+    'futon': '59”- 83” wide',
+    'dining chair': '15”- 20” wide',
+    'l-Shaped left': '70”- 145” wide',
+    'l-shaped right': '70”- 145” wide',
+    'corner': '135”- 208” wide',
+}
 
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.sizes-types')) {
@@ -448,6 +470,14 @@ let mut = new MutationObserver(function (muts) {
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>`)
+            for (const key in objWide) {
+                console.log(key)
+                console.log(objWide[key])
+                console.log(el.querySelector('.sizes__text').innerText)
+                if (el.querySelector('.sizes__text').innerText.toLowerCase() == key) {
+                    el.querySelector('.wide').innerHTML = objWide[key]
+                }
+            }
         })
 
         tnsInitialization()
