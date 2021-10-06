@@ -1,5 +1,5 @@
-window.onload  = function () {
-    let paymentFlowStyle = /*html*/ `
+window.onload = function () {
+  let paymentFlowStyle = /*html*/ `
         <style>        
 
             #hubspot-messages-iframe-container iframe{
@@ -154,8 +154,13 @@ window.onload  = function () {
                 }
     
                 .payment-flow-section{
-                    display: flex;
                     padding: 20px 30px;
+                }
+
+                .fix-width-block{
+                    display: flex;
+                    width: 870px;
+                    margin: auto;
                 }
     
                 .payment-wrapper{
@@ -191,7 +196,7 @@ window.onload  = function () {
                     width: calc(100% / 2);
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-end;
                 }
     
                 .payment-text{
@@ -234,26 +239,28 @@ window.onload  = function () {
     
         </style>
     `
-    
-    let paymentFlow = /*html*/ `
+
+  let paymentFlow = /*html*/ `
         <div class="payment-flow-section">
-            <div class="payment-wrapper">
-                <div class="payment-block-discount">
-                    <p class="payment-title">Get Samcart</p>
-                    <span class="discount">40% OFF</span>
+            <div class="fix-width-block">
+                <div class="payment-wrapper">
+                    <div class="payment-block-discount">
+                        <p class="payment-title">Get Samcart</p>
+                        <span class="discount">40% OFF</span>
+                    </div>
+                    <span class="payment-text">30 days money-back guarantee</span>
+                    <div class="payment-box-price">
+                        <span class="crossed-price-flow">$580.00</span>
+                        <span class="price-flow">$349.00</span>
+                    </div>
                 </div>
-                <span class="payment-text">30 days money-back guarantee</span>
-                <div class="payment-box-price">
-                    <span class="crossed-price-flow">$580.00</span>
-                    <span class="price-flow">$349.00</span>
-                </div>
+                <div class="payment-btn-box"></div>
             </div>
-            <div class="payment-btn-box"></div>
         </div>
     
     `
-    
-    let applePayBtn = /*html*/ `
+
+  let applePayBtn = /*html*/ `
         <a href="#payments" class="payment-btn apple-pay-btn">
             <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.29135 2.06292C6.83304 2.60244 6.10292 3.02996 5.37402 2.96733C5.27773 2.23995 5.64096 1.46079 6.06026 0.977872C6.51735 0.427518 7.31695 0.0325154 7.9654 0C8.04219 0.759898 7.74234 1.50655 7.29257 2.06292H7.29135ZM7.95809 3.11064C6.89886 3.04682 5.98957 3.71158 5.48738 3.71158C4.97422 3.71158 4.2051 3.14195 3.36772 3.16122C2.28168 3.17447 1.26634 3.78745 0.714177 4.77375C-0.435244 6.73551 0.415547 9.64022 1.51987 11.2395C2.05984 12.0295 2.70586 12.8954 3.55787 12.8713C4.36356 12.8388 4.68778 12.345 5.65925 12.345C6.6429 12.345 6.92202 12.8713 7.78013 12.852C8.66139 12.8388 9.21965 12.062 9.75962 11.272C10.3752 10.3748 10.6287 9.49571 10.6421 9.45236C10.6287 9.43309 8.93442 8.78759 8.92223 6.84269C8.90883 5.2109 10.2545 4.43414 10.3118 4.38958C9.55606 3.26118 8.36276 3.14195 7.95687 3.11185L7.95809 3.11064ZM14.0721 0.902003V12.7701H15.9187V8.71293H18.4723C20.8016 8.71293 22.4398 7.11365 22.4398 4.80506C22.4398 2.49165 20.8345 0.903206 18.5357 0.903206L14.0721 0.902003ZM15.9187 2.45793H18.0457C19.6449 2.45793 20.5603 3.31055 20.5603 4.80988C20.5603 6.3092 19.6449 7.16905 18.0335 7.16905H15.9187V2.45793ZM25.8028 12.858C26.9644 12.858 28.037 12.2752 28.527 11.3455H28.566V12.7701H30.2724V6.86076C30.2724 5.1555 28.9024 4.04636 26.7876 4.04636C24.8325 4.04636 23.3845 5.16875 23.3345 6.7054H24.991C25.1311 5.972 25.804 5.49511 26.7376 5.49511C27.8676 5.49511 28.4965 6.02138 28.4965 6.98841V7.63992L26.1989 7.77841C24.0524 7.90968 22.8969 8.78157 22.8969 10.3062C22.8969 11.8428 24.0914 12.8592 25.804 12.8592L25.8028 12.858ZM26.3049 11.4527C25.3201 11.4527 24.6923 10.9818 24.6923 10.2616C24.6923 9.51498 25.2957 9.07542 26.4439 9.00557L28.4953 8.88032V9.5511C28.4953 10.6627 27.5494 11.4527 26.2976 11.4527H26.3049ZM32.5518 16C34.3472 16 35.1931 15.3099 35.9294 13.2338L39.1667 4.16438H37.2945L35.1237 11.1697H35.0847L32.9138 4.16438H30.9843L34.1083 12.8014L33.9426 13.3277C33.6561 14.2129 33.2002 14.5561 32.3872 14.5561C32.241 14.5561 31.9618 14.538 31.8473 14.526V15.9506C31.9545 15.9807 32.4128 15.994 32.5457 15.994L32.5518 16Z" fill="#060606"/>
@@ -261,8 +268,8 @@ window.onload  = function () {
         </a>
     
     `
-    
-    let pallPayBtn = /*html*/ `
+
+  let pallPayBtn = /*html*/ `
         <a href="#payments" class="payment-btn pall-pay-btn">
             <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -286,8 +293,8 @@ window.onload  = function () {
             </svg>
         </a>
     `
-    
-    let cardPayBtn = /*html*/ `
+
+  let cardPayBtn = /*html*/ `
         <a href="#payments" class="payment-btn card-pay-btn">
             <span class="card-pay-text">Pay with</span> 
             <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,8 +302,8 @@ window.onload  = function () {
             </svg>
         </a>
     `
-    
-    let googlePayBtn = /*html*/ `
+
+  let googlePayBtn = /*html*/ `
         <a href="#payments" class="payment-btn google-pay-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="16" viewBox="0 0 437 174">
             <g fill="none" fill-rule="nonzero">
@@ -309,108 +316,113 @@ window.onload  = function () {
             </svg>
         </a>
     `
-    
-    document.head.insertAdjacentHTML("beforeend", paymentFlowStyle)
-    document.body.insertAdjacentHTML('afterbegin', paymentFlow)
-    
-    // displayed without form information
-    document.querySelector("#fname").value = "Conversion"
-    document.querySelector("#lname").value = "Rate Store"
-    document.querySelector("#email").value = "analytic@conversionrate.store"
-    document.querySelector("#phone").value = "0994183099"
-    
-    // clone box Payment Methods
-    document.querySelector('#order-summary-widget').after(document.querySelector('#payments'))
-    document.querySelector('#order-summary-widget').after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
-    
-    // displayed price
-    document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent + ".00"
-    document.querySelector(".price-flow").innerText = document.querySelector("span#total").textContent
-    
-    // displayed btn
-    if(document.querySelector(".apple-pay:not(.ng-hide)")){
-        document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', applePayBtn)
-        scrolling(".apple-pay-btn", "#digitalWalletRadio")
-    }
-    
-    if(document.querySelector("#payPalRadio")){
-        document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', pallPayBtn)
-        scrolling(".pall-pay-btn", "#payPalRadio")
-    }
-    
-    if(document.querySelector("#creditCardRadio")){
-        document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', cardPayBtn)
-        scrolling(".card-pay-btn", "#creditCardRadio")
-    }
-    
-    if(document.querySelector(".google-pay:not(.ng-hide)")){
-        document.querySelector(".payment-btn-box").insertAdjacentHTML('beforeend', googlePayBtn)
-        scrolling(".google-pay-btn", "#digitalWalletRadio")
-    }
-    
-    
-    // scrolling
-    let eventVar = "desktop";
-    
-    if (window.innerWidth <= 768) {
-      eventVar = "mobile";
-    }
-    
-    function scrolling( btnSelector, onClick) {
-        let btn = document.querySelector(btnSelector)
-        let eLabel = ""
-      
-        btn.addEventListener("click", (e)=>{
-            e.preventDefault()
-    
-            if(btnSelector === ".apple-pay-btn"){
-                eLabel='Apple Pay'
-            }
-            if(btnSelector === ".pall-pay-btn"){
-                eLabel='PayPal'
-            }
-            if(btnSelector === ".card-pay-btn"){
-                eLabel='Pay with bank card'
-            }
-            if(btnSelector === ".google-pay-btn"){
-                eLabel='Google Pay'
-            }
-    
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': `Exp - payment flow update ${eventVar}`,
-            'eventAction': 'Clicks banner buttons',
-            'eventLabel': eLabel
-            });
-    
-            
-            document.querySelector(onClick).click()
-    
-            document.querySelector("#payments").scrollIntoView({block: "center", behavior: "smooth"})
-    
-            if(btnSelector === ".pall-pay-btn"){
-                document.querySelector("#placeOrder").click()
-            }
-        })
-    }
-    
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': `Exp - payment flow update ${eventVar}`,
-        'eventAction': 'loaded'
-    });
-    
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2592989,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-        hj('trigger', `payment_flow_update ${eventVar}`)
-}
 
+  document.head.insertAdjacentHTML("beforeend", paymentFlowStyle)
+  document.body.insertAdjacentHTML("afterbegin", paymentFlow)
+
+  // displayed without form information
+  document.querySelector("#fname").value = "Conversion"
+  document.querySelector("#lname").value = "Rate Store"
+  document.querySelector("#email").value = "analytic@conversionrate.store"
+  document.querySelector("#phone").value = "0994183099"
+
+  // clone box Payment Methods
+  document.querySelector("#order-summary-widget").after(document.querySelector("#payments"))
+  document.querySelector("#order-summary-widget").after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
+
+  // displayed price
+  document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent + ".00"
+  document.querySelector(".price-flow").innerText = document.querySelector("span#total").textContent
+
+  // displayed btn
+  if (document.querySelector(".apple-pay:not(.ng-hide)")) {
+    document.querySelector(".payment-btn-box").insertAdjacentHTML("beforeend", applePayBtn)
+    scrolling(".apple-pay-btn", "#digitalWalletRadio")
+  }
+
+  if (document.querySelector("#payPalRadio")) {
+    document.querySelector(".payment-btn-box").insertAdjacentHTML("beforeend", pallPayBtn)
+    scrolling(".pall-pay-btn", "#payPalRadio")
+  }
+
+  if (document.querySelector("#creditCardRadio")) {
+    document.querySelector(".payment-btn-box").insertAdjacentHTML("beforeend", cardPayBtn)
+    scrolling(".card-pay-btn", "#creditCardRadio")
+  }
+
+  if (document.querySelector(".google-pay:not(.ng-hide)")) {
+    document.querySelector(".payment-btn-box").insertAdjacentHTML("beforeend", googlePayBtn)
+    scrolling(".google-pay-btn", "#digitalWalletRadio")
+  }
+
+  // scrolling
+  let eventVar = "desktop"
+
+  if (window.innerWidth <= 768) {
+    eventVar = "mobile"
+  }
+
+  function scrolling(btnSelector, onClick) {
+    let btn = document.querySelector(btnSelector)
+    let eLabel = ""
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault()
+
+      if (btnSelector === ".apple-pay-btn") {
+        eLabel = "Apple Pay"
+      }
+      if (btnSelector === ".pall-pay-btn") {
+        eLabel = "PayPal"
+      }
+      if (btnSelector === ".card-pay-btn") {
+        eLabel = "Pay with bank card"
+      }
+      if (btnSelector === ".google-pay-btn") {
+        eLabel = "Google Pay"
+      }
+
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: `Exp - payment flow update ${eventVar}`,
+        eventAction: "Clicks banner buttons",
+        eventLabel: eLabel,
+      })
+
+      document.querySelector(onClick).click()
+
+      document.querySelector("#payments").scrollIntoView({ block: "center", behavior: "smooth" })
+
+      if (btnSelector === ".pall-pay-btn") {
+        document.querySelector("#placeOrder").click()
+      }
+    })
+  }
+
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: `Exp - payment flow update ${eventVar}`,
+    eventAction: "loaded",
+  })
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 2592989, hjsv: 6 }
+    a = o.getElementsByTagName("head")[0]
+    r = o.createElement("script")
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+  window.hj =
+    window.hj ||
+    function () {
+      ;(hj.q = hj.q || []).push(arguments)
+    }
+  hj("trigger", `payment_flow_update ${eventVar}`)
+}
