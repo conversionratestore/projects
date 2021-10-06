@@ -104,6 +104,9 @@ let startExp = setInterval(() => {
             .shipping_estimate .title {                
                 width: min-content;
             }
+            .shipping_buy .title {
+                white-space: nowrap;
+            }
             .shipping_estimate .tooltip.tooltip_hide {
                 display: none;
             }
@@ -180,6 +183,10 @@ let startExp = setInterval(() => {
             }
             .custom-shipping .shipping_guarantee .line_black {
                 width: 100%;
+            }
+            .custom-shipping > div {
+                display: flex;
+                justify-content: space-between;
             }
         </style>
         `);
