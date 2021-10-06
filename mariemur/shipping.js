@@ -1,4 +1,6 @@
-document.body.insertAdjacentHTML('afterbegin', `
+let startExp = setInterval(() => {
+    if(document.body) {
+        document.body.insertAdjacentHTML('afterbegin', `
 <style>
     .custom-select {
         position: relative;
@@ -171,6 +173,8 @@ document.body.insertAdjacentHTML('afterbegin', `
     }
 </style>
 `);
+    }
+}, 100)
 
 function addDays(days) {
     let result = new Date();
