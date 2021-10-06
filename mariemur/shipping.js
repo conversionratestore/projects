@@ -1,5 +1,6 @@
 let startExp = setInterval(() => {
     if(document.body) {
+        clearInterval(startExp)
         document.body.insertAdjacentHTML('afterbegin', `
 <style>
     .custom-select {
