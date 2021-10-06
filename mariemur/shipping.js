@@ -1,9 +1,5 @@
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
-    body {
-        padding-top: 100px;
-        background-color: pink;
-    }
     .custom-select {
         position: relative;
     }
