@@ -24,10 +24,13 @@ document.body.insertAdjacentHTML('afterbegin',`
         line-height: 130%!important;
         color: #999999;
         text-align: left;
-        max-width: 315px;
+        max-width: 390px;
         margin: 0 auto 40px;
     }
     @media only screen and (max-width: 767px)  {
+        .package p.text {
+            max-width: 315px;
+        }
         .package .js-heading .js-btn.btn-primary {
             max-width: 320px!important;
         }
