@@ -310,6 +310,25 @@ if (location.pathname.includes('product')) {
     localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
 }
 
+fetch("/cart.html", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: JSON.stringify({"last_order":"1"})
+}).then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.log('error', error));
+
+// fetch("https://medicalmega.com/myaccount/orderhistory").then(data => {
+//     let docHistory = new DOMParser().parseFromString(this.responseText, "text/html");
+//     let idOrder = docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[0].innerText;
+//     fetch(`https://medicalmega.com/vieworder/${idOrder}`).then(data => {
+//         let doc = new DOMParser().parseFromString(this.responseText, "text/html");
+//
+//     })
+// }).catch(error => console.log('error', error));
+
 (function(){
     var http = new XMLHttpRequest();
     http.open('GET', `https://medicalmega.com/myaccount/orderhistory`);
@@ -362,7 +381,7 @@ if (location.pathname.includes('product')) {
                             let recentOrders = JSON.parse(localStorage.getItem('recentOrders'));
                             for (let i = 0; i < 4; i++) {
                                 document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend',
-                                `<dd class="product-card" data-product-id="${recentOrders[i].productid}" data-product-variant-id="${recentOrders[i].variationid}">
+                                    `<dd class="product-card" data-product-id="${recentOrders[i].productid}" data-product-variant-id="${recentOrders[i].variationid}">
                                         <span>&nbsp;<a href="${recentOrders[i].href}"><img src="${recentOrders[i].imgsrc}" alt="${recentOrders[i].name}"></a>&nbsp;</span>
                                         <a href="${recentOrders[i].href}">${recentOrders[i].name}</a>
                                         <b>${recentOrders[i].price}</b>
@@ -384,3 +403,4 @@ if (location.pathname.includes('product')) {
     }
     http.send(null);
 })()
+
