@@ -206,8 +206,7 @@ let start = setInterval(() => {
             <span class="line_black"></span>
             <span></span>
             <span></span>
-            <span></span>
-            <span></span>
+            <span></span>            
         </div>
    </div>
    <div class="shipping_estimate">
