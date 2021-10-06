@@ -87,6 +87,7 @@ let startExp = setInterval(() => {
                 font-weight: normal;
             }
             .custom-shipping .title {        
+                display: inline;
                 font-size: 14px;
                 line-height: 16px;
                 letter-spacing: 0.5px;
@@ -100,9 +101,7 @@ let startExp = setInterval(() => {
             .flex-wrapper {
                 display: flex;
             }
-            .shipping_estimate .title,
-            .shipping_guarantee .title{
-                display: inline;
+            .shipping_estimate .title {                
                 width: min-content;
             }
             .shipping_estimate .tooltip.tooltip_hide {
