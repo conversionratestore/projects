@@ -157,7 +157,7 @@ window.onload = function () {
     
                 .payment-wrapper{
                     display: unset;
-                    width: calc(100% / 2);
+                    width: 100%;
                     text-align: unset;
                 }
     
