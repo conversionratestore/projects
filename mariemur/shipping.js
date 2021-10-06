@@ -41,7 +41,7 @@ document.body.insertAdjacentHTML('afterbegin', `
         padding: 0 30px;
         overflow: hidden;
         pointer-events: none;
-        margin: 0;          
+        margin: -7px 0 0; 
         list-style-type: none;
         background-color: #fff;
         transition: all .5s ease-in-out;
@@ -138,16 +138,6 @@ document.body.insertAdjacentHTML('afterbegin', `
         opacity: 1;
         pointer-events: auto;
     }
-    /*.tooltip-text {        */
-    /*    transform: translateY(0);*/
-    /*    opacity: 1;*/
-    /*    !*pointer-events: auto;*!*/
-    /*}*/
-    /*.tooltip-text.tooltip-text_active{        */
-    /*    transform: translateY(0);*/
-    /*    opacity: 1;*/
-    /*    pointer-events: auto;*/
-    /*}*/
     .tooltip-text p {
         margin: 0 0 5px;
         font-weight: normal;
@@ -288,16 +278,6 @@ document.querySelectorAll('.custom-select ul li').forEach(li => {
         document.querySelector('.custom-select ul').classList.remove('custom-select_active');
     });
 });
-
-// document.addEventListener('click', (e) => {
-//     if (!e.target.closest('.tooltip')) {
-//         document.querySelector('.tooltip-text').classList.remove('tooltip-text_active');
-//     }
-// });
-//
-// document.querySelector('.shipping_estimate .tooltip').addEventListener('click', () => {
-//     document.querySelector('.shipping_estimate .tooltip-text').classList.add('tooltip-text_active');
-// });
 
 fetch('https://ipinfo.io?token=6c92680d192dd8').then(res => res.json()).then(function (data) {
     document.querySelectorAll('.custom-select ul li').forEach(li => {
