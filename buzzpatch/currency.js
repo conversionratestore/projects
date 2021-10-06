@@ -27,8 +27,10 @@ document.body.insertAdjacentHTML('afterbegin',`
         max-width: 315px;
         margin: 0 auto 40px;
     }
-    .package .js-heading .js-btn.btn-primary {
-        max-width: 320px!important;
+    @media only screen and (max-width: 767px)  {
+        .package .js-heading .js-btn.btn-primary {
+            max-width: 320px!important;
+        }
     }
 </style>`)
 for (const key in total) {
