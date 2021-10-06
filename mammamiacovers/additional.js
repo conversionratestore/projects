@@ -384,7 +384,7 @@ document.querySelector('.btn-close').addEventListener('click', () => {
     iframe.src = iframe.src;
 });
 
-let arrIcons = ['quality.svg','ships.svg','perfect-fit.svg','pet.svg','installation.svg','washable.svg','sanitized.svg'];
+let arrIcons = ['quality.svg','ships.svg','perfect-fit.svg','pet.svg','installation.svg','washable.svg','sanitized.png'];
 
 for (let i = 0; i < document.querySelectorAll('.product-description__container li strong').length; i++) {
     document.querySelectorAll('.product-description__container li strong')[i].setAttribute('style',`background-image: url(https://conversionratestore.github.io/projects/mammamiacovers/img/${arrIcons[i]})`)
