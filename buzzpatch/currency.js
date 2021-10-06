@@ -11,7 +11,7 @@ let total = {
         'price-old': '93.0,124.0,62.0,31.0',
         'pack': '3,4,2,1',
         'percent': '51,58,45,38',
-        'currency': 'UAD'
+        'currency': 'AUD'
     }
 }
 document.body.insertAdjacentHTML('afterbegin',`
