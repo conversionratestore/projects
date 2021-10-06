@@ -42,6 +42,8 @@ window.onload = function () {
                 padding: 12px 16px;
                 font-family: 'Poppins', sans-serif;
             }
+
+            
     
             .payment-wrapper{
                 display: flex;
@@ -151,13 +153,18 @@ window.onload = function () {
                 }
     
                 .payment-flow-section{
-                    display: flex;
                     padding: 23px 32px;
+                }
+
+                .fix-width-block{
+                    display: flex;
+                    width: 832px;
+                    margin: auto;
                 }
     
                 .payment-wrapper{
                     display: unset;
-                    width: 100%;
+                    width: calc(100% / 2);
                     text-align: unset;
                 }
     
@@ -174,7 +181,7 @@ window.onload = function () {
                 }
     
                 .payment-title{
-                    max-width: 100%;
+                    max-width: 397px;
                     font-size: 22px;
                     line-height: 26px;
                     margin: 0 !important;                              
@@ -189,7 +196,7 @@ window.onload = function () {
                     display: flex;
                     width: calc(100% / 2);
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                 }
     
                 .payment-btn-box{
@@ -233,19 +240,21 @@ window.onload = function () {
 
   let paymentFlowWithoutVideo = /*html*/ `
         <div class="payment-flow-section">
-            <div class="payment-wrapper">
-                <div class="payment-block-discount">
-                    <p class="payment-title">40% Off a 1 Year Subscription to the new <span class="accent-color-span">SamCart Launch Plan</span></p>
+            <div class="fix-width-block">
+                <div class="payment-wrapper">
+                    <div class="payment-block-discount">
+                        <p class="payment-title">40% Off a 1 Year Subscription to the new <span class="accent-color-span">SamCart Launch Plan</span></p>
+                    </div>
+                    
+                    <div class="payment-box-price">
+                        <span class="crossed-price-flow">$580.00</span>
+                        <span class="price-flow">$349.00</span>
+                    </div>
                 </div>
-                
-                <div class="payment-box-price">
-                    <span class="crossed-price-flow">$580.00</span>
-                    <span class="price-flow">$349.00</span>
+                <div class="payment-btn-wrapper">
+                    <div class="payment-btn-box"></div>
+                    <p class="payment-text">30 days money-back guarantee</p>
                 </div>
-            </div>
-            <div class="payment-btn-wrapper">
-                <div class="payment-btn-box"></div>
-                <p class="payment-text">30 days money-back guarantee</p>
             </div>
         </div>
     
