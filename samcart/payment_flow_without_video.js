@@ -202,7 +202,7 @@ window.onload = function () {
                 .payment-btn-box{
                     display: flex;
                     align-items: center;
-                    justify-content: space-evenly;
+                    justify-content: center;
                 }
     
                 .crossed-price-flow{
