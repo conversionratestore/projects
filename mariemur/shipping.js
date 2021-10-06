@@ -178,9 +178,11 @@ function addDays(days) {
     return `${('0' + result.getUTCDate()).slice(-2)}.${('0' + (result.getUTCMonth() + 1)).slice(-2)}.${('0' + result.getUTCFullYear()).slice(-2)}`;
 }
 
-let place = document.querySelectorAll('.block-color-and-share')[0];
+let start = setInterval(() => {
+    if (document.querySelectorAll('.block-color-and-share')[0]) {
+        clearInterval(start);
 
-place.insertAdjacentHTML('afterend', `
+        document.querySelectorAll('.block-color-and-share')[0].insertAdjacentHTML('afterend', `
 <div class="custom-select">
   <p><span class="label">Ship to: </span><span class="country">United States</span></p>
     <ul>
@@ -239,6 +241,8 @@ place.insertAdjacentHTML('afterend', `
    </div>
   </div>
 `);
+    }
+}, 100);
 
 function selectActions(item) {
     document.querySelectorAll('.custom-select ul li').forEach(li => {
