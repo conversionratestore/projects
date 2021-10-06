@@ -1,9 +1,9 @@
 document.body.insertAdjacentHTML('afterbegin', `
 <style>
-body{
-background: pink;
-width: 375px;
-}
+    body {
+        padding-top: 100px;
+        background-color: pink;
+    }
     .custom-select {
         position: relative;
     }
@@ -33,7 +33,7 @@ width: 375px;
         right: 0;
         content: url("https://conversionratestore.github.io/projects/mariemur/images/arrow-down2.svg");
         display: block;        
-        transition: all .7s ease;
+        transition: all .5s ease;
     }
     .custom-select span.country_active:after {
         transform: scale(1, -1);    
@@ -48,7 +48,7 @@ width: 375px;
         margin: 0;          
         list-style-type: none;
         background-color: #fff;
-        transition: all .7s ease-in-out;
+        transition: all .5s ease-in-out;
         z-index: 1;
     }
     .custom-select ul.custom-select_active {
@@ -80,7 +80,7 @@ width: 375px;
         display: flex;
         justify-content: space-between;
         margin: 0;
-        gap: 30px;
+        gap: 15px;
     } 
     .custom-shipping p {
         margin: 0;
@@ -98,15 +98,73 @@ width: 375px;
         margin-top: 10px;
         font-size: 12px;        
     }
-    .shipping_estimate {
+    .estimate-wrapper {
+        display: flex;
+    }
+    .shipping_estimate .title {
+        display: inline;
+        width: min-content;
+    }
+    .shipping_estimate .tooltip.tooltip_hide {
+        display: none;
+    }
+    .tooltip-container {
+        display: inline;
         position: relative;
+        width: 14px;
+        margin: -7px 0 0 2px;
     }
-    .shipping_estimate:before {
+    .tooltip-text {      
         position: absolute;
-        top: 0;
-        right: 0;
-        content: url("https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg");
+        left: -12px;
+        bottom: calc(100% + 14px);
+        width: 175px;
+        padding: 15px;        
+        background-color: #fff;
+        opacity: 0;
+        transition: all .3s ease;
+        pointer-events: none;
+        transform: translateY(10px);
     }
+    .tooltip-text::after {
+        content: '';
+        position: absolute;
+        bottom: -9px;
+        left: 9px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10px 10px 0 10px;
+        border-color: #ffffff transparent transparent transparent;
+    }
+    .tooltip-container:hover .tooltip-text{
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    /*.tooltip-text {        */
+    /*    transform: translateY(0);*/
+    /*    opacity: 1;*/
+    /*    !*pointer-events: auto;*!*/
+    /*}*/
+    /*.tooltip-text.tooltip-text_active{        */
+    /*    transform: translateY(0);*/
+    /*    opacity: 1;*/
+    /*    pointer-events: auto;*/
+    /*}*/
+    .tooltip-text p {
+        margin: 0 0 5px;
+        font-weight: normal;
+        font-size: 12px;
+        color: #000
+    }
+    .tooltip-text a {
+        font-style: italic;
+        font-weight: 500;
+        font-size: 12px;
+        text-decoration-line: underline;
+        color: #757062 !important;
+    }    
     .custom-shipping .line {        
         margin-top: 10px;
         display: flex;
@@ -128,28 +186,34 @@ width: 375px;
 </style>
 `);
 
+function addDays(days) {
+    let result = new Date();
+    result.setDate(result.getDate() + days);
+    return `${('0' + result.getUTCDate()).slice(-2)}.${('0' + (result.getUTCMonth() + 1)).slice(-2)}.${('0' + result.getUTCFullYear()).slice(-2)}`;
+}
+
 let place = document.querySelectorAll('.block-color-and-share')[0];
 
 place.insertAdjacentHTML('afterend', `
 <div class="custom-select">
   <p><span class="label">Ship to: </span><span class="country">United States</span></p>
     <ul>
-        <li>Germany</li>
-        <li>London</li>
-        <li>Russia</li>
-        <li>France</li>
-        <li class="selected">United States</li>
-        <li>Canada</li>
-        <li>Poland</li>
-        <li>Italy</li>
-        <li>Spain</li>
-        <li>Turkey</li>
+        <li data-country="DE">Germany</li>
+        <li data-country="GB">Great Britain</li>
+        <li data-country="RU">Russia</li>
+        <li data-country="FR">France</li>
+        <li data-country="US" class="selected">United States</li>
+        <li data-country="CA">Canada</li>
+        <li data-country="PL">Poland</li>
+        <li data-country="IT">Italy</li>
+        <li data-country="ES">Spain</li>
+        <li data-country="TR">Turkey</li>
     </ul>
 </div>
   <div class="custom-shipping">
    <div class="shipping_buy">
        <p class="title">Buy now</p>
-       <p class="data">16.08.2021</p>
+       <p class="data">${addDays(0)}</p>
         <div class="line">
             <span class="line_black"></span>
             <span></span>
@@ -159,8 +223,17 @@ place.insertAdjacentHTML('afterend', `
         </div>
    </div>
    <div class="shipping_estimate">
-       <p class="title">Estimated shipment</p>
-       <p class="data">21.08.2021</p>
+       <div class="estimate-wrapper">
+           <p class="title">Estimated shipment</p>       
+           <div class="tooltip-container">
+               <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
+               <div class="tooltip-text">
+                    <p>Shipping time may vary. Some items are shipped in 2 days, some rare collections up to 14 days. Average shipment time is 5 days.</p>
+                    <a href="https://mariemur.com/pages/shipping" target="_blank">Terms of Service</a>
+               </div>   
+           </div>   
+        </div>                  
+       <p class="data">${addDays(5)}</p>       
        <div class="line">
             <span class="line_black"></span>
             <span></span>
@@ -169,17 +242,42 @@ place.insertAdjacentHTML('afterend', `
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </div>              
    </div>
    <div class="shipping_guarantee">
        <p class="title">14 days money-back guarantee</p>
-       <p class="data">04.09.2021</p>
+       <p class="data">${addDays(5 + 14)}</p>
        <div class="line">
             <span class="line_black"></span>
        </div>
    </div>
   </div>
 `);
+
+function selectActions(item) {
+    document.querySelectorAll('.custom-select ul li').forEach(li => {
+        li.classList.remove('selected');
+    });
+
+    item.classList.add('selected');
+    document.querySelector('.custom-select .country').innerText = item.innerHTML;
+
+    let selectedCountry = document.querySelector('.custom-select .country').innerText;
+    let estimateData = document.querySelector('.shipping_estimate .data');
+    let guaranteeData = document.querySelector('.shipping_guarantee .data');
+
+    if (selectedCountry === 'United States' || selectedCountry === 'Canada') {
+        estimateData.innerText = addDays(5);
+        guaranteeData.innerText = addDays(5 + 14);
+
+        document.querySelector('.shipping_estimate .tooltip.tooltip_hide')?.classList.remove('tooltip_hide');
+    } else {
+        estimateData.innerText = addDays(4);
+        guaranteeData.innerText = addDays(4 + 14);
+
+        document.querySelector('.shipping_estimate .tooltip')?.classList.add('tooltip_hide');
+    }
+}
 
 document.querySelector('.custom-select p span.country').addEventListener('click', function () {
     this.classList.toggle('country_active');
@@ -188,13 +286,27 @@ document.querySelector('.custom-select p span.country').addEventListener('click'
 
 document.querySelectorAll('.custom-select ul li').forEach(li => {
     li.addEventListener('click', () => {
-        document.querySelectorAll('.custom-select ul li').forEach(li => {
-            li.classList.remove('selected');
-        });
+        selectActions(li);
 
-        li.classList.add('selected');
-        document.querySelector('.custom-select .country').innerText = li.innerHTML;
+        document.querySelector('.custom-select p span.country').classList.remove('country_active');
+        document.querySelector('.custom-select ul').classList.remove('custom-select_active');
     });
 });
 
+// document.addEventListener('click', (e) => {
+//     if (!e.target.closest('.tooltip')) {
+//         document.querySelector('.tooltip-text').classList.remove('tooltip-text_active');
+//     }
+// });
+//
+// document.querySelector('.shipping_estimate .tooltip').addEventListener('click', () => {
+//     document.querySelector('.shipping_estimate .tooltip-text').classList.add('tooltip-text_active');
+// });
 
+fetch('https://ipinfo.io?token=6c92680d192dd8').then(res => res.json()).then(function (data) {
+    document.querySelectorAll('.custom-select ul li').forEach(li => {
+        if (li.getAttribute('data-country') === data.country) {
+            selectActions(li);
+        }
+    });
+});
