@@ -177,7 +177,7 @@ window.onload = function () {
                     max-width: 397px;
                     font-size: 22px;
                     line-height: 26px;
-                              
+                    margin: 0 !important;                              
                 }
     
                 .payment-box-price{
