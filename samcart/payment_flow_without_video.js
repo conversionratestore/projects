@@ -174,7 +174,7 @@ window.onload = function () {
                 }
     
                 .payment-title{
-                    max-width: 397px;
+                    max-width: 100%;
                     font-size: 22px;
                     line-height: 26px;
                     margin: 0 !important;                              
@@ -189,7 +189,7 @@ window.onload = function () {
                     display: flex;
                     width: calc(100% / 2);
                     flex-direction: column;
-                    justify-content: space-evenly;
+                    justify-content: space-between;
                 }
     
                 .payment-btn-box{
