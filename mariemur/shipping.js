@@ -241,6 +241,21 @@ let start = setInterval(() => {
    </div>
   </div>
 `);
+
+        document.querySelector('.custom-select p span.country').addEventListener('click', function () {
+            this.classList.toggle('country_active');
+            document.querySelector('.custom-select ul').classList.toggle('custom-select_active');
+        });
+
+
+        document.querySelectorAll('.custom-select ul li').forEach(li => {
+            li.addEventListener('click', () => {
+                selectActions(li);
+
+                document.querySelector('.custom-select p span.country').classList.remove('country_active');
+                document.querySelector('.custom-select ul').classList.remove('custom-select_active');
+            });
+        });
     }
 }, 100);
 
@@ -268,20 +283,6 @@ function selectActions(item) {
         document.querySelector('.shipping_estimate .tooltip')?.classList.add('tooltip_hide');
     }
 }
-
-document.querySelector('.custom-select p span.country').addEventListener('click', function () {
-    this.classList.toggle('country_active');
-    document.querySelector('.custom-select ul').classList.toggle('custom-select_active');
-});
-
-document.querySelectorAll('.custom-select ul li').forEach(li => {
-    li.addEventListener('click', () => {
-        selectActions(li);
-
-        document.querySelector('.custom-select p span.country').classList.remove('country_active');
-        document.querySelector('.custom-select ul').classList.remove('custom-select_active');
-    });
-});
 
 fetch('https://ipinfo.io?token=6c92680d192dd8').then(res => res.json()).then(function (data) {
     document.querySelectorAll('.custom-select ul li').forEach(li => {
