@@ -116,7 +116,7 @@ let startExp = setInterval(() => {
                 display: inline;
                 position: relative;
                 width: 14px;
-                margin: -7px 0 0 2px;
+                margin: -7px 0;
                 flex-shrink: 0;
             }
             .tooltip-text {      
