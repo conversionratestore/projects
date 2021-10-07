@@ -79,7 +79,7 @@ let startExp = setInterval(() => {
                 display: flex;
                 justify-content: space-between;
                 margin: 0;
-                gap: 15px;
+                gap: 12px;
             } 
             .custom-shipping p {
                 margin: 0;
@@ -172,6 +172,7 @@ let startExp = setInterval(() => {
                 margin-top: 10px;
                 display: flex;
                 justify-content: space-between;
+                gap: 8px;
             }
             .custom-shipping span{
                 display: inline-block;
