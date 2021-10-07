@@ -1,4 +1,4 @@
-window.onload  = function () {
+// window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
     <style>
     [hidden] {
@@ -373,7 +373,7 @@ fetch("/cart.html?last_order=1", {
 }).then(res => res.json())
     .then(data => {
         console.log(data)
-        if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
+        if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0) {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
             <div class="gallery-parent ordered">
                 <h2 class="title">Your recent orders</h2>
@@ -451,7 +451,7 @@ fetch("/cart.html?last_order=1", {
         }
     })
     .catch(error => console.log('error', error));
-};
+// };
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
