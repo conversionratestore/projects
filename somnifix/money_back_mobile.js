@@ -5,6 +5,11 @@ let style = `
             background-color: #f8f8f8;
         }
         
+        .money_back .schedule>p {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
         .money_back .flx {
             display: flex;
             align-items: center;
