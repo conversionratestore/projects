@@ -143,7 +143,7 @@ let startExp = setInterval(() => {
                 border-color: #ffffff transparent transparent transparent;
             }
             .shipping_guarantee .tooltip-text {
-                right: -12px;
+                right: 0;
                 left: auto;
             }   
             .shipping_guarantee .tooltip-text::after {
