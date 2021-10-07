@@ -7,7 +7,7 @@ let total = {
         'currency': 'CAD'
     },
     'au': {
-        'price': '45,52,34,19',
+        'price': '48,56,36,20',
         'price-old': '93,124,62,31',
         'pack': '3,4,2,1',
         'percent': '51,58,45,38',
@@ -65,3 +65,20 @@ for (const key in total) {
         document.querySelector('#purchase .btn').insertAdjacentHTML('afterend',`<p class="text">All orders are processed in USD. While the content of your product page is currently displayed in ${total[key]['currency']}, you will checkout using USD at the average exchange rate</p>`)
     }
 }
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2247058,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'currency_ab_test');
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp - currency AB test',
+        'eventAction': 'loaded'
+    });
