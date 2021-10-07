@@ -231,6 +231,7 @@ let start = setInterval(() => {
             <span></span>
             <span></span>
             <span></span>            
+            <span></span>            
         </div>
    </div>
    <div class="shipping_estimate">
