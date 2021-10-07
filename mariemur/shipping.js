@@ -3,6 +3,9 @@ let startExp = setInterval(() => {
         clearInterval(startExp);
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
+            .custom-wrapper {
+                margin-bottom: 15px;
+            }
             .custom-select {
                 position: relative;
             }
@@ -211,74 +214,77 @@ let start = setInterval(() => {
         clearInterval(start);
 
         document.querySelectorAll('.block-color-and-share')[0].insertAdjacentHTML('afterend', `
-<div class="custom-select">
-  <p><span class="label">Ship to: </span><span class="country">United States</span></p>
-    <ul>
-        <li data-country="DE">Germany</li>
-        <li data-country="GB">Great Britain</li>
-        <li data-country="RU">Russia</li>
-        <li data-country="FR">France</li>
-        <li data-country="US" class="selected">United States</li>
-        <li data-country="CA">Canada</li>
-        <li data-country="PL">Poland</li>
-        <li data-country="IT">Italy</li>
-        <li data-country="ES">Spain</li>
-        <li data-country="TR">Turkey</li>
-    </ul>
-</div>
-  <div class="custom-shipping">
-   <div class="shipping_buy">
-       <div class="flex-wrapper">
-        <p class="title">Buy now</p>
+    <div class="custom-wrapper">
+        <div class="custom-select">
+      <p><span class="label">Ship to: </span><span class="country">United States</span></p>
+        <ul>
+            <li data-country="DE">Germany</li>
+            <li data-country="GB">Great Britain</li>
+            <li data-country="RU">Russia</li>
+            <li data-country="FR">France</li>
+            <li data-country="US" class="selected">United States</li>
+            <li data-country="CA">Canada</li>
+            <li data-country="PL">Poland</li>
+            <li data-country="IT">Italy</li>
+            <li data-country="ES">Spain</li>
+            <li data-country="TR">Turkey</li>
+        </ul>
+    </div>
+        <div class="custom-shipping">
+       <div class="shipping_buy">
+           <div class="flex-wrapper">
+            <p class="title">Buy now</p>
+           </div>
+           <p class="data">${addDays(0)}</p>
+            <div class="line">
+                <span class="line_black"></span>
+                <span></span>
+                <span></span>
+                <span></span>            
+                <span></span>            
+            </div>
        </div>
-       <p class="data">${addDays(0)}</p>
-        <div class="line">
-            <span class="line_black"></span>
-            <span></span>
-            <span></span>
-            <span></span>            
-            <span></span>            
-        </div>
-   </div>
-   <div class="shipping_estimate">
-       <div class="flex-wrapper">
-           <p class="title">Estimated shipment</p>       
-           <div class="tooltip-container">
-               <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
-               <div class="tooltip-text">
-                    <p>Shipping time may vary. Some items are shipped in 2 days, some rare collections up to 14 days. Average shipment time is 5 days.</p>
-                    <a href="https://mariemur.com/pages/shipping" target="_blank">Terms of Service</a>
+       <div class="shipping_estimate">
+           <div class="flex-wrapper">
+               <p class="title">Estimated shipment</p>       
+               <div class="tooltip-container">
+                   <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
+                   <div class="tooltip-text">
+                        <p>Shipping time may vary. Some items are shipped in 2 days, some rare collections up to 14 days. Average shipment time is 5 days.</p>
+                        <a href="https://mariemur.com/pages/shipping" target="_blank">Terms of Service</a>
+                   </div>   
                </div>   
-           </div>   
-        </div>                  
-       <p class="data">${addDays(5)}</p>       
-       <div class="line">
-            <span class="line_black"></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>              
-   </div>
-   <div class="shipping_guarantee">
-        <div class="flex-wrapper">
-           <p class="title">14 days money-back guarantee</p>    
-           <div class="tooltip-container">
-               <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
-               <div class="tooltip-text">
-                    <p>Please note you have 14 days to return an item from the date you received it. All items returned must be unused, undamaged and in the exact condition as they arrived (including all labels/tags intact). It must also be in the original packaging.</p>
-                    <a href="https://mariemur.com/pages/returns" target="_blank">Return Policy</a>
-               </div>   
-           </div>   
-        </div>        
-       <p class="data">${addDays(5 + 14)}</p>
-       <div class="line">
-            <span class="line_black"></span>
+            </div>                  
+           <p class="data">${addDays(5)}</p>       
+           <div class="line">
+                <span class="line_black"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>              
        </div>
-   </div>
-  </div>
+       <div class="shipping_guarantee">
+            <div class="flex-wrapper">
+               <p class="title">14 days money-back guarantee</p>    
+               <div class="tooltip-container">
+                   <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
+                   <div class="tooltip-text">
+                        <p>Please note you have 14 days to return an item from the date you received it. All items returned must be unused, undamaged and in the exact condition as they arrived (including all labels/tags intact). It must also be in the original packaging.</p>
+                        <a href="https://mariemur.com/pages/returns" target="_blank">Return Policy</a>
+                   </div>   
+               </div>   
+            </div>        
+           <p class="data">${addDays(5 + 14)}</p>
+           <div class="line">
+                <span class="line_black"></span>
+           </div>
+       </div>
+      </div>
+    </div>
+    
 `);
         document.querySelector('.custom-select p span.country').addEventListener('click', function () {
             this.classList.toggle('country_active');
