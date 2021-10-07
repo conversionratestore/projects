@@ -8,13 +8,9 @@ window.onload = function () {
             #hubspot-messages-iframe-container iframe{
                 top: -165px !important;
             }
-    
-            #paymentForm > div >.row{
-                display: none;
-            }
-    
-            #paymentForm > div >:nth-child(2){
-                display: none;
+
+            .row.section{
+                padding-bottom: 0 !important;
             }
 
             body{
@@ -330,14 +326,20 @@ window.onload = function () {
   document.querySelectorAll(".sc-element")[2].style.textAlign = "center"
 
   // displayed without form information
-  document.querySelector("#fname").value = "Conversion"
-  document.querySelector("#lname").value = "Rate Store"
-  document.querySelector("#email").value = "analytic@conversionrate.store"
-  document.querySelector("#phone").value = "0994183099"
+  //   document.querySelector("#fname").value = "Conversion"
+  //   document.querySelector("#lname").value = "Rate Store"
+  //   document.querySelector("#email").value = "analytic@conversionrate.store"
+  //   document.querySelector("#phone").value = "0994183099"
 
   // clone box Payment Methods
   document.querySelector("#order-summary-widget").after(document.querySelector("#payments"))
   document.querySelector("#order-summary-widget").after(document.querySelector("h4.tpl-2__checkout__subtitle.mt-sm-12.mb-16"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm > div >.row.sc-tpl-from-section.mt-4"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm > div >.row"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm > div >.row"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm > div >.row.mobile-display"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm > div >:nth-child(2)"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm .tpl-2__checkout__title"))
 
   // displayed price
   document.querySelector(".crossed-price-flow").innerText = document.querySelector("#sc41c12e78-a2fa-4ff4-b8b8-83d393ef5b33 strike").textContent.substr(0, 4) + ".00"
