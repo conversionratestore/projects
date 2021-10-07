@@ -192,6 +192,9 @@ let startExp = setInterval(() => {
                 flex-direction: column;
                 justify-content: space-between;
             }
+            .shipping_guarantee .tooltip-text {
+                width: 250px;
+            }
         </style>
         `);
     }
