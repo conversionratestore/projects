@@ -156,7 +156,7 @@ let block = `
     <div class="money_back" id="money_back">
         <h2>Money back guarantee</h2>
         <div class="schedule">
-            <p>Ship to:</p>
+            <p>Ship to:</p><label class="for_country_select"></label>
             <div class="delivery_time">
                 <div class="line">
                     <span class="point1"></span>
@@ -199,7 +199,7 @@ let start = setInterval(function () {
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('.recomendedmedical').insertAdjacentHTML('beforebegin',block)
         let sel = document.querySelectorAll('.country_select')[1].cloneNode(true)
-        document.querySelector('.schedule>p').appendChild(sel)
+        document.querySelector('.schedule>p+label').appendChild(sel)
 
         document.querySelector('.money_back select').addEventListener('change', function (e) {
             document.querySelectorAll('.country_select')[1].value = this.value
