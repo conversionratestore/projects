@@ -100,6 +100,8 @@ let startExp = setInterval(() => {
             }
             .flex-wrapper {
                 display: flex;
+                min-height: 32px;
+                max-height: 64px;
             }
             .shipping_estimate .title {                
                 width: min-content;
@@ -186,6 +188,7 @@ let startExp = setInterval(() => {
             }
             .custom-shipping > div {
                 display: flex;
+                flex-direction: column;
                 justify-content: space-between;
             }
         </style>
