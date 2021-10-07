@@ -266,7 +266,7 @@ let start = setInterval(() => {
         <div class="flex-wrapper">
            <p class="title">14 days money-back guarantee</p>    
            <div class="tooltip-container">
-               <img class="tooltip" style="margin-left: -200%" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
+               <img class="tooltip" src="https://conversionratestore.github.io/projects/mariemur/images/question-mark.svg" alt="tooltip">
                <div class="tooltip-text">
                     <p>Please note you have 14 days to return an item from the date you received it. All items returned must be unused, undamaged and in the exact condition as they arrived (including all labels/tags intact). It must also be in the original packaging.</p>
                     <a href="https://mariemur.com/pages/returns" target="_blank">Return Policy</a>
