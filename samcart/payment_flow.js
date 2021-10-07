@@ -5,14 +5,13 @@ window.onload = function () {
             #hubspot-messages-iframe-container iframe{
                 top: -145px !important;
             }
-    
-            #paymentForm >.row{
-                display: none;
+
+            #paymentForm .tpl-6__checkout__title{
+                margin-top: 20px;
             }
     
-            #paymentForm >:nth-child(2){
-                display: none;
-            }
+    
+            
             #hubspot-messages-iframe-container {
                 z-index: 0 !important;
             }
@@ -321,14 +320,18 @@ window.onload = function () {
   document.body.insertAdjacentHTML("afterbegin", paymentFlow)
 
   // displayed without form information
-  document.querySelector("#fname").value = "Conversion"
-  document.querySelector("#lname").value = "Rate Store"
-  document.querySelector("#email").value = "analytic@conversionrate.store"
-  document.querySelector("#phone").value = "0994183099"
+  //   document.querySelector("#fname").value = "Conversion"
+  //   document.querySelector("#lname").value = "Rate Store"
+  //   document.querySelector("#email").value = "analytic@conversionrate.store"
+  //   document.querySelector("#phone").value = "0994183099"
 
   // clone box Payment Methods
   document.querySelector("#order-summary-widget").after(document.querySelector("#payments"))
   document.querySelector("#order-summary-widget").after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >.row"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >.row"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >:nth-child(2)"))
+  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm .tpl-6__checkout__title"))
 
   // displayed price
   document.querySelector(".crossed-price-flow").innerText = document.querySelector(".sc-element .mobile-column-width #sc2aefd0ed-25fa-4782-ac27-cb984e1f75e1 p").textContent + ".00"
