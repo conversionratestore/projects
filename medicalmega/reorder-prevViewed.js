@@ -1,5 +1,6 @@
-document.body.insertAdjacentHTML('afterbegin', `
-<style>
+window.onload  = function () {
+    document.body.insertAdjacentHTML('afterbegin', `
+    <style>
     [hidden] {
         display: none!important; }
     button {
@@ -24,11 +25,11 @@ document.body.insertAdjacentHTML('afterbegin', `
         word-break: break-word;}
     .gallery dd a br {
         display: none;}
-    .gallery dd {
+    .gallery-parent .gallery dd {
         padding-bottom: 10px;
         width: 140px;
         line-height: 15px;
-        display: flex!important;
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
         text-align: left;}
@@ -119,10 +120,10 @@ document.body.insertAdjacentHTML('afterbegin', `
         font-size: 20px;
         line-height: 20px;
         padding-top: 30px; }
-    .gallery-parent.viewed .gallery dd:nth-child(n+5){ //.gallery-parent.ordered .gallery
-        display: none!important;}
+    .gallery-parent.viewed .gallery dd:nth-child(n+5){ 
+        display: none;}
     .gallery-parent.viewed .gallery dd.visible {
-        display: flex!important;}
+        display: flex;}
     .view-more {
         width: calc(100% - 20px);}
     .id-order {
@@ -162,6 +163,79 @@ document.body.insertAdjacentHTML('afterbegin', `
         color: #666666;}
 </style>`);
 
+let recentlyViewedProducts = [];
+
+function pushProducts() {
+    recentlyViewedProducts.push({
+        'productid': document.querySelector('input[name="product_id"]').value,
+        'price': document.querySelector('.product-price').innerHTML,
+        'variationid': document.querySelector('input[name="product_variant_id"]').value,
+        'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
+        'href': window.location.href,
+        'name': document.querySelectorAll('.center h3')[0].innerHTML,
+    });
+}
+
+function addToCart() {
+    if (document.querySelectorAll('.add-to-cart')) {
+        document.querySelectorAll('.add-to-cart button').forEach((item) => {
+            item.addEventListener('click', () => {
+                let valueP = 1,
+                    num = +document.querySelector('.by_num span').innerHTML;
+    
+                valueP = +item.nextElementSibling.value;
+    
+                document.querySelector('.by_num span').innerHTML = num + valueP;
+    
+                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+                    productId = item.closest('.product-card').getAttribute('data-product-id');
+    
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                })
+            });
+            if (item.closest('.ordered')) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on add to cart button',
+                    'eventLabel': 'PL section Your recent orders'
+                });
+            }
+            if (item.closest('viewed')) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on add to cart button',
+                    'eventLabel': 'PL section Recently viewed Products'
+                });
+            }
+            if (window.location.pathname.includes('/product')) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on add to cart button',
+                    'eventLabel': 'PDP section Recently viewed Products'
+                });
+            }
+        });
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });
+        });
+    }
+}
+
 if (window.location.pathname == '/') {
     document.querySelectorAll('.gallery').forEach((item, index) => {
         let galleryWrapper = document.createElement('div');
@@ -188,20 +262,9 @@ if (window.location.pathname == '/') {
             galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`);
         }
     }
-    const arrTitle = ['New products', 'Ostomy', 'Wound care', 'Hand Sanitizing', 'Protective Gear', 'All products'],
+    const arrTitle = ['New products', 'Ostomy', 'Wound care', 'Hand Sanitizing', 'Protective Gear', 'Other products'],
         galleryTitle = document.querySelectorAll('.title'),
         showMore = document.querySelectorAll('.show-more');
-
-    showMore.forEach((item) => {
-        item.addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'CRO - A/B - PL and cart improvements - Live',
-                'eventAction': 'click on button — show more'
-            });
-        });
-    });
 
     for (let i = 0; i < arrTitle.length; i++) {
         galleryTitle[i].innerHTML = arrTitle[i];
@@ -237,61 +300,53 @@ if (window.location.pathname == '/') {
         if (cards.length > 4) {
             document.querySelector('.view-more').hidden = false;
         }
+        document.querySelectorAll('.gallery-parent.viewed .gallery dd').forEach((el,index) => {
+            if (index > 4) {
+                el.style.display = `none`;
+            }
+        })
         document.querySelector('.view-more').addEventListener('click', (e) => {
             document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
-                e.target.hidden = true;
-                el.classList.add('visible');
+                e.target.classList.toggle('visible')
+                el.classList.toggle('visible');
+                if (!e.target.classList.contains('visible')) {
+                    e.target.innerHTML = 'View more products';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on button Hide more products',
+                        'eventLabel': 'PL section Recently viewed Products'
+                    });
+                } else {
+                    e.target.innerHTML = 'Hide more products';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on button View more products',
+                        'eventLabel': 'PL section Recently viewed Products'
+                    });
+                }
             })
         });
     }
-
-}
-
-if (document.querySelectorAll('.add-to-cart')) {
-    document.querySelectorAll('.add-to-cart button').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            let valueP = 1,
-                num = +document.querySelector('.by_num span').innerHTML;
-
-            valueP = +item.nextElementSibling.value;
-
-            document.querySelector('.by_num span').innerHTML = num + valueP;
-
-            let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
-                productId = item.closest('.product-card').getAttribute('data-product-id');
-
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
-            })
-        });
-    });
-    document.querySelectorAll('.add-to-cart').forEach( (item) => {
-        item.addEventListener('change', () => {
-            if (item.querySelector('input').value <= 1) {
-                item.querySelector('input').value = 1;
-            }
-        });
-    });
-}
-
-let recentlyViewedProducts = [];
-let recentOrders = [];
-function pushProducts() {
-    recentlyViewedProducts.push({
-        'productid': document.querySelector('input[name="product_id"]').value,
-        'price': document.querySelector('.product-price').innerHTML,
-        'variationid': document.querySelector('input[name="product_variant_id"]').value,
-        'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
-        'href': window.location.href,
-        'name': document.querySelectorAll('.center h3')[0].innerHTML,
-    });
+    addToCart();
 }
 
 if (location.pathname.includes('product')) {
+    document.body.insertAdjacentHTML('afterbegin', `
+    <style>
+        h2.title, .title {
+            padding-left: 0!important;
+        }
+        .gallery {
+            margin-left: 0!important;
+        }
+        .show-more {
+            margin: 10px 0!important;
+        }
+    </style>`)
     if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != []){
         let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
         for (let i = 0; i < storageItems.length; i++) {
@@ -310,97 +365,106 @@ if (location.pathname.includes('product')) {
     localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
 }
 
-fetch("/cart.html", {
+fetch("/cart.html?last_order=1", {
     method: "POST",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: JSON.stringify({"last_order":"1"})
-}).then(res => res.json())
-    .then(data => console.log(data))
-    .catch(error => console.log('error', error));
-
-// fetch("https://medicalmega.com/myaccount/orderhistory").then(data => {
-//     let docHistory = new DOMParser().parseFromString(this.responseText, "text/html");
-//     let idOrder = docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[0].innerText;
-//     fetch(`https://medicalmega.com/vieworder/${idOrder}`).then(data => {
-//         let doc = new DOMParser().parseFromString(this.responseText, "text/html");
-//
-//     })
-// }).catch(error => console.log('error', error));
-
-(function(){
-    var http = new XMLHttpRequest();
-    http.open('GET', `https://medicalmega.com/myaccount/orderhistory`);
-    http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var docHistory = new DOMParser().parseFromString(this.responseText, "text/html");
-            let idOrder = docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[0].innerText;
-            (function(){
-                var http = new XMLHttpRequest();
-                http.open('GET', `https://medicalmega.com/vieworder/${idOrder}`);
-                http.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var doc = new DOMParser().parseFromString(this.responseText, "text/html");
-                        doc.querySelectorAll('.order-details-table .order-info-row').forEach((el, i) => {
-                            if (i != doc.querySelectorAll('.order-details-table .order-info-row').length - 1) {
-                                recentOrders.push({
-                                    'productid': '',
-                                    'price': el.querySelectorAll('td')[4].innerText,
-                                    'variationid': '',
-                                    'imgsrc': el.querySelectorAll('td img')[0].getAttribute('src'),
-                                    'href': el.querySelectorAll('td a')[0].href,
-                                    'name': el.querySelectorAll('td img')[0].getAttribute('alt').replace('Image Of ',''),
-                                });
-                            }
-                        })
-                        localStorage.setItem('recentOrders', JSON.stringify(recentOrders));
-
-                        if (localStorage.getItem('recentOrders')) {
-                            document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
-                                <div class="gallery-parent ordered">
-                                    <h2 class="title">Your recent orders</h2>
-                                    <p class="id-order">Order ${idOrder}</p>
-                                    <dl class="gallery"></dl>
-                                    <div class="ordered-bottom">
-                                        <div class="d-flex">
-                                            <div>
-                                                <p class="c-gray">Order date:</p>
-                                                <p class="c-gray">Total:</p>
-                                            </div>
-                                            <div>
-                                                <p>${docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[3].innerText}</p>
-                                                <p>${docHistory.querySelectorAll('.orders-table tbody tr')[0].querySelectorAll('td')[4].innerText}</p>
-                                            </div>
-                                        </div>
-                                        <a href="https://medicalmega.com/reorder/${idOrder}" class="btn-reorder">Reorder</a>
-                                    </div>
-                                    <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders </a>
-                                </div>`);
-
-                            let recentOrders = JSON.parse(localStorage.getItem('recentOrders'));
-                            for (let i = 0; i < 4; i++) {
-                                document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend',
-                                    `<dd class="product-card" data-product-id="${recentOrders[i].productid}" data-product-variant-id="${recentOrders[i].variationid}">
-                                        <span>&nbsp;<a href="${recentOrders[i].href}"><img src="${recentOrders[i].imgsrc}" alt="${recentOrders[i].name}"></a>&nbsp;</span>
-                                        <a href="${recentOrders[i].href}">${recentOrders[i].name}</a>
-                                        <b>${recentOrders[i].price}</b>
-                                        <form action="https://medicalmega.com/cart.html" method="post">
-                                            <input type="hidden" name="product_id" value="${recentOrders[i].productid}">
-                                            <input type="hidden" name="product_variant_id" value="${recentOrders[i].variationid}">
-                                            <input type="hidden" name="quantity" value="1">
-                                        </form>
-                                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
-                                    </dd>`)
-                            }
-
-                        }
-                    }
-                }
-                http.send(null);
-            })()
-        }
     }
-    http.send(null);
-})()
+}).then(res => res.json())
+    .then(data => {
+        console.log(data)
+        if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
+            document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
+            <div class="gallery-parent ordered">
+                <h2 class="title">Your recent orders</h2>
+                <p class="id-order">Order #</p>
+                <dl class="gallery"></dl>
+                <div class="ordered-bottom">
+                    <div class="d-flex">
+                        <div>
+                            <p class="c-gray">Order date:</p>
+                            <p class="c-gray">Total:</p>
+                        </div>
+                        <div>
+                            <p>дата</p>
+                            <p>сумма</p>
+                        </div>
+                    </div>
+                    <a href="https://medicalmega.com/reorder/#" class="btn-reorder">Reorder</a>
+                </div>
+                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders </a>
+            </div>`);
+            document.querySelector('.ordered .show-more').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on Show more Orders button',
+                    'eventLabel': 'PL section Your recent orders'
+                });
+            })
+            document.querySelector('.btn-reorder').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on Reorder button',
+                    'eventLabel': 'PL section Your recent orders'
+                });
+            })
+        }
+        if (window.location.pathname.includes('/product')) {
+            document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
+            <h2 class="title">Recently Ordered Products</h2>
+            <dl class="gallery"></dl>
+            <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>`);
+            document.querySelector('.show-more').addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on button View more products',
+                    'eventLabel': 'PDP section Recently ordered Products'
+                });
+            })
+        }
+        for (let i = 0; i < 4; i++) {
+            let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
+                <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
+                <a href="${data["items"][i].url}">${data["items"][i].title}</a>
+                <b>${data["items"][i].price}</b>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                    <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
+                    <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
+                    <input type="hidden" name="quantity" value="1">
+                </form>
+                <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+            </dd>`;
+            if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
+                document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
+                addToCart();
+            }
+            if (window.location.pathname.includes('/product')) {
+                document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
+                addToCart();
+            }
+        }
+    })
+    .catch(error => console.log('error', error));
+};
 
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1699330,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('trigger', 'easy_reorder');
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Easy reorder desktop',
+    'eventAction': 'loaded'
+});
