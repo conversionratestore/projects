@@ -148,9 +148,10 @@ let startExp = setInterval(() => {
             .shipping_guarantee .tooltip-text {
                 right: -12px;
                 left: auto;
+                margin-right: 5px;
             }   
             .shipping_guarantee .tooltip-text::after {
-                right: 9px;
+                right: 4px;
                 left: auto;
             }
             .tooltip-container:hover .tooltip-text{
