@@ -284,7 +284,7 @@ if (window.location.pathname == '/') {
 
         let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
         for (let i = 0; i < cards.length; i++) {
-            document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('beforeend',
+            document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
             `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                     <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                     <a href="${cards[i].href}">${cards[i].name}</a>
@@ -300,11 +300,7 @@ if (window.location.pathname == '/') {
         if (cards.length > 4) {
             document.querySelector('.view-more').hidden = false;
         }
-        document.querySelectorAll('.gallery-parent.viewed .gallery dd').forEach((el,index) => {
-            if (index > 4) {
-                el.style.display = `none`;
-            }
-        })
+     
         document.querySelector('.view-more').addEventListener('click', (e) => {
             document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
                 e.target.classList.toggle('visible')
@@ -413,7 +409,7 @@ fetch("/cart.html?last_order=1", {
                 });
             })
         }
-        if (window.location.pathname.includes('/product')) {
+        if (window.location.pathname.includes('/product') && data["items"].length > 0) {
             document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
             <h2 class="title">Recently Ordered Products</h2>
             <dl class="gallery"></dl>
