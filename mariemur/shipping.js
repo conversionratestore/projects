@@ -224,7 +224,9 @@ let start = setInterval(() => {
 </div>
   <div class="custom-shipping">
    <div class="shipping_buy">
-       <p class="title">Buy now</p>
+       <div class="flex-wrapper">
+        <p class="title">Buy now</p>
+       </div>
        <p class="data">${addDays(0)}</p>
         <div class="line">
             <span class="line_black"></span>
