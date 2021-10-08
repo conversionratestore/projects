@@ -244,7 +244,7 @@ window.onload = function () {
             <div class="fix-width-block">
                 <div class="payment-wrapper">
                     <div class="payment-block-discount">
-                        <p class="payment-title">Get Samcart</p>
+                        <p class="payment-title">Get SamCart</p>
                         <span class="discount">40% OFF</span>
                     </div>
                     <span class="payment-text">30 days money-back guarantee</span>
