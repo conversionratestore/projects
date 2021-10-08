@@ -308,7 +308,6 @@ let start = setInterval(() => {
                 'eventCategory': 'Exp: Shipping info on PDP',
                 'eventAction': 'Estimated shipment tooltip opened'
             });
-            console.log('estimate');
         })
 
         document.querySelector('.shipping_guarantee .tooltip').addEventListener('click', () => {
@@ -317,8 +316,7 @@ let start = setInterval(() => {
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp: Shipping info on PDP',
                 'eventAction': 'Money back tooltip opened'
-            });
-            console.log('guarantee');
+            });            
         })
     }
 }, 100);
