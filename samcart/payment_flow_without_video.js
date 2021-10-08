@@ -403,11 +403,11 @@ window.onload = function () {
 
       document.querySelector(onClick).click()
 
-      document.querySelector("#payments").scrollIntoView({ block: "center", behavior: "smooth" })
+      document.querySelector("#payments").scrollIntoView({ block: "start", behavior: "smooth" })
 
-      if (btnSelector === ".pall-pay-btn") {
-        document.querySelector("#placeOrder").click()
-      }
+    //   if (btnSelector === ".pall-pay-btn") {
+    //     document.querySelector("#placeOrder").click()
+    //   }
     })
   }
 
