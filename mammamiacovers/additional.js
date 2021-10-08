@@ -474,6 +474,11 @@ window.onload  = function () {
         });
     });
 
+    document.body.addEventListener('scroll', (e) => {
+        if (!document.querySelector('.tns-outer')) {
+            tnsInitialization()
+        }
+    })
     let mut = new MutationObserver(function (muts) {
         if (document.querySelector('.sizes-types .sizes__list') && document.querySelectorAll('.sizes-types .sizes__item img') && !document.querySelector('.swiper-button') && document.querySelectorAll('.sizes-types .sizes__item')) {
             mut.disconnect();
@@ -540,9 +545,6 @@ window.onload  = function () {
                     }
                 })
             })
-            setTimeout(() => {
-                tnsInitialization()
-            },300)
         }
         mut.observe(document, {
             childList: true,
