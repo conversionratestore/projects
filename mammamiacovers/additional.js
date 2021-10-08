@@ -443,6 +443,15 @@ window.onload  = function () {
     document.querySelector('.product-single__content-text').insertAdjacentHTML('afterend', `<img class="img-free-returns" src="https://conversionratestore.github.io/projects/mammamiacovers/img/free-returns.svg" alt="30 days free returns if size doesn't match">`);
     if (document.querySelector('.fluid-width-video-wrapper')) {
         document.querySelector('.img-free-returns').insertAdjacentHTML('afterend', `<button type="button" class="btn-show-video">Learn how it works <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/youtube.svg" width="18.2px" height="14px" alt="youtube"></button>`);
+        document.querySelector('.btn-show-video').addEventListener('click', () => {
+            document.querySelector('.popup-video').classList.add('active');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: PDP with additional info',
+                'eventAction': 'Click Learn how it works'
+            });
+        });
     }
     for (let key in obj) {
         if (document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1] && document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1].innerText.toLowerCase() == key || document.querySelectorAll('.product-single__title-text')[0].innerText.toLowerCase().split(' ')[0] == key) {
@@ -466,15 +475,6 @@ window.onload  = function () {
             }
         }
     }
-    document.querySelector('.btn-show-video').addEventListener('click', () => {
-        document.querySelector('.popup-video').classList.add('active');
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: PDP with additional info',
-            'eventAction': 'Click Learn how it works'
-        });
-    });
 
    window.addEventListener('scroll', (e) => {
         if (!document.querySelector('.tns-outer')) {
