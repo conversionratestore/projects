@@ -474,7 +474,7 @@ window.onload  = function () {
         });
     });
 
-    document.body.addEventListener('scroll', (e) => {
+   window.addEventListener('scroll', (e) => {
         console.log(e.target)
         if (!document.querySelector('.tns-outer')) {
             console.log(true)
