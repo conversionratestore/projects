@@ -22,7 +22,7 @@ window.onload  = function () {
         .gallery dd {
             text-align: left;}
         .gallery dd span a {
-            margin: 0 auto;}
+            margin: auto;}
         .gallery dd a {
             font-size: 12px;
             line-height: 16px;
@@ -167,11 +167,6 @@ window.onload  = function () {
             font-weight: bold;
             font-size: 21px;
             line-height: 23px;
-        }
-        html>body .gallery dd span img {
-            height: 140px;
-            width: 100%;
-            object-fit: contain;
         }
     </style>`);
     
