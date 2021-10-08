@@ -300,6 +300,24 @@ let start = setInterval(() => {
                 document.querySelector('.custom-select ul').classList.remove('custom-select_active');
             });
         });
+
+        document.querySelector('.shipping_estimate .tooltip').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Shipping info on PDP',
+                'eventAction': 'Estimated shipment tooltip opened'
+            });
+        })
+
+        document.querySelector('.shipping_guarantee .tooltip').addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Shipping info on PDP',
+                'eventAction': 'Money back tooltip opened'
+            });
+        })
     }
 }, 100);
 
