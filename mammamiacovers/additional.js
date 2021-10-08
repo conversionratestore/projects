@@ -540,7 +540,9 @@ window.onload  = function () {
                     }
                 })
             })
-            tnsInitialization()
+            setTimeout(() => {
+                tnsInitialization()
+            },300)
         }
         mut.observe(document, {
             childList: true,
