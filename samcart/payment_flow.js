@@ -319,17 +319,12 @@ window.onload = function () {
   document.head.insertAdjacentHTML("beforeend", paymentFlowStyle)
   document.body.insertAdjacentHTML("afterbegin", paymentFlow)
 
-  // displayed without form information
-  //   document.querySelector("#fname").value = "Conversion"
-  //   document.querySelector("#lname").value = "Rate Store"
-  //   document.querySelector("#email").value = "analytic@conversionrate.store"
-  //   document.querySelector("#phone").value = "0994183099"
 
   // clone box Payment Methods
   document.querySelector("#order-summary-widget").after(document.querySelector("#payments"))
   document.querySelector("#order-summary-widget").after(document.querySelector(".tpl-6__checkout__subtitle.mt-sm-20.mb-16"))
-  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >.row"))
-  document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >.row"))
+  document.querySelector("#order-summary-widget").after(document.querySelectorAll("#paymentForm >.row")[1])
+  document.querySelector("#order-summary-widget").after(document.querySelectorAll("#paymentForm >.row")[0])
   document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm >:nth-child(2)"))
   document.querySelector("#order-summary-widget").after(document.querySelector("#paymentForm .tpl-6__checkout__title"))
 
@@ -397,9 +392,7 @@ window.onload = function () {
 
       document.querySelector(".tpl-6__order.text-center.pt-sm-30.py-24").scrollIntoView({ block: "start", behavior: "smooth" })
 
-    //   if (btnSelector === ".pall-pay-btn") {
-    //     document.querySelector("#placeOrder").click()
-    //   }
+   
     })
   }
 
