@@ -1,5 +1,5 @@
 // window.onload  = function () {
-    document.body.insertAdjacentHTML('afterbegin', `
+document.body.insertAdjacentHTML('afterbegin', `
     <style>
     [hidden] {
         display: none!important; }
@@ -182,14 +182,14 @@ function addToCart() {
             item.addEventListener('click', () => {
                 let valueP = 1,
                     num = +document.querySelector('.by_num span').innerHTML;
-    
+
                 valueP = +item.nextElementSibling.value;
-    
+
                 document.querySelector('.by_num span').innerHTML = num + valueP;
-    
+
                 let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
                     productId = item.closest('.product-card').getAttribute('data-product-id');
-    
+
                 fetch('/cart.html', {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -285,7 +285,7 @@ if (window.location.pathname == '/') {
         let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
         for (let i = 0; i < cards.length; i++) {
             document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
-            `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
+                `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                     <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                     <a href="${cards[i].href}">${cards[i].name}</a>
                     <b>${cards[i].price}</b>
@@ -300,7 +300,7 @@ if (window.location.pathname == '/') {
         if (cards.length > 4) {
             document.querySelector('.view-more').hidden = false;
         }
-     
+
         document.querySelector('.view-more').addEventListener('click', (e) => {
             document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
                 e.target.classList.toggle('visible')
@@ -373,7 +373,7 @@ fetch("/cart.html?last_order=1", {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
             <div class="gallery-parent ordered">
                 <h2 class="title">Your recent orders</h2>
-                <p class="id-order">Order #</p>
+                <p class="id-order">Order #${data["orderNumber"]}</p>
                 <dl class="gallery"></dl>
                 <div class="ordered-bottom">
                     <div class="d-flex">
@@ -382,14 +382,20 @@ fetch("/cart.html?last_order=1", {
                             <p class="c-gray">Total:</p>
                         </div>
                         <div>
-                            <p>дата</p>
-                            <p>сумма</p>
+                            <p>${data["orderDate"]}</p>
+                            <p class="sum"></p>
                         </div>
                     </div>
-                    <a href="https://medicalmega.com/reorder/#" class="btn-reorder">Reorder</a>
+                    <a href="https://medicalmega.com/reorder/${data['orderNumber']}" class="btn-reorder">Reorder</a>
                 </div>
-                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders </a>
+                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
             </div>`);
+
+            let sum = 0;
+            for (let i = 0; i < data["items"].length; i++) {
+                sum += +data["items"][i].price
+                document.querySelector('.ordered-bottom .sum').innerHTML = `$${sum.toFixed(2)}`;
+            }
             document.querySelector('.ordered .show-more').addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
