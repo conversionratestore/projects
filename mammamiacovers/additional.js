@@ -520,9 +520,6 @@ window.onload  = function () {
                         el.querySelector('.sizes__link--image img').setAttribute('srcset', obj[key].split(',')[1])
                     }
                 }
-                if (i == (document.querySelectorAll('.sizes-types .sizes__item').length - 1)) {
-                    tnsInitialization()
-                }
             })
 
             document.querySelectorAll('.swiper-button').forEach(el => {
@@ -543,6 +540,7 @@ window.onload  = function () {
                     }
                 })
             })
+            tnsInitialization()
         }
         mut.observe(document, {
             childList: true,
