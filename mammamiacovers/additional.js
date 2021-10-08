@@ -357,6 +357,25 @@ document.body.insertAdjacentHTML('afterbegin',`
     }
 </style>`);
 
+let obj = {
+    'armchair': '24"-43" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_11_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/armchair.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_11_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/form/8.png',
+    'loveseat': '47"-67" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_bd9c282e-bf12-49a0-8211-86a28be86a74_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/loveset.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'sofa': '69"-91" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_72691092-7b93-4388-b830-602438650f67_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/sofa.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'sofa 4 seater': '92"-122" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/4_-2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/sofa-4.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'recliner': '24"-43" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/MilleRige_Reclainer_greyR_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'reclining loveseat': '55"-83" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2sitter-2-2_6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining-loveseat.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'reclining sofa': '63"-91" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/3sitter-2-2_6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining-sofa.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'ottoman': '20"-32" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/Mille_Rige_ottoman_grey_2_R_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/ottoman.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'pillow': '18"-18",https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_10_a7a3895e-265f-4ff4-bda8-128eceed6853_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/pillow.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'chaise lounge': '32”- 48” wide and 52"-70" length,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_9340375e-bcb0-4659-bda5-2b73ce6392ff_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/chaise-lounge.svg,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'bed': '32"-47" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/vestiletto-2-2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/,https://conversionratestore.github.io/projects/mammamiacovers/img/form/',
+    'futon': '59”- 83” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/futon.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/futon.svg',
+    'dining chair': '15”- 20” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/chair-2-_4_5aabd8eb-0f16-4305-b79c-14d48d09c4f6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/dinner-chair.svg',
+    'l-shaped left': '70”- 145” wide and 40"- 70",https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_bfea1820-43a2-4edf-9d29-dc24c0312adb_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/l-shaped-left.svg',
+    'l-shaped right': '70”- 145” wide and 40"- 70",https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_a41277c3-58ae-407b-b0fa-13bfa927845a_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/l-shaped-left.svg',
+    'corner': '135”- 208” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/corner.svg',
+}
+
 let linkCustom = document.createElement('link');
 linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
 linkCustom.rel = 'stylesheet';
@@ -436,32 +455,17 @@ document.querySelector('.product-single__content-text').insertAdjacentHTML('afte
     <p>Fits various loveseat shapes</p>
     <div class="from-fit_container"></div>
 </div>`);
-
+for (let key in obj) {
+    if (document.querySelectorAll('.product-single__swatch__sub-title')[1].innerText.toLowerCase() == key) {
+        document.querySelector('.measuring-guide_container').setAttribute('src',obj[key].split(',')[2])
+    }
+}
 document.querySelector('.btn-show-video').addEventListener('click', () => {
     document.querySelector('.popup-video').classList.add('active');
 });
 
-let obj = {
-    'armchair': '24"-43" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_11_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/armchair.svg',
-    'loveseat': '47"-67" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_bd9c282e-bf12-49a0-8211-86a28be86a74_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/loveset.svg',
-    'sofa': '69"-91" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_72691092-7b93-4388-b830-602438650f67_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/sofa.svg',
-    'sofa 4 seater': '92"-122" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/4_-2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/sofa-4.svg',
-    'recliner': '24"-43" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/MilleRige_Reclainer_greyR_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining.svg',
-    'reclining loveseat': '55"-83" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2sitter-2-2_6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining-loveseat.svg',
-    'reclining sofa': '63"-91" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/3sitter-2-2_6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/reclining-sofa.svg',
-    'ottoman': '20"-32" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/Mille_Rige_ottoman_grey_2_R_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/ottoman.svg',
-    'pillow': '18"-18",https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_10_a7a3895e-265f-4ff4-bda8-128eceed6853_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/pillow.svg',
-    'chaise lounge': '32"-48" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_9340375e-bcb0-4659-bda5-2b73ce6392ff_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/chaise-lounge.svg',
-    'bed': '32"-47" wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/vestiletto-2-2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/',
-    'futon': '59”- 83” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/futon.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/futon.svg',
-    'dining chair': '15”- 20” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/chair-2-_4_5aabd8eb-0f16-4305-b79c-14d48d09c4f6_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/dinner-chair.svg',
-    'l-shaped left': '70”- 145” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_2_bfea1820-43a2-4edf-9d29-dc24c0312adb_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/l-shaped-left.svg',
-    'l-shaped right': '70”- 145” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_a41277c3-58ae-407b-b0fa-13bfa927845a_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/l-shaped-left.svg',
-    'corner': '135”- 208” wide,https://conversionratestore.github.io/projects/mammamiacovers/img/types/2_3_1080x-removebg-preview.png,https://conversionratestore.github.io/projects/mammamiacovers/img/measuring/corner.svg',
-}
-
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.sizes-types .sizes__item img') && !document.querySelector('.swiper-button')) {
+    if (document.querySelector('.sizes-types .sizes__list') && document.querySelectorAll('.sizes-types .sizes__item img') && !document.querySelector('.swiper-button') && document.querySelectorAll('.sizes-types .sizes__item')) {
         mut.disconnect();
 
         document.querySelector('.sizes-types .sizes__list').insertAdjacentHTML('beforebegin',`
@@ -487,7 +491,7 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelectorAll('.sizes-types .sizes__item').forEach((el, i) => {
             el.insertAdjacentHTML('afterbegin',`<p class="sizes__text">${el.querySelector('.sizes__text').innerText}</p>`)
-
+            el.querySelector('.sizes__link--image img').setAttribute('class','');
             el.querySelector('.sizes__link--image').insertAdjacentHTML('afterend',`
                 <a href="${el.querySelector('.sizes__link--image').getAttribute('href')}" class="btn-view">View</a>
                 <p class="name">${el.querySelector('.sizes__link--image').getAttribute('title').split(',')[0]}</p>`)
@@ -499,29 +503,36 @@ let mut = new MutationObserver(function (muts) {
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>
                 <span class="sizes__text"><img src="https://conversionratestore.github.io/projects/mammamiacovers/img/check.svg" alt="icon"></span>`)
+
             for (let key in obj) {
                 if (el.querySelector('.sizes__text').innerText.toLowerCase() == key) {
                     el.querySelector('.wide').innerHTML = obj[key].split(',')[0]
                     el.querySelector('.sizes__link--image img').setAttribute('srcset',obj[key].split(',')[1])
                 }
-                if (document.querySelectorAll('.product-single__swatch__sub-title')[1].innerText.toLowerCase() == key) {
-                    document.querySelector('.measuring-guide_container').setAttribute('src',obj[key].split(',')[2])
-                }
             }
-            tnsInitialization()
+            if (i == (document.querySelectorAll('.sizes-types .sizes__item').length - 1)) {
+                tnsInitialization()
+            }
         })
-    }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-    if (document.querySelectorAll('.product-single__swatch__sub-title')) {
-        mut.disconnect();
-        for (let key in obj) {
-            if (document.querySelectorAll('.product-single__swatch__sub-title')[1].innerText.toLowerCase() == key) {
-                document.querySelector('.measuring-guide_container').setAttribute('src',obj[key].split(',')[2])
-            }
-        }
+
+        document.querySelectorAll('.swiper-button').forEach( el => {
+            el.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: PDP with additional info',
+                    'eventAction': 'Click carousel arrows'
+                });
+                for (let key in obj) {
+                    document.querySelectorAll('.sizes-types .sizes__item').forEach((item) => {
+                        if (item.querySelector('.sizes__text').innerText.toLowerCase() == key) {
+                            item.querySelector('.wide').innerHTML = obj[key].split(',')[0]
+                            item.querySelector('.sizes__link--image img').setAttribute('srcset', obj[key].split(',')[1])
+                        }
+                    })
+                }
+            })
+        })
     }
     mut.observe(document, {
         childList: true,
