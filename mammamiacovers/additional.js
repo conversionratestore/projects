@@ -407,31 +407,32 @@ window.onload  = function () {
             swipeAngle: false,
         });
     };
+    if (document.querySelector('.fluid-width-video-wrapper')) {
+        document.body.insertAdjacentHTML('beforeend', `
+        <div class="popup-video">
+            <div class="popup-video_container">
+                <button type="button" class="btn-close">Close <span class="icon-close"></span></button>
+            </div>
+        </div>`);
 
-    document.body.insertAdjacentHTML('beforeend', `
-    <div class="popup-video">
-        <div class="popup-video_container">
-            <button type="button" class="btn-close">Close <span class="icon-close"></span></button>
-        </div>
-    </div>`);
+        document.querySelector('.popup-video_container .btn-close').after(document.querySelector('.fluid-width-video-wrapper'));
 
-    document.querySelector('.popup-video_container .btn-close').after(document.querySelector('.fluid-width-video-wrapper'));
+        document.querySelector('.popup-video').addEventListener('click', () => {
+            document.querySelector('.popup-video').classList.remove('active');
+            let iframe = document.querySelector('.popup-video iframe');
+            iframe.src = iframe.src;
+        })
 
-    document.querySelector('.popup-video').addEventListener('click', () => {
-        document.querySelector('.popup-video').classList.remove('active');
-        let iframe = document.querySelector('.popup-video iframe');
-        iframe.src = iframe.src;
-    })
+        document.querySelector('.popup-video_container').addEventListener('click', (e) => {
+            e.stopPropagation()
+        })
 
-    document.querySelector('.popup-video_container').addEventListener('click', (e) => {
-        e.stopPropagation()
-    })
-
-    document.querySelector('.btn-close').addEventListener('click', () => {
-        document.querySelector('.popup-video').classList.remove('active');
-        let iframe = document.querySelector('.popup-video iframe');
-        iframe.src = iframe.src;
-    });
+        document.querySelector('.btn-close').addEventListener('click', () => {
+            document.querySelector('.popup-video').classList.remove('active');
+            let iframe = document.querySelector('.popup-video iframe');
+            iframe.src = iframe.src;
+        });
+    }
 
     let arrIcons = ['quality.svg', 'ships.svg', 'perfect-fit.svg', 'pet.svg', 'installation.svg', 'washable.svg', 'sanitized.png'];
 
@@ -439,9 +440,10 @@ window.onload  = function () {
         document.querySelectorAll('.product-description__container li strong')[i].setAttribute('style', `background-image: url(https://conversionratestore.github.io/projects/mammamiacovers/img/${arrIcons[i]})`)
     }
 
-    document.querySelector('.product-single__content-text').insertAdjacentHTML('afterend', `
-    <img class="img-free-returns" src="https://conversionratestore.github.io/projects/mammamiacovers/img/free-returns.svg" alt="30 days free returns if size doesn't match">
-    <button type="button" class="btn-show-video">Learn how it works <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/youtube.svg" width="18.2px" height="14px" alt="youtube"></button>`);
+    document.querySelector('.product-single__content-text').insertAdjacentHTML('afterend', `<img class="img-free-returns" src="https://conversionratestore.github.io/projects/mammamiacovers/img/free-returns.svg" alt="30 days free returns if size doesn't match">`);
+    if (document.querySelector('.fluid-width-video-wrapper')) {
+        document.querySelector('.img-free-returns').insertAdjacentHTML('afterend', `<button type="button" class="btn-show-video">Learn how it works <img src="https://conversionratestore.github.io/projects/mammamiacovers/img/youtube.svg" width="18.2px" height="14px" alt="youtube"></button>`);
+    }
     for (let key in obj) {
         if (document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1] && document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1].innerText.toLowerCase() == key || document.querySelectorAll('.product-single__title-text')[0].innerText.toLowerCase().split(' ')[0] == key) {
             document.querySelector('.img-free-returns').insertAdjacentHTML('beforebegin', `
@@ -455,7 +457,7 @@ window.onload  = function () {
                     </div>
                 </div>`);
             if (obj[key].split(',')[3]) {
-                document.querySelector('.btn-show-video').insertAdjacentHTML('afterend', `
+                document.querySelector('.product-single__content').insertAdjacentHTML('beforebegin', `
                  <div class="from-fit">
                     <h2>Form Fit</h2>
                     <p>${obj[key].split(',')[4]}</p>
