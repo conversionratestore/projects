@@ -435,5 +435,5 @@ window.onload = function () {
     function () {
       ;(hj.q = hj.q || []).push(arguments)
     }
-  hj("trigger", `hide_video_block_${eventVar}`)
+  hj("event", `hide_video_block_${eventVar}`)
 }
