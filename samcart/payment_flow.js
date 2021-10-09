@@ -420,5 +420,5 @@ window.onload = function () {
     function () {
       ;(hj.q = hj.q || []).push(arguments)
     }
-  hj("trigger", `payment_flow_update_${eventVar}`)
+  hj("event", `payment_flow_update_${eventVar}`)
 }
