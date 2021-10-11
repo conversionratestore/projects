@@ -267,24 +267,19 @@ let productsId = {
 let packPrice = ['14.99', '13.5', '12', '10.5'];
 let price = ['14.99', '27', '36', '42'];
 
-function setId(a) {
-    console.log(a);
+function setId(a) {    
     let main = a.closest('.prod');
-
-    let qty = main.querySelector('input').value - 1;
-    console.log(qty);
+    let qty = main.querySelector('input').value - 1;    
     let prod = (main.classList.contains('prod1')) ? 'prod1' : 'prod2';
+    
     main.setAttribute('data-id', productsId[prod][qty]);
     main.setAttribute('data-price', price[qty]);
 
     main.querySelector('.price span').innerHTML = packPrice[qty];
     if (prod === 'prod1') {
         main.closest('.bundles').querySelector('.total_sum span:first-child').innerHTML = price[qty];
-        console.log(qty);
-        console.log(price[qty]);
     } else {
         main.closest('.bundles').querySelector('.total_sum span:nth-child(2)').innerHTML = price[qty];
-        console.log(price[qty]);
     }
 }
 
