@@ -925,16 +925,18 @@ if (pathName.includes('comparison')) {
                     clearInterval(hrefInterval);
 
                     document.querySelectorAll('.product-item').forEach(item => {
-                        item.querySelector('.swatch-option').click();
-                        console.log('option');
+                        item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+                    <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
                     })
+                    
+                    
                 }
             }, 500)
-            
+
             let colorInterval = setInterval(() => {
                 if(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
                     clearInterval(colorInterval);
-                    
+
                     document.querySelectorAll('.product-item').forEach(item => {
                         item.querySelector('.swatch-option').click();
                         console.log('option');
