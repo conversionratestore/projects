@@ -147,6 +147,10 @@ let style = `
           border-radius: 100px;
           text-transform:uppercase;
         }
+        
+        #purchase {
+            padding-bottom: 0 !important;
+        }
       </style>  
     `;
 let patchLinks = [
@@ -205,8 +209,6 @@ window.onload = function () {
                 'eventAction': 'Click on Minus button',
                 'eventLabel': label
             });
-            
-            console.log(label);
 
             let val = +item.nextElementSibling.value;
             if (val > 1) {
