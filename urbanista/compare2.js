@@ -813,20 +813,21 @@ if (pathName.includes('comparison')) {
     let start = setInterval(() => {
         console.log('start');
 
+        console.log(document.querySelectorAll('.product-item')[15]);
         console.log(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option'));
-        if (document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
+        if (document.querySelectorAll('.product-item')[15]) {
             clearInterval(start);
 
             document.querySelectorAll('.product-item').forEach(item => {
                 if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
                     item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
-                }
-                if (item.querySelector('.swatch-option')) {
-                    item.querySelector('.swatch-option').click();
-                }
+                }                
                 if (item.querySelector('.product-item-info')) {
                     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                     <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
+                }
+                if (item.querySelector('.swatch-option')) {
+                    item.querySelector('.swatch-option').click();
                 }
             });
 
