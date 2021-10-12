@@ -928,8 +928,8 @@ if (pathName.includes('comparison')) {
                         item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
                     <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
                     })
-                    
-                    
+
+
                 }
             }, 500)
 
@@ -938,7 +938,7 @@ if (pathName.includes('comparison')) {
                     clearInterval(colorInterval);
 
                     document.querySelectorAll('.product-item').forEach(item => {
-                        item.querySelector('.swatch-option').click();
+                        item?.querySelector('.swatch-option').click();
                         console.log('option');
                     })
                 }
