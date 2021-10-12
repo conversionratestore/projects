@@ -812,12 +812,9 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         console.log('start');
- 
+
         console.log(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option'));
-        if (
-            
-            document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')
-        ) {
+        if (document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
             clearInterval(start);
 
             document.querySelectorAll('.product-item').forEach(item => {
@@ -862,44 +859,45 @@ if (pathName.includes('comparison')) {
                 //     if (document.querySelectorAll('.left.compare-col select option')[0]) {
                 //         clearInterval(selectInterval);
 
-                        if (window.localStorage.getItem('compareFromPDP') !== null) {
-                            let compareFromPDP = window.localStorage.getItem('compareFromPDP');
+                if (window.localStorage.getItem('compareFromPDP') !== null) {
+                    let compareFromPDP = window.localStorage.getItem('compareFromPDP');
 
-                            if (compareFromPDP === 'london') {
-                                document.querySelectorAll('.right.compare-col select option')[0].selected = true;
-                            }
-
-                            document.querySelectorAll('.left.compare-col select option').forEach(option => {
-                                if (option.value === compareFromPDP) {
-                                    option.selected = true;
-                                }
-                            });
-                        } else {
-                            document.querySelectorAll('.left.compare-col select option')[0].selected = true;
-                        }
-                    // }
-
-                    function removeDuplicateOption(optionValue, select) {
-                        document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
-                        document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
+                    if (compareFromPDP === 'london') {
+                        document.querySelectorAll('.right.compare-col select option')[0].selected = true;
                     }
 
-                    removeDuplicateOption(document.querySelector('.left.compare-col select').value, 'right');
-                    removeDuplicateOption(document.querySelector('.right.compare-col select').value, 'left');
-
-                    document.querySelector('.left.compare-col select').addEventListener('change', function () {
-                        if (this.value) {
-                            removeDuplicateOption(this.value, 'right');
+                    document.querySelectorAll('.left.compare-col select option').forEach(option => {
+                        if (option.value === compareFromPDP) {
+                            option.selected = true;
                         }
                     });
+                } else {
+                    document.querySelectorAll('.left.compare-col select option')[0].selected = true;
+                }
 
-                    document.querySelector('.right.compare-col select').addEventListener('change', function () {
-                        if (this.value) {
-                            removeDuplicateOption(this.value, 'left');
-                        }
-                    });
+                // }
 
-                    setCards(el, index);
+                function removeDuplicateOption(optionValue, select) {
+                    document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
+                    document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
+                }
+
+                removeDuplicateOption(document.querySelector('.left.compare-col select').value, 'right');
+                removeDuplicateOption(document.querySelector('.right.compare-col select').value, 'left');
+
+                document.querySelector('.left.compare-col select').addEventListener('change', function () {
+                    if (this.value) {
+                        removeDuplicateOption(this.value, 'right');
+                    }
+                });
+
+                document.querySelector('.right.compare-col select').addEventListener('change', function () {
+                    if (this.value) {
+                        removeDuplicateOption(this.value, 'left');
+                    }
+                });
+
+                setCards(el, index);
 
                 // }, 100);
                 el.addEventListener('change', () => {
@@ -911,8 +909,8 @@ if (pathName.includes('comparison')) {
             //     if (document.querySelector('.stock.available span')) {
             //         clearInterval(seoulInterval);
 
-                    document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
-                    document.querySelector('.stock.available span').innerText = localisationData?.coming;
+            document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
+            document.querySelector('.stock.available span').innerText = localisationData?.coming;
             //     }
             // });
         }
@@ -925,7 +923,7 @@ if (pathName.includes('comparison')) {
         'eventAction': 'Pageview comparison page'
     });
 
-    } else {
+} else {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
                 .btn-compare {
