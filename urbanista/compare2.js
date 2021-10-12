@@ -812,11 +812,10 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         console.log('start');
-        console.log(document.querySelectorAll('.product-item .product-item-name a')[15]);
-        console.log(document.querySelectorAll('.product-item .product-item-name a')[15].href);
+ 
         console.log(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option'));
         if (
-            document.querySelectorAll('.product-item .product-item-name a')[15]?.href &&
+            
             document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')
         ) {
             clearInterval(start);
