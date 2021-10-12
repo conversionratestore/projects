@@ -822,10 +822,10 @@ if (pathName.includes('comparison')) {
                 if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
                     item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
                 }
-                if (item.querySelector('.product-item-info')) {
-                    item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-                    <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
-                }
+                // if (item.querySelector('.product-item-info')) {
+                //     item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+                //     <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
+                // }
                 // if (item.querySelector('.swatch-option')) {
                 //     item.querySelector('.swatch-option').click();
                 // }
@@ -914,14 +914,32 @@ if (pathName.includes('comparison')) {
             document.querySelector('.stock.available span').innerText = localisationData?.coming;
             //     }
             // });
-            let colorInterval = setInterval(() => {
-                if(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
-                    clearInterval(colorInterval);
+
+            // if (item.querySelector('.product-item-info')) {
+            //         item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
+            //         <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
+            //     }
+
+            let hrefInterval = setInterval(() => {
+                if(document.querySelectorAll('.product-item')[15].querySelector('.product-item-name a').href) {
+                    clearInterval(hrefInterval);
+
                     document.querySelectorAll('.product-item').forEach(item => {
                         item.querySelector('.swatch-option').click();
                         console.log('option');
                     })
-                }                
+                }
+            }, 500)
+            
+            let colorInterval = setInterval(() => {
+                if(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
+                    clearInterval(colorInterval);
+                    
+                    document.querySelectorAll('.product-item').forEach(item => {
+                        item.querySelector('.swatch-option').click();
+                        console.log('option');
+                    })
+                }
             }, 500)
         }
     }, 100);
