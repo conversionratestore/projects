@@ -791,9 +791,9 @@ if (pathName.includes('comparison')) {
         }
 
         document.querySelectorAll('.one .specs-info').forEach((item, i) => {
-            // let interval = setInterval(() => {
-            //     if (document.querySelectorAll('.two .specs-info')[0]) {
-            //         clearInterval(interval);
+            let interval = setInterval(() => {
+                if (document.querySelectorAll('.two .specs-info')[0]) {
+                    clearInterval(interval);
 
                     document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
                     document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
@@ -805,13 +805,16 @@ if (pathName.includes('comparison')) {
                         document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
                         document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
                     }
-                // }
-            // }, 100);
+                }
+            }, 100);
         });
     }
 
     let start = setInterval(() => {
         console.log('start');
+        console.log(document.querySelectorAll('.product-item .product-item-name a')[15]);
+        console.log(document.querySelectorAll('.product-item .product-item-name a')[15].href);
+        console.log(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option'));
         if (
             document.querySelectorAll('.product-item .product-item-name a')[15]?.href &&
             document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')
