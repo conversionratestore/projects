@@ -969,6 +969,16 @@ if (pathName.includes('comparison')) {
 
     function addBtn(block, where) {
         document.querySelector(block).insertAdjacentHTML(where, `<a href="https://www.urbanista.com/${pathLocal}/comparison" class="btn-compare">${btnText}</a>`);
+
+        document.querySelector('.btn-compare').addEventListener('click', () => {
+            console.log('click');
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - Comparison option mobile',
+                'eventAction': 'Clicks on compare buttons'
+            });
+        });
     }
 
     if (pathName.includes('all-products')) {
@@ -1024,16 +1034,4 @@ window.hj = window.hj || function () {
 };
 hj('trigger', 'comaparison_option_mobile');
 
-let btnInterval = setInterval(function () {
-    if (document.querySelector('.btn-compare')) {
-        clearInterval(btnInterval);
-        document.querySelector('.btn-compare').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp - Comparison option mobile',
-                'eventAction': 'Clicks on compare buttons'
-            });
-        });
-    }
-}, 200);
+
