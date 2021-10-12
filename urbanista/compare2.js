@@ -941,7 +941,7 @@ if (pathName.includes('comparison')) {
                         if(item.querySelector('.swatch-option')) {
                             item.querySelector('.swatch-option').click();
                         }
-                        
+
                         console.log('option');
                     })
                 }
