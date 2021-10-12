@@ -38,7 +38,7 @@ let style = `
         }
         .bundles .products>div {
           width: 49%;
-          background-color: #fff;
+          background-color: #F9F8F6;
           border-radius: 5px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
           padding: 88px 5px 24px;
@@ -93,7 +93,7 @@ let style = `
         }
         
         span.minus {
-          border: 2px solid #626262;
+          border: 1px solid #D9D9D9;
           color: #FF3C7F;
           background-color: #fff;
         }
@@ -165,7 +165,7 @@ let bundles = `
           <h2>Frequently bought together</h2>
           <div class="products">
             <div class="prod1 prod" data-price="36.00" data-id="39307593187372">
-              <img src="https://conversionratestore.github.io/projects/buzzpatch/img/image74.png" alt="prod1">
+              <img src="https://conversionratestore.github.io/projects/buzzpatch/img/image74.svg" alt="prod1">
               <p class="title">Itch relief patches</p>
               <p class="descr">27 patches in 1 pack</p>
               <p class="price">$<span>12.00</span>/pack</p>
@@ -176,7 +176,7 @@ let bundles = `
               </div>
             </div>
             <div class="prod2 prod" data-price="36.00" data-id="39264142393388">
-              <img src="https://conversionratestore.github.io/projects/buzzpatch/img/image76.png" alt="prod2">
+              <img src="https://conversionratestore.github.io/projects/buzzpatch/img/image76.svg" alt="prod2">
               <p class="title">Mosquito repellent patches</p>
               <p class="descr">60 patches in 1 pack</p>
               <p class="price">$<span>12.00</span>/pack</p>
