@@ -938,7 +938,10 @@ if (pathName.includes('comparison')) {
                     clearInterval(colorInterval);
 
                     document.querySelectorAll('.product-item').forEach(item => {
-                        item?.querySelector('.swatch-option').click();
+                        if(item.querySelector('.swatch-option')) {
+                            item.querySelector('.swatch-option').click();
+                        }
+                        
                         console.log('option');
                     })
                 }
