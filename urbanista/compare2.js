@@ -914,11 +914,15 @@ if (pathName.includes('comparison')) {
             document.querySelector('.stock.available span').innerText = localisationData?.coming;
             //     }
             // });
-            document.querySelectorAll('.product-item').forEach(item => {
-                item.querySelector('.swatch-option').click();
-                console.log('option');
-            })
-
+            let colorInterval = setInterval(() => {
+                if(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
+                    clearInterval(colorInterval);
+                    document.querySelectorAll('.product-item').forEach(item => {
+                        item.querySelector('.swatch-option').click();
+                        console.log('option');
+                    })
+                }                
+            }, 500)
         }
     }, 100);
 
