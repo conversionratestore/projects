@@ -812,8 +812,8 @@ if (pathName.includes('comparison')) {
 
     let start = setInterval(() => {
         if (
-            document.querySelectorAll('.product-item .product-item-name a')[42]?.href &&
-            document.querySelectorAll('.product-item')[42].querySelector('.swatch-option')
+            document.querySelectorAll('.product-item .product-item-name a')[15]?.href &&
+            document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')
         ) {
             clearInterval(start);
 
@@ -922,7 +922,7 @@ if (pathName.includes('comparison')) {
         'eventAction': 'Pageview comparison page'
     });
 
-} else {
+    } else {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
                 .btn-compare {
@@ -990,7 +990,10 @@ if (pathName.includes('comparison')) {
                     window.localStorage.setItem('compareFromPDP', productName);
                 });
             }
+
         }, 100);
+
+
     }
 }
 window.dataLayer = window.dataLayer || [];
