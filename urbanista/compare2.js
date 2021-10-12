@@ -635,7 +635,7 @@ if (pathName.includes('comparison')) {
         </div>
     `);
         }
-    });
+    }, 100);
 
     function setCards(el, index) {
         let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
@@ -811,6 +811,7 @@ if (pathName.includes('comparison')) {
     }
 
     let start = setInterval(() => {
+        console.log('start');
         if (
             document.querySelectorAll('.product-item .product-item-name a')[15]?.href &&
             document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')
@@ -855,9 +856,9 @@ if (pathName.includes('comparison')) {
             });
 
             document.querySelectorAll('.compare-col select').forEach((el, index) => {
-                let selectInterval = setInterval(() => {
-                    if (document.querySelectorAll('.left.compare-col select option')[0]) {
-                        clearInterval(selectInterval);
+                // let selectInterval = setInterval(() => {
+                //     if (document.querySelectorAll('.left.compare-col select option')[0]) {
+                //         clearInterval(selectInterval);
 
                         if (window.localStorage.getItem('compareFromPDP') !== null) {
                             let compareFromPDP = window.localStorage.getItem('compareFromPDP');
@@ -874,7 +875,7 @@ if (pathName.includes('comparison')) {
                         } else {
                             document.querySelectorAll('.left.compare-col select option')[0].selected = true;
                         }
-                    }
+                    // }
 
                     function removeDuplicateOption(optionValue, select) {
                         document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
@@ -898,22 +899,22 @@ if (pathName.includes('comparison')) {
 
                     setCards(el, index);
 
-                }, 100);
+                // }, 100);
                 el.addEventListener('change', () => {
                     setCards(el, index);
                 });
             });
 
-            let seoulInterval = setInterval(() => {
-                if (document.querySelector('.stock.available span')) {
-                    clearInterval(seoulInterval);
+            // let seoulInterval = setInterval(() => {
+            //     if (document.querySelector('.stock.available span')) {
+            //         clearInterval(seoulInterval);
 
                     document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
                     document.querySelector('.stock.available span').innerText = localisationData?.coming;
-                }
-            });
+            //     }
+            // });
         }
-    }, 500);
+    }, 100);
 
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -992,8 +993,6 @@ if (pathName.includes('comparison')) {
             }
 
         }, 100);
-
-
     }
 }
 window.dataLayer = window.dataLayer || [];
