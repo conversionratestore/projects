@@ -197,14 +197,16 @@ window.onload = function () {
 
     document.querySelectorAll('.qty span.minus').forEach(item => {
         item.addEventListener('click', function () {
-            let label = (this.closest('.prod')) ? 'Section: Frequently bought together' : 'Popup PDP';
+            let label = (this.closest('.prod').querySelector('.title').innerText);
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP: Add bundle',
-                'eventAction': 'click on button Minus',
+                'eventCategory': 'Exp — PDP: Frequently Buy Together block',
+                'eventAction': 'Click on Minus button',
                 'eventLabel': label
             });
+            
+            console.log(label);
 
             let val = +item.nextElementSibling.value;
             if (val > 1) {
@@ -219,12 +221,12 @@ window.onload = function () {
 
     document.querySelectorAll('.qty span.plus').forEach(item => {
         item.addEventListener('click', function () {
-            let label = (this.closest('.prod')) ? 'Section: Frequently bought together' : 'Popup PDP';
+            let label = (this.closest('.prod').querySelector('.title').innerText);
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp — PDP: Add bundle',
-                'eventAction': 'click on button Plus',
+                'eventCategory': 'Exp — PDP: Frequently Buy Together block',
+                'eventAction': 'Click on Plus button',
                 'eventLabel': label
             });
 
@@ -243,14 +245,13 @@ window.onload = function () {
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
-            'eventCategory': 'Exp — PDP: Add bundle',
-            'eventAction': 'click on button Buy both',
-            'eventLabel': 'Section: Frequently bought together'
+            'eventCategory': 'Exp — PDP: Frequently Buy Together block',
+            'eventAction': 'Click on Buy Both button',
+            'eventLabel': 'Frequently Bought Together'
         });
 
         let id1 = document.querySelector('.prod1').getAttribute('data-id');
         let id2 = document.querySelector('.prod2').getAttribute('data-id');
-
 
         let item1 = document.querySelector('.prod1 .qty input').value;
         let item2 = document.querySelector('.prod2 .qty input').value;
@@ -267,11 +268,11 @@ let productsId = {
 let packPrice = ['14.99', '13.5', '12', '10.5'];
 let price = ['14.99', '27', '36', '42'];
 
-function setId(a) {    
+function setId(a) {
     let main = a.closest('.prod');
-    let qty = main.querySelector('input').value - 1;    
+    let qty = main.querySelector('input').value - 1;
     let prod = (main.classList.contains('prod1')) ? 'prod1' : 'prod2';
-    
+
     main.setAttribute('data-id', productsId[prod][qty]);
     main.setAttribute('data-price', price[qty]);
 
@@ -293,7 +294,7 @@ function totalSum() {
     h.hj = h.hj || function () {
         (h.hj.q = h.hj.q || []).push(arguments);
     };
-    h._hjSettings = {hjid: 1271698, hjsv: 6};
+    h._hjSettings = {hjid: 2247058, hjsv: 6};
     a = o.getElementsByTagName('head')[0];
     r = o.createElement('script');
     r.async = 1;
@@ -303,11 +304,11 @@ function totalSum() {
 window.hj = window.hj || function () {
     (hj.q = hj.q || []).push(arguments);
 };
-hj('trigger', 'pdp_add_bundle');
+hj('trigger', 'frequently_buy_together_block');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp — PDP: Add bundle',
+    'eventCategory': 'Exp — PDP: Frequently Buy Together block',
     'eventAction': 'loaded'
 });
