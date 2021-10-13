@@ -880,14 +880,14 @@
                     });
     
                     setCards(el, index);
-                    
+
                     el.addEventListener('change', () => {
                         setCards(el, index);
                     });
                 });
-    
-                document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
-                document.querySelector('.stock.available span').innerText = localisationData?.coming;
+
+                // document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
+                // document.querySelector('.stock.available span').innerText = localisationData?.coming;
 
                 let hrefInterval = setInterval(() => {
                     if(document.querySelectorAll('.product-item')[15].querySelector('.product-item-name a').href) {
