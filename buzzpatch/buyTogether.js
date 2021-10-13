@@ -53,6 +53,7 @@ let style = `
         .bundles .products>div .descr {
           font-size: 14px !important;
           margin-top: 10px;
+          color: #0C0B0B;
         }
         
         .bundles .products>div>img {
@@ -65,7 +66,8 @@ let style = `
         
         .bundles .title {
           font-size: 18px !important;
-          font-family: 'Din Condensed', Roboto, sans-serif;
+          font-family: 'DINEngschrift LT', Roboto, sans-serif;
+          color: #0C0B0B;
         }
         
         .bundles .price {
@@ -93,17 +95,38 @@ let style = `
         }
         
         span.minus {
+          position: relative;
           border: 1px solid #D9D9D9;
           color: #FF3C7F;
           background-color: #fff;
         }
         
+        span.minus::before {
+            content: url('https://conversionratestore.github.io/projects/buzzpatch/img/minus.svg');
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
         span.plus {
+          position: relative;
           color: #fff;
           background-color: #FF3C7F;
         }
         
+        span.minus::before {
+            content: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg');
+            position: absolute;
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
         .qty input {
+          color: #0C0B0B;
           border: none;
           font-size: 18px;
           font-weight: 500;
@@ -111,8 +134,8 @@ let style = `
           width: 20px;
           text-align: center;
           padding: 0;
-          background-color: #fff;
-          font-family: 'Roboto', sans-serif;
+          background-color: transparent;
+          font-family: 'DINEngschrift LT', 'Roboto', sans-serif;
         }  
         
         input::-webkit-outer-spin-button,
@@ -170,9 +193,9 @@ let bundles = `
               <p class="descr">27 patches in 1 pack</p>
               <p class="price">$<span>12.00</span>/pack</p>
               <div class="qty">
-                <span class="minus">-</span>
+                <span class="minus"></span>
                 <input type="number" value="3" max="4" min="1" readonly>
-                <span class="plus">+</span>
+                <span class="plus"></span>
               </div>
             </div>
             <div class="prod2 prod" data-price="36.00" data-id="39264142393388">
@@ -181,9 +204,9 @@ let bundles = `
               <p class="descr">60 patches in 1 pack</p>
               <p class="price">$<span>12.00</span>/pack</p>
               <div class="qty">
-                <span class="minus">-</span>
+                <span class="minus"></span>
                 <input type="number" value="3" max="4" min="1" readonly>
-                <span class="plus">+</span>
+                <span class="plus"></span>
               </div>
             </div>        
           </div>
