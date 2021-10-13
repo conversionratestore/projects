@@ -101,27 +101,33 @@ let style = `
           background-color: #fff;
         }
         
-        span.minus::before {
-            content: url('https://conversionratestore.github.io/projects/buzzpatch/img/minus.svg');
-            position: absolute;
-            display: block;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        span.plus {
+         span.plus {
           position: relative;
           color: #fff;
           background-color: #FF3C7F;
         }
         
-        span.plus::before {
-            content: '';
-            background: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg') center center no-repeat;
-            position: absolute;
+        span.minus::before,
+         span.plus::before{
+            content: '';            
+            position: absolute;           
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 18px;
+            height: 18px;
+            transform: translate(-50%, -50%);
+            background-size: contain;
         }
         
+        span.minus::before {
+            background: url('https://conversionratestore.github.io/projects/buzzpatch/img/minus.svg') center center no-repeat;
+        }
+        
+        span.plus::before {
+            background: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg') center center no-repeat;
+        }     
+
         .qty input {
           color: #0C0B0B;
           border: none;
