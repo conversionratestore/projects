@@ -116,13 +116,10 @@ let style = `
           background-color: #FF3C7F;
         }
         
-        span.minus::before {
-            content: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg');
+        span.plus::before {
+            content: '';
+            background: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg') center center no-repeat;
             position: absolute;
-            display: block;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
         
         .qty input {
