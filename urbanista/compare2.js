@@ -1,9 +1,12 @@
-    let pathLocal = window.location.pathname.split('/')[1];
-    let pathName = window.location.pathname;
-    
-    if (pathName.includes('comparison')) {
-        document.body.insertAdjacentHTML('afterbegin', `
+let pathLocal = window.location.pathname.split('/')[1]
+let pathName = window.location.pathname
+
+if (pathName.includes('comparison')) {
+	document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .actions-primary {
+                text-align: center;
+            }
             .block.widget.block-products-list {
                 background-color: #fff;
             }
@@ -206,365 +209,365 @@
                 align-content: space-between;
             }        
         </style>
-        `);
-    
-        const localisation = {
-            'eu': {
-                'compare': 'Compare headphones models',
-                'allModels': 'See all models >',
-                'buy': 'Buy',
-                'summary': 'Summary',
-                'learnMore': 'Learn more >',
-                'bluetooth': 'Bluetooth version',
-                'chargingTime': 'Charging time',
-                'playtime': 'Total playtime',
-                'standby': 'Standby Time',
-                'battery': 'Battery (in mAh)',
-                'workingRange': 'Working Range',
-                'mic': 'Mic Distance',
-                'frequency': 'Frequency Range',
-                'power': 'RF Output Power',
-                'impedance': 'Impedance',
-                'sensibility': 'Sensibility',
-                'snr': 'SNR',
-                'codec': 'Audio Codec',
-                'earbud': 'earbud',
-                'case': 'charging case',
-                'hour': 'h',
-                'coming': 'Coming soon'
-            },
-            'uk': {
-                'compare': 'Compare headphones models',
-                'allModels': 'See all models >',
-                'buy': 'Buy',
-                'summary': 'Summary',
-                'learnMore': 'Learn more >',
-                'bluetooth': 'Bluetooth version',
-                'chargingTime': 'Charging time',
-                'playtime': 'Total playtime',
-                'standby': 'Standby Time',
-                'battery': 'Battery (in mAh)',
-                'workingRange': 'Working Range',
-                'mic': 'Mic Distance',
-                'frequency': 'Frequency Range',
-                'power': 'RF Output Power',
-                'impedance': 'Impedance',
-                'sensibility': 'Sensibility',
-                'snr': 'SNR',
-                'codec': 'Audio Codec',
-                'earbud': 'earbud',
-                'case': 'charging case',
-                'hour': 'h',
-                'coming': 'Coming soon'
-            },
-            'au': {
-                'compare': 'Compare headphones models',
-                'allModels': 'See all models >',
-                'buy': 'Buy',
-                'summary': 'Summary',
-                'learnMore': 'Learn more >',
-                'bluetooth': 'Bluetooth version',
-                'chargingTime': 'Charging time',
-                'playtime': 'Total playtime',
-                'standby': 'Standby Time',
-                'battery': 'Battery (in mAh)',
-                'workingRange': 'Working Range',
-                'mic': 'Mic Distance',
-                'frequency': 'Frequency Range',
-                'power': 'RF Output Power',
-                'impedance': 'Impedance',
-                'sensibility': 'Sensibility',
-                'snr': 'SNR',
-                'codec': 'Audio Codec',
-                'earbud': 'earbud',
-                'case': 'charging case',
-                'hour': 'h',
-                'coming': 'Coming soon'
-            },
-            'de': {
-                'compare': 'Kopfhörermodelle vergleichen',
-                'allModels': 'Alle Modelle ansehen >',
-                'buy': 'Kaufen',
-                'summary': 'Zusammenfassung',
-                'learnMore': 'Mehr erfahren >',
-                'bluetooth': 'Treiberleistung',
-                'chargingTime': 'Std Ladezeit',
-                'playtime': 'Spielzeit',
-                'standby': 'Standby-Zeit',
-                'battery': 'Akku (mAh)',
-                'workingRange': 'Arbeitsbereich',
-                'mic': 'Mikrofonabstand',
-                'frequency': 'Frequenzbereich',
-                'power': 'HF-Ausgangsleistung',
-                'impedance': 'Impedanz',
-                'sensibility': 'Sensibilität',
-                'snr': 'SNR',
-                'codec': 'Audio-Codec',
-                'earbud': 'ohrhörer',
-                'case': 'Ladekoffer',
-                'hour': ' Stunden',
-                'coming': 'Kommt bald'
-            },
-            'se': {
-                'compare': 'Jämför hörlurar',
-                'allModels': 'Se alla modeller >',
-                'buy': 'Köpa',
-                'summary': 'Sammanfattning',
-                'learnMore': 'Läs mer >',
-                'bluetooth': 'Bluetooth -version',
-                'chargingTime': 'Laddningstid',
-                'playtime': 'Speltid',
-                'standby': 'Standby-tid',
-                'battery': 'Batteri (mAh)',
-                'workingRange': 'Arbetsområde',
-                'mic': 'Distans mikrofon',
-                'frequency': 'Frekvensomfång',
-                'power': 'RF -utgångseffekt',
-                'impedance': 'Impedans',
-                'sensibility': 'Känslighet',
-                'snr': 'SNR',
-                'codec': 'Audio Codec',
-                'earbud': 'hörlurar',
-                'case': 'laddningsfodral',
-                'hour': ' timmar',
-                'coming': 'Kommer snart'
-            },
-        };
-    
-        let localisationData = localisation[pathLocal];
-    
-        if (!localisationData) {
-            localisationData = localisation['eu'];
-        }
-    
-        let productSpecs = {
-            'london': {
-                'bluetooth': '5.0',
-                'chargingTime': '1.5',
-                'playtime': '25',
-                'standby': '120',
-                'earbuds': '45mAh',
-                'chargingCase': '400mAh',
-                'workingRange': '10m +',
-                'micDistance': '0.5m',
-                'frequency': '20Hz - 20KHz',
-                'power': '9.00dBm',
-                'impedance': '16Ω ± 15%',
-                'sensibility': '107+/- 3dB at 1kHz',
-                'snr': '91dB',
-                'codec': 'HSP, HFP,<br>A2DP, AVRCP',
-            },
-            'miami': {
-                'bluetooth': '5.0',
-                'chargingTime': '—',
-                'playtime': '50',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '0.5m',
-                'frequency': '20Hz - 20KHz',
-                'power': '9.00dBm',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '107+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-            'miami-crystal-edition': {
-                'bluetooth': '5.0',
-                'chargingTime': '—',
-                'playtime': '50',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '0.5m',
-                'frequency': '20Hz - 20KHz',
-                'power': '',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '107+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-            'los-angeles': {
-                'bluetooth': '5.0',
-                'chargingTime': '—',
-                'playtime': '—',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '10m +',
-                'micDistance': '—',
-                'frequency': '20Hz - 20KHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '107+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': 'SBC, AAC',
-            },
-            'lisbon': {
-                'bluetooth': '5.2',
-                'chargingTime': '—',
-                'playtime': '27',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '10m +',
-                'micDistance': '—',
-                'frequency': '20Hz - 20KHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': 'SBC, AAC',
-            },
-            'seoul': {
-                'bluetooth': '5.2',
-                'chargingTime': '—',
-                'playtime': '32',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '10m +',
-                'micDistance': '—',
-                'frequency': '20Hz - 20KHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': 'SBC, AAC',
-            },
-            'paris': {
-                'bluetooth': '5.0',
-                'chargingTime': '1.5',
-                'playtime': '20',
-                'standby': '110',
-                'earbuds': '30mAh',
-                'chargingCase': '300mAh',
-                'workingRange': '> 10m',
-                'micDistance': '0.5m',
-                'frequency': '20Hz - 20KHz',
-                'power': '-6dB ± 4dB',
-                'impedance': '16Ω ± 15%',
-                'sensibility': '103dB+/- 3dB at 1kHz',
-                'snr': '98.3dB',
-                'codec': 'SBC, AAC,<br>APTX',
-            },
-            'stockholm-plus': {
-                'bluetooth': '5.0',
-                'chargingTime': '1.5',
-                'playtime': '20',
-                'standby': '60',
-                'earbuds': '30mAh',
-                'chargingCase': '500mAh',
-                'workingRange': '10m',
-                'micDistance': '0.5m',
-                'frequency': '20Hz - 20KHz',
-                'power': '8.00dBm',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '107dB+/- 3dB at 1kHz',
-                'snr': '91dB',
-                'codec': 'HSP, HFP,<br>A2DP, AVRCP',
-            },
-            'boston': {
-                'bluetooth': '5.0',
-                'chargingTime': '—',
-                'playtime': '6',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '—',
-                'frequency': '20Hz - 20KHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '107dB+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-            'athens': {
-                'bluetooth': '5.0',
-                'chargingTime': '1',
-                'playtime': '32',
-                'standby': '400',
-                'earbuds': '50mAh',
-                'chargingCase': '—',
-                'workingRange': '10m +',
-                'micDistance': '20cm',
-                'frequency': '20Hz - 20KHz',
-                'power': '7.70dBm',
-                'impedance': '16Ω ± 15%',
-                'sensibility': '+/- 3dB at 1kHz',
-                'snr': '80.891dB',
-                'codec': 'HSP, HFP, A2DP, AVRCP, APTX',
-            },
-            'new-york': {
-                'bluetooth': '4.1',
-                'chargingTime': '<2.5',
-                'playtime': '',
-                'standby': '700',
-                'earbuds': '50mAh',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '—',
-                'frequency': '2.4GHz-2.48GHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '94dB+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-            'san-francisco': {
-                'bluetooth': '—',
-                'chargingTime': '—',
-                'playtime': '—',
-                'standby': '—',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '—',
-                'frequency': '20Hz - 20KHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '—',
-                'snr': '—',
-                'codec': '—',
-            },
-            'madrid': {
-                'bluetooth': '4.0',
-                'chargingTime': '1,5',
-                'playtime': '4',
-                'standby': '100h',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '—',
-                'frequency': '2.4GHz-2.48GHz',
-                'power': '—',
-                'impedance': '16Ω ± 15%',
-                'sensibility': '102dB+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-            'berlin': {
-                'bluetooth': '4.0',
-                'chargingTime': '1,5',
-                'playtime': '4',
-                'standby': '100h',
-                'earbuds': '—',
-                'chargingCase': '—',
-                'workingRange': '—',
-                'micDistance': '—',
-                'frequency': '2.4GHz-2.48GHz',
-                'power': '—',
-                'impedance': '32Ω ± 15%',
-                'sensibility': '103dB+/- 3dB at 1kHz',
-                'snr': '—',
-                'codec': '—',
-            },
-        };
-    
-        let selectOne = `
+        `)
+
+	const localisation = {
+		'eu': {
+			'compare': 'Compare headphones models',
+			'allModels': 'See all models >',
+			'buy': 'Buy',
+			'summary': 'Summary',
+			'learnMore': 'Learn more >',
+			'bluetooth': 'Bluetooth version',
+			'chargingTime': 'Charging time',
+			'playtime': 'Total playtime',
+			'standby': 'Standby Time',
+			'battery': 'Battery (in mAh)',
+			'workingRange': 'Working Range',
+			'mic': 'Mic Distance',
+			'frequency': 'Frequency Range',
+			'power': 'RF Output Power',
+			'impedance': 'Impedance',
+			'sensibility': 'Sensibility',
+			'snr': 'SNR',
+			'codec': 'Audio Codec',
+			'earbud': 'earbud',
+			'case': 'charging case',
+			'hour': 'h',
+			'coming': 'Coming soon',
+		},
+		'uk': {
+			'compare': 'Compare headphones models',
+			'allModels': 'See all models >',
+			'buy': 'Buy',
+			'summary': 'Summary',
+			'learnMore': 'Learn more >',
+			'bluetooth': 'Bluetooth version',
+			'chargingTime': 'Charging time',
+			'playtime': 'Total playtime',
+			'standby': 'Standby Time',
+			'battery': 'Battery (in mAh)',
+			'workingRange': 'Working Range',
+			'mic': 'Mic Distance',
+			'frequency': 'Frequency Range',
+			'power': 'RF Output Power',
+			'impedance': 'Impedance',
+			'sensibility': 'Sensibility',
+			'snr': 'SNR',
+			'codec': 'Audio Codec',
+			'earbud': 'earbud',
+			'case': 'charging case',
+			'hour': 'h',
+			'coming': 'Coming soon',
+		},
+		'au': {
+			'compare': 'Compare headphones models',
+			'allModels': 'See all models >',
+			'buy': 'Buy',
+			'summary': 'Summary',
+			'learnMore': 'Learn more >',
+			'bluetooth': 'Bluetooth version',
+			'chargingTime': 'Charging time',
+			'playtime': 'Total playtime',
+			'standby': 'Standby Time',
+			'battery': 'Battery (in mAh)',
+			'workingRange': 'Working Range',
+			'mic': 'Mic Distance',
+			'frequency': 'Frequency Range',
+			'power': 'RF Output Power',
+			'impedance': 'Impedance',
+			'sensibility': 'Sensibility',
+			'snr': 'SNR',
+			'codec': 'Audio Codec',
+			'earbud': 'earbud',
+			'case': 'charging case',
+			'hour': 'h',
+			'coming': 'Coming soon',
+		},
+		'de': {
+			'compare': 'Kopfhörermodelle vergleichen',
+			'allModels': 'Alle Modelle ansehen >',
+			'buy': 'Kaufen',
+			'summary': 'Zusammenfassung',
+			'learnMore': 'Mehr erfahren >',
+			'bluetooth': 'Treiberleistung',
+			'chargingTime': 'Std Ladezeit',
+			'playtime': 'Spielzeit',
+			'standby': 'Standby-Zeit',
+			'battery': 'Akku (mAh)',
+			'workingRange': 'Arbeitsbereich',
+			'mic': 'Mikrofonabstand',
+			'frequency': 'Frequenzbereich',
+			'power': 'HF-Ausgangsleistung',
+			'impedance': 'Impedanz',
+			'sensibility': 'Sensibilität',
+			'snr': 'SNR',
+			'codec': 'Audio-Codec',
+			'earbud': 'ohrhörer',
+			'case': 'Ladekoffer',
+			'hour': ' Stunden',
+			'coming': 'Kommt bald',
+		},
+		'se': {
+			'compare': 'Jämför hörlurar',
+			'allModels': 'Se alla modeller >',
+			'buy': 'Köpa',
+			'summary': 'Sammanfattning',
+			'learnMore': 'Läs mer >',
+			'bluetooth': 'Bluetooth -version',
+			'chargingTime': 'Laddningstid',
+			'playtime': 'Speltid',
+			'standby': 'Standby-tid',
+			'battery': 'Batteri (mAh)',
+			'workingRange': 'Arbetsområde',
+			'mic': 'Distans mikrofon',
+			'frequency': 'Frekvensomfång',
+			'power': 'RF -utgångseffekt',
+			'impedance': 'Impedans',
+			'sensibility': 'Känslighet',
+			'snr': 'SNR',
+			'codec': 'Audio Codec',
+			'earbud': 'hörlurar',
+			'case': 'laddningsfodral',
+			'hour': ' timmar',
+			'coming': 'Kommer snart',
+		},
+	}
+
+	let localisationData = localisation[pathLocal]
+
+	if (!localisationData) {
+		localisationData = localisation['eu']
+	}
+
+	let productSpecs = {
+		'london': {
+			'bluetooth': '5.0',
+			'chargingTime': '1.5',
+			'playtime': '25',
+			'standby': '120',
+			'earbuds': '45mAh',
+			'chargingCase': '400mAh',
+			'workingRange': '10m +',
+			'micDistance': '0.5m',
+			'frequency': '20Hz - 20KHz',
+			'power': '9.00dBm',
+			'impedance': '16Ω ± 15%',
+			'sensibility': '107+/- 3dB at 1kHz',
+			'snr': '91dB',
+			'codec': 'HSP, HFP,<br>A2DP, AVRCP',
+		},
+		'miami': {
+			'bluetooth': '5.0',
+			'chargingTime': '—',
+			'playtime': '50',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '0.5m',
+			'frequency': '20Hz - 20KHz',
+			'power': '9.00dBm',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '107+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+		'miami-crystal-edition': {
+			'bluetooth': '5.0',
+			'chargingTime': '—',
+			'playtime': '50',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '0.5m',
+			'frequency': '20Hz - 20KHz',
+			'power': '',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '107+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+		'los-angeles': {
+			'bluetooth': '5.0',
+			'chargingTime': '—',
+			'playtime': '—',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '10m +',
+			'micDistance': '—',
+			'frequency': '20Hz - 20KHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '107+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': 'SBC, AAC',
+		},
+		'lisbon': {
+			'bluetooth': '5.2',
+			'chargingTime': '—',
+			'playtime': '27',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '10m +',
+			'micDistance': '—',
+			'frequency': '20Hz - 20KHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': 'SBC, AAC',
+		},
+		'seoul': {
+			'bluetooth': '5.2',
+			'chargingTime': '—',
+			'playtime': '32',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '10m +',
+			'micDistance': '—',
+			'frequency': '20Hz - 20KHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': 'SBC, AAC',
+		},
+		'paris': {
+			'bluetooth': '5.0',
+			'chargingTime': '1.5',
+			'playtime': '20',
+			'standby': '110',
+			'earbuds': '30mAh',
+			'chargingCase': '300mAh',
+			'workingRange': '> 10m',
+			'micDistance': '0.5m',
+			'frequency': '20Hz - 20KHz',
+			'power': '-6dB ± 4dB',
+			'impedance': '16Ω ± 15%',
+			'sensibility': '103dB+/- 3dB at 1kHz',
+			'snr': '98.3dB',
+			'codec': 'SBC, AAC,<br>APTX',
+		},
+		'stockholm-plus': {
+			'bluetooth': '5.0',
+			'chargingTime': '1.5',
+			'playtime': '20',
+			'standby': '60',
+			'earbuds': '30mAh',
+			'chargingCase': '500mAh',
+			'workingRange': '10m',
+			'micDistance': '0.5m',
+			'frequency': '20Hz - 20KHz',
+			'power': '8.00dBm',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '107dB+/- 3dB at 1kHz',
+			'snr': '91dB',
+			'codec': 'HSP, HFP,<br>A2DP, AVRCP',
+		},
+		'boston': {
+			'bluetooth': '5.0',
+			'chargingTime': '—',
+			'playtime': '6',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '—',
+			'frequency': '20Hz - 20KHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '107dB+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+		'athens': {
+			'bluetooth': '5.0',
+			'chargingTime': '1',
+			'playtime': '32',
+			'standby': '400',
+			'earbuds': '50mAh',
+			'chargingCase': '—',
+			'workingRange': '10m +',
+			'micDistance': '20cm',
+			'frequency': '20Hz - 20KHz',
+			'power': '7.70dBm',
+			'impedance': '16Ω ± 15%',
+			'sensibility': '+/- 3dB at 1kHz',
+			'snr': '80.891dB',
+			'codec': 'HSP, HFP, A2DP, AVRCP, APTX',
+		},
+		'new-york': {
+			'bluetooth': '4.1',
+			'chargingTime': '<2.5',
+			'playtime': '',
+			'standby': '700',
+			'earbuds': '50mAh',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '—',
+			'frequency': '2.4GHz-2.48GHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '94dB+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+		'san-francisco': {
+			'bluetooth': '—',
+			'chargingTime': '—',
+			'playtime': '—',
+			'standby': '—',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '—',
+			'frequency': '20Hz - 20KHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '—',
+			'snr': '—',
+			'codec': '—',
+		},
+		'madrid': {
+			'bluetooth': '4.0',
+			'chargingTime': '1,5',
+			'playtime': '4',
+			'standby': '100h',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '—',
+			'frequency': '2.4GHz-2.48GHz',
+			'power': '—',
+			'impedance': '16Ω ± 15%',
+			'sensibility': '102dB+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+		'berlin': {
+			'bluetooth': '4.0',
+			'chargingTime': '1,5',
+			'playtime': '4',
+			'standby': '100h',
+			'earbuds': '—',
+			'chargingCase': '—',
+			'workingRange': '—',
+			'micDistance': '—',
+			'frequency': '2.4GHz-2.48GHz',
+			'power': '—',
+			'impedance': '32Ω ± 15%',
+			'sensibility': '103dB+/- 3dB at 1kHz',
+			'snr': '—',
+			'codec': '—',
+		},
+	}
+
+	let selectOne = `
     <div class="select">
         <select>
             <option value="stockholm-plus">Stockholm Plus</option>
@@ -582,9 +585,9 @@
             <option value="san-francisco">San Francisco</option>
             <option value="madrid">Madrid</option>        
         </select>
-    </div>`;
-    
-        let selectTwo = `
+    </div>`
+
+	let selectTwo = `
     <div class="select">
         <select>
             <option value="stockholm-plus">Stockholm Plus</option>
@@ -602,14 +605,14 @@
             <option value="san-francisco">San Francisco</option>
             <option value="madrid">Madrid</option>        
         </select>
-    </div>`;
-    
-        let page = `
+    </div>`
+
+	let page = `
     <div class="compare-wrapper">
         <h2 class="page-title">${localisationData?.compare}</h2>
         <a href=${pathLocal === 'se'
-            ? `https://www.urbanista.com/${pathLocal}/alla-produkter`
-            : `https://www.urbanista.com/${pathLocal}/all-products`} class="see-more">${localisationData?.allModels}</a>
+		? `https://www.urbanista.com/${pathLocal}/alla-produkter`
+		: `https://www.urbanista.com/${pathLocal}/all-products`} class="see-more">${localisationData?.allModels}</a>
         <div class="compare-row">
             <div class="left compare-col">
                 ${selectOne}           
@@ -618,64 +621,64 @@
                 ${selectTwo}           
             </div>
         </div>    
-    </div>`;
-    
-        let templateInterval = setInterval(() => {
-            if (document.querySelector('.products-grid')) {
-                clearInterval(templateInterval);
-    
-                let defaultTemplate = document.querySelector('.products-grid');
-    
-                defaultTemplate.insertAdjacentHTML('beforebegin', page);
-                defaultTemplate.insertAdjacentHTML('afterend', `
+    </div>`
+
+	let templateInterval = setInterval(() => {
+		if (document.querySelector('.products-grid')) {
+			clearInterval(templateInterval)
+
+			let defaultTemplate = document.querySelector('.products-grid')
+
+			defaultTemplate.insertAdjacentHTML('beforebegin',page)
+			defaultTemplate.insertAdjacentHTML('afterend',`
             <h2 class="page-title" style="margin-top: 35px">${localisationData?.summary}</h2> 
             <div class="summary">             
                 <div class="one"></div>
                 <div class="two"></div>        
             </div>
-        `);
-            }
-        }, 100);
-    
-        function setCards(el, index) {
-            let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase();
-            let optionSelectedValue = el.options[el.selectedIndex].value;
-    
-            document.querySelectorAll('.product-item-name [title]').forEach((el) => {
-                if (el.getAttribute('title').toLowerCase() === optionSelectedText && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
-                    document.querySelectorAll(`.active-${index}`).forEach((el) => {
-                        el.classList.remove(`active-${index}`);
-                    });
-                    el.closest('.product-item').classList.add(`active-${index}`);
-                }
-            });
-    
-            let productData = productSpecs[optionSelectedValue];
-    
-            let chargingTimeFull;
-            let playtimeFull;
-            let standbyFull;
-    
-            chargingTimeFull = productData?.chargingTime === '—' ? productData?.chargingTime : productData?.chargingTime + localisationData?.hour;
-            playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour;
-            standbyFull = productData?.standby === '—' ? productData?.standby : productData?.standby + localisationData?.hour;
-    
-            if (optionSelectedValue === 'new-york') {
-                switch (pathLocal) {
-                    case 'de':
-                        playtimeFull = '16 timmar med ANC, 25 timmar utan ANC';
-                        break;
-                    case 'se':
-                        playtimeFull = '16 Stunden mit ANC, 25 Stunden ohne ANC';
-                        break;
-                    default:
-                        playtimeFull = '16h with ANC, 25h without ANC';
-                        break;
-                }
-            }
-    
-            if (index === 0) {
-                document.querySelector('.summary .one').innerHTML = `
+        `)
+		}
+	},100)
+
+	function setCards(el,index) {
+		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
+		let optionSelectedValue = el.options[el.selectedIndex].value
+
+		document.querySelectorAll('.product-item-name [title]').forEach((el) => {
+			if (el.getAttribute('title').toLowerCase() === optionSelectedText && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
+				document.querySelectorAll(`.active-${index}`).forEach((el) => {
+					el.classList.remove(`active-${index}`)
+				})
+				el.closest('.product-item').classList.add(`active-${index}`)
+			}
+		})
+
+		let productData = productSpecs[optionSelectedValue]
+
+		let chargingTimeFull
+		let playtimeFull
+		let standbyFull
+
+		chargingTimeFull = productData?.chargingTime === '—' ? productData?.chargingTime : productData?.chargingTime + localisationData?.hour
+		playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour
+		standbyFull = productData?.standby === '—' ? productData?.standby : productData?.standby + localisationData?.hour
+
+		if (optionSelectedValue === 'new-york') {
+			switch (pathLocal) {
+				case 'de':
+					playtimeFull = '16 timmar med ANC, 25 timmar utan ANC'
+					break
+				case 'se':
+					playtimeFull = '16 Stunden mit ANC, 25 Stunden ohne ANC'
+					break
+				default:
+					playtimeFull = '16h with ANC, 25h without ANC'
+					break
+			}
+		}
+
+		if (index === 0) {
+			document.querySelector('.summary .one').innerHTML = `
                     <div class="spec-wrapper">
                         <p class="specs-title">${localisationData.bluetooth}</p>
                         <p class="specs-info">${productData.bluetooth}</p>
@@ -743,9 +746,9 @@
                         <p class="specs-info">${productData.codec}</p>
                         <img src="https://conversionratestore.github.io/projects/urbanista/images/code.svg" alt="frequency">
                     </div>
-                `;
-            } else {
-                document.querySelector('.summary .two').innerHTML = `
+                `
+		} else {
+			document.querySelector('.summary .two').innerHTML = `
                     <div class="spec-wrapper">                
                         <p class="specs-info">${productData.bluetooth}</p>                
                     </div>
@@ -787,144 +790,147 @@
                     <div class="spec-wrapper">                   
                         <p class="specs-info">${productData.codec}</p>                   
                     </div>
-                `;
-            }
-    
-            document.querySelectorAll('.one .specs-info').forEach((item, i) => {
-                let interval = setInterval(() => {
-                    if (document.querySelectorAll('.two .specs-info')[0]) {
-                        clearInterval(interval);
-    
-                        document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
-                        document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'flex';
-    
-                        if (
-                            document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
-                            document.querySelectorAll('.two .specs-info')[i].innerText === '—'
-                        ) {
-                            document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
-                            document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none';
-                        }
-                    }
-                }, 100);
-            });
-        }
-    
-        let start = setInterval(() => {
-            if (document.querySelectorAll('.product-item')[15]) {
-                clearInterval(start);
-    
-                document.querySelectorAll('.product-item').forEach(item => {
-                    if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
-                        item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'));
-                    }
-                });
-    
-                document.querySelectorAll('.product-item-actions button').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp - Comparison option mobile',
-                            'eventAction': 'Click on BUY'
-                        });
-                    });
-                });
-    
-                document.querySelectorAll('.product-item .see-more').forEach(link => {
-                    link.addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp - Comparison option mobile',
-                            'eventAction': 'Clicks on learn more'
-                        });
-                    });
-                });
-    
-                document.querySelectorAll('.compare-col select').forEach((el, index) => {
-                    if (window.localStorage.getItem('compareFromPDP') !== null) {
-                        let compareFromPDP = window.localStorage.getItem('compareFromPDP');
-    
-                        if (compareFromPDP === 'london') {
-                            document.querySelectorAll('.right.compare-col select option')[0].selected = true;
-                        }
-    
-                        document.querySelectorAll('.left.compare-col select option').forEach(option => {
-                            if (option.value === compareFromPDP) {
-                                option.selected = true;
-                            }
-                        });
-                    } else {
-                        document.querySelectorAll('.left.compare-col select option')[0].selected = true;
-                    }
-    
-                    function removeDuplicateOption(optionValue, select) {
-                        document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block');
-                        document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none';
-                    }
-    
-                    removeDuplicateOption(document.querySelector('.left.compare-col select').value, 'right');
-                    removeDuplicateOption(document.querySelector('.right.compare-col select').value, 'left');
-    
-                    document.querySelector('.left.compare-col select').addEventListener('change', function () {
-                        if (this.value) {
-                            removeDuplicateOption(this.value, 'right');
-                        }
-                    });
-    
-                    document.querySelector('.right.compare-col select').addEventListener('change', function () {
-                        if (this.value) {
-                            removeDuplicateOption(this.value, 'left');
-                        }
-                    });
-    
-                    setCards(el, index);
+                `
+		}
 
-                    el.addEventListener('change', () => {
-                        setCards(el, index);
-                    });
-                });
+		document.querySelectorAll('.one .specs-info').forEach((item,i) => {
+			let interval = setInterval(() => {
+				if (document.querySelectorAll('.two .specs-info')[0]) {
+					clearInterval(interval)
 
-                // document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
-                // document.querySelector('.stock.available span').innerText = localisationData?.coming;
+					document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'flex'
+					document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'flex'
 
-                let hrefInterval = setInterval(() => {
-                    if(document.querySelectorAll('.product-item')[15].querySelector('.product-item-name a').href) {
-                        clearInterval(hrefInterval);
-    
-                        document.querySelectorAll('.product-item').forEach(item => {
-                            item.querySelector('.product-item-info').insertAdjacentHTML('beforeend', `
-                        <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`);
-                        })
-    
-    
-                    }
-                }, 500)
-    
-                let colorInterval = setInterval(() => {
-                    if(document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
-                        clearInterval(colorInterval);
-    
-                        document.querySelectorAll('.product-item').forEach(item => {
-                            if(item.querySelector('.swatch-option')) {
-                                item.querySelector('.swatch-option').click();
-                            }
-                        })
-                    }
-                }, 500)
-            }
-        }, 100);
-    
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp - Comparison option mobile',
-            'eventAction': 'Pageview comparison page'
-        });
-    
-    } else {
-        document.body.insertAdjacentHTML('afterbegin', `
+					if (
+						document.querySelectorAll('.one .specs-info')[i].innerText === '—' &&
+						document.querySelectorAll('.two .specs-info')[i].innerText === '—'
+					) {
+						document.querySelectorAll('.one .specs-info')[i].closest('.spec-wrapper').style.display = 'none'
+						document.querySelectorAll('.two .specs-info')[i].closest('.spec-wrapper').style.display = 'none'
+					}
+				}
+			},100)
+		})
+	}
+
+	let start = setInterval(() => {
+		if (document.querySelectorAll('.product-item')[15]) {
+			clearInterval(start)
+
+			document.querySelectorAll('.product-item').forEach(item => {
+				if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
+					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
+				}
+			})
+
+			document.querySelectorAll('.product-item')[5].querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
+                        <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
+
+			document.querySelectorAll('.product-item-actions button').forEach(btn => {
+				btn.addEventListener('click',() => {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp - Comparison option mobile',
+						'eventAction': 'Click on BUY',
+					})
+				})
+			})
+
+			document.querySelectorAll('.product-item .see-more').forEach(link => {
+				link.addEventListener('click',() => {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp - Comparison option mobile',
+						'eventAction': 'Clicks on learn more',
+					})
+				})
+			})
+
+			document.querySelectorAll('.compare-col select').forEach((el,index) => {
+				if (window.localStorage.getItem('compareFromPDP') !== null) {
+					let compareFromPDP = window.localStorage.getItem('compareFromPDP')
+
+					if (compareFromPDP === 'london') {
+						document.querySelectorAll('.right.compare-col select option')[0].selected = true
+					}
+
+					document.querySelectorAll('.left.compare-col select option').forEach(option => {
+						if (option.value === compareFromPDP) {
+							option.selected = true
+						}
+					})
+				} else {
+					document.querySelectorAll('.left.compare-col select option')[0].selected = true
+				}
+
+				function removeDuplicateOption(optionValue,select) {
+					document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block')
+					document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none'
+				}
+
+				removeDuplicateOption(document.querySelector('.left.compare-col select').value,'right')
+				removeDuplicateOption(document.querySelector('.right.compare-col select').value,'left')
+
+				document.querySelector('.left.compare-col select').addEventListener('change',function () {
+					if (this.value) {
+						removeDuplicateOption(this.value,'right')
+					}
+				})
+
+				document.querySelector('.right.compare-col select').addEventListener('change',function () {
+					if (this.value) {
+						removeDuplicateOption(this.value,'left')
+					}
+				})
+
+				setCards(el,index)
+
+				el.addEventListener('change',() => {
+					setCards(el,index)
+				})
+			})
+
+			// document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
+			// document.querySelector('.stock.available span').innerText = localisationData?.coming;
+
+			let hrefInterval = setInterval(() => {
+				if (document.querySelectorAll('.product-item')[15].querySelector('.product-item-name a').href) {
+					clearInterval(hrefInterval)
+
+					document.querySelectorAll('.product-item').forEach(item => {
+						item.querySelector('.product-item-info').insertAdjacentHTML('beforeend',`
+                        <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`)
+					})
+
+
+				}
+			},500)
+
+			let colorInterval = setInterval(() => {
+				if (document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
+					clearInterval(colorInterval)
+
+					document.querySelectorAll('.product-item').forEach(item => {
+						if (item.querySelector('.swatch-option')) {
+							item.querySelector('.swatch-option').click()
+						}
+					})
+				}
+			},500)
+		}
+	},100)
+
+	window.dataLayer = window.dataLayer || []
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp - Comparison option mobile',
+		'eventAction': 'Pageview comparison page',
+	})
+
+} else {
+	document.body.insertAdjacentHTML('afterbegin',`
                 <style>
                     .btn-compare {
                         background: #FCFCFC;
@@ -945,86 +951,86 @@
                         width: calc(100% - 20px);
                     }
                 </style>
-            `);
-    
-        let btnText = '';
-    
-        switch (pathLocal) {
-            case 'de':
-                btnText = 'Kopfhörer vergleichen';
-                break;
-            case 'se':
-                btnText = 'Jämför hörlurar';
-                break;
-            default:
-                btnText = 'Compare headphones';
-                break;
-        }
-    
-        function addBtn(block, where) {
-            document.querySelector(block).insertAdjacentHTML(where, `<a href="https://www.urbanista.com/${pathLocal}/comparison" class="btn-compare">${btnText}</a>`);
-    
-            document.querySelector('.btn-compare').addEventListener('click', () => {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp - Comparison option mobile',
-                    'eventAction': 'Clicks on compare buttons'
-                });
-            });
-        }
-    
-        if (pathName.includes('all-products')) {
-            let interval = setInterval(() => {
-                if (document.querySelector('#amasty-shopby-product-list')) {
-                    clearInterval(interval);
-    
-                    addBtn('#amasty-shopby-product-list', 'afterbegin');
-                }
-    
-            }, 100);
-        } else {
-            let interval = setInterval(() => {
-                if (document.querySelector('.product-info-main')) {
-                    clearInterval(interval);
-    
-                    addBtn('.product-info-main', 'afterend');
-    
-                    let productName = pathName.split(pathLocal + '/')[1];
-    
-                    if (productName === 'losangeles') {
-                        productName = 'los-angeles';
-                    }
-    
-                    document.querySelector('.btn-compare').addEventListener('click', () => {
-                        window.localStorage.setItem('compareFromPDP', productName);
-                    });
-                }
-    
-            }, 100);
-        }
-    }
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp - Comparison option mobile',
-        'eventAction': 'loaded'
-    });
-    
-    (function (h, o, t, j, a, r) {
-        h.hj = h.hj || function () {
-            (h.hj.q = h.hj.q || []).push(arguments);
-        };
-        h._hjSettings = {hjid: 2067583, hjsv: 6};
-        a = o.getElementsByTagName('head')[0];
-        r = o.createElement('script');
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    window.hj = window.hj || function () {
-        (hj.q = hj.q || []).push(arguments);
-    };
-    hj('trigger', 'comaparison_option_mobile');
+            `)
+
+	let btnText = ''
+
+	switch (pathLocal) {
+		case 'de':
+			btnText = 'Kopfhörer vergleichen'
+			break
+		case 'se':
+			btnText = 'Jämför hörlurar'
+			break
+		default:
+			btnText = 'Compare headphones'
+			break
+	}
+
+	function addBtn(block,where) {
+		document.querySelector(block).insertAdjacentHTML(where,`<a href="https://www.urbanista.com/${pathLocal}/comparison" class="btn-compare">${btnText}</a>`)
+
+		document.querySelector('.btn-compare').addEventListener('click',() => {
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp - Comparison option mobile',
+				'eventAction': 'Clicks on compare buttons',
+			})
+		})
+	}
+
+	if (pathName.includes('all-products')) {
+		let interval = setInterval(() => {
+			if (document.querySelector('#amasty-shopby-product-list')) {
+				clearInterval(interval)
+
+				addBtn('#amasty-shopby-product-list','afterbegin')
+			}
+
+		},100)
+	} else {
+		let interval = setInterval(() => {
+			if (document.querySelector('.product-info-main')) {
+				clearInterval(interval)
+
+				addBtn('.product-info-main','afterend')
+
+				let productName = pathName.split(pathLocal + '/')[1]
+
+				if (productName === 'losangeles') {
+					productName = 'los-angeles'
+				}
+
+				document.querySelector('.btn-compare').addEventListener('click',() => {
+					window.localStorage.setItem('compareFromPDP',productName)
+				})
+			}
+
+		},100)
+	}
+}
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp - Comparison option mobile',
+	'eventAction': 'loaded',
+});
+
+(function (h,o,t,j,a,r) {
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 2067583,hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
+window.hj = window.hj || function () {
+	(hj.q = hj.q || []).push(arguments)
+}
+hj('trigger','comaparison_option_mobile')
     
     
