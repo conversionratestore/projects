@@ -116,8 +116,7 @@ let style = `
             display: block;
             width: 18px;
             height: 18px;
-            transform: translate(-50%, -50%);
-            background-size: contain;
+            transform: translate(-50%, -50%);            
         }
         
         span.minus::before {
