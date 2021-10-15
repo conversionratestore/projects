@@ -766,12 +766,19 @@ if (pathName.includes('comparison')) {
 	}
 
 	let start = setInterval(() => {
-		if (document.querySelectorAll('.product-item')[12]) {
+		if (document.querySelectorAll('.product-item .product-item-name')[12]) {
 			clearInterval(start)
 
 			document.querySelectorAll('.product-item').forEach(item => {
 				if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
+				}
+
+				if (item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
+					console.log('tes')
+					item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
+			            <button class="action primary" type="button"><span>${localisationData?.coming}</span>
+					`)
 				}
 			})
 
@@ -864,15 +871,15 @@ if (pathName.includes('comparison')) {
 				}
 			},500)
 
-			let seoulInterval = setInterval(() => {
-				document.querySelectorAll('.product-item')[12].forEach(item => {
-					if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
-						clearInterval(seoulInterval)
-						item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
-                        <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
-					}
-				})
-			}, 500)
+			// let seoulInterval = setInterval(() => {
+			// 	document.querySelectorAll('.product-item')[12].forEach(item => {
+			// 		if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
+			// 			clearInterval(seoulInterval)
+			// 			item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
+			//             <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
+			// 		}
+			// 	})
+			// }, 500)
 		}
 	},100)
 
