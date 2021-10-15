@@ -327,7 +327,7 @@ hr.line-vertical {
   .popup-interested.popup .btn-orange {
     max-width: 225px;
     margin: 50px auto 0; }
-  .popup-interested.popup form .field-name, .popup-interested.popup form .select {
+  .popup-interested.popup form .field-name, .popup-interested.popup form .select, .popup-interested.popup form .field-email {
     margin-bottom: 20px; }
   .popup-interested.popup .block-message p {
     font-size: 18px;
@@ -357,7 +357,8 @@ hr.line-vertical {
     padding: 7.5px 12px; }
   .popup form .field-name {
     margin-bottom: 25px;}
-
+.field-name, .field-email {
+    line-height: 1;}
 .btn-close {
   position: absolute;
   right: 40px;
@@ -422,9 +423,10 @@ hr.line-vertical {
 .error-message {
   position: absolute;
   left: 0;
+  line-height: 1!important;
   top: calc(100% + 2px);
-  font-size: 10px;
-  color: red; }
+  font-size: 10px!important;
+  color: red!important; }
 
 .align-items-center {
   display: flex;
@@ -604,6 +606,9 @@ p.text-caption {
     padding: 0 14px 0 24px; } }
 </style>`);
 
+let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
+let today  = new Date();
+
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
         <section class="s-first">
@@ -706,11 +711,21 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                 <div class="popup-col">
                   <label>Your current monthly sales *</label>
                   <div class="select">
-                     
-                      <p class="error-message"></p>
+                    <select name="customFields.Monthly_Sales">
+                        <option value="">Select an option</option>
+                        <option value="No Sales Yet">No Sales Yet</option>
+                        <option value="$1 - $1,000">$1 - $1,000</option>
+                        <option value="$1,001 - $10,000">$1,001 - $10,000</option>
+                        <option value="$10,001 - $25,000">$10,001 - $25,000</option>
+                        <option value="Greater than $25,000 a month">Greater than $25,000 a month</option>
+                    </select>
+                     <p class="error-message"></p>
                   </div>
                   <label>data and time of attendance</label>
                   <div class="select">
+                        <select name="start_time">
+                            <option value="${today.toLocaleDateString("en-US", options)}">${today.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','')} EEST</option>
+                        </select>
                        <p class="error-message"></p>
                    </div>
                   <button class="btn-orange max-w-100 justify-content-between" type="button" data-button>Finish Registration<img src="https://conversionratestore.github.io/projects/samcart/img/arrow.svg" alt="lamp"></button>
@@ -720,8 +735,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
           </form>
         </div>
     </div>`);
-// document.querySelector('.custom--select-field .input-scaffold__children').innerHTML
-// document.querySelector('.webinar-times .input-scaffold__children').innerHTML
+
 let btnClose = document.querySelector('.btn-close'),
     popup = document.querySelector('.popup'),
     popupWrapper = document.querySelector('.popup-wrapper'),
@@ -772,7 +786,7 @@ btn.forEach((btn) => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
         if(btn.closest('.get-started')) {
-            let emailValue = btn.closest('form').querySelector('input').value;
+            let emailValue = btn.closest('form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
@@ -797,37 +811,42 @@ btn.forEach((btn) => {
                 document.querySelector('.popup-interested .justify-content-between').after(document.querySelector('.popup-interested .btn-orange'))
             }
             showPopup()
-        } else {
-            document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
         }
 
         if(btn.closest('.register-now')) {
-            let emailValue = btn.closest('form').querySelectorAll('input')[1].value;
+            let emailValue = btn.closest('form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
+                document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
+
                 if (document.querySelector('.field-name')) {
                     document.querySelector('.field-name').remove();
                 }
                 showPopup()
             }
         }
-        btn.closest('form').querySelectorAll('input').forEach((input) => {
-            let value = input.value;
-            input.setAttribute('class','')
-            if (value == '') {
-                input.classList.add('error');
-                if (input.getAttribute('type') == 'email') {
-                    input.nextElementSibling.innerHTML = `Please enter your email address`;
+        if (btn.closest('form')) {
+            btn.closest('form').querySelectorAll('input').forEach((input) => {
+                let value = input.value;
+                input.setAttribute('class', '')
+                if (value == '') {
+                    input.classList.add('error');
+                    if (input.getAttribute('type') == 'email') {
+                        input.nextElementSibling.innerHTML = `Please enter your email address`;
+                    } else {
+                        input.nextElementSibling.innerHTML = `Please enter a name`;
+                    }
+                } else if (input.getAttribute('type') == 'email' && !patternEmail.test(value)) {
+                    input.classList.add('error');
+                    input.nextElementSibling.innerHTML = "Must be a valid email address";
                 } else {
-                    input.nextElementSibling.innerHTML = `Please enter a name`;
+                    input.nextElementSibling.innerHTML = "";
                 }
-            } else if (input.getAttribute('type') == 'email' && !patternEmail.test(value)) {
-                input.classList.add('error');
-                input.nextElementSibling.innerHTML = "Must be a valid email address";
-            } else {
-                input.nextElementSibling.innerHTML = "";
-            }
-        })
+                if (document.querySelectorAll('select')[0].value == '') {
+                    input.nextElementSibling.innerHTML = "This field is required";
+                }
+            })
+        }
     })
 })
 
