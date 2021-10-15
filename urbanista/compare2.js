@@ -768,7 +768,7 @@ if (pathName.includes('comparison')) {
 	}
 
 	let start = setInterval(() => {
-		if (document.querySelectorAll('.product-item')[14]) {
+		if (document.querySelectorAll('.product-item')[12]) {
 			clearInterval(start)
 
 			document.querySelectorAll('.product-item').forEach(item => {
@@ -850,7 +850,7 @@ if (pathName.includes('comparison')) {
 			})
 
 			let hrefInterval = setInterval(() => {
-				if (document.querySelectorAll('.product-item')[14].querySelector('.product-item-name a').href) {
+				if (document.querySelectorAll('.product-item')[12].querySelector('.product-item-name a').href) {
 					clearInterval(hrefInterval)
 
 					document.querySelectorAll('.product-item').forEach(item => {
@@ -861,7 +861,7 @@ if (pathName.includes('comparison')) {
 			},500)
 
 			let colorInterval = setInterval(() => {
-				if (document.querySelectorAll('.product-item')[14].querySelector('.swatch-option')) {
+				if (document.querySelectorAll('.product-item')[12].querySelector('.swatch-option')) {
 					clearInterval(colorInterval)
 
 					document.querySelectorAll('.product-item').forEach(item => {
