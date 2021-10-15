@@ -864,14 +864,15 @@ if (pathName.includes('comparison')) {
 				}
 			},500)
 
-			setTimeout(() => {
+			let seoulInterval = setInterval(() => {
 				document.querySelectorAll('.product-item')[12].forEach(item => {
 					if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
+						clearInterval(seoulInterval)
 						item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
                         <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
 					}
 				})
-			}, 1000)
+			}, 500)
 		}
 	},100)
 
