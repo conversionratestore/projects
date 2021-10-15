@@ -766,13 +766,14 @@ if (pathName.includes('comparison')) {
 	}
 
 	let start = setInterval(() => {
-		if (document.querySelectorAll('.product-item-name [title]')[12]) {
+		if (document.querySelectorAll('.product-item-name .product-item-link')[12]) {
 			clearInterval(start)
 
 			document.querySelectorAll('.product-item').forEach(item => {
 				if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
 				}
+				console.log(item.querySelector('.product-item-name [title]'))
 				if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
 					console.log(item.querySelector('.product-item-name [title]').innerText.toLowerCase())
 					item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
