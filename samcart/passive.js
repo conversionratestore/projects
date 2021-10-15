@@ -133,6 +133,7 @@ select {
   background: linear-gradient(139.61deg, #1D96F3 12.88%, #4B17E6 67.72%);
   padding: 40px 0 120px; }
   .s-first .logo {
+    display: block;
     margin: 0 auto 52px;
     width: 146px;
     height: 25px;
@@ -595,6 +596,12 @@ p.text-caption {
     margin: 0 auto 28px !important; } }
 
 @media only screen and (max-width: 575px) {
+.s-second h2 {
+    margin-bottom: 40px;
+}
+p.text-caption {
+    margin-bottom: 8px;
+}
   .get-started {
     display: block; }
   .get-started button {
@@ -604,6 +611,34 @@ p.text-caption {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 0 14px 0 24px; } }
+@media only screen and (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    .s-first h1 {
+        font-size: 44px;
+    }
+    hr.line-vertical {
+        margin: 0 20px;
+    }
+    .webinar .icon {
+        width: 22px;
+        height: 22px;
+    }
+    .s-second h2, .s-third h2 {
+        font-size: 33px;
+        line-height: 43px;
+    }
+    .card {
+        padding: 15px;
+    }
+    .card-img {
+        width: 75px;
+    }
+    p.text-caption {
+        font-size: 13px;
+    }
+}
 </style>`);
 
 let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
