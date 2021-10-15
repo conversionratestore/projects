@@ -593,7 +593,6 @@ if (pathName.includes('comparison')) {
 	},100)
 
 	function setCards(el,index) {
-		console.log(setCards)
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
@@ -631,7 +630,6 @@ if (pathName.includes('comparison')) {
 		}
 
 		if (index === 0) {
-			console.log('here')
 			document.querySelector('.summary .one').innerHTML = `
                     <div class="spec-wrapper">
                         <p class="specs-title">${localisationData.bluetooth}</p>
@@ -776,7 +774,7 @@ if (pathName.includes('comparison')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
 				}
 			})
-
+			console.log(localisationData)
 			document.querySelectorAll('.product-item')[5].querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
                         <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
 
@@ -839,12 +837,9 @@ if (pathName.includes('comparison')) {
 					}
 				})
 
-				console.log('begore 1')
-
 				setCards(el,index)
 
 				el.addEventListener('change',() => {
-					console.log('begore 2')
 					setCards(el,index)
 				})
 			})
