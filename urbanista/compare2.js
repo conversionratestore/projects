@@ -766,19 +766,17 @@ if (pathName.includes('comparison')) {
 	}
 
 	let start = setInterval(() => {
-		if (document.querySelectorAll('.product-item .product-item-name')[12]) {
+		if (document.querySelectorAll('.product-item .product-item-name a')[12].getAttribute('title')) {
 			clearInterval(start)
 
 			document.querySelectorAll('.product-item').forEach(item => {
 				if (item.querySelector('.product-item-name-price') && item.querySelector('.product-item-actions')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
 				}
-
-				if (item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
-					console.log('tes')
+				if(item.querySelector('.product-item-name a').getAttribute('title') === 'Seoul') {
+					console.log('ss')
 					item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
-			            <button class="action primary" type="button"><span>${localisationData?.coming}</span>
-					`)
+		            <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
 				}
 			})
 
