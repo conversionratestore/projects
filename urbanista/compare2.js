@@ -774,7 +774,7 @@ if (pathName.includes('comparison')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
 				}
 				console.log(item.querySelector('.product-item-name [title]'))
-				if(item.querySelector('.product-item-name .product-item-link').getAttribute('title') === 'Seoul') {
+				if(item.querySelector('.product-item-name .product-item-link')?.getAttribute('title') === 'Seoul') {
 					console.log(item.querySelector('.product-item-name [title]').innerText.toLowerCase())
 					item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
 		            <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
