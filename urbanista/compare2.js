@@ -774,9 +774,6 @@ if (pathName.includes('comparison')) {
 					item.querySelector('.product-item-actions').before(item.querySelector('.product-item-name-price'))
 				}
 			})
-			console.log(localisationData)
-			document.querySelectorAll('.product-item')[5].querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
-                        <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
 
 			document.querySelectorAll('.product-item-actions button').forEach(btn => {
 				btn.addEventListener('click',() => {
@@ -866,6 +863,15 @@ if (pathName.includes('comparison')) {
 					})
 				}
 			},500)
+
+			setTimeout(() => {
+				document.querySelectorAll('.product-item')[12].forEach(item => {
+					if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
+						item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
+                        <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
+					}
+				})
+			}, 1000)
 		}
 	},100)
 
