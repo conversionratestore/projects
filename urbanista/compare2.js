@@ -236,54 +236,6 @@ if (pathName.includes('comparison')) {
 			'hour': 'h',
 			'coming': 'Coming soon',
 		},
-		'uk': {
-			'compare': 'Compare headphones models',
-			'allModels': 'See all models >',
-			'buy': 'Buy',
-			'summary': 'Summary',
-			'learnMore': 'Learn more >',
-			'bluetooth': 'Bluetooth version',
-			'chargingTime': 'Charging time',
-			'playtime': 'Total playtime',
-			'standby': 'Standby Time',
-			'battery': 'Battery (in mAh)',
-			'workingRange': 'Working Range',
-			'mic': 'Mic Distance',
-			'frequency': 'Frequency Range',
-			'power': 'RF Output Power',
-			'impedance': 'Impedance',
-			'sensibility': 'Sensibility',
-			'snr': 'SNR',
-			'codec': 'Audio Codec',
-			'earbud': 'earbud',
-			'case': 'charging case',
-			'hour': 'h',
-			'coming': 'Coming soon',
-		},
-		'au': {
-			'compare': 'Compare headphones models',
-			'allModels': 'See all models >',
-			'buy': 'Buy',
-			'summary': 'Summary',
-			'learnMore': 'Learn more >',
-			'bluetooth': 'Bluetooth version',
-			'chargingTime': 'Charging time',
-			'playtime': 'Total playtime',
-			'standby': 'Standby Time',
-			'battery': 'Battery (in mAh)',
-			'workingRange': 'Working Range',
-			'mic': 'Mic Distance',
-			'frequency': 'Frequency Range',
-			'power': 'RF Output Power',
-			'impedance': 'Impedance',
-			'sensibility': 'Sensibility',
-			'snr': 'SNR',
-			'codec': 'Audio Codec',
-			'earbud': 'earbud',
-			'case': 'charging case',
-			'hour': 'h',
-			'coming': 'Coming soon',
-		},
 		'de': {
 			'compare': 'Kopfhörermodelle vergleichen',
 			'allModels': 'Alle Modelle ansehen >',
@@ -641,6 +593,7 @@ if (pathName.includes('comparison')) {
 	},100)
 
 	function setCards(el,index) {
+		console.log(setCards)
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
@@ -678,6 +631,7 @@ if (pathName.includes('comparison')) {
 		}
 
 		if (index === 0) {
+			console.log('here')
 			document.querySelector('.summary .one').innerHTML = `
                     <div class="spec-wrapper">
                         <p class="specs-title">${localisationData.bluetooth}</p>
@@ -814,7 +768,7 @@ if (pathName.includes('comparison')) {
 	}
 
 	let start = setInterval(() => {
-		if (document.querySelectorAll('.product-item')[15]) {
+		if (document.querySelectorAll('.product-item')[14]) {
 			clearInterval(start)
 
 			document.querySelectorAll('.product-item').forEach(item => {
@@ -885,31 +839,29 @@ if (pathName.includes('comparison')) {
 					}
 				})
 
+				console.log('begore 1')
+
 				setCards(el,index)
 
 				el.addEventListener('change',() => {
+					console.log('begore 2')
 					setCards(el,index)
 				})
 			})
 
-			// document.querySelector('.stock.available span').closest('.product-item-details').style.marginTop = '35px';
-			// document.querySelector('.stock.available span').innerText = localisationData?.coming;
-
 			let hrefInterval = setInterval(() => {
-				if (document.querySelectorAll('.product-item')[15].querySelector('.product-item-name a').href) {
+				if (document.querySelectorAll('.product-item')[14].querySelector('.product-item-name a').href) {
 					clearInterval(hrefInterval)
 
 					document.querySelectorAll('.product-item').forEach(item => {
 						item.querySelector('.product-item-info').insertAdjacentHTML('beforeend',`
                         <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`)
 					})
-
-
 				}
 			},500)
 
 			let colorInterval = setInterval(() => {
-				if (document.querySelectorAll('.product-item')[15].querySelector('.swatch-option')) {
+				if (document.querySelectorAll('.product-item')[14].querySelector('.swatch-option')) {
 					clearInterval(colorInterval)
 
 					document.querySelectorAll('.product-item').forEach(item => {
@@ -980,7 +932,7 @@ if (pathName.includes('comparison')) {
 		})
 	}
 
-	if (pathName.includes('all-products')) {
+	if (pathName.includes('all-products') || pathName.includes('alla-produkter')) {
 		let interval = setInterval(() => {
 			if (document.querySelector('#amasty-shopby-product-list')) {
 				clearInterval(interval)
