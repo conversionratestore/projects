@@ -845,8 +845,6 @@ if (pathName.includes('comparison')) {
                         <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`)
 
 						item.querySelector('.product-item-info .see-more').addEventListener('click',(e) => {
-							e.preventDefault()
-							console.log('clicked')
 							window.dataLayer = window.dataLayer || []
 							dataLayer.push({
 								'event': 'event-to-ga',
