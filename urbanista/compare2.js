@@ -793,7 +793,9 @@ if (pathName.includes('comparison')) {
 			})
 
 			document.querySelectorAll('.product-item .see-more').forEach(link => {
-				link.addEventListener('click',() => {
+				link.addEventListener('click',(e) => {
+					e.preventDefault()
+					console.log('clicked')
 					window.dataLayer = window.dataLayer || []
 					dataLayer.push({
 						'event': 'event-to-ga',
