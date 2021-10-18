@@ -78,6 +78,10 @@ button {
   padding: 0;
   cursor: pointer;
   border: none; }
+.elementor-6586 .elementor-element.elementor-element-8dee3e0 {
+    display: none;}
+.elementor-6586 .elementor-element.elementor-element-a87ddb6 > .elementor-widget-container {
+    padding-right: 0;}
 .landing-wrap {
   font-family: 'Gilroy', sans-serif;}
 .landing-wrap button.btn-orange:hover {
@@ -110,8 +114,9 @@ b {
   .landing-wrap input.error{
     border-color: red; }
 .select {
+    position: relative;
     margin-bottom: 25px;}
-select {
+.select select {
   appearance: none;
   -webkit-appearance: none;
   border: 2px solid #D3D8DB;
@@ -122,13 +127,11 @@ select {
   font-size: 18px;
   line-height: 25px;
   color: #5A7386;}
-
+.landing-wrap select.error{
+  border-color: red;}
 .container {
   max-width: 1172px;
-  width: 100%;
-  margin: 0 auto;
   padding: 0 30px; }
-
 .s-first {
   background: linear-gradient(139.61deg, #1D96F3 12.88%, #4B17E6 67.72%);
   padding: 40px 0 120px; }
@@ -429,22 +432,10 @@ hr.line-vertical {
   font-size: 10px!important;
   color: red!important; }
 
-.align-items-center {
-  display: flex;
-  align-items: center; }
-
-.flex-wrap {
-  display: flex;
-  flex-wrap: wrap; }
-
 .flex-center-center {
   display: flex;
   justify-content: center;
   align-items: center; }
-
-.justify-content-between {
-  display: flex;
-  justify-content: space-between !important; }
 
 .btn-orange, .btn-blue {
   border-radius: 7px;
@@ -593,7 +584,7 @@ p.text-caption {
   .card {
     width: 100%;
     max-width: 400px;
-    margin: 0 auto 28px !important; } }
+    margin: 0 auto 28px !important; }}
 
 @media only screen and (max-width: 575px) {
 .s-second h2 {
@@ -643,7 +634,7 @@ p.text-caption {
 
 let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
 let today  = new Date();
-
+document.querySelector('[data-id="42e7721"]').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
         <section class="s-first">
@@ -659,7 +650,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
             <div class="webinar"><img class="avatar" src="${document.querySelector('.elementor-image img').getAttribute('src')}" alt="avatar">
               <div class="webinar-col">
                 <h2>100% Free Online Webinar from Samcart Founder — Brian Moran</h2>
-                <div class="align-items-center"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/date.svg" alt="date">
+                <div class="align-items-center d-flex"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/date.svg" alt="date">
                   <p>On demand</p>
                   <hr class="line-vertical"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/clock.svg" alt="clock">
                   <p>45+ Minutes</p>
@@ -668,10 +659,10 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <div class="ml-md-auto">
                 <p class="fs-18 fw-extraBold">Learn how to</p>
                 <ul class="webinar-list">
-                  <li class="align-items-center">Earn more money</li>
-                  <li class="align-items-center">Sell online</li>
-                  <li class="align-items-center">Start your own business</li>
-                  <li class="align-items-center">Increase your sales easily</li>
+                  <li class="align-items-center d-flex">Earn more money</li>
+                  <li class="align-items-center d-flex">Sell online</li>
+                  <li class="align-items-center d-flex">Start your own business</li>
+                  <li class="align-items-center d-flex">Increase your sales easily</li>
                 </ul>
               </div>
             </div>
@@ -681,7 +672,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
           <div class="container">
             <p class="text-caption">Let’s discover more.</p>
             <h2>After the Workshop You Will be Able to:</h2>
-            <div class="flex-wrap">
+            <div class="flex-wrap d-flex">
               <div class="card">
                 <div class="card-top"><img class="card-img" src="https://conversionratestore.github.io/projects/samcart/img/icon-1.svg">
                   <p><b>Become a trusted expert</b> in a niche using the "1 Step Rule"</p>
@@ -737,7 +728,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
           <form class="popup-wrapper">
             <button class="btn-close" type="reset"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
             <div class="popup-content">
-              <div class="justify-content-between">
+              <div class="justify-content-between d-flex">
                 <div class="popup-col">
                   <h2>Save Your Spot</h2>
                   <p>Finish registration filling up the fields on the right<b class="d-block">and learn how to</b></p>
@@ -763,7 +754,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                         </select>
                        <p class="error-message"></p>
                    </div>
-                  <button class="btn-orange max-w-100 justify-content-between" type="button" data-button>Finish Registration<img src="https://conversionratestore.github.io/projects/samcart/img/arrow.svg" alt="lamp"></button>
+                  <button class="btn-orange max-w-100 justify-content-between d-flex" type="button" data-button>Finish Registration<img src="https://conversionratestore.github.io/projects/samcart/img/arrow.svg" alt="lamp"></button>
                 </div>
               </div>
             </div>
@@ -779,12 +770,12 @@ let btnClose = document.querySelector('.btn-close'),
 let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let createElementFirst = `
-<div class="justify-content-between">
+<div class="justify-content-between d-flex">
   <ul class="advantage-list">
-    <li class="align-items-center">Earn more money</li>
-    <li class="align-items-center">Start your own business</li>
-    <li class="align-items-center">Sell online</li>
-    <li class="align-items-center">Increase your sales easily</li>
+    <li class="align-items-center d-flex">Earn more money</li>
+    <li class="align-items-center d-flex">Start your own business</li>
+    <li class="align-items-center d-flex">Sell online</li>
+    <li class="align-items-center d-flex">Increase your sales easily</li>
   </ul>
 </div>`;
 
@@ -804,6 +795,7 @@ function creatBlock(iconName,text,classNameImg) {
         <p>${text}</p>
    </div>`;
 }
+
 function showFieldName() {
     if (!document.querySelector('.popup .field-name')) {
         document.querySelector('.popup .popup-col:last-child').insertAdjacentHTML('afterbegin', createElementName);
@@ -820,6 +812,7 @@ btn.forEach((btn) => {
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
+
         if(btn.closest('.get-started')) {
             let emailValue = btn.closest('form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
@@ -877,10 +870,21 @@ btn.forEach((btn) => {
                 } else {
                     input.nextElementSibling.innerHTML = "";
                 }
-                if (document.querySelectorAll('select')[0].value == '') {
-                    input.nextElementSibling.innerHTML = "This field is required";
-                }
             })
+            btn.closest('form').querySelectorAll('select').forEach((select) => {
+                if (select.value == '') {
+                    select.classList.add('error');
+                    select.nextElementSibling.innerHTML = "This field is required";
+                } else {
+                    select.classList.remove('error');
+                    select.nextElementSibling.innerHTML = "";
+                }
+            });
+        }
+        popup.querySelector('.btn-orange').setAttribute('data-button', getAttr);
+
+        if (document.querySelector('.popup .error') == null) {
+            console.log('not error')
         }
     })
 })
@@ -891,6 +895,10 @@ function hidePopup(item) {
             e.stopPropagation()
         } else {
             popup.classList.remove('active');
+            document.querySelectorAll('.popup-content .error').forEach((elError) => {
+                elError.classList.remove('error');
+                elError.nextElementSibling.innerHTML = '';
+            })
             setTimeout(() => {
                 if(!document.querySelector('popup-interested')) {
                     popup.classList.remove('popup-interested');
