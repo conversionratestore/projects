@@ -790,20 +790,7 @@ if (pathName.includes('comparison')) {
 						'eventAction': 'Click on BUY',
 					})
 				})
-			})
-
-			document.querySelectorAll('.product-item .see-more').forEach(link => {
-				link.addEventListener('click',(e) => {
-					e.preventDefault()
-					console.log('clicked')
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp - Comparison option mobile',
-						'eventAction': 'Clicks on learn more',
-					})
-				})
-			})
+			})			
 
 			document.querySelectorAll('.compare-col select').forEach((el,index) => {
 				if (window.localStorage.getItem('compareFromPDP') !== null) {
@@ -848,7 +835,7 @@ if (pathName.includes('comparison')) {
 					setCards(el,index)
 				})
 			})
-
+			
 			let hrefInterval = setInterval(() => {
 				if (document.querySelectorAll('.product-item')[12].querySelector('.product-item-name a').href) {
 					clearInterval(hrefInterval)
@@ -856,6 +843,17 @@ if (pathName.includes('comparison')) {
 					document.querySelectorAll('.product-item').forEach(item => {
 						item.querySelector('.product-item-info').insertAdjacentHTML('beforeend',`
                         <a href="${item.querySelector('.product-item-name a').href}" class="see-more">${localisationData?.learnMore}</a>`)
+
+						item.addEventListener('click',(e) => {
+							e.preventDefault()
+							console.log('clicked')
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp - Comparison option mobile',
+								'eventAction': 'Clicks on learn more',
+							})
+						})
 					})
 				}
 			},500)
