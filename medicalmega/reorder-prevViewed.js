@@ -172,9 +172,6 @@ window.onload  = function () {
             .gallery-parent {
                 width: 500px;
             }
-            .gallery-parent.viewed .gallery dd:nth-child(n+4) {
-                display: none;
-            }
          }
     </style>`);
     
