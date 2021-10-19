@@ -168,6 +168,11 @@ window.onload  = function () {
             font-size: 21px;
             line-height: 23px;
         }
+         @media only screen and (max-width: 1010px)  {
+            .gallery-parent {
+                width: 500px;
+            }
+         }
     </style>`);
     
     let recentlyViewedProducts = [];
