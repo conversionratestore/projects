@@ -390,11 +390,7 @@ window.onload  = function () {
                     font-size: 20px;
                     line-height: 20px;
                 }
-                .ordered-products {
-                    max-width: 295px;
-                    margin: 20px auto 0!important;
-                }
-                .ordered-products dl.gallery dd {
+                dl.gallery dd {
                     width: 140px;
                 }
             }
@@ -473,11 +469,10 @@ window.onload  = function () {
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
                 document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('afterend',`
-                <div class="ordered-products">
-                     <h2 class="title">Recently Ordered Products</h2>
-                    <dl class="gallery"></dl>
-                    <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>
-                </div>`);
+                <h2 class="title">Recently Ordered Products</h2>
+                <dl class="gallery"></dl>
+                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>`);
+                
                 document.querySelector('.show-more').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
