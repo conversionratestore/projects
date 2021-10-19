@@ -170,7 +170,25 @@ window.onload  = function () {
         }
          @media only screen and (max-width: 1010px)  {
             .gallery-parent {
-                width: 320px;
+                width: 500px;
+            }
+            .gallery {
+                width: 420px;
+                margin: 16px auto 0;
+                justify-content: space-around;
+            }
+            .ordered-bottom {
+                display: block;
+            }
+            .ordered-bottom .d-flex {
+                justify-content: space-between;
+            }
+            .btn-reorder {
+                max-width: 100%;
+                display: block;
+            }
+            .show-more, .view-more {
+                margin: 0 10px;
             }
          }
     </style>`);
