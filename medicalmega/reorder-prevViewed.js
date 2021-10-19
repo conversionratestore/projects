@@ -385,13 +385,22 @@ window.onload  = function () {
             .show-more {
                 margin: 10px 0!important;
             }
+            @media only screen and (max-width: 1010px)  {
+                dl.gallery {
+                    justify-content: flex-start!important;
+                }
+            }
             @media only screen and (max-width: 758px)  {
-                h2.title, .title {
+                .ordered-products h2.title, .ordered-products .title {
                     font-size: 20px;
                     line-height: 20px;
                 }
                 dl.gallery dd {
                     width: 140px;
+                    margin-right: 15px;
+                }
+                dl.gallery dd:last-child {
+                    margin-right: 0;
                 }
             }
         </style>`)
@@ -468,11 +477,13 @@ window.onload  = function () {
                 })
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
-                document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('afterend',`
-                <h2 class="title">Recently Ordered Products</h2>
-                <dl class="gallery"></dl>
-                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>`);
-                
+                document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
+                <div class="ordered-products">
+                    <h2 class="title">Recently Ordered Products</h2>
+                    <dl class="gallery"></dl>
+                    <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>
+                </div>`);
+
                 document.querySelector('.show-more').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
