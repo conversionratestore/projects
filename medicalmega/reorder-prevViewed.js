@@ -403,6 +403,15 @@ window.onload  = function () {
                     margin-right: 0;
                 }
             }
+            @media only screen and (max-width: 478px)  {
+                .ordered-products {
+                    margin-left: -15px;
+                    width: calc(100% + 15px);
+                }
+                dl.gallery {
+                    width: calc(100% + 15px);
+                }
+            }
         </style>`)
         if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != []){
             let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
