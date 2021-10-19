@@ -459,7 +459,7 @@ window.onload  = function () {
                 })
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
-                document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
+                document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('afterend',`
                 <h2 class="title">Recently Ordered Products</h2>
                 <dl class="gallery"></dl>
                 <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>`);
