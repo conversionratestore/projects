@@ -150,6 +150,7 @@ window.onload  = function () {
             line-height: 18px;
             color: #171717;}
         .btn-reorder {
+            box-sizing: border-box;
             font-weight: bold;
             font-size: 14px;
             line-height: 33px;
@@ -170,10 +171,12 @@ window.onload  = function () {
         }
          @media only screen and (max-width: 1010px)  {
             .gallery-parent {
-                width: 500px;
+                max-width: 500px;
+                width: 100%;
             }
             .gallery {
-                width: 420px;
+                max-width: 420px;
+                width: 100%;
                 margin: 16px auto 0;
                 justify-content: space-around;
             }
@@ -189,6 +192,14 @@ window.onload  = function () {
             }
             .show-more, .view-more {
                 margin: 0 10px;
+            }
+         }
+         @media only screen and (max-width: 758px)  {
+            .gallery-parent {
+                max-width: 458px
+            }
+            .gallery {
+                max-width: 375px;
             }
          }
     </style>`);
