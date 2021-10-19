@@ -170,13 +170,13 @@ window.onload  = function () {
         }
          @media only screen and (max-width: 1010px)  {
             .gallery-parent {
-                width: 500px;
+                width: 320px;
             }
          }
     </style>`);
-    
+
     let recentlyViewedProducts = [];
-    
+
     function pushProducts() {
         if (document.querySelector('.product-price')) {
             recentlyViewedProducts.push({
@@ -189,21 +189,21 @@ window.onload  = function () {
             });
         }
     }
-    
+
     function addToCart() {
         if (document.querySelectorAll('.add-to-cart')) {
             document.querySelectorAll('.add-to-cart button').forEach((item) => {
                 item.addEventListener('click', () => {
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
-    
+
                     valueP = +item.nextElementSibling.value;
-    
+
                     document.querySelector('.by_num span').innerHTML = num + valueP;
-    
+
                     let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
                         productId = item.closest('.product-card').getAttribute('data-product-id');
-    
+
                     fetch('/cart.html', {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -249,27 +249,27 @@ window.onload  = function () {
             });
         }
     }
-    
+
     if (window.location.pathname == '/') {
         document.querySelectorAll('.gallery').forEach((item, index) => {
             let galleryWrapper = document.createElement('div');
             galleryWrapper.className = 'gallery-parent';
-    
+
             let htmlTitle = `<h2 class="title"></h2>`;
             if (index < 6) {
                 galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
             }
-    
+
             item.parentNode.appendChild(galleryWrapper);
-    
+
             return galleryWrapper.appendChild(item);
         });
-    
+
         const galleryDd = document.querySelectorAll('.gallery dd');
         for (let i = 0; i < galleryDd.length; i++) {
             galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`);
         }
-    
+
         const galleryParent = document.querySelectorAll('.gallery-parent');
         for (let i = 0; i < galleryParent.length; i++) {
             if (i < 5) {
@@ -279,7 +279,7 @@ window.onload  = function () {
         const arrTitle = ['New products', 'Ostomy', 'Wound care', 'Hand Sanitizing', 'Protective Gear', 'Other products'],
             galleryTitle = document.querySelectorAll('.title'),
             showMore = document.querySelectorAll('.show-more');
-    
+
         for (let i = 0; i < arrTitle.length; i++) {
             galleryTitle[i].innerHTML = arrTitle[i];
             let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
@@ -287,7 +287,7 @@ window.onload  = function () {
                 showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`);
             }
         }
-    
+
         if (localStorage.getItem('recentlyViewedProducts')) {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
             <div class="gallery-parent viewed">
@@ -295,7 +295,7 @@ window.onload  = function () {
                 <dl class="gallery"></dl>
                 <button type="button" class="view-more" hidden>View more products</button>
             </div>`);
-    
+
             let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < cards.length; i++) {
                 document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
@@ -314,7 +314,7 @@ window.onload  = function () {
             if (cards.length > 4) {
                 document.querySelector('.view-more').hidden = false;
             }
-    
+
             document.querySelector('.view-more').addEventListener('click', (e) => {
                 document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
                     e.target.classList.toggle('visible')
@@ -343,7 +343,7 @@ window.onload  = function () {
         }
         addToCart();
     }
-    
+
     if (location.pathname.includes('product')) {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
@@ -366,7 +366,7 @@ window.onload  = function () {
         } else {
             pushProducts();
         }
-    
+
         recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
             index === self.findIndex((t) => (
                 t.place === thing.place && t.productid === thing.productid
@@ -374,7 +374,7 @@ window.onload  = function () {
         )
         localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
     }
-    
+
     fetch("/cart.html?last_order=1", {
         method: "POST",
         headers: {
@@ -404,7 +404,7 @@ window.onload  = function () {
                     </div>
                     <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
                 </div>`);
-    
+
                 let sum = 0;
                 for (let i = 0; i < data["items"].length; i++) {
                     sum += +data["items"][i].price
