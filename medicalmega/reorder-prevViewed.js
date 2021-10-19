@@ -403,10 +403,10 @@ window.onload  = function () {
                     margin-right: 0;
                 }
             }
-            @media only screen and (max-width: 478px)  {
+            @media only screen and (max-width: 479px)  {
                 .ordered-products {
-                    margin-left: -15px;
-                    width: calc(100% + 15px);
+                    margin-left: -20px;
+                    width: calc(100% + 20px);
                 }
                 dl.gallery {
                     width: calc(100% + 15px);
