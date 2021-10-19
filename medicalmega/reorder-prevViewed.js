@@ -389,15 +389,15 @@ window.onload  = function () {
                 dl.gallery {
                     justify-content: flex-start!important;
                 }
+                dl.gallery dd {
+                    width: 140px;
+                    padding-right: 15px;
+                }
             }
             @media only screen and (max-width: 758px)  {
                 .ordered-products h2.title, .ordered-products .title {
                     font-size: 20px;
                     line-height: 20px;
-                }
-                dl.gallery dd {
-                    width: 140px;
-                    margin-right: 15px;
                 }
                 dl.gallery dd:last-child {
                     margin-right: 0;
