@@ -125,7 +125,7 @@ window.onload  = function () {
         .gallery-parent.viewed .gallery dd:nth-child(n+5){ 
             display: none;}
         .gallery-parent.viewed .gallery dd.visible {
-            display: flex;}
+            display: flex!important;}
         .view-more {
             width: calc(100% - 20px);}
         .id-order {
