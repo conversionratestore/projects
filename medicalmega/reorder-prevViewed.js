@@ -346,9 +346,9 @@ window.onload  = function () {
 
             document.querySelector('.view-more').addEventListener('click', (e) => {
                 document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
-                    e.classList.toggle('visible')
+                    // e.target.classList.toggle('visible')
                     el.classList.toggle('visible');
-                    if (!e.classList.contains('visible')) {
+                    if (!el.classList.contains('visible')) {
                         e.target.innerHTML = 'View more products';
                         window.dataLayer = window.dataLayer || [];
                         dataLayer.push({
