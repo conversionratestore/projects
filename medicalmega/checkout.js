@@ -295,7 +295,7 @@ window.onload  = function () {
                 border-top: 1px solid #C23D31;}
             .checkout-right_footer .altTd p, {
                 display: block;}
-            .checkout-right_footer .altTd p, .checkout-right_footer .altTd p b {
+            .checkout-right_footer .altTd p, .checkout-right_footer .altTd p {
                 font-style: normal;
                 text-transform: capitalize;
                 margin-bottom: 17px;
@@ -591,7 +591,7 @@ window.onload  = function () {
                     document.querySelector('.checkout-right_footer .total-headings').insertAdjacentHTML('beforeend', `<p><b>${totalHeadingsPayment[i]}</b></p>`)
                     document.querySelector('.checkout-right_footer .total-values').insertAdjacentHTML('beforeend', `<p><b data-price="${totalHeadingsValues[i].split(' ').join('').replace('$','')}">${totalHeadingsValues[i]}</b></p>`)
                 }
-             }
+            }
 
             function pushProductsStored() {
                 let productsStored = [];
