@@ -20,9 +20,9 @@ window.onload  = function () {
         }
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
-        <style>
-            .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {
-                display: none;}
+            <style>
+            /*.checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {*/
+            /*    display: none;}*/
             .title_head {
                 font-weight: bold;
                 font-size: 20px;
@@ -36,7 +36,8 @@ window.onload  = function () {
             .payment {
                 padding-bottom: 0;}
             .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
-                display: none;}
+                /*display: none;*/
+                }
             input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
                 margin: 0; }
@@ -551,39 +552,40 @@ window.onload  = function () {
                 width: 100%;
             }
         </style>`);
+
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
             <div class="flex-between">
-            <div class="checkout-left">
-                <div class="checkout-left_head flex-center-between">
-                    <h2 class="title">Sign In</h2>
-                    <p class="link log">Registration</p>
-                </div>
-                <div class="title_head">Personal information</div>
-            </div>
-            <div class="checkout-right">
-                <div>
-                    <div class="checkout-right_head flex-center-between">
-                        <h3 class="title3">Your order</h3>
-                        <a href="https://medicalmega.com/" class="link">Back to Shopping</a>
+                <div class="checkout-left">
+                    <div class="checkout-left_head flex-center-between">
+                        <h2 class="title">Sign In</h2>
+                        <p class="link log">Registration</p>
                     </div>
-                    <div class="checkout-right_body"></div>
+                    <div class="title_head">Personal information</div>
                 </div>
-                <div class="checkout-right_footer">
-                    <div class="altTd total-headings">
-                        <p><b>Sub Total:</b></p> 
-                        <p><b>Shipping:</b></p> 
-                        <p><b>Promocode:</b></p> 
-                        <p><b>Grand Total:</b></p> 
+                <div class="checkout-right">
+                    <div>
+                        <div class="checkout-right_head flex-center-between">
+                            <h3 class="title3">Your order</h3>
+                            <a href="https://medicalmega.com/" class="link">Back to Shopping</a>
+                        </div>
+                        <div class="checkout-right_body"></div>
                     </div>
-                    <div class="altTd total-values">
-                        <p>$ <b></b></p>   
-                        <p>$ <b>0.00</b></p>   
-                        <p>- $ <b>0.00</b></p>   
-                        <p>$ <b></b></p>
+                    <div class="checkout-right_footer">
+                        <div class="altTd total-headings"></div>
+                        <div class="altTd total-values"></div>
                     </div>
                 </div>
-            </div>
-        </div>`);
+            </div>`);
+
+            let totalHeadingsPayment = document.querySelector('.altPayment .total-headings').innerText.split('\n')
+            let totalHeadingsValues = document.querySelector('.altPayment .total-values').innerText.split('\n')
+
+            for (let i = 0; i < totalHeadingsValues.length; i++) {
+                if (totalHeadingsValues[i] != '') {
+                    document.querySelector('.checkout-right_footer .total-headings').insertAdjacentHTML('beforeend', `<p><b>${totalHeadingsPayment[i]}</b></p>`)
+                    document.querySelector('.checkout-right_footer .total-values').insertAdjacentHTML('beforeend', `<p><b data-price="${totalHeadingsValues[i].split(' ').join('').replace('$','')}">${totalHeadingsValues[i]}</b></p>`)
+                }
+             }
 
             function pushProductsStored() {
                 let productsStored = [];
@@ -603,24 +605,25 @@ window.onload  = function () {
             }
 
             function sumTotalPrice() {
-                let sum = 0;
+                let sum = 0,
+                    sumPrice = 0;
                 document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
                     sum += parseFloat(totalPrice.innerHTML);
-                    document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
-                        if (totalIndex === 0) {
-                            totalValues.innerHTML = `${sum.toFixed(2)}`;
+                });
+
+                document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
+                    if (totalIndex === 0) {
+                        totalValues.innerHTML = `$ ${sum.toFixed(2)}`;
+                        totalValues.dataset.price = sum.toFixed(2)
+                    }
+                    if (totalIndex !== document.querySelectorAll('.checkout-right_footer .total-values b').length - 1) {
+                        sumPrice += parseFloat(totalValues.dataset.price);
+                    } else {
+                        totalValues.innerHTML = `$ ${sumPrice.toFixed(2)}`;
+                        if (totalValues.innerHTML.includes('-')) {
+                            totalValues.innerHTML = '$ 0.00';
                         }
-                        if (totalIndex === 3) {
-                            // if (document.querySelectorAll('.total-values b')[0].innerHTML.split('$ ')[1] != document.querySelectorAll('.total-values b')[1].innerHTML.split('$')[1]) {
-                            //     totalValues.innerHTML = (parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('\n$','')) + sum).toFixed(2);
-                            // } else {
-                            totalValues.innerHTML = `${(sum + parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML) - parseFloat(document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML)).toFixed(2)}`;
-                            // }
-                            if (totalValues.innerHTML.includes('-')) {
-                                totalValues.innerHTML = '0.00'
-                            }
-                        }
-                    });
+                    }
                 });
             }
 
@@ -1057,15 +1060,6 @@ window.onload  = function () {
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
                 });
-            }
-
-            if (document.querySelectorAll('.altPayment .total-values br').length == 2 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Shipping')) {
-                document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('$','')).toFixed(2);
-            }
-
-            if (document.querySelectorAll('.altPayment .total-values br').length == 3 && document.querySelector('.altPayment .total-headings').innerHTML.includes('Discount')) {
-                document.querySelectorAll('.checkout-right_footer .total-values b')[1].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[2].replace('$','')).toFixed(2);
-                document.querySelectorAll('.checkout-right_footer .total-values b')[2].innerHTML = parseFloat(document.querySelector('.altPayment .total-values').innerHTML.split('<br>')[1].replace('- $','')).toFixed(2);
             }
 
             if (localStorage.getItem('productsStored')) {
