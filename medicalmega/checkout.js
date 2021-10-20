@@ -299,6 +299,7 @@ window.onload  = function () {
                 font-style: normal;
                 text-transform: capitalize;
                 margin-bottom: 17px;
+                display: block;
                 font-weight: normal;
                 font-size: 14px;
                 line-height: 19px;
