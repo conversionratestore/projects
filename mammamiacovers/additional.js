@@ -455,7 +455,8 @@ window.onload  = function () {
     }
     for (let key in obj) {
         if (document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1] && document.querySelectorAll('.product-single__form .product-single__swatch__sub-title')[1].innerText.toLowerCase() == key || document.querySelectorAll('.product-single__title-text')[0].innerText.toLowerCase().split(' ')[0] == key) {
-            document.querySelector('.img-free-returns').insertAdjacentHTML('beforebegin', `
+            if (!document.querySelector('.measuring-guide')) {
+                document.querySelector('.img-free-returns').insertAdjacentHTML('beforebegin', `
                 <div class="measuring-guide">
                     <h2>Measuring guide</h2>
                     <p class="text-measure">Simply measure back side of your ${key}</p>
@@ -465,18 +466,21 @@ window.onload  = function () {
                         <p>Strech form fit fabric with elasticity of 120%</p>
                     </div>
                 </div>`);
-            if (obj[key].split(',')[3]) {
-                document.querySelector('.product-single__content').insertAdjacentHTML('beforebegin', `
-                 <div class="from-fit">
-                    <h2>Form Fit</h2>
-                    <p>${obj[key].split(',')[4]}</p>
-                    <img src="${obj[key].split(',')[3]}" class="from-fit_container" alt="form fit">
-                </div>`);
+            }
+            if (!document.querySelector('.from-fit')) {
+                if (obj[key].split(',')[3]) {
+                    document.querySelector('.product-single__content').insertAdjacentHTML('beforebegin', `
+                     <div class="from-fit">
+                        <h2>Form Fit</h2>
+                        <p>${obj[key].split(',')[4]}</p>
+                        <img src="${obj[key].split(',')[3]}" class="from-fit_container" alt="form fit">
+                    </div>`);
+                }
             }
         }
     }
 
-   window.addEventListener('scroll', (e) => {
+    window.addEventListener('scroll', (e) => {
         if (!document.querySelector('.tns-outer')) {
             tnsInitialization()
         }
