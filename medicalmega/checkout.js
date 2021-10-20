@@ -1,23 +1,5 @@
 window.onload  = function () {
     if (mm.grw != 1) {
-        if (window.location.pathname.includes('cart.html')) {
-            let productsStored = [];
-            localStorage.setItem('productsStored', '');
-            document.querySelectorAll('.altPayment tr').forEach((el) => {
-                if (el.querySelector('[name="cp_id"]')) {
-                    productsStored.push({
-                        'productid': el.querySelector('[name="cp_id"]').value,
-                        'quantity': el.querySelector('.product-quantity').value,
-                        'price': el.querySelector('.unit-price b').innerHTML.replace('$',''),
-                        'variationid': el.querySelector('[name="option_id"]').value,
-                        'img_src': el.querySelector('.product-cell-inner a img').getAttribute('src'),
-                        'link': el.querySelector('.product-description a').getAttribute('href'),
-                        'name': el.querySelector('.product-description a').innerHTML,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                }
-            });
-        }
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
@@ -584,55 +566,37 @@ window.onload  = function () {
                 </div>
             </div>`);
 
-            let totalHeadingsPayment = document.querySelector('.altPayment .total-headings').innerText.split('\n')
-            let totalHeadingsValues = document.querySelector('.altPayment .total-values').innerText.split('\n')
-
-            for (let i = 0; i < totalHeadingsValues.length; i++) {
-                if (totalHeadingsValues[i] != '') {
-                    document.querySelector('.checkout-right_footer .total-headings').insertAdjacentHTML('beforeend', `<p><b>${totalHeadingsPayment[i]}</b></p>`)
-                    document.querySelector('.checkout-right_footer .total-values').insertAdjacentHTML('beforeend', `<p><b data-price="${totalHeadingsValues[i].split(' ').join('').replace('$','')}">${totalHeadingsValues[i]}</b></p>`)
+            fetch('/cart.html?cart_items=1', {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "GET"
+            }).then(res => res.json()).then(data => {
+                console.log(data)
+                for (let i = 0; i < data["items"].length; i++) {
+                    let product = `
+                    <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${justunoCartItems[i].variant_id}">
+                        <a href="${data["items"][i].url}" class="checkout-product_img"> <img src="${data["items"][i].image_url}" alt="Image Of ${data["items"][i].title}"></a>
+                        <div class="flex-column">
+                            <div class="flex-between">
+                                <a href="#">${data["items"][i].title}</a>
+                                <button class="remove" type="button"></button>
+                            </div>
+                            <div class="flex-center-between">
+                                <div class="quantity-row">
+                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity">
+                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                                </div>
+                                <div class="total-price" data-price="${data["items"][i].price}">$ 
+                                    <b>${data["items"][i].subtotal}</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                    document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
-            }
-
-            function pushProductsStored() {
-                let productsStored = [];
-                localStorage.setItem('productsStored', '');
-                document.querySelectorAll('.checkout-product').forEach((product) => {
-                    productsStored.push({
-                        'productid': product.dataset.id,
-                        'quantity': product.querySelector('.quantity').value,
-                        'price': product.querySelector('.total-price').dataset.price,
-                        'variationid': product.dataset.variantId,
-                        'img_src': product.querySelector('.checkout-product_img img').getAttribute('src'),
-                        'link': product.querySelector('.checkout-product_img').getAttribute('href'),
-                        'name': product.querySelectorAll('.flex-between a')[1].innerHTML,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                });
-            }
-
-            function sumTotalPrice() {
-                let sum = 0,
-                    sumPrice = 0;
-                document.querySelectorAll('.checkout-right_body .total-price b').forEach((totalPrice) => {
-                    sum += parseFloat(totalPrice.innerHTML);
-                });
-
-                document.querySelectorAll('.checkout-right_footer .total-values b').forEach((totalValues, totalIndex) => {
-                    if (totalIndex === 0) {
-                        totalValues.innerHTML = `$ ${sum.toFixed(2)}`;
-                        totalValues.dataset.price = sum.toFixed(2)
-                    }
-                    if (totalIndex !== document.querySelectorAll('.checkout-right_footer .total-values b').length - 1) {
-                        sumPrice += parseFloat(totalValues.dataset.price);
-                    } else {
-                        totalValues.innerHTML = `$ ${sumPrice.toFixed(2)}`;
-                        if (totalValues.innerHTML.includes('-')) {
-                            totalValues.innerHTML = '$ 0.00';
-                        }
-                    }
-                });
-            }
+            })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
                 item.addEventListener('click', () => {
@@ -643,10 +607,10 @@ window.onload  = function () {
             if (document.querySelector('.myAccount')) {
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
-            <label class="valign-center">
-                <span class="check"></span>
-                <span>Email Me Order Updates and Specials</span>
-            </label>`);
+                <label class="valign-center">
+                    <span class="check"></span>
+                    <span>Email Me Order Updates and Specials</span>
+                </label>`);
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
                 document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
@@ -712,7 +676,7 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
                 if (!document.querySelectorAll('.checkout-product')) {
                     document.body.insertAdjacentHTML('afterbegin', `
-                <style>
+                    <style>
                 .checkout-right {
                     display: none;
                 }
@@ -720,33 +684,18 @@ window.onload  = function () {
                     document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
                 } else {
                     document.body.insertAdjacentHTML('afterbegin', `
-                <style>
-                    .payment {
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;}
-                    #editor_fields div:nth-child(4){
-                        display: none;} 
-                    #editor_fields .editor_right div:nth-child(6){
-                        display: none;}
-                </style>`);
+                    <style>
+                        .payment {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;}
+                        #editor_fields div:nth-child(4){
+                            display: none;} 
+                        #editor_fields .editor_right div:nth-child(6){
+                            display: none;}
+                    </style>`);
                 }
-                // if (!document.querySelectorAll('.payment table.altPayment input').value && document.querySelectorAll('.payment table.altPayment [name="cp_id"]').value !== '') {
-                let productsStored = [];
-                // localStorage.setItem('productsStored', '');
-                document.querySelectorAll('.payment table.altPayment tr .product-cell-inner').forEach((el) => {
-                    productsStored.push({
-                        'productid': el.closest('tr').querySelector('[name="cp_id"]').value,
-                        'quantity': el.closest('tr').querySelector('.product-quantity').value,
-                        'price': el.closest('tr').querySelector('.unit-price b').innerHTML.replace('$ ',''),
-                        'variationid': el.closest('tr').querySelector('[name="option_id"]').value,
-                        'img_src': el.querySelector('a img').getAttribute('src'),
-                        'link': el.querySelector('.product-description a').getAttribute('href'),
-                        'name': el.querySelector('.product-description a').innerHTML,
-                    });
-                    localStorage.setItem('productsStored', JSON.stringify(productsStored));
-                });
-                // }
+
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
                 document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
                 document.querySelector('.payment h3 ').style.display = 'none';
@@ -769,7 +718,6 @@ window.onload  = function () {
                         'eventAction': 'Click Next button',
                         'eventLabel': 'Section Shipping information'
                     });
-                    pushProductsStored();
                 });
 
                 if (document.querySelector('.editLink') == null) {
@@ -798,7 +746,7 @@ window.onload  = function () {
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
-        <style>
+                <style>
         .holiday {
             margin: 15px 0 0 0!important;
         }
@@ -884,7 +832,6 @@ window.onload  = function () {
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
-                    pushProductsStored();
                     document.querySelector('form div[align="right"] input').click();
                 });
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
@@ -1043,7 +990,7 @@ window.onload  = function () {
 
             if(location.pathname == '/checkout/step4') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
-            .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn{
+            .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn {
                 display: none!important;
             }
             .payment {
@@ -1069,34 +1016,6 @@ window.onload  = function () {
                 });
             }
 
-            if (localStorage.getItem('productsStored')) {
-                let justunoCartItems = JSON.parse(localStorage.getItem('productsStored'));
-                for (let i = 0; i < justunoCartItems.length; i++) {
-                    let product = `
-                    <div class="d-flex checkout-product" data-id="${justunoCartItems[i].productid}" data-variant-id="${justunoCartItems[i].variationid}">
-                        <a href="${justunoCartItems[i].link}" class="checkout-product_img"> <img src="${justunoCartItems[i].img_src}" alt="Image Of ${justunoCartItems[i].name}"></a>
-                        <div class="flex-column">
-                            <div class="flex-between">
-                                <a href="#">${justunoCartItems[i].name}</a>
-                                <button class="remove" type="button"></button>
-                            </div>
-                            <div class="flex-center-between">
-                                <div class="quantity-row">
-                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${justunoCartItems[i].quantity}" class="quantity">
-                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
-                                </div>
-                                <div class="total-price" data-price="${justunoCartItems[i].price}">$ 
-                                    <b>${(justunoCartItems[i].price * justunoCartItems[i].quantity).toFixed(2)}</b>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-                    document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
-                    sumTotalPrice();
-                }
-            }
-
             document.querySelectorAll('.remove').forEach((item, index) => {
                 item.addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
@@ -1112,10 +1031,11 @@ window.onload  = function () {
                         },
                         method: "POST",
                         body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
+                    }).then(res => res.json()).then(data => {
+                        console.log(data["cart"])
+                        
                     })
                     item.closest('.checkout-product').remove();
-                    pushProductsStored();
-                    sumTotalPrice();
                 });
             });
 
@@ -1133,7 +1053,7 @@ window.onload  = function () {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         method: "POST",
-                        body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                        body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
                     })
                 })
             });
@@ -1182,15 +1102,18 @@ window.onload  = function () {
                                 'Content-Type': 'application/x-www-form-urlencoded',
                             },
                             method: "POST",
-                            body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant`
+                            body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
+                        }).then(res => res.json()).then(data => {
+                            console.log(data)
+
                         })
                         quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                        sumTotalPrice();
+                        // sumTotalPrice();
                     });
                 });
                 document.querySelector('.checkout-right_body').addEventListener('change', () => {
                     quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                    sumTotalPrice();
+                    // sumTotalPrice();
                 });
             });
 
@@ -1204,7 +1127,7 @@ window.onload  = function () {
                 });
             })
 
-            sumTotalPrice();
+            // sumTotalPrice();
         }
     }
 };
