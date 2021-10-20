@@ -989,6 +989,6 @@ dataLayer.push({
 window.hj = window.hj || function () {
 	(hj.q = hj.q || []).push(arguments)
 }
-hj('trigger','comaparison_option_mobile')
+hj('event','comaparison_option_mobile')
     
     
