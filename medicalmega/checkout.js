@@ -290,10 +290,9 @@ window.onload  = function () {
             .checkout-right_footer {
                 display: flex;
                 justify-content: space-between;
-                margin: auto -20px 0;
-                padding: 17px 20px;
-                background: #222222;
-                border-radius: 0px 0px 4px 4px;}
+                margin: auto 0 0;
+                padding: 19px 0;
+                border-top: 1px solid #C23D31;}
             .checkout-right_footer .altTd p, {
                 display: block;}
             .checkout-right_footer .altTd p, .checkout-right_footer .altTd p b {
@@ -302,15 +301,22 @@ window.onload  = function () {
                 margin-bottom: 17px;
                 font-weight: normal;
                 font-size: 14px;
-                line-height: 17px;
-                color: #CCCCCC;}
-            .checkout-right_footer .altTd p:last-child, .checkout-right_footer .altTd p:last-child b {
+                line-height: 19px;
+                color: #666666;}
+            .checkout-right_footer .altTd.total-values p {
+                font-weight: 500;}
+            .checkout-right_footer .altTd p:last-child { 
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 33px;
                 margin-bottom: 0;
                 padding-top: 10px;
-                font-weight: 450;
-                font-size: 24px;
-                line-height: 29px;
-                color: #FFFFFF;}
+                color: #222222;}
+            .checkout-right_footer .altTd.total-values p:last-child {
+                font-weight: 700;
+                font-size: 30px;
+                line-height: 41px;
+                color: #222222;}
             .total-values {
                 text-align: right;}
             .relative{
