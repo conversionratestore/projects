@@ -463,26 +463,6 @@ window.onload  = function () {
         }
     }
 
-    window.addEventListener('scroll', (e) => {
-        if (!document.querySelector('.tns-outer')) {
-            let sliderCategories = tns({
-                container: document.querySelector('.sizes-types .sizes__list'),
-                items: 1,
-                autoplay: false,
-                axis: 'horizontal',
-                controls: true,
-                loop: false,
-                prevButton: document.querySelector('.swiper-button-prev'),
-                nextButton: document.querySelector('.swiper-button-next'),
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                nav: false,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-            });
-        }
-    })
     let mut = new MutationObserver(function (muts) {
         if (document.querySelector('.sizes-types .sizes__list') && document.querySelectorAll('.sizes-types .sizes__item img') && !document.querySelector('.swiper-button') && document.querySelectorAll('.sizes-types .sizes__item')) {
             mut.disconnect();
@@ -559,6 +539,28 @@ window.onload  = function () {
         childList: true,
         subtree: true
     });
+
+
+    window.addEventListener('scroll', (e) => {
+        if (!document.querySelector('.tns-outer') && document.querySelector('.sizes-info')) {
+            let sliderCategories = tns({
+                container: document.querySelector('.sizes-types .sizes__list'),
+                items: 1,
+                autoplay: false,
+                axis: 'horizontal',
+                controls: true,
+                loop: false,
+                prevButton: document.querySelector('.swiper-button-prev'),
+                nextButton: document.querySelector('.swiper-button-next'),
+                autoplayButton: false,
+                autoplayButtonOutput: false,
+                mouseDrag: true,
+                nav: false,
+                preventScrollOnTouch: 'auto',
+                swipeAngle: false,
+            });
+        }
+    })
 };
 
 (function(h,o,t,j,a,r){
