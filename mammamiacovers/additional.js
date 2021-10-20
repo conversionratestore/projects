@@ -389,24 +389,7 @@ window.onload  = function () {
 
     document.querySelectorAll('#sizes')[1].classList.add('sizes-types');
 
-    function tnsInitialization() {
-        let sliderCategories = tns({
-            container: document.querySelector('.sizes-types .sizes__list'),
-            items: 1,
-            autoplay: false,
-            axis: 'horizontal',
-            controls: true,
-            loop: false,
-            prevButton: document.querySelector('.swiper-button-prev'),
-            nextButton: document.querySelector('.swiper-button-next'),
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            nav: false,
-            preventScrollOnTouch: 'auto',
-            swipeAngle: false,
-        });
-    };
+
     if (document.querySelector('.fluid-width-video-wrapper')) {
         document.body.insertAdjacentHTML('beforeend', `
         <div class="popup-video">
@@ -482,7 +465,22 @@ window.onload  = function () {
 
     window.addEventListener('scroll', (e) => {
         if (!document.querySelector('.tns-outer')) {
-            tnsInitialization()
+            let sliderCategories = tns({
+                container: document.querySelector('.sizes-types .sizes__list'),
+                items: 1,
+                autoplay: false,
+                axis: 'horizontal',
+                controls: true,
+                loop: false,
+                prevButton: document.querySelector('.swiper-button-prev'),
+                nextButton: document.querySelector('.swiper-button-next'),
+                autoplayButton: false,
+                autoplayButtonOutput: false,
+                mouseDrag: true,
+                nav: false,
+                preventScrollOnTouch: 'auto',
+                swipeAngle: false,
+            });
         }
     })
     let mut = new MutationObserver(function (muts) {
