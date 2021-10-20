@@ -295,7 +295,7 @@ window.onload  = function () {
                 border-top: 1px solid #C23D31;}
             .checkout-right_footer .altTd p, {
                 display: block;}
-            .checkout-right_footer .altTd p, .checkout-right_footer .altTd p {
+            .checkout-right_footer .altTd b, .checkout-right_footer .altTd b {
                 font-style: normal;
                 text-transform: capitalize;
                 margin-bottom: 17px;
@@ -303,16 +303,16 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 19px;
                 color: #666666;}
-            .checkout-right_footer .altTd.total-values p {
+            .checkout-right_footer .altTd.total-values b {
                 font-weight: 500;}
-            .checkout-right_footer .altTd p:last-child { 
+            .checkout-right_footer .altTd p:last-child b { 
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 33px;
                 margin-bottom: 0;
                 padding-top: 10px;
                 color: #222222;}
-            .checkout-right_footer .altTd.total-values p:last-child {
+            .checkout-right_footer .altTd.total-values p:last-child b {
                 font-weight: 700;
                 font-size: 30px;
                 line-height: 41px;
