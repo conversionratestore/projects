@@ -292,7 +292,7 @@ if (pathName.includes('comparison')) {
 		localisationData = localisation['eu']
 	}
 
-	let productSpecs = {
+	const productSpecs = {
 		'london': {
 			'bluetooth': '5.0',
 			'chargingTime': '1.5',
@@ -519,7 +519,7 @@ if (pathName.includes('comparison')) {
 		},
 	}
 
-	let selectOne = `
+	const selectOne = `
     <div class="select">
         <select>
             <option value="stockholm-plus">Stockholm Plus</option>
@@ -539,7 +539,7 @@ if (pathName.includes('comparison')) {
         </select>
     </div>`
 
-	let selectTwo = `
+	const selectTwo = `
     <div class="select">
         <select>
             <option value="stockholm-plus">Stockholm Plus</option>
