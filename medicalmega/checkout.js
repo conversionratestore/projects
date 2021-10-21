@@ -626,8 +626,8 @@ window.onload  = function () {
                                 method: "POST",
                                 body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
                             }).then(res => res.json()).then(data => {
-                                console.log(data)
-                                writeTotal(data)
+                                console.log(data["cart"])
+                                writeTotal(data["cart"])
                             })
                             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                         });
@@ -1122,9 +1122,7 @@ window.onload  = function () {
                         method: "POST",
                         body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
                     }).then(res => res.json()).then(data => {
-                        console.log(data)
-                        // console.log(data["cart"])
-                        // writeTotal(data)
+                        writeTotal(data)
                     })
                     item.closest('.checkout-product').remove();
                 });
