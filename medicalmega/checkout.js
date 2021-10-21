@@ -579,6 +579,65 @@ window.onload  = function () {
                 </div>
             </div>`);
 
+            function quantity() {
+                document.querySelectorAll('.quantity-row').forEach((quantity) => {
+                    quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+                        if (button.className == 'quantity-btn quantity-btn_minus') {
+                            if (button.nextElementSibling.value < 2) {
+                                button.disabled = true;
+                            } else {
+                                button.disabled = false;
+                            }
+                        }
+                        button.addEventListener('click', () => {
+                            if (button.className == 'quantity-btn quantity-btn_plus') {
+                                button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
+                                button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+                                window.dataLayer = window.dataLayer || [];
+                                dataLayer.push({
+                                    'event': 'event-to-ga',
+                                    'eventCategory': 'Exp — Alternative checkout desktop',
+                                    'eventAction': 'Click on plus of items',
+                                    'eventLabel': 'Section Your order'
+                                });
+                            }
+                            if (button.className == 'quantity-btn quantity-btn_minus') {
+                                if (button.nextElementSibling.value < 2) {
+                                    button.nextElementSibling.value = 1;
+                                    button.disabled = true;
+                                } else {
+                                    button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                                }
+
+                                window.dataLayer = window.dataLayer || [];
+                                dataLayer.push({
+                                    'event': 'event-to-ga',
+                                    'eventCategory': 'Exp — Alternative checkout desktop',
+                                    'eventAction': 'Click on minus of items',
+                                    'eventLabel': 'Section Your order'
+                                });
+                            }
+
+                            fetch('/cart.html', {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                method: "POST",
+                                body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
+                            }).then(res => res.json()).then(data => {
+                                console.log(data)
+                                writeTotal(data)
+                            })
+                            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                        });
+                    });
+                    document.querySelector('.checkout-right_body').addEventListener('change', () => {
+                        quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                    });
+                });
+            }
+
             function writeTotal(data) {
                 let values = document.querySelectorAll('.total-values p b');
                 for (let i = 0; i < values.length; i++) {
@@ -594,6 +653,7 @@ window.onload  = function () {
                         }
                     }
                 }
+                quantity()
             }
             fetch('/cart.html?cart_items=1', {
                 headers: {
@@ -1090,62 +1150,6 @@ window.onload  = function () {
                         writeTotal(data)
                     })
                 })
-            });
-            document.querySelectorAll('.quantity-row').forEach((quantity) => {
-                quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
-                    if (button.className == 'quantity-btn quantity-btn_minus') {
-                        if (button.nextElementSibling.value < 2) {
-                            button.disabled = true;
-                        } else {
-                            button.disabled = false;
-                        }
-                    }
-                    button.addEventListener('click', () => {
-                        if (button.className == 'quantity-btn quantity-btn_plus') {
-                            button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
-                            button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp — Alternative checkout desktop',
-                                'eventAction': 'Click on plus of items',
-                                'eventLabel': 'Section Your order'
-                            });
-                        }
-                        if (button.className == 'quantity-btn quantity-btn_minus') {
-                            if (button.nextElementSibling.value < 2) {
-                                button.nextElementSibling.value = 1;
-                                button.disabled = true;
-                            } else {
-                                button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                            }
-
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp — Alternative checkout desktop',
-                                'eventAction': 'Click on minus of items',
-                                'eventLabel': 'Section Your order'
-                            });
-                        }
-
-                        fetch('/cart.html', {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            method: "POST",
-                            body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
-                        }).then(res => res.json()).then(data => {
-                            console.log(data)
-                            writeTotal(data)
-                        })
-                        quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                    });
-                });
-                document.querySelector('.checkout-right_body').addEventListener('change', () => {
-                    quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                });
             });
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
