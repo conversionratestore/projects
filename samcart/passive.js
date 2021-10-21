@@ -658,6 +658,13 @@ p.text-caption {
     justify-content: space-between;
     padding: 0 14px 0 24px; } }
 @media only screen and (max-width: 360px) {
+    .popup-wrapper {
+        padding: 10px; }
+    .block-message {
+        padding: 11px 10px;}
+    .popup-content {
+        padding: 20px 0 0 0;
+    }
     .container {
         padding: 0 10px;
     }
