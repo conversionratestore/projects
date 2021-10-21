@@ -610,12 +610,13 @@ window.onload  = function () {
                 let values = document.querySelectorAll('.total-values p');
                 for (let i = 0; i < values.length; i++) {
                     for (let key in data) {
-                        console.log(values.dataset.items)
+                        console.log(values[i].dataset.items)
                         console.log(data[key])
                         console.log(key)
-                        if (values.dataset.items == key) {
+                        if (values[i].dataset.items == key) {
                             values[i].innerHTML = data[key];
                         }
+                      
                     }
                 }
             })
