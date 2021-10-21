@@ -659,10 +659,10 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <div class="ml-md-auto">
                 <p class="fs-18 fw-extraBold">Learn how to</p>
                 <ul class="webinar-list">
-                  <li class="align-items-center d-flex">Earn more money</li>
-                  <li class="align-items-center d-flex">Sell online</li>
-                  <li class="align-items-center d-flex">Start your own business</li>
-                  <li class="align-items-center d-flex">Increase your sales easily</li>
+                  <li class="align-items-center d-flex">How to launch your online course quickly</li>
+                  <li class="align-items-center d-flex">What to make your course about</li>
+                  <li class="align-items-center d-flex">The secret to get traffic to your course page</li>
+                  <li class="align-items-center d-flex">How to generate more sales and revenue</li>
                 </ul>
               </div>
             </div>
@@ -779,12 +779,15 @@ let createElementFirst = `
   </ul>
 </div>`;
 
-let createElementSecond = `
-<ul class="list-info">
-    <li>Learn 4 proven strategies for your business</li>
-    <li>Learn how to productize your service</li>
-    <li>Get to know how to sell more and easier than ever</li>
-</ul>`;
+function createlistInfo(a,b,c) {
+    return `
+    <ul class="list-info">
+        <li>${a}</li>
+        <li>${b}</li>
+        <li>${c}</li>
+    </ul>`;
+}
+
 
 let createElementEmail = `<div class="field-email"><label>Your contact email*</label><div class="relative"><input type="email" required><p class="error-message"></p></div></div>`;
 let createElementName = `<div class="field-name "><label>Your name *</label><div class="relative"><input type="text" required><p class="error-message"></p></div></div>`;
@@ -823,13 +826,13 @@ btn.forEach((btn) => {
             }
         }
         if (getAttr == 'much-more') {
-            document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createElementSecond;
+            document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
         } else if (getAttr == 'bar-chart') {
-            document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createElementSecond;
+            document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
         } else if (getAttr == 'sales') {
-            document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createElementSecond;
+            document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
         } else if (getAttr == 'expert') {
-            document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createElementSecond;
+            document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
         }
         if (getAttr == 'much-more' || getAttr == 'bar-chart' || getAttr == 'sales' || getAttr == 'expert') {
             if (!document.querySelector('.popup-interested')) {
