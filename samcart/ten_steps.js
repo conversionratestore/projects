@@ -46,8 +46,8 @@ let tenStepsStyle = /*html*/ `
   margin: 0;
 }
 
-svg:not(:root){
-  vertical-align:unset;
+svg:not(:root) {
+  vertical-align: unset;
 }
 
 body {
@@ -86,6 +86,11 @@ button {
   margin: 40px auto 0;
 }
 
+input.error,
+select.error {
+  border: 2px solid #ef4836 !important;
+}
+
 input {
   background-color: inherit !important;
   border: 2px solid #d3d8db !important;
@@ -96,19 +101,11 @@ input {
   padding: 0 10px !important;
 }
 
-input.error,
-select.error {
-  border: 2px solid #ef4836;
-}
-
 .input_validation_name,
 .input_validation_email,
 .input_validation_select {
   width: 100%;
-  margin-top: 8px;
-  padding: 6px 8px;
-  background-color: rgba(239, 72, 54, 0.15);
-  border: 1px solid #ef4836;
+  padding: 6px 0 0 8px;
   color: #ef4836;
   text-align: left;
   font-size: 14px;
@@ -328,7 +325,7 @@ main {
   background: #046bd9;
 }
 
-.box_fist_about > div > .scene_box form > button:hover{
+.box_fist_about > div > .scene_box form > button:hover {
   background: #046bd9;
   color: #ffffff;
   outline: none;
@@ -570,7 +567,7 @@ main {
   border-radius: 50%;
 }
 
-.tns-nav button:hover{
+.tns-nav button:hover {
   background: #9cabb7 !important;
   cursor: pointer;
 }
@@ -708,9 +705,9 @@ main {
   background: #f2813f;
 }
 
-.box_already_registered form button:hover{
-   background: #f2813f;
-   color: #ffffff;
+.box_already_registered form button:hover {
+  background: #f2813f;
+  color: #ffffff;
 }
 
 /* popup */
@@ -850,7 +847,7 @@ main {
   padding: 0 15px;
 }
 
-.popup_wrapper div:last-child button:hover{
+.popup_wrapper div:last-child button:hover {
   background: #046bd9;
   color: #ffffff;
 }
@@ -861,9 +858,9 @@ main {
   margin-top: 72px;
 }
 
-.popup_after_scroll button:last-child:hover{
-   background: #046bd9;
-   color: #ffffff;
+.popup_after_scroll button:last-child:hover {
+  background: #046bd9;
+  color: #ffffff;
 }
 
 .popup_after_scroll .popup_wrapper label:not(:last-child) {
@@ -881,6 +878,14 @@ main {
 
   main {
     padding: 0 30px;
+  }
+
+  .input_validation_name,
+  .input_validation_email,
+  .input_validation_select {
+    font-size: 10px;
+    line-height: 1;
+    display: none;
   }
 
   .box_fist_about {
@@ -971,7 +976,30 @@ main {
   }
 
   .box_second_training .swipe_box > div {
-    transform: rotate(90deg);
+    width: 28px;
+    height: 105%;
+    top: -32px;
+    left: 50px;
+  }
+
+  .progress_line {
+    height: 45px;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .box_second_training .swipe_box > div > svg {
+    top: 25px;
+    right: 5px;
+    left: 0;
+  }
+
+  .box_second_training .swipe_box > div > span {
+    height: 10%;
+    width: 100%;
+    left: unset;
+    top: calc(10% + 45px);
+    right: 5px;
   }
 
   .box_second_training ul li {
@@ -1187,13 +1215,13 @@ main {
   }
 }
 
-.page button:hover, input[type="submit"]:hover {
-  background-image:unset;
+.page button:hover,
+input[type="submit"]:hover {
+  background-image: unset;
   border-color: inherit;
   color: inherit;
   background: unset;
 }
-
 
 </style>
 `
@@ -1758,6 +1786,7 @@ let sliderInterval = setInterval(() => {
 function openSwipeText() {
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   let progressLineWidth = document.querySelector(".progress_line").getBoundingClientRect().width
+  let progressLineHeight = document.querySelector(".progress_line").getBoundingClientRect().height
 
   document.querySelectorAll(".box_second_training ul li").forEach((item, idx) => {
     if (idx < dataSwipe) {
@@ -1769,13 +1798,25 @@ function openSwipeText() {
     }
   })
 
-  document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
+  if (window.innerWidth >= 768) {
+    document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
 
-  document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
-  if (dataSwipe < 9) {
-    document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(22.5% + ${progressLineWidth}px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
+    if (dataSwipe < 9) {
+      document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(22.5% + ${progressLineWidth}px)`
+    }
+    document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
-  document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
+
+  if (window.innerWidth <= 768) {
+    document.querySelector(".progress_line").style.height = `calc(11.5% + ${progressLineHeight}px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(10% + ${progressLineHeight}px)`
+
+    if (dataSwipe < 9) {
+      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(21.5% + ${progressLineHeight}px)`
+    }
+    document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
+  }
 }
 
 let scaleSvg = setInterval(() => {
@@ -1950,4 +1991,8 @@ if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
     "Everything you need to know for growing your business in only 45+ minutes. Swipe down trough the timeline to discover all the themes"
   document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+
+  // if ((document.querySelector(`.backdrop_popup .popup_after_scroll .input_validation_name`).style.display = "block")) {
+  //   document.querySelector(".backdrop_popup .popup_after_scroll").style.position = "unset"
+  // }
 }
