@@ -605,7 +605,10 @@ if (pathName.includes('comparison')) {
 			}
 		})
 
-		let productData = productSpecs[optionSelectedValue]
+		console.log(optionSelectedValue)
+		console.log(productSpecs)
+
+		const productData = productSpecs[optionSelectedValue]
 
 		let chargingTimeFull
 		let playtimeFull
