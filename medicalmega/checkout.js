@@ -615,6 +615,10 @@ window.onload  = function () {
                         console.log(key)
                         if (values[i].dataset.items == key) {
                             values[i].innerHTML = data[key];
+                            if (key == '0') {
+                                values[i].closest('p').style.display = 'none';
+                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
+                            }
                         }
 
                     }
