@@ -276,7 +276,7 @@ window.onload  = function () {
                 border-top: 1px solid #C23D31;}
             .checkout-right_footer .altTd p, {
                 display: block;}
-            .checkout-right_footer .altTd b, .checkout-right_footer .altTd b {
+            .checkout-right_footer .altTd p, .checkout-right_footer .altTd p {
                 font-style: normal;
                 text-transform: capitalize;
                 margin-bottom: 17px;
@@ -285,16 +285,16 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 19px;
                 color: #666666;}
-            .checkout-right_footer .altTd.total-values b {
+            .checkout-right_footer .altTd.total-values p {
                 font-weight: 500;}
-            .checkout-right_footer .altTd p:last-child b { 
+            .checkout-right_footer .altTd p:last-child { 
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 33px;
                 margin-bottom: 0;
                 padding-top: 10px;
                 color: #222222;}
-            .checkout-right_footer .altTd.total-values p:last-child b {
+            .checkout-right_footer .altTd.total-values p:last-child {
                 font-weight: 700;
                 font-size: 30px;
                 line-height: 41px;
@@ -559,8 +559,20 @@ window.onload  = function () {
                         <div class="checkout-right_body"></div>
                     </div>
                     <div class="checkout-right_footer">
-                        <div class="altTd total-headings"></div>
-                        <div class="altTd total-values"></div>
+                        <div class="altTd total-headings">
+                            <p>Subtotal:</p>
+                            <p>Discount:</p>
+                            <p>Shipping:</p>
+                            <p>Sales Tax:</p>
+                            <p>Grand Total:</p>
+                        </div>
+                        <div class="altTd total-values">
+                            <p data-items="subtotal"></p>
+                            <p data-items="discount"></p>
+                            <p data-items="shipping"></p>
+                            <p data-items="tax"></p>
+                            <p data-items="total"></p>
+                        </div>
                     </div>
                 </div>
             </div>`);
@@ -595,7 +607,14 @@ window.onload  = function () {
                     </div>`;
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
-
+                let values = document.querySelectorAll('.total-values p');
+                for (let i = 0; i < values.length; i++) {
+                    if (values.dataset.items == data[i]) {
+                        console.log(values.dataset.items)
+                        console.log(data[i])
+                        values[i].innerHTML = data[i];
+                    }
+                }
             })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
