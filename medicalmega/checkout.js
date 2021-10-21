@@ -563,6 +563,7 @@ window.onload  = function () {
                             <p><b>Subtotal:</b></p>
                             <p><b>Discount:</b></p>
                             <p><b>Shipping:</b></p>
+                            <p><b>Processing Fee:</b></p>
                             <p><b>Sales Tax:</b></p>
                             <p><b>Grand Total:</b></p>
                         </div>
@@ -570,6 +571,7 @@ window.onload  = function () {
                             <p>$ <b data-items="subtotal"></b></p>
                             <p> -$ <b data-items="discount"></b></p>
                             <p>$ <b data-items="shipping"></b></p>
+                            <p>$ <b data-items="processing_fee"></b></p>
                             <p>$ <b data-items="tax"></b></p>
                             <p>$ <b data-items="total"></b></p>
                         </div>
@@ -1109,7 +1111,6 @@ window.onload  = function () {
                         if (button.className == 'quantity-btn quantity-btn_minus') {
                             if (button.nextElementSibling.value < 2) {
                                 button.nextElementSibling.value = 1;
-
                                 button.disabled = true;
                             } else {
                                 button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
@@ -1132,6 +1133,20 @@ window.onload  = function () {
                             body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
                         }).then(res => res.json()).then(data => {
                             console.log(data)
+                            let values = document.querySelectorAll('.total-values p b');
+                            for (let i = 0; i < values.length; i++) {
+                                for (let key in data) {
+                                    if (values[i].dataset.items == key) {
+                                        console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
+                                        values[i].innerHTML = data[key];
+                                        if (data[key] == '0') {
+                                            console.log(data[key])
+                                            values[i].closest('p').style.display = 'none';
+                                            document.querySelectorAll('.total-headings p')[i].style.display = 'none';
+                                        }
+                                    }
+                                }
+                            }
 
                         })
                         quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
