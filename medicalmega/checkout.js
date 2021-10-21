@@ -570,7 +570,7 @@ window.onload  = function () {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 method: "GET"
-            }).then(data => {
+            }).then(res => res.json()).then(data => {
                 console.log(data.json())
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
