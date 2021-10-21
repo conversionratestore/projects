@@ -554,8 +554,13 @@ p.text-caption {
   .text-big {
     font-size: 48px;
     line-height: 54px;
-    margin-bottom: 8px; } }
-
+    margin-bottom: 8px; } 
+  .webinar {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  .webinar-col {
+    padding-bottom: 40px;
+    width: calc(100% - 120px - 32px); }}
 @media only screen and (max-width: 767px) {
   .s-first h1 span {
     margin-top: 8px; }
@@ -572,11 +577,7 @@ p.text-caption {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 0 14px 0 24px; }
-  .webinar {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap; }
   .webinar-col {
-    padding-bottom: 40px;
     width: calc(100% - 85px); }
     .webinar-col .align-items-center {
       margin-left: -85px; }
