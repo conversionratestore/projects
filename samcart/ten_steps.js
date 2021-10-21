@@ -1798,7 +1798,7 @@ function openSwipeText() {
     }
   })
 
-  if (window.innerWidth >= 768) {
+  if (window.innerWidth > 768) {
     document.querySelector(".progress_line").style.width = `calc(11.3% + ${progressLineWidth}px)`
 
     document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(11.3% + ${progressLineWidth}px)`
