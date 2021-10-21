@@ -579,6 +579,22 @@ window.onload  = function () {
                 </div>
             </div>`);
 
+            function writeTotal(data) {
+                let values = document.querySelectorAll('.total-values p b');
+                for (let i = 0; i < values.length; i++) {
+                    for (let key in data) {
+                        if (values[i].dataset.items == key) {
+                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
+                            values[i].innerHTML = data[key];
+                            if (data[key] == '0') {
+                                console.log(data[key])
+                                values[i].closest('p').style.display = 'none';
+                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
+                            }
+                        }
+                    }
+                }
+            }
             fetch('/cart.html?cart_items=1', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -609,20 +625,7 @@ window.onload  = function () {
                     </div>`;
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
-                let values = document.querySelectorAll('.total-values p b');
-                for (let i = 0; i < values.length; i++) {
-                    for (let key in data) {
-                        if (values[i].dataset.items == key) {
-                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                            values[i].innerHTML = data[key];
-                            if (data[key] == '0') {
-                                console.log(data[key])
-                                values[i].closest('p').style.display = 'none';
-                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
-                            }
-                        }
-                    }
-                }
+                writeTotal(data)
             })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
@@ -1060,7 +1063,7 @@ window.onload  = function () {
                         body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
                     }).then(res => res.json()).then(data => {
                         console.log(data["cart"])
-
+                        // writeTotal(data)
                     })
                     item.closest('.checkout-product').remove();
                 });
@@ -1133,21 +1136,7 @@ window.onload  = function () {
                             body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
                         }).then(res => res.json()).then(data => {
                             console.log(data)
-                            let values = document.querySelectorAll('.total-values p b');
-                            for (let i = 0; i < values.length; i++) {
-                                for (let key in data) {
-                                    if (values[i].dataset.items == key) {
-                                        console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                                        values[i].innerHTML = data[key];
-                                        if (data[key] == '0') {
-                                            console.log(data[key])
-                                            values[i].closest('p').style.display = 'none';
-                                            document.querySelectorAll('.total-headings p')[i].style.display = 'none';
-                                        }
-                                    }
-                                }
-                            }
-
+                            writeTotal(data)
                         })
                         quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                     });
