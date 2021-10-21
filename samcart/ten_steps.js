@@ -572,6 +572,7 @@ main {
 
 .tns-nav button:hover{
   background: #9cabb7 !important;
+  cursor: pointer;
 }
 
 .tns-nav button:not(:last-child) {
@@ -584,6 +585,7 @@ main {
 
 .tns-nav button.tns-nav-active:hover {
   background: #046bd9 !important;
+  cursor: pointer;
 }
 
 .box_slider {
@@ -1186,7 +1188,6 @@ main {
 }
 
 .page button:hover, input[type="submit"]:hover {
-  cursor: unset;
   background-image:unset;
   border-color: inherit;
   color: inherit;
