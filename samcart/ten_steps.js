@@ -1748,7 +1748,7 @@ let sliderInterval = setInterval(() => {
       nextButton: ".arrow_right_btn",
     })
   }
-}, 200)
+}, 100)
 
 // openSwipeText
 // let arrowInterval = setInterval(() => {
