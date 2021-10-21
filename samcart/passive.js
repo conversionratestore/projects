@@ -390,7 +390,7 @@ hr.line-vertical {
     padding-top: 20px;
     position: relative; }
     .advantage-list li:nth-child(odd) {
-      width: 45%; }
+      width: 44%; }
     .advantage-list li:before {
       content: '';
       width: 24px;
@@ -549,6 +549,9 @@ p.text-caption {
     margin-top: 0; } }
 
 @media only screen and (max-width: 991px) {
+.block-message {
+    padding: 11px 18px;
+}
     .popup-text {
         text-align: center; }
     .block-message, .list-info {
@@ -570,6 +573,14 @@ p.text-caption {
    .popup .popup-content .popup-col {
       max-width: 100%!important;
       width: 100%!important;}
+   .popup-interested.popup .block-message p {
+   font-size: 14px;
+line-height: 20px;
+   }
+   .advantage-list li:before {
+    background-color: transparent;
+    margin-right: 0;
+   }
   .s-second, .s-third {
     padding: 56px 0; }
   .s-second h2, .s-third h2 {
