@@ -911,21 +911,21 @@ if (pathName.includes('comparison')) {
                 </style>
             `)
 
-	let btnText = ''
-
-	switch (pathLocal) {
-		case 'de':
-			btnText = 'Kopfhörer vergleichen'
-			break
-		case 'se':
-			btnText = 'Jämför hörlurar'
-			break
-		default:
-			btnText = 'Compare headphones'
-			break
-	}
-
 	function addBtn(block,where) {
+		let btnText = ''
+
+		switch (pathLocal) {
+			case 'de':
+				btnText = 'Kopfhörer vergleichen'
+				break
+			case 'se':
+				btnText = 'Jämför hörlurar'
+				break
+			default:
+				btnText = 'Compare headphones'
+				break
+		}
+
 		document.querySelector(block).insertAdjacentHTML(where,`<a href="https://www.urbanista.com/${pathLocal}/comparison" class="btn-compare">${btnText}</a>`)
 
 		document.querySelector('.btn-compare').addEventListener('click',() => {
