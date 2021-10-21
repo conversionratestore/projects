@@ -596,6 +596,12 @@ if (pathName.includes('comparison')) {
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
+		let productData = productSpecs[optionSelectedValue]
+
+		let chargingTimeFull
+		let playtimeFull
+		let standbyFull
+
 		document.querySelectorAll('.product-item-name [title]').forEach((el) => {
 			if (el.getAttribute('title').toLowerCase() === optionSelectedText && !el.closest('.product-item').querySelector('.catalog-discount-badge')) {
 				document.querySelectorAll(`.active-${index}`).forEach((el) => {
@@ -604,15 +610,6 @@ if (pathName.includes('comparison')) {
 				el.closest('.product-item').classList.add(`active-${index}`)
 			}
 		})
-
-		console.log(optionSelectedValue)
-		console.log(productSpecs)
-
-		const productData = productSpecs[optionSelectedValue]
-
-		let chargingTimeFull
-		let playtimeFull
-		let standbyFull
 
 		chargingTimeFull = productData?.chargingTime === '—' ? productData?.chargingTime : productData?.chargingTime + localisationData?.hour
 		playtimeFull = productData?.playtime === '—' ? productData?.playtime : productData?.playtime + localisationData?.hour
