@@ -553,8 +553,8 @@ p.text-caption {
         text-align: center; }
     .block-message, .list-info {
         margin-top: 20px; }
-    .list-info {
-        margin-bottom: 30px;}
+    .popup-content .popup-col:last-child {
+       padding-top: 20px;}
     .popup h2 {
         text-align: center;
         font-size: 24px;
