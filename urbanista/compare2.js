@@ -592,14 +592,14 @@ if (pathName.includes('comparison')) {
 		}
 	},100)
 
-	function setCards(el,index) {
+	function setCards(el,index, productSpecs) {
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
 		console.log('productSpecs',productSpecs)
 		console.log('optionSelectedValue', optionSelectedValue)
 		console.log('productSpecs[optionSelectedValue]', productSpecs[optionSelectedValue])
-		
+
 		let productData = productSpecs[optionSelectedValue]
 
 		let chargingTimeFull
@@ -832,11 +832,11 @@ if (pathName.includes('comparison')) {
 						removeDuplicateOption(this.value,'left')
 					}
 				})
-
-				setCards(el,index)
+				
+				setCards(el,index, productSpecs)
 
 				el.addEventListener('change',() => {
-					setCards(el,index)
+					setCards(el,index, productSpecs)
 				})
 			})
 
