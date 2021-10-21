@@ -609,7 +609,7 @@ window.onload  = function () {
                 }
                 let values = document.querySelectorAll('.total-values p');
                 for (let i = 0; i < values.length; i++) {
-                    for (let key of data) {
+                    for (let key in data) {
                         console.log(values.dataset.items)
                         console.log(data)
                         console.log(data[key])
