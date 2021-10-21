@@ -595,7 +595,7 @@ window.onload  = function () {
                     }
                 }
             }
-            
+
             function quantity() {
                 document.querySelectorAll('.quantity-row').forEach((quantity) => {
                     quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
@@ -649,9 +649,9 @@ window.onload  = function () {
                             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                         });
                     });
-                    document.querySelector('.checkout-right_body').addEventListener('change', () => {
-                        quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                    });
+                    // document.querySelector('.checkout-right_body').addEventListener('change', () => {
+                    //     quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                    // });
                 });
             }
 
@@ -674,7 +674,7 @@ window.onload  = function () {
                             <div class="flex-center-between">
                                 <div class="quantity-row">
                                     <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity">
+                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity" readonly>
                                     <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                                 </div>
                                 <div class="total-price" data-price="${data["items"][i].price}">$ 
