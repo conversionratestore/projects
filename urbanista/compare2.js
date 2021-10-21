@@ -596,6 +596,10 @@ if (pathName.includes('comparison')) {
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
+		console.log('productSpecs',productSpecs)
+		console.log('optionSelectedValue', optionSelectedValue)
+		console.log('productSpecs[optionSelectedValue]', productSpecs[optionSelectedValue])
+		
 		let productData = productSpecs[optionSelectedValue]
 
 		let chargingTimeFull
