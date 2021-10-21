@@ -171,6 +171,7 @@ b {
   line-height: 24px;
   display: flex; }
   .webinar h2 {
+    padding-right: 10px;
     font-weight: 800;
     font-size: 36px;
     line-height: 45px;
@@ -192,6 +193,7 @@ b {
       line-height: 24px;
       position: relative; }
       .webinar-list li:before {
+        flex-shrink: 0;
         content: '';
         margin-right: 12px;
         width: 24px;
@@ -560,7 +562,9 @@ p.text-caption {
     flex-wrap: wrap; }
   .webinar-col {
     padding-bottom: 40px;
-    width: calc(100% - 120px - 32px); }}
+    width: calc(100% - 120px - 32px); }
+  .webinar-list li {
+    white-space: normal; }}
 @media only screen and (max-width: 767px) {
   .s-first h1 span {
     margin-top: 8px; }
@@ -569,6 +573,7 @@ p.text-caption {
     height: 69px;
     margin-right: 16px; }
   .webinar h2 {
+    padding-right: 0;
     font-size: 20px;
     line-height: 24px; }
   .register-now .btn-orange {
