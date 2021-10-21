@@ -552,6 +552,9 @@ p.text-caption {
 .block-message {
     padding: 11px 18px;
 }
+    .popup form label {
+        margin-bottom: 0;
+    }
     .popup-text {
         text-align: center; }
     .block-message, .list-info {
