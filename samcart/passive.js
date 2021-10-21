@@ -550,8 +550,11 @@ p.text-caption {
 
 @media only screen and (max-width: 991px) {
     .popup-text {
-        text-align: center;
-    }
+        text-align: center; }
+    .block-message, .list-info {
+        margin-top: 20px; }
+    .list-info {
+        margin-bottom: 30px;}
     .popup h2 {
         text-align: center;
         font-size: 24px;
