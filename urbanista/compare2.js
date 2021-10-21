@@ -814,8 +814,8 @@ if (pathName.includes('comparison')) {
 				}
 
 				function removeDuplicateOption(optionValue,select) {
-					document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.style.display = 'block')
-					document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).style.display = 'none'
+					document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.disabled = true)
+					document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).disabled = false
 				}
 
 				removeDuplicateOption(document.querySelector('.left.compare-col select').value,'right')
@@ -871,16 +871,6 @@ if (pathName.includes('comparison')) {
 					})
 				}
 			},500)
-
-			// let seoulInterval = setInterval(() => {
-			// 	document.querySelectorAll('.product-item')[12].forEach(item => {
-			// 		if(item.querySelector('.product-item-name [title]').innerText.toLowerCase() === 'seoul') {
-			// 			clearInterval(seoulInterval)
-			// 			item.querySelector('.actions-primary').insertAdjacentHTML('beforeend',`
-			//             <button class="action primary" type="button"><span>${localisationData?.coming}</span>`)
-			// 		}
-			// 	})
-			// }, 500)
 		}
 	},100)
 
