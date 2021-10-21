@@ -574,10 +574,10 @@ window.onload  = function () {
             }).then(res => res.json()).then(data => {
                 cart = data
                 console.log(data)
-                console.log( data["items"].length)
+                console.log(data["items"].length)
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
-                    <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${justunoCartItems[i].variant_id}">
+                    <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
                         <a href="${data["items"][i].url}" class="checkout-product_img"> <img src="${data["items"][i].image_url}" alt="Image Of ${data["items"][i].title}"></a>
                         <div class="flex-column">
                             <div class="flex-between">
