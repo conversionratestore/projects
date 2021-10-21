@@ -561,7 +561,7 @@ p.text-caption {
         line-height: 32px; }
    .popup {
       padding-top: 80px;}
-   .popup-interested.popup .popup-wrapper {
+   .popup .popup-wrapper {
       max-width: 460px; }
    .popup-interested.popup .popup-content .popup-col {
       max-width: 100%!important;
