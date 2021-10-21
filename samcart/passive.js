@@ -185,7 +185,6 @@ b {
     white-space: nowrap;
     margin-left: auto;
     display: block;
-    padding-right: 15px;
     padding-top: 9px; }
     .webinar-list li {
       margin-top: 15px;
