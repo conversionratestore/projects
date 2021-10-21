@@ -276,7 +276,7 @@ window.onload  = function () {
                 border-top: 1px solid #C23D31;}
             .checkout-right_footer .altTd p, {
                 display: block;}
-            .checkout-right_footer .altTd p, .checkout-right_footer .altTd p {
+            .checkout-right_footer .altTd p, .checkout-right_footer .altTd b {
                 font-style: normal;
                 text-transform: capitalize;
                 margin-bottom: 17px;
