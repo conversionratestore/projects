@@ -493,8 +493,8 @@ p.text-caption {
 .d-block {
   display: block; }
 
-@media only screen and (min-width: 768px) {
-  .ml-md-auto {
+@media only screen and (min-width: 992px) {
+  .ml-lg-auto {
     margin-left: auto; } }
 
 @media only screen and (max-width: 1179px) {
@@ -579,8 +579,8 @@ p.text-caption {
     padding: 0 14px 0 24px; }
   .webinar-col {
     width: calc(100% - 85px); }
-    .webinar-col .align-items-center {
-      margin-left: -85px; }
+  .webinar-col .align-items-center {
+    margin-left: -85px; }
   .card {
     width: 100%;
     max-width: 400px;
@@ -656,7 +656,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                   <p>45+ Minutes</p>
                 </div>
               </div>
-              <div class="ml-md-auto">
+              <div class="ml-lg-auto">
                 <p class="fs-18 fw-extraBold">Learn how to</p>
                 <ul class="webinar-list">
                   <li class="align-items-center d-flex">How to launch your online course quickly</li>
