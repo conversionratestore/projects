@@ -204,6 +204,7 @@ if (pathName.includes('comparison')) {
                 margin: 5px 0 15px;
                 padding: 7px 15px 5px;
                 text-transform: capitalize;
+                white-space: normal !important;
             }
             .product-items .product-item .product-item-info {
                 align-content: space-between;
