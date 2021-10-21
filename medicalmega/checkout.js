@@ -294,7 +294,7 @@ window.onload  = function () {
                 margin-bottom: 0;
                 padding-top: 10px;
                 color: #222222;}
-            .checkout-right_footer .altTd.total-values p:last-child {
+           .checkout-right_footer .altTd.total-values p:last-child {
                 font-weight: 700;
                 font-size: 30px;
                 line-height: 41px;
@@ -560,18 +560,18 @@ window.onload  = function () {
                     </div>
                     <div class="checkout-right_footer">
                         <div class="altTd total-headings">
-                            <p>Subtotal:</p>
-                            <p>Discount:</p>
-                            <p>Shipping:</p>
-                            <p>Sales Tax:</p>
-                            <p>Grand Total:</p>
+                            <p><b>Subtotal:</b></p>
+                            <p><b>Discount:</b></p>
+                            <p><b>Shipping:</b></p>
+                            <p><b>Sales Tax:</b></p>
+                            <p><b>Grand Total:</b></p>
                         </div>
                         <div class="altTd total-values">
-                            <p data-items="subtotal"></p>
-                            <p data-items="discount"></p>
-                            <p data-items="shipping"></p>
-                            <p data-items="tax"></p>
-                            <p data-items="total"></p>
+                            <p>$ <b data-items="subtotal"></b></p>
+                            <p> -$ <b data-items="discount"></b></p>
+                            <p>$ <b data-items="shipping"></b></p>
+                            <p>$ <b data-items="tax"></b></p>
+                            <p>$ <b data-items="total"></b></p>
                         </div>
                     </div>
                 </div>
@@ -607,7 +607,7 @@ window.onload  = function () {
                     </div>`;
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
-                let values = document.querySelectorAll('.total-values p');
+                let values = document.querySelectorAll('.total-values p b');
                 for (let i = 0; i < values.length; i++) {
                     for (let key in data) {
                         console.log(values[i].dataset.items)
@@ -616,7 +616,7 @@ window.onload  = function () {
                         if (values[i].dataset.items == key) {
                             values[i].innerHTML = data[key];
                         }
-                      
+
                     }
                 }
             })
