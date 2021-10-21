@@ -38,8 +38,6 @@ let tenStepsStyle = /*html*/ `
   font-style: normal;
 }
 
-
-
 *,
 *::before,
 *::after {
@@ -1749,7 +1747,7 @@ let sliderInterval = setInterval(() => {
       nextButton: ".arrow_right_btn",
     })
   }
-}, 100)
+}, 200)
 
 // openSwipeText
 // let arrowInterval = setInterval(() => {
