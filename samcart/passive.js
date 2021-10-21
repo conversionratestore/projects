@@ -560,6 +560,15 @@ p.text-caption {
   .webinar {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
+   .btn-close {
+   right: 20px;
+   top: 20px;
+    width: 20px;
+    height: 20px; }
+    .popup-wrapper {
+        padding: 20px; }
+   .popup-content {
+    padding: 20px 10px 0;}
   .webinar-col {
     padding-bottom: 40px;
     width: calc(100% - 120px - 32px); }
