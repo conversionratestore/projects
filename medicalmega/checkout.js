@@ -571,7 +571,7 @@ window.onload  = function () {
                 },
                 method: "GET"
             }).then(res => res.json()).then(data => {
-                console.log(data.json())
+                console.log(data)
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
                     <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
