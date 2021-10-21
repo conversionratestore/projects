@@ -297,7 +297,7 @@ window.onload  = function () {
            .checkout-right_footer .altTd.total-values p:last-child {
                 font-weight: 700;
                 font-size: 30px;
-                line-height: 41px;
+                line-height: 33px;
                 color: #222222;}
             .total-values {
                 text-align: right;}
@@ -636,6 +636,7 @@ window.onload  = function () {
                                 });
                             }
 
+                            console.log(button.closest('.checkout-product').dataset.variantId)
                             fetch('/cart.html', {
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded',
