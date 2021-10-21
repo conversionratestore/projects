@@ -571,7 +571,7 @@ window.onload  = function () {
                 },
                 method: "GET"
             }).then(data => {
-                console.log(data)
+                console.log(data.json())
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
                     <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
@@ -595,6 +595,7 @@ window.onload  = function () {
                     </div>`;
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
+
             })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
@@ -1106,14 +1107,14 @@ window.onload  = function () {
                             console.log(data)
 
                         })
-                        quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                        // quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                         // sumTotalPrice();
                     });
                 });
-                document.querySelector('.checkout-right_body').addEventListener('change', () => {
-                    quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+                // document.querySelector('.checkout-right_body').addEventListener('change', () => {
+                    // quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                     // sumTotalPrice();
-                });
+                // });
             });
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
