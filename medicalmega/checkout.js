@@ -656,6 +656,30 @@ window.onload  = function () {
                 });
             }
 
+            function removeProduct() {
+                document.querySelectorAll('.remove').forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — Alternative checkout desktop',
+                            'eventAction': 'Click Exit Cross button',
+                            'eventLabel': 'Section Your order'
+                        });
+                        fetch('/cart.html', {
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            method: "POST",
+                            body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
+                        }).then(res => res.json()).then(data => {
+                            writeTotal(data)
+                        })
+                        item.closest('.checkout-product').remove();
+                    });
+                });
+            }
+            
             fetch('/cart.html?cart_items=1', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -688,6 +712,7 @@ window.onload  = function () {
                 }
                 writeTotal(data)
                 quantity()
+                removeProduct()
             })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
@@ -1108,27 +1133,6 @@ window.onload  = function () {
                 });
             }
 
-            document.querySelectorAll('.remove').forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Exit Cross button',
-                        'eventLabel': 'Section Your order'
-                    });
-                    fetch('/cart.html', {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: "POST",
-                        body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
-                    }).then(res => res.json()).then(data => {
-                        writeTotal(data)
-                    })
-                    item.closest('.checkout-product').remove();
-                });
-            });
 
             document.querySelectorAll('.checkout-product .quantity').forEach(el => {
                 el.addEventListener('change', () => {
