@@ -592,7 +592,7 @@ if (pathName.includes('comparison')) {
 		}
 	},100)
 
-	function setCards(el,index, productSpecs) {
+	function setCards(el,index, productSpecs, localisationData) {
 		let optionSelectedText = el.options[el.selectedIndex].text.toLowerCase()
 		let optionSelectedValue = el.options[el.selectedIndex].value
 
@@ -832,11 +832,11 @@ if (pathName.includes('comparison')) {
 						removeDuplicateOption(this.value,'left')
 					}
 				})
-				
-				setCards(el,index, productSpecs)
+
+				setCards(el,index, productSpecs, localisationData)
 
 				el.addEventListener('change',() => {
-					setCards(el,index, productSpecs)
+					setCards(el,index, productSpecs, localisationData)
 				})
 			})
 
