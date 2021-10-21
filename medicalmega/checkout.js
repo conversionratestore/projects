@@ -610,12 +610,11 @@ window.onload  = function () {
                 let values = document.querySelectorAll('.total-values p b');
                 for (let i = 0; i < values.length; i++) {
                     for (let key in data) {
-                        console.log(values[i].dataset.items)
-                        console.log(data[key])
-                        console.log(key)
                         if (values[i].dataset.items == key) {
+                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
                             values[i].innerHTML = data[key];
                             if (key == '0') {
+                                console.log(data[key])
                                 values[i].closest('p').style.display = 'none';
                                 document.querySelectorAll('.total-headings p')[i].style.display = 'none';
                             }
