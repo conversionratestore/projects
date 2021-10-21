@@ -1060,9 +1060,10 @@ window.onload  = function () {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         method: "POST",
-                        body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant`
+                        body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
                     }).then(res => res.json()).then(data => {
-                        console.log(data["cart"])
+                        console.log(data)
+                        // console.log(data["cart"])
                         // writeTotal(data)
                     })
                     item.closest('.checkout-product').remove();
@@ -1086,6 +1087,7 @@ window.onload  = function () {
                         body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
                     }).then(res => res.json()).then(data => {
                         console.log(data)
+                        writeTotal(data)
                     })
                 })
             });
