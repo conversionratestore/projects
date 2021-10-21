@@ -814,8 +814,8 @@ if (pathName.includes('comparison')) {
 				}
 
 				function removeDuplicateOption(optionValue,select) {
-					document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.disabled = true)
-					document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).disabled = false
+					document.querySelectorAll(`.${select}.compare-col select option`).forEach(el => el.disabled = false)
+					document.querySelector(`.${select}.compare-col select option[value=${optionValue}]`).disabled = true
 				}
 
 				removeDuplicateOption(document.querySelector('.left.compare-col select').value,'right')
