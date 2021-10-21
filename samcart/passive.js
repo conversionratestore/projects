@@ -549,8 +549,15 @@ p.text-caption {
     margin-top: 0; } }
 
 @media only screen and (max-width: 991px) {
-    .popup {
-    padding-top: 80px;}
+    .popup-text {
+        text-align: center;
+    }
+    .popup h2 {
+        text-align: center;
+        font-size: 24px;
+        line-height: 32px; }
+   .popup {
+      padding-top: 80px;}
    .popup-interested.popup .popup-wrapper {
       max-width: 460px; }
    .popup-interested.popup .popup-content .popup-col {
@@ -755,7 +762,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <div class="justify-content-between d-lg-flex">
                 <div class="popup-col">
                   <h2>Save Your Spot</h2>
-                  <p>Finish registration filling up the fields on the right<b class="d-block">and learn how to</b></p>
+                  <p class="popup-text">Finish registration filling up the fields on the right<b class="d-block">and learn how to</b></p>
                   <div class="content"></div>
                 </div>
                 <div class="popup-col">
