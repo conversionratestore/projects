@@ -555,6 +555,9 @@ p.text-caption {
     .popup form label {
         margin-bottom: 0;
     }
+    .popup form .field-name, .select {
+        margin-bottom: 16px;
+    }
     .popup-text {
         text-align: center; }
     .block-message, .list-info {
