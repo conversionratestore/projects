@@ -565,16 +565,13 @@ window.onload  = function () {
                 </div>
             </div>`);
 
-            let cart;
             fetch('/cart.html?cart_items=1', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 method: "GET"
-            }).then(res => res.json()).then(data => {
-                cart = data
+            }).then(data => {
                 console.log(data)
-                console.log(data["items"].length)
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
                     <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
