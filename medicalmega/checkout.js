@@ -673,13 +673,14 @@ window.onload  = function () {
                             method: "POST",
                             body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
                         }).then(res => res.json()).then(data => {
-                            writeTotal(data)
+                            console.log(data)
+                            writeTotal(data["cart"])
                         })
                         item.closest('.checkout-product').remove();
                     });
                 });
             }
-            
+
             fetch('/cart.html?cart_items=1', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
