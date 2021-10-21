@@ -579,6 +579,23 @@ window.onload  = function () {
                 </div>
             </div>`);
 
+            function writeTotal(data) {
+                let values = document.querySelectorAll('.total-values p b');
+                for (let i = 0; i < values.length; i++) {
+                    for (let key in data) {
+                        if (values[i].dataset.items == key) {
+                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
+                            values[i].innerHTML = data[key];
+                            if (data[key] == '0') {
+                                console.log(data[key])
+                                values[i].closest('p').style.display = 'none';
+                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
+                            }
+                        }
+                    }
+                }
+            }
+            
             function quantity() {
                 document.querySelectorAll('.quantity-row').forEach((quantity) => {
                     quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
@@ -638,23 +655,6 @@ window.onload  = function () {
                 });
             }
 
-            function writeTotal(data) {
-                let values = document.querySelectorAll('.total-values p b');
-                for (let i = 0; i < values.length; i++) {
-                    for (let key in data) {
-                        if (values[i].dataset.items == key) {
-                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                            values[i].innerHTML = data[key];
-                            if (data[key] == '0') {
-                                console.log(data[key])
-                                values[i].closest('p').style.display = 'none';
-                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
-                            }
-                        }
-                    }
-                }
-                quantity()
-            }
             fetch('/cart.html?cart_items=1', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -686,6 +686,7 @@ window.onload  = function () {
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
                 writeTotal(data)
+                quantity()
             })
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
