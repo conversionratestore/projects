@@ -287,6 +287,7 @@ hr.line-vertical {
     margin: 40px auto 0; }
 
 .popup {
+    overflow-y: auto;
   position: fixed;
   top: 0;
   left: 0;
@@ -496,6 +497,8 @@ p.text-caption {
   display: block; }
 
 @media only screen and (min-width: 992px) {
+    .d-lg-flex {
+        display: flex;}
   .ml-lg-auto {
     margin-left: auto; } }
 
@@ -546,6 +549,13 @@ p.text-caption {
     margin-top: 0; } }
 
 @media only screen and (max-width: 991px) {
+    .popup {
+    padding-top: 80px;}
+   .popup-interested.popup .popup-wrapper {
+      max-width: 460px; }
+   .popup-interested.popup .popup-content .popup-col {
+      max-width: 100%!important;
+      width: 100%!important;}
   .s-second, .s-third {
     padding: 56px 0; }
   .s-second h2, .s-third h2 {
@@ -742,7 +752,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
           <form class="popup-wrapper">
             <button class="btn-close" type="reset"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
             <div class="popup-content">
-              <div class="justify-content-between d-flex">
+              <div class="justify-content-between d-lg-flex">
                 <div class="popup-col">
                   <h2>Save Your Spot</h2>
                   <p>Finish registration filling up the fields on the right<b class="d-block">and learn how to</b></p>
