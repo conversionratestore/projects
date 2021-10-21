@@ -609,13 +609,13 @@ window.onload  = function () {
                 }
                 let values = document.querySelectorAll('.total-values p');
                 for (let i = 0; i < values.length; i++) {
-                    for (const key in data) {
-                        if (values.dataset.items == data) {
-                            console.log(values.dataset.items)
-                            console.log(data)
-                            console.log(data[key])
-                            values[i].innerHTML = data[key];
-                        }
+                    for (let key of data) {
+                        console.log(values.dataset.items)
+                        console.log(data)
+                        console.log(data[key])
+                        // if (values.dataset.items == data) {
+                        //     values[i].innerHTML = data[key];
+                        // }
                     }
                 }
             })
