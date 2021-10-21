@@ -611,11 +611,11 @@ window.onload  = function () {
                 for (let i = 0; i < values.length; i++) {
                     for (let key in data) {
                         console.log(values.dataset.items)
-                        console.log(data)
                         console.log(data[key])
-                        // if (values.dataset.items == data) {
-                        //     values[i].innerHTML = data[key];
-                        // }
+                        console.log(key)
+                        if (values.dataset.items == key) {
+                            values[i].innerHTML = data[key];
+                        }
                     }
                 }
             })
