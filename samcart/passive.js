@@ -559,10 +559,14 @@ p.text-caption {
         text-align: center;
         font-size: 24px;
         line-height: 32px; }
+    .advantage-list li {
+        font-size: 13px;
+        line-height: 20px;
+        padding-top: 8px;}
    .popup {
       padding-top: 80px;}
    .popup .popup-wrapper {
-      max-width: 460px; }
+      max-width: 460px!important; }
    .popup .popup-content .popup-col {
       max-width: 100%!important;
       width: 100%!important;}
