@@ -563,7 +563,7 @@ p.text-caption {
       padding-top: 80px;}
    .popup .popup-wrapper {
       max-width: 460px; }
-   .popup-interested.popup .popup-content .popup-col {
+   .popup .popup-content .popup-col {
       max-width: 100%!important;
       width: 100%!important;}
   .s-second, .s-third {
