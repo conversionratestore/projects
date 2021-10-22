@@ -105,7 +105,7 @@ input {
 .input_validation_email,
 .input_validation_select {
   width: 100%;
-  padding: 6px 0 0 8px;
+  padding: 2px 0 0 8px;
   color: #ef4836;
   text-align: left;
   font-size: 14px;
@@ -883,7 +883,7 @@ main {
   .input_validation_name,
   .input_validation_email,
   .input_validation_select {
-    font-size: 10px;
+    font-size: 8px;
     line-height: 1;
     display: none;
   }
