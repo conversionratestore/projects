@@ -71,7 +71,7 @@ window.onload  = function () {
             justify-content: space-between;
             margin: 8px 0 0;
             width: 100%;}
-        .add-to-cart a {
+        .add-to-cart a, .gallery dd .add-to-cart a {
             color: #FFFFFF;
             padding: 0 9px;
             margin-bottom: 0;
