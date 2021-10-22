@@ -1389,7 +1389,7 @@ let tenStepHtml = /*html*/ `
         <h2>On This Training You Will Discover</h2>
         <p>
           Everything you need to know for growing your business in only 45+ minutes. <br />
-          Swipe right trough the timeline to discover all the themes
+          Click right trough the timeline to discover all the themes
         </p>
         <div class="swipe_box">
           <ul>
@@ -1996,7 +1996,7 @@ function dataToday(parent) {
 //
 setInterval(() => {
   let dayNow = new Date().toDateString().split(" ")
-  let timeNow = new Date().toTimeString().split(" ")[0].slice(0, 5)
+  let timeNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5)).toTimeString().split(" ")[0].slice(0, 5)
   document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
   document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
 }, 100)
@@ -2017,7 +2017,7 @@ function setLocalStorInform(parent) {
 
 if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
-    "Everything you need to know for growing your business in only 45+ minutes. Swipe down trough the timeline to discover all the themes"
+    "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
 
   document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
   document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
