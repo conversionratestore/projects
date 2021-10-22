@@ -126,7 +126,7 @@ window.onload  = function () {
             font-size: 20px;
             line-height: 20px;
             padding-top: 30px; }
-        .gallery-parent.viewed .gallery dd:nth-child(n+5){ 
+        .gallery-parent.viewed .gallery dd:nth-child(n+5), .gallery-parent.ordered .gallery dd:nth-child(n+5){ 
             display: none;}
         .gallery-parent.viewed .gallery dd.visible {
             display: flex!important;}
