@@ -405,6 +405,7 @@ main {
 }
 .box_second_training .swipe_box ul li p {
   text-align: left;
+  margin-bottom: 0;
 }
 
 .box_second_training .swipe_box ul li::after {
@@ -1220,6 +1221,11 @@ main {
   .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
   .popup_wrapper div:first-child ul li:nth-child(even) {
     margin-left: 0;
+  }
+
+   .box_second_training .swipe_box ul li::after {
+    right: 18px;
+
   }
 }
 
