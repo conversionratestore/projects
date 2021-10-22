@@ -226,6 +226,7 @@ window.onload  = function () {
             document.querySelectorAll('.add-to-cart button').forEach((item) => {
                 item.addEventListener('click', (e) => {
                     console.log('click')
+                    e.stopImmediatePropagation()
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
 
@@ -246,7 +247,7 @@ window.onload  = function () {
                         window.location.pathname = '/cart.html'
                     })
 
-                    return false;
+
                 });
                 if (item.closest('.ordered')) {
                     window.dataLayer = window.dataLayer || [];
@@ -528,11 +529,11 @@ window.onload  = function () {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
 
                 }
+                addToCart();
             }
         })
         .catch(error => console.log('error', error));
 
-    addToCart();
 };
 
 (function(h,o,t,j,a,r){
