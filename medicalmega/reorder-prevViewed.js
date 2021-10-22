@@ -515,7 +515,7 @@ window.onload  = function () {
                         <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
                         <input type="hidden" name="quantity" value="1">
                     </form>
-                    <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                    <div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
                     document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
