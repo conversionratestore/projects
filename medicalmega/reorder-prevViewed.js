@@ -71,7 +71,7 @@ window.onload  = function () {
             justify-content: space-between;
             margin: 8px 0 0;
             width: 100%;}
-        .add-to-cart a, .gallery dd .add-to-cart a {
+        .add-to-cart button {
             color: #FFFFFF;
             padding: 0 9px;
             margin-bottom: 0;
@@ -223,9 +223,8 @@ window.onload  = function () {
 
     function addToCart() {
         if (document.querySelectorAll('.add-to-cart')) {
-            document.querySelectorAll('.add-to-cart a').forEach((item) => {
+            document.querySelectorAll('.add-to-cart button').forEach((item) => {
                 item.addEventListener('click', (e) => {
-                    e.preventDefault()
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
 
@@ -243,7 +242,7 @@ window.onload  = function () {
                         method: "POST",
                         body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
                     }).then(res => {
-                        // window.location.pathname = '/cart.html'
+                        window.location.pathname = '/cart.html'
                     })
 
                 });
@@ -302,7 +301,7 @@ window.onload  = function () {
 
         const galleryDd = document.querySelectorAll('.gallery dd');
         for (let i = 0; i < galleryDd.length; i++) {
-            galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>`);
+            galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`);
         }
 
         const galleryParent = document.querySelectorAll('.gallery-parent');
@@ -343,7 +342,7 @@ window.onload  = function () {
                             <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
                             <input type="hidden" name="quantity" value="1">
                         </form>
-                        <div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>
+                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
                        </dd>`)
             }
             if (cards.length > 4) {
@@ -519,7 +518,7 @@ window.onload  = function () {
                         <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
                         <input type="hidden" name="quantity" value="1">
                     </form>
-                    <div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>
+                    <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
                     document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
