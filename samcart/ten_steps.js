@@ -1693,8 +1693,16 @@ let tenStepHtml = /*html*/ `
       </div>
     </main>
 `
+document.querySelector(".elementor-section-wrap section:not(:last-child)")
+document.querySelector('[data-id="6eb498f"]').remove()
+document.querySelector('[data-id="b367b11"]').remove()
+document.querySelector('[data-id="49efc9d"]').remove()
+document.querySelector('[data-id="f101d95"]').remove()
+document.querySelector('[data-id="1bdd115"]').remove()
+document.querySelector('[data-id="10a636e"]').remove()
+document.querySelector('[data-id="125c139"]').remove()
+document.querySelector('[data-id="925c505"]').remove()
 
-document.querySelector('[data-id="8dee3e0"]').remove()
 document.body.insertAdjacentHTML("afterbegin", tenStepsStyle)
 document.querySelector(".elementor-section-wrap").insertAdjacentHTML("afterbegin", tenStepHtml)
 
