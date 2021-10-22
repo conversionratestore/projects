@@ -71,6 +71,8 @@ window.onload  = function () {
             justify-content: space-between;
             margin: 8px 0 0;
             width: 100%;}
+        .add-to-cart button:focus {
+            opacity: 0.8;}
         .add-to-cart button {
             color: #FFFFFF;
             padding: 0 9px;
@@ -243,9 +245,9 @@ window.onload  = function () {
                         },
                         method: "POST",
                         body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
-                    })
-
-                    window.location.pathname = '/cart.html'
+                    }).then(res => {
+                        window.location.pathname = '/cart.html'
+                    });
                 });
                 if (item.closest('.ordered')) {
                     window.dataLayer = window.dataLayer || [];
@@ -349,33 +351,33 @@ window.onload  = function () {
             if (cards.length > 4) {
                 document.querySelector('.view-more').hidden = false;
             }
-
-            document.querySelector('.view-more').addEventListener('click', (e) => {
-                document.querySelectorAll('.gallery-parent.viewed .gallery dd:nth-child(n+5)').forEach((el) => {
-                    // e.target.classList.toggle('visible')
-                    el.classList.toggle('visible');
-                    if (!el.classList.contains('visible')) {
-                        e.target.innerHTML = 'View more products';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button Hide more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
-                    } else {
-                        e.target.innerHTML = 'Hide more products';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button View more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
-                    }
-                })
-            });
         }
+        document.querySelector('.view-more').forEach((item) => {
+            item.addEventListener('click', (e) => {
+                item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
+                el.classList.toggle('visible');
+                if (!el.classList.contains('visible')) {
+                    e.target.innerHTML = 'View more products';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on button Hide more products',
+                        'eventLabel': 'PL section Recently viewed Products'
+                    });
+                } else {
+                    e.target.innerHTML = 'Hide more products';
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on button View more products',
+                        'eventLabel': 'PL section Recently viewed Products'
+                    });
+                }
+            })
+            });
+        });
     }
 
     if (location.pathname.includes('product')) {
@@ -450,6 +452,8 @@ window.onload  = function () {
                     <h2 class="title">Your recent orders</h2>
                     <p class="id-order">Order #${data["orderNumber"]}</p>
                     <dl class="gallery"></dl>
+                    <button type="button" class="view-more" hidden>View more products</button>
+                    
                     <div class="ordered-bottom">
                         <div class="d-flex">
                             <div>
