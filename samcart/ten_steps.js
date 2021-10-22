@@ -1720,6 +1720,14 @@ document.querySelector('[data-id="925c505"]').remove()
 document.body.insertAdjacentHTML("afterbegin", tenStepsStyle)
 document.querySelector(".elementor-section-wrap").insertAdjacentHTML("afterbegin", tenStepHtml)
 
+// dayNow and timeNow
+setInterval(() => {
+  let dayNow = new Date().toDateString().split(" ")
+  let timeNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5)).toTimeString().split(" ")[0].slice(0, 5)
+  document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
+  document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
+}, 100)
+
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene_box .front_form > button").addEventListener("click", function (e) {
   e.preventDefault()
@@ -1785,7 +1793,6 @@ setTimeout(() => {
 }, 100)
 
 // slider
-
 let sliderInterval = setInterval(() => {
   if (typeof tns === "function") {
     clearInterval(sliderInterval)
@@ -1801,10 +1808,6 @@ let sliderInterval = setInterval(() => {
 }, 200)
 
 // openSwipeText
-// let arrowInterval = setInterval(() => {
-//   document.querySelector(".progress_line").classList.toggle("arrow")
-// }, 1500)
-
 function openSwipeText() {
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   let progressLineWidth = document.querySelector(".progress_line").getBoundingClientRect().width
@@ -1853,7 +1856,6 @@ let scaleSvg = setInterval(() => {
 
 // on click btn swipe
 document.querySelector(".box_second_training .swipe_box > div > span").addEventListener("click", () => {
-  console.log(`click`)
   let dataSwipe = +document.querySelector(".box_second_training .swipe_box > div").getAttribute("data-swipe")
   if (dataSwipe <= 9) {
     openSwipeText()
@@ -1869,8 +1871,6 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
       if (localStorage.getItem("inputInform")) {
         inputInform = JSON.parse(localStorage.getItem("inputInform"))
         inputInform.map((item) => {
-          console.log(item.inputName)
-          console.log(item.inputEmail)
           if (item.inputName !== "" || item.inputEmail !== "") {
             document.querySelector(`.backdrop_popup .popup_after_scroll input[name='name']`).value = item.inputName
             document.querySelector(`.backdrop_popup .popup_after_scroll input[name='email']`).value = item.inputEmail
@@ -1895,7 +1895,13 @@ if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-chil
   })
 }
 
-// validation
+if (document.querySelector(".back_form") || document.querySelector(".popup_btn .popup_wrapper") || document.querySelector(".backdrop_popup .popup_after_scroll")) {
+  dataToday(".back_form")
+  dataToday(".popup_btn .popup_wrapper")
+  dataToday(".backdrop_popup .popup_after_scroll")
+}
+
+// validation form
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
@@ -1965,14 +1971,12 @@ function validationForm(parent) {
           item.value = ""
         })
       }
+
+      setTimeout(() => {
+        document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
+      }, 300)
     }
   }
-}
-
-if (document.querySelector(".back_form") || document.querySelector(".popup_btn .popup_wrapper") || document.querySelector(".backdrop_popup .popup_after_scroll")) {
-  dataToday(".back_form")
-  dataToday(".popup_btn .popup_wrapper")
-  dataToday(".backdrop_popup .popup_after_scroll")
 }
 
 // data today
@@ -1987,22 +1991,11 @@ function dataToday(parent) {
 
   let dataNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5))
 
-  console.log(dataNow.toLocaleString("en-US", options))
-
   document.querySelector(`${parent} select[name='startTime'] option`).value = dataNow.toLocaleString("en-US", options)
   document.querySelector(`${parent} select[name='startTime'] option`).textContent = dataNow.toLocaleString("en-US", options)
 }
 
-//
-setInterval(() => {
-  let dayNow = new Date().toDateString().split(" ")
-  let timeNow = new Date(new Date().setMinutes(new Date().getMinutes() + 5)).toTimeString().split(" ")[0].slice(0, 5)
-  document.querySelector(".box_already_registered form div span:first-child").textContent = `${dayNow[0]} ${dayNow[2]} ${dayNow[1]}`
-  document.querySelector(".box_already_registered form div span:last-child").textContent = `${timeNow}`
-}, 100)
-
-//
-
+//set LocalStor Inform
 function setLocalStorInform(parent) {
   let inputInform = []
 
