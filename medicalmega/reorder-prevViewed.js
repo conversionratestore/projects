@@ -352,32 +352,6 @@ window.onload  = function () {
                 document.querySelector('.view-more').hidden = false;
             }
         }
-        document.querySelectorAll('.view-more').forEach((item) => {
-            item.addEventListener('click', (e) => {
-                item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
-                el.classList.toggle('visible');
-                if (!el.classList.contains('visible')) {
-                    e.target.innerHTML = 'View more products';
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on button Hide more products',
-                        'eventLabel': 'PL section Recently viewed Products'
-                    });
-                } else {
-                    e.target.innerHTML = 'Hide more products';
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on button View more products',
-                        'eventLabel': 'PL section Recently viewed Products'
-                    });
-                }
-            })
-            });
-        });
     }
 
     if (location.pathname.includes('product')) {
@@ -531,8 +505,34 @@ window.onload  = function () {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
 
                 }
-                addToCart();
             }
+            addToCart();
+            document.querySelectorAll('.view-more').forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
+                        el.classList.toggle('visible');
+                        if (!el.classList.contains('visible')) {
+                            e.target.innerHTML = 'View more products';
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button Hide more products',
+                                'eventLabel': 'PL section Recently viewed Products'
+                            });
+                        } else {
+                            e.target.innerHTML = 'Hide more products';
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button View more products',
+                                'eventLabel': 'PL section Recently viewed Products'
+                            });
+                        }
+                    })
+                });
+            });
         })
         .catch(error => console.log('error', error));
 
