@@ -521,14 +521,13 @@ window.onload  = function () {
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
                     document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
-
+                    addToCart();
                 }
                 if (window.location.pathname.includes('/product')) {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
-
+                    addToCart();
                 }
             }
-            addToCart();
         })
         .catch(error => console.log('error', error));
 };
