@@ -224,7 +224,8 @@ window.onload  = function () {
     function addToCart() {
         if (document.querySelectorAll('.add-to-cart')) {
             document.querySelectorAll('.add-to-cart a').forEach((item) => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault()
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
 
@@ -241,7 +242,10 @@ window.onload  = function () {
                         },
                         method: "POST",
                         body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                    }).then(res => {
+                        window.location.pathname = '/cart.html'
                     })
+
                 });
                 if (item.closest('.ordered')) {
                     window.dataLayer = window.dataLayer || [];
