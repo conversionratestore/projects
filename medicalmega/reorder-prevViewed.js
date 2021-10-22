@@ -336,7 +336,7 @@ window.onload  = function () {
                     `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                         <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                         <a href="${cards[i].href}">${cards[i].name}</a>
-                        <b>$${cards[i].price}</b>
+                        <b>${cards[i].price}</b>
                         <form action="https://medicalmega.com/cart.html" method="post">
                             <input type="hidden" name="product_id" value="${cards[i].productid}">
                             <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
@@ -511,7 +511,7 @@ window.onload  = function () {
                 let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
                     <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
                     <a href="${data["items"][i].url}">${data["items"][i].title}</a>
-                    <b>${data["items"][i].price}</b>
+                    <b>$${data["items"][i].price}</b>
                     <form action="https://medicalmega.com/cart.html" method="post">
                         <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
                         <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
@@ -521,11 +521,11 @@ window.onload  = function () {
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
                     document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
- 
+
                 }
                 if (window.location.pathname.includes('/product')) {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
-                   
+
                 }
             }
             addToCart();
