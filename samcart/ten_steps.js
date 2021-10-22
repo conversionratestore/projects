@@ -108,7 +108,7 @@ input {
   padding: 2px 0 0 8px;
   color: #ef4836;
   text-align: left;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 1.25;
   display: none;
 }
@@ -1998,9 +1998,7 @@ function setLocalStorInform(parent) {
 if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
     "Everything you need to know for growing your business in only 45+ minutes. Swipe down trough the timeline to discover all the themes"
-  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
 
-  // if ((document.querySelector(`.backdrop_popup .popup_after_scroll .input_validation_name`).style.display = "block")) {
-  //   document.querySelector(".backdrop_popup .popup_after_scroll").style.position = "unset"
-  // }
+  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
