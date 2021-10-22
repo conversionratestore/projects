@@ -72,7 +72,7 @@ window.onload  = function () {
             margin: 8px 0 0;
             width: 100%;}
         .add-to-cart button:focus {
-            opacity: 0.8;}
+            background: linear-gradient(180deg, #E44640 100%, #C11008 0);}
         .add-to-cart button {
             color: #FFFFFF;
             padding: 0 9px;
