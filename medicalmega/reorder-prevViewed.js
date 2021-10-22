@@ -1,6 +1,6 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
-        <style>
+            <style>
         .gallery dd span img {
                 max-height: 140px;}
         [hidden] {
@@ -285,6 +285,34 @@ window.onload  = function () {
                 });
             });
         }
+
+        document.querySelectorAll('.view-more').forEach((item) => {
+            item.addEventListener('click', (e) => {
+                console.log('click')
+                item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
+                    el.classList.toggle('visible');
+                    if (!el.classList.contains('visible')) {
+                        e.target.innerHTML = 'View more products';
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on button Hide more products',
+                            'eventLabel': 'PL section Recently viewed Products'
+                        });
+                    } else {
+                        e.target.innerHTML = 'Hide more products';
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on button View more products',
+                            'eventLabel': 'PL section Recently viewed Products'
+                        });
+                    }
+                })
+            });
+        });
     }
 
     if (window.location.pathname == '/') {
@@ -486,7 +514,7 @@ window.onload  = function () {
                     });
                 })
             }
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < data["items"].length; i++) {
                 let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
                     <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
                     <a href="${data["items"][i].url}">${data["items"][i].title}</a>
@@ -503,36 +531,10 @@ window.onload  = function () {
                 }
                 if (window.location.pathname.includes('/product')) {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
-
                 }
             }
             addToCart();
-            document.querySelectorAll('.view-more').forEach((item) => {
-                item.addEventListener('click', (e) => {
-                    item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
-                        el.classList.toggle('visible');
-                        if (!el.classList.contains('visible')) {
-                            e.target.innerHTML = 'View more products';
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button Hide more products',
-                                'eventLabel': 'PL section Recently viewed Products'
-                            });
-                        } else {
-                            e.target.innerHTML = 'Hide more products';
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button View more products',
-                                'eventLabel': 'PL section Recently viewed Products'
-                            });
-                        }
-                    })
-                });
-            });
+
         })
         .catch(error => console.log('error', error));
 
