@@ -245,7 +245,8 @@ window.onload  = function () {
                     }).then(res => {
                         window.location.pathname = '/cart.html'
                     })
-
+                    
+                    return false;
                 });
                 if (item.closest('.ordered')) {
                     window.dataLayer = window.dataLayer || [];
