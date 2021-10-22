@@ -1,6 +1,8 @@
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
         <style>
+        .gallery dd span img {
+                max-height: 140px;}
         [hidden] {
             display: none!important; }
         button {
@@ -331,7 +333,7 @@ window.onload  = function () {
                     `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                         <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                         <a href="${cards[i].href}">${cards[i].name}</a>
-                        <b>${cards[i].price}</b>
+                        <b>$${cards[i].price}</b>
                         <form action="https://medicalmega.com/cart.html" method="post">
                             <input type="hidden" name="product_id" value="${cards[i].productid}">
                             <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
