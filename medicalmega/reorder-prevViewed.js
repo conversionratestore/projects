@@ -352,7 +352,7 @@ window.onload  = function () {
                 document.querySelector('.view-more').hidden = false;
             }
         }
-        document.querySelector('.view-more').forEach((item) => {
+        document.querySelectorAll('.view-more').forEach((item) => {
             item.addEventListener('click', (e) => {
                 item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
                 el.classList.toggle('visible');
