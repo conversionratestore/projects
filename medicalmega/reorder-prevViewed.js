@@ -293,22 +293,42 @@ window.onload  = function () {
                     el.classList.toggle('visible');
                     if (!el.classList.contains('visible')) {
                         e.target.innerHTML = 'View more products';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button Hide more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
+                        if (el.closest('.viewed')) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button Hide more products',
+                                'eventLabel': 'PL section Recently viewed Products'
+                            });
+                        } else {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button Hide more products',
+                                'eventLabel': 'PL section Recently Ordered Products'
+                            });
+                        }
                     } else {
                         e.target.innerHTML = 'Hide more products';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button View more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
+                        if (el.closest('.viewed')) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button View more products',
+                                'eventLabel': 'PL section Recently viewed Products'
+                            });
+                        } else {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button View more products',
+                                'eventLabel': 'PL section Recently Ordered Products'
+                            });
+                        }
                     }
                 })
             });
@@ -498,7 +518,7 @@ window.onload  = function () {
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
                 document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
-                <div class="ordered-products">
+                <div class="ordered-products ordered">
                     <h2 class="title">Recently Ordered Products</h2>
                     <dl class="gallery"></dl>
                     <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>
