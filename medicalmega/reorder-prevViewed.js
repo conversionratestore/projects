@@ -245,7 +245,7 @@ window.onload  = function () {
                     }).then(res => {
                         window.location.pathname = '/cart.html'
                     })
-                    
+
                     return false;
                 });
                 if (item.closest('.ordered')) {
@@ -526,12 +526,13 @@ window.onload  = function () {
                 }
                 if (window.location.pathname.includes('/product')) {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
-                   
+
                 }
-                addToCart();
             }
         })
         .catch(error => console.log('error', error));
+
+    addToCart();
 };
 
 (function(h,o,t,j,a,r){
