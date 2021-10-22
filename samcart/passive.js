@@ -721,9 +721,9 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <div class="ml-lg-auto">
                 <p class="fs-18 fw-extraBold">Learn how to</p>
                 <ul class="webinar-list">
-                  <li class="align-items-center d-flex">How to launch your online course quickly</li>
+                  <li class="align-items-center d-flex">How to launch your online course in 3 days</li>
                   <li class="align-items-center d-flex">What to make your course about</li>
-                  <li class="align-items-center d-flex">The secret to get traffic to your course page</li>
+                  <li class="align-items-center d-flex">The secret to get people to your course page</li>
                   <li class="align-items-center d-flex">How to generate more sales and revenue</li>
                 </ul>
               </div>
