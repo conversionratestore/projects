@@ -959,7 +959,7 @@ main {
 
   /*box_second_training  */
   .box_second_training {
-    padding: 0 30px 130px;
+    padding: 0 30px 65px;
     background: linear-gradient(180deg, #f7fafd 0%, #ffffff 100%);
     margin: 0 -30px;
   }
@@ -979,7 +979,8 @@ main {
     width: 28px;
     height: 105%;
     top: -32px;
-    left: 50px;
+    left: 15%;
+    transform: translateX(50%);
   }
 
   .progress_line {
@@ -998,14 +999,19 @@ main {
     height: 10%;
     width: 100%;
     left: unset;
-    top: calc(10% + 45px);
+    top: calc(16% + 45px);
     right: 5px;
   }
 
   .box_second_training ul li {
     display: flex;
-    margin-bottom: 105px;
+    margin-bottom: 40px;
     width: unset;
+  }
+
+  .box_second_training ul li:first-child,
+  .box_second_training ul li:nth-child(2) {
+    margin-bottom: 105px;
   }
 
   .box_second_training .swipe_box ul li div {
@@ -1014,7 +1020,7 @@ main {
   }
 
   .box_second_training .swipe_box ul li::after {
-    right: 0;
+    right: 46px;
     top: 25px;
     left: unset;
     padding: unset;
@@ -1022,6 +1028,8 @@ main {
   }
 
   .box_second_training .swipe_box ul li span {
+    display: block;
+    width: 40px;
     text-align: right;
   }
 
@@ -1799,8 +1807,14 @@ function openSwipeText() {
   document.querySelectorAll(".box_second_training ul li").forEach((item, idx) => {
     if (idx < dataSwipe) {
       item.classList.add("color_text")
+      if (window.innerWidth <= 768) {
+        item.style.marginBottom = "105px"
+      }
     } else if (idx === dataSwipe) {
       item.classList.add("open_blur_text")
+      if (window.innerWidth <= 768) {
+        item.style.marginBottom = "105px"
+      }
     } else if (idx > dataSwipe) {
       item.classList.add("none_text")
     }
@@ -1817,11 +1831,11 @@ function openSwipeText() {
   }
 
   if (window.innerWidth <= 768) {
-    document.querySelector(".progress_line").style.height = `calc(11.5% + ${progressLineHeight}px)`
-    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(10% + ${progressLineHeight}px)`
+    document.querySelector(".progress_line").style.height = `calc(131px + ${progressLineHeight}px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(131px + ${progressLineHeight}px - 18px)`
 
     if (dataSwipe < 9) {
-      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(21.5% + ${progressLineHeight}px)`
+      document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(262px + ${progressLineHeight}px - 20px)`
     }
     document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
