@@ -10,6 +10,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         overflow-y: auto;
         display: inline-flex;
         z-index: 9999;
+        font-family: "Arial", sans-serif;
     }
     .popup_container {
         background: #FFFFFF;
@@ -49,9 +50,27 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         max-width: 336px;
         margin: 0 auto;
     }
+    .popup_slider::-webkit-scrollbar {
+        height: 5px;
+        background-color: #E5E5E5;
+        border-radius: 2.6px;
+    }
+    .popup_slider::-webkit-scrollbar-thumb {
+        height: 5px;
+        background-color: #777777;
+        border-radius: 2.6px;
+    }
     .popup_slide {
         width: 130px;
-        padding-bottom: 28px;
+        padding-bottom: 10px;
+        margin-right: 64px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .popup_slide:last-child {
+        margin-right: 0;
     }
     .popup_slide img {
         height: 129px;
@@ -94,6 +113,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         font-size: 13px;
         line-height: 19px;
         color: #BDBDBD;
+        margin: 0;
     }
     .btn-complete {
         background: #FF450E;
@@ -131,10 +151,14 @@ document.body.insertAdjacentHTML( 'beforeend',`
 
 let cartList = document.querySelectorAll('.cartlist tbody tr');
 for (let i = 0; i < cartList.length; i++) {
-    document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-    <div class="popup_slide">
-        <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerHTML.split('<div')[0]}">
-        <p class="slide_name">${cartList[i].querySelector('.title').innerHTML.split('<div')[0]}</p>
-        <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
-    </div>`)
+    if(cartList[i].querySelector('.title')) {
+        document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
+        <div class="popup_slide">
+            <div>
+                <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
+                <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
+            </div>
+            <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
+        </div>`)
+    }
 }
