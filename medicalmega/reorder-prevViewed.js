@@ -225,6 +225,7 @@ window.onload  = function () {
         if (document.querySelectorAll('.add-to-cart')) {
             document.querySelectorAll('.add-to-cart button').forEach((item) => {
                 item.addEventListener('click', (e) => {
+                    console.log('click')
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
 
