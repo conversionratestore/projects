@@ -243,7 +243,7 @@ window.onload  = function () {
                         method: "POST",
                         body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
                     }).then(res => {
-                        window.location.pathname = '/cart.html'
+                        // window.location.pathname = '/cart.html'
                     })
 
                 });
