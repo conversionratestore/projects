@@ -128,7 +128,7 @@ window.onload  = function () {
             padding-top: 30px; }
         .gallery-parent.viewed .gallery dd:nth-child(n+5), .gallery-parent.ordered .gallery dd:nth-child(n+5){ 
             display: none;}
-        .gallery-parent.viewed .gallery dd.visible {
+        .gallery-parent.viewed .gallery dd.visible, .gallery-parent.ordered .gallery dd.visible {
             display: flex!important;}
         .view-more {
             width: calc(100% - 20px);}
