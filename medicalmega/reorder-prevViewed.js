@@ -298,7 +298,7 @@ window.onload  = function () {
 
         const galleryDd = document.querySelectorAll('.gallery dd');
         for (let i = 0; i < galleryDd.length; i++) {
-            galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`);
+            galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>`);
         }
 
         const galleryParent = document.querySelectorAll('.gallery-parent');
@@ -339,7 +339,7 @@ window.onload  = function () {
                             <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
                             <input type="hidden" name="quantity" value="1">
                         </form>
-                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                        <div class="add-to-cart"><a href="https://medicalmega.com/cart.html">add to cart</a><input type="number" value="1"></div>
                        </dd>`)
             }
             if (cards.length > 4) {
