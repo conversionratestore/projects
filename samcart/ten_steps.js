@@ -1773,9 +1773,9 @@ setTimeout(() => {
 // slider
 
 let sliderInterval = setInterval(() => {
-  clearInterval(sliderInterval)
-
   if (typeof tns === "function") {
+    clearInterval(sliderInterval)
+
     let slider = tns({
       container: ".my_slider",
       items: 1,
