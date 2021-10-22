@@ -71,7 +71,7 @@ window.onload  = function () {
             justify-content: space-between;
             margin: 8px 0 0;
             width: 100%;}
-        .add-to-cart button {
+        .add-to-cart a {
             color: #FFFFFF;
             padding: 0 9px;
             margin-bottom: 0;
@@ -223,7 +223,7 @@ window.onload  = function () {
 
     function addToCart() {
         if (document.querySelectorAll('.add-to-cart')) {
-            document.querySelectorAll('.add-to-cart button').forEach((item) => {
+            document.querySelectorAll('.add-to-cart a').forEach((item) => {
                 item.addEventListener('click', () => {
                     let valueP = 1,
                         num = +document.querySelector('.by_num span').innerHTML;
