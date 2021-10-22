@@ -1224,8 +1224,8 @@ main {
   }
 
    .box_second_training .swipe_box ul li::after {
-    right: 18px;
-
+    right: -6px;
+    width: 60%;
   }
 }
 
