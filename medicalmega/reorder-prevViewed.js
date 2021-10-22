@@ -244,7 +244,7 @@ window.onload  = function () {
                         method: "POST",
                         body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
                     })
-                    
+
                     window.location.pathname = '/cart.html'
                 });
                 if (item.closest('.ordered')) {
@@ -512,7 +512,7 @@ window.onload  = function () {
                 let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
                     <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
                     <a href="${data["items"][i].url}">${data["items"][i].title}</a>
-                    <b>$${data["items"][i].price}</b>
+                    <b>$${data["items"][i].price.toFixed(2)}</b>
                     <form action="https://medicalmega.com/cart.html" method="post">
                         <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
                         <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
