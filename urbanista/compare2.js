@@ -209,6 +209,9 @@ if (pathName.includes('comparison')) {
             .product-items .product-item .product-item-info {
                 align-content: space-between;
             }        
+            .custom_fc_frame {
+            	bottom: 25px !important;
+            }
         </style>
         `)
 
@@ -985,5 +988,3 @@ window.hj = window.hj || function () {
 	(hj.q = hj.q || []).push(arguments)
 }
 hj('event','comaparison_option_mobile')
-    
-    
