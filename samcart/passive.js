@@ -696,6 +696,8 @@ p.text-caption {
 
 let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
 let today  = new Date();
+today.setTime(today.getTime() + (4 * 60 * 1000));
+
 document.querySelector('[data-id="42e7721"]').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
@@ -721,9 +723,9 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <div class="ml-lg-auto">
                 <p class="fs-18 fw-extraBold">Learn how to</p>
                 <ul class="webinar-list">
-                  <li class="align-items-center d-flex">How to launch your online course in 3 days</li>
+                  <li class="align-items-center d-flex">How to launch your online course quickly</li>
                   <li class="align-items-center d-flex">What to make your course about</li>
-                  <li class="align-items-center d-flex">The secret to get people to your course page</li>
+                  <li class="align-items-center d-flex">The secret to get traffic to your course page</li>
                   <li class="align-items-center d-flex">How to generate more sales and revenue</li>
                 </ul>
               </div>
@@ -799,7 +801,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                 <div class="popup-col">
                   <label>Your current monthly sales *</label>
                   <div class="select">
-                    <select name="customFields.Monthly_Sales">
+                    <select name="monthly_sales">
                         <option value="">Select an option</option>
                         <option value="No Sales Yet">No Sales Yet</option>
                         <option value="$1 - $1,000">$1 - $1,000</option>
@@ -812,7 +814,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                   <label>data and time of attendance</label>
                   <div class="select">
                         <select name="start_time">
-                            <option value="${today.toLocaleDateString("en-US", options)}">${today.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','')} EEST</option>
+                            <option value="${today.toJSON()}">${today.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','')} EEST</option>
                         </select>
                        <p class="error-message"></p>
                    </div>
@@ -873,6 +875,28 @@ function showPopup() {
     },100)
 }
 
+function postForm(name,email,time,sales) {
+    fetch('https://api.joinnow.live/webinars/0e7aJr/registration', {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: "POST",
+        body: {
+            "name": `${name}`,
+            "email": `${email}`,
+            "timezone": "Europe/Kiev",
+            "start_time": `${time}`,
+            "gdprConsentReceived": "false",
+            "customFields": {
+                "Monthly_Sales": `${sales}`,
+                "hubspotutk": "27ae00ca6cbfa88154c1f312ccc0674f"
+            }
+        }
+    }).then(res => res.json()).then(data => {
+        console.log(data)
+    })
+}
+
 btn.forEach((btn) => {
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
@@ -885,6 +909,7 @@ btn.forEach((btn) => {
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
                 showFieldName()
                 showPopup()
+                document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
             }
         }
         if (getAttr == 'much-more') {
@@ -916,6 +941,8 @@ btn.forEach((btn) => {
                     document.querySelector('.field-name').remove();
                 }
                 showPopup()
+                document.querySelector('.popup .btn-orange').setAttribute('data-name',btn.closest('.register-now').querySelector('input[type="text"]').value)
+                document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.register-now').querySelector('input[type="email"]').value)
             }
         }
         if (btn.closest('form')) {
@@ -948,8 +975,22 @@ btn.forEach((btn) => {
         }
         popup.querySelector('.btn-orange').setAttribute('data-button', getAttr);
 
-        if (document.querySelector('.popup .error') == null) {
+        if (document.querySelector('.popup.active') && document.querySelector('.popup .error') == null) {
             console.log('not error')
+            let sales = document.querySelector('[name="monthly_sales"]')[document.querySelector('[name="monthly_sales"]').selectedIndex].value;
+            if (btn.getAttribute('data-button') == 'started') {
+                let name = document.querySelector('.popup input').value,
+                    email = btn.getAttribute('data-email');
+                postForm(name,email,today.toJSON(),sales)
+            } else if (btn.getAttribute('data-button') == 'register-now') {
+                let name = btn.getAttribute('data-name'),
+                    email = btn.getAttribute('data-email');
+                postForm(name,email,today.toJSON(),sales)
+            } else {
+                let name = document.querySelector('.popup .field-name input').value,
+                    email = document.querySelector('.popup .field-email input').value;
+                postForm(name,email,today.toJSON(),sales)
+            }
         }
     })
 })
