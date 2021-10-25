@@ -696,8 +696,14 @@ p.text-caption {
 
 let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric' };
 let today  = new Date();
-today.setTime(today.getTime() + (4 * 60 * 1000));
 
+let getRoundedDate = (minutes, d=new Date()) => {
+    let ms = 1000 * 60 * minutes; // convert minutes to ms
+    let roundedDate = new Date(Math.ceil(d.getTime() / ms) * ms);
+    return roundedDate
+}
+let date = getRoundedDate(5, today).toJSON()
+console.log(date)
 document.querySelector('[data-id="42e7721"]').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
@@ -814,7 +820,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                   <label>data and time of attendance</label>
                   <div class="select">
                         <select name="start_time">
-                            <option value="${today.toJSON()}">${today.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','')} EEST</option>
+                            <option value="${date}">${today.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','')} EEST</option>
                         </select>
                        <p class="error-message"></p>
                    </div>
@@ -825,6 +831,16 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
           </form>
         </div>
     </div>`);
+
+let dateRenew = setInterval(() => {
+    today  = new Date();
+    console.log(today)
+    date = getRoundedDate(5, today).toJSON();
+    console.log(date)
+    document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].value = date;
+
+}, 300000)
+console.log(dateRenew);
 
 let btnClose = document.querySelector('.btn-close'),
     popup = document.querySelector('.popup'),
@@ -876,25 +892,30 @@ function showPopup() {
 }
 
 function postForm(name,email,time,sales) {
+    console.log(name,email,time,sales)
     fetch('https://api.joinnow.live/webinars/0e7aJr/registration', {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
         method: "POST",
-        body: {
-            "name": `${name}`,
+        body:  JSON.stringify({
+            "start_time": `${time}`,
             "email": `${email}`,
             "timezone": "Europe/Kiev",
-            "start_time": `${time}`,
-            "gdprConsentReceived": "false",
+            "gdprConsentReceived": false,
             "customFields": {
                 "Monthly_Sales": `${sales}`,
                 "hubspotutk": "27ae00ca6cbfa88154c1f312ccc0674f"
-            }
-        }
+            },
+            "name": `${name}`,
+            "linkParams":{}
+        })
     }).then(res => res.json()).then(data => {
         console.log(data)
-    })
+        window.location.href = `https://webclass.samcart.com/t/0e7aJr?id=Pfm1WE`
+    }).catch(err => {
+        console.log('Failed fetch ', err);
+    });
 }
 
 btn.forEach((btn) => {
@@ -981,15 +1002,15 @@ btn.forEach((btn) => {
             if (btn.getAttribute('data-button') == 'started') {
                 let name = document.querySelector('.popup input').value,
                     email = btn.getAttribute('data-email');
-                postForm(name,email,today.toJSON(),sales)
+                postForm(name,email,date,sales)
             } else if (btn.getAttribute('data-button') == 'register-now') {
                 let name = btn.getAttribute('data-name'),
                     email = btn.getAttribute('data-email');
-                postForm(name,email,today.toJSON(),sales)
+                postForm(name,email,date,sales)
             } else {
                 let name = document.querySelector('.popup .field-name input').value,
                     email = document.querySelector('.popup .field-email input').value;
-                postForm(name,email,today.toJSON(),sales)
+                postForm(name,email,date,sales)
             }
         }
     })
