@@ -1911,7 +1911,12 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
-    let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
+    // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
+    let inputValueEmail = document
+      .querySelector(`${parent} input[name='email']`)
+      .value.match(
+        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
+      )
 
     if (inputValueName === null) {
       document.querySelector(`${parent} input[name='name']`).classList.add("error")
@@ -2071,9 +2076,11 @@ function postForm(name, email, time, sales) {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       window.location.href = `https://joinnow.live/t/TSa5s8?id=jyjVL6`
     })
     .catch((err) => {
       console.log("Failed fetch ", err)
     })
 }
+//
