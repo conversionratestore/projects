@@ -714,7 +714,7 @@ let date = getRoundedDate(5, today).toJSON(),
     dateTwo =  getRoundedDate(5, today);
 
 let dayDate = today.toLocaleDateString("en-US", optionsDate).split(' ')[2],
-    dateNew = today.toLocaleDateString("en-US", optionsDate).replace(',', ` ${dayDate}`);
+    dateNew = today.toLocaleDateString("en-US", optionsDate).replace(dayDate,'').replace(',', ` ${dayDate}`);
 
 document.querySelector('.elementor-element-8dee3e0').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
