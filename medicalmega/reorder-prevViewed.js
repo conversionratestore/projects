@@ -417,7 +417,7 @@ window.onload  = function () {
     if (location.pathname.includes('product')) {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
-            .ordered-products .gallery-parent h2.title, .ordered-products .gallery-parent .title {
+            .ordered-products .gallery h2.title, .ordered-products .gallery .title {
                 padding-left: 0;
                 font-size: 24px;
                 line-height: 33px;
@@ -442,7 +442,7 @@ window.onload  = function () {
                 }
             }
             @media only screen and (max-width: 758px)  {
-                .ordered-products .gallery-parent h2.title, .ordered-products .gallery-parent .title {
+                .ordered-products .gallery h2.title, .ordered-products .gallery .title {
                     font-size: 20px;
                     line-height: 20px;
                 }
@@ -464,7 +464,7 @@ window.onload  = function () {
             let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < storageItems.length; i++) {
                 recentlyViewedProducts.push(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
-            }  
+            }
             pushProducts();
         } else {
             pushProducts();
@@ -577,7 +577,7 @@ window.onload  = function () {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
                 }
             }
-       
+
             addToCart();
 
         })
