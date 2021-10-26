@@ -417,6 +417,14 @@ window.onload  = function () {
     if (location.pathname.includes('product')) {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
+            .ordered-products.gallery-parent .gallery dd {
+                width: 25%;
+                box-sizing: border-box;
+                padding-right: 10px;
+            }
+            .ordered-products.gallery-parent {
+                width: calc(100% + 15px);
+            }
             .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
                 padding-left: 0;
                 font-size: 24px;
@@ -436,7 +444,7 @@ window.onload  = function () {
                 dl.gallery {
                     justify-content: flex-start!important;
                 }
-                dl.gallery dd {
+                .ordered-products.gallery-parent .gallery dd {
                     width: 140px;
                     padding-right: 15px;
                 }
@@ -451,7 +459,7 @@ window.onload  = function () {
                 }
             }
             @media only screen and (max-width: 479px)  {
-                .ordered-products {
+                .ordered-products.gallery-parent {
                     margin-left: -20px;
                     width: calc(100% + 20px);
                 }
