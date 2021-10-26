@@ -460,6 +460,9 @@ window.onload  = function () {
                 dl.gallery dd:last-child {
                     margin-right: 0;
                 }
+                .ordered-products.gallery-parent .gallery dd {
+                    width: 140px;
+                }
             }
             @media only screen and (max-width: 479px)  {
                 .ordered-products.gallery-parent {
