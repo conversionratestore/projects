@@ -331,6 +331,9 @@ window.onload  = function () {
                         }
                     }
                 })
+                item.closest('.ordered-products').querySelectorAll('.gallery dd:nth-child(n+5)').forEach(el => {
+                    el.classList.toggle('visible');
+                })
             });
         });
     }
@@ -405,8 +408,10 @@ window.onload  = function () {
     if (location.pathname.includes('product')) {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
-            h2.title, .title {
-                padding-left: 0!important;
+            .ordered-products .gallery-parent h2.title, .ordered-products .gallery-parent .title {
+                padding-left: 0;
+                font-size: 24px;
+                line-height: 33px;
             }
             .gallery {
                 margin-left: 0!important;
@@ -424,7 +429,7 @@ window.onload  = function () {
                 }
             }
             @media only screen and (max-width: 758px)  {
-                .ordered-products h2.title, .ordered-products .title {
+                .ordered-products .gallery-parent h2.title, .ordered-products .gallery-parent .title {
                     font-size: 20px;
                     line-height: 20px;
                 }
@@ -470,8 +475,7 @@ window.onload  = function () {
             console.log(data)
             let dateArr = data["orderDate"].split('-'),
                 dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
-            console.log(dateArr)
-            console.log(dateFormat)
+
             if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0) {
                 document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
                 <div class="gallery-parent ordered">
@@ -525,10 +529,10 @@ window.onload  = function () {
                 <div class="ordered-products ordered">
                     <h2 class="title">Recently Ordered Products</h2>
                     <dl class="gallery"></dl>
-                    <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">View more products</a>
+                    <button type="button" class="view-more">View more products</button>
                 </div>`);
 
-                document.querySelector('.show-more').addEventListener('click', () => {
+                document.querySelector('.view-more').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
