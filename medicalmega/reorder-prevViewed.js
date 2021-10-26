@@ -548,15 +548,7 @@ window.onload  = function () {
                 if (data["items"].length > 4) {
                     document.querySelector('.view-more').hidden = false;
                 }
-                document.querySelector('.view-more').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on button View more products',
-                        'eventLabel': 'PDP section Recently ordered Products'
-                    });
-                })
+
             }
             for (let i = 0; i < data["items"].length; i++) {
                 let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
