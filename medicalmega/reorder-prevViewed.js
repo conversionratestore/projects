@@ -576,10 +576,11 @@ window.onload  = function () {
                 if (window.location.pathname.includes('/product')) {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
                 }
-                addToCart();
             }
+            addToCart();
         })
         .catch(error => console.log('error', error));
+    addToCart();
 };
 
 (function(h,o,t,j,a,r){
