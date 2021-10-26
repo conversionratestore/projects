@@ -2071,7 +2071,6 @@ function postForm(name, email, time, sales) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
       window.location.href = `https://joinnow.live/t/TSa5s8?id=jyjVL6`
     })
     .catch((err) => {
