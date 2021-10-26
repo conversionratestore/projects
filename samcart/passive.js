@@ -78,8 +78,8 @@ button {
   padding: 0;
   cursor: pointer;
   border: none; }
-/*.elementor-6586 .elementor-element.elementor-element-8dee3e0 {*/
-/*    display: none;}*/
+.elementor-6586 .elementor-element.elementor-element-8dee3e0 {
+    display: none;}
 .elementor-6586 .elementor-element.elementor-element-a87ddb6 > .elementor-widget-container {
     padding-right: 0;}
 .landing-wrap {
@@ -716,7 +716,7 @@ let date = getRoundedDate(5, today).toJSON(),
 let dayDate = today.toLocaleDateString("en-US", optionsDate).split(' ')[2],
     dateNew = today.toLocaleDateString("en-US", optionsDate).replace(dayDate,'').replace(',', ` ${dayDate}`);
 
-document.querySelector('.elementor-element-8dee3e0').remove();
+document.querySelector('.elementor-element-42e7721').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
         <section class="s-first">
