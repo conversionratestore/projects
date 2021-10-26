@@ -345,7 +345,7 @@ window.onload  = function () {
             }
          }
     </style>`);
-    
+
     if (window.location.pathname == '/') {
         document.querySelectorAll('.gallery').forEach((item, index) => {
             let galleryWrapper = document.createElement('div');
@@ -579,20 +579,19 @@ window.onload  = function () {
             addToCart();
         })
         .catch(error => console.log('error', error));
-   
+
 };
 let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.add-to-cart button')){
         mut.disconnect();
         addToCart();
-     
     }
     mut.observe(document, {
         childList: true,
         subtree: true
     });
-  
-}
+})
+
 mut.observe(document, {
     childList: true,
     subtree: true
