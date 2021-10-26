@@ -704,7 +704,8 @@ let getRoundedDate = (minutes, d=new Date()) => {
 }
 let date = getRoundedDate(5, today).toJSON()
 console.log(date)
-document.querySelector('[data-id="42e7721"]').remove();
+
+document.querySelector('.elementor-element-8dee3e0').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
         <section class="s-first">
@@ -838,9 +839,9 @@ let dateRenew = setInterval(() => {
     date = getRoundedDate(5, today).toJSON();
     console.log(date)
     document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].value = date;
+}, 200000)
 
-}, 300000)
-console.log(dateRenew);
+
 
 let btnClose = document.querySelector('.btn-close'),
     popup = document.querySelector('.popup'),
