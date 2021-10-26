@@ -440,13 +440,15 @@ window.onload  = function () {
                 margin: 10px 0!important;
             }
             @media only screen and (max-width: 1010px)  {
-                dl.gallery {
-                    justify-content: flex-start!important;
-                }
+                  .ordered-products.gallery-parent .gallery {
+                    max-width: 100%;
+                  }
                 .ordered-products.gallery-parent .gallery dd {
                     width: 140px;
                     padding-right: 15px;
+                    box-sizing: content-box;
                 }
+                
             }
             @media only screen and (max-width: 758px)  {
                 .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
