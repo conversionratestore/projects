@@ -250,30 +250,31 @@ window.onload  = function () {
                     });
                 });
                 if (item.closest('.ordered')) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on add to cart button',
-                        'eventLabel': 'PL section Your recent orders'
-                    });
+                    if (window.location.includes('/product')) {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on add to cart button',
+                            'eventLabel': 'PDP section Recently viewed Products'
+                        });
+                    } else {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on add to cart button',
+                            'eventLabel': 'PL section Your recent orders'
+                        });
+                    }
                 }
-                if (item.closest('viewed')) {
+                if (item.closest('.viewed')) {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
                         'eventCategory': 'Exp: Easy reorder desktop',
                         'eventAction': 'Click on add to cart button',
                         'eventLabel': 'PL section Recently viewed Products'
-                    });
-                }
-                if (window.location.pathname.includes('/product')) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on add to cart button',
-                        'eventLabel': 'PDP section Recently viewed Products'
                     });
                 }
             });
@@ -320,19 +321,27 @@ window.onload  = function () {
                                 'eventAction': 'Click on button View more products',
                                 'eventLabel': 'PL section Recently viewed Products'
                             });
-                        } else {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button View more products',
-                                'eventLabel': 'PL section Recently Ordered Products'
-                            });
+                        }
+                        if (item.closest('.ordered')) {
+                            if (window.location.includes('/product')) {
+                                window.dataLayer = window.dataLayer || [];
+                                dataLayer.push({
+                                    'event': 'event-to-ga',
+                                    'eventCategory': 'Exp: Easy reorder desktop',
+                                    'eventAction': 'Click on button View more products',
+                                    'eventLabel': 'PDP section Recently ordered Products'
+                                });
+                            } else {
+                                window.dataLayer = window.dataLayer || [];
+                                dataLayer.push({
+                                    'event': 'event-to-ga',
+                                    'eventCategory': 'Exp: Easy reorder desktop',
+                                    'eventAction': 'Click on button View more products',
+                                    'eventLabel': 'PL section Recently Ordered Products'
+                                });
+                            }
                         }
                     }
-                })
-                item.closest('.ordered-products').querySelectorAll('.gallery dd:nth-child(n+5)').forEach(el => {
-                    el.classList.toggle('visible');
                 })
             });
         });
