@@ -464,7 +464,7 @@ window.onload  = function () {
             @media only screen and (max-width: 479px)  {
                 .ordered-products.gallery-parent {
                     margin-left: -20px;
-                    width: calc(100% + 20px);
+                    width: calc(100% + 30px);
                 }
                 dl.gallery {
                     width: calc(100% + 15px);
