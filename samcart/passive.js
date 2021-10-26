@@ -844,24 +844,22 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
         </div>
     </div>`);
 
-let dateRenew = setInterval(() => {
-    today  = new Date();
-    console.log(today)
-    date = getRoundedDate(5, today).toJSON();
-    console.log(date)
-    console.log(dateTwo.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @',''))
-    document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].value = date;
-    document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].innerHTML = dateTwo.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','');
-}, 60000)
-
-
+// let dateRenew = setInterval(() => {
+//     today  = new Date();
+//     console.log(today)
+//     date = getRoundedDate(5, today).toJSON();
+//     console.log(date)
+//     console.log(dateTwo.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @',''))
+//     document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].value = date;
+//     document.querySelector('[name="start_time"]')[document.querySelector('[name="start_time"]').selectedIndex].innerHTML = dateTwo.toLocaleDateString("en-US", options).split(',').join(" @").replace(' @','');
+// }, 60000)
 
 let btnClose = document.querySelector('.btn-close'),
     popup = document.querySelector('.popup'),
     popupWrapper = document.querySelector('.popup-wrapper'),
     btn = document.querySelectorAll('[data-button]');
 
-let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let patternEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let createElementFirst = `
 <div class="justify-content-between d-flex">
