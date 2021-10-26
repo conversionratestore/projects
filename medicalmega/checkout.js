@@ -287,13 +287,13 @@ window.onload  = function () {
                 color: #666666;}
             .checkout-right_footer .altTd.total-values p {
                 display: flex;
-                align-items: center;
                 font-weight: 500;}
-            .checkout-right_footer .altTd p:last-child { 
+            .checkout-right_footer .altTd p:last-child {
+                margin-bottom: 0;}
+            .checkout-right_footer .altTd p:last-child b { 
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 33px;
-                margin-bottom: 0;
                 padding-top: 10px;
                 color: #222222;}
            .checkout-right_footer .altTd.total-values p:last-child {
