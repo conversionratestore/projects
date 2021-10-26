@@ -202,6 +202,7 @@ b {
 
 .webinar img.avatar {
   border-radius: 50%;
+  object-fit: cover;
   width: 195px;
   height: 195px;
   margin-right: 32px; }
