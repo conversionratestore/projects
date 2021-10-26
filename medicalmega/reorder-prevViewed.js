@@ -468,6 +468,10 @@ window.onload  = function () {
     }).then(res => res.json())
         .then(data => {
             console.log(data)
+            let dateArr = data["orderDate"].split('-'),
+                dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
+            console.log(dateArr)
+            console.log(dateFormat)
             if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0) {
                 document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
                 <div class="gallery-parent ordered">
@@ -483,7 +487,7 @@ window.onload  = function () {
                                 <p class="c-gray">Total:</p>
                             </div>
                             <div>
-                                <p>${data["orderDate"].split('-').join('/')}</p>
+                                <p>${dateFormat}</p>
                                 <p class="sum"></p>
                             </div>
                         </div>
