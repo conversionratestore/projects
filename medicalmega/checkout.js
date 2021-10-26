@@ -294,9 +294,8 @@ window.onload  = function () {
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 33px;
-                padding-top: 10px;
                 color: #222222;}
-           .checkout-right_footer .altTd.total-values p:last-child {
+           .checkout-right_footer .altTd.total-values p:last-child, .checkout-right_footer .altTd.total-values p:last-child b {
                 font-weight: 700;
                 font-size: 30px;
                 line-height: 33px;
