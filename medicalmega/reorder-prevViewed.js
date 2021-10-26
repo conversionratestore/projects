@@ -214,7 +214,7 @@ window.onload  = function () {
         if (document.querySelector('.product-price')) {
             recentlyViewedProducts.push({
                 'productid': document.querySelector('input[name="product_id"]').value,
-                'price': document.querySelector('.product-price').innerHTML,
+                'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
                 'variationid': document.querySelector('input[name="product_variant_id"]').value,
                 'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
                 'href': window.location.href,
