@@ -586,10 +586,6 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         addToCart();
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
 })
 
 mut.observe(document, {
