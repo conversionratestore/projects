@@ -1,3 +1,141 @@
+let recentlyViewedProducts = [];
+
+function addToCart() {
+    if (document.querySelectorAll('.add-to-cart')) {
+        document.querySelectorAll('.add-to-cart button').forEach((item) => {
+            item.addEventListener('click', (e) => {
+                console.log('click')
+                e.stopImmediatePropagation()
+                let valueP = 1,
+                    num = +document.querySelector('.by_num span').innerHTML;
+
+                valueP = +item.nextElementSibling.value;
+
+                document.querySelector('.by_num span').innerHTML = num + valueP;
+
+                let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
+                    productId = item.closest('.product-card').getAttribute('data-product-id');
+
+                fetch('/cart.html', {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    method: "POST",
+                    body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
+                }).then(res => {
+                    window.location.pathname = '/cart.html'
+                });
+            });
+            if (item.closest('.ordered')) {
+                if (window.location.includes('/product')) {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on add to cart button',
+                        'eventLabel': 'PDP section Recently viewed Products'
+                    });
+                } else {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Easy reorder desktop',
+                        'eventAction': 'Click on add to cart button',
+                        'eventLabel': 'PL section Your recent orders'
+                    });
+                }
+            }
+            if (item.closest('.viewed')) {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Easy reorder desktop',
+                    'eventAction': 'Click on add to cart button',
+                    'eventLabel': 'PL section Recently viewed Products'
+                });
+            }
+        });
+        document.querySelectorAll('.add-to-cart').forEach( (item) => {
+            item.addEventListener('change', () => {
+                if (item.querySelector('input').value <= 1) {
+                    item.querySelector('input').value = 1;
+                }
+            });
+        });
+    }
+
+    document.querySelectorAll('.view-more').forEach((item) => {
+        item.addEventListener('click', (e) => {
+            console.log('click')
+            item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
+                el.classList.toggle('visible');
+                if (!el.classList.contains('visible')) {
+                    e.target.innerHTML = 'View more products';
+                    if (el.closest('.viewed')) {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on button Hide more products',
+                            'eventLabel': 'PL section Recently viewed Products'
+                        });
+                    } else {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on button Hide more products',
+                            'eventLabel': 'PL section Recently Ordered Products'
+                        });
+                    }
+                } else {
+                    e.target.innerHTML = 'Hide more products';
+                    if (el.closest('.viewed')) {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp: Easy reorder desktop',
+                            'eventAction': 'Click on button View more products',
+                            'eventLabel': 'PL section Recently viewed Products'
+                        });
+                    }
+                    if (item.closest('.ordered')) {
+                        if (window.location.includes('/product')) {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button View more products',
+                                'eventLabel': 'PDP section Recently ordered Products'
+                            });
+                        } else {
+                            window.dataLayer = window.dataLayer || [];
+                            dataLayer.push({
+                                'event': 'event-to-ga',
+                                'eventCategory': 'Exp: Easy reorder desktop',
+                                'eventAction': 'Click on button View more products',
+                                'eventLabel': 'PL section Recently Ordered Products'
+                            });
+                        }
+                    }
+                }
+            })
+        });
+    });
+}
+
+function pushProducts() {
+    if (document.querySelector('.product-price')) {
+        recentlyViewedProducts.push({
+            'productid': document.querySelector('input[name="product_id"]').value,
+            'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
+            'variationid': document.querySelector('input[name="product_variant_id"]').value,
+            'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
+            'href': window.location.href,
+            'name': document.querySelectorAll('.center h3')[0].innerHTML,
+        });
+    }
+}
 window.onload  = function () {
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
@@ -207,146 +345,7 @@ window.onload  = function () {
             }
          }
     </style>`);
-
-    let recentlyViewedProducts = [];
-
-    function pushProducts() {
-        if (document.querySelector('.product-price')) {
-            recentlyViewedProducts.push({
-                'productid': document.querySelector('input[name="product_id"]').value,
-                'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
-                'variationid': document.querySelector('input[name="product_variant_id"]').value,
-                'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
-                'href': window.location.href,
-                'name': document.querySelectorAll('.center h3')[0].innerHTML,
-            });
-        }
-    }
-
-    function addToCart() {
-        if (document.querySelectorAll('.add-to-cart')) {
-            document.querySelectorAll('.add-to-cart button').forEach((item) => {
-                item.addEventListener('click', (e) => {
-                    console.log('click')
-                    e.stopImmediatePropagation()
-                    let valueP = 1,
-                        num = +document.querySelector('.by_num span').innerHTML;
-
-                    valueP = +item.nextElementSibling.value;
-
-                    document.querySelector('.by_num span').innerHTML = num + valueP;
-
-                    let dataProductVariantId = item.closest('.product-card').getAttribute('data-product-variant-id'),
-                        productId = item.closest('.product-card').getAttribute('data-product-id');
-
-                    fetch('/cart.html', {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: "POST",
-                        body: `product_variant_id=${dataProductVariantId}&quantity=${valueP}&product_id=${productId}&add_to_cart=variant`
-                    }).then(res => {
-                        window.location.pathname = '/cart.html'
-                    });
-                });
-                if (item.closest('.ordered')) {
-                    if (window.location.includes('/product')) {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on add to cart button',
-                            'eventLabel': 'PDP section Recently viewed Products'
-                        });
-                    } else {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on add to cart button',
-                            'eventLabel': 'PL section Your recent orders'
-                        });
-                    }
-                }
-                if (item.closest('.viewed')) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on add to cart button',
-                        'eventLabel': 'PL section Recently viewed Products'
-                    });
-                }
-            });
-            document.querySelectorAll('.add-to-cart').forEach( (item) => {
-                item.addEventListener('change', () => {
-                    if (item.querySelector('input').value <= 1) {
-                        item.querySelector('input').value = 1;
-                    }
-                });
-            });
-        }
-
-        document.querySelectorAll('.view-more').forEach((item) => {
-            item.addEventListener('click', (e) => {
-                console.log('click')
-                item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
-                    el.classList.toggle('visible');
-                    if (!el.classList.contains('visible')) {
-                        e.target.innerHTML = 'View more products';
-                        if (el.closest('.viewed')) {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button Hide more products',
-                                'eventLabel': 'PL section Recently viewed Products'
-                            });
-                        } else {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button Hide more products',
-                                'eventLabel': 'PL section Recently Ordered Products'
-                            });
-                        }
-                    } else {
-                        e.target.innerHTML = 'Hide more products';
-                        if (el.closest('.viewed')) {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button View more products',
-                                'eventLabel': 'PL section Recently viewed Products'
-                            });
-                        }
-                        if (item.closest('.ordered')) {
-                            if (window.location.includes('/product')) {
-                                window.dataLayer = window.dataLayer || [];
-                                dataLayer.push({
-                                    'event': 'event-to-ga',
-                                    'eventCategory': 'Exp: Easy reorder desktop',
-                                    'eventAction': 'Click on button View more products',
-                                    'eventLabel': 'PDP section Recently ordered Products'
-                                });
-                            } else {
-                                window.dataLayer = window.dataLayer || [];
-                                dataLayer.push({
-                                    'event': 'event-to-ga',
-                                    'eventCategory': 'Exp: Easy reorder desktop',
-                                    'eventAction': 'Click on button View more products',
-                                    'eventLabel': 'PL section Recently Ordered Products'
-                                });
-                            }
-                        }
-                    }
-                })
-            });
-        });
-    }
-
+    
     if (window.location.pathname == '/') {
         document.querySelectorAll('.gallery').forEach((item, index) => {
             let galleryWrapper = document.createElement('div');
@@ -580,9 +579,24 @@ window.onload  = function () {
             addToCart();
         })
         .catch(error => console.log('error', error));
-    addToCart();
+   
 };
-
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelectorAll('.add-to-cart button')){
+        mut.disconnect();
+        addToCart();
+     
+    }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+  
+}
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1699330,hjsv:6};
