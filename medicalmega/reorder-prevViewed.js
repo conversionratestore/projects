@@ -422,6 +422,10 @@ window.onload  = function () {
                 font-size: 24px;
                 line-height: 33px;
             }
+            .ordered-products .view-more {
+                margin: 10px 0 0 0;
+                width: 100%;
+            }
             .gallery {
                 margin-left: 0!important;
             }
@@ -460,7 +464,7 @@ window.onload  = function () {
             let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < storageItems.length; i++) {
                 recentlyViewedProducts.push(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
-            }
+            }  
             pushProducts();
         } else {
             pushProducts();
@@ -538,9 +542,12 @@ window.onload  = function () {
                 <div class="ordered-products ordered">
                     <h2 class="title">Recently Ordered Products</h2>
                     <dl class="gallery"></dl>
-                    <button type="button" class="view-more">View more products</button>
+                    <button type="button" class="view-more" hidden>View more products</button>
                 </div>`);
 
+                if (data["items"].length > 4) {
+                    document.querySelector('.view-more').hidden = false;
+                }
                 document.querySelector('.view-more').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
@@ -570,11 +577,11 @@ window.onload  = function () {
                     document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
                 }
             }
+       
             addToCart();
 
         })
         .catch(error => console.log('error', error));
-
 };
 
 (function(h,o,t,j,a,r){
