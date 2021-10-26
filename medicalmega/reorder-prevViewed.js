@@ -571,15 +571,13 @@ window.onload  = function () {
                     <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
-                    document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card)
+                    document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
                 }
                 if (window.location.pathname.includes('/product')) {
-                    document.querySelector('.gallery').insertAdjacentHTML('beforeend', card)
+                    document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
                 }
+                addToCart();
             }
-
-            addToCart();
-
         })
         .catch(error => console.log('error', error));
 };
