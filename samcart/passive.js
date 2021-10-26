@@ -1,4 +1,4 @@
-window.onload  = function () {
+
   document.body.insertAdjacentHTML('afterbegin', `
   <style>
   @font-face {
@@ -1050,4 +1050,4 @@ window.onload  = function () {
   hidePopup(btnClose)
   hidePopup(popup)
   hidePopup(popupWrapper)
-};
+
