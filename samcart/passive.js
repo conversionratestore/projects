@@ -789,7 +789,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
             <div class="flex-center-center date">
               <p>${dateNew}</p>
               <hr class="line-vertical">
-              <p>${today.toLocaleTimeString("en-US", optionsTime).replace(' AM','')}</p>
+              <p>${getRoundedDate(5,today).toLocaleTimeString("it-IT", optionsTime)}</p>
             </div>
             <form class="register-now">
               <div class="relative">
