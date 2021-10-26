@@ -274,18 +274,20 @@ window.onload  = function () {
                 margin: auto 0 0;
                 padding: 19px 0;
                 border-top: 1px solid #C23D31;}
-            .checkout-right_footer .altTd p, {
+            .checkout-right_footer .altTd p {
+                margin-bottom: 17px;
                 display: block;}
             .checkout-right_footer .altTd p, .checkout-right_footer .altTd b {
                 font-style: normal;
                 text-transform: capitalize;
-                margin-bottom: 17px;
                 display: block;
                 font-weight: normal;
                 font-size: 14px;
                 line-height: 19px;
                 color: #666666;}
             .checkout-right_footer .altTd.total-values p {
+                display: flex;
+                align-items: center;
                 font-weight: 500;}
             .checkout-right_footer .altTd p:last-child { 
                 font-weight: 500;
