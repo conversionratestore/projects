@@ -27,7 +27,7 @@ function addToCart() {
                 });
             });
             if (item.closest('.ordered')) {
-                if (window.location.includes('/product')) {
+                if (window.location.pathname.includes('/product')) {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
@@ -100,7 +100,7 @@ function addToCart() {
                         });
                     }
                     if (item.closest('.ordered')) {
-                        if (window.location.includes('/product')) {
+                        if (window.location.pathname.includes('/product')) {
                             window.dataLayer = window.dataLayer || [];
                             dataLayer.push({
                                 'event': 'event-to-ga',
