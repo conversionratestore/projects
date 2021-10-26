@@ -859,7 +859,7 @@ let btnClose = document.querySelector('.btn-close'),
     popupWrapper = document.querySelector('.popup-wrapper'),
     btn = document.querySelectorAll('[data-button]');
 
-let patternEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/; // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let patternEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
 
 let createElementFirst = `
 <div class="justify-content-between d-flex">
@@ -931,6 +931,11 @@ function postForm(name,email,time,sales) {
 }
 
 btn.forEach((btn) => {
+    btn.addEventListener('keyup' , () => {
+        if (btn.keyCode == 13) {
+            btn.click();
+        }
+    })
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
