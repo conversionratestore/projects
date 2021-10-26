@@ -417,7 +417,7 @@ window.onload  = function () {
     if (location.pathname.includes('product')) {
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
-            .ordered-products .gallery h2.title, .ordered-products .gallery .title {
+            .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
                 padding-left: 0;
                 font-size: 24px;
                 line-height: 33px;
@@ -442,7 +442,7 @@ window.onload  = function () {
                 }
             }
             @media only screen and (max-width: 758px)  {
-                .ordered-products .gallery h2.title, .ordered-products .gallery .title {
+                .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
                     font-size: 20px;
                     line-height: 20px;
                 }
@@ -539,7 +539,7 @@ window.onload  = function () {
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
                 document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
-                <div class="ordered-products ordered">
+                <div class="ordered-products ordered gallery-parent">
                     <h2 class="title">Recently Ordered Products</h2>
                     <dl class="gallery"></dl>
                     <button type="button" class="view-more" hidden>View more products</button>
