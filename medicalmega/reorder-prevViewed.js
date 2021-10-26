@@ -432,7 +432,7 @@ window.onload  = function () {
             }
             .ordered-products .view-more {
                 margin: 10px 0 0 0;
-                width: 100%;
+                width: calc(100% - 10px);
             }
             .gallery {
                 margin-left: 0!important;
