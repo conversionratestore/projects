@@ -483,7 +483,7 @@ window.onload  = function () {
                                 <p class="c-gray">Total:</p>
                             </div>
                             <div>
-                                <p>${data["orderDate"]}</p>
+                                <p>${data["orderDate"].split('-').join('/')}</p>
                                 <p class="sum"></p>
                             </div>
                         </div>
