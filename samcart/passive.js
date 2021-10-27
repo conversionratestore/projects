@@ -923,6 +923,7 @@ function showFieldName() {
 
 function showPopup() {
     setTimeout(() => {
+        document.body.style = 'overflow: hidden;'
         popup.classList.add('active');
     },100)
 }
