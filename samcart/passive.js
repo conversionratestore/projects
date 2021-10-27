@@ -1071,8 +1071,9 @@ function detectMob() {
     });
   }
 detectMob()
+
+hidePopup(btnClose)
 if (detectMob() == false) {
     hidePopup(popup)
 }
-hidePopup(btnClose)
 hidePopup(popupWrapper)
