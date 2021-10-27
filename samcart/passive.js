@@ -932,13 +932,11 @@ function postForm(name,email,time,sales) {
 }
 document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
     if (e.keyCode == 13) {
-        console.log(e.keyCode)
         document.querySelector('.get-started button').click();
     }
 })
 
 btn.forEach((btn) => {
- 
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
