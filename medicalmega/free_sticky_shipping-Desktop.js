@@ -126,6 +126,13 @@ window.onload  = function () {
                 <h2>Get Free Delivery</h2>
                 <p>Add more products to your order</p>
             </div>`)
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+             'event': 'event-to-ga',
+             'eventCategory': 'Exp — Free shipping block',
+             'eventAction': 'Free shipping block appearance',
+             'eventLabel': 'Cart'
+            });
         }
     }
 
@@ -171,7 +178,13 @@ window.onload  = function () {
         }
     </style>`)
         rangeShipping('.topcon','beforebegin');
-
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+         'event': 'event-to-ga',
+         'eventCategory': 'Exp — Free shipping block',
+         'eventAction': 'Free shipping block appearance',
+         'eventLabel': 'PDP'
+        });
         document.querySelector('.type2').insertAdjacentHTML('afterbegin',`
         <div class="shipping_box">
             <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
@@ -180,7 +193,31 @@ window.onload  = function () {
                 <div class="shipping_box_text">2-3 business days*</div>
             </div>
         </div>`);
-
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+         'event': 'event-to-ga',
+         'eventCategory': 'Exp — Free shipping block',
+         'eventAction': 'Shipping info block appearance',
+         'eventLabel': 'PDP'
+        });
+        if (document.querySelector('.product-price')) {
+            document.querySelectorAll('.product-price#cart_box a')[0].addEventListener(() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Free shipping block',
+                'eventAction': 'Click on Add to cart button'
+                });
+            })
+            document.querySelector('#cart_box [name="quantity"]').addEventListener(() => {
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Free shipping block',
+                'eventAction': 'Click on Quantity field'
+                });
+            })
+        }
     }
     //main
     if (document.querySelector('.homeslider__container')) {
@@ -191,5 +228,30 @@ window.onload  = function () {
             }
         </style>`)
         rangeShipping('.homeslider__container','afterend');
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+         'event': 'event-to-ga',
+         'eventCategory': 'Exp — Free shipping block',
+         'eventAction': 'Free shipping block appearance',
+         'eventLabel': 'PL'
+        });
     }
 };
+ (function(h,o,t,j,a,r){
+ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+ h._hjSettings={hjid:1483840,hjsv:6};
+ a=o.getElementsByTagName('head')[0];
+ r=o.createElement('script');r.async=1;
+ r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+ a.appendChild(r);
+ })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+ window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+ hj('trigger', 'tv_free_shipping');
+ hj('event', 'free_shipping');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+ 'event': 'event-to-ga',
+ 'eventCategory': 'Exp — Free shipping block',
+ 'eventAction': 'loaded'
+});
