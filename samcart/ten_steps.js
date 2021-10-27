@@ -1736,6 +1736,14 @@ document.querySelector(".box_already_registered form div span:last-child").textC
 
 // click on 3d cart
 document.querySelector(".box_fist_about > div > .scene_box .front_form > button").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register now button",
+    eventLabel: "Form: Save Your Spot (first screen — step 1)",
+  })
+
   e.preventDefault()
   setLocalStorInform(".front_form")
   validationForm(".front_form")
@@ -1744,6 +1752,14 @@ document.querySelector(".box_fist_about > div > .scene_box .front_form > button"
 })
 
 document.querySelector(".box_fist_about > div > .scene_box form > span").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Back button",
+    eventLabel: "Form: Save Your Spot (first screen — step 2)",
+  })
+
   e.preventDefault()
   document.querySelector(".card_box").classList.toggle("is-flipped")
   console.log(`button 2 back to front_form`)
@@ -1759,6 +1775,14 @@ if (document.querySelector(".box_fist_about > div > .scene_box .back_form > butt
 
 // click btn for popup
 document.querySelector(".box_already_registered button").addEventListener("click", function (e) {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register Now button",
+    eventLabel: "Form: Save Your Spot (footer — step 1)",
+  })
+
   e.preventDefault()
   setLocalStorInform(".box_already_registered form")
   validationForm(".box_already_registered form")
@@ -1767,6 +1791,14 @@ document.querySelector(".box_already_registered button").addEventListener("click
 
 if (document.querySelector(".popup_btn .popup_wrapper div:last-child button")) {
   document.querySelector(".popup_btn .popup_wrapper div:last-child button").addEventListener("click", (e) => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Register Now button",
+      eventLabel: "Form: Save Your Spot (footer — step 2)",
+    })
+
     e.preventDefault()
     validationForm(".popup_btn .popup_wrapper")
 
@@ -1775,6 +1807,14 @@ if (document.querySelector(".popup_btn .popup_wrapper div:last-child button")) {
 }
 
 document.querySelector(".first_mobile_btn").addEventListener("click", (e) => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "Click on Register Now button",
+    eventLabel: "First screen (mobile)",
+  })
+
   e.preventDefault()
   document.querySelector(".backdrop_popup").classList.remove("is_hidden")
   document.body.style.overflow = "hidden"
@@ -1784,6 +1824,19 @@ document.querySelector(".first_mobile_btn").addEventListener("click", (e) => {
 // click close popup
 document.querySelectorAll(".close_popup").forEach((item) => {
   item.addEventListener("click", function () {
+    let eventLabelText = "Form: Save Your Spot (footer — step 2)"
+    if (document.querySelector(".backdrop_popup .popup_after_scroll")) {
+      eventLabelText = "Form: Save Your Spot (scroll)"
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Close popup",
+      eventLabel: eventLabelText,
+    })
+
     document.querySelector(".backdrop_popup").classList.add("is_hidden")
     document.body.style.overflow = ""
 
@@ -1887,6 +1940,14 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
       document.querySelector(".backdrop_popup").classList.remove("is_hidden")
       document.body.style.overflow = "hidden"
       document.querySelector(".backdrop_popup .popup_btn").style.display = "none"
+      //
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "View popup",
+        eventLabel: "Form: Save Your Spot (scroll)",
+      })
     }, 10000)
   }
 })
@@ -1894,6 +1955,22 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
 // on click btn send form
 if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-child")) {
   document.querySelector(".backdrop_popup .popup_after_scroll button:last-child").addEventListener("click", (e) => {
+    let eventActionText = "Exp — 10 secrets landing page"
+    let eventLabelText = "Form: Save Your Spot (scroll)"
+
+    if (window.innerWidth <= 768) {
+      eventActionText = "Click on Finish Registration button"
+      eventLabelText = "Save Your Spot (mobile) (V3)"
+    }
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: eventActionText,
+      eventLabel: eventLabelText,
+    })
+
     e.preventDefault()
     validationForm(".backdrop_popup .popup_after_scroll")
 
@@ -1911,12 +1988,14 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
     let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+    let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+
     // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
-    let inputValueEmail = document
-      .querySelector(`${parent} input[name='email']`)
-      .value.match(
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
-      )
+    // let inputValueEmail = document
+    //   .querySelector(`${parent} input[name='email']`)
+    //   .value.match(
+    //     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum|ua)\b/
+    //   )
 
     if (inputValueName === null) {
       document.querySelector(`${parent} input[name='name']`).classList.add("error")
@@ -2005,10 +2084,6 @@ function validationForm(parent) {
         }
 
         postForm(inputValueName, inputValueEmail, selectValueTime, selectValue)
-
-        // setTimeout(() => {
-        //   document.location = "https://joinnow.live/t/TSa5s8?id=jyjVL6"
-        // }, 300)
       }
     }
   }
@@ -2083,4 +2158,81 @@ function postForm(name, email, time, sales) {
       console.log("Failed fetch ", err)
     })
 }
+
 //
+let eventVar = "desktop"
+
+if (window.innerWidth <= 768) {
+  eventVar = "mobile"
+}
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: `Exp — 10 secrets landing page ${eventVar}`,
+  eventAction: "loaded",
+})(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 2078786, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+window.hj =
+  window.hj ||
+  function () {
+    ;(hj.q = hj.q || []).push(arguments)
+  }
+hj("trigger", `10_secrets_video_${eventVar}`)
+hj("event", `10_secrets_redesign_${eventVar}`)
+
+//
+if (document.querySelector(".front_form")) {
+  document.querySelector(".front_form input[name='name']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your name input",
+      eventLabel: "Form: Save Your Spot (first screen — step 1)",
+    })
+  })
+
+  document.querySelector(".front_form input[name='email']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your work email input",
+      eventLabel: "Form: Save Your Spot (first screen — step 1)",
+    })
+  })
+}
+
+if (document.querySelector(".box_already_registered form")) {
+  document.querySelector(".box_already_registered form input[name='name']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your name input",
+      eventLabel: "Form: Save Your Spot (footer — step 1)",
+    })
+  })
+
+  document.querySelector(".box_already_registered form input[name='email']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your work email input",
+      eventLabel: "Form: Save Your Spot (footer — step 1)",
+    })
+  })
+}
