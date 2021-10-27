@@ -885,6 +885,23 @@ function createlistInfo(a,b,c) {
 let createElementEmail = `<div class="field-email"><label>Your contact email*</label><div class="relative"><input type="email" required><p class="error-message"></p></div></div>`;
 let createElementName = `<div class="field-name "><label>Your name *</label><div class="relative"><input type="text" required><p class="error-message"></p></div></div>`;
 
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+  }
+detectMob()
+
 function creatBlock(iconName,text,classNameImg) {
     return `<div class="block-message">
         <img src="https://conversionratestore.github.io/projects/samcart/img/${iconName}.svg" class="${classNameImg}" alt="lamp"/>
@@ -998,6 +1015,7 @@ btn.forEach((btn) => {
         if(btn.closest('.register-now')) {
             dataLayer('Click on Register Now button','Form: People are Already Registered for the Next Webinar')
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
+            if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
 
@@ -1082,22 +1100,6 @@ function hidePopup(item) {
         }
     })
 }
-function detectMob() {
-    const toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ];
-    
-    return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-    });
-  }
-detectMob()
 
 hidePopup(btnClose)
 if (detectMob() == false) {
@@ -1128,4 +1130,4 @@ dataLayer.push({
  'eventCategory': 'Exp — Passive income landing page',
  'eventAction': 'loaded'
 });
- }
+ };
