@@ -944,6 +944,12 @@ function dataLayer(action,label) {
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayer('Click on Email input','Form: Create Passive Income');
 })
+document.querySelector('.register-now .input[type="text"]').addEventListener('click' , () => {
+    dataLayer('Click on Your name input','Form: People are Already Registered for the Next Webinar');
+})
+document.querySelector('.register-now .input[type="email"]').addEventListener('click' , () => {
+    dataLayer('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
+})
 document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
     if (e.keyCode == 13) {
         document.querySelector('.get-started button').click();
@@ -992,7 +998,6 @@ btn.forEach((btn) => {
         if(btn.closest('.register-now')) {
             dataLayer('Click on Register Now button','Form: People are Already Registered for the Next Webinar')
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
-            if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
 
@@ -1116,10 +1121,11 @@ if (detectMob() == false) {
  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
  hj('trigger', 'passive_income_video');
  hj('event', 'passive_income_heat');
-
+ window.onload  = function () {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
  'event': 'event-to-ga',
  'eventCategory': 'Exp — Passive income landing page',
  'eventAction': 'loaded'
 });
+ }
