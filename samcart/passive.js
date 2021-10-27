@@ -931,8 +931,8 @@ function postForm(name,email,time,sales) {
     });
 }
 document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
-    e.preventDefault()
-    if (btn.keyCode == 13) {
+    if (e.keyCode == 13) {
+        console.log(e.keyCode)
         document.querySelector('.get-started button').click();
     }
 })
