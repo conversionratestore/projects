@@ -932,7 +932,7 @@ function postForm(name,email,time,sales) {
 }
 
 btn.forEach((btn) => {
-    btn.closest('form').querySelectorAll('input')[0].addEventListener('keyup' , () => {
+    btn.closest('form').querySelector('input').addEventListener('keyup' , () => {
         if (btn.keyCode == 13) {
             btn.click();
         }
