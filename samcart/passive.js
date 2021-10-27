@@ -248,7 +248,7 @@ hr.line-vertical {
     color: #183B56; }
   .card .btn-blue {
     margin-top: 28px; }
-
+   
 .s-third {
   padding: 113px 0;
   background: linear-gradient(139.61deg, #1D96F3 12.88%, #4B17E6 67.72%); }
@@ -468,6 +468,9 @@ hr.line-vertical {
   border: 2px solid #046BD9;
   color: #046BD9;
   line-height: 42px; }
+  .btn-blue:active:focus, .btn-blue:focus {
+    outline: 5px auto #046BD9;
+    outline-offset: -2px;}
   .btn-blue img {
     margin-left: 16px; }
 
