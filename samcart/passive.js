@@ -933,15 +933,28 @@ function showFieldName() {
 
 function showPopup() {
     setTimeout(() => {
-        dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
-        dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
-        if (document.querySelector('.popup.active .field-name input')) {
-            document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
-                dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
+        if (document.querySelector('data-popup="started"')) {
+            dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
+            document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
+                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (first screen)');
             })
+            if (document.querySelector('.popup.active .field-name input')) {
+                document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
+                    dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
+                })
+            }
+            document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
+                dataLayerPush(`Click on Data and time of attendance select`,'Popup: Save Your Spot (first screen)');
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
+                dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (first screen)');
+            })
+        } else if () {
+
         }
+       
     },100)
 }
 
@@ -973,7 +986,9 @@ function postForm(name,email,time,sales) {
 }
 
 document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
-    dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
+    if (item.closest('data-popup="started"')) {
+        dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
+    }
 })
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayerPush('Click on Email input','Form: Create Passive Income');
@@ -994,7 +1009,7 @@ btn.forEach((btn) => {
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
-
+     
         if(btn.closest('.get-started')) {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
@@ -1108,7 +1123,6 @@ function hidePopup(item) {
         if (item.className == 'form popup-wrapper') {
             e.stopPropagation()
         } else {
-            dataLayerPush('Close popup','Popup: Save Your Spot (first screen)')
             document.body.style = 'overflow-y: auto;'
             popup.classList.remove('active');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
@@ -1123,6 +1137,10 @@ function hidePopup(item) {
                     }
                 }
             },300)
+        }
+        
+        if (item.closest('data-popup="started"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
         }
     })
 }
