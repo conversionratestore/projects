@@ -1075,7 +1075,7 @@ detectMob()
 hidePopup(btnClose)
 if (detectMob() == false) {
     console.log('desktop')
-    hidePopup(popup)
     hidePopup(popupWrapper)
+    hidePopup(popup)
 }
 
