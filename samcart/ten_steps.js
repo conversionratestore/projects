@@ -936,6 +936,12 @@ main {
     margin-top: 70px;
   }
 
+  .first_mobile_btn:hover {
+    background: #046bd9 !important;
+    color: #ffffff !important;
+    outline: none !important;
+  }
+
   .information_speaker > div > div > p {
     font-size: 20px;
     line-height: 1.2;
@@ -1226,7 +1232,6 @@ input[type="submit"]:hover {
   color: inherit;
   background: unset;
 }
-
 
 </style>
 `
