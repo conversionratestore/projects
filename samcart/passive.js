@@ -899,7 +899,7 @@ function detectMob() {
     return toMatch.some((toMatchItem) => {
       return navigator.userAgent.match(toMatchItem);
     });
-  }
+}
 detectMob()
 
 function creatBlock(iconName,text,classNameImg) {
@@ -961,10 +961,10 @@ function dataLayer(action,label) {
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayer('Click on Email input','Form: Create Passive Income');
 })
-document.querySelector('.register-now .input[type="text"]').addEventListener('click' , () => {
+document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
     dataLayer('Click on Your name input','Form: People are Already Registered for the Next Webinar');
 })
-document.querySelector('.register-now .input[type="email"]').addEventListener('click' , () => {
+document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
     dataLayer('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
 })
 document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
