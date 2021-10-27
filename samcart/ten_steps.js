@@ -2180,7 +2180,8 @@ dataLayer.push({
   event: "event-to-ga",
   eventCategory: `Exp — 10 secrets landing page ${eventVar}`,
   eventAction: "loaded",
-})(function (h, o, t, j, a, r) {
+})
+;(function (h, o, t, j, a, r) {
   h.hj =
     h.hj ||
     function () {
