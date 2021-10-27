@@ -1095,12 +1095,10 @@ btn.forEach((btn) => {
 
 function hidePopup(item) {
     item.addEventListener('click', (e) => {
-        document.body.style = 'overflow-y: auto;'
         if (item.className == 'form popup-wrapper') {
-            console.log(item.className)
             e.stopPropagation()
         } else {
-            console.log(item.className)
+            document.body.style = 'overflow-y: auto;'
             popup.classList.remove('active');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
                 elError.classList.remove('error');
