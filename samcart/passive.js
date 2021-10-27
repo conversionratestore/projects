@@ -1037,8 +1037,10 @@ btn.forEach((btn) => {
 function hidePopup(item) {
     item.addEventListener('click', (e) => {
         if (item.className == 'popup-wrapper') {
+            console.log(item.className)
             e.stopPropagation()
         } else {
+            console.log(item.className)
             popup.classList.remove('active');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
                 elError.classList.remove('error');
@@ -1078,4 +1080,3 @@ if (detectMob() == false) {
     hidePopup(popupWrapper)
     hidePopup(popup)
 }
-
