@@ -732,7 +732,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
             </div>
             <div class="webinar"><img class="avatar" src="${document.querySelector('.elementor-image img').getAttribute('src')}" alt="avatar">
               <div class="webinar-col">
-                <h2>100% Free Online Webinar from Samcart Founder — Brian Moran</h2>
+                <h2>100% Free Online <br> Webinar from Samcart <br> Founder — Brian Moran</h2>
                 <div class="align-items-center d-flex"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/date.svg" alt="date">
                   <p>On demand</p>
                   <hr class="line-vertical"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/clock.svg" alt="clock">
@@ -740,7 +740,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                 </div>
               </div>
               <div class="ml-lg-auto">
-                <p class="fs-18 fw-extraBold">Learn how to</p>
+                <p class="fs-18 fw-extraBold">Learn during the webinar:</p>
                 <ul class="webinar-list">
                   <li class="align-items-center d-flex">How to launch your online course quickly</li>
                   <li class="align-items-center d-flex">What to make your course about</li>
@@ -930,14 +930,15 @@ function postForm(name,email,time,sales) {
         console.log('Failed fetch ', err);
     });
 }
+document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
+    e.preventDefault()
+    if (btn.keyCode == 13) {
+        document.querySelector('.get-started button').click();
+    }
+})
 
 btn.forEach((btn) => {
-    document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
-        e.preventDefault()
-        if (btn.keyCode == 13) {
-            document.querySelector('.get-started button').click();
-        }
-    })
+ 
     btn.addEventListener('click' , () => {
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
