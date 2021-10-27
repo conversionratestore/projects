@@ -934,6 +934,7 @@ function showFieldName() {
 function showPopup() {
     setTimeout(() => {
         dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
+        dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
         if (document.querySelector('.popup.active .field-name input')) {
@@ -941,7 +942,6 @@ function showPopup() {
                 dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
             })
         }
-    
     },100)
 }
 
@@ -972,8 +972,8 @@ function postForm(name,email,time,sales) {
     });
 }
 
-document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
-    dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (first screen)');
+document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
+    dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
 })
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayerPush('Click on Email input','Form: Create Passive Income');
