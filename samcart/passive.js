@@ -948,7 +948,7 @@ function showPopup(popupPlace) {
             document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
                 dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
             })
-        }
+        }x
         document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
         })
@@ -1140,20 +1140,20 @@ function hidePopup(item) {
                     }
                 }
             },300)
-        }
         
-        if (item.closest('[data-popup="started"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
-        } else if (document.querySelector('[data-popup="much-more"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');  
-        } else if (document.querySelector('[data-popup="register-now"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
-        } else if (document.querySelector('[data-popup="bar-chart"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');  
-        } else if (document.querySelector('[data-popup="sales"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');  
-        } else if (document.querySelector('[data-popup="expert"]')) {
-            dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');  
+            if (item.closest('[data-popup="started"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
+            } else if (document.querySelector('[data-popup="much-more"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');  
+            } else if (document.querySelector('[data-popup="register-now"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
+            } else if (document.querySelector('[data-popup="bar-chart"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');  
+            } else if (document.querySelector('[data-popup="sales"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');  
+            } else if (document.querySelector('[data-popup="expert"]')) {
+                dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');  
+            }
         }
     })
 }
