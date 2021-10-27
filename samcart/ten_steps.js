@@ -1848,7 +1848,7 @@ document.querySelectorAll(".close_popup").forEach((item) => {
       document.querySelector(".backdrop_popup .popup_after_scroll").removeAttribute("data-form-mobile")
     }
 
-    if (document.querySelector(".backdrop_popup .popup_after_scroll")) {
+    if ((document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "flex")) {
       eventLabelText = "Form: Save Your Spot (scroll)"
     }
 
@@ -1978,7 +1978,7 @@ document.querySelector(".box_second_training .swipe_box > div > span").addEventL
 // on click btn send form
 if (document.querySelector(".backdrop_popup .popup_after_scroll button:last-child")) {
   document.querySelector(".backdrop_popup .popup_after_scroll button:last-child").addEventListener("click", (e) => {
-    let eventActionText = "Exp — 10 secrets landing page"
+    let eventActionText = "Click on Register Now button"
     let eventLabelText = "Form: Save Your Spot (scroll)"
 
     if (window.innerWidth <= 768) {
