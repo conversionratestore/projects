@@ -483,7 +483,7 @@ window.onload  = function () {
         }
 
         //show range, if have product in cart
-        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price')) {
+        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price') && localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
             rangeShipping('.price-product','afterend');
         }
 
@@ -557,7 +557,7 @@ window.onload  = function () {
     }
 
     //main
-    if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0') {
+    if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0' && localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
         rangeShipping('.homeslider__container','afterend');
     }
 };
