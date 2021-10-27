@@ -1720,6 +1720,12 @@ document.querySelector('[data-id="925c505"]').remove()
 document.body.insertAdjacentHTML("afterbegin", tenStepsStyle)
 document.querySelector(".elementor-section-wrap").insertAdjacentHTML("afterbegin", tenStepHtml)
 
+let eventVar = "desktop"
+
+if (window.innerWidth <= 768) {
+  eventVar = "mobile"
+}
+
 // convert time round
 let getRoundedDate = (minutes, d = new Date()) => {
   let ms = 1000 * 60 * minutes // convert minutes to ms
@@ -2191,11 +2197,6 @@ function postForm(name, email, time, sales) {
 }
 
 //
-let eventVar = "desktop"
-
-if (window.innerWidth <= 768) {
-  eventVar = "mobile"
-}
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
