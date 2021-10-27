@@ -931,50 +931,35 @@ function showFieldName() {
     }
 }
 
-function showPopup() {
+function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
         if (document.querySelector('data-popup="started"')) {
-            dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
+            dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
             document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (first screen)');
+                dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
             })
+            if (document.querySelector('.popup.active .field-email input')) {
+                document.querySelector('.popup.active .field-email input').addEventListener('click' , () => {
+                    dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
+                })
+            }
             if (document.querySelector('.popup.active .field-name input')) {
                 document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
-                    dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
+                    dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
                 })
             }
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
-                dataLayerPush(`Click on Data and time of attendance select`,'Popup: Save Your Spot (first screen)');
+                dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
-                dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (first screen)');
+                dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${popupPlace})`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
-                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
+                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
             })
-        } else if (document.querySelector('data-popup="register-now"')) {
-            dataLayerPush('View popup','Popup: Save Your Spot (footer)')
-            document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (footer)');
-            })
-            if (document.querySelector('.popup.active .field-name input')) {
-                document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
-                    dataLayerPush('Click on Your name input','Popup: Save Your Spot (footer)');
-                })
-            }
-            document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
-                dataLayerPush(`Click on Data and time of attendance select`,'Popup: Save Your Spot (footer)');
-            })
-            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
-                dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (footer)');
-            })
-            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
-                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (footer)');
-            })
-        }
-       
+        } 
     },100)
 }
 
@@ -1004,7 +989,6 @@ function postForm(name,email,time,sales) {
         console.log('Failed fetch ', err);
     });
 }
-
 
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayerPush('Click on Email input','Form: Create Passive Income');
@@ -1037,7 +1021,7 @@ btn.forEach((btn) => {
                 }
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
                 showFieldName()
-                showPopup()
+                showPopup('first screen')
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
                
             }
@@ -1045,15 +1029,19 @@ btn.forEach((btn) => {
         if (getAttr == 'much-more') {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
+            showPopup('Launch in 7 days');
         } else if (getAttr == 'bar-chart') {
             dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
+            showPopup('Get (virtually) unlimited traffic');
         } else if (getAttr == 'sales') {
             dataLayerPush('Click on I`m interested button','Generate sales around the clock')
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
+            showPopup('Generate sales around the clock');
         } else if (getAttr == 'expert') {
             dataLayerPush('Click on I`m interested button','Become a trusted expert ')
             document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
+            showPopup('Become a trusted expert');
         }
         if (getAttr == 'much-more' || getAttr == 'bar-chart' || getAttr == 'sales' || getAttr == 'expert') {
             if (!document.querySelector('.popup-interested')) {
@@ -1062,7 +1050,7 @@ btn.forEach((btn) => {
                 document.querySelector('.popup-interested .field-name').insertAdjacentHTML('afterend', createElementEmail)
                 document.querySelector('.popup-interested .justify-content-between').after(document.querySelector('.popup-interested .btn-orange'))
             }
-            showPopup()
+            
         }
 
         if(btn.closest('.register-now')) {
@@ -1079,7 +1067,7 @@ btn.forEach((btn) => {
                 if (document.querySelector('.field-name')) {
                     document.querySelector('.field-name').remove();
                 }
-                showPopup()
+                showPopup('footer')
                 document.querySelector('.popup .btn-orange').setAttribute('data-name',btn.closest('.register-now').querySelector('input[type="text"]').value)
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.register-now').querySelector('input[type="email"]').value)
             }
@@ -1157,8 +1145,16 @@ function hidePopup(item) {
         
         if (item.closest('data-popup="started"')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
+        } else if (document.querySelector('data-popup="much-more"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');  
         } else if (document.querySelector('data-popup="register-now"')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
+        } else if (document.querySelector('data-popup="bar-chart"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');  
+        } else if (document.querySelector('data-popup="sales"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');  
+        } else if (document.querySelector('data-popup="expert"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');  
         }
     })
 }
