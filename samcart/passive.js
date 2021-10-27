@@ -860,7 +860,7 @@ let btnClose = document.querySelector('.btn-close'),
     popupWrapper = document.querySelector('.popup-wrapper'),
     btn = document.querySelectorAll('[data-button]');
 
-let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
 
 let createElementFirst = `
 <div class="justify-content-between d-flex">
