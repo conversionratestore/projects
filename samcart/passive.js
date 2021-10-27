@@ -923,7 +923,7 @@ function showFieldName() {
 
 function showPopup() {
     setTimeout(() => {
-        document.body.style = 'overflow: hidden;'
+        document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
     },100)
 }
@@ -1095,6 +1095,7 @@ btn.forEach((btn) => {
 
 function hidePopup(item) {
     item.addEventListener('click', (e) => {
+        document.body.style = 'overflow-y: auto;'
         if (item.className == 'form popup-wrapper') {
             console.log(item.className)
             e.stopPropagation()
