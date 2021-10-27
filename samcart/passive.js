@@ -935,31 +935,30 @@ function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
-        if (document.querySelector('data-popup="started"')) {
-            dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
-            document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
-                dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
+        dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
+        document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
+            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
+        })
+        if (document.querySelector('.popup.active .field-email input')) {
+            document.querySelector('.popup.active .field-email input').addEventListener('click' , () => {
+                dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
             })
-            if (document.querySelector('.popup.active .field-email input')) {
-                document.querySelector('.popup.active .field-email input').addEventListener('click' , () => {
-                    dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
-                })
-            }
-            if (document.querySelector('.popup.active .field-name input')) {
-                document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
-                    dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
-                })
-            }
-            document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
-                dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
+        }
+        if (document.querySelector('.popup.active .field-name input')) {
+            document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
+                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
             })
-            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
-                dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${popupPlace})`);
-            })
-            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
-                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
-            })
-        } 
+        }
+        document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
+            dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
+        })
+        document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
+            dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${popupPlace})`);
+        })
+        document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
+            dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
+        })
+    
     },100)
 }
 
