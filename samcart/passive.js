@@ -915,6 +915,16 @@ function creatBlock(iconName,text,classNameImg) {
    </div>`;
 }
 
+function dataLayerPush(action,label) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Passive income landing page',
+    'eventAction': action,
+    'eventLabel': label
+    });
+}
+
 function showFieldName() {
     if (!document.querySelector('.popup .field-name')) {
         document.querySelector('.popup .popup-col:last-child').insertAdjacentHTML('afterbegin', createElementName);
@@ -923,6 +933,7 @@ function showFieldName() {
 
 function showPopup() {
     setTimeout(() => {
+        dataLayerPush('View popup','Popup: Save Your Spot (first screen)')
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
     },100)
@@ -955,16 +966,12 @@ function postForm(name,email,time,sales) {
     });
 }
 
-function dataLayerPush(action,label) {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — Passive income landing page',
-    'eventAction': action,
-    'eventLabel': label
-    });
-}
-
+document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
+    dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
+})
+document.querySelector('.popup.active [name="monthly_sales"]').addEventListener('click' , () => {
+    dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (first screen)');
+})
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayerPush('Click on Email input','Form: Create Passive Income');
 })
@@ -1098,6 +1105,7 @@ function hidePopup(item) {
         if (item.className == 'form popup-wrapper') {
             e.stopPropagation()
         } else {
+            dataLayerPush('Close popup','Popup: Save Your Spot (first screen)')
             document.body.style = 'overflow-y: auto;'
             popup.classList.remove('active');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
