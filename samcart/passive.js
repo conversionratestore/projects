@@ -982,11 +982,16 @@ btn.forEach((btn) => {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
-                document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
+                if (detectMob() == true) {
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');        
+                } else {
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
+                }
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
                 showFieldName()
                 showPopup()
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
+               
             }
         }
         if (getAttr == 'much-more') {
@@ -1016,7 +1021,11 @@ btn.forEach((btn) => {
             dataLayerPush('Click on Register Now button','Form: People are Already Registered for the Next Webinar')
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
-                document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
+                if (detectMob() == true) {
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');        
+                } else {
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
+                } 
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
 
                 if (document.querySelector('.field-name')) {
