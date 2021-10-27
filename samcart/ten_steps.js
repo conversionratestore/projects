@@ -99,6 +99,7 @@ input {
   height: 44px !important;
   margin-top: 5px !important;
   padding: 0 10px !important;
+  cursor: pointer;
 }
 
 .input_validation_name,
@@ -127,6 +128,7 @@ select {
   color: #5a7386;
   padding: 0 30px 0 10px;
   appearance: none;
+  cursor: pointer;
 }
 
 label {
@@ -1195,18 +1197,6 @@ main {
     padding: 0 15px;
   }
 }
-/* 
-@media (max-width: 320px) {
-  .popup_form_content ul {
-    display: block;
-  }
-
-  .popup_wrapper div:first-child ul li:not(:last-child),
-  .popup_after_scroll .popup_wrapper div:first-child ul li:not(:last-child),
-  .popup_wrapper div:first-child ul li:nth-child(even) {
-    margin-left: 0;
-  }
-} */
 
 @media (max-height: 666px) {
   .backdrop_popup .popup_after_scroll {
@@ -1223,7 +1213,7 @@ main {
     margin-left: 0;
   }
 
-   .box_second_training .swipe_box ul li::after {
+  .box_second_training .swipe_box ul li::after {
     right: -6px;
     width: 60%;
   }
@@ -1236,6 +1226,7 @@ input[type="submit"]:hover {
   color: inherit;
   background: unset;
 }
+
 
 </style>
 `
