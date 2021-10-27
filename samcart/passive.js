@@ -938,7 +938,7 @@ function showPopup(popupPlace) {
             document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
                 dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
             })
-        }x
+        }
         document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
         })
