@@ -1827,12 +1827,27 @@ document.querySelector(".first_mobile_btn").addEventListener("click", (e) => {
   document.querySelector(".backdrop_popup").classList.remove("is_hidden")
   document.body.style.overflow = "hidden"
   document.querySelector(".backdrop_popup .popup_btn").style.display = "none"
+  document.querySelector(".backdrop_popup .popup_after_scroll").setAttribute("data-form-mobile", "data-form-mobile")
+  //
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — 10 secrets landing page",
+    eventAction: "View popup",
+    eventLabel: "Form: Save Your Spot (mobile) (V3)",
+  })
 })
 
 // click close popup
 document.querySelectorAll(".close_popup").forEach((item) => {
   item.addEventListener("click", function () {
     let eventLabelText = "Form: Save Your Spot (footer — step 2)"
+
+    if (document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-form-mobile")) {
+      eventLabelText = "Form: Save Your Spot (mobile) (V3)"
+      document.querySelector(".backdrop_popup .popup_after_scroll").removeAttribute("data-form-mobile")
+    }
+
     if (document.querySelector(".backdrop_popup .popup_after_scroll")) {
       eventLabelText = "Form: Save Your Spot (scroll)"
     }
@@ -2032,8 +2047,15 @@ function validationForm(parent) {
         document.querySelector(".backdrop_popup .popup_after_scroll").style.display = "none"
 
         setTimeout(() => {
-          console.log("popup_btn")
           document.querySelector(".backdrop_popup .popup_btn").style.display = "flex"
+
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp — 10 secrets landing page",
+            eventAction: "View popup",
+            eventLabel: "Form: Save Your Spot (footer — step 2)",
+          })
         }, 100)
       }
     }
@@ -2287,6 +2309,90 @@ if (document.querySelector(".popup_btn")) {
       eventCategory: "Exp — 10 secrets landing page",
       eventAction: "Click on Data and time of attendance select",
       eventLabel: "Form: Save Your Spot (footer — step 2)",
+    })
+  })
+}
+
+if (document.querySelector(".backdrop_popup .popup_after_scroll").getAttribute("data-form-mobile")) {
+  if (document.querySelector(".backdrop_popup .popup_after_scroll")) {
+    document.querySelector(".backdrop_popup .popup_after_scroll input[name='name']").addEventListener("change", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "Click on Your name input",
+        eventLabel: "Form: Save Your Spot (mobile) (V3)",
+      })
+    })
+
+    document.querySelector(".backdrop_popup .popup_after_scroll input[name='email']").addEventListener("change", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "Click on Your contact email input",
+        eventLabel: "Form: Save Your Spot (mobile) (V3)",
+      })
+    })
+
+    document.querySelector(".backdrop_popup .popup_after_scroll select[name='customFields']").addEventListener("change", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "Click on Your current monthly sales select",
+        eventLabel: "Form: Save Your Spot (mobile) (V3)",
+      })
+    })
+
+    document.querySelector(".backdrop_popup .popup_after_scroll select[name='startTime']").addEventListener("change", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp — 10 secrets landing page",
+        eventAction: "Click on Data and time of attendance select",
+        eventLabel: "Form: Save Your Spot (mobile) (V3)",
+      })
+    })
+  }
+} else {
+  document.querySelector(".backdrop_popup .popup_after_scroll input[name='name']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your name input",
+      eventLabel: "Form: Save Your Spot (scroll)",
+    })
+  })
+
+  document.querySelector(".backdrop_popup .popup_after_scroll input[name='email']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your contact email input",
+      eventLabel: "Form: Save Your Spot (scroll)",
+    })
+  })
+
+  document.querySelector(".backdrop_popup .popup_after_scroll select[name='customFields']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Your current monthly sales select",
+      eventLabel: "Form: Save Your Spot (scroll)",
+    })
+  })
+
+  document.querySelector(".backdrop_popup .popup_after_scroll select[name='startTime']").addEventListener("change", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — 10 secrets landing page",
+      eventAction: "Click on Data and time of attendance select",
+      eventLabel: "Form: Save Your Spot (scroll)",
     })
   })
 }
