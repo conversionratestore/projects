@@ -1036,7 +1036,7 @@ btn.forEach((btn) => {
 
 function hidePopup(item) {
     item.addEventListener('click', (e) => {
-        if (item.className == 'popup-wrapper') {
+        if (item.className == 'form popup-wrapper') {
             console.log(item.className)
             e.stopPropagation()
         } else {
