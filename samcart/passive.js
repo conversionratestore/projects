@@ -948,7 +948,7 @@ function postForm(name,email,time,sales) {
     });
 }
 
-function dataLayer(action,label) {
+function dataLayerPush(action,label) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
     'event': 'event-to-ga',
@@ -959,13 +959,13 @@ function dataLayer(action,label) {
 }
 
 document.querySelector('.get-started input').addEventListener('click' , () => {
-    dataLayer('Click on Email input','Form: Create Passive Income');
+    dataLayerPush('Click on Email input','Form: Create Passive Income');
 })
 document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
-    dataLayer('Click on Your name input','Form: People are Already Registered for the Next Webinar');
+    dataLayerPush('Click on Your name input','Form: People are Already Registered for the Next Webinar');
 })
 document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
-    dataLayer('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
+    dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
 })
 document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
     if (e.keyCode == 13) {
@@ -979,7 +979,7 @@ btn.forEach((btn) => {
         popup.setAttribute('data-popup', getAttr);
 
         if(btn.closest('.get-started')) {
-            dataLayer('Click on Get Started button','Form: Create Passive Income');
+            dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
@@ -990,16 +990,16 @@ btn.forEach((btn) => {
             }
         }
         if (getAttr == 'much-more') {
-            dataLayer('Click on I`m interested button','Launch in 7 days')
+            dataLayerPush('Click on I`m interested button','Launch in 7 days')
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
         } else if (getAttr == 'bar-chart') {
-            dataLayer('Click on I`m interested button','Get (virtually) unlimited traffic')
+            dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
         } else if (getAttr == 'sales') {
-            dataLayer('Click on I`m interested button','Generate sales around the clock')
+            dataLayerPush('Click on I`m interested button','Generate sales around the clock')
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
         } else if (getAttr == 'expert') {
-            dataLayer('Click on I`m interested button','Become a trusted expert ')
+            dataLayerPush('Click on I`m interested button','Become a trusted expert ')
             document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
         }
         if (getAttr == 'much-more' || getAttr == 'bar-chart' || getAttr == 'sales' || getAttr == 'expert') {
@@ -1013,7 +1013,7 @@ btn.forEach((btn) => {
         }
 
         if(btn.closest('.register-now')) {
-            dataLayer('Click on Register Now button','Form: People are Already Registered for the Next Webinar')
+            dataLayerPush('Click on Register Now button','Form: People are Already Registered for the Next Webinar')
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
@@ -1130,4 +1130,3 @@ dataLayer.push({
  'eventCategory': 'Exp — Passive income landing page',
  'eventAction': 'loaded'
 });
-
