@@ -469,7 +469,7 @@ hr.line-vertical {
   color: #046BD9;
   line-height: 42px; }
   .btn-blue:active:focus, .btn-blue:focus {
-    outline: 5px auto #046BD9;
+    outline: 5px auto #cedbe9;
     outline-offset: -2px;}
   .btn-blue img {
     margin-left: 16px; }
