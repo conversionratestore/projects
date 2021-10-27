@@ -287,6 +287,7 @@ window.onload  = function () {
                 color: #666666;}
             .checkout-right_footer .altTd.total-values p {
                 display: flex;
+                justify-content: flex-end;
                 font-weight: 500;}
             .checkout-right_footer .altTd p:last-child {
                 margin-bottom: 0;}
