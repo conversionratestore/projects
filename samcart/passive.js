@@ -933,9 +933,9 @@ function postForm(name,email,time,sales) {
 
 btn.forEach((btn) => {
     document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
-        e.stopPropagation()
+        e.preventDefault()
         if (btn.keyCode == 13) {
-            btn.click();
+            document.querySelector('.get-started button').click();
         }
     })
     btn.addEventListener('click' , () => {
