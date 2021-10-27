@@ -951,8 +951,28 @@ function showPopup() {
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
                 dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (first screen)');
             })
-        } else if () {
-
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
+                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
+            })
+        } else if (document.querySelector('data-popup="register-now"')) {
+            dataLayerPush('View popup','Popup: Save Your Spot (footer)')
+            document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
+                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (footer)');
+            })
+            if (document.querySelector('.popup.active .field-name input')) {
+                document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
+                    dataLayerPush('Click on Your name input','Popup: Save Your Spot (footer)');
+                })
+            }
+            document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
+                dataLayerPush(`Click on Data and time of attendance select`,'Popup: Save Your Spot (footer)');
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
+                dataLayerPush('Click on Your current monthly sales select','Popup: Save Your Spot (footer)');
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
+                dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (footer)');
+            })
         }
        
     },100)
@@ -985,11 +1005,7 @@ function postForm(name,email,time,sales) {
     });
 }
 
-document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
-    if (item.closest('data-popup="started"')) {
-        dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,'Popup: Save Your Spot (first screen)');
-    }
-})
+
 document.querySelector('.get-started input').addEventListener('click' , () => {
     dataLayerPush('Click on Email input','Form: Create Passive Income');
 })
@@ -1141,6 +1157,8 @@ function hidePopup(item) {
         
         if (item.closest('data-popup="started"')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
+        } else if (document.querySelector('data-popup="register-now"')) {
+            dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
         }
     })
 }
