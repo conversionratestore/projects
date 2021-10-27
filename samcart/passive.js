@@ -140,7 +140,7 @@ b {
     margin: 0 auto 52px;
     width: 146px;
     height: 25px;
-    background: url("https://conversionratestore.github.io/projects/samcart/img/logo.svg") no-repeat center/contain; }
+    object-fit: contain; }
   .s-first h1 {
     font-weight: 800;
     font-size: 64px;
@@ -721,7 +721,7 @@ document.querySelector('.elementor-element-42e7721').remove();
 document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin', `
     <div class="landing-wrap">
         <section class="s-first">
-          <div class="container"><a class="logo" href="#"></a>
+          <div class="container"><img class="logo" src="https://conversionratestore.github.io/projects/samcart/img/logo.svg">
             <h1>Create Passive Income with a Simple Online Course [FREE Workshop]<span>Discover how 21,382 normal people are creating real passive income with online courses.</span></h1>
             <div class="form get-started">
               <div class="relative w-100">
