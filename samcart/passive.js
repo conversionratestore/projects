@@ -1142,17 +1142,17 @@ function hidePopup(item) {
             },300)
         }
         
-        if (item.closest('data-popup="started"')) {
+        if (item.closest('[data-popup="started"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
-        } else if (document.querySelector('data-popup="much-more"')) {
+        } else if (document.querySelector('[data-popup="much-more"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');  
-        } else if (document.querySelector('data-popup="register-now"')) {
+        } else if (document.querySelector('[data-popup="register-now"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
-        } else if (document.querySelector('data-popup="bar-chart"')) {
+        } else if (document.querySelector('[data-popup="bar-chart"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');  
-        } else if (document.querySelector('data-popup="sales"')) {
+        } else if (document.querySelector('[data-popup="sales"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');  
-        } else if (document.querySelector('data-popup="expert"')) {
+        } else if (document.querySelector('[data-popup="expert"]')) {
             dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');  
         }
     })
