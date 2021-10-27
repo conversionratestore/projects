@@ -334,7 +334,7 @@ hr.line-vertical {
   .popup-interested.popup .btn-orange {
     max-width: 225px;
     margin: 50px auto 0; }
-  .popup-interested.popup form .field-name, .popup-interested.popup form .select, .popup-interested.popup form .field-email {
+  .popup-interested.popup .form .field-name, .popup-interested.popup .form .select, .popup-interested.popup .form .field-email {
     margin-bottom: 20px; }
   .popup-interested.popup .block-message p {
     font-size: 18px;
@@ -349,20 +349,20 @@ hr.line-vertical {
     font-size: 16px;
     line-height: 24px;
     color: #183B56; }
-  .popup form label {
+  .popup .form label {
     font-size: 12px;
     line-height: 12px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
     color: #8C9294;
     padding-bottom: 4px; }
-  .popup form .btn-orange {
+  .popup .form .btn-orange {
     padding: 0 15px 0 24px;
     margin-top: auto; }
-  .popup form input {
+  .popup .form input {
     color: #5A7386;
     padding: 7.5px 12px; }
-  .popup form .field-name {
+  .popup .form .field-name {
     margin-bottom: 25px;}
 .field-name, .field-email {
     line-height: 1;}
@@ -557,10 +557,10 @@ p.text-caption {
 .block-message {
     padding: 11px 18px;
 }
-    .popup form label {
+    .popup .form label {
         margin-bottom: 0;
     }
-    .popup form .field-name, .select {
+    .popup .form .field-name, .select {
         margin-bottom: 16px;
     }
     .popup-text {
@@ -723,13 +723,13 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
         <section class="s-first">
           <div class="container"><a class="logo" href="#"></a>
             <h1>Create Passive Income with a Simple Online Course [FREE Workshop]<span>Discover how 21,382 normal people are creating real passive income with online courses.</span></h1>
-            <form class="get-started">
+            <div class="form get-started">
               <div class="relative w-100">
                 <input type="email" placeholder="Enter email address">
                 <p class="error-message"></p>
               </div>
               <button class="btn-orange" type="button" data-button="started">Get Started<img src="https://conversionratestore.github.io/projects/samcart/img/arrow.svg" alt="lamp"></button>
-            </form>
+            </div>
             <div class="webinar"><img class="avatar" src="${document.querySelector('.elementor-image img').getAttribute('src')}" alt="avatar">
               <div class="webinar-col">
                 <h2>100% Free Online Webinar from Samcart Founder — Brian Moran</h2>
@@ -792,7 +792,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
               <hr class="line-vertical">
               <p>${getRoundedDate(5,today).toLocaleTimeString("it-IT", optionsTime)}</p>
             </div>
-            <form class="register-now">
+            <div class="form register-now">
               <div class="relative">
                 <label>Your name*</label>
                 <input type="text" required>
@@ -804,11 +804,11 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                 <p class="error-message"></p>
               </div>
               <button class="btn-orange" type="button" data-button="register-now">Register Now<img src="https://conversionratestore.github.io/projects/samcart/img/arrow.svg"></button>
-            </form>
+            </div>
           </div>
         </section>
         <div class="popup">
-          <form class="popup-wrapper">
+          <div class="form popup-wrapper">
             <button class="btn-close" type="reset"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
             <div class="popup-content">
               <div class="justify-content-between d-lg-flex">
@@ -841,7 +841,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
     </div>`);
 
@@ -860,7 +860,7 @@ let btnClose = document.querySelector('.btn-close'),
     popupWrapper = document.querySelector('.popup-wrapper'),
     btn = document.querySelectorAll('[data-button]');
 
-let patternEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/;
+let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let createElementFirst = `
 <div class="justify-content-between d-flex">
@@ -943,7 +943,7 @@ btn.forEach((btn) => {
         popup.setAttribute('data-popup', getAttr);
 
         if(btn.closest('.get-started')) {
-            let emailValue = btn.closest('form').querySelector('input[type="email"]').value;
+            let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
@@ -972,7 +972,7 @@ btn.forEach((btn) => {
         }
 
         if(btn.closest('.register-now')) {
-            let emailValue = btn.closest('form').querySelector('input[type="email"]').value;
+            let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
@@ -985,8 +985,8 @@ btn.forEach((btn) => {
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.register-now').querySelector('input[type="email"]').value)
             }
         }
-        if (btn.closest('form')) {
-            btn.closest('form').querySelectorAll('input').forEach((input) => {
+        if (btn.closest('.form')) {
+            btn.closest('.form').querySelectorAll('input').forEach((input) => {
                 let value = input.value;
                 input.setAttribute('class', '')
                 if (value == '') {
@@ -1003,7 +1003,7 @@ btn.forEach((btn) => {
                     input.nextElementSibling.innerHTML = "";
                 }
             })
-            btn.closest('form').querySelectorAll('select').forEach((select) => {
+            btn.closest('.form').querySelectorAll('select').forEach((select) => {
                 if (select.value == '') {
                     select.classList.add('error');
                     select.nextElementSibling.innerHTML = "This field is required";
