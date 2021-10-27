@@ -85,7 +85,7 @@ button {
 .landing-wrap {
   font-family: 'Gilroy', sans-serif;}
   .landing-wrap button.btn-orange:active:focus, .landing-wrap button.btn-orange:focus {
-    outline: 5px auto -webkit-focus-ring-color;
+    outline: 5px auto #c86d38;
     outline-offset: -2px;}
 .landing-wrap button.btn-orange:hover {
     border-color: transparent;
