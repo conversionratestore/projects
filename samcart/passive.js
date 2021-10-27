@@ -732,7 +732,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
             </div>
             <div class="webinar"><img class="avatar" src="${document.querySelector('.elementor-image img').getAttribute('src')}" alt="avatar">
               <div class="webinar-col">
-                <h2>100% Free Online <br> Webinar from Samcart <br> Founder — Brian Moran</h2>
+                <h2>100% Free Online <br> Webinar from SamCart <br> Founder — Brian Moran</h2>
                 <div class="align-items-center d-flex"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/date.svg" alt="date">
                   <p>On demand</p>
                   <hr class="line-vertical"><img class="icon" src="https://conversionratestore.github.io/projects/samcart/img/clock.svg" alt="clock">
@@ -1055,7 +1055,24 @@ function hidePopup(item) {
         }
     })
 }
-
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+  }
+detectMob()
+if (detectMob() == false) {
+    hidePopup(popup)
+}
 hidePopup(btnClose)
-hidePopup(popup)
 hidePopup(popupWrapper)
