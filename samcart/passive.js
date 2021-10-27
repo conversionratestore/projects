@@ -1123,11 +1123,11 @@ if (detectMob() == false) {
  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
  hj('trigger', 'passive_income_video');
  hj('event', 'passive_income_heat');
- window.onload  = function () {
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
  'event': 'event-to-ga',
  'eventCategory': 'Exp — Passive income landing page',
  'eventAction': 'loaded'
 });
- };
+
