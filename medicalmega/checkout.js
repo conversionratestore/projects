@@ -994,8 +994,6 @@ window.onload  = function () {
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
-            .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
-                display: block!important; }
             .payment h3, .checkout-left_head, .remove {
                 display: none!important;}
             .quantity-row {
@@ -1124,9 +1122,6 @@ window.onload  = function () {
             }
             .quantity-row {
                 pointer-events: none;
-            }
-            .checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3) {
-                display: block!important;
             }
             </style>`);
                 document.querySelector('.title_head').innerHTML = 'your order has been placed!';
