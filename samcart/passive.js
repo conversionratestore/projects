@@ -929,7 +929,7 @@ function showPopup(popupPlace) {
         }
         console.log(getAttr)
         if (document.querySelector('.popup').classList.contains('active')) {
-            if (document.querySelector(`.popup.active .field-name input`)) {
+            if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
                     // e.stopImmediatePropagation()
                     console.log(document.querySelector(`.popup.active`).getAttribute('data-popup'))
