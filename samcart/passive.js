@@ -918,7 +918,7 @@ function showFieldName() {
     }
 }
 
-function showPopup(popupPlace) {
+function showPopup() {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;';
         if (!document.querySelector('.popup').classList.contains('active')) {
@@ -972,19 +972,19 @@ function showPopup(popupPlace) {
 
         } else if (getAttrPopup == 'sales') {
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Generate sales around the clock)`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Generate sales around the clock)`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Generate sales around the clock)`);
             })
         } else if  (getAttrPopup == 'expert') {
@@ -992,15 +992,15 @@ function showPopup(popupPlace) {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Become a trusted expert)`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Become a trusted expert)`);
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-                event.stopImmediatePropagation()
+
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Become a trusted expert)`);
             })
         } else if  (getAttrPopup == 'started') {
@@ -1059,7 +1059,7 @@ btn.forEach((btn) => {
         e.stopImmediatePropagation()
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
-        let getAttrPopup = popup.getAttribute('data-popup');
+        // let getAttrPopup = popup.getAttribute('data-popup');
         if (btn.closest('.get-started')) {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
@@ -1071,7 +1071,7 @@ btn.forEach((btn) => {
                 }
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
                 showFieldName()
-                showPopup('first screen')
+                showPopup()
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
                 document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                     event.stopImmediatePropagation()
@@ -1083,19 +1083,19 @@ btn.forEach((btn) => {
         if (getAttr == 'much-more' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
-            showPopup('Launch in 7 days');
+
         } else if (getAttr == 'bar-chart' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
-            showPopup('Get (virtually) unlimited traffic');
+
         } else if (getAttr == 'sales' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Generate sales around the clock')
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
-            showPopup('Generate sales around the clock');
+
         } else if (getAttr == 'expert' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Become a trusted expert ')
             document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
-            showPopup('Become a trusted expert');
+
         }
         if (getAttr == 'much-more' || getAttr == 'bar-chart' || getAttr == 'sales' || getAttr == 'expert') {
             if (!document.querySelector('.popup-interested')) {
@@ -1103,6 +1103,7 @@ btn.forEach((btn) => {
                 showFieldName()
                 document.querySelector('.popup-interested .field-name').insertAdjacentHTML('afterend', createElementEmail)
                 document.querySelector('.popup-interested .justify-content-between').after(document.querySelector('.popup-interested .btn-orange'))
+                showPopup();
             }
         }
 
@@ -1207,7 +1208,7 @@ btn.forEach((btn) => {
                 if (document.querySelector('.field-name')) {
                     document.querySelector('.field-name').remove();
                 }
-                showPopup('footer')
+                showPopup()
                 document.querySelector('.popup .btn-orange').setAttribute('data-name',btn.closest('.register-now').querySelector('input[type="text"]').value)
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.register-now').querySelector('input[type="email"]').value)
             }
