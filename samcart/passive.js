@@ -1177,7 +1177,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
         console.log(getAttr + '1')
-       
+
         document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             console.log(getAttr + '2')
@@ -1192,6 +1192,10 @@ let mut = new MutationObserver(function (muts) {
             }
         })
     }
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
 })
 
 mut.observe(document, {
