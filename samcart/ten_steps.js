@@ -1206,7 +1206,8 @@ main {
 }
 
 @media (max-height: 666px) {
-  .backdrop_popup .popup_after_scroll {
+  .backdrop_popup .popup_after_scroll,
+  .backdrop_popup .popup_btn {
     position: unset;
   }
 
