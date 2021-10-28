@@ -1158,7 +1158,7 @@ document.querySelector('.popup [name="start_time"]').addEventListener('click' , 
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Data and time of attendance select',`Popup: Save Your Spot (${label})`);
 })
-btnClose.addEventListener('click', (event) => {
+document.querySelector('.btn-close').addEventListener('click', (event) => {
     let label = event.target.getAttribute('data-close')
     dataLayerPush('Close popup',`Popup: Save Your Spot (${label})`);
 })
