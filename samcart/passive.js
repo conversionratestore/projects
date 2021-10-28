@@ -1173,7 +1173,7 @@ if (detectMob() == false) {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.popup.active')) {
+    if (document.querySelector('.popup')) {
         mut.disconnect();
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
         console.log(getAttr + '1')
