@@ -128,6 +128,7 @@ select {
   line-height: 26px;
   color: #5a7386;
   padding: 0 30px 0 10px;
+  -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
 }
