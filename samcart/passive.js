@@ -1123,9 +1123,8 @@ btnClose.addEventListener('click', (e) => {
             }
         }
     },300)
-    //close popup
 
-    let label = e.closest('.popup').getAttribute('data-popup');
+    let label = document.querySelector('.popup').getAttribute('data-popup');
     if (label == 'started') {
         dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');
     } else if (label == 'much-mor') {
@@ -1139,7 +1138,6 @@ btnClose.addEventListener('click', (e) => {
     } else if (label == 'expert') {
         dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');
     }
-
 })
 
 if (detectMob() == false) {
