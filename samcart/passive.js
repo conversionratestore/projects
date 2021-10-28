@@ -1027,7 +1027,10 @@ function showPopup() {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (footer)`);
             })
         }
+
     },100)
+
+    return false
 }
 
 function postForm(name,email,time,sales) {
