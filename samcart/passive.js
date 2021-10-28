@@ -932,9 +932,9 @@ function showPopup(popupPlace) {
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
-        
+
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-        
+        console.log(getAttr)
         if (document.querySelector('.popup.active .field-name input')) {
             document.querySelector('.popup.active .field-name input').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
@@ -949,7 +949,7 @@ function showPopup(popupPlace) {
                 }
             })
         }
-        
+
         document.querySelector('.popup [name="start_time"]').addEventListener('click' , (e) => {
             e.stopImmediatePropagation()
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
