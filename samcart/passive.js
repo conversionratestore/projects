@@ -875,7 +875,7 @@ function createlistInfo(a,b,c) {
 }
 
 let createElementEmail = `<div class="field-email"><label>Your contact email*</label><div class="relative"><input type="email" required><p class="error-message"></p></div></div>`;
-let createElementName = `<div class="field-name "><label>Your name *</label><div class="relative"><input type="text" required><p class="error-message"></p></div></div>`;
+let createElementName = `<div class="field-name"><label>Your name *</label><div class="relative"><input type="text" required><p class="error-message"></p></div></div>`;
 
 function detectMob() {
     const toMatch = [
@@ -993,7 +993,6 @@ function showPopup() {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
             })
         }
-
     },100)
 }
 
@@ -1058,10 +1057,10 @@ btn.forEach((btn) => {
                 showFieldName()
                 showPopup()
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
-                document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-                    event.stopImmediatePropagation()
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
-                })
+                // document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
+                //     event.stopImmediatePropagation()
+                //     dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
+                // })
             }
         }
 
