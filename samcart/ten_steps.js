@@ -1713,12 +1713,6 @@ if (window.innerWidth <= 768) {
   eventVar = "mobile"
 }
 
-let eventVar = "desktop"
-
-if (window.innerWidth <= 768) {
-  eventVar = "mobile"
-}
-
 // convert time round
 let getRoundedDate = (minutes, d = new Date()) => {
   let ms = 1000 * 60 * minutes // convert minutes to ms
