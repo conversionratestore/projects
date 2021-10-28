@@ -1713,6 +1713,12 @@ if (window.innerWidth <= 768) {
   eventVar = "mobile"
 }
 
+let eventVar = "desktop"
+
+if (window.innerWidth <= 768) {
+  eventVar = "mobile"
+}
+
 // convert time round
 let getRoundedDate = (minutes, d = new Date()) => {
   let ms = 1000 * 60 * minutes // convert minutes to ms
@@ -2169,7 +2175,9 @@ if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
     "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
 
-  document.querySelector(".popup_wrapper div:first-child p").innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  document.querySelectorAll(".popup_wrapper div:first-child p").forEach((el) => {
+    el.innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
+  })
   document.querySelector(".box_already_registered form :nth-child(3) span").textContent = "Your contact email*"
 }
 
