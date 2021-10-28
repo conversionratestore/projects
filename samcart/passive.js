@@ -1107,41 +1107,29 @@ btn.forEach((btn) => {
     })
 })
 
-function hidePopup(item) {
-    item.addEventListener('click', (e) => {
-        if (item.className == 'form popup-wrapper') {
-            e.stopPropagation()
-        } else {
-            document.body.style = 'overflow-y: auto;'
-            popup.classList.remove('active');
-            popup.setAttribute('data-popup','');
+btnClose.addEventListener('click', (e) => {
+    document.body.style = 'overflow-y: auto;'
+    popup.classList.remove('active');
+    popup.setAttribute('data-popup','');
 
-            e.target.setAttribute('data-close', item.closest('.popup').getAttribute('data-popup'));
+    e.target.setAttribute('data-close', item.closest('.popup').getAttribute('data-popup'));
 
-            document.querySelectorAll('.popup-content .error').forEach((elError) => {
-                elError.classList.remove('error');
-                elError.nextElementSibling.innerHTML = '';
-            })
-            setTimeout(() => {
-                if(!document.querySelector('popup-interested')) {
-                    popup.classList.remove('popup-interested');
-                    if (document.querySelector('.field-email')) {
-                        document.querySelector('.field-email').remove();
-                    }
-                }
-            },300)
-
-
-        }
+    document.querySelectorAll('.popup-content .error').forEach((elError) => {
+        elError.classList.remove('error');
+        elError.nextElementSibling.innerHTML = '';
     })
-}
-
-hidePopup(btnClose)
+    setTimeout(() => {
+        if(!document.querySelector('popup-interested')) {
+            popup.classList.remove('popup-interested');
+            if (document.querySelector('.field-email')) {
+                document.querySelector('.field-email').remove();
+            }
+        }
+    },300)
+    dataLayerPush('Close popup',`Popup: Save Your Spot (${e.target.getAttribute('data-close')})`);
+})
 
 if (detectMob() == false) {
-    console.log('desktop')
-    hidePopup(popupWrapper);
-    hidePopup(popup);
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields on the right <b class="d-block">and learn how to</b>`
 } else {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
@@ -1173,11 +1161,6 @@ document.querySelector('.popup [name="monthly_sales"]').addEventListener('change
 document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Data and time of attendance select',`Popup: Save Your Spot (${label})`);
-})
-//close popup
-btnClose.addEventListener('click' , (event) => {
-    let label = event.target.getAttribute('data-close');
-    dataLayerPush('Close popup',`Popup: Save Your Spot (${label})`);
 })
 
 (function(h,o,t,j,a,r){
