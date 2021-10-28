@@ -1178,7 +1178,7 @@ let mut = new MutationObserver(function (muts) {
     let getAttr = document.querySelector('.popup').getAttribute('data-popup');
     console.log(getAttr + ' 1')
 
-    if (document.querySelector(`.popup.active .field-name input`)) {
+    if (document.querySelector(`.popup.active .field-name input`) != null) {
         console.log('click')
         console.log(getAttr + ' 2')
         if (getAttr == 'much-more') {
