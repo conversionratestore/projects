@@ -927,10 +927,7 @@ function showPopup(popupPlace) {
             popup.classList.add('active');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
-        document.querySelector('.popup.active .btn-orange').addEventListener('click' , (e) => {
-            e.stopImmediatePropagation()
-            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
-        })
+
         if (document.querySelector('.popup.active .field-email input')) {
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
@@ -1023,6 +1020,9 @@ btn.forEach((btn) => {
             }
         }
 
+
+
+
         if (getAttr == 'much-more' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
@@ -1050,9 +1050,16 @@ btn.forEach((btn) => {
         }
         if (btn.closest('[data-popup="started"]')) {
             dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (first screen)');
-        }
-        if (btn.closest('[data-popup="register-now"]')) {
+        } else if (btn.closest('[data-popup="register-now"]')) {
             dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (footer)');
+        } else if (btn.closest('[data-popup="expert"]')) {
+            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (Become a trusted expert)`);
+        } else if (btn.closest('[data-popup="sales"]')) {
+            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (Generate sales around the clock)`);
+        } else if (btn.closest('[data-popup="bar-chart"]')) {
+            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+        } else if (btn.closest('[data-popup="much-more"]')) {
+            dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (Launch in 7 days)`);
         }
 
         if(btn.closest('.register-now')) {
