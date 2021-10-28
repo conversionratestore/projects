@@ -1107,7 +1107,7 @@ btn.forEach((btn) => {
     })
 })
 
-document.querySelector('.btn-close').addEventListener('click', (e) => {
+btnClose.addEventListener('click', (e) => {
     document.body.style = 'overflow-y: auto;'
     popup.classList.remove('active');
     popup.setAttribute('data-popup','');
@@ -1123,8 +1123,8 @@ document.querySelector('.btn-close').addEventListener('click', (e) => {
             }
         }
     },300)
-    console.log(e.target.getAttribute('data-close'))
-    dataLayerPush('Close popup',`Popup: Save Your Spot (${e.target.getAttribute('data-close')})`);
+    let label = e.target.getAttribute('data-close')
+    dataLayerPush('Close popup',`Popup: Save Your Spot (${label})`);
 })
 
 if (detectMob() == false) {
