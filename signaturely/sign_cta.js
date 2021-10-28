@@ -181,12 +181,14 @@ document.querySelector('.popup1 button').addEventListener('click', function () {
 
 document.querySelectorAll('.close_popup').forEach(function (item, i) {
     item.addEventListener('click', function () {
-        document.querySelector('.popup1').classList.add('active')
-        document.querySelector('.popup2').classList.remove('active')
-        document.querySelector('.backdrop_cta').classList.remove('active')
+        document.querySelector('.popup1').classList.remove('active')
+        document.querySelector('.popup2').classList.add('active')
         document.querySelector('.popup1 video').pause()
         let label = 'Popup How to use Signaturely editor'
         if(i === 1) {
+            document.querySelector('.popup1').classList.add('active')
+            document.querySelector('.popup2').classList.remove('active')
+            document.querySelector('.backdrop_cta').classList.remove('active')
             label = 'Popup when you are finished'
         }
 
