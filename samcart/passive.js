@@ -927,6 +927,7 @@ function showPopup(popupPlace) {
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
             getAttr = popup.getAttribute('data-popup');
         }
+        console.log(getAttr)
         if (document.querySelector('.popup').classList.contains('active')) {
             if (document.querySelector(`.popup.active .field-name input`)) {
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
