@@ -923,8 +923,8 @@ function showFieldName() {
 function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
-        popup.classList.add('active');
         if(!document.querySelector('.popup').classList.contains('active')) {
+            popup.classList.add('active');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
         document.querySelector('.popup.active .btn-orange').addEventListener('click' , (e) => {
