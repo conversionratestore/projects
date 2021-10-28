@@ -924,7 +924,9 @@ function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
-        dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
+        if(!document.querySelector('.popup').classList.contains('active')) {
+            dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
+        }
         document.querySelector('.popup.active .btn-orange').addEventListener('click' , (e) => {
             e.stopImmediatePropagation()
             dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
