@@ -103,6 +103,10 @@ input {
   line-height: 1 !important;
 }
 
+.box_already_registered input{
+  color: white;
+}
+
 .input_validation_name,
 .input_validation_email,
 .input_validation_select {
