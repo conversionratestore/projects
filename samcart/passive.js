@@ -1022,6 +1022,12 @@ btn.forEach((btn) => {
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
             }
         }
+        if(btn.closest('[data-popup="started"]')) {
+            dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (first screen)');
+        }
+        if(btn.closest('[data-popup="register-now"]')) {
+            dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (footer)');
+        }
 
         if (getAttr == 'much-more' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
