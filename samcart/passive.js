@@ -707,7 +707,6 @@ let options = { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric
     optionsDate = {weekday: 'short', day: 'numeric', month: 'short'},
     optionsTime = {hour: 'numeric', minute: 'numeric' };
 
-
 let today  = new Date();
 
 let getRoundedDate = (minutes, d=new Date()) => {
@@ -875,7 +874,6 @@ function createlistInfo(a,b,c) {
     </ul>`;
 }
 
-
 let createElementEmail = `<div class="field-email"><label>Your contact email*</label><div class="relative"><input type="email" required><p class="error-message"></p></div></div>`;
 let createElementName = `<div class="field-name "><label>Your name *</label><div class="relative"><input type="text" required><p class="error-message"></p></div></div>`;
 
@@ -923,7 +921,7 @@ function showFieldName() {
 function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
-        if(!document.querySelector('.popup').classList.contains('active')) {
+        if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
@@ -1019,9 +1017,6 @@ btn.forEach((btn) => {
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
             }
         }
-
-
-
 
         if (getAttr == 'much-more' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
@@ -1138,6 +1133,7 @@ function hidePopup(item) {
         } else {
             document.body.style = 'overflow-y: auto;'
             popup.classList.remove('active');
+            popup.setAttribute('data-popup','');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
                 elError.classList.remove('error');
                 elError.nextElementSibling.innerHTML = '';
