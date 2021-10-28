@@ -100,6 +100,7 @@ input {
   margin-top: 5px !important;
   padding: 0 10px !important;
   cursor: pointer;
+  line-height: 1;
 }
 
 .input_validation_name,
