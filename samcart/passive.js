@@ -931,29 +931,27 @@ function showPopup(popupPlace) {
         }
 
         if (document.querySelector('.popup').classList.contains('active')) {
-            console.log(getAttr + " 3")
             if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
-                console.log(getAttr + " 3")
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
 
                     if (getAttr == 'much-more') {
-                        e.stopImmediatePropagation()
+                        e.stopPropagation()
                         dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
                     }
                     if (getAttr == 'bar-chart') {
-                        e.stopImmediatePropagation()
+                        e.stopPropagation()
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
                     }
                     if (getAttr == 'sales') {
-                        e.stopImmediatePropagation()
+                        e.stopPropagation()
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
                     }
                     if (getAttr == 'expert') {
-                        e.stopImmediatePropagation()
+                        e.stopPropagation()
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
                     }
                     if (getAttr == 'started') {
-                        e.stopImmediatePropagation()
+                        e.stopPropagation()
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
                     }
                 }, true)
