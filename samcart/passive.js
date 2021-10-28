@@ -850,7 +850,6 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
 
 let btnClose = document.querySelector('.btn-close'),
     popup = document.querySelector('.popup'),
-    popupWrapper = document.querySelector('.popup-wrapper'),
     btn = document.querySelectorAll('[data-button]');
 
 let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
@@ -924,6 +923,10 @@ function showPopup() {
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
         }
+        btnClose.addEventListener('click', (e) => {
+            let label = e.target.getAttribute('data-close');
+            dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${label})`);
+        })
     },100)
 }
 
@@ -1123,21 +1126,6 @@ btnClose.addEventListener('click', (e) => {
             }
         }
     },300)
-
-    let label = document.querySelector('.popup').getAttribute('data-popup');
-    if (label == 'started') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');
-    } else if (label == 'much-mor') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');
-    } else if (label == 'register-now') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (footer)');
-    } else if (label == 'bar-chart') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');
-    } else if (label == 'sales') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');
-    } else if (label == 'expert') {
-        dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');
-    }
 })
 
 if (detectMob() == false) {
