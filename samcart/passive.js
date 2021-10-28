@@ -935,7 +935,7 @@ function showPopup(popupPlace) {
 
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
         console.log(getAttr + '1')
-        if (document.querySelector('.popup.active .field-name input')) {
+        if (document.querySelector('.popup .field-name input')) {
             document.querySelector(`.popup[data-popup="${getAttr}"] .field-name input`).addEventListener('click change', (e) => {
                 e.stopImmediatePropagation()
                 console.log(getAttr + '2')
