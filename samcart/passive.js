@@ -1178,7 +1178,7 @@ let mut = new MutationObserver(function (muts) {
     let getAttr = document.querySelector('.popup').getAttribute('data-popup');
     console.log(getAttr + '1')
 
-    if (document.querySelector(`.popup.active .field-name input`)) {
+    if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
         document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             console.log('click')
@@ -1195,6 +1195,10 @@ let mut = new MutationObserver(function (muts) {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
             }
         })
+        mut.observe(document, {
+            childList: true,
+            subtree: true
+        });
     }
     mut.observe(document, {
         childList: true,
