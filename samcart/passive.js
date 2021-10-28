@@ -1179,22 +1179,37 @@ let mut = new MutationObserver(function (muts) {
     console.log(getAttr + ' 1')
 
     if (document.querySelector(`.popup.active[data-popup] .field-name input`)) {
-        document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
-            console.log('click')
-            console.log(getAttr + ' 2')
-            if (getAttr == 'much-more') {
+
+
+        console.log('click')
+        console.log(getAttr + ' 2')
+        if (getAttr == 'much-more') {
+            document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
-            } else if (getAttr == 'bar-chart') {
+            })
+        } else if (getAttr == 'bar-chart') {
+            document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-            } else if (getAttr == 'sales') {
+            })
+        } else if (getAttr == 'sales') {
+            document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-            } else if (getAttr == 'expert') {
+            })
+        } else if (getAttr == 'expert') {
+            document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-            } else if (getAttr == 'started') {
+            })
+        } else if (getAttr == 'started') {
+            document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
-            }
-        })
+            })
+        }
+
         mut.observe(document, {
             childList: true,
             subtree: true
