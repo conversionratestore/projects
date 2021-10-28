@@ -934,10 +934,11 @@ function showPopup(popupPlace) {
         }
 
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-        console.log(getAttr)
+        console.log(getAttr + '1')
         if (document.querySelector('.popup.active .field-name input')) {
-            document.querySelector('.popup.active .field-name input').addEventListener('click', (e) => {
+            document.querySelector(`.popup[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
+                console.log(getAttr + '2')
                 if (getAttr == 'much-more') {
                     dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
                 } else if (getAttr == 'bar-chart') {
