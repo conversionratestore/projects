@@ -927,7 +927,7 @@ function showPopup(popupPlace) {
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
             if (document.querySelector(`.popup.active .field-name input`)) {
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
+                    // e.stopImmediatePropagation()
                     if (getAttr == 'much-more') {
                         dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
                     } else if (getAttr == 'bar-chart') {
