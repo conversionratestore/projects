@@ -1029,8 +1029,8 @@ btn.forEach((btn) => {
                 showFieldName()
                 showPopup('first screen')
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
-                document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
+                document.querySelector(`.popup.active .field-name input`).addEventListener('click', (event) => {
+                    event.stopImmediatePropagation()
                     dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
                 })
             }
