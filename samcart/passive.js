@@ -1174,8 +1174,8 @@ if (detectMob() == false) {
 
 let mut = new MutationObserver(function (muts) {
     console.log(mut)
-    if (document.querySelector(`.popup.active[data-popup] .field-name input`) != null) {
-        mut.disconnect();
+    // if (document.querySelector(`.popup.active[data-popup] .field-name input`) != null) {
+    //     mut.disconnect();
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
         console.log(getAttr + '1')
 
@@ -1193,7 +1193,7 @@ let mut = new MutationObserver(function (muts) {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
             }
         })
-    }
+    // }
     mut.observe(document, {
         childList: true,
         subtree: true
