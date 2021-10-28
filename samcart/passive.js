@@ -1278,6 +1278,7 @@ btn.forEach((btn) => {
                 postForm(name,email,date,sales)
             }
         }
+        return false
     })
 })
 
