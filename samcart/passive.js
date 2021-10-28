@@ -84,9 +84,8 @@ button {
     padding-right: 0;}
 .landing-wrap {
   font-family: 'Gilroy', sans-serif;}
-  .landing-wrap button.btn-orange:active:focus, .landing-wrap button.btn-orange:focus {
-    outline: 5px auto #c86d38;
-    outline-offset: -2px;}
+.landing-wrap button.btn-orange:active {
+    box-shadow: inset 0 3px 5px rgba(200, 109, 56, 0.9);}
 .landing-wrap button.btn-orange:hover {
     border-color: transparent;
     color: #fff;
@@ -468,9 +467,8 @@ hr.line-vertical {
   border: 2px solid #046BD9;
   color: #046BD9;
   line-height: 42px; }
-  .btn-blue:active:focus, .btn-blue:focus {
-    outline: 5px auto #cedbe9;
-    outline-offset: -2px;}
+  .btn-blue:active{
+   box-shadow: inset 0 3px 5px rgba(206, 219, 233, 0.9);}
   .btn-blue img {
     margin-left: 16px; }
 
