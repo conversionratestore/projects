@@ -952,6 +952,8 @@ function showPopup(popupPlace) {
         })
 
     },100)
+    
+    return false;
 }
 
 function postForm(name,email,time,sales) {
