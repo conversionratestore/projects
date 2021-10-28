@@ -982,7 +982,7 @@ btn.forEach((btn) => {
         e.stopImmediatePropagation()
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
-        let getAttrPopup = popup.getAttribute(data-popup);
+        let getAttrPopup = popup.getAttribute('data-popup');
         if(btn.closest('.get-started')) {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
