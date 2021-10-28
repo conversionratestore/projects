@@ -1173,25 +1173,24 @@ if (detectMob() == false) {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.popup')) {
+    if (document.querySelector('.popup .field-name input')) {
         mut.disconnect();
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
         console.log(getAttr + '1')
-        if (document.querySelector('.popup.active .field-name input')) {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                console.log(getAttr + '2')
-                if (getAttr == 'much-more') {
-                    dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
-                } else if (getAttr == 'bar-chart') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-                } else if (getAttr == 'sales') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-                } else if (getAttr == 'expert') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-                }
-            })
-        }
+       
+        document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            console.log(getAttr + '2')
+            if (getAttr == 'much-more') {
+                dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
+            } else if (getAttr == 'bar-chart') {
+                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+            } else if (getAttr == 'sales') {
+                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+            } else if (getAttr == 'expert') {
+                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+            }
+        })
     }
 })
 
