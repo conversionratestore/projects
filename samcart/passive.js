@@ -933,13 +933,17 @@ function showPopup(popupPlace) {
                     // e.stopImmediatePropagation()
                     if (getAttr == 'much-more') {
                         dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
-                    } else if (getAttr == 'bar-chart') {
+                    }
+                    if (getAttr == 'bar-chart') {
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-                    } else if (getAttr == 'sales') {
+                    }
+                    if (getAttr == 'sales') {
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-                    } else if (getAttr == 'expert') {
+                    }
+                    if (getAttr == 'expert') {
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-                    } else if (getAttr == 'started') {
+                    }
+                    if (getAttr == 'started') {
                         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
                     }
                 })
