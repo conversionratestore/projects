@@ -927,7 +927,8 @@ function showPopup(popupPlace) {
         document.body.style = 'overflow-y: hidden;'
         popup.classList.add('active');
         dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
-        document.querySelector('.popup.active .btn-orange').addEventListener('click' , () => {
+        document.querySelector('.popup.active .btn-orange').addEventListener('click' , (e) => {
+            e.stopImmediatePropagation()
             dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
         })
         if (document.querySelector('.popup.active .field-email input')) {
@@ -942,13 +943,16 @@ function showPopup(popupPlace) {
                 dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
-        document.querySelector('.popup [name="start_time"]').addEventListener('click' , () => {
+        document.querySelector('.popup [name="start_time"]').addEventListener('click' , (e) => {
+            e.stopImmediatePropagation()
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
         })
-        document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , () => {
+        document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (e) => {
+            e.stopImmediatePropagation()
             dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${popupPlace})`);
         })
         document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
+            e.stopImmediatePropagation()
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
 
