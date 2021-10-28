@@ -1164,12 +1164,12 @@ dataLayer.push({
 
 
 //
-document.querySelector('.get-started input').addEventListener('click' , () => {
-    dataLayerPush('Click on Email input','Form: Create Passive Income');
-})
-document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
-    dataLayerPush('Click on Your name input','Form: People are Already Registered for the Next Webinar');
-})
-document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
-    dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
-})
+//document.querySelector('.get-started input').addEventListener('click' , () => {
+ //   dataLayerPush('Click on Email input','Form: Create Passive Income');
+//})
+//document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
+ //   dataLayerPush('Click on Your name input','Form: People are Already Registered for the Next Webinar');
+//})
+//document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
+//    dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
+//})
