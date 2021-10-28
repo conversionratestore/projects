@@ -965,7 +965,8 @@ btn.forEach((btn) => {
         e.stopImmediatePropagation()
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
-        // let getAttrPopup = popup.getAttribute('data-popup');
+        btnClose.setAttribute('data-close', getAttr);
+
         if (btn.closest('.get-started')) {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
@@ -1131,6 +1132,7 @@ function hidePopup(item) {
 }
 
 hidePopup(btnClose)
+
 if (detectMob() == false) {
     console.log('desktop')
     hidePopup(popupWrapper);
@@ -1168,7 +1170,7 @@ document.querySelector('.popup [name="start_time"]').addEventListener('click' , 
     dataLayerPush('Click on Data and time of attendance select',`Popup: Save Your Spot (${label})`);
 })
 //close popup
-document.querySelector('.btn-close').addEventListener('click' , (event) => {
+btnClose.addEventListener('click' , (event) => {
     let label = event.target.getAttribute('data-close');
     if (label == 'started') {
         dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');
