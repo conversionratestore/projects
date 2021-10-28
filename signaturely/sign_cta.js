@@ -161,14 +161,42 @@ document.querySelector('.popup1 button').addEventListener('click', function () {
     document.querySelector('.popup1').classList.remove('active')
     document.querySelector('.popup2').classList.add('active')
     document.querySelector('.popup1 video').pause()
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Prepare for Signing flow',
+        'eventAction': 'Clicks on continue button',
+        'eventLabel': 'Popup How to use Signaturely editor'
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Prepare for Signing flow',
+        'eventAction': 'Pop-up visibility',
+        'eventLabel': 'Popup when you are finished'
+    });
 })
 
-document.querySelectorAll('.close_popup').forEach(function (item) {
+document.querySelectorAll('.close_popup').forEach(function (item, i) {
     item.addEventListener('click', function () {
         document.querySelector('.popup1').classList.add('active')
         document.querySelector('.popup2').classList.remove('active')
         document.querySelector('.backdrop_cta').classList.remove('active')
         document.querySelector('.popup1 video').pause()
+        let label = 'Popup How to use Signaturely editor'
+        if(i === 1) {
+            label = 'Popup when you are finished'
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Prepare for Signing flow',
+            'eventAction': 'Click on the cross in the pop-up',
+            'eventLabel': label
+        });
     })
 })
 
@@ -176,6 +204,23 @@ document.querySelector('.popup2 button').addEventListener('click', function () {
     document.querySelector('.popup1').classList.add('active')
     document.querySelector('.popup2').classList.remove('active')
     document.querySelector('.backdrop_cta').classList.remove('active')
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Prepare for Signing flow',
+        'eventAction': 'Clicks on continue button',
+        'eventLabel': 'Popup when you are finished'
+    });
+
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Prepare for Signing flow',
+        'eventAction': 'Pop-up visibility',
+        'eventLabel': 'Popup How to use Signaturely editor'
+    });
 })
 
 
@@ -200,10 +245,36 @@ mut.observe(document.body, {
 
 
 function start() {
-        document.querySelector('.interactModal__fieldBar-fieldWrapper').insertAdjacentHTML('afterend', cta)
+    document.querySelector('.interactModal__fieldBar-fieldWrapper').insertAdjacentHTML('afterend', cta)
 
-        document.querySelector('.new_cta').addEventListener('click', function () {
-            document.querySelector('.backdrop_cta').classList.add('active')
-        })
+    document.querySelector('.new_cta').addEventListener('click', function () {
+        document.querySelector('.backdrop_cta').classList.add('active')
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Prepare for Signing flow',
+            'eventAction': 'Clicks on How to use editor buttons'
+        });
+    })
 }
 
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Prepare for Signing flow',
+    'eventAction': 'loaded'
+});
+
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2372209,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'trig_prepare_for_signing');
+hj('event', 'prepare_for_signing');
