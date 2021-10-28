@@ -2021,7 +2021,7 @@ if (document.querySelector(".back_form") || document.querySelector(".popup_btn .
 // validation form
 function validationForm(parent) {
   if (parent === ".front_form" || parent === ".box_already_registered form" || parent === ".backdrop_popup .popup_after_scroll") {
-    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^[a-zA-Z-]{1,30}$/)
+    let inputValueName = document.querySelector(`${parent} input[name='name']`).value.match(/^.{1,30}$/)
     let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
 
     // let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\S+@\S+\.\S+$/)
