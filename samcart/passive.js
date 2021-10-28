@@ -963,8 +963,6 @@ function showPopup(popupPlace) {
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
 
-        return false;
-
     },100)
 }
 
