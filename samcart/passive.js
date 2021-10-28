@@ -1143,6 +1143,17 @@ if (detectMob() == false) {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
 }
 
+//
+document.querySelector('.get-started input').addEventListener('click' , () => {
+    dataLayerPush('Click on Email input','Form: Create Passive Income');
+})
+document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
+    dataLayerPush('Click on Your name input','Form: People are Already Registered for the Next Webinar');
+})
+document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
+    dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
+})
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2078786,hjsv:6};
@@ -1161,15 +1172,3 @@ dataLayer.push({
     'eventCategory': 'Exp — Passive income landing page',
     'eventAction': 'loaded'
 });
-
-
-//
-//document.querySelector('.get-started input').addEventListener('click' , () => {
- //   dataLayerPush('Click on Email input','Form: Create Passive Income');
-//})
-//document.querySelector('.register-now input[type="text"]').addEventListener('click' , () => {
- //   dataLayerPush('Click on Your name input','Form: People are Already Registered for the Next Webinar');
-//})
-//document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
-//    dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
-//})
