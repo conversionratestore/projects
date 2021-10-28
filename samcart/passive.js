@@ -924,9 +924,6 @@ function showPopup() {
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
         }
-
-        let getAttrPopup = document.querySelector('.popup').getAttribute('data-popup');
-        console.log(getAttrPopup + " getAttrPopup")
     },100)
 }
 
@@ -1164,11 +1161,12 @@ document.querySelector('.register-now input[type="text"]').addEventListener('cli
 document.querySelector('.register-now input[type="email"]').addEventListener('click' , () => {
     dataLayerPush('Click on Your contact email input','Form: People are Already Registered for the Next Webinar');
 })
-//monthly_sales
+//monthly_sales click
 document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${label})`);
 })
+//monthly_sales change
 document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
     let label = event.target.getAttribute('data-label');
     dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${label})`);
