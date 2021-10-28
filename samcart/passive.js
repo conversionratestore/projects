@@ -1169,6 +1169,10 @@ document.querySelector('.popup [name="monthly_sales"]').addEventListener('click'
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${label})`);
 })
+document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
+    let label = event.target.getAttribute('data-label');
+    dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${label})`);
+})
 //start_time
 document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
     let label = event.target.getAttribute('data-label');
