@@ -921,10 +921,13 @@ function showFieldName() {
 function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
+        let getAttr = popup.getAttribute('data-popup');
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
-            let getAttr = popup.getAttribute('data-popup');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
+            getAttr = popup.getAttribute('data-popup');
+        }
+        if (document.querySelector('.popup').classList.contains('active')) {
             if (document.querySelector(`.popup.active .field-name input`)) {
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
                     // e.stopImmediatePropagation()
