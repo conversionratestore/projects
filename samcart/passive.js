@@ -1165,7 +1165,7 @@ document.querySelector('.register-now input[type="email"]').addEventListener('cl
 
 //monthly_sales
 document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-    let label = event.getAttribute('data-label')
+    let label = event.target.getAttribute('data-label')
     dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (${label})`);
 })
 
