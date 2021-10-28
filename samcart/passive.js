@@ -1173,6 +1173,7 @@ if (detectMob() == false) {
 }
 
 let mut = new MutationObserver(function (muts) {
+    console.log(mut)
     if (document.querySelector(`.popup.active[data-popup] .field-name input`) != null) {
         mut.disconnect();
         let getAttr = document.querySelector('.popup').getAttribute('data-popup');
