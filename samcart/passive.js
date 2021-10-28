@@ -936,6 +936,8 @@ function showPopup(popupPlace) {
                 console.log(getAttr + " 3")
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
                     // e.stopImmediatePropagation()
+                    console.log(e.target)
+                    console.log(e.currentTarget)
                     console.log(document.querySelector(`.popup.active`).getAttribute('data-popup'))
                     if (getAttr == 'much-more') {
                         dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
