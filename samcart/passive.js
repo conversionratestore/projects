@@ -1123,7 +1123,7 @@ btnClose.addEventListener('click', (e) => {
             }
         }
     },300)
-    dataLayerPush('Close popup',`Popup: Save Your Spot (${e.target.getAttribute('data-close')})`);
+    dataLayerPush('Close popup',`Popup: Save Your Spot (${e.getAttribute('data-close')})`);
 })
 
 if (detectMob() == false) {
