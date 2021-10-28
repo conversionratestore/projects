@@ -931,12 +931,14 @@ function showPopup(popupPlace) {
             dataLayerPush('Click on Finish Registration button',`Popup: Save Your Spot (${popupPlace})`);
         })
         if (document.querySelector('.popup.active .field-email input')) {
-            document.querySelector('.popup.active .field-email input').addEventListener('click' , () => {
+            document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
         if (document.querySelector('.popup.active .field-name input')) {
-            document.querySelector('.popup.active .field-name input').addEventListener('click' , () => {
+            document.querySelector('.popup.active .field-name input').addEventListener('click' , (e) => {
+                e.stopImmediatePropagation()
                 dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
