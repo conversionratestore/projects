@@ -212,15 +212,6 @@ document.querySelector('.popup2 button').addEventListener('click', function () {
         'eventAction': 'Clicks on continue button',
         'eventLabel': 'Popup when you are finished'
     });
-
-
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Prepare for Signing flow',
-        'eventAction': 'Pop-up visibility',
-        'eventLabel': 'Popup How to use Signaturely editor'
-    });
 })
 
 
@@ -255,6 +246,14 @@ function start() {
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Prepare for Signing flow',
             'eventAction': 'Clicks on How to use editor buttons'
+        });
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Prepare for Signing flow',
+            'eventAction': 'Pop-up visibility',
+            'eventLabel': 'Popup How to use Signaturely editor'
         });
     })
 }
