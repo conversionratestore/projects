@@ -925,31 +925,31 @@ function showPopup(popupPlace) {
             popup.classList.add('active');
             let getAttr = popup.getAttribute('data-popup');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
-            if (document.querySelector('.popup').classList.contains('active')) {
-                if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
-                    document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                        // e.stopImmediatePropagation()
-                        console.log(document.querySelector(`.popup.active`).getAttribute('data-popup'))
-                        if (getAttr == 'much-more') {
-                            dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
-                        }
-                        if (getAttr == 'bar-chart') {
-                            dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-                        }
-                        if (getAttr == 'sales') {
-                            dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-                        }
-                        if (getAttr == 'expert') {
-                            dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-                        }
-                        if (getAttr == 'started') {
-                            dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
-                        }
-                    })
-                }
-            }
         }
 
+        if (document.querySelector('.popup').classList.contains('active')) {
+            if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
+                document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
+                    // e.stopImmediatePropagation()
+                    console.log(document.querySelector(`.popup.active`).getAttribute('data-popup'))
+                    if (getAttr == 'much-more') {
+                        dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
+                    }
+                    if (getAttr == 'bar-chart') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                    }
+                    if (getAttr == 'sales') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+                    }
+                    if (getAttr == 'expert') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+                    }
+                    if (getAttr == 'started') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
+                    }
+                })
+            }
+        }
 
         if (document.querySelector('.popup.active .field-email input')) {
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
