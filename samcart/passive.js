@@ -1181,6 +1181,7 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
             e.stopImmediatePropagation()
+            console.log('click')
             console.log(getAttr + '2')
             if (getAttr == 'much-more') {
                 dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
