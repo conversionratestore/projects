@@ -929,19 +929,27 @@ function showPopup(popupPlace) {
         if (document.querySelector('.popup.active .field-email input')) {
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
-                console.log(popupPlace)
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
+        
+        let getAttr = document.querySelector('.popup').getAttribute('data-popup');
+        
         if (document.querySelector('.popup.active .field-name input')) {
-            document.querySelector('.popup.active .field-name input').addEventListener('click' , (e) => {
+            document.querySelector('.popup.active .field-name input').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
-                console.log(e.target)
-                console.log(e.currentTarget)
-                console.log(popupPlace)
-                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (${popupPlace})`);
+                if (getAttr == 'much-more') {
+                    dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
+                } else if (getAttr == 'bar-chart') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                } else if (getAttr == 'sales') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+                } else if (getAttr == 'expert') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+                }
             })
         }
+        
         document.querySelector('.popup [name="start_time"]').addEventListener('click' , (e) => {
             e.stopImmediatePropagation()
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
@@ -1028,12 +1036,12 @@ btn.forEach((btn) => {
             dataLayerPush('Click on I`m interested button','Launch in 7 days')
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
             showPopup('Launch in 7 days');
-        } 
+        }
         if (getAttr == 'bar-chart' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
             showPopup('Get (virtually) unlimited traffic');
-        } 
+        }
         if (getAttr == 'sales' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Generate sales around the clock')
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
