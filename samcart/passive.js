@@ -924,8 +924,9 @@ function showPopup() {
             popup.classList.add('active');
         }
         btnClose.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
             let label = e.target.getAttribute('data-close');
-            dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${label})`);
+            dataLayerPush(`Close popup`,`Popup: Save Your Spot (${label})`);
         })
     },100)
 }
