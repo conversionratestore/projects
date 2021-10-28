@@ -1179,7 +1179,7 @@ let mut = new MutationObserver(function (muts) {
     console.log(getAttr + '1')
 
     if (document.querySelector(`.popup.active .field-name input`)) {
-        document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
+        document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             console.log('click')
             console.log(getAttr + '2')
