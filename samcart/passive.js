@@ -930,76 +930,95 @@ function showPopup() {
         if (getAttrPopup == 'much-more') {
             dataLayerPush('View popup',`Popup: Save Your Spot (Launch in 7 days)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Launch in 7 days)`);
+                return false;
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Launch in 7 days)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Launch in 7 days)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Launch in 7 days)`);
+                return false;
             })
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (Launch in 7 days)`);
+                return false;
             })
         } else if (getAttrPopup == 'bar-chart') {
             dataLayerPush('View popup',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                return false;
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                return false;
             })
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                return false;
             })
 
         } else if (getAttrPopup == 'sales') {
             dataLayerPush('View popup',`Popup: Save Your Spot (Generate sales around the clock)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+                return false;
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Generate sales around the clock)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Generate sales around the clock)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Generate sales around the clock)`);
+                return false;
             })
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (Generate sales around the clock)`);
+                return false;
             })
         } else if  (getAttrPopup == 'expert') {
             dataLayerPush('View popup',`Popup: Save Your Spot (Become a trusted expert)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+                return false;
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
                 dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Become a trusted expert)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
                 dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Become a trusted expert)`);
+                return false;
             })
             document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Become a trusted expert)`);
+                return false;
             })
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (Become a trusted expert)`);
+                return false;
             })
         } else if  (getAttrPopup == 'started') {
             dataLayerPush('View popup',`Popup: Save Your Spot (first screen)`)
@@ -1127,79 +1146,6 @@ btn.forEach((btn) => {
                 showPopup();
             }
         }
-
-        // if (getAttrPopup == 'much-more' && btn.closest('.popup')) {
-        //     document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Launch in 7 days)`);
-        //     })
-        //     document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Launch in 7 days)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Launch in 7 days)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Launch in 7 days)`);
-        //     })
-        // } else if (getAttrPopup == 'bar-chart' && btn.closest('.popup')) {
-        //     document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-        //     })
-        //     document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-        //     })
-        //
-        // } else if (getAttrPopup == 'sales' && btn.closest('.popup')) {
-        //     document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-        //     })
-        //     document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Generate sales around the clock)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Generate sales around the clock)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Generate sales around the clock)`);
-        //     })
-        // } else if (getAttrPopup == 'expert' && btn.closest('.popup')) {
-        //     document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-        //     })
-        //     document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (Become a trusted expert)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (Become a trusted expert)`);
-        //     })
-        //     document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
-        //         event.stopImmediatePropagation()
-        //         dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Become a trusted expert)`);
-        //     })
-        // }
-
-
 
         if (btn.closest('[data-popup="started"]')) {
             dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (first screen)');
@@ -1351,3 +1297,8 @@ dataLayer.push({
     'eventCategory': 'Exp — Passive income landing page',
     'eventAction': 'loaded'
 });
+
+
+document.querySelectorAll('.card button')[0].addEventListener('click', () => {
+    console.log('sukkaaa')
+})
