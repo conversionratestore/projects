@@ -923,7 +923,23 @@ function showPopup(popupPlace) {
         document.body.style = 'overflow-y: hidden;'
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
+            let getAttr = popup.getAttribute('data-popup');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
+            if (document.querySelector(`.popup.active .field-name input`)) {
+                document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
+                    if (getAttr == 'much-more') {
+                        dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
+                    } else if (getAttr == 'bar-chart') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                    } else if (getAttr == 'sales') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+                    } else if (getAttr == 'expert') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+                    } else if (getAttr == 'started') {
+                        dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
+                    }
+                })
+            }
         }
 
         if (document.querySelector('.popup.active .field-email input')) {
@@ -945,6 +961,8 @@ function showPopup(popupPlace) {
             e.stopImmediatePropagation()
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
+
+
 
     },100)
 }
@@ -1172,57 +1190,32 @@ if (detectMob() == false) {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
 }
 
-let mut = new MutationObserver(function (muts) {
-    console.log(mut)
-    //     mut.disconnect();
-    let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-    console.log(getAttr + ' 1')
-
-    if (document.querySelector(`.popup.active .field-name input`) != null) {
-        console.log('click')
-        console.log(getAttr + ' 2')
-        if (getAttr == 'much-more') {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
-            })
-        } else if (getAttr == 'bar-chart') {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-            })
-        } else if (getAttr == 'sales') {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-            })
-        } else if (getAttr == 'expert') {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-            })
-        } else if (getAttr == 'started') {
-            document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
-            })
-        }
-
-        mut.observe(document, {
-            childList: true,
-            subtree: true
-        });
-    }
-    mut.observe(document, {
-        childList: true,
-        subtree: true
-    });
-})
-
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+// let mut = new MutationObserver(function (muts) {
+//     console.log(mut)
+//     //     mut.disconnect();
+//     let getAttr = document.querySelector('.popup').getAttribute('data-popup');
+//     console.log(getAttr + ' 1')
+//
+//     if (document.querySelector(`.popup.active .field-name input`) != null) {
+//         console.log('click')
+//         console.log(getAttr + ' 2')
+//
+//
+//         mut.observe(document, {
+//             childList: true,
+//             subtree: true
+//         });
+//     }
+//     mut.observe(document, {
+//         childList: true,
+//         subtree: true
+//     });
+// })
+//
+// mut.observe(document, {
+//     childList: true,
+//     subtree: true
+// });
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
