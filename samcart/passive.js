@@ -1191,6 +1191,8 @@ let mut = new MutationObserver(function (muts) {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
             } else if (getAttr == 'expert') {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+            } else if (getAttr == 'started') {
+                dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
             }
         })
     }
