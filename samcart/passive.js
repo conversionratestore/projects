@@ -923,7 +923,6 @@ function showPopup() {
         document.body.style = 'overflow-y: hidden;';
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
-            dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
 
         if (document.querySelector('.popup.active .field-email input')) {
@@ -936,6 +935,7 @@ function showPopup() {
         let getAttrPopup = document.querySelector('.popup').getAttribute('data-popup');
 
         if (getAttrPopup == 'much-more') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (Launch in 7 days)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Launch in 7 days)`);
             })
@@ -949,6 +949,7 @@ function showPopup() {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Launch in 7 days)`);
             })
         } else if (getAttrPopup == 'bar-chart') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
             })
@@ -963,6 +964,7 @@ function showPopup() {
             })
 
         } else if (getAttrPopup == 'sales') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (Generate sales around the clock)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
             })
@@ -976,6 +978,7 @@ function showPopup() {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Generate sales around the clock)`);
             })
         } else if  (getAttrPopup == 'expert') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (Become a trusted expert)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
             })
@@ -989,8 +992,29 @@ function showPopup() {
                 dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (Become a trusted expert)`);
             })
         } else if  (getAttrPopup == 'started') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (first screen)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (first screen)`);
+            })
+            document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
+                dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (first screen)`);
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
+                dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (first screen)`);
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
+                dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (first screen)`);
+            })
+        }else if  (getAttrPopup == 'register-now') {
+            dataLayerPush('View popup',`Popup: Save Your Spot (footer)`)
+            document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
+                dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (footer)`);
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('click' , (event) => {
+                dataLayerPush('Click on Your current monthly sales select',`Popup: Save Your Spot (footer)`);
+            })
+            document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (event) => {
+                dataLayerPush(`Click on option ${event.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (footer)`);
             })
         }
     },100)
