@@ -925,12 +925,12 @@ function showPopup() {
             popup.classList.add('active');
         }
 
-
         let getAttrPopup = document.querySelector('.popup').getAttribute('data-popup');
-
+        console.log(getAttrPopup + " getAttrPopup")
         if (getAttrPopup == 'much-more') {
             dataLayerPush('View popup',`Popup: Save Your Spot (Launch in 7 days)`)
             document.querySelector(`.popup .field-name input`).addEventListener('click', (event) => {
+
                 dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Launch in 7 days)`);
             })
             document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
