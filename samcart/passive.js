@@ -1123,8 +1123,6 @@ btnClose.addEventListener('click', (e) => {
             }
         }
     },300)
-    let label = e.target.getAttribute('data-close')
-    dataLayerPush('Close popup',`Popup: Save Your Spot (${label})`);
 })
 
 if (detectMob() == false) {
@@ -1159,6 +1157,10 @@ document.querySelector('.popup [name="monthly_sales"]').addEventListener('change
 document.querySelector('.popup [name="start_time"]').addEventListener('click' , (event) => {
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Data and time of attendance select',`Popup: Save Your Spot (${label})`);
+})
+btnClose.addEventListener('click', (event) => {
+    let label = event.target.getAttribute('data-close')
+    dataLayerPush('Close popup',`Popup: Save Your Spot (${label})`);
 })
 
 (function(h,o,t,j,a,r){
