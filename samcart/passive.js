@@ -1176,13 +1176,13 @@ let mut = new MutationObserver(function (muts) {
     console.log(mut)
     //     mut.disconnect();
     let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-    console.log(getAttr + '1')
+    console.log(getAttr + ' 1')
 
     if (document.querySelector(`.popup.active[data-popup] .field-name input`)) {
-        document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
+        document.querySelector(`.popup.active[data-popup] .field-name input`).addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             console.log('click')
-            console.log(getAttr + '2')
+            console.log(getAttr + ' 2')
             if (getAttr == 'much-more') {
                 dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
             } else if (getAttr == 'bar-chart') {
