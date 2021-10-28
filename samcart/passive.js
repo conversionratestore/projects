@@ -922,14 +922,18 @@ function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
         let getAttr = popup.getAttribute('data-popup');
+        console.log(getAttr + " 1")
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
             getAttr = popup.getAttribute('data-popup');
+            console.log(getAttr + " 2")
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
 
         if (document.querySelector('.popup').classList.contains('active')) {
+            console.log(getAttr + " 3")
             if (document.querySelector(`.popup.active[data-popup="${getAttr}"] .field-name input`)) {
+                console.log(getAttr + " 3")
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
                     // e.stopImmediatePropagation()
                     console.log(document.querySelector(`.popup.active`).getAttribute('data-popup'))
