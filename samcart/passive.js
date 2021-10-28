@@ -891,9 +891,9 @@ function detectMob() {
         /BlackBerry/i,
         /Windows Phone/i
     ];
-    
+
     return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
+        return navigator.userAgent.match(toMatchItem);
     });
 }
 detectMob()
@@ -906,12 +906,13 @@ function creatBlock(iconName,text,classNameImg) {
 }
 
 function dataLayerPush(action,label) {
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — Passive income landing page',
-    'eventAction': action,
-    'eventLabel': label
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Passive income landing page',
+        'eventAction': action,
+        'eventLabel': label
     });
 }
 
@@ -948,7 +949,7 @@ function showPopup(popupPlace) {
         document.querySelector('.popup [name="monthly_sales"]').addEventListener('change' , (e) => {
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
-    
+
     },100)
 }
 
@@ -995,16 +996,17 @@ document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
 })
 
 btn.forEach((btn) => {
-    btn.addEventListener('click' , () => {
+    btn.addEventListener('click' , (e) => {
+        e.stopPropagation()
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
-     
+
         if(btn.closest('.get-started')) {
             dataLayerPush('Click on Get Started button','Form: Create Passive Income');
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 if (detectMob() == true) {
-                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');        
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');
                 } else {
                     document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
                 }
@@ -1012,7 +1014,7 @@ btn.forEach((btn) => {
                 showFieldName()
                 showPopup('first screen')
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
-               
+
             }
         }
         if (getAttr == 'much-more') {
@@ -1039,7 +1041,7 @@ btn.forEach((btn) => {
                 document.querySelector('.popup-interested .field-name').insertAdjacentHTML('afterend', createElementEmail)
                 document.querySelector('.popup-interested .justify-content-between').after(document.querySelector('.popup-interested .btn-orange'))
             }
-            
+
         }
 
         if(btn.closest('.register-now')) {
@@ -1047,10 +1049,10 @@ btn.forEach((btn) => {
             let emailValue = btn.closest('.form').querySelector('input[type="email"]').value;
             if (emailValue != '' && patternEmail.test(emailValue)) {
                 if (detectMob() == true) {
-                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');        
+                    document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales below to let us customize the onboarding process for you.' , 'small');
                 } else {
                     document.querySelector('.popup .content').innerHTML = createElementFirst + creatBlock('lamp','Indicate your current sales on the right to let us customize the onboarding process for you.' , 'small');
-                } 
+                }
                 document.querySelectorAll('.popup .popup-col:last-child .select')[1].after(document.querySelector('.popup .btn-orange'))
 
                 if (document.querySelector('.field-name')) {
@@ -1130,19 +1132,19 @@ function hidePopup(item) {
                     }
                 }
             },300)
-        
+
             if (item.closest('[data-popup="started"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (first screen)');
             } else if (document.querySelector('[data-popup="much-more"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (Launch in 7 days)');
             } else if (document.querySelector('[data-popup="register-now"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (footer)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (footer)');
             } else if (document.querySelector('[data-popup="bar-chart"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');
             } else if (document.querySelector('[data-popup="sales"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (Generate sales around the clock)');
             } else if (document.querySelector('[data-popup="expert"]')) {
-                dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');  
+                dataLayerPush('Close popup','Popup: Save Your Spot (Become a trusted expert)');
             }
         }
     })
@@ -1159,21 +1161,21 @@ if (detectMob() == false) {
 }
 
 
- (function(h,o,t,j,a,r){
- h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
- h._hjSettings={hjid:2078786,hjsv:6};
- a=o.getElementsByTagName('head')[0];
- r=o.createElement('script');r.async=1;
- r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
- a.appendChild(r);
- })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
- window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
- hj('trigger', 'passive_income_video');
- hj('event', 'passive_income_heat');
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2078786,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'passive_income_video');
+hj('event', 'passive_income_heat');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
- 'event': 'event-to-ga',
- 'eventCategory': 'Exp — Passive income landing page',
- 'eventAction': 'loaded'
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Passive income landing page',
+    'eventAction': 'loaded'
 });
