@@ -929,6 +929,7 @@ function showPopup(popupPlace) {
         if (document.querySelector('.popup.active .field-email input')) {
             document.querySelector('.popup.active .field-email input').addEventListener('click' , (e) => {
                 e.stopImmediatePropagation()
+                console.log(e.className)
                 dataLayerPush('Click on Your contact email input',`Popup: Save Your Spot (${popupPlace})`);
             })
         }
@@ -951,9 +952,9 @@ function showPopup(popupPlace) {
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
 
+        return false;
+        
     },100)
-    
-    return false;
 }
 
 function postForm(name,email,time,sales) {
