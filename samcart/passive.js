@@ -1107,7 +1107,7 @@ btn.forEach((btn) => {
     })
 })
 
-btnClose.addEventListener('click', (e) => {
+document.querySelector('.btn-close').addEventListener('click', (e) => {
     document.body.style = 'overflow-y: auto;'
     popup.classList.remove('active');
     popup.setAttribute('data-popup','');
