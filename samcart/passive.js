@@ -923,11 +923,6 @@ function showPopup() {
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
         }
-        btnClose.addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            let label = e.target.getAttribute('data-close');
-            dataLayerPush(`Close popup`,`Popup: Save Your Spot (${label})`);
-        })
     },100)
 }
 
