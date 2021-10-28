@@ -810,7 +810,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
             </div>
           </div>
         </section>
-        <div class="popup">
+        <div class="popup" data-popup>
           <div class="form popup-wrapper">
             <button class="btn-close" type="reset"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
             <div class="popup-content">
