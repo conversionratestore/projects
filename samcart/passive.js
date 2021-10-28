@@ -933,24 +933,6 @@ function showPopup(popupPlace) {
             })
         }
 
-        let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-        console.log(getAttr + '1')
-        if (document.querySelector('.popup .field-name input')) {
-            document.querySelector(`.popup[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                console.log(getAttr + '2')
-                if (getAttr == 'much-more') {
-                    dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
-                } else if (getAttr == 'bar-chart') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
-                } else if (getAttr == 'sales') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
-                } else if (getAttr == 'expert') {
-                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
-                }
-            })
-        }
-
         document.querySelector('.popup [name="start_time"]').addEventListener('click' , (e) => {
             e.stopImmediatePropagation()
             dataLayerPush(`Click on Data and time of attendance select`,`Popup: Save Your Spot (${popupPlace})`);
@@ -1189,6 +1171,34 @@ if (detectMob() == false) {
 } else {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
 }
+
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('.popup.active')) {
+        mut.disconnect();
+        let getAttr = document.querySelector('.popup').getAttribute('data-popup');
+        console.log(getAttr + '1')
+        if (document.querySelector('.popup .field-name input')) {
+            document.querySelector(`.popup[data-popup="${getAttr}"] .field-name input`).addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                console.log(getAttr + '2')
+                if (getAttr == 'much-more') {
+                    dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)')
+                } else if (getAttr == 'bar-chart') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+                } else if (getAttr == 'sales') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Generate sales around the clock)`);
+                } else if (getAttr == 'expert') {
+                    dataLayerPush('Click on Your name input', `Popup: Save Your Spot (Become a trusted expert)`);
+                }
+            })
+        }
+    }
+})
+
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
