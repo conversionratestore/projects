@@ -284,6 +284,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
