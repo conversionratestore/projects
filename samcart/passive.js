@@ -1001,7 +1001,7 @@ document.querySelector('.get-started input').addEventListener('keyup' , (e) => {
 
 btn.forEach((btn) => {
     btn.addEventListener('click' , (e) => {
-        e.stopPropagation()
+        e.stopImmediatePropagation()
         let getAttr = btn.getAttribute('data-button')
         popup.setAttribute('data-popup', getAttr);
 
