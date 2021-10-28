@@ -921,9 +921,10 @@ function showFieldName() {
 function showPopup(popupPlace) {
     setTimeout(() => {
         document.body.style = 'overflow-y: hidden;'
+        let getAttr = popup.getAttribute('data-popup');
         if (!document.querySelector('.popup').classList.contains('active')) {
             popup.classList.add('active');
-            let getAttr = popup.getAttribute('data-popup');
+            getAttr = popup.getAttribute('data-popup');
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
         }
 
