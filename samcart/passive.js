@@ -927,6 +927,7 @@ function showPopup(popupPlace) {
             dataLayerPush('View popup',`Popup: Save Your Spot (${popupPlace})`)
             if (document.querySelector(`.popup.active .field-name input`)) {
                 document.querySelector(`.popup.active .field-name input`).addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
                     if (getAttr == 'much-more') {
                         dataLayerPush('Click on Your name input', 'Popup: Save Your Spot (Launch in 7 days)');
                     } else if (getAttr == 'bar-chart') {
@@ -961,8 +962,6 @@ function showPopup(popupPlace) {
             e.stopImmediatePropagation()
             dataLayerPush(`Click on option ${e.target.value} in Your current monthly sales select`,`Popup: Save Your Spot (${popupPlace})`);
         })
-
-
 
     },100)
 }
@@ -1189,33 +1188,6 @@ if (detectMob() == false) {
 } else {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
 }
-
-// let mut = new MutationObserver(function (muts) {
-//     console.log(mut)
-//     //     mut.disconnect();
-//     let getAttr = document.querySelector('.popup').getAttribute('data-popup');
-//     console.log(getAttr + ' 1')
-//
-//     if (document.querySelector(`.popup.active .field-name input`) != null) {
-//         console.log('click')
-//         console.log(getAttr + ' 2')
-//
-//
-//         mut.observe(document, {
-//             childList: true,
-//             subtree: true
-//         });
-//     }
-//     mut.observe(document, {
-//         childList: true,
-//         subtree: true
-//     });
-// })
-//
-// mut.observe(document, {
-//     childList: true,
-//     subtree: true
-// });
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
