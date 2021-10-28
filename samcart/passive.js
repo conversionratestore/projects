@@ -1018,20 +1018,19 @@ btn.forEach((btn) => {
                 showFieldName()
                 showPopup('first screen')
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.get-started').querySelector('input').value)
-
             }
         }
-        if (btn.closest('popup')) {
-            if (getAttr == 'much-more') {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Launch in 7 days)')
-            } else if (getAttr == 'bar-chart') {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Get (virtually) unlimited traffic)')
-            } else if (getAttr == 'sales') {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Generate sales around the clock)')
-            } else if (getAttr == 'expert') {
-                dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Become a trusted expert)')
-            }
-        } else {
+        if (!btn.closest('popup')) {
+        //     if (getAttr == 'much-more') {
+        //         dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Launch in 7 days)')
+        //     } else if (getAttr == 'bar-chart') {
+        //         dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Get (virtually) unlimited traffic)')
+        //     } else if (getAttr == 'sales') {
+        //         dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Generate sales around the clock)')
+        //     } else if (getAttr == 'expert') {
+        //         dataLayerPush('Click on Finish Registration button','Popup: Save Your Spot (Become a trusted expert)')
+        //     }
+        // } else {
             if (getAttr == 'much-more') {
                 dataLayerPush('Click on I`m interested button','Launch in 7 days')
                 document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
@@ -1056,7 +1055,6 @@ btn.forEach((btn) => {
                     document.querySelector('.popup-interested .field-name').insertAdjacentHTML('afterend', createElementEmail)
                     document.querySelector('.popup-interested .justify-content-between').after(document.querySelector('.popup-interested .btn-orange'))
                 }
-
             }
         }
 
@@ -1175,7 +1173,6 @@ if (detectMob() == false) {
 } else {
     document.querySelector('.popup-text').innerHTML = `Finish registration filling up the fields below <b class="d-block">and learn how to</b>`
 }
-
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
