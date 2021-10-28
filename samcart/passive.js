@@ -1111,8 +1111,6 @@ btnClose.addEventListener('click', (e) => {
     document.body.style = 'overflow-y: auto;'
     popup.classList.remove('active');
     popup.setAttribute('data-popup','');
-    e.target.setAttribute('data-close', '');
-
     document.querySelectorAll('.popup-content .error').forEach((elError) => {
         elError.classList.remove('error');
         elError.nextElementSibling.innerHTML = '';
