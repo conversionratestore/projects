@@ -812,7 +812,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
         </section>
         <div class="popup">
           <div class="form popup-wrapper">
-            <button class="btn-close" type="reset" data-button="close"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
+            <button class="btn-close" type="reset"><img src="https://conversionratestore.github.io/projects/samcart/img/close.svg"></button>
             <div class="popup-content">
               <div class="justify-content-between d-lg-flex">
                 <div class="popup-col">
@@ -1139,7 +1139,7 @@ function hidePopup(item) {
         } else {
             document.body.style = 'overflow-y: auto;'
             popup.classList.remove('active');
-            popup.setAttribute('data-popup','close');
+            popup.setAttribute('data-popup','');
             document.querySelectorAll('.popup-content .error').forEach((elError) => {
                 elError.classList.remove('error');
                 elError.nextElementSibling.innerHTML = '';
