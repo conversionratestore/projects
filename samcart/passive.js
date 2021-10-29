@@ -1172,7 +1172,11 @@ function addEvent(label,action) {
         dataLayerPush(`${action}`,`Popup: Save Your Spot (Launch in 7 days)`);
     }
 }
-
+let options = {
+    childList: true,
+    subtree: true,
+    attributes: true
+}
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .field-name input')) {
         mut.disconnect();
@@ -1181,11 +1185,7 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Click on Your name input')
         })
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true,
-        attributes: true
-    });
+    mut.observe(document, options);
 
     if (document.querySelector('.popup .field-email input')) {
         mut.disconnect();
@@ -1194,11 +1194,7 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Click on Your contact email input')
         })
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true,
-        attributes: true
-    });
+    mut.observe(document, options);
 
     if (document.querySelector('.popup .btn-close')) {
         mut.disconnect();
@@ -1207,17 +1203,10 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Close popup')
         })
     }
-    mut.observe(document, {
-        childList: true,
-        subtree: true,
-        attributes: true
-    });
+    mut.observe(document, options);
 })
-mut.observe(document, {
-    childList: true,
-    subtree: true,
-    attributes: true
-});
+mut.observe(document, options);
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2078786,hjsv:6};
