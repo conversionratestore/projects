@@ -2129,7 +2129,7 @@ function validationForm(parent) {
 
       if (document.querySelector(`${parent} .error`) == null) {
         if (parent === ".back_form") {
-          document.querySelector(".card_box").classList.toggle("is-flipped")
+          // document.querySelector(".card_box").classList.toggle("is-flipped")
           document.querySelectorAll(`.front_form input`).forEach((item) => {
             item.value = ""
           })
@@ -2256,8 +2256,8 @@ window.hj =
   function () {
     ;(hj.q = hj.q || []).push(arguments)
   }
-hj("trigger",`10_secrets_video_${eventVar}`)
-hj("event",`10_secrets_redesign_${eventVar}`)
+hj("trigger", `10_secrets_video_${eventVar}`)
+hj("event", `10_secrets_redesign_${eventVar}`)
 
 //
 document.querySelectorAll("input[name='name']").forEach((inputName, idx) => {
