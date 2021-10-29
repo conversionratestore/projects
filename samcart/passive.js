@@ -1181,6 +1181,11 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Click on Your name input')
         })
     }
+    mut.observe(document, {
+        childList: true,
+        subtree: true,
+        attributes: true
+    });
 
     if (document.querySelector('.popup .field-email input')) {
         mut.disconnect();
@@ -1189,6 +1194,11 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Click on Your contact email input')
         })
     }
+    mut.observe(document, {
+        childList: true,
+        subtree: true,
+        attributes: true
+    });
 
     if (document.querySelector('.popup .btn-close')) {
         mut.disconnect();
@@ -1197,7 +1207,11 @@ let mut = new MutationObserver(function (muts) {
             addEvent(label,'Close popup')
         })
     }
-
+    mut.observe(document, {
+        childList: true,
+        subtree: true,
+        attributes: true
+    });
 })
 mut.observe(document, {
     childList: true,
