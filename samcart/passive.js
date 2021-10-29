@@ -949,7 +949,7 @@ function postForm(name,email,time,sales) {
         console.log(data)
         console.log(data["short_id"])
         console.log(data["id"])
-        window.location.href = `//https://webclass.samcart.com/t/0e7aJr?id=Pfm1WE` //https://webclass.samcart.com/t/0e7aJr?id=${data["short_id"]} https://joinnow.live/embed/s/0e7aJr?layout=simple-0 `https://webclass.samcart.com/a/0e7aJr` //https://joinnow.live/t/TSa5s8?id=jyjVL
+        window.location.href = `//https://webclass.samcart.com/t/0e7aJr?id=${data["id"]}` //https://webclass.samcart.com/t/0e7aJr?id=${data["short_id"]} https://joinnow.live/embed/s/0e7aJr?layout=simple-0 `https://webclass.samcart.com/a/0e7aJr` //https://joinnow.live/t/TSa5s8?id=jyjVL
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
