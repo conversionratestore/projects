@@ -102,7 +102,7 @@ input {
   line-height: 1 !important;
 }
 
-.box_already_registered input{
+.box_already_registered input {
   color: white;
 }
 
@@ -217,6 +217,7 @@ main {
   font-size: 24px;
   color: #183b56;
   margin-bottom: 28px;
+  max-width: 370px;
 }
 
 .information_speaker > div > div > p > span {
