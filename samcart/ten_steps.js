@@ -2232,11 +2232,10 @@ function postForm(name, email, time, sales) {
 }
 
 //
-
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
-  eventCategory: `Exp — 10 secrets landing page ${eventVar}`,
+  eventCategory: `Exp — 10 secrets landing page_${eventVar}`,
   eventAction: "loaded",
 })
 ;(function (h, o, t, j, a, r) {
@@ -2245,7 +2244,7 @@ dataLayer.push({
     function () {
       ;(h.hj.q = h.hj.q || []).push(arguments)
     }
-  h._hjSettings = { hjid: 2078786, hjsv: 6 }
+  h._hjSettings = { hjid: 2592989, hjsv: 6 }
   a = o.getElementsByTagName("head")[0]
   r = o.createElement("script")
   r.async = 1
