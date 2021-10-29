@@ -1159,6 +1159,7 @@ document.querySelector('.popup [name="start_time"]').addEventListener('click' , 
 })
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .field-name input')) {
+        mut.disconnect();
         document.querySelector('.popup .field-name input').addEventListener('click' , (event) => {
             let label = popup.getAttribute('data-popup');
             if (label == "started") {
