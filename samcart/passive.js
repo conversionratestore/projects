@@ -1157,7 +1157,31 @@ document.querySelector('.popup [name="start_time"]').addEventListener('click' , 
     let label = event.target.getAttribute('data-label');
     dataLayerPush('Click on Data and time of attendance select',`Popup: Save Your Spot (${label})`);
 })
-
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('.popup .field-name input')) {
+        document.querySelector('.popup .field-name input').addEventListener('click' , (event) => {
+            let label = popup.getAttribute('data-popup');
+            if (label == "started") {
+                dataLayerPush('Click on Your name input','Popup: Save Your Spot (first screen)');
+            } else if (label == "register-now") {
+                dataLayerPush('Click on Your name input','Popup: Save Your Spot (footer)');
+            } else if (label == "expert") {
+                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (Become a trusted expert)`);
+            } else if (label == "sales") {
+                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (Generate sales around the clock)`);
+            } else if (label == "bar-chart") {
+                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (Get (virtually) unlimited traffic)`);
+            } else if (label == "much-more") {
+                dataLayerPush('Click on Your name input',`Popup: Save Your Spot (Launch in 7 days)`);
+            }
+        })
+    }
+})
+mut.observe(document, {
+    childList: true,
+    subtree: true,
+    attributes: true
+});
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2078786,hjsv:6};
