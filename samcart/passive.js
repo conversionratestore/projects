@@ -947,7 +947,7 @@ function postForm(name,email,time,sales) {
         })
     }).then(res => res.json()).then(data => {
         console.log(data)
-        window.location.href = `https://webclass.samcart.com/t/0e7aJr?id=Pfm1WE`
+        window.location.href = `https://webclass.samcart.com/a/0e7aJr`
     }).catch(err => {
         console.log('Failed fetch ', err);
     });
