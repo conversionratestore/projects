@@ -947,7 +947,7 @@ function postForm(name,email,time,sales) {
         })
     }).then(res => res.json()).then(data => {
         console.log(data)
-        window.location.href = `https://webclass.samcart.com/a/0e7aJr?id=${data["short_id"]["attendee"]["short_id"]}`
+        window.location.href = `https://webclass.samcart.com/a/0e7aJr?id=${data["attendee"]["short_id"]}`
         fetch('https://api.joinnow.live/webinars/0e7aJr/registration-information', {
             headers: {
                 'Content-Type': 'application/json',
