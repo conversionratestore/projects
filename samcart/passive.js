@@ -1181,6 +1181,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .field-name input')) {
         mut.disconnect();
         document.querySelector('.popup .field-name input').addEventListener('click' , (event) => {
+            event.stopImmediatePropagation()
             let label = popup.getAttribute('data-popup');
             addEvent(label,'Click on Your name input')
         })
@@ -1190,6 +1191,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .field-email input')) {
         mut.disconnect();
         document.querySelector('.popup .field-email input').addEventListener('click' , (event) => {
+            event.stopImmediatePropagation()
             let label = popup.getAttribute('data-popup');
             addEvent(label,'Click on Your contact email input')
         })
@@ -1199,6 +1201,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .btn-close')) {
         mut.disconnect();
         document.querySelector('.popup .btn-close').addEventListener('click' , (event) => {
+            event.stopImmediatePropagation()
             let label = popup.getAttribute('data-popup');
             addEvent(label,'Close popup')
         })
