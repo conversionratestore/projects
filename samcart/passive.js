@@ -1170,7 +1170,7 @@ let options = {
     childList: true,
     subtree: true,
     attributes: true
-}
+};
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.popup .field-name input')) {
         mut.disconnect();
