@@ -1410,7 +1410,7 @@ let tenStepHtml = /*html*/ `
         <h2>On This Training You Will Discover</h2>
         <p>
           Everything you need to know for growing your business in only 45+ minutes. <br />
-          Click right trough the timeline to discover all the themes
+          Click right through the timeline to discover all the themes
         </p>
         <div class="swipe_box">
           <ul>
@@ -2192,7 +2192,7 @@ function setLocalStorInform(parent) {
 
 if (window.innerWidth <= 768) {
   document.querySelector(".box_second_training p").textContent =
-    "Everything you need to know for growing your business in only 45+ minutes. Tap down trough the timeline to discover all the themes"
+    "Everything you need to know for growing your business in only 45+ minutes. Tap down through the timeline to discover all the themes"
 
   document.querySelectorAll(".popup_wrapper div:first-child p").forEach((el) => {
     el.innerHTML = `<p>Enter your details below to save your spot. During the webinar <b>you will learn:</b></p>`
