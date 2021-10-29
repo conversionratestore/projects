@@ -2256,8 +2256,8 @@ window.hj =
   function () {
     ;(hj.q = hj.q || []).push(arguments)
   }
-hj("trigger", `10_secrets_video_${eventVar}`)
-hj("event", `10_secrets_redesign_${eventVar}`)
+hj("trigger",`10_secrets_video_${eventVar}`)
+hj("event",`10_secrets_redesign_${eventVar}`)
 
 //
 document.querySelectorAll("input[name='name']").forEach((inputName, idx) => {
