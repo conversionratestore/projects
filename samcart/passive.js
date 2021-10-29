@@ -989,25 +989,21 @@ btn.forEach((btn) => {
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Launch in 7 days')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Launch in 7 days');
-            btnClose.setAttribute('data-close', 'Launch in 7 days');
         } else if (getAttr == 'bar-chart' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Get (virtually) unlimited traffic')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Get (virtually) unlimited traffic')
-            btnClose.setAttribute('data-close', 'Get (virtually) unlimited traffic');
         } else if (getAttr == 'sales' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Generate sales around the clock')
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Generate sales around the clock')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Generate sales around the clock')
-            btnClose.setAttribute('data-close', 'Generate sales around the clock');
         } else if (getAttr == 'expert' && btn.closest('.card')) {
             dataLayerPush('Click on I`m interested button','Become a trusted expert')
             document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Become a trusted expert')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Become a trusted expert')
-            btnClose.setAttribute('data-close', 'Become a trusted expert');
         }
         if (getAttr == 'much-more' || getAttr == 'bar-chart' || getAttr == 'sales' || getAttr == 'expert') {
             if (!document.querySelector('.popup-interested')) {
@@ -1052,7 +1048,6 @@ btn.forEach((btn) => {
                 document.querySelector('.popup .btn-orange').setAttribute('data-email',btn.closest('.register-now').querySelector('input[type="email"]').value)
                 document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'footer')
                 document.querySelector('[name="start_time"]').setAttribute('data-label', 'footer')
-                btnClose.setAttribute('data-close', 'footer');
             }
         }
         if (btn.closest('.form')) {
@@ -1109,7 +1104,6 @@ btn.forEach((btn) => {
 btnClose.addEventListener('click', (e) => {
     document.body.style = 'overflow-y: auto;'
     popup.classList.remove('active');
-    popup.setAttribute('data-popup','');
     document.querySelectorAll('.popup-content .error').forEach((elError) => {
         elError.classList.remove('error');
         elError.nextElementSibling.innerHTML = '';
