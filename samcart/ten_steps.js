@@ -2203,7 +2203,7 @@ if (window.innerWidth <= 768) {
 // fetch submit form
 function postForm(name, email, time, sales) {
   console.log(name, email, time, sales)
-  fetch("https://api.joinnow.live/webinars/0e7aJr/registration", {
+  fetch("https://api.joinnow.live/webinars/TSa5s8/registration", {
     headers: {
       "Content-Type": "application/json",
     },
