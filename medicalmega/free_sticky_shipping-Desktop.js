@@ -9,8 +9,9 @@ window.onload  = function () {
         },
         body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
     }).then(res => res.json()).then(data => {
-            console.log(data) 
-             //set localStorage for total price
+        console.log(data) 
+        //set localStorage for total price
+        localStorage.setItem('yourOrder', '');
         yourOrder.push({
             'price': parseFloat(data["total"] - data["shipping"]).toFixed(2)
         })
