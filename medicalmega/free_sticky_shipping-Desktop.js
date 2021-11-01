@@ -132,6 +132,7 @@ window.onload  = function () {
         </style>`);
     
         //set localStorage for total price
+        localStorage.setItem('yourOrder', '');
         yourOrder.push({
             'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
         })
