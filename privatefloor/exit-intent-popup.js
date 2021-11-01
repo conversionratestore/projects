@@ -11,6 +11,13 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         display: inline-flex;
         z-index: 9999;
         font-family: "Arial", sans-serif;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    .popup_exit_intent.active {
+        opacity: 1;
+        pointer-events: auto;
     }
     .popup_container {
         background: #FFFFFF;
@@ -49,6 +56,8 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         overflow-x: auto;
         max-width: 336px;
         margin: 0 auto;
+        transition: all 0.3s ease;
+        scroll-behavior: smooth;
     }
     .popup_slider::-webkit-scrollbar {
         height: 5px;
@@ -125,7 +134,44 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         padding: 25px;
         width: 100%;
     }
+    .popup_products {
+        position: relative;
+        width: 100%;
+    }
+    .btn_arrow {
+        position: absolute;
+        top: 64.5px;
+        width: 50px;
+        height: 50px;
+        transform: translateY(-50%);
+        background: no-repeat center / 14px;
+    }
+    .btn_arrow_prev {
+        left: -17px;
+        background-image: url('https://conversionratestore.github.io/projects/privatefloor/img/arrow-prev.svg');
+    }
+    .btn_arrow_next {
+        right: -17px;
+        background-image: url('https://conversionratestore.github.io/projects/privatefloor/img/arrow-next.svg');
+    }
 </style>`)
+
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+}
+detectMob()
 
 document.body.insertAdjacentHTML( 'beforeend',`
 <div class="popup_exit_intent">
@@ -135,10 +181,14 @@ document.body.insertAdjacentHTML( 'beforeend',`
             <h2>It’s almost yours!
                 <span>Only one step left:</span>
             </h2>
-            <div class="popup_slider"></div>
+            <div class="popup_products">
+                <button class="btn_arrow btn_arrow_prev" type="button"></button>
+                <div class="popup_slider"></div>
+                <button class="btn_arrow btn_arrow_next" type="button"></button>
+            </div>
             <div class="popup_total">
                 <p>Total:</p>
-                <p>${document.querySelector('.prices .total .price span').innerHTML}</p>
+                <p>${document.querySelector('.prices .total .price span') ? document.querySelector('.prices .total .price span').innerHTML : document.querySelector('.tt-price').innerHTML}</p>
             </div>
         </div>
         <div class="popup_message">
@@ -149,7 +199,10 @@ document.body.insertAdjacentHTML( 'beforeend',`
     </div>
 </div>`);
 
-let cartList = document.querySelectorAll('.cartlist tbody tr');
+
+let cartList = document.querySelectorAll('.cartlist tbody tr'),
+    slider = document.querySelector('.popup_slider');
+
 for (let i = 0; i < cartList.length; i++) {
     if(cartList[i].querySelector('.title')) {
         document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
@@ -162,3 +215,63 @@ for (let i = 0; i < cartList.length; i++) {
         </div>`)
     }
 }
+
+document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
+document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
+
+document.querySelector('.btn_close').addEventListener('click', () => {
+    document.querySelector('.popup_exit_intent').classList.remove('active');
+})
+
+
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    } else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
+}
+
+if (detectMob() == true) {
+    document.body.classList.add('js-mobile');
+    function myScrollSpeedFunction(){
+        if(document.body.classList.contains('js-mobile')) {
+            if(my_scroll() < -200){
+                document.querySelector(".popup_exit_intent").classList.add('active');
+            }
+        }
+    }
+
+    var my_scroll = (function() {
+
+        var last_position, new_position, timer, delta, delay = 50;
+
+        function clear() {
+            last_position = null;
+            delta = 0;
+        }
+
+        clear();
+
+        return function(){
+            new_position = window.scrollY;
+            if (last_position != null){
+                delta = new_position -  last_position;
+            }
+            last_position = new_position;
+            clearTimeout(timer);
+            timer = setTimeout(clear, delay);
+            return delta;
+        };
+    })();
+
+} else {
+    document.body.classList.add('js-desktop');
+
+    addEvent(document, 'mouseout', function(evt) {
+        if (evt.toElement == null && evt.relatedTarget == null) {
+            document.querySelector('.popup_exit_intent').classList.add('active');
+        }
+    })
+}
+
