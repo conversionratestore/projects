@@ -492,22 +492,23 @@ window.onload  = function () {
         localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
     }
 
-    fetch("/cart.html?last_order=1", {
+    fetch("/cart.html", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-        }
+        },
+        body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
     }).then(res => res.json())
         .then(data => {
             console.log(data)
-            let dateArr = data["orderDate"].split('-'),
+            let dateArr = data.date.split('-'),
                 dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
 
             if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0) {
                 document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
                 <div class="gallery-parent ordered">
                     <h2 class="title">Your recent orders</h2>
-                    <p class="id-order">Order #${data["orderNumber"]}</p>
+                    <p class="id-order">Order #${data.number}</p>
                     <dl class="gallery"></dl>
                     <button type="button" class="view-more" hidden>View more products</button>
                     
@@ -522,16 +523,13 @@ window.onload  = function () {
                                 <p class="sum"></p>
                             </div>
                         </div>
-                        <a href="https://medicalmega.com/reorder/${data['orderNumber']}" class="btn-reorder">Reorder</a>
+                        <a href="https://medicalmega.com/reorder/${data.number}" class="btn-reorder">Reorder</a>
                     </div>
                     <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
                 </div>`);
 
-                let sum = 0;
-                for (let i = 0; i < data["items"].length; i++) {
-                    sum += +data["items"][i].price
-                    document.querySelector('.ordered-bottom .sum').innerHTML = `$${sum.toFixed(2)}`;
-                }
+                document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total}`;
+              
                 document.querySelector('.ordered .show-more').addEventListener('click', () => {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
@@ -574,7 +572,7 @@ window.onload  = function () {
                         <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
                         <input type="hidden" name="quantity" value="1">
                     </form>
-                    <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                    <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
                 </dd>`;
                 if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
                     document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
