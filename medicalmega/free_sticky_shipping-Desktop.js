@@ -49,7 +49,7 @@ window.onload  = function () {
             background: #C23D31;
         }
         .left_for {
-            font-weight: bold;
+            font-weight: 400;
             font-size: 12px;
             line-height: 16px;
             text-transform: uppercase;
@@ -93,7 +93,6 @@ window.onload  = function () {
                 }
                 if (total >= 150) {
                     document.querySelector('.left_for').innerHTML = `You Have Free Shipping`;
-                    document.querySelector('.left_for').style = `font-weight: 400`;
                     if (location.pathname.includes('cart.html')) {
                         document.querySelector('.range_shipping_left h2').innerHTML = `Free Shippingg`;
                         document.querySelector('.range_shipping_left p').innerHTML = ``;
