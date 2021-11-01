@@ -230,7 +230,7 @@ window.onload  = function () {
                 padding: 0 18px 20px;
             }
         </style>`)
-        if (localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
+        if (localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00' && document.querySelector('.shoppingcart .by_num span').innerText != '0') {
             rangeShipping('.homeslider__container','afterend');
         }
         window.dataLayer = window.dataLayer || [];
