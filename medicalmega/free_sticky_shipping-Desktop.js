@@ -11,7 +11,7 @@ window.onload  = function () {
     }).then(res => res.json()).then(data => {
         console.log(data) 
         //set localStorage for total price
-        localStorage.setItem('yourOrder', '');
+        yourOrder = []
         yourOrder.push({
             'price': parseFloat(data["total"] - data["shipping"]).toFixed(2)
         })
@@ -132,7 +132,7 @@ window.onload  = function () {
         </style>`);
     
         //set localStorage for total price
-        localStorage.setItem('yourOrder', '');
+        yourOrder = []
         yourOrder.push({
             'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
         })
