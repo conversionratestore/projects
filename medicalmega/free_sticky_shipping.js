@@ -1,22 +1,5 @@
 window.onload  = function () {
     if (mm.grw != 1) {
-       
-    let yourOrder = [];
-    fetch("/cart.html", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
-    }).then(res => res.json()).then(data => {
-        console.log(data) 
-        //set localStorage for total price
-        yourOrder = []
-        yourOrder.push({
-            'price': parseFloat(data["total"] - data["shipping"]).toFixed(2)
-        })
-        localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
-    })
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
@@ -165,39 +148,44 @@ window.onload  = function () {
 
     //range shipping
     function rangeShipping(item,insert) {
-        let total = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
-        document.querySelector(item).insertAdjacentHTML(insert, `
-        <div class="range-shipping" style="padding: 0 7.5px">
-            <p class="range-shipping_text1"><span>$<span>${(150 - total).toFixed(2)}</span></span> left for free Shipping</p>
-            <div class="range"><span style="width: ${total * 100 / 150 + '%'}"></span></div>
-            <p class="range-shipping_text2">Your Order: <span>$<span>${total}</span></span></p>
-        </div>`);
-        if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
-            document.querySelector('.range-shipping').insertAdjacentHTML('beforebegin',`
-              <p class="range-shipping-title">Get Free Shipping</p>`)
-        }
-
-        if (total < 150 && total >= 130) {
-            document.querySelector('.range-shipping_text1').innerHTML = `<span>$<span>${(150 - total).toFixed(2)}</span></span>  only left for free Shipping`;
-        }
-        if (total >= 150) {
-            if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
-                document.querySelector('.range-shipping-title').innerHTML = `You Have Free Shipping`;
-                document.querySelector('.range-shipping_text1').remove();
-            } else {
-                document.querySelector('.range-shipping_text1').innerHTML = `You Have Free Shipping`;
-                document.querySelector('.range-shipping_text1').style = `font-weight: bold; font-size: 16px; line-height: 20px;`;
+        fetch("/cart.html", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
+        }).then(res => res.json()).then(data => {
+            console.log(data);
+            let total = parseFloat(data["total"] - data["shipping"]).toFixed(2);
+            if (data.total != 0) {
+                document.querySelector(item).insertAdjacentHTML(insert, `
+                <div class="range-shipping" style="padding: 0 7.5px">
+                    <p class="range-shipping_text1"><span>$<span>${(150 - total).toFixed(2)}</span></span> left for free Shipping</p>
+                    <div class="range"><span style="width: ${total * 100 / 150 + '%'}"></span></div>
+                    <p class="range-shipping_text2">Your Order: <span>$<span>${total}</span></span></p>
+                </div>`);
+                if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
+                    document.querySelector('.range-shipping').insertAdjacentHTML('beforebegin',`
+                    <p class="range-shipping-title">Get Free Shipping</p>`)
+                }
+        
+                if (total < 150 && total >= 130) {
+                    document.querySelector('.range-shipping_text1').innerHTML = `<span>$<span>${(150 - total).toFixed(2)}</span></span>  only left for free Shipping`;
+                }
+                if (total >= 150) {
+                    if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
+                        document.querySelector('.range-shipping-title').innerHTML = `You Have Free Shipping`;
+                        document.querySelector('.range-shipping_text1').remove();
+                    } else {
+                        document.querySelector('.range-shipping_text1').innerHTML = `You Have Free Shipping`;
+                        document.querySelector('.range-shipping_text1').style = `font-weight: bold; font-size: 16px; line-height: 20px;`;
+                    }
+                }
             }
-        }
+        })
     }
     //cart
-    if (location.pathname.includes('cart.html')) {
-        //set localStorage for total price
-        yourOrder = [];
-        yourOrder.push({
-            'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
-        })
-        localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
+    if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
         if (justunoCart.total != '0.00') {
             rangeShipping('.payment','beforebegin');
         }
@@ -501,7 +489,7 @@ window.onload  = function () {
         }
 
         //show range, if have product in cart
-        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price') && localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
+        if (document.querySelector('.by_num') && document.querySelector('.by_num span').innerHTML != '0' && document.querySelector('.product-price')) {
             rangeShipping('.price-product','afterend');
         }
 
@@ -575,7 +563,7 @@ window.onload  = function () {
     }
 
     //main
-    if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0' && localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
+    if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0') {
         rangeShipping('.homeslider__container','afterend');
     }
 }
