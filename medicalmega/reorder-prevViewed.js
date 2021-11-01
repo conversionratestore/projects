@@ -1,5 +1,17 @@
 let recentlyViewedProducts = [];
+let action,
+    label;
 
+function pushDataLayer(action,label) {
+    console.log(action + " : " + label)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Easy reorder desktop',
+        'eventAction': `${action}`,
+        'eventLabel': `${label}`
+    });
+}
 function addToCart() {
     if (document.querySelectorAll('.add-to-cart')) {
         document.querySelectorAll('.add-to-cart button').forEach((item) => {
@@ -25,35 +37,22 @@ function addToCart() {
                 }).then(res => {
                     window.location.pathname = '/cart.html'
                 });
-            });
-            if (item.closest('.ordered')) {
-                if (window.location.pathname.includes('/product')) {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on add to cart button',
-                        'eventLabel': 'PDP section Recently viewed Products'
-                    });
-                } else {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on add to cart button',
-                        'eventLabel': 'PL section Your recent orders'
-                    });
+                if (item.closest('.ordered')) {
+                    if (window.location.pathname.includes('/product')) {
+                        action = 'Click on add to cart button';
+                        label = 'PDP section Recently viewed Products';
+                    } else {
+                        action = 'Click on add to cart button';
+                        label = 'PL section Your recent orders';
+                    }
                 }
-            }
-            if (item.closest('.viewed')) {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Easy reorder desktop',
-                    'eventAction': 'Click on add to cart button',
-                    'eventLabel': 'PL section Recently viewed Products'
-                });
-            }
+                if (item.closest('.viewed')) {
+                    action = 'Click on add to cart button';
+                    label = 'PL section Recently viewed Products';
+                }
+                pushDataLayer(action,label)
+            });
+       
         });
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
             item.addEventListener('change', () => {
@@ -72,53 +71,29 @@ function addToCart() {
                 if (!el.classList.contains('visible')) {
                     e.target.innerHTML = 'View more products';
                     if (el.closest('.viewed')) {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button Hide more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
+                        action = 'Click on button Hide more products';
+                        label = 'PL section Recently viewed Products';
                     } else {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button Hide more products',
-                            'eventLabel': 'PL section Recently Ordered Products'
-                        });
+                        action = 'Click on button Hide more products';
+                        label = 'PL section Recently Ordered Products';
                     }
                 } else {
                     e.target.innerHTML = 'Hide more products';
                     if (el.closest('.viewed')) {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp: Easy reorder desktop',
-                            'eventAction': 'Click on button View more products',
-                            'eventLabel': 'PL section Recently viewed Products'
-                        });
+                        action = 'Click on button View more products';
+                        label = 'PL section Recently viewed Products';
                     }
                     if (item.closest('.ordered')) {
                         if (window.location.pathname.includes('/product')) {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button View more products',
-                                'eventLabel': 'PDP section Recently ordered Products'
-                            });
+                            action = 'Click on button View more products';
+                            label = 'PDP section Recently ordered Products';
                         } else {
-                            window.dataLayer = window.dataLayer || [];
-                            dataLayer.push({
-                                'event': 'event-to-ga',
-                                'eventCategory': 'Exp: Easy reorder desktop',
-                                'eventAction': 'Click on button View more products',
-                                'eventLabel': 'PL section Recently Ordered Products'
-                            });
+                            action = 'Click on button View more products';
+                            label = 'PL section Recently Ordered Products';
                         }
                     }
                 }
+                pushDataLayer(action,label)
             })
         });
     });
@@ -531,22 +506,14 @@ window.onload  = function () {
                 document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total}`;
               
                 document.querySelector('.ordered .show-more').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on Show more Orders button',
-                        'eventLabel': 'PL section Your recent orders'
-                    });
+                    action = 'Click on Show more Orders button';
+                    label = 'PL section Your recent orders';
+                    pushDataLayer(action,label)
                 })
                 document.querySelector('.btn-reorder').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Easy reorder desktop',
-                        'eventAction': 'Click on Reorder button',
-                        'eventLabel': 'PL section Your recent orders'
-                    });
+                    action = 'Click on Reorder button';
+                    label = 'PL section Your recent orders';
+                    pushDataLayer(action,label)
                 })
             }
             if (window.location.pathname.includes('/product') && data["items"].length > 0) {
@@ -596,7 +563,7 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, {
     childList: true,
     subtree: true
-});
+});s
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1699330,hjsv:6};
