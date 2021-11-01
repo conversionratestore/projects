@@ -553,6 +553,7 @@ window.onload  = function () {
             
         })
         .catch(error => console.log('error', error));
+        addToCart();
 };
 let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.add-to-cart button')){
