@@ -1,5 +1,8 @@
-document.body.insertAdjacentHTML('afterend0',`
+document.body.insertAdjacentHTML('afterbegin',`
 <style>
+    #get_samcart {
+        padding-top: 40px;
+    }
     .get_samcart_blue {
         font-weight: 500;
         font-size: 24px;
@@ -17,38 +20,65 @@ document.body.insertAdjacentHTML('afterend0',`
     #get_samcart .btn_get_samcart {
         background: #2096EF;
         border-radius: 48px;
-        line-htight: 48px;
         width: 100%;
+        display: block;
         font-weight: bold;
         font-size: 18px;
-        line-height: 18px;
+        line-height: 48px;
         color: #FFFFFF;
+        text-align: center;
+        margin: 4px 0 16px;
     }
     #get_samcart .btn_pay {
-
+        background: #000000;
     }
     #get_samcart .btn_pay_pal {
-
+        background: #F6C557;
+    }
+    #get_samcart .btn {
+        border-radius: 40px;
+        height: 40px;
+        width: 49%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    #get_samcart .btn img {
+        height: 20px;
+        object-fit: contain;
+    }
+    .get_samcart_text {
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+        color: #183B56;
+    }
+    .get_samcart_title {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 18px;
     }
 </style>`)
-document.querySelectorAll('.sc-root-row')[2].insertAdjacentHTML('afterend0',`
+document.querySelectorAll('.sc-root-row')[2].insertAdjacentHTML('beforebegin',`
 <div class="sc-column col-12 sc-root-row" id="get_samcart">
     <div class="sc-row">
         <div class="sc-column col-12">
-            <p>Get Samcart 40% OFF</p>
+            <p class="get_samcart_title">Get Samcart 40% OFF</p>
             <div class="d-flex">
                 <p class="get_samcart_blue">$580</p>
                 <p class="get_samcart_normal">$349</p>
             </div>
             <a href="#" class="btn_get_samcart">Enroll Now</a>
             <div class="d-flex justify-content-between">
-                <a href="#" class="btn_pay">
-                    <img src="" alt="icon pay">
+                <a href="#" class="btn btn_pay">
+                    <img src="https://conversionratestore.github.io/projects/samcart/img/apple_pay_logo.svg" alt="icon pay">
                 </a>
-                <a href="#" class="btn_pay_pal">
-                <img src="" alt="icon pay">
+                <a href="#" class="btn btn_pay_pal">
+                    <img src="https://conversionratestore.github.io/projects/samcart/img/pay_pal_logo.svg" alt="icon pay">
                 </a>
             </div>
+            <p class="get_samcart_text">30 days money back guarantee</p>
         </div>
     </div>
 </div>`)
