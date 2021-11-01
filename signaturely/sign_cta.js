@@ -242,6 +242,7 @@ function start() {
 
     document.querySelector('.new_cta').addEventListener('click', function () {
         document.querySelector('.backdrop_cta').classList.add('active')
+        document.querySelector('.popup1 video').play()
 
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
