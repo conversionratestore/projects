@@ -204,7 +204,7 @@ window.onload  = function () {
          'eventLabel': 'PDP'
         });
         if (document.querySelector('.product-price')) {
-            document.querySelectorAll('.product-price#cart_box a')[0].addEventListener('click', () => {
+            document.querySelectorAll('#cart_box a')[0].addEventListener('click', () => {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                 'event': 'event-to-ga',
