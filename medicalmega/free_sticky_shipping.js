@@ -1,4 +1,5 @@
 window.onload  = function () {
+    if (mm.grw != 1) {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
         <style>
@@ -560,6 +561,7 @@ window.onload  = function () {
     if (document.querySelector('.homeslider__container') && document.querySelector('.by_num span').innerHTML != '0' && localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
         rangeShipping('.homeslider__container','afterend');
     }
+}
 };
 
 (function(h,o,t,j,a,r){
