@@ -14,6 +14,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         opacity: 0;
         pointer-events: none;
         transition: all 0.3s ease;
+        padding: 12px;
     }
     .popup_exit_intent.active {
         opacity: 1;
@@ -112,6 +113,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         padding: 25px 30px; 
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     .popup_message img {
         width: 26.15px;
@@ -153,6 +155,146 @@ document.body.insertAdjacentHTML( 'afterbegin',`
     .btn_arrow_next {
         right: -17px;
         background-image: url('https://conversionratestore.github.io/projects/privatefloor/img/arrow-next.svg');
+    }
+    .popup_slide_row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .popup_slide_row p{
+        color: #000000;
+        margin: 0!important;
+        font-size: 15.3708px;
+    }
+    .popup_slide_one.popup_slide img {
+        margin-bottom: 29px;
+    }
+    .popup_slide_row p.slide_price{
+        color: #2B2B2B;
+        font-size: 29.4607px;
+        line-height: 34px;
+        font-weight: bold;
+        padding-left: 15px;
+        text-align: right;
+    }
+    .popular_choice {
+        margin: 0 auto 27px;
+        position: relative;
+        max-width: 336px;
+        background: #F8F8F8;
+        border: 1.2809px solid #EDEDED;
+        border-radius: 5.1236px;
+        padding: 15px 25px;
+        width: 100%;
+        text-align: center;
+    }
+    .popular_choice:before, .popular_choice:after  {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+    .popular_choice:before {
+        top: calc(100% + 1px);
+        border-width: 10px 9px 0 10px;
+        border-color: #EDEDED transparent transparent transparent;
+    }
+    .popular_choice:after {
+        top: 100%;
+        border-width: 9px 8px 0 9px;
+        border-color: #F8F8F8 transparent transparent transparent;
+    }
+    .popular_choice p {
+        max-width: 225px;
+        margin: 0 auto;
+        font-size: 15.3708px;
+        line-height: 18px;
+        color: #6B6B6B;
+    }
+    .text-nowrap {
+        white-space: nowrap;
+    }
+    .popup_slide.popup_slide_one {
+        width: 100%!important;
+        padding-bottom: 0!important;
+    }
+    .js-mobile .btn_arrow {
+        display: none;
+    }
+    .js-mobile .popup_slider {
+        max-width: 321px;
+        margin-right: -20px;
+    }
+    .js-mobile .popup_slide img {
+        height: 99px;
+    }
+    .js-mobile .popup_slide {
+        width: 101px;
+        margin-right: 40px;
+    }
+    .js-mobile .popup_slide p {
+        font-size: 12px;
+        line-height: 14px;
+        margim-bottom: 10px;
+    }
+    .js-mobile .popup_total {
+        max-width: 271px;
+        padding-top: 20px;
+    }
+    .js-mobile .popup_total p {
+        font-size: 23px;
+        line-height: 26px;
+    }
+    .js-mobile .popup_content {
+        padding: 16px 20px 20px 20px;
+    }
+    .js-mobile .btn_close {
+        margin-bottom: 5px;
+    }
+    .js-mobile .popup_content h2 {
+        margin: 0 0 30px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .js-mobile .popup_content h2 span {
+        font-size: 12px;
+    }
+    .js-mobile .btn_close {
+        width: 16px;
+        height: 16px;
+        margin-right: -5px;
+    }
+    .js-mobile .popup_message p {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    .js-mobile .popup_message img {
+        width: 20.13px;
+        height: 21px;
+        margin-right: 21px;
+    }
+    .js-mobile .popup_message {
+        padding: 20px 20px 20px 30px;
+    }
+    .js-mobile .btn-complete {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 19px;
+    }
+    .js-mobile .popup_one_slider.popup_slider {
+        max-width: 261px ;
+        margin-right: auto;
+    }
+    .js-mobile .popup_one_slider .popup_slide {
+        margin: 0;
+    }
+    .js-mobile .popup_slide .popup_slide_row p.slide_price {
+        font-size: 23px;
+        line-height: 26px;
     }
 </style>`)
 
@@ -199,30 +341,79 @@ document.body.insertAdjacentHTML( 'beforeend',`
     </div>
 </div>`);
 
-
 let cartList = document.querySelectorAll('.cartlist tbody tr'),
-    slider = document.querySelector('.popup_slider');
+    slider = document.querySelector('.popup_slider'),
+    products = document.querySelectorAll('.product ');
 
-for (let i = 0; i < cartList.length; i++) {
-    if(cartList[i].querySelector('.title')) {
-        document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-        <div class="popup_slide">
-            <div>
-                <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
-                <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
-            </div>
-            <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
-        </div>`)
+    if (detectMob() == true) {
+        for (let i = 0; i < products.length; i++) {
+            if(products.length > 1) {
+                document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
+                <div class="popup_slide">
+                    <div>
+                        <img src="${products[i].querySelector('.img img').getAttribute('src')}" alt="${products[i].querySelector('.info .title').innerText}">
+                        <p class="slide_name">${products[i].querySelector('.info .title').innerText}</p>   
+                    </div>
+                    <p class="slide_price">${products[i].querySelector('.total-price').innerText}</p>
+                </div>`)
+            } else {
+                document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
+                <div class="popup_slide popup_slide_one">
+                    <img src="${products[i].querySelector('.img img').getAttribute('src')}" alt="${products[i].querySelector('.info .title').innerText}">
+                    <div class="popup_slide_row">
+                        <p class="slide_name">${products[i].querySelector('.info .title').innerText}</p>   
+                        <p class="slide_price">${products[i].querySelector('.total-price').innerText}</p>
+                    </div>
+                </div>`)
+            }
+        }
     }
-}
-
-document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
-document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
+    else {
+        for (let i = 0; i < cartList.length; i++) {
+            if(cartList[i].querySelector('.title')) {
+                if(cartList.length > 1) {
+                    document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
+                    <div class="popup_slide">
+                        <div>
+                            <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
+                            <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
+                        </div>
+                        <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
+                    </div>`)
+                } else {
+                    document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
+                    <div class="popup_slide popup_slide_one">
+                        <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
+                        <div class="popup_slide_row">
+                            <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
+                            <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
+                        </div>
+                    </div>`)
+                }
+       
+            }
+        }
+    }
+    if (document.querySelector('.popup_slide_one')) {
+        document.querySelector('.popup_products').insertAdjacentHTML('beforebegin',`
+        <div class="popular_choice">
+            <p>This is a popular choice, 
+            <span class="text-nowrap"> we may </span> run out of stock soon</p>
+        </div>`);
+        document.querySelector('.btn_arrow_prev').style.display = 'none';
+        document.querySelector('.btn_arrow_next').style.display = 'none';
+        document.querySelector('.popup_total').style.display = 'none';
+        document.querySelector('.popup_slider').classList.add('popup_one_slider')
+    }
+  
+    
 
 document.querySelector('.btn_close').addEventListener('click', () => {
     document.querySelector('.popup_exit_intent').classList.remove('active');
 })
-
+document.querySelector('.btn-complete').addEventListener('click', () => {
+    document.querySelector('.popup_exit_intent').classList.remove('active');
+})
 
 function addEvent(obj, evt, fn) {
     if (obj.addEventListener) {
@@ -234,16 +425,8 @@ function addEvent(obj, evt, fn) {
 
 if (detectMob() == true) {
     document.body.classList.add('js-mobile');
-    function myScrollSpeedFunction(){
-        if(document.body.classList.contains('js-mobile')) {
-            if(my_scroll() < -200){
-                document.querySelector(".popup_exit_intent").classList.add('active');
-            }
-        }
-    }
-
     var my_scroll = (function() {
-
+        console.log('my_scroll');
         var last_position, new_position, timer, delta, delay = 50;
 
         function clear() {
@@ -264,9 +447,24 @@ if (detectMob() == true) {
             return delta;
         };
     })();
+    
+    function myScrollSpeedFunction(){
+        if(document.body.classList.contains('js-mobile')) {
+            
+            console.log('scroll');
+            if(my_scroll() < -200){
+                console.log('view popup');
+                document.querySelector(".popup_exit_intent").classList.add('active');
+            }
+        }
+    }
 
+    window.addEventListener('scroll', myScrollSpeedFunction);
 } else {
     document.body.classList.add('js-desktop');
+
+    document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
+    document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
 
     addEvent(document, 'mouseout', function(evt) {
         if (evt.toElement == null && evt.relatedTarget == null) {
