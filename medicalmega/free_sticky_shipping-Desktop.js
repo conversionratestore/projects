@@ -2,21 +2,7 @@ window.onload  = function () {
     if (mm.grw != 1) {
         
     let yourOrder = [];
-    fetch("/cart.html", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
-    }).then(res => res.json()).then(data => {
-        console.log(data) 
-        //set localStorage for total price
-        yourOrder = []
-        yourOrder.push({
-            'price': parseFloat(data["total"] - data["shipping"]).toFixed(2)
-        })
-        localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
-    })
+
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -79,30 +65,39 @@ window.onload  = function () {
 
     //create range shipping
     function rangeShipping(item,insert) {
-       
-        let total = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
-        document.querySelector(item).insertAdjacentHTML(insert, `
-        <div class="range_shipping">
-            <div class="range_shipping_right">
-                <div class="flex_center_between">
-                    <p class="your_order"><span>Your Order: </span> ${total}</p> 
-                    <p class="left_for">
-                        <span>$${(150 - total).toFixed(2)} </span> 
-                        left for free delivery
-                    </p>
-                </div>
-                <div class="range">
-                    <span style="width: ${total * 100 / 150 + '%'}"></span>
-                </div>
-            </div>
-        </div> `);
-        if (total < 150 && total >= 130) {
-            document.querySelector('.left_for').innerHTML = `<span>$${(150 - total).toFixed(2)} </span>  only left for free delivery`;
-        }
-        if (total >= 150) {
-            document.querySelector('.left_for').innerHTML = `You Have Free Shipping`
-        }
-        
+        fetch("/cart.html", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
+        }).then(res => res.json()).then(data => {
+            console.log(data) 
+            let total = parseFloat(data["total"] - data["shipping"]).toFixed(2);
+            if (data.total != 0) {
+                document.querySelector(item).insertAdjacentHTML(insert, `
+                <div class="range_shipping">
+                    <div class="range_shipping_right">
+                        <div class="flex_center_between">
+                            <p class="your_order"><span>Your Order: </span> ${total}</p> 
+                            <p class="left_for">
+                                <span>$${(150 - total).toFixed(2)} </span> 
+                                left for free delivery
+                            </p>
+                        </div>
+                        <div class="range">
+                            <span style="width: ${total * 100 / 150 + '%'}"></span>
+                        </div>
+                    </div>
+                </div> `);
+                if (total < 150 && total >= 130) {
+                    document.querySelector('.left_for').innerHTML = `<span>$${(150 - total).toFixed(2)} </span>  only left for free delivery`;
+                }
+                if (total >= 150) {
+                    document.querySelector('.left_for').innerHTML = `You Have Free Shipping`
+                }
+            }
+        })   
     }
 
     //cart
@@ -130,13 +125,7 @@ window.onload  = function () {
                 font-weight: 400;
             }
         </style>`);
-    
-        //set localStorage for total price
-        yourOrder = []
-        yourOrder.push({
-            'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
-        })
-        localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
+
         if (justunoCart.total != '0.00') {
             rangeShipping('.payment','afterbegin');
             //create left elements
@@ -196,9 +185,7 @@ window.onload  = function () {
                 margin: 0;
             }
         </style>`)
-        if (localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00') {
-            rangeShipping('.topcon','beforebegin');
-        }
+        rangeShipping('.topcon','beforebegin');
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
          'event': 'event-to-ga',
@@ -248,7 +235,7 @@ window.onload  = function () {
                 padding: 0 18px 20px;
             }
         </style>`)
-        if (localStorage.getItem('yourOrder') != null && JSON.parse(localStorage.getItem('yourOrder'))[0].price != '0.00' && document.querySelector('.shoppingcart .by_num span').innerText != '0') {
+        if (document.querySelector('.shoppingcart .by_num span').innerText != '0') {
             rangeShipping('.homeslider__container','afterend');
         }
         window.dataLayer = window.dataLayer || [];
