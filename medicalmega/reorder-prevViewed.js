@@ -563,7 +563,7 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, {
     childList: true,
     subtree: true
-});s
+});
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1699330,hjsv:6};
