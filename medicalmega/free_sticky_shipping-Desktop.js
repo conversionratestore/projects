@@ -1,5 +1,21 @@
 window.onload  = function () {
     if (mm.grw != 1) {
+        
+    let yourOrder = [];
+    fetch("/cart.html", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
+    }).then(res => res.json()).then(data => {
+            console.log(data) 
+             //set localStorage for total price
+        yourOrder.push({
+            'price': parseFloat(data["total"] - data["shipping"]).toFixed(2)
+        })
+        localStorage.setItem('yourOrder', JSON.stringify(yourOrder));
+    })
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -62,6 +78,7 @@ window.onload  = function () {
 
     //create range shipping
     function rangeShipping(item,insert) {
+       
         let total = JSON.parse(localStorage.getItem('yourOrder'))[0].price;
         document.querySelector(item).insertAdjacentHTML(insert, `
         <div class="range_shipping">
@@ -114,7 +131,6 @@ window.onload  = function () {
         </style>`);
     
         //set localStorage for total price
-        let yourOrder = [];
         yourOrder.push({
             'price': parseFloat(justunoCart.total - justunoCart.shipping).toFixed(2)
         })
