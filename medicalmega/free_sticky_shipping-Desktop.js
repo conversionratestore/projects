@@ -106,7 +106,7 @@ window.onload  = function () {
     }
 
     //cart
-    if (location.pathname.includes('cart.html') || location.pathname.includes('checkout')) {
+    if (location.pathname.includes('cart.html')) {
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .range_shipping_right{
