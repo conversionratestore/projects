@@ -224,6 +224,8 @@ window.onload  = function () {
             background: #EEEEEE;
             border: 0.5px solid #CCCCCC;
             border-radius: 4px;}    
+        .gallery-parent.ordered .view-more {
+            margin-bottom: 10px; }
         .homeslider__container {
             margin: 10px 0 10px 10px!important;}
         .homepage-container {
