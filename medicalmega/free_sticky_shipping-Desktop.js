@@ -97,6 +97,15 @@ window.onload  = function () {
                     document.querySelector('.left_for').innerHTML = `You Have Free Shipping`
                 }
             }
+            if (location.pathname.includes('cart.html')) {
+                //create left elements
+                document.querySelector('.range_shipping_right').insertAdjacentHTML('beforebegin',`
+                <div class="range_shipping_left">
+                    <h2>Get Free Delivery</h2>
+                    <p>Add more products to your order</p>
+                </div>`)
+            }
+        
         })   
     }
 
@@ -128,12 +137,6 @@ window.onload  = function () {
 
         if (justunoCart.total != '0.00') {
             rangeShipping('.payment','afterbegin');
-            //create left elements
-            document.querySelector('.range_shipping_right').insertAdjacentHTML('beforebegin',`
-            <div class="range_shipping_left">
-                <h2>Get Free Delivery</h2>
-                <p>Add more products to your order</p>
-            </div>`)
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
              'event': 'event-to-ga',
