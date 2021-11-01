@@ -1,4 +1,5 @@
 window.onload  = function () {
+    if (mm.grw != 1) {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
@@ -240,6 +241,7 @@ window.onload  = function () {
          'eventLabel': 'PL'
         });
     }
+ }
 };
  (function(h,o,t,j,a,r){
  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
