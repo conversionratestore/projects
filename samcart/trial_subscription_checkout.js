@@ -82,3 +82,41 @@ document.querySelectorAll('.sc-root-row')[2].insertAdjacentHTML('beforebegin',`
         </div>
     </div>
 </div>`)
+
+let action;
+
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+     'event': 'event-to-ga',
+     'eventCategory': 'Exp — Trial subscription checkout',
+     'eventAction': `${action}`
+    });
+}
+document.querySelector('.btn_get_samcart').addEventListener('click', () => {
+    action = 'Click on Enroll now button';
+    pushDataLayer(action)
+})
+document.querySelector('.btn_get_samcart').addEventListener('click', () => {
+    action = 'Click on Apple pay or Google pay';
+    pushDataLayer(action)
+})
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2592989,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+    hj('trigger', 'tv_trial_subscription_checkout');
+    hj('event', 'trial_subscription_checkout');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+ 'event': 'event-to-ga',
+ 'eventCategory': 'Exp — Trial subscription checkout',
+ 'eventAction': 'loaded'
+});
