@@ -66,7 +66,6 @@ function addToCart() {
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            console.log('click')
             item.closest('.gallery-parent').querySelectorAll('.gallery dd:nth-child(n+5)').forEach((el) => {
                 el.classList.toggle('visible');
                 if (!el.classList.contains('visible')) {
