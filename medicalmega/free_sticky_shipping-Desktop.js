@@ -1,8 +1,6 @@
 window.onload  = function () {
     if (mm.grw != 1) {
         
-    let yourOrder = [];
-
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
