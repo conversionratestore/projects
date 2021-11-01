@@ -88,6 +88,15 @@ window.onload  = function () {
                         </div>
                     </div>
                 </div> `);
+                if (location.pathname.includes('cart.html')) {
+                    document.querySelector('.range_shipping').style = `margin-bottom: 20px`
+                    //create left elements
+                    document.querySelector('.range_shipping_right').insertAdjacentHTML('beforebegin',`
+                    <div class="range_shipping_left">
+                        <h2>Get Free Delivery</h2>
+                        <p>Add more products to your order</p>
+                    </div>`)
+                }
                 if (total < 150 && total >= 130) {
                     document.querySelector('.left_for').innerHTML = `<span>$${(150 - total).toFixed(2)} </span>  only left for free delivery`;
                 }
@@ -98,15 +107,6 @@ window.onload  = function () {
                         document.querySelector('.range_shipping_left p').innerHTML = ``;
                     }
                 }
-            }
-            if (location.pathname.includes('cart.html')) {
-                document.querySelector('.range_shipping').style = `margin-bottom: 20px`
-                //create left elements
-                document.querySelector('.range_shipping_right').insertAdjacentHTML('beforebegin',`
-                <div class="range_shipping_left">
-                    <h2>Get Free Delivery</h2>
-                    <p>Add more products to your order</p>
-                </div>`)
             }
         
         })   
