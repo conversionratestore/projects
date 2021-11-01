@@ -71,9 +71,9 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         border-radius: 2.6px;
     }
     .popup_slide {
-        width: 130px;
+        width: 131px;
         padding-bottom: 10px;
-        margin-right: 64px;
+        margin-right: 56px;
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
@@ -242,7 +242,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         margim-bottom: 10px;
     }
     .js-mobile .popup_total {
-        max-width: 271px;
+        max-width: 290px;
         padding-top: 20px;
     }
     .js-mobile .popup_total p {
@@ -366,12 +366,16 @@ let cartList = document.querySelectorAll('.cartlist tbody tr'),
                     </div>
                 </div>`)
             }
+            if(products.length < 3) {
+                document.querySelector('.btn_arrow_prev').style.display = 'none';
+                document.querySelector('.btn_arrow_next').style.display = 'none';
+            }
         }
     }
     else {
         for (let i = 0; i < cartList.length; i++) {
             if(cartList[i].querySelector('.title')) {
-                if(cartList.length > 1) {
+                if(document.querySelectorAll('.cartlist tbody tr .title').length > 1) {
                     document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
                     <div class="popup_slide">
                         <div>
@@ -389,6 +393,10 @@ let cartList = document.querySelectorAll('.cartlist tbody tr'),
                             <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
                         </div>
                     </div>`)
+                }
+                if(document.querySelectorAll('.cartlist tbody tr .title').length < 3) {
+                    document.querySelector('.btn_arrow_prev').style.display = 'none';
+                    document.querySelector('.btn_arrow_next').style.display = 'none';
                 }
        
             }
@@ -472,4 +480,3 @@ if (detectMob() == true) {
         }
     })
 }
-
