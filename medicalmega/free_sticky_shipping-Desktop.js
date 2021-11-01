@@ -186,13 +186,15 @@ window.onload  = function () {
             }
         </style>`)
         rangeShipping('.topcon','beforebegin');
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-         'event': 'event-to-ga',
-         'eventCategory': 'Exp — Free shipping block',
-         'eventAction': 'Free shipping block appearance',
-         'eventLabel': 'PDP'
-        });
+        if (document.querySelector('.by_num span').innerText != '0') {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Free shipping block',
+            'eventAction': 'Free shipping block appearance',
+            'eventLabel': 'PDP'
+            });
+        }
         document.querySelector('.type2').insertAdjacentHTML('afterbegin',`
         <div class="shipping_box">
             <img src="https://conversionratestore.github.io/projects/medicalmega/img/car.svg" alt="car icon">
