@@ -1,5 +1,4 @@
-window.onload  = function () {
-document.body.insertAdjacentHTML( 'afterbegin',`
+window.onload  = function () {document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
         position: fixed;
