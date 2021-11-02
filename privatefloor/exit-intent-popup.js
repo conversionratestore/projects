@@ -1,3 +1,4 @@
+window.onload  = function () {
 document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
@@ -604,3 +605,4 @@ if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getIt
         })
     }
 }
+};
