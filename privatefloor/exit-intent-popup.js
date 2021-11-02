@@ -94,6 +94,10 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         color: #777777!important;
         margin-bottom: 13px;
         display: block;
+        text-transform: lowercase;
+    }
+    .popup_slide p, .popup_slide a:first-letter {
+        text-transform: uppercase;
     }
     .popup_total {
         display: flex;
@@ -224,11 +228,14 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         width: 100%!important;
         padding-bottom: 0!important;
     }
+    .js-mobile  .popup_container {
+        max-width: 351px;
+    }
     .js-mobile .btn_arrow {
         display: none;
     }
     .js-mobile .popup_slider {
-        max-width: 321px;
+        max-width: 100%;
         margin-right: -20px;
     }
     .js-mobile .popup_slide img {
@@ -238,13 +245,13 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         width: 101px;
         margin-right: 40px;
     }
-    .js-mobile .popup_slide p {
+    .js-mobile .popup_slide p, .js-mobile .popup_slide a {
         font-size: 12px;
         line-height: 14px;
         margim-bottom: 10px;
     }
     .js-mobile .popup_total {
-        max-width: 290px;
+        max-width: 271px;
         padding-top: 20px;
     }
     .js-mobile .popup_total p {
@@ -298,6 +305,14 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         font-size: 23px;
         line-height: 26px;
     }
+    @media only screen and (max-width: 360px)  {
+        .js-mobile .popup_total {
+            max-width: 100%;
+        }
+        .js-mobile .popup_slider {
+            max-width: calc(100% + 20px);
+        }
+    }
 </style>`)
 
 function detectMob() {
@@ -347,13 +362,14 @@ let slider = document.querySelector('.popup_slider'),
     products = [],
     haveLink = false;
 
-function pushProducts(imgUrl,name,price,id) {
+function pushProducts(imgUrl,name,price,id,color) {
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
         'link': window.location.href,
-        'id': `${id}`
+        'id': `${id}`,
+        'color': `${color}`
     })
 
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
@@ -362,7 +378,7 @@ function pushProducts(imgUrl,name,price,id) {
 
     products = products.filter((thing, index, self) =>
         index === self.findIndex((t) => (
-            t.place === thing.place && t.name === thing.name
+            t.place === thing.place && t.color === thing.color
         ))
     )
 
@@ -377,7 +393,6 @@ function addProduct() {
     for (let i = 0; i < productsLocalStorage.length; i++) {
         let priceSpt = productsLocalStorage[i].price.split(' '),
             newPrice = productsLocalStorage[i].price.replace(priceSpt[1],'').replace(',','.');
-            console.log(newPrice)
 
         if(productsLocalStorage.length > 1) {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
@@ -424,23 +439,24 @@ if (window.location.pathname.includes('/product')) {
             let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                 name = document.querySelectorAll('.product-container .title')[0].innerText,
                 price = document.querySelector('.prices .price').innerText,
-                id = document.querySelectorAll('.add-to-cart input')[0].value;
+                id = document.querySelectorAll('.add-to-cart input')[0].value,
+                color = document.querySelector('.product-container .colors .list .content span.bullet-color.selected').getAttribute('data-name');
 
             sessionStorage.setItem('wasPopup', 'false');
 
-            pushProducts(imgUrl,name,price,id);
+            pushProducts(imgUrl,name,price,id,color);
         })
     } else {
         document.querySelector('#btn-add-item-cart').addEventListener('click', () => {
-            console.log('click')
             let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                 name = document.querySelector('.product_name').innerText,
                 price = document.querySelector('.price-offer-box .price').innerText,
-                id = document.querySelectorAll('.quantities input')[0].value;
+                id = document.querySelectorAll('.quantities input')[0].value,
+                color = document.querySelector('.purchase-panel .colors .title').innerText;
 
             sessionStorage.setItem('wasPopup', 'false');
 
-            pushProducts(imgUrl,name,price,id);
+            pushProducts(imgUrl,name,price,id,color);
         })
     }
 }
@@ -455,7 +471,7 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
 
 if (window.location.pathname.includes('/cart')) {
     if (detectMob() == true) {
-        if (document.querySelectorAll('.product-list .product')) {
+        if (document.querySelectorAll('.product-list .product .quantity .minus')) {
             document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.nextElementSibling.innerText == '1') {
@@ -479,25 +495,31 @@ if (window.location.pathname.includes('/cart')) {
             })
         } 
     } else {
-        if (document.querySelectorAll('.removeItem')) {
-            document.querySelectorAll('.removeItem').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (!document.querySelectorAll('.table.cartlist tbody tr')) {
-                        localStorage.setItem('products', '');
-                        sessionStorage.setItem('wasPopup', 'false');
-                    } else {
-                        let id = item.closest('tr').getAttribute('data-item-id'),
-                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+        function removeProductDesktop(item) {
+            item.addEventListener('click', () => {
+                if (!document.querySelectorAll('.table.cartlist tbody tr')) {
+                    localStorage.setItem('products', '');
+                    sessionStorage.setItem('wasPopup', 'false');
+                } else {
+                    let color = item.closest('tr').querySelector('.color').innerText,
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].id == id) {
-                                productsLocalStorage.splice(i, 1)
-                                localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-                                sessionStorage.setItem('wasPopup', 'false');
-                            }
+                    for (let i = 0; i < productsLocalStorage.length; i++) {
+                        if (productsLocalStorage[i].color == color) {
+                            productsLocalStorage.splice(i, 1)
+                            localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+                            sessionStorage.setItem('wasPopup', 'false');
                         }
                     }
-                })
+                }
+            })
+        }
+        if (document.querySelectorAll('.removeItem')) {
+            document.querySelectorAll('.minus_cart').forEach(item => {
+                removeProductDesktop(item) 
+            })
+            document.querySelectorAll('.removeItem').forEach(item => {
+                removeProductDesktop(item) 
             })
         }
     }
@@ -515,7 +537,6 @@ if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getIt
     if (detectMob() == true) {
         document.body.classList.add('js-mobile');
         var my_scroll = (function() {
-            console.log('my_scroll');
             var last_position, new_position, timer, delta, delay = 50;
 
             function clear() {
@@ -540,7 +561,6 @@ if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getIt
         function myScrollSpeedFunction(){
             if(document.body.classList.contains('js-mobile')) {
                 if(my_scroll() < -200) {
-                    addProduct();
                     let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
                         wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
                         
@@ -549,7 +569,8 @@ if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getIt
                             haveLink = true
                         } 
                     }
-                    if (haveLink === false && wasPopup !== true && productsLocalStorage != '[]') {
+                    if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
+                        addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
                         sessionStorage.setItem('wasPopup', 'true');
                     }
@@ -566,18 +587,16 @@ if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getIt
 
         addEvent(document, 'mouseout', function(evt) {
             if (evt.toElement == null && evt.relatedTarget == null) {
-                addProduct();
                 let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
                     wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
                 
-                    
                 for (let i = 0; i < productsLocalStorage.length; i++) {
                     if (productsLocalStorage[i].link === window.location.href) {
                         haveLink = true
                     } 
                 }
-
-                if (haveLink === false && wasPopup !== true && productsLocalStorage != '[]') {
+                if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
+                    addProduct();
                     document.querySelector('.popup_exit_intent').classList.add('active');
                     sessionStorage.setItem('wasPopup', 'true');
                 }
