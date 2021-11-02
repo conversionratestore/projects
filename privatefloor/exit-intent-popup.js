@@ -88,11 +88,12 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         object-fit: contain;
         margin-bottom: 13px;
     }
-    .popup_slide p {
+    .popup_slide p, .popup_slide a {
         font-size: 16px;
         line-height: 18px;
-        color: #777777;
+        color: #777777!important;
         margin-bottom: 13px;
+        display: block;
     }
     .popup_total {
         display: flex;
@@ -106,7 +107,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         font-weight: bold;
         font-size: 30px;
         line-height: 34px;
-        color: #2B2B2B;
+        color: #2B2B2B!important;
     }
     .popup_message {
         border-top: 1.3px dashed #E5E5E5;
@@ -161,8 +162,8 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         align-items: center;
         justify-content: space-between;
     }
-    .popup_slide_row p{
-        color: #000000;
+    .popup_slide_row p, .popup_slide_row a{
+        color: #000000!important;
         margin: 0!important;
         font-size: 15.3708px;
     }
@@ -170,12 +171,13 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         margin-bottom: 29px;
     }
     .popup_slide_row p.slide_price{
-        color: #2B2B2B;
+        color: #2B2B2B!important;
         font-size: 29.4607px;
         line-height: 34px;
         font-weight: bold;
         padding-left: 15px;
         text-align: right;
+        white-space: nowrap;
     }
     .popular_choice {
         margin: 0 auto 27px;
@@ -330,7 +332,7 @@ document.body.insertAdjacentHTML( 'beforeend',`
             </div>
             <div class="popup_total">
                 <p>Total:</p>
-                <p>${document.querySelector('.prices .total .price span') ? document.querySelector('.prices .total .price span').innerHTML : document.querySelector('.tt-price').innerHTML}</p>
+                <p class="popup_total_price"></p>
             </div>
         </div>
         <div class="popup_message">
@@ -341,87 +343,165 @@ document.body.insertAdjacentHTML( 'beforeend',`
     </div>
 </div>`);
 
-let cartList = document.querySelectorAll('.cartlist tbody tr'),
-    slider = document.querySelector('.popup_slider'),
-    products = document.querySelectorAll('.product ');
+let slider = document.querySelector('.popup_slider'),
+    products = [],
+    haveLink = false;
 
-    if (detectMob() == true) {
-        for (let i = 0; i < products.length; i++) {
-            if(products.length > 1) {
-                document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-                <div class="popup_slide">
-                    <div>
-                        <img src="${products[i].querySelector('.img img').getAttribute('src')}" alt="${products[i].querySelector('.info .title').innerText}">
-                        <p class="slide_name">${products[i].querySelector('.info .title').innerText}</p>   
-                    </div>
-                    <p class="slide_price">${products[i].querySelector('.total-price').innerText}</p>
-                </div>`)
-            } else {
-                document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-                <div class="popup_slide popup_slide_one">
-                    <img src="${products[i].querySelector('.img img').getAttribute('src')}" alt="${products[i].querySelector('.info .title').innerText}">
-                    <div class="popup_slide_row">
-                        <p class="slide_name">${products[i].querySelector('.info .title').innerText}</p>   
-                        <p class="slide_price">${products[i].querySelector('.total-price').innerText}</p>
-                    </div>
-                </div>`)
-            }
-            if(products.length < 3) {
+function pushProducts(imgUrl,name,price,id) {
+    products.push({
+        'imgUrl': `${imgUrl}`,
+        'name': `${name}`,
+        'price': `${price}`,
+        'link': window.location.href,
+        'id': `${id}`
+    })
+
+    if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
+        products = [...products,...JSON.parse(localStorage.getItem('products'))]
+    } 
+
+    products = products.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+            t.place === thing.place && t.name === thing.name
+        ))
+    )
+
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+function addProduct() {
+    let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
+    total = 0;
+    document.querySelector('.popup_slider').innerHTML = ``;
+  
+    for (let i = 0; i < productsLocalStorage.length; i++) {
+        let priceSpt = productsLocalStorage[i].price.split(' '),
+            newPrice = productsLocalStorage[i].price.replace(priceSpt[1],'').replace(',','.');
+            console.log(newPrice)
+
+        if(productsLocalStorage.length > 1) {
+            document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
+            <div class="popup_slide">
+                <div>
+                    <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
+                    <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
+                </div>
+                <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price}</p>
+            </div>`)
+        } else {
+            document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
+            <div class="popup_slide popup_slide_one">
+                <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
+                <div class="popup_slide_row">
+                    <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
+                    <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price}</p>
+                </div>
+            </div>`)
+            if (document.querySelector('.popup_slide_one') && !document.querySelector('.popular_choice') && document.querySelector('.popup_slide_one')) {
+                document.querySelector('.popup_products').insertAdjacentHTML('beforebegin',`
+                <div class="popular_choice">
+                    <p>This is a popular choice, 
+                    <span class="text-nowrap"> we may </span> run out of stock soon</p>
+                </div>`);
                 document.querySelector('.btn_arrow_prev').style.display = 'none';
                 document.querySelector('.btn_arrow_next').style.display = 'none';
+                document.querySelector('.popup_total').style.display = 'none';
+                document.querySelector('.popup_slider').classList.add('popup_one_slider')
             }
         }
-    }
-    else {
-        for (let i = 0; i < cartList.length; i++) {
-            if(cartList[i].querySelector('.title')) {
-                if(document.querySelectorAll('.cartlist tbody tr .title').length > 1) {
-                    document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-                    <div class="popup_slide">
-                        <div>
-                            <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
-                            <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
-                        </div>
-                        <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
-                    </div>`)
-                } else {
-                    document.querySelector('.popup_slider').insertAdjacentHTML('beforeend',`
-                    <div class="popup_slide popup_slide_one">
-                        <img src="${cartList[i].querySelector('.preview img').getAttribute('src')}" alt="${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}">
-                        <div class="popup_slide_row">
-                            <p class="slide_name">${cartList[i].querySelector('.title').innerText.split('Shipping')[0]}</p>   
-                            <p class="slide_price">${cartList[i].querySelector('.price').innerText}</p>
-                        </div>
-                    </div>`)
-                }
-                if(document.querySelectorAll('.cartlist tbody tr .title').length < 3) {
-                    document.querySelector('.btn_arrow_prev').style.display = 'none';
-                    document.querySelector('.btn_arrow_next').style.display = 'none';
-                }
-       
-            }
-        }
-    }
-    if (document.querySelector('.popup_slide_one')) {
-        document.querySelector('.popup_products').insertAdjacentHTML('beforebegin',`
-        <div class="popular_choice">
-            <p>This is a popular choice, 
-            <span class="text-nowrap"> we may </span> run out of stock soon</p>
-        </div>`);
+        total += +newPrice;
+        document.querySelector('.popup_total_price').innerHTML = total.toFixed(2) + ' ' + priceSpt[1];
+    }  
+    if(productsLocalStorage.length < 3) {
         document.querySelector('.btn_arrow_prev').style.display = 'none';
         document.querySelector('.btn_arrow_next').style.display = 'none';
-        document.querySelector('.popup_total').style.display = 'none';
-        document.querySelector('.popup_slider').classList.add('popup_one_slider')
     }
-  
-    
+}
 
+if (window.location.pathname.includes('/product')) {
+    if (detectMob() == true) {
+        document.querySelector('.btn-atc').addEventListener('click', () => {
+            let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
+                name = document.querySelectorAll('.product-container .title')[0].innerText,
+                price = document.querySelector('.prices .price').innerText,
+                id = document.querySelectorAll('.add-to-cart input')[0].value;
+
+            sessionStorage.setItem('wasPopup', 'false');
+
+            pushProducts(imgUrl,name,price,id);
+        })
+    } else {
+        document.querySelector('#btn-add-item-cart').addEventListener('click', () => {
+            console.log('click')
+            let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
+                name = document.querySelector('.product_name').innerText,
+                price = document.querySelector('.price-offer-box .price').innerText,
+                id = document.querySelectorAll('.quantities input')[0].value;
+
+            sessionStorage.setItem('wasPopup', 'false');
+
+            pushProducts(imgUrl,name,price,id);
+        })
+    }
+}
 document.querySelector('.btn_close').addEventListener('click', () => {
     document.querySelector('.popup_exit_intent').classList.remove('active');
 })
 document.querySelector('.btn-complete').addEventListener('click', () => {
     document.querySelector('.popup_exit_intent').classList.remove('active');
+    window.location.href = 'https://www.privatefloor.com/cart/';
 })
+
+
+if (window.location.pathname.includes('/cart')) {
+    if (detectMob() == true) {
+        if (document.querySelectorAll('.product-list .product')) {
+            document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    if (item.nextElementSibling.innerText == '1') {
+                        if (!document.querySelectorAll('.product-list .product')) {
+                            localStorage.setItem('products', '');
+                            sessionStorage.setItem('wasPopup', 'false');
+                        } else {
+                            let id = item.closest('.product').getAttribute('data-row-id'),
+                                productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+    
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].id == id) {
+                                    productsLocalStorage.splice(i, 1)
+                                    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+                                    sessionStorage.setItem('wasPopup', 'false');
+                                }
+                            }
+                        }
+                    }
+                })
+            })
+        } 
+    } else {
+        if (document.querySelectorAll('.removeItem')) {
+            document.querySelectorAll('.removeItem').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (!document.querySelectorAll('.table.cartlist tbody tr')) {
+                        localStorage.setItem('products', '');
+                        sessionStorage.setItem('wasPopup', 'false');
+                    } else {
+                        let id = item.closest('tr').getAttribute('data-item-id'),
+                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (productsLocalStorage[i].id == id) {
+                                productsLocalStorage.splice(i, 1)
+                                localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+                                sessionStorage.setItem('wasPopup', 'false');
+                            }
+                        }
+                    }
+                })
+            })
+        }
+    }
+}
 
 function addEvent(obj, evt, fn) {
     if (obj.addEventListener) {
@@ -431,52 +511,77 @@ function addEvent(obj, evt, fn) {
     }
 }
 
-if (detectMob() == true) {
-    document.body.classList.add('js-mobile');
-    var my_scroll = (function() {
-        console.log('my_scroll');
-        var last_position, new_position, timer, delta, delay = 50;
+if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
+    if (detectMob() == true) {
+        document.body.classList.add('js-mobile');
+        var my_scroll = (function() {
+            console.log('my_scroll');
+            var last_position, new_position, timer, delta, delay = 50;
 
-        function clear() {
-            last_position = null;
-            delta = 0;
+            function clear() {
+                last_position = null;
+                delta = 0;
+            }
+
+            clear();
+
+            return function(){
+                new_position = window.scrollY;
+                if (last_position != null){
+                    delta = new_position -  last_position;
+                }
+                last_position = new_position;
+                clearTimeout(timer);
+                timer = setTimeout(clear, delay);
+                return delta;
+            };
+        })();
+        
+        function myScrollSpeedFunction(){
+            if(document.body.classList.contains('js-mobile')) {
+                if(my_scroll() < -200) {
+                    addProduct();
+                    let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
+                        wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                        
+                    for (let i = 0; i < productsLocalStorage.length; i++) {
+                        if (productsLocalStorage[i].link === window.location.href) {
+                            haveLink = true
+                        } 
+                    }
+                    if (haveLink === false && wasPopup !== true && productsLocalStorage != '[]') {
+                        document.querySelector('.popup_exit_intent').classList.add('active');
+                        sessionStorage.setItem('wasPopup', 'true');
+                    }
+                }
+            }
         }
 
-        clear();
+        window.addEventListener('scroll', myScrollSpeedFunction);
+    } else {
+        document.body.classList.add('js-desktop');
 
-        return function(){
-            new_position = window.scrollY;
-            if (last_position != null){
-                delta = new_position -  last_position;
+        document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
+        document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
+
+        addEvent(document, 'mouseout', function(evt) {
+            if (evt.toElement == null && evt.relatedTarget == null) {
+                addProduct();
+                let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
+                    wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                
+                    
+                for (let i = 0; i < productsLocalStorage.length; i++) {
+                    if (productsLocalStorage[i].link === window.location.href) {
+                        haveLink = true
+                    } 
+                }
+
+                if (haveLink === false && wasPopup !== true && productsLocalStorage != '[]') {
+                    document.querySelector('.popup_exit_intent').classList.add('active');
+                    sessionStorage.setItem('wasPopup', 'true');
+                }
             }
-            last_position = new_position;
-            clearTimeout(timer);
-            timer = setTimeout(clear, delay);
-            return delta;
-        };
-    })();
-    
-    function myScrollSpeedFunction(){
-        if(document.body.classList.contains('js-mobile')) {
-            
-            console.log('scroll');
-            if(my_scroll() < -200){
-                console.log('view popup');
-                document.querySelector(".popup_exit_intent").classList.add('active');
-            }
-        }
+        })
     }
-
-    window.addEventListener('scroll', myScrollSpeedFunction);
-} else {
-    document.body.classList.add('js-desktop');
-
-    document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
-    document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
-
-    addEvent(document, 'mouseout', function(evt) {
-        if (evt.toElement == null && evt.relatedTarget == null) {
-            document.querySelector('.popup_exit_intent').classList.add('active');
-        }
-    })
 }
