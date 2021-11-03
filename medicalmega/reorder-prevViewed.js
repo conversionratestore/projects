@@ -113,8 +113,10 @@ function pushProducts() {
 }
 
 let mut = new MutationObserver(function (muts) {
+    console.log('mut')
     if (!!window.onload) {
         mut.disconnect();
+        console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', `
                 <style>
             .gallery dd span img {
@@ -565,6 +567,7 @@ let mut = new MutationObserver(function (muts) {
     
     if (document.querySelectorAll('.add-to-cart button')){
         mut.disconnect();
+        console.log('mut disconnect 2')
         addToCart();
     }
 })
