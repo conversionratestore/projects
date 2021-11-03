@@ -558,18 +558,19 @@ function pushProducts() {
         })
         .catch(error => console.log('error', error));
         addToCart();
-};
-let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('.add-to-cart button')){
-        mut.disconnect();
-        addToCart();
-    }
-})
+    let mut = new MutationObserver(function (muts) {
+        if (document.querySelectorAll('.add-to-cart button')){
+            mut.disconnect();
+            addToCart();
+        }
+    })
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+    mut.observe(document, {
+        childList: true,
+        subtree: true
+    });
+};
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1699330,hjsv:6};
