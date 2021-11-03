@@ -151,23 +151,23 @@ window.onload  = function () {
                 <img src="https://conversionratestore.github.io/projects/samcart/img/google_pay_logo.svg" alt="icon google pay">
             </a>`;
 
-        if (document.querySelector(".apple-pay:not(.ng-hide)")) {
-            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", applePayBtn);
-            document.querySelector('.btn_pay').addEventListener('click', () => {
-                action = 'Click on Apple pay';
-                pushDataLayer(action)
-                localStorage.setItem('paymentSystem', 'applePay');
-            })
-        }
+//         if (document.querySelector(".apple-pay:not(.ng-hide)")) {
+//             document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", applePayBtn);
+//             document.querySelector('.btn_pay').addEventListener('click', () => {
+//                 action = 'Click on Apple pay';
+//                 pushDataLayer(action)
+//                 localStorage.setItem('paymentSystem', 'applePay');
+//             })
+//         }
     
-        if (document.querySelector(".google-pay:not(.ng-hide)")) {
-            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", googlePayBtn)
-            document.querySelector('.btn_pay').addEventListener('click', () => {
-                action = 'Click on Google pay';
-                pushDataLayer(action)
-                localStorage.setItem('paymentSystem', 'googlePay');
-            })
-        }
+//         if (document.querySelector(".google-pay:not(.ng-hide)")) {
+//             document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", googlePayBtn)
+//             document.querySelector('.btn_pay').addEventListener('click', () => {
+//                 action = 'Click on Google pay';
+//                 pushDataLayer(action)
+//                 localStorage.setItem('paymentSystem', 'googlePay');
+//             })
+//         }
 
         document.querySelector('.btn_get_samcart').addEventListener('click', () => {
             action = 'Click on Enroll now button';
