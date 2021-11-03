@@ -1,5 +1,4 @@
 window.onload  = function () {
-    console.log('loaded')
     let action;
 
     function pushDataLayer(action) {
@@ -12,8 +11,7 @@ window.onload  = function () {
         });
     }
 
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer') {
-        console.log(window.location.href)
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer/') {
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             #get_samcart {
@@ -119,7 +117,6 @@ window.onload  = function () {
                 }
             }
         </style>`)
-        console.log(document.querySelectorAll('.sc-root-row')[2])
         document.querySelectorAll('.sc-root-row')[2].insertAdjacentHTML('beforebegin',`
         <div id="get_samcart">
             <div class="get_samcart_row">
@@ -154,23 +151,23 @@ window.onload  = function () {
                 <img src="https://conversionratestore.github.io/projects/samcart/img/google_pay_logo.svg" alt="icon google pay">
             </a>`;
 
-//         if (document.querySelector(".apple-pay:not(.ng-hide)")) {
-//             document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", applePayBtn);
-//             document.querySelector('.btn_pay').addEventListener('click', () => {
-//                 action = 'Click on Apple pay';
-//                 pushDataLayer(action)
-//                 localStorage.setItem('paymentSystem', 'applePay');
-//             })
-//         }
+        if (document.querySelector(".apple-pay:not(.ng-hide)")) {
+            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", applePayBtn);
+            document.querySelector('.btn_pay').addEventListener('click', () => {
+                action = 'Click on Apple pay';
+                pushDataLayer(action)
+                localStorage.setItem('paymentSystem', 'applePay');
+            })
+        }
     
-//         if (document.querySelector(".google-pay:not(.ng-hide)")) {
-//             document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", googlePayBtn)
-//             document.querySelector('.btn_pay').addEventListener('click', () => {
-//                 action = 'Click on Google pay';
-//                 pushDataLayer(action)
-//                 localStorage.setItem('paymentSystem', 'googlePay');
-//             })
-//         }
+        if (document.querySelector(".google-pay:not(.ng-hide)")) {
+            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", googlePayBtn)
+            document.querySelector('.btn_pay').addEventListener('click', () => {
+                action = 'Click on Google pay';
+                pushDataLayer(action)
+                localStorage.setItem('paymentSystem', 'googlePay');
+            })
+        }
 
         document.querySelector('.btn_get_samcart').addEventListener('click', () => {
             action = 'Click on Enroll now button';
@@ -210,7 +207,7 @@ window.onload  = function () {
         })
     }
 
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase/') {
         document.querySelector('[ng-non-bindable]').remove();
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
