@@ -363,6 +363,7 @@ window.onload  = function () {
                     justify-content: center;
                     align-items: center;
                     margin-bottom: 30px;
+                    padding-top: 16px;
                 }
                 .price-product p:first-child {
                     font-size: 12px;
