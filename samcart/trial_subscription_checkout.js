@@ -87,6 +87,16 @@ window.onload  = function () {
                 margin: 20px auto;
                 width: fit-content;
             }
+            .get_samcart_btns .d-flex .btn {
+                width: calc(100% - 4.5px);
+                margin-right: 9px;
+            }
+            .get_samcart_btns .d-flex .btn:last-child {
+                margin-right: 0;
+            }
+            .get_samcart_btns {
+                width: 100%;
+            }
             @media only screen and (min-width: 768px)  {
                 .get_samcart_top {
                     display: flex;
@@ -98,8 +108,7 @@ window.onload  = function () {
                     justify-content: space-between;
                 }
                 .get_samcart_btns {
-                    max-width: 315px;
-                    width: 100%;
+                    max-width: 315px;\
                 }
             }
             @media only screen and (max-width: 767px)  {
