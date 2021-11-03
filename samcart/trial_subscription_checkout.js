@@ -1,4 +1,4 @@
-if (window.location.href.includes('products/courses-special-offer')) {
+if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer') {
     document.body.insertAdjacentHTML('afterbegin',`
     <style>
         #get_samcart {
@@ -118,12 +118,12 @@ if (window.location.href.includes('products/courses-special-offer')) {
                 <p class="get_samcart_text">30 days money back guarantee</p>
             </div>
             <div class="get_samcart_btns">
-                <a href="#" class="btn_get_samcart">Enroll Now</a>
+                <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="btn_get_samcart">Enroll Now</a>
                 <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn_pay">
+                    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="btn btn_pay">
                         <img src="https://conversionratestore.github.io/projects/samcart/img/apple_pay_logo.svg" alt="icon pay">
                     </a>
-                    <a href="#" class="btn btn_pay_pal">
+                    <a href="https://checkout.samcart.com/products/courses-special-offer-purchase" class="btn btn_pay_pal">
                         <img src="https://conversionratestore.github.io/projects/samcart/img/pay_pal_logo.svg" alt="icon pay">
                     </a>
                 </div>
@@ -144,10 +144,17 @@ if (window.location.href.includes('products/courses-special-offer')) {
     document.querySelector('.btn_get_samcart').addEventListener('click', () => {
         action = 'Click on Enroll now button';
         pushDataLayer(action)
+        localStorage.setItem('paymentSystem', '1');
     })
-    document.querySelector('.btn_get_samcart').addEventListener('click', () => {
-        action = 'Click on Apple pay or Google pay';
+    document.querySelector('.btn_pay').addEventListener('click', () => {
+        action = 'Click on Apple pay';
         pushDataLayer(action)
+        localStorage.setItem('paymentSystem', '2');
+    })
+    document.querySelector('.btn_pay_pal').addEventListener('click', () => {
+        action = 'Click on PayPal';
+        pushDataLayer(action)
+        localStorage.setItem('paymentSystem', '3');
     })
 
     document.querySelector('.tpl-6__content.py-sm-34.px-sm-48.p-16.rounded.bg-white').remove();
@@ -158,7 +165,7 @@ if (window.location.href.includes('products/courses-special-offer')) {
 
     let newElement = `<a href="https://checkout.samcart.com/products/courses-special-offer-14-days-free/" class="btn_blue">Try 14 days for FREE</a>`;
 
-    
+
     document.querySelectorAll('.sc-column.col-12.sc-root-row')[4].style.display = 'none';
     document.querySelectorAll('.sc-column.col-12.sc-root-row')[5].style.display = 'none';
     document.querySelectorAll('.hide-on-mobile')[0].style.display = 'none';
@@ -173,12 +180,18 @@ if (window.location.href.includes('products/courses-special-offer')) {
 }
 
 
-// if (window.location.href.includes('products/courses-special-offer-14-days-free')) {
-//     document.querySelector('[ng-non-bindable]').remove();
-//     document.querySelector('.v2-horizontal-large-container').remove();
-// }
-if (window.location.href.includes('products/samcart-launch-special')) {
-    document.querySelectorAll('.px-0.bg-white')[1].remove();
+if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
+    document.querySelector('[ng-non-bindable]').remove();
+    document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
+
+    if (localStorage.getItem('paymentSystem')) {
+        let paymentSystem = JSON.parse(localStorage.getItem('paymentSystem'));
+        if (paymentSystem == '3') {
+            console.log(paymentSystem)
+            document.querySelectorAll('.custom-control.custom-radio input')[0].remmoveAttribute('checked')
+            document.querySelectorAll('.custom-control.custom-radio input')[1].setAttribute('checked')
+        }
+    }
 }
 
 (function(h,o,t,j,a,r){
