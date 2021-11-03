@@ -505,7 +505,7 @@ let mut = new MutationObserver(function (muts) {
             .catch(error => console.log('error', error));
             addToCart();
     }
-    if (location.pathname.includes('product') && !document.querySelector('.ordered-products .title') && document.querySelectorAll('.ordered-products').length == 0) {
+    if (document.querySelector('.read-more') && document.querySelectorAll('.ordered-products').length == 0) {
         mut.disconnect();
         console.log('true')
         document.body.insertAdjacentHTML('afterbegin', style);
@@ -596,7 +596,7 @@ let mut = new MutationObserver(function (muts) {
             })
             .catch(error => console.log('error', error));
         
-     }
+    }
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
