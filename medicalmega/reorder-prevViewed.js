@@ -2,6 +2,8 @@ let recentlyViewedProducts = [];
 let action,
     label;
 
+let recentlyOrderedProducts = false;
+
 let optionFetch = {
     method: "POST",
     headers: {
@@ -506,9 +508,10 @@ let mut = new MutationObserver(function (muts) {
             addToCart();
     }
     mut.observe(document, optionMut);
-    if (document.querySelector('.product-desc') && document.querySelectorAll('.ordered-products').length == 0) {
+    if (document.querySelector('.product-desc') && recentlyOrderedProducts === false) {
         mut.disconnect();
         console.log('true')
+        recentlyOrderedProducts = true;
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
