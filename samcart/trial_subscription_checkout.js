@@ -99,6 +99,7 @@ window.onload  = function () {
                 }
                 .get_samcart_btns {
                     max-width: 315px;
+                    width: 100%;
                 }
             }
             @media only screen and (max-width: 767px)  {
