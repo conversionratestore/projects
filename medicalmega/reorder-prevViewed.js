@@ -505,8 +505,8 @@ let mut = new MutationObserver(function (muts) {
             .catch(error => console.log('error', error));
             addToCart();
     }
-     if (location.pathname.includes('product')) {
-         mut.disconnect();
+     if (location.pathname.includes('product') && !document.querySelector('.ordered-products')) {
+        mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
