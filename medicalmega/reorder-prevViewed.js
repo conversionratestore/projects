@@ -526,7 +526,6 @@ let mut = new MutationObserver(function (muts) {
                 padding-left: 0;
                 font-size: 24px;
                 line-height: 33px;
-                padding-top: 0;
             }
             .ordered-products .view-more {
                 margin: 10px 0 0 0;
@@ -555,6 +554,7 @@ let mut = new MutationObserver(function (muts) {
                 .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
                     font-size: 20px;
                     line-height: 20px;
+                    padding-top: 0;
                 }
                 dl.gallery dd:last-child {
                     margin-right: 0;
@@ -564,10 +564,6 @@ let mut = new MutationObserver(function (muts) {
                 }
             }
             @media only screen and (max-width: 479px)  {
-                .ordered-products.gallery-parent {
-                    // margin-left: -20px;
-                    // width: calc(100% + 30px);
-                }
                 dl.gallery {
                     width: calc(100% + 15px);
                 }
