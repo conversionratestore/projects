@@ -527,7 +527,7 @@ let mut = new MutationObserver(function (muts) {
             addToCart();
     }
     mut.observe(document, optionMut);
-    if (window.location.pathname.includes('/product') && recentlyOrderedProducts === false) {
+    if (window.location.pathname.includes('/product') && recentlyOrderedProducts === false && document.querySelector('input[name="product_id"]')) {
         mut.disconnect();
         console.log('true')
         recentlyOrderedProducts = true;
