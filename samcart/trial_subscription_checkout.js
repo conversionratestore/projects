@@ -1,4 +1,5 @@
 window.onload  = function () {
+    console.log('loaded')
     let action;
 
     function pushDataLayer(action) {
@@ -12,6 +13,7 @@ window.onload  = function () {
     }
 
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer') {
+        console.log(window.location.href)
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             #get_samcart {
@@ -117,6 +119,7 @@ window.onload  = function () {
                 }
             }
         </style>`)
+        console.log(document.querySelectorAll('.sc-root-row')[2])
         document.querySelectorAll('.sc-root-row')[2].insertAdjacentHTML('beforebegin',`
         <div id="get_samcart">
             <div class="get_samcart_row">
