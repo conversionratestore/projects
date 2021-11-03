@@ -1,14 +1,24 @@
 window.onload  = function () {
     let action;
 
-    function pushDataLayer(action) {
-        console.log(action)
+    function pushDataLayer(action, label) {
         window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Trial subscription checkout',
-        'eventAction': `${action}`
-        });
+        if (label) {
+            console.log(action + " : " + label)
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Trial subscription checkout',
+                'eventAction': `${action}`,
+                'eventLabel': `${label}`
+            });
+        } else {
+            console.log(action)
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Trial subscription checkout',
+                'eventAction': `${action}`
+            });
+        }
     }
 
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer/') {
@@ -241,7 +251,21 @@ window.onload  = function () {
             pushDataLayer(action)
         })
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', () => {
-            action = 'Click on Apple pay or Google pay payment method';
+            if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
+                action = 'Click on Google pay payment method';
+                pushDataLayer(action)
+            }
+            if (e.closest('.custom-control').querySelector(".apple-pay:not(.ng-hide)")) {
+                action = 'Click on Apple pay payment method';
+                pushDataLayer(action)
+            }
+        })
+        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', () => {
+            action = 'Click on Yes add the Facebook checkbox';
+            pushDataLayer(action)
+        })
+        document.querySelector('[name="fname"]').addEventListener('click', () => {
+            action =  'Click on input First Name';
             pushDataLayer(action)
         })
     }
