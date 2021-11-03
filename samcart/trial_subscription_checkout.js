@@ -320,23 +320,27 @@ window.onload  = function () {
             pushDataLayer(action, label)
         })
         if (document.querySelector('#card-number')) {
-            document.querySelector('.card-num-row').addEventListener('click', () => {
+            document.querySelector('.card-num-row').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 console.log('click')
                 action =  'Click on input Card Number',
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('.cvv-col').addEventListener('click', () => {
+            document.querySelector('.cvv-col').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 action =  'Click on input MM YY',
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('.exp-col').addEventListener('click', () => {
+            document.querySelector('.exp-col').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 action =  'Click on input CVC',
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('#placeOrder').addEventListener('click', () => {
+            document.querySelector('#placeOrder').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 action =  'Click on Try 14 days for FREE button',
                 label = 'page Checkout';
                 pushDataLayer(action, label)
