@@ -415,7 +415,7 @@ let style = `
             @media only screen and (max-width: 480px)  {
                 .gallery {
                     max-width: 306px;
-                    justify-content: flex-start
+                    justify-content: space-between;
                 }
             }
         </style>`;
