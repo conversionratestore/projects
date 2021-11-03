@@ -109,7 +109,6 @@ function addToCart() {
     if (document.querySelectorAll('.add-to-cart')) {
         document.querySelectorAll('.add-to-cart button').forEach((item) => {
             item.addEventListener('click', (e) => {
-                console.log('click')
                 e.stopImmediatePropagation()
                 let valueP = 1,
                     num = +document.querySelector('.by_num span').innerHTML;
@@ -445,11 +444,8 @@ let style = `
         </style>`;
 
 let mut = new MutationObserver(function (muts) {
-    console.log('mut')
     if (document.querySelector('.homeslider__container') && changed === false && document.querySelectorAll('.gallery').length == 6) {
         mut.disconnect();
-        console.log('loaded')
-        console.log( document.querySelectorAll('.gallery').length)
         changed = true;
         document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -529,7 +525,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
     if (window.location.pathname.includes('/product') && recentlyOrderedProducts === false && document.querySelector('input[name="product_id"]') && document.querySelectorAll('.product_img[src]')[0]) {
         mut.disconnect();
-        console.log('true')
         recentlyOrderedProducts = true;
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
@@ -613,7 +608,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
-        console.log('mut disconnect 2')
         addToCart();
     }
     mut.observe(document, optionMut);
