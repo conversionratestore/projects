@@ -1,4 +1,5 @@
 window.onload  = function () {
+     console.log('reorder loaded')
 let recentlyViewedProducts = [];
 let action,
     label;
@@ -113,7 +114,6 @@ function pushProducts() {
     }
 }
 
-    console.log('reorder loaded')
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
         .gallery dd span img {
@@ -559,6 +559,8 @@ function pushProducts() {
         .catch(error => console.log('error', error));
         addToCart();
     let mut = new MutationObserver(function (muts) {
+        
+             console.log('mut')
         if (document.querySelectorAll('.add-to-cart button')){
             mut.disconnect();
             addToCart();
