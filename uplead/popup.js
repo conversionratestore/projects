@@ -7,22 +7,14 @@
 // 	'credits_left': 250,
 // })
 
-let percent
-let plan
-
-let dataLayerInterval = setInterval(() => {
+let start = setInterval(() => {
 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer) {
-		clearInterval(dataLayerInterval)
+		clearInterval(start)
 
-		percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
-		plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan')
-	}
-}, 200)
+		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
+		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan')
 
-
-console.log(percent)
-
-const style = `
+		const style = `
 	<style>
 		.modal-custom {
 			padding: 20px 0;
@@ -164,7 +156,7 @@ const style = `
 		}
 	</style>
 `
-const page = `
+		const page = `
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
 	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
@@ -178,16 +170,19 @@ const page = `
 	</div>
 </div>`
 
-document.head.insertAdjacentHTML('afterbegin', style)
-document.body.insertAdjacentHTML('beforeend', page)
+		document.head.insertAdjacentHTML('afterbegin', style)
+		document.body.insertAdjacentHTML('beforeend', page)
 
-document.querySelector('.react-switch-bg')?.click()
+		document.querySelector('.react-switch-bg')?.click()
 
-document.addEventListener('click', closeModal)
+		document.addEventListener('click', closeModal)
 
-function closeModal(e) {
-	console.log(e.target)
-	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+		function closeModal(e) {
+			console.log(e.target)
+			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+			}
+		}		
 	}
-}
+}, 200)
+
