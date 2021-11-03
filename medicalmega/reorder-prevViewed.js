@@ -112,6 +112,7 @@ function pushProducts() {
     }
 }
 window.onload  = function () {
+    console.log('reorder loaded')
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
         .gallery dd span img {
