@@ -111,7 +111,10 @@ function pushProducts() {
         });
     }
 }
-
+let optionMut = {
+    childList: true,
+    subtree: true
+}
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
     if (document.querySelector('.homeslider__container')) {
@@ -564,20 +567,18 @@ let mut = new MutationObserver(function (muts) {
             })
             .catch(error => console.log('error', error));
             addToCart();
-
     }
+    mut.observe(document, optionMut);
     if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
         console.log('mut disconnect 2')
         addToCart();
     }
-    
+    mut.observe(document, optionMut);
 })
 
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+mut.observe(document, optionMut);
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1699330,hjsv:6};
