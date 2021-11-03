@@ -427,7 +427,7 @@ let style = `
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container') && changed === false) {
+    if (document.querySelector('.homeslider__container') && changed === false && document.querySelectorAll('.gallery').length == 6) {
         mut.disconnect();
         console.log('loaded')
         console.log( document.querySelectorAll('.gallery').length)
