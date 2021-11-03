@@ -114,8 +114,8 @@ function pushProducts() {
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (!!window.onload) {
-        mut.disconnect();
+    if (document.querySelector('.homeslider__container')) {
+         mut.disconnect();
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', `
                 <style>
@@ -560,16 +560,18 @@ let mut = new MutationObserver(function (muts) {
                         addToCart();
                     }
                 }
+                
             })
             .catch(error => console.log('error', error));
-        addToCart();
+            addToCart();
+
     }
-    
-    if (document.querySelectorAll('.add-to-cart button')){
+    if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
         console.log('mut disconnect 2')
         addToCart();
     }
+    
 })
 
 mut.observe(document, {
