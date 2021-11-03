@@ -1,7 +1,7 @@
 window.onload  = function () {
     let action;
 
-    function pushDataLayer(action, label) {
+    function pushDataLayer(action,label) {
         window.dataLayer = window.dataLayer || [];
         if (label) {
             console.log(action + " : " + label)
@@ -222,8 +222,9 @@ window.onload  = function () {
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
         document.querySelectorAll('.btn_blue').forEach(item => {
-            action = 'Click on Try 14 days for FREE button';
-            pushDataLayer(action)
+            action = 'Click on Try 14 days for FREE button',
+            label = 'page Special Offer';
+            pushDataLayer(action, label)
         })
     }
 
@@ -242,6 +243,7 @@ window.onload  = function () {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
             }
         }
+        document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Click on Credit Card payment method';
             pushDataLayer(action)
@@ -265,8 +267,44 @@ window.onload  = function () {
             pushDataLayer(action)
         })
         document.querySelector('[name="fname"]').addEventListener('click', () => {
-            action =  'Click on input First Name';
-            pushDataLayer(action)
+            action =  'Click on input First Name',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('[name="lname"]').addEventListener('click', () => {
+            action =  'Click on input Last Name',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('[name="email"]').addEventListener('click', () => {
+            action =  'Click on input Email Address',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('[name="phone"]').addEventListener('click', () => {
+            action =  'Click on input Phone Number',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('#card-number').addEventListener('click', () => {
+            action =  'Click on input Card Number',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('#card-expiry').addEventListener('click', () => {
+            action =  'Click on input MM YY',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('#card-cvc').addEventListener('click', () => {
+            action =  'Click on input CVC',
+            label = 'Contact form';
+            pushDataLayer(action, label)
+        })
+        document.querySelector('#placeOrder').addEventListener('click', () => {
+            action =  'Click on Try 14 days for FREE button',
+            label = 'page Checkout';
+            pushDataLayer(action, label)
         })
     }
 };
