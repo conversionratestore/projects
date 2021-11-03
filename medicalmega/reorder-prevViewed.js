@@ -572,6 +572,14 @@ function pushProducts() {
         subtree: true
     });
 };
+let mut2 = new MutationObserver(function (muts) {
+   console.log('mut2')    
+})
+
+mut.observe(document, {
+   childList: true,
+   subtree: true
+});
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
