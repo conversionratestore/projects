@@ -245,7 +245,7 @@ window.onload  = function () {
                 if (document.querySelector('#placeOrder')) {
                     document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
                 }
-                if (document.querySelector('#card-number')) {
+                if (document.querySelector('.card-num-row')) {
                     document.querySelector('.card-num-row').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
                         console.log('click')
