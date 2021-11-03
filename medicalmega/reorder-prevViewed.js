@@ -201,6 +201,7 @@ function pushProducts() {
             'href': window.location.href,
             'name': document.querySelectorAll('.center h3')[0].innerHTML,
         });
+        console.log(recentlyViewedProducts)
     }
 }
 
