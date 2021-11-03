@@ -417,6 +417,9 @@ let style = `
                     max-width: 306px;
                     justify-content: space-between;
                 }
+                .show-more, .view-more {
+                    margin: 0;
+                }
             }
         </style>`;
 
