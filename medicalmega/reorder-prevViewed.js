@@ -222,6 +222,7 @@ function pushProducts() {
         ))
     )
     localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+    console.log(recentlyViewedProducts)
 }
 
 let style = `
