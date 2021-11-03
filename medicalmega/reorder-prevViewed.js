@@ -505,7 +505,7 @@ let mut = new MutationObserver(function (muts) {
             .catch(error => console.log('error', error));
             addToCart();
     }
-     if (location.pathname.includes('product') && document.querySelectorAll('.ordered-products').length == 0) {
+    if (location.pathname.includes('product') && document.querySelector('.ordered-products .title') && document.querySelectorAll('.ordered-products').length == 0) {
         mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
