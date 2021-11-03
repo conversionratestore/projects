@@ -419,10 +419,10 @@ let style = `
                 }
             }
         </style>`;
-        
+
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
+    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery').length == 6) {
         mut.disconnect();
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', style);
@@ -500,7 +500,7 @@ let mut = new MutationObserver(function (muts) {
             .catch(error => console.log('error', error));
             addToCart();
     }
-     if (location.pathname.includes('product') && document.querySelectorAll('.gallery-parent').length == 0) {
+     if (location.pathname.includes('product')) {
          mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
