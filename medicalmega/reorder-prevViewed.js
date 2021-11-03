@@ -1,3 +1,4 @@
+window.onload  = function () {
 let recentlyViewedProducts = [];
 let action,
     label;
@@ -111,7 +112,7 @@ function pushProducts() {
         });
     }
 }
-window.onload  = function () {
+
     console.log('reorder loaded')
     document.body.insertAdjacentHTML('afterbegin', `
             <style>
