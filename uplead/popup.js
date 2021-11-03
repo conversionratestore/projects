@@ -195,9 +195,12 @@ let start = setInterval(() => {
 		document.head.insertAdjacentHTML('afterbegin', style)
 		document.body.insertAdjacentHTML('beforeend', page)
 
+		const btn = document.querySelector('.btn-custom')
+
 		document.querySelector('.react-switch-bg')?.click()
 
 		document.addEventListener('click', closeModal)
+		btn.addEventListener('click', clickOnBtn)
 
 		function closeModal(e) {
 			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
@@ -221,6 +224,17 @@ let start = setInterval(() => {
 					});
 				}
 			}
+		}
+
+		function clickOnBtn(e) {
+			e.target.open('/subscriptions')
+			
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Pop up with motivation to upgrade',
+				'eventAction': 'Click on CTA Start Plan Now'
+			});
 		}
 
 		(function(h,o,t,j,a,r){
@@ -252,4 +266,3 @@ let start = setInterval(() => {
 		});
 	}
 }, 200)
-
