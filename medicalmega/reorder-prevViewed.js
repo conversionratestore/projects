@@ -193,17 +193,35 @@ function addToCart() {
 }
 
 function pushProducts() {
-    if (document.querySelector('.product-price')) {
-        recentlyViewedProducts.push({
-            'productid': document.querySelector('input[name="product_id"]').value,
-            'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
-            'variationid': document.querySelector('input[name="product_variant_id"]').value,
-            'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
-            'href': window.location.href,
-            'name': document.querySelectorAll('.center h3')[0].innerHTML,
-        });
-        console.log(recentlyViewedProducts)
+    recentlyViewedProducts.push({
+        'productid': document.querySelector('input[name="product_id"]').value,
+        'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
+        'variationid': document.querySelector('input[name="product_variant_id"]').value,
+        'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
+        'href': window.location.href,
+        'name': document.querySelectorAll('.center h3')[0].innerHTML,
+    });
+    if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != '' && document.querySelector('.product-price')) {
+        recentlyViewedProducts = [...recentlyViewedProducts,...JSON.parse(localStorage.getItem('recentlyViewedProducts'))]
+    } else {
+        if (document.querySelector('.product-price')) {
+            recentlyViewedProducts.push({
+                'productid': document.querySelector('input[name="product_id"]').value,
+                'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
+                'variationid': document.querySelector('input[name="product_variant_id"]').value,
+                'imgsrc': document.querySelectorAll('.product_img')[0].getAttribute('src'),
+                'href': window.location.href,
+                'name': document.querySelectorAll('.center h3')[0].innerHTML,
+            });
+        }
     }
+    
+    recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+            t.place === thing.place && t.productid === thing.productid
+        ))
+    )
+    localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
 }
 
 let style = `
@@ -582,13 +600,6 @@ let mut = new MutationObserver(function (muts) {
         } else {
             pushProducts();
         }
-
-        recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
-            index === self.findIndex((t) => (
-                t.place === thing.place && t.productid === thing.productid
-            ))
-        )
-        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
 
         fetch("/cart.html", optionFetch).then(res => res.json())
             .then(data => {
