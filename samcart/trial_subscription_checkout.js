@@ -294,17 +294,17 @@ window.onload  = function () {
             label = 'Contact form';
             pushDataLayer(action, label)
         })
-        document.querySelector('#card-number').addEventListener('click', () => {
+        document.querySelector('#card-number [stripe-element-decorator]').addEventListener('click', () => {
             action =  'Click on input Card Number',
             label = 'Contact form';
             pushDataLayer(action, label)
         })
-        document.querySelector('#card-expiry').addEventListener('click', () => {
+        document.querySelector('#card-expiry [stripe-element-decorator]').addEventListener('click', () => {
             action =  'Click on input MM YY',
             label = 'Contact form';
             pushDataLayer(action, label)
         })
-        document.querySelector('#card-cvc').addEventListener('click', () => {
+        document.querySelector('#card-cvc [stripe-element-decorator]').addEventListener('click', () => {
             action =  'Click on input CVC',
             label = 'Contact form';
             pushDataLayer(action, label)
