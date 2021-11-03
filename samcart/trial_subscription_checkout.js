@@ -172,7 +172,7 @@ window.onload  = function () {
             </a>`;
 
         if (document.querySelector(".apple-pay:not(.ng-hide)")) {
-            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", applePayBtn);
+            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("afterbegin", applePayBtn);
             document.querySelector('.btn_pay').addEventListener('click', () => {
                 action = 'Click on Apple pay';
                 pushDataLayer(action)
@@ -181,7 +181,7 @@ window.onload  = function () {
         }
     
         if (document.querySelector(".google-pay:not(.ng-hide)")) {
-            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("beforeend", googlePayBtn)
+            document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("afterbegin", googlePayBtn)
             document.querySelector('.btn_pay').addEventListener('click', () => {
                 action = 'Click on Google pay';
                 pushDataLayer(action)
