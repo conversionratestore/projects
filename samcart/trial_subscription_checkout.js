@@ -222,7 +222,7 @@ window.onload  = function () {
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
         if (localStorage.getItem('paymentSystem')) {
-            let paymentSystem = JSON.parse(localStorage.getItem('paymentSystem'));
+            let paymentSystem = localStorage.getItem('paymentSystem');
             if (paymentSystem == 'payPal') {
                 console.log(paymentSystem)
                 document.querySelectorAll('.custom-control.custom-radio input')[1].click()
