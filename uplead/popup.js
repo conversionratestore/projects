@@ -11,7 +11,7 @@ let percent
 let plan
 
 let dataLayerInterval = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ'].dataLayer) {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer) {
 		clearInterval(dataLayerInterval)
 
 		percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
