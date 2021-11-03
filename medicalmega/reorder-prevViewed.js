@@ -2,6 +2,91 @@ let recentlyViewedProducts = [];
 let action,
     label;
 
+let optionFetch = {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
+}
+
+function resData(data) {
+    if (mm.userId != 0) {
+         let dateArr = data.date.split('-'),
+            dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
+        if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0 ) {
+            document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
+            <div class="gallery-parent ordered">
+                <h2 class="title">Your recent orders</h2>
+                <p class="id-order">Order #${data.number}</p>
+                <dl class="gallery"></dl>
+                <button type="button" class="view-more" hidden>View more products</button>
+                
+                <div class="ordered-bottom">
+                    <div class="d-flex">
+                        <div>
+                            <p class="c-gray">Order date:</p>
+                            <p class="c-gray">Total:</p>
+                        </div>
+                        <div>
+                            <p>${dateFormat}</p>
+                            <p class="sum"></p>
+                        </div>
+                    </div>
+                    <a href="https://medicalmega.com/reorder/${data.number}" class="btn-reorder">Reorder</a>
+                </div>
+                <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
+            </div>`);
+
+            document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total}`;
+        
+            document.querySelector('.ordered .show-more').addEventListener('click', () => {
+                action = 'Click on Show more Orders button';
+                label = 'PL section Your recent orders';
+                pushDataLayer(action,label)
+            })
+            document.querySelector('.btn-reorder').addEventListener('click', () => {
+                action = 'Click on Reorder button';
+                label = 'PL section Your recent orders';
+                pushDataLayer(action,label)
+            })
+        }
+                  
+        if (window.location.pathname.includes('/product') && data["items"].length > 0) {
+            document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
+            <div class="ordered-products ordered gallery-parent">
+                <h2 class="title">Recently Ordered Products</h2>
+                <dl class="gallery"></dl>
+                <button type="button" class="view-more" hidden>View more products</button>
+            </div>`);
+
+            if (data["items"].length > 4) {
+                document.querySelector('.view-more').hidden = false;
+            }
+
+        }
+        for (let i = 0; i < data["items"].length; i++) {
+            let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
+                <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
+                <a href="${data["items"][i].url}">${data["items"][i].title}</a>
+                <b>$ ${data["items"][i].price.toFixed(2)}</b>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                    <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
+                    <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
+                    <input type="hidden" name="quantity" value="1">
+                </form>
+                <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
+            </dd>`;
+            if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
+                document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
+            }
+            if (window.location.pathname.includes('/product')) {
+                document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
+            }
+            addToCart();
+        }
+    }
+}
 function pushDataLayer(action,label) {
     console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
@@ -403,75 +488,10 @@ let mut = new MutationObserver(function (muts) {
             }
         }
     
-        fetch("/cart.html", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
-        }).then(res => res.json())
+        fetch("/cart.html", optionFetch).then(res => res.json())
             .then(data => {
-                console.log(data)
-                if (mm.userId != 0) {
-                    let dateArr = data.date.split('-'),
-                    dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
-                    if (data["items"].length > 0) {
-                        document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
-                        <div class="gallery-parent ordered">
-                            <h2 class="title">Your recent orders</h2>
-                            <p class="id-order">Order #${data.number}</p>
-                            <dl class="gallery"></dl>
-                            <button type="button" class="view-more" hidden>View more products</button>
-                            
-                            <div class="ordered-bottom">
-                                <div class="d-flex">
-                                    <div>
-                                        <p class="c-gray">Order date:</p>
-                                        <p class="c-gray">Total:</p>
-                                    </div>
-                                    <div>
-                                        <p>${dateFormat}</p>
-                                        <p class="sum"></p>
-                                    </div>
-                                </div>
-                                <a href="https://medicalmega.com/reorder/${data.number}" class="btn-reorder">Reorder</a>
-                            </div>
-                            <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
-                        </div>`);
-
-                        document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total}`;
-                    
-                        document.querySelector('.ordered .show-more').addEventListener('click', () => {
-                            action = 'Click on Show more Orders button';
-                            label = 'PL section Your recent orders';
-                            pushDataLayer(action,label)
-                        })
-                        document.querySelector('.btn-reorder').addEventListener('click', () => {
-                            action = 'Click on Reorder button';
-                            label = 'PL section Your recent orders';
-                            pushDataLayer(action,label)
-                        })
-                    }
-                  
-                    for (let i = 0; i < data["items"].length; i++) {
-                        let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
-                            <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
-                            <a href="${data["items"][i].url}">${data["items"][i].title}</a>
-                            <b>$ ${data["items"][i].price.toFixed(2)}</b>
-                            <form action="https://medicalmega.com/cart.html" method="post">
-                                <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
-                                <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
-                                <input type="hidden" name="quantity" value="1">
-                            </form>
-                            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
-                        </dd>`;
-                        
-                        document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
-                        
-                        addToCart();
-                    }
-                }
-                
+                console.log(data) 
+                resData(data)
             })
             .catch(error => console.log('error', error));
             addToCart();
@@ -557,48 +577,11 @@ let mut = new MutationObserver(function (muts) {
             ))
         )
         localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
-                fetch("/cart.html", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
-        }).then(res => res.json())
+
+        fetch("/cart.html", optionFetch).then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (mm.userId != 0) {
-                    if (data["items"].length > 0) {
-                        document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
-                        <div class="ordered-products ordered gallery-parent">
-                            <h2 class="title">Recently Ordered Products</h2>
-                            <dl class="gallery"></dl>
-                            <button type="button" class="view-more" hidden>View more products</button>
-                        </div>`);
-
-                        if (data["items"].length > 4) {
-                            document.querySelector('.view-more').hidden = false;
-                        }
-
-                    }
-                    for (let i = 0; i < data["items"].length; i++) {
-                        let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
-                            <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
-                            <a href="${data["items"][i].url}">${data["items"][i].title}</a>
-                            <b>$ ${data["items"][i].price.toFixed(2)}</b>
-                            <form action="https://medicalmega.com/cart.html" method="post">
-                                <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
-                                <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
-                                <input type="hidden" name="quantity" value="1">
-                            </form>
-                            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
-                        </dd>`;
-                       
-                            document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
-                        
-                        addToCart();
-                    }
-                }
-                
+                resData(data)
             })
             .catch(error => console.log('error', error));
         
