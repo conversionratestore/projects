@@ -122,6 +122,7 @@ let mut = new MutationObserver(function (muts) {
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', `
                 <style>
+            
             .gallery dd span img {
                     max-height: 140px;}
             [hidden] {
@@ -327,6 +328,12 @@ let mut = new MutationObserver(function (muts) {
                 }
                 .gallery {
                     max-width: 375px;
+                }
+            }
+            @media only screen and (max-width: 480px)  {
+                .gallery {
+                    max-width: 306px;
+                    justify-content: flex-start
                 }
             }
         </style>`);
