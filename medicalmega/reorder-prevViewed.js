@@ -422,7 +422,7 @@ let style = `
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery').length == 6) {
+    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
         mut.disconnect();
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', style);
