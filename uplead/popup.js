@@ -11,21 +11,40 @@ let start = setInterval(() => {
 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
 		clearInterval(start)
 
-		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
-		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan')
+		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
+		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
+		let save
+
+		switch (percent) {
+			case 'essentials':
+				save = 298
+				break
+			case 'plus':
+				save = 598
+				break
+			case 'professional':
+				save = 1198
+				break
+			case 'elite':
+				save = 1198
+				break
+			default: 
+				save = 0
+				break
+		}
 
 		const style = `
 	<style>
 		.modal-custom {
 			padding: 20px 0;
-			position: fixed; /* Stay in place */		
+			position: fixed;
 			display: none;
-			z-index: 1; /* Sit on top */
+			z-index: 1; 
 			left: 0;
 			top: 0;
-			width: 100%; /* Full width */
-			height: 100%; /* Full height */
-			overflow: auto; /* Enable scroll if needed */
+			width: 100%; 
+			height: 100%;
+			overflow: auto; 
 			background-color: rgba(0,0,0,0.6);
 		}
 		
@@ -149,10 +168,13 @@ let start = setInterval(() => {
 			font-size: 24px;
 		}
 		
-		.credits,
-		.data {
+		.credits {
 			font-weight: 700;
 			color: #69727A;
+		}
+		
+		.plan {
+			text-transform: capitalize;
 		}
 	</style>
 `
@@ -160,12 +182,12 @@ let start = setInterval(() => {
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
 	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
-	    <p class="credits">WOW you already used <span class="data">90%</span><br>of your credits this month</p>
-	    <p class="title"><span class="styled">Save $598</span><br>on your ${ plan } plan</p>
+	    <p class="credits">WOW you already used ${ percent }%<br>of your credits this month</p>
+	    <p class="title"><span class="styled">Save $${ save }</span><br>on your <br><span class="plan">${ plan }</span> plan</p>
 	    <p class="subtitle">by switching to annual plan</p>
 	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
 	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
-	    <button type="button" class="btn-custom">Save $598</button>	 
+	    <button type="button" class="btn-custom">Save $${ save }</button>	 
 	    <svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>  		
 	</div>
 </div>`
@@ -178,7 +200,6 @@ let start = setInterval(() => {
 		document.addEventListener('click', closeModal)
 
 		function closeModal(e) {
-			console.log(e.target)
 			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
 				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 			}
