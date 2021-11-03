@@ -1,14 +1,24 @@
-var dataLayer = dataLayer || [];
-dataLayer.push ({
-	'event': 'debit_credit',
-	'plan': 'Professional',
-	'subscription_type': 'monthly',
-	'available_credits_in_month': 1000,
-	'credits_left': 250
-});
+// var dataLayer = dataLayer || []
+// dataLayer.push({
+// 	'event': 'debit_credit',
+// 	'plan': 'Professional',
+// 	'subscription_type': 'monthly',
+// 	'available_credits_in_month': 1000,
+// 	'credits_left': 250,
+// })
 
-let percent = window.google_tag_manager["GTM-MTN4VBZ"].dataLayer.get('bannerType')
-let plan = window.google_tag_manager["GTM-MTN4VBZ"].dataLayer.get('plan')
+let percent
+let plan
+
+let dataLayerInterval = setInterval(() => {
+	if (dataLayer) {
+		clearInterval(dataLayerInterval)
+
+		percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
+		plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan')
+	}
+}, 200)
+
 
 console.log(percent)
 
@@ -159,7 +169,7 @@ const page = `
 	<div class="popup-custom">
 	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
 	    <p class="credits">WOW you already used <span class="data">90%</span><br>of your credits this month</p>
-	    <p class="title"><span class="styled">Save $598</span><br>on your ${plan} plan</p>
+	    <p class="title"><span class="styled">Save $598</span><br>on your ${ plan } plan</p>
 	    <p class="subtitle">by switching to annual plan</p>
 	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
 	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
