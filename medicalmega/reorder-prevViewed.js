@@ -506,7 +506,7 @@ let mut = new MutationObserver(function (muts) {
             addToCart();
     }
     mut.observe(document, optionMut);
-    if (document.querySelector('.product-desc') && document.querySelectorAll('.ordered-products').length > 1) {
+    if (document.querySelector('.product-desc') && document.querySelectorAll('.ordered-products').length == 0) {
         mut.disconnect();
         console.log('true')
         document.body.insertAdjacentHTML('afterbegin', style);
