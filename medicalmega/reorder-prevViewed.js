@@ -46,7 +46,7 @@ function resData(data) {
                 <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
             </div>`);
 
-            document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total}`;
+            document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
         
             document.querySelector('.ordered .show-more').addEventListener('click', () => {
                 action = 'Click on Show more Orders button';
