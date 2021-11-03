@@ -2,7 +2,8 @@ let recentlyViewedProducts = [];
 let action,
     label;
 
-let recentlyOrderedProducts = false;
+let recentlyOrderedProducts = false,
+    changed = false;
 
 let optionFetch = {
     method: "POST",
@@ -426,9 +427,10 @@ let style = `
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
+    if (document.querySelector('.homeslider__container') && changed === false) {
         mut.disconnect();
         console.log('loaded')
+        changed = true;
         document.body.insertAdjacentHTML('afterbegin', style);
 
         document.querySelectorAll('.gallery').forEach((item, index) => {
