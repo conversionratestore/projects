@@ -481,7 +481,7 @@ window.onload  = function () {
                 </div>
                 <p>2-3 business days*</p>
             </div>`);
-            document.querySelector('.products_gallery').insertAdjacentHTML('beforebegin', `
+            document.querySelectorAll('.btmcon.product-desc')[document.querySelectorAll('.btmcon.product-desc').length - 1].insertAdjacentHTML('beforebegin', `
             <div class="price-product">
                 <p>Our Price:</p>
                 <p>${document.querySelector('.product-price').innerHTML}</p>
