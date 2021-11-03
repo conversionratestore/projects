@@ -10,6 +10,11 @@ let optionFetch = {
     body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
 }
 
+let optionMut = {
+    childList: true,
+    subtree: true
+}
+
 function resData(data) {
     if (mm.userId != 0) {
          let dateArr = data.date.split('-'),
@@ -196,16 +201,8 @@ function pushProducts() {
         });
     }
 }
-let optionMut = {
-    childList: true,
-    subtree: true
-}
-let mut = new MutationObserver(function (muts) {
-    console.log('mut')
-    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
-        mut.disconnect();
-        console.log('loaded')
-        document.body.insertAdjacentHTML('afterbegin', `
+
+let style = `
                 <style>
             
             .gallery dd span img {
@@ -421,7 +418,14 @@ let mut = new MutationObserver(function (muts) {
                     justify-content: flex-start
                 }
             }
-        </style>`);
+        </style>`;
+        
+let mut = new MutationObserver(function (muts) {
+    console.log('mut')
+    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
+        mut.disconnect();
+        console.log('loaded')
+        document.body.insertAdjacentHTML('afterbegin', style);
 
         document.querySelectorAll('.gallery').forEach((item, index) => {
             let galleryWrapper = document.createElement('div');
@@ -498,6 +502,7 @@ let mut = new MutationObserver(function (muts) {
     }
      if (location.pathname.includes('product') && document.querySelectorAll('.gallery-parent').length == 0) {
          mut.disconnect();
+        document.body.insertAdjacentHTML('afterbegin', style);
         document.body.insertAdjacentHTML('afterbegin', `
         <style>
             #mainbody {
