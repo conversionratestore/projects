@@ -197,7 +197,7 @@ let start = setInterval(() => {
 
 		const btn = document.querySelector('.btn-custom')
 
-		document.querySelector('.react-switch-bg')?.click()
+		document.querySelector('.billing-switch [aria-checked=false]')?.click()
 
 		document.addEventListener('click', closeModal)
 		btn.addEventListener('click', clickOnBtn)
@@ -227,7 +227,7 @@ let start = setInterval(() => {
 		}
 
 		function clickOnBtn() {
-			window.target.open('/subscriptions')
+			window.open('/subscriptions')
 
 			window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
