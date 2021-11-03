@@ -226,9 +226,9 @@ let start = setInterval(() => {
 			}
 		}
 
-		function clickOnBtn(e) {
-			e.target.open('/subscriptions')
-			
+		function clickOnBtn() {
+			window.target.open('/subscriptions')
+
 			window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
 				'event': 'event-to-ga',
@@ -266,3 +266,4 @@ let start = setInterval(() => {
 		});
 	}
 }, 200)
+
