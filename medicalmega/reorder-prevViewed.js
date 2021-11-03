@@ -416,7 +416,7 @@ let style = `
                 .gallery {
                     max-width: 300px;
                     justify-content: space-between;
-                    20px auto 10px!important
+                    margin: 20px auto 10px!important;
                 }
                 .show-more, .view-more {
                     margin: 0;
