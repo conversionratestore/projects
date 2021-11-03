@@ -8,7 +8,7 @@
 // })
 
 let start = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer) {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
 		clearInterval(start)
 
 		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType')
@@ -182,7 +182,7 @@ let start = setInterval(() => {
 			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
 				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 			}
-		}		
+		}
 	}
 }, 200)
 
