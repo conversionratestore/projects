@@ -430,6 +430,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.homeslider__container') && changed === false) {
         mut.disconnect();
         console.log('loaded')
+        console.log( document.querySelectorAll('.gallery').length)
         changed = true;
         document.body.insertAdjacentHTML('afterbegin', style);
 
