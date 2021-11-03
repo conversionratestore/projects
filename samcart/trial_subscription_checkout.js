@@ -246,20 +246,18 @@ window.onload  = function () {
                     document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
                 }
                 if (document.querySelector('#card-number')) {
-                    document.querySelector('#card-number [stripe-element-decorator]').addEventListener('click', (e) => {
+                    document.querySelector('.card-num-row').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
                         action =  'Click on input Card Number',
                         label = 'Contact form';
                         pushDataLayer(action, label)
                     })
-                    document.querySelector('#card-expiry [stripe-element-decorator]').addEventListener('click', (e) => {
-                         e.stopImmediatePropagation()
+                    document.querySelector('.cvv-col').addEventListener('click', () => {
                         action =  'Click on input MM YY',
                         label = 'Contact form';
                         pushDataLayer(action, label)
                     })
-                    document.querySelector('#card-cvc [stripe-element-decorator]').addEventListener('click', (e) => {
-                         e.stopImmediatePropagation()
+                    document.querySelector('.exp-col').addEventListener('click', () => {
                         action =  'Click on input CVC',
                         label = 'Contact form';
                         pushDataLayer(action, label)
@@ -321,17 +319,17 @@ window.onload  = function () {
             pushDataLayer(action, label)
         })
         if (document.querySelector('#card-number')) {
-            document.querySelector('#card-number [stripe-element-decorator]').addEventListener('click', () => {
+            document.querySelector('.card-num-row').addEventListener('click', () => {
                 action =  'Click on input Card Number',
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('#card-expiry [stripe-element-decorator]').addEventListener('click', () => {
+            document.querySelector('.cvv-col').addEventListener('click', () => {
                 action =  'Click on input MM YY',
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('#card-cvc [stripe-element-decorator]').addEventListener('click', () => {
+            document.querySelector('.exp-col').addEventListener('click', () => {
                 action =  'Click on input CVC',
                 label = 'Contact form';
                 pushDataLayer(action, label)
