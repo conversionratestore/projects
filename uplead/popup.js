@@ -15,7 +15,7 @@ let start = setInterval(() => {
 		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
 		let save
 
-		switch (percent) {
+		switch (plan) {
 			case 'essentials':
 				save = 298
 				break
@@ -28,7 +28,7 @@ let start = setInterval(() => {
 			case 'elite':
 				save = 1198
 				break
-			default: 
+			default:
 				save = 0
 				break
 		}
@@ -202,8 +202,54 @@ let start = setInterval(() => {
 		function closeModal(e) {
 			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
 				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+
+				if(e.target.matches('.modal-custom')) {
+					window.dataLayer = window.dataLayer || [];
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on space out of pop up',
+					});
+				}
+
+				if(e.target.matches('.popup-custom svg')) {
+					window.dataLayer = window.dataLayer || [];
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on X to close pop up',
+					});
+				}
 			}
 		}
+
+		(function(h,o,t,j,a,r){
+			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+			h._hjSettings={hjid:2615465,hjsv:6};
+			a=o.getElementsByTagName('head')[0];
+			r=o.createElement('script');r.async=1;
+			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+			a.appendChild(r);
+		})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+		window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+		hj('trigger', 'tv_popup_with_motivation_to_upgrade');
+		hj('event', 'popup_with_motivation_to_upgrade');
+
+
+		window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded'
+		});
+
+
+		window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded'
+		});
 	}
 }, 200)
 
