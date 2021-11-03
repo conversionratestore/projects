@@ -117,7 +117,7 @@ let optionMut = {
 }
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container' && !document.querySelectorAll('.gallery-parent'))) {
+    if (document.querySelector('.homeslider__container') && !document.querySelectorAll('.gallery-parent')) {
          mut.disconnect();
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', `
