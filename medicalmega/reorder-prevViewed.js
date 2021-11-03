@@ -594,9 +594,9 @@ let mut = new MutationObserver(function (muts) {
                 console.log(data)
                 resData(data)
             })
-            .catch(error => console.log('error', error));
-        
+            .catch(error => console.log('error', error));  
     }
+    
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
