@@ -217,7 +217,7 @@ window.onload  = function () {
         })
     }
 
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase/') {
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
         document.querySelector('[ng-non-bindable]').remove();
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
