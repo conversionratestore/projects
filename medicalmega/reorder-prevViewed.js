@@ -576,7 +576,7 @@ let mut2 = new MutationObserver(function (muts) {
    console.log('mut2')    
 })
 
-mut.observe(document, {
+mut2.observe(document, {
    childList: true,
    subtree: true
 });
