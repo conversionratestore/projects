@@ -117,8 +117,8 @@ let optionMut = {
 }
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.homeslider__container') && !document.querySelectorAll('.gallery-parent')) {
-         mut.disconnect();
+    if (document.querySelector('.homeslider__container') && document.querySelectorAll('.gallery-parent').length == 0) {
+        mut.disconnect();
         console.log('loaded')
         document.body.insertAdjacentHTML('afterbegin', `
                 <style>
@@ -331,155 +331,71 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`);
 
-        if (window.location.pathname == '/') {
-            document.querySelectorAll('.gallery').forEach((item, index) => {
-                let galleryWrapper = document.createElement('div');
-                galleryWrapper.className = 'gallery-parent';
+        document.querySelectorAll('.gallery').forEach((item, index) => {
+            let galleryWrapper = document.createElement('div');
+            galleryWrapper.className = 'gallery-parent';
 
-                let htmlTitle = `<h2 class="title"></h2>`;
-                if (index < 6) {
-                    galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
-                }
-
-                item.parentNode.appendChild(galleryWrapper);
-
-                return galleryWrapper.appendChild(item);
-            });
-
-            const galleryDd = document.querySelectorAll('.gallery dd');
-            for (let i = 0; i < galleryDd.length; i++) {
-                galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`);
+            let htmlTitle = `<h2 class="title"></h2>`;
+            if (index < 6) {
+                galleryWrapper.insertAdjacentHTML('afterbegin', htmlTitle);
             }
 
-            const galleryParent = document.querySelectorAll('.gallery-parent');
-            for (let i = 0; i < galleryParent.length; i++) {
-                if (i < 5) {
-                    galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`);
-                }
+            item.parentNode.appendChild(galleryWrapper);
+
+            return galleryWrapper.appendChild(item);
+        });
+
+        const galleryDd = document.querySelectorAll('.gallery dd');
+        for (let i = 0; i < galleryDd.length; i++) {
+            galleryDd[i].insertAdjacentHTML('beforeend', `<div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>`);
+        }
+
+        const galleryParent = document.querySelectorAll('.gallery-parent');
+        for (let i = 0; i < galleryParent.length; i++) {
+            if (i < 5) {
+                galleryParent[i].insertAdjacentHTML('beforeend', `<a href="#" class="show-more">Show more</a>`);
             }
-            const arrTitle = ['New products', 'Ostomy', 'Wound care', 'Hand Sanitizing', 'Protective Gear', 'Other products'],
-                galleryTitle = document.querySelectorAll('.title'),
-                showMore = document.querySelectorAll('.show-more');
+        }
+        const arrTitle = ['New products', 'Ostomy', 'Wound care', 'Hand Sanitizing', 'Protective Gear', 'Other products'],
+            galleryTitle = document.querySelectorAll('.title'),
+            showMore = document.querySelectorAll('.show-more');
 
-            for (let i = 0; i < arrTitle.length; i++) {
-                galleryTitle[i].innerHTML = arrTitle[i];
-                let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
-                if (i < 5) {
-                    showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`);
-                }
-            }
-
-            if (localStorage.getItem('recentlyViewedProducts')) {
-                document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
-                <div class="gallery-parent viewed">
-                    <h2 class="title">Recently viewed Products</h2>
-                    <dl class="gallery"></dl>
-                    <button type="button" class="view-more" hidden>View more products</button>
-                </div>`);
-
-                let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
-                for (let i = 0; i < cards.length; i++) {
-                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
-                        `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
-                            <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
-                            <a href="${cards[i].href}">${cards[i].name}</a>
-                            <b>${cards[i].price}</b>
-                            <form action="https://medicalmega.com/cart.html" method="post">
-                                <input type="hidden" name="product_id" value="${cards[i].productid}">
-                                <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
-                                <input type="hidden" name="quantity" value="1">
-                            </form>
-                            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
-                        </dd>`)
-                }
-                if (cards.length > 4) {
-                    document.querySelector('.view-more').hidden = false;
-                }
+        for (let i = 0; i < arrTitle.length; i++) {
+            galleryTitle[i].innerHTML = arrTitle[i];
+            let changedTitle = arrTitle[i].split(' ').join('-').toLowerCase();
+            if (i < 5) {
+                showMore[i].setAttribute('href', `https://medicalmega.com/category/${changedTitle}`);
             }
         }
 
-        if (location.pathname.includes('product')) {
-            document.body.insertAdjacentHTML('afterbegin', `
-            <style>
-                #mainbody {
-                    overflow: visible;
-                }
-                .ordered-products.gallery-parent .gallery dd {
-                    width: 25%;
-                    box-sizing: border-box;
-                    padding-right: 10px;
-                }
-                .ordered-products.gallery-parent {
-                    width: calc(100% + 15px);
-                }
-                .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
-                    padding-left: 0;
-                    font-size: 24px;
-                    line-height: 33px;
-                }
-                .ordered-products .view-more {
-                    margin: 10px 0 0 0;
-                    width: calc(100% - 10px);
-                }
-                .gallery {
-                    margin-left: 0!important;
-                }
-                .show-more {
-                    margin: 10px 0!important;
-                }
-                @media only screen and (max-width: 1010px)  {
-                    .ordered-products.gallery-parent {
-                        width: 100%;
-                    }
-                    .ordered-products.gallery-parent .gallery {
-                        max-width: calc(100% + 15px);
-                    }
-                    .ordered-products.gallery-parent .gallery dd {
-                        width: 33.33%;
-                        padding-right: 15px;
-                        box-sizing: content-box;
-                    }
-                }
-                @media only screen and (max-width: 758px)  {
-                    .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
-                        font-size: 20px;
-                        line-height: 20px;
-                    }
-                    dl.gallery dd:last-child {
-                        margin-right: 0;
-                    9}
-                    .ordered-products.gallery-parent .gallery dd {
-                        width: 140px;
-                    }
-                }
-                @media only screen and (max-width: 479px)  {
-                    .ordered-products.gallery-parent {
-                        // margin-left: -20px;
-                        // width: calc(100% + 30px);
-                    }
-                    dl.gallery {
-                        width: calc(100% + 15px);
-                    }
-                }
-            </style>`)
-            if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != []){
-                let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
-                for (let i = 0; i < storageItems.length; i++) {
-                    recentlyViewedProducts.push(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
-                }
-                pushProducts();
-            } else {
-                pushProducts();
+        if (localStorage.getItem('recentlyViewedProducts')) {
+            document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
+            <div class="gallery-parent viewed">
+                <h2 class="title">Recently viewed Products</h2>
+                <dl class="gallery"></dl>
+                <button type="button" class="view-more" hidden>View more products</button>
+            </div>`);
+
+            let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
+            for (let i = 0; i < cards.length; i++) {
+                document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
+                    `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
+                        <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
+                        <a href="${cards[i].href}">${cards[i].name}</a>
+                        <b>${cards[i].price}</b>
+                        <form action="https://medicalmega.com/cart.html" method="post">
+                            <input type="hidden" name="product_id" value="${cards[i].productid}">
+                            <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
+                            <input type="hidden" name="quantity" value="1">
+                        </form>
+                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                    </dd>`)
             }
-
-            recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
-                index === self.findIndex((t) => (
-                    t.place === thing.place && t.productid === thing.productid
-                ))
-            )
-            localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+            if (cards.length > 4) {
+                document.querySelector('.view-more').hidden = false;
+            }
         }
-
+    
         fetch("/cart.html", {
             method: "POST",
             headers: {
@@ -492,7 +408,7 @@ let mut = new MutationObserver(function (muts) {
                 if (mm.userId != 0) {
                     let dateArr = data.date.split('-'),
                     dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
-                    if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0) {
+                    if (data["items"].length > 0) {
                         document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
                         <div class="gallery-parent ordered">
                             <h2 class="title">Your recent orders</h2>
@@ -529,7 +445,122 @@ let mut = new MutationObserver(function (muts) {
                             pushDataLayer(action,label)
                         })
                     }
-                    if (window.location.pathname.includes('/product') && data["items"].length > 0) {
+                  
+                    for (let i = 0; i < data["items"].length; i++) {
+                        let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
+                            <span>&nbsp;<a href="${data["items"][i].url}"><img src="${data["items"][i].image_url}" alt="${data["items"][i].title}"></a>&nbsp;</span>
+                            <a href="${data["items"][i].url}">${data["items"][i].title}</a>
+                            <b>$ ${data["items"][i].price.toFixed(2)}</b>
+                            <form action="https://medicalmega.com/cart.html" method="post">
+                                <input type="hidden" name="product_id" value="${data["items"][i].product_id}">
+                                <input type="hidden" name="product_variant_id" value="${data["items"][i].variant_id}">
+                                <input type="hidden" name="quantity" value="1">
+                            </form>
+                            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
+                        </dd>`;
+                        
+                        document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
+                        
+                        addToCart();
+                    }
+                }
+                
+            })
+            .catch(error => console.log('error', error));
+            addToCart();
+    }
+     if (location.pathname.includes('product') && document.querySelectorAll('.gallery-parent').length == 0) {
+         mut.disconnect();
+        document.body.insertAdjacentHTML('afterbegin', `
+        <style>
+            #mainbody {
+                overflow: visible;
+            }
+            .ordered-products.gallery-parent .gallery dd {
+                width: 25%;
+                box-sizing: border-box;
+                padding-right: 10px;
+            }
+            .ordered-products.gallery-parent {
+                width: calc(100% + 15px);
+            }
+            .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
+                padding-left: 0;
+                font-size: 24px;
+                line-height: 33px;
+            }
+            .ordered-products .view-more {
+                margin: 10px 0 0 0;
+                width: calc(100% - 10px);
+            }
+            .gallery {
+                margin-left: 0!important;
+            }
+            .show-more {
+                margin: 10px 0!important;
+            }
+            @media only screen and (max-width: 1010px)  {
+                .ordered-products.gallery-parent {
+                    width: 100%;
+                }
+                .ordered-products.gallery-parent .gallery {
+                    max-width: calc(100% + 15px);
+                }
+                .ordered-products.gallery-parent .gallery dd {
+                    width: 33.33%;
+                    padding-right: 15px;
+                    box-sizing: content-box;
+                }
+            }
+            @media only screen and (max-width: 758px)  {
+                .ordered-products.gallery-parent h2.title, .ordered-products.gallery-parent .title {
+                    font-size: 20px;
+                    line-height: 20px;
+                }
+                dl.gallery dd:last-child {
+                    margin-right: 0;
+                9}
+                .ordered-products.gallery-parent .gallery dd {
+                    width: 140px;
+                }
+            }
+            @media only screen and (max-width: 479px)  {
+                .ordered-products.gallery-parent {
+                    // margin-left: -20px;
+                    // width: calc(100% + 30px);
+                }
+                dl.gallery {
+                    width: calc(100% + 15px);
+                }
+            }
+        </style>`)
+        if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != []){
+            let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
+            for (let i = 0; i < storageItems.length; i++) {
+                recentlyViewedProducts.push(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
+            }
+            pushProducts();
+        } else {
+            pushProducts();
+        }
+
+        recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
+            index === self.findIndex((t) => (
+                t.place === thing.place && t.productid === thing.productid
+            ))
+        )
+        localStorage.setItem('recentlyViewedProducts', JSON.stringify(recentlyViewedProducts));
+                fetch("/cart.html", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (mm.userId != 0) {
+                    if (data["items"].length > 0) {
                         document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
                         <div class="ordered-products ordered gallery-parent">
                             <h2 class="title">Recently Ordered Products</h2>
@@ -554,20 +585,17 @@ let mut = new MutationObserver(function (muts) {
                             </form>
                             <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="${data["items"][i].qty}"></div>
                         </dd>`;
-                        if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/') {
-                            document.querySelector('.gallery-parent.ordered .gallery').insertAdjacentHTML('beforeend', card);
-                        }
-                        if (window.location.pathname.includes('/product')) {
+                       
                             document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
-                        }
+                        
                         addToCart();
                     }
                 }
                 
             })
             .catch(error => console.log('error', error));
-            addToCart();
-    }
+        
+     }
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.add-to-cart button') && document.querySelectorAll('.add-to-cart button') != []){
         mut.disconnect();
