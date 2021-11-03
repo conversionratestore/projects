@@ -60,7 +60,7 @@ function resData(data) {
         }
                   
         if (window.location.pathname.includes('/product') && data["items"].length > 0) {
-            document.querySelectorAll('.center .btmcon')[0].insertAdjacentHTML('beforeend',`
+            document.querySelector('.center .products_gallery').insertAdjacentHTML('beforebegin',`
             <div class="ordered-products ordered gallery-parent">
                 <h2 class="title">Recently Ordered Products</h2>
                 <dl class="gallery"></dl>
