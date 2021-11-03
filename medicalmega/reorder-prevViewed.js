@@ -420,10 +420,6 @@ let style = `
                     justify-content: space-between;
                     margin: 20px auto 10px!important;
                 }
-                .show-more, .view-more {
-                    margin: 0;
-                }
-                
             }
         </style>`;
 
@@ -530,6 +526,7 @@ let mut = new MutationObserver(function (muts) {
                 padding-left: 0;
                 font-size: 24px;
                 line-height: 33px;
+                padding-top: 0;
             }
             .ordered-products .view-more {
                 margin: 10px 0 0 0;
