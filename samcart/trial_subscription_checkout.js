@@ -248,6 +248,7 @@ window.onload  = function () {
                 if (document.querySelector('#card-number')) {
                     document.querySelector('.card-num-row').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
+                        console.log('click')
                         action =  'Click on input Card Number',
                         label = 'Contact form';
                         pushDataLayer(action, label)
@@ -320,6 +321,7 @@ window.onload  = function () {
         })
         if (document.querySelector('#card-number')) {
             document.querySelector('.card-num-row').addEventListener('click', () => {
+                console.log('click')
                 action =  'Click on input Card Number',
                 label = 'Contact form';
                 pushDataLayer(action, label)
