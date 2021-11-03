@@ -414,12 +414,14 @@ let style = `
             }
             @media only screen and (max-width: 480px)  {
                 .gallery {
-                    max-width: 306px;
+                    max-width: 300px;
                     justify-content: space-between;
+                    20px auto 10px!important
                 }
                 .show-more, .view-more {
                     margin: 0;
                 }
+                
             }
         </style>`;
 
