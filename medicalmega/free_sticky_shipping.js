@@ -1,5 +1,5 @@
 window.onload  = function () {
-    console.log('free_shipping mobile')
+    console.log('free_shipping loaded mobile')
     if (mm.grw != 1) {
     //styles
     document.body.insertAdjacentHTML('afterbegin',`
