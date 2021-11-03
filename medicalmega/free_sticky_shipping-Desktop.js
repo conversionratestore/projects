@@ -1,4 +1,5 @@
 window.onload  = function () {
+    console.log('free_shipping loaded desktop')
     if (mm.grw != 1) {
         
     //styles
