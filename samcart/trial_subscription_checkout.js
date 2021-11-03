@@ -237,13 +237,21 @@ window.onload  = function () {
             if (paymentSystem == 'payPal') {
                 console.log(paymentSystem)
                 document.querySelectorAll('.custom-control.custom-radio input')[1].click()
+                if (document.querySelector('#placeOrder')) {
+                    document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
+                }
             } else if (paymentSystem == 'enroll') {
                 document.querySelectorAll('.custom-control.custom-radio input')[0].click()
+                if (document.querySelector('#placeOrder')) {
+                    document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
+                }
             } else if (paymentSystem == 'applePay' || paymentSystem == 'googlePay') {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
             }
         }
-        document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
+        if (document.querySelector('#placeOrder')) {
+            document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
+        }
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Click on Credit Card payment method';
             pushDataLayer(action)
