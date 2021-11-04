@@ -12,7 +12,7 @@ window.onload  = function () {
                 width: 100%!important;
                 margin: 18px 0 0 0!important;
             }
-            .homeslider__container {
+            .center .homeslider__container {
                 margin-bottom: 40px!important;
             }
             .range-shipping-title {
