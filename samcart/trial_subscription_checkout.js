@@ -229,7 +229,7 @@ window.onload  = function () {
     }
 
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
-        document.querySelector('[ng-non-bindable]').remove();
+        // document.querySelector('[ng-non-bindable]').remove();
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
         if (localStorage.getItem('paymentSystem')) {
@@ -241,33 +241,6 @@ window.onload  = function () {
             } else if (paymentSystem == 'enroll') {
                 document.querySelectorAll('.custom-control.custom-radio input')[0].click()
 
-                if (document.querySelector('.card-num-row')) {
-                    document.querySelector('.card-num-row').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        console.log('click')
-                        action =  'Click on input Card Number',
-                        label = 'Contact form';
-                        pushDataLayer(action, label)
-                    })
-                    document.querySelector('.cvv-col').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        action =  'Click on input CVC',
-                        label = 'Contact form';
-                        pushDataLayer(action, label)
-                    })
-                    document.querySelector('.exp-col').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        action =  'Click on input MM YY',
-                        label = 'Contact form';
-                        pushDataLayer(action, label)
-                    })
-                    document.querySelector('#placeOrder').addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                        action =  'Click on Place Order Now button',
-                        label = 'page Checkout';
-                        pushDataLayer(action, label)
-                    })
-                }
             } else if (paymentSystem == 'applePay' || paymentSystem == 'googlePay') {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
             }
@@ -275,11 +248,46 @@ window.onload  = function () {
 
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Click on Credit Card payment method';
-            pushDataLayer(action)
+            pushDataLayer(action);
+            action = 'Visibility Place Order Now button',
+            label = 'page Checkout';
+            pushDataLayer(action,label);
+            
+            if (document.querySelector('.card-num-row')) {
+                document.querySelector('.card-num-row').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    console.log('click')
+                    action =  'Click on input Card Number',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+                document.querySelector('.cvv-col').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    action =  'Click on input CVC',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+                document.querySelector('.exp-col').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    action =  'Click on input MM YY',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+                document.querySelector('#placeOrder').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    action =  'Click on Place Order Now button',
+                    label = 'page Checkout';
+                    pushDataLayer(action, label)
+                })
+            }
         })
         document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
             action = 'Click on PayPal payment method';
             pushDataLayer(action)
+            
+            action = 'Visibility Place Order Now button',
+            label = 'page Checkout';
+            pushDataLayer(action,label);
         })
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', () => {
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
@@ -339,6 +347,19 @@ window.onload  = function () {
         }
     }
 };
+
+let optionMut = {
+    childList: true,
+    subtree: true
+}
+
+let mut = new MutationObserver(function (muts) {
+    if ( document.querySelector('[ng-non-bindable]')) {
+        mut.disconnect();
+        document.querySelector('[ng-non-bindable]').remove();
+    }
+})
+mut.observe(document, optionMut);
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2592989,hjsv:6};
