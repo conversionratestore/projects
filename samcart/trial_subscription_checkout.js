@@ -237,14 +237,10 @@ window.onload  = function () {
             if (paymentSystem == 'payPal') {
                 console.log(paymentSystem)
                 document.querySelectorAll('.custom-control.custom-radio input')[1].click()
-                if (document.querySelector('#placeOrder')) {
-                    document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
-                }
+
             } else if (paymentSystem == 'enroll') {
                 document.querySelectorAll('.custom-control.custom-radio input')[0].click()
-                if (document.querySelector('#placeOrder')) {
-                    document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
-                }
+
                 if (document.querySelector('.card-num-row')) {
                     document.querySelector('.card-num-row').addEventListener('click', (e) => {
                         e.stopImmediatePropagation()
@@ -266,8 +262,8 @@ window.onload  = function () {
                         pushDataLayer(action, label)
                     })
                     document.querySelector('#placeOrder').addEventListener('click', (e) => {
-                         e.stopImmediatePropagation()
-                        action =  'Click on Try 14 days for FREE button',
+                        e.stopImmediatePropagation()
+                        action =  'Click on Place Order Now button',
                         label = 'page Checkout';
                         pushDataLayer(action, label)
                     })
@@ -276,9 +272,7 @@ window.onload  = function () {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
             }
         }
-        if (document.querySelector('#placeOrder')) {
-            document.querySelector('#placeOrder').innerText = `Try 14 days for FREE`;
-        }
+
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Click on Credit Card payment method';
             pushDataLayer(action)
@@ -338,7 +332,7 @@ window.onload  = function () {
                 pushDataLayer(action, label)
             })
             document.querySelector('#placeOrder').addEventListener('click', (e) => {
-                action =  'Click on Try 14 days for FREE button',
+                action =  'Click on Place Order Now button',
                 label = 'page Checkout';
                 pushDataLayer(action, label)
             })
