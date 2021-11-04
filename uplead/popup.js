@@ -227,8 +227,8 @@ let start = setInterval(() => {
 		}
 
 		function clickOnBtn() {
-			window.open('/subscriptions')
-
+			location.href = '/subscriptions'
+			
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
