@@ -362,7 +362,7 @@ window.onload  = function () {
             pushDataLayer(action)
         })
     }
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', () => {
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
                 action = 'Click on Google pay payment method';
