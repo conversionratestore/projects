@@ -340,7 +340,7 @@ window.onload  = function () {
             action = 'Click on PayPal payment method';
             pushDataLayer(action)
         })
-        document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', (event) => {
+        document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', (e) => {
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
                 action = 'Click on Google pay payment method';
                 pushDataLayer(action)
