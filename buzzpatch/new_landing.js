@@ -6,6 +6,10 @@ let styleNewLanding = /*html*/ `
         background: linear-gradient(180deg, #FFFFFF 0%, #DDDDDF 100%);
     }
 
+    li {
+        list-style: none;
+    }
+
     #faqs {
         background: #FFFFFF !important;
     }
@@ -78,6 +82,225 @@ let styleNewLanding = /*html*/ `
     .nav_block p b{
         color: black;
     }
+
+    /* block_first */
+    .block_first{
+        background: linear-gradient(180deg, #F1F1F1 0%, #ECEEF0 100%);
+        padding: 16px 15px 5px;
+        text-align: center;
+    }
+
+    .block_first h2{
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.1;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #212529;
+        margin-bottom: 12px;
+    }
+
+    .block_first h2 > span{
+        color: #EFAE16;
+    }
+
+    .block_first p{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+        color: #6F6F6F;
+        margin-bottom: 20px;
+    }
+
+    .block_first ul{
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .block_first ul li{
+        position: relative;
+        width: 48%;
+        border: 2px solid #EFAE16;
+        border-radius: 20px;
+        padding: 13px 26px;
+
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.1;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #6F6F6F;
+    }
+
+    .block_first ul li:after,
+    .block_first ul li:before{
+        position: absolute;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 1.3;
+        text-transform: uppercase;
+        color: #EFAE16;
+        right: 50%;
+        transform: translateX(50%);
+        background: #ECEEF0;
+    }
+
+    .block_first ul li:after{
+        content: "Product";
+        width: 70px;
+        bottom: -7px;
+    }
+
+    .block_first ul li:before{
+        content: "100%";
+        width: 54px;
+        top: -7px;
+    }
+
+    /* block_as_seen_on */
+    .block_as_seen_on{
+        background: linear-gradient(180deg, #ECEEF0 0%, #FFFFFF 100%);
+        padding: 1px 15px 72px;
+        text-align: center;
+    }
+
+    .block_as_seen_on h2{
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.1;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #0C0B0B;
+        border-top: 1px solid #D9D9D9;
+        padding-top:40px;
+        margin: 40px 0;
+    }
+
+    .block_as_seen_on > div:first-child{
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #D9D9D9;
+    }
+
+    .block_as_seen_on div ul{
+        margin: 40px 0;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .block_as_seen_on div ul li{
+        width: 30%;
+    }
+
+    .block_as_seen_on div ul li p{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        color: #6F6F6F;
+        margin-bottom: 8px;
+    }
+
+    .block_as_seen_on div ul li p.accent_var{
+        font-style: italic;
+        font-weight: 700;
+        font-size: 16px !important;
+        color: #0C0B0B;
+        margin-top: 8px;
+    }
+
+    .block_as_seen_on div ul li span{
+        position: relative;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 500;
+        font-size: 12px;
+        color: #00B67E;
+        padding-left: 13px;
+    }
+
+    .block_as_seen_on div ul li span::before{
+        position: absolute;
+        content: "";
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/check_circle.svg) center center no-repeat;
+        width: 12px;
+        height: 12px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .button_custom{
+        display: inline-flex;
+        width: 100%;
+        max-width: 343px;
+        height: 66px;
+        align-items: center;
+        justify-content: center;
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 16px !important;
+        line-height: 1 !important;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #FFFFFF !important;
+        background: #FF3C7F;
+        box-shadow: 0px 2px 4px rgba(12, 11, 11, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+        border-radius: 52px;
+        border: 1px solid #FF3C7F;
+        outline: none;
+    }
+
+    /* block_as_seen_on */
+    .block_allergies{
+        background: #FFFFFF;
+        padding: 0 15px;
+    }
+
+    .block_allergies .accent_title{
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 36px !important;
+        line-height: 1.1 !important;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #0C0B0B;
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .block_allergies p:nth-child(3),
+    .block_allergies p:nth-child(6){
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 18px !important;
+        line-height: 1.5 !important;
+        color: #6F6F6F;
+        margin-top: 28px;
+    }
+
+    .block_allergies p:nth-child(3){
+        margin-bottom: 72px;
+    }
+
+    .block_allergies img{
+        margin: 0 -15px;
+    }
+    
+    /* .js-mobile.effectiveness*/
+    .js-mobile.effectiveness{
+        background: linear-gradient(180deg, #FFFFFF 0%, #ECEEF0 100%);
+    }
+
+
+
     
 </style>
 `
@@ -116,18 +339,16 @@ let blockWithoutRisk = /*html*/ `
 `
 
 let blockAllergies = /*html*/ `
-<section>
-    <div>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/mosquito.jpg" alt="">
-    </div>
-    <div>
+<div>
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/mosquito.jpg" alt="">
+</div>
+<section class="block_first">
         <h2>Protect yourself and your little ones from annoying itchy bites <span>without harsh sprays</span></h2>
         <p>Stick on a BuzzPatch with natural citronella and geraniol essential oils to keep mosquitoes at bay for up to 72 hours. Kids-friendly. Zero DEET.</p>
         <ul>
             <li>natural ingredients</li>
             <li>protection for all your family</li>
         </ul>
-    </div>
 </section>
 <section class="block_as_seen_on">
     <div>
@@ -139,19 +360,19 @@ let blockAllergies = /*html*/ `
         <ul>
             <li>
                 <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_2.jpg" alt="">
-                <p>Maria Drew</p>
+                <p class="accent_var">Maria Drew</p>
                 <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
                 <span>Verified Buyer</span>
             </li>
             <li>
                 <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_1.jpg" alt="">
-                <p>Joanne</p>
+                <p class="accent_var">Joanne</p>
                 <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
                 <span>Verified Buyer</span>
             </li>
             <li>
                 <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_3.jpg" alt="">
-                <p>Jodie N.M.</p>
+                <p class="accent_var">Jodie N.M.</p>
                 <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
                 <span>Verified Buyer</span>
             </li>
@@ -160,46 +381,13 @@ let blockAllergies = /*html*/ `
     <button class="button_custom">Keep mosquitos at bay</button>
 </section>
 
-<section>
-    <h2>Safe for kids and people <br> with allergies</h2>
+<section class="block_allergies">
+    <p class="accent_title">Safe for kids and people <br> with allergies</p>
     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/oil.jpg" alt="">
     <p>Unlike sprays with DEET or Picaridin, BuzzPatch contains only natural ingredients –including citronella and geraniol essential oils – that are completely safe for children and adults. 100% DEET free.</p>
-    <h3>Hides you from bites</h3>
+    <p class="accent_title">Hides you from bites</p>
     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/bubble.jpg" alt="">
     <p>Mosquitoes find you by sensing the CO2 you emit. BuzzPatch distinct scent creates a virtual camouflage, making you invisible to mosquitoes.</p>
-</section>
-`
-
-let blockAsSeenOn = /*html*/ `
-<section class="block_as_seen_on">
-    <div>
-        <h2>AS SEEN ON</h2>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/partners.png" alt="">
-    </div>
-    <div>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/logo_winner.png" alt="">
-        <ul>
-            <li>
-                <img src="" alt="">
-                <p>Maria Drew</p>
-                <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p>Joanne</p>
-                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p>Jodie N.M.</p>
-                <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
-                <span>Verified Buyer</span>
-            </li>
-        </ul>
-    </div>
-    <button class="button_custom">Keep mosquitos at bay</button>
 </section>
 `
 
