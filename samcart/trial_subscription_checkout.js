@@ -221,33 +221,66 @@ window.onload  = function () {
         document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[18].style.margin = `0 auto 40px`;
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
-        document.querySelectorAll('.btn_blue').forEach(item => {
-            action = 'Click on Try 14 days for FREE button',
-            label = 'page Special Offer';
-            pushDataLayer(action, label)
-        })
+        let viewed0 = false,
+            viewed1 = false,
+            viewed2 = false,
+            viewed3 = false,
+            viewed4 = false;
+
+        function isScrolledIntoView(el) {
+            let rect = el.getBoundingClientRect(),
+            elemTop = rect.top,
+            elemBottom = rect.bottom;
+    
+            let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+        
+            return isVisible;
+        }
+        
         document.querySelectorAll('.btn_blue').forEach((item,index)=> {
-            if (index === 0) {
-                action = 'Visibility Try 14 days for FREE button',
-                label = 'page Special Offer above title Plus $10,060 Worth..';
-                pushDataLayer(action, label)
-            } else if (index === 1) {
-                action = 'Visibility Try 14 days for FREE button',
-                label = 'page Special Offer above title Create your course...';
-                pushDataLayer(action, label)
-            } else if (index === 2) {
-                action = 'Visibility Try 14 days for FREE button',
-                label = 'page Special Offer above title 28947 People..';
-                pushDataLayer(action, label)
-            } else if (index === 3) {
-                action = 'Visibility Try 14 days for FREE button',
-                label = 'page Special Offer above title A Pre-Designed...';
-                pushDataLayer(action, label)
-            } else if (index === 4) {
-                action = 'Visibility Try 14 days for FREE button',
-                label = 'page Special Offer above the footer section';
-                pushDataLayer(action, label)
-            }
+            document.addEventListener('scroll', (e) => {
+                if (isScrolledIntoView(item) == true && index === 0 && viewed0 !== true) {
+                    viewed0 = true;
+                    action = 'Visibility Try 14 days for FREE button',
+                    label = 'page Special Offer above title Plus $10,060 Worth..';
+                    pushDataLayer(action, label)
+                } else if (isScrolledIntoView(item) == false && index === 0) {
+                    viewed0 = false;
+                }
+                if (isScrolledIntoView(item) == true && index === 1 && viewed1 !== true) {
+                    viewed1 = true;
+                    action = 'Visibility Try 14 days for FREE button',
+                    label = 'page Special Offer above title Create your course...';
+                    pushDataLayer(action, label)
+                } else if (isScrolledIntoView(item) == false && index === 1) {
+                    viewed1 = false;
+                }
+                if (isScrolledIntoView(item) == true && index === 2 && viewed2 !== true) {
+                    viewed2 = true;
+                    action = 'Visibility Try 14 days for FREE button',
+                    label = 'page Special Offer above title 28947 People..';
+                    pushDataLayer(action, label)
+                } else if (isScrolledIntoView(item) == false && index === 2) {
+                    viewed2 = false;
+                }
+                if (isScrolledIntoView(item) == true && index === 3 && viewed3 !== true) {
+                    viewed3 = true;
+                    action = 'Visibility Try 14 days for FREE button',
+                    label = 'page Special Offer above title A Pre-Designed...';
+                    pushDataLayer(action, label)
+                } else if (isScrolledIntoView(item) == false && index === 3) {
+                    viewed3 = false;
+                }
+                if (isScrolledIntoView(item) == true && index === 4 && viewed4 !== true) {
+                    viewed4 = true;
+                    action = 'Visibility Try 14 days for FREE button',
+                    label = 'page Special Offer above the footer section';
+                    pushDataLayer(action, label)
+                } else if (isScrolledIntoView(item) == false && index === 4) {
+                    viewed4 = false;
+                }
+           });
+           
             item.addEventListener('click', () => {
                 if (index === 0) {
                     action = 'Click on Try 14 days for FREE button',
@@ -303,7 +336,6 @@ window.onload  = function () {
             
             if (document.querySelector('.card-num-row')) {
                 document.querySelector('#placeOrder').addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
                     action =  'Click on Place Order Now button',
                     label = 'page Checkout';
                     pushDataLayer(action, label)
