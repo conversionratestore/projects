@@ -279,7 +279,7 @@ window.onload  = function () {
                 } else if (isScrolledIntoView(item) == false && index === 4) {
                     viewed4 = false;
                 }
-           });
+            });
            
             item.addEventListener('click', () => {
                 if (index === 0) {
