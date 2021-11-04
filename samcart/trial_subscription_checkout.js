@@ -339,6 +339,30 @@ window.onload  = function () {
             label = 'page Checkout';
             pushDataLayer(action,label);
         })
+
+        if (document.querySelector('#placeOrder')) {
+            document.querySelector('#placeOrder').addEventListener('click', (e) => {
+                action =  'Click on Place Order Now button',
+                label = 'page Checkout';
+                pushDataLayer(action, label)
+            })
+        }
+    }
+
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+        document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
+        document.querySelector('#placeOrder').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            action =  'Click on Start my free trial button',
+            label = 'page Checkout';
+            pushDataLayer(action, label)
+        })
+        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
+            action = 'Click on PayPal payment method';
+            pushDataLayer(action)
+        })
+    }
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', () => {
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
                 action = 'Click on Google pay payment method';
@@ -349,9 +373,9 @@ window.onload  = function () {
                 pushDataLayer(action)
             }
         })
-        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', () => {
-            action = 'Click on Yes add the Facebook checkbox';
-            pushDataLayer(action)
+        document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
+            action = 'Click on Credit Card payment method';
+            pushDataLayer(action);
         })
         document.querySelector('[name="fname"]').addEventListener('click', () => {
             action =  'Click on input First Name',
@@ -389,21 +413,10 @@ window.onload  = function () {
                 label = 'Contact form';
                 pushDataLayer(action, label)
             })
-            document.querySelector('#placeOrder').addEventListener('click', (e) => {
-                action =  'Click on Place Order Now button',
-                label = 'page Checkout';
-                pushDataLayer(action, label)
-            })
         }
-    }
-
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
-        document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
-        document.querySelector('#placeOrder').addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
-            action =  'Click on Start my free trial button',
-            label = 'page Checkout';
-            pushDataLayer(action, label)
+        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', () => {
+            action = 'Click on Yes add the Facebook checkbox';
+            pushDataLayer(action)
         })
     }
 };
