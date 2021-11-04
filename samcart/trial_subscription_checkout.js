@@ -365,7 +365,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('[ng-non-bindable]').remove();
     }
 
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('.order-summary-widget') && document.querySelector('#payments')) {
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('#order-summary-widget') && document.querySelector('#payments')) {
         mut.disconnect();
         document.querySelectorAll('.row.section')[0].style.display = 'none';
         document.querySelectorAll('.row.section')[1].style.display = 'none';
