@@ -165,24 +165,28 @@ function addToCart() {
                     if (el.closest('.viewed')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently viewed Products';
-                    } else {
+                    } 
+                    if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently Ordered Products';
                     }
+                    if (item.closest('.ordered-products')) {
+                        action = 'Click on button Hide more products';
+                        label = 'PDP section Recently ordered Products';
+                    } 
                 } else {
                     e.target.innerHTML = 'Hide more products';
                     if (el.closest('.viewed')) {
                         action = 'Click on button View more products';
                         label = 'PL section Recently viewed Products';
                     }
-                    if (item.closest('.ordered')) {
-                        if (window.location.pathname.includes('/product')) {
-                            action = 'Click on button View more products';
-                            label = 'PDP section Recently ordered Products';
-                        } else {
-                            action = 'Click on button View more products';
-                            label = 'PL section Recently Ordered Products';
-                        }
+                    if (item.closest('.ordered-products')) {
+                        action = 'Click on button View more products';
+                        label = 'PDP section Recently ordered Products'; 
+                    } 
+                    if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
+                        action = 'Click on button View more products';
+                        label = 'PL section Recently ordered Products';
                     }
                 }
                 pushDataLayer(action,label)
