@@ -341,7 +341,6 @@ window.onload  = function () {
             pushDataLayer(action)
         })
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', (event) => {
-            event.stopImmediatePropagation()
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
                 action = 'Click on Google pay payment method';
                 pushDataLayer(action)
@@ -352,7 +351,6 @@ window.onload  = function () {
             }
         })
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', (event) => {
-            event.stopImmediatePropagation()
             action = 'Click on Credit Card payment method';
             pushDataLayer(action);
             if (document.querySelector('#card-number')) {
