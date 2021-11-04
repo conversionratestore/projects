@@ -297,8 +297,6 @@ window.onload  = function () {
         }
 
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
-            action = 'Click on Credit Card payment method';
-            pushDataLayer(action);
             action = 'Visibility Place Order Now button',
             label = 'page Checkout';
             pushDataLayer(action,label);
