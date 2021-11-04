@@ -26,7 +26,7 @@ let start = setInterval(() => {
 				save = 1198
 				break
 			case 'elite':
-				save = 1198
+				save = 1798
 				break
 			default:
 				save = 0
