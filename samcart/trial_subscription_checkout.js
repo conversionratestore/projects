@@ -369,10 +369,12 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.row.section')[0].style.display = 'none';
         document.querySelectorAll('.row.section')[1].style.display = 'none';
     }
+    mut.observe(document, optionMut);
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('.order-summary-widget') && document.querySelector('#payments')) {
         mut.disconnect();
         document.querySelector('.order-summary-widget').after(document.querySelector('#payments'));
     }
+    mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
 
