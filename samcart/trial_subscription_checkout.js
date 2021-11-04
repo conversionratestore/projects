@@ -354,7 +354,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if ( document.querySelector('[ng-non-bindable]')) {
+    if (document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
         mut.disconnect();
         document.querySelector('[ng-non-bindable]').remove();
     }
