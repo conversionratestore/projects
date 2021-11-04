@@ -357,6 +357,23 @@ window.onload  = function () {
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Click on Credit Card payment method';
             pushDataLayer(action);
+            if (document.querySelector('#card-number')) {
+                document.querySelector('.card-num-row').addEventListener('click', (e) => {
+                    action =  'Click on input Card Number',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+                document.querySelector('.cvv-col').addEventListener('click', (e) => {
+                    action =  'Click on input CVC',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+                document.querySelector('.exp-col').addEventListener('click', (e) => {
+                    action =  'Click on input MM YY',
+                    label = 'Contact form';
+                    pushDataLayer(action, label)
+                })
+            }
         })
 
         document.querySelector('[name="fname"]').addEventListener('click', () => {
@@ -396,25 +413,7 @@ window.onload  = function () {
                 pushDataLayer(action, label)
             })
         }
-        document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
-            if (document.querySelector('#card-number')) {
-                document.querySelector('.card-num-row').addEventListener('click', (e) => {
-                    action =  'Click on input Card Number',
-                    label = 'Contact form';
-                    pushDataLayer(action, label)
-                })
-                document.querySelector('.cvv-col').addEventListener('click', (e) => {
-                    action =  'Click on input CVC',
-                    label = 'Contact form';
-                    pushDataLayer(action, label)
-                })
-                document.querySelector('.exp-col').addEventListener('click', (e) => {
-                    action =  'Click on input MM YY',
-                    label = 'Contact form';
-                    pushDataLayer(action, label)
-                })
-            }
-        })
+
         document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
             action = 'Click on Yes add the Facebook checkbox';
