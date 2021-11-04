@@ -196,7 +196,7 @@ window.onload  = function () {
         })
     
         document.querySelector('.btn_pay_pal').addEventListener('click', () => {
-            action = 'Click on PayPal';
+            action = 'Click on PayPal button';
             pushDataLayer(action)
             localStorage.setItem('paymentSystem', 'payPal');
         })
@@ -362,8 +362,14 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.querySelector('[ng-non-bindable]').remove();
     }
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+        mut.disconnect();
+        document.querySelectorAll('.row.section')[0].style.display = 'none';
+        document.querySelectorAll('.row.section')[1].style.display = 'none';
+    }
 })
 mut.observe(document, optionMut);
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2592989,hjsv:6};
@@ -378,7 +384,7 @@ mut.observe(document, optionMut);
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
- 'event': 'event-to-ga',
- 'eventCategory': 'Exp — Trial subscription checkout',
- 'eventAction': 'loaded'
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Trial subscription checkout',
+    'eventAction': 'loaded'
 });
