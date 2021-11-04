@@ -237,10 +237,14 @@ window.onload  = function () {
             if (paymentSystem == 'payPal') {
                 console.log(paymentSystem)
                 document.querySelectorAll('.custom-control.custom-radio input')[1].click()
-
+                action = 'Visibility Place Order Now button',
+                label = 'page Checkout';
+                pushDataLayer(action,label);
             } else if (paymentSystem == 'enroll') {
                 document.querySelectorAll('.custom-control.custom-radio input')[0].click()
-
+                action = 'Visibility Place Order Now button',
+                label = 'page Checkout';
+                pushDataLayer(action,label);
             } else if (paymentSystem == 'applePay' || paymentSystem == 'googlePay') {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
             }
