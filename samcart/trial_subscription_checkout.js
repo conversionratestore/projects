@@ -310,10 +310,7 @@ window.onload  = function () {
                 })
             }
         })
-        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
-            action = 'Click on PayPal payment method';
-            pushDataLayer(action)
-            
+        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {            
             action = 'Visibility Place Order Now button',
             label = 'page Checkout';
             pushDataLayer(action,label);
@@ -336,13 +333,13 @@ window.onload  = function () {
             label = 'page Checkout';
             pushDataLayer(action, label)
         })
-        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
+   
+    }
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
             action = 'Click on PayPal payment method';
             pushDataLayer(action)
         })
-    }
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', (event) => {
             event.stopImmediatePropagation()
             if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
