@@ -207,17 +207,17 @@ window.onload  = function () {
             document.querySelector('.get_samcart_btns').after(document.querySelector('.get_samcart_text'))
         } 
 
-        let newElement = `<a href="https://checkout.samcart.com/products/courses-special-offer-14-days-free/" class="btn_blue">Try 14 days for FREE</a>`;
+        let newBtn = `<a href="https://checkout.samcart.com/products/courses-special-offer-14-days-free/" class="btn_blue">Try 14 days for FREE</a>`;
 
         document.querySelectorAll('.sc-column.col-12.sc-root-row')[4].style.display = 'none';
         document.querySelectorAll('.sc-column.col-12.sc-root-row')[5].style.display = 'none';
         document.querySelectorAll('.hide-on-mobile')[0].style.display = 'none';
 
-        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[5].insertAdjacentHTML('afterend', newElement);
-        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[8].insertAdjacentHTML('afterend', newElement);
-        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[10].insertAdjacentHTML('afterend', newElement);
-        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[12].insertAdjacentHTML('afterend', newElement);
-        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[18].insertAdjacentHTML('afterend', newElement);
+        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[5].insertAdjacentHTML('afterend', newBtn);
+        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[8].insertAdjacentHTML('afterend', newBtn);
+        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[10].insertAdjacentHTML('afterend', newBtn);
+        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[12].insertAdjacentHTML('afterend', newBtn);
+        document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[18].insertAdjacentHTML('afterend', newBtn);
         document.querySelectorAll('.sc-column.col-12.sc-root-row .sc-row')[18].style.margin = `0 auto 40px`;
         document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
 
@@ -225,6 +225,52 @@ window.onload  = function () {
             action = 'Click on Try 14 days for FREE button',
             label = 'page Special Offer';
             pushDataLayer(action, label)
+        })
+        document.querySelectorAll('.btn_blue').forEach((item,index)=> {
+            if (index === 0) {
+                action = 'Visibility Try 14 days for FREE button',
+                label = 'page Special Offer above title Plus $10,060 Worth..';
+                pushDataLayer(action, label)
+            } else if (index === 1) {
+                action = 'Visibility Try 14 days for FREE button',
+                label = 'page Special Offer above title Create your course...';
+                pushDataLayer(action, label)
+            } else if (index === 2) {
+                action = 'Visibility Try 14 days for FREE button',
+                label = 'page Special Offer above title 28947 People..';
+                pushDataLayer(action, label)
+            } else if (index === 3) {
+                action = 'Visibility Try 14 days for FREE button',
+                label = 'page Special Offer above title A Pre-Designed...';
+                pushDataLayer(action, label)
+            } else if (index === 4) {
+                action = 'Visibility Try 14 days for FREE button',
+                label = 'page Special Offer above the footer section';
+                pushDataLayer(action, label)
+            }
+            item.addEventListener('click', () => {
+                if (index === 0) {
+                    action = 'Click on Try 14 days for FREE button',
+                    label = 'page Special Offer above title Plus $10,060 Worth..';
+                    pushDataLayer(action, label)
+                } else if (index === 1) {
+                    action = 'Click on Try 14 days for FREE button',
+                    label = 'page Special Offer above title Create your course...';
+                    pushDataLayer(action, label)
+                } else if (index === 2) {
+                    action = 'Click on Try 14 days for FREE button',
+                    label = 'page Special Offer above title 28947 People..';
+                    pushDataLayer(action, label)
+                } else if (index === 3) {
+                    action = 'Click on Try 14 days for FREE button',
+                    label = 'page Special Offer above title A Pre-Designed...';
+                    pushDataLayer(action, label)
+                } else if (index === 4) {
+                    action = 'Click on Try 14 days for FREE button',
+                    label = 'page Special Offer above the footer section';
+                    pushDataLayer(action, label)
+                }
+            })
         })
     }
 
@@ -351,7 +397,15 @@ window.onload  = function () {
         }
     }
 
-  
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+        document.querySelector('.tpl-6.pb-sm-48').classList.remove('pb-sm-48');
+        document.querySelector('#placeOrder').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            action =  'Click on Start my free trial button',
+            label = 'page Checkout';
+            pushDataLayer(action, label)
+        })
+    }
 };
 
 let optionMut = {
@@ -371,7 +425,10 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.row.section')[1].style.display = 'none';
         document.querySelector('#order-summary-widget').style.margin = '0 0 40px 0';
         document.querySelector('#order-summary-widget').after(document.querySelector('#payments'));
-        document.querySelector('#order-summary-widget').after(document.querySelectorAll('.tpl-6__checkout__subtitle')[1]);
+        document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[1]);
+        document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[1]);
+        document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[0]);
+        document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[0]);
     }
 })
 mut.observe(document, optionMut);
