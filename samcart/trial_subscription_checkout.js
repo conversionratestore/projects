@@ -414,7 +414,8 @@ window.onload  = function () {
                 pushDataLayer(action, label)
             })
         }
-        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', () => {
+        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
             action = 'Click on Yes add the Facebook checkbox';
             pushDataLayer(action)
         })
