@@ -197,7 +197,13 @@ let start = setInterval(() => {
 
 		const btn = document.querySelector('.btn-custom')
 
-		document.querySelector('.billing-switch [aria-checked=false]')?.click()
+		let btnInterval = setInterval(() => {
+			if (document.querySelector('.billing-switch [aria-checked=false]')) {
+				clearInterval(btnInterval)
+
+				document.querySelector('.billing-switch [aria-checked=false]').click()
+			}
+		}, 200)
 
 		document.addEventListener('click', closeModal)
 		btn.addEventListener('click', clickOnBtn)
@@ -228,7 +234,7 @@ let start = setInterval(() => {
 
 		function clickOnBtn() {
 			location.href = '/subscriptions'
-			
+
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
@@ -253,14 +259,6 @@ let start = setInterval(() => {
 		}
 		hj('trigger', 'tv_popup_with_motivation_to_upgrade')
 		hj('event', 'popup_with_motivation_to_upgrade')
-
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Pop up with motivation to upgrade',
-			'eventAction': 'loaded',
-		})
 
 
 		window.dataLayer = window.dataLayer || []
