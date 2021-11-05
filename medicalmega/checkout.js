@@ -644,8 +644,8 @@ window.onload  = function () {
                                     'Content-Type': 'application/x-www-form-urlencoded',
                                 },
                                 method: "POST",
-                                body: `option_id=${button.closest('.checkout-product').dataset.variantId}&product_quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&product_type=variant&cp_id=${button.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
-                            }).then(res => res.json()).then(data => {
+                                body: `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`
+                           }).then(res => res.json()).then(data => {
                                 console.log(data["cart"])
                                 writeTotal(data["cart"])
                             })
@@ -673,7 +673,7 @@ window.onload  = function () {
                                 'Content-Type': 'application/x-www-form-urlencoded',
                             },
                             method: "POST",
-                            body: `option_id=${item.closest('.checkout-product').dataset.variantId}&product_type=variant&cp_id=${item.closest('.checkout-product').dataset.id}&remove_from_cart=variant&api=c`
+                            body: `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`
                         }).then(res => res.json()).then(data => {
                             console.log(data)
                             writeTotal(data["cart"])
@@ -683,11 +683,13 @@ window.onload  = function () {
                 });
             }
 
-            fetch('/cart.html?cart_items=1', {
+            fetch('/cart.html', {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                method: "GET"
+                method: "POST",
+                body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
+                
             }).then(res => res.json()).then(data => {
                 console.log(data)
                 for (let i = 0; i < data["items"].length; i++) {
