@@ -645,8 +645,8 @@ window.onload  = function () {
                                 method: "POST",
                                 body: `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`
                            }).then(res => res.json()).then(data => {
-                                console.log(data)
-                                writeTotal(data)
+                                console.log(data["cart"])
+                                writeTotal(data["cart"])
                             })
                             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
                         });
@@ -674,8 +674,8 @@ window.onload  = function () {
                             method: "POST",
                             body: `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`
                         }).then(res => res.json()).then(data => {
-                            console.log(data)
-                            writeTotal(data)
+                            console.log(data["cart"])
+                            writeTotal(data["cart"])
                         })
                         item.closest('.checkout-product').remove();
                     });
