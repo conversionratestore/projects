@@ -1,3 +1,5 @@
+let action,label;
+
 function setOptionFetch(bodyOption) {
     let optionFetch = {
         headers: {
@@ -57,14 +59,9 @@ function chengeQuantity() {
                 if (button.className == 'quantity-btn quantity-btn_plus') {
                     button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
                     button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click on plus of items',
-                        'eventLabel': 'Section Your order'
-                    });
+                    action = 'Click on plus of items';
+                    label = 'Section Your order';
+                    pushDataLayer(action,label);
                 }
                 if (button.className == 'quantity-btn quantity-btn_minus') {
                     if (button.nextElementSibling.value < 2) {
@@ -73,14 +70,9 @@ function chengeQuantity() {
                     } else {
                         button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
                     }
-
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click on minus of items',
-                        'eventLabel': 'Section Your order'
-                    });
+                    action = 'Click on minus of items';
+                    label = 'Section Your order';
+                    pushDataLayer(action,label);
                 }
 
                 console.log(button.closest('.checkout-product').dataset.variantId)
@@ -95,12 +87,9 @@ function chengeQuantity() {
             });
         });
         quantity.addEventListener('change', () => {
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Change on amount of items',
-                'eventLabel': 'Section Your order'
-            });
+            action = 'Change on amount of items';
+            label = 'Section Your order';
+            pushDataLayer(action,label);
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
            
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
@@ -116,13 +105,9 @@ function chengeQuantity() {
 function removeProduct() {
     document.querySelectorAll('.remove').forEach((item, index) => {
         item.addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — Alternative checkout desktop',
-                'eventAction': 'Click Exit Cross button',
-                'eventLabel': 'Section Your order'
-            });
+            action = 'Click Exit Cross button';
+            label = 'Section Your order';
+            pushDataLayer(action,label)
 
             let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
             
@@ -132,6 +117,16 @@ function removeProduct() {
             })
             item.closest('.checkout-product').remove();
         });
+    });
+}
+
+function pushDataLayer(action,label) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Alternative checkout desktop',
+        'eventAction': action,
+        'eventLabel': label
     });
 }
 
@@ -752,13 +747,9 @@ window.onload  = function () {
                 document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
                 document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
                 document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Choose Shipping Method button',
-                        'eventLabel': 'Section Registration'
-                    });
+                    action = `Click Choose Shipping Method button`;
+                    label = 'Section Registration';
+                    pushDataLayer(action,label)
                 });
                 document.querySelector('.log').addEventListener('click', (e) => {
                     let _this = e.target;
@@ -768,25 +759,17 @@ window.onload  = function () {
                         document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
                         document.querySelector('.myAccountright').style.display = 'none';
                         document.querySelector('.myAccountleft').style.display = 'block';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — Alternative checkout desktop',
-                            'eventAction': `Click Registration button`,
-                            'eventLabel': 'Section Sign In'
-                        });
+                        action = `Click Registration button`;
+                        label = 'Section Sign In';
+                        pushDataLayer(action,label)
                     } else {
                         _this.innerHTML = 'Registration';
                         document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                         document.querySelector('.myAccountleft').style.display = 'none';
                         document.querySelector('.myAccountright').style.display = 'block';
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — Alternative checkout desktop',
-                            'eventAction': `Click Sign In button`,
-                            'eventLabel': 'Section Registration'
-                        });
+                        action = `Click Sign In button`;
+                        label = 'Section Registration';
+                        pushDataLayer(action,label)
                     }
                 });
                 if (location.pathname.includes('login')) {
@@ -847,13 +830,9 @@ window.onload  = function () {
                     } else {
                         document.querySelectorAll('form div[align="right"] input')[1].click();
                     }
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Next button',
-                        'eventLabel': 'Section Shipping information'
-                    });
+                    action = 'Click Next button';
+                    label = 'Section Shipping information';
+                    pushDataLayer(action,label)
                 });
 
                 if (document.querySelector('.editLink') == null) {
@@ -871,13 +850,9 @@ window.onload  = function () {
                     document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
                 }
                 document.querySelector('.copy_bill label').addEventListener('click',() => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Copy from Billing info field',
-                        'eventLabel': 'Section Shipping information'
-                    });
+                    action = 'Click Copy from Billing info field';
+                    label = 'Section Shipping information';
+                    pushDataLayer(action,label)
                 });
             }
             if (location.pathname == '/checkout/step2') {
@@ -978,34 +953,22 @@ window.onload  = function () {
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Back button',
-                        'eventLabel': 'Section Delivery Method'
-                    });
+                    action = 'Click Back button';
+                    label = 'Section Delivery Method';
+                    pushDataLayer(action,label)
                     window.location = '/checkout/step1';
                 });
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — Alternative checkout desktop',
-                            'eventAction': `Pick ${el.querySelector('i'.innerHTML)}`,
-                            'eventLabel': 'Section Delivery method'
-                        });
+                        action = `Pick ${el.querySelector('i'.innerHTML)}`;
+                        label = 'Section Delivery method';
+                        pushDataLayer(action,label)
                     });
                 });
                 document.querySelector('.promoCode').addEventListener('click', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click on Promotional Code field',
-                        'eventLabel': 'Section Delivery method'
-                    });
+                    action =  'Click on Promotional Code field';
+                    label = 'Section Delivery method';
+                    pushDataLayer(action,label)
                 });
             }
             if (location.pathname == '/checkout/step3') {
@@ -1103,22 +1066,14 @@ window.onload  = function () {
                 document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
 
                 document.querySelector('.card-details label').addEventListener('click',() => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Click Remember my card field',
-                        'eventLabel': 'Section Payment method'
-                    });
+                    action = 'Click Remember my card field';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
                 });
                 document.querySelector('.label-check').addEventListener('click',() => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Pick regular reorder',
-                        'eventLabel': 'Section Payment method'
-                    });
+                    action = 'Pick regular reorder';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
                 });
             }
 
@@ -1148,13 +1103,9 @@ window.onload  = function () {
             }
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp — Alternative checkout desktop',
-                    'eventAction': 'Click Back to Shoping button',
-                    'eventLabel': 'Section Your order'
-                });
+                action = 'Click Back to Shoping button',
+                label ='Section Your order';
+                pushDataLayer(action,label)
             })
         }
     }
