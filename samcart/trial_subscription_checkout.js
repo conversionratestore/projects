@@ -355,6 +355,12 @@ window.onload  = function () {
                 pushDataLayer(action, label)
             })
         }
+        
+        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            action = 'Click on Yes add the Facebook checkbox';
+            pushDataLayer(action)
+        })
     }
 
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
@@ -365,6 +371,7 @@ window.onload  = function () {
             label = 'page Checkout';
             pushDataLayer(action, label)
         })
+        document.querySelector('.v2-horizontal-large-container').style.display = 'none';
    
     }
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
@@ -447,12 +454,6 @@ window.onload  = function () {
                 pushDataLayer(action, label)
             })
         }
-
-        document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            action = 'Click on Yes add the Facebook checkbox';
-            pushDataLayer(action)
-        })
     }
 };
 
@@ -462,7 +463,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
+    if (document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
         mut.disconnect();
         document.querySelector('[ng-non-bindable]').remove();
     }
