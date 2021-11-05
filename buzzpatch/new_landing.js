@@ -639,7 +639,7 @@ let blockWithoutRisk = /*html*/ `
 
 let blockAllergies = /*html*/ `
 <div class="herro_img">
-    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/mosquito.jpg" alt="">
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/mosquito_smile.jpg" alt="">
 </div>
 <section class="block_first">
         <h2>Protect yourself and your little ones from annoying itchy bites <span>without harsh sprays</span></h2>
@@ -908,3 +908,27 @@ function scrolling(upSelector) {
     })
   })
 }
+
+//
+document.querySelector(
+  "#js-accordion .card:nth-child(1) .card-body p:nth-child(1)"
+).innerHTML = `<p><b>Kids aged 0-2 need 1 patch:</b> One patch placed centrally on clothes (ie, on their jumpsuit on the stomach, chest)</p>`
+
+document.querySelector(
+  "#js-accordion .card:nth-child(1) .card-body p:nth-child(2)"
+).innerHTML = `<p> <b>Kids aged 3-5 need 2 patches:</b> One patch on the top clothes (sweater, t-shirt) and one on the shorts. </p>`
+
+document.querySelector(
+  "#js-accordion .card:nth-child(1) .card-body p:nth-child(3)"
+).innerHTML = `<p><b>Kids aged 6+ and parents need 2-4 patches:</b> One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>`
+//
+document.querySelector(
+  "#js-accordion .card:nth-child(5) .card-body p:nth-child(1)"
+).innerHTML = `<p> <b>Kids aged 0-2 need 1</b>: One patch placed centrally on clothes (ie, on their jumpsuit on the stomach, chest)</p>`
+
+document.querySelector(
+  "#js-accordion .card:nth-child(5) .card-body p:nth-child(2)"
+).innerHTML = `<p><b>Kids aged 3-5 need 2:</b> One patch on the top clothes (sweater, t-shirt) and one on the shorts.</p>`
+
+document.querySelector("#js-accordion .card:nth-child(5) .card-body p:nth-child(3)").innerHTML = `
+<p><b>Kids aged 6+ and parents need 2-4:</b> One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>`
