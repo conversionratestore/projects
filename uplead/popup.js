@@ -242,7 +242,7 @@ let start = setInterval(() => {
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on CTA Start Plan Now',
+				'eventAction': 'Click on Save Button',
 			})
 		}
 
