@@ -285,6 +285,8 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 19px;
                 color: #666666;}
+            .checkout-right_footer .altTd.total-values p b {
+                padding-left: 4px;}
             .checkout-right_footer .altTd.total-values p {
                 display: flex;
                 justify-content: flex-end;
