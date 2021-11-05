@@ -463,15 +463,14 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
+    if (document.querySelector('[ng-non-bindable]') && window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase') {
         mut.disconnect();
         document.querySelector('[ng-non-bindable]').remove();
     }
     mut.observe(document, optionMut);
-    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('#order-summary-widget') && document.querySelector('#payments')) {
+    if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('#order-summary-widget') && document.querySelector('#payments') && document.querySelector('[ng-non-bindable]')) {
         mut.disconnect();
-        document.querySelectorAll('.row.section')[0].style.display = 'none';
-        document.querySelectorAll('.row.section')[1].style.display = 'none';
+        document.querySelector('[ng-non-bindable]').remove();
         document.querySelector('#order-summary-widget').style.margin = '0 0 40px 0';
         document.querySelector('#order-summary-widget').after(document.querySelector('#payments'));
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[1]);
