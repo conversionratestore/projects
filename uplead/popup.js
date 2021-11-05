@@ -14,7 +14,7 @@ let btnInterval = setInterval(() => {
 		console.log('after')
 		document.querySelector('.billing-switch [aria-checked=false]').click()
 	}
-}, 200)
+}, 500)
 
 let start = setInterval(() => {
 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
