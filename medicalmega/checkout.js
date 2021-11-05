@@ -423,14 +423,13 @@ window.onload  = function () {
                 line-height: 19px;
                 color: #666666;}
             .checkout-right_footer .altTd.total-values {
-                text-align: right;
-                display: inline-flex;
-                flex-direction: column;}
+                text-align: right;}
             .checkout-right_footer .altTd.total-values p b {
                 padding-left: 4px;}
             .checkout-right_footer .altTd.total-values p {
                 display: flex;
                 justify-content: flex-end;
+                flex-wrap: wrap;
                 font-weight: 500;}
             .checkout-right_footer .altTd p:last-child {
                 margin-bottom: 0;}
@@ -1174,7 +1173,6 @@ window.onload  = function () {
                     'eventLabel': 'Section Your order'
                 });
             })
-
         }
     }
 };
