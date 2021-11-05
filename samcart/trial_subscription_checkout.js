@@ -467,7 +467,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.querySelector('[ng-non-bindable]').remove();
     }
-
+    mut.observe(document, optionMut);
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/' && document.querySelector('#order-summary-widget') && document.querySelector('#payments')) {
         mut.disconnect();
         document.querySelectorAll('.row.section')[0].style.display = 'none';
@@ -479,6 +479,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[0]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[0]);
     }
+    mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
 
