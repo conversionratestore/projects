@@ -422,6 +422,10 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 19px;
                 color: #666666;}
+            .checkout-right_footer .altTd.total-values {
+                text-align: right;
+                display: inline-flex;
+                flex-direction: column;}
             .checkout-right_footer .altTd.total-values p b {
                 padding-left: 4px;}
             .checkout-right_footer .altTd.total-values p {
@@ -440,8 +444,6 @@ window.onload  = function () {
                 font-size: 30px;
                 line-height: 33px;
                 color: #222222;}
-            .total-values {
-                text-align: right;}
             .relative{
                 position: relative;}
             .btn-eye {
