@@ -589,7 +589,6 @@ window.onload  = function () {
                             console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
                             values[i].innerHTML = data[key].toFixed(2);
                             if (data[key] == '0') {
-                                console.log(data[key])
                                 values[i].closest('p').style.display = 'none';
                                 document.querySelectorAll('.total-headings p')[i].style.display = 'none';
                             }
