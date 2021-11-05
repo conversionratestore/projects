@@ -1,231 +1,274 @@
-const calcItemInput = document.querySelectorAll('.calculator__item input')
-const selectedSystem = document.querySelectorAll('.calculator__system span')
-const calcBtn = document.querySelector('.calculator__btn')
-const squareProduct = '{{product.metafields.details.square}}'.split(',')
-let currentPrice = ('{{ current_variant.price | money }}').replace(/[^0-9.]/g, '')
-const tiles = document.querySelector('.calculator__result .size .tiles')
-const calcPrice = document.querySelector('.calculator__result .calculator__price')
-const qty = document.querySelector('.quantity-wrapper input')
-const money = document.querySelector('.bundle-sticky_money')
-const addBtn = document.querySelector('.quantity-submit-row__submit input')
-let selectedIndex = 0
+// var dataLayer = dataLayer || []
+// dataLayer.push({
+// 	'event': 'debit_credit',
+// 	'plan': 'Professional',
+// 	'subscription_type': 'monthly',
+// 	'available_credits_in_month': 1000,
+// 	'credits_left': 250,
+// })
 
-let isSale = false
+let btnInterval = setInterval(() => {
+	console.log('before')
+	if (document.querySelector('.billing-switch [aria-checked=false]')) {
+		clearInterval(btnInterval)
+		console.log('after')
+		document.querySelector('.billing-switch [aria-checked=false]').click()
+	}
+}, 500)
 
-let isSaleInterval = setInterval(() => {
-	if(document.querySelector('.vtl-ub-vd-widget')) {
-		isSale = true
+let start = setInterval(() => {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
+		clearInterval(start)
+
+		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
+		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
+		let save
+
+		switch (plan) {
+			case 'essentials':
+				save = 298
+				break
+			case 'plus':
+				save = 598
+				break
+			case 'professional':
+				save = 1198
+				break
+			case 'elite':
+				save = 1798
+				break
+			default:
+				save = 0
+				break
+		}
+
+		const style = `
+	<style>
+		.modal-custom {
+			padding: 20px 0;
+			position: fixed;
+			display: none;
+			z-index: 1; 
+			left: 0;
+			top: 0;
+			width: 100%; 
+			height: 100%;
+			overflow: auto; 
+			background-color: rgba(0,0,0,0.6);
+		}
+		
+		.modal-custom.modal-custom_active {
+			display: inline-flex;
+		}
+		
+		.popup-custom {
+			position: relative;
+			margin: auto;
+		    align-items: center;
+		    background: #fff;
+		    border-radius: 36px;
+		    box-shadow: 0 2px 10px rgba(4, 12, 40, 0.03);
+		    box-sizing: border-box;
+		    display: -ms-flexbox;
+		    display: flex;
+		    -ms-flex-direction: column;
+		    flex-direction: column;	    
+		    max-width: 700px;
+		    padding: 75px 70px;
+		    width: 100%;
+		    text-align: center;
+		}
+		
+		.popup-custom p {
+			width: 100%;
+			color: #69727A;
+			font-size: 18px;
+			line-height: 30px;
+			font-family: "Gilroy", sans-serif;
+			margin: 0;
+		}
+		
+		.popup-custom .title {
+			margin: 15px 0;
+			position: relative;
+			font-weight: bold;
+			color: #14142B;
+			font-size: 54px;
+			line-height: 62px;
+		}
+		
+		.popup-custom .title .styled{
+			position: relative;
+		}
+		
+		.popup-custom .title .styled::after{
+		    background: #00a2bb;
+		    content: '';
+		    height: 16px;
+		    left: -3%;
+		    opacity: 0.4;
+		    position: absolute;
+		    right: 0;
+		    top: 50%;
+		    width: 106%;
+		}	
+		
+		.popup-custom .subtitle {
+			font-size: 36px;
+			font-weight: bold;
+			color: #14142B;
+			margin: 8px 0 50px;
+		}	
+		
+		.popup-custom .subtitle + p {
+			margin-bottom: 20px;
+		}
+		
+		.btn-custom {
+			background-color: #0197b2;
+		    border: 1px solid transparent;	    
+		    color: #fff;
+		    font-weight: 500;
+		    font-size: 18px;
+	        padding: 16px 11%;
+	        border-radius: 30px;
+	        margin-top: 50px;
+	        font-family: "Gilroy",sans-serif;
+		}
+		
+		.btn-custom:hover {
+		    background-color: #005670;	    
+		    color: #fff;
+	        cursor: pointer;
+		    transition: all 0.3s ease;
+		}
+		
+		.btn-custom:active {
+		    background-color: #00374b;	    
+		    color: #fff;
+		    outline: none;
+		}
+		
+		.popup-custom .clock {
+			margin-bottom: 50px;
+		}
+		
+		.grey {
+			font-weight: bold;
+			font-size: 24px;
+		}
+		
+		.popup-custom svg {
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			top: 4%;
+			right: 4%;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+		
+		.popup-custom svg:hover {
+			fill: #14142B;
+			
+		}
+		
+		p.credits {
+			font-size: 24px;
+		}
+		
+		.credits {
+			font-weight: 700;
+			color: #69727A;
+		}
+		
+		.plan {
+			text-transform: capitalize;
+		}
+	</style>
+`
+		const page = `
+<div class="modal-custom modal-custom_active">
+	<div class="popup-custom">
+	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
+	    <p class="credits">WOW you already used ${ percent }%<br>of your credits this month</p>
+	    <p class="title"><span class="styled">Save $${ save }</span><br>on your <br><span class="plan">${ plan }</span> plan</p>
+	    <p class="subtitle">by switching to annual plan</p>
+	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
+	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
+	    <button type="button" class="btn-custom">Save $${ save }</button>	 
+	    <svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>  		
+	</div>
+</div>`
+
+		document.head.insertAdjacentHTML('afterbegin', style)
+		document.body.insertAdjacentHTML('beforeend', page)
+
+		const btn = document.querySelector('.btn-custom')
+
+
+
+		document.addEventListener('click', closeModal)
+		btn.addEventListener('click', clickOnBtn)
+
+		function closeModal(e) {
+			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+
+				if (e.target.matches('.modal-custom')) {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on space out of pop up',
+					})
+				}
+
+				if (e.target.matches('.popup-custom svg')) {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on X to close pop up',
+					})
+				}
+			}
+		}
+
+		function clickOnBtn() {
+			location.href = '/subscriptions'
+
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Pop up with motivation to upgrade',
+				'eventAction': 'Click on Save Button',
+			})
+		}
+
+		(function (h, o, t, j, a, r) {
+			h.hj = h.hj || function () {
+				(h.hj.q = h.hj.q || []).push(arguments)
+			}
+			h._hjSettings = {hjid: 2615465, hjsv: 6}
+			a = o.getElementsByTagName('head')[0]
+			r = o.createElement('script')
+			r.async = 1
+			r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+			a.appendChild(r)
+		})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+		window.hj = window.hj || function () {
+			(hj.q = hj.q || []).push(arguments)
+		}
+		hj('trigger', 'tv_popup_with_motivation_to_upgrade')
+		hj('event', 'popup_with_motivation_to_upgrade')
+
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded',
+		})
 	}
 }, 200)
-
-setTimeout(() => {
-	clearInterval(isSaleInterval)
-}, 10000)
-
-document.body.addEventListener('click', toggleTooltip)
-
-calcItemInput.forEach(input => {
-	input.addEventListener('change', function (event) {
-		let currSize = squareProduct[selectedIndex] ? squareProduct[selectedIndex] : squareProduct[0]
-		console.log(currSize)
-		let square = document.querySelector('.system_ft.system_active') ? currSize * 10.7639 : currSize
-
-		changeInput(event)
-
-		calc(square)
-	})
-})
-
-selectedSystem.forEach(span => span.addEventListener('click', selectSystem))
-
-let sizeBtnInterval = setInterval(() => {
-	if (document.querySelectorAll('.options--size a')) {
-		clearInterval(sizeBtnInterval)
-
-		let optionsSize = document.querySelectorAll('.options--size a')
-
-		findActiveSize(optionsSize)
-
-		optionsSize.forEach(item => {
-			item.addEventListener('click', () => {
-				setTimeout(() => {
-					currentPrice = (document.querySelector('.current-price').innerText).replace(/[^0-9.]/g, '')
-
-					findActiveSize(optionsSize)
-
-					console.log(squareProduct[selectedIndex])
-
-					let currSize = squareProduct[selectedIndex] ? squareProduct[selectedIndex] : squareProduct[0]
-
-					console.log(currSize)
-					let square = document.querySelector('.system_ft.system_active') ? currSize * 10.7639 : currSize
-
-					calc(square)
-				}, 100)
-			})
-		})
-	}
-}, 1000)
-
-function findActiveSize(options) {
-	options.forEach((size, index) => {
-		if (size.classList.contains('active')) {
-			selectedIndex = index
-		}
-	})
-}
-
-setTimeout(() => {
-	clearInterval(sizeBtnInterval)
-}, 10000)
-
-document.querySelectorAll('.quantity-wrapper a').forEach(item => {
-	item.addEventListener('click', () => {
-		setTimeout(() => {
-			let [, price] = calcSale(qty.value)
-			console.log('price here', price)
-			money.innerText = '£' + price
-		}, 100)
-	})
-})
-
-function toggleTooltip(e) {
-	if (e.target.classList.contains('calculator__tooltip')) {
-		document.querySelector('.calculator__help_active')?.classList.remove('calculator__help_active')
-		e.target.closest('.calculator__help').classList.add('calculator__help_active')
-	} else {
-		document.querySelector('.calculator__help_active')?.classList.remove('calculator__help_active')
-	}
-}
-
-function calc(square) {
-	setTimeout(() => {
-		if (+calcItemInput[0].value !== 0 && +calcItemInput[1].value !== 0) {
-			let tilesValue = calcItemInput[0].value * calcItemInput[1].value / square
-
-			changeBtn(Math.ceil(tilesValue))
-		} else if (calcItemInput[0].value == 0 && calcItemInput[1].value == 0 && calcItemInput[2].value == 0) {
-			setDefaultValues()
-		} else {
-			let tilesValue = calcItemInput[2].value / square
-
-			changeBtn(Math.ceil(tilesValue))
-		}
-	}, 100)
-}
-
-function changeInput(e) {
-	if (e.target.value > 0) {
-		e.target.classList.add('input_active')
-	} else {
-		e.target.classList.remove('input_active')
-	}
-
-	if (e.target.closest('.calculator__item_footage') && e.target.value > 0) {
-		calcItemInput[0].value = 0
-		calcItemInput[1].value = 0
-		calcItemInput[0].classList.remove('input_active')
-		calcItemInput[1].classList.remove('input_active')
-	} else {
-		calcItemInput[2].value = 0
-		calcItemInput[2].classList.remove('input_active')
-	}
-}
-
-function selectSystem(e) {
-	let systemActive = document.querySelector('.system_active')
-	let sizeSystem = document.querySelectorAll('.size__system')
-	let calcBody = document.querySelector('.calculator__body')
-	let inputs = document.querySelectorAll('.calculator__item input')
-
-	systemActive.classList.remove('system_active')
-	e.target.classList.add('system_active')
-
-	let metricActive = document.querySelector('.system_m.system_active')
-
-	if (metricActive) {
-		sizeSystem.forEach(ft => {
-			ft.innerText = '(m)'
-		})
-		calcBody.classList.add('calculator__body_metric')
-	} else {
-		sizeSystem.forEach(ft => {
-			ft.innerText = '(ft)'
-		})
-		calcBody.classList.remove('calculator__body_metric')
-	}
-
-	inputs.forEach(input => {
-		input.value = 0
-	})
-
-	setDefaultValues()
-}
-
-function changeBtn(tilesNumber) {
-	console.log('tilesNumber', tilesNumber)
-	let btnText
-
-	let [sale, price] = calcSale(tilesNumber)
-
-	if (!sale) {
-		btnText = `<span>ADD <span class="count">${ tilesNumber } TILES</span> TO CART </span>`
-	} else {
-		btnText = `<span>ADD <span class="count">${ tilesNumber } TILES</span> TO CART AND GET <span class="percent"><span>${ sale }%</span>off</span></span>`
-	}
-
-	tiles.innerText = tilesNumber
-	calcPrice.innerHTML = `£${ price } ${ sale ? `<span class="discount">(${ sale }%Off)</span>` : '' }`
-	calcBtn.classList.add('calculator__btn_active')
-	calcBtn.innerHTML = btnText
-
-	qty.value = tilesNumber
-
-	console.log('price', price)
-	money.innerText = '£' + price
-
-	calcBtn.addEventListener('click', () => {
-		qty.value = tilesNumber
-		addBtn.click()
-	})
-}
-
-function setDefaultValues() {
-	calcPrice.innerText = ''
-	tiles.innerText = 'X'
-	qty.value = 1
-	money.innerText = '£' + currentPrice
-	calcBtn.classList.remove('calculator__btn_active')
-	calcBtn.innerText = 'Fill in the form to see your results'
-}
-
-function calcSale(tilesNumber) {
-	let sale
-	let MathPrice
-	let MathPriceRound
-	let divider
-
-	if(!isSale) {
-		sale = 0
-	} else if (9 <= tilesNumber && tilesNumber <= 24) {
-		sale = 3.5
-	} else if (25 <= tilesNumber && tilesNumber <= 99) {
-		sale = 6
-	} else if (100 <= tilesNumber && tilesNumber <= 199) {
-		sale = 10
-	} else if (200 <= tilesNumber && tilesNumber <= 399) {
-		sale = 12.5
-	} else if (400 <= tilesNumber) {
-		sale = 15
-	} else {
-		sale = 0
-	}
-
-	divider = ((currentPrice * tilesNumber) / (100 * sale)) ? '' : 0
-	MathPrice = (currentPrice * tilesNumber) - divider
-
-	MathPriceRound = (Math.round(MathPrice * Math.pow(10, 2)) / Math.pow(10, 2)).toFixed(2)
-
-	return [sale, MathPriceRound]
-}
-
