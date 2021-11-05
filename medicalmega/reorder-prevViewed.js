@@ -559,6 +559,12 @@ let mut = new MutationObserver(function (muts) {
             .show-more {
                 margin: 10px 0!important;
             }
+            @media only screen and (min-width: 1011px)  {
+                .ordered-products.gallery-parent {
+                    width: calc(100% - 20px);
+                    margin: 0 0 0 20px;
+                }
+            }
             @media only screen and (max-width: 1010px)  {
                 .ordered-products.gallery-parent {
                     width: 100%;
