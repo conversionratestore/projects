@@ -7,6 +7,19 @@
 // 	'credits_left': 250,
 // })
 
+if(window.location.pathname === '/subscriptions') {
+	let btnInterval = setInterval(() => {
+		console.log('before')
+		if (document.querySelector('.billing-switch [aria-checked=false]')) {
+			clearInterval(btnInterval)
+			console.log('after')
+			document.querySelector('.billing-switch [aria-checked=false]').click()
+		}
+	}, 200)
+}
+
+
+
 let start = setInterval(() => {
 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
 		clearInterval(start)
@@ -197,13 +210,7 @@ let start = setInterval(() => {
 
 		const btn = document.querySelector('.btn-custom')
 
-		let btnInterval = setInterval(() => {
-			if (document.querySelector('.billing-switch [aria-checked=false]')) {
-				clearInterval(btnInterval)
 
-				document.querySelector('.billing-switch [aria-checked=false]').click()
-			}
-		}, 200)
 
 		document.addEventListener('click', closeModal)
 		btn.addEventListener('click', clickOnBtn)
