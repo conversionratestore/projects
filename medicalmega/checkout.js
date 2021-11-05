@@ -1,8 +1,127 @@
+function setOptionFetch(bodyOption) {
+    let optionFetch = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: "POST",
+        body: bodyOption
+
+    }
+    return optionFetch
+}
+
+function chengeTotal(data) {
+    let values = document.querySelectorAll('.total-values p b');
+    for (let i = 0; i < values.length; i++) {
+        for (let key in data) {
+            if (values[i].dataset.items == key) {
+                console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
+                values[i].innerHTML = data[key].toFixed(2);
+                if (data[key] == '0') {
+                    values[i].closest('p').style.display = 'none';
+                    document.querySelectorAll('.total-headings p')[i].style.display = 'none';
+                }
+            }
+        }
+    }
+}
+
+function chengeQuantity() {
+    document.querySelectorAll('.quantity-row').forEach((quantity) => {
+        quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
+            if (button.className == 'quantity-btn quantity-btn_minus') {
+                if (button.nextElementSibling.value < 2) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            }
+            button.addEventListener('click', () => {
+                if (button.className == 'quantity-btn quantity-btn_plus') {
+                    button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
+                    button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on plus of items',
+                        'eventLabel': 'Section Your order'
+                    });
+                }
+                if (button.className == 'quantity-btn quantity-btn_minus') {
+                    if (button.nextElementSibling.value < 2) {
+                        button.nextElementSibling.value = 1;
+                        button.disabled = true;
+                    } else {
+                        button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
+                    }
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — Alternative checkout desktop',
+                        'eventAction': 'Click on minus of items',
+                        'eventLabel': 'Section Your order'
+                    });
+                }
+
+                console.log(button.closest('.checkout-product').dataset.variantId)
+
+                let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
+                
+                fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+                    console.log(data["cart"])
+                    chengeTotal(data["cart"])
+                })
+                quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+            });
+        });
+        quantity.addEventListener('change', () => {
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Change on amount of items',
+                'eventLabel': 'Section Your order'
+            });
+            
+            let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
+            
+            fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
+                console.log(data["cart"])
+                chengeTotal(data["cart"])
+            })
+        });
+    });
+}
+
+function removeProduct() {
+    document.querySelectorAll('.remove').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — Alternative checkout desktop',
+                'eventAction': 'Click Exit Cross button',
+                'eventLabel': 'Section Your order'
+            });
+
+            let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
+            
+            fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+                console.log(data["cart"])
+                chengeTotal(data["cart"])
+            })
+            item.closest('.checkout-product').remove();
+        });
+    });
+}
+
 window.onload  = function () {
     if (mm.grw != 1) {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
-            <style>
+             <style>
             /*.checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {*/
             /*    display: none;}*/
             .title_head {
@@ -583,115 +702,7 @@ window.onload  = function () {
                 </div>
             </div>`);
 
-            function writeTotal(data) {
-                let values = document.querySelectorAll('.total-values p b');
-                for (let i = 0; i < values.length; i++) {
-                    for (let key in data) {
-                        if (values[i].dataset.items == key) {
-                            console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                            values[i].innerHTML = data[key].toFixed(2);
-                            if (data[key] == '0') {
-                                values[i].closest('p').style.display = 'none';
-                                document.querySelectorAll('.total-headings p')[i].style.display = 'none';
-                            }
-                        }
-                    }
-                }
-            }
-
-            function quantity() {
-                document.querySelectorAll('.quantity-row').forEach((quantity) => {
-                    quantity.querySelectorAll('.quantity-btn').forEach((button, index) => {
-                        if (button.className == 'quantity-btn quantity-btn_minus') {
-                            if (button.nextElementSibling.value < 2) {
-                                button.disabled = true;
-                            } else {
-                                button.disabled = false;
-                            }
-                        }
-                        button.addEventListener('click', () => {
-                            if (button.className == 'quantity-btn quantity-btn_plus') {
-                                button.previousElementSibling.value = parseInt(button.previousElementSibling.value) + 1;
-                                button.parentElement.querySelector('.quantity-btn_minus').disabled = false;
-
-                                window.dataLayer = window.dataLayer || [];
-                                dataLayer.push({
-                                    'event': 'event-to-ga',
-                                    'eventCategory': 'Exp — Alternative checkout desktop',
-                                    'eventAction': 'Click on plus of items',
-                                    'eventLabel': 'Section Your order'
-                                });
-                            }
-                            if (button.className == 'quantity-btn quantity-btn_minus') {
-                                if (button.nextElementSibling.value < 2) {
-                                    button.nextElementSibling.value = 1;
-                                    button.disabled = true;
-                                } else {
-                                    button.nextElementSibling.value = parseInt(button.nextElementSibling.value) - 1;
-                                }
-
-                                window.dataLayer = window.dataLayer || [];
-                                dataLayer.push({
-                                    'event': 'event-to-ga',
-                                    'eventCategory': 'Exp — Alternative checkout desktop',
-                                    'eventAction': 'Click on minus of items',
-                                    'eventLabel': 'Section Your order'
-                                });
-                            }
-
-                            console.log(button.closest('.checkout-product').dataset.variantId)
-                            fetch('/cart.html', {
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                method: "POST",
-                                body: `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`
-                           }).then(res => res.json()).then(data => {
-                                console.log(data["cart"])
-                                writeTotal(data["cart"])
-                            })
-                            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                        });
-                    });
-                    // document.querySelector('.checkout-right_body').addEventListener('change', () => {
-                    //     quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-                    // });
-                });
-            }
-
-            function removeProduct() {
-                document.querySelectorAll('.remove').forEach((item, index) => {
-                    item.addEventListener('click', () => {
-                        window.dataLayer = window.dataLayer || [];
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — Alternative checkout desktop',
-                            'eventAction': 'Click Exit Cross button',
-                            'eventLabel': 'Section Your order'
-                        });
-                        fetch('/cart.html', {
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            method: "POST",
-                            body: `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`
-                        }).then(res => res.json()).then(data => {
-                            console.log(data["cart"])
-                            writeTotal(data["cart"])
-                        })
-                        item.closest('.checkout-product').remove();
-                    });
-                });
-            }
-
-            fetch('/cart.html', {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                method: "POST",
-                body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
-
-            }).then(res => res.json()).then(data => {
+            fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                 console.log(data)
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
@@ -705,7 +716,7 @@ window.onload  = function () {
                             <div class="flex-center-between">
                                 <div class="quantity-row">
                                     <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity" readonly>
+                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity">
                                     <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                                 </div>
                                 <div class="total-price" data-price="${data["items"][i].price}">$ 
@@ -716,8 +727,8 @@ window.onload  = function () {
                     </div>`;
                     document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
                 }
-                writeTotal(data)
-                quantity()
+                chengeTotal(data)
+                chengeQuantity()
                 removeProduct()
             })
 
@@ -1135,27 +1146,21 @@ window.onload  = function () {
             }
 
 
-            document.querySelectorAll('.checkout-product .quantity').forEach(el => {
-                el.addEventListener('change', () => {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — Alternative checkout desktop',
-                        'eventAction': 'Change on amount of items',
-                        'eventLabel': 'Section Your order'
-                    });
-                    fetch('/cart.html', {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        method: "POST",
-                        body: `option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`
-                    }).then(res => res.json()).then(data => {
-                        console.log(data)
-                        writeTotal(data)
-                    })
-                })
-            });
+            // document.querySelectorAll('.checkout-product .quantity').forEach(el => {
+            //     el.addEventListener('change', () => {
+            //         window.dataLayer = window.dataLayer || [];
+            //         dataLayer.push({
+            //             'event': 'event-to-ga',
+            //             'eventCategory': 'Exp — Alternative checkout desktop',
+            //             'eventAction': 'Change on amount of items',
+            //             'eventLabel': 'Section Your order'
+            //         });
+            //         fetch('/cart.html', setOptionFetch(`option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`)).then(res => res.json()).then(data => {
+            //             console.log(data)
+            //             chengeTotal(data)
+            //         })
+            //     })
+            // });
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 window.dataLayer = window.dataLayer || [];
