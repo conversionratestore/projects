@@ -627,7 +627,7 @@ mut.observe(document, optionMut);
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('trigger', 'easy_reorder');
+hj('event', 'easy_reorder');
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
