@@ -5,7 +5,6 @@ function setOptionFetch(bodyOption) {
         },
         method: "POST",
         body: bodyOption
-
     }
     return optionFetch
 }
@@ -102,7 +101,8 @@ function chengeQuantity() {
                 'eventAction': 'Change on amount of items',
                 'eventLabel': 'Section Your order'
             });
-            
+            quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
+           
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
             
             fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
@@ -1173,6 +1173,7 @@ window.onload  = function () {
                     'eventLabel': 'Section Your order'
                 });
             })
+
         }
     }
 };
