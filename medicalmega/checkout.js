@@ -704,7 +704,7 @@ window.onload  = function () {
                             <div class="flex-center-between">
                                 <div class="quantity-row">
                                     <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${data["items"][i].qty}" class="quantity" readonly>
+                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity" readonly>
                                     <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                                 </div>
                                 <div class="total-price" data-price="${data["items"][i].price}">$ 
