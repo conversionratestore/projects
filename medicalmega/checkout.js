@@ -587,7 +587,7 @@ window.onload  = function () {
                     for (let key in data) {
                         if (values[i].dataset.items == key) {
                             console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                            values[i].innerHTML = data[key];
+                            values[i].innerHTML = data[key].toFixed(2);
                             if (data[key] == '0') {
                                 console.log(data[key])
                                 values[i].closest('p').style.display = 'none';
@@ -689,7 +689,7 @@ window.onload  = function () {
                 },
                 method: "POST",
                 body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
-                
+
             }).then(res => res.json()).then(data => {
                 console.log(data)
                 for (let i = 0; i < data["items"].length; i++) {
@@ -704,11 +704,11 @@ window.onload  = function () {
                             <div class="flex-center-between">
                                 <div class="quantity-row">
                                     <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity" readonly>
+                                    <input type="number" name="quantity" value="${data["items"][i].qty}" class="quantity" readonly>
                                     <button type="button" class="quantity-btn quantity-btn_plus">+</button>
                                 </div>
                                 <div class="total-price" data-price="${data["items"][i].price}">$ 
-                                    <b>${data["items"][i].subtotal}</b>
+                                    <b>${data["items"][i].subtotal.toFixed(2)}</b>
                                 </div>
                             </div>
                         </div>
