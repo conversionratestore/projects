@@ -11,6 +11,24 @@ function setOptionFetch(bodyOption) {
 }
 
 function chengeTotal(data) {
+    document.querySelector('.checkout-right_footer').innerHTML = `
+        <div class="altTd total-headings">
+            <p><b>Subtotal:</b></p>
+            <p><b>Discount:</b></p>
+            <p><b>Shipping:</b></p>
+            <p><b>Processing Fee:</b></p>
+            <p><b>Sales Tax:</b></p>
+            <p><b>Grand Total:</b></p>
+        </div>
+        <div class="altTd total-values">
+            <p>$ <b data-items="subtotal"></b></p>
+            <p> -$ <b data-items="discount"></b></p>
+            <p>$ <b data-items="shipping"></b></p>
+            <p>$ <b data-items="processing_fee"></b></p>
+            <p>$ <b data-items="tax"></b></p>
+            <p>$ <b data-items="total"></b></p>
+        </div>`;
+
     let values = document.querySelectorAll('.total-values p b');
     for (let i = 0; i < values.length; i++) {
         for (let key in data) {
@@ -681,24 +699,7 @@ window.onload  = function () {
                         </div>
                         <div class="checkout-right_body"></div>
                     </div>
-                    <div class="checkout-right_footer">
-                        <div class="altTd total-headings">
-                            <p><b>Subtotal:</b></p>
-                            <p><b>Discount:</b></p>
-                            <p><b>Shipping:</b></p>
-                            <p><b>Processing Fee:</b></p>
-                            <p><b>Sales Tax:</b></p>
-                            <p><b>Grand Total:</b></p>
-                        </div>
-                        <div class="altTd total-values">
-                            <p>$ <b data-items="subtotal"></b></p>
-                            <p> -$ <b data-items="discount"></b></p>
-                            <p>$ <b data-items="shipping"></b></p>
-                            <p>$ <b data-items="processing_fee"></b></p>
-                            <p>$ <b data-items="tax"></b></p>
-                            <p>$ <b data-items="total"></b></p>
-                        </div>
-                    </div>
+                    <div class="checkout-right_footer"></div>
                 </div>
             </div>`);
 
