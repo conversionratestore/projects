@@ -7,18 +7,14 @@
 // 	'credits_left': 250,
 // })
 
-if(window.location.pathname === '/subscriptions') {
-	let btnInterval = setInterval(() => {
-		console.log('before')
-		if (document.querySelector('.billing-switch [aria-checked=false]')) {
-			clearInterval(btnInterval)
-			console.log('after')
-			document.querySelector('.billing-switch [aria-checked=false]').click()
-		}
-	}, 200)
-}
-
-
+let btnInterval = setInterval(() => {
+	console.log('before')
+	if (document.querySelector('.billing-switch [aria-checked=false]')) {
+		clearInterval(btnInterval)
+		console.log('after')
+		document.querySelector('.billing-switch [aria-checked=false]').click()
+	}
+}, 200)
 
 let start = setInterval(() => {
 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
