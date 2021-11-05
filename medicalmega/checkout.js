@@ -1147,23 +1147,6 @@ window.onload  = function () {
                 });
             }
 
-
-            // document.querySelectorAll('.checkout-product .quantity').forEach(el => {
-            //     el.addEventListener('change', () => {
-            //         window.dataLayer = window.dataLayer || [];
-            //         dataLayer.push({
-            //             'event': 'event-to-ga',
-            //             'eventCategory': 'Exp — Alternative checkout desktop',
-            //             'eventAction': 'Change on amount of items',
-            //             'eventLabel': 'Section Your order'
-            //         });
-            //         fetch('/cart.html', setOptionFetch(`option_id=${el.closest('.checkout-product').dataset.variantId}&product_quantity=${el.value}&product_type=variant&cp_id=${el.closest('.checkout-product').dataset.id}&update_to_cart=variant&api=c`)).then(res => res.json()).then(data => {
-            //             console.log(data)
-            //             chengeTotal(data)
-            //         })
-            //     })
-            // });
-
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
@@ -1173,7 +1156,6 @@ window.onload  = function () {
                     'eventLabel': 'Section Your order'
                 });
             })
-
         }
     }
 };
