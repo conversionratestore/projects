@@ -371,8 +371,6 @@ window.onload  = function () {
             label = 'page Checkout';
             pushDataLayer(action, label)
         })
-        document.querySelector('.v2-horizontal-large-container').style.display = 'none';
-   
     }
     if (window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-purchase' || window.location.href == 'https://checkout.samcart.com/products/courses-special-offer-14-days-free/') {
         document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
@@ -477,6 +475,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[1]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[0]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[0]);
+        document.querySelector('.v2-horizontal-large-container').style.display = 'none';
     }
     mut.observe(document, optionMut);
 })
