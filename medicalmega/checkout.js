@@ -688,7 +688,7 @@ window.onload  = function () {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 method: "POST",
-                body: `api=c&cart_action=last_order&ctoken=${mm.ctoken}`
+                body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
 
             }).then(res => res.json()).then(data => {
                 console.log(data)
