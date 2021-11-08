@@ -17,8 +17,7 @@ let styleNewLanding = /*html*/ `
     main header .navbar,
     main header .navbar.navbar-expand-lg.static-top.fixed-top{
         background: linear-gradient(180deg, #FFFFFF 0%, #DDDDDF 100%);
-        padding: 8px 16px 0 !important;
-        
+        padding: 8px 16px 0 !important; 
     }
 
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
@@ -32,6 +31,11 @@ let styleNewLanding = /*html*/ `
     .bitepatch-template header nav .js-btn.btn-primary{
         width: 160px;
         height: 46px;
+        font-family: 'DINEngschrift LT', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 16px !important;
+        letter-spacing: 0.05em !important;
     }
 
     /* nav_block */
@@ -42,29 +46,37 @@ let styleNewLanding = /*html*/ `
         border-top: 1px solid #D9D9D9;
         margin-top: 12px;
         align-items: center;
+        justify-content: space-between;
+    }
+
+    .fixed-top .nav_block{
+        display: none;
     }
 
     .nav_block div:nth-child(2){
-        width: 50%;
+        width: 30%;
         text-align: center;
     }
 
     .nav_block div:last-child{
+        width: 30%;
+    }
+
+    .nav_block div:last-child a{
         display: flex;
         flex-direction:column;
-        width: 22%;
+        text-align: left;
+        align-items: flex-end;
     }
 
-    .nav_block div:last-child > img{
-        width: 100%;
-    }
 
-    .nav_block div:last-child >span{
+    .nav_block div:last-child span{
         font-family: 'Roboto', sans-serif !important;
         font-weight: 400;
         font-size: 11px;
         line-height: 1.3;
         color: #6F6F6F;
+        padding-right: 12px;
     }
 
     .nav_block p{
@@ -75,7 +87,7 @@ let styleNewLanding = /*html*/ `
         letter-spacing: 0.02em;
         text-transform: uppercase;
         color: #6F6F6F;
-        width: 28%;
+        width: 30%;
         margin-bottom: 0 !important;
     }
 
@@ -362,7 +374,13 @@ let styleNewLanding = /*html*/ `
     }
 
     .package .js-heading .js-btn.btn-primary{
+        font-family: 'DINEngschrift LT', sans-serif;
         max-width: 343px !important;
+        font-size: 16px !important;
+        line-height: 16px !important;
+        letter-spacing: 0.05em;
+        padding: 25px 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .ingredients p, .package .sub, .package p:nth-child(7){
@@ -401,8 +419,23 @@ let styleNewLanding = /*html*/ `
         color: #999999;
     }
 
-    .package .form{
-        margin-top: 0 !important;
+    .js-packs input[type=radio]+label.radio-inline {
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 110%;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 20px 0px;
+        border: 2px solid #FF3C7F;  
+        border-radius: 6px;
+    }
+
+    .js-packs input[type=radio]+label span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 130% !important;
     }
 
     #purchase .container.package .row.no-gutters #getNow img:nth-child(4){
@@ -413,8 +446,34 @@ let styleNewLanding = /*html*/ `
         display: none !important;
     }
 
-    .package .js-heading .js-btn.btn-primary{
-        margin: 0 !important;
+    .prices .js-total{
+        margin-bottom: 8px !important;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 130%;
+        color: #0C0B0B;
+    }
+
+    .prices .js-regular{
+        margin-bottom: 40px !important;
+    }
+
+    .js-strike{
+        text-decoration: unset !important;
+    }
+
+    .form-group{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .js-packs{
+        width: 48% !important;
+        max-width: unset !important;
+        margin: 6px 0 !important;
+        
     }
 
     /* featured-reviews*/
@@ -653,13 +712,24 @@ let styleNewLanding = /*html*/ `
     }
 
     /*slider */
+    .slider_nav{
+        margin: -16px;
+        width: calc(100% + 32px); 
+        padding: 16px; 
+        overflow: hidden;
+    }
+
     .slick-slide {
-    background: #FFFFFF;
-    box-shadow: 0px 4px 14px rgb(0 0 0 / 25%);
-    border-radius: 9px;
-    width: 283px !important;
-    padding: 16px;
-    margin-right: 16px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 14px rgb(0 0 0 / 25%);
+        border-radius: 9px;
+        padding: 16px;
+        margin-right: 16px;
+    }
+
+    .slick-list{
+        padding:0 13% 0 0 !important;
+        overflow: visible;
     }
 
 
@@ -667,6 +737,9 @@ let styleNewLanding = /*html*/ `
         max-width: 251px;
         height: 220px;
         margin-bottom: 16px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 6px;
     }
 
     .slider_custom_list > div:nth-child(2) {
@@ -747,32 +820,23 @@ let styleNewLanding = /*html*/ `
         margin-top: 40px;
     }
 
+    
 
 </style>
 `
 
 let navBlock = /*html*/ `
 <div class="nav_block">
-    <p>Our customers rate us as <b>Excellent</b></p>
+    <p>Our customers rate <br> us as <b>Excellent</b></p>
     <div>
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot.png" alt="logo trustpilot" width="94" height="23">
     </div>
     <div>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot_stars.svg" alt="logo trustpilot" width="74" height="14">
-        <span>Reviews 371</span>
+        <a href="https://www.trustpilot.com/review/buzzpatch.com">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot_stars.svg" alt="logo trustpilot" width="74" height="14">
+            <span>Reviews 371</span>
+        </a>
     </div>
-</div>
-`
-
-let blockWithoutRisk = /*html*/ `
-<div>
-    <h3>Try BuzzPatch For 30 Days <br> Without Risk</h3>
-    <div>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/guarantee.png" alt="guarantee money time" width="273">
-    </div>
-    <p>BuzzPatch covers you from mosquitoes. Our money-back guarantee covers you from any risk.</p>
-    <p>Try BuzzPatch for full 30 days and if you're not happy for whatever reason, shoot one email to name@domain.com and we'll send all your money back. <span>No returns required.</span></p>
-    <a href="#getNow" class="button_custom">Keep mosquitos at bay</a>
 </div>
 `
 
@@ -973,7 +1037,7 @@ let blockAllergies = /*html*/ `
     </ul>
 </div>
 
-<a href="#getNow">
+<a href="#getNow" class="button_custom">
     Keep mosquitos at bay
 </a>
 </div>
@@ -989,7 +1053,16 @@ let blockAllergies = /*html*/ `
 `
 
 let sliderNav = /*html*/ `
-<!-- <div> -->
+    <div>
+        <h3>Try BuzzPatch For 30 Days <br> Without Risk</h3>
+        <div>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/guarantee.png" alt="guarantee money time" width="273">
+        </div>
+        <p>BuzzPatch covers you from mosquitoes. Our money-back guarantee covers you from any risk.</p>
+        <p>Try BuzzPatch for full 30 days and if you're not happy for whatever reason, shoot one email to name@domain.com and we'll send all your money back. <span>No returns required.</span></p>
+        <a href="#getNow" class="button_custom">Keep mosquitos at bay</a>
+    </div>
+    <p>trusted customer <br> reviews</p>
     <div class="slider_nav">
         <div class="slider_custom_list">
             <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426" alt="">
@@ -1056,11 +1129,13 @@ let sliderNav = /*html*/ `
             </div>
         </div>
     </div>
-<!-- </div> -->
 `
 
 document.head.insertAdjacentHTML("beforeend", styleNewLanding)
 document.querySelector("header .navbar").insertAdjacentHTML("beforeend", navBlock)
+
+document.querySelector("#featured-reviews .container").remove()
+document.querySelector("#featuredReviewndicators").remove()
 
 document.querySelector(".js-mobile.effectiveness").after(document.querySelector("#purchase"))
 document.querySelector(".js-mobile.effectiveness").insertAdjacentHTML("beforebegin", blockAllergies)
@@ -1068,29 +1143,35 @@ document.querySelector(".js-mobile.effectiveness").insertAdjacentHTML("beforebeg
 document
   .querySelector("#purchase .container.package .row.no-gutters #getNow")
   .insertAdjacentHTML("afterbegin", `<p>One BuzzPatch pack can protect your child from bites for up to 90 days</p>`)
+
 document
   .querySelector("#purchase .container.package .row.no-gutters #getNow p:nth-child(3)")
   .insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/select_package.png" alt="buzzpatch photo">`)
 
-document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", blockWithoutRisk)
-document.querySelector("#featuredReviewndicators").insertAdjacentHTML("beforebegin", `<p>trusted customer <br> reviews</p>`)
-document.querySelector("#featured-reviews >p").insertAdjacentHTML("afterend", sliderNav)
+document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", sliderNav)
 document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
 
 // btn
-scrolling(".block_as_seen_on a")
+scrolling(".block_as_seen_on a", "Click on Keep Mosqitos At Bay button")
 scrolling(".compar_block a")
 scrolling("#featured-reviews div a")
-scrolling("#featured-reviews > a")
+scrolling("#featured-reviews > a", "Click on Keep Mosqitos at Bay button")
 
 // Pure js scrolling
-function scrolling(upSelector) {
+function scrolling(upSelector, evt) {
   // Scrolling with raf
   let links = document.querySelectorAll(upSelector),
-    speed = 0.6
+    speed = 0.3
 
   links.forEach((link) => {
     link.addEventListener("click", function (event) {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - LP AB test",
+        eventAction: evt,
+      })
+
       event.preventDefault()
 
       let widthTop = document.documentElement.scrollTop,
@@ -1120,7 +1201,7 @@ function scrolling(upSelector) {
   })
 }
 
-//
+//faq`s text
 document.querySelector(
   "#js-accordion .card:nth-child(1) .card-body p:nth-child(1)"
 ).innerHTML = `<p><b>Kids aged 0-2 need 1 patch:</b> One patch placed centrally on clothes (ie, on their jumpsuit on the stomach, chest)</p>`
@@ -1144,6 +1225,7 @@ document.querySelector(
 document.querySelector("#js-accordion .card:nth-child(5) .card-body p:nth-child(3)").innerHTML = `
 <p><b>Kids aged 6+ and parents need 2-4:</b> One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>`
 
+//  slider
 setTimeout(() => {
   $(".slider_nav").slick({
     slidesToShow: 1,
@@ -1152,3 +1234,39 @@ setTimeout(() => {
     focusOnSelect: true,
   })
 }, 100)
+
+// Clicks on Trust Pilot
+document.querySelector(".nav_block div:last-child a").addEventListener("click", () => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - LP AB test",
+    eventAction: "Clicks on Trust Pilot",
+  })
+})
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp - LP AB test",
+  eventAction: "loaded",
+})
+;(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      ;(h.hj.q = h.hj.q || []).push(arguments)
+    }
+  h._hjSettings = { hjid: 2247058, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+window.hj =
+  window.hj ||
+  function () {
+    ;(hj.q = hj.q || []).push(arguments)
+  }
+hj("trigger", "lp_ab_test")
