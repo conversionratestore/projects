@@ -538,11 +538,18 @@ let mut = new MutationObserver(function (muts) {
                             localStorage.setItem('products', '');
                             sessionStorage.setItem('wasPopup', 'false');
                         } else {
-                            let id = item.closest('.product').getAttribute('data-row-id'),
-                                productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-
+                            let colorData;
+                            document.querySelectorAll('.product-gtm-data').forEach(elData => {
+                                let title1 = item.closest('.product').querySelector('.title').innerText,
+                                    title2 = elData.getAttribute('data-name-gtm');
+                                if (title1 == title2) {
+                                    colorData = elData.getAttribute('data-color-eng-gtm');
+                                    elData.remove()
+                                }
+                            })
+                            let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].color == id) {
+                                if (productsLocalStorage[i].color == colorData) {
                                     setWasPopup(productsLocalStorage)
                                 }
                             }
