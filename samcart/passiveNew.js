@@ -764,7 +764,7 @@ document.querySelector('.elementor-section-wrap').insertAdjacentHTML('afterbegin
                   <p><b>Generate sales around the clock</b> using a simple "1 page funnel"</p>
                    ${createlistInfo('Convince users to buy your product','Best way to start your online business','Core 4 elements your page needs to sell')}
                 </div>
-                <button class="btn-blue" type="button" data-button="sales">Discover how to<img sr c="https://conversionratestore.github.io/projects/samcart/img/arrow-white.svg"></button>
+                <button class="btn-blue" type="button" data-button="sales">Discover how to<img src="https://conversionratestore.github.io/projects/samcart/img/arrow-white.svg"></button>
               </div>
               <div class="card">
                 <div class="card-top"><img class="card-img" src="https://conversionratestore.github.io/projects/samcart/img/bar-chart.svg">
