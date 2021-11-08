@@ -37,7 +37,6 @@ function detectMob() {
 }
 
 function pushProducts(imgUrl,name,price,currency,id,color) {
-    console.log('push')
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
@@ -121,6 +120,7 @@ function addEvent(obj, evt, fn) {
 }
 
 function pushDataLayer(action) {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -478,7 +478,6 @@ for (const key in objGeo) {
 }
 
 document.querySelector('.btn_close').addEventListener('click', (e) => {
-    console.log('click' + e.target)
     action = 'Close pop up';
     pushDataLayer(action)
     document.querySelector('.popup_exit_intent').classList.remove('active');
@@ -491,13 +490,11 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
 })
 
 let mut = new MutationObserver(function (muts) {
-    console.log('mut')
     if (window.location.pathname.includes('/product')) {
 
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
-                console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                     name = document.querySelectorAll('.product-container .title')[0].innerText,
                     price = document.querySelector('.prices .price').innerText.split(currency)[1],
@@ -511,7 +508,6 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart')) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    console.log('click' + e.target)
                     let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                         name = document.querySelector('.product_name').innerText,
                         price = document.querySelector('.price-offer-box .price').innerText.split(currency)[1],
