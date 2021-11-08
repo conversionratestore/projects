@@ -192,7 +192,7 @@ let start = setInterval(() => {
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
 	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
-	    <p class="credits">WOW you already used ${ percent }%<br>of your credits this month</p>
+	    <p class="credits">WOW you have already used ${ percent }%<br>of your credits this month</p>
 	    <p class="title"><span class="styled">Save $${ save }</span><br>on your <br><span class="plan">${ plan }</span> plan</p>
 	    <p class="subtitle">by switching to annual plan</p>
 	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
@@ -206,9 +206,7 @@ let start = setInterval(() => {
 		document.body.insertAdjacentHTML('beforeend', page)
 
 		const btn = document.querySelector('.btn-custom')
-
-
-
+		
 		document.addEventListener('click', closeModal)
 		btn.addEventListener('click', clickOnBtn)
 
