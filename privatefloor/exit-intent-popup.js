@@ -592,7 +592,6 @@ let mut = new MutationObserver(function (muts) {
     if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
         mut.disconnect()
         if (detectMob() == true) {
-
             document.body.classList.add('js-mobile');
             var my_scroll = (function() {
                 var last_position, new_position, timer, delta, delay = 50;
@@ -639,8 +638,16 @@ let mut = new MutationObserver(function (muts) {
             window.addEventListener('scroll', myScrollSpeedFunction);
         } else {
             document.body.classList.add('js-desktop');
-            document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
-            document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
+            document.querySelector('.btn_arrow_prev').addEventListener('click', () => {
+                slider.scrollLeft -= 195;
+                action = 'Scroll items';
+                pushDataLayer(action);
+            })
+            document.querySelector('.btn_arrow_next').addEventListener('click', () => {
+                slider.scrollLeft += 195;
+                action = 'Scroll items';
+                pushDataLayer(action);
+            })
 
             addEvent(document, 'mouseout', function(evt) {
                 if (evt.toElement == null && evt.relatedTarget == null) {
