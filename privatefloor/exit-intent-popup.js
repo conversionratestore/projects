@@ -501,7 +501,7 @@ let mut = new MutationObserver(function (muts) {
                 console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                     name = document.querySelectorAll('.product-container .title')[0].innerText,
-                    price = document.querySelector('.prices .price').innerText.split(' ')[0],
+                    price = document.querySelector('.prices .price').innerText.split(currency)[1],
                     id = document.querySelectorAll('.add-to-cart input')[0].value,
                     color = document.querySelector('.product-container .colors .list .content span.bullet-color.selected').getAttribute('data-name');
 
@@ -515,7 +515,7 @@ let mut = new MutationObserver(function (muts) {
                     console.log('click' + e.target)
                     let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                         name = document.querySelector('.product_name').innerText,
-                        price = document.querySelector('.price-offer-box .price').innerText.split(' ')[0],
+                        price = document.querySelector('.price-offer-box .price').innerText.split(currency)[1],
                         id = document.querySelectorAll('.quantities input')[0].value,
                         color = document.querySelector('.purchase-panel .colors .title').innerText;
 
