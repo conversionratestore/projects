@@ -1,12 +1,23 @@
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
+
+let scriptCustomStyle = document.createElement("link")
+scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+scriptCustomStyle.rel = "stylesheet"
+document.head.appendChild(scriptCustomStyle)
+
 let styleNewLanding = /*html*/ `
 <style>
     li {
         list-style: none;
     }
 
-    header .navbar,
-    header .navbar.navbar-expand-lg.static-top.fixed-top{
+    main header .navbar,
+    main header .navbar.navbar-expand-lg.static-top.fixed-top{
         background: linear-gradient(180deg, #FFFFFF 0%, #DDDDDF 100%);
+        padding: 8px 16px 0 !important;
         
     }
 
@@ -14,7 +25,7 @@ let styleNewLanding = /*html*/ `
     #ingredients, #flowers, #reviews,
     div .js-mobile.days.lazyautosizes.ls-is-cached.lazyloaded,
     .js-mobile.effectiveness, 
-    #featured-reviews .container, .carousel-indicators{
+    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators{
         display: none !important;
     }
 
@@ -84,7 +95,7 @@ let styleNewLanding = /*html*/ `
     /* block_first */
     .block_first{
         background: linear-gradient(180deg, #F1F1F1 0%, #ECEEF0 100%);
-        padding: 16px 15px 5px;
+        padding: 16px 16px 5px;
         text-align: center;
     }
 
@@ -163,7 +174,7 @@ let styleNewLanding = /*html*/ `
     /* block_as_seen_on */
     .block_as_seen_on{
         background: linear-gradient(180deg, #ECEEF0 0%, #FFFFFF 100%);
-        padding: 1px 15px 72px;
+        padding: 1px 16px 72px;
         text-align: center;
     }
 
@@ -263,7 +274,7 @@ let styleNewLanding = /*html*/ `
     /* block_as_seen_on */
     .block_allergies{
         background: #FFFFFF;
-        padding: 0 15px;
+        padding: 0 16px;
     }
 
     .block_allergies .accent_title{
@@ -301,14 +312,14 @@ let styleNewLanding = /*html*/ `
     }
 
     .block_allergies img{
-        margin: 0 -15px;
+        margin: 0 -16px;
         width: 110%;
     }
     
     /* block_effective*/
     .block_effective{
         background: linear-gradient(180deg, #FFFFFF 0%, #ECEEF0 100%);
-        padding: 72px 15px;
+        padding: 72px 16px;
     }
 
     .block_effective div:last-child h4{
@@ -347,7 +358,15 @@ let styleNewLanding = /*html*/ `
 
     #purchase .container.package .row.no-gutters #getNow {
         background: #ECEEF0;
-        padding: 0 15px 72px !important;
+        padding: 0 16px 72px !important;
+    }
+
+    .package .js-heading .js-btn.btn-primary{
+        max-width: 343px !important;
+    }
+
+    .ingredients p, .package .sub, .package p:nth-child(7){
+        margin: 0 !important;
     }
 
     #purchase .container.package .row.no-gutters #getNow p:first-child{
@@ -382,6 +401,14 @@ let styleNewLanding = /*html*/ `
         color: #999999;
     }
 
+    .package .form{
+        margin-top: 0 !important;
+    }
+
+    #purchase .container.package .row.no-gutters #getNow img:nth-child(4){
+        margin-bottom: 32px !important;
+    }
+
     #purchase img.js-mobile.lazyautosizes.lazyloaded{
         display: none !important;
     }
@@ -393,12 +420,12 @@ let styleNewLanding = /*html*/ `
     /* featured-reviews*/
     #featured-reviews{
         background: linear-gradient(180deg, #ECEEF0 0%, #FFFFFF 100%) !important;
-        padding: 0 15px 72px !important;
+        padding: 0 16px 72px !important;
         margin: 0 !important;
         max-width: unset !important;
     }
 
-    #featured-reviews div:first-child h3{
+    #featured-reviews > div:first-child h3{
         font-family: 'DINEngschrift LT', sans-serif;
         font-weight: 400;
         font-size: 36px !important;
@@ -410,7 +437,7 @@ let styleNewLanding = /*html*/ `
         margin-bottom: 23px;
     }
 
-    #featured-reviews div:first-child p{
+    #featured-reviews > div:first-child p{
         font-family: 'Roboto', sans-serif !important;
         font-weight: 400;
         font-size: 18px !important;
@@ -419,15 +446,15 @@ let styleNewLanding = /*html*/ `
         text-align: left;
     }
 
-    #featured-reviews div:first-child p:nth-child(3){
+    #featured-reviews > div:first-child p:nth-child(3){
         margin-top: 28px !important;
     }
 
-    #featured-reviews div:first-child p:nth-child(4){
+    #featured-reviews > div:first-child p:nth-child(4){
         margin-bottom: 40px !important;
     }
 
-    #featured-reviews div:first-child p:nth-child(4) span{
+    #featured-reviews > div:first-child p:nth-child(4) span{
         font-weight: 700;
     }
 
@@ -443,11 +470,9 @@ let styleNewLanding = /*html*/ `
         margin: 72px 0 28px;
     }
 
-    #featuredReviewndicators a{
-        margin-top: 40px;
-    }
 
-    #featuredReviewndicators .carousel-inner .carousel-item{
+
+    #featuredReviewndicators > .carousel-inner .carousel-item{
         background: #FFFFFF;
         box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
         border-radius: 9px;
@@ -457,6 +482,11 @@ let styleNewLanding = /*html*/ `
     #faqs {
         background: #FFFFFF !important;
         padding: 0;
+    }
+
+    #faqs .container, #faqs .container .col-lg-12{
+        padding-left: 16px !important;
+        padding-right: 16px !important;
     }
     
     #js-accordion .card-body{
@@ -473,10 +503,23 @@ let styleNewLanding = /*html*/ `
 
     .faqs #js-accordion .card-link{
         font-family: 'Roboto', sans-serif !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         font-size: 18px !important;
         line-height: 130% !important;
         color: #212529;
+        padding: 15px 20px 15px 30px !important;
+    }
+
+    .faqs #js-accordion p{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 500;
+        font-size: 14px !important;
+        line-height: 130% !important;
+        color: #6F6F6F;
+    }
+
+    .faqs #js-accordion .card-body{
+        padding: 0 0 0 30px !important;
     }
     
     /*footer */
@@ -608,6 +651,102 @@ let styleNewLanding = /*html*/ `
     .span_varian{
     margin-top: 10px;
     }
+
+    /*slider */
+    .slick-slide {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 14px rgb(0 0 0 / 25%);
+    border-radius: 9px;
+    width: 283px !important;
+    padding: 16px;
+    margin-right: 16px;
+    }
+
+
+    .slider_custom_list > img:nth-child(1){
+        max-width: 251px;
+        height: 220px;
+        margin-bottom: 16px;
+    }
+
+    .slider_custom_list > div:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .slider_custom_list > div:nth-child(2) > p{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.3;
+        color: #0C0B0B;
+        margin: 0 !important;
+    }
+
+    .slider_custom_list > div:nth-child(2) > span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #999999;
+    }
+
+    .slider_custom_list > img:nth-child(3){
+        margin-bottom: 8px;
+        max-width: 100px;
+    }
+    
+    .slider_nav .slider_custom_list > div:nth-child(4) > p{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        color: #6F6F6F !important;
+        margin: 0 !important;
+        text-align: left;
+    }
+
+    .slider_nav .slider_custom_list > div:nth-child(4) > p:not(:last-child){
+         margin-bottom: 13px !important;
+    }
+
+    .slider_nav .slider_custom_list > div:nth-child(4){
+        margin-bottom: 16px;
+    }
+
+    .slider_custom_list > div:nth-child(5){
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .slider_custom_list > div:nth-child(5) > span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #00B67E;
+        position: relative;
+        padding-left: 15px;
+    }
+
+    .slider_custom_list > div:nth-child(5) > span:before {
+        position: absolute;
+        content: "";
+        background: url(https://conversionratestore.github.io/projects/buzzpatch/img/check_circle.svg) center center no-repeat;
+        width: 12px;
+        height: 12px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #featured-reviews > a{
+        margin-top: 40px;
+    }
+
 
 </style>
 `
@@ -849,6 +988,77 @@ let blockAllergies = /*html*/ `
 </section>
 `
 
+let sliderNav = /*html*/ `
+<!-- <div> -->
+    <div class="slider_nav">
+        <div class="slider_custom_list">
+            <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_affc665f_8efa_4464_9681_1f27324fff9e_290x250_crop_center.jpg?v=1620911426" alt="">
+            <div>
+                <p>Fedua A.</p>
+                <span>07/31/2020</span>
+            </div>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stars.png" alt="">
+            <div>
+                <p>The sticker itself is very good quality, I was worried it would fall but the glue is very good and I changed the location of the sticker more than once and it never fell!</p>
+                <p>Didn't get any mosquito bites, I started to think something works with those little birds!</p>
+                <p>Other than that, I had the best experience ordering, following up and exchanging emails since my order was few days delayed. I really can’t be happier with this whole experience!</p>
+            </div>
+            <div>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/country.png" alt="">
+                <span>Verified Buyer</span>
+            </div>
+        </div>
+        <div class="slider_custom_list">
+            <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_bb2276e7_9275_49cf_b59d_18115e3c1aef_290x250_crop_center.jpg?v=1620911426" alt="">
+            <div>
+                <p>J***k</p>
+                <span>06/19/2020</span>
+            </div>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stars.png" alt="">
+            <div>
+                <p>Love them and so do my kids! From what I can tell they do help keep away mosquitoes! Will buy more! Great seller.</p>
+                <p>Shipping to Canada came from within canada seller must have a supplier in Canada leading to speedy delivery!</p>
+            </div>
+            <div>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/country.png" alt="">
+                <span>Verified Buyer</span>
+            </div>
+        </div>
+        <div class="slider_custom_list">
+            <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_999990_b4f75c07_46e0_4197_9623_1c1c0ffaf91e_290x250_crop_center.jpg?v=1620911426" alt="">
+            <div>
+                <p>Lauren S.</p>
+                <span>07/13/2020</span>
+            </div>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stars.png" alt="">
+            <div>
+                <p>We just took the patches on a camping trip. We have an 8 month old so therefore I'm hesitant to put much on her to protect her from the mosquitos and it's still quite buggy where we are, so the patches were an awesome option. For the most part, they help immensely!</p>
+                <p>On very, very buggy hikes, they didn't necessarily fend absolutely all of the mosquitos off, but did a pretty good job.</p>
+            </div>
+            <div>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/country.png" alt="">
+                <span>Verified Buyer</span>
+            </div>
+        </div>
+        <div class="slider_custom_list">
+            <img src="https://cdn.shopify.com/s/files/1/0387/0749/4956/files/138991_5195756765228_f4327ef7_76ae_4478_a5a4_90a3fea882dd_290x250_crop_center.jpg?v=1620911426" alt="">
+            <div>
+                <p>Joanne</p>
+                <span>06/28/2020</span>
+            </div>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stars.png" alt="">
+            <div>
+                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
+            </div>
+            <div>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/country.png" alt="">
+                <span>Verified Buyer</span>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+`
+
 document.head.insertAdjacentHTML("beforeend", styleNewLanding)
 document.querySelector("header .navbar").insertAdjacentHTML("beforeend", navBlock)
 
@@ -864,13 +1074,14 @@ document
 
 document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", blockWithoutRisk)
 document.querySelector("#featuredReviewndicators").insertAdjacentHTML("beforebegin", `<p>trusted customer <br> reviews</p>`)
-document.querySelector("#featuredReviewndicators").insertAdjacentHTML("beforeend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
+document.querySelector("#featured-reviews >p").insertAdjacentHTML("afterend", sliderNav)
+document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
 
 // btn
 scrolling(".block_as_seen_on a")
 scrolling(".compar_block a")
 scrolling("#featured-reviews div a")
-scrolling("#featuredReviewndicators a")
+scrolling("#featured-reviews > a")
 
 // Pure js scrolling
 function scrolling(upSelector) {
@@ -932,3 +1143,12 @@ document.querySelector(
 
 document.querySelector("#js-accordion .card:nth-child(5) .card-body p:nth-child(3)").innerHTML = `
 <p><b>Kids aged 6+ and parents need 2-4:</b> One patch on the clothing next to each exposed limb (one on the sleeve of both the left and right arm, and if wearing shorts, one on the left and right side of the shorts)</p>`
+
+setTimeout(() => {
+  $(".slider_nav").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    focusOnSelect: true,
+  })
+}, 100)
