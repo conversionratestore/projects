@@ -489,7 +489,7 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
     window.location.href = 'https://www.privatefloor.com/cart/';
 })
 
-function setWasPopup(productsLocalStorage) {
+function setWasPopup(productsLocalStorage,i) {
     productsLocalStorage.splice(i, 1)
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
     sessionStorage.setItem('wasPopup', 'false');
@@ -550,7 +550,7 @@ let mut = new MutationObserver(function (muts) {
                             let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].color == colorData) {
-                                    setWasPopup(productsLocalStorage)
+                                    setWasPopup(productsLocalStorage,i)
                                 }
                             }
                         }
@@ -564,7 +564,7 @@ let mut = new MutationObserver(function (muts) {
 
                     for (let i = 0; i < productsLocalStorage.length; i++) {
                         if (productsLocalStorage[i].color == id) {
-                            setWasPopup(productsLocalStorage)
+                            setWasPopup(productsLocalStorage,i)
                         }
                     }
                 })
@@ -583,7 +583,7 @@ let mut = new MutationObserver(function (muts) {
 
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].color == color) {
-                                    setWasPopup(productsLocalStorage)
+                                    setWasPopup(productsLocalStorage,i)
                                 }
                             }
                         }
