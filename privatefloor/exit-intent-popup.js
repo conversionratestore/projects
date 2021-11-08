@@ -469,11 +469,11 @@ function pushDataLayer(action) {
             </div>`);
         }
     }
-
-
+    
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true) {
-            document.querySelector('.btn-atc').addEventListener('click', () => {
+            document.querySelector('.btn-atc').addEventListener('click', (e) => {
+                console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                     name = document.querySelectorAll('.product-container .title')[0].innerText,
                     price = document.querySelector('.prices .price').innerText,
@@ -485,7 +485,8 @@ function pushDataLayer(action) {
                 pushProducts(imgUrl,name,price,id,color);
             })
         } else {
-            document.querySelector('#btn-add-item-cart').addEventListener('click', () => {
+            document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
+                console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                     name = document.querySelector('.product_name').innerText,
                     price = document.querySelector('.price-offer-box .price').innerText,
@@ -498,7 +499,8 @@ function pushDataLayer(action) {
             })
         }
     }
-    document.querySelector('.btn_close').addEventListener('click', () => {
+    document.querySelector('.btn_close').addEventListener('click', (e) => {
+        console.log('click' + e.target)
         document.querySelector('.popup_exit_intent').classList.remove('active');
     })
     document.querySelector('.btn-complete').addEventListener('click', () => {
