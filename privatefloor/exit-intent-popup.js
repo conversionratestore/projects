@@ -29,6 +29,7 @@ function detectMob() {
 }
 
 function pushProducts(imgUrl,name,price,id,color) {
+    console.log('push')
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
@@ -122,6 +123,7 @@ function pushDataLayer(action) {
 }
 
 // window.onload  = function () {
+
     document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
