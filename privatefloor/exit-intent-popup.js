@@ -168,6 +168,7 @@ window.onload  = function () {
     }
     .popup_slider {
         display: flex;
+        overflow-y: hidden;
         overflow-x: auto;
         max-width: 336px;
         margin: 0 auto;
@@ -457,7 +458,7 @@ window.onload  = function () {
             </div>`);
         }
     }
-    
+
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true) {
             document.querySelector('.btn-atc').addEventListener('click', () => {
