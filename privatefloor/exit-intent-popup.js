@@ -576,7 +576,7 @@ let mut = new MutationObserver(function (muts) {
                 })
             })
         } else {
-            if (document.querySelectorAll('.removeItem')) {
+            if (document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
                 mut.disconnect()
                 function removeProductDesktop(item) {
                     item.addEventListener('click', () => {
@@ -596,14 +596,13 @@ let mut = new MutationObserver(function (muts) {
                         }
                     })
                 }
-                if (document.querySelectorAll('.removeItem')) {
-                    document.querySelectorAll('.minus_cart').forEach(item => {
-                        removeProductDesktop(item)
-                    })
-                    document.querySelectorAll('.removeItem').forEach(item => {
-                        removeProductDesktop(item)
-                    })
-                }
+
+                document.querySelectorAll('.minus_cart').forEach(item => {
+                    removeProductDesktop(item)
+                })
+                document.querySelectorAll('.removeItem').forEach(item => {
+                    removeProductDesktop(item)
+                })
             }
 
         }
