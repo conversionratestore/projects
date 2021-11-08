@@ -734,7 +734,6 @@ let styleNewLanding = /*html*/ `
 
 
     .slider_custom_list > img:nth-child(1){
-        max-width: 251px;
         height: 220px;
         margin-bottom: 16px;
         width: 100%;
