@@ -1,6 +1,7 @@
 let products = [],
     haveLink = false,
-    action;
+    action,
+    currency;
 
 let objGeo = {
     '/uk.' : {
@@ -8,7 +9,8 @@ let objGeo = {
         'textTotal': 'Total',
         'text': 'We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now',
         'textBtn': 'complete my order now',
-        'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`
+        'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
+        'currency': '£'
     }
 };
 
@@ -472,6 +474,7 @@ for (const key in objGeo) {
                     <button type="button" class="btn-complete">${objGeo[key]["textBtn"]}</button>
                 </div>
             </div>`);
+        currency = objGeo[key]["currency"]
     }
 }
 
@@ -491,6 +494,7 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
     if (window.location.pathname.includes('/product')) {
+
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
@@ -498,12 +502,10 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                     name = document.querySelectorAll('.product-container .title')[0].innerText,
                     price = document.querySelector('.prices .price').innerText.split(' ')[0],
-                    currency = document.querySelector('.prices .price').innerText.split(' ')[1],
                     id = document.querySelectorAll('.add-to-cart input')[0].value,
                     color = document.querySelector('.product-container .colors .list .content span.bullet-color.selected').getAttribute('data-name');
 
                 sessionStorage.setItem('wasPopup', 'false');
-
                 pushProducts(imgUrl,name,price,currency,id,color);
             })
         } else {
@@ -514,12 +516,10 @@ let mut = new MutationObserver(function (muts) {
                     let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                         name = document.querySelector('.product_name').innerText,
                         price = document.querySelector('.price-offer-box .price').innerText.split(' ')[0],
-                        currency = document.querySelector('.prices .price').innerText.split(' ')[1],
                         id = document.querySelectorAll('.quantities input')[0].value,
                         color = document.querySelector('.purchase-panel .colors .title').innerText;
 
                     sessionStorage.setItem('wasPopup', 'false');
-
                     pushProducts(imgUrl,name,price,currency,id,color);
                 })
             }
