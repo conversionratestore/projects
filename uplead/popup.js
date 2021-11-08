@@ -74,7 +74,7 @@ let start = setInterval(() => {
 		    -ms-flex-direction: column;
 		    flex-direction: column;	    
 		    max-width: 700px;
-		    padding: 75px 70px;
+		    padding: 55px;
 		    width: 100%;
 		    text-align: center;
 		}
@@ -117,7 +117,7 @@ let start = setInterval(() => {
 			font-size: 36px;
 			font-weight: bold;
 			color: #14142B;
-			margin: 8px 0 50px;
+			margin: 8px 0 35px;
 		}	
 		
 		.popup-custom .subtitle + p {
@@ -132,12 +132,12 @@ let start = setInterval(() => {
 		    font-size: 18px;
 	        padding: 16px 11%;
 	        border-radius: 30px;
-	        margin-top: 50px;
+	        margin-top: 35px;
 	        font-family: "Gilroy",sans-serif;
 		}
 		
 		.btn-custom:hover {
-		    background-color: #005670;	    
+		    background-color: #005670;
 		    color: #fff;
 	        cursor: pointer;
 		    transition: all 0.3s ease;
@@ -150,7 +150,7 @@ let start = setInterval(() => {
 		}
 		
 		.popup-custom .clock {
-			margin-bottom: 50px;
+			margin-bottom: 35px;
 		}
 		
 		.grey {
@@ -169,8 +169,7 @@ let start = setInterval(() => {
 		}
 		
 		.popup-custom svg:hover {
-			fill: #14142B;
-			
+			fill: #14142B;			
 		}
 		
 		p.credits {
@@ -272,3 +271,4 @@ let start = setInterval(() => {
 		})
 	}
 }, 200)
+
