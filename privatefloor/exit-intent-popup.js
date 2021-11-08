@@ -1,6 +1,7 @@
 let slider = document.querySelector('.popup_slider'),
     products = [],
-    haveLink = false;
+    haveLink = false,
+    action;
 
 let objGeo = {
     '/uk.' : {
@@ -476,10 +477,14 @@ for (const key in objGeo) {
 
 document.querySelector('.btn_close').addEventListener('click', (e) => {
     console.log('click' + e.target)
+    action = 'Close pop up';
+    pushDataLayer(action)
     document.querySelector('.popup_exit_intent').classList.remove('active');
 })
 document.querySelector('.btn-complete').addEventListener('click', () => {
     document.querySelector('.popup_exit_intent').classList.remove('active');
+    action = 'Click Complete order';
+    pushDataLayer(action)
     window.location.href = 'https://www.privatefloor.com/cart/';
 })
 
