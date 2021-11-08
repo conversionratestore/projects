@@ -111,6 +111,16 @@ function addEvent(obj, evt, fn) {
     }
 }
 
+
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Exit intent pop up',
+        'eventAction': `${action}`
+    });
+}
+
 window.onload  = function () {
     document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
@@ -168,7 +178,6 @@ window.onload  = function () {
     }
     .popup_slider {
         display: flex;
-        overflow-y: hidden;
         overflow-x: auto;
         max-width: 336px;
         margin: 0 auto;
@@ -459,6 +468,7 @@ window.onload  = function () {
         }
     }
 
+
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true) {
             document.querySelector('.btn-atc').addEventListener('click', () => {
@@ -622,3 +632,20 @@ window.onload  = function () {
         }
     }
 };
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1699330,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'exit_intent');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Exit intent pop up',
+    'eventAction': 'loaded'
+});
