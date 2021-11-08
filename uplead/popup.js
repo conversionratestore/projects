@@ -82,7 +82,7 @@ let start = setInterval(() => {
 		.popup-custom p {
 			width: 100%;
 			color: #69727A;
-			font-size: 18px;
+			font-size: 13px;
 			line-height: 30px;
 			font-family: "Gilroy", sans-serif;
 			margin: 0;
@@ -93,7 +93,7 @@ let start = setInterval(() => {
 			position: relative;
 			font-weight: bold;
 			color: #14142B;
-			font-size: 54px;
+			font-size: 38px;
 			line-height: 62px;
 		}
 		
@@ -114,7 +114,7 @@ let start = setInterval(() => {
 		}	
 		
 		.popup-custom .subtitle {
-			font-size: 36px;
+			font-size: 25px;
 			font-weight: bold;
 			color: #14142B;
 			margin: 8px 0 35px;
@@ -129,7 +129,7 @@ let start = setInterval(() => {
 		    border: 1px solid transparent;	    
 		    color: #fff;
 		    font-weight: 500;
-		    font-size: 18px;
+		    font-size: 13px;
 	        padding: 16px 11%;
 	        border-radius: 30px;
 	        margin-top: 35px;
@@ -173,7 +173,7 @@ let start = setInterval(() => {
 		}
 		
 		p.credits {
-			font-size: 24px;
+			font-size: 18px;
 		}
 		
 		.credits {
