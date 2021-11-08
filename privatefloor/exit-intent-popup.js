@@ -539,12 +539,12 @@ let mut = new MutationObserver(function (muts) {
                             sessionStorage.setItem('wasPopup', 'false');
                         } else {
                             let colorData,
-                                id2,
-                                title1 = item.closest('.product').querySelector('.title').innerText,
-                                id1 = item.closest('.product').getAttribute('data-item-id');
-                            
+                                id2;
+
                             document.querySelectorAll('.product-gtm-data').forEach(elData => {
-                                let title2 = elData.getAttribute('data-name-gtm');
+                                let title2 = elData.getAttribute('data-name-gtm'),
+                                    title1 = item.closest('.product').querySelector('.title').innerText,
+                                    id1 = item.closest('.product').getAttribute('data-item-id');
                                 id2 = elData.getAttribute('data-item-id-gtm');
 
                                 if (title1 == title2 && id1 == id2) {
@@ -554,7 +554,7 @@ let mut = new MutationObserver(function (muts) {
                             })
                             let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].color == colorData && id1 == id2) {
+                                if (productsLocalStorage[i].color == colorData && productsLocalStorage[i].id == id2) {
                                     setWasPopup(productsLocalStorage,i)
                                 }
                             }
