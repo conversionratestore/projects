@@ -183,6 +183,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
     }
     .popup_slider {
         display: flex;
+        overflow-y: hidden;
         overflow-x: auto;
         max-width: 336px;
         margin: 0 auto;
@@ -519,7 +520,7 @@ let mut = new MutationObserver(function (muts) {
     }
 
     mut.observe(document, optionMut);
-    
+
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus')) {
             mut.disconnect()
@@ -577,16 +578,16 @@ let mut = new MutationObserver(function (muts) {
                     })
                 }
             }
-      
+
         }
     }
 
     mut.observe(document, optionMut);
-    
+
     if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
         mut.disconnect()
         if (detectMob() == true) {
-           
+
             document.body.classList.add('js-mobile');
             var my_scroll = (function() {
                 var last_position, new_position, timer, delta, delay = 50;
@@ -655,7 +656,7 @@ let mut = new MutationObserver(function (muts) {
             })
         }
     }
-    
+
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
