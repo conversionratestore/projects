@@ -116,11 +116,11 @@ let start = setInterval(() => {
 			font-size: 25px;
 			font-weight: bold;
 			color: #14142B;
-			margin: 8px 0 23px;
+			margin: 10px 0 40px;
 		}	
 		
 		.popup-custom .subtitle + p {
-			margin-bottom: 20px;
+			margin-bottom: 10px;
 		}
 		
 		.btn-custom {
@@ -272,4 +272,3 @@ let start = setInterval(() => {
 		})
 	}
 }, 200)
-
