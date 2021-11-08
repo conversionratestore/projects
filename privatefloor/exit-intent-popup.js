@@ -1,5 +1,4 @@
-let slider = document.querySelector('.popup_slider'),
-    products = [],
+let products = [],
     haveLink = false,
     action;
 
@@ -638,16 +637,16 @@ let mut = new MutationObserver(function (muts) {
 
             window.addEventListener('scroll', myScrollSpeedFunction);
         }
-        if (detectMob() == false && document.querySelector('.btn_arrow_prev')) {
+        if (detectMob() == false && document.querySelector('.btn_arrow_prev') && document.querySelector('.popup_slider')) {
             mut.disconnect()
             document.body.classList.add('js-desktop');
             document.querySelector('.btn_arrow_prev').addEventListener('click', () => {
-                slider.scrollLeft -= 195;
+                document.querySelector('.popup_slider').scrollLeft -= 195;
                 action = 'Scroll items';
                 pushDataLayer(action);
             })
             document.querySelector('.btn_arrow_next').addEventListener('click', () => {
-                slider.scrollLeft += 195;
+                document.querySelector('.popup_slider').scrollLeft += 195;
                 action = 'Scroll items';
                 pushDataLayer(action);
             })
