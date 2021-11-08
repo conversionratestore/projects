@@ -104,7 +104,7 @@ function addProduct() {
             }
         }
         total += +newPrice;
-        document.querySelector('.popup_total_price').innerHTML = currency + total.toFixed(2);
+        document.querySelector('.popup_total_price').innerHTML = productsLocalStorage[i].currency + total.toFixed(2);
     }
     if(productsLocalStorage.length < 3) {
         document.querySelector('.btn_arrow_prev').style.display = 'none';
