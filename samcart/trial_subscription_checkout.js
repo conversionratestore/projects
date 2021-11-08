@@ -476,6 +476,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('#order-summary-widget').style.margin = '0 0 40px 0';
         document.querySelector('#order-summary-widget').after(document.querySelector('#payments'));
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[1]);
+        document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[2]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[1]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .row')[0]);
         document.querySelector('#order-summary-widget').after(document.querySelectorAll('#paymentForm .tpl-6__checkout__subtitle')[0]);
