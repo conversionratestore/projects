@@ -585,10 +585,11 @@ let mut = new MutationObserver(function (muts) {
                             sessionStorage.setItem('wasPopup', 'false');
                         } else {
                             let color = item.closest('tr').querySelector('.color').innerText,
+                                id = item.closest('tr').getAttribute('data-item-id'),
                                 productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].color == color) {
+                                if (productsLocalStorage[i].color == color && productsLocalStorage[i].id == id) {
                                     setWasPopup(productsLocalStorage,i)
                                 }
                             }
