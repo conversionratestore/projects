@@ -471,6 +471,10 @@ hr.line-vertical {
   background: #046BD9;
   max-width: 189px;
   color: #ffffff;}
+ .btn-blue:hover {
+ background: #046BD9!important;
+ color: #ffffff!important;
+ }
   .btn-blue:active{
    box-shadow: inset 0 3px 5px rgba(206, 219, 233, 0.9);}
   .btn-blue img {
