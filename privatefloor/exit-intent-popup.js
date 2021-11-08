@@ -68,8 +68,7 @@ function addProduct() {
     document.querySelector('.popup_slider').innerHTML = ``;
 
     for (let i = 0; i < productsLocalStorage.length; i++) {
-        let priceSpt = productsLocalStorage[i].price.split(' '),
-            newPrice = productsLocalStorage[i].price.replace(priceSpt[1],'').replace(',','.');
+        let newPrice = productsLocalStorage[i].price.split(',').join('');
 
         if(productsLocalStorage.length > 1) {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
