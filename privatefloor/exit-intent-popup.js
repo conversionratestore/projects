@@ -604,7 +604,6 @@ let mut = new MutationObserver(function (muts) {
                     removeProductDesktop(item)
                 })
             }
-
         }
     }
 
