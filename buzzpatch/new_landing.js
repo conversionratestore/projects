@@ -1151,10 +1151,10 @@ document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", sli
 document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
 
 // btn
-scrolling(".block_as_seen_on a", "Click on Keep Mosqitos At Bay button")
-scrolling(".compar_block a")
-scrolling("#featured-reviews div a")
-scrolling("#featured-reviews > a", "Click on Keep Mosqitos at Bay button")
+scrolling(".block_as_seen_on a", "Click on Keep Mosqitos At Bay button1")
+scrolling(".compar_block a", "Click on Keep Mosqitos At Bay button2")
+scrolling("#featured-reviews div a", "Click on Keep Mosqitos At Bay button3")
+scrolling("#featured-reviews > a", "Click on Keep Mosqitos At Bay button4")
 
 // Pure js scrolling
 function scrolling(upSelector, evt) {
@@ -1226,11 +1226,21 @@ document.querySelector("#js-accordion .card:nth-child(5) .card-body p:nth-child(
 
 //  slider
 setTimeout(() => {
-  $(".slider_nav").slick({
+  let slider = $(".slider_nav").slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     focusOnSelect: true,
+  })
+
+  slider.on("swipe", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - LP AB test",
+      eventAction: "Swipe slider",
+      eventLabel: `Slider swipe`,
+    })
   })
 }, 100)
 
