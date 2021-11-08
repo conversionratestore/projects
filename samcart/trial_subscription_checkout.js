@@ -179,7 +179,7 @@ window.onload  = function () {
                 localStorage.setItem('paymentSystem', 'applePay');
             })
         }
-    
+
         if (document.querySelector(".google-pay:not(.ng-hide)")) {
             document.querySelector("#get_samcart .justify-content-between").insertAdjacentHTML("afterbegin", googlePayBtn)
             document.querySelector('.btn_pay').addEventListener('click', () => {
@@ -194,7 +194,7 @@ window.onload  = function () {
             pushDataLayer(action)
             localStorage.setItem('paymentSystem', 'enroll');
         })
-    
+
         document.querySelector('.btn_pay_pal').addEventListener('click', () => {
             action = 'Click on PayPal button';
             pushDataLayer(action)
@@ -205,7 +205,7 @@ window.onload  = function () {
 
         if (window.matchMedia("(max-width: 767px)").matches) {
             document.querySelector('.get_samcart_btns').after(document.querySelector('.get_samcart_text'))
-        } 
+        }
 
         let newBtn = `<a href="https://checkout.samcart.com/products/courses-special-offer-14-days-free/" class="btn_blue">Try 14 days for FREE</a>`;
 
@@ -229,20 +229,20 @@ window.onload  = function () {
 
         function isScrolledIntoView(el) {
             let rect = el.getBoundingClientRect(),
-            elemTop = rect.top,
-            elemBottom = rect.bottom;
-    
+                elemTop = rect.top,
+                elemBottom = rect.bottom;
+
             let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
-        
+
             return isVisible;
         }
-        
+
         document.querySelectorAll('.btn_blue').forEach((item,index)=> {
             document.addEventListener('scroll', (e) => {
                 if (isScrolledIntoView(item) == true && index === 0 && viewed0 !== true) {
                     viewed0 = true;
                     action = 'Visibility Try 14 days for FREE button',
-                    label = 'page Special Offer above title Plus $10,060 Worth..';
+                        label = 'page Special Offer above title Plus $10,060 Worth..';
                     pushDataLayer(action, label)
                 } else if (isScrolledIntoView(item) == false && index === 0) {
                     viewed0 = false;
@@ -250,7 +250,7 @@ window.onload  = function () {
                 if (isScrolledIntoView(item) == true && index === 1 && viewed1 !== true) {
                     viewed1 = true;
                     action = 'Visibility Try 14 days for FREE button',
-                    label = 'page Special Offer above title Create your course...';
+                        label = 'page Special Offer above title Create your course...';
                     pushDataLayer(action, label)
                 } else if (isScrolledIntoView(item) == false && index === 1) {
                     viewed1 = false;
@@ -258,7 +258,7 @@ window.onload  = function () {
                 if (isScrolledIntoView(item) == true && index === 2 && viewed2 !== true) {
                     viewed2 = true;
                     action = 'Visibility Try 14 days for FREE button',
-                    label = 'page Special Offer above title 28947 People..';
+                        label = 'page Special Offer above title 28947 People..';
                     pushDataLayer(action, label)
                 } else if (isScrolledIntoView(item) == false && index === 2) {
                     viewed2 = false;
@@ -266,7 +266,7 @@ window.onload  = function () {
                 if (isScrolledIntoView(item) == true && index === 3 && viewed3 !== true) {
                     viewed3 = true;
                     action = 'Visibility Try 14 days for FREE button',
-                    label = 'page Special Offer above title A Pre-Designed...';
+                        label = 'page Special Offer above title A Pre-Designed...';
                     pushDataLayer(action, label)
                 } else if (isScrolledIntoView(item) == false && index === 3) {
                     viewed3 = false;
@@ -274,33 +274,33 @@ window.onload  = function () {
                 if (isScrolledIntoView(item) == true && index === 4 && viewed4 !== true) {
                     viewed4 = true;
                     action = 'Visibility Try 14 days for FREE button',
-                    label = 'page Special Offer above the footer section';
+                        label = 'page Special Offer above the footer section';
                     pushDataLayer(action, label)
                 } else if (isScrolledIntoView(item) == false && index === 4) {
                     viewed4 = false;
                 }
             });
-           
+
             item.addEventListener('click', () => {
                 if (index === 0) {
                     action = 'Click on Try 14 days for FREE button',
-                    label = 'page Special Offer above title Plus $10,060 Worth..';
+                        label = 'page Special Offer above title Plus $10,060 Worth..';
                     pushDataLayer(action, label)
                 } else if (index === 1) {
                     action = 'Click on Try 14 days for FREE button',
-                    label = 'page Special Offer above title Create your course...';
+                        label = 'page Special Offer above title Create your course...';
                     pushDataLayer(action, label)
                 } else if (index === 2) {
                     action = 'Click on Try 14 days for FREE button',
-                    label = 'page Special Offer above title 28947 People..';
+                        label = 'page Special Offer above title 28947 People..';
                     pushDataLayer(action, label)
                 } else if (index === 3) {
                     action = 'Click on Try 14 days for FREE button',
-                    label = 'page Special Offer above title A Pre-Designed...';
+                        label = 'page Special Offer above title A Pre-Designed...';
                     pushDataLayer(action, label)
                 } else if (index === 4) {
                     action = 'Click on Try 14 days for FREE button',
-                    label = 'page Special Offer above the footer section';
+                        label = 'page Special Offer above the footer section';
                     pushDataLayer(action, label)
                 }
             })
@@ -317,12 +317,12 @@ window.onload  = function () {
                 console.log(paymentSystem)
                 document.querySelectorAll('.custom-control.custom-radio input')[1].click()
                 action = 'Visibility Place Order Now button',
-                label = 'page Checkout';
+                    label = 'page Checkout';
                 pushDataLayer(action,label);
             } else if (paymentSystem == 'enroll') {
                 document.querySelectorAll('.custom-control.custom-radio input')[0].click()
                 action = 'Visibility Place Order Now button',
-                label = 'page Checkout';
+                    label = 'page Checkout';
                 pushDataLayer(action,label);
             } else if (paymentSystem == 'applePay' || paymentSystem == 'googlePay') {
                 document.querySelectorAll('.custom-control.custom-radio input')[2].click()
@@ -331,31 +331,31 @@ window.onload  = function () {
 
         document.querySelectorAll('.custom-control.custom-radio input')[0].addEventListener('click', () => {
             action = 'Visibility Place Order Now button',
-            label = 'page Checkout';
+                label = 'page Checkout';
             pushDataLayer(action,label);
-            
+
             if (document.querySelector('.card-num-row')) {
                 document.querySelector('#placeOrder').addEventListener('click', (e) => {
                     action =  'Click on Place Order Now button',
-                    label = 'page Checkout';
+                        label = 'page Checkout';
                     pushDataLayer(action, label)
                 })
             }
         })
-        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {            
+        document.querySelectorAll('.custom-control.custom-radio input')[1].addEventListener('click', () => {
             action = 'Visibility Place Order Now button',
-            label = 'page Checkout';
+                label = 'page Checkout';
             pushDataLayer(action,label);
         })
 
         if (document.querySelector('#placeOrder')) {
             document.querySelector('#placeOrder').addEventListener('click', (e) => {
                 action =  'Click on Place Order Now button',
-                label = 'page Checkout';
+                    label = 'page Checkout';
                 pushDataLayer(action, label)
             })
         }
-        
+
         document.querySelector('.tpl-6__offer__checkbox.custom-control.custom-checkbox').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
             action = 'Click on Yes add the Facebook checkbox';
@@ -368,7 +368,7 @@ window.onload  = function () {
         document.querySelector('#placeOrder').addEventListener('click', (e) => {
             e.stopImmediatePropagation()
             action =  'Click on Start my free trial button',
-            label = 'page Checkout';
+                label = 'page Checkout';
             pushDataLayer(action, label)
         })
     }
@@ -378,12 +378,16 @@ window.onload  = function () {
             pushDataLayer(action)
         })
         document.querySelectorAll('.custom-control.custom-radio input')[2].addEventListener('click', (e) => {
-            if (e.closest('.custom-control').querySelector(".google-pay:not(.ng-hide)")) {
+            if (e.target.closest('.custom-control').querySelector("svg.google-pay:not(.ng-hide)")) {
                 action = 'Click on Google pay payment method';
                 pushDataLayer(action)
             }
-            if (e.closest('.custom-control').querySelector(".apple-pay:not(.ng-hide)")) {
+            if (e.target.closest('.custom-control').querySelector(".apple-pay:not(.ng-hide)")) {
                 action = 'Click on Apple pay payment method';
+                pushDataLayer(action)
+            }
+            if (e.target.closest('.custom-control').querySelector(".microsoft-pay:not(.ng-hide)")) {
+                action = 'Click on Microsoft pay  payment method';
                 pushDataLayer(action)
             }
         })
@@ -394,19 +398,19 @@ window.onload  = function () {
                 document.querySelector('.card-num-row').addEventListener('click', (e) => {
                     e.stopImmediatePropagation()
                     action =  'Click on input Card Number',
-                    label = 'Contact form';
+                        label = 'Contact form';
                     pushDataLayer(action, label)
                 })
                 document.querySelector('.cvv-col').addEventListener('click', (e) => {
                     e.stopImmediatePropagation()
                     action =  'Click on input CVC',
-                    label = 'Contact form';
+                        label = 'Contact form';
                     pushDataLayer(action, label)
                 })
                 document.querySelector('.exp-col').addEventListener('click', (e) => {
                     e.stopImmediatePropagation()
                     action =  'Click on input MM YY',
-                    label = 'Contact form';
+                        label = 'Contact form';
                     pushDataLayer(action, label)
                 })
             }
@@ -414,41 +418,41 @@ window.onload  = function () {
 
         document.querySelector('[name="fname"]').addEventListener('click', () => {
             action =  'Click on input First Name',
-            label = 'Contact form';
+                label = 'Contact form';
             pushDataLayer(action, label)
         })
         document.querySelector('[name="lname"]').addEventListener('click', () => {
             action =  'Click on input Last Name',
-            label = 'Contact form';
+                label = 'Contact form';
             pushDataLayer(action, label)
         })
         document.querySelector('[name="email"]').addEventListener('click', () => {
             action =  'Click on input Email Address',
-            label = 'Contact form';
+                label = 'Contact form';
             pushDataLayer(action, label)
         })
         document.querySelector('[name="phone"]').addEventListener('click', () => {
             action =  'Click on input Phone Number',
-            label = 'Contact form';
+                label = 'Contact form';
             pushDataLayer(action, label)
         })
         if (document.querySelector('#card-number')) {
             document.querySelector('.card-num-row').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 action =  'Click on input Card Number',
-                label = 'Contact form';
+                    label = 'Contact form';
                 pushDataLayer(action, label)
             })
             document.querySelector('.cvv-col').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 action =  'Click on input CVC',
-                label = 'Contact form';
+                    label = 'Contact form';
                 pushDataLayer(action, label)
             })
             document.querySelector('.exp-col').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 action =  'Click on input MM YY',
-                label = 'Contact form';
+                    label = 'Contact form';
                 pushDataLayer(action, label)
             })
         }
@@ -488,10 +492,10 @@ mut.observe(document, optionMut);
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('trigger', 'tv_trial_subscription_checkout');
-    hj('event', 'trial_subscription_checkout');
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'tv_trial_subscription_checkout');
+hj('event', 'trial_subscription_checkout');
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
