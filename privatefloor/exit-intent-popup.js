@@ -12,6 +12,12 @@ let objGeo = {
     }
 };
 
+let optionMut = {
+    attributes: true,
+    childList: true,
+    subtree: true
+}
+
 function detectMob() {
     const toMatch = [
         /Android/i,
@@ -112,7 +118,6 @@ function addEvent(obj, evt, fn) {
     }
 }
 
-
 function pushDataLayer(action) {
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -122,9 +127,7 @@ function pushDataLayer(action) {
     });
 }
 
-window.onload  = function () {
-    console.log('loaded')
-    document.body.insertAdjacentHTML( 'afterbegin',`
+document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
         position: fixed;
@@ -440,11 +443,11 @@ window.onload  = function () {
         }
     }
     </style>`)
+detectMob()
 
-    detectMob()
-    for (const key in objGeo) {
-        if (location.href.includes(`${key}`)) {
-            document.body.insertAdjacentHTML( 'beforeend',`
+for (const key in objGeo) {
+    if (location.href.includes(`${key}`)) {
+        document.body.insertAdjacentHTML( 'beforeend',`
             <div class="popup_exit_intent">
                 <div class="popup_container">
                     <div class="popup_content">
@@ -467,11 +470,23 @@ window.onload  = function () {
                     <button type="button" class="btn-complete">${objGeo[key]["textBtn"]}</button>
                 </div>
             </div>`);
-        }
     }
+}
 
+document.querySelector('.btn_close').addEventListener('click', (e) => {
+    console.log('click' + e.target)
+    document.querySelector('.popup_exit_intent').classList.remove('active');
+})
+document.querySelector('.btn-complete').addEventListener('click', () => {
+    document.querySelector('.popup_exit_intent').classList.remove('active');
+    window.location.href = 'https://www.privatefloor.com/cart/';
+})
+
+let mut = new MutationObserver(function (muts) {
+    console.log('mut')
     if (window.location.pathname.includes('/product')) {
-        if (detectMob() == true) {
+        if (detectMob() == true && document.querySelector('.btn-atc')) {
+            mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
                 console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
@@ -485,31 +500,29 @@ window.onload  = function () {
                 pushProducts(imgUrl,name,price,id,color);
             })
         } else {
-            document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                console.log('click' + e.target)
-                let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
-                    name = document.querySelector('.product_name').innerText,
-                    price = document.querySelector('.price-offer-box .price').innerText,
-                    id = document.querySelectorAll('.quantities input')[0].value,
-                    color = document.querySelector('.purchase-panel .colors .title').innerText;
+            if (document.querySelector('#btn-add-item-cart')) {
+                mut.disconnect()
+                document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
+                    console.log('click' + e.target)
+                    let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
+                        name = document.querySelector('.product_name').innerText,
+                        price = document.querySelector('.price-offer-box .price').innerText,
+                        id = document.querySelectorAll('.quantities input')[0].value,
+                        color = document.querySelector('.purchase-panel .colors .title').innerText;
 
-                sessionStorage.setItem('wasPopup', 'false');
+                    sessionStorage.setItem('wasPopup', 'false');
 
-                pushProducts(imgUrl,name,price,id,color);
-            })
+                    pushProducts(imgUrl,name,price,id,color);
+                })
+            }
         }
     }
-    document.querySelector('.btn_close').addEventListener('click', (e) => {
-        console.log('click' + e.target)
-        document.querySelector('.popup_exit_intent').classList.remove('active');
-    })
-    document.querySelector('.btn-complete').addEventListener('click', () => {
-        document.querySelector('.popup_exit_intent').classList.remove('active');
-        window.location.href = 'https://www.privatefloor.com/cart/';
-    })
 
+    mut.observe(document, optionMut);
+    
     if (window.location.pathname.includes('/cart')) {
-        if (detectMob() == true) {
+        if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus')) {
+            mut.disconnect()
             if (document.querySelectorAll('.product-list .product .quantity .minus')) {
                 document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
                     item.addEventListener('click', (e) => {
@@ -534,38 +547,46 @@ window.onload  = function () {
                 })
             }
         } else {
-            function removeProductDesktop(item) {
-                item.addEventListener('click', () => {
-                    if (!document.querySelectorAll('.table.cartlist tbody tr')) {
-                        localStorage.setItem('products', '');
-                        sessionStorage.setItem('wasPopup', 'false');
-                    } else {
-                        let color = item.closest('tr').querySelector('.color').innerText,
-                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+            if (document.querySelectorAll('.removeItem')) {
+                mut.disconnect()
+                function removeProductDesktop(item) {
+                    item.addEventListener('click', () => {
+                        if (!document.querySelectorAll('.table.cartlist tbody tr')) {
+                            localStorage.setItem('products', '');
+                            sessionStorage.setItem('wasPopup', 'false');
+                        } else {
+                            let color = item.closest('tr').querySelector('.color').innerText,
+                                productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].color == color) {
-                                productsLocalStorage.splice(i, 1)
-                                localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-                                sessionStorage.setItem('wasPopup', 'false');
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].color == color) {
+                                    productsLocalStorage.splice(i, 1)
+                                    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+                                    sessionStorage.setItem('wasPopup', 'false');
+                                }
                             }
                         }
-                    }
-                })
+                    })
+                }
+                if (document.querySelectorAll('.removeItem')) {
+                    document.querySelectorAll('.minus_cart').forEach(item => {
+                        removeProductDesktop(item)
+                    })
+                    document.querySelectorAll('.removeItem').forEach(item => {
+                        removeProductDesktop(item)
+                    })
+                }
             }
-            if (document.querySelectorAll('.removeItem')) {
-                document.querySelectorAll('.minus_cart').forEach(item => {
-                    removeProductDesktop(item)
-                })
-                document.querySelectorAll('.removeItem').forEach(item => {
-                    removeProductDesktop(item)
-                })
-            }
+      
         }
     }
 
+    mut.observe(document, optionMut);
+    
     if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
+        mut.disconnect()
         if (detectMob() == true) {
+           
             document.body.classList.add('js-mobile');
             var my_scroll = (function() {
                 var last_position, new_position, timer, delta, delay = 50;
@@ -612,7 +633,6 @@ window.onload  = function () {
             window.addEventListener('scroll', myScrollSpeedFunction);
         } else {
             document.body.classList.add('js-desktop');
-
             document.querySelector('.btn_arrow_prev').addEventListener('click', () => {slider.scrollLeft -= 195})
             document.querySelector('.btn_arrow_next').addEventListener('click', () => {slider.scrollLeft += 195})
 
@@ -635,7 +655,10 @@ window.onload  = function () {
             })
         }
     }
-};
+    
+    mut.observe(document, optionMut);
+})
+mut.observe(document, optionMut);
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
