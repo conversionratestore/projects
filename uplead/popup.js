@@ -73,7 +73,7 @@ let start = setInterval(() => {
 		    display: flex;
 		    -ms-flex-direction: column;
 		    flex-direction: column;	    
-		    max-width: 700px;
+		    max-width: 500px;
 		    padding: 55px;
 		    width: 100%;
 		    text-align: center;
@@ -83,18 +83,17 @@ let start = setInterval(() => {
 			width: 100%;
 			color: #69727A;
 			font-size: 13px;
-			line-height: 30px;
+			line-height: 22px;
 			font-family: "Gilroy", sans-serif;
 			margin: 0;
 		}
 		
 		.popup-custom .title {
-			margin: 15px 0;
 			position: relative;
 			font-weight: bold;
 			color: #14142B;
 			font-size: 38px;
-			line-height: 62px;
+			line-height: 45px;
 		}
 		
 		.popup-custom .title .styled{
@@ -117,7 +116,7 @@ let start = setInterval(() => {
 			font-size: 25px;
 			font-weight: bold;
 			color: #14142B;
-			margin: 8px 0 35px;
+			margin: 8px 0 23px;
 		}	
 		
 		.popup-custom .subtitle + p {
@@ -130,7 +129,7 @@ let start = setInterval(() => {
 		    color: #fff;
 		    font-weight: 500;
 		    font-size: 13px;
-	        padding: 16px 11%;
+	        padding: 11px 11%;
 	        border-radius: 30px;
 	        margin-top: 35px;
 	        font-family: "Gilroy",sans-serif;
@@ -151,6 +150,8 @@ let start = setInterval(() => {
 		
 		.popup-custom .clock {
 			margin-bottom: 35px;
+			width: 100px;
+			height: 100px;
 		}
 		
 		.grey {
@@ -160,8 +161,8 @@ let start = setInterval(() => {
 		
 		.popup-custom svg {
 			position: absolute;
-			height: 20px;
-			width: 20px;
+			height: 15px;
+			width: 15px;
 			top: 4%;
 			right: 4%;
 			cursor: pointer;
