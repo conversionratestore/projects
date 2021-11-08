@@ -121,7 +121,7 @@ function pushDataLayer(action) {
     });
 }
 
-window.onload  = function () {
+// window.onload  = function () {
     document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
@@ -631,7 +631,7 @@ window.onload  = function () {
             })
         }
     }
-};
+// };
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
