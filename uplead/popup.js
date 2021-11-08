@@ -175,6 +175,7 @@ let start = setInterval(() => {
 		
 		p.credits {
 			font-size: 18px;
+			margin-bottom: 5px;
 		}
 		
 		.credits {
@@ -272,3 +273,4 @@ let start = setInterval(() => {
 		})
 	}
 }, 200)
+
