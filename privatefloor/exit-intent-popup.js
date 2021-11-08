@@ -590,8 +590,9 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
-        mut.disconnect()
+
         if (detectMob() == true) {
+            mut.disconnect()
             document.body.classList.add('js-mobile');
             var my_scroll = (function() {
                 var last_position, new_position, timer, delta, delay = 50;
@@ -636,7 +637,9 @@ let mut = new MutationObserver(function (muts) {
             }
 
             window.addEventListener('scroll', myScrollSpeedFunction);
-        } else {
+        }
+        if (detectMob() == false && document.querySelector('.btn_arrow_prev')) {
+            mut.disconnect()
             document.body.classList.add('js-desktop');
             document.querySelector('.btn_arrow_prev').addEventListener('click', () => {
                 slider.scrollLeft -= 195;
