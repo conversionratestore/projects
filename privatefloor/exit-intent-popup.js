@@ -122,8 +122,8 @@ function pushDataLayer(action) {
     });
 }
 
-// window.onload  = function () {
-
+window.onload  = function () {
+    console.log('loaded')
     document.body.insertAdjacentHTML( 'afterbegin',`
 <style>
     .popup_exit_intent {
@@ -469,7 +469,7 @@ function pushDataLayer(action) {
             </div>`);
         }
     }
-    
+
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true) {
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
@@ -635,7 +635,7 @@ function pushDataLayer(action) {
             })
         }
     }
-// };
+};
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
