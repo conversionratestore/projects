@@ -476,7 +476,7 @@ hr.line-vertical {
  color: #ffffff!important;
  }
   .btn-blue:active{
-   box-shadow: inset 0 3px 5px rgba(206, 219, 233, 0.9);}
+   box-shadow: inset 0 3px 5px rgb(50, 140, 236);}
   .btn-blue img {
     margin-left: 16px; }
 
