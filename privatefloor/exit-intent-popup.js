@@ -538,18 +538,23 @@ let mut = new MutationObserver(function (muts) {
                             localStorage.setItem('products', '');
                             sessionStorage.setItem('wasPopup', 'false');
                         } else {
-                            let colorData;
+                            let colorData,
+                                id2,
+                                title1 = item.closest('.product').querySelector('.title').innerText,
+                                id1 = item.closest('.product').getAttribute('data-item-id');
+                            
                             document.querySelectorAll('.product-gtm-data').forEach(elData => {
-                                let title1 = item.closest('.product').querySelector('.title').innerText,
-                                    title2 = elData.getAttribute('data-name-gtm');
-                                if (title1 == title2) {
+                                let title2 = elData.getAttribute('data-name-gtm');
+                                id2 = elData.getAttribute('data-item-id-gtm');
+
+                                if (title1 == title2 && id1 == id2) {
                                     colorData = elData.getAttribute('data-color-eng-gtm');
                                     elData.remove()
                                 }
                             })
                             let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].color == colorData) {
+                                if (productsLocalStorage[i].color == colorData && id1 == id2) {
                                     setWasPopup(productsLocalStorage,i)
                                 }
                             }
@@ -560,10 +565,11 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.product-list .product .remove-product-from-cart').forEach(item => {
                 item.addEventListener('click', (e) => {
                     let id = item.getAttribute('data-row-id'),
+                        color = item.closest('tr').querySelector('.color'),
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
                     for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].color == id) {
+                        if (productsLocalStorage[i].id == id && productsLocalStorage[i].color == color ) {
                             setWasPopup(productsLocalStorage,i)
                         }
                     }
