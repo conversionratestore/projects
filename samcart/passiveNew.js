@@ -984,25 +984,25 @@ btn.forEach((btn) => {
         }
 
         if (getAttr == 'much-more' && btn.closest('.card')) {
-            dataLayerPush('Click on I`m interested button','Launch in 7 days')
+            dataLayerPush('Click on Discover how to button','Launch in 7 days')
             dataLayerPush('View popup','Popup: Save Your Spot (Launch in 7 days)');
             document.querySelector('.popup .content').innerHTML = creatBlock('much-more','Launch in 7 days (from scratch) without a team or complicated tech') + createlistInfo('The secret to building the "laptop lifestyle"','Simplify your sales process for better results','Rapidly increase your conversions, sales, and revenue');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Launch in 7 days')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Launch in 7 days');
         } else if (getAttr == 'bar-chart' && btn.closest('.card')) {
-            dataLayerPush('Click on I`m interested button','Get (virtually) unlimited traffic')
+            dataLayerPush('Click on Discover how to button','Get (virtually) unlimited traffic')
             dataLayerPush('View popup','Popup: Save Your Spot (Get (virtually) unlimited traffic)');
             document.querySelector('.popup .content').innerHTML = creatBlock('bar-chart',`Get (virtually) unlimited traffic from today's #1 traffic source`) + createlistInfo('How to get more people to your course page','Generate dozens of new sales every day',`Secret tool to ethically steal your competitors' ads`);
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Get (virtually) unlimited traffic')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Get (virtually) unlimited traffic')
         } else if (getAttr == 'sales' && btn.closest('.card')) {
-            dataLayerPush('Click on I`m interested button','Generate sales around the clock')
+            dataLayerPush('Click on Discover how to button','Generate sales around the clock')
             dataLayerPush('View popup','Popup: Save Your Spot (Generate sales around the clock)');
             document.querySelector('.popup .content').innerHTML = creatBlock('sales','Generate sales around the clock using a simple "1 page funnel"') + createlistInfo('Convince anyone to buy your product','Best way to start your online business','Core 4 elements your page needs to sell');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Generate sales around the clock')
             document.querySelector('[name="start_time"]').setAttribute('data-label', 'Generate sales around the clock')
         } else if (getAttr == 'expert' && btn.closest('.card')) {
-            dataLayerPush('Click on I`m interested button','Become a trusted expert')
+            dataLayerPush('Click on Discover how to button','Become a trusted expert')
             dataLayerPush('View popup','Popup: Save Your Spot (Become a trusted expert)');
             document.querySelector('.popup .content').innerHTML = creatBlock('expert','Become a trusted expert in a niche using the "1 Step Rule"') + createlistInfo('How to get people to listen to you','Discover what to make your course about','The secret to creating a course people want to buy');
             document.querySelector('[name="monthly_sales"]').setAttribute('data-label', 'Become a trusted expert')
