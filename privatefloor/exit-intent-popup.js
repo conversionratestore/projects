@@ -53,7 +53,7 @@ function pushProducts(imgUrl,name,price,currency,id,color) {
 
     products = products.filter((thing, index, self) =>
         index === self.findIndex((t) => (
-            t.place === thing.place && t.color === thing.color
+            t.place === thing.place && t.color === thing.color && t.id === thing.id
         ))
     )
 
