@@ -489,6 +489,11 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
     window.location.href = 'https://www.privatefloor.com/cart/';
 })
 
+function setWasPopup(productsLocalStorage) {
+    productsLocalStorage.splice(i, 1)
+    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
+    sessionStorage.setItem('wasPopup', 'false');
+}
 let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/product')) {
 
@@ -524,31 +529,39 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if (window.location.pathname.includes('/cart')) {
-        if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus')) {
+        if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
-            if (document.querySelectorAll('.product-list .product .quantity .minus')) {
-                document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        if (item.nextElementSibling.innerText == '1') {
-                            if (!document.querySelectorAll('.product-list .product')) {
-                                localStorage.setItem('products', '');
-                                sessionStorage.setItem('wasPopup', 'false');
-                            } else {
-                                let id = item.closest('.product').getAttribute('data-row-id'),
-                                    productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+            document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    if (item.nextElementSibling.innerText == '1') {
+                        if (!document.querySelectorAll('.product-list .product')) {
+                            localStorage.setItem('products', '');
+                            sessionStorage.setItem('wasPopup', 'false');
+                        } else {
+                            let id = item.closest('.product').getAttribute('data-row-id'),
+                                productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
-                                for (let i = 0; i < productsLocalStorage.length; i++) {
-                                    if (productsLocalStorage[i].id == id) {
-                                        productsLocalStorage.splice(i, 1)
-                                        localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-                                        sessionStorage.setItem('wasPopup', 'false');
-                                    }
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].color == id) {
+                                    setWasPopup(productsLocalStorage)
                                 }
                             }
                         }
-                    })
+                    }
                 })
-            }
+            })
+            document.querySelectorAll('.product-list .product .remove-product-from-cart').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    let id = item.getAttribute('data-row-id'),
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
+                    for (let i = 0; i < productsLocalStorage.length; i++) {
+                        if (productsLocalStorage[i].color == id) {
+                            setWasPopup(productsLocalStorage)
+                        }
+                    }
+                })
+            })
         } else {
             if (document.querySelectorAll('.removeItem')) {
                 mut.disconnect()
@@ -563,9 +576,7 @@ let mut = new MutationObserver(function (muts) {
 
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].color == color) {
-                                    productsLocalStorage.splice(i, 1)
-                                    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-                                    sessionStorage.setItem('wasPopup', 'false');
+                                    setWasPopup(productsLocalStorage)
                                 }
                             }
                         }
