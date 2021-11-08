@@ -34,12 +34,13 @@ function detectMob() {
     });
 }
 
-function pushProducts(imgUrl,name,price,id,color) {
+function pushProducts(imgUrl,name,price,currency,id,color) {
     console.log('push')
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
+        'currency': `${currency}`,
         'link': window.location.href,
         'id': `${id}`,
         'color': `${color}`
@@ -75,7 +76,7 @@ function addProduct() {
                     <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                     <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
                 </div>
-                <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price}</p>
+                <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price + productsLocalStorage[i].currency}</p>
             </div>`)
         } else {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
@@ -83,7 +84,7 @@ function addProduct() {
                 <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                 <div class="popup_slide_row">
                     <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
-                    <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price}</p>
+                    <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].price + productsLocalStorage[i].currency}</p>
                 </div>
             </div>`)
             if (document.querySelector('.popup_slide_one') && !document.querySelector('.popular_choice') && document.querySelector('.popup_slide_one')) {
@@ -496,13 +497,14 @@ let mut = new MutationObserver(function (muts) {
                 console.log('click' + e.target)
                 let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
                     name = document.querySelectorAll('.product-container .title')[0].innerText,
-                    price = document.querySelector('.prices .price').innerText,
+                    price = document.querySelector('.prices .price').innerText.split(' ')[0],
+                    currency = document.querySelector('.prices .price').innerText.split(' ')[1],
                     id = document.querySelectorAll('.add-to-cart input')[0].value,
                     color = document.querySelector('.product-container .colors .list .content span.bullet-color.selected').getAttribute('data-name');
 
                 sessionStorage.setItem('wasPopup', 'false');
 
-                pushProducts(imgUrl,name,price,id,color);
+                pushProducts(imgUrl,name,price,currency,id,color);
             })
         } else {
             if (document.querySelector('#btn-add-item-cart')) {
@@ -511,13 +513,14 @@ let mut = new MutationObserver(function (muts) {
                     console.log('click' + e.target)
                     let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
                         name = document.querySelector('.product_name').innerText,
-                        price = document.querySelector('.price-offer-box .price').innerText,
+                        price = document.querySelector('.price-offer-box .price').innerText.split(' ')[0],
+                        currency = document.querySelector('.prices .price').innerText.split(' ')[1],
                         id = document.querySelectorAll('.quantities input')[0].value,
                         color = document.querySelector('.purchase-panel .colors .title').innerText;
 
                     sessionStorage.setItem('wasPopup', 'false');
 
-                    pushProducts(imgUrl,name,price,id,color);
+                    pushProducts(imgUrl,name,price,currency,id,color);
                 })
             }
         }
