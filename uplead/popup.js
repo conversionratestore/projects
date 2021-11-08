@@ -66,7 +66,7 @@ let start = setInterval(() => {
 			margin: auto;
 		    align-items: center;
 		    background: #fff;
-		    border-radius: 36px;
+		    border-radius: 26px;
 		    box-shadow: 0 2px 10px rgba(4, 12, 40, 0.03);
 		    box-sizing: border-box;
 		    display: -ms-flexbox;
