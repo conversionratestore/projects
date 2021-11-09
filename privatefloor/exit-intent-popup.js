@@ -551,7 +551,7 @@ let mut = new MutationObserver(function (muts) {
                     removeProductMobile(item);
                 })
             })
-            document.querySelectorAll('.product-list .product .remove-product-from-cart').forEach(item => {
+            document.querySelectorAll('.action-and-total a').forEach(item => {
                 item.addEventListener('click', (e) => {
                     removeProductMobile(item);
                 })
