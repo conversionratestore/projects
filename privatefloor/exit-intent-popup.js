@@ -494,6 +494,40 @@ function spliceProduct(productsLocalStorage,i) {
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
     sessionStorage.setItem('wasPopup', 'false');
 }
+
+function removeProductMobile(item) {
+    if (!document.querySelectorAll('.product-list .product')) {
+        localStorage.setItem('products', '');
+        sessionStorage.setItem('wasPopup', 'false');
+    } else {
+        let id = item.closest('.product').getAttribute('data-item-id'),
+            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+        for (let i = 0; i < productsLocalStorage.length; i++) {
+            if (productsLocalStorage[i].id === id) {
+                spliceProduct(productsLocalStorage,i)
+            }
+        }
+    }
+}
+
+function removeProductDesktop(item) {
+    item.addEventListener('click', () => {
+        if (!document.querySelectorAll('.table.cartlist tbody tr')) {
+            localStorage.setItem('products', '');
+            sessionStorage.setItem('wasPopup', 'false');
+        } else {
+            let id = item.closest('tr').getAttribute('data-item-id'),
+                productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
+            for (let i = 0; i < productsLocalStorage.length; i++) {
+                if (productsLocalStorage[i].id === id) {
+                    console.log(productsLocalStorage[i].id + ' == ' + id);
+                    spliceProduct(productsLocalStorage,i);
+                }
+            }
+        }
+    })
+}
 let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
@@ -530,20 +564,7 @@ let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
-            function removeProductMobile(item) {
-                if (!document.querySelectorAll('.product-list .product')) {
-                    localStorage.setItem('products', '');
-                    sessionStorage.setItem('wasPopup', 'false');
-                } else {
-                    let id = item.closest('.product').getAttribute('data-item-id'),
-                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].id === id) {
-                            spliceProduct(productsLocalStorage,i)
-                        }
-                    }
-                }
-            }
+
             document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
                 item.addEventListener('click', (e) => {
                     if (item.nextElementSibling.innerText == '1') {
@@ -559,24 +580,6 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
-            function removeProductDesktop(item) {
-                item.addEventListener('click', () => {
-                    if (!document.querySelectorAll('.table.cartlist tbody tr')) {
-                        localStorage.setItem('products', '');
-                        sessionStorage.setItem('wasPopup', 'false');
-                    } else {
-                        let id = item.closest('tr').getAttribute('data-item-id'),
-                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].id === id) {
-                                console.log(productsLocalStorage[i].id + ' == ' + id);
-                                spliceProduct(productsLocalStorage,i);
-                            }
-                        }
-                    }
-                })
-            }
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
