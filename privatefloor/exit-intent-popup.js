@@ -586,16 +586,14 @@ let mut = new MutationObserver(function (muts) {
                         let color = item.closest('tr').querySelector('.color').innerText,
                             id = item.closest('tr').getAttribute('data-item-id'),
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        console.log('color: ' + color);
-                        console.log('id: ' + id);
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
-                            console.log(productsLocalStorage[i].color + ' = ' + color);
-                            console.log(productsLocalStorage[i].id + ' = ' + id);
-                            if (productsLocalStorage[i].color == color && productsLocalStorage[i].id == id) {
-                                console.log(productsLocalStorage[i].color + ' == ' + color);
+                            if (productsLocalStorage[i].id == id) {
                                 console.log(productsLocalStorage[i].id + ' ==' + id);
-                                spliceProduct(productsLocalStorage,i)
+                                if (productsLocalStorage[i].color == color) {
+                                    console.log(productsLocalStorage[i].color + ' == ' + color);
+                                    spliceProduct(productsLocalStorage,i)
+                                }
                             }
                         }
                     }
