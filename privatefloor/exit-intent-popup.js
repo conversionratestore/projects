@@ -583,13 +583,10 @@ let mut = new MutationObserver(function (muts) {
                         localStorage.setItem('products', '');
                         sessionStorage.setItem('wasPopup', 'false');
                     } else {
-                        let color = item.closest('tr').querySelector('.color').innerText,
-                            id = item.closest('tr').getAttribute('data-item-id'),
+                        let id = item.closest('tr').getAttribute('data-item-id'),
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        console.log(id + ' :id item')
-                        console.log(productsLocalStorage.length + ' :length')
+
                         for (let i = 0; i < productsLocalStorage.length; i++) {
-                            console.log(productsLocalStorage[i].id + ' :id local')
                             if (productsLocalStorage[i].id === id) {
                                 console.log(productsLocalStorage[i].id + ' == ' + id);
                                 spliceProduct(productsLocalStorage,i);
@@ -598,7 +595,6 @@ let mut = new MutationObserver(function (muts) {
                     }
                 })
             }
-
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
