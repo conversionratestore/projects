@@ -588,7 +588,7 @@ let mut = new MutationObserver(function (muts) {
                             id = item.closest('tr').getAttribute('data-item-id'),
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         console.log('color: ' + color);
-                        console.log('color: ' + id);
+                        console.log('id: ' + id);
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].color == color && productsLocalStorage[i].id == id) {
@@ -605,7 +605,6 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-
         }
     }
 
