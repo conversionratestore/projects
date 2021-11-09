@@ -588,9 +588,9 @@ let mut = new MutationObserver(function (muts) {
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].id == id) {
-                                console.log(productsLocalStorage[i].id + ' ==' + id);
-                                if (productsLocalStorage[i].color == color) {
+                            if (id == productsLocalStorage[i].id) {
+                                console.log(productsLocalStorage[i].id + ' == ' + id);
+                                if (color == productsLocalStorage[i].color) {
                                     console.log(productsLocalStorage[i].color + ' == ' + color);
                                     spliceProduct(productsLocalStorage,i)
                                 }
