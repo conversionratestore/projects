@@ -528,10 +528,10 @@ function removeProductDesktop(item) {
     })
 }
 let mut = new MutationObserver(function (muts) {
-    if (window.location.pathname.includes('/catalog') && detectMob() == true && document.querySelectorAll('.add-to-cart .btn-atc') && document.querySelector('.listing-products')) {
+    if (window.location.pathname.includes('/catalog') && detectMob() == true && !!document.querySelectorAll('.add-to-cart .btn-atc') && !!document.querySelector('.listing-products')) {
         mut.disconnect()
-        document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
-            el.addEventListener(() => {
+        document.querySelectorAll('.add-to-cart .btn-atc').forEach(item => {
+            item.addEventListener(() => {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a im').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
