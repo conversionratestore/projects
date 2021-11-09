@@ -36,13 +36,12 @@ function detectMob() {
     });
 }
 
-function pushProducts(imgUrl,name,price,currency,id,link) {
+function pushProducts(imgUrl,name,price,currency,id) {
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
         'currency': `${currency}`,
-        'link': `${link}`,
         'id': `${id}`
     })
 
@@ -535,10 +534,9 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
-                    link = el.closest('.item').querySelector('.preview-pic a').getAttribute('href'),
                     id = el.getAttribute('data-vid');
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,link);
+                pushProducts(imgUrl,name,price,currency,id);
             });
         });
     }
@@ -555,7 +553,7 @@ let mut = new MutationObserver(function (muts) {
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm');
 
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,window.location.href);
+                pushProducts(imgUrl,name,price,currency,id);
             })
         } else {
             if (document.querySelector('#btn-add-item-cart')) {
@@ -567,7 +565,7 @@ let mut = new MutationObserver(function (muts) {
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm');
 
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,window.location.href);
+                    pushProducts(imgUrl,name,price,currency,id);
                 })
             }
         }
@@ -594,6 +592,16 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
+            document.querySelectorAll('.item').forEach((item) => {
+                let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                    name = item.querySelector('.title').innerText.split('\n')[0],
+                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
+                    id = item.getAttribute('data-item-id');
+
+                pushProducts(imgUrl,name,price,currency,id);
+            })
+
+
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
@@ -601,6 +609,7 @@ let mut = new MutationObserver(function (muts) {
                 removeProductDesktop(item)
             })
         }
+
     }
 
     mut.observe(document, optionMut);
