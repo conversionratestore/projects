@@ -590,8 +590,8 @@ let mut = new MutationObserver(function (muts) {
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
                         // pushProducts(imgUrl,name,price,currency,id,color)
-                        for (let keyP in productsLocalStorage) {
-                            console.log(productsLocalStorage[keyP])
+                        for (const keyP in productsLocalStorage) {
+                            console.log(productsLocalStorage[keyP] + " keyP")
                             if (productsLocalStorage[keyP]["id"] == id) {
                                 console.log(productsLocalStorage[keyP]["id"] + ' == ' + id);
                                 if (productsLocalStorage[keyP]["color"] == color) {
