@@ -24,7 +24,7 @@ let styleNewLanding = /*html*/ `
     #ingredients, #flowers, #reviews,
     div .js-mobile.days.lazyautosizes.ls-is-cached.lazyloaded,
     .js-mobile.effectiveness, 
-    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators{
+    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators, .bp-comparison, .wave-effect.js-mobile{
         display: none !important;
     }
 
