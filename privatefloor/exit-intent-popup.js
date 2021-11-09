@@ -673,13 +673,13 @@ let mut = new MutationObserver(function (muts) {
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
-                    }
-
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].link === window.location.href) {
-                            haveLink = true
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (productsLocalStorage[i].link === window.location.href) {
+                                haveLink = true
+                            }
                         }
                     }
+
                     if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
                         addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
