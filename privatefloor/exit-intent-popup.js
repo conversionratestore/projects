@@ -638,7 +638,7 @@ let mut = new MutationObserver(function (muts) {
 
             function myScrollSpeedFunction(){
                 if(document.body.classList.contains('js-mobile')) {
-                    if(my_scroll() < -200) {
+                    if(my_scroll() < -200 && localStorage.getItem('products')) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
                             wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
 
@@ -674,8 +674,11 @@ let mut = new MutationObserver(function (muts) {
 
             addEvent(document, 'mouseout', function(evt) {
                 if (evt.toElement == null && evt.relatedTarget == null) {
-                    let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
+                    let productsLocalStorage,
                         wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                    if(localStorage.getItem('products')) {
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                    }
 
                     for (let i = 0; i < productsLocalStorage.length; i++) {
                         if (productsLocalStorage[i].link === window.location.href) {
