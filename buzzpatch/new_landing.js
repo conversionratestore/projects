@@ -863,7 +863,7 @@ let navBlock = /*html*/ `
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot.png" alt="logo trustpilot" width="94" height="23">
     </div>
     <div>
-        <a href="https://www.trustpilot.com/review/buzzpatch.com">
+        <a href="https://www.trustpilot.com/review/buzzpatch.com" target="blank">
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/trustpilot_stars.svg" alt="logo trustpilot" width="74" height="14">
             <span>Reviews 371</span>
         </a>
