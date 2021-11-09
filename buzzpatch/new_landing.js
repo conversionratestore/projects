@@ -34,8 +34,8 @@ let styleNewLanding = /*html*/ `
 
     .package .js-heading .js-btn.btn-primary:hover,
     .btn:not(.disabled):not([disabled]):hover{
-        background: #ff3c81 !important;
-        color: white !important;
+        background: unset !important;
+        color: unset !important;
     }
 
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
