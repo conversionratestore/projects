@@ -499,11 +499,11 @@ let mut = new MutationObserver(function (muts) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
-                let imgUrl = document.querySelectorAll('.product-container img')[1].getAttribute('src'),
-                    name = document.querySelectorAll('.product-container .title')[0].innerText,
-                    price = document.querySelector('.prices .price').innerText.split(currency)[1],
-                    id = document.querySelectorAll('.add-to-cart input')[0].value,
-                    color = document.querySelector('.product-container .colors .list .content span.bullet-color.selected').getAttribute('data-name');
+                let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
+                    name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
+                    price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
+                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
+                    color = document.querySelector('.bullet-color.selected').getAttribute('data-color-eng');
 
                 sessionStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,color);
@@ -530,48 +530,30 @@ let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
-            document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    if (item.nextElementSibling.innerText == '1') {
-                        if (!document.querySelectorAll('.product-list .product')) {
-                            localStorage.setItem('products', '');
-                            sessionStorage.setItem('wasPopup', 'false');
-                        } else {
-                            let colorData,
-                                id2;
-
-                            document.querySelectorAll('.product-gtm-data').forEach(elData => {
-                                let title2 = elData.getAttribute('data-name-gtm'),
-                                    title1 = item.closest('.product').querySelector('.title').innerText,
-                                    id1 = item.closest('.product').getAttribute('data-item-id');
-                                id2 = elData.getAttribute('data-item-id-gtm');
-
-                                if (title1 == title2 && id1 == id2) {
-                                    colorData = elData.getAttribute('data-color-eng-gtm');
-                                    elData.remove()
-                                }
-                            })
-                            let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                            for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].color == colorData && productsLocalStorage[i].id == id2) {
-                                    spliceProduct(productsLocalStorage,i)
-                                }
+            function removeProductMobile(item) {
+                if (item.nextElementSibling.innerText == '1') {
+                    if (!document.querySelectorAll('.product-list .product')) {
+                        localStorage.setItem('products', '');
+                        sessionStorage.setItem('wasPopup', 'false');
+                    } else {
+                        let id = item.closest('.product').getAttribute('data-item-id'),
+                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (productsLocalStorage[i].id === id) {
+                                spliceProduct(productsLocalStorage,i)
                             }
                         }
                     }
+                }
+            }
+            document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    removeProductMobile(item);
                 })
             })
             document.querySelectorAll('.product-list .product .remove-product-from-cart').forEach(item => {
                 item.addEventListener('click', (e) => {
-                    let id = item.getAttribute('data-row-id'),
-                        color = item.closest('tr').querySelector('.color'),
-                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].id == id && productsLocalStorage[i].color == color ) {
-                            spliceProduct(productsLocalStorage,i)
-                        }
-                    }
+                    removeProductMobile(item);
                 })
             })
         }
