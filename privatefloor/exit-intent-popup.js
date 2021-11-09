@@ -472,20 +472,20 @@ for (const key in objGeo) {
                 </div>
             </div>`);
         currency = objGeo[key]["currency"]
+
+        document.querySelector('.btn_close').addEventListener('click', (e) => {
+            action = 'Close pop up';
+            pushDataLayer(action)
+            document.querySelector('.popup_exit_intent').classList.remove('active');
+        })
+        document.querySelector('.btn-complete').addEventListener('click', () => {
+            document.querySelector('.popup_exit_intent').classList.remove('active');
+            action = 'Click Complete order';
+            pushDataLayer(action)
+            window.location.href = `https:/${objGeo[key]}privatefloor.com/cart/`;
+        })
     }
 }
-
-document.querySelector('.btn_close').addEventListener('click', (e) => {
-    action = 'Close pop up';
-    pushDataLayer(action)
-    document.querySelector('.popup_exit_intent').classList.remove('active');
-})
-document.querySelector('.btn-complete').addEventListener('click', () => {
-    document.querySelector('.popup_exit_intent').classList.remove('active');
-    action = 'Click Complete order';
-    pushDataLayer(action)
-    window.location.href = 'https://www.privatefloor.com/cart/';
-})
 
 function spliceProduct(productsLocalStorage,i) {
     productsLocalStorage.splice(i, 1)
