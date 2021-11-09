@@ -49,650 +49,682 @@ let tag = [
 
 let newPdpStyle = /*html*/ `
 <style>
+#product .row.crow {
+  display: none;
+}
+
+.dv-crumbs {
+  padding-top: 20px !important;
+}
+
+@media (max-width: 1192px) {
+  .dv-crumbs {
+    padding-top: 40px !important;
+  }
+}
+
+.slider-nav {
+  width: 30%;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.slider-nav img {
+  cursor: pointer;
+}
+
+.slider-nav .arrow:first-child {
+  margin-bottom: 15px;
+}
+
+.slider-nav .arrow {
+  cursor: pointer;
+}
+
+.slider-for {
+  width: 60%;
+}
+
+.slick-vertical .slick-slide {
+  margin-bottom: 17px;
+}
+
+.details {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  line-height: 22px !important;
+  text-decoration-line: underline;
+  color: #457e80;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  opacity: 1;
+  transition: all 0.5s ease 0s;
+  margin-top: 20px;
+}
+
+.delivery_box {
+  text-align: center;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  padding: 15px 0;
+  margin-bottom: 20px;
+}
+
+.delivery_box > p {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  margin-bottom: 7px !important;
+}
+
+.delivery_box > div {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.delivery_box > div span {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #303030;
+}
+
+.delivery_box > div > div {
+  position: relative;
+}
+
+.delivery_box > div > div .text_popup {
+  opacity: 0;
+  position: absolute;
+  top: -115px;
+  left: 13px;
+  width: 187px;
+  background: #ffffff;
+  border: 1px solid #457e80;
+  box-shadow: 0px 0px 4px rgba(152, 152, 152, 0.12);
+  padding: 13px 30px 13px 15px;
+  text-align: left;
+  transition: all 0.5s ease 0s;
+  z-index: -1;
+}
+
+.delivery_box > div > div .text_popup span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.delivery_box > div > div .text_popup > svg {
+  top: 10px;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.delivery_box > div > div > svg {
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+.free_return {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #457e80;
+  margin: 7px 0 20px 0;
+}
+
+/* popup */
+.backdrop_popup.is_hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999999;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  overflow-y: scroll;
+  background-color: rgb(0 0 0 / 60%);
+  transition: all 0.5s ease 0s;
+}
+
+.backdrop_popup > div {
+  min-height: 100%;
+  padding: 30px 10px;
+}
+
+.popup_form_content {
+  position: relative;
+  max-width: 752px;
+  margin-right: auto;
+  margin-left: auto;
+  background: #ffffff;
+  padding: 55px 30px 43px 30px;
+  font-family: "Lato", sans-serif !important;
+  color: #000000;
+}
+
+.popup_form_content .close_popup {
+  position: absolute;
+  top: 13px;
+  right: 21px;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: 33px;
+  height: 33px;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  background: rgb(142 142 142 / 10%);
+  border-radius: 50%;
+}
+
+.popup_form_content .close_popup svg {
+  fill: #8e8e8e;
+}
+
+.popup_form_content > p {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  text-align: center;
+  margin: 0;
+}
+
+.popup_form_content table {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 43px 0 54px 0;
+  text-align: center;
+  border-collapse: unset;
+}
+
+.popup_form_content table th {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.popup_form_content table tr:nth-child(even) {
+  background: #ededed;
+}
+
+.popup_form_content table tr td {
+  width: 127px;
+  height: 40px;
+}
+
+.popup_form_content table tr td:not(:last-child) {
+  border-right: 13px solid white;
+}
+
+.popup_form_content > div {
+  display: flex;
+}
+
+.popup_form_content > div:not(:last-child),
+.popup_form_content > p.var {
+  margin-bottom: 20px;
+}
+
+.popup_form_content > div > span {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #000000;
+}
+
+.popup_form_content > div > span:first-child {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  width: 50px;
+  margin-right: 27px;
+}
+
+.popup_form_content > div > span:last-child {
+  max-width: 614px;
+}
+
+.tabs > div:first-child {
+  background: #f5f5f5;
+  display: none;
+}
+
+.tabs > div:first-child label {
+  border: none !important;
+}
+
+.product_det {
+  display: none;
+  position: relative;
+  background: #f5f5f5;
+  padding: 15px 112px 40px;
+  margin-top: 30px;
+}
+
+.product_det h2 {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 53px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.product_det svg {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.product_det .col-sm-8,
+.product_det .col-sm-1,
+.product_det .col-sm-2,
+.product_det .col-sm-3,
+.product_det .col-sm-4,
+.product_det .col-sm-5,
+.product_det .col-sm-6,
+.product_det .col-sm-7,
+.product_det .col-sm-8,
+.product_det .col-sm-9,
+.product_det .col-sm-10,
+.product_det .col-sm-11,
+.product_det .col-sm-12 {
+  float: unset;
+}
+
+.complete_look {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.complete_look h2 {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 57px;
+  color: #000000;
+  margin: 0 !important;
+}
+
+.complete_look > ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.complete_look > ul li {
+  list-style: none;
+}
+
+.complete_look ul li:not(:last-child) {
+  margin-right: 13px;
+}
+
+.complete_look ul li img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.complete_look ul li p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 10px 0;
+}
+
+.complete_look ul li span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.complete_look ul li .select_size_box.complete_var {
+  width: 100%;
+  margin-right: 0;
+  display: block;
+  margin-top: 22px;
+}
+
+.complete_look ul li .select_size_box.complete_var label {
+  min-width: unset;
+}
+
+.complete_look ul li .select_size_box.complete_var div {
+  min-width: unset;
+  max-width: unset;
+}
+
+.complete_look ul li button {
+  background: #457e80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 37px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  margin-top: 15px;
+  transition: 250ms;
+}
+
+.complete_look ul li button:hover,
+.pdp .btn_box button:first-child:hover {
+  background-color: #266d6e;
+  transition: 250ms;
+}
+
+.complete_look ul li button > svg {
+  margin-left: 12px;
+}
+
+.product1 img {
+  display: block;
+}
+
+.product2 {
+  position: relative;
+}
+
+.pdp {
+  display: flex;
+  padding-top: 20px;
+}
+
+.pdp > div:first-child {
+  width: 60%;
+}
+
+.pdp > div:last-child {
+  width: 40%;
+}
+
+.pdp .btn_box {
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.pdp .btn_box button:first-child {
+  background: #457e80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 305px;
+  height: 48px;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  position: relative;
+  margin-right: 40px;
+  transition: 250ms;
+}
+
+.pdp .btn_box button:first-child:after {
+  width: 16px;
+  height: 22px;
+  position: absolute !important;
+  content: "" !important;
+  background: url(https://conversionratestore.github.io/projects/jarrold/img/bag.svg) no-repeat center center;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 70px;
+}
+
+.pdp .btn_box button:last-child {
+  position: relative;
+  width: 33px;
+  height: 30px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.pdp .btn_box button:last-child:after {
+  background: url(https://conversionratestore.github.io/projects/jarrold/img/green_heart.svg) no-repeat center center;
+  position: absolute !important;
+  content: "" !important;
+  width: 33px;
+  height: 30px;
+  left: 0;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+.title_brand {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 53px;
+  margin-bottom: 0 !important;
+  color: #000000;
+}
+
+.pdp > div:last-child h2 {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 10px !important;
+  color: #000000;
+}
+
+.var_btn_tag {
+  margin-bottom: 20px;
+}
+
+.var_btn_tag span {
+  font-family: "Lato", sans-serif !important;
+  background: #807559;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  padding: 5px 15px;
+}
+
+.var_btn_tag span:not(:last-child) {
+  margin-right: 10px;
+}
+
+.price_text {
+  margin-bottom: 20px !important;
+  font-family: "Lato", sans-serif !important;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.size_count_block {
+  display: flex;
+}
+
+.count_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.count_box p {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #457e80;
+  margin-top: 7px;
+}
+
+.count_box div span {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.count_box div span:nth-child(2) {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin: 0 10px;
+}
+
+.count_box div span.increment,
+.count_box div span.decrement {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #dedede;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.select_size_box {
+  margin-right: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select_size_box > label {
+  position: relative;
+  display: flex;
+  border: 1px solid #dedede;
+  min-width: 219px;
+  max-width: 237px;
+  height: 35px !important;
+  padding-left: 15px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #303030;
+  align-items: center;
+}
+
+.select_size_box > label > span {
+  border-right: 1px solid #c4c4c4;
+  padding-right: 15px;
+}
+
+.select_size_box > label > select {
+  border: none !important;
+  cursor: pointer;
+  height: unset;
+  padding: 0 15px;
+  width: 100%;
+
+  -webkit-appearance: unset;
+  appearance: unset;
+}
+
+.select_size_box > label > select:focus-visible {
+  outline: none;
+}
+
+.select_size_box > label > svg {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.select_size_box p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: underline;
+  color: #457e80;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.pick_color div {
+  display: flex;
+}
+
+.pick_color p {
+  font-family: "Lato", sans-serif !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.pick_color div > button {
+  margin-right: 7px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  padding: 1px;
+  background: white;
+}
+
+.pick_color div > button > span {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pick_color .active_color {
+  border: 3px solid #2c8081;
+}
+
+.pick_color div > button.active_color > span {
+  width: 26px;
+  height: 26px;
+}
+
+.error_msg {
+  font-weight: 700;
+  color: #d9534f;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 20px;
+}
 
-    #product .row.crow{
-        display: none;
-    }
-
-   
-    .dv-crumbs{
-        padding-top: 20px !important;
-    }
-
-    @media (max-width: 1192px) {
-        .dv-crumbs{
-            padding-top: 40px !important;
-        }
-    }
-
-    .slider-nav{
-        width: 30%;
-        margin-right: 20px;
-        text-align: center;
-    }
-
-    .slider-nav .arrow:first-child{
-        margin-bottom: 15px;
-    }
-
-    .slider-nav .arrow{
-        cursor: pointer;        
-    }
-
-    .slider-for{
-        width: 60%;
-    }
-
-    .slick-vertical .slick-slide{
-        margin-bottom: 17px;
-    }
-
-    .details{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 600 !important;
-        font-size: 18px !important;
-        line-height: 22px !important;
-        text-decoration-line: underline;
-        color: #457E80;
-        cursor: pointer;
-        margin-bottom: 0 !important;
-        opacity: 1;
-        transition: all 0.5s ease 0s;
-        margin-top: 20px;
-    }
-
-    .delivery_box{
-        text-align:center;
-        border-top: 1px solid #DEDEDE;
-        border-bottom: 1px solid #DEDEDE;
-        padding: 15px 0;
-        margin-bottom: 20px;
-    }
-
-    .delivery_box > p{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 22px;
-        color: #000000;
-        margin-bottom: 7px !important;
-    }
-
-    .delivery_box > div{
-        display: inline-flex;
-        align-items: stretch;
-    }
-
-    .delivery_box > div span{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-        color: #303030;
-    }
-     
-    .delivery_box > div > div{
-        position: relative;
-    }
-
-    .delivery_box > div > div .text_popup{
-        opacity: 0;
-        position: absolute;
-        top: -115px;
-        left: 13px;
-        width: 187px;
-        background: #FFFFFF;
-        border: 1px solid #457E80;
-        box-shadow: 0px 0px 4px rgba(152, 152, 152, 0.12);
-        padding: 13px 30px 13px 15px;
-        text-align: left;
-        transition: all 0.5s ease 0s;
-        z-index: -1;
-    }
-
-    .delivery_box > div > div .text_popup span{
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 16px;
-        color: #000000;
-    }
-
-    .delivery_box > div > div .text_popup > svg{
-        top: 10px;
-        position: absolute;
-        right: 10px;
-        cursor: pointer;        
-    }
-     
-    .delivery_box > div > div >  svg{
-        margin-left: 13px;
-        cursor: pointer;
-    }
-    
-    .free_return{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        color: #457E80;
-        margin: 7px 0 20px 0;
-    }
-
-     /* popup */
-    .backdrop_popup.is_hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .backdrop_popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 9999999999;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
-        overflow-y: scroll;
-        background-color: rgb(0 0 0 / 60%);
-        transition: all 0.5s ease 0s;
-    }
-
-    .backdrop_popup > div {
-        min-height: 100%;
-        padding: 30px 10px;
-    }
-
-    .popup_form_content {
-       position: relative;
-        max-width: 752px;
-        margin-right: auto;
-        margin-left: auto;
-        background: #FFFFFF;
-        padding: 55px 30px 43px 30px;
-        font-family: 'Lato', sans-serif !important;
-        color: #000000;
-    }
-
-
-    .popup_form_content .close_popup {
-        position: absolute;
-        top: 13px;
-        right: 21px;
-        display: flex;
-        padding: 0;
-        margin: 0;
-        width: 33px;
-        height: 33px;
-        justify-content: center;
-        align-items: center;
-        outline: none;
-        cursor: pointer;
-        background: rgb(142 142 142 / 10%);
-        border-radius: 50%;
-    }
-
-    .popup_form_content .close_popup svg{
-        fill: #8E8E8E;
-    }
-
-    .popup_form_content > p{
-        font-family: "Crimson Text",serif;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 22px;
-        text-align: center;
-        margin: 0;
-    }
-
-    .popup_form_content table{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 22px;
-        margin: 43px 0 54px 0;
-        text-align: center;
-        border-collapse: unset;
-    }
-
-    .popup_form_content table th{
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 36px;
-        text-align: center;
-    }
-
-    .popup_form_content table tr:nth-child(even){
-        background: #EDEDED;
-    }
-
-    .popup_form_content table tr td{
-        width: 127px;
-        height: 40px;
-        
-    }
-
-     .popup_form_content table tr td:not(:last-child){
-        border-right: 13px solid white;
-        
-    }
-
-    .popup_form_content > div{
-        display: flex;
-    }
-
-
-    .popup_form_content > div:not(:last-child),
-    .popup_form_content > p.var {
-        margin-bottom: 20px
-    }
-
-    .popup_form_content > div > span{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-
-        color: #000000;
-    }
-
-    .popup_form_content > div > span:first-child{
-        font-family: "Crimson Text",serif;
-        font-weight: 700;
-        width: 50px;
-        margin-right: 27px;
-    }
-
-    .popup_form_content > div > span:last-child{
-        max-width: 614px;
-    }
-
-    .tabs > div:first-child{
-        background: #F5F5F5;
-        display: none;
-    }
-
-    .tabs > div:first-child label{
-        border: none !important;
-        
-    }
-
-    .product_det{
-        display: none;
-        position: relative;
-        background: #F5F5F5;
-        padding: 15px 112px 40px;
-        margin-top: 30px;
-    }
-
-
-    .product_det h2{
-        font-family: "Crimson Text",serif;
-        font-weight: 700;
-        font-size: 28px;
-        line-height: 53px;
-        color: #000000;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .product_det svg{
-        position: absolute;
-        right: 25px;
-        top: 15px;
-        cursor: pointer;
-    }
-
-    .product_det .col-sm-8, .product_det .col-sm-1, .product_det .col-sm-2,
-    .product_det .col-sm-3, .product_det .col-sm-4, .product_det .col-sm-5,
-    .product_det .col-sm-6, .product_det .col-sm-7, .product_det .col-sm-8,
-    .product_det .col-sm-9, .product_det .col-sm-10, .product_det .col-sm-11,
-    .product_det .col-sm-12{
-        float: unset;
-    }
-
-    .complete_look{
-        text-align: center;
-        width: 20% !important;
-        margin-top: 60px;
-    }
-
-    
-
-    .complete_look > h2{
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 17px;
-        margin: 10px 0;
-    }
-
-    .complete_look > span{
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 14px;
-    }
-
-    .complete_look .select_size_box.complete_var{        
-        width: 100%;
-        margin-right: 0;
-        display: block;
-        margin-top: 22px;
-    }
-
-    .complete_look .select_size_box.complete_var label{
-        min-width: unset;
-    }
-
-    .complete_look .select_size_box.complete_var div{
-        min-width: unset;
-        max-width: unset;
-
-    }
-
-    .complete_look button{
-        background: #457E80;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 37px;
-        font-size: 12px;
-        line-height: 14px;
-        text-align: center;
-        text-transform: uppercase;
-        text-decoration: none;
-        cursor: pointer;
-        color: #ffffff;
-        border: none;
-        outline: none;
-        margin-top: 15px;
-    }
-
-     .complete_look button > svg{
-         margin-left: 12px;
-     }
-
-     .product1 img{
-         display: block;
-
-     }
-
-     .product2{
-         position: relative;
-
-     }
-
-
-     .pdp{
-         display: flex;
-         padding-top: 20px;
-     }
-
-    .pdp > div:first-child{
-        width: 60%;
-    }
-
-    .pdp > div:last-child{
-        width:40%;
-    }
-
-    .pdp .btn_box{
-        display: flex;
-        align-items: center;
-        margin-top: 22px;
-
-    }
-
-    .pdp .btn_box button:first-child{
-        background: #457E80;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        max-width: 305px;
-        height: 48px;
-        font-size: 16px;
-        line-height: 19px;
-        text-align: center;
-        text-transform: uppercase;
-        text-decoration: none;
-        cursor: pointer;
-        color: #ffffff;
-        border: none;
-        outline: none;
-        position: relative;
-        margin-right: 40px;
-    }
-
-    .pdp .btn_box button:first-child:after{
-        width: 16px;
-        height: 22px;
-        position: absolute !important;
-        content: "" !important;
-        background: url(https://conversionratestore.github.io/projects/jarrold/img/bag.svg) no-repeat center center;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        right: 70px;
-    }
-
-    .pdp .btn_box button:last-child{
-        position: relative;
-        width: 33px;
-        height: 30px;
-        background: none;
-        border: none;
-        outline: none;
-    }
-
-    .pdp .btn_box button:last-child:after{
-        background: url(https://conversionratestore.github.io/projects/jarrold/img/green_heart.svg) no-repeat center center;
-        position: absolute !important;
-        content: "" !important;
-        width: 33px;
-        height: 30px;
-        left: 0;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-    }
-
-    .title_brand{
-        font-family: "Crimson Text",serif;
-        font-weight: 700;
-        font-size: 28px;
-        line-height: 53px;
-        margin-bottom:0 !important;
-        color: #000000;
-    }
-
-    .pdp > div:last-child h2{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 22px;
-        margin-bottom: 10px !important;
-        color: #000000;
-    }
-
-    .var_btn_tag{
-        margin-bottom: 20px;
-    }
-
-    .var_btn_tag span{
-        font-family: 'Lato', sans-serif !important;
-        background: #807559;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 17px;
-        color: #FFFFFF;
-        padding: 5px 15px;
-    }
-
-    .var_btn_tag span:not(:last-child){
-        margin-right: 10px;
-    }
-
-    .price_text{
-        margin-bottom: 20px !important;
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 29px;
-        color: #000000;
-    }
-
-    .size_count_block{
-        display: flex;
-    }
-
-    .count_box{
-        display: flex;
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .count_box p{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 17px;
-        color: #457E80;
-        margin-top: 7px;
-    }
-
-    .count_box div span{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: #000000;
-    }
-
-    .count_box div span:nth-child(2){
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        color: #000000;
-        margin: 0 10px;
-    }
-
-    .count_box div span.increment,
-    .count_box div span.decrement{
-        width: 35px;
-        height: 35px;
-        border: 1px solid #DEDEDE;
-        display: inline-block;
-        text-align: center;
-        padding: 5px;
-        cursor: pointer;
-    }
-
-    .select_size_box{
-        margin-right: 33px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .select_size_box > label{
-        position: relative;
-        display: flex;
-        border: 1px solid #DEDEDE;
-        min-width: 219px;
-        max-width: 237px;
-        height: 35px !important;
-        padding-left: 15px;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        color: #303030;
-        align-items: center;
-    }
-
-    .select_size_box > label> span{
-        border-right: 1px solid #C4C4C4;
-        padding-right: 15px;
-    }
-
-      .select_size_box > label> select{
-        border: none !important;
-        cursor: pointer;
-        height: unset;
-        padding: 0 15px;
-        width: 100%;
-
-        -webkit-appearance: unset;
-        appearance: unset;
-      }
-      
-      .select_size_box > label> select:focus-visible{
-          outline:none;
-      }
-
-      .select_size_box > label> svg{
-        position: absolute;
-        right: 15px;
-        top: 15px;
-      }
-
-
-     .select_size_box p{
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 17px;
-        text-decoration-line: underline;
-        color: #457E80;
-        margin-top: 7px;
-        cursor: pointer;
-     }
-
-     .pick_color div {
-         display: flex;
-     }
-
-     .pick_color  p{
-        font-family: 'Lato', sans-serif !important;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 17px;
-        color: #000000;
-        margin-bottom: 12px;
-     }
-
-     .pick_color div > button{
-        margin-right: 7px;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        outline: none;
-        border: none;
-        padding: 1px;
-        background: white;
-     }
-
-     .pick_color div > button > span{
-        width: 33px;
-        height: 33px;
-        border-radius: 50%;
-        display: inline-block;
-    }
-
-     .pick_color .active_color {
-        border: 3px solid #2c8081;
-    }
-
-     .pick_color div > button.active_color > span{
-        width: 26px;
-        height: 26px;
-
-     }
-
-    .error_msg{
-        font-weight: 700;
-        color: #d9534f;
-        font-size: 14px;
-        padding: 0;
-        margin-bottom: 20px;
-    }
 
 </style>
 `
@@ -806,37 +838,141 @@ let productDet = /*html*/ `
 `
 
 let completeLook = /*html*/ `
-    <section class="container complete_look">
-        <h2>Complete the look</h2>
-        <div>
-            <div>
-                <img src="img/rectangle.jpg" alt="product" width="208" height="209">
-                <p>Adini Alber Langley Print Tunic</p>
-                <span>$67.00</span>
-        
-                    <div class="select_size_box complete_var">
-                        <label>
-                            <span>Size</span>
-                            <select name="selectSize">
-                                <option value=""><span>10</span></option>
-                                <option value=""><span>14</span></option>
-                                <option value=""><span>16</span></option>
-                            </select>
-                            <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
-                            </svg>
-                        </label>
-                    </div>
-        
-                <button type="button">
-                    <span>Add to bag</span>
-                    <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </section>
+<section class="container complete_look">
+      <h2>Complete the look</h2>
+      <ul>
+          <li>
+              <img src="https://jarroldcdn.azureedge.net/products-temp/lk-bennett/issy-sparkly-tailored-trousers3{w=670,h=670}.webp" alt="product" width="208" height="209">
+              <p>Adini Alber Langley Print Tunic</p>
+              <span>$67.00</span>
+      
+                  <div class="select_size_box complete_var">
+                      <label>
+                          <span>Size</span>
+                          <select name="selectSize">
+                              <option value=""><span>10</span></option>
+                              <option value=""><span>14</span></option>
+                              <option value=""><span>16</span></option>
+                          </select>
+                          <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                          </svg>
+                      </label>
+                  </div>
+      
+              <button type="button">
+                  <span>Add to bag</span>
+                  <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+                  </svg>
+              </button>
+          </li>
+          <li>
+              <img src="https://jarroldcdn.azureedge.net/products-temp/masai/45/masai_enola_top_azaelea_1003383%7Bw=1000,h=1000%7D.webp" alt="product" width="208" height="209">
+              <p>Adini Alber Langley Print Tunic</p>
+              <span>$67.00</span>
+      
+                  <div class="select_size_box complete_var">
+                      <label>
+                          <span>Size</span>
+                          <select name="selectSize">
+                              <option value=""><span>10</span></option>
+                              <option value=""><span>14</span></option>
+                              <option value=""><span>16</span></option>
+                          </select>
+                          <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                          </svg>
+                      </label>
+                  </div>
+      
+              <button type="button">
+                  <span>Add to bag</span>
+                  <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+                  </svg>
+              </button>
+          </li>
+          <li>
+              <img src="https://jarroldcdn.azureedge.net/products-temp/pieces/pieces-leah-blue-rinse-mom-jeans{w=670,h=670}.webp" alt="product" width="208" height="209">
+              <p>Adini Alber Langley Print Tunic</p>
+              <span>$67.00</span>
+      
+                  <div class="select_size_box complete_var">
+                      <label>
+                          <span>Size</span>
+                          <select name="selectSize">
+                              <option value=""><span>10</span></option>
+                              <option value=""><span>14</span></option>
+                              <option value=""><span>16</span></option>
+                          </select>
+                          <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                          </svg>
+                      </label>
+                  </div>
+      
+              <button type="button">
+                  <span>Add to bag</span>
+                  <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+                  </svg>
+              </button>
+          </li>
+          <li>
+              <img src="https://jarroldcdn.azureedge.net/products-temp/gerry-weber/gerry-weber-black-shiny-pleated-midi-skirt{w=670,h=670}.webp" alt="product" width="208" height="209">
+              <p>Adini Alber Langley Print Tunic</p>
+              <span>$67.00</span>
+      
+                  <div class="select_size_box complete_var">
+                      <label>
+                          <span>Size</span>
+                          <select name="selectSize">
+                              <option value=""><span>10</span></option>
+                              <option value=""><span>14</span></option>
+                              <option value=""><span>16</span></option>
+                          </select>
+                          <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                          </svg>
+                      </label>
+                  </div>
+      
+              <button type="button">
+                  <span>Add to bag</span>
+                  <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+                  </svg>
+              </button>
+          </li>
+          <li>
+              <img src="https://jarroldcdn.azureedge.net/products-temp/mint-velvet/grey-sequin-trim-v-neck-blouse%7Bw=1000,h=1000%7D.webp" alt="product" width="208" height="209">
+              <p>Adini Alber Langley Print Tunic</p>
+              <span>$67.00</span>
+      
+                  <div class="select_size_box complete_var">
+                      <label>
+                          <span>Size</span>
+                          <select name="selectSize">
+                              <option value=""><span>10</span></option>
+                              <option value=""><span>14</span></option>
+                              <option value=""><span>16</span></option>
+                          </select>
+                          <svg width="12" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.64018 0.231779C1.21591 -0.121785 0.585343 -0.0644614 0.231779 0.359816C-0.121785 0.784093 -0.0644614 1.41466 0.359816 1.76822L1.64018 0.231779ZM7 6L6.35982 6.76822C6.73066 7.07726 7.26934 7.07726 7.64018 6.76822L7 6ZM13.6402 1.76822C14.0645 1.41466 14.1218 0.784093 13.7682 0.359816C13.4147 -0.0644614 12.7841 -0.121785 12.3598 0.231779L13.6402 1.76822ZM0.359816 1.76822L6.35982 6.76822L7.64018 5.23178L1.64018 0.231779L0.359816 1.76822ZM7.64018 6.76822L13.6402 1.76822L12.3598 0.231779L6.35982 5.23178L7.64018 6.76822Z" fill="#C4C4C4"/>
+                          </svg>
+                      </label>
+                  </div>
+      
+              <button type="button">
+                  <span>Add to bag</span>
+                  <svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.18965 5.48276C3.18965 5.7589 3.41351 5.98276 3.68965 5.98276C3.9658 5.98276 4.18965 5.7589 4.18965 5.48276H3.18965ZM8.12069 5.48276C8.12069 5.7589 8.34454 5.98276 8.62069 5.98276C8.89683 5.98276 9.12069 5.7589 9.12069 5.48276H8.12069ZM1.09676 12.9115L0.598723 12.8672L1.09676 12.9115ZM11.2136 12.9115L10.7155 12.9557L11.2136 12.9115ZM10.4948 4.82525L10.9928 4.78098L10.4948 4.82525ZM2.81161 4.41379H9.49874V3.41379H2.81161V4.41379ZM9.99677 4.86952L10.7155 12.9557L11.7116 12.8672L10.9928 4.78098L9.99677 4.86952ZM10.2175 13.5H2.09283V14.5H10.2175V13.5ZM1.5948 12.9557L2.31357 4.86952L1.3175 4.78098L0.598723 12.8672L1.5948 12.9557ZM4.18965 5.48276C4.18965 4.21438 4.19706 3.20144 4.46534 2.49414C4.59142 2.16175 4.76539 1.92849 5.00421 1.77168C5.24691 1.61233 5.60537 1.5 6.15517 1.5V0.5C5.47221 0.5 4.9061 0.639821 4.45537 0.935754C4.00077 1.23423 3.71246 1.65937 3.53034 2.13948C3.18225 3.05718 3.18965 4.28563 3.18965 5.48276H4.18965ZM6.15517 1.5C6.70497 1.5 7.06343 1.61233 7.30613 1.77168C7.54495 1.92849 7.71892 2.16175 7.845 2.49414C8.11329 3.20144 8.12069 4.21438 8.12069 5.48276H9.12069C9.12069 4.28563 9.12809 3.05718 8.78 2.13948C8.59788 1.65937 8.30957 1.23423 7.85497 0.935754C7.40424 0.639821 6.83813 0.5 6.15517 0.5V1.5ZM2.09283 13.5C1.79922 13.5 1.5688 13.2482 1.5948 12.9557L0.598723 12.8672C0.520732 13.7446 1.21198 14.5 2.09283 14.5V13.5ZM10.7155 12.9557C10.7415 13.2482 10.5111 13.5 10.2175 13.5V14.5C11.0984 14.5 11.7896 13.7446 11.7116 12.8672L10.7155 12.9557ZM9.49874 4.41379C9.75772 4.41379 9.97384 4.61156 9.99677 4.86952L10.9928 4.78098C10.9241 4.00708 10.2757 3.41379 9.49874 3.41379V4.41379ZM2.81161 3.41379C2.03465 3.41379 1.38629 4.00708 1.3175 4.78098L2.31357 4.86952C2.3365 4.61156 2.55262 4.41379 2.81161 4.41379V3.41379Z" fill="white"/>
+                  </svg>
+              </button>
+          </li>
+      </ul>
+</section>
 `
 
 let pdp = /*html*/ `
