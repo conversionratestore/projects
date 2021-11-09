@@ -531,24 +531,24 @@ let mut = new MutationObserver(function (muts) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
             function removeProductMobile(item) {
-                if (item.nextElementSibling.innerText == '1') {
-                    if (!document.querySelectorAll('.product-list .product')) {
-                        localStorage.setItem('products', '');
-                        sessionStorage.setItem('wasPopup', 'false');
-                    } else {
-                        let id = item.closest('.product').getAttribute('data-item-id'),
-                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].id === id) {
-                                spliceProduct(productsLocalStorage,i)
-                            }
+                if (!document.querySelectorAll('.product-list .product')) {
+                    localStorage.setItem('products', '');
+                    sessionStorage.setItem('wasPopup', 'false');
+                } else {
+                    let id = item.closest('.product').getAttribute('data-item-id'),
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                    for (let i = 0; i < productsLocalStorage.length; i++) {
+                        if (productsLocalStorage[i].id === id) {
+                            spliceProduct(productsLocalStorage,i)
                         }
                     }
                 }
             }
             document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
                 item.addEventListener('click', (e) => {
-                    removeProductMobile(item);
+                    if (item.nextElementSibling.innerText == '1') {
+                        removeProductMobile(item);
+                    }
                 })
             })
             document.querySelectorAll('.action-and-total a').forEach(item => {
