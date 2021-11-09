@@ -590,9 +590,11 @@ let mut = new MutationObserver(function (muts) {
                         console.log('id: ' + id);
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
+                            console.log(productsLocalStorage[i].color + ' = ' + color);
+                            console.log(productsLocalStorage[i].id + ' = ' + id);
                             if (productsLocalStorage[i].color == color && productsLocalStorage[i].id == id) {
-                                console.log(productsLocalStorage[i].color + ' = ' + color);
-                                console.log(productsLocalStorage[i].id + ' = ' + id);
+                                console.log(productsLocalStorage[i].color + ' == ' + color);
+                                console.log(productsLocalStorage[i].id + ' ==' + id);
                                 spliceProduct(productsLocalStorage,i)
                             }
                         }
