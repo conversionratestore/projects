@@ -590,13 +590,13 @@ let mut = new MutationObserver(function (muts) {
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
                         // pushProducts(imgUrl,name,price,currency,id,color)
-                        for (let key in productsLocalStorage) {
-                            console.log(productsLocalStorage.key)
-                            if (productsLocalStorage.key["id"] == id) {
-                                console.log(productsLocalStorage.key["id"] + ' == ' + id);
-                                if (productsLocalStorage.key["color"] == color) {
-                                    console.log(productsLocalStorage.key["color"] + ' == ' + color);
-                                    spliceProduct(productsLocalStorage,productsLocalStorage.key)
+                        for (let keyP in productsLocalStorage) {
+                            console.log(productsLocalStorage[keyP])
+                            if (productsLocalStorage[keyP]["id"] == id) {
+                                console.log(productsLocalStorage[keyP]["id"] + ' == ' + id);
+                                if (productsLocalStorage[keyP]["color"] == color) {
+                                    console.log(productsLocalStorage[keyP]["color"] + ' == ' + color);
+                                    spliceProduct(productsLocalStorage,productsLocalStorage[keyP])
                                 }
                             }
                         }
