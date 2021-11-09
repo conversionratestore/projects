@@ -489,7 +489,7 @@ document.querySelector('.btn-complete').addEventListener('click', () => {
     window.location.href = 'https://www.privatefloor.com/cart/';
 })
 
-function setWasPopup(productsLocalStorage,i) {
+function spliceProduct(productsLocalStorage,i) {
     productsLocalStorage.splice(i, 1)
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
     sessionStorage.setItem('wasPopup', 'false');
@@ -555,7 +555,7 @@ let mut = new MutationObserver(function (muts) {
                             let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].color == colorData && productsLocalStorage[i].id == id2) {
-                                    setWasPopup(productsLocalStorage,i)
+                                    spliceProduct(productsLocalStorage,i)
                                 }
                             }
                         }
@@ -570,7 +570,7 @@ let mut = new MutationObserver(function (muts) {
 
                     for (let i = 0; i < productsLocalStorage.length; i++) {
                         if (productsLocalStorage[i].id == id && productsLocalStorage[i].color == color ) {
-                            setWasPopup(productsLocalStorage,i)
+                            spliceProduct(productsLocalStorage,i)
                         }
                     }
                 })
@@ -592,7 +592,9 @@ let mut = new MutationObserver(function (muts) {
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].color == color && productsLocalStorage[i].id == id) {
-                                setWasPopup(productsLocalStorage,i)
+                                console.log(productsLocalStorage[i].color + ' = ' + color);
+                                console.log(productsLocalStorage[i].id + ' = ' + id);
+                                spliceProduct(productsLocalStorage,i)
                             }
                         }
                     }
