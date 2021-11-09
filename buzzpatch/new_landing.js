@@ -20,11 +20,19 @@ let styleNewLanding = /*html*/ `
         padding: 8px 16px 0 !important; 
     }
 
+    .js-packs input[type=radio]+label:hover{
+        border: 2px solid #FF3C7F !important;
+        border-radius: 6px !important;
+        color: #181717 !important;
+        background: inherit !important;
+
+    }
+
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
     #ingredients, #flowers, #reviews,
     div .js-mobile.days.lazyautosizes.ls-is-cached.lazyloaded,
     .js-mobile.effectiveness, 
-    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators, .bp-comparison, .wave-effect.js-mobile{
+    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators, .bp-comparison, .wave-effect.js-mobile, #radios-1{
         display: none !important;
     }
 
