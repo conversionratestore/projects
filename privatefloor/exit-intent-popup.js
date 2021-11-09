@@ -496,7 +496,6 @@ function spliceProduct(productsLocalStorage,i) {
 }
 let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/product')) {
-
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
@@ -613,7 +612,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
-
         if (detectMob() == true) {
             mut.disconnect()
             document.body.classList.add('js-mobile');
