@@ -532,7 +532,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect()
         document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
             el.addEventListener(() => {
-                let imgUrl = el.closest('.item').querySelector('.preview-pic a im').getAttribute('src'),
+                let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
                     id = el.getAttribute('data-vid');
