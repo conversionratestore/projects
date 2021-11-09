@@ -585,17 +585,30 @@ let mut = new MutationObserver(function (muts) {
                     } else {
                         let color = item.closest('tr').querySelector('.color').innerText,
                             id = item.closest('tr').getAttribute('data-item-id'),
+                            // price = item.closest('tr').querySelector('.price').innerText.replace(currency,''),
+                            // imgUrl = ;
                             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (id == productsLocalStorage[i].id) {
-                                console.log(productsLocalStorage[i].id + ' == ' + id);
-                                if (color == productsLocalStorage[i].color) {
-                                    console.log(productsLocalStorage[i].color + ' == ' + color);
-                                    spliceProduct(productsLocalStorage,i)
+                        // pushProducts(imgUrl,name,price,currency,id,color)
+                        for (let key in productsLocalStorage) {
+                            console.log(productsLocalStorage.key)
+                            if (productsLocalStorage.key["id"] == id) {
+                                console.log(productsLocalStorage.key["id"] + ' == ' + id);
+                                if (productsLocalStorage.key["color"] == color) {
+                                    console.log(productsLocalStorage.key["color"] + ' == ' + color);
+                                    spliceProduct(productsLocalStorage,productsLocalStorage.key)
                                 }
                             }
                         }
+                        // for (let i = 0; i < productsLocalStorage.length; i++) {
+                        //     if (id == productsLocalStorage[i].id) {
+                        //         console.log(productsLocalStorage[i].id + ' == ' + id);
+                        //         if (color == productsLocalStorage[i].color) {
+                        //             console.log(productsLocalStorage[i].color + ' == ' + color);
+                        //             spliceProduct(productsLocalStorage,i)
+                        //         }
+                        //     }
+                        // }
                     }
                 })
             }
