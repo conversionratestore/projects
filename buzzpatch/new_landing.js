@@ -649,6 +649,18 @@ let styleNewLanding = /*html*/ `
     border-right: 2px solid #E2E2E2;
     }
 
+    .compar_block ul li:not(:first-child) span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 130%;
+        color: #6F6F6F;
+    }
+
+    .accent_color{
+    color: #12B889;
+    }
+
     .not_border{
     border-right: none !important;
     font-family: 'Roboto', sans-serif !important;
@@ -698,9 +710,16 @@ let styleNewLanding = /*html*/ `
     margin-top:6px;
     }
 
+    .block_effective .compar_block > div:nth-child(2) li:not(:first-child) .span_after_svg{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        color: #212529;
+    }
+
     .block_effective .compar_block > div:nth-child(2) li:not(:last-child) .span_after_svg{
-    border-right: 2px solid #E2E2E2;
-    width: 100%;
+        border-right: 2px solid #E2E2E2;
+        width: 100%;
     }
 
     .list_variant{
