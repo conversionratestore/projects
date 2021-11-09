@@ -22,10 +22,8 @@ let styleNewLanding = /*html*/ `
 
 
     .js-packs input[type=radio]+label:hover{
-        border: 2px solid #FF3C7F !important;
-        border-radius: 6px !important;
-        color: #181717 !important;
-        background: inherit !important;
+        background: unset !important;
+        color: unset !important;
     }
 
     a:hover, button:hover, [role="button"]:hover, input:hover, label:hover, select:hover, textarea:hover{
