@@ -674,10 +674,10 @@ let mut = new MutationObserver(function (muts) {
 
             addEvent(document, 'mouseout', function(evt) {
                 if (evt.toElement == null && evt.relatedTarget == null) {
-                    let productsLocalStorage,
-                        wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                    let productsLocalStorage, wasPopup;
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
                     }
 
                     for (let i = 0; i < productsLocalStorage.length; i++) {
