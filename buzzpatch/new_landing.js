@@ -375,6 +375,7 @@ let styleNewLanding = /*html*/ `
 
     .package .js-heading .js-btn.btn-primary{
         font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
         max-width: 343px !important;
         font-size: 16px !important;
         line-height: 16px !important;
@@ -683,7 +684,8 @@ let styleNewLanding = /*html*/ `
     }
 
     .compar_block a{
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     width: 100%;
     max-width: 343px;
     padding: 20.5px 20px;
