@@ -531,8 +531,7 @@ let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/catalog') && detectMob() == true && !!document.querySelectorAll('.add-to-cart .btn-atc') && !!document.querySelector('.listing-products')) {
         mut.disconnect()
         document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
-            el.addEventListener(() => {
-                console.log('click')
+            el.addEventListener('click',() => {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
@@ -540,8 +539,8 @@ let mut = new MutationObserver(function (muts) {
                     id = el.getAttribute('data-vid');
                 sessionStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,link);
-            })
-        })
+            });
+        });
     }
 
     mut.observe(document, optionMut);
