@@ -32,15 +32,17 @@ let styleNewLanding = /*html*/ `
         opacity: unset !important;
     }
 
-    .package .js-heading .js-btn.btn-primary:hover{
+    .package .js-heading .js-btn.btn-primary:hover,
+    .btn:not(.disabled):not([disabled]):focus, .btn:not(.disabled):not([disabled]):hover{
         background: #ff3c81 !important;
+        color: white !important;
     }
 
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
     #ingredients, #flowers, #reviews,
     div .js-mobile.days.lazyautosizes.ls-is-cached.lazyloaded,
     .js-mobile.effectiveness, 
-    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators, .bp-comparison, .wave-effect.js-mobile, #radios-1{
+    #featured-reviews .container, .carousel-indicators, #featuredReviewndicators, .bp-comparison, .wave-effect.js-mobile, #radios-0, #radios-1, #radios-2, #radios-3{
         display: none !important;
     }
 
