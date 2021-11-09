@@ -72,7 +72,7 @@ function addProduct() {
             <div class="popup_slide">
                 <div>
                     <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
-                    <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
+                    <p class="slide_name">${productsLocalStorage[i].name}</p>   
                 </div>
                 <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
             </div>`)
@@ -81,7 +81,7 @@ function addProduct() {
             <div class="popup_slide popup_slide_one">
                 <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                 <div class="popup_slide_row">
-                    <a href="${productsLocalStorage[i].link}" class="slide_name">${productsLocalStorage[i].name}</a>   
+                    <p class="slide_name">${productsLocalStorage[i].name}</p>   
                     <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
                 </div>
             </div>`)
