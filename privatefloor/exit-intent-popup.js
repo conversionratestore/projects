@@ -591,10 +591,10 @@ let mut = new MutationObserver(function (muts) {
 
                         // pushProducts(imgUrl,name,price,currency,id,color)
                         for (const keyP in productsLocalStorage) {
-                            console.log(productsLocalStorage[keyP] + " keyP")
-                            if (productsLocalStorage[keyP]["id"] == id) {
+                            console.log(productsLocalStorage[keyP] + " keyP" + productsLocalStorage[keyP]["id"])
+                            if (productsLocalStorage[keyP]["id"].includes(id)) {
                                 console.log(productsLocalStorage[keyP]["id"] + ' == ' + id);
-                                if (productsLocalStorage[keyP]["color"] == color) {
+                                if (productsLocalStorage[keyP]["color"].includes(color)) {
                                     console.log(productsLocalStorage[keyP]["color"] + ' == ' + color);
                                     spliceProduct(productsLocalStorage,productsLocalStorage[keyP])
                                 }
