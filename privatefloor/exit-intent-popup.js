@@ -512,11 +512,11 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart')) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    let imgUrl = document.querySelectorAll('.product img')[0].getAttribute('src'),
-                        name = document.querySelector('.product_name').innerText,
-                        price = document.querySelector('.price-offer-box .price').innerText.split(currency)[1],
-                        id = document.querySelectorAll('.quantities input')[0].value,
-                        color = document.querySelector('.purchase-panel .colors .title').innerText;
+                    let imgUrl = document.querySelector('.slide.selected img').getAttribute('src'),
+                        name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
+                        price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
+                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
+                        color = document.querySelector('.slide.selected img').getAttribute('data-title');
 
                     sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id,color);
@@ -590,7 +590,7 @@ let mut = new MutationObserver(function (muts) {
                         console.log(productsLocalStorage.length + ' :length')
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             console.log(productsLocalStorage[i].id + ' :id local')
-                            if (productsLocalStorage[i].id == id) {
+                            if (productsLocalStorage[i].id === id) {
                                 console.log(productsLocalStorage[i].id + ' == ' + id);
                                 spliceProduct(productsLocalStorage,i);
                             }
