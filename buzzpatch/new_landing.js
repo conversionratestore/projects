@@ -1038,7 +1038,7 @@ let blockAllergies = /*html*/ `
 <div>
     <h3>Duration of effect</h3>
     <ul>
-        <li class="accent_color"><span>Up to 12 hours</span></li>
+        <li class="accent_color"><span>Up to 8 hours</span></li>
         <li><span>Up to 6 hours</span></li>
         <li><span>Up to 6 hours</span></li>
         <li><span>Up to 3 hours</span></li>
