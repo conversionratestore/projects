@@ -53,6 +53,10 @@ let styleNewLanding = /*html*/ `
         display: none;
     }
 
+    .fixed-top .no-gutters{
+        padding-bottom: 7px;
+    }
+
     .nav_block div:nth-child(2){
         width: 30%;
         text-align: center;
@@ -530,8 +534,6 @@ let styleNewLanding = /*html*/ `
         margin: 72px 0 28px;
     }
 
-
-
     #featuredReviewndicators > .carousel-inner .carousel-item{
         background: #FFFFFF;
         box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.25);
@@ -552,6 +554,7 @@ let styleNewLanding = /*html*/ `
     #js-accordion .card-body{
         background: inherit !important;
     }
+
     #faqs .col-lg-12.col-md-12.col-sm-12.text-left h2{
         font-weight: 400 !important;
         font-size: 36px !important;
@@ -587,67 +590,67 @@ let styleNewLanding = /*html*/ `
         padding-top: 0 !important;
     }
 
-    /* */
+    /* compar_block*/
     .accent_color{
-    color: #12B889;
+        color: #12B889;
     }
 
     .accent_color_buzz{
-    color: #FF3C81;
-    font-family: 'DINEngschrift LT', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.14;
-    text-align: center;
-    letter-spacing: 0.015em;
-    text-transform: uppercase;
+        color: #FF3C81;
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.14;
+        text-align: center;
+        letter-spacing: 0.015em;
+        text-transform: uppercase;
     }
 
     .compar_block{
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.3;
-    text-align: center;
-    color: #212529;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.3;
+        text-align: center;
+        color: #212529;
     }
 
     .compar_block h2{
-    font-family: 'DINEngschrift LT', sans-serif;
-    margin-bottom:40px;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1.1;
-    text-align: center;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #0C0B0B;
+        font-family: 'DINEngschrift LT', sans-serif;
+        margin-bottom:40px;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.1;
+        text-align: center;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #0C0B0B;
     }
 
     .compar_block > div:not(:last-of-type){
-    margin-bottom:16px;
+        margin-bottom:16px;
     }
 
     .compar_block ul{
-    list-style: none;
-    display:flex;
-    align-items: stretch;
-    margin: 0;
-    padding-bottom: 16px;
+        list-style: none;
+        display:flex;
+        align-items: stretch;
+        margin: 0;
+        padding-bottom: 16px;
     }
 
 
     .compar_block ul li{
-    display: flex;
-    flex-direction:column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: calc((100%* 3) / 4);
-    padding: 4px;
+        display: flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: calc((100%* 3) / 4);
+        padding: 4px;
     }
 
     .compar_block ul li:not(:last-child){
-    border-right: 2px solid #E2E2E2;
+        border-right: 2px solid #E2E2E2;
     }
 
     .compar_block ul li:not(:first-child) span{
@@ -659,57 +662,57 @@ let styleNewLanding = /*html*/ `
     }
 
     .accent_color{
-    color: #12B889;
+        color: #12B889;
     }
 
     .not_border{
-    border-right: none !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 1.43;
-    text-align: center;
-    color: #212529;
+        border-right: none !important;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 1.43;
+        text-align: center;
+        color: #212529;
     }
 
     .compar_block > div h3{
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1.43;
-    text-align: center;
-    text-transform: none;
-    color: #212529;
-    margin-bottom: 16px;
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.43;
+        text-align: center;
+        text-transform: none;
+        color: #212529;
+        margin-bottom: 16px;
     }
 
     .compar_block a{
-    display: inline-flex;
-    align-items: center;
-    width: 100%;
-    max-width: 343px;
-    padding: 20.5px 20px;
-    margin-top: 40px;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        max-width: 343px;
+        padding: 20.5px 20px;
+        margin-top: 40px;
 
-    font-family: 'DINEngschrift LT', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1;
-    text-align: center;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #FFFFFF;
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #FFFFFF;
 
-    background: #FF3C7F;
-    box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 52px;
+        background: #FF3C7F;
+        box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 52px;
 
-    cursor: pointer;
-    outline: none;
+        cursor: pointer;
+        outline: none;
     }
 
     .span_after_svg{
-    margin-top:6px;
+        margin-top:6px;
     }
 
     .block_effective .compar_block > div:nth-child(2) li:not(:first-child) .span_after_svg{
@@ -725,11 +728,11 @@ let styleNewLanding = /*html*/ `
     }
 
     .list_variant{
-    justify-content: flex-end;
+        justify-content: flex-end;
     }
 
     .span_varian{
-    margin-top: 10px;
+        margin-top: 10px;
     }
 
     /*slider */
@@ -802,7 +805,7 @@ let styleNewLanding = /*html*/ `
     }
 
     .slider_nav .slider_custom_list > div:nth-child(4) > p:not(:last-child){
-         margin-bottom: 13px !important;
+        margin-bottom: 13px !important;
     }
 
     .slider_nav .slider_custom_list > div:nth-child(4){
@@ -838,9 +841,7 @@ let styleNewLanding = /*html*/ `
 
     #featured-reviews > a{
         margin-top: 40px;
-    }
-
-    
+    }   
 
 </style>
 `
