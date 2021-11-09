@@ -36,13 +36,13 @@ function detectMob() {
     });
 }
 
-function pushProducts(imgUrl,name,price,currency,id) {
+function pushProducts(imgUrl,name,price,currency,id,link) {
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
         'currency': `${currency}`,
-        'link': window.location.href,
+        'link': `${link}`,
         'id': `${id}`
     })
 
@@ -535,10 +535,10 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
+                    link = el.closest('.item').querySelector('.preview-pic a').getAttribute('href'),
                     id = el.getAttribute('data-vid');
-
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id);
+                pushProducts(imgUrl,name,price,currency,id,link);
             })
         })
     }
@@ -555,7 +555,7 @@ let mut = new MutationObserver(function (muts) {
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm');
 
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id);
+                pushProducts(imgUrl,name,price,currency,id,window.location.href);
             })
         } else {
             if (document.querySelector('#btn-add-item-cart')) {
@@ -567,7 +567,7 @@ let mut = new MutationObserver(function (muts) {
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm');
 
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id);
+                    pushProducts(imgUrl,name,price,currency,id,window.location.href);
                 })
             }
         }
