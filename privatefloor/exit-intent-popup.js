@@ -528,7 +528,7 @@ function removeProductDesktop(item) {
     })
 }
 let mut = new MutationObserver(function (muts) {
-    if (window.location.pathname.includes('/catalog') && detectMob() == true && document.querySelectorAll('.add-to-cart .btn-atc')) {
+    if (window.location.pathname.includes('/catalog') && detectMob() == true && document.querySelectorAll('.add-to-cart .btn-atc') && document.querySelector('.listing-products')) {
         mut.disconnect()
         document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
             el.addEventListener(() => {
@@ -542,7 +542,7 @@ let mut = new MutationObserver(function (muts) {
             })
         })
     }
-    if (window.location.pathname.includes('/product')) {
+    if (window.location.pathname.includes('/catalog/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
             document.querySelector('.btn-atc').addEventListener('click', (e) => {
