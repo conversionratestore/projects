@@ -36,15 +36,14 @@ function detectMob() {
     });
 }
 
-function pushProducts(imgUrl,name,price,currency,id,color) {
+function pushProducts(imgUrl,name,price,currency,id) {
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
         'currency': `${currency}`,
         'link': window.location.href,
-        'id': `${id}`,
-        'color': `${color}`
+        'id': `${id}`
     })
 
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
@@ -53,7 +52,7 @@ function pushProducts(imgUrl,name,price,currency,id,color) {
 
     products = products.filter((thing, index, self) =>
         index === self.findIndex((t) => (
-            t.place === thing.place && t.color === thing.color && t.id === thing.id
+            t.place === thing.place && t.id === thing.id
         ))
     )
 
@@ -529,6 +528,20 @@ function removeProductDesktop(item) {
     })
 }
 let mut = new MutationObserver(function (muts) {
+    if (window.location.pathname.includes('/catalog') && detectMob() == true && document.querySelectorAll('.add-to-cart .btn-atc')) {
+        mut.disconnect()
+        document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
+            el.addEventListener(() => {
+                let imgUrl = el.closest('.item').querySelector('.preview-pic a im').getAttribute('src'),
+                    name = el.closest('.item').querySelector('.title a').innerText,
+                    price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
+                    id = el.getAttribute('data-vid');
+
+                sessionStorage.setItem('wasPopup', 'false');
+                pushProducts(imgUrl,name,price,currency,id);
+            })
+        })
+    }
     if (window.location.pathname.includes('/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
@@ -540,7 +553,7 @@ let mut = new MutationObserver(function (muts) {
                     color = document.querySelector('.bullet-color.selected').getAttribute('data-color-eng');
 
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,color);
+                pushProducts(imgUrl,name,price,currency,id);
             })
         } else {
             if (document.querySelector('#btn-add-item-cart')) {
@@ -553,13 +566,11 @@ let mut = new MutationObserver(function (muts) {
                         color = document.querySelector('.slide.selected img').getAttribute('data-title');
 
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,color);
+                    pushProducts(imgUrl,name,price,currency,id);
                 })
             }
         }
     }
-
-    mut.observe(document, optionMut);
 
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
