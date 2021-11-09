@@ -542,6 +542,9 @@ let mut = new MutationObserver(function (muts) {
             })
         })
     }
+    
+    mut.observe(document, optionMut);
+    
     if (window.location.pathname.includes('/catalog/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
@@ -571,7 +574,9 @@ let mut = new MutationObserver(function (muts) {
             }
         }
     }
-
+    
+    mut.observe(document, optionMut);
+    
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
