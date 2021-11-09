@@ -579,44 +579,18 @@ let mut = new MutationObserver(function (muts) {
             mut.disconnect()
             function removeProductDesktop(item) {
                 item.addEventListener('click', () => {
-                    let color, id, 
-                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                     if (!document.querySelectorAll('.table.cartlist tbody tr')) {
                         localStorage.setItem('products', '');
                         sessionStorage.setItem('wasPopup', 'false');
                     } else {
-                            color = item.closest('tr').querySelector('.color').innerText;
-                            id = item.closest('tr').getAttribute('data-item-id');
-                            // price = item.closest('tr').querySelector('.price').innerText.replace(currency,''),
-                            // imgUrl = ;
+                        let color = item.closest('tr').querySelector('.color').innerText,
+                            id = item.closest('tr').getAttribute('data-item-id'),
+                            productsLocalStorage = JSON.parse(localStorage.getItem('products'));
 
-                        // pushProducts(imgUrl,name,price,currency,id,color)
-                        // for (const keyP in productsLocalStorage) {
-                        //     console.log(productsLocalStorage[keyP] + " keyP" + productsLocalStorage[keyP]["id"])
-                        //     if (productsLocalStorage[keyP]["id"] == id) {
-                        //         console.log(productsLocalStorage[keyP]["id"] + ' == ' + id);
-                        //         if (productsLocalStorage[keyP]["color"] == color) {
-                        //             console.log(productsLocalStorage[keyP]["color"] + ' == ' + color);
-                        //             spliceProduct(productsLocalStorage,productsLocalStorage[keyP])
-                        //         }
-                        //     }
-                        // }
-                        // for (let i = 0; i < productsLocalStorage.length; i++) {
-                        //     if (id == productsLocalStorage[i].id) {
-                        //         console.log(productsLocalStorage[i].id + ' == ' + id);
-                        //         if (color == productsLocalStorage[i].color) {
-                        //             console.log(productsLocalStorage[i].color + ' == ' + color);
-                        //             spliceProduct(productsLocalStorage,i)
-                        //         }
-                        //     }
-                        // }
-                    }
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (id == productsLocalStorage[i].id) {
-                            console.log(productsLocalStorage[i].id + ' == ' + id);
-                            if (color == productsLocalStorage[i].color) {
-                                console.log(productsLocalStorage[i].color + ' == ' + color);
-                                spliceProduct(productsLocalStorage,i)
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (id == productsLocalStorage[i].id) {
+                                console.log(productsLocalStorage[i].id + ' == ' + id);
+                                spliceProduct(productsLocalStorage,i);
                             }
                         }
                     }
