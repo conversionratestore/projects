@@ -542,9 +542,9 @@ let mut = new MutationObserver(function (muts) {
             })
         })
     }
-    
+
     mut.observe(document, optionMut);
-    
+
     if (window.location.pathname.includes('/catalog/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
             mut.disconnect()
@@ -552,8 +552,7 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
                     name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
                     price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
-                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
-                    color = document.querySelector('.bullet-color.selected').getAttribute('data-color-eng');
+                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm');
 
                 sessionStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id);
@@ -565,8 +564,7 @@ let mut = new MutationObserver(function (muts) {
                     let imgUrl = document.querySelector('.slide.selected img').getAttribute('src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
-                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
-                        color = document.querySelector('.slide.selected img').getAttribute('data-title');
+                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm');
 
                     sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id);
@@ -574,9 +572,9 @@ let mut = new MutationObserver(function (muts) {
             }
         }
     }
-    
+
     mut.observe(document, optionMut);
-    
+
     if (window.location.pathname.includes('/cart')) {
         if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
             mut.disconnect()
