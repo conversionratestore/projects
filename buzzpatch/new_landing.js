@@ -20,14 +20,7 @@ let styleNewLanding = /*html*/ `
         padding: 8px 16px 0 !important; 
     }
 
-/*
-    .js-packs input[type=radio]+label:hover{
-        color: unset !important;
-        background: unset !important;
-    }
-    */
-
-    a:hover, button:hover, [role="button"]:hover, input:hover, label:hover, select:hover, textarea:hover{
+    a:hover, button:hover{
         opacity: unset !important;
     }
 
