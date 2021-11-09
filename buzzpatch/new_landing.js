@@ -25,7 +25,14 @@ let styleNewLanding = /*html*/ `
         border-radius: 6px !important;
         color: #181717 !important;
         background: inherit !important;
+    }
 
+    a:hover, button:hover, [role="button"]:hover, input:hover, label:hover, select:hover, textarea:hover{
+        opacity: unset !important;
+    }
+
+    .package .js-heading .js-btn.btn-primary:hover{
+        background: #ff3c81 !important;
     }
 
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
