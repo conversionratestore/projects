@@ -22,8 +22,8 @@ let styleNewLanding = /*html*/ `
 
 
     .js-packs input[type=radio]+label:hover{
-        background: unset !important;
         color: unset !important;
+        background: unset !important;
     }
 
     a:hover, button:hover, [role="button"]:hover, input:hover, label:hover, select:hover, textarea:hover{
@@ -32,8 +32,8 @@ let styleNewLanding = /*html*/ `
 
     .package .js-heading .js-btn.btn-primary:hover,
     .btn:not(.disabled):not([disabled]):hover{
-        background: unset !important;
-        color: unset !important;
+        background: #ff3c81 !important;
+        color: white !important;
     }
 
     .shipping-noti.js-mobile, .js-heading.js-mobile, .js-mobile.wave-bg,
