@@ -602,7 +602,7 @@ let mut = new MutationObserver(function (muts) {
                 })
             })
         }
-        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelectorAll('.item')) {
+        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
