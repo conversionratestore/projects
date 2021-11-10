@@ -606,7 +606,7 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.item').forEach((item) => {
                 let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                     name = item.querySelector('.title').innerText.split('\n')[0],
-                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
+                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
                     id = item.getAttribute('data-item-id');
 
                 pushProducts(imgUrl,name,price,currency,id);
