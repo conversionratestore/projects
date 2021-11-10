@@ -686,7 +686,7 @@ let mut = new MutationObserver(function (muts) {
                         wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
                         if (window.location.href.includes('/catalog/product')) {
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].name === document.querySelector('.title.product_name').innerText) {
+                                if (productsLocalStorage[i].id === document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm')) {
                                     haveLink = true
                                 }
                             }
