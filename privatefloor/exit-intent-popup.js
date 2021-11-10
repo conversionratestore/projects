@@ -217,10 +217,15 @@ document.body.insertAdjacentHTML( 'afterbegin',`
      .popup_slide:before {
         content: attr(data-qty);
         position: absolute;
+        border-radius: 50%;
+        background-color: #f8f8f8;
         right: 0;
         top: 0;
         font-size: 14px;
-        color: #777777;
+        line-height: 25px;
+        width: 25px;
+        text-align: center;
+        color: #2B2B2B;
      }
      .popup_slide:last-child {
         margin-right: 0;
