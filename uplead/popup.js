@@ -206,7 +206,7 @@ function showPopup() {
 			save = 0
 			break
 	}
-	
+
 	const page = `
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
@@ -238,6 +238,7 @@ function showPopup() {
 }
 
 function closeModal(e) {
+	console.log('ssss')
 	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
 		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 
