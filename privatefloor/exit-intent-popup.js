@@ -669,12 +669,14 @@ let mut = new MutationObserver(function (muts) {
         if (detectMob() == false && document.querySelector('.btn_arrow_prev') && document.querySelector('.popup_slider')) {
             mut.disconnect()
             document.body.classList.add('js-desktop');
-            document.querySelector('.btn_arrow_prev').addEventListener('click', () => {
+            document.querySelector('.btn_arrow_prev').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 document.querySelector('.popup_slider').scrollLeft -= 195;
                 action = 'Scroll items';
                 pushDataLayer(action);
             })
-            document.querySelector('.btn_arrow_next').addEventListener('click', () => {
+            document.querySelector('.btn_arrow_next').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
                 document.querySelector('.popup_slider').scrollLeft += 195;
                 action = 'Scroll items';
                 pushDataLayer(action);
