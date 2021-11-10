@@ -37,26 +37,16 @@ function detectMob() {
 }
 
 function pushProducts(imgUrl,name,price,currency,id) {
-    if (!window.location.pathname.includes('/cart')) {
-        products.push({
-            'imgUrl': `${imgUrl}`,
-            'name': `${name}`,
-            'price': `${price}`,
-            'currency': `${currency}`,
-            'id': `${id}`
-        })
-        if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
-            products = [...products,...JSON.parse(localStorage.getItem('products'))]
-        }
-    } else {
-        products = [];
-        products.push({
-            'imgUrl': `${imgUrl}`,
-            'name': `${name}`,
-            'price': `${price}`,
-            'currency': `${currency}`,
-            'id': `${id}`
-        })
+    products.push({
+        'imgUrl': `${imgUrl}`,
+        'name': `${name}`,
+        'price': `${price}`,
+        'currency': `${currency}`,
+        'id': `${id}`
+    })
+
+    if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
+        products = [...products,...JSON.parse(localStorage.getItem('products'))]
     }
 
     products = products.filter((thing, index, self) =>
