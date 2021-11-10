@@ -572,8 +572,6 @@ let mut = new MutationObserver(function (muts) {
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                         qty = document.querySelector('#qty-input').value;
 
-                    sessionStorage.setItem('wasPopup', 'false');
-
                     if (localStorage.getItem('products')) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
@@ -582,6 +580,8 @@ let mut = new MutationObserver(function (muts) {
                             }
                         }
                     }
+
+                    sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id,qty);
                 })
             }
