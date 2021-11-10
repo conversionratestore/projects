@@ -193,7 +193,7 @@ header #search{
   text-align: center;
 }
 
-.slider-nav img {
+.slider-nav img, .slider-for img {
   cursor: pointer;
 }
 
@@ -211,6 +211,10 @@ header #search{
 
 .slick-vertical .slick-slide {
   margin-bottom: 17px;
+}
+
+.carousel__button.fancybox__button--zoom{
+  display: none;
 }
 
 .details {
@@ -1504,8 +1508,8 @@ document.querySelector(".count_box .increment").addEventListener("click", () => 
   document.querySelector(".count_box div span:nth-child(2)").textContent = document.querySelector("#product .specifics .controls.qty>div input").value
 })
 
-changeHeaderNav()
 handleClick()
+changeHeaderNav()
 
 function changeHeaderNav() {
   document.querySelector(".l").after(document.querySelector("#search"))
