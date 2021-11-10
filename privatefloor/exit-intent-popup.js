@@ -603,7 +603,6 @@ let mut = new MutationObserver(function (muts) {
             })
             setInterval(() => {
                 products = [];
-                localStorage.setItem('products', JSON.stringify(products));
 
                 document.querySelectorAll('.item').forEach((item) => {
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
