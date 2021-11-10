@@ -71,7 +71,7 @@ function addProduct() {
 
         if(productsLocalStorage.length > 1) {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
-            <div class="popup_slide">
+            <div class="popup_slide" data-qty="${productsLocalStorage[i].qty}">
                 <div>
                     <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                     <p class="slide_name">${productsLocalStorage[i].name}</p>   
@@ -80,7 +80,7 @@ function addProduct() {
             </div>`)
         } else {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
-            <div class="popup_slide popup_slide_one">
+            <div class="popup_slide popup_slide_one" data-qty="${productsLocalStorage[i].qty}">
                 <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                 <div class="popup_slide_row">
                     <p class="slide_name">${productsLocalStorage[i].name}</p>   
@@ -212,7 +212,17 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        position: relative;
     }
+     .popup_slide["data-qty"]:before {
+        content: attr(data-qty);
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 10px;
+        color: #777777;
+     }
+     
     .popup_slide:last-child {
         margin-right: 0;
     }
