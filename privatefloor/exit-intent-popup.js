@@ -56,17 +56,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
             )
          )
     )
-    // products = products.filter((element, index, array) =>
-    //     index === array.findIndex((key) => {
-    //         if (key.place === element.place && key.id === element.id) {
-    //             console.log(key.id + "===" + element.id)
-    //             let sumQty = 0;
-    //             element.qty = element.qty + sumQty;
-    //             console.log(key.qty + "===" + element.qty)
-    //         }
-    //         return key.place === element.place && key.id === element.id
-    //     })
-    // )
+
     localStorage.setItem('products', JSON.stringify(products));
 }
 
@@ -583,6 +573,15 @@ let mut = new MutationObserver(function (muts) {
                         qty = document.querySelector('#qty-input').value;
 
                     sessionStorage.setItem('wasPopup', 'false');
+
+                    if (localStorage.getItem('products')) {
+                        let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (productsLocalStorage[i].id === id) {
+                                productsLocalStorage[i].qty = +productsLocalStorage[i].qty + +qty;
+                            }
+                        }
+                    }
                     pushProducts(imgUrl,name,price,currency,id,qty);
                 })
             }
