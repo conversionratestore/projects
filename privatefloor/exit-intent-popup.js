@@ -593,7 +593,7 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelectorAll('.item')) {
             mut.disconnect()
-            localStorage.setItem('products','')
+            // localStorage.setItem('products','')
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
