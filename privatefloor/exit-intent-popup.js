@@ -108,6 +108,7 @@ function addProduct() {
         document.querySelector('.btn_arrow_prev').style.display = 'none';
         document.querySelector('.btn_arrow_next').style.display = 'none';
     }
+
 }
 
 function addEvent(obj, evt, fn) {
@@ -268,7 +269,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         line-height: 21px;
         text-align: center;
         text-transform: uppercase;
-        color: #FFFFFF;
+        color: #FFFFFF!important;
         padding: 25px;
         width: 100%;
         display: block;;
