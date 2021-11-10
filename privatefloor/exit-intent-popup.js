@@ -62,6 +62,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
                 console.log(key.id + "===" + element.id)
                 key.qty = +element.qty;
                 key.qty += +element.qty;
+                console.log(key.qty + "===" + element.qty)
             }
         })
     )
