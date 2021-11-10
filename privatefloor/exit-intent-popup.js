@@ -520,6 +520,7 @@ function removeProductMobile(item) {
             }
         }
     }
+    sessionStorage.setItem('wasPopup', 'false');
 }
 
 function removeProductDesktop(item) {
@@ -538,6 +539,7 @@ function removeProductDesktop(item) {
                 }
             }
         }
+        sessionStorage.setItem('wasPopup', 'false');
     })
 }
 
