@@ -451,6 +451,7 @@ detectMob()
 
 for (const key in objGeo) {
     if (location.href.includes(`${key}`)) {
+        console.log(objGeo[key])
         document.body.insertAdjacentHTML( 'beforeend',`
             <div class="popup_exit_intent">
                 <div class="popup_container">
