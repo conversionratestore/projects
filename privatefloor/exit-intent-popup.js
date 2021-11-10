@@ -217,9 +217,9 @@ document.body.insertAdjacentHTML( 'afterbegin',`
      .popup_slide:before {
         content: attr(data-qty);
         position: absolute;
-        right: -10px;
+        right: 0;
         top: 0;
-        font-size: 13px;
+        font-size: 14px;
         color: #777777;
      }
      .popup_slide:last-child {
