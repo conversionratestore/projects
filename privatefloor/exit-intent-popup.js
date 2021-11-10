@@ -602,15 +602,17 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            document.querySelectorAll('.item').forEach((item) => {
-                localStorage.setItem('products','')
-                let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-                    name = item.querySelector('.title').innerText.split('\n')[0],
-                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
-                    id = item.getAttribute('data-item-id');
+            setInterval(()=> {
+                document.querySelectorAll('.item').forEach((item) => {
+                    localStorage.setItem('products','')
+                    let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                        name = item.querySelector('.title').innerText.split('\n')[0],
+                        price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
+                        id = item.getAttribute('data-item-id');
 
-                pushProducts(imgUrl,name,price,currency,id);
-            })
+                    pushProducts(imgUrl,name,price,currency,id);
+                })
+            },100)
         }
     }
 
