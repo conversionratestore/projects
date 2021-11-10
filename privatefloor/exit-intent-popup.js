@@ -271,6 +271,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         color: #FFFFFF;
         padding: 25px;
         width: 100%;
+        display: block;;
     }
     .popup_products {
         position: relative;
@@ -470,7 +471,7 @@ for (const key in objGeo) {
                         <img src="https://conversionratestore.github.io/projects/privatefloor/img/notification.svg" alt="icon notification">
                         <p>${objGeo[key]["text"]}</p>
                     </div>
-                    <button type="button" class="btn-complete">${objGeo[key]["textBtn"]}</button>
+                    <a href="https:/${objGeo[key]}privatefloor.com/cart" class="btn-complete">${objGeo[key]["textBtn"]}</a>
                 </div>
             </div>`);
         currency = objGeo[key]["currency"]
@@ -484,7 +485,6 @@ for (const key in objGeo) {
             document.querySelector('.popup_exit_intent').classList.remove('active');
             action = 'Click Complete order';
             pushDataLayer(action)
-            window.location.href = `https:/${objGeo[key]}privatefloor.com/cart/`;
         })
     }
 }
