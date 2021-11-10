@@ -602,11 +602,19 @@ let mut = new MutationObserver(function (muts) {
             })
             // setInterval(()=> {
                 document.querySelectorAll('.item').forEach((item) => {
-
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
-                        id = item.getAttribute('data-item-id');
+                        id = item.getAttribute('data-item-id'),
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
+                    for (let i = 0; i < productsLocalStorage.length; i++) {
+                        if (productsLocalStorage[i].id === id) {
+                            console.log(productsLocalStorage[i].id + ' == ' + id);
+                        } else {
+                            spliceProduct(productsLocalStorage,i);
+                        }
+                    }
 
                     pushProducts(imgUrl,name,price,currency,id);
                 })
