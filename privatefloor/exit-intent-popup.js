@@ -537,7 +537,7 @@ let mut = new MutationObserver(function (muts) {
             el.addEventListener('click',() => {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
-                    price = el.closest('.item').querySelector('.prices .price').innerText.replace(currency,''),
+                    price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
                     id = el.getAttribute('data-vid');
                 sessionStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id);
@@ -608,7 +608,7 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelectorAll('.item').forEach((item) => {
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
-                        price = item.querySelector('.price').innerText.split(' ')[0].replace(',', '.').replace(currency, ''),
+                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
                         id = item.getAttribute('data-item-id');
 
                     pushProducts(imgUrl, name, price, currency, id);
