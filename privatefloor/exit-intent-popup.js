@@ -626,8 +626,8 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            // let runInterval = setInterval(() => {
-            //     clearInterval(runInterval);
+            let runInterval = setInterval(() => {
+                clearInterval(runInterval);
                 document.querySelectorAll('.item').forEach((item) => {
                     item.addEventListener('change', () => {
                         console.log('change')
@@ -641,7 +641,7 @@ let mut = new MutationObserver(function (muts) {
                         pushProducts(imgUrl, name, price, currency, id,qty);
                     })
                 })
-            // },200)
+            },200)
         }
     }
 
