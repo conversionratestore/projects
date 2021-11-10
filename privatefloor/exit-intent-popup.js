@@ -544,7 +544,6 @@ function removeProductDesktop(item) {
                 }
             }
         }
-        sessionStorage.setItem('wasPopup', 'false');
     })
 }
 
@@ -649,6 +648,7 @@ let mut = new MutationObserver(function (muts) {
                     item.addEventListener('change', () => {
                         console.log('change')
                         qty = item.querySelector('.qty').innerText;
+                        sessionStorage.setItem('wasPopup', 'false');
                     })
 
                     pushProducts(imgUrl, name, price, currency, id,qty);
