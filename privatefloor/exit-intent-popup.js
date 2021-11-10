@@ -62,6 +62,17 @@ function addProduct() {
     let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
         total = 0;
 
+    if (window.location.pathname.includes('/cart/') && document.querySelectorAll('.item')) {
+        document.querySelectorAll('.item').forEach((item) => {
+            let id = item.getAttribute('data-item-id');
+            for (let i = 0; i < productsLocalStorage.length; i++) {
+                if (productsLocalStorage[i].id !== id) {
+                    spliceProduct(productsLocalStorage,i);
+                }
+            }
+        })
+    }
+
     document.querySelector('.popup_slider').innerHTML = ``;
 
     for (let i = 0; i < productsLocalStorage.length; i++) {
@@ -100,6 +111,7 @@ function addProduct() {
                 document.querySelector('.popup_slider').classList.add('popup_one_slider')
             }
         }
+
         total += +newPrice;
         document.querySelector('.popup_total_price').innerHTML = productsLocalStorage[i].currency + total.toFixed(2);
     }
@@ -601,23 +613,14 @@ let mut = new MutationObserver(function (muts) {
                 removeProductDesktop(item)
             })
             // setInterval(()=> {
-                document.querySelectorAll('.item').forEach((item) => {
-                    let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-                        name = item.querySelector('.title').innerText.split('\n')[0],
-                        price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
-                        id = item.getAttribute('data-item-id'),
-                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+            document.querySelectorAll('.item').forEach((item) => {
+                let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                    name = item.querySelector('.title').innerText.split('\n')[0],
+                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
+                    id = item.getAttribute('data-item-id');
 
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].id === id) {
-                            console.log(productsLocalStorage[i].id + ' == ' + id);
-                        } else {
-                            spliceProduct(productsLocalStorage,i);
-                        }
-                    }
-
-                    pushProducts(imgUrl,name,price,currency,id);
-                })
+                pushProducts(imgUrl,name,price,currency,id);
+            })
             // },100)
         }
     }
