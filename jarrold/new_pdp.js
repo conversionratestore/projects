@@ -8,6 +8,17 @@ scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/
 scriptCustomStyle.rel = "stylesheet"
 document.head.appendChild(scriptCustomStyle)
 
+//----------------------------------------------------------------------------------------------------
+let scriptCustomImg = document.createElement("script")
+scriptCustomImg.src = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"
+scriptCustomImg.async = false
+document.head.appendChild(scriptCustomImg)
+
+let scriptCustomImgStyle = document.createElement("link")
+scriptCustomImgStyle.href = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+scriptCustomImgStyle.rel = "stylesheet"
+document.head.appendChild(scriptCustomImgStyle)
+
 let tag = [
   {
     tag: "Acrylic",
@@ -49,17 +60,130 @@ let tag = [
 
 let newPdpStyle = /*html*/ `
 <style>
+
+
+.page-inner.scroll #head header #search{
+  bottom: 7px;
+}
+
+#head header{
+  padding: 5px 0 !important;
+}
+
+#search input.ais-SearchBox-input{
+  height: 35px !important;
+  padding: 0 15px 0 55px !important;
+  width: 30vw !important;
+}
+
+body.scroll #head #nav{
+  border-bottom: unset;
+}
+
+#search input.ais-SearchBox-input::placeholder{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #4C294D;
+}
+
+#search form{
+  position: relative;
+}
+
+#search form::after{
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  content: "";
+  background: url("https://conversionratestore.github.io/projects/jarrold/img/search.png") no-repeat center center;
+  background-size: contain;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25px;
+}
+
+#search button.ais-SearchBox-submit, #head header .l>a.account, .r div>a strong{
+  display: none !important;
+}
+
+#head header .dv-logo{
+  width: 115px !important;
+}
+
+#head header .dv-logo strong{
+  height: 45px !important;
+}
+
+body.page-inner.scroll #head a.cart{
+  padding: 0 !important;
+}
+
+header #search{
+  right: -88px;
+}
+
+#page_header_CPR a {
+  display: flex;
+  align-items: center;
+  padding-top: 0 !important;
+  cursor: pointer;
+}
+
+#head header .r div>a.cart:before{
+  display: none;
+  content: unset;
+}
+
+#page_header_CPR a:first-child{
+  margin-right: 40px;
+}
+
+#page_header_CPR a > p{
+  position: relative;
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: #FFFFFF;
+}
+
+#page_header_CPR a > p::before{
+  width: 23px;
+  height: 23px;
+  position: absolute !important;
+  content: "" !important;
+  background: url("https://conversionratestore.github.io/projects/jarrold/img/bag.svg") no-repeat center center;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 50px;
+}
+
+#page_header_CPR a:last-child > p::before{
+  right: 72px;
+  background: url("https://conversionratestore.github.io/projects/jarrold/img/user.png") no-repeat center center;
+  background-size: contain;
+  width: 23px;
+  height: 22px;
+}
+
+#head header .r div>a.cart span{
+  top: 2px !important;
+  left: -91px !important;
+}
+
 #product .row.crow {
   display: none;
 }
 
 .dv-crumbs {
-  padding-top: 20px !important;
+  padding: 0 30px !important;
 }
 
-@media (max-width: 1192px) {
-  .dv-crumbs {
-    padding-top: 40px !important;
+@media (min-width: 1192px) {
+  body{
+    padding-top: 130px !important;
   }
 }
 
@@ -827,6 +951,22 @@ let sizeGuideBlock = /*html*/ `
 </div>
 `
 
+let headerNav = /*html*/ `
+<div class="header_nav">
+  <ul>
+    <!-- <li>
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/bag.svg" alt="bag">
+      <span>My bag</span>
+    </li> -->
+    <li>
+      <img src="https://conversionratestore.github.io/projects/jarrold/img/user.svg" alt="user">
+      <span>My account</span>
+    </li>
+  </ul>
+</div>
+
+`
+
 let productDet = /*html*/ `
     <section class="container product_det">
         <h2>Product details</h2>
@@ -1120,7 +1260,7 @@ setTimeout(() => {
 }, 100)
 
 document.querySelectorAll("#images .thumbs a").forEach((el) => {
-  document.querySelector(".slider-for").insertAdjacentHTML("beforeend", `<img class="product1" src="${el.href}" alt="photo">`)
+  document.querySelector(".slider-for").insertAdjacentHTML("beforeend", `<img data-fancybox class="product1" src="${el.href}" alt="photo">`)
   document.querySelector(".slider-nav").insertAdjacentHTML("beforeend", `<img class="product2" src="${el.href}" alt="photo">`)
 })
 
@@ -1363,3 +1503,70 @@ document.querySelector(".count_box .increment").addEventListener("click", () => 
   document.querySelector(".button.inc").click()
   document.querySelector(".count_box div span:nth-child(2)").textContent = document.querySelector("#product .specifics .controls.qty>div input").value
 })
+
+changeHeaderNav()
+handleClick()
+
+function changeHeaderNav() {
+  document.querySelector(".l").after(document.querySelector("#search"))
+  document.querySelector("#page_header_CPR").insertAdjacentHTML("beforeend", `<a><p>My account</p></a>`)
+
+  document.querySelector(".ais-SearchBox-input").placeholder = "Search by product, brand or category"
+  document.querySelector("#head header .r a").insertAdjacentHTML("afterbegin", `<p>My bag</p>`)
+  document.querySelector("#head header .r a:first-child > p").after(document.querySelector(" #head header .r div>a.cart span"))
+  document.querySelector("#page_header_CPR a:last-child").addEventListener("click", () => {
+    document.querySelector("#head header .l a").click()
+  })
+}
+
+function handleClick() {
+  document.querySelectorAll(".specifics button").forEach((el) => {
+    el.addEventListener("click", function () {
+      setTimeout(function () {
+        changeHeaderNav()
+        handleClick()
+      }, 350)
+    })
+  })
+}
+
+//Fetch
+// function getFetchToken() {
+//   const clientSecret = "13755552476747438835239b25ed9568a689ce4c768442288ec2cd34bbaf6e6fc0172f709e774f7998dd1ff0e839afa2"
+//   const clientId = "611f9e56fd56202c38c1fceb"
+
+//   fetch("https://api.diven.do/oauth2/token", {
+//     method: "post",
+//     body: `client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
+//   })
+//     .then((response) => {
+//       return response.json()
+//     })
+//     .then((token) => {
+//       console.log(token)
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+// }
+// getFetchToken()
+
+// function getFetchData() {
+//   fetch("https://api.diven.do/store/products", {
+//     headers: {
+//       Authorization:
+//         "Bearer 5TS9euyDvMV24MWlK-toL7Sju0H7pBJaZGs9kX_ascIl2LzRUXWriDIhslRzEpTnaPOzDw927AjWuAe_dgHJ5Y10HCT7BXtnQgadj7yI4AargKJbO3oQ8uO9srPTFZnPwEBIbZHmylsmYRSRtkAA-Kbj6eYNl72Nf2xcIpvUgroWVddhRx71j7dpWi8vJxycGqXIG0QN8O-yGEY2Z-f-eNdkqU4wrQ1YOJ0cxglO2jxoFfk2uuTtyS8uHC4h2nTEjq6-lkgHfp0FqWstsFGAkNX-WmA6jp0FDd8pdJe-Nvc",
+//       "Content-Type": "application/json",
+//     },
+//   })
+//     .then((response) => {
+//       return response.json()
+//     })
+//     .then((store) => {
+//       console.log(store.results)
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+// }
+// getFetchData()
