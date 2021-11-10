@@ -493,6 +493,17 @@ function spliceProduct(productsLocalStorage,i) {
     sessionStorage.setItem('wasPopup', 'false');
 }
 
+function pushWithItemCart() {
+    document.querySelectorAll('.item').forEach((item) => {
+        let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+            name = item.querySelector('.title').innerText.split('\n')[0],
+            price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
+            id = item.getAttribute('data-item-id');
+
+        pushProducts(imgUrl,name,price,currency,id);
+    })
+}
+
 function removeProductMobile(item) {
     if (!document.querySelectorAll('.product-list .product')) {
         localStorage.setItem('products', '');
@@ -523,9 +534,11 @@ function removeProductDesktop(item) {
                     spliceProduct(productsLocalStorage,i);
                 }
             }
+            pushWithItemCart()
         }
     })
 }
+
 let mut = new MutationObserver(function (muts) {
     if (window.location.pathname.includes('/catalog') && detectMob() == true && !!document.querySelectorAll('.add-to-cart .btn-atc') && !!document.querySelector('.listing-products')) {
         mut.disconnect()
@@ -592,15 +605,6 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
-            document.querySelectorAll('.item').forEach((item) => {
-                let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-                    name = item.querySelector('.title').innerText.split('\n')[0],
-                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
-                    id = item.getAttribute('data-item-id');
-
-                pushProducts(imgUrl,name,price,currency,id);
-            })
-
 
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
@@ -608,6 +612,7 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
+            pushWithItemCart()
         }
 
     }
