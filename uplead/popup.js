@@ -206,6 +206,17 @@ let show100 = setInterval(() => {
 	}
 }, 200)
 
+function clickOnBtn() {
+	location.href = '/subscriptions'
+
+	window.dataLayer = window.dataLayer || []
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp — Pop up with motivation to upgrade',
+		'eventAction': 'Click on Save Button',
+	})
+}
+
 function showPopup() {
 	const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
 	const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
@@ -276,17 +287,10 @@ function showPopup() {
 		}
 	}
 
-	function clickOnBtn() {
-		location.href = '/subscriptions'
 
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Pop up with motivation to upgrade',
-			'eventAction': 'Click on Save Button',
-		})
-	}
 }
+
+
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
