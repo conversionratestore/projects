@@ -184,22 +184,6 @@ let show100 = setInterval(() => {
 	}
 }, 200)
 
-function returnPage(percent, save) {
-	return `
-<div class="modal-custom modal-custom_active">
-	<div class="popup-custom">
-	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
-	    <p class="credits">WOW you have already used ${ percent }%<br>of your credits this month</p>
-	    <p class="title"><span class="styled">Save $${ save }</span><br>on your <br><span class="plan">${ plan }</span> plan</p>
-	    <p class="subtitle">by switching to annual plan</p>
-	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
-	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
-	    <button type="button" class="btn-custom">Save $${ save }</button>	 
-	    <svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>  		
-	</div>
-</div>`
-}
-
 function showPopup() {
 	const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
 	const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
@@ -222,10 +206,23 @@ function showPopup() {
 			save = 0
 			break
 	}
-
 	
+	const page = `
+<div class="modal-custom modal-custom_active">
+	<div class="popup-custom">
+	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
+	    <p class="credits">WOW you have already used ${ percent }%<br>of your credits this month</p>
+	    <p class="title"><span class="styled">Save $${ save }</span><br>on your <br><span class="plan">${ plan }</span> plan</p>
+	    <p class="subtitle">by switching to annual plan</p>
+	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
+	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
+	    <button type="button" class="btn-custom">Save $${ save }</button>	 
+	    <svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>  		
+	</div>
+</div>`
+
 	document.head.insertAdjacentHTML('afterbegin', style)
-	document.body.insertAdjacentHTML('beforeend', returnPage(percent, plan))
+	document.body.insertAdjacentHTML('beforeend', page)
 
 	const btn = document.querySelector('.btn-custom')
 
