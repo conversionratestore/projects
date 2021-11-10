@@ -603,8 +603,9 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            setInterval(()=> {
+            // setInterval(()=> {
                 document.querySelectorAll('.item').forEach((item) => {
+                    products = [];
                     localStorage.setItem('products','')
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
@@ -613,7 +614,7 @@ let mut = new MutationObserver(function (muts) {
 
                     pushProducts(imgUrl,name,price,currency,id);
                 })
-            },100)
+            // },100)
         }
     }
 
