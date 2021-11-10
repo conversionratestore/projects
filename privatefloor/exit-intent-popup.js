@@ -214,7 +214,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         justify-content: space-between;
         position: relative;
     }
-     .popup_slide["data-qty"]:before {
+     .popup_slide:before {
         content: attr(data-qty);
         position: absolute;
         right: 0;
@@ -222,8 +222,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         font-size: 10px;
         color: #777777;
      }
-     
-    .popup_slide:last-child {
+     .popup_slide:last-child {
         margin-right: 0;
     }
     .popup_slide img {
