@@ -1,11 +1,3 @@
-// var dataLayer = dataLayer || []
-// dataLayer.push({
-// 	'event': 'debit_credit',
-// 	'plan': 'Professional',
-// 	'subscription_type': 'monthly',
-// 	'available_credits_in_month': 1000,
-// 	'credits_left': 250,
-// })
 const style = `
 	<style>
 		.modal-custom {
@@ -153,7 +145,6 @@ const style = `
 	</style>
 `
 
-
 let btnInterval = setInterval(() => {
 	if (document.querySelector('.billing-switch [aria-checked=false]')) {
 		clearInterval(btnInterval)
@@ -206,6 +197,30 @@ let show100 = setInterval(() => {
 	}
 }, 200)
 
+function closeModal(e) {
+	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+
+		if (e.target.matches('.modal-custom')) {
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Pop up with motivation to upgrade',
+				'eventAction': 'Click on space out of pop up',
+			})
+		}
+
+		if (e.target.matches('.popup-custom svg')) {
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Pop up with motivation to upgrade',
+				'eventAction': 'Click on X to close pop up',
+			})
+		}
+	}
+}
+
 function clickOnBtn() {
 	location.href = '/subscriptions'
 
@@ -218,8 +233,9 @@ function clickOnBtn() {
 }
 
 function showPopup() {
-	const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
-	const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
+	const goData = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer
+	const percent = goData.get('bannerType').split('percent')[1]
+	const plan = goData.get('plan').toLowerCase()
 	let save
 
 	switch (plan) {
@@ -262,32 +278,6 @@ function showPopup() {
 
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
-
-	function closeModal(e) {
-		if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-			document.querySelector('.modal-custom').classList.remove('modal-custom_active')
-
-			if (e.target.matches('.modal-custom')) {
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp — Pop up with motivation to upgrade',
-					'eventAction': 'Click on space out of pop up',
-				})
-			}
-
-			if (e.target.matches('.popup-custom svg')) {
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp — Pop up with motivation to upgrade',
-					'eventAction': 'Click on X to close pop up',
-				})
-			}
-		}
-	}
-
-
 }
 
 
