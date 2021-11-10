@@ -60,8 +60,8 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
         index === array.findIndex((key) => {
             if (key.place === element.place && key.id === element.id) {
                 console.log(key.id + "===" + element.id)
-                key.qty = +element.qty;
-                key.qty += +element.qty;
+                let sumQty = 0;
+                element.qty = element.qty + sumQty;
                 console.log(key.qty + "===" + element.qty)
             }
             return key.place === element.place && key.id === element.id
