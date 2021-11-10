@@ -50,23 +50,23 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
     }
 
-    // products = products.filter((thing, index, self) =>
-    //     index === self.findIndex((t) => (
-    //         t.place === thing.place && t.id === thing.id
-    //         )
-    //      )
-    // )
-    products = products.filter((element, index, array) =>
-        index === array.findIndex((key) => {
-            if (key.place === element.place && key.id === element.id) {
-                console.log(key.id + "===" + element.id)
-                let sumQty = 0;
-                element.qty = element.qty + sumQty;
-                console.log(key.qty + "===" + element.qty)
-            }
-            return key.place === element.place && key.id === element.id
-        })
+    products = products.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+            t.place === thing.place && t.id === thing.id
+            )
+         )
     )
+    // products = products.filter((element, index, array) =>
+    //     index === array.findIndex((key) => {
+    //         if (key.place === element.place && key.id === element.id) {
+    //             console.log(key.id + "===" + element.id)
+    //             let sumQty = 0;
+    //             element.qty = element.qty + sumQty;
+    //             console.log(key.qty + "===" + element.qty)
+    //         }
+    //         return key.place === element.place && key.id === element.id
+    //     })
+    // )
     localStorage.setItem('products', JSON.stringify(products));
 }
 
