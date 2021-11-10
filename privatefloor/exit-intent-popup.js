@@ -580,18 +580,21 @@ let mut = new MutationObserver(function (muts) {
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                         qty = document.querySelector('#qty-input').value;
-
-                    sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,qty);
-
+                    console.log('qty1: ' + qty)
                     if (localStorage.getItem('products')) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
-                                productsLocalStorage[i].qty = +productsLocalStorage[i].qty + +qty;
+                                qty = +productsLocalStorage[i].qty + +qty;
+                                console.log('qty2: ' + qty)
+                                pushProducts(imgUrl,name,price,currency,id,qty);
                             }
+                            console.log('qty3: ' + qty)
+                            pushProducts(imgUrl,name,price,currency,id,qty);
                         }
                     }
+
+                    sessionStorage.setItem('wasPopup', 'false');
                 })
             }
         }
