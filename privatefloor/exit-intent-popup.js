@@ -64,6 +64,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
                 key.qty += +element.qty;
                 console.log(key.qty + "===" + element.qty)
             }
+            return key.place === element.place && key.id === element.id
         })
     )
     localStorage.setItem('products', JSON.stringify(products));
