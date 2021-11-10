@@ -629,17 +629,19 @@ let mut = new MutationObserver(function (muts) {
             let runInterval = setInterval(() => {
                 clearInterval(runInterval);
                 document.querySelectorAll('.item').forEach((item) => {
+                    products = [];
+                    let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                        name = item.querySelector('.title').innerText.split('\n')[0],
+                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
+                        id = item.getAttribute('data-item-id'),
+                        qty = item.querySelector('.qty').innerText;
+
                     item.addEventListener('change', () => {
                         console.log('change')
-                        products = [];
-                        let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-                            name = item.querySelector('.title').innerText.split('\n')[0],
-                            price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
-                            id = item.getAttribute('data-item-id'),
-                            qty = item.querySelector('.qty').innerText;
-
-                        pushProducts(imgUrl, name, price, currency, id,qty);
+                        qty = item.querySelector('.qty').innerText;
                     })
+
+                    pushProducts(imgUrl, name, price, currency, id,qty);
                 })
             },200)
         }
