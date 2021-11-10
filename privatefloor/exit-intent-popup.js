@@ -37,6 +37,9 @@ function detectMob() {
 }
 
 function pushProducts(imgUrl,name,price,currency,id) {
+    if (window.location.pathname.includes('/cart')) {
+        localStorage.setItem('products','')
+    }
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
@@ -609,7 +612,6 @@ let mut = new MutationObserver(function (muts) {
                 pushProducts(imgUrl,name,price,currency,id);
             })
         }
-
     }
 
     mut.observe(document, optionMut);
