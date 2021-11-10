@@ -448,33 +448,33 @@ document.body.insertAdjacentHTML( 'afterbegin',`
     </style>`)
 detectMob()
 
-for (const key in objGeo) {
+for (const [key, value] of Object.entries(objGeo)) {
     if (location.href.includes(`${key}`)) {
-        console.log(objGeo[key])
+        console.log(`${key} : ${value.title}`);
         document.body.insertAdjacentHTML( 'beforeend',`
             <div class="popup_exit_intent">
                 <div class="popup_container">
                     <div class="popup_content">
                         <button class="btn_close" type="button"></button>
-                        <h2>${objGeo[key]["title"]}</h2>
+                        <h2>${value.title}</h2>
                         <div class="popup_products">
                             <button class="btn_arrow btn_arrow_prev" type="button"></button>
                             <div class="popup_slider"></div>
                             <button class="btn_arrow btn_arrow_next" type="button"></button>
                         </div>
                         <div class="popup_total">
-                            <p>${objGeo[key]["textTotal"]}:</p>
+                            <p>${value.textTotal}:</p>
                             <p class="popup_total_price"></p>
                         </div>
                     </div>
                     <div class="popup_message">
                         <img src="https://conversionratestore.github.io/projects/privatefloor/img/notification.svg" alt="icon notification">
-                        <p>${objGeo[key]["text"]}</p>
+                        <p>${value.text}</p>
                     </div>
-                    <a href="https:/${objGeo[key]}privatefloor.com/cart" class="btn-complete">${objGeo[key]["textBtn"]}</a>
+                    <a href="https:/${key}privatefloor.com/cart" class="btn-complete">${value.textBtn}</a>
                 </div>
             </div>`);
-        currency = objGeo[key]["currency"]
+        currency = value.currency
 
         document.querySelector('.btn_close').addEventListener('click', (e) => {
             action = 'Close pop up';
