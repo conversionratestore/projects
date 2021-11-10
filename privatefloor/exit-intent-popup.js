@@ -578,7 +578,7 @@ let mut = new MutationObserver(function (muts) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
-                                productsLocalStorage[i].qty = +productsLocalStorage[i].qty + +qty;
+                                qty = +productsLocalStorage[i].qty + +qty;
                             }
                         }
                     }
