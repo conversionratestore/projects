@@ -580,7 +580,7 @@ let mut = new MutationObserver(function (muts) {
                             }
                         }
                     }
-
+                    console.log("qty: " + qty)
                     sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id,qty);
                 })
