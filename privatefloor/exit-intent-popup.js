@@ -36,13 +36,14 @@ function detectMob() {
     });
 }
 
-function pushProducts(imgUrl,name,price,currency,id) {
+function pushProducts(imgUrl,name,price,currency,id,qty) {
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
         'price': `${price}`,
         'currency': `${currency}`,
-        'id': `${id}`
+        'id': `${id}`,
+        'qty': `${qty}`
     })
 
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
@@ -538,9 +539,10 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
-                    id = el.getAttribute('data-vid');
+                    id = el.getAttribute('data-vid'),
+                    qty = '';
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id);
+                pushProducts(imgUrl,name,price,currency,id,qty);
             });
         });
     }
@@ -566,10 +568,11 @@ let mut = new MutationObserver(function (muts) {
                     let imgUrl = document.querySelector('.slide.selected img').getAttribute('src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
-                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm');
+                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
+                        qty = document.querySelector('#qty-input').value;
 
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id);
+                    pushProducts(imgUrl,name,price,currency,id,qty);
                 })
             }
         }
@@ -609,9 +612,10 @@ let mut = new MutationObserver(function (muts) {
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
-                        id = item.getAttribute('data-item-id');
+                        id = item.getAttribute('data-item-id'),
+                        qty = item.querySelector('.qty').innerText;
 
-                    pushProducts(imgUrl, name, price, currency, id);
+                    pushProducts(imgUrl, name, price, currency, id,qty);
                 })
             },200)
         }
