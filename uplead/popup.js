@@ -1,3 +1,12 @@
+// var dataLayer = dataLayer || []
+// dataLayer.push({
+// 	'event': 'debit_credit',
+// 	'plan': 'Professional',
+// 	'subscription_type': 'monthly',
+// 	'available_credits_in_month': 1000,
+// 	'credits_left': 250,
+// })
+
 let btnInterval = setInterval(() => {
 	if (document.querySelector('.billing-switch [aria-checked=false]')) {
 		clearInterval(btnInterval)
@@ -5,29 +14,33 @@ let btnInterval = setInterval(() => {
 	}
 }, 500)
 
-const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
-const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
-let save
+let start = setInterval(() => {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType')) {
+		clearInterval(start)
 
-switch (plan) {
-	case 'essentials':
-		save = 298
-		break
-	case 'plus':
-		save = 598
-		break
-	case 'professional':
-		save = 1198
-		break
-	case 'elite':
-		save = 1798
-		break
-	default:
-		save = 0
-		break
-}
+		const percent = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('bannerType').split('percent')[1]
+		const plan = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer.get('plan').toLowerCase()
+		let save
 
-const style = `
+		switch (plan) {
+			case 'essentials':
+				save = 298
+				break
+			case 'plus':
+				save = 598
+				break
+			case 'professional':
+				save = 1198
+				break
+			case 'elite':
+				save = 1798
+				break
+			default:
+				save = 0
+				break
+		}
+
+		const style = `
 	<style>
 		.modal-custom {
 			padding: 20px 0;
@@ -173,7 +186,7 @@ const style = `
 		}
 	</style>
 `
-const page = `
+		const page = `
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
 	    <img class="clock" src="https://conversionratestore.github.io/projects/uplead/img/pig-icon.svg" alt="money box">
@@ -187,70 +200,73 @@ const page = `
 	</div>
 </div>`
 
-document.head.insertAdjacentHTML('afterbegin', style)
-document.body.insertAdjacentHTML('beforeend', page)
+		document.head.insertAdjacentHTML('afterbegin', style)
+		document.body.insertAdjacentHTML('beforeend', page)
 
-const btn = document.querySelector('.btn-custom')
+		const btn = document.querySelector('.btn-custom')
 
-document.addEventListener('click', closeModal)
-btn.addEventListener('click', clickOnBtn)
+		document.addEventListener('click', closeModal)
+		btn.addEventListener('click', clickOnBtn)
 
-function closeModal(e) {
-	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+		function closeModal(e) {
+			if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+				document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 
-		if (e.target.matches('.modal-custom')) {
+				if (e.target.matches('.modal-custom')) {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on space out of pop up',
+					})
+				}
+
+				if (e.target.matches('.popup-custom svg')) {
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp — Pop up with motivation to upgrade',
+						'eventAction': 'Click on X to close pop up',
+					})
+				}
+			}
+		}
+
+		function clickOnBtn() {
+			location.href = '/subscriptions'
+
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on space out of pop up',
+				'eventAction': 'Click on Save Button',
 			})
 		}
 
-		if (e.target.matches('.popup-custom svg')) {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on X to close pop up',
-			})
+		(function (h, o, t, j, a, r) {
+			h.hj = h.hj || function () {
+				(h.hj.q = h.hj.q || []).push(arguments)
+			}
+			h._hjSettings = {hjid: 2615465, hjsv: 6}
+			a = o.getElementsByTagName('head')[0]
+			r = o.createElement('script')
+			r.async = 1
+			r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+			a.appendChild(r)
+		})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+		window.hj = window.hj || function () {
+			(hj.q = hj.q || []).push(arguments)
 		}
+		hj('trigger', 'tv_popup_with_motivation_to_upgrade')
+		hj('event', 'popup_with_motivation_to_upgrade')
+
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded',
+		})
 	}
-}
+}, 200)
 
-function clickOnBtn() {
-	location.href = '/subscriptions'
-
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Pop up with motivation to upgrade',
-		'eventAction': 'Click on Save Button',
-	})
-}
-
-(function (h, o, t, j, a, r) {
-	h.hj = h.hj || function () {
-		(h.hj.q = h.hj.q || []).push(arguments)
-	}
-	h._hjSettings = {hjid: 2615465, hjsv: 6}
-	a = o.getElementsByTagName('head')[0]
-	r = o.createElement('script')
-	r.async = 1
-	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-	a.appendChild(r)
-})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
-window.hj = window.hj || function () {
-	(hj.q = hj.q || []).push(arguments)
-}
-hj('trigger', 'tv_popup_with_motivation_to_upgrade')
-hj('event', 'popup_with_motivation_to_upgrade')
-
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp — Pop up with motivation to upgrade',
-	'eventAction': 'loaded',
-})
