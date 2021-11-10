@@ -680,15 +680,19 @@ let mut = new MutationObserver(function (muts) {
 
             addEvent(document, 'mouseout', function(evt) {
                 if (evt.toElement == null && evt.relatedTarget == null) {
-                    let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                    let wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
-                    
-                    for (let i = 0; i < productsLocalStorage.length; i++) {
-                        if (productsLocalStorage[i].link === window.location.href) {
-                            haveLink = true
+                    let productsLocalStorage, wasPopup;
+                    if(localStorage.getItem('products')) {
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                        if (window.location.href.includes('/catalog/product')) {
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].name === document.querySelector('.title.product_name').innerText) {
+                                    haveLink = true
+                                }
+                            }
                         }
                     }
-                    
+
                     if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
                         addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
