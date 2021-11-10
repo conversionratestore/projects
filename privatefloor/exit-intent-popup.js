@@ -563,7 +563,7 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart')) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    let imgUrl = document.querySelectorAll('#mangify-container img')[0].getAttribute('src'),
+                    let imgUrl = document.querySelector('.slide.selected img').getAttribute('src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm');
