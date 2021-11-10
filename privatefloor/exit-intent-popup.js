@@ -37,9 +37,6 @@ function detectMob() {
 }
 
 function pushProducts(imgUrl,name,price,currency,id) {
-    if (window.location.pathname.includes('/cart')) {
-        localStorage.setItem('products','')
-    }
     products.push({
         'imgUrl': `${imgUrl}`,
         'name': `${name}`,
@@ -47,9 +44,10 @@ function pushProducts(imgUrl,name,price,currency,id) {
         'currency': `${currency}`,
         'id': `${id}`
     })
-
-    if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
-        products = [...products,...JSON.parse(localStorage.getItem('products'))]
+    if (!window.location.pathname.includes('/cart')) {
+        if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
+            products = [...products,...JSON.parse(localStorage.getItem('products'))]
+        }
     }
 
     products = products.filter((thing, index, self) =>
@@ -595,7 +593,7 @@ let mut = new MutationObserver(function (muts) {
                 })
             })
         }
-        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelectorAll('.item')) {
+        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelector('.item')) {
             mut.disconnect()
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
@@ -605,8 +603,7 @@ let mut = new MutationObserver(function (muts) {
             })
             // setInterval(()=> {
                 document.querySelectorAll('.item').forEach((item) => {
-                    products = [];
-                    localStorage.setItem('products','')
+
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
