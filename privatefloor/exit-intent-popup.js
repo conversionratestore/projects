@@ -624,19 +624,22 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            let runInterval = setInterval(() => {
-                clearInterval(runInterval);
-                products = [];
-                document.querySelectorAll('.item').forEach((item) => {
-                    let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-                        name = item.querySelector('.title').innerText.split('\n')[0],
-                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
-                        id = item.getAttribute('data-item-id'),
-                        qty = item.querySelector('.qty').innerText;
+            // let runInterval = setInterval(() => {
+            //     clearInterval(runInterval);
 
-                    pushProducts(imgUrl, name, price, currency, id,qty);
+                document.querySelectorAll('.item').forEach((item) => {
+                    item.addEventListener('change', () => {
+                        products = [];
+                        let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                            name = item.querySelector('.title').innerText.split('\n')[0],
+                            price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
+                            id = item.getAttribute('data-item-id'),
+                            qty = item.querySelector('.qty').innerText;
+
+                        pushProducts(imgUrl, name, price, currency, id,qty);
+                    })
                 })
-            },200)
+            // },200)
         }
     }
 
