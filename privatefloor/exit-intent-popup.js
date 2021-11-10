@@ -596,7 +596,6 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelectorAll('.item')) {
             mut.disconnect()
-            // localStorage.setItem('products','')
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
@@ -604,6 +603,7 @@ let mut = new MutationObserver(function (muts) {
                 removeProductDesktop(item)
             })
             document.querySelectorAll('.item').forEach((item) => {
+                localStorage.setItem('products','')
                 let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                     name = item.querySelector('.title').innerText.split('\n')[0],
                     price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.').replace(currency,''),
