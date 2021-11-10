@@ -153,6 +153,7 @@ const style = `
 	</style>
 `
 
+
 let btnInterval = setInterval(() => {
 	if (document.querySelector('.billing-switch [aria-checked=false]')) {
 		clearInterval(btnInterval)
@@ -165,6 +166,13 @@ let show75 = setInterval(() => {
 		clearInterval(show75)
 
 		showPopup()
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded',
+		})
 	}
 }, 200)
 
@@ -173,6 +181,13 @@ let show90 = setInterval(() => {
 		clearInterval(show90)
 
 		showPopup()
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded',
+		})
 	}
 }, 200)
 
@@ -181,6 +196,13 @@ let show100 = setInterval(() => {
 		clearInterval(show100)
 
 		showPopup()
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'loaded',
+		})
 	}
 }, 200)
 
@@ -207,6 +229,7 @@ function showPopup() {
 			break
 	}
 
+
 	const page = `
 <div class="modal-custom modal-custom_active">
 	<div class="popup-custom">
@@ -229,48 +252,40 @@ function showPopup() {
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
 
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Pop up with motivation to upgrade',
-		'eventAction': 'loaded',
-	})
-}
+	function closeModal(e) {
+		if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+			document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 
-function closeModal(e) {
-	console.log('ssss')
-	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+			if (e.target.matches('.modal-custom')) {
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Pop up with motivation to upgrade',
+					'eventAction': 'Click on space out of pop up',
+				})
+			}
 
-		if (e.target.matches('.modal-custom')) {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on space out of pop up',
-			})
-		}
-
-		if (e.target.matches('.popup-custom svg')) {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on X to close pop up',
-			})
+			if (e.target.matches('.popup-custom svg')) {
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Pop up with motivation to upgrade',
+					'eventAction': 'Click on X to close pop up',
+				})
+			}
 		}
 	}
-}
 
-function clickOnBtn() {
-	location.href = '/subscriptions'
+	function clickOnBtn() {
+		location.href = '/subscriptions'
 
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Pop up with motivation to upgrade',
-		'eventAction': 'Click on Save Button',
-	})
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'Click on Save Button',
+		})
+	}
 }
 
 ;(function (h, o, t, j, a, r) {
@@ -289,4 +304,3 @@ window.hj = window.hj || function () {
 }
 hj('trigger', 'tv_popup_with_motivation_to_upgrade')
 hj('event', 'popup_with_motivation_to_upgrade')
-
