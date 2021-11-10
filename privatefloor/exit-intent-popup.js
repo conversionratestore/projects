@@ -495,17 +495,6 @@ function spliceProduct(productsLocalStorage,i) {
     sessionStorage.setItem('wasPopup', 'false');
 }
 
-function pushProductsWithCart() {
-    document.querySelectorAll('.item').forEach((item) => {
-        let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-            name = item.querySelector('.title').innerText.split('\n')[0],
-            price = item.querySelector('.price').innerText.split(' ')[0].replace(',', '.').replace(currency, ''),
-            id = item.getAttribute('data-item-id');
-
-        pushProducts(imgUrl, name, price, currency, id);
-    })
-}
-
 function removeProductMobile(item) {
     if (!document.querySelectorAll('.product-list .product')) {
         localStorage.setItem('products', '');
@@ -538,7 +527,6 @@ function removeProductDesktop(item) {
             }
         }
     })
-    item.removeEventListener('click', pushProductsWithCart)
 }
 
 let mut = new MutationObserver(function (muts) {
@@ -607,14 +595,25 @@ let mut = new MutationObserver(function (muts) {
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
-            pushProductsWithCart()
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
+            setInterval(() => {
+                products = [];
+                localStorage.setItem('products', JSON.stringify(products));
 
+                document.querySelectorAll('.item').forEach((item) => {
+                    let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                        name = item.querySelector('.title').innerText.split('\n')[0],
+                        price = item.querySelector('.price').innerText.split(' ')[0].replace(',', '.').replace(currency, ''),
+                        id = item.getAttribute('data-item-id');
+
+                    pushProducts(imgUrl, name, price, currency, id);
+                })
+            },200)
         }
     }
 
