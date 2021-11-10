@@ -493,17 +493,6 @@ function spliceProduct(productsLocalStorage,i) {
     sessionStorage.setItem('wasPopup', 'false');
 }
 
-function pushWithItemCart() {
-    document.querySelectorAll('.item').forEach((item) => {
-        let imgUrl = item.querySelector('.preview img').getAttribute('src'),
-            name = item.querySelector('.title').innerText.split('\n')[0],
-            price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
-            id = item.getAttribute('data-item-id');
-
-        pushProducts(imgUrl,name,price,currency,id);
-    })
-}
-
 function removeProductMobile(item) {
     if (!document.querySelectorAll('.product-list .product')) {
         localStorage.setItem('products', '');
@@ -534,7 +523,6 @@ function removeProductDesktop(item) {
                     spliceProduct(productsLocalStorage,i);
                 }
             }
-            pushWithItemCart()
         }
     })
 }
@@ -603,16 +591,23 @@ let mut = new MutationObserver(function (muts) {
                 })
             })
         }
-        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
+        if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart') && document.querySelectorAll('.item')) {
             mut.disconnect()
-
+            localStorage.setItem('products','')
             document.querySelectorAll('.minus_cart').forEach(item => {
                 removeProductDesktop(item)
             })
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            pushWithItemCart()
+            document.querySelectorAll('.item').forEach((item) => {
+                let imgUrl = item.querySelector('.preview img').getAttribute('src'),
+                    name = item.querySelector('.title').innerText.split('\n')[0],
+                    price = item.querySelector('.price').innerText.split(' ')[0].replace(',','.'),
+                    id = item.getAttribute('data-item-id');
+
+                pushProducts(imgUrl,name,price,currency,id);
+            })
         }
 
     }
