@@ -961,7 +961,7 @@ let blockAllergies = /*html*/ `
 <section class="block_as_seen_on">
     <div>
         <h2>AS SEEN ON</h2>
-        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/partners.png" alt="">
+        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/partners_new.png" alt="">
     </div>
     <div>
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/logo_winner.png" alt="">
