@@ -199,40 +199,7 @@ let show100 = setInterval(() => {
 	}
 }, 200)
 
-function closeModal(e) {
-	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
 
-		if (e.target.matches('.modal-custom')) {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on space out of pop up',
-			})
-		}
-
-		if (e.target.matches('.popup-custom svg')) {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Pop up with motivation to upgrade',
-				'eventAction': 'Click on X to close pop up',
-			})
-		}
-	}
-}
-
-function clickOnBtn() {
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Pop up with motivation to upgrade',
-		'eventAction': 'Click on Save Button',
-	})
-	
-	location.href = '/subscriptions'	
-}
 
 function showPopup() {
 	const goData = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer
@@ -280,6 +247,43 @@ function showPopup() {
 
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
+
+	function closeModal(e) {
+		if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+			document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+
+			if (e.target.matches('.modal-custom')) {
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Pop up with motivation to upgrade',
+					'eventAction': 'Click on space out of pop up',
+				})
+			}
+
+			if (e.target.matches('.popup-custom svg')) {
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Pop up with motivation to upgrade',
+					'eventAction': 'Click on X to close pop up',
+				})
+			}
+		}
+	}
+
+	function clickOnBtn() {
+		location.href = '/subscriptions'
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Pop up with motivation to upgrade',
+			'eventAction': 'Click on Save Button',
+		})
+
+
+	}
 }
 
 ;(function (h, o, t, j, a, r) {
