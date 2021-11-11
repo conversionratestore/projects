@@ -640,9 +640,10 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            let runInterval = setInterval(() => {
-                clearInterval(runInterval);
+            // let runInterval = setInterval(() => {
+            //     clearInterval(runInterval);
                 document.querySelectorAll('.item').forEach((item) => {
+                    products = [];
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
@@ -654,16 +655,16 @@ let mut = new MutationObserver(function (muts) {
                         qty = item.querySelector('.qty').innerText;
                         sessionStorage.setItem('wasPopup', 'false');
                     })
-                    let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                    productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
-                        index === self.findIndex((t) => (
-                            t.place === thing.place && t.id === thing.id
-                        ))
-                    )
+                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                    // productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
+                    //     index === self.findIndex((t) => (
+                    //         t.place === thing.place && t.id === thing.id
+                    //     ))
+                    // )
 
                     pushProducts(imgUrl, name, price, currency, id,qty);
                 })
-            },200)
+            // },200)
         }
     }
 
