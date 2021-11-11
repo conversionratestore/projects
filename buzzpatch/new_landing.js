@@ -446,6 +446,19 @@ let styleNewLanding = /*html*/ `
         border-radius: 6px;
     }
 
+    .js-packs input[type=radio]+label.radio-inline:nth-child(3){
+        border-radius: 0px 6px 6px 6px !important;
+    }
+
+    .bestseller{
+        border-radius: 3px 3px 0px 0px !important;
+        font-family: 'DINEngschrift LT', sans-serif !important;
+        letter-spacing: 0.02em !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        padding: 7px 20px !important;
+    }
+
     .js-packs input[type=radio]+label span{
         font-family: 'Roboto', sans-serif !important;
         font-weight: 400 !important;
@@ -576,11 +589,15 @@ let styleNewLanding = /*html*/ `
 
     .faqs #js-accordion .card-link{
         font-family: 'Roboto', sans-serif !important;
-        font-weight: 600 !important;
+        font-weight: 400 !important;
         font-size: 18px !important;
         line-height: 130% !important;
         color: #212529;
-        padding: 15px 20px 15px 30px !important;
+        padding: 15px 1px 15px 38px !important;
+    }
+
+    #js-accordion .card-link:hover{
+        color: #FF3C7F !important;
     }
 
     .faqs #js-accordion p{
@@ -592,7 +609,7 @@ let styleNewLanding = /*html*/ `
     }
 
     .faqs #js-accordion .card-body{
-        padding: 0 0 0 30px !important;
+        padding: 0 0 0 38px !important;
     }
     
     /*footer */
@@ -702,7 +719,7 @@ let styleNewLanding = /*html*/ `
         width: 100%;
         max-width: 343px;
         padding: 20.5px 20px;
-        margin-top: 40px;
+        margin-top: 24px;
 
         font-family: 'DINEngschrift LT', sans-serif;
         font-weight: 400;
@@ -1138,7 +1155,7 @@ let blockAllergies = /*html*/ `
     <h4>Effective up to <span>72</span> hours. <br> Lasts for <span>12</span> months</h4>
     <p>Our stickers are the most effective in the first 12 hours and continue to be effective for up to 72 hours.</p>
     <p>If not in use, seal the BuzzPatch sticker in a provided bag that will keep it active for up to 12 months. </p>
-    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/illustration.png" alt="">
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/Illustration_new.png" alt="">
 </div>
 
 </section>
@@ -1238,7 +1255,7 @@ document
 
 document
   .querySelector("#purchase .container.package .row.no-gutters #getNow p:nth-child(3)")
-  .insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/select_package.png" alt="buzzpatch photo">`)
+  .insertAdjacentHTML("afterend", `<img src="https://conversionratestore.github.io/projects/buzzpatch/img/select_package_new.png" alt="buzzpatch photo">`)
 
 document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", sliderNav)
 document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
@@ -1382,4 +1399,4 @@ window.hj =
   function () {
     ;(hj.q = hj.q || []).push(arguments)
   }
-hj("trigger", "lp_ab_test")
+hj("event", "lp_ab_test")
