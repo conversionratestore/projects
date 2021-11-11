@@ -248,7 +248,7 @@ function showPopup() {
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
 
-	
+
 }
 
 function closeModal(e) {
@@ -257,7 +257,7 @@ function closeModal(e) {
 	console.log(e.target.matches('.popup-custom svg'))
 
 	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
-		document.querySelector('.modal-custom').classList.remove('modal-custom_active')
+		document.querySelector('.modal-custom').remove()
 
 		if (e.target.matches('.modal-custom')) {
 			window.dataLayer = window.dataLayer || []
@@ -281,7 +281,7 @@ function closeModal(e) {
 
 function clickOnBtn() {
 	console.log('clicked on btn')
-	
+
 	location.href = '/subscriptions'
 
 	window.dataLayer = window.dataLayer || []
