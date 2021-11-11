@@ -185,12 +185,11 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         padding: 20px 20px 25px 20px;
     }
     .btn_close {
-        margin-left: auto;
-        width: 20px;
+        width: 25px;
         display: block;
-        height: 20px;
-        margin-bottom: 13px;
-        background: url("https://conversionratestore.github.io/projects/privatefloor/img/close.svg") no-repeat center / contain;
+        height: 25px;
+        margin: -5px -5px 13px auto;
+        background: url("https://conversionratestore.github.io/projects/privatefloor/img/close.svg") no-repeat center / 20px;
     }
     .popup_content h2{
         font-weight: bold;
