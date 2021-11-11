@@ -4,7 +4,7 @@ const style = `
 			padding: 20px 0;
 			position: fixed;
 			display: none;
-			z-index: 1; 
+			z-index: 999; 
 			left: 0;
 			top: 0;
 			width: 100%; 
@@ -210,7 +210,7 @@ let show100 = setInterval(() => {
 		clearInterval(show100)
 
 		localStorage.setItem('show100', 'true');
-		
+
 		showPopup()
 
 		window.dataLayer = window.dataLayer || []
