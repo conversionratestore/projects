@@ -752,6 +752,7 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if (document.querySelector('.cartbtn #count_product_in_cart') && document.querySelector('.cartbtn #count_product_in_cart').innerText == '0') {
+        mut.disconnect()
         localStorage.setItem('products', '');
     }
 
