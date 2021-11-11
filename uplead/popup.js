@@ -253,8 +253,10 @@ function showPopup() {
 
 function closeModal(e) {
 	console.log(e.target)
+	console.log('curr: ',e.currentTarget)
 	console.log(e.target.matches('.modal-custom'))
 	console.log(e.target.matches('.popup-custom svg'))
+	console.log('curr: ', e.currentTarget.matches('.popup-custom svg'))
 
 	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
 		document.querySelector('.modal-custom').remove()
