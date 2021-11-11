@@ -1,8 +1,7 @@
 let products = [],
     haveLink = false,
     action,
-    currency,
-    filter;
+    currency;
 
 let objGeo = {
     '/uk.' : {
@@ -50,13 +49,15 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
     }
-    if (filter) {
-        console.log('filter')
+    if (filter === true) {
+        console.log('filter true')
         products = products.filter((thing, index, self) =>
             index === self.findIndex((t) => (
                 t.place === thing.place && t.id === thing.id
             ))
         )
+    } else {
+        console.log('filter false')
     }
 
     localStorage.setItem('products', JSON.stringify(products));
@@ -571,7 +572,7 @@ let mut = new MutationObserver(function (muts) {
                     id = el.getAttribute('data-vid'),
                     qty = '';
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,qty);
+                pushProducts(imgUrl,name,price,currency,id,qty,false);
             });
         });
     }
@@ -588,7 +589,7 @@ let mut = new MutationObserver(function (muts) {
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm');
 
                 sessionStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id);
+                pushProducts(imgUrl,name,price,currency,id,false);
             })
         } else {
             if (document.querySelector('#btn-add-item-cart')) {
@@ -614,7 +615,7 @@ let mut = new MutationObserver(function (muts) {
                     }
                     console.log('qty4: ' + qty)
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,qty);
+                    pushProducts(imgUrl,name,price,currency,id,qty,false);
                 })
             }
         }
@@ -665,8 +666,7 @@ let mut = new MutationObserver(function (muts) {
                         qty = item.querySelector('.qty').innerText;
                         sessionStorage.setItem('wasPopup', 'false');
                     })
-
-                    pushProducts(imgUrl, name, price, currency, id,qty, filter);
+                    pushProducts(imgUrl, name, price, currency, id,qty, true);
                 })
             },200)
         }
