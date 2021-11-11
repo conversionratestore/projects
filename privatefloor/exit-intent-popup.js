@@ -1,7 +1,8 @@
 let products = [],
     haveLink = false,
     action,
-    currency;
+    currency,
+    filter;
 
 let objGeo = {
     '/uk.' : {
