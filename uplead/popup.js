@@ -224,14 +224,14 @@ function closeModal(e) {
 }
 
 function clickOnBtn() {
-	location.href = '/subscriptions'
-
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp — Pop up with motivation to upgrade',
 		'eventAction': 'Click on Save Button',
 	})
+	
+	location.href = '/subscriptions'	
 }
 
 function showPopup() {
