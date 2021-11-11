@@ -643,7 +643,6 @@ let mut = new MutationObserver(function (muts) {
             // let runInterval = setInterval(() => {
             //     clearInterval(runInterval);
                 document.querySelectorAll('.item').forEach((item) => {
-                    products = [];
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
