@@ -661,7 +661,7 @@ let mut = new MutationObserver(function (muts) {
                         id = item.getAttribute('data-item-id'),
                         qty = item.querySelector('.qty').innerText;
 
-                    item.querySelector('.quantity-selector i').forEach( btn => {
+                    item.querySelectorAll('.quantity-selector i').forEach( btn => {
                         btn.addEventListener('click', () => {
                             console.log('click plus/minus')
                             qty = item.querySelector('.qty').innerText;
