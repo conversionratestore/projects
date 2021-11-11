@@ -45,10 +45,12 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         'id': `${id}`,
         'qty': `${qty}`
     })
-
+    console.log('pushProducts: ' + JSON.stringify(products))
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
+        console.log('products: ' + JSON.stringify(products))
     }
+  
     if (filter === true) {
         console.log('filter true')
         products = products.filter((thing, index, self) =>
@@ -56,9 +58,11 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
                 t.place === thing.place && t.id === thing.id
             ))
         )
+        console.log('products filter: ' + JSON.stringify(products))
     } else {
         console.log('filter false')
     }
+    console.log('products last: ' + JSON.stringify(products))
 
     localStorage.setItem('products', JSON.stringify(products));
 }
@@ -604,6 +608,7 @@ let mut = new MutationObserver(function (muts) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
                                 console.log('productsLocalStorage: ' + productsLocalStorage[i].id)
+                                console.log('products: ' + products[i].id)
                                 spliceProduct(productsLocalStorage,i);
                                 count = i;
                                 pushProducts(imgUrl,name,price,currency,id,qty,true);
