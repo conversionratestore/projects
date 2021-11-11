@@ -603,9 +603,10 @@ let mut = new MutationObserver(function (muts) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                console.log('productsLocalStorage: ' + productsLocalStorage[i])
-                                console.log('products: ' + products[i])
+                                console.log('productsLocalStorage: ' + productsLocalStorage[i].id)
+                                console.log('products: ' + products[i].id)
                                 spliceProduct(productsLocalStorage,i);
+                                spliceProduct(products,i);
                                 count = i;
                                 pushProducts(imgUrl,name,price,currency,id,qty,true);
                             }
@@ -613,6 +614,7 @@ let mut = new MutationObserver(function (muts) {
                         }
                         if (!!count) {
                             spliceProduct(productsLocalStorage,count);
+                            spliceProduct(products,count);
                         }
                     }
 
