@@ -46,7 +46,7 @@ setTimeout(() => {
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - Signaturely toggle switch",
-      eventAction: "Click on switcher Monthly",
+      eventAction: "Click on switcher Annually",
     })
   })
 
@@ -55,7 +55,7 @@ setTimeout(() => {
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - Signaturely toggle switch",
-      eventAction: "Click on switcher Annually",
+      eventAction: "Click on switcher Monthly",
     })
   })
 }, 200)
