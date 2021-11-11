@@ -53,7 +53,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         console.log('filter true')
         products = products.filter((thing, index, self) =>
             index === self.findIndex((t) => (
-                t.place === thing.place && t.id === thing.id && t.qty === thing.qty
+                t.place === thing.place && t.id === thing.id
             ))
         )
     } else {
