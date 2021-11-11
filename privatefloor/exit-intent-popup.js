@@ -45,10 +45,10 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         'id': `${id}`,
         'qty': `${qty}`
     })
-    console.log('pushProducts: ' + JSON.stringify(products))
+    console.log('pushProducts: ' + products)
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
-        console.log('products: ' + JSON.stringify(products))
+        console.log('products: ' + products)
     }
 
     if (filter === true) {
@@ -58,11 +58,10 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
                 t.place === thing.place && t.id === thing.id
             ))
         )
-        console.log('products filter: ' + JSON.stringify(products))
     } else {
         console.log('filter false')
     }
-    console.log('products last: ' + JSON.stringify(products))
+    console.log('products last: ' + products)
 
     if (localStorage.getItem('updatedProducts')) {
         let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
