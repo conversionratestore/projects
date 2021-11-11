@@ -607,7 +607,7 @@ let mut = new MutationObserver(function (muts) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                pushProducts(imgUrl,name,price,currency,id,qty,false);
+                                pushProducts(imgUrl,name,price,currency,id,qty,true);
                             }
                             console.log('qty3: ' + qty)
 
