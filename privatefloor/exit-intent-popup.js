@@ -657,14 +657,29 @@ let mut = new MutationObserver(function (muts) {
                         sessionStorage.setItem('wasPopup', 'false');
                     })
 
+                    products.push({
+                        'imgUrl': `${imgUrl}`,
+                        'name': `${name}`,
+                        'price': `${price}`,
+                        'currency': `${currency}`,
+                        'id': `${id}`,
+                        'qty': `${qty}`
+                    })
 
-                    pushProducts(imgUrl, name, price, currency, id,qty);
-                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                     products = products.filter((thing, index, self) =>
                         index === self.findIndex((t) => (
                             t.place === thing.place && t.id === thing.id
                         ))
                     )
+
+                    if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
+                        products = [...products,...JSON.parse(localStorage.getItem('products'))]
+                    }
+
+                    localStorage.setItem('products', JSON.stringify(products));
+                    // pushProducts(imgUrl, name, price, currency, id,qty);
+                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+
                 })
             // },200)
         }
