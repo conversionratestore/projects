@@ -648,11 +648,11 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.removeItem').forEach(item => {
                 removeProductDesktop(item)
             })
-            // let runInterval = setInterval(() => {
-            //     clearInterval(runInterval);
-                products = [];
-                document.querySelectorAll('.item').forEach((item) => {
+            let runInterval = setInterval(() => {
+                clearInterval(runInterval);
 
+                document.querySelectorAll('.item').forEach((item) => {
+                    products = [];
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
@@ -666,10 +666,8 @@ let mut = new MutationObserver(function (muts) {
                     })
 
                     pushProducts(imgUrl, name, price, currency, id,qty, filter);
-                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-
                 })
-            // },200)
+            },200)
         }
     }
 
