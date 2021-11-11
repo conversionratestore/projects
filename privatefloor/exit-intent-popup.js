@@ -659,8 +659,8 @@ let mut = new MutationObserver(function (muts) {
 
 
                     pushProducts(imgUrl, name, price, currency, id,qty);
-                    let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                    productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
+                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                    products = products.filter((thing, index, self) =>
                         index === self.findIndex((t) => (
                             t.place === thing.place && t.id === thing.id
                         ))
