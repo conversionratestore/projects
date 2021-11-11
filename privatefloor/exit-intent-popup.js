@@ -67,13 +67,6 @@ function addProduct() {
     let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
         total = 0;
 
-    productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
-        index === self.findIndex((t) => (
-            t.place === thing.place && t.id === thing.id
-        ))
-    )
-    localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-
     document.querySelector('.popup_slider').innerHTML = ``;
 
     for (let i = 0; i < productsLocalStorage.length; i++) {
@@ -609,8 +602,7 @@ let mut = new MutationObserver(function (muts) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                pushProducts(imgUrl,name,price,currency,id,qty,false);
-                            } else {
+                                spliceProduct(productsLocalStorage,i)
                                 pushProducts(imgUrl,name,price,currency,id,qty,false);
                             }
                             console.log('qty3: ' + qty)
