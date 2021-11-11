@@ -603,7 +603,7 @@ let mut = new MutationObserver(function (muts) {
 
                         }
                     }
-
+                    console.log('qty4: ' + qty)
                     sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id,qty);
                 })
