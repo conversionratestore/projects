@@ -117,12 +117,21 @@ const style = `
 			font-size: 24px;
 		}
 		
-		.popup-custom svg {
+		.svg-wrapper {
+			display: block;
+			padding: 5px;
 			position: absolute;
-			height: 15px;
-			width: 15px;
 			top: 4%;
 			right: 4%;
+		}
+		
+		.popup-custom svg path {
+			pointer-events: none;
+		}
+		
+		.popup-custom svg {			
+			height: 15px;
+			width: 15px;			
 			cursor: pointer;
 			transition: all 0.3s ease;
 		}
@@ -145,9 +154,9 @@ const style = `
 			text-transform: capitalize;
 		}
 		
-		.popup-custom svg path {
-			pointer-events: none;
-		}
+		
+		
+		
 	</style>
 `
 
@@ -239,8 +248,11 @@ function showPopup() {
 	    <p class="subtitle">by switching to annual plan</p>
 	    <p><b>You won't be charged today, only when your monthly plan ends.</b></p>
 	    <p>Cancel anytime in one-click before your<br><b>monthly plan ends.</b></p>	    
-	    <button type="button" class="btn-custom">Save $${ save }</button>	 
-	    <svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>  		
+	    <button type="button" class="btn-custom">Save $${ save }</button>
+	    <div class="svg-wrapper">
+	    	<svg xmlns="http://www.w3.org/2000/svg" fill="#6E7191" viewBox="0 0 47.971 47.971" data-src="/c69c1c810022c4cf0e39706564b864d5.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.228 23.986L47.092 5.122a3 3 0 0 0 0-4.242 3 3 0 0 0-4.242 0L23.986 19.744 5.12.88a3 3 0 0 0-4.242 0 3 3 0 0 0 0 4.242l18.865 18.864L.88 42.85a3 3 0 0 0 0 4.242c.586.585 1.354.878 2.12.878a2.99 2.99 0 0 0 2.121-.879l18.865-18.864L42.85 47.09a2.99 2.99 0 0 0 4.242 0 3 3 0 0 0 0-4.242L28.228 23.986z"></path></svg>
+		</div>	 
+	      		
 	</div>
 </div>`
 
@@ -257,12 +269,12 @@ function showPopup() {
 
 function closeModal(e) {
 	console.log(e.target)
-	
+
 	console.log(e.target.matches('.modal-custom'))
 	console.log(e.target.matches('.popup-custom svg'))
-	
 
-	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom svg')) {
+
+	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom .svg-wrapper')) {
 		document.querySelector('.modal-custom').remove()
 
 		if (e.target.matches('.modal-custom')) {
