@@ -76,7 +76,7 @@ function addProduct() {
     document.querySelector('.popup_slider').innerHTML = ``;
 
     for (let i = 0; i < productsLocalStorage.length; i++) {
-        let newPrice = productsLocalStorage[i].price.split(',').join('');
+        let newPrice = +productsLocalStorage[i].price.split(',').join('') * +productsLocalStorage[i].qty;
 
         if(productsLocalStorage.length > 1) {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
@@ -85,7 +85,7 @@ function addProduct() {
                     <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                     <p class="slide_name">${productsLocalStorage[i].name}</p>   
                 </div>
-                <p class="slide_price" data-price="${(+newPrice * +productsLocalStorage[i].qty).toFixed(2)}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
+                <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
             </div>`)
         } else {
             document.querySelector('.popup_slider').insertAdjacentHTML('afterbegin',`
@@ -93,7 +93,7 @@ function addProduct() {
                 <img src="${productsLocalStorage[i].imgUrl}" alt="${productsLocalStorage[i].name}">
                 <div class="popup_slide_row">
                     <p class="slide_name">${productsLocalStorage[i].name}</p>   
-                    <p class="slide_price" data-price="${(+newPrice * +productsLocalStorage[i].qty).toFixed(2)}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
+                    <p class="slide_price" data-price="${newPrice}">${productsLocalStorage[i].currency + productsLocalStorage[i].price}</p>
                 </div>
             </div>`)
             if (document.querySelector('.popup_slide_one') && !document.querySelector('.popular_choice') && document.querySelector('.popup_slide_one')) {
