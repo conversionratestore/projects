@@ -4,7 +4,7 @@ const style = `
 			padding: 20px 0;
 			position: fixed;
 			display: none;
-			z-index: 999; 
+			z-index: 1; 
 			left: 0;
 			top: 0;
 			width: 100%; 
@@ -172,8 +172,10 @@ let btnInterval = setInterval(() => {
 }, 500)
 
 let show75 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent75') {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent75' && !localStorage.getItem('show75')) {
 		clearInterval(show75)
+
+		localStorage.setItem('show75', 'true');
 
 		showPopup()
 
@@ -187,8 +189,10 @@ let show75 = setInterval(() => {
 }, 200)
 
 let show90 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent90') {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent90' && !localStorage.getItem('show90')) {
 		clearInterval(show90)
+
+		localStorage.setItem('show90', 'true');
 
 		showPopup()
 
@@ -202,9 +206,11 @@ let show90 = setInterval(() => {
 }, 200)
 
 let show100 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent100') {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent100' && !localStorage.getItem('show100')) {
 		clearInterval(show100)
 
+		localStorage.setItem('show100', 'true');
+		
 		showPopup()
 
 		window.dataLayer = window.dataLayer || []
