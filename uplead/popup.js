@@ -121,11 +121,12 @@ const style = `
 			display: block;
 			padding: 5px;
 			position: absolute;
-			top: 4%;
-			right: 4%;
+			top: 3%;
+			right: 3%;
 			cursor: pointer;
 		}
 		
+		.popup-custom svg,
 		.popup-custom svg path {
 			pointer-events: none;
 		}
