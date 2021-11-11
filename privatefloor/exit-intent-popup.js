@@ -656,14 +656,15 @@ let mut = new MutationObserver(function (muts) {
                         qty = item.querySelector('.qty').innerText;
                         sessionStorage.setItem('wasPopup', 'false');
                     })
-                    // let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                    // productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
-                    //     index === self.findIndex((t) => (
-                    //         t.place === thing.place && t.id === thing.id
-                    //     ))
-                    // )
+
 
                     pushProducts(imgUrl, name, price, currency, id,qty);
+                    let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                    productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
+                        index === self.findIndex((t) => (
+                            t.place === thing.place && t.id === thing.id
+                        ))
+                    )
                 })
             // },200)
         }
