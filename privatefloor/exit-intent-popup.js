@@ -51,6 +51,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
     }
     if (filter) {
+        console.log('filter')
         products = products.filter((thing, index, self) =>
             index === self.findIndex((t) => (
                 t.place === thing.place && t.id === thing.id
