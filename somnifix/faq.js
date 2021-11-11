@@ -1,32 +1,5 @@
 let style = /*html*/ `
  <style>
-body {
-  font-family: "Roboto", sans-serif;
-}
-body.modal-open {
-  overflow: hidden;
-}
-h1,
-h2,
-h3,
-p,
-ul {
-  margin: 0;
-  padding: 0;
-}
-.enumeration {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-a {
-  text-decoration: none;
-}
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 
 .has-padding-top{
    padding: 0 !important; 
@@ -112,7 +85,7 @@ img {
   color: #1E415F !important;
 }
 
-.textFaq > span{
+.textFaq > a{
     color: #4090D1;
 }
   </style>
@@ -303,7 +276,7 @@ let faq = /*html*/ `
             </div>
           </div>
           <p class="textFaq">
-            Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging. Learn more in our <span>Refund Policy</span>.
+            Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging. Learn more in our <a href="https://somnifix.com/pages/shipping-and-returns-policy" target="blank">Refund Policy</a>.
           </p>
         </li>
         <li>
@@ -337,6 +310,7 @@ document.querySelector("#money_back").insertAdjacentHTML("beforebegin", faq)
 
 $("[data-controls]").click(function () {
   let numberQuestion = $(this).closest("li").index() + 1
+
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
@@ -379,49 +353,24 @@ window.hj =
   }
 hj("trigger", "pdp_add_faq")
 
-//
-// let element = document.querySelector(".containerFaq")
+//observer
+const options = {
+  root: null,
+  threshold: 0.5,
+}
 
-// let Visible = function (target) {
-//   // Все позиции элемента
-//   let targetPosition = {
-//       top: window.pageYOffset + target.getBoundingClientRect().top,
-//       left: window.pageXOffset + target.getBoundingClientRect().left,
-//       right: window.pageXOffset + target.getBoundingClientRect().right,
-//       bottom: window.pageYOffset + target.getBoundingClientRect().bottom,
-//     },
-//     // Получаем позиции окна
-//     windowPosition = {
-//       top: window.pageYOffset,
-//       left: window.pageXOffset,
-//       right: window.pageXOffset + document.documentElement.clientWidth,
-//       bottom: window.pageYOffset + document.documentElement.clientHeight,
-//     }
+let containerFaq = document.querySelector(".containerFaq")
+let observer = new IntersectionObserver((entries) => {
+  if (!entries[0].isIntersecting) return
+  //
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp — PDP add FAQ",
+    eventAction: "Visibility FAQ block",
+  })
 
-//   if (
-//     targetPosition.bottom > windowPosition.top && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
-//     targetPosition.top < windowPosition.bottom && // Если позиция верхней части элемента меньше позиции нижней чайти окна, то элемент виден снизу
-//     targetPosition.right > windowPosition.left && // Если позиция правой стороны элемента больше позиции левой части окна, то элемент виден слева
-//     targetPosition.left < windowPosition.right
-//   ) {
-//     // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
-//     // Если элемент полностью видно, то запускаем следующий код
-//     console.clear()
-//     console.log("Вы видите элемент :)")
-//     window.dataLayer = window.dataLayer || []
-//     dataLayer.push({
-//       event: "event-to-ga",
-//       eventCategory: "Exp — PDP add FAQ",
-//       eventAction: "Visibility FAQ block",
-//     })
-//   } else {
-//     // Если элемент не видно, то запускаем этот код
-//     console.clear()
-//   }
-// }
+  observer.disconnect()
+})
 
-// // Запускаем функцию при прокрутке страницы
-// window.addEventListener("scroll", function () {
-//   Visible(element)
-// })
-// Visible(element)
+observer.observe(containerFaq, options)
