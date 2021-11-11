@@ -68,7 +68,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
 
     for (let i = 0; i < products.length; i++) {
         if (products[i].id === updatedProducts[0].id) {
-            products[i].qty = updatedProducts[0].qty;
+            products[i].qty = +products[i].qty + +updatedProducts[0].qty;
             localStorage.setItem('updatedProducts', '')
         }
     }
