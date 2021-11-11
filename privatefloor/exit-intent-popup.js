@@ -53,7 +53,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         console.log('filter true')
         products = products.filter((thing, index, self) =>
             index === self.findIndex((t) => (
-                t.place === thing.place && t.id === thing.id
+                t.place === thing.place && t.id === thing.id && t.qty === thing.qty
             ))
         )
     } else {
@@ -599,22 +599,19 @@ let mut = new MutationObserver(function (muts) {
                     if (localStorage.getItem('products')) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
                             count;
-                        for (let i = 0; i < products.length; i++) {
-                            if (products[i].id === id) {
-                                qty = +products[i].qty + +qty;
+                        for (let i = 0; i < productsLocalStorage.length; i++) {
+                            if (productsLocalStorage[i].id === id) {
+                                qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                // console.log('productsLocalStorage: ' + productsLocalStorage[i].id)
-                                console.log('products: ' + products[i].id)
-                                // spliceProduct(productsLocalStorage,i);
-                                spliceProduct(products,i);
+                                console.log('productsLocalStorage: ' + productsLocalStorage[i].id)
+                                spliceProduct(productsLocalStorage,i);
                                 count = i;
                                 pushProducts(imgUrl,name,price,currency,id,qty,true);
                             }
                             console.log('qty3: ' + qty)
                         }
                         if (!!count) {
-                            // spliceProduct(productsLocalStorage,count);
-                            spliceProduct(products,count);
+                            spliceProduct(productsLocalStorage,count);
                         }
                     }
 
