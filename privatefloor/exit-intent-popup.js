@@ -604,7 +604,8 @@ let mut = new MutationObserver(function (muts) {
                                 console.log('qty2: ' + qty)
                                 console.log('productsLocalStorage: ' + productsLocalStorage[i])
                                 console.log('products: ' + products[i])
-                                spliceProduct(productsLocalStorage,i)
+                                spliceProduct(productsLocalStorage,i);
+                                pushProducts(imgUrl,name,price,currency,id,qty,true);
                             }
                             console.log('qty3: ' + qty)
                         }
