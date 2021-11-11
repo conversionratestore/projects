@@ -661,10 +661,12 @@ let mut = new MutationObserver(function (muts) {
                         id = item.getAttribute('data-item-id'),
                         qty = item.querySelector('.qty').innerText;
 
-                    item.querySelector('.quantity-selector i').addEventListener('click', () => {
-                        console.log('click plus/minus')
-                        qty = item.querySelector('.qty').innerText;
-                        sessionStorage.setItem('wasPopup', 'false');
+                    item.querySelector('.quantity-selector i').forEach( btn => {
+                        btn.addEventListener('click', () => {
+                            console.log('click plus/minus')
+                            qty = item.querySelector('.qty').innerText;
+                            sessionStorage.setItem('wasPopup', 'false');
+                        })
                     })
                     pushProducts(imgUrl, name, price, currency, id,qty, true);
                 })
