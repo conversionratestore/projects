@@ -3,8 +3,6 @@ let products = [],
     action,
     currency;
 
-localStorage.setItem('products', JSON.stringify(products));
-
 let objGeo = {
     '/uk.' : {
         'title': `It’s almost yours!<span>Only one step left:</span>`,
