@@ -64,12 +64,14 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
     }
     console.log('products last: ' + JSON.stringify(products))
 
-    let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
+    if (localStorage.getItem('updatedProducts')) {
+        let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
 
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id === updatedProducts[0].id) {
-            products[i].qty = +products[i].qty + +updatedProducts[0].qty;
-            localStorage.setItem('updatedProducts', '')
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].id === updatedProducts[0].id) {
+                products[i].qty = +products[i].qty + +updatedProducts[0].qty;
+                localStorage.setItem('updatedProducts', '')
+            }
         }
     }
 
