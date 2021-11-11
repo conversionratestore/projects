@@ -45,10 +45,8 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         'id': `${id}`,
         'qty': `${qty}`
     })
-    console.log('pushProducts: ' + products)
     if (localStorage.getItem('products') != null && localStorage.getItem('products') != '') {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
-        console.log('products: ' + products)
     }
 
     if (filter === true) {
@@ -61,18 +59,18 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
     } else {
         console.log('filter false')
     }
-    console.log('products last: ' + products)
 
     if (localStorage.getItem('updatedProducts') != '') {
         let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
 
         for (let i = 0; i < products.length; i++) {
+            console.log('products last: ' + products[i])
             if (products[i].id === updatedProducts[0].id) {
                 console.log(products[i].id === updatedProducts[0].id)
                 console.log(updatedProducts)
                 console.log("before", products[i].id + " : " + products[i].qty)
 
-                products[i].qty = +products[i].qty + +updatedProducts[0].qty
+                products[i].qty = updatedProducts[0].qty
                 console.log("after", products[i].id + " : " + products[i].qty)
 
                 localStorage.setItem('updatedProducts', '')
@@ -621,7 +619,7 @@ let mut = new MutationObserver(function (muts) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
-                                // qty = +productsLocalStorage[i].qty + +qty;
+                                qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
                                 updatedProducts.push({
                                     'id': `${id}`,
