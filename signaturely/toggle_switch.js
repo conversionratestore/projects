@@ -30,3 +30,12 @@ window.hj =
     ;(hj.q = hj.q || []).push(arguments)
   }
 hj("event", "signaturely_toggle_switch")
+
+document.querySelector(".elementor-83 .elementor-element.elementor-element-c7ccc5e .uael-rbs-slider").addEventListener("click", () => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - Signaturely toggle switch",
+    eventAction: "Click on switcher",
+  })
+})
