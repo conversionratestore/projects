@@ -597,7 +597,8 @@ let mut = new MutationObserver(function (muts) {
                         qty = document.querySelector('#qty-input').value;
                     console.log('qty1: ' + qty)
                     if (localStorage.getItem('products')) {
-                        let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
+                            count;
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
@@ -605,9 +606,13 @@ let mut = new MutationObserver(function (muts) {
                                 console.log('productsLocalStorage: ' + productsLocalStorage[i])
                                 console.log('products: ' + products[i])
                                 spliceProduct(productsLocalStorage,i);
+                                count = i;
                                 pushProducts(imgUrl,name,price,currency,id,qty,true);
                             }
                             console.log('qty3: ' + qty)
+                        }
+                        if (!!count) {
+                            spliceProduct(productsLocalStorage,count);
                         }
                     }
 
