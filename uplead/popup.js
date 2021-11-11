@@ -270,12 +270,6 @@ function showPopup() {
 }
 
 function closeModal(e) {
-	console.log(e.target)
-
-	console.log(e.target.matches('.modal-custom'))
-	console.log(e.target.matches('.popup-custom svg'))
-
-
 	if (e.target.matches('.modal-custom') || e.target.matches('.popup-custom .svg-wrapper')) {
 		document.querySelector('.modal-custom').remove()
 
@@ -300,8 +294,6 @@ function closeModal(e) {
 }
 
 function clickOnBtn() {
-	console.log('clicked on btn')
-
 	location.href = '/subscriptions'
 
 	window.dataLayer = window.dataLayer || []
