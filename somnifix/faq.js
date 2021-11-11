@@ -306,7 +306,9 @@ let faq = /*html*/ `
 </section>`
 
 document.body.insertAdjacentHTML("afterbegin", style)
-document.querySelector("#money_back").insertAdjacentHTML("beforebegin", faq)
+if (document.querySelector("#money_back")) {
+  document.querySelector("#money_back").insertAdjacentHTML("beforebegin", faq)
+}
 
 $("[data-controls]").click(function () {
   let numberQuestion = $(this).closest("li").index() + 1
