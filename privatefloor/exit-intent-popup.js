@@ -602,6 +602,8 @@ let mut = new MutationObserver(function (muts) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
+                                console.log('productsLocalStorage: ' + productsLocalStorage)
+                                console.log('products: ' + products)
                                 spliceProduct(productsLocalStorage,i)
                             }
                             console.log('qty3: ' + qty)
