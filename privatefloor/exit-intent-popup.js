@@ -595,6 +595,7 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart')) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
+                    e.stopImmediatePropagation();
                     let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
