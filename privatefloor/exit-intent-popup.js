@@ -50,7 +50,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
         console.log('products: ' + JSON.stringify(products))
     }
-  
+
     if (filter === true) {
         console.log('filter true')
         products = products.filter((thing, index, self) =>
@@ -63,6 +63,15 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
         console.log('filter false')
     }
     console.log('products last: ' + JSON.stringify(products))
+
+    let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
+
+    for (let i = 0; i < products.length; i++) {
+        if (products[i].id === updatedProducts[0].id) {
+            products[i].qty = +products[i].qty + updatedProducts[0].qty;
+            localStorage.wetItem('updatedProducts', '')
+        }
+    }
 
     localStorage.setItem('products', JSON.stringify(products));
 }
@@ -600,23 +609,20 @@ let mut = new MutationObserver(function (muts) {
                         id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                         qty = document.querySelector('#qty-input').value;
                     console.log('qty1: ' + qty)
+                    let updatedProducts = [];
                     if (localStorage.getItem('products')) {
-                        let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
-                            count;
+                        let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                console.log('productsLocalStorage: ' + productsLocalStorage[i].id)
-                                console.log('products: ' + products[i].id)
-                                spliceProduct(productsLocalStorage,i);
-                                count = i;
-                                pushProducts(imgUrl,name,price,currency,id,qty,true);
+                                updatedProducts.push({
+                                    'id': `${id}`,
+                                    'qty': `${qty}`
+                                })
+                                localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
                             }
                             console.log('qty3: ' + qty)
-                        }
-                        if (!!count) {
-                            spliceProduct(productsLocalStorage,count);
                         }
                     }
 
