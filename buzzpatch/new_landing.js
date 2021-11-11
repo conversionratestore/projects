@@ -851,9 +851,84 @@ let styleNewLanding = /*html*/ `
 
     #featured-reviews > a{
         margin-top: 40px;
-    }   
+    }
+    
+    /* */
 
+    .by_op_daily{
+        margin: 56px 0;
+    }
+
+    .by_op_daily p{
+        font-family: 'DINEngschrift LT', sans-serif;
+        font-weight: 400;
+        font-size: 26px !important;
+        line-height: 110% !important;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #0C0B0B;
+        margin-bottom: 28px !important;
+    }
+
+    .by_op_daily p > a{
+        color: #FF3C7F !important;
+    }
+
+    .by_op_daily > span{
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130%;
+        text-align: center;
+        color: #0C0B0B;
+        margin-right: 10px;
+    }
+
+    .by_op_daily img{
+        object-fit: cover;
+        max-width: 296px !important;
+    }
+
+    @media (max-width: 320px) {
+        .by_op_daily p{
+            font-size: 22px !important;
+        }
+
+        .by_op_daily img{
+            object-fit: cover;
+            max-width: 235px !important;
+        }
+    }
 </style>
+`
+
+let oD = /*html*/ `
+<div class="by_op_daily">
+    <p>Buzzpatch was included in <a href="https://www.oprahdaily.com/life/g38025636/11-gifts-every-mom-will-appreciate/" target="_blank">
+         “11 Gifts Every Mom Will Appreciate”</a></p>
+    <span>by</span>
+    <img src="https://conversionratestore.github.io/projects/buzzpatch/img/name.png" alt="by Oprah Daily">
+    <ul>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_2.png" alt="">
+                <p class="accent_var">Maria Drew</p>
+                <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
+                <span>Verified Buyer</span>
+            </li>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_1.png" alt="">
+                <p class="accent_var">Joanne</p>
+                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
+                <span>Verified Buyer</span>
+            </li>
+            <li>
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_3.png" alt="">
+                <p class="accent_var">Jodie N.M.</p>
+                <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
+                <span>Verified Buyer</span>
+            </li>
+    </ul>
+</div>
 `
 
 let navBlock = /*html*/ `
@@ -890,26 +965,12 @@ let blockAllergies = /*html*/ `
     </div>
     <div>
         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/logo_winner.png" alt="">
-        <ul>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_2.png" alt="">
-                <p class="accent_var">Maria Drew</p>
-                <p>Great product! No more tears and fights when applying bug spray. My 1 year old didn’t even know it happened.</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_1.png" alt="">
-                <p class="accent_var">Joanne</p>
-                <p>These are amazing, they really work! I'm a magnet for mosquitoes and didn't get bit once :)</p>
-                <span>Verified Buyer</span>
-            </li>
-            <li>
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/verified_buyer_3.png" alt="">
-                <p class="accent_var">Jodie N.M.</p>
-                <p>Excellent product will keep ordering. Works wonders on my grandson who is allergic. Thank you buzz patch.</p>
-                <span>Verified Buyer</span>
-            </li>
-        </ul>
+        <div class="by_op_daily">
+            <p>Buzzpatch was included in <a href="https://www.oprahdaily.com/life/g38025636/11-gifts-every-mom-will-appreciate/" target="blank">
+                “11 Gifts Every Mom Will Appreciate”</a></p>
+            <span>by</span>
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/name.png" alt="by Oprah Daily">
+        </div>        
     </div>
     <a href="#getNow" class="button_custom">Keep mosquitos at bay</a>
 </section>
@@ -1183,7 +1244,7 @@ document.querySelector("#featured-reviews").insertAdjacentHTML("afterbegin", sli
 document.querySelector(".slider_nav").insertAdjacentHTML("afterend", `<a href="#getNow" class="button_custom">Keep mosquitos at bay</a>`)
 
 // btn
-scrolling(".block_as_seen_on a", "Click on Keep Mosqitos At Bay button1")
+scrolling(".block_as_seen_on > a", "Click on Keep Mosqitos At Bay button1")
 scrolling(".compar_block a", "Click on Keep Mosqitos At Bay button2")
 scrolling("#featured-reviews div a", "Click on Keep Mosqitos At Bay button3")
 scrolling("#featured-reviews > a", "Click on Keep Mosqitos At Bay button4")
@@ -1275,6 +1336,17 @@ setTimeout(() => {
     })
   })
 }, 100)
+
+//
+document.querySelector(".by_op_daily p > a").addEventListener("click", () => {
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp - LP AB test",
+    eventAction: "Click on link text byOprahDaily",
+    eventLabel: `Link text byOprahDaily`,
+  })
+})
 
 // Clicks on Trust Pilot
 document.querySelector(".nav_block div:last-child a").addEventListener("click", () => {
