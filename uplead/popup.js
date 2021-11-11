@@ -123,6 +123,7 @@ const style = `
 			position: absolute;
 			top: 4%;
 			right: 4%;
+			cursor: pointer;
 		}
 		
 		.popup-custom svg path {
@@ -132,7 +133,7 @@ const style = `
 		.popup-custom svg {			
 			height: 15px;
 			width: 15px;			
-			cursor: pointer;
+			
 			transition: all 0.3s ease;
 		}
 		
