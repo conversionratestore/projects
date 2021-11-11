@@ -50,6 +50,7 @@ const style = `
 			color: #14142B;
 			font-size: 38px;
 			line-height: 45px;
+			z-index: 0;
 		}
 		
 		.popup-custom .title .styled{
@@ -66,6 +67,7 @@ const style = `
 		    right: 0;
 		    top: 50%;
 		    width: 106%;
+		    z-index: -1;
 		}	
 		
 		.popup-custom .subtitle {
@@ -279,8 +281,6 @@ function showPopup() {
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
 }
-
-
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
