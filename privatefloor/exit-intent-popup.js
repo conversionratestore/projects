@@ -50,19 +50,18 @@ function pushProducts(imgUrl,name,price,currency,id,qty) {
         products = [...products,...JSON.parse(localStorage.getItem('products'))]
     }
 
-    products = products.filter((thing, index, self) =>
-        index === self.findIndex((t) => (
-            t.place === thing.place && t.id === thing.id
-            )
-         )
-    )
-
     localStorage.setItem('products', JSON.stringify(products));
 }
 
 function addProduct() {
     let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
         total = 0;
+
+    productsLocalStorage = productsLocalStorage.filter((thing, index, self) =>
+        index === self.findIndex((t) => (
+            t.place === thing.place && t.id === thing.id
+        ))
+    )
 
     document.querySelector('.popup_slider').innerHTML = ``;
 
@@ -598,7 +597,7 @@ let mut = new MutationObserver(function (muts) {
                             if (productsLocalStorage[i].id === id) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
-                                pushProducts(imgUrl,name,price,currency,id,qty);
+                                // pushProducts(imgUrl,name,price,currency,id,qty);
                             }
                             console.log('qty3: ' + qty)
 
