@@ -609,13 +609,16 @@ let mut = new MutationObserver(function (muts) {
                                 qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
                                 pushProducts(imgUrl,name,price,currency,id,qty,false);
+                            } else {
+                                pushProducts(imgUrl,name,price,currency,id,qty,false);
                             }
                             console.log('qty3: ' + qty)
                         }
+                    } else {
+                        pushProducts(imgUrl,name,price,currency,id,qty,true);
                     }
                     console.log('qty4: ' + qty)
                     sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,qty,true);
                 })
             }
         }
