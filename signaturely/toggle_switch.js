@@ -33,12 +33,29 @@ hj("event", "signaturely_toggle_switch")
 
 setTimeout(() => {
   document.querySelector(".elementor-83 .elementor-element.elementor-element-c7ccc5e .uael-rbs-slider").addEventListener("click", () => {
-    console.log("click")
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp - Signaturely toggle switch",
       eventAction: "Click on switcher",
+    })
+  })
+
+  document.querySelector(".uael-sec-2").addEventListener("click", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - Signaturely toggle switch",
+      eventAction: "Click on switcher Monthly",
+    })
+  })
+
+  document.querySelector(".uael-sec-1").addEventListener("click", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - Signaturely toggle switch",
+      eventAction: "Click on switcher Annually",
     })
   })
 }, 200)
