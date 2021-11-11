@@ -172,10 +172,10 @@ let btnInterval = setInterval(() => {
 }, 500)
 
 let show75 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent75' && !localStorage.getItem('show75')) {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent75' && !sessionStorage.getItem('show75')) {
 		clearInterval(show75)
 
-		localStorage.setItem('show75', 'true');
+		sessionStorage.setItem('show75', 'true');
 
 		showPopup()
 
@@ -189,10 +189,10 @@ let show75 = setInterval(() => {
 }, 200)
 
 let show90 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent90' && !localStorage.getItem('show90')) {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent90' && !sessionStorage.getItem('show90')) {
 		clearInterval(show90)
 
-		localStorage.setItem('show90', 'true');
+		sessionStorage.setItem('show90', 'true');
 
 		showPopup()
 
@@ -206,10 +206,10 @@ let show90 = setInterval(() => {
 }, 200)
 
 let show100 = setInterval(() => {
-	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent100' && !localStorage.getItem('show100')) {
+	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent100' && !sessionStorage.getItem('show100')) {
 		clearInterval(show100)
 
-		localStorage.setItem('show100', 'true');
+		sessionStorage.setItem('show100', 'true');
 
 		showPopup()
 
