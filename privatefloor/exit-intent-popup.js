@@ -63,7 +63,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
     }
     console.log('products last: ' + products)
 
-    if (localStorage.getItem('updatedProducts')) {
+    if (localStorage.getItem('updatedProducts') != '') {
         let updatedProducts = JSON.parse(localStorage.getItem('updatedProducts'));
 
         for (let i = 0; i < products.length; i++) {
