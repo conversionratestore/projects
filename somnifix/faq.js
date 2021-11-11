@@ -1,4 +1,5 @@
-let style = /*html*/ `
+window.onload = function () {
+  let style = /*html*/ `
  <style>
 
 .has-padding-top{
@@ -91,7 +92,7 @@ let style = /*html*/ `
   </style>
 `
 
-let faq = /*html*/ `
+  let faq = /*html*/ `
 <section class="containerFaq">
     <h2>FAQ</h2>
     <ul>
@@ -305,74 +306,73 @@ let faq = /*html*/ `
       </ul>
 </section>`
 
-document.body.insertAdjacentHTML("afterbegin", style)
-if (document.querySelector("#money_back")) {
+  document.body.insertAdjacentHTML("afterbegin", style)
   document.querySelector("#money_back").insertAdjacentHTML("beforebegin", faq)
-}
 
-$("[data-controls]").click(function () {
-  let numberQuestion = $(this).closest("li").index() + 1
+  $("[data-controls]").click(function () {
+    let numberQuestion = $(this).closest("li").index() + 1
 
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp — PDP add FAQ",
-    eventAction: "Click on question on FAQ block",
-    eventLabel: `number question ${numberQuestion}`,
-  })
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — PDP add FAQ",
+      eventAction: "Click on question on FAQ block",
+      eventLabel: `number question ${numberQuestion}`,
+    })
 
-  $(this).closest("li").toggleClass("show")
-  if ($(this).closest("li").hasClass("show")) {
-    $(this).closest("li").find(".textFaq").slideDown()
-  } else {
-    $(this).closest("li").find(".textFaq").slideUp()
-  }
-})
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp — PDP add FAQ",
-  eventAction: "loaded",
-})
-;(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      ;(h.hj.q = h.hj.q || []).push(arguments)
+    $(this).closest("li").toggleClass("show")
+    if ($(this).closest("li").hasClass("show")) {
+      $(this).closest("li").find(".textFaq").slideDown()
+    } else {
+      $(this).closest("li").find(".textFaq").slideUp()
     }
-  h._hjSettings = { hjid: 1271698, hjsv: 6 }
-  a = o.getElementsByTagName("head")[0]
-  r = o.createElement("script")
-  r.async = 1
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-  a.appendChild(r)
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-window.hj =
-  window.hj ||
-  function () {
-    ;(hj.q = hj.q || []).push(arguments)
-  }
-hj("trigger", "pdp_add_faq")
+  })
 
-//observer
-const options = {
-  root: null,
-  threshold: 0.5,
-}
-
-let containerFaq = document.querySelector(".containerFaq")
-let observer = new IntersectionObserver((entries) => {
-  if (!entries[0].isIntersecting) return
-  //
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
     event: "event-to-ga",
     eventCategory: "Exp — PDP add FAQ",
-    eventAction: "Visibility FAQ block",
+    eventAction: "loaded",
+  })
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 1271698, hjsv: 6 }
+    a = o.getElementsByTagName("head")[0]
+    r = o.createElement("script")
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+  window.hj =
+    window.hj ||
+    function () {
+      ;(hj.q = hj.q || []).push(arguments)
+    }
+  hj("trigger", "pdp_add_faq")
+
+  //observer
+  const options = {
+    root: null,
+    threshold: 0.5,
+  }
+
+  let containerFaq = document.querySelector(".containerFaq")
+  let observer = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) return
+    //
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp — PDP add FAQ",
+      eventAction: "Visibility FAQ block",
+    })
+
+    observer.disconnect()
   })
 
-  observer.disconnect()
-})
-
-observer.observe(containerFaq, options)
+  observer.observe(containerFaq, options)
+}
