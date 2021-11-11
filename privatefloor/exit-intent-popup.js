@@ -70,9 +70,10 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
             if (products[i].id === updatedProducts[0].id) {
                 console.log(products[i].id === updatedProducts[0].id)
                 console.log(updatedProducts)
+                console.log("before", products[i].id + " : " + products[i].qty)
 
-                products[i].qty = +products[i].qty + +updatedProducts[0].qty;
-                console.log(products[i].id + " : " + products[i].qty)
+                products[i].qty = +products[i].qty + +updatedProducts[0].qty
+                console.log("after", products[i].id + " : " + products[i].qty)
 
                 localStorage.setItem('updatedProducts', '')
             }
