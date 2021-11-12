@@ -624,6 +624,7 @@ let mut = new MutationObserver(function (muts) {
                                     'id': `${id}`,
                                     'qty': `${qty}`
                                 })
+                                console.log('updatedProducts',updatedProducts)
                                 localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
                             }
                             console.log('qty3: ' + qty)
