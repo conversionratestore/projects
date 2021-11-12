@@ -603,36 +603,38 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
+                    let count = 0;
                     console.log('click', e.target)
-                    let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
-                        name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
-                        price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
-                        id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
-                        qty = document.querySelector('#qty-input').value;
-                    console.log('qty1: ' + qty)
-                    let updatedProducts = [];
-                    if (localStorage.getItem('products')) {
-                        let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].id === id) {
-                                console.log('qty2: ' + qty)
-                                updatedProducts.push({
-                                    'id': `${id}`,
-                                    'qty': `${qty}`
-                                })
-                                console.log('updatedProducts',updatedProducts)
-                                localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
+                    if (count === 0) {
+                        let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
+                            name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
+                            price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
+                            id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
+                            qty = document.querySelector('#qty-input').value;
+                        console.log('qty1: ' + qty)
+                        let updatedProducts = [];
+                        if (localStorage.getItem('products')) {
+                            let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].id === id) {
+                                    console.log('qty2: ' + qty)
+                                    updatedProducts.push({
+                                        'id': `${id}`,
+                                        'qty': `${qty}`
+                                    })
+                                    console.log('updatedProducts',updatedProducts)
+                                    localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
 
+                                }
+                                console.log('qty3: ' + qty)
                             }
-                            console.log('qty3: ' + qty)
                         }
+                        console.log('qty4: ' + qty)
+                        sessionStorage.setItem('wasPopup', 'false');
+                        pushProducts(imgUrl,name,price,currency,id,qty,true);
+                        count++
                     }
-                    console.log('qty4: ' + qty)
-                    sessionStorage.setItem('wasPopup', 'false');
-                    pushProducts(imgUrl,name,price,currency,id,qty,true);
-
                     // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
-
                 })
             }
         }
