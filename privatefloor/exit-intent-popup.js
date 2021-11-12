@@ -638,6 +638,10 @@ let mut = new MutationObserver(function (muts) {
                     // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
                 })
             }
+            if (document.querySelector('.mfp-content') && document.querySelector('#popup-add-item-cart') != null) {
+                mut.disconnect()
+                count = 0;
+            }
         }
     }
 
