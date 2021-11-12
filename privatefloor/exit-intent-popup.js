@@ -588,6 +588,26 @@ function removeProductDesktop(item) {
     })
 }
 
+function addQtyProducts(qty) {
+    let updatedProducts = [];
+    if (localStorage.getItem('products')) {
+        let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+        for (let i = 0; i < productsLocalStorage.length; i++) {
+            if (productsLocalStorage[i].id === id) {
+                console.log('qty2: ' + qty)
+                qty = +qty + +productsLocalStorage[i].qty
+                updatedProducts.push({
+                    'id': `${id}`,
+                    'qty': `${qty}`
+                })
+                console.log('updatedProducts',updatedProducts)
+                localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
+
+            }
+            console.log('qty3: ' + qty)
+        }
+    }
+}
 if (document.querySelector('.cartbtn #count_product_in_cart') && document.querySelector('.cartbtn #count_product_in_cart').innerText == '0') {
     localStorage.setItem('products', '');
 }
@@ -618,10 +638,12 @@ let mut = new MutationObserver(function (muts) {
                 let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
                     name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
                     price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
-                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm');
-
+                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
+                    qty = document.querySelector('#product-quantity').innerText;
+                addQtyProducts(qty)
                 sessionStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,false);
+                count++
             })
         } else {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
@@ -635,24 +657,7 @@ let mut = new MutationObserver(function (muts) {
                             id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                             qty = document.querySelector('#qty-input').value;
                         console.log('qty1: ' + qty)
-                        let updatedProducts = [];
-                        if (localStorage.getItem('products')) {
-                            let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                            for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].id === id) {
-                                    console.log('qty2: ' + qty)
-                                    qty = +qty + +productsLocalStorage[i].qty
-                                    updatedProducts.push({
-                                        'id': `${id}`,
-                                        'qty': `${qty}`
-                                    })
-                                    console.log('updatedProducts',updatedProducts)
-                                    localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
-
-                                }
-                                console.log('qty3: ' + qty)
-                            }
-                        }
+                        addQtyProducts(qty)
                         console.log('qty4: ' + qty)
                         sessionStorage.setItem('wasPopup', 'false');
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
