@@ -68,7 +68,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
                 console.log(updatedProducts)
                 console.log("before", products[i].id + " : " + products[i].qty)
 
-                products[i].qty = +updatedProducts[0].qty + +products[i].qty;
+                products[i].qty = updatedProducts[0].qty ;
                 console.log("after", products[i].id + " : " + products[i].qty)
 
                 localStorage.setItem('updatedProducts', '')
@@ -618,6 +618,7 @@ let mut = new MutationObserver(function (muts) {
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].id === id) {
                                     console.log('qty2: ' + qty)
+                                    qty = +qty + +productsLocalStorage[i].qty
                                     updatedProducts.push({
                                         'id': `${id}`,
                                         'qty': `${qty}`
