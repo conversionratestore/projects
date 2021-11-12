@@ -4,12 +4,20 @@ let products = [],
     currency,
     count = 0,
     today = new Date();
-//
-// if (!localStorage.getItem('todayItem')) {
-//     localStorage.setItem('todayItem', JSON.stringify(today))
-// } else {
-//
-// }
+
+today = today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+
+if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == null) {
+    localStorage.setItem('todayItem', JSON.stringify(today))
+    console.log(JSON.parse(localStorage.getItem('todayItem')))
+} else {
+    let dayStorage = JSON.parse(localStorage.getItem('todayItem'))
+    console.log(dayStorage)
+    if (dayStorage !== today) {
+        localStorage.setItem('todayItem', JSON.stringify(today))
+    }
+    console.log(JSON.parse(localStorage.getItem('todayItem')))
+}
 
 let objGeo = {
     '/uk.' : {
@@ -176,7 +184,7 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         height: 100%;
         overflow-y: auto;
         display: inline-flex;
-        z-index: 9999;
+        z-index: 999999999!important;
         font-family: "Arial", sans-serif;
         opacity: 0;
         pointer-events: none;
