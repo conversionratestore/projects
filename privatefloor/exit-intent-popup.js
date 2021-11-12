@@ -782,6 +782,7 @@ let mut = new MutationObserver(function (muts) {
             })
 
             addEvent(document.body, 'mouseout', function(evt) {
+                console.log(evt.relatedTarget)
                 if (evt.relatedTarget == null) {// evt.toElement == null &&
                     console.log(evt.relatedTarget)
                     let productsLocalStorage, wasPopup;
