@@ -781,11 +781,11 @@ let mut = new MutationObserver(function (muts) {
                 pushDataLayer(action);
             })
 
-            addEvent(document, 'mouseleave', function(evt) {
-                console.log('mouseleave')
-                // if (evt.toElement == null && evt.relatedTarget == null) {
-                //     console.log(evt.toElement)
-                //     console.log(evt.relatedTarget)
+            addEvent(document, 'mouseout', function(evt) {
+                console.log('mouseout')
+                if (evt.toElement == null) {// && evt.relatedTarget == null
+                    console.log(evt.toElement)
+                    // console.log(evt.relatedTarget)
                     let productsLocalStorage, wasPopup;
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
@@ -804,7 +804,7 @@ let mut = new MutationObserver(function (muts) {
                         document.querySelector('.popup_exit_intent').classList.add('active');
                         sessionStorage.setItem('wasPopup', 'true');
                     }
-                // }
+                }
             })
         }
     }
