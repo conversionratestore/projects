@@ -693,7 +693,7 @@ let mut = new MutationObserver(function (muts) {
 
     mut.observe(document, optionMut);
 
-    if(JSON.parse(localStorage.getItem('products')) && JSON.parse(localStorage.getItem('products')) != null && JSON.parse(localStorage.getItem('products')) != ''){
+    if(localStorage.getItem('products') && localStorage.getItem('products') != null && localStorage.getItem('products') != ''){
         if (detectMob() == true) {
             mut.disconnect()
             document.body.classList.add('js-mobile');
