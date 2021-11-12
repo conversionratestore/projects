@@ -626,6 +626,7 @@ let mut = new MutationObserver(function (muts) {
                                 })
                                 console.log('updatedProducts',updatedProducts)
                                 localStorage.setItem('updatedProducts', JSON.stringify(updatedProducts));
+                                break;
                             }
                             console.log('qty3: ' + qty)
                         }
