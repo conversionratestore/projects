@@ -603,12 +603,9 @@ let mut = new MutationObserver(function (muts) {
                 pushProducts(imgUrl,name,price,currency,id,false);
             })
         } else {
-            if (document.querySelector('#btn-add-item-cart')) {
+            if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    console.log('click')
-                    // e.stopImmediatePropagation()
-                    // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
                     let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
@@ -633,10 +630,12 @@ let mut = new MutationObserver(function (muts) {
                             console.log('qty3: ' + qty)
                         }
                     }
-
                     console.log('qty4: ' + qty)
                     sessionStorage.setItem('wasPopup', 'false');
                     pushProducts(imgUrl,name,price,currency,id,qty,true);
+
+                    // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
+
                 })
             }
         }
