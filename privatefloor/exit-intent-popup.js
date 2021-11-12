@@ -604,7 +604,6 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    console.log('click', e.target)
                     if (count === 0) {
                         console.log(count)
                         let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
