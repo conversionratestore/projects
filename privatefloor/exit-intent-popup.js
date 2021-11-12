@@ -781,8 +781,8 @@ let mut = new MutationObserver(function (muts) {
                 pushDataLayer(action);
             })
 
-            addEvent(document, 'onmouseleave', function(evt) {
-                console.log('onmouseleave')
+            addEvent(document, 'mouseout', function(evt) {
+                console.log('mouseout')
                 // if (evt.toElement == null && evt.relatedTarget == null) {
                 //     console.log(evt.toElement)
                 //     console.log(evt.relatedTarget)
