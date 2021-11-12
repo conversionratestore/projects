@@ -2,7 +2,14 @@ let products = [],
     haveLink = false,
     action,
     currency,
-    count = 0;
+    count = 0,
+    today = new Date();
+//
+// if (!localStorage.getItem('todayItem')) {
+//     localStorage.setItem('todayItem', JSON.stringify(today))
+// } else {
+//
+// }
 
 let objGeo = {
     '/uk.' : {
@@ -12,6 +19,14 @@ let objGeo = {
         'textBtn': 'complete my order now',
         'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
         'currency': '£'
+    },
+    '/pt.' : {
+        'title': `It’s almost yours!<span>Only one step left:</span>`,
+        'textTotal': 'Total',
+        'text': 'We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now',
+        'textBtn': 'complete my order now',
+        'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
+        'currency': '€'
     }
 };
 
