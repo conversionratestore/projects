@@ -41,7 +41,7 @@ function resData(data) {
                             <p class="sum"></p>
                         </div>
                     </div>
-                    <a href="https://medicalmega.com/reorder/${data.number}" class="btn-reorder">Reorder</a>
+                    <button type="button" class="btn-reorder">Reorder</button>
                 </div>
                 <a href="https://medicalmega.com/myaccount/orderhistory" class="show-more">Show more Orders</a>
             </div>`);
@@ -57,6 +57,17 @@ function resData(data) {
                 action = 'Click on Reorder button';
                 label = 'PL section Your recent orders';
                 pushDataLayer(action,label)
+                document.querySelectorAll('.gallery-parent.ordered .product-card').forEach(el => {
+                    fetch('/cart.html', {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: "POST",
+                        body: `product_variant_id=${el.getAttribute('data-product-variant-id')}&quantity=${el.querySelector('.add-to-cart input').value}&product_id=${el.getAttribute('data-product-id')}&add_to_cart=variant`
+                    }).then(res => {
+                        window.location.pathname = '/cart.html'
+                    });
+                })
             })
         }
 
