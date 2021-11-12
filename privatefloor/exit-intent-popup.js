@@ -67,7 +67,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
                 console.log(updatedProducts)
                 console.log("before", products[i].id + " : " + products[i].qty)
 
-                products[i].qty = updatedProducts[0].qty + products[i].qty;
+                products[i].qty = +updatedProducts[0].qty + +products[i].qty;
                 console.log("after", products[i].id + " : " + products[i].qty)
 
                 localStorage.setItem('updatedProducts', '')
