@@ -1,7 +1,8 @@
 let products = [],
     haveLink = false,
     action,
-    currency;
+    currency,
+    count = 0;
 
 let objGeo = {
     '/uk.' : {
@@ -603,9 +604,9 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
-                    let count = 0;
                     console.log('click', e.target)
                     if (count === 0) {
+                        console.log(count)
                         let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
                             name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                             price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
