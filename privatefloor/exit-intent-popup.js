@@ -50,14 +50,11 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
     }
 
     if (filter === true) {
-        console.log('filter true')
         products = products.filter((thing, index, self) =>
             index === self.findIndex((t) => (
                 t.place === thing.place && t.id === thing.id
             ))
         )
-    } else {
-        console.log('filter false')
     }
 
     if (localStorage.getItem('updatedProducts') != '' && localStorage.getItem('updatedProducts') != null) {
@@ -70,7 +67,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
                 console.log(updatedProducts)
                 console.log("before", products[i].id + " : " + products[i].qty)
 
-                products[i].qty = updatedProducts[0].qty
+                products[i].qty = updatedProducts[0].qty + products[i].qty;
                 console.log("after", products[i].id + " : " + products[i].qty)
 
                 localStorage.setItem('updatedProducts', '')
@@ -606,6 +603,7 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
+                    console.log('click')
                     let imgUrl = document.querySelector('.slide.selected img').getAttribute('data-mobile-src'),
                         name = document.querySelector('.slide.selected img').getAttribute('data-name-gtm'),
                         price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
@@ -617,7 +615,6 @@ let mut = new MutationObserver(function (muts) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].id === id) {
-                                qty = +productsLocalStorage[i].qty + +qty;
                                 console.log('qty2: ' + qty)
                                 updatedProducts.push({
                                     'id': `${id}`,
@@ -683,7 +680,6 @@ let mut = new MutationObserver(function (muts) {
 
                     item.querySelectorAll('.quantity-selector i').forEach( btn => {
                         btn.addEventListener('click', () => {
-                            console.log('click plus/minus')
                             qty = item.querySelector('.qty').innerText;
                             sessionStorage.setItem('wasPopup', 'false');
                         })
