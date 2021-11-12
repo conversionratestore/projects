@@ -782,11 +782,8 @@ let mut = new MutationObserver(function (muts) {
             })
 
             addEvent(document.body, 'mouseout', function(evt) {
-                console.log('mouseout')
-                console.log(evt.relatedTarget)
                 if (evt.relatedTarget == null) {// evt.toElement == null &&
-                    console.log(evt.toElement)
-                    // console.log(evt.relatedTarget)
+                    console.log(evt.relatedTarget)
                     let productsLocalStorage, wasPopup;
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
