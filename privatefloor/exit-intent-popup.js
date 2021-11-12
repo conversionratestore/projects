@@ -635,6 +635,7 @@ let mut = new MutationObserver(function (muts) {
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
                         count++
                     }
+                    console.log(count)
                     // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
                 })
             }
