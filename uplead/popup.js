@@ -290,7 +290,7 @@ function closeModal(e) {
 			})
 		}
 
-		if (e.target.matches('.popup-custom svg')) {
+		if (e.target.matches('.popup-custom .svg-wrapper')) {
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
