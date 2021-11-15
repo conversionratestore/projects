@@ -674,7 +674,6 @@ let mut = new MutationObserver(function (muts) {
                         count++
                     }
                     console.log(count)
-                    // setPreviewAddToCart(document.querySelector('.slide.selected img'), response.body);
                 })
             }
             if (document.querySelector('.mfp-content') && document.querySelector('#popup-add-item-cart') != null && window.location.pathname.includes('/catalog/product')) {
