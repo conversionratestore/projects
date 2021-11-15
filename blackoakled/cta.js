@@ -16,6 +16,7 @@ let style = `
         margin-bottom: 10px;
         padding: 12px;
         text-align: center;
+        cursor: pointer;
       }
       
       .new_cta .info {
@@ -89,8 +90,4 @@ dataLayer.push({
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('event', 'pdp_shoppay');
-
-
-
-
 
