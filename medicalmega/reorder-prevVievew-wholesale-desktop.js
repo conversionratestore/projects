@@ -148,10 +148,12 @@ function addToCart() {
                         action = 'Click on add to cart button';
                         label = 'PL section Your recent orders';
                     }
-                }
-                if (item.closest('.viewed')) {
+                } else if (item.closest('.viewed')) {
                     action = 'Click on add to cart button';
                     label = 'PL section Recently viewed Products';
+                } else {
+                    action = 'Click on add to cart button';
+                    label = 'PL section';
                 }
                 pushDataLayer(action,label)
             });
@@ -165,6 +167,26 @@ function addToCart() {
             });
         });
     }
+    document.querySelectorAll('.product-card a').forEach( (item) => {
+        item.addEventListener('click', () => {
+            if (item.closest('.ordered')) {
+                if (window.location.pathname.includes('/product')) {
+                    action = 'Click on product';
+                    label = 'PDP section Recently viewed Products';
+                } else {
+                    action = 'Click on product';
+                    label = 'PL section Your recent orders';
+                }
+            } else if (item.closest('.viewed')) {
+                action = 'Click on product';
+                label = 'PL section Recently viewed Products';
+            } else {
+                action = 'Click on product';
+                label = 'PL section';
+            }
+            pushDataLayer(action,label)
+        });
+    });
 
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
