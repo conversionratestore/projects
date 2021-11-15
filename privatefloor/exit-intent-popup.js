@@ -601,7 +601,7 @@ function removeProductDesktop(item) {
     })
 }
 
-function addQtyProducts(qty) {
+function addQtyProducts(qty,id) {
     let updatedProducts = [];
     if (localStorage.getItem('products')) {
         let productsLocalStorage = JSON.parse(localStorage.getItem('products'));
@@ -652,7 +652,7 @@ let mut = new MutationObserver(function (muts) {
                     price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
                     qty = document.querySelector('#product-quantity').innerText;
-                addQtyProducts(qty)
+                addQtyProducts(qty,id)
                 pushProducts(imgUrl,name,price,currency,id,false);
                 count++
             })
@@ -668,7 +668,7 @@ let mut = new MutationObserver(function (muts) {
                             id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                             qty = document.querySelector('#qty-input').value;
                         console.log('qty1: ' + qty)
-                        addQtyProducts(qty)
+                        addQtyProducts(qty,id)
                         console.log('qty4: ' + qty)
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
                         count++
@@ -721,9 +721,15 @@ let mut = new MutationObserver(function (muts) {
                     products = [];
                     let imgUrl = item.querySelector('.preview img').getAttribute('src'),
                         name = item.querySelector('.title').innerText.split('\n')[0],
-                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, ''),
                         id = item.getAttribute('data-item-id'),
-                        qty = item.querySelector('.qty').innerText;
+                        qty = item.querySelector('.qty').innerText,
+                        price;
+
+                    if (window.location.href.includes('/de.') || window.location.href.includes('/it.')) {
+                        price = item.querySelector('.price').innerText.replace(',', '.').replace(currency, '');
+                    } else {
+                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, '');
+                    }
 
                     item.querySelectorAll('.quantity-selector i').forEach( btn => {
                         btn.addEventListener('click', () => {
