@@ -21,22 +21,34 @@ if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == n
 }
 
 let objGeo = {
+    '/www.' : {
+        'title': `C'EST PRESQUE A VOUS !<span>PLUS QU'UNE ÉTAPE :</span>`,
+        'text': `Nous ne pouvons garantir la disponibilité de tous les produits de votre panier ou de vos favoris si vous ne finalisez pas l'achat maintenant`,
+        'textBtn': 'TERMINER MA COMMANDE MAINTENANT',
+        'choiceText': `C'est un choix populaire, nous pourrions bientôt être en rupture de stock`,
+        'currency': '€'
+    },
     '/uk.' : {
         'title': `It’s almost yours!<span>Only one step left:</span>`,
-        'textTotal': 'Total',
         'text': 'We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now',
         'textBtn': 'complete my order now',
         'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
         'currency': '£'
     },
-    '/pt.' : {
-        'title': `It’s almost yours!<span>Only one step left:</span>`,
-        'textTotal': 'Total',
-        'text': 'We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now',
-        'textBtn': 'complete my order now',
-        'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
+    '/it.' : {
+        'title': `È QUASI TUO!<span>MANCA SOLO UN PASSO:</span>`,
+        'text': `Non possiamo garantirti la disponibilità di tutti i prodotti nel carrello o nei tuoi preferiti se non completi subito l'acquisto`,
+        'textBtn': 'COMPLETA IL MIO ORDINE ORA',
+        'choiceText': `Questa è una scelta popolare, potremmo esaurire presto le scorte`,
         'currency': '€'
-    }
+    },
+    '/de.' : {
+        'title': `ES IST FAST IHR!<span>NUR EIN SCHRITT NOCH:</span>`,
+        'text': 'Wir können die Verfügbarkeit aller Produkte in Ihrem Warenkorb oder Favoriten nicht garantieren, wenn Sie den Kauf nicht jetzt abschließen',
+        'textBtn': 'COMPLETA IL MIO ORDINE ORA',
+        'choiceText': `Dies ist eine beliebte Wahl, wir könnten bald ausverkauft sein`,
+        'currency': '€'
+    },
 };
 
 let optionMut = {
@@ -522,7 +534,7 @@ for (const [key, value] of Object.entries(objGeo)) {
                             <button class="btn_arrow btn_arrow_next" type="button"></button>
                         </div>
                         <div class="popup_total">
-                            <p>${value.textTotal}:</p>
+                            <p>Total:</p>
                             <p class="popup_total_price"></p>
                         </div>
                     </div>
