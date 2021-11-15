@@ -646,18 +646,28 @@ let mut = new MutationObserver(function (muts) {
 
     if (window.location.pathname.includes('/catalog/product')) {
         if (detectMob() == true && document.querySelector('.btn-atc')) {
-            mut.disconnect()
-            document.querySelector('.btn-atc').addEventListener('click', (e) => {
-                let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
-                    name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
-                    price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
-                    id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
-                    qty = document.querySelector('#product-quantity').innerText;
-                addQtyProducts(qty,id)
-                localStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,qty,true);
-                count++
-            })
+            if (document.querySelector('.btn-atc') && document.querySelector('.btn-atc') != null) {
+                mut.disconnect()
+                document.querySelector('.btn-atc').addEventListener('click', (e) => {
+                    if (count === 0) {
+                        let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
+                            name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
+                            price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
+                            id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
+                            qty = document.querySelector('#product-quantity').innerText;
+                        addQtyProducts(qty, id)
+                        localStorage.setItem('wasPopup', 'false');
+                        pushProducts(imgUrl, name, price, currency, id, qty, true);
+                        count++
+                    }
+                })
+            }
+            if (document.querySelector('.alert-cart') != null && window.location.pathname.includes('/catalog/product') && document.querySelector('.alert-cart').style.display == 'block') {
+                mut.disconnect();
+                setTimeout(()=> {
+                    count = 0;
+                },100)
+            }
         } else {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
@@ -669,7 +679,7 @@ let mut = new MutationObserver(function (muts) {
                             price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
                             id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                             qty = document.querySelector('#qty-input').value;
-                        
+
                         addQtyProducts(qty,id)
                         localStorage.setItem('wasPopup', 'false');
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
