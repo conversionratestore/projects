@@ -766,21 +766,24 @@ let mut = new MutationObserver(function (muts) {
             })();
 
             function myScrollSpeedFunction(){
-                if(document.body.classList.contains('js-mobile')) {
-                    if(my_scroll() < -200 && localStorage.getItem('products')) {
-                        let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
-                            wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
-
-                        for (let i = 0; i < productsLocalStorage.length; i++) {
-                            if (productsLocalStorage[i].link === window.location.href) {
-                                haveLink = true
+                if(my_scroll() < -200 && localStorage.getItem('products')) {
+                    let productsLocalStorage, wasPopup;
+                    if(localStorage.getItem('products')) {
+                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
+                        wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
+                        if (window.location.href.includes('/catalog/product')) {
+                            for (let i = 0; i < productsLocalStorage.length; i++) {
+                                if (productsLocalStorage[i].id === document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm')) {
+                                    haveLink = true
+                                }
                             }
                         }
-                        if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
-                            addProduct();
-                            document.querySelector('.popup_exit_intent').classList.add('active');
-                            localStorage.setItem('wasPopup', 'true');
-                        }
+                    }
+
+                    if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
+                        addProduct();
+                        document.querySelector('.popup_exit_intent').classList.add('active');
+                        localStorage.setItem('wasPopup', 'true');
                     }
                 }
             }
@@ -804,9 +807,7 @@ let mut = new MutationObserver(function (muts) {
             })
 
             addEvent(document.body, 'mouseout', function(evt) {
-                console.log(evt.relatedTarget)
                 if (evt.relatedTarget == null && evt.toElement == null) {
-                    console.log(evt.relatedTarget)
                     let productsLocalStorage, wasPopup;
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
