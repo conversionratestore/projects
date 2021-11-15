@@ -723,13 +723,10 @@ let mut = new MutationObserver(function (muts) {
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         id = item.getAttribute('data-item-id'),
                         qty = item.querySelector('.qty').innerText,
-                        price;
+                        num = item.querySelector('.price').innerText.split(',').join('').split('.').join('').replace(currency, '');
 
-                    if (window.location.href.includes('/de.') || window.location.href.includes('/it.')) {
-                        price = item.querySelector('.price').innerText.replace(',', '.').replace(currency, '');
-                    } else {
-                        price = item.querySelector('.price').innerText.replace(',', '').replace(currency, '');
-                    }
+                    let spt = num.substr(num.length - 2);
+                    let price = num.split(spt).join('.') + spt;
 
                     item.querySelectorAll('.quantity-selector i').forEach( btn => {
                         btn.addEventListener('click', () => {
