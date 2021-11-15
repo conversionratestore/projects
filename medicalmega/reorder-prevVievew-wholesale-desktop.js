@@ -312,7 +312,7 @@ let style = `
                 justify-content: space-between;
                 margin: 8px 0 0;
                 width: 100%;}
-            .add-to-cart button:focus {
+            .add-to-cart button:focus, .btn-reorder {
                 background: linear-gradient(180deg, #E44640 100%, #C11008 0);}
             .add-to-cart button {
                 color: #FFFFFF;
@@ -407,6 +407,7 @@ let style = `
                 border: 1px solid #780F11;
                 border-radius: 4px;
                 max-width: 140px;
+                cursor: pointer;
                 width: 100%;}
             .ordered-bottom p.c-gray {
                 margin-bottom: 16px;
