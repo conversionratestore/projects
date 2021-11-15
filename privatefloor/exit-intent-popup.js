@@ -828,6 +828,7 @@ let mut = new MutationObserver(function (muts) {
                         addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
                         localStorage.setItem('wasPopup', 'true');
+                        console.log('true popup')
                     }
                 }
             })
