@@ -111,7 +111,7 @@ function pushProducts(imgUrl,name,price,currency,id,qty, filter) {
             }
         }
     }
-
+    localStorage.setItem('wasPopup', 'false');
     localStorage.setItem('products', JSON.stringify(products));
 }
 
@@ -636,7 +636,6 @@ let mut = new MutationObserver(function (muts) {
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
                     id = el.getAttribute('data-vid'),
                     qty = '';
-                localStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,qty,false);
             });
         });
@@ -654,7 +653,6 @@ let mut = new MutationObserver(function (muts) {
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
                     qty = document.querySelector('#product-quantity').innerText;
                 addQtyProducts(qty)
-                localStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,false);
                 count++
             })
@@ -672,7 +670,6 @@ let mut = new MutationObserver(function (muts) {
                         console.log('qty1: ' + qty)
                         addQtyProducts(qty)
                         console.log('qty4: ' + qty)
-                        localStorage.setItem('wasPopup', 'false');
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
                         count++
                     }
