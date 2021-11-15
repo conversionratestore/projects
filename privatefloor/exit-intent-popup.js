@@ -801,7 +801,7 @@ let mut = new MutationObserver(function (muts) {
                         wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
                         if (window.location.href.includes('/catalog/product')) {
                             for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].id === document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm')) {
+                                if (productsLocalStorage[i].id === document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm')) {
                                     haveLink = true
                                 }
                             }
@@ -815,7 +815,6 @@ let mut = new MutationObserver(function (muts) {
                     }
                 }
             }
-
             window.addEventListener('scroll', myScrollSpeedFunction);
         }
         if (detectMob() == false && document.querySelector('.btn_arrow_prev') && document.querySelector('.popup_slider')) {
