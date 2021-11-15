@@ -60,6 +60,8 @@ let start = setInterval(function () {
             $('.new_cta .info').slideDown()
         })
     }
-})
+}, 100)
+
+
 
 
