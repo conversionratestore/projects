@@ -678,7 +678,7 @@ let mut = new MutationObserver(function (muts) {
                     console.log(count)
                 })
             }
-            if (document.querySelector('.mfp-content') && document.querySelector('#popup-add-item-cart') != null && window.location.pathname.includes('/catalog/product')) {
+            if (document.querySelector('.mfp-content') && document.querySelector('#popup-add-item-cart') != null && window.location.pathname.includes('/catalog/product') || window.location.pathname.includes('/catalog/product') && document.querySelector('.alert-cart').style.display == 'block' && document.querySelector('.alert-cart') != null) {
                 mut.disconnect();
                 setTimeout(()=> {
                     count = 0;
