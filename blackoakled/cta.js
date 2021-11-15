@@ -39,7 +39,7 @@ let style = `
 let start = setInterval(function () {
     if(document.querySelector('.money.si-auto') && document.querySelector('#addToCart')) {
         clearInterval(start)
-        let partPrice = (+document.querySelector('.money.si-auto').innerText.split('$')[1] / 4).toFixed(2)
+        let partPrice = (+document.querySelector('#productPrice-manual .money').innerText.split('$')[1] / 4).toFixed(2)
 
         let block = `
             <div class="new_cta">
@@ -58,9 +58,38 @@ let start = setInterval(function () {
         $('.new_cta>p').click( function (e) {
             e.preventDefault()
             $('.new_cta .info').slideDown()
+            window.dataLayer = window.dataLayer || []
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp - PDP Shoppay',
+                'eventAction': 'click',
+                'eventLabel': 'click on Pay only CTA'
+            })
         })
     }
 }, 100)
+
+
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp - PDP Shoppay',
+    'eventAction': 'loaded'
+});
+
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1831568,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('event', 'pdp_shoppay');
+
 
 
 
