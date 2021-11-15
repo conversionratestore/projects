@@ -634,9 +634,10 @@ let mut = new MutationObserver(function (muts) {
                     name = el.closest('.item').querySelector('.title a').innerText,
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
                     id = el.getAttribute('data-vid'),
-                    qty = '';
+                    qty = '1';
+                addQtyProducts(qty,id)
                 localStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,qty,false);
+                pushProducts(imgUrl,name,price,currency,id,qty,true);
             });
         });
     }
@@ -654,7 +655,7 @@ let mut = new MutationObserver(function (muts) {
                     qty = document.querySelector('#product-quantity').innerText;
                 addQtyProducts(qty,id)
                 localStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,false);
+                pushProducts(imgUrl,name,price,currency,id,qty,true);
                 count++
             })
         } else {
@@ -668,9 +669,8 @@ let mut = new MutationObserver(function (muts) {
                             price = document.querySelector('.slide.selected img').getAttribute('data-price-gtm'),
                             id = document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm'),
                             qty = document.querySelector('#qty-input').value;
-                        console.log('qty1: ' + qty)
+                        
                         addQtyProducts(qty,id)
-                        console.log('qty4: ' + qty)
                         localStorage.setItem('wasPopup', 'false');
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
                         count++
