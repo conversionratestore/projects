@@ -15,6 +15,7 @@ if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == n
     console.log(dayStorage)
     if (dayStorage !== today) {
         localStorage.setItem('todayItem', JSON.stringify(today))
+        localStorage.setItem('wasPopup', 'false');
     }
     console.log(JSON.parse(localStorage.getItem('todayItem')))
 }
@@ -550,13 +551,13 @@ for (const [key, value] of Object.entries(objGeo)) {
 function spliceProduct(productsLocalStorage,i) {
     productsLocalStorage.splice(i, 1)
     localStorage.setItem('products', JSON.stringify(productsLocalStorage));
-    sessionStorage.setItem('wasPopup', 'false');
+    localStorage.setItem('wasPopup', 'false');
 }
 
 function removeProductMobile(item) {
     if (!document.querySelectorAll('.product-list .product')) {
         localStorage.setItem('products', '');
-        sessionStorage.setItem('wasPopup', 'false');
+        localStorage.setItem('wasPopup', 'false');
     } else {
         let id = item.closest('.product').getAttribute('data-item-id'),
             productsLocalStorage = JSON.parse(localStorage.getItem('products'));
@@ -566,14 +567,14 @@ function removeProductMobile(item) {
             }
         }
     }
-    sessionStorage.setItem('wasPopup', 'false');
+    localStorage.setItem('wasPopup', 'false');
 }
 
 function removeProductDesktop(item) {
     item.addEventListener('click', () => {
         if (!document.querySelectorAll('.table.cartlist tbody tr')) {
             localStorage.setItem('products', '');
-            sessionStorage.setItem('wasPopup', 'false');
+            localStorage.setItem('wasPopup', 'false');
         } else {
             let id = item.closest('tr').getAttribute('data-item-id'),
                 productsLocalStorage = JSON.parse(localStorage.getItem('products'));
@@ -623,7 +624,7 @@ let mut = new MutationObserver(function (muts) {
                     price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
                     id = el.getAttribute('data-vid'),
                     qty = '';
-                sessionStorage.setItem('wasPopup', 'false');
+                localStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,qty,false);
             });
         });
@@ -641,7 +642,7 @@ let mut = new MutationObserver(function (muts) {
                     id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
                     qty = document.querySelector('#product-quantity').innerText;
                 addQtyProducts(qty)
-                sessionStorage.setItem('wasPopup', 'false');
+                localStorage.setItem('wasPopup', 'false');
                 pushProducts(imgUrl,name,price,currency,id,false);
                 count++
             })
@@ -659,7 +660,7 @@ let mut = new MutationObserver(function (muts) {
                         console.log('qty1: ' + qty)
                         addQtyProducts(qty)
                         console.log('qty4: ' + qty)
-                        sessionStorage.setItem('wasPopup', 'false');
+                        localStorage.setItem('wasPopup', 'false');
                         pushProducts(imgUrl,name,price,currency,id,qty,true);
                         count++
                     }
@@ -719,7 +720,7 @@ let mut = new MutationObserver(function (muts) {
                     item.querySelectorAll('.quantity-selector i').forEach( btn => {
                         btn.addEventListener('click', () => {
                             qty = item.querySelector('.qty').innerText;
-                            sessionStorage.setItem('wasPopup', 'false');
+                            localStorage.setItem('wasPopup', 'false');
                         })
                     })
                     pushProducts(imgUrl, name, price, currency, id,qty, true);
@@ -760,7 +761,7 @@ let mut = new MutationObserver(function (muts) {
                 if(document.body.classList.contains('js-mobile')) {
                     if(my_scroll() < -200 && localStorage.getItem('products')) {
                         let productsLocalStorage = JSON.parse(localStorage.getItem('products')),
-                            wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                            wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
 
                         for (let i = 0; i < productsLocalStorage.length; i++) {
                             if (productsLocalStorage[i].link === window.location.href) {
@@ -770,7 +771,7 @@ let mut = new MutationObserver(function (muts) {
                         if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
                             addProduct();
                             document.querySelector('.popup_exit_intent').classList.add('active');
-                            sessionStorage.setItem('wasPopup', 'true');
+                            localStorage.setItem('wasPopup', 'true');
                         }
                     }
                 }
@@ -801,7 +802,7 @@ let mut = new MutationObserver(function (muts) {
                     let productsLocalStorage, wasPopup;
                     if(localStorage.getItem('products')) {
                         productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        wasPopup = JSON.parse(sessionStorage.getItem('wasPopup'));
+                        wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
                         if (window.location.href.includes('/catalog/product')) {
                             for (let i = 0; i < productsLocalStorage.length; i++) {
                                 if (productsLocalStorage[i].id === document.querySelector('.slide.selected img').getAttribute('data-item-id-gtm')) {
@@ -814,7 +815,7 @@ let mut = new MutationObserver(function (muts) {
                     if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
                         addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
-                        sessionStorage.setItem('wasPopup', 'true');
+                        localStorage.setItem('wasPopup', 'true');
                     }
                 }
             })
