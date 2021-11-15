@@ -725,7 +725,7 @@ let mut = new MutationObserver(function (muts) {
                         name = item.querySelector('.title').innerText.split('\n')[0],
                         id = item.getAttribute('data-item-id'),
                         qty = item.querySelector('.qty').innerText,
-                        num = item.querySelector('.price').innerText.split(',').join('').split('.').join('').replace(currency, '');
+                        num = item.querySelector('.price').innerText.split(',').join('').split('.').join('').join('').split(' ').join('').replace(currency, '');
 
                     let spt = num.substr(num.length - 2);
                     let price = num.split(spt).join('.') + spt;
