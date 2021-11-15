@@ -705,6 +705,29 @@ let mut = new MutationObserver(function (muts) {
                     removeProductMobile(item);
                 })
             })
+            let runInterval = setInterval(() => {
+                clearInterval(runInterval);
+
+                document.querySelectorAll('.product').forEach((item) => {
+                    products = [];
+                    let imgUrl = item.querySelector('.img img').getAttribute('src'),
+                        name = item.querySelector('.title').innerText,
+                        id = item.getAttribute('data-item-id'),
+                        qty = item.querySelector('.quantity .qty').innerText,
+                        num = item.querySelector('.price').innerText.split(',').join('').split('.').join('').split(' ').join('').replace(currency, '');
+
+                    let spt = num.substr(num.length - 2);
+                    let price = num.split(spt).join('.') + spt;
+
+                    item.querySelectorAll('.quantity-selector i').forEach( btn => {
+                        btn.addEventListener('click', () => {
+                            qty = item.querySelector('.qty').innerText;
+                            localStorage.setItem('wasPopup', 'false');
+                        })
+                    })
+                    pushProducts(imgUrl, name, price, currency, id,qty, true);
+                })
+            },200)
         }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
