@@ -22,11 +22,11 @@ const productStyle = `
 		}	
 			
 		.vaha-main-content + div {
-			display: none;
+			display: none !important;
 		}
 		
 		.comparison {
-			margin-top: 10px;
+			margin-top: 80px;
 		}
 		
 		.comparison p {
