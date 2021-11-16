@@ -3,6 +3,9 @@ const productStyle = `
 		/*.vaha-nav[data-v-c121df16] {*/
 		/*	margin-top: 0;*/
 		/*}*/	
+		.siq_bR {
+			bottom: 100px;
+		}
 		
 		.promoHeight-3t4KXS {
 			display: none;
@@ -538,7 +541,7 @@ if (window.location.pathname === '/product/') {
 
 	let myScrollFunc = function () {
 		let y = window.scrollY
-		if (y >= 200) {
+		if (y >= 100) {
 			document.querySelector('.btn-wrapper').classList.add('show')
 		}
 	}
