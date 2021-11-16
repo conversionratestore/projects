@@ -2,7 +2,15 @@ const productStyle = `
 	<style>
 		/*.vaha-nav[data-v-c121df16] {*/
 		/*	margin-top: 0;*/
-		/*}*/
+		/*}*/	
+		
+		.promoHeight-3t4KXS {
+			display: none;
+		}
+		
+		.mobile-menu[data-v-168fabc8] {
+			top: 48px !important;
+		}
 	
 		.container-3dy0SD {
 			display: none
