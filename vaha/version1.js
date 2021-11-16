@@ -517,8 +517,8 @@ let btnInterval = setInterval(() => {
 	}
 }, 200)
 
-if (window.location.pathname === '/product/' || window.location.pathname === '/produkt/') {
-	document.querySelector('.vaha-main-content div')?.insertAdjacentHTML('afterend', productPage)
+if (window.location.pathname === '/product/') {
+	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 } else if (window.location.pathname === '/') {
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
