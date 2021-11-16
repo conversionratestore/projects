@@ -521,7 +521,7 @@ if (window.location.pathname === '/product/') {
 	console.log('product >>>')
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
-} else if (window.location.pathname === '/') {
+} else {
 	console.log('home >>>')
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
 
