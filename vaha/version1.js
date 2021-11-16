@@ -21,7 +21,7 @@ const productStyle = `
 			background-color: #000;
 		}	
 			
-		.vaha-main-content + div {
+		.vaha-main-content > div:first-child {
 			display: none !important;
 		}
 		
@@ -511,19 +511,19 @@ let btnInterval = setInterval(() => {
 				document.querySelectorAll('.basket-vaha-item')[index].click()
 
 				if (index === 0) {
-					window.dataLayer = window.dataLayer || [];
+					window.dataLayer = window.dataLayer || []
 					dataLayer.push({
 						'event': 'event-to-ga',
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha x button',
-					});
+					})
 				} else if (index === 1) {
-					window.dataLayer = window.dataLayer || [];
+					window.dataLayer = window.dataLayer || []
 					dataLayer.push({
 						'event': 'event-to-ga',
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha s button',
-					});
+					})
 				}
 				document.querySelectorAll('.basket-payments-button')[2].click()
 			})
@@ -536,14 +536,14 @@ if (window.location.pathname === '/product/') {
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
 
-	let myScrollFunc = function() {
-		let y = window.scrollY;
+	let myScrollFunc = function () {
+		let y = window.scrollY
 		if (y >= 200) {
 			document.querySelector('.btn-wrapper').classList.add('show')
 		}
-	};
+	}
 
-	window.addEventListener("scroll", myScrollFunc);
+	window.addEventListener('scroll', myScrollFunc)
 } else {
 	console.log('home >>>')
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
