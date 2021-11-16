@@ -51,12 +51,10 @@ function resData(data) {
             document.querySelectorAll('.show-more').forEach(item => {
                 item.addEventListener('click', () => {
                     if (item.closest('.ordered')) {
-                    
                         action = 'Click on Show more Orders button';
-                        label = 'PL section Your recent orders';
-                        
+                        label = 'PL section Your recent orders';        
                     } else {
-                        action = 'Click on Show more Orders button';
+                        action = 'Click on Show more products button';
                         label = 'PL section';
                     }
                     pushDataLayer(action,label)
