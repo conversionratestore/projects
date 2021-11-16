@@ -518,9 +518,11 @@ let btnInterval = setInterval(() => {
 }, 200)
 
 if (window.location.pathname === '/product/') {
-	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
+	console.log('product >>>')
 	document.head.insertAdjacentHTML('beforeend', productStyle)
+	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
 } else if (window.location.pathname === '/') {
+	console.log('home >>>')
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
 
 	const btn = document.querySelector('.container-3dy0SD button')
