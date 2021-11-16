@@ -48,10 +48,17 @@ function resData(data) {
 
             document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
 
-            document.querySelector('.ordered .show-more').addEventListener('click', () => {
-                action = 'Click on Show more Orders button';
-                label = 'PL section Your recent orders';
-                pushDataLayer(action,label)
+            document.querySelectorAll('.show-more').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (item.closest('.ordered')) {
+                        action = 'Click on Show more Orders button';
+                        label = 'PL section Your recent orders';
+                    } else {
+                        action = 'Click on Show more products button';
+                        label = 'PL section';
+                    }
+                    pushDataLayer(action, label)
+                })
             })
             document.querySelector('.btn-reorder').addEventListener('click', () => {
                 action = 'Click on Reorder button';
