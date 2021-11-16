@@ -32,15 +32,13 @@ let style = `
       .new_cta .info img, .new_cta .info img+p {
         margin-bottom: 10px;
       }
-      
-      
     </style>
 `
 
 let start = setInterval(function () {
     if(document.querySelector('.money.si-auto') && document.querySelector('#addToCart')) {
         clearInterval(start)
-        let partPrice = (+document.querySelector('#productPrice-manual .money').innerText.split('$')[1] / 4).toFixed(2)
+        let partPrice = (+document.querySelector('#productPrice-manual .money').innerText.replace(',','').split('$')[1] / 4).toFixed(2)
 
         let block = `
             <div class="new_cta">
