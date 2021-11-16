@@ -187,7 +187,13 @@ const productStyle = `
 		    width: 100%;
 		    padding: 20px 17px;
 		    z-index: 999;
+		    transform: translateY(100%);
+		    transition: all 0.5s ease-in-out;
         } 
+        
+        .btn-wrapper.show {
+        	transform: translateY(0);
+        }
         
         .btn-wrapper button {
         	background: #F8D47D;
@@ -529,6 +535,15 @@ if (window.location.pathname === '/product/') {
 	console.log('product >>>')
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
+
+	let myScrollFunc = function() {
+		let y = window.scrollY;
+		if (y >= 200) {
+			document.querySelector('.btn-wrapper').classList.add('show')
+		}
+	};
+
+	window.addEventListener("scroll", myScrollFunc);
 } else {
 	console.log('home >>>')
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
