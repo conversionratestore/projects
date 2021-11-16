@@ -1,8 +1,8 @@
 const productStyle = `
 	<style>
-		.vaha-nav[data-v-c121df16] {
-			margin-top: 0;
-		}
+		/*.vaha-nav[data-v-c121df16] {*/
+		/*	margin-top: 0;*/
+		/*}*/
 	
 		.container-3dy0SD {
 			display: none
@@ -13,12 +13,12 @@ const productStyle = `
 			background-color: #000;
 		}	
 			
-		.vaha-main-content {
+		.vaha-main-content div > section {
 			display: none;
 		}
 		
 		.comparison {
-			margin-top: 40px;
+			margin-top: 10px;
 		}
 		
 		.comparison p {
@@ -221,7 +221,7 @@ const homeStyle = `
 	</style>
 `
 const productPage = `
-    <section class="comparison">
+    <div class="comparison">
         <div class="cards">
             <div class="inner">
                 <div class="item">
@@ -474,7 +474,7 @@ const productPage = `
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <div class="btn-wrapper">
         <button>
             <span>Get VAHA X</span>
@@ -484,7 +484,6 @@ const productPage = `
             <span>Get VAHA S</span>
             <span>Try 30 days for free</span>
         </button>
-
     </div>
 `
 
@@ -519,7 +518,7 @@ let btnInterval = setInterval(() => {
 }, 200)
 
 if (window.location.pathname === '/product/' || window.location.pathname === '/produkt/') {
-	document.querySelector('.vaha-main-content')?.insertAdjacentHTML('afterend', productPage)
+	document.querySelector('.vaha-main-content div')?.insertAdjacentHTML('afterend', productPage)
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 } else if (window.location.pathname === '/') {
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
