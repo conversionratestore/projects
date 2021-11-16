@@ -21,7 +21,7 @@ const productStyle = `
 			background-color: #000;
 		}	
 			
-		.vaha-main-content div > section {
+		.vaha-main-content + div {
 			display: none;
 		}
 		
