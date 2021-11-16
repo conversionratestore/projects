@@ -95,7 +95,7 @@ const productStyle = `
         
         .names-wrapper {
             display: flex;
-	        justify-content: space-between;
+	        justify-content: space-around;
 	        margin-bottom: 10px;
 	        gap: 10px;
         }
@@ -262,13 +262,13 @@ const productPage = `
         <div class="properties">
             <div class="inner">
                 <div class="characteristic">
-                    <p class="title">Functions</p>
+                    <p class="title">Features</p>
                     <div class="names-wrapper">
                         <p class="name">Vaha X</p>
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>Over 750 live and on-demand course</p>
+                        <p>650+ live and on-demand classes</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -348,17 +348,17 @@ const productPage = `
                             <p>45 kg</p>
                             <p>27 kg</p>
                         </div>
-                        <div class="property">
-                            <p>Floor stand</p>
-                            <div class="check">
-                                <div>
-                                    <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
-                                         alt="check mark">
-                                </div>
-                                <div>
-                                    <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
-                                         alt="check mark">
-                                </div>
+                    </div>
+                    <div class="property">
+                        <p>Floor stand</p>
+                        <div class="check">
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
                             </div>
                         </div>
                     </div>
@@ -401,10 +401,8 @@ const productPage = `
                                      alt="check mark">
                             </div>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="characteristic">
                     <p class="title">VAHA Starterbox</p>
                     <div class="property">
