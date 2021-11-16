@@ -229,7 +229,7 @@ const homeStyle = `
 	</style>
 `
 const productPage = `
-    <div class="comparison">
+    <section class="comparison">
         <div class="cards">
             <div class="inner">
                 <div class="item">
@@ -482,7 +482,7 @@ const productPage = `
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <div class="btn-wrapper">
         <button>
             <span>Get VAHA X</span>
