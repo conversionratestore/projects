@@ -124,19 +124,65 @@ document.querySelectorAll('.to_checkout')[0].insertAdjacentHTML('afterend', `<di
 
 $('.popup_sub .close').click(function () {
     $('.dark_bg_exp').removeClass('active')
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Popup with subscription offer',
+        'eventAction': 'Click on cross button'
+    });
     document.querySelectorAll('.to_checkout')[0].click()
+})
+
+$('.dark_bg_exp').click(function (e) {
+    if(e.target === this){
+    $('.dark_bg_exp').removeClass('active')
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Popup with subscription offer',
+        'eventAction': 'Click on area around Pop-Up'
+    });
+    document.querySelectorAll('.to_checkout')[0].click()}
 })
 
 $('.active_sub').click(function () {
     $('.subscribe-custom__checkbox').eq(0).prop('checked', true)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Popup with subscription offer',
+        'eventAction': 'Click on "Get 10% off by subscribing button'
+    });
     document.querySelectorAll('.to_checkout')[0].click()
 })
-
 
 $('.popup_btn').click(function () {
     if($('.swatchCustom__item[data-title="1 Pack"]').hasClass('swatchCustom__item--active')) {
         document.querySelectorAll('.to_checkout')[0].click()
     } else {
         $('.dark_bg_exp').addClass('active')
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Popup with subscription offer',
+            'eventAction': 'Pop-Up appearence'
+        });
     }
 })
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Popup with subscription offer',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1271698,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'popup_with_subscription_offer');
