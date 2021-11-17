@@ -67,11 +67,6 @@ function resData(data) {
                 <dl class="gallery"></dl>
                 <button type="button" class="view-more" hidden>View more products</button>
             </div>`);
-
-            if (data["items"].length > 4) {
-                document.querySelector('.view-more').hidden = false;
-            }
-
         }
         for (let i = 0; i < data["items"].length; i++) {
             let card = `<dd class="product-card" data-product-id="${data["items"][i].product_id}" data-product-variant-id="${data["items"][i].variant_id}">
@@ -92,6 +87,9 @@ function resData(data) {
                 document.querySelector('.gallery').insertAdjacentHTML('beforeend', card);
             }
             addToCart();
+        }
+          if (data["items"].length > 4) {
+            document.querySelector('.ordered .view-more').hidden = false;
         }
     }
 }
