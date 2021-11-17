@@ -1,0 +1,45 @@
+<svg width="296" height="166" viewBox="0 0 296 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_204_963)">
+<path opacity="0.2" d="M163.921 83.6138C166.986 83.6138 169.471 80.7937 169.471 77.315C169.471 73.8362 166.986 71.0161 163.921 71.0161C160.856 71.0161 158.372 73.8362 158.372 77.315C158.372 80.7937 160.856 83.6138 163.921 83.6138Z" fill="white"/>
+<path opacity="0.2" d="M61.168 26.6453H66.7177V36.0935H61.168V26.6453Z" fill="white"/>
+<path opacity="0.2" d="M247.168 -7.71924H252.718V1.72901H247.168V-7.71924Z" fill="white"/>
+<path opacity="0.2" d="M75.8574 65.3561L81.4065 59.0581L85.3309 63.5122L79.7818 69.8102L75.8574 65.3561Z" fill="white"/>
+<path opacity="0.2" d="M261.857 30.9916L267.406 24.6936L271.331 29.1477L265.782 35.4457L261.857 30.9916Z" fill="white"/>
+<path opacity="0.2" d="M12.0349 47.7683L15.9593 43.3142L21.5083 49.6122L17.584 54.0663L12.0349 47.7683Z" fill="white"/>
+<path opacity="0.2" d="M198.035 13.4038L201.959 8.94971L207.508 15.2477L203.584 19.7018L198.035 13.4038Z" fill="white"/>
+<path opacity="0.2" d="M30.6443 108.53H36.194V117.978H30.6443V108.53Z" fill="white"/>
+<path opacity="0.2" d="M216.644 74.1655H222.194V83.6138H216.644V74.1655Z" fill="white"/>
+<path opacity="0.2" d="M173.046 57.4968L176.97 53.0427L182.519 59.3408L178.595 63.7948L173.046 57.4968Z" fill="white"/>
+<path opacity="0.2" d="M280 115.454L283.924 111L289.473 117.298L285.549 121.752L280 115.454Z" fill="white"/>
+<path opacity="0.2" d="M175.823 87.6853L181.372 81.3872L185.297 85.8413L179.748 92.1393L175.823 87.6853Z" fill="white"/>
+<path opacity="0.2" d="M75.8569 118.899L81.406 112.601L85.3304 117.055L79.7813 123.353L75.8569 118.899Z" fill="white"/>
+<path opacity="0.2" d="M261.857 84.5341L267.406 78.2361L271.33 82.6901L265.781 88.9882L261.857 84.5341Z" fill="white"/>
+<path opacity="0.3" d="M1.14735 19.2539C4.37646 19.2539 6.99417 16.2829 6.99417 12.6179C6.99417 8.95297 4.37646 5.98193 1.14735 5.98193C-2.08175 5.98193 -4.69946 8.95297 -4.69946 12.6179C-4.69946 16.2829 -2.08175 19.2539 1.14735 19.2539Z" fill="white"/>
+<path opacity="0.3" d="M6 82H11.8468V91.954H6V82Z" fill="white"/>
+<path opacity="0.3" d="M286 154H291.847V163.954H286V154Z" fill="white"/>
+<path opacity="0.3" d="M40.0085 -3.00034L45.8546 -9.6355L49.9891 -4.94303L44.143 1.69213L40.0085 -3.00034Z" fill="white"/>
+<g opacity="0.2">
+<path d="M13.6995 40.1315L19.5455 33.4963L23.68 38.1888L17.8339 44.824L13.6995 40.1315Z" fill="white"/>
+<path d="M116.019 51.463L120.154 46.7705L126 53.4057L121.865 58.0981L116.019 51.463Z" fill="white"/>
+</g>
+<g opacity="0.2">
+<path d="M199.699 5.76699L205.546 -0.868164L209.68 3.82431L203.834 10.4595L199.699 5.76699Z" fill="white"/>
+</g>
+<path opacity="0.15" d="M103 -42.5159C102.069 -41.6346 101.138 -40.7596 100.207 -39.891C55.3251 1.77239 0.0234521 26.3367 -57.852 30.3172L-59 30.3964L-28.2759 65.2675L-14.3104 24.0562L19.2068 52.5871L30.3792 8.20571L66.6895 36.7366L69.4826 -13.985L103 5.03561V-42.5159Z" fill="white"/>
+</g>
+<g opacity="0.15" filter="url(#filter1_f_204_963)">
+<path d="M218.666 -43.937C219.093 -42.9941 219.523 -42.0519 219.962 -41.1154C240.599 3.49714 275.199 39.9372 318.55 62.7153L319.404 63.1612L285.437 77.5537L287.562 43.1588L251.992 52.5624L259.585 18.7829L221.291 23.411L235.723 -11.8333L202.221 -10.0176L218.668 -43.9357" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_f_204_963" x="-61" y="-46" width="375" height="211.954" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_204_963"/>
+</filter>
+<filter id="filter1_f_204_963" x="200.221" y="-45.937" width="128.461" height="125.491" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_204_963"/>
+</filter>
+</defs>
+</svg>
