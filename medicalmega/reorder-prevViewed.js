@@ -498,18 +498,20 @@ let mut = new MutationObserver(function (muts) {
 
             let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < cards.length; i++) {
-                document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
-                    `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
-                        <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
-                        <a href="${cards[i].href}">${cards[i].name}</a>
-                        <b>${cards[i].price}</b>
-                        <form action="https://medicalmega.com/cart.html" method="post">
-                            <input type="hidden" name="product_id" value="${cards[i].productid}">
-                            <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
-                            <input type="hidden" name="quantity" value="1">
-                        </form>
-                        <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
-                    </dd>`)
+                if (i < 12) {
+                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
+                        `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
+                            <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
+                            <a href="${cards[i].href}">${cards[i].name}</a>
+                            <b>${cards[i].price}</b>
+                            <form action="https://medicalmega.com/cart.html" method="post">
+                                <input type="hidden" name="product_id" value="${cards[i].productid}">
+                                <input type="hidden" name="product_variant_id" value="${cards[i].variationid}">
+                                <input type="hidden" name="quantity" value="1">
+                            </form>
+                            <div class="add-to-cart"><button type="button">add to cart</button><input type="number" value="1"></div>
+                        </dd>`)
+                }
             }
             if (cards.length > 4) {
                 document.querySelector('.view-more').hidden = false;
