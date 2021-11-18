@@ -10,10 +10,6 @@ const productStyle = `
 		.promoHeight-3t4KXS {
 			display: none;
 		}
-		
-		.mobile-menu[data-v-168fabc8] {
-			top: 48px !important;
-		}
 	
 		.container-3dy0SD {
 			display: none
@@ -26,6 +22,10 @@ const productStyle = `
 			
 		.vaha-main-content > div:first-child {
 			display: none !important;
+		}
+		
+		.mobile-menu {
+			top: 48px !important;
 		}
 		
 		.comparison {
@@ -503,7 +503,7 @@ const productPage = `
 `
 
 let btnInterval = setInterval(() => {
-	if (btnInterval) {
+	if (document.querySelectorAll('.basket-payments-button')[2]) {
 		clearInterval(btnInterval)
 
 		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
