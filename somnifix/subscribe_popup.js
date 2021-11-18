@@ -99,6 +99,19 @@ let style = `
             cursor: pointer;
             text-align: center;
         }
+        
+        .user {
+            display: none;
+        }
+        
+        .new_user {
+            font-size: 18px;
+        }
+        
+        .new_user b {
+            font-size: 20px;
+            text-transform:uppercase;
+        }
     </style>
 `
 
@@ -107,10 +120,13 @@ let block = `
         <div class="popup_sub">
             <span class="close"></span>
             <img class="logo" src="https://conversionratestore.github.io/projects/somnifix/img/logo.svg" alt="logo">
-            <h3>Looks like this is your repeat purchase</h3>
-            <p>We are thrilled to know that Somnifix strips help you improve your sleep.</p>
+            <div class="user">
+                <h3>Looks like this is your repeat purchase</h3>
+                <p>We are thrilled to know that Somnifix strips help you improve your sleep.</p>    
+            </div>
+            <p class="new_user">Did you know that<br><b>you can save 10% off on this purchase</b><br>by subscribing to shipment every 3 month.</p>
             <img src="https://conversionratestore.github.io/projects/somnifix/img/popup-img.png" alt="product">
-            <p><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
+            <p class="user"><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
             <p class="cancel_anytime">Cancel anytime</p>
             <button class="active_sub">Get 10% off by subscribing</button>
         </div>
@@ -121,6 +137,24 @@ document.body.insertAdjacentHTML('afterbegin', style)
 document.body.insertAdjacentHTML('beforeend', block)
 
 document.querySelectorAll('.to_checkout')[0].insertAdjacentHTML('afterend', `<div class="popup_btn">add to cart</div>`)
+
+let id = localStorage.getItem('customer')
+if(id) {
+    $.ajax({
+        type: 'POST',
+        url: "https://somnifix-recharge.herokuapp.com/somnifix/getOrders.php",
+        data: {cid: id},
+        dataType: "JSON",
+        success: function (result) {
+            if (!result.success) {
+                $('.user').css('display', 'block')
+                $('.new_user').css('display', 'none')
+                $('.cancel_anytime').text('Don’t worry, you can unsubscribe anytime.')
+            }
+        }
+    })
+}
+
 
 $('.popup_sub .close').click(function () {
     $('.dark_bg_exp').removeClass('active')
