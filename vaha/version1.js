@@ -502,9 +502,6 @@ const productPage = `
     </div>
 `
 
-let btnInterval = setInterval(() => {
-	if (document.querySelectorAll('.basket-payments-button')[2]) {
-		clearInterval(btnInterval)
 
 		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
 			btn.addEventListener('click', () => {
@@ -526,11 +523,10 @@ let btnInterval = setInterval(() => {
 						'eventAction': 'Click on Get vaha s button',
 					})
 				}
-				document.querySelectorAll('.basket-payments-button')[2].click()
+				document.querySelector('.basket-payments-button').click()
 			})
 		})
-	}
-}, 200)
+
 
 if (window.location.pathname === '/product/') {
 	console.log('product >>>')
