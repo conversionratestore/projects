@@ -229,8 +229,8 @@ function addToCart() {
                         label = 'PL section Recently ordered Products';
                     }
                 }
-                pushDataLayer(action,label)
             })
+            pushDataLayer(action,label)
         });
     });
 }
