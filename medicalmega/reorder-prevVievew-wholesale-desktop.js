@@ -173,7 +173,8 @@ function addToCart() {
         });
     }
     document.querySelectorAll('.product-card a').forEach( (item) => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
             if (item.closest('.ordered')) {
                 if (window.location.pathname.includes('/product')) {
                     action = 'Click on product';
@@ -190,6 +191,7 @@ function addToCart() {
                 label = 'PL section';
             }
             pushDataLayer(action,label)
+            window.location.href = item.getAttribute('href')
         });
     });
 
