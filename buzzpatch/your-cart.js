@@ -5,6 +5,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     left: 0;
     width: 100%;
     height: 100vh;
+    z-index: 9;
 }
 .popup_cart_container {
     position: relative;
@@ -12,6 +13,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     width: calc(100% - 40px);
     overflow-y: auto;
     margin-left: auto;
+    background-color: #fff;
 }
 .btn-close {
     position: absolute;
