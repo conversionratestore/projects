@@ -178,13 +178,6 @@ let show75 = setInterval(() => {
 		sessionStorage.setItem('show75', 'true');
 
 		showPopup()
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Pop up with motivation to upgrade',
-			'eventAction': 'loaded',
-		})
 	}
 }, 200)
 
@@ -195,13 +188,6 @@ let show90 = setInterval(() => {
 		sessionStorage.setItem('show90', 'true');
 
 		showPopup()
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Pop up with motivation to upgrade',
-			'eventAction': 'loaded',
-		})
 	}
 }, 200)
 
@@ -212,17 +198,8 @@ let show100 = setInterval(() => {
 		sessionStorage.setItem('show100', 'true');
 
 		showPopup()
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Pop up with motivation to upgrade',
-			'eventAction': 'loaded',
-		})
 	}
 }, 200)
-
-
 
 function showPopup() {
 	const goData = window.google_tag_manager['GTM-MTN4VBZ'].dataLayer
@@ -247,7 +224,6 @@ function showPopup() {
 			save = 0
 			break
 	}
-
 
 	const page = `
 <div class="modal-custom modal-custom_active">
@@ -274,7 +250,12 @@ function showPopup() {
 	document.addEventListener('click', closeModal)
 	btn.addEventListener('click', clickOnBtn)
 
-
+	window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp — Pop up with motivation to upgrade',
+		'eventAction': 'Pop up opened'
+	});
 }
 
 function closeModal(e) {
@@ -330,3 +311,10 @@ window.hj = window.hj || function () {
 }
 hj('trigger', 'tv_popup_with_motivation_to_upgrade')
 hj('event', 'popup_with_motivation_to_upgrade')
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp — Pop up with motivation to upgrade',
+	'eventAction': 'loaded',
+})
