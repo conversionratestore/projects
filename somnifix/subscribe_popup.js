@@ -79,6 +79,7 @@ let style = `
             border-radius: 40px;
             background-color: #4090D1;
             font-family: 'Rubik', sans-serif;
+            cursor: pointer;
         }        
         .to_checkout {
             display: none !important;
@@ -104,7 +105,7 @@ let style = `
             display: none;
         }
         
-        .new_user {
+        .popup_sub p .new_user {
             font-size: 18px;
             line-height: 1.2;
             margin-bottom: 30px;
