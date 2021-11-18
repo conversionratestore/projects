@@ -110,7 +110,7 @@ let block = `
             <h3>Looks like this is your repeat purchase</h3>
             <p>We are thrilled to know that Somnifix strips help you improve your sleep.</p>
             <img src="https://conversionratestore.github.io/projects/somnifix/img/popup-img.png" alt="product">
-            <p><b>Get 10% off on this purchase</b><br>by subscribing to shipment every 3 months.</p>
+            <p><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
             <p class="cancel_anytime">Cancel anytime</p>
             <button class="active_sub">Get 10% off by subscribing</button>
         </div>
@@ -146,27 +146,35 @@ $('.dark_bg_exp').click(function (e) {
 })
 
 $('.active_sub').click(function () {
-    $('.subscribe-custom__checkbox').eq(0).prop('checked', true)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Popup with subscription offer',
-        'eventAction': 'Click on "Get 10% off by subscribing button'
-    });
-    document.querySelectorAll('.to_checkout')[0].click()
-})
-
-$('.popup_btn').click(function () {
-    if($('.swatchCustom__item[data-title="1 Pack"]').hasClass('swatchCustom__item--active')) {
-        document.querySelectorAll('.to_checkout')[0].click()
-    } else {
-        $('.dark_bg_exp').addClass('active')
+        $('.subscribe-custom__checkbox').eq(0).prop('checked', true)
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp: Popup with subscription offer',
-            'eventAction': 'Pop-Up appearence'
+            'eventAction': 'Click on "Get 10% off by subscribing button'
         });
+        document.querySelectorAll('.to_checkout')[0].click()
+})
+
+$('.popup_btn').click(function () {
+    if(!$('.subscribe-custom__checkbox').eq(0).prop('checked')) {
+        if ($('.swatchCustom__item[data-title="1 Pack"]').hasClass('swatchCustom__item--active')) {
+            document.querySelectorAll('.to_checkout')[0].click()
+        } else {
+            if ($('.swatchCustom__item[data-title="12 Pack"]').hasClass('swatchCustom__item--active')) {
+                $('.popup_sub img+p span').text('12')
+            }
+
+            $('.dark_bg_exp').addClass('active')
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Popup with subscription offer',
+                'eventAction': 'Pop-Up appearence'
+            });
+        }
+    } else {
+        document.querySelectorAll('.to_checkout')[0].click()
     }
 })
 
