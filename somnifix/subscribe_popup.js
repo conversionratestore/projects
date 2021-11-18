@@ -105,7 +105,7 @@ let style = `
             display: none;
         }
         
-        .popup_sub p .new_user {
+        .popup_sub p.new_user {
             font-size: 18px;
             line-height: 1.2;
             margin-bottom: 30px;
