@@ -421,6 +421,45 @@ const productPage = `
                             <p>Microfiber cloth and glass cleaner</p>
                         </div>
                     </div>
+                    <div class="property">
+                        <p>Heart rate monitor</p>
+                        <div class="check">
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property">
+                        <p>Elastic bands</p>
+                        <div class="check">
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property">
+                        <p>2 year warranty</p>
+                        <div class="check">
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                            <div>
+                                <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
+                                     alt="check mark">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
