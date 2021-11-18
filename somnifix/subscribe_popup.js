@@ -127,7 +127,7 @@ let block = `
             <p class="new_user">Did you know that<br><b>you can save 10% off on this purchase</b><br>by subscribing to shipment every 3 month.</p>
             <img src="https://conversionratestore.github.io/projects/somnifix/img/popup-img.png" alt="product">
             <p class="user"><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
-            <p class="cancel_anytime">Cancel anytime</p>
+            <p class="cancel_anytime">Don’t worry, you can unsubscribe anytime.</p>
             <button class="active_sub">Get 10% off by subscribing</button>
         </div>
     </div>
@@ -149,7 +149,7 @@ if(id) {
             if (!result.success) {
                 $('.user').css('display', 'block')
                 $('.new_user').css('display', 'none')
-                $('.cancel_anytime').text('Don’t worry, you can unsubscribe anytime.')
+                $('.cancel_anytime').text('Cancel anytime')
             }
         }
     })
