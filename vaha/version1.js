@@ -504,7 +504,7 @@ const productPage = `
 
 let btnInterval = setInterval(() => {
 	if (document.querySelectorAll('.basket-payments-button')[2]) {
-		console.log('exist <<<')
+		console.log('exist >>>')
 
 		clearInterval(btnInterval)
 
