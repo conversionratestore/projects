@@ -14,7 +14,7 @@ let style = `
             display: block;
         }    
         .popup_sub {
-            padding: 30px 40px;
+            padding: 30px 20px;
             border-radius: 12px;
             background-color:#fff;
             position: absolute;
