@@ -106,6 +106,8 @@ let style = `
         
         .new_user {
             font-size: 18px;
+            line-height: 1.2;
+            margin-bottom: 30px;
         }
         
         .new_user b {
