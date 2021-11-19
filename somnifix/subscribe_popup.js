@@ -149,6 +149,7 @@ if(id) {
         data: {cid: id},
         dataType: "JSON",
         success: function (result) {
+            console.log(result)
             if (!result.success) {
                 $('.user').css('display', 'block')
                 $('.new_user').css('display', 'none')
