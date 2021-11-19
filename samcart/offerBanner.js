@@ -184,7 +184,7 @@ if (count > 0) {
 	let counter = setInterval(() => {
 		count = count - 1
 		console.log(count)
-		if (count == -1) {
+		if (count < 0) {
 			clearInterval(counter)
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
@@ -221,4 +221,3 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
-
