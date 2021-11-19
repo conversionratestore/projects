@@ -543,13 +543,10 @@ const productPage = `
 
 let btnInterval = setInterval(() => {
 	if (document.querySelectorAll('.basket-payments-button')[2]) {
-		console.log('exist >>>')
-
 		clearInterval(btnInterval)
 
 		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
 			btn.addEventListener('click', () => {
-				console.log(index)
 				document.querySelectorAll('.basket-vaha-item')[index].click()
 
 				if (index === 0) {
@@ -559,7 +556,6 @@ let btnInterval = setInterval(() => {
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha x button',
 					})
-					console.log('Click on Get vaha X button EVENT >>>')
 				} else if (index === 1) {
 					window.dataLayer = window.dataLayer || []
 					dataLayer.push({
@@ -567,7 +563,6 @@ let btnInterval = setInterval(() => {
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha s button',
 					})
-					console.log('Click on Get vaha S button EVENT >>>')
 				}
 				document.querySelectorAll('.basket-payments-button')[2].click()
 			})
@@ -576,7 +571,6 @@ let btnInterval = setInterval(() => {
 }, 200)
 
 if (window.location.pathname === '/product/') {
-	console.log('product >>>')
 	document.head.insertAdjacentHTML('beforeend', productStyle)
 	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
 
@@ -589,7 +583,6 @@ if (window.location.pathname === '/product/') {
 
 	window.addEventListener('scroll', myScrollFunc)
 } else {
-	console.log('home >>>')
 	document.head.insertAdjacentHTML('beforeend', homeStyle)
 
 	const btn = document.querySelector('.container-3dy0SD button')
@@ -603,8 +596,6 @@ if (window.location.pathname === '/product/') {
 
 	clone.addEventListener('click', () => {
 		window.location = 'https://uk.vaha.com/product'
-
-		console.log('Choose your Vaha button EVENT >>>')
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
@@ -639,7 +630,6 @@ dataLayer.push({
 })
 
 document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
-	console.log('Purchase EVENT >>>')
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
