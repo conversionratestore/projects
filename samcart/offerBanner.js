@@ -1,7 +1,8 @@
 const style = `
     <style>
         .banner {
-        	margin: 35px;
+        	max-width: 296px;
+        	margin: 60px auto;
             padding: 20px 18px 25px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
             background-size: cover;
@@ -73,7 +74,7 @@ const style = `
         }
         
         .features img {
-        	margin-bottom: 25px;
+        	margin-bottom: 15px;
         }
         
         .btn-wrapper button {
@@ -102,10 +103,12 @@ const style = `
        	
        	.btn-wrapper .btn-wrapper_sale span {
        		display: block;
-       		margin-top: 3px;
-       		padding: 2px 6px;
-       		background: #F2813F;
-			border-radius: 5px;
+		    margin: 3px auto 0;
+		    width: fit-content;
+		    padding: 2px 6px;
+		    text-align: center;
+		    background: #F2813F;
+		    border-radius: 5px;
        	}
        	
        	p.price {
@@ -164,8 +167,9 @@ let attendeeInterval = setInterval(() => {
 
 let intervalTime = 0
 
-if (!window.localStorage.getItem('startDate')) {
+if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('pathName')) {
 	window.localStorage.setItem('startDate', Date.now().toString())
+	window.localStorage.setItem('pathName', window.location.pathname)
 } else {
 	let currentDate = Date.now()
 	window.localStorage.setItem('currentDate', currentDate.toString())
@@ -186,8 +190,7 @@ if (count > 0) {
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
 			<p class="price">Get Started For <s>$10,060</s> $349</p>
 		`)
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer<span>(40% off)</span></button>`
-			document.querySelector('.features ul').classList.add('show_sale')
+			showSaleBtn()
 		}
 
 		let seconds = count % 60
@@ -204,8 +207,18 @@ if (count > 0) {
 			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds
 		}
 	}, 1000)
+} else {
+	showSaleBtn()
 }
 
+function showSaleBtn() {
+	let interval = setInterval(() => {
+		if(document.querySelector('.btn-wrapper')) {
+			clearInterval(interval)
 
-// fullscreen__ctas sidebar_bottom
-// cta cta--sidebar_bottom
+			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer<span>(40% off)</span></button>`
+			document.querySelector('.features ul').classList.add('show_sale')
+		}
+	}, 100)
+}
+
