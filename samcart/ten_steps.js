@@ -507,7 +507,7 @@ main {
 
 .box_second_training .swipe_box > div > svg {
   position: absolute;
-  top: 8px;
+  top: 17px;
   left: 45px;
   transform: translateX(-50%);
   opacity: 1;
@@ -518,7 +518,7 @@ main {
 .box_second_training .swipe_box > div > span {
   position: absolute;
   top: 8px;
-  left: calc(11.2% + 45px);
+  left: calc(11.27% + 45px);
   transform: translateX(-50%);
   z-index: 9;
   cursor: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/cursor.svg"), default;
@@ -532,7 +532,7 @@ main {
 
 .scale_svg {
   opacity: 1;
-  transform: scale(1.2);
+  transform: scale(3);
 }
 
 .progress_line {
@@ -1006,7 +1006,7 @@ main {
   }
 
   .box_second_training .swipe_box > div > svg {
-    top: 25px;
+    top: 36px;
     right: 5px;
     left: 0;
   }
@@ -1015,7 +1015,7 @@ main {
     height: 10%;
     width: 100%;
     left: unset;
-    top: calc(16% + 45px);
+    top: calc(15.5% + 45px);
     right: 5px;
   }
 
@@ -1461,19 +1461,8 @@ let tenStepHtml = /*html*/ `
             </li>
           </ul>
           <div data-swipe="2">
-            <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g filter="url(#filter0_f)">
-                <circle cx="18.5" cy="18.5" r="12.5" fill="#F08E38" fill-opacity="0.61" />
-              </g>
-              <circle cx="18.5" cy="18.5" r="12.5" fill="#F08E38" fill-opacity="0.38" />
-              <circle cx="18.5" cy="18.4999" r="4.92424" fill="#F08E38" />
-              <defs>
-                <filter id="filter0_f" x="0" y="0" width="37" height="37" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                  <feGaussianBlur stdDeviation="3" result="effect1_foregroundBlur" />
-                </filter>
-              </defs>
+            <svg width="17" height="17" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="5.50005" cy="5.49999" r="4.92424" fill="#F08E38"/>
             </svg>
             <span>
               <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1940,18 +1929,18 @@ function openSwipeText() {
   })
 
   if (window.innerWidth > 768) {
-    document.querySelector(".progress_line").style.width = `calc(${11.3 * (dataSwipe - 1)}% + 45px)`
+    document.querySelector(".progress_line").style.width = `calc(${11.27 * (dataSwipe - 1)}% + 45px)`
 
-    document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(${11.3 * (dataSwipe - 1)}% + 45px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.left = `calc(${11.27 * (dataSwipe - 1)}% + 45px)`
     if (dataSwipe < 9) {
-      document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(${11.3 * dataSwipe}% + 45px)`
+      document.querySelector(".box_second_training .swipe_box > div > span").style.left = `calc(${11.27 * dataSwipe}% + 45px)`
     }
     document.querySelector(".box_second_training .swipe_box > div").setAttribute("data-swipe", `${dataSwipe + 1}`)
   }
 
   if (window.innerWidth <= 768) {
     document.querySelector(".progress_line").style.height = `calc(${131 * (dataSwipe - 1)}px + 45px)`
-    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(${131 * (dataSwipe - 1)}px + 45px - 18px)`
+    document.querySelector(".box_second_training .swipe_box > div svg").style.top = `calc(${131 * (dataSwipe - 1)}px + 45px - 9px)`
 
     if (dataSwipe < 9) {
       document.querySelector(".box_second_training .swipe_box > div > span").style.top = `calc(${131 * dataSwipe}px + 45px - 20px)`
