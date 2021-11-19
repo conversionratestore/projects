@@ -6,6 +6,23 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     width: 100%;
     height: 100vh;
     z-index: 9;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: rgba(0,0,0,0.5);
+}
+.popup_cart p {
+    margin: 0;
+}
+.popup_cart.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.popup_cart p {
+    margin: 0;
+}
+.popup_cart.active .popup_cart_container {
+    transform: translateX(0);
 }
 .popup_cart_container {
     position: relative;
@@ -14,6 +31,8 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     overflow-y: auto;
     margin-left: auto;
     background-color: #fff;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
 }
 .btn-close {
     position: absolute;
@@ -32,6 +51,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     color: #0C0B0B;
     padding: 20px 20px 12px;
     border-bottom: 1px solid #D9D9D9;
+    margin-bottom: 0;
 }
 .free_shipping {
     padding: 8px 0;
@@ -40,19 +60,22 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     justify-content: center;
     border-bottom: 1px solid #D9D9D9;
 }
-.free_shipping img {
-    margin-right: 7px;
-}
+
 .free_shipping p {
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #6F6F6F;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 12px!important;
+    line-height: 12px!important;
+    font-family: 'DIN Condensed', sans-serif;
+    margin: 0 0 0 7px;
 }
 .patches {
     display: flex;
     align-items: center;
+    padding: 16px 20px 0;
+    max-width: 400px;
+    margin: 0 auto;
 }
 .patches img{
     width: 103px;
@@ -66,21 +89,24 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #0C0B0B;
+    font-family: 'DIN Condensed', sans-serif;
 }
 .patches_packs {
-    margin-top: 4px;
-    font-size: 12px;
-    line-height: 130%;
+    margin-top: 4px!important;
+    font-size: 12px!important;
+    line-height: 130%!important;
     color: #6F6F6F;
 }
 .patches_total {
     margin-left: auto;
-    font-size: 12px;
-    line-height: 130%;
+    text-align: right;
+    padding-top: 6px;
 }
 .patches_total p {
     text-decoration-line: line-through;
     color: #EFAE16;
+    font-size: 12px!important;
+    line-height: 130%!important;
 }
 .patches_total b {
     font-weight: bold;
@@ -91,30 +117,35 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .total {
     font-weight: bold;
-    font-size: 16px;
-    line-height: 130%;
+    font-size: 16px!important;
+    line-height: 130%!important;
     color: #0C0B0B;  
-    margin-top: 4px;
+    text-align: right;
+    padding: 0 20px;
+    max-width: 400px;
+    margin: 4px auto 0!important;
 }
 .upsell {
-    max-width: 250px;
-    margin: 40px auto 30px;
+    max-width: 248px;
+    margin: 20px auto 30px;
 }
 .upsell_title {
-    font-size: 18px;
-    line-height: 110%;
+    font-size: 18px!important;
+    line-height: 110%!important;
     text-align: center;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #0C0B0B;
+    font-family: 'DIN CONDENSED', sans-serif;
 }
 .upsell img {
     width: 111px;
     height: 86px;
-    margin: 12px 0;
+    margin: 12px auto;
+    display: block;
 }
 .upsell-list {
-    list-style-type: disc;
+    list-style-type: none;
     font-size: 16px;
     line-height: 130%;
     color: #212529;
@@ -122,6 +153,17 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .upsell-list li {
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+.upsell-list li::before {
+    content: ""; 
+    background-color: #FF3C7F;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: block;   
 }
 .upsell-prices {
     text-align: center;
@@ -141,18 +183,23 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 .btn-action {
     border-radius: 50%;
     width: 32px;
     height: 32px;
     border: 1px solid #D9D9D9;
+    background: no-repeat center / 12px;
+}
+.btn-action:hover, .btn-action:focus {
+    border-color: #FF3C7F;
 }
 .btn-minus {
-    background: url('https://conversionratestore.github.io/projects/buzzpatch/img/minus.svg');
+    background-image: url('https://conversionratestore.github.io/projects/buzzpatch/img/minus.svg');
 }
 .btn-plus {
-    background: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus.svg');
+    background-image: url('https://conversionratestore.github.io/projects/buzzpatch/img/plus-pink.svg');
 }
 .calc-qty {
     width: 39px;
@@ -162,6 +209,9 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #0C0B0B;
+    padding: 0;
+    background-color: transparent;
+    border: none;
 }
 .btn-to-checkout {
     font-size: 14px;
@@ -171,33 +221,56 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     text-transform: uppercase;
     padding: 5px 0;
     margin: 10px auto 15px;
+    font-family: 'DIN Condensed', sans-serif;
+    display: block;
 }
 .c-pink {
     color: #FF3C7F;
+}
+.popup_cart .btn-primary {
+    display: block;
+    max-width: 295px;
+    width: calc(100% - 40px);
+    letter-spacing: 0.05em;
+    font-size: 14px;
+    line-height: 25px;
+    margin: 0 auto;
+}
+.container_gray {
+    background-color: #F9F8F6;
+    padding-bottom: 20px;
+}
+.row-calc input:not(.disabled):not([disabled]):focus, .row-calc input:not(.disabled):not([disabled]):hover {
+    background-color: transparent;
+    box-shadow: none;
 }
 </style>`)
 
 let cart = `
 <div class="popup_cart">
     <div class="popup_cart_container">
-        <button class="btn-close" type="button"></button>
-        <h2 class="popup_cart_title">Your cart</h2>
-        <div class="free_shipping"> 
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
-            <p>Free Shipping WORLDWIDE</p>
-        </div>
-         <div class="patches">
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
-            <div>
-                <p class="patches_title">Itch relief patches</p>
-                <p class="patches_packs"></p>
+        <div class="container_gray">
+            <button class="btn-close" type="button"></button>
+            <h2 class="popup_cart_title">Your cart</h2>
+            <div class="free_shipping"> 
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
+                <p>Free Shipping WORLDWIDE</p>
             </div>
-            <div class="patches_total">
-               <p>$<span class="rp"></span></p> 
-               <b>$<span class="pr"></span></b>
+             <div class="patches">
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
+                <div>
+                    <p class="patches_title">Itch relief patches</p>
+                    <p class="patches_packs"></p>
+                </div>
+                <div class="patches_total">
+                   <p>$<span class="rp"></span></p> 
+                   <b>$<span class="pr"></span></b>
+                </div>
             </div>
+            <p class="total">Total: $<span class="pr"></span></p>
+            
         </div>
-        <p class="total">Total: $<span class="pr"></span></p>
+   
         <div class="upsell">
             <p class="upsell_title">Protect your family from mosquitoes with our <span class="c-pink"> repellent patch</span></p>
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patch.png" alt="patch image">
@@ -224,13 +297,47 @@ let cart = `
 
 document.body.insertAdjacentHTML('beforeend', cart);
 
-document.querySelector('#getNow .btn').addEventListener('click', () => {
+let qty = document.querySelector('.calc-qty'),
+    price = document.querySelector('.upsell-prices .pr');
+
+document.querySelector('#getNow .btn').addEventListener('click', (e) => {
+    e.preventDefault();
     document.querySelectorAll('.js-packs').forEach((elem) => {
         if(elem.querySelector('input').checked) {
-            document.querySelector('.patches_packs').innerHTML = document.querySelector('.radio-inline').innerText.replace('\n',' / ');
+            document.querySelector('.patches_packs').innerHTML = elem.querySelector('.radio-inline').innerText.replace('\n',' / ');
             document.querySelector('.patches_total .rp').innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerText;
             document.querySelector('.patches_total .pr').innerHTML = document.querySelector('.prices .js-total .pr').innerText;
             document.querySelector('.total .pr').innerHTML = document.querySelector('.prices .js-total .pr').innerText;
+        }
+    })
+    document.querySelector('.btn-to-checkout').setAttribute('href', e.target.getAttribute('href'))
+    document.querySelector('.popup_cart').classList.add('active');
+})
+
+document.querySelector('.btn-close').addEventListener('click', (e) => {
+    document.querySelector('.popup_cart').classList.remove('active');
+})
+
+document.querySelectorAll('.btn-action').forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.classList.contains('btn-plus') && qty.value <= 4) {
+            qty.value = +qty.value + 1;
+            if (qty.value > 4) {
+                qty.value = 4;
+            }
+        } else {
+            if (qty.value > 1) {
+                qty.value = +qty.value - 1;
+            }
+        }
+        if (qty.value == 1) {
+            price.innerHTML = '14.99';
+        } else if (qty.value == 2) {
+            price.innerHTML = '27.00';
+        } else if (qty.value == 3) {
+            price.innerHTML = '36.00';
+        } else if (qty.value == 4) {
+            price.innerHTML = '42.00';
         }
     })
 })
