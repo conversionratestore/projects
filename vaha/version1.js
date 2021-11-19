@@ -501,7 +501,7 @@ const productPage = `
                     </div>
                 </div>
                 <div class="options">
-                    <p class="title">Our Financial Options include:</p>
+                    <p class="title">Financing options:</p>
                     <div class="checks">
                         <div>
                             <img src="https://conversionratestore.github.io/projects/vaha/images/check-gold.svg"
