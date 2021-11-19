@@ -92,21 +92,22 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     font-family: 'DIN Condensed', sans-serif;
 }
 .patches_packs {
-    margin-top: 4px!important;
+    margin-top: 2px!important;
     font-size: 12px!important;
     line-height: 130%!important;
     color: #6F6F6F;
+    text-transform: lowercase;
 }
 .patches_total {
     margin-left: auto;
     text-align: right;
-    padding-top: 6px;
+    padding-top: 10px;
 }
 .patches_total p {
     text-decoration-line: line-through;
     color: #EFAE16;
     font-size: 12px!important;
-    line-height: 130%!important;
+    line-height: 110%!important;
 }
 .patches_total b {
     font-weight: bold;
@@ -127,7 +128,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .upsell {
     max-width: 248px;
-    margin: 20px auto 30px;
+    margin: 20px auto 34px;
 }
 .upsell_title {
     font-size: 18px!important;
@@ -141,7 +142,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .upsell img {
     width: 111px;
     height: 86px;
-    margin: 12px auto;
+    margin: 14px auto 12px;
     display: block;
 }
 .upsell-list {
@@ -149,7 +150,8 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     font-size: 16px;
     line-height: 130%;
     color: #212529;
-    padding-bottom: 12px;
+    margin-left: 13px;
+    margin-bottom: 11px;
 }
 .upsell-list li {
     margin-bottom: 8px;
@@ -173,8 +175,8 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     color: #0C0B0B;
 }
 .patches_pack {
-    font-size: 14px;
-    line-height: 130%;
+    font-size: 14px!important;
+    line-height: 130%!important;
     text-align: center;
     color: #999999;
     margin-bottom: 20px;
@@ -231,8 +233,8 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     display: block;
     max-width: 295px;
     width: calc(100% - 40px);
-    letter-spacing: 0.05em;
-    font-size: 14px;
+    letter-spacing: 0.05em!important;
+    font-size: 14px!important;
     line-height: 25px;
     margin: 0 auto;
 }
@@ -243,6 +245,20 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .row-calc input:not(.disabled):not([disabled]):focus, .row-calc input:not(.disabled):not([disabled]):hover {
     background-color: transparent;
     box-shadow: none;
+}
+@media only screen and (max-width: 359px) {
+    .popup_cart_container {
+        width: calc(100% - 20px);
+    }
+    .patches {
+        padding: 16px 10px 0;
+    }
+    .total {
+        padding: 0 10px;
+    }
+    .patches img {
+        width: 94px;
+    }
 }
 </style>`)
 
@@ -305,9 +321,9 @@ document.querySelector('#getNow .btn').addEventListener('click', (e) => {
     document.querySelectorAll('.js-packs').forEach((elem) => {
         if(elem.querySelector('input').checked) {
             document.querySelector('.patches_packs').innerHTML = elem.querySelector('.radio-inline').innerText.replace('\n',' / ');
-            document.querySelector('.patches_total .rp').innerHTML = document.querySelector('.prices .js-regular .js-strike .rp').innerText;
-            document.querySelector('.patches_total .pr').innerHTML = document.querySelector('.prices .js-total .pr').innerText;
-            document.querySelector('.total .pr').innerHTML = document.querySelector('.prices .js-total .pr').innerText;
+            document.querySelector('.patches_total .rp').innerHTML = (+document.querySelector('.prices .js-regular .js-strike .rp').innerText).toFixed(2);
+            document.querySelector('.patches_total .pr').innerHTML = (+document.querySelector('.prices .js-total .pr').innerText).toFixed(2);
+            document.querySelector('.total .pr').innerHTML = (+document.querySelector('.prices .js-total .pr').innerText).toFixed(2);
         }
     })
     document.querySelector('.btn-to-checkout').setAttribute('href', e.target.getAttribute('href'))
@@ -316,6 +332,8 @@ document.querySelector('#getNow .btn').addEventListener('click', (e) => {
 
 document.querySelector('.btn-close').addEventListener('click', (e) => {
     document.querySelector('.popup_cart').classList.remove('active');
+    qty.value = 1;
+    price.innerHTML = '14.99';
 })
 
 document.querySelectorAll('.btn-action').forEach((button) => {
