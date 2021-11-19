@@ -559,6 +559,7 @@ let btnInterval = setInterval(() => {
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha x button',
 					})
+					console.log('Click on Get vaha X button EVENT >>>')
 				} else if (index === 1) {
 					window.dataLayer = window.dataLayer || []
 					dataLayer.push({
@@ -566,6 +567,7 @@ let btnInterval = setInterval(() => {
 						'eventCategory': 'Exp — The new comparison page',
 						'eventAction': 'Click on Get vaha s button',
 					})
+					console.log('Click on Get vaha S button EVENT >>>')
 				}
 				document.querySelectorAll('.basket-payments-button')[2].click()
 			})
@@ -602,13 +604,14 @@ if (window.location.pathname === '/product/') {
 	clone.addEventListener('click', () => {
 		window.location = 'https://uk.vaha.com/product'
 
+		console.log('Choose your Vaha button EVENT >>>')
+
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp — The new comparison page',
 			'eventAction': 'Click on Choose your Vaha button',
 		})
-
 	})
 }
 
@@ -636,6 +639,7 @@ dataLayer.push({
 })
 
 document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
+	console.log('Purchase EVENT >>>')
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
