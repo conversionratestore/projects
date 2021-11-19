@@ -166,7 +166,7 @@ function addProduct() {
         }
         for (const [key, value] of Object.entries(objGeo)) {
             if (location.href.includes(`${key}`)) {
-                if(productsLocalStorage.length > 1) {
+                if (productsLocalStorage.length > 1) {
                     document.querySelector('.popup_content h2').innerHTML = value.title2;
                     document.querySelector('.popup_message p').innerHTML = value.text2;
                 } else {
@@ -250,7 +250,8 @@ document.body.insertAdjacentHTML( 'afterbegin',`
         text-align: center;
         text-transform: uppercase;
         color: #2B2B2B;
-        margin-bottom: 39px;
+        max-width: 339px;
+        margin: 0 auto 39px;
     }
     .popup_content h2 span {
         display: block;
@@ -539,7 +540,6 @@ detectMob()
 
 for (const [key, value] of Object.entries(objGeo)) {
     if (location.href.includes(`${key}`)) {
-        console.log(`${key} : ${value.title}`);
         document.body.insertAdjacentHTML( 'beforeend',`
             <div class="popup_exit_intent">
                 <div class="popup_container">
@@ -611,7 +611,6 @@ function removeProductDesktop(item) {
 
             for (let i = 0; i < productsLocalStorage.length; i++) {
                 if (productsLocalStorage[i].id === id) {
-                    console.log(productsLocalStorage[i].id + ' == ' + id);
                     spliceProduct(productsLocalStorage,i);
                 }
             }
