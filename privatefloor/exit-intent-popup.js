@@ -23,28 +23,36 @@ if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == n
 let objGeo = {
     '/www.' : {
         'title': `C'EST PRESQUE A VOUS !<span>PLUS QU'UNE ÉTAPE :</span>`,
+        'title2': `C'EST PRESQUE A VOUS !<span>PLUS QU'UNE ÉTAPE :</span>`,
         'text': `Nous ne pouvons garantir la disponibilité de tous les produits de votre panier ou de vos favoris si vous ne finalisez pas l'achat maintenant`,
+        'text2': `Nous ne pouvons garantir la disponibilité de tous les produits de votre panier ou de vos favoris si vous ne finalisez pas l'achat maintenant`,
         'textBtn': 'TERMINER MA COMMANDE MAINTENANT',
         'choiceText': `C'est un choix populaire, nous pourrions bientôt être en rupture de stock`,
         'currency': '€'
     },
     '/uk.' : {
-        'title': `It’s almost yours!<span>Only one step left:</span>`,
-        'text': 'We can’t guarantee the availability of all products in your cart or favorites if you don’t complete the purchase now',
+        'title': `Item in your cart is in high demand now`,
+        'title2': `Items in your cart are in high demand now`,
+        'text': 'We can’t guarantee the availability of the product in your cart if you don’t complete the purchase now',
+        'text2': 'We can’t guarantee the availability of all products in your cart if you don’t complete the purchase now',
         'textBtn': 'complete my order now',
         'choiceText': `This is a popular choice, <span class="text-nowrap"> we may </span> run out of stock soon`,
         'currency': '£'
     },
     '/it.' : {
         'title': `È QUASI TUO!<span>MANCA SOLO UN PASSO:</span>`,
+        'title2': `È QUASI TUO!<span>MANCA SOLO UN PASSO:</span>`,
         'text': `Non possiamo garantirti la disponibilità di tutti i prodotti nel carrello o nei tuoi preferiti se non completi subito l'acquisto`,
+        'text2': `Non possiamo garantirti la disponibilità di tutti i prodotti nel carrello o nei tuoi preferiti se non completi subito l'acquisto`,
         'textBtn': 'COMPLETA IL MIO ORDINE ORA',
         'choiceText': `Questa è una scelta popolare, potremmo esaurire presto le scorte`,
         'currency': '€'
     },
     '/de.' : {
         'title': `ES IST FAST IHR!<span>NUR EIN SCHRITT NOCH:</span>`,
+        'title2': `ES IST FAST IHR!<span>NUR EIN SCHRITT NOCH:</span>`,
         'text': 'Wir können die Verfügbarkeit aller Produkte in Ihrem Warenkorb oder Favoriten nicht garantieren, wenn Sie den Kauf nicht jetzt abschließen',
+        'text2': 'Wir können die Verfügbarkeit aller Produkte in Ihrem Warenkorb oder Favoriten nicht garantieren, wenn Sie den Kauf nicht jetzt abschließen',
         'textBtn': 'COMPLETA IL MIO ORDINE ORA',
         'choiceText': `Dies ist eine beliebte Wahl, wir könnten bald ausverkauft sein`,
         'currency': '€'
@@ -154,6 +162,17 @@ function addProduct() {
                 document.querySelector('.btn_arrow_next').style.display = 'none';
                 document.querySelector('.popup_total').style.display = 'none';
                 document.querySelector('.popup_slider').classList.add('popup_one_slider')
+            }
+        }
+        for (const [key, value] of Object.entries(objGeo)) {
+            if (location.href.includes(`${key}`)) {
+                if(productsLocalStorage.length > 1) {
+                    document.querySelector('.popup_content h2').innerHTML = value.title2;
+                    document.querySelector('.popup_message p').innerHTML = value.text2;
+                } else {
+                    document.querySelector('.popup_content h2').innerHTML = value.title;
+                    document.querySelector('.popup_message p').innerHTML = value.text;
+                }
             }
         }
 
@@ -625,50 +644,8 @@ if (document.querySelector('.cartbtn #count_product_in_cart') && document.queryS
 }
 
 let mut = new MutationObserver(function (muts) {
-
-    if (window.location.pathname.includes('/catalog') && detectMob() == true && !!document.querySelectorAll('.add-to-cart .btn-atc') && !!document.querySelector('.listing-products')) {
-        mut.disconnect()
-        document.querySelectorAll('.add-to-cart .btn-atc').forEach(el => {
-            el.addEventListener('click',() => {
-                let imgUrl = el.closest('.item').querySelector('.preview-pic a img').getAttribute('src'),
-                    name = el.closest('.item').querySelector('.title a').innerText,
-                    price = el.closest('.item').querySelector('.prices .price').innerText.replace(',', '').replace(currency,''),
-                    id = el.getAttribute('data-vid'),
-                    qty = '1';
-                addQtyProducts(qty,id)
-                localStorage.setItem('wasPopup', 'false');
-                pushProducts(imgUrl,name,price,currency,id,qty,true);
-            });
-        });
-    }
-
-    mut.observe(document, optionMut);
-
     if (window.location.pathname.includes('/catalog/product')) {
-        if (detectMob() == true && document.querySelector('.btn-atc')) {
-            if (document.querySelector('.btn-atc') && document.querySelector('.btn-atc') != null) {
-                mut.disconnect()
-                document.querySelector('.btn-atc').addEventListener('click', (e) => {
-                    if (count === 0) {
-                        let imgUrl = document.querySelector('.bullet-color.selected').getAttribute('data-img'),
-                            name = document.querySelector('.bullet-color.selected').getAttribute('data-name-gtm'),
-                            price = document.querySelector('.bullet-color.selected').getAttribute('data-price-gtm'),
-                            id = document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm'),
-                            qty = document.querySelector('#product-quantity').innerText;
-                        addQtyProducts(qty, id)
-                        localStorage.setItem('wasPopup', 'false');
-                        pushProducts(imgUrl, name, price, currency, id, qty, true);
-                        count++
-                    }
-                })
-            }
-            if (document.querySelector('.alert-cart') != null && window.location.pathname.includes('/catalog/product') && document.querySelector('.alert-cart').style.display == 'block') {
-                mut.disconnect();
-                setTimeout(()=> {
-                    count = 0;
-                },100)
-            }
-        } else {
+        if (detectMob() == false) {
             if (document.querySelector('#btn-add-item-cart') && document.querySelector('#btn-add-item-cart') != null) {
                 mut.disconnect()
                 document.querySelector('#btn-add-item-cart').addEventListener('click', (e) => {
@@ -700,45 +677,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if (window.location.pathname.includes('/cart')) {
-        if (detectMob() == true && document.querySelectorAll('.product-list .product .quantity .minus') && document.querySelectorAll('.remove-product-from-cart')) {
-            mut.disconnect()
-
-            document.querySelectorAll('.product-list .product .quantity .minus').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    if (item.nextElementSibling.innerText == '1') {
-                        removeProductMobile(item);
-                    }
-                })
-            })
-            document.querySelectorAll('.action-and-total a').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    removeProductMobile(item);
-                })
-            })
-            let runInterval = setInterval(() => {
-                clearInterval(runInterval);
-
-                document.querySelectorAll('.product').forEach((item) => {
-                    products = [];
-                    let imgUrl = item.querySelector('.img img').getAttribute('src'),
-                        name = item.querySelector('.title').innerText,
-                        id = item.getAttribute('data-item-id'),
-                        qty = item.querySelector('.quantity .qty').innerText,
-                        num = item.querySelector('.price').innerText.split(',').join('').split('.').join('').split(' ').join('').replace(currency, '');
-
-                    let spt = num.substr(num.length - 2);
-                    let price = num.split(spt).join('.') + spt;
-
-                    item.querySelectorAll('.quantity-selector i').forEach( btn => {
-                        btn.addEventListener('click', () => {
-                            qty = item.querySelector('.qty').innerText;
-                            localStorage.setItem('wasPopup', 'false');
-                        })
-                    })
-                    pushProducts(imgUrl, name, price, currency, id,qty, true);
-                })
-            },200)
-        }
         if (detectMob() == false && document.querySelectorAll('.removeItem') && document.querySelectorAll('.minus_cart')) {
             mut.disconnect()
             document.querySelectorAll('.minus_cart').forEach(item => {
@@ -778,55 +716,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
 
     if(localStorage.getItem('products') && localStorage.getItem('products') != null && localStorage.getItem('products') != ''){
-        if (detectMob() == true) {
-            mut.disconnect()
-            document.body.classList.add('js-mobile');
-            var my_scroll = (function() {
-                var last_position, new_position, timer, delta, delay = 50;
-
-                function clear() {
-                    last_position = null;
-                    delta = 0;
-                }
-
-                clear();
-
-                return function(){
-                    new_position = window.scrollY;
-                    if (last_position != null){
-                        delta = new_position -  last_position;
-                    }
-                    last_position = new_position;
-                    clearTimeout(timer);
-                    timer = setTimeout(clear, delay);
-                    return delta;
-                };
-            })();
-
-            function myScrollSpeedFunction(){
-                if(my_scroll() < -200 && localStorage.getItem('products')) {
-                    let productsLocalStorage, wasPopup;
-                    if(localStorage.getItem('products')) {
-                        productsLocalStorage = JSON.parse(localStorage.getItem('products'));
-                        wasPopup = JSON.parse(localStorage.getItem('wasPopup'));
-                        if (window.location.href.includes('/catalog/product')) {
-                            for (let i = 0; i < productsLocalStorage.length; i++) {
-                                if (productsLocalStorage[i].id === document.querySelector('.bullet-color.selected').getAttribute('data-item-id-gtm')) {
-                                    haveLink = true
-                                }
-                            }
-                        }
-                    }
-
-                    if (haveLink === false && wasPopup !== true && productsLocalStorage.length > 0) {
-                        addProduct();
-                        document.querySelector('.popup_exit_intent').classList.add('active');
-                        localStorage.setItem('wasPopup', 'true');
-                    }
-                }
-            }
-            window.addEventListener('scroll', myScrollSpeedFunction);
-        }
         if (detectMob() == false && document.querySelector('.btn_arrow_prev') && document.querySelector('.popup_slider')) {
             mut.disconnect()
             document.body.classList.add('js-desktop');
@@ -862,13 +751,13 @@ let mut = new MutationObserver(function (muts) {
                         addProduct();
                         document.querySelector('.popup_exit_intent').classList.add('active');
                         localStorage.setItem('wasPopup', 'true');
-                        console.log('true popup')
+                        action = 'Pop-up opened';
+                        pushDataLayer(action);
                     }
                 }
             })
         }
     }
-
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
