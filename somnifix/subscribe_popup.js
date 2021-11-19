@@ -153,7 +153,7 @@ if(id) {
                 $('.user').css('display', 'block')
                 $('.new_user').css('display', 'none')
                 $('.cancel_anytime').text('Cancel anytime')
-                $('.popup_sub img:not(.logo)').css('height', '148px', 'width', '148px')
+                $('.popup_sub img:not(.logo)').css('height', '148px').css('width', '148px')
             }
         }
     })
