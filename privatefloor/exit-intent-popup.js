@@ -49,10 +49,10 @@ let objGeo = {
         'currency': '€'
     },
     '/de.' : {
-        'title': `ES IST FAST IHR!<span>NUR EIN SCHRITT NOCH:</span>`,
-        'title2': `ES IST FAST IHR!<span>NUR EIN SCHRITT NOCH:</span>`,
-        'text': 'Wir können die Verfügbarkeit aller Produkte in Ihrem Warenkorb oder Favoriten nicht garantieren, wenn Sie den Kauf nicht jetzt abschließen',
-        'text2': 'Wir können die Verfügbarkeit aller Produkte in Ihrem Warenkorb oder Favoriten nicht garantieren, wenn Sie den Kauf nicht jetzt abschließen',
+        'title': `Die Nachfrage nach dem Produkt in deinem Warenkorb ist momentan sehr hoch.`,
+        'title2': `Die Nachfrage nach den Produkten in deinem Warenkorb ist momentan sehr hoch.`,
+        'text': 'Wir können die Verfügbarkeit des Produktes in deinem Warenkorb nicht garantieren, wenn du die Bestellung nicht sofort abschließen solltest.',
+        'text2': 'Wir können die Verfügbarkeit der Produkte in deinem Warenkorb nicht garantieren, wenn du die Bestellung nicht sofort abschließen solltest.',
         'textBtn': 'COMPLETA IL MIO ORDINE ORA',
         'choiceText': `Dies ist eine beliebte Wahl, wir könnten bald ausverkauft sein`,
         'currency': '€'
