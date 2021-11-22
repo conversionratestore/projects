@@ -302,11 +302,11 @@ let cart = `
             <p class="patches_pack">60 patches in 1 pack</p>
             <div class="row-calc">
                 <button class="btn-action btn-minus" type="button"></button>
-                <input type="number" class="calc-qty" value="1" readonly>
+                <input type="number" class="calc-qty" value="1" data-id="34767547138092" readonly>
                 <button class="btn-action btn-plus" type="button"></button>
             </div>
         </div>
-        <a href="#" class="btn js-btn btn-primary">BUY both</a>
+        <a href="/cart" class="btn js-btn btn-primary">BUY both</a>
         <a href="#" class="c-pink btn-to-checkout">No. proceed to checkout</a>
     </div>
 </div>`;
@@ -324,6 +324,7 @@ document.querySelector('#getNow .btn').addEventListener('click', (e) => {
             document.querySelector('.patches_total .rp').innerHTML = (+document.querySelector('.prices .js-regular .js-strike .rp').innerText).toFixed(2);
             document.querySelector('.patches_total .pr').innerHTML = (+document.querySelector('.prices .js-total .pr').innerText).toFixed(2);
             document.querySelector('.total .pr').innerHTML = (+document.querySelector('.prices .js-total .pr').innerText).toFixed(2);
+            document.querySelector('.patches').setAttribute('data-id', elem.querySelector('input').value)
         }
     })
     document.querySelector('.btn-to-checkout').setAttribute('href', e.target.getAttribute('href'))
@@ -350,12 +351,43 @@ document.querySelectorAll('.btn-action').forEach((button) => {
         }
         if (qty.value == 1) {
             price.innerHTML = '14.99';
+            qty.setAttribute('data-id','34767547138092')
         } else if (qty.value == 2) {
             price.innerHTML = '27.00';
+            qty.setAttribute('data-id','39307589058604')
         } else if (qty.value == 3) {
             price.innerHTML = '36.00';
+            qty.setAttribute('data-id','39307593187372')
         } else if (qty.value == 4) {
             price.innerHTML = '42.00';
+            qty.setAttribute('data-id','39307595546668')
         }
     })
+})
+
+document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e) => {
+    fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            items: [
+                {
+                    id: document.querySelector('.patches').getAttribute('data-id'),
+                    quantity: 1
+                },
+                {
+                    id: qty.getAttribute('data-id'),
+                    quantity: 1
+                }
+            ]
+        })
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 })
