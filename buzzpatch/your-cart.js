@@ -306,7 +306,7 @@ let cart = `
                 <button class="btn-action btn-plus" type="button"></button>
             </div>
         </div>
-        <a href="/cart" class="btn js-btn btn-primary">BUY both</a>
+        <a href="/checkout" class="btn js-btn btn-primary">BUY both</a>
         <a href="#" class="c-pink btn-to-checkout">No. proceed to checkout</a>
     </div>
 </div>`;
