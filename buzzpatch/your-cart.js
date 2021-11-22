@@ -316,6 +316,8 @@ document.body.insertAdjacentHTML('beforeend', cart);
 let qty = document.querySelector('.calc-qty'),
     price = document.querySelector('.upsell-prices .pr');
 
+document.querySelector('#getNow .btn').innerHTML = 'ADD TO BAG';
+
 document.querySelector('#getNow .btn').addEventListener('click', (e) => {
     e.preventDefault();
     document.querySelectorAll('.js-packs').forEach((elem) => {
@@ -384,9 +386,8 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
             ]
         })
     })
-        .then(response => {
-            return response.json();
-        })
+        .then(response => response.json())
+        .then(data => console.log(data))
         .catch((error) => {
             console.error('Error:', error);
         });
