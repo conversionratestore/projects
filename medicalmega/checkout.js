@@ -341,7 +341,7 @@ window.onload  = function () {
                 font-size: 14px;
                 line-height: 17px;}   
             .checkout-right {
-                // display: grid;
+                box-sizing: content-box;
                 height: fit-content;
                 width: 304px;
                 background: rgba(238, 238, 238, 0.5);
