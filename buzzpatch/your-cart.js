@@ -306,7 +306,7 @@ let cart = `
                 <button class="btn-action btn-plus" type="button"></button>
             </div>
         </div>
-        <a href="/checkout" class="btn js-btn btn-primary">BUY both</a>
+        <a href="#" class="btn js-btn btn-primary">BUY both</a>
         <a href="#" class="c-pink btn-to-checkout">No. proceed to checkout</a>
     </div>
 </div>`;
@@ -368,6 +368,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
 })
 
 document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e) => {
+    e.preventDefault()
     fetch('/cart/add.js', {
         method: 'POST',
         headers: {
@@ -387,7 +388,10 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
         })
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data =>  {
+            console.log(data)
+            window.location.pathname = '/checkout'
+        })
         .catch((error) => {
             console.error('Error:', error);
         });
