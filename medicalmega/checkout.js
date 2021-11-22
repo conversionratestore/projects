@@ -78,7 +78,7 @@ function chengeQuantity() {
                 console.log(button.closest('.checkout-product').dataset.variantId)
 
                 let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
-                
+
                 fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
                     console.log(data["cart"])
                     chengeTotal(data["cart"])
@@ -91,9 +91,9 @@ function chengeQuantity() {
             label = 'Section Your order';
             pushDataLayer(action,label);
             quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
-           
+
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
-            
+
             fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
                 console.log(data["cart"])
                 chengeTotal(data["cart"])
@@ -110,7 +110,7 @@ function removeProduct() {
             pushDataLayer(action,label)
 
             let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
-            
+
             fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
                 console.log(data["cart"])
                 chengeTotal(data["cart"])
@@ -376,6 +376,7 @@ window.onload  = function () {
                 flex-shrink: 0;
                 margin-right: 10px;}
             .checkout-product_img img {
+                max-height: 100px;
                 margin: auto;}
             .checkout-product a {
                 font-size: 10px;
@@ -1105,7 +1106,7 @@ window.onload  = function () {
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
-                label ='Section Your order';
+                    label ='Section Your order';
                 pushDataLayer(action,label)
             })
         }
