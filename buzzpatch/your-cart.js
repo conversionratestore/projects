@@ -320,6 +320,19 @@ document.querySelector('#getNow .btn').innerHTML = 'ADD TO BAG';
 
 document.querySelector('#getNow .btn').addEventListener('click', (e) => {
     e.preventDefault();
+    fetch('/cart/clear.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(data =>  {
+            console.log(data)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     document.querySelectorAll('.js-packs').forEach((elem) => {
         if(elem.querySelector('input').checked) {
             document.querySelector('.patches_packs').innerHTML = elem.querySelector('.radio-inline').innerText.replace('\n',' / ');
