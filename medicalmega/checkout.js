@@ -35,7 +35,7 @@ function chengeTotal(data) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
                 console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                values[i].innerHTML = data[key].split(',').join('').toFixed(2);
+                values[i].innerHTML = data[key];
                 if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'none';
