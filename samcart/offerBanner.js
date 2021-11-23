@@ -177,8 +177,8 @@ if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('p
 	intervalTime = currentDate - window.localStorage.getItem('startDate')
 }
 
-let count = 30 - (intervalTime / 1000)
-// let count = 3601 - (intervalTime / 1000)
+// let count = 30 - (intervalTime / 1000)
+let count = 3601 - (intervalTime / 1000)
 
 if (count > 0) {
 	let counter = setInterval(() => {
