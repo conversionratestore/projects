@@ -1,7 +1,7 @@
 const style = `
     <style>
         .banner {
-        	max-width: 296px;
+        	max-width: 222px;
         	margin: 60px auto;
             padding: 20px 18px 25px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
@@ -221,3 +221,4 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
+
