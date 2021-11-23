@@ -3,7 +3,7 @@ const style = `
         .banner {
         	max-width: 222px;
         	margin: 60px auto;
-            padding: 20px 18px 25px;
+            padding: 15px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
             background-size: cover;
             border-radius: 15px;
@@ -16,25 +16,22 @@ const style = `
 
         .title {
 	        font-weight: 900;
-			font-size: 16px;
+			font-size: 12px;
 	        letter-spacing: 0.1em;
 			text-transform: uppercase;
 			color: #FFFFFF;
         }
-        
-        .features {
-        	margin-top: 20px;
-        }
-        
+              
         .subtitle {
         	color: #203B54;
         	font-weight: 900;
-			font-size: 22px;
+			font-size: 16px;
 			line-height: 26px;
         }
         
         .features {
-        	padding: 20px;
+        	margin-top: 20px;
+        	padding: 15px;
         	background: #FFFFFF;
 			box-shadow: 0 10px 39px rgba(127, 143, 156, 0.07);
 			border-radius: 10px;
@@ -51,7 +48,7 @@ const style = `
     		align-items: center;
     		gap: 5px;
         	font-weight: 500;
-			font-size: 12px;
+			font-size: 9px;
 			color: #5F7384;
 			margin-bottom: 12px;
         }       
@@ -84,7 +81,7 @@ const style = `
        		border: 2px solid #183B56;
 			border-radius: 7px;
 			font-weight: bold;
-			font-size: 14px;
+			font-size: 11px;
 			line-height: 20px;
 			text-align: center;
         }
@@ -109,6 +106,7 @@ const style = `
 		    text-align: center;
 		    background: #F2813F;
 		    border-radius: 5px;
+		    font-size: 9px;
        	}
        	
        	p.price {
@@ -187,9 +185,15 @@ if (count > 0) {
 		if (count < 0) {
 			clearInterval(counter)
 
-			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
-			<p class="price">Get Started For <s>$10,060</s> $349</p>
-		`)
+			let intr = setInterval(() => {
+				if(document.querySelector('.btn-wrapper')) {
+					clearInterval(intr)
+
+					document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
+						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
+				}
+			}, 200)
+
 			showSaleBtn()
 		}
 
