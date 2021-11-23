@@ -187,15 +187,6 @@ if (count > 0) {
 		if (count < 0) {
 			clearInterval(counter)
 
-			let intr = setInterval(() => {
-				if(document.querySelector('.btn-wrapper')) {
-					clearInterval(intr)
-
-					document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
-						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
-				}
-			}, 200)
-
 			showSaleBtn()
 		}
 
@@ -224,6 +215,9 @@ function showSaleBtn() {
 
 			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer<span>(40% off)</span></button>`
 			document.querySelector('.features ul').classList.add('show_sale')
+
+			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
+						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
 		}
 	}, 100)
 }
