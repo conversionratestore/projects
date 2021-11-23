@@ -963,7 +963,7 @@ window.onload  = function () {
                 });
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
-                        action = `Pick ${el.querySelector('i'.innerHTML)}`;
+                        action = `Pick ${el.querySelector('i').innerHTML}`;
                         label = 'Section Delivery method';
                         pushDataLayer(action,label)
                     });
