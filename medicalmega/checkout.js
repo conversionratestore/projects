@@ -12,6 +12,7 @@ function setOptionFetch(bodyOption) {
 }
 
 function chengeTotal(data) {
+    console.log(data)
     document.querySelector('.checkout-right_footer').innerHTML = `
         <div class="altTd total-headings">
             <p><b>Subtotal:</b></p>
@@ -34,7 +35,6 @@ function chengeTotal(data) {
     for (let i = 0; i < values.length; i++) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
-                console.log(key + " : " + data[key] + " = " + values[i].dataset.items);
                 values[i].innerHTML = data[key];
                 if (values[i].innerHTML.includes(',')) {
                     let spt = +data[key].split(',').join('');
@@ -42,15 +42,12 @@ function chengeTotal(data) {
                 } else {
                     values[i].innerHTML = data[key].toFixed(2);
                 }
-
-                console.log(values[i])
                 if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'none';
                 }
             }
         }
-        console.log(values[i])
     }
 }
 
@@ -87,7 +84,6 @@ function chengeQuantity() {
                 let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
 
                 fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
-                    console.log(data["cart"])
                     chengeTotal(data["cart"])
                 })
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
@@ -102,7 +98,6 @@ function chengeQuantity() {
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
 
             fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
-                console.log(data["cart"])
                 chengeTotal(data["cart"])
             })
         });
@@ -119,7 +114,6 @@ function removeProduct() {
             let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
 
             fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
-                console.log(data["cart"])
                 chengeTotal(data["cart"])
             })
             item.closest('.checkout-product').remove();
@@ -709,7 +703,6 @@ window.onload  = function () {
             </div>`);
 
             fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
-                console.log(data)
                 for (let i = 0; i < data["items"].length; i++) {
                     let product = `
                     <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
