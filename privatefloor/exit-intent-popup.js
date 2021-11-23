@@ -22,10 +22,10 @@ if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == n
 
 let objGeo = {
     '/www.' : {
-        'title': `C'EST PRESQUE A VOUS !<span>PLUS QU'UNE ÉTAPE :</span>`,
-        'title2': `C'EST PRESQUE A VOUS !<span>PLUS QU'UNE ÉTAPE :</span>`,
-        'text': `Nous ne pouvons garantir la disponibilité de tous les produits de votre panier ou de vos favoris si vous ne finalisez pas l'achat maintenant`,
-        'text2': `Nous ne pouvons garantir la disponibilité de tous les produits de votre panier ou de vos favoris si vous ne finalisez pas l'achat maintenant`,
+        'title': `Le produit dans votre panier est en forte demande actuellement.`,
+        'title2': `Les produits dans votre panier sont en forte demande actuellement.`,
+        'text': `Nous ne pouvons garantir sa disponibilité si vous ne le validez pas aujourd’hui.`,
+        'text2': `Nous ne pouvons garantir leur disponibilité si vous ne le validez pas aujourd’hui.`,
         'textBtn': 'TERMINER MA COMMANDE MAINTENANT',
         'choiceText': `C'est un choix populaire, nous pourrions bientôt être en rupture de stock`,
         'currency': '€'
