@@ -373,6 +373,8 @@ document.querySelector('.btn-to-checkout').addEventListener('click', () => {
     dataLayerPush(action)
 })
 document.querySelector('.btn-close').addEventListener('click', (e) => {
+    action = 'Clicks on close popup button';
+    dataLayerPush(action);
     document.querySelector('.popup_cart').classList.remove('active');
     qty.value = 1;
     price.innerHTML = '14.99';
