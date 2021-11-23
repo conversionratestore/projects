@@ -27,6 +27,7 @@ const style = `
         	font-weight: 900;
 			font-size: 16px;
 			line-height: 26px;
+			white-space: nowrap;
         }
         
         .features {
@@ -225,3 +226,4 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
+
