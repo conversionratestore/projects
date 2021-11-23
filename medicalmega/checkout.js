@@ -44,6 +44,7 @@ function chengeTotal(data) {
             }
         }
         (+values[i].innerHTML.split(',').join('')).toFixed(2);
+        console.log(values[i])
     }
 }
 
