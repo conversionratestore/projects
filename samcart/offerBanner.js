@@ -78,7 +78,7 @@ const style = `
         .btn-wrapper button {
         	min-height: 62px;
        		width: 100%;
-       		padding: 10px;
+       		padding: 5px;
        		border: 2px solid #183B56;
 			border-radius: 7px;
 			font-weight: bold;
