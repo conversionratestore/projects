@@ -51,6 +51,8 @@ const style = `
 			font-size: 9px;
 			color: #5F7384;
 			margin-bottom: 12px;
+			gap: 5px;
+			white-space: nowrap;
         }       
         
         .features ul li::before {
@@ -58,7 +60,6 @@ const style = `
         	display: block;
         	height: 20px;
         	width: 20px;
-        	margin-right: 5px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
         }
         
