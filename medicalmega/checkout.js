@@ -975,6 +975,8 @@ window.onload  = function () {
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+            .primaryInfo .error_cart {
+                width: 100%!important; }
             .payment h3, .checkout-left_head, .remove {
                 display: none!important;}
             .quantity-row {
