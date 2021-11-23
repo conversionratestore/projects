@@ -1,8 +1,8 @@
 let action;
 function dataLayerPush(action,label) {
-    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
+        console.log(action + " : " + label)
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Imitation of slide in cart',
@@ -10,6 +10,7 @@ function dataLayerPush(action,label) {
             'eventLabel': label
         });
     } else {
+        console.log(action)
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Imitation of slide in cart',
