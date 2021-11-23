@@ -1,3 +1,22 @@
+let action;
+function dataLayerPush(action,label) {
+    window.dataLayer = window.dataLayer || [];
+    if (label) {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Imitation of slide in cart',
+            'eventAction': action,
+            'eventLabel': label
+        });
+    } else {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Imitation of slide in cart',
+            'eventAction': action
+        });
+    }
+}
+
 document.body.insertAdjacentHTML('afterbegin',`<style>
 .popup_cart {
     position: fixed;
@@ -343,9 +362,14 @@ document.querySelector('#getNow .btn').addEventListener('click', (e) => {
         }
     })
     document.querySelector('.btn-to-checkout').setAttribute('href', e.target.getAttribute('href'))
+    action = 'Pop Up your cart appearance';
+    dataLayerPush(action)
     document.querySelector('.popup_cart').classList.add('active');
 })
-
+document.querySelector('.btn-to-checkout').addEventListener('click', () => {
+    action = 'Clicks on proceed to checkout button';
+    dataLayerPush(action)
+})
 document.querySelector('.btn-close').addEventListener('click', (e) => {
     document.querySelector('.popup_cart').classList.remove('active');
     qty.value = 1;
@@ -354,15 +378,20 @@ document.querySelector('.btn-close').addEventListener('click', (e) => {
 
 document.querySelectorAll('.btn-action').forEach((button) => {
     button.addEventListener('click', () => {
+        let label;
         if (button.classList.contains('btn-plus') && qty.value <= 4) {
             qty.value = +qty.value + 1;
             if (qty.value > 4) {
                 qty.value = 4;
             }
+            action = 'Click on choice of quantity';
+            label = 'plus';
         } else {
             if (qty.value > 1) {
                 qty.value = +qty.value - 1;
             }
+            action = 'Click on choice of quantity';
+            label = 'minus';
         }
         if (qty.value == 1) {
             price.innerHTML = '14.99';
@@ -377,11 +406,14 @@ document.querySelectorAll('.btn-action').forEach((button) => {
             price.innerHTML = '42.00';
             qty.setAttribute('data-id','39307595546668')
         }
+        dataLayerPush(action, label)
     })
 })
 
 document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e) => {
     e.preventDefault()
+    action = 'Clicks on BUY BOTH button';
+    dataLayerPush(action)
     fetch('/cart/add.js', {
         method: 'POST',
         headers: {
@@ -409,3 +441,20 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
             console.error('Error:', error);
         });
 })
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2247058,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('event', 'imitation_of_slide_in_cart');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Imitation of slide in cart',
+    'eventAction': 'loaded'
+});
