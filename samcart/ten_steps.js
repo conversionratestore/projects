@@ -521,8 +521,9 @@ main {
   left: calc(11.27% + 45px);
   transform: translateX(-50%);
   z-index: 9;
-  cursor: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/cursor.svg"), default;
+  cursor: url("https://conversionratestore.github.io/projects/samcart/img/ten_steps_img/hover_arrow.svg"), default;
   width: 10%;
+  transition: all 1s ease 0s;
 }
 
 .box_second_training .swipe_box > div > span svg {
