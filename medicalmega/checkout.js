@@ -34,8 +34,9 @@ function chengeTotal(data) {
     for (let i = 0; i < values.length; i++) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
-                console.log(key + ":" + data[key] + " = " + values[i].dataset.items)
-                values[i].innerHTML = data[key];
+                console.log(key + ":" + data[key] + " = " + values[i].dataset.items);
+                let spt = +data[key].split(',').join('');
+                values[i].innerHTML = spt.toFixed(2);
                 console.log(values[i])
                 if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
@@ -43,7 +44,6 @@ function chengeTotal(data) {
                 }
             }
         }
-        (+values[i].innerHTML.split(',').join('')).toFixed(2);
         console.log(values[i])
     }
 }
@@ -77,8 +77,6 @@ function chengeQuantity() {
                     label = 'Section Your order';
                     pushDataLayer(action,label);
                 }
-
-                console.log(button.closest('.checkout-product').dataset.variantId)
 
                 let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
 
