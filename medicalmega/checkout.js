@@ -35,7 +35,7 @@ function chengeTotal(data) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
                 console.log(key + ":" + data[key] + " = " + values[i].dataset.items);
-                if (values[i].dataset.items == 'subtotal' && data[key].split(',')) {
+                if (data[key].includes(',')) {
                     let spt = +data[key].split(',').join('');
                     values[i].innerHTML = spt.toFixed(2);
                 } else {
