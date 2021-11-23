@@ -35,8 +35,12 @@ function chengeTotal(data) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
                 console.log(key + ":" + data[key] + " = " + values[i].dataset.items);
-                let spt = +data[key].split(',').join('');
-                values[i].innerHTML = spt.toFixed(2);
+                if (values[i].dataset.items == 'subtotal') {
+                    let spt = +data[key].split(',').join('');
+                    values[i].innerHTML = spt.toFixed(2);
+                } else {
+                    values[i].innerHTML = data[key].toFixed(2);
+                }
                 console.log(values[i])
                 if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
