@@ -444,6 +444,16 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
         });
 })
 
+window.onload  = function () {
+    console.log('loaded')
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp — Imitation of slide in cart',
+        'eventAction': 'loaded'
+    });
+};
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:2247058,hjsv:6};
@@ -454,13 +464,3 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('event', 'imitation_of_slide_in_cart');
-
-window.onload  = function () {
-    console.log('loaded')
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Imitation of slide in cart',
-        'eventAction': 'loaded'
-    });
-};
