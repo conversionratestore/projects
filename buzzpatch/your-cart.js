@@ -1,5 +1,6 @@
 let action;
 function dataLayerPush(action,label) {
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
