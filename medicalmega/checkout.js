@@ -1,4 +1,4 @@
-let action,label;
+let action, label, data;
 
 function setOptionFetch(bodyOption) {
     let optionFetch = {
@@ -34,13 +34,15 @@ function chengeTotal(data) {
     for (let i = 0; i < values.length; i++) {
         for (let key in data) {
             if (values[i].dataset.items == key) {
-                console.log(key + ":" + data[key] + " = " + values[i].dataset.items);
-                if (data[key].includes(',')) {
+                console.log(key + " : " + data[key] + " = " + values[i].dataset.items);
+                values[i].innerHTML = data[key];
+                if (values[i].innerHTML.includes(',')) {
                     let spt = +data[key].split(',').join('');
                     values[i].innerHTML = spt.toFixed(2);
                 } else {
                     values[i].innerHTML = data[key].toFixed(2);
                 }
+
                 console.log(values[i])
                 if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
