@@ -15,9 +15,9 @@ function chengeTotal(data) {
     console.log(data)
     document.querySelector('.checkout-right_footer').innerHTML = `
         <div class="altTd total-headings">
-            <p><b>Subtotal:</b></p>
+            <p><b>Sub Total:</b></p>
             <p><b>Discount:</b></p>
-            <p><b>Shipping:</b></p>
+            <p><b>Shipping Charge:</b></p>
             <p><b>Processing Fee:</b></p>
             <p><b>Sales Tax:</b></p>
             <p><b>Grand Total:</b></p>
