@@ -45,8 +45,7 @@ const style = `
         
         .features li {
             display: flex;
-    		align-items: center;
-    		gap: 5px;
+    		align-items: center;    		
         	font-weight: 500;
 			font-size: 9px;
 			color: #5F7384;
@@ -58,6 +57,7 @@ const style = `
         	display: block;
         	height: 20px;
         	width: 20px;
+        	margin-right: 5px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
         }
         
@@ -225,4 +225,3 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
-
