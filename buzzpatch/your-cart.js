@@ -160,7 +160,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     margin: 20px auto;
 }
 .upsell_title {
-    font-size: 18px!important;
+    font-size: 20px!important;
     line-height: 110%!important;
     text-align: center;
     letter-spacing: 0.02em;
