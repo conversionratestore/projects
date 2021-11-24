@@ -422,7 +422,7 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
                 },
                 {
                     id: qty.getAttribute('data-id'),
-                    quantity: qty.value
+                    quantity: qty.value === 0 ? 0 : 1
                 }
             ]
         })
