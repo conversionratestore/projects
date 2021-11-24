@@ -129,7 +129,12 @@ const style = `
 
 const mobileCSS = `
 	<style>
-		.banner .inner {
+		.banner {
+			margin: 0 auto;
+			max-width: 100%;
+		}
+	
+		.features {
 			display: none;
 		}
 		.tap {
@@ -142,10 +147,11 @@ const mobileCSS = `
 			content: "";
 			display: block;
 			width: 10px;
-			height: 3px;
+			height: 5px;
 			background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-down9.svg");
+			object-fit: cover;
 			position: absolute;
-			top: 3px;
+			top: 15px;
 			left: 50%;
 			transform: translateX(-50%);			
 		}
@@ -191,7 +197,7 @@ let attendeeInterval = setInterval(() => {
 			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
 
 			document.head.insertAdjacentHTML('beforeend', mobileCSS)
-			document.querySelector('.banner').insertAdjacentHTML('afterbegin', `
+			document.querySelector('.inner .title').insertAdjacentHTML('afterbegin', `
 				<p class="tap">Tap to see more</p>
 			`)
 
