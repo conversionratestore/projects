@@ -289,6 +289,7 @@ const textArr = {
 		get: 'GET',
 		try: 'Try 30 days for free',
 		chooseVaha: 'Choose your Vaha',
+		link: '/product'
 	},
 	'ge': {
 		month: `monat`,
@@ -333,6 +334,7 @@ const textArr = {
 			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
 		],
 		chooseVaha: '',
+		link: '/produkt'
 	},
 }
 const obj = textArr[language]
@@ -694,9 +696,7 @@ if (window.location.pathname === '/product/') {
 	clone.querySelector('span').innerText = obj.chooseVaha
 
 	clone.addEventListener('click', () => {
-		console.log(window.location.hostname.split('.')[0])
-
-		window.location = `/product`
+		window.location.href = obj.link
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
