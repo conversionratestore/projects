@@ -169,8 +169,8 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     font-family: 'DIN CONDENSED', sans-serif;
 }
 .upsell img {
-    width: 111px;
-    height: 86px;
+    width: 130px;
+    height: 100px;
     margin: 30px auto 15px;
     display: block;
 }
@@ -179,7 +179,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     font-size: 12px;
     line-height: 130%;
     color: #212529;
-    margin-bottom: 35px;
+    margin-bottom: 36px;
     margin-left: 0;
 }
 .upsell-list li {
@@ -215,7 +215,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 .btn-action {
     border-radius: 50%;
