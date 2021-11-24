@@ -54,7 +54,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     background-color: #fff;
     transform: translateX(100px);
     transition: all 0.3s ease;
-    padding-bottom: 20px;
+    padding-bottom: 19px;
 }
 .btn-close {
     position: absolute;
