@@ -315,7 +315,7 @@ let cart = `
             <p class="patches_pack">60 patches in 1 pack</p>
             <div class="row-calc">
                 <button class="btn-action btn-minus" type="button"></button>
-                <input type="number" class="calc-qty" value="1" data-id="34767547138092" readonly>
+                <input type="number" class="calc-qty" value="0" data-id="34767547138092" readonly>
                 <button class="btn-action btn-plus" type="button"></button>
             </div>
         </div>
