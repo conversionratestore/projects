@@ -333,6 +333,8 @@ const textArr = {
 			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 €) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
 			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
 		],
+		get: '',
+		try: '',
 		chooseVaha: '',
 		link: '/produkt'
 	},
