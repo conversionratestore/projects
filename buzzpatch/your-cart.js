@@ -171,21 +171,22 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .upsell img {
     width: 111px;
     height: 86px;
-    margin: 14px auto 12px;
+    margin: 30px auto 15px;
     display: block;
 }
 .upsell-list {
     list-style-type: none;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 130%;
     color: #212529;
-    margin-left: 13px;
-    margin-bottom: 11px;
+    margin-bottom: 35px;
+    margin-left: 0;
 }
 .upsell-list li {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .upsell-list li::before {
     content: ""; 
@@ -199,12 +200,12 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .upsell-prices {
     text-align: center;
     font-weight: bold;
-    font-size: 18px;
-    line-height: 130%;
+    font-size: 24px!important;
+    line-height: 130%!important;
     color: #0C0B0B;
 }
 .patches_pack {
-    font-size: 14px!important;
+    font-size: 12px!important;
     line-height: 130%!important;
     text-align: center;
     color: #999999;
@@ -259,7 +260,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .container_gray {
     background-color: #F9F8F6;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 .row-calc input:not(.disabled):not([disabled]):focus, .row-calc input:not(.disabled):not([disabled]):hover {
     background-color: transparent;
@@ -407,7 +408,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
 
 document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e) => {
     e.preventDefault()
-    action = 'Clicks on Proceed to checkout button';
+    action = 'Clicks on proceed to checkout button';
     dataLayerPush(action)
     fetch('/cart/add.js', {
         method: 'POST',
