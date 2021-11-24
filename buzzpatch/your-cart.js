@@ -333,7 +333,7 @@ document.body.insertAdjacentHTML('beforeend', cart);
 
 let qty = document.querySelector('.calc-qty'),
     upsellPrice = document.querySelector('.upsell-prices .pr'),
-    total = document.querySelector('.total pr'),
+    total = document.querySelector('.total .pr'),
     patchesTotal = document.querySelector('.patches_total .pr');
 
 document.querySelector('#getNow .btn').innerHTML = 'ADD TO BAG';
@@ -407,9 +407,9 @@ document.querySelectorAll('.btn-action').forEach((button) => {
         }
         dataLayerPush(action, label)
         if (qty.value === '0') {
-            total.innerHTML = +patchesTotal.innerText
+            total.innerHTML = +patchesTotal.innerText;
         } else {
-            total.innerHTML = +patchesTotal.innerText + +upsellPrice.innerText
+            total.innerHTML = +patchesTotal.innerText + +upsellPrice.innerText;
         }
     })
 })
