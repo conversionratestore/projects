@@ -697,8 +697,10 @@ if (window.location.pathname === '/product/') {
 	clone.querySelector('span').innerText = obj.chooseVaha
 
 	clone.addEventListener('click', () => {
+		console.log(window.location.hostname.split('.')[0])
+		
 		window.location = `https://${ window.location.hostname.split('.')[0] }.vaha.com/product`
-
+		
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
 			'event': 'event-to-ga',
