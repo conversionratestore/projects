@@ -51,7 +51,7 @@ const style = `
 			font-size: 12px;
 			color: #5F7384;
 			margin-bottom: 13px;
-			gap: 4px;
+			gap: 5px;
 			white-space: nowrap;
         }       
         
@@ -71,23 +71,19 @@ const style = `
         	display: inline;
         	font-weight: 300;
         }
-        
-        .features img {
-        	margin-bottom: 15px;
-        }
-        
+  
         .btn-wrapper button {
-        	/*min-height: 46px;*/
        		width: 100%;
+       		margin-top: 15px;
        		padding: 7px;
        		border: 2px solid #183B56;
-			border-radius: 7px;
+			border-radius: 5px;
 			font-weight: bold;
 			font-size: 12px;
 			line-height: 15px;
 			text-align: center;
         }
-       	
+               	
        	.btn-wrapper .btn-wrapper_wait{
        		background: #FFFFFF;
 			color: #183B56;
@@ -98,13 +94,14 @@ const style = `
        		color: #FFFFFF;
        		line-height: 17px;       		  
        		cursor: pointer;  
+       		padding: 5px;
        	} 	
        	
        	.btn-wrapper .btn-wrapper_sale span {
        		display: block;
-		    margin: 3px auto 0;
+		    margin: 0 auto;
 		    width: fit-content;
-		    padding: 2px 6px;
+		    padding: 0 15px;
 		    text-align: center;
 		    background: #F2813F;
 		    border-radius: 4px;
@@ -112,7 +109,7 @@ const style = `
        	}
        	
        	p.price {
-       		margin-bottom: 15px;
+       		margin-top: 8px;
        		font-weight: 700;
        		font-size: 11px;
        		color: #203B54;  	
