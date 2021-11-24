@@ -241,7 +241,7 @@ const homeStyle = `
 	</style>
 `
 
-let language = window.location.pathname === '/product/' ? 'en' : 'ge'
+let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 
 const textArr = {
 	'en': {
