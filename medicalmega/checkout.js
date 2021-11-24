@@ -701,35 +701,36 @@ window.onload  = function () {
                     <div class="checkout-right_footer"></div>
                 </div>
             </div>`);
-
-            fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
-                for (let i = 0; i < data["items"].length; i++) {
-                    let product = `
-                    <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
-                        <a href="${data["items"][i].url}" class="checkout-product_img"> <img src="${data["items"][i].image_url}" alt="Image Of ${data["items"][i].title}"></a>
-                        <div class="flex-column">
-                            <div class="flex-between">
-                                <a href="#">${data["items"][i].title}</a>
-                                <button class="remove" type="button"></button>
-                            </div>
-                            <div class="flex-center-between">
-                                <div class="quantity-row">
-                                    <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
-                                    <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity">
-                                    <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+            if (!window.location.pathname.includes('checkout/step4')) {
+                fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
+                    for (let i = 0; i < data["items"].length; i++) {
+                        let product = `
+                        <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
+                            <a href="${data["items"][i].url}" class="checkout-product_img"> <img src="${data["items"][i].image_url}" alt="Image Of ${data["items"][i].title}"></a>
+                            <div class="flex-column">
+                                <div class="flex-between">
+                                    <a href="#">${data["items"][i].title}</a>
+                                    <button class="remove" type="button"></button>
                                 </div>
-                                <div class="total-price" data-price="${data["items"][i].price}">$ 
-                                    <b>${data["items"][i].subtotal.toFixed(2)}</b>
+                                <div class="flex-center-between">
+                                    <div class="quantity-row">
+                                        <button type="button" class="quantity-btn quantity-btn_minus" disabled>−</button>
+                                        <input type="number" name="quantity" value="${data["items"][i].quantity}" class="quantity">
+                                        <button type="button" class="quantity-btn quantity-btn_plus">+</button>
+                                    </div>
+                                    <div class="total-price" data-price="${data["items"][i].price}">$ 
+                                        <b>${data["items"][i].subtotal.toFixed(2)}</b>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>`;
-                    document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
-                }
-                chengeTotal(data)
-                chengeQuantity()
-                removeProduct()
-            })
+                        </div>`;
+                        document.querySelector('.checkout-right_body').insertAdjacentHTML('beforeend', product);
+                    }
+                    chengeTotal(data)
+                    chengeQuantity()
+                    removeProduct()
+                })
+            }
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
                 item.addEventListener('click', () => {
@@ -1079,31 +1080,33 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label);
                 });
+                localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
             }
 
             if(location.pathname == '/checkout/step4') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
-            .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn {
-                display: none!important;
-            }
-            .payment {
-                margin: 20px 0;
-            }
-            .primaryInfo {
-                width: 100%;
-            }
-            .payment .altprimaryInfo p {
-                width: 250px
-            }
-            .quantity-row {
-                pointer-events: none;
-            }
+                .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn {
+                    display: none!important;
+                }
+                .payment {
+                    margin: 20px 0;
+                }
+                .primaryInfo {
+                    width: 100%;
+                }
+                .payment .altprimaryInfo p {
+                    width: 250px
+                }
+                .quantity-row {
+                    pointer-events: none;
+                }
             </style>`);
                 document.querySelector('.title_head').innerHTML = 'your order has been placed!';
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
                 });
+                document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
