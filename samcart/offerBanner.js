@@ -1,8 +1,8 @@
 const style = `
     <style>
         .banner {
-        	max-width: 222px;
-        	margin: 60px auto;
+        	max-width: 263px;
+        	margin: 40px auto;
             padding: 15px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
             background-size: cover;
@@ -25,14 +25,14 @@ const style = `
         .subtitle {
         	color: #203B54;
         	font-weight: 900;
-			font-size: 16px;
-			line-height: 26px;
+			font-size: 18px;
+			line-height: 19px;
 			white-space: nowrap;
         }
         
         .features {
-        	margin-top: 20px;
-        	padding: 15px;
+        	margin-top: 15px;
+        	padding: 10px;
         	background: #FFFFFF;
 			box-shadow: 0 10px 39px rgba(127, 143, 156, 0.07);
 			border-radius: 10px;
@@ -41,25 +41,25 @@ const style = `
         .features ul {
         	list-style: none;
 		    padding: 0;
-		    margin: 25px 0;
+		    margin: 20px 0 15px;
         }
         
         .features li {
             display: flex;
     		align-items: center;    		
         	font-weight: 500;
-			font-size: 9px;
+			font-size: 12px;
 			color: #5F7384;
-			margin-bottom: 12px;
-			gap: 5px;
+			margin-bottom: 10px;
+			gap: 4px;
 			white-space: nowrap;
         }       
         
         .features ul li::before {
         	content: "";
         	display: block;
-        	height: 20px;
-        	width: 20px;
+        	height: 12px;
+        	width: 12px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
         }
         
@@ -83,7 +83,7 @@ const style = `
        		border: 2px solid #183B56;
 			border-radius: 7px;
 			font-weight: bold;
-			font-size: 11px;
+			font-size: 12px;
 			line-height: 20px;
 			text-align: center;
         }
@@ -107,15 +107,16 @@ const style = `
 		    padding: 2px 6px;
 		    text-align: center;
 		    background: #F2813F;
-		    border-radius: 5px;
+		    border-radius: 4px;
 		    font-size: 9px;
        	}
        	
        	p.price {
-       		margin-bottom: 25px;
+       		margin-bottom: 15px;
        		font-weight: 700;
-       		font-size: 14px;
-       		color: #203B54;  		
+       		font-size: 11px;
+       		color: #203B54;  	
+       		white-space: nowrap;	
        	} 
        	
         p.price s{
@@ -134,7 +135,7 @@ const banner = `
         <div class="inner">
             <p class="title">workshop Special offer</p>
             <div class="features">
-                <p class="subtitle">Get SamCart and<br>$10k in FREE gifts now</p>
+                <p class="subtitle">Get SamCart and $10k<br>in FREE gifts now</p>
                 <ul>
                     <li>1 Year of SamCart <s>($588/yr)</s></li>
                     <li>1 Page Masterclass <s>($3,995)</s></li>
