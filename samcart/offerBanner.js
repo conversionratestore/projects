@@ -14,6 +14,11 @@ const style = `
         	text-align: center;
         }
 
+        .banner img {
+            width: 100%;
+            object-fit: cover;
+        }
+
         .title {
 	        font-weight: 900;
 			font-size: 12px;
@@ -31,11 +36,14 @@ const style = `
         }
         
         .features {
+            max-height: 500px;
+            transition: max-height 1s ease;
         	margin-top: 15px;
         	padding: 10px;
         	background: #FFFFFF;
 			box-shadow: 0 10px 39px rgba(127, 143, 156, 0.07);
 			border-radius: 10px;
+            overflow: hidden;
         }
         
         .features ul {
@@ -134,15 +142,31 @@ const mobileCSS = `
 			max-width: 100%;
 		}
 	
-		.features {
-			display: none;
+		.features.mobile {
+            max-height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
 		}
-		.tap {
+        
+        .title {
+            font-size: 16px;
+        }
+
+        .subtitle {
+            margin-top: 5px;
+            font-size: 20px; 
+        }
+
+		p.tap {
 			position: relative;
+            width: fit-content;
+            margin: 7px auto 0;
 			color: #FFFFFF;
 			font-size: 10px;
 			cursor: pointer;
 		}
+
 		.tap::after {
 			content: "";
 			display: block;
@@ -155,6 +179,32 @@ const mobileCSS = `
 			left: 50%;
 			transform: translateX(-50%);			
 		}
+
+        .features ul {
+            padding-left: 15%;
+        }
+
+        p.price {
+            font-size: 12px;
+        }
+
+        .btn-wrapper button {
+            font-size: 14px;
+            padding: 15px 0 !important;
+        }
+
+        .btn-wrapper button.btn-wrapper_sale {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 10px 0 !important;
+        }
+
+        .btn-wrapper .btn-wrapper_sale span {
+            margin: 0;
+            font-size: 12px;
+            padding: 5px 15px;
+        }
 	</style>
 `
 
@@ -194,12 +244,21 @@ let attendeeInterval = setInterval(() => {
 
 
 		if (mediaQuery.matches) {
-			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
+            document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-			document.head.insertAdjacentHTML('beforeend', mobileCSS)
-			document.querySelector('.inner .title').insertAdjacentHTML('afterbegin', `
+			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)			
+			document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
 				<p class="tap">Tap to see more</p>
 			`)
+
+            document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
+
+            document.querySelector('.banner .features').classList.add('mobile')
+
+            document.querySelector('.banner .tap').addEventListener('click', function() {  
+                this.remove()
+                document.querySelector('.banner .features').classList.remove('mobile')
+            })
 
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
