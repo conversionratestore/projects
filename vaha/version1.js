@@ -191,7 +191,7 @@ const productStyle = `
         	bottom: 0;   
 		    display: flex;
 		    width: 100%;
-		    padding: 20px 17px;
+		    padding: 20px;
 		    z-index: 999;
 		    transform: translateY(100%);
 		    transition: all 0.5s ease-in-out;
