@@ -157,7 +157,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .upsell {
     max-width: 248px;
-    margin: 40px auto 34px;
+    margin: 20px auto 34px;
 }
 .upsell_title {
     font-size: 18px!important;
@@ -257,7 +257,10 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     margin: 0 auto;
     padding: 25px 20px!important;
 }
-
+.container_gray {
+    background-color: #F9F8F6;
+    padding-bottom: 20px;
+}
 .row-calc input:not(.disabled):not([disabled]):focus, .row-calc input:not(.disabled):not([disabled]):hover {
     background-color: transparent;
     box-shadow: none;
@@ -281,25 +284,26 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 let cart = `
 <div class="popup_cart">
     <div class="popup_cart_container">
-        <button class="btn-close" type="button"></button>
-        <h2 class="popup_cart_title">Your cart</h2>
-        <div class="free_shipping"> 
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
-            <p>Free Shipping WORLDWIDE</p>
-        </div>
-         <div class="patches">
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
-            <div>
-                <p class="patches_title">Itch relief patches</p>
-                <p class="patches_packs"></p>
+        <div class="container_gray">
+            <button class="btn-close" type="button"></button>
+            <h2 class="popup_cart_title">Your cart</h2>
+            <div class="free_shipping"> 
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
+                <p>Free Shipping WORLDWIDE</p>
             </div>
-            <div class="patches_total">
-               <p>$<span class="rp"></span></p> 
-               <b>$<span class="pr"></span></b>
+             <div class="patches">
+                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
+                <div>
+                    <p class="patches_title">Itch relief patches</p>
+                    <p class="patches_packs"></p>
+                </div>
+                <div class="patches_total">
+                   <p>$<span class="rp"></span></p> 
+                   <b>$<span class="pr"></span></b>
+                </div>
             </div>
+            <p class="total">Total: <span>$<span class="pr"></span></span></p>
         </div>
-        <p class="total">Total: <span>$<span class="pr"></span></span></p>
-    
         <div class="upsell">
             <p class="upsell_title">Protect your family from mosquitoes with our <span class="c-pink"> repellent patch</span></p>
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patch.png" alt="patch image">
