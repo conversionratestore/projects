@@ -298,7 +298,7 @@ let cart = `
                <b>$<span class="pr"></span></b>
             </div>
         </div>
-        <p class="total">Total: $<span class="pr"></span></p>
+        <p class="total">Total: <span>$<span class="pr"></span></span></p>
     
         <div class="upsell">
             <p class="upsell_title">Protect your family from mosquitoes with our <span class="c-pink"> repellent patch</span></p>
