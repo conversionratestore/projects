@@ -157,7 +157,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .upsell {
     max-width: 248px;
-    margin: 20px auto 34px;
+    margin: 20px auto;
 }
 .upsell_title {
     font-size: 18px!important;
@@ -215,7 +215,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 .btn-action {
     border-radius: 50%;
