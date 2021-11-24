@@ -54,6 +54,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     background-color: #fff;
     transform: translateX(100px);
     transition: all 0.3s ease;
+    padding-bottom: 20px;
 }
 .btn-close {
     position: absolute;
@@ -94,13 +95,16 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .patches {
     display: flex;
     align-items: center;
-    padding: 16px 20px 0;
-    max-width: 400px;
-    margin: 0 auto;
+    padding: 12px 15px;
+    margin: 12px auto 10px;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    border-radius: 5px;
+    max-width: calc(100% - 40px);
 }
 .patches img{
-    width: 103px;
-    height: 60px;
+    width: 73.85px;
+    height: 43px;
     object-fit: contain;
     margin-right: 10px;
 }
@@ -122,7 +126,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 .patches_total {
     margin-left: auto;
     text-align: right;
-    padding-top: 10px;
+    padding-top: 6px;
 }
 .patches_total p {
     text-decoration-line: line-through;
@@ -138,18 +142,22 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     margin-top: 2px;
 }
 .total {
-    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px!important;
     line-height: 130%!important;
     color: #0C0B0B;  
-    text-align: right;
-    padding: 0 20px;
-    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 4px auto 0!important;
+    max-width: calc(100% - 40px);
+}
+.total span {
+    font-weight: bold;
 }
 .upsell {
     max-width: 248px;
-    margin: 20px auto 34px;
+    margin: 40px auto 34px;
 }
 .upsell_title {
     font-size: 18px!important;
@@ -236,17 +244,6 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     background-color: transparent;
     border: none;
 }
-.btn-to-checkout {
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 5px 0;
-    margin: 10px auto 15px;
-    font-family: 'DIN Condensed', sans-serif;
-    display: block;
-}
 .c-pink {
     color: #FF3C7F;
 }
@@ -255,14 +252,12 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     max-width: 295px;
     width: calc(100% - 40px);
     letter-spacing: 0.05em!important;
-    font-size: 14px!important;
-    line-height: 25px;
+    font-size: 16px!important;
+    line-height: 16px;
     margin: 0 auto;
+    padding: 25px 20px!important;
 }
-.container_gray {
-    background-color: #F9F8F6;
-    padding-bottom: 20px;
-}
+
 .row-calc input:not(.disabled):not([disabled]):focus, .row-calc input:not(.disabled):not([disabled]):hover {
     background-color: transparent;
     box-shadow: none;
@@ -286,28 +281,25 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 let cart = `
 <div class="popup_cart">
     <div class="popup_cart_container">
-        <div class="container_gray">
-            <button class="btn-close" type="button"></button>
-            <h2 class="popup_cart_title">Your cart</h2>
-            <div class="free_shipping"> 
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
-                <p>Free Shipping WORLDWIDE</p>
-            </div>
-             <div class="patches">
-                <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
-                <div>
-                    <p class="patches_title">Itch relief patches</p>
-                    <p class="patches_packs"></p>
-                </div>
-                <div class="patches_total">
-                   <p>$<span class="rp"></span></p> 
-                   <b>$<span class="pr"></span></b>
-                </div>
-            </div>
-            <p class="total">Total: $<span class="pr"></span></p>
-            
+        <button class="btn-close" type="button"></button>
+        <h2 class="popup_cart_title">Your cart</h2>
+        <div class="free_shipping"> 
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/shipped-gray.svg" alt="shipped icon">
+            <p>Free Shipping WORLDWIDE</p>
         </div>
-   
+         <div class="patches">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patches-small.png" alt="image packs">
+            <div>
+                <p class="patches_title">Itch relief patches</p>
+                <p class="patches_packs"></p>
+            </div>
+            <div class="patches_total">
+               <p>$<span class="rp"></span></p> 
+               <b>$<span class="pr"></span></b>
+            </div>
+        </div>
+        <p class="total">Total: $<span class="pr"></span></p>
+    
         <div class="upsell">
             <p class="upsell_title">Protect your family from mosquitoes with our <span class="c-pink"> repellent patch</span></p>
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/patch.png" alt="patch image">
@@ -327,8 +319,7 @@ let cart = `
                 <button class="btn-action btn-plus" type="button"></button>
             </div>
         </div>
-        <a href="#" class="btn js-btn btn-primary">BUY both</a>
-        <a href="#" class="c-pink btn-to-checkout">No. proceed to checkout</a>
+        <a href="#" class="btn js-btn btn-primary">Proceed to checkout</a>
     </div>
 </div>`;
 
@@ -363,20 +354,16 @@ document.querySelector('#getNow .btn').addEventListener('click', (e) => {
             document.querySelector('.patches').setAttribute('data-id', elem.querySelector('input').value)
         }
     })
-    document.querySelector('.btn-to-checkout').setAttribute('href', e.target.getAttribute('href'))
     action = 'Pop Up your cart appearance';
     dataLayerPush(action)
     document.querySelector('.popup_cart').classList.add('active');
 })
-document.querySelector('.btn-to-checkout').addEventListener('click', () => {
-    action = 'Clicks on proceed to checkout button';
-    dataLayerPush(action)
-})
+
 document.querySelector('.btn-close').addEventListener('click', (e) => {
     action = 'Clicks on close popup button';
     dataLayerPush(action);
     document.querySelector('.popup_cart').classList.remove('active');
-    qty.value = 1;
+    qty.value = 0;
     price.innerHTML = '14.99';
 })
 
@@ -391,7 +378,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
             action = 'Click on choice of quantity';
             label = 'plus';
         } else {
-            if (qty.value > 1) {
+            if (qty.value > 0) {
                 qty.value = +qty.value - 1;
             }
             action = 'Click on choice of quantity';
@@ -416,7 +403,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
 
 document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e) => {
     e.preventDefault()
-    action = 'Clicks on BUY BOTH button';
+    action = 'Clicks on Proceed to checkout button';
     dataLayerPush(action)
     fetch('/cart/add.js', {
         method: 'POST',
@@ -431,7 +418,7 @@ document.querySelector('.popup_cart .btn-primary').addEventListener('click', (e)
                 },
                 {
                     id: qty.getAttribute('data-id'),
-                    quantity: 1
+                    quantity: qty.value
                 }
             ]
         })
