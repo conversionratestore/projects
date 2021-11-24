@@ -1,8 +1,5 @@
 const productStyle = `
 	<style>
-		/*.vaha-nav[data-v-c121df16] {*/
-		/*	margin-top: 0;*/
-		/*}*/	
 		.siq_bR {
 			bottom: 100px;
 		}
