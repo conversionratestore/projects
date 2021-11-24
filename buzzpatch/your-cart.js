@@ -156,7 +156,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     font-weight: bold;
 }
 .upsell {
-    max-width: 248px;
+    max-width: 300px;
     margin: 20px auto;
 }
 .upsell_title {
