@@ -729,6 +729,7 @@ window.onload  = function () {
                     chengeTotal(data)
                     chengeQuantity()
                     removeProduct()
+                    localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
                 })
             }
 
@@ -1080,7 +1081,7 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label);
                 });
-                localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
+
             }
 
             if(location.pathname == '/checkout/step4') {
