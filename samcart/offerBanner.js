@@ -6,7 +6,7 @@ const style = `
             padding: 15px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
             background-size: cover;
-            border-radius: 15px;
+            border-radius: 10px;
         }
         
         .banner p {
@@ -50,7 +50,7 @@ const style = `
         	font-weight: 500;
 			font-size: 12px;
 			color: #5F7384;
-			margin-bottom: 10px;
+			margin-bottom: 13px;
 			gap: 4px;
 			white-space: nowrap;
         }       
@@ -77,14 +77,14 @@ const style = `
         }
         
         .btn-wrapper button {
-        	min-height: 62px;
+        	/*min-height: 46px;*/
        		width: 100%;
-       		padding: 5px;
+       		padding: 7px;
        		border: 2px solid #183B56;
 			border-radius: 7px;
 			font-weight: bold;
 			font-size: 12px;
-			line-height: 20px;
+			line-height: 15px;
 			text-align: center;
         }
        	
@@ -178,13 +178,12 @@ if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('p
 	intervalTime = currentDate - window.localStorage.getItem('startDate')
 }
 
-// let count = 30 - (intervalTime / 1000)
-let count = 3601 - (intervalTime / 1000)
+let count = 30 - (intervalTime / 1000)
+// let count = 3601 - (intervalTime / 1000)
 
 if (count > 0) {
 	let counter = setInterval(() => {
 		count = count - 1
-		console.log(count)
 		if (count < 0) {
 			clearInterval(counter)
 
