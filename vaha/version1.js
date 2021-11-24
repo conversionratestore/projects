@@ -699,7 +699,7 @@ if (window.location.pathname === '/product/') {
 	clone.addEventListener('click', () => {
 		console.log(window.location.hostname.split('.')[0])
 
-		window.location = `https://${ window.location.hostname.split('.')[0] }.vaha.com/product`
+		window.location = `/product`
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
