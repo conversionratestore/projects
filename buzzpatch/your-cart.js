@@ -235,7 +235,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 .calc-qty {
     width: 39px;
-    line-height: 32px;
+    line-height: 1;
     font-size: 18px;
     text-align: center;
     letter-spacing: 0.02em;
