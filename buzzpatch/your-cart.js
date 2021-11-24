@@ -244,6 +244,7 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
     padding: 0;
     background-color: transparent;
     border: none;
+    font-family: 'DIN Condensed', sans-serif;
 }
 .c-pink {
     color: #FF3C7F;
