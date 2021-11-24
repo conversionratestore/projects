@@ -332,7 +332,9 @@ let cart = `
 document.body.insertAdjacentHTML('beforeend', cart);
 
 let qty = document.querySelector('.calc-qty'),
-    price = document.querySelector('.upsell-prices .pr');
+    upsellPrice = document.querySelector('.upsell-prices .pr'),
+    total = document.querySelector('.total pr'),
+    patchesTotal = document.querySelector('.patches_total .pr');
 
 document.querySelector('#getNow .btn').innerHTML = 'ADD TO BAG';
 
@@ -370,7 +372,7 @@ document.querySelector('.btn-close').addEventListener('click', (e) => {
     dataLayerPush(action);
     document.querySelector('.popup_cart').classList.remove('active');
     qty.value = 0;
-    price.innerHTML = '14.99';
+    upsellPrice.innerHTML = '14.99';
 })
 
 document.querySelectorAll('.btn-action').forEach((button) => {
@@ -391,19 +393,24 @@ document.querySelectorAll('.btn-action').forEach((button) => {
             label = 'minus';
         }
         if (qty.value == 1) {
-            price.innerHTML = '14.99';
+            upsellPrice.innerHTML = '14.99';
             qty.setAttribute('data-id','34767547138092')
         } else if (qty.value == 2) {
-            price.innerHTML = '27.00';
+            upsellPrice.innerHTML = '27.00';
             qty.setAttribute('data-id','39307589058604')
         } else if (qty.value == 3) {
-            price.innerHTML = '36.00';
+            upsellPrice.innerHTML = '36.00';
             qty.setAttribute('data-id','39307593187372')
         } else if (qty.value == 4) {
-            price.innerHTML = '42.00';
+            upsellPrice.innerHTML = '42.00';
             qty.setAttribute('data-id','39307595546668')
         }
         dataLayerPush(action, label)
+        if (qty.value === '0') {
+            total.innerHTML = +patchesTotal.innerText
+        } else {
+            total.innerHTML = +patchesTotal.innerText + +upsellPrice.innerText
+        }
     })
 })
 
