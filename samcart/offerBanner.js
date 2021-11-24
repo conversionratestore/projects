@@ -127,6 +127,31 @@ const style = `
     </style>
 `
 
+const mobileCSS = `
+	<style>
+		.banner .inner {
+			display: none;
+		}
+		.tap {
+			position: relative;
+			color: #FFFFFF;
+			font-size: 10px;
+			cursor: pointer;
+		}
+		.tap::after {
+			content: "";
+			display: block;
+			width: 10px;
+			height: 3px;
+			background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-down9.svg");
+			position: absolute;
+			top: 3px;
+			left: 50%;
+			transform: translateX(-50%);			
+		}
+	</style>
+`
+
 const banner = `
     <div class="banner">
         <div class="inner">
@@ -155,11 +180,26 @@ const banner = `
 
 document.head.insertAdjacentHTML('beforeend', style)
 
+const mediaQuery = window.matchMedia('(max-width: 992px)')
+
 let attendeeInterval = setInterval(() => {
 	if (document.querySelector('.attendee-list')) {
 		clearInterval(attendeeInterval)
 
-		document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
+
+		if (mediaQuery.matches) {
+			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
+
+			document.head.insertAdjacentHTML('beforeend', mobileCSS)
+			document.querySelector('.banner').insertAdjacentHTML('afterbegin', `
+				<p class="tap">Tap to see more</p>
+			`)
+
+		} else {
+			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
+		}
+
+
 	}
 }, 200)
 
@@ -218,4 +258,3 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
-
