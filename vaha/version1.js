@@ -171,6 +171,12 @@ const productStyle = `
         	text-transform: none;
         }
         
+        p.subtitle {
+        	font-weight: bold;
+			font-size: 18px;
+			color: #000000;
+        }
+        
         .checks > div{
         	display: flex;
         	gap: 20px;
@@ -237,6 +243,103 @@ const homeStyle = `
 			}
 	</style>
 `
+
+let language = window.location.pathname === '/product/' ? 'en' : 'ge'
+
+const textArr = {
+	'en': {
+		month: `month`,
+		from: `From`,
+		klarna: `with Klarna or SplitIt`,
+		features: `Features`,
+		live: `650+ live and on-demand classes`,
+		motion: `Motion tracking workouts`,
+		personalised: `Personalised workouts`,
+		entertainment: `Entertainment through your favourite apps`,
+		access: `Access to personal trainers`,
+		specs: `Specifications`,
+		dimension: `Dimensions`,
+		weight: `Weight`,
+		floor: `Floor stand`,
+		secure: `Wall Secure`,
+		display: `Display`,
+		inch: `inch touch screen, Full HD`,
+		sound: `Sound`,
+		firstX4: `x4 - max SPL 105 dB with custom sound board and amplifier, 65 W`,
+		secondX4: `x4 - max SPL 85dB, 30 W`,
+		mounting: `Wall Mounting`,
+		starterbox: 'VAHA Starterbox',
+		accessories: `Accessories`,
+		voucher: `GARMIN voucher code to be redeemed after 30 Day Trial Resistance bands of different strengths<br><br>Camera cover<br>User manual`,
+		care: `Care`,
+		microfiber: `Microfiber cloth and glass cleaner`,
+		heart: `Heart rate monitor`,
+		elastic: `Elastic bands`,
+		warranty: '2 year warranty',
+		financing: `Financing`,
+		payment: `One-time payment`,
+		options: `Financing options:`,
+		choose: `Choose what works for you`,
+		rate: `0% annual interest rate`,
+		total: `Total price regardless of term: £1,195`,
+		incl: `incl. VAT`,
+		text: [
+			`Try it for 30 days for free.`,
+			`If you are not satisfied with VAHA, we will pick it up free of charge. Any payments already made will be refunded.`,
+			`Pay the full amount or via installments for 12, 24, or 39 months. The VAHA membership (from £39) is separate from the purchase of the VAHA mirror and is activated upon receipt.`,
+			`Sufficient creditworthiness is a prerequisite. The installment purchase offered by us is handled by our payment partner Klarna Bank AB (publ). Klarna, therefore, decides whether the installment purchase is accepted or not.`,
+		],
+		get: 'GET',
+		try: 'Try 30 days for free',
+		chooseVaha: 'Choose your Vaha',
+	},
+	'ge': {
+		month: `monat`,
+		from: `ab`,
+		klarna: ``,
+		features: ``,
+		live: ``,
+		motion: ``,
+		personalised: ``,
+		entertainment: ``,
+		access: ``,
+		specs: `Spezifikationen`,
+		dimension: `Maße`,
+		weight: `Gewicht`,
+		floor: ``,
+		secure: `Wandsicherung`,
+		display: `Display`,
+		inch: `Zoll Full-HD Touchscreen`,
+		sound: `Lautsprecher`,
+		firstX4: `x4 - max SPL 105 dB mit Custom Soundboard und Verstärker, 65 W`,
+		secondX4: `x4 - max SPL 85dB, 30 W`,
+		mounting: `Wandmontage`,
+		starterbox: 'VAHA Starterbox',
+		accessories: `Zubehör`,
+		voucher: `GARMIN Gutscheincode einlösbar nach Abschluss der 30-tägigen Testphaset Fitnessbänder in verschiedenen Stärken<br><br>Kameraabdeckung<br>Benutzerhandbuch`,
+		care: `Pflege`,
+		microfiber: `Mikrofasertuch und Glasreiniger`,
+		heart: ``,
+		elastic: ``,
+		warranty: ``,
+		financing: ``,
+		payment: ``,
+		options: `Optionen zur Finanzierung:`,
+		choose: `Wähle, was dir passt`,
+		rate: `0% Jahreszins`,
+		total: `Gesamtpreis unabhängig von Laufzeit: 2.268€`,
+		incl: `inkl. MwSt.`,
+		text: [
+			`30 Tage gratis und unverbindlich testen.*`,
+			`Die Zahlung erfolgt erst nach der Testphase und wenn du nicht mit VAHA zufrieden bist, einfach kommentarlos gratis wieder abholen lassen.`,
+			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 €) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
+			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
+		],
+		chooseVaha: '',
+	},
+}
+const obj = textArr[language]
+
 const productPage = `
     <section class="comparison">
         <div class="cards">
@@ -245,30 +348,30 @@ const productPage = `
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.png" alt="vaha x">
                     <p class="name">Vaha X</p>
                     <p class="price">€ 2,268</p>
-                    <p class="subprice">From € 58 / month</p>
-                    <p class="price">€ 58 / month</p>
-                    <p class="subprice">with Klarna or SplitIt</p>
+                    <p class="subprice">${ obj.from } € 58 / ${ obj.month }</p>
+                    <p class="price">€ 58 / ${ obj.month }</p>
+                    <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.png" alt="vaha x">
                     <p class="name">Vaha S</p>
                     <p class="price">€ 1,395</p>
-                    <p class="subprice">From € 36 / month</p>
-                    <p class="price">€ 36 / month</p>
-                    <p class="subprice">with Klarna or SplitIt</p>
+                    <p class="subprice">${ obj.from } € 36 / ${ obj.month }</p>
+                    <p class="price">€ 36 / ${ obj.month }</p>
+                    <p class="subprice">${ obj.klarna }</p>
                 </div>
             </div>
         </div>
         <div class="properties">
             <div class="inner">
                 <div class="characteristic">
-                    <p class="title">Features</p>
+                    <p class="title">${ obj.features }</p>
                     <div class="names-wrapper">
                         <p class="name">Vaha X</p>
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>650+ live and on-demand classes</p>
+                        <p>${ obj.live }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -281,7 +384,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Motion tracking workouts</p>
+                        <p>${ obj.motion }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -294,7 +397,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Personalised workouts</p>
+                        <p>${ obj.personalised }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -307,7 +410,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Entertainment through your favourite apps</p>
+                        <p>${ obj.entertainment }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -320,7 +423,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Access to personal trainers</p>
+                        <p>${ obj.access }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -334,23 +437,23 @@ const productPage = `
                     </div>
                 </div>
                 <div class="characteristic">
-                    <p class="title">Specifications</p>
+                    <p class="title">${ obj.specs }</p>
                     <div class="property">
-                        <p>Dimensions</p>
+                        <p>${ obj.dimension }</p>
                         <div class="check">
                             <p>170 x 62<br>x 4,2 cm</p>
                             <p>150 x 50<br>x 4,2 cm</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Weight</p>
+                        <p>${ obj.weight }</p>
                         <div class="check">
                             <p>45 kg</p>
                             <p>27 kg</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Floor stand</p>
+                        <p>${ obj.floor }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -363,7 +466,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Wall Secure</p>
+                        <p>${ obj.secure }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -376,21 +479,21 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Display</p>
+                        <p>${ obj.display }</p>
                         <div class="check">
-                            <p>43 inch touch<br>screen, Full HD</p>
-                            <p>32 inch touch<br>screen Full HD</p>
+                            <p>43 ${ obj.inch }</p>
+                            <p>32 ${ obj.inch }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Sound</p>
+                        <p>${ obj.sound }</p>
                         <div class="check">
-                            <p>x4 - max SPL 105 dB with custom sound board and amplifier, 65 W</p>
-                            <p>x4 - max SPL 85dB, 30 W</p>
+                            <p>${ obj.firstX4 }</p>
+                            <p>${ obj.secondX4 }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Wall Mounting</p>
+                        <p>${ obj.mounting }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/x.svg"
@@ -404,25 +507,23 @@ const productPage = `
                     </div>
                 </div>
                 <div class="characteristic">
-                    <p class="title">VAHA Starterbox</p>
+                    <p class="title">${ obj.starterbox }</p>
                     <div class="property">
-                        <p>Accessories</p>
+                        <p>${ obj.accessories }</p>
                         <div class="check">
-                            <p>GARMIN voucher code to be redeemed after 30 Day Trial Resistance bands of different
-                                strengths<br><br>Camera cover<br>User manual</p>
-                            <p>GARMIN voucher code to be redeemed after 30 Day Trial
-                                Resistance bands of different strengths<br><br>Camera cover<br>User manual</p>
+                            <p>${ obj.voucher }</p>
+                            <p>${ obj.voucher }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Care</p>
+                        <p>${ obj.care }</p>
                         <div class="check">
-                            <p>Microfiber cloth and glass cleaner</p>
-                            <p>Microfiber cloth and glass cleaner</p>
+                            <p>${ obj.microfiber }</p>
+                            <p>${ obj.microfiber }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>Heart rate monitor</p>
+                        <p>${ obj.heart }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -435,7 +536,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>Elastic bands</p>
+                        <p>${ obj.elastic }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -448,7 +549,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>2 year warranty</p>
+                        <p>${ obj.warranty }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -466,34 +567,34 @@ const productPage = `
         <div class="financing">
             <div class="inner">
                 <div class="characteristic">
-                    <p class="title">Financing</p>
+                    <p class="title">${ obj.financing }</p>
                     <div class="names-wrapper">
                         <p class="name">Vaha X</p>
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>39 month</p>
+                        <p>39 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 58 / month</p>
-                            <p>€ 36 / month</p>
+                            <p>€ 58 / ${ obj.month }</p>
+                            <p>€ 36 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>24 month</p>
+                        <p>24 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 94 / month</p>
-                            <p>€ 58 / month</p>
+                            <p>€ 94 / ${ obj.month }</p>
+                            <p>€ 58 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>12 month</p>
+                        <p>12 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 189 / month</p>
-                            <p>€ 116 / month</p>
+                            <p>€ 189 / ${ obj.month }</p>
+                            <p>€ 116 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>One-time payment</p>
+                        <p>${ obj.payment }</p>
                         <div class="check">
                             <p>€ 2,265</p>
                             <p>€ 1,395</p>
@@ -501,29 +602,30 @@ const productPage = `
                     </div>
                 </div>
                 <div class="options">
-                    <p class="title">Financing options:</p>
+                    <p class="title">${ obj.options }:</p>
+                    <p class="subtitle">${ obj.choose }</p>
                     <div class="checks">
                         <div>
                             <img src="https://conversionratestore.github.io/projects/vaha/images/check-gold.svg"
                                  alt="check mark">
-                            <p>0% annual interest rate</p>
+                            <p>${ obj.rate }</p>
                         </div>
                         <div>
                             <img src="https://conversionratestore.github.io/projects/vaha/images/check-gold.svg"
                                  alt="check mark">
-                            <p>Total price regardless of term: £1,195</p>
+                            <p>${ obj.total }</p>
                         </div>
                         <div>
                             <img src="https://conversionratestore.github.io/projects/vaha/images/check-gold.svg"
                                  alt="check mark">
-                            <p>incl. VAT</p>
+                            <p>${ obj.incl }</p>
                         </div>
                     </div>
                     <div class="text">
-                        <p>Try it for 30 days for free.</p>
-                        <p>If you are not satisfied with VAHA, we will pick it up free of charge. Any payments already made will be refunded.</p>
-                        <p>Pay the full amount or via installments for 12, 24, or 39 months. The VAHA membership (from £39) is separate from the purchase of the VAHA mirror and is activated upon receipt.</p>
-                        <p>Sufficient creditworthiness is a prerequisite. The installment purchase offered by us is handled by our payment partner Klarna Bank AB (publ). Klarna, therefore, decides whether the installment purchase is accepted or not.</p>
+                        <p>${ obj.text[0] }</p>
+                        <p>${ obj.text[1] }</p>
+                        <p>${ obj.text[2] }</p>
+                        <p>${ obj.text[3] }</p>
                     </div>
                 </div>
             </div>
@@ -531,12 +633,12 @@ const productPage = `
     </section>
     <div class="btn-wrapper">
         <button>
-            <span>Get VAHA X</span>
-            <span>Try 30 days for free</span>
+            <span>${ obj.get } VAHA X</span>
+            <span>${ obj.try }</span>
         </button>
         <button>
-            <span>Get VAHA S</span>
-            <span>Try 30 days for free</span>
+            <span>${ obj.get } VAHA S</span>
+            <span>${ obj.try }</span>
         </button>
     </div>
 `
@@ -592,10 +694,10 @@ if (window.location.pathname === '/product/') {
 
 	btn.after(clone)
 
-	clone.querySelector('span').innerText = 'Choose your Vaha'
+	clone.querySelector('span').innerText = obj.chooseVaha
 
 	clone.addEventListener('click', () => {
-		window.location = 'https://uk.vaha.com/product'
+		window.location = `https://${ window.location.hostname.split('.')[0] }.vaha.com/product`
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
