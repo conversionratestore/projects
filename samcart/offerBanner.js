@@ -184,6 +184,10 @@ const mobileCSS = `
 			left: 50%;
 			transform: translateX(-50%);			
 		}
+		
+		.features {
+			margin-top: 10px;
+		}
 
         .features ul {
             padding-left: 15%;
