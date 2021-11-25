@@ -25,6 +25,7 @@ const style = `
 	        letter-spacing: 0.1em;
 			text-transform: uppercase;
 			color: #FFFFFF;
+			transition: font-size 1s ease;
         }
               
         p.subtitle {
