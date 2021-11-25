@@ -414,7 +414,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
         if (qty.value === '0') {
             total.innerHTML = (+patchesTotal.innerText).toFixed(2);
         } else {
-            total.innerHTML = (+patchesTotal.innerText + +upsellPrice.innerText).toFixed(2);
+            total.innerHTML = (+patchesTotal.innerText + (+upsellPrice.innerText * +qty.value)).toFixed(2);
         }
     })
 })
