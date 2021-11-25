@@ -242,23 +242,22 @@ let attendeeInterval = setInterval(() => {
 	if (document.querySelector('.attendee-list')) {
 		clearInterval(attendeeInterval)
 
-
 		if (mediaQuery.matches) {
-            document.head.insertAdjacentHTML('beforeend', mobileCSS)
+			document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)			
+			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
 			document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
 				<p class="tap">Tap to see more</p>
 			`)
 
-            document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
+			document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
 
-            document.querySelector('.banner .features').classList.add('mobile')
+			document.querySelector('.banner .features').classList.add('mobile')
 
-            document.querySelector('.banner .tap').addEventListener('click', function() {  
-                this.remove()
-                document.querySelector('.banner .features').classList.remove('mobile')
-            })
+			document.querySelector('.banner .tap').addEventListener('click', function () {
+				this.remove()
+				document.querySelector('.banner .features').classList.remove('mobile')
+			})
 
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
@@ -312,7 +311,7 @@ if (count > 0) {
 
 function showSaleBtn() {
 	let interval = setInterval(() => {
-		if(document.querySelector('.btn-wrapper')) {
+		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
 			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer<span>(40% off)</span></button>`
@@ -320,6 +319,41 @@ function showSaleBtn() {
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
 						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
+
+			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Webinar page special offer',
+					'eventAction': 'Click on Continue to special offer button',
+				})
+				console.log('EVENT: Click on Continue to special offer button')
+			})
 		}
 	}, 100)
 }
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp — Webinar page special offer',
+	'eventAction': 'loaded',
+})
+
+;(function (h, o, t, j, a, r) {
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 2592989, hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+window.hj = window.hj || function () {
+	(hj.q = hj.q || []).push(arguments)
+}
+hj('event', 'webinar_page_special_offer')
+
+console.log(`Don't document the bug. Fix it, Bohdan :)`)
