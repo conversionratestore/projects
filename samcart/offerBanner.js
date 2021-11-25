@@ -27,7 +27,7 @@ const style = `
 			color: #FFFFFF;
         }
               
-        .subtitle {
+        p.subtitle {
         	color: #203B54;
         	font-weight: 900;
 			font-size: 18px;
