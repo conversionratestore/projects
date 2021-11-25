@@ -143,14 +143,14 @@ const mobileCSS = `
 			max-width: 100%;
 		}
 	
-		.features.mobile {
+		.banner.mobile .features {
             max-height: 0;
             margin: 0;
             padding: 0;
             overflow: hidden;
 		}
         
-        .title {
+        .banner.mobile .title {
             font-size: 16px;
         }
 
@@ -253,11 +253,11 @@ let attendeeInterval = setInterval(() => {
 
 			document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
 
-			document.querySelector('.banner .features').classList.add('mobile')
+			document.querySelector('.banner').classList.add('mobile')
 
 			document.querySelector('.banner .tap').addEventListener('click', function () {
 				this.remove()
-				document.querySelector('.banner .features').classList.remove('mobile')
+				document.querySelector('.banner.mobile')?.classList.remove('mobile')
 			})
 
 		} else {
