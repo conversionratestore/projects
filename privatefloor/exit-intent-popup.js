@@ -22,8 +22,8 @@ if (!localStorage.getItem('todayItem') && localStorage.getItem('todayItem') == n
 
 let objGeo = {
     '/www.' : {
-        'title': `Le produit dans votre panier est en forte demande actuellement.`,
-        'title2': `Les produits dans votre panier sont en forte demande actuellement.`,
+        'title': `Le produit dans votre panier est en forte demande actuellement`,
+        'title2': `Les produits dans votre panier sont en forte demande actuellement`,
         'text': `Nous ne pouvons garantir sa disponibilité si vous ne le validez pas aujourd’hui.`,
         'text2': `Nous ne pouvons garantir leur disponibilité si vous ne le validez pas aujourd’hui.`,
         'textBtn': 'TERMINER MA COMMANDE MAINTENANT',
@@ -40,17 +40,17 @@ let objGeo = {
         'currency': '£'
     },
     '/it.' : {
-        'title': `È QUASI TUO!<span>MANCA SOLO UN PASSO:</span>`,
-        'title2': `È QUASI TUO!<span>MANCA SOLO UN PASSO:</span>`,
-        'text': `Non possiamo garantirti la disponibilità di tutti i prodotti nel carrello o nei tuoi preferiti se non completi subito l'acquisto`,
-        'text2': `Non possiamo garantirti la disponibilità di tutti i prodotti nel carrello o nei tuoi preferiti se non completi subito l'acquisto`,
+        'title': `L’articolo nel tuo carrello è molto richiesto in questo momento`,
+        'title2': `Gli articoli nel tuo carrello sono molto richiesti in questo momento`,
+        'text': `Non possiamo garantire la disponibilità dell’articolo nel tuo carrello se non completi l’acquisto ora.`,
+        'text2': `Non possiamo garantire la disponibilità di tutti gli articoli nel tuo carrello se non completi l’acquisto ora.`,
         'textBtn': 'COMPLETA IL MIO ORDINE ORA',
         'choiceText': `Questa è una scelta popolare, potremmo esaurire presto le scorte`,
         'currency': '€'
     },
     '/de.' : {
-        'title': `Die Nachfrage nach dem Produkt in deinem Warenkorb ist momentan sehr hoch.`,
-        'title2': `Die Nachfrage nach den Produkten in deinem Warenkorb ist momentan sehr hoch.`,
+        'title': `Die Nachfrage nach dem Produkt in deinem Warenkorb ist momentan sehr hoch`,
+        'title2': `Die Nachfrage nach den Produkten in deinem Warenkorb ist momentan sehr hoch`,
         'text': 'Wir können die Verfügbarkeit des Produktes in deinem Warenkorb nicht garantieren, wenn du die Bestellung nicht sofort abschließen solltest.',
         'text2': 'Wir können die Verfügbarkeit der Produkte in deinem Warenkorb nicht garantieren, wenn du die Bestellung nicht sofort abschließen solltest.',
         'textBtn': 'COMPLETA IL MIO ORDINE ORA',
