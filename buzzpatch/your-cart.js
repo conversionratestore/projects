@@ -393,17 +393,17 @@ document.querySelectorAll('.btn-action').forEach((button) => {
             label = 'minus';
         }
         if (qty.value == 1) {
-            upsellPrice.innerHTML = '14.99';
-            qty.setAttribute('data-id','34767547138092')
+            upsellPrice.innerHTML = document.querySelectorAll('.js-packs label span')[3].innerHTML.replace('$','').replace(' Each','');
+            qty.setAttribute('data-id','34137893142572')
         } else if (qty.value == 2) {
-            upsellPrice.innerHTML = '27.00';
-            qty.setAttribute('data-id','39307589058604')
+            upsellPrice.innerHTML = document.querySelectorAll('.js-packs label span')[2].innerHTML.replace('$','').replace(' Each','');
+            qty.setAttribute('data-id','39307585519660')
         } else if (qty.value == 3) {
-            upsellPrice.innerHTML = '36.00';
-            qty.setAttribute('data-id','39307593187372')
+            upsellPrice.innerHTML = document.querySelectorAll('.js-packs label span')[0].innerHTML.replace('$','').replace(' Each','');
+            qty.setAttribute('data-id','39264142393388')
         } else if (qty.value == 4) {
-            upsellPrice.innerHTML = '42.00';
-            qty.setAttribute('data-id','39307595546668')
+            upsellPrice.innerHTML = document.querySelectorAll('.js-packs label span')[1].innerHTML.replace('$','').replace(' Each','');
+            qty.setAttribute('data-id','39264134070316')
         }
         dataLayerPush(action, label)
         if (qty.value === '0') {
