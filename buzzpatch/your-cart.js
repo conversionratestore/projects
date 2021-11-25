@@ -407,7 +407,7 @@ document.querySelectorAll('.btn-action').forEach((button) => {
             upsellPrice.innerHTML = setPackPrice(0)
             qty.setAttribute('data-id','39264142393388')
         } else if (qty.value == 4) {
-            upsellPrice.innerHTML = setPackPrice(4)
+            upsellPrice.innerHTML = setPackPrice(1)
             qty.setAttribute('data-id','39264134070316')
         }
         dataLayerPush(action, label)
