@@ -1,8 +1,8 @@
 const style = `
     <style>
         .banner {
-        	max-width: 263px;
-        	margin: 40px auto;
+        	max-width: calc(100% - 20px);
+    		margin: 40px auto;
             padding: 15px;
             background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
             background-size: cover;
