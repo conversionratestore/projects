@@ -230,13 +230,13 @@ const banner = `
                 <ul>
                     <li>1 Year of SamCart <s>($588/yr)</s></li>
                     <li>1 Page Masterclass <s>($3,995)</s></li>
-                    <li>Traffic Tactics <s>($1,997)</s></li>
-                    <li>Course Creation Challenge <s>($995)</s></li>
-                    <li>1 Page Wednesday Calls <s>($995!)</s></li>
-                    <li>Private Facebook Group <s>($495)</s></li>
-                    <li>Top Seller Strategies <s>($995)</s></li>
+                    <li>1 Page Workshop <s>($995)</s></li>
+                    <li>1 Page Launch <s>($995!)</s></li>
+                    <li>1 Page Blueprint <s>($99)</s></li>
+                    <li>My Past Reports <s>($495)</s></li>                    
                     <li>The 1 Page Template! <s>(Priceless)</s></li>
-                    <li>30-Day Money-Back Guarantee</li>
+                    <li>Private facebook group</li> 
+                    <li>1 page wednesday calls <s>(Priceless)</s></li>  
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
@@ -329,19 +329,7 @@ function showSaleBtn() {
 			document.querySelector('.features ul').classList.add('show_sale')
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
-						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
-
-			document.querySelector('.features ul').innerHTML = `				
-                    <li>1 Year of SamCart <s>($588/yr)</s></li>
-                    <li>1 Page Masterclass <s>($3,995)</s></li>
-                    <li>1 Page Workshop <s>($995)</s></li>
-                    <li>1 Page Launch <s>($995!)</s></li>
-                    <li>1 Page Blueprint <s>($99)</s></li>
-                    <li>My Past Reports <s>($495)</s></li>                    
-                    <li>The 1 Page Template! <s>(Priceless)</s></li>
-                    <li>Private facebook group</li> 
-                    <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
-			`
+						<p class="price">Get Started For <s>$10,060</s> $349</p>`)			
 
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
