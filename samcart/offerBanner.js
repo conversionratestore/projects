@@ -52,7 +52,7 @@ const style = `
 		    margin: 20px 0 15px;
         }
         
-        .features li {
+        .features ul li {
             display: flex;
     		align-items: center;    		
         	font-weight: 500;
@@ -263,8 +263,6 @@ let attendeeInterval = setInterval(() => {
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
 		}
-
-
 	}
 }, 200)
 
