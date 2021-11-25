@@ -142,6 +142,10 @@ const mobileCSS = `
 			margin: 0 auto;
 			max-width: 100%;
 		}
+		
+		.banner.mobile {
+			padding: 10px;
+		}
 	
 		.banner.mobile .features {
             max-height: 0;
@@ -176,7 +180,7 @@ const mobileCSS = `
 			background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-down9.svg");
 			object-fit: cover;
 			position: absolute;
-			top: 15px;
+			top: 14px;
 			left: 50%;
 			transform: translateX(-50%);			
 		}
