@@ -145,9 +145,6 @@ const mobileCSS = `
 		.banner {
 			margin-top: 0;
 			max-width: 100%;
-		}
-		
-		.banner.mobile {
 			padding: 10px;
 		}
 	
@@ -282,7 +279,7 @@ let attendeeInterval = setInterval(() => {
                     <li>The 1 Page Template! <s>(Priceless)</s></li>
                     <li>Private facebook group</li> 
                     <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
-			`			
+			`
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
 		}
@@ -340,7 +337,7 @@ function showSaleBtn() {
 			document.querySelector('.features ul').classList.add('show_sale')
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
-						<p class="price">Get Started For <s>$10,060</s> $349</p>`)			
+						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
 
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
