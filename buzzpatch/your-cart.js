@@ -283,6 +283,10 @@ document.body.insertAdjacentHTML('afterbegin',`<style>
 }
 </style>`)
 
+function setPackPrice(i) {
+    return (+document.querySelectorAll('.js-packs label span')[i].innerHTML.replace('$','').replace(' Each','')).toFixed(2)
+}
+
 let cart = `
 <div class="popup_cart">
     <div class="popup_cart_container">
@@ -316,7 +320,7 @@ let cart = `
                 <li>Effective up to 72 hours</li>
             </ul>
             <p class="upsell-prices">
-                $<span class="pr">14.99</span> /pack
+                $<span class="pr">${setPackPrice(3)}</span> /pack
             </p>
             <p class="patches_pack">60 patches in 1 pack</p>
             <div class="row-calc">
@@ -335,6 +339,7 @@ let qty = document.querySelector('.calc-qty'),
     upsellPrice = document.querySelector('.upsell-prices .pr'),
     total = document.querySelector('.total .pr'),
     patchesTotal = document.querySelector('.patches_total .pr');
+
 
 document.querySelector('#getNow .btn').innerHTML = 'ADD TO BAG';
 
@@ -372,12 +377,8 @@ document.querySelector('.btn-close').addEventListener('click', (e) => {
     dataLayerPush(action);
     document.querySelector('.popup_cart').classList.remove('active');
     qty.value = 0;
-    upsellPrice.innerHTML = '14.99';
+    upsellPrice.innerHTML = setPackPrice(3);
 })
-
-function setPackPrice(i) {
-    return (+document.querySelectorAll('.js-packs label span')[i].innerHTML.replace('$','').replace(' Each','')).toFixed(2)
-}
 
 document.querySelectorAll('.btn-action').forEach((button) => {
     button.addEventListener('click', () => {
