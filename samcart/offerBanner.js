@@ -139,7 +139,7 @@ const style = `
 const mobileCSS = `
 	<style>
 		.banner {
-			margin: 0 auto;
+			margin-top: 0;
 			max-width: 100%;
 		}
 		
