@@ -2,10 +2,9 @@ const style = `
     <style>
         .banner {
         	max-width: calc(100% - 20px);
-    		margin: 40px auto;
+    		margin: 30px auto;
             padding: 15px;
-            background: url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.png") no-repeat;
-            background-size: cover;
+            background: #4495EC url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.svg") no-repeat center top -20px / cover;
             border-radius: 10px;
         }
         
