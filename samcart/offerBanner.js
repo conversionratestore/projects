@@ -61,6 +61,7 @@ const style = `
 			margin-bottom: 13px;
 			gap: 5px;
 			white-space: nowrap;
+			text-transform: capitalize;
         }       
         
         .features ul li::before {
@@ -319,6 +320,18 @@ function showSaleBtn() {
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
 						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
+
+			document.querySelector('.features ul').innerHTML = `				
+                    <li>1 Year of SamCart <s>($588/yr)</s></li>
+                    <li>1 Page Masterclass <s>($3,995)</s></li>
+                    <li>1 Page Workshop <s>($995)</s></li>
+                    <li>1 Page Launch <s>($995!)</s></li>
+                    <li>1 Page Blueprint <s>($99)</s></li>
+                    <li>My Past Reports <s>($495)</s></li>                    
+                    <li>The 1 Page Template! <s>(Priceless)</s></li>
+                    <li>Private facebook group</li> 
+                    <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
+			`
 
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
