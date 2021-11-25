@@ -1,10 +1,14 @@
 const style = `
     <style>
+    	.stage__sidebar {
+    		flex: 0 0 280px;
+    	}
+    
         .banner {
         	max-width: calc(100% - 20px);
     		margin: 30px auto;
             padding: 15px;
-            background: #4495EC url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.svg") no-repeat center top -20px / cover;
+            background: #4495EC url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.svg") no-repeat center top / 100% 155px;
             border-radius: 10px;
         }
         
