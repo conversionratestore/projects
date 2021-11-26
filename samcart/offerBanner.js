@@ -1,16 +1,49 @@
 const style = `
     <style>
+    body {
+    padding: 20px;
+    }
+    	
     	.stage__sidebar {
     		flex: 0 0 280px;
     	}
     
         .banner {
+        	position: relative;
         	max-width: calc(100% - 20px);
     		margin: 30px auto;
             padding: 15px;
             background: #4495EC url("https://conversionratestore.github.io/projects/samcart/img/bannerBg.svg") no-repeat center top / 100% 155px;
             border-radius: 10px;
         }
+        
+        .banner::after {
+        	content: "";
+        	position: absolute;
+        	display: block;
+        	width: 105px;
+			height: 45px;
+        	right: -6px;
+        	top: -15px;
+        	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
+        	object-fit: cover;
+        	transition: all 1s ease;
+    		opacity: 0;
+    		pointer-events: none;
+        }
+        
+        .banner.show_sale::after {
+			/*display: block;*/
+			opacity: 1;
+		}
+        
+        .banner.mobile::before {
+        	display: none;
+        }
+        
+         /*.banner.mobile p.title {*/
+         /*	margin: 0;*/
+         /*}*/
         
         .banner p {
         	margin: 0;
@@ -22,13 +55,19 @@ const style = `
             object-fit: cover;
         }
 
-        .title {
+        p.title {
+        margin: 0;
+        	/*margin: 10px 0 -10px;*/
 	        font-weight: 900;
 			font-size: 12px;
 	        letter-spacing: 0.1em;
 			text-transform: uppercase;
 			color: #FFFFFF;
 			transition: font-size 1s ease;
+        }
+        
+        .banner.show_sale p.title {
+        	font-size: 10px;
         }
               
         p.subtitle {
@@ -80,7 +119,7 @@ const style = `
         	display: none;
         }
         
-        .features ul.show_sale li s {
+        .banner.show_sale .features ul li s {
         	display: inline;
         	font-weight: 300;
         }
@@ -103,11 +142,12 @@ const style = `
        	}      	      
        	
        	.btn-wrapper .btn-wrapper_sale {
+       		font-size: 14px;
        		background: #183B56;
        		color: #FFFFFF;
        		line-height: 17px;       		  
-       		cursor: pointer;  
-       		padding: 5px;
+       		cursor: pointer;
+       		padding: 14px;
        	} 	
        	
        	.btn-wrapper .btn-wrapper_sale span {
@@ -137,6 +177,8 @@ const style = `
         .fullscreen__ctas  {
         	display: none;
         }
+        
+        
     </style>
 `
 
@@ -147,6 +189,55 @@ const mobileCSS = `
 			max-width: 100%;
 			padding: 10px;
 		}
+		
+		.banner.mobile {
+			padding-bottom: 5px;
+		}
+		
+		.banner.mobile .close {
+			display: none !important;
+		}
+		
+		.banner.show_sale .close {
+			display: block;
+		}
+		
+		.close {
+        	position: absolute;
+        	/*display: block;*/
+        	width: 11px;
+			height: 5px;
+        	right: 10px;
+        	top: 5px;
+        	background: url("https://conversionratestore.github.io/projects/samcart/img/arrow-up.svg") no-repeat;
+        	object-fit: cover;
+        	cursor: pointer;
+        	padding: 5px;
+		}
+		
+		.banner.mobile::after {
+			opacity: 0 !important;
+		}
+		
+		.banner::after {
+			
+        	left: -13px;
+        	top: 11px;
+        	background: url("https://conversionratestore.github.io/projects/samcart/img/off-mobile.svg") no-repeat;
+        	
+		}
+		
+		
+		
+		.banner.mobile p.title {
+			font-size: 12px;
+			margin: 0;
+		}
+		
+		.banner.mobile {
+			cursor: pointer;
+		}
+		
 	
 		.banner.mobile .features {
             max-height: 0;
@@ -159,15 +250,20 @@ const mobileCSS = `
             font-size: 16px;
         }
 
-        .subtitle {
-            margin-top: 5px;
+        p.subtitle {
+            margin-top: 10px;
             font-size: 20px; 
+        }
+        
+        .banner.mobile p.tap {
+        	display: block;
         }
 
 		p.tap {
+			display: none;
 			position: relative;
             width: fit-content;
-            margin: 7px auto 0;
+            margin: 5px auto 10px;
 			color: #FFFFFF;
 			font-size: 10px;
 			cursor: pointer;
@@ -241,6 +337,7 @@ const banner = `
 				</div>
             </div>
         </div>
+        <span class="close">X</span>
     </div>
 `
 
@@ -253,38 +350,15 @@ let attendeeInterval = setInterval(() => {
 		clearInterval(attendeeInterval)
 
 		if (mediaQuery.matches) {
-			document.head.insertAdjacentHTML('beforeend', mobileCSS)
-
-			document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
-			document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
-				<p class="tap">Tap to see more</p>
-			`)
-
-			document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
-
-			document.querySelector('.banner').classList.add('mobile')
-
-			document.querySelector('.banner .tap').addEventListener('click', function () {
-				this.remove()
-				document.querySelector('.banner.mobile')?.classList.remove('mobile')
-			})
-
-			document.querySelector('.features ul').innerHTML = `				
-                    <li>1 Year of SamCart <s>($588/yr)</s></li>
-                    <li>1 Page Masterclass <s>($3,995)</s></li>
-                    <li>1 Page Workshop <s>($995)</s></li>
-                    <li>1 Page Launch <s>($995!)</s></li>
-                    <li>1 Page Blueprint <s>($99)</s></li>
-                    <li>My Past Reports <s>($495)</s></li>                    
-                    <li>The 1 Page Template! <s>(Priceless)</s></li>
-                    <li>Private facebook group</li> 
-                    <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
-			`
+			setMobile()
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
 		}
 	}
 }, 200)
+
+// document.querySelector('body').insertAdjacentHTML('beforeend', banner)
+// setMobile()
 
 let intervalTime = 0
 
@@ -328,16 +402,54 @@ if (count > 0) {
 	showSaleBtn()
 }
 
+function setMobile() {
+	document.head.insertAdjacentHTML('beforeend', mobileCSS)
+
+	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
+	// document.querySelector('body').insertAdjacentHTML('beforeend', banner)
+	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
+				<p class="tap">Tap to see more</p>
+			`)
+
+	document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
+
+	document.querySelector('.banner').classList.add('mobile')
+
+	document.querySelector('.banner.mobile').addEventListener('click', function () {
+		document.querySelector('.banner.mobile')?.classList.remove('mobile')
+	})
+
+	document.querySelector('.features ul').innerHTML = `				
+                    <li>1 Year of SamCart <s>($588/yr)</s></li>
+                    <li>1 Page Masterclass <s>($3,995)</s></li>
+                    <li>1 Page Workshop <s>($995)</s></li>
+                    <li>1 Page Launch <s>($995!)</s></li>
+                    <li>1 Page Blueprint <s>($99)</s></li>
+                    <li>My Past Reports <s>($495)</s></li>                    
+                    <li>The 1 Page Template! <s>(Priceless)</s></li>
+                    <li>Private facebook group</li> 
+                    <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
+			`
+}
+
 function showSaleBtn() {
 	let interval = setInterval(() => {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer<span>(40% off)</span></button>`
-			document.querySelector('.features ul').classList.add('show_sale')
+			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+			document.querySelector('.banner').classList.add('show_sale')
+
 
 			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
 						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
+
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Webinar page special offer',
+				'eventAction': 'Click on Continue to special offer button'
+			});
 
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
@@ -351,6 +463,16 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
+
+document.querySelector('.banner .close').addEventListener('click', () => {
+	let intr = setInterval(() => {
+		if(document.querySelector('.banner')) {
+			clearInterval(intr)
+
+			document.querySelector('.banner').classList.add('mobile')
+		}
+	}, 200)
+})
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
