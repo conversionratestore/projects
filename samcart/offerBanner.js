@@ -337,7 +337,7 @@ const banner = `
 				</div>
             </div>
         </div>
-        <span class="close">X</span>
+        <span class="close"></span>
     </div>
 `
 
@@ -358,7 +358,7 @@ let attendeeInterval = setInterval(() => {
 }, 200)
 
 // document.querySelector('body').insertAdjacentHTML('beforeend', banner)
-// setMobile()
+setMobile()
 
 let intervalTime = 0
 
@@ -405,8 +405,8 @@ if (count > 0) {
 function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
-	// document.querySelector('body').insertAdjacentHTML('beforeend', banner)
+	// document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
+	document.querySelector('body').insertAdjacentHTML('beforeend', banner)
 	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
 				<p class="tap">Tap to see more</p>
 			`)
@@ -470,8 +470,19 @@ document.querySelector('.banner .close').addEventListener('click', () => {
 			clearInterval(intr)
 
 			document.querySelector('.banner').classList.add('mobile')
+
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Webinar page special offer',
+				'eventAction': 'Click on hide banner'
+			});
+
 		}
 	}, 200)
+
+
+
 })
 
 window.dataLayer = window.dataLayer || []
