@@ -198,6 +198,8 @@ const mobileCSS = `
 		
 		.banner.show_sale .close {
 			display: block;
+			opacity: 1;
+			pointer-events: auto;
 		}
 		
 		.close {
@@ -211,6 +213,9 @@ const mobileCSS = `
         	object-fit: cover;
         	cursor: pointer;
         	padding: 5px;
+        	opacity: 0;
+        	transition: opacity 1s ease;
+        	pointer-events: none;
 		}
 		
 		.banner.mobile::after {
