@@ -203,7 +203,7 @@ const mobileCSS = `
 		.close {
         	position: absolute;
         	/*display: block;*/
-        	width: 11px;
+        	width: 15px;
 			height: 5px;
         	right: 10px;
         	top: 12px;
@@ -428,6 +428,23 @@ function setMobile() {
                     <li>Private facebook group</li> 
                     <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
 			`
+
+	document.querySelector('.banner .close').addEventListener('click', () => {
+		let intr = setInterval(() => {
+			if(document.querySelector('.banner')) {
+				clearInterval(intr)
+
+				document.querySelector('.banner').classList.add('mobile')
+
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Webinar page special offer',
+					'eventAction': 'Click on hide banner'
+				});
+			}
+		}, 200)
+	})
 }
 
 function showSaleBtn() {
@@ -462,25 +479,6 @@ function showSaleBtn() {
 	}, 100)
 }
 
-document.querySelector('.banner .close').addEventListener('click', () => {
-	let intr = setInterval(() => {
-		if(document.querySelector('.banner')) {
-			clearInterval(intr)
-
-			document.querySelector('.banner').classList.add('mobile')
-
-			window.dataLayer = window.dataLayer || [];
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Webinar page special offer',
-				'eventAction': 'Click on hide banner'
-			});
-		}
-	}, 200)
-
-
-
-})
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
