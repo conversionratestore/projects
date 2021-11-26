@@ -208,7 +208,7 @@ const mobileCSS = `
         	width: 11px;
 			height: 5px;
         	right: 10px;
-        	top: 5px;
+        	top: 12px;
         	background: url("https://conversionratestore.github.io/projects/samcart/img/arrow-up.svg") no-repeat;
         	object-fit: cover;
         	cursor: pointer;
