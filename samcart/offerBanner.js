@@ -1,8 +1,6 @@
 const style = `
     <style>
-    body {
-    padding: 20px;
-    }
+   
     	
     	.stage__sidebar {
     		flex: 0 0 280px;
@@ -27,7 +25,7 @@ const style = `
         	top: -15px;
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
         	object-fit: cover;
-        	transition: all 1s ease;
+        	transition: all 0.7s ease;
     		opacity: 0;
     		pointer-events: none;
         }
@@ -477,7 +475,6 @@ document.querySelector('.banner .close').addEventListener('click', () => {
 				'eventCategory': 'Exp — Webinar page special offer',
 				'eventAction': 'Click on hide banner'
 			});
-
 		}
 	}, 200)
 
