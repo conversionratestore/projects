@@ -269,8 +269,7 @@ function pushProducts() {
 }
 
 let style = `
-                <style>
-            
+    <style>
             .gallery dd span img {
                     max-height: 140px;}
             [hidden] {
@@ -445,6 +444,23 @@ let style = `
                 font-weight: bold;
                 font-size: 21px;
                 line-height: 23px;
+            }
+            @media only screen and (min-width: 1011px)  {
+                .btn-reorder {
+                    color: #C23D31;
+                    background: transparent;
+                    border-color: #C23D31;
+                    margin-bottom: 10px;
+                }
+                .ordered .show-more {
+                    background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+                    border: 1px solid #780F11;
+                    box-sizing: border-box;
+                    color: #fff;
+                    max-width: 224px;
+                    margin: 0 auto;
+                    font-weight: bold;
+                }
             }
             @media only screen and (max-width: 1010px)  {
                 .gallery-parent {
