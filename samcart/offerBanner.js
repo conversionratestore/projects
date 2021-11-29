@@ -442,7 +442,7 @@ function setMobile() {
 
 	document.querySelector('.banner').classList.add('mobile')
 
-	document.querySelector('.banner.mobile').addEventListener('click', function () {
+	document.querySelector('.mobile').addEventListener('click', function () {
 		this.classList.remove('mobile')
 
 		window.dataLayer = window.dataLayer || [];
@@ -454,7 +454,7 @@ function setMobile() {
 
   		console.log('EVENT: Click on Workshop special offer button');
 
-		document.querySelector('.banner').replaceWith(document.querySelector('.banner').cloneNode(true));
+		
 	})
 
 	document.querySelector('.features ul').innerHTML = `				
