@@ -255,6 +255,10 @@ const mobileCSS = `
         	
         	
 		}
+
+		.banner.mobile::after {
+			opacity: 0;
+		}
 		
 		.banner.mobile p.title {
 			font-size: 12px;
