@@ -67,6 +67,7 @@ const style = `
         
         .banner.show_sale p.title {
         	font-size: 10px;
+			margin: 10px 0 -10px;
         }
               
         p.subtitle {
@@ -75,7 +76,7 @@ const style = `
 			font-size: 18px;
 			line-height: 19px;
 			white-space: nowrap;
-        }
+        }		
         
         .features {
             max-height: 500px;
