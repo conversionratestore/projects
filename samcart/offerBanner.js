@@ -259,6 +259,11 @@ const mobileCSS = `
 		.banner.mobile::after {
 			opacity: 0;
 		}
+
+		p.title {
+			font-size: 10px;
+			margin: 0;
+		}
 		
 		.banner.mobile p.title {
 			font-size: 12px;
