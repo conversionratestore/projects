@@ -55,8 +55,8 @@ const style = `
         }
 
         p.title {
-        margin: 0;
-        	/*margin: 10px 0 -10px;*/
+			font-size: 10px;
+			margin: 10px 0 -10px;
 	        font-weight: 900;
 			font-size: 12px;
 	        letter-spacing: 0.1em;
@@ -65,10 +65,10 @@ const style = `
 			transition: font-size 1s ease;
         }
         
-        .banner.show_sale p.title {
+        /*.banner.show_sale p.title {
         	font-size: 10px;
 			margin: 10px 0 -10px;
-        }
+        }*/
               
         p.subtitle {
         	color: #203B54;
