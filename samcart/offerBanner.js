@@ -444,6 +444,16 @@ function setMobile() {
 
 	document.querySelector('.banner.mobile').addEventListener('click', function () {
 		document.querySelector('.banner.mobile')?.classList.remove('mobile')
+
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp — Webinar page special offer',
+      'eventAction': 'Click on Workshop special offer button'
+  });
+
+  console.log('EVENT: Click on Workshop special offer button');
 	})
 
 	document.querySelector('.features ul').innerHTML = `				
@@ -457,8 +467,7 @@ function setMobile() {
                     <li>Private facebook group</li> 
                     <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
 			`
-
-
+			
 	
 	// document.querySelector('.banner .close').addEventListener('click', () => {
 	// 	let intr = setInterval(() => {
