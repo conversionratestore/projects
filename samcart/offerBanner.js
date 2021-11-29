@@ -1,4 +1,4 @@
-const style = `
+const style = /*html*/`
     <style>
    
     	
@@ -90,7 +90,7 @@ const style = `
         .features ul {
         	list-style: none;
 		    padding: 0;
-		    margin: 20px 0 15px;
+		    margin: 15px 0;
         }
         
         .features ul li {
@@ -160,17 +160,38 @@ const style = `
        	}
        	
        	p.price {
-       		margin-top: 8px;
-       		font-weight: 700;
-       		font-size: 11px;
-       		color: #203B54;  	
+       		margin-top: 10px;
+       		font-weight: 900;
+			font-size: 26px;
+			color: #F2813F;	
        		white-space: nowrap;	
        	} 
        	
-        p.price s{
+        p.price sup{
+			margin-left: 5px;
+			position: relative;
         	font-weight: 400;
-        	pointer-events: none;
+			font-size: 11px;
+        	color: #5A7386;
         }
+
+		p.price sup::after{
+			content:"";
+			display:block;
+			position:absolute;
+			left:0;
+			top:50%;
+			width:100%;
+			height:0;
+			border-bottom: 1px solid #5A7386;
+			transform:rotate(345deg);
+		}
+
+		p.subprice {
+			color: #183B56;
+			font-weight: 500;
+			font-size: 10px;
+		}
         
         .fullscreen__ctas  {
         	display: none;
@@ -180,7 +201,7 @@ const style = `
     </style>
 `
 
-const mobileCSS = `
+const mobileCSS = /*html*/`
 	<style>
 		.banner {
 			margin-top: 0;
@@ -192,6 +213,7 @@ const mobileCSS = `
 			padding-bottom: 5px;
 		}
 		
+		/*
 		.banner.mobile .close {
 			display: none !important;
 		}
@@ -217,6 +239,7 @@ const mobileCSS = `
         	transition: opacity 1s ease;
         	pointer-events: none;
 		}
+		*/
 		
 		.banner.mobile::after {
 			opacity: 0 !important;
@@ -224,13 +247,11 @@ const mobileCSS = `
 		
 		.banner::after {
 			
-        	left: -13px;
-        	top: 11px;
-        	background: url("https://conversionratestore.github.io/projects/samcart/img/off-mobile.svg") no-repeat;
+        	right: -6px;
+        	top: 12px;
+        	
         	
 		}
-		
-		
 		
 		.banner.mobile p.title {
 			font-size: 12px;
@@ -293,10 +314,6 @@ const mobileCSS = `
             padding-left: 15%;
         }
 
-        p.price {
-            font-size: 12px;
-        }
-
         .btn-wrapper button {
             font-size: 14px;
             padding: 15px 0 !important;
@@ -317,14 +334,14 @@ const mobileCSS = `
 	</style>
 `
 
-const banner = `
+const banner = /*html*/`
     <div class="banner">
         <div class="inner">
             <p class="title">workshop Special offer</p>
             <div class="features">
                 <p class="subtitle">Get SamCart and $10k<br>in FREE gifts now</p>
                 <ul>
-                    <li>1 Year of SamCart <s>($588/yr)</s></li>
+                    <li>1 Year of SamCart</li>
                     <li>1 Page Masterclass <s>($3,995)</s></li>
                     <li>Traffic Tactics <s>($1,997)</s></li>
                     <li>Course Creation Challenge <s>($995)</s></li>
@@ -340,7 +357,6 @@ const banner = `
 				</div>
             </div>
         </div>
-        <span class="close"></span>
     </div>
 `
 
@@ -360,9 +376,6 @@ let attendeeInterval = setInterval(() => {
 	}
 }, 200)
 
-// document.querySelector('body').insertAdjacentHTML('beforeend', banner)
-// setMobile()
-
 let intervalTime = 0
 
 if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('pathName')) {
@@ -375,13 +388,13 @@ if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('p
 	intervalTime = currentDate - window.localStorage.getItem('startDate')
 }
 
-let count = 30 - (intervalTime / 1000)
+let count = 10 - (intervalTime / 1000)
 // let count = 3601 - (intervalTime / 1000)
 
 if (count > 0) {
 	let counter = setInterval(() => {
 		count = count - 1
-		if (count < 0) {
+		if (count <= 0) {
 			clearInterval(counter)
 
 			showSaleBtn()
@@ -408,8 +421,7 @@ if (count > 0) {
 function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
-	// document.querySelector('body').insertAdjacentHTML('beforeend', banner)
+	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)	
 	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
 				<p class="tap">Tap to see more</p>
 			`)
@@ -423,7 +435,7 @@ function setMobile() {
 	})
 
 	document.querySelector('.features ul').innerHTML = `				
-                    <li>1 Year of SamCart <s>($588/yr)</s></li>
+                    <li>1 Year of SamCart</li>
                     <li>1 Page Masterclass <s>($3,995)</s></li>
                     <li>1 Page Workshop <s>($995)</s></li>
                     <li>1 Page Launch <s>($995!)</s></li>
@@ -434,22 +446,24 @@ function setMobile() {
                     <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
 			`
 
-	document.querySelector('.banner .close').addEventListener('click', () => {
-		let intr = setInterval(() => {
-			if(document.querySelector('.banner')) {
-				clearInterval(intr)
 
-				document.querySelector('.banner').classList.add('mobile')
+	
+	// document.querySelector('.banner .close').addEventListener('click', () => {
+	// 	let intr = setInterval(() => {
+	// 		if(document.querySelector('.banner')) {
+	// 			clearInterval(intr)
 
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp — Webinar page special offer',
-					'eventAction': 'Click on hide banner'
-				});
-			}
-		}, 200)
-	})
+	// 			document.querySelector('.banner').classList.add('mobile')
+
+	// 			window.dataLayer = window.dataLayer || [];
+	// 			dataLayer.push({
+	// 				'event': 'event-to-ga',
+	// 				'eventCategory': 'Exp — Webinar page special offer',
+	// 				'eventAction': 'Click on hide banner'
+	// 			});
+	// 		}
+	// 	}, 200)
+	// })
 }
 
 function showSaleBtn() {
@@ -460,9 +474,16 @@ function showSaleBtn() {
 			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
 			document.querySelector('.banner').classList.add('show_sale')
 
+			let priceText
 
-			document.querySelector('.btn-wrapper').insertAdjacentHTML('beforebegin', `
-						<p class="price">Get Started For <s>$10,060</s> $349</p>`)
+			if(mediaQuery.matches) {
+				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
+				
+			} else {				
+				priceText = `<p class="price">$349<sup>$588</sup></p>`
+			}
+
+			document.querySelector('.subtitle').insertAdjacentHTML('afterend', priceText)
 
 			window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
