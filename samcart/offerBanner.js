@@ -489,7 +489,7 @@ function listener(e) {
 
 	  console.log('EVENT: Click on Workshop special offer button');
 
-	  e.removeEventListener('click', listener)
+	  e.currentTarget.removeEventListener('click', listener)
 
 }
 
