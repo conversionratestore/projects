@@ -175,6 +175,7 @@ const style = `
         	font-weight: 400;
 			font-size: 11px;
         	color: #5A7386;
+			vertical-align: super;
         }
 
 		p.price sup::after{
