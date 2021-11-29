@@ -478,8 +478,7 @@ function setMobile() {
 }
 
 function listener(e) {
-		
-	e.target.classList.remove('mobile')
+	e.currentTarget.classList.remove('mobile')
 
 	window.dataLayer = window.dataLayer || [];
 	dataLayer.push({
