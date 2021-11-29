@@ -443,10 +443,7 @@ function setMobile() {
 	document.querySelector('.banner').classList.add('mobile')
 
 	document.querySelector('.banner.mobile').addEventListener('click', listener)
-	document.querySelector('.banner').removeEventListener('click', listener)
-	
 
-	
 	
 
 	document.querySelector('.features ul').innerHTML = `				
@@ -493,7 +490,7 @@ function listener(e) {
 
 	  console.log('EVENT: Click on Workshop special offer button');
 
-	
+	  e.removeEventListener('click', listener)
 
 }
 
