@@ -1,4 +1,4 @@
-const style = /*html*/`
+const style = `
     <style>
    
     	
@@ -26,14 +26,15 @@ const style = /*html*/`
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
         	object-fit: cover;
         	transition: all 0.7s ease;
-    		opacity: 0;
+    		opacity: 1;
     		pointer-events: none;
         }
         
-        .banner.show_sale::after {
+        /*.banner.show_sale::after {
 			/*display: block;*/
 			opacity: 1;
 		}
+		*/
         
         .banner.mobile::before {
         	display: none;
@@ -201,7 +202,7 @@ const style = /*html*/`
     </style>
 `
 
-const mobileCSS = /*html*/`
+const mobileCSS = `
 	<style>
 		.banner {
 			margin-top: 0;
@@ -334,7 +335,7 @@ const mobileCSS = /*html*/`
 	</style>
 `
 
-const banner = /*html*/`
+const banner = `
     <div class="banner">
         <div class="inner">
             <p class="title">workshop Special offer</p>
