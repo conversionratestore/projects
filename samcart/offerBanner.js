@@ -442,20 +442,12 @@ function setMobile() {
 
 	document.querySelector('.banner').classList.add('mobile')
 
-	document.querySelector('.mobile').addEventListener('click', function () {
-		this.classList.remove('mobile')
+	document.querySelector('.banner.mobile').addEventListener('click', listener)
+	document.querySelector('.banner').removeEventListener('click', listener)
+	
 
-		window.dataLayer = window.dataLayer || [];
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Webinar page special offer',
-			'eventAction': 'Click on Workshop special offer button'
-		});
-
-  		console.log('EVENT: Click on Workshop special offer button');
-
-		
-	})
+	
+	
 
 	document.querySelector('.features ul').innerHTML = `				
                     <li>1 Year of SamCart</li>
@@ -486,6 +478,23 @@ function setMobile() {
 	// 		}
 	// 	}, 200)
 	// })
+}
+
+function listener(e) {
+		
+	e.target.classList.remove('mobile')
+
+	window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp — Webinar page special offer',
+		'eventAction': 'Click on Workshop special offer button'
+	});
+
+	  console.log('EVENT: Click on Workshop special offer button');
+
+	
+
 }
 
 function showSaleBtn() {
