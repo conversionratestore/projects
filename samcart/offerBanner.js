@@ -486,13 +486,6 @@ function showSaleBtn() {
 
 			document.querySelector('.subtitle').insertAdjacentHTML('afterend', priceText)
 
-			window.dataLayer = window.dataLayer || [];
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — Webinar page special offer',
-				'eventAction': 'Click on Continue to special offer button'
-			});
-
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
 				dataLayer.push({
