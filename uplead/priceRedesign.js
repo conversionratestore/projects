@@ -310,6 +310,8 @@ dataLayer.push({
 	'eventAction': 'loaded'
 })
 
+console.log('EVENT: loaded');
+
 if(window.location.hostname === 'app.uplead.com') {
     ;(function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -338,6 +340,3 @@ if(window.location.hostname === 'app.uplead.com') {
 	console.log('HJ for uplead domain');
 
 }
-
-
-console.log('Експеримент завантажився!');
