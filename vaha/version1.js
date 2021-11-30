@@ -55,7 +55,7 @@ const productStyle = `
         
         .cards .name {
             font-size: 23px;
-            margin: 17px 0 30px;
+            margin: 17px 0 25px;
         }
 
         .cards .price {
