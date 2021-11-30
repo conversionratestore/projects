@@ -1,7 +1,5 @@
 const style = `
-    <style>
-   
-    	
+    <style>  
     	.stage__sidebar {
     		flex: 0 0 280px;
     	}
@@ -162,6 +160,7 @@ const style = `
        	}
        	
        	p.price {
+       		position: relative;
        		margin-top: 10px;
        		font-weight: 900;
 			font-size: 26px;
@@ -171,11 +170,10 @@ const style = `
        	
         p.price sup{
 			margin-left: 5px;
-			position: relative;
+			position: absolute;
         	font-weight: 400;
 			font-size: 11px;
         	color: #5A7386;
-			vertical-align: super;
         }
 
 		p.price sup::after{
@@ -433,7 +431,7 @@ if (count > 0) {
 function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)	
+	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
 	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
 				<p class="tap">Tap to see more</p>
 			`)
@@ -444,7 +442,6 @@ function setMobile() {
 
 	document.querySelector('.banner.mobile').addEventListener('click', listener)
 
-	
 
 	document.querySelector('.features ul').innerHTML = `				
                     <li>1 Year of SamCart</li>
@@ -457,8 +454,8 @@ function setMobile() {
                     <li>Private facebook group</li> 
                     <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
 			`
-			
-	
+
+
 	// document.querySelector('.banner .close').addEventListener('click', () => {
 	// 	let intr = setInterval(() => {
 	// 		if(document.querySelector('.banner')) {
@@ -480,16 +477,16 @@ function setMobile() {
 function listener(e) {
 	e.currentTarget.classList.remove('mobile')
 
-	window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp — Webinar page special offer',
-		'eventAction': 'Click on Workshop special offer button'
-	});
+		'eventAction': 'Click on Workshop special offer button',
+	})
 
-	  console.log('EVENT: Click on Workshop special offer button');
+	console.log('EVENT: Click on Workshop special offer button')
 
-	  e.currentTarget.removeEventListener('click', listener)
+	e.currentTarget.removeEventListener('click', listener)
 
 }
 
@@ -503,10 +500,10 @@ function showSaleBtn() {
 
 			let priceText
 
-			if(mediaQuery.matches) {
+			if (mediaQuery.matches) {
 				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
-				
-			} else {				
+
+			} else {
 				priceText = `<p class="price">$349<sup>$588</sup></p>`
 			}
 
@@ -524,7 +521,6 @@ function showSaleBtn() {
 		}
 	}, 100)
 }
-
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
