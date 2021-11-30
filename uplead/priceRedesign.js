@@ -204,7 +204,7 @@ const plans = `
 				<div class="card card_free">
 					<p class="name">Free Trial</p>
 					<hr>
-					<p class="price">$0<small>/month</small></p>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0]}<small>/month</small></p>
 					<p class="credits">5 Credits <span class="thin">Annually<span></p>
 					<p class="additional">Free Test Drive</p>
 					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href }';">Try For Free</button>
@@ -212,7 +212,7 @@ const plans = `
 				<div class="card">
 					<p class="name">Essentials</p>
 					<hr>
-					<p class="price">$99<small>/month</small></p>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[3]}<small>/month</small></p>
 					<p class="credits">170 Credits <span class="thin">Monthly<span></p>
 					<p class="additional">Additional Credits <b>$0.60</b></p>
 					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href }';">Buy Now</button>
@@ -220,7 +220,7 @@ const plans = `
 				<div class="card">
 					<p class="name">Plus</p>
 					<hr>
-					<p class="price">$199<small>/month</small></p>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[6]}<small>/month</small></p>
 					<p class="credits">400 Credits <span class="thin">Monthly<span></p>
 					<p class="additional">Additional Credits <b>$0.50</b></p>
 					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href }';">Buy Now</button>
@@ -228,7 +228,7 @@ const plans = `
 				<div class="card">
 					<p class="name">Professional</p>
 					<hr>
-					<p class="price">$399<small>/month</small></p>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[9]}<small>/month</small></p>
 					<p class="credits">1000 Credits <span class="thin">Monthly<span></p>
 					<p class="additional">Additional Credits <b>$0.40</b></p>
 					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href }';">Buy Now</button>
