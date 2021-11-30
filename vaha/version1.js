@@ -148,7 +148,7 @@ const productStyle = `
 		}
 		
 		.financing p.title {
-			margin-top: 20px;
+			margin: 20px auto 60px;
 		}
 		
 		.financing .name {
@@ -250,24 +250,37 @@ const productStyle = `
         	border-right: 1px solid #666666;
         }
         
+        .price-wrapper > div:last-child {
+        	border: none;
+        }
+        
         .price-wrapper .zero {
         	font-weight: normal;
 			font-size: 50px;
 			color: #000000;
+			position: relative;
         } 
         
         .price-wrapper .zero sup {
+			position: absolute;
         	font-weight: normal;
 			font-size: 16px;
+			top: 20px;			
         }
         
-        .price-wrapper .subzero {
+        .price-wrapper .zero sup:first-child {
+        	left: 50%;
+    		transform: translateX(calc(-50% - 20px));
+        }
+        
+        .price-wrapper .subzero {        	
         	font-weight: normal;
 			font-size: 12px;
 			line-height: 150%;
 			text-align: center;
 			letter-spacing: 0.01em;		
 			color: #666666;
+			
         }
 	</style>
 `
