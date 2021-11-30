@@ -97,6 +97,10 @@ const productStyle = `
 	        gap: 10px;
         }
         
+		.comparison .item .name {
+			font-weight: 400;
+		}
+		
 		.comparison .name {
 			font-weight: 700;
 		}
@@ -226,6 +230,43 @@ const productStyle = `
         	font-weight: 700;
         	font-size: 16px;
         }
+        
+        p.from {
+        	font-weight: 500;
+			font-size: 16px;
+        	text-transform: uppercase;
+        	color: #FFFFFF;
+        }
+        
+        .price-wrapper {
+        	display:flex;
+        	flex-direction: row;
+        	justify-content: space-evenly;        	
+        }
+        
+        .price-wrapper > div {
+        	border-right: 1px solid #666666;
+        }
+        
+        .price-wrapper .zero {
+        	font-weight: normal;
+			font-size: 50px;
+			color: #000000;
+        } 
+        
+        .price-wrapper .zero sup {
+        	font-weight: normal;
+			font-size: 16px;
+        }
+        
+        .price-wrapper .subzero {
+        	font-weight: normal;
+			font-size: 12px;
+			line-height: 150%;
+			text-align: center;
+			letter-spacing: 0.01em;		
+			color: #666666;
+        }
 	</style>
 `
 const homeStyle = `
@@ -246,7 +287,8 @@ let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 const textArr = {
 	'en': {
 		month: `month`,
-		from: `From`,
+		from: `Monthly From`,
+		fromWord: 'From',
 		klarna: `with Klarna or SplitIt`,
 		features: `Features`,
 		live: `650+ live and on-demand classes`,
@@ -257,7 +299,7 @@ const textArr = {
 		specs: `Specifications`,
 		dimension: `Dimensions`,
 		weight: `Weight`,
-		floor: `Floor stand`,
+		floorStand: `Floor stand`,
 		secure: `Wall Secure`,
 		display: `Display`,
 		inch: `inch touch screen, Full HD`,
@@ -273,7 +315,7 @@ const textArr = {
 		heart: `Heart rate monitor`,
 		elastic: `Elastic bands`,
 		warranty: '2 year warranty',
-		financing: `Financing`,
+		financing: `Flatrate plans`,
 		payment: `One-time payment`,
 		options: `Financing options:`,
 		choose: `Choose what works for you`,
@@ -286,14 +328,18 @@ const textArr = {
 			`Pay the full amount or via installments for 12, 24, or 39 months. The VAHA membership (from £39) is separate from the purchase of the VAHA mirror and is activated upon receipt.`,
 			`Sufficient creditworthiness is a prerequisite. The installment purchase offered by us is handled by our payment partner Klarna Bank AB (publ). Klarna, therefore, decides whether the installment purchase is accepted or not.`,
 		],
-		get: 'GET',
+		getWord: 'GET',
 		try: 'Try 30 days for free',
 		chooseVaha: 'Choose your Vaha',
-		link: '/product'
+		link: '/product',
+		money: `No money<br>down`,
+		financingPrice: 'Financing',
+		fees: `No hidden<br>fees`
 	},
 	'ge': {
 		month: `monat`,
-		from: `ab`,
+		from: ``,
+		fromWord: 'ab',
 		klarna: ``,
 		features: ``,
 		live: ``,
@@ -304,7 +350,7 @@ const textArr = {
 		specs: `Spezifikationen`,
 		dimension: `Maße`,
 		weight: `Gewicht`,
-		floor: ``,
+		floorStand: ``,
 		secure: `Wandsicherung`,
 		display: `Display`,
 		inch: `Zoll Full-HD Touchscreen`,
@@ -333,10 +379,13 @@ const textArr = {
 			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 €) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
 			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
 		],
-		get: '',
+		getWord: '',
 		try: '',
 		chooseVaha: '',
-		link: '/produkt'
+		link: '/produkt',
+		money: '',
+		financingPrice: '',
+		fees: ''
 	},
 }
 const obj = textArr[language]
@@ -348,16 +397,18 @@ const productPage = `
                 <div class="item">
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.png" alt="vaha x">
                     <p class="name">Vaha X</p>
-                    <p class="price">€ 2,268</p>
-                    <p class="subprice">${ obj.from } € 58 / ${ obj.month }</p>
+                 	<p class="from">${ obj.from }</p>
+<!--                    <p class="price">€ 2,268</p>-->
+                    <p class="subprice"> € 88 / ${ obj.month }</p>
                     <p class="price">€ 58 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.png" alt="vaha x">
                     <p class="name">Vaha S</p>
-                    <p class="price">€ 1,395</p>
-                    <p class="subprice">${ obj.from } € 36 / ${ obj.month }</p>
+                    <p class="from">${ obj.from }</p>
+<!--                    <p class="price">€ 1,395</p>-->
+                    <p class="subprice">€ 68 / ${ obj.month }</p>
                     <p class="price">€ 36 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
@@ -454,7 +505,7 @@ const productPage = `
                         </div>
                     </div>
                     <div class="property">
-                        <p>${ obj.floor }</p>
+                        <p>${ obj.floorStand }</p>
                         <div class="check">
                             <div>
                                 <img src="https://conversionratestore.github.io/projects/vaha/images/check.svg"
@@ -565,10 +616,24 @@ const productPage = `
                 </div>
             </div>
         </div>
-        <div class="financing">
+         <div class="financing">
             <div class="inner">
                 <div class="characteristic">
-                    <p class="title">${ obj.financing }</p>
+                    <p class="title">${ obj.financingPrice }</p>
+                    <div class="price-wrapper">
+                    	<div>
+                    		<p class="zero"><sup>£</sup>0</p>
+                    		<p class="subzero">${ obj.money }</p>
+						</div>
+						<div>
+                    		<p class="zero">0<sup>%</sup></p>
+                    		<p class="subzero">${ obj.money }</p>
+						</div>
+						<div>
+                    		<p class="zero">0</p>
+                    		<p class="subzero">${ obj.money }</p>
+						</div>
+					</div>
                     <div class="names-wrapper">
                         <p class="name">Vaha X</p>
                         <p class="name">Vaha S</p>
@@ -576,33 +641,34 @@ const productPage = `
                     <div class="property">
                         <p>39 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 58 / ${ obj.month }</p>
-                            <p>€ 36 / ${ obj.month }</p>
+                            <p>€ 88 / ${ obj.month }</p>
+                            <p>€ 68 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>24 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 94 / ${ obj.month }</p>
-                            <p>€ 58 / ${ obj.month }</p>
+                            <p>€ 115 / ${ obj.month }</p>
+                            <p>€ 85 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>12 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 189 / ${ obj.month }</p>
-                            <p>€ 116 / ${ obj.month }</p>
+                            <p>€ 202 / ${ obj.month }</p>
+                            <p>€ 139 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>${ obj.payment }</p>
                         <div class="check">
-                            <p>€ 2,265</p>
-                            <p>€ 1,395</p>
+                            <p>${ obj.fromWord }€ 2,418</p>
+                            <p>${ obj.fromWord }€ 1,663</p>
                         </div>
                     </div>
                 </div>
-                <div class="options">
+                
+                <!-- <div class="options">
                     <p class="title">${ obj.options }:</p>
                     <p class="subtitle">${ obj.choose }</p>
                     <div class="checks">
@@ -628,17 +694,17 @@ const productPage = `
                         <p>${ obj.text[2] }</p>
                         <p>${ obj.text[3] }</p>
                     </div>
-                </div>
+                </div> -->
             </div>
-        </div>
+        </div> 
     </section>
     <div class="btn-wrapper">
         <button>
-            <span>${ obj.get } VAHA X</span>
+            <span>${ obj.getWord } VAHA X</span>
             <span>${ obj.try }</span>
         </button>
         <button>
-            <span>${ obj.get } VAHA S</span>
+            <span>${ obj.getWord } VAHA S</span>
             <span>${ obj.try }</span>
         </button>
     </div>
