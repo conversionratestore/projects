@@ -310,15 +310,30 @@ dataLayer.push({
 	'eventAction': 'loaded'
 })
 
-;(function(h,o,t,j,a,r){
-	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-	h._hjSettings={hjid:2615465,hjsv:6};
-	a=o.getElementsByTagName('head')[0];
-	r=o.createElement('script');r.async=1;
-	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-	a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-	hj('event', 'hide_annual_plans');
+if(window.location.hostname === 'app.uplead.com') {
+    ;(function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2615465,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('event', 'hide_annual_plans');
+} else {
+    ;(function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:864509,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+        hj('event', 'hide_annual_plans');
+
+}
+
 
 console.log('Експеримент завантажився!');
