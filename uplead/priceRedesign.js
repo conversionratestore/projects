@@ -249,7 +249,7 @@ let start = setInterval(() => {
 		document.querySelector('.uael-rbs-section-2').insertAdjacentHTML('afterend', plans)
 
 		document.querySelector('.title-wrapper').addEventListener('click', function() {
-			if(this.classList.contains('hide')) {
+			if(this.closest('.banner-custom').classList.contains('hide')) {
 				document.querySelector('.banner-custom').classList.remove('hide')
 
 				
