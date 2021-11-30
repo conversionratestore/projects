@@ -284,7 +284,7 @@ let start = setInterval(() => {
 
 let intrv = setInterval(() => {
 	if(document.querySelectorAll('.card-wrapper .card')[3]) {
-		setInterval(intrv)
+		clearInterval(intrv)
 
 		document.querySelectorAll('.card-wrapper .card').forEach(item => {
 			item.addEventListener('click', () => {
