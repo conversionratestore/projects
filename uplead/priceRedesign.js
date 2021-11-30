@@ -248,12 +248,77 @@ let start = setInterval(() => {
 
 		document.querySelector('.uael-rbs-section-2').insertAdjacentHTML('afterend', plans)
 
-		document.querySelector('.title-wrapper').addEventListener('click', () => {
-			document.querySelector('.banner-custom').classList.toggle('hide')
-			console.log('sss')
+		document.querySelector('.title-wrapper').addEventListener('click', function() {
+			if(this.classList.contains('hide')) {
+				document.querySelector('.banner-custom').classList.remove('hide')
+
+				
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Hide annual plans',
+					'eventAction': 'See our mounthly plans',
+					'eventLabel': 'open'
+				});
+
+				console.log('EVENT: open');
+
+			} else {
+				document.querySelector('.banner-custom').classList.add('hide')
+
+				
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Hide annual plans',
+					'eventAction': 'See our mounthly plans',
+					'eventLabel': 'close'
+				});
+
+				console.log('EVENT: close');
+
+			}
 		})
 	}
 })
 
+let intrv = setInterval(() => {
+	if(document.querySelectorAll('.card-wrapper .card')[3]) {
+		setInterval(intrv)
 
+		document.querySelectorAll('.card-wrapper .card').forEach(item => {
+			item.addEventListener('click', () => {
+				
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp — Hide annual plans',
+					'eventAction': 'Click on each plan'
+				});
 
+				console.log('EVENT: Click on each plan');
+
+			})
+		})
+	}
+}, 200)
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp — Hide annual plans',
+	'eventAction': 'loaded'
+})
+
+;(function(h,o,t,j,a,r){
+	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+	h._hjSettings={hjid:2615465,hjsv:6};
+	a=o.getElementsByTagName('head')[0];
+	r=o.createElement('script');r.async=1;
+	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+	a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+	hj('event', 'hide_annual_plans');
+
+console.log('Експеримент завантажився!');
