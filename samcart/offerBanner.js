@@ -169,7 +169,7 @@ const style = `
        	} 
        	
         p.price sup{
-			margin-left: 5px;
+			margin: 5px;
 			position: absolute;
         	font-weight: 400;
 			font-size: 11px;
