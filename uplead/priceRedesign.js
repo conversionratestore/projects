@@ -321,6 +321,8 @@ if(window.location.hostname === 'app.uplead.com') {
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
         hj('event', 'hide_annual_plans');
+
+		console.log('HJ for APP uplead domain');
 } else {
     ;(function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -332,6 +334,8 @@ if(window.location.hostname === 'app.uplead.com') {
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
         hj('event', 'hide_annual_plans');
+
+	console.log('HJ for uplead domain');
 
 }
 
