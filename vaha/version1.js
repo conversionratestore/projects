@@ -64,7 +64,7 @@ const productStyle = `
         }
         
         .cards .price:not(:first-child) {
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
 		.name {
@@ -241,10 +241,12 @@ const productStyle = `
         .price-wrapper {
         	display:flex;
         	flex-direction: row;
-        	justify-content: space-evenly;        	
+        	justify-content: space-evenly;      
+        	margin-bottom: 40px;  	
         }
         
         .price-wrapper > div {
+        	width: 100%;
         	border-right: 1px solid #666666;
         }
         
@@ -399,7 +401,7 @@ const productPage = `
                     <p class="name">Vaha X</p>
                  	<p class="from">${ obj.from }</p>
 <!--                    <p class="price">€ 2,268</p>-->
-                    <p class="subprice"> € 88 / ${ obj.month }</p>
+              <!--       <p class="subprice"> € 88 / ${ obj.month }</p>-->
                     <p class="price">€ 58 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
@@ -408,7 +410,7 @@ const productPage = `
                     <p class="name">Vaha S</p>
                     <p class="from">${ obj.from }</p>
 <!--                    <p class="price">€ 1,395</p>-->
-                    <p class="subprice">€ 68 / ${ obj.month }</p>
+                    <!-- <p class="subprice">€ 68 / ${ obj.month }</p>-->
                     <p class="price">€ 36 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
@@ -627,11 +629,11 @@ const productPage = `
 						</div>
 						<div>
                     		<p class="zero">0<sup>%</sup></p>
-                    		<p class="subzero">${ obj.money }</p>
+                    		<p class="subzero">${ obj.financingPrice }</p>
 						</div>
 						<div>
                     		<p class="zero">0</p>
-                    		<p class="subzero">${ obj.money }</p>
+                    		<p class="subzero">${ obj.fees }</p>
 						</div>
 					</div>
                     <div class="names-wrapper">
