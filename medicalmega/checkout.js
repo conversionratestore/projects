@@ -151,7 +151,7 @@ window.onload  = function () {
                 background: transparent; }
             .payment {
                 padding-bottom: 0;}
-            .num_line .line_grey, .num_line .line_pink, #ftr, .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
+            .num_line a:nth-child(1), .num_line .line_grey, .num_line .line_pink, #ftr, .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
                 display: none;}
             input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
@@ -693,6 +693,8 @@ window.onload  = function () {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
+                margin-right: 115px;
+                position: relative;
             }
             .num_line span {
                 display: block;
@@ -777,6 +779,11 @@ window.onload  = function () {
                     removeProduct()
                     localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
                 })
+
+                let step = document.querySelectorAll('.num_line .number');
+                for (let i = 0; i < step.length; i++) {
+                    step[i].innerHTML = i;
+                }
             }
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
