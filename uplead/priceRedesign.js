@@ -225,44 +225,6 @@ const pricingArr = [
 	]
 ]
 	
-const pricingArr = [
-	[
-		'Free Trial',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0],
-		`5 Credits <span class="thin">Annually<span>`,
-		'Free Test Drive',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href,
-		'Try For Free'
-	],
-	[
-		'Essentials',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0],
-		`170 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.60</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href,
-		'Buy Now'
-	],
-	[
-		'Plus',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0],
-		`400 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.50</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href,
-		'Buy Now'
-	],
-	[
-		'Professional',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0],
-		`1000 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.40</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href,
-		'Buy Now'
-	]
-]
-	
-
-
-
 const plans = /*html*/`
 	<div class="banner-custom hide">
 		<div class="title-wrapper">
