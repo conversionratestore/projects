@@ -95,7 +95,7 @@ const style = `
         
         .features ul li {
             position: relative;
-            
+            margin-left: -5px;
     		
         	font-weight: 500;
 			font-size: 12px;
@@ -110,6 +110,7 @@ const style = `
             position: absolute;
         	content: "";
         	display: block;
+            left: -10px;
         	height: 12px;
         	width: 12px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
