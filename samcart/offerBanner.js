@@ -101,7 +101,7 @@ const style = `
         	font-weight: 500;
 			font-size: 12px;
 			color: #5F7384;
-			margin-bottom: 13px;
+			margin-bottom: 10px;
 			
 			line-height: 15px;
 			text-transform: capitalize;
