@@ -358,8 +358,9 @@ const banner = `
                     <li>1 Page Wednesday Calls <s>($995!)</s></li>
                     <li>Private Facebook Group <s>($495)</s></li>
                     <li>Top Seller Strategies <s>($995)</s></li>
-                    <li>The 1 Page Template! <s>(Priceless)</s></li>
-                    <li>30-Day Money-Back Guarantee</li>
+                    <li>My Personal Course Sales Page Template <s>(Priceless)</s></li>
+                    <li>30-Day Money-Back Guarantee <s>(Priceless)</s></li>
+                    <li>40% SamCart Discount for Life! <s>(Priceless)</s></li>                    
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
@@ -443,17 +444,17 @@ function setMobile() {
 	document.querySelector('.banner.mobile').addEventListener('click', listener)
 
 
-	document.querySelector('.features ul').innerHTML = `				
-                    <li>1 Year of SamCart</li>
-                    <li>1 Page Masterclass <s>($3,995)</s></li>
-                    <li>1 Page Workshop <s>($995)</s></li>
-                    <li>1 Page Launch <s>($995!)</s></li>
-                    <li>1 Page Blueprint <s>($99)</s></li>
-                    <li>My Past Reports <s>($495)</s></li>                    
-                    <li>The 1 Page Template! <s>(Priceless)</s></li>
-                    <li>Private facebook group</li> 
-                    <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
-			`
+	// document.querySelector('.features ul').innerHTML = `				
+    //                 <li>1 Year of SamCart</li>
+    //                 <li>1 Page Masterclass <s>($3,995)</s></li>
+    //                 <li>1 Page Workshop <s>($995)</s></li>
+    //                 <li>1 Page Launch <s>($995!)</s></li>
+    //                 <li>1 Page Blueprint <s>($99)</s></li>
+    //                 <li>My Past Reports <s>($495)</s></li>                    
+    //                 <li>The 1 Page Template! <s>(Priceless)</s></li>
+    //                 <li>Private facebook group</li> 
+    //                 <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
+	// 		`
 
 
 	// document.querySelector('.banner .close').addEventListener('click', () => {
@@ -501,7 +502,7 @@ function showSaleBtn() {
 			let priceText
 
 			if (mediaQuery.matches) {
-				priceText = `<p class="price">$349<sup>$10,060</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
+				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
 
 			} else {
 				priceText = `<p class="price">$349<sup>$588</sup></p>`
