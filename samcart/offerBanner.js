@@ -94,23 +94,26 @@ const style = `
         }
         
         .features ul li {
-            display: flex;
-    		align-items: center;    		
+            position: relative;
+            
+    		
         	font-weight: 500;
 			font-size: 12px;
 			color: #5F7384;
 			margin-bottom: 13px;
-			gap: 5px;
-			white-space: nowrap;
+			
+			
 			text-transform: capitalize;
         }       
         
         .features ul li::before {
+            position: absolute;
         	content: "";
         	display: block;
         	height: 12px;
         	width: 12px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
+            background-repeat: no-repeat;
         }
         
         .features ul li s {
@@ -321,7 +324,7 @@ const mobileCSS = `
 		}
 
         .features ul {
-            padding-left: 15%;
+            padding-left: 0;
         }
 
         .btn-wrapper button {
