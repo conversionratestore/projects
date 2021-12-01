@@ -744,12 +744,14 @@ window.onload  = function () {
                     item.previousElementSibling.setAttribute('type', type);
                 });
             });
-            if (document.querySelector('.registerOnLogin dd label')) {
-                document.querySelector('.registerOnLogin dd label').forEach(el => {
-                    el.replace('*','<span class="c-red">*</span>')
-                })
-            }
+            // if (document.querySelector('.registerOnLogin dd label')) {
+            //     document.querySelector('.registerOnLogin dd label').forEach(el => {
+            //         el.replace('*','<span class="c-red">*</span>')
+            //     })
+            // }
             if (document.querySelector('.myAccount')) {
+                document.querySelectorAll('.myAccountleft button[name="register"]').innerHTML = `Next`;
+                document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn btn-next');
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
                 <label class="valign-center">
