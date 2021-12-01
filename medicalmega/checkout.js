@@ -151,7 +151,7 @@ window.onload  = function () {
                 background: transparent; }
             .payment {
                 padding-bottom: 0;}
-            .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
+            #ftr, .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
                 display: none;}
             input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
