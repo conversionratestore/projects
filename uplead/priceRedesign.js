@@ -190,7 +190,80 @@ const customStyle = `
 	</style>
 `
 
-const plans = `
+const pricingArr = [
+	[
+		'Free Trial',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0],
+		`5 Credits <span class="thin">Annually<span>`,
+		'Free Test Drive',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href,
+		'Try For Free'
+	],
+	[
+		'Essentials',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0],
+		`170 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.60</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href,
+		'Buy Now'
+	],
+	[
+		'Plus',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0],
+		`400 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.50</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href,
+		'Buy Now'
+	],
+	[
+		'Professional',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0],
+		`1000 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.40</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href,
+		'Buy Now'
+	]
+]
+	
+const pricingArr = [
+	[
+		'Free Trial',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0],
+		`5 Credits <span class="thin">Annually<span>`,
+		'Free Test Drive',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href,
+		'Try For Free'
+	],
+	[
+		'Essentials',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0],
+		`170 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.60</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href,
+		'Buy Now'
+	],
+	[
+		'Plus',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0],
+		`400 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.50</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href,
+		'Buy Now'
+	],
+	[
+		'Professional',
+		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0],
+		`1000 Credits <span class="thin">Monthly<span>`,
+		'Additional Credits <b>$0.40</b>',
+		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href,
+		'Buy Now'
+	]
+]
+	
+
+
+
+const plans = /*html*/`
 	<div class="banner-custom hide">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
@@ -202,36 +275,36 @@ const plans = `
 			<p class="title">Monthly Plans</p>
 			<div class="card-wrapper">
 				<div class="card card_free">
-					<p class="name">Free Trial</p>
+					<p class="name">${pricingArr[0][0]}</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0]}<small>/month</small></p>
-					<p class="credits">5 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Free Test Drive</p>
-					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href }';">Try For Free</button>
+					<p class="price">${pricingArr[0][1]}<small>/month</small></p>
+					<p class="credits">${ pricingArr[0][2] }</p>
+					<p class="additional">${ pricingArr[0][3] }</p>
+					<button onclick="location.href='${ pricingArr[0][4] }';">${ pricingArr[0][5] }</button>
 				</div>
 				<div class="card">
-					<p class="name">Essentials</p>
+					<p class="name">${ pricingArr[1][0] }</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0]}<small>/month</small></p>
-					<p class="credits">170 Credits <span class="thin">Monthly<span></p>
-					<p class="additional">Additional Credits <b>$0.60</b></p>
-					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href }';">Buy Now</button>
+					<p class="price">${ pricingArr[1][1] }<small>/month</small></p>
+					<p class="credits">${ pricingArr[1][2] }</p>
+					<p class="additional">${ pricingArr[1][3] }</p>
+					<button onclick="location.href='${ pricingArr[1][4] }';">${ pricingArr[1][5] }</button>
 				</div>
 				<div class="card">
-					<p class="name">Plus</p>
+					<p class="name">${ pricingArr[2][0] }</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0]}<small>/month</small></p>
-					<p class="credits">400 Credits <span class="thin">Monthly<span></p>
-					<p class="additional">Additional Credits <b>$0.50</b></p>
-					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href }';">Buy Now</button>
+					<p class="price">${ pricingArr[2][1] }<small>/month</small></p>
+					<p class="credits">${ pricingArr[2][2] }</p>
+					<p class="additional">${ pricingArr[2][3] }</p>
+					<button onclick="location.href='${ pricingArr[2][4] }';">${ pricingArr[2][5] }</button>
 				</div>
 				<div class="card">
-					<p class="name">Professional</p>
+					<p class="name">${ pricingArr[3][0] }</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]}<small>/month</small></p>
-					<p class="credits">1000 Credits <span class="thin">Monthly<span></p>
-					<p class="additional">Additional Credits <b>$0.40</b></p>
-					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href }';">Buy Now</button>
+					<p class="price">${ pricingArr[3][1] }<small>/month</small></p>
+					<p class="credits">${ pricingArr[3][2] }</p>
+					<p class="additional">${ pricingArr[3][3] }</p>
+					<button onclick="location.href='${ pricingArr[3][4] }';">${ pricingArr[3][5] }</button>
 				</div>
 			</div>
 		</div>
@@ -265,7 +338,6 @@ let start = setInterval(() => {
 
 			} else {
 				document.querySelector('.banner-custom').classList.add('hide')
-
 				
 				window.dataLayer = window.dataLayer || [];
 				dataLayer.push({
