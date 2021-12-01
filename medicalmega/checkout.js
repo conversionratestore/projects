@@ -151,7 +151,7 @@ window.onload  = function () {
                 background: transparent; }
             .payment {
                 padding-bottom: 0;}
-            #ftr, .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
+            .num_line .line_grey, .num_line .line_pink, #ftr, .registerOnLogin dt, .left, .mainleft, .mainright, .guest_checkout_button2, .address_book_new .small_block .head2 img, .payment h5, .altPayment, form div[align="right"] {
                 display: none;}
             input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
@@ -684,6 +684,41 @@ window.onload  = function () {
             .c-red {
                 color: #C23D31;
             }
+            .num_line {
+                display: flex;
+                justify-content: center;
+                padding-left: 0;
+            }
+            .num_line span {
+                display: block;
+            }
+            .num_line .circle_pink {
+                background: rgba(194, 61, 49, 0.2);
+                border: 1px solid #C23D31;
+                width: 28px;
+                height: 28px;
+                display: inline-flex;
+                border-radius: 50%;
+            }
+            .num_line .circle_grey {
+                background: none;
+                border: 1px solid #EEEEEE;
+                border-radius: 50%;
+                width: 28px;
+                height: 28px;
+                display: inline-flex;
+            }
+            .num_line .circle_grey .number, .num_line a .circle_grey .number,  .num_line .circle_pink .number, .num_line a .circle_pink .number  {
+                padding: 0;
+                margin: auto;
+                font-size: 14px;
+                line-height: 19px;
+                text-align: center;
+                color: #C0C0C0;
+            }
+            .num_line .circle_pink .number, .num_line a .circle_pink .number  {
+                color: #C23D31;
+            }
         </style>`);
 
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -751,7 +786,8 @@ window.onload  = function () {
             // }
             if (document.querySelector('.myAccount')) {
                 document.querySelectorAll('.myAccountleft button[name="register"]').innerHTML = `Next`;
-                document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn, btn-next');
+                document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn');
+                document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn-next');
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
                 <label class="valign-center">
