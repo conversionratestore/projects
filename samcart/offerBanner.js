@@ -91,11 +91,12 @@ const style = `
         	list-style: none;
 		    padding: 0;
 		    margin: 15px 0;
+            padding-left: 15px;
         }
         
         .features ul li {
             position: relative;
-            margin-left: -5px;
+            
     		
         	font-weight: 500;
 			font-size: 12px;
@@ -110,14 +111,14 @@ const style = `
             position: absolute;
         	content: "";
         	display: block;
-            left: -10px;
+            left: -15px;
         	height: 12px;
         	width: 12px;
         	background-image:url("https://conversionratestore.github.io/projects/samcart/img/checkmark.svg");
             background-repeat: no-repeat;
         }
         
-        .features ul li s {
+        .features ul li span {
         	display: none;
         }
         
@@ -324,9 +325,7 @@ const mobileCSS = `
 			margin-top: 10px;
 		}
 
-        .features ul {
-            padding-left: 0;
-        }
+       
 
         .btn-wrapper button {
             font-size: 14px;
