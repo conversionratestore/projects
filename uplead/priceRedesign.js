@@ -106,7 +106,7 @@ const customStyle = `
 			background: #FFFFFF;
 			border: 1px solid #E0E8E9;
 			border-radius: 15px;
-			padding: 30px 20px 35px;
+			padding: 25px 20px 35px;
 			min-width: 270px;
 		}
 		
@@ -129,7 +129,7 @@ const customStyle = `
 		}
 		
 		.card hr {
-			margin: 15px 0 !important;
+			margin: 18px 0 8px !important;
 			height: 1px;
 			background-color: #D6D9DD !important;
 		}
@@ -171,6 +171,7 @@ const customStyle = `
 		}
 		
 		p.credits {
+			margin: -14px 0px -7px!important;
 			font-weight: bold;
 			color: #00A1BB;
 			font-size: 20px;
