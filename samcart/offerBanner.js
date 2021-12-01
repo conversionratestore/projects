@@ -501,7 +501,7 @@ function showSaleBtn() {
 			let priceText
 
 			if (mediaQuery.matches) {
-				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
+				priceText = `<p class="price">$349<sup>$10,060</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
 
 			} else {
 				priceText = `<p class="price">$349<sup>$588</sup></p>`
