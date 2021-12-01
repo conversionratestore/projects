@@ -323,8 +323,10 @@ window.onload  = function () {
                 line-height: 20px;
                 color: #666666;
                 padding: 9px 10px;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
                 border-radius: 4px;}
+            .registerOnLogin dd label {
+                color: #666666;}
             div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
                 width: fit-content;
                 margin-left: auto;}
@@ -595,8 +597,8 @@ window.onload  = function () {
                 flex-wrap: wrap; }
             .registerOnLogin dd {
                 padding: 0!important;
-                width: 50%;
-                max-width: 224px; }
+                width: 100%;
+                max-width: 261px; }
             .myAccountleft .registerOnLogin button {
                 width: 100%;
                 background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
@@ -777,6 +779,7 @@ window.onload  = function () {
                     }
                 });
                 if (location.pathname.includes('login')) {
+                  
                     document.querySelector('.log').innerHTML = 'Registration';
                     document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                     document.querySelector('.myAccountleft').style.display = 'none';
@@ -789,6 +792,12 @@ window.onload  = function () {
                     document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
                 }
                 if (location.pathname.includes('register')) {
+                    document.body.insertAdjacentHTML('afterbegin', `
+                    <style>
+                    .myAccountleft .registerOnLogin dd:nth-child(3) {
+                        max-width: 360px;
+                    }
+                </style>`);
                     document.querySelector('.log').innerHTML = 'Sign in';
                     document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
                     document.querySelector('.myAccountleft').style.display = 'block';
