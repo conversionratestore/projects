@@ -693,18 +693,19 @@ window.onload  = function () {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
-                margin-right: 115px;
                 position: relative;
             }
             .num_line span {
                 display: block;
+                line-height: 16px;
             }
             .num_line .circle_pink {
                 background: rgba(194, 61, 49, 0.2);
                 border: 1px solid #C23D31;
                 width: 28px;
                 height: 28px;
-                display: inline-flex;
+                display: flex;
+                margin: 0 57px 8px;
                 border-radius: 50%;
             }
             .num_line .circle_grey {
@@ -713,8 +714,8 @@ window.onload  = function () {
                 border-radius: 50%;
                 width: 28px;
                 height: 28px;
-                display: inline-flex;
-                margin-bottom: 8px;
+                display: flex;
+                margin: 0 57px 8px;
             }
             .num_line .circle_grey .number, .num_line a .circle_grey .number,  .num_line .circle_pink .number, .num_line a .circle_pink .number  {
                 padding: 0;
