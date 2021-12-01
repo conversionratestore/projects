@@ -102,7 +102,7 @@ const style = `
 			color: #5F7384;
 			margin-bottom: 13px;
 			
-			
+			line-height: 15px;
 			text-transform: capitalize;
         }       
         
