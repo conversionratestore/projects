@@ -77,7 +77,7 @@ const style = `
         }		
         
         .features {
-            max-height: 500px;
+            max-height: 1000px;
             transition: max-height 1s ease;
         	margin-top: 15px;
         	padding: 10px;
