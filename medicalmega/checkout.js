@@ -693,7 +693,6 @@ window.onload  = function () {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
-                position: relative;
             }
             .num_line span {
                 display: block;
@@ -707,6 +706,8 @@ window.onload  = function () {
                 display: flex;
                 margin: 0 57px 8px;
                 border-radius: 50%;
+                position: relative;
+                z-index: 1;
             }
             .num_line .circle_grey {
                 background: none;
@@ -716,6 +717,22 @@ window.onload  = function () {
                 height: 28px;
                 display: flex;
                 margin: 0 57px 8px;
+                position: relative;
+                z-index: 1;
+            }
+            .num_line .circle_grey:before, .num_line .circle_pink:before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%; 
+                transform: translateY(-50%)
+                height: 1px;
+                width: 142px;
+                background: #EEEEEE;
+                z-index: -1;
+            }
+            .num_line a:last-child .circle_grey:before {
+                content: none;
             }
             .num_line .circle_grey .number, .num_line a .circle_grey .number,  .num_line .circle_pink .number, .num_line a .circle_pink .number  {
                 padding: 0;
