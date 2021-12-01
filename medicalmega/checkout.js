@@ -689,6 +689,11 @@ window.onload  = function () {
                 justify-content: center;
                 padding-left: 0;
             }
+            .num_line a {
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 16px;
+            }
             .num_line span {
                 display: block;
             }
@@ -707,6 +712,7 @@ window.onload  = function () {
                 width: 28px;
                 height: 28px;
                 display: inline-flex;
+                margin-bottom: 8px;
             }
             .num_line .circle_grey .number, .num_line a .circle_grey .number,  .num_line .circle_pink .number, .num_line a .circle_pink .number  {
                 padding: 0;
