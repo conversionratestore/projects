@@ -129,7 +129,7 @@ const customStyle = `
 		}
 		
 		.card hr {
-			margin: 30px 0 !important;
+			margin: 15px 0 !important;
 			height: 1px;
 			background-color: #D6D9DD !important;
 		}
@@ -170,9 +170,10 @@ const customStyle = `
 			font-weight: normal;
 		}
 		
-		.credits {
+		p.credits {
 			font-weight: bold;
 			color: #00A1BB;
+			font-size: 20px;
 		}
 		
 		.credits .thin {
@@ -180,12 +181,10 @@ const customStyle = `
 			color: #6B7279;
 		}
 		
-		.additional {
+		p.additional {
 			color: #6B7279;
+			font-size: 16px;
 		}
-		
-		
-		
 		
 	</style>
 `
