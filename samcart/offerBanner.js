@@ -117,7 +117,7 @@ const style = `
         	display: none;
         }
         
-        .banner.show_sale .features ul li s {
+        .banner.show_sale .features ul li span {
         	display: inline;
         	font-weight: 300;
         }
@@ -352,15 +352,15 @@ const banner = `
                 <p class="subtitle">Get SamCart and $10k<br>in FREE gifts now</p>
                 <ul>
                     <li>1 Year of SamCart</li>
-                    <li>1 Page Masterclass <s>($3,995)</s></li>
-                    <li>Traffic Tactics <s>($1,997)</s></li>
-                    <li>Course Creation Challenge <s>($995)</s></li>
-                    <li>1 Page Wednesday Calls <s>($995!)</s></li>
-                    <li>Private Facebook Group <s>($495)</s></li>
-                    <li>Top Seller Strategies <s>($995)</s></li>
-                    <li>My Personal Course Sales Page Template <s>(Priceless)</s></li>
-                    <li>30-Day Money-Back Guarantee <s>(Priceless)</s></li>
-                    <li>40% SamCart Discount for Life! <s>(Priceless)</s></li>                    
+                    <li>1 Page Masterclass <span>($3,995)</span></li>
+                    <li>Traffic Tactics <span>($1,997)</span></li>
+                    <li>Course Creation Challenge <span>($995)</span></li>
+                    <li>1 Page Wednesday Calls <span>($995!)</span></li>
+                    <li>Private Facebook Group <span>($495)</span></li>
+                    <li>Top Seller Strategies <span>($995)</span></li>
+                    <li>My Personal Course Sales Page Template <span>(Priceless)</span></li>
+                    <li>30-Day Money-Back Guarantee <span>(Priceless)</span></li>
+                    <li>40% SamCart Discount for Life! <span>(Priceless)</span></li>                    
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
