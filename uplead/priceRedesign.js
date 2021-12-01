@@ -1,4 +1,4 @@
-const style = `
+const customStyle = `
 	<style>
 		.uael-rbs-toggle {
 			display: none !important;
@@ -240,7 +240,7 @@ const plans = `
 	</div>
 `
 
-document.head.insertAdjacentHTML('afterbegin', style)
+document.head.insertAdjacentHTML('afterbegin', customStyle)
 
 let start = setInterval(() => {
 	if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href) {
