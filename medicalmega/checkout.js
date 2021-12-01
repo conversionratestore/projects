@@ -681,6 +681,9 @@ window.onload  = function () {
             .invaliduser {
                 width: 100%;
             }
+            .c-red {
+                color: #C23D31;
+            }
         </style>`);
 
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -741,6 +744,11 @@ window.onload  = function () {
                     item.previousElementSibling.setAttribute('type', type);
                 });
             });
+            if (document.querySelector('.registerOnLogin dd label')) {
+                document.querySelector('.registerOnLogin dd label').forEach(el => {
+                    el.replace('*','<span class="c-red">*</span>')
+                })
+            }
             if (document.querySelector('.myAccount')) {
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
