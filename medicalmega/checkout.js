@@ -693,6 +693,7 @@ window.onload  = function () {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
+                text-align: center;
             }
             .num_line span {
                 display: block;
