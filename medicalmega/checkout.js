@@ -802,7 +802,7 @@ window.onload  = function () {
             });
             if (document.querySelector('.registerOnLogin dd label')) {
                 document.querySelectorAll('.registerOnLogin dd label').forEach(el => {
-                    el.innerHTML.replace('*','<span class="c-red">*</span>')
+                    el.innerHTML.split('*').join('<span class="c-red">*</span>')
                 })
             }
             if (document.querySelector('.myAccount')) {
