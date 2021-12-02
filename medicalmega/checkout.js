@@ -136,8 +136,8 @@ window.onload  = function () {
     if (mm.grw != 1) {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
-             <style>
-             .myAccountleft button[name="register"]{
+            <style>
+            .myAccountleft button[name="register"], .myAccountleft button[name="user_login"] {
               display: none;}
             .title_head {
                 font-weight: bold;
@@ -334,8 +334,8 @@ window.onload  = function () {
                 width: 100%;
                 max-width: 151px; }
             div.myAccountright > form > dd.forgot_password { 
-                width: 50%!important;
-                max-width: 224px!important;
+                text-align: right;
+                max-width: 100%!important;
                 margin-left: 0!important; }
             .checkout-right_head {
                 padding: 22px 0 15px;
@@ -602,22 +602,7 @@ window.onload  = function () {
                 max-width: 261px; }
             .myAccountleft .registerOnLogin dd:nth-child(3) {
                 max-width: 361px;  }
-            .myAccountleft .registerOnLogin button {
-                width: 100%;
-                background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
-                border: none;
-                border-radius: 4px;
-                font-style: normal;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 42px;
-                display: flex;
-                align-items: center;
-                text-align: center;
-                text-transform: capitalize;
-                color: #FFFFFF;
-                padding: 0 30px;
-                position: relative;}
+
             .myAccountleft .registerOnLogin dd:last-child {
                 max-width: 153px;
                 width: 100%;
@@ -627,7 +612,7 @@ window.onload  = function () {
                 margin-left: auto;
                 margin-top: auto;
                 width: 100%;}
-            .myAccountleft .registerOnLogin button:after, #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
+            #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
                 content: '';
                 margin-left: 4px;
                 background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
@@ -822,9 +807,19 @@ window.onload  = function () {
             }
             if (document.querySelector('.myAccount')) {
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
-                document.querySelector('.btn-next').addEventListener('click', () => {
+                document.querySelector('.myAccountleft .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
+                    action = `Click Next button`;
+                    label = 'Section Registration';
+                    pushDataLayer(action,label)
+                });
+                document.querySelector('.myAccountright .btn-next').addEventListener('click', () => {
+                    document.querySelector('button[name="user_login"]').click();
+                    action = `Click Next button`;
+                    label = 'Section Registration';
+                    pushDataLayer(action,label)
                 });
                 document.querySelector('.myAccountleft .registerOnLogin dt').remove();
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
@@ -835,13 +830,8 @@ window.onload  = function () {
                 </label>`);
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-                // document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
                 document.querySelector('#login_btn').innerHTML = `Next`;
-                document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
-                    action = `Click Next button`;
-                    label = 'Section Registration';
-                    pushDataLayer(action,label)
-                });
+
                 document.querySelector('.log').addEventListener('click', (e) => {
                     let _this = e.target;
                     _this.classList.toggle('active');
