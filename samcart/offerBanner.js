@@ -21,7 +21,7 @@ const style = `
 			height: 45px;
         	right: -6px;
         	top: -15px;
-        	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
+        	background: url("https://conversionratestore.github.io/projects/samcart/img/off.png") no-repeat;
         	object-fit: cover;
         	transition: all 0.7s ease;
     		opacity: 1;
