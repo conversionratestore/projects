@@ -803,6 +803,11 @@ window.onload  = function () {
                 for (let i = 0; i < step.length; i++) {
                     step[i].innerHTML = i;
                 }
+            
+                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
+                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
+                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].innerHTML = 'Payment Method';
+                document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Confirmation';
             }
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
@@ -955,6 +960,12 @@ window.onload  = function () {
                 <style>
                 .num_line a:nth-child(2) span { 
                     color: #171717;}
+                    .num_line a:nth-child(2) .number{
+                        color: #171717;
+                    }
+                    .num_line a:nth-child(2) .circle_grey{
+                        -border-color: #171717;
+                    }
         .holiday {
             margin: 15px 0 0 0!important;}
         .payment h3, .primaryInfo h2, .remove{
@@ -1069,6 +1080,15 @@ window.onload  = function () {
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+                
+                .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
+                    color: #171717;}
+                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number {
+                        color: #171717;
+                    }
+                    .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey{
+                        -border-color: #171717;
+                    }
             .primaryInfo .error_cart {
                 width: 100%!important; }
             .payment h3, .checkout-left_head, .remove {
