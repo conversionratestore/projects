@@ -658,7 +658,6 @@ window.onload  = function () {
                 line-height: 19px;
                 display: flex;
                 align-items: center;
-                text-decoration-line: underline;
                 padding: 10px 19px 10px 32px;
                 color: #666666;
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
