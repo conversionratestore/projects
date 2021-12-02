@@ -1026,8 +1026,6 @@ setTimeout(() => {
 
     document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
 
-    document.querySelector(".submit_btn input").value = "Enroll Now"
-
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
     document.querySelector("#month").options[0].text = "Month"
@@ -1051,5 +1049,7 @@ setTimeout(() => {
 
     let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+
+    document.querySelector(".submit_btn input").value = "Enroll Now"
   }
 }, 5)
