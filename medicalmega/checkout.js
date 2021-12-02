@@ -701,6 +701,9 @@ window.onload  = function () {
                 position: relative;
                 z-index: 1;
             }
+            .num_line .pink {
+                color: #171717;
+            }
             .num_line .circle_grey {
                 background: #fff;
                 border: 1px solid #EEEEEE;
@@ -950,9 +953,10 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
+                .num_line a:nth-child(2) span { 
+                    color: #171717;}
         .holiday {
-            margin: 15px 0 0 0!important;
-        }
+            margin: 15px 0 0 0!important;}
         .payment h3, .primaryInfo h2, .remove{
             display: none}
         .primaryInfo li {
@@ -1031,7 +1035,7 @@ window.onload  = function () {
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back</button><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back to Billing Info</button><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
