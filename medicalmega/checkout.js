@@ -965,7 +965,7 @@ window.onload  = function () {
                 });
 
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[0].classList.add('circle_dark');
-                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.remove('pink');
+                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.add('pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink');
             }
