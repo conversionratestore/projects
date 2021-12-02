@@ -100,7 +100,6 @@ let mut = new MutationObserver(function (muts) {
         let uploadFileSection = document.querySelector('.signTemplate__templateField-select-wrapper'),
             uploadFileWrapper = document.querySelector('.signTemplate__templateField'),
             orElement = document.querySelector('.common__or'),
-            form = document.querySelector('.signTemplate__form'),
             h1 = document.querySelector('.signTemplate__title'),
             docForSigningSection = document.querySelector('.signTemplate__form-mainGroupField');
 
