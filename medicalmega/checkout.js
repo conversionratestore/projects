@@ -601,8 +601,7 @@ window.onload  = function () {
                 width: 100%;
                 max-width: 261px; }
             .registerOnLogin dd:nth-child(3) {
-                max-width: 361px;
-            }
+                max-width: 361px;  }
             .myAccountleft .registerOnLogin button {
                 width: 100%;
                 background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
@@ -620,8 +619,8 @@ window.onload  = function () {
                 padding: 0 30px;
                 position: relative;}
             .myAccountleft .registerOnLogin dd:last-child {
-                max-width: 100%;
-                width: fit-content;
+                max-width: 153px;
+                width: 100%;
                 margin-left: auto;}
             .btn-next  {
                 max-width: 224px;
@@ -833,7 +832,7 @@ window.onload  = function () {
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
                 // document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
-                // document.querySelector('#login_btn').innerHTML = `Next`;
+                document.querySelector('#login_btn').innerHTML = `Next`;
                 document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
                     action = `Click Next button`;
                     label = 'Section Registration';
