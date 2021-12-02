@@ -364,7 +364,7 @@ const banner = `
         <div class="inner">
             <p class="title">workshop Special offer</p>
             <div class="features">
-                <p class="subtitle">Get SamCart and $10k<br>in FREE gifts now</p>
+                <p class="subtitle">Get SamCart and<br>FREE gifts now</p>
                 <ul>
                     <li>1 Year of SamCart</li>
                     <li>1 Page Masterclass <span>($3,995)</span></li>
@@ -436,6 +436,10 @@ if (count > 0) {
 		minutes = ('0' + minutes.toFixed(0)).slice(-2)
 		seconds = ('0' + seconds.toFixed(0)).slice(-2)
 
+		if(!mediaQuery.matches) {
+			document.querySelector('.banner .subtitle').innerText = 'Get SamCart and $10k<br>in FREE gifts now'
+		}
+
 		if (document.querySelector('.btn-wrapper_wait span')) {
 			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds
 		}
@@ -500,8 +504,6 @@ function listener(e) {
 		'eventAction': 'Click on Workshop special offer button',
 	})
 
-	console.log('EVENT: Click on Workshop special offer button')
-
 	e.currentTarget.removeEventListener('click', listener)
 
 }
@@ -532,7 +534,6 @@ function showSaleBtn() {
 					'eventCategory': 'Exp — Webinar page special offer',
 					'eventAction': 'Click on Continue to special offer button',
 				})
-				console.log('EVENT: Click on Continue to special offer button')
 			})
 		}
 	}, 100)
@@ -560,5 +561,3 @@ window.hj = window.hj || function () {
 	(hj.q = hj.q || []).push(arguments)
 }
 hj('event', 'webinar_page_special_offer')
-
-console.log(`Don't document the bug. Fix it, Bohdan :)`)
