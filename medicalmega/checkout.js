@@ -969,12 +969,12 @@ window.onload  = function () {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
                 .num_line a:nth-child(2) span { 
-                    color: #171717;}
+                    color: #171717!important;}
                     .num_line a:nth-child(2) .number{
-                        color: #171717;
+                        color: #171717!important;
                     }
                     .num_line a:nth-child(2) .circle_grey{
-                        -border-color: #171717;
+                        border-color: #171717!important;
                     }
         .holiday {
             margin: 15px 0 0 0!important;}
@@ -1092,12 +1092,12 @@ window.onload  = function () {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
                 
                 .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
-                    color: #171717;}
+                    color: #171717!important;}
                     .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number {
-                        color: #171717;
+                        color: #171717!important;
                     }
                     .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey{
-                        -border-color: #171717;
+                        border-color: #171717!important;
                     }
             .primaryInfo .error_cart {
                 width: 100%!important; }
@@ -1208,6 +1208,7 @@ window.onload  = function () {
 
             if(location.pathname == '/checkout/step4') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+                
                 .checkout-left_head, .num_line, .payment h3, .remove, .quantity-btn {
                     display: none!important;
                 }
