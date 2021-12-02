@@ -750,6 +750,9 @@ window.onload  = function () {
             .num_line .circle_pink .number, .num_line a .circle_pink .number  {
                 color: #C23D31;
             }
+            .num_line a .circle_pink.circle_dark .number {
+                color: #171717
+            }
             .bottom {
                 position: absolute;
                 left: 0;
@@ -826,11 +829,7 @@ window.onload  = function () {
                     item.previousElementSibling.setAttribute('type', type);
                 });
             });
-            if (document.querySelector('.registerOnLogin dd label')) {
-                document.querySelectorAll('.registerOnLogin dd label').forEach(el => {
-                    el.innerHTML.split('*').join('<span class="c-red">*</span>')
-                })
-            }
+          
             if (document.querySelector('.myAccount')) {
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
@@ -1253,6 +1252,11 @@ window.onload  = function () {
     }
 };
 
+if (document.querySelector('.registerOnLogin dd label')) {
+    document.querySelectorAll('.registerOnLogin dd label').forEach(el => {
+        el.innerHTML.split('*').join('<span class="c-red">*</span>')
+    })
+}
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1483840,hjsv:6};
