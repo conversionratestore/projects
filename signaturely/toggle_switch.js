@@ -1,7 +1,7 @@
 let checked = setInterval(() => {
-  if (!document.querySelector(".uael-rbs-switch-label .uael-rbs-switch:checked")) {
+  if (!document.querySelector(".uael-rbs-switch.uael-switch-round-1.elementor-clickable:checked")) {
     clearInterval(checked)
-    document.querySelector(".elementor-83 .elementor-element.elementor-element-c7ccc5e .uael-rbs-slider").click()
+    document.querySelector(".uael-rbs-switch.uael-switch-round-1.elementor-clickable").click()
   }
 }, 50)
 
@@ -32,7 +32,7 @@ window.hj =
 hj("event", "signaturely_toggle_switch")
 
 setTimeout(() => {
-  document.querySelector(".elementor-83 .elementor-element.elementor-element-c7ccc5e .uael-rbs-slider").addEventListener("click", () => {
+  document.querySelector(".uael-main-btn .uael-rbs-switch-label").addEventListener("click", () => {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
