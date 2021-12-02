@@ -334,6 +334,7 @@ window.onload  = function () {
                 width: 100%;
                 max-width: 151px; }
             div.myAccountright > form > dd.forgot_password { 
+                margin-top: -20px;
                 text-align: right;
                 max-width: 100%!important;
                 margin-left: 0!important; }
@@ -602,15 +603,13 @@ window.onload  = function () {
                 max-width: 261px; }
             .myAccountleft .registerOnLogin dd:nth-child(3) {
                 max-width: 361px;  }
-
             .myAccountleft .registerOnLogin dd:last-child {
                 max-width: 153px;
                 width: 100%;
                 margin-left: auto;}
             .btn-next  {
-                max-width: 224px;
+                max-width: 153px;
                 margin-left: auto;
-                margin-top: auto;
                 width: 100%;}
             #step1_form div[align="right"]:after, .btn-next:after {
                 content: '';
@@ -660,9 +659,12 @@ window.onload  = function () {
                 display: flex;
                 align-items: center;
                 text-decoration-line: underline;
-                padding: 10px 19px;
+                padding: 10px 19px 10px 32px;
                 color: #666666;
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
+            }
+            .registerOnLogin .g-signin2 {
+                margin: 20px 0;
             }
             .address_book_new .editor .title {
                 display: none;
