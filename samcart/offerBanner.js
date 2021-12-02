@@ -436,10 +436,6 @@ if (count > 0) {
 		minutes = ('0' + minutes.toFixed(0)).slice(-2)
 		seconds = ('0' + seconds.toFixed(0)).slice(-2)
 
-		if(!mediaQuery.matches) {
-			document.querySelector('.banner .subtitle').innerText = 'Get SamCart and $10k<br>in FREE gifts now'
-		}
-
 		if (document.querySelector('.btn-wrapper_wait span')) {
 			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds
 		}
@@ -521,7 +517,8 @@ function showSaleBtn() {
 			if (mediaQuery.matches) {
 				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
 
-			} else {
+			} else {				
+				document.querySelector('.banner .subtitle').innerText = 'Get SamCart and $10k<br>in FREE gifts now'				
 				priceText = `<p class="price">$349<sup>$588</sup></p>`
 			}
 
