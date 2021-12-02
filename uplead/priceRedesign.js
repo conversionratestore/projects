@@ -1,6 +1,7 @@
 const customStyle = `
 	<style>
-		.uael-rbs-toggle {
+		.uael-rbs-toggle,
+		.accountPlans__freeUser-switch {
 			display: none !important;
 		}
 		
@@ -108,6 +109,7 @@ const customStyle = `
 			border-radius: 15px;
 			padding: 25px 20px 35px;
 			min-width: 270px;
+			max-width: 270px;
 		}
 		
 		.card.card_free {
@@ -132,6 +134,7 @@ const customStyle = `
 			margin: 18px 0 8px !important;
 			height: 1px;
 			background-color: #D6D9DD !important;
+			border: none;
 		}
 		
 		.card button {
@@ -162,6 +165,7 @@ const customStyle = `
 		.price {
 			font-size: 56px;
 			color: #0E1D2E;
+			font-weight: 500;
 		}
 		
 		.price small{
@@ -186,6 +190,71 @@ const customStyle = `
 			color: #6B7279;
 			font-size: 16px;
 		}
+
+		.banner-custom.app {
+			max-width: 1254px;
+		}
+
+		.banner-custom.app .card{
+			min-width: 276px;
+			max-width: 276px;
+		}
+
+		.banner-custom.app .plans {
+			background: #FFFFFF;
+			box-shadow: 0px 2px 6px rgba(22, 127, 158, 0.12);
+		}
+
+		p.option {
+			font-weight: normal;
+			font-size: 15px;
+			color: #6B7279;
+		}
+
+		.banner-custom.app {
+			margin-bottom: 50px !important;
+		}
+
+		.banner-custom.app p.credits {
+			margin: 15px 0 10px !important;
+		}
+
+		.banner-custom.app .card hr {
+			margin: 30px 0 !important;
+		}
+
+		.banner-custom.app button {
+			margin: 30px 0 20px !important;
+		}
+
+		.card.card-pro {
+			box-shadow: 0px 2px 6px rgba(22, 127, 158, 0.12);
+		}
+
+		.banner-custom.app .card .name {
+			margin-bottom: 8px !important;
+		}
+	
+		@media only screen and (max-width: 1250px) {
+			.card {				
+				min-width: auto;
+			}
+		  }
+
+		  @media only screen and (max-width: 1074px) {
+			.card-wrapper {
+				gap: 30px;
+			}
+			.card {				
+				flex: 45%;
+			}
+		  }
+
+		  @media only screen and (max-width: 767px) {
+			.card {				
+				flex: 100%;
+			}
+		  }
 		
 	</style>
 `
@@ -249,8 +318,9 @@ if(window.location.hostname === 'app.uplead.com') {
 	</div>
 `
 			const whereEl = document.querySelector('.accountPlans__freeUser-container')
+			const position = 'beforeend'
 
-			startExp(whereEl, plans)
+			startExp(whereEl, position, plans)
 		}
 	}, 200)
 
@@ -325,8 +395,9 @@ if(window.location.hostname === 'app.uplead.com') {
 	</div>
 `
 			const whereEl = document.querySelector('.uael-rbs-section-2')
-
-			startExp(whereEl, plans)
+			const position = 'afterend'
+			
+			startExp(whereEl, position, plans)
 		}
 	}, 200)
 
@@ -345,8 +416,8 @@ if(window.location.hostname === 'app.uplead.com') {
 	console.log('HJ for uplead domain');
 }
 
-function startExp(whereEl, plans) {
-			whereEl.insertAdjacentHTML('afterend', plans)
+function startExp(whereEl, position, plans) {
+			whereEl.insertAdjacentHTML(position, plans)
 
 			document.querySelector('.title-wrapper').addEventListener('click', function() {
 				if(this.closest('.banner-custom').classList.contains('hide')) {
