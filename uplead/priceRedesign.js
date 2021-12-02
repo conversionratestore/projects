@@ -193,7 +193,13 @@ const customStyle = `
 document.head.insertAdjacentHTML('afterbegin', customStyle)
 
 if(window.location.hostname === 'app.uplead.com') {
-	plans = `
+	
+
+	let start = setInterval(() => {
+		if(document.querySelectorAll('.product-card__price')[3].innerText && document.querySelectorAll('.product-card__price')[3].innerText) {
+			clearInterval(start)
+
+			plans = `
 	<div class="banner-custom hide app">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
@@ -241,18 +247,14 @@ if(window.location.hostname === 'app.uplead.com') {
 </div>
 		
 	</div>
-`	
-
-	let start = setInterval(() => {
-		if(document.querySelectorAll('.product-card__price')[3].innerText) {
-			clearInterval(start)
+`
 
 			const whereEl = document.querySelector('.accountPlans__freeUser-container')
-			
+
 			startExp(whereEl, plans)
 		}
 	}, 200)
-	
+
 	// document.querySelector('.product-card__action-btn-wrap button')
 
 
