@@ -725,10 +725,10 @@ window.onload  = function () {
                 content: '';
                 position: absolute;
                 top: 50%;
-                left: 50%; 
+                left: 100%; 
                 transform: translateY(-50%);
                 height: 1px;
-                width: 142px;
+                width: 120px;
                 background: #EEEEEE;
                 z-index: -1;
             }
@@ -828,7 +828,7 @@ window.onload  = function () {
                 </label>`);
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-                document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Choose Shipping Method`;
+                document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
                 document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
                 document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
                     action = `Click Choose Shipping Method button`;
