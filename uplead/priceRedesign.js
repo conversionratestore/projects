@@ -248,7 +248,6 @@ if(window.location.hostname === 'app.uplead.com') {
 		
 	</div>
 `
-
 			const whereEl = document.querySelector('.accountPlans__freeUser-container')
 
 			startExp(whereEl, plans)
@@ -325,7 +324,7 @@ if(window.location.hostname === 'app.uplead.com') {
 		
 	</div>
 `
-			const whereEl = document.querySelector('.accountPlans__freeUser-container').insertAdjacentHTML('afterend', plans)
+			const whereEl = document.querySelector('.uael-rbs-section-2')
 
 			startExp(whereEl, plans)
 		}
@@ -347,8 +346,6 @@ if(window.location.hostname === 'app.uplead.com') {
 }
 
 function startExp(whereEl, plans) {
-
-
 			whereEl.insertAdjacentHTML('afterend', plans)
 
 			document.querySelector('.title-wrapper').addEventListener('click', function() {
