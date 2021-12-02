@@ -817,9 +817,9 @@ window.onload  = function () {
             //     })
             // }
             if (document.querySelector('.myAccount')) {
-                // document.querySelectorAll('.myAccountleft button[name="register"]').innerHTML = `Next`;
-                // document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn');
-                // document.querySelectorAll('.myAccountleft button[name="register"]').classList.add('btn-next');
+                document.querySelector('.myAccountleft button[name="register"]').innerHTML = `Next`;
+                document.querySelector('.myAccountleft button[name="register"]').classList.add('btn');
+                document.querySelector('.myAccountleft button[name="register"]').classList.add('btn-next');
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
                 <label class="valign-center">
@@ -828,8 +828,8 @@ window.onload  = function () {
                 </label>`);
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
-                document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
-                document.querySelector('#login_btn').innerHTML = `Next`;
+                // document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
+                // document.querySelector('#login_btn').innerHTML = `Next`;
                 document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
                     action = `Click Next button`;
                     label = 'Section Registration';
