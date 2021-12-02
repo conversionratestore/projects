@@ -352,6 +352,7 @@ const mobileCSS = `
         .features ul li::before {
         	height: 15px;
     		width: 15px;
+    		left: -20px;
         }
 	</style>
 `
