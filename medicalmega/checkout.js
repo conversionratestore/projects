@@ -1179,9 +1179,9 @@ window.onload  = function () {
             </style>`);
                 document.querySelector('.title_head').innerHTML = 'Payment method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+                document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
 
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<button type="button" class="btn big">COMPLETE THE ORDER</button>`)
-                document.querySelector('.btn.big').addEventListener('click', () => {
+                document.querySelector('.btn-next').addEventListener('click', () => {
                     document.querySelector('form div[align="right"] input').click();
                 });
                 document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
@@ -1204,7 +1204,7 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label);
                 });
-
+             
             }
 
             if(location.pathname == '/checkout/step4') {
