@@ -329,7 +329,7 @@ const mobileCSS = `
 		}
 
        .features ul {
-       		padding: 0 14%;
+       		padding: 0 10%;
        }
 
         .btn-wrapper button {
