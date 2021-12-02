@@ -328,7 +328,7 @@ const mobileCSS = `
 		}
 
        .features ul {
-       	padding-left: 15%;
+       		padding: 0 5%;
        }
 
         .btn-wrapper button {
