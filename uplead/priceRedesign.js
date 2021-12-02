@@ -196,7 +196,7 @@ if(window.location.hostname === 'app.uplead.com') {
 	
 
 	let start = setInterval(() => {
-		if(document.querySelectorAll('.product-card__price')[3].innerText && document.querySelectorAll('.product-card__price')[3].innerText) {
+		if(document.querySelectorAll('.product-card__price')[3].innerText) {
 			clearInterval(start)
 
 			plans = `
@@ -271,48 +271,53 @@ if(window.location.hostname === 'app.uplead.com') {
 
 	console.log('HJ for APP uplead domain');
 } else {
-	plans = `
-	<div class="banner-custom hide app">
+	
+	let start = setInterval(() => {
+		if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href && document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]) {
+			clearInterval(start)
+
+			plans = `
+	<div class="banner-custom hide">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
 		<span class="arrow"></span>
-	</div>
+</div>
 		
 		<div class="wrapper-custom">
 		<div class="plans">			
 			<p class="title">Monthly Plans</p>
 			<div class="card-wrapper">
+				<div class="card card_free">
+					<p class="name">Free Trial</p>
+					<hr>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">5 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Free Test Drive</p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href}';">Try For Free</button>
+				</div>
 				<div class="card">
 					<p class="name">Essentials</p>
-					<p class="option">A starter plan for those new to sales intelligence.</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[0].innerText}<small>/month</small></p>
-					<p class="credits">2,040 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Additional Credits <b>$0.60</b></p>					
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">170 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.60</b></p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href}';">Buy Now</button>
 				</div>
 				<div class="card">
 					<p class="name">Plus</p>
-					<p class="option">An intermediate plan if you want greater results.</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[1].innerText}<small>/month</small></p>
-					<p class="credits">4,800 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Additional Credits <b>$0.50</b></p>					
-				</div>
-				<div class="card card-pro">
-					<p class="name">Professional</p>
-					<p class="option">An advanced plan to take you to the next level.</p>
-					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[2].innerText}<small>/month</small></p>
-					<p class="credits">12,000 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Additional Credits <b>$0.40</b></p>					
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">400 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.50</b></p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href}';">Buy Now</button>
 				</div>
 				<div class="card">
-					<p class="name">Elite</p>
-					<p class="option">An exceptional plan to drive growth and reach new customers.</p>
+					<p class="name">Professional</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[3].innerText}<small>/month</small></p>
-					<p class="credits">3,000 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Additional Credits <b>$0.30</b></p>					
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">1000 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.40</b></p>
+					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href }';">Buy Now</button>
 				</div>
 			</div>
 		</div>
@@ -320,11 +325,6 @@ if(window.location.hostname === 'app.uplead.com') {
 		
 	</div>
 `
-
-	let start = setInterval(() => {
-		if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href) {
-			clearInterval(start)
-
 			const whereEl = document.querySelector('.accountPlans__freeUser-container').insertAdjacentHTML('afterend', plans)
 
 			startExp(whereEl, plans)
@@ -419,10 +419,6 @@ function startExp(whereEl, plans) {
 			})
 
 }
-
-
-
-
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
