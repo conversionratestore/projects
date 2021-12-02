@@ -1120,11 +1120,15 @@ window.onload  = function () {
                 padding: 10px 0;}
             .primaryInfo dl dd {
                 font-family: 'Arial', sans-serif; }
-            .primaryInfo dl input, .primaryInfo dl textarea {
+            .primaryInfo dl textarea, .primaryInfo dl input{
                 background: #EDEDED;
                 border: 0.5px solid #CCCCCC;
                 border-radius: 4px;
                 padding: 11px 20px; }
+            .primaryInfo dl input  {
+                margin: 0;
+                height: auto;
+                }
             .primaryInfo dl textarea {
                 background: #FFFFFF;}
             .primaryInfo dl textarea {
