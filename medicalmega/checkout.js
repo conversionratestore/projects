@@ -485,6 +485,7 @@ window.onload  = function () {
                 display: block;
                 margin: 0 8px 0 0;
                 flex-shrink: 0;
+                border-radius: 2px;
                 width: 16px;
                 height: 16px;}
             [type="checkbox"]:checked ~ .check {
@@ -736,6 +737,12 @@ window.onload  = function () {
             .num_line .circle_pink .number, .num_line a .circle_pink .number  {
                 color: #C23D31;
             }
+            .bottom {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+            }
         </style>`);
 
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -807,8 +814,8 @@ window.onload  = function () {
                 })
             }
             if (document.querySelector('.myAccount')) {
-                document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
-                document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.myAccountleft .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
