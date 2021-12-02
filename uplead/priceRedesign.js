@@ -321,11 +321,15 @@ if(window.location.hostname === 'app.uplead.com') {
 			const position = 'beforeend'
 
 			startExp(whereEl, position, plans)
+
+			for (let i = 0; i < 4; i++) {
+				document.querySelectorAll('.banner-custom .card')[i].insertAdjacentElement('beforeend',
+				 document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])				
+			}
+
+			
 		}
 	}, 200)
-
-	// document.querySelector('.product-card__action-btn-wrap button')
-
 
 	;(function(h,o,t,j,a,r){
 		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
