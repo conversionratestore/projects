@@ -1252,11 +1252,21 @@ window.onload  = function () {
     }
 };
 
-if (document.querySelector('.registerOnLogin dd label')) {
-    document.querySelectorAll('.registerOnLogin dd label').forEach(el => {
-        el.innerHTML.split('*').join('<span class="c-red">*</span>')
-    })
-}
+
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('label') != null) {
+        mut.disconnect();
+        document.querySelectorAll('label').forEach(el => {
+            if (el.innerHTML.includes('*')) {
+                el.innerHTML.split('*').join('<span class="c-red">*</span>')
+            }
+        })
+    }
+})
+mut.observe(document, {
+    childList: true,
+    subtree: true
+});
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1483840,hjsv:6};
