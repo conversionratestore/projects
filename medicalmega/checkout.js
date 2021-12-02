@@ -1130,6 +1130,8 @@ window.onload  = function () {
                 height: auto!important;}
             .primaryInfo dl textarea {
                 height: 40px;}
+            span.cc-recurring-setting {
+                width: 100%;}
             #recurring_billing_period, #card_list {
                 padding: 0 10px;
                 background: #EDEDED;
