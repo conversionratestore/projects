@@ -600,6 +600,9 @@ window.onload  = function () {
                 padding: 0!important;
                 width: 100%;
                 max-width: 261px; }
+            .registerOnLogin dd:nth-child(3) {
+                max-width: 361px;
+            }
             .myAccountleft .registerOnLogin button {
                 width: 100%;
                 background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
