@@ -378,7 +378,7 @@ const banner = `
                     <li>30-Day Money-Back Guarantee <span class="priceless">(Priceless)</span></li>
                     <li>40% SamCart Discount for Life! <span class="priceless">(Priceless)</span></li>                    
                 </ul>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
+                <img src="https://conversionratestore.github.io/projects/samcart/img/webinar.svg" alt="webinars">
                 <div class="btn-wrapper">
                 	<button class="btn-wrapper_wait">Your special offer will be available in <span>00:00:00</span></button>
 				</div>
