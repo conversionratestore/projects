@@ -72,7 +72,7 @@ document.body.insertAdjacentHTML('afterbegin',`
          justify-content: center;
      }
      .interactModal__header-send[disabled] {
-
+        background: #8C97A3;
      }
 </style>`)
 //chenge name link in sidebar
