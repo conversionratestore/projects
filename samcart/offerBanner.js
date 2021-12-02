@@ -147,6 +147,7 @@ const style = `
        	.btn-wrapper .btn-wrapper_wait{
        		background: #FFFFFF;
 			color: #183B56;
+			
        	}      	      
        	
        	.btn-wrapper .btn-wrapper_sale {
@@ -332,11 +333,13 @@ const mobileCSS = `
        }
 
         .btn-wrapper button {
-            font-size: 14px;
-            padding: 15px 0 !important;
+            font-size: 12px;
+            padding: 15px 5px !important;
+            line-height: 15px;
         }
 
         .btn-wrapper button.btn-wrapper_sale {
+        	font-size: 14px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -377,7 +380,7 @@ const banner = `
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
-                	<button class="btn-wrapper_wait">Your special offer will be<br>available in <span>00:00:00</span></button>
+                	<button class="btn-wrapper_wait">Your special offer will be available in <span>00:00:00</span></button>
 				</div>
             </div>
         </div>
