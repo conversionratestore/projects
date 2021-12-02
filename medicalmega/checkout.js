@@ -962,8 +962,8 @@ window.onload  = function () {
                     pushDataLayer(action,label)
                 });
 
-                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[0].classList.add('.circle_dark');
-                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('.circle_pink');
+                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[0].classList.add('circle_dark');
+                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
