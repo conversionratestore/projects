@@ -829,9 +829,9 @@ window.onload  = function () {
                 document.querySelectorAll('.myAccountleft dd')[5].setAttribute('style','max-width: 100%;width: 100%;color: transparent;');
                 document.querySelector('.myAccountleft dd .check').before(document.querySelector('[name="subscribe"]'));
                 document.querySelector('.myAccountleft .registerOnLogin button').innerHTML = `Next`;
-                document.querySelector('#login_btn').innerHTML = `Choose Shipping Method`;
+                document.querySelector('#login_btn').innerHTML = `Next`;
                 document.querySelector('.myAccountleft .registerOnLogin button').addEventListener('click', () => {
-                    action = `Click Choose Shipping Method button`;
+                    action = `Click Next button`;
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
