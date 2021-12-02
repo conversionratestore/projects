@@ -700,7 +700,7 @@ window.onload  = function () {
                 line-height: 16px;
             }
             .num_line .circle_pink {
-                background: rgba(194, 61, 49, 0.2);
+                background: #F3D8D6;
                 border: 1px solid #C23D31;
                 width: 28px;
                 height: 28px;
@@ -711,7 +711,7 @@ window.onload  = function () {
                 z-index: 1;
             }
             .num_line .circle_grey {
-                background: none;
+                background: #fff;
                 border: 1px solid #EEEEEE;
                 border-radius: 50%;
                 width: 28px;
@@ -726,7 +726,7 @@ window.onload  = function () {
                 position: absolute;
                 top: 50%;
                 left: 50%; 
-                transform: translateY(-50%)
+                transform: translateY(-50%);
                 height: 1px;
                 width: 142px;
                 background: #EEEEEE;
