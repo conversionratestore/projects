@@ -479,19 +479,19 @@ window.onload  = function () {
             [type="checkbox"], #make_primary[type="checkbox"] {
                 display: none!important;}
             .check {
-                background: #EDEDED no-repeat center / 80%;
-                border: 0.5px solid #CCCCCC;
+                background: #EEEEEE no-repeat center / 80%;
+                border: 1px solid #C0C0C0;
                 display: block;
                 margin: 0 8px 0 0;
                 flex-shrink: 0;
-                width: 20px;
-                height: 20px;}
+                width: 16px;
+                height: 16px;}
             [type="checkbox"]:checked ~ .check {
                 background-image: url('https://i.ibb.co/Tm0B3v0/Vector.png');}
             .check+span {
                 color: #222222;
-                font-size: 14px;
-                line-height: 17px;}
+                font-size: 12px;
+                line-height: 16px;}
             .promotional-code input {
                 max-width: 290px;}
             .promotional-code p{
