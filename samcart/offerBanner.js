@@ -518,7 +518,7 @@ function showSaleBtn() {
 				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
 
 			} else {
-				document.querySelector('.banner .subtitle').innerText = `Get SamCart and $10k<br>in FREE gifts now`
+				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
 				priceText = `<p class="price">$349<sup>$588</sup></p>`
 			}
 
