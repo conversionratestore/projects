@@ -90,7 +90,7 @@ const style = `
         .features ul {
         	list-style: none;
 		    margin: 15px 0;
-            padding: 0 0 0 5%;
+            padding: 0 0 0 7%;
         }
         
         .features ul li {
@@ -347,6 +347,11 @@ const mobileCSS = `
             margin: 0;
             font-size: 12px;
             padding: 5px 15px;
+        }
+        
+        .features ul li::before {
+        	height: 15px;
+    		width: 15px;
         }
 	</style>
 `
