@@ -1127,8 +1127,7 @@ window.onload  = function () {
                 padding: 11px 20px; }
             .primaryInfo dl input  {
                 margin: 0;
-                height: auto;
-                }
+                height: auto!important;}
             .primaryInfo dl textarea {
                 background: #FFFFFF;}
             .primaryInfo dl textarea {
