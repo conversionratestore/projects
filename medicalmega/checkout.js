@@ -701,6 +701,13 @@ window.onload  = function () {
                 position: relative;
                 z-index: 1;
             }
+            .num_line .circle_dark {
+                background: #fff;
+                border-color: #171717
+            }
+            .num_line .circle_dark span {
+                color: #171717;
+            }
             .num_line .pink {
                 color: #171717;
             }
@@ -954,6 +961,9 @@ window.onload  = function () {
                     label = 'Section Shipping information';
                     pushDataLayer(action,label)
                 });
+
+                document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[0].classList.add('.circle_dark');
+                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('.circle_pink');
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
