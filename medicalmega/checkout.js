@@ -1135,10 +1135,11 @@ window.onload  = function () {
                 background: #EDEDED;
                 border: 0.5px solid #CCCCCC;
                 box-sizing: border-box;
-                height: 30px;
+                height: 40px;
                 margin-left: 10px;
                 border-radius: 4px;
-                width: 160px!important;}
+                max-width: 303px;
+                width: 100%!important;}
             .cc-recurring-setting {
                 display: flex;
                 align-items: center;
