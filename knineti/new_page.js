@@ -2,10 +2,14 @@ window.onload = function () {}
 
 let newPageStyle = /*html*/ `
 <style>
-    .container > .col-md-6:first-child, .container > .row.row1030{
+    .container > .col-md-6:first-child, .container > .row.row1030, .text_mobile, .payment_plan_wrapp h4{
         display: none;
     }
     
+    p.form-error, span.form-error{
+        margin-top: 0 !important;
+    }
+
     .spacer30{
         height: 0 !important;
     }
@@ -35,23 +39,31 @@ let newPageStyle = /*html*/ `
         margin: 0 auto !important;
     }
 
-    body .first_block input, select{
+    body .first_block input, select, body #email, body input#cvv, body .contact-form input[type=text], body .contact-form input[type=email], body .contact-form textarea, body select.checkout-address{
         border: 1px solid #DFE8F0 !important;
         border-radius: 5px;
         padding: 10px 0 10px 18px !important;
         font-size: 14px !important;
         line-height: 19px;
+        margin-bottom: 10px;
     }
 
-    body .first_block input:focus{
+    select.mm, input#cvv, .contact-form input[type=text], .contact-form input[type=email], .contact-form textarea, select.checkout-address{
+        margin-bottom: 10px !important;
+    }
+
+    body .first_block input:focus, body input#cvv:focus, body #email:focus{
         font-weight: 700;
         font-size: 14px !important;
         line-height: 19px;
         color: #183B56 !important;
+        border: 1px solid #808080 !important;
     }
 
     body .first_block .submit_btn input#submit, input#submit_disabled:focus{
+        padding: 0 !important;
         color: #FFFFFF !important;
+        height: 61px;
     }
 
     .first_block .top-level{
@@ -72,15 +84,12 @@ let newPageStyle = /*html*/ `
         content: unset !important;
     }
 
-    input#cvv, select.mm{
-        margin-bottom: 8px !important;
-    }
-
-    @media (min-width: 799px){
+    @media (min-width: 769px){
             body .container {
             width: 80%;
             margin: 0 auto;
             max-width: 1110px;
+            padding: 0;
         }
     }
     /*first_block */
@@ -106,18 +115,22 @@ let newPageStyle = /*html*/ `
     }
 
     /*scroll_bar_box */
-    .scroll_bar_box{
+    .scroll_bar{
+        margin-bottom: 40px !important;
         background: #E8F1F9;
         border-radius: 10px;
         padding: 25px !important;
+    }
+
+    .scroll_bar_box{
         display: flex;
-        margin-bottom: 40px !important;
     }
 
     .scroll_bar_box li{
         flex: 1;
         display: flex;
         position: relative;
+        <!-- min-width: 122px; -->
     }
 
     .scroll_bar_box li:not(:last-child){
@@ -126,6 +139,7 @@ let newPageStyle = /*html*/ `
 
     .scroll_bar_box li:nth-child(3), .scroll_bar_box li:nth-child(4), .scroll_bar_box li:nth-child(5){
         flex: 1.7;
+        <!-- min-width: 216px; -->
     }
 
     .scroll_bar_box li .figures_box{
@@ -134,6 +148,8 @@ let newPageStyle = /*html*/ `
         bottom: -15px;
         left: 0;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
     .scroll_bar_box li .figures_box > span:first-child{
@@ -144,9 +160,6 @@ let newPageStyle = /*html*/ `
         display: inline-block;
     }
 
-    .scroll_bar_box li .figures_box > span:first-child:not(:last-child){
-        margin-right: 20px;
-    }
 
     .scroll_bar_box li:nth-child(5) .figures_box > span:first-child{
         max-width: 220px;
@@ -160,10 +173,6 @@ let newPageStyle = /*html*/ `
         background: rgba(115, 79, 34, 0.5);
         border-radius: 21px;
         display: inline-block;
-    }
-
-    .scroll_bar_box li .figures_box > span.circle:not(:last-child){
-        margin-right: 3%;
     }
 
     .scroll_bar_box li .text_block {
@@ -222,7 +231,9 @@ let newPageStyle = /*html*/ `
         right: -21px;
         content: '';
         z-index: 1;
+        opacity: 0;
         display: none;
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .hover_text div{
@@ -250,6 +261,7 @@ let newPageStyle = /*html*/ `
     }
 
     .hover_box:hover .hover_text{
+        opacity: 1;
         display: block;
     }
 
@@ -297,15 +309,15 @@ let newPageStyle = /*html*/ `
         height: 30px;
         top: 0;
         right: 0;
+        background-size: contain;
     }
 
-    .paymen_method p:last-child{
+    .paymen_method p.support_text{
         font-family: 'Open Sans',sans-serif;
         font-weight: 400;
         font-size: 10px;
         line-height: 150%;
         color: #5A7386 !important;
-        margin: 16px 0 0;
     }
 
     .payment_inform_box li > div{
@@ -334,7 +346,7 @@ let newPageStyle = /*html*/ `
         border: none;
         font-family: 'Open Sans',sans-serif;
         font-weight: 700;
-        font-size: 10px;
+        font-size: 10px !important;
         line-height: 14px;
         text-align: right;
         text-transform: uppercase;
@@ -392,6 +404,7 @@ let newPageStyle = /*html*/ `
         text-align: end;
         padding-left: 15px;
         padding-right: 15px;
+        font-weight: 400;
     }
 
     .payment_inform_box li > div table tfoot tr td:nth-child(3){
@@ -507,7 +520,7 @@ let newPageStyle = /*html*/ `
         margin-bottom: 8px;
     }
 
-    @media (max-width: 1200px){
+    @media (max-width: 1283px){
         .reviews_box li p:first-child{
             height: 35px;
         }
@@ -560,21 +573,147 @@ let newPageStyle = /*html*/ `
         color: #0037B4;
     }
 
+    .payment_inform_box li > div.paypament-details{
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .payment_inform_box li > div.paypament-details .row:nth-child(1), .payment_inform_box li > div.paypament-details .row:nth-child(2){
+        width: 48% !important;
+        margin: 0 !important;
+    }
+
+    .payment_inform_box li > div.paypament-details .row:nth-child(3){
+        width: 77%;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .payment_inform_box li > div.paypament-details .row:nth-child(4){
+        margin: 0;
+        width: 23%;
+    }   
+
+    body .payment_inform_box li > div.paypament-details .row:nth-child(3) > div.col-md-6, body .payment_inform_box li > div.paypament-details .row:nth-child(4) > div.col-md-6{
+        padding: 0 !important;
+        float: unset !important;
+        width: 100%;
+    }
+
+    body .payment_inform_box li > div.paypament-details .row:nth-child(3) > div.col-md-6{
+        margin-right: 5px;
+    }
+
+    .payment_inform_box li > div.paypament-details .row:nth-child(1) .col-md-12, .payment_inform_box li > div.paypament-details .row:nth-child(2) .col-md-12{
+        padding: 0;
+        
+    }
+
      @media (max-width: 768px){
+        body .container .first_block .text_mobile{
+            position: relative;
+            display: inline-flex;
+            font-family: 'Open Sans',sans-serif;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 180%;
+            color: #808080 !important;
+            max-width: 310px;
+            margin-bottom: 43px;
+            padding-left: 24px;
+        }
+
+        body .container .first_block .text_mobile::before{
+            position: absolute;
+            content: "";
+            top: 6px;
+            left: 10px;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            display: block;
+            background: #808080 !important;
+        }
+
+        .hover_box{
+            display: none;
+        }
+
         body .container .first_block > h1{
             font-size: 24px !important;
             margin: 0 0 20px !important;
         }
 
-        .scroll_bar_box{
+        .scroll_bar{
             overflow-x: auto;
+            margin-right: -6%;
+            margin-bottom: 9px !important;
+        }
+
+        .scroll_bar_box{
+            width: 1020px;
         }
 
         .payment_inform_box li{
             width: 100%;
         }
 
-        .reviews_box, .payment_inform_box{
+        .payment_inform_box{
+            margin-bottom: 40px !important;
+        }
+
+        .payment_inform_box li > div{
+            padding: 16px;
+
+        }
+
+        .payment_inform_box li > div table tbody tr td{
+            text-align: left;
+        }
+
+        .payment_inform_box li:nth-child(2){
+            order: -1;
+        }
+
+        .payment_inform_box li:not(:last-child){
+            margin-bottom: 40px;
+        }
+
+        .payment_inform_box li:nth-child(1){
+            margin-bottom: 24px;
+        }
+
+        .payment_inform_box li > div > p{
+            margin: 16px 0 0 !important;
+        }
+
+        .col-md-12 .submit_btn{
+            padding-bottom: 0 !important
+        }
+
+        .payment_inform_box .paymen_method p.subtitle_text{
+            font-size: 15px;
+            line-height: 20px;
+            font-weight: 400;
+        }
+
+        .payment_inform_box li > div table thead tr th:nth-child(2) {
+            padding-left: 20px;
+            padding-right: 25px;
+        }
+
+        .payment_inform_box p.subtitle_text{
+            margin-bottom: 26px !important;
+        }
+
+        .first_block .submit_btn input#submit, input#submit_disabled{
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .reviews_box{
             display: block;
         }
 
@@ -614,6 +753,12 @@ let newPageStyle = /*html*/ `
             margin-right: 25px;
         }
      }
+
+    @media only screen and (max-width: 767px){
+            .submit_btn {
+                padding-bottom: 0px !important;
+            }
+    }
 </style>
 
 `
@@ -622,103 +767,105 @@ let firstBlock = /*html*/ `
 <div class="first_block">
     <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute">
     <h1>Enroll now for <span>unlimited access</span> to our 10-week Total Transformation Masterclass</h1>
-    <ul class="scroll_bar_box">
-        <li>
-            <div class="text_block">
-                <div>
-                    <p>Enroll for masterclass</p>
-                </div>
-                <div>
-                    <p>Dec 1, 2021</p>
-                </div>
-            </div>
-            <div class="figures_box">
-                <span></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-            </div>
-        </li>
-        <li>
-            <div class="text_block">
-                <div>
-                    <p>Watch <br/> first lesson</p>
-                </div>
-                <div>
-                    <p>Dec 1, 2021</p>
-                </div>
-            </div>
-            <div class="figures_box">
-                <span></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-            </div>
-        </li>
-        <li>
-            <div class="text_block">
-                <div>
-                    <p>Noticeable improvements in your dog’s behavior</p>
-                </div>
-                <div>
-                    <p>Dec 7, 2021</p>
-                </div>
-            </div>
-            <div class="figures_box">
-                <span></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-            </div>
-        </li>
-        <li>
-            <div class="text_block">
-                <div>
-                    <p>Your dog will become as obedient as a service dog</p>
-                </div>
-                <div>
-                    <p>Jan 1, 2022</p>
-                </div>
-            </div>
-            <div class="figures_box">
-                <span></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-                <span class="circle"></span>
-            </div>
-        </li>
-        <li>
-            <div class="text_block">
-                <div>
-                    <p>90 days UNconditional money-back guarantee</p>
-                </div>
-                <div>
-                    <p>Until Mar 1, 2022</p>
-                </div>
-            </div>
-            <div class="figures_box">
-                <span></span>
-            </div>
-            <div class="hover_box">
-                <div class="hover_text">
+    <div class="scroll_bar">
+        <ul class="scroll_bar_box">
+            <li>
+                <div class="text_block">
                     <div>
-                        <p>If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund.</p>
+                        <p>Enroll for masterclass</p>
+                    </div>
+                    <div>
+                        <p>Dec 1, 2021</p>
                     </div>
                 </div>
-            </div>
-           
-        </li>
-    </ul>
+                <div class="figures_box">
+                    <span></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+            </li>
+            <li>
+                <div class="text_block">
+                    <div>
+                        <p>Watch <br/> first lesson</p>
+                    </div>
+                    <div>
+                        <p>Dec 1, 2021</p>
+                    </div>
+                </div>
+                <div class="figures_box">
+                    <span></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+            </li>
+            <li>
+                <div class="text_block">
+                    <div>
+                        <p>Noticeable improvements in your dog’s behavior</p>
+                    </div>
+                    <div>
+                        <p>Dec 7, 2021</p>
+                    </div>
+                </div>
+                <div class="figures_box">
+                    <span></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+            </li>
+            <li>
+                <div class="text_block">
+                    <div>
+                        <p>Your dog will become as obedient as a service dog</p>
+                    </div>
+                    <div>
+                        <p>Jan 1, 2022</p>
+                    </div>
+                </div>
+                <div class="figures_box">
+                    <span></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+            </li>
+            <li>
+                <div class="text_block">
+                    <div>
+                        <p>90 days UNconditional money-back guarantee</p>
+                    </div>
+                    <div>
+                        <p>Until Mar 1, 2022</p>
+                    </div>
+                </div>
+                <div class="figures_box">
+                    <span></span>
+                </div>
+                <div class="hover_box">
+                    <div class="hover_text">
+                        <div>
+                            <p>If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund.</p>
+                        </div>
+                    </div>
+                </div>
+               
+            </li>
+        </ul>
+    </div>
+    <p class="text_mobile">If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund.</p>
 
-    <ul class="payment_inform_box">
+    <form action="/enroll-process/" autocomplete="off" data-persist="garlic" id="address-form" method="POST" novalidate onsubmit="return validateCheckoutForm()">
+            <ul class="payment_inform_box">
         <li class="payment_inform_wrapp">
             <p class="subtitle_text">Payment Information</p>
         </li>
@@ -771,14 +918,14 @@ let firstBlock = /*html*/ `
         </li>
         <li class="paymen_method">
             <p class="subtitle_text">Payment Method</p>
-            <p>We currently support Visa and Mastercard credit and debit cards. <br>You will see a charge from K9ti.org 4157581461 on your card or bank statement.</p>
+            <p class="support_text">We currently support Visa and Mastercard credit and debit cards. <br>You will see a charge from K9ti.org 4157581461 on your card or bank statement.</p>
         </li>
-        <li>
+        <li class="payment_plan_wrapp">
             <p class="subtitle_text">Payment plan</p>
             <div class="input_wrapper">
                 <div>
-                    <input type="radio" id="plan1" name="payplan" checked>
-                    <label for="plan1">
+                    <input type="radio" id="onetime_pay" name="pay_plan" tabindex="1" value="onetime" checked="" class="garlic-auto-save" placeholder="">
+                    <label for="onetime_pay">
                         <span class="radio_style">
                             <span class="ellipse"></span>
                         </span>
@@ -786,8 +933,8 @@ let firstBlock = /*html*/ `
                     </label>
                 </div>
                 <div>
-                    <input type="radio" id="plan2" name="payplan">
-                    <label for="plan2">
+                    <input type="radio" id="monthly_pay" name="pay_plan" tabindex="2" value="monthly" class="garlic-auto-save" placeholder="">
+                    <label for="monthly_pay">
                         <span class="radio_style">
                             <span class="ellipse"></span>
                         </span>
@@ -797,6 +944,9 @@ let firstBlock = /*html*/ `
             </div>
         </li>
     </ul>
+    </form>
+
+
 
 
     <ul class="reviews_box">
@@ -838,7 +988,7 @@ let firstBlock = /*html*/ `
                 A division of Digitools Limited <br>
                 4283 Express Lane <br>
                 Sarasota, Florida 34238 <br>
-                Ph: <a class="not-for-eu-visitor" href="callto:4157581461">(415) 758-1461</a>
+                Ph: <a class="not-for-eu-visitor" href="tel:4157581461">(415) 758-1461</a>
             </p>
         </li>
         <li>
@@ -859,8 +1009,11 @@ document.head.insertAdjacentHTML("beforeend", newPageStyle)
 
 setTimeout(() => {
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
+  document.querySelector("p.radio1_text").innerHTML = ""
 
   if (document.querySelector(".first_block")) {
+    document.querySelector(".payment_plan").remove()
+
     document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
     document
       .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
@@ -877,8 +1030,26 @@ setTimeout(() => {
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
+    document.querySelector("#month").options[0].text = "Month"
+    document.querySelector("#year1").options[0].text = "Year"
+
     document.querySelectorAll("input").forEach((el) => {
       el.placeholder = ""
     })
+
+    //
+    let today = new Date().toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+
+    let daySeven = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+
+    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+
+    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
   }
-}, 10)
+}, 5)
