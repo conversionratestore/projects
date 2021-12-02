@@ -1129,8 +1129,6 @@ window.onload  = function () {
                 margin: 0;
                 height: auto!important;}
             .primaryInfo dl textarea {
-                background: #FFFFFF;}
-            .primaryInfo dl textarea {
                 height: 40px;}
             #recurring_billing_period, #card_list {
                 padding: 0 10px;
