@@ -1055,88 +1055,93 @@ document.head.insertAdjacentHTML("beforeend", newPageStyle)
 //   }
 // }, 5)
 
-document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
-document.querySelector("p.radio1_text").innerHTML = ""
+if (document.querySelector("section .container")) {
+    setInterval(() => {
+        document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
+        document.querySelector("p.radio1_text").innerHTML = ""
 
-if (document.querySelector(".first_block")) {
-  document.querySelector(".payment_plan").remove()
+        if (document.querySelector(".first_block")) {
+          document.querySelector(".payment_plan").remove()
 
-  document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
-  document
-    .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
-    .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
+          document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
+          document
+            .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
+            .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
 
-  document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
-  document
-    .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
-    .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
+          document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+          document
+            .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
+            .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
-  document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+          document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
 
-  document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
+          document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
-  document.querySelector("#month").options[0].text = "Month"
-  document.querySelector("#year1").options[0].text = "Year"
+          document.querySelector("#month").options[0].text = "Month"
+          document.querySelector("#year1").options[0].text = "Year"
 
-  document.querySelectorAll("input").forEach((el) => {
-    el.placeholder = ""
-  })
+          document.querySelectorAll("input").forEach((el) => {
+            el.placeholder = ""
+          })
 
-  //
-  let today = new Date().toDateString().split(" ")
-  document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
-  document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+          //
+          let today = new Date().toDateString().split(" ")
+          document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+          document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-  let daySeven = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-  document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
-  document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+          let daySeven = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+          document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+          document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-  let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
-  document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+          let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
+          document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-  let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
-  document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+          let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
+          document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-  document.querySelector(".submit_btn input").value = "Enroll Now"
-}
+          document.querySelector(".submit_btn input").value = "Enroll Now"
+        }
 
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp: Checkout improvements",
-  eventAction: "loaded",
-})
-;(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      ;(h.hj.q = h.hj.q || []).push(arguments)
-    }
-  h._hjSettings = { hjid: 2689748, hjsv: 6 }
-  a = o.getElementsByTagName("head")[0]
-  r = o.createElement("script")
-  r.async = 1
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-  a.appendChild(r)
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-hj("event", "checkout_improvements")
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp: Checkout improvements",
+          eventAction: "loaded",
+        })
+        ;(function (h, o, t, j, a, r) {
+          h.hj =
+            h.hj ||
+            function () {
+              ;(h.hj.q = h.hj.q || []).push(arguments)
+            }
+          h._hjSettings = { hjid: 2689748, hjsv: 6 }
+          a = o.getElementsByTagName("head")[0]
+          r = o.createElement("script")
+          r.async = 1
+          r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+          a.appendChild(r)
+        })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+        hj("event", "checkout_improvements")
 
-document.querySelector(".payment_inform_box .input_wrapper > div:last-child label").addEventListener("click", () => {
-  console.log(`object`)
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp: Checkout improvements",
-    eventAction: "Click 3 payments",
-  })
-})
+        document.querySelector(".payment_inform_box .input_wrapper > div:last-child label").addEventListener("click", () => {
+          console.log(`object`)
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp: Checkout improvements",
+            eventAction: "Click 3 payments",
+          })
+        })
 
-document.querySelector(".hover_box").addEventListener("mouseenter", () => {
-  console.log(`jjj`)
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp: Checkout improvements",
-    eventAction: "Click 90 days info",
-  })
-})
+        document.querySelector(".hover_box").addEventListener("mouseenter", () => {
+          console.log(`jjj`)
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp: Checkout improvements",
+            eventAction: "Click 90 days info",
+          })
+        })
+
+    }, 50)
+} 
