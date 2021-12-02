@@ -28,11 +28,11 @@ const style = `
     		pointer-events: none;
         }
         
-        /*.banner.show_sale::after {
-			/*display: block;*/
-			opacity: 1;
-		}
-		*/
+        /*.banner.show_sale::after {*/
+		/*	!*display: block;*!*/
+		/*	opacity: 1;*/
+		/*}*/
+		
         
         .banner.mobile::before {
         	display: none;
@@ -53,7 +53,7 @@ const style = `
         }
 
         p.title {
-			font-size: 10px;
+			/*font-size: 10px;*/
 			margin: 10px 0 -10px;
 	        font-weight: 900;
 			font-size: 12px;
@@ -89,9 +89,8 @@ const style = `
         
         .features ul {
         	list-style: none;
-		    padding: 0;
 		    margin: 15px 0;
-            padding-left: 15px;
+            padding: 0 0 0 5%;
         }
         
         .features ul li {
@@ -120,11 +119,17 @@ const style = `
         
         .features ul li span {
         	display: none;
+        	text-decoration: line-through;
+        }
+        
+        .features ul li span.priceless {
+        	text-decoration: none;
         }
         
         .banner.show_sale .features ul li span {
         	display: inline;
         	font-weight: 300;
+        	
         }
   
         .btn-wrapper button {
@@ -219,44 +224,41 @@ const mobileCSS = `
 			padding-bottom: 5px;
 		}
 		
-		/*
-		.banner.mobile .close {
-			display: none !important;
-		}
 		
-		.banner.show_sale .close {
-			display: block;
-			opacity: 1;
-			pointer-events: auto;
-		}
+		/*.banner.mobile .close {*/
+		/*	display: none !important;*/
+		/*}*/
 		
-		.close {
-        	position: absolute;
-        	/*display: block;*/
-        	width: 15px;
-			height: 5px;
-        	right: 10px;
-        	top: 12px;
-        	background: url("https://conversionratestore.github.io/projects/samcart/img/arrow-up.svg") no-repeat;
-        	object-fit: cover;
-        	cursor: pointer;
-        	padding: 5px;
-        	opacity: 0;
-        	transition: opacity 1s ease;
-        	pointer-events: none;
-		}
-		*/
+		/*.banner.show_sale .close {*/
+		/*	display: block;*/
+		/*	opacity: 1;*/
+		/*	pointer-events: auto;*/
+		/*}*/
+		
+		/*.close {*/
+        /*	position: absolute;*/
+        /*	!*display: block;*!*/
+        /*	width: 15px;*/
+		/*	height: 5px;*/
+        /*	right: 10px;*/
+        /*	top: 12px;*/
+        /*	background: url("https://conversionratestore.github.io/projects/samcart/img/arrow-up.svg") no-repeat;*/
+        /*	object-fit: cover;*/
+        /*	cursor: pointer;*/
+        /*	padding: 5px;*/
+        /*	opacity: 0;*/
+        /*	transition: opacity 1s ease;*/
+        /*	pointer-events: none;*/
+		/*}*/
+		
 		
 		.banner.mobile::after {
 			opacity: 0 !important;
 		}
 		
-		.banner::after {
-			
+		.banner::after {			
         	right: -6px;
-        	top: 12px;
-        	
-        	
+        	top: 12px;      	
 		}
 
 		.banner.mobile::after {
@@ -325,7 +327,9 @@ const mobileCSS = `
 			margin-top: 10px;
 		}
 
-       
+       .features ul {
+       	padding-left: 15%;
+       }
 
         .btn-wrapper button {
             font-size: 14px;
@@ -361,9 +365,9 @@ const banner = `
                     <li>1 Page Wednesday Calls <span>($995!)</span></li>
                     <li>Private Facebook Group <span>($495)</span></li>
                     <li>Top Seller Strategies <span>($995)</span></li>
-                    <li>My Personal Course Sales Page Template <span>(Priceless)</span></li>
-                    <li>30-Day Money-Back Guarantee <span>(Priceless)</span></li>
-                    <li>40% SamCart Discount for Life! <span>(Priceless)</span></li>                    
+                    <li>My Personal Course Sales Page Template <span class="priceless">(Priceless)</span></li>
+                    <li>30-Day Money-Back Guarantee <span class="priceless">(Priceless)</span></li>
+                    <li>40% SamCart Discount for Life! <span class="priceless">(Priceless)</span></li>                    
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
@@ -447,16 +451,16 @@ function setMobile() {
 	document.querySelector('.banner.mobile').addEventListener('click', listener)
 
 
-	// document.querySelector('.features ul').innerHTML = `				
-    //                 <li>1 Year of SamCart</li>
-    //                 <li>1 Page Masterclass <s>($3,995)</s></li>
-    //                 <li>1 Page Workshop <s>($995)</s></li>
-    //                 <li>1 Page Launch <s>($995!)</s></li>
-    //                 <li>1 Page Blueprint <s>($99)</s></li>
-    //                 <li>My Past Reports <s>($495)</s></li>                    
-    //                 <li>The 1 Page Template! <s>(Priceless)</s></li>
-    //                 <li>Private facebook group</li> 
-    //                 <li>1 page wednesday calls <s>(Priceless)</s></li>                                              
+	// document.querySelector('.features ul').innerHTML = `
+	//                 <li>1 Year of SamCart</li>
+	//                 <li>1 Page Masterclass <s>($3,995)</s></li>
+	//                 <li>1 Page Workshop <s>($995)</s></li>
+	//                 <li>1 Page Launch <s>($995!)</s></li>
+	//                 <li>1 Page Blueprint <s>($99)</s></li>
+	//                 <li>My Past Reports <s>($495)</s></li>
+	//                 <li>The 1 Page Template! <s>(Priceless)</s></li>
+	//                 <li>Private facebook group</li>
+	//                 <li>1 page wednesday calls <s>(Priceless)</s></li>
 	// 		`
 
 
