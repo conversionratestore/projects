@@ -331,7 +331,8 @@ window.onload  = function () {
                 width: fit-content;
                 margin-left: auto;}
             div.myAccountright > form > dd:nth-child(5){
-                max-width: 100%; }
+                width: 100%;
+                max-width: 151px; }
             div.myAccountright > form > dd.forgot_password { 
                 width: 50%!important;
                 max-width: 224px!important;
