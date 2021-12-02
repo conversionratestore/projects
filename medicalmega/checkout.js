@@ -701,6 +701,9 @@ window.onload  = function () {
                 position: relative;
                 z-index: 1;
             }
+            .num_line .circle_grey.circle_pink {
+                background: #F3D8D6;
+                border: 1px solid #C23D31;}
             .num_line .circle_dark {
                 background: #fff;
                 border-color: #171717
