@@ -297,10 +297,10 @@ window.onload  = function () {
             .myAccount label, #editor_fields label {
                 font-weight: normal;
                 font-size: 12px;
-                line-height: 14px;
-                margin-bottom: 10px;
+                line-height: 16px;
+                margin-bottom: 8px;
                 display: block;
-                color: #CCCCCC;}
+                color: #666666;}
             .myAccount {
                 margin: 0;
                 padding: 20px 0;
@@ -628,7 +628,7 @@ window.onload  = function () {
             .address_book_new .small_block {
                 width: 50%!important;
                 clear: both;
-                max-width: 224px; }
+                max-width: 261px; }
             .address_book_new .ship_small {
                 margin-left: 0!important;}
             .address_book_new .small_block .radio_content {
@@ -643,7 +643,7 @@ window.onload  = function () {
                 width: 100%!important;}
             .editor_left div, .editor_right div{
                 width: 100%;
-                max-width: 224px;}
+                max-width: 261px;}
             .address_book_new .editor .editor_right {
                 margin-top: 20px;
                 padding-left: 0!important;}
