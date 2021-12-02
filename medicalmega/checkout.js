@@ -137,7 +137,7 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
-            .myAccountleft button[name="register"], .myAccountleft button[name="user_login"] {
+            .myAccountleft button[name="register"], .myAccountright button[name="user_login"] {
               display: none;}
             .title_head {
                 font-weight: bold;
@@ -172,7 +172,7 @@ window.onload  = function () {
                 cursor: pointer;}
             .payment,  #login_btn {
                 width: 100%;}
-            .btn, #login_btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
+            .btn, .address_book_new .small_block .head2,  #step1_form div[align="right"] input {
                 background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
                 border: 0.5px solid #780F11;
                 border-radius: 4px;
@@ -612,7 +612,7 @@ window.onload  = function () {
                 margin-left: auto;
                 margin-top: auto;
                 width: 100%;}
-            #login_btn:after, #step1_form div[align="right"]:after, .btn-next:after {
+            #step1_form div[align="right"]:after, .btn-next:after {
                 content: '';
                 margin-left: 4px;
                 background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
