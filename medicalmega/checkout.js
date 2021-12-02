@@ -914,7 +914,8 @@ window.onload  = function () {
                 document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-                document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<button type="button" class="btn btn-next">Next</button>`)
+                document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     if(document.querySelector('#copy_bill').checked == true) {
                         document.querySelector('.editor .buttons a').click();
@@ -922,7 +923,7 @@ window.onload  = function () {
                         document.querySelectorAll('form div[align="right"] input')[1].click();
                     }
                     action = 'Click Next button';
-                    label = 'Section Shipping information';
+                    label = 'Section Billing And Shipping Information';
                     pushDataLayer(action,label)
                 });
 
