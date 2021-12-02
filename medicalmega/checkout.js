@@ -676,6 +676,7 @@ window.onload  = function () {
                 align-items: center;
                 text-decoration-line: underline;
                 padding: 10px 19px;
+                color: #666666;
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg') no-repeat left center / 18px;
             }
             .address_book_new .editor .title {
@@ -816,7 +817,7 @@ window.onload  = function () {
             });
             if (document.querySelector('.registerOnLogin dd label')) {
                 document.querySelectorAll('.registerOnLogin dd label').forEach(el => {
-                    el.replace('*','<span class="c-red">*</span>')
+                    el.innerHTML.replace('*','<span class="c-red">*</span>')
                 })
             }
             if (document.querySelector('.myAccount')) {
