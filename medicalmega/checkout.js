@@ -820,6 +820,7 @@ window.onload  = function () {
                 })
             }
             if (document.querySelector('.myAccount')) {
+                document.querySelector('.myAccountleft .registerOnLogin dt').remove();
                 document.querySelector('.myAccountleft button[name="register"]').innerHTML = `Next`;
                 document.querySelector('.myAccountleft button[name="register"]').classList.add('btn');
                 document.querySelector('.myAccountleft button[name="register"]').classList.add('btn-next');
@@ -873,12 +874,7 @@ window.onload  = function () {
                     document.querySelector('div.myAccountright > form > dd:nth-child(6)').setAttribute('style','width: auto!important; max-width: none!important;');
                 }
                 if (location.pathname.includes('register')) {
-                    document.body.insertAdjacentHTML('afterbegin', `
-                    <style>
-                    .myAccountleft .registerOnLogin dd:nth-child(3) {
-                        max-width: 360px;
-                    }
-                </style>`);
+
                     document.querySelector('.log').innerHTML = 'Sign in';
                     document.querySelector('.checkout-left_head .title').innerHTML = 'Registration';
                     document.querySelector('.myAccountleft').style.display = 'block';
