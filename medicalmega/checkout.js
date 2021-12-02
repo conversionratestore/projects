@@ -137,8 +137,8 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
              <style>
-            /*.checkout-right_footer .altTd p:nth-child(2), .checkout-right_footer .altTd p:nth-child(3), .g-signin2 {*/
-            /*    display: none;}*/
+             .myAccountleft button[name="register"]{
+              display: none;}
             .title_head {
                 font-weight: bold;
                 font-size: 20px;
@@ -820,10 +820,12 @@ window.onload  = function () {
                 })
             }
             if (document.querySelector('.myAccount')) {
+                document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    document.querySelector('button[name="register"]').click();
+                });
                 document.querySelector('.myAccountleft .registerOnLogin dt').remove();
-                document.querySelector('.myAccountleft button[name="register"]').innerHTML = `Next`;
-                document.querySelector('.myAccountleft button[name="register"]').classList.add('btn');
-                document.querySelector('.myAccountleft button[name="register"]').classList.add('btn-next');
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
                 <label class="valign-center">
