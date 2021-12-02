@@ -19,7 +19,7 @@ const style = `
         	display: block;
         	width: 105px;
 			height: 45px;
-        	right: -6px;
+        	right: -15px;
         	top: -15px;
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
         	object-fit: cover;
@@ -258,8 +258,7 @@ const mobileCSS = `
 		}
 		
 		.banner::after {			
-        	right: -6px;
-        	top: 12px;      	
+        	top: 17px;      	
 		}
 
 		.banner.mobile::after {
