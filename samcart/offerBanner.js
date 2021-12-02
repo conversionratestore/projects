@@ -258,7 +258,7 @@ const mobileCSS = `
 		}
 		
 		.banner::after {			
-        	top: 17px;      	
+        	top: 15px;      	
 		}
 
 		.banner.mobile::after {
