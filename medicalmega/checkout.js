@@ -616,8 +616,8 @@ window.onload  = function () {
                 content: '';
                 margin-left: 4px;
                 background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
-                width: 24px;
-                height: 24px; }
+                width: 16px;
+                height: 16px; }
             #step1_form div[align="right"]:after {
                 position: absolute;
                 top: 50%;
@@ -1258,7 +1258,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.querySelectorAll('label').forEach(el => {
             if (el.innerHTML.includes('*')) {
-                el.innerHTML = el.innerHTML.split('*').join('<span class="c-red">*</span>')
+                el.innerHTML = el.innerHTML.split('*').join('<span class="c-red"> *</span>')
             }
         })
     }
