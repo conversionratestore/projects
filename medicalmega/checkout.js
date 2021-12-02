@@ -1060,7 +1060,7 @@ window.onload  = function () {
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back to Billing Info</button><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back to Billing and Shipping Info</button><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
