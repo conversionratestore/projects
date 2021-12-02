@@ -1258,7 +1258,7 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.querySelectorAll('label').forEach(el => {
             if (el.innerHTML.includes('*')) {
-                el.innerHTML.split('*').join('<span class="c-red">*</span>')
+                el.innerHTML = el.innerHTML.split('*').join('<span class="c-red">*</span>')
             }
         })
     }
