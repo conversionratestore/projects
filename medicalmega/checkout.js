@@ -740,7 +740,7 @@ window.onload  = function () {
                 padding: 0;
                 margin: auto;
                 font-size: 14px;
-                line-height: 19px;
+                line-height: 26px;
                 text-align: center;
                 color: #C0C0C0;
             }
