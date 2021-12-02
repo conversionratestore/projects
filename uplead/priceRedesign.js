@@ -171,7 +171,7 @@ const customStyle = `
 		}
 		
 		p.credits {
-			margin: -14px 0px -7px!important;
+			margin: -14px 0 -7px!important;
 			font-weight: bold;
 			color: #00A1BB;
 			font-size: 20px;
@@ -190,42 +190,75 @@ const customStyle = `
 	</style>
 `
 
-const pricingArr = [
-	[
-		'Free Trial',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0],
-		`5 Credits <span class="thin">Annually<span>`,
-		'Free Test Drive',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href,
-		'Try For Free'
-	],
-	[
-		'Essentials',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0],
-		`170 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.60</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href,
-		'Buy Now'
-	],
-	[
-		'Plus',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0],
-		`400 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.50</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href,
-		'Buy Now'
-	],
-	[
-		'Professional',
-		document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0],
-		`1000 Credits <span class="thin">Monthly<span>`,
-		'Additional Credits <b>$0.40</b>',
-		document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href,
-		'Buy Now'
-	]
-]
-	
-const plans = /*html*/`
+let plans = ``
+
+if(window.location.hostname === 'app.uplead.com') {
+	plans = `
+	<div class="banner-custom hide app">
+		<div class="title-wrapper">
+		<p class="title_action">See our monthly plans</p>
+		<span class="arrow"></span>
+	</div>
+		
+		<div class="wrapper-custom">
+		<div class="plans">			
+			<p class="title">Monthly Plans</p>
+			<div class="card-wrapper">
+				<div class="card">
+					<p class="name">Essentials</p>
+					<p class="option">A starter plan for those new to sales intelligence.</p>
+					<hr>
+					<p class="price">${document.querySelectorAll('.product-card__price')[0].innerText}<small>/month</small></p>
+					<p class="credits">2,040 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Additional Credits <b>$0.60</b></p>					
+				</div>
+				<div class="card">
+					<p class="name">Plus</p>
+					<p class="option">An intermediate plan if you want greater results.</p>
+					<hr>
+					<p class="price">${document.querySelectorAll('.product-card__price')[1].innerText}<small>/month</small></p>
+					<p class="credits">4,800 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Additional Credits <b>$0.50</b></p>					
+				</div>
+				<div class="card card-pro">
+					<p class="name">Professional</p>
+					<p class="option">An advanced plan to take you to the next level.</p>
+					<hr>
+					<p class="price">${document.querySelectorAll('.product-card__price')[2].innerText}<small>/month</small></p>
+					<p class="credits">12,000 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Additional Credits <b>$0.40</b></p>					
+				</div>
+				<div class="card">
+					<p class="name">Elite</p>
+					<p class="option">An exceptional plan to drive growth and reach new customers.</p>
+					<hr>
+					<p class="price">${document.querySelectorAll('.product-card__price')[3].innerText}<small>/month</small></p>
+					<p class="credits">3,000 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Additional Credits <b>$0.30</b></p>					
+				</div>
+			</div>
+		</div>
+</div>
+		
+	</div>
+`
+	// document.querySelector('.product-card__action-btn-wrap button')
+
+
+	;(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:2615465,hjsv:6};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+	})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+	hj('event', 'hide_annual_plans');
+
+	console.log('HJ for APP uplead domain');
+} else {
+	plans = `
 	<div class="banner-custom hide">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
@@ -237,36 +270,36 @@ const plans = /*html*/`
 			<p class="title">Monthly Plans</p>
 			<div class="card-wrapper">
 				<div class="card card_free">
-					<p class="name">${pricingArr[0][0]}</p>
+					<p class="name">Free Trial</p>
 					<hr>
-					<p class="price">${pricingArr[0][1]}<small>/month</small></p>
-					<p class="credits">${ pricingArr[0][2] }</p>
-					<p class="additional">${ pricingArr[0][3] }</p>
-					<button onclick="location.href='${ pricingArr[0][4] }';">${ pricingArr[0][5] }</button>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[0].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">5 Credits <span class="thin">Annually<span></p>
+					<p class="additional">Free Test Drive</p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[0].href}';">Try For Free</button>
 				</div>
 				<div class="card">
-					<p class="name">${ pricingArr[1][0] }</p>
+					<p class="name">Essentials</p>
 					<hr>
-					<p class="price">${ pricingArr[1][1] }<small>/month</small></p>
-					<p class="credits">${ pricingArr[1][2] }</p>
-					<p class="additional">${ pricingArr[1][3] }</p>
-					<button onclick="location.href='${ pricingArr[1][4] }';">${ pricingArr[1][5] }</button>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[3].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">170 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.60</b></p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[2].href}';">Buy Now</button>
 				</div>
 				<div class="card">
-					<p class="name">${ pricingArr[2][0] }</p>
+					<p class="name">Plus</p>
 					<hr>
-					<p class="price">${ pricingArr[2][1] }<small>/month</small></p>
-					<p class="credits">${ pricingArr[2][2] }</p>
-					<p class="additional">${ pricingArr[2][3] }</p>
-					<button onclick="location.href='${ pricingArr[2][4] }';">${ pricingArr[2][5] }</button>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[6].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">400 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.50</b></p>
+					<button onclick="location.href='${document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[4].href}';">Buy Now</button>
 				</div>
 				<div class="card">
-					<p class="name">${ pricingArr[3][0] }</p>
+					<p class="name">Professional</p>
 					<hr>
-					<p class="price">${ pricingArr[3][1] }<small>/month</small></p>
-					<p class="credits">${ pricingArr[3][2] }</p>
-					<p class="additional">${ pricingArr[3][3] }</p>
-					<button onclick="location.href='${ pricingArr[3][4] }';">${ pricingArr[3][5] }</button>
+					<p class="price">${document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]}<small>/month</small></p>
+					<p class="credits">1000 Credits <span class="thin">Monthly<span></p>
+					<p class="additional">Additional Credits <b>$0.40</b></p>
+					<button onclick="location.href='${ document.querySelectorAll(`.uael-rbs-section-1 .elementor-button-wrapper a`)[6].href }';">Buy Now</button>
 				</div>
 			</div>
 		</div>
@@ -274,6 +307,20 @@ const plans = /*html*/`
 		
 	</div>
 `
+
+	;(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:864509,hjsv:6};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+	})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+	window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+	hj('event', 'hide_annual_plans');
+
+	console.log('HJ for uplead domain');
+}
 
 document.head.insertAdjacentHTML('afterbegin', customStyle)
 
@@ -287,7 +334,7 @@ let start = setInterval(() => {
 			if(this.closest('.banner-custom').classList.contains('hide')) {
 				document.querySelector('.banner-custom').classList.remove('hide')
 
-				
+
 				window.dataLayer = window.dataLayer || [];
 				dataLayer.push({
 					'event': 'event-to-ga',
@@ -300,7 +347,7 @@ let start = setInterval(() => {
 
 			} else {
 				document.querySelector('.banner-custom').classList.add('hide')
-				
+
 				window.dataLayer = window.dataLayer || [];
 				dataLayer.push({
 					'event': 'event-to-ga',
@@ -322,7 +369,7 @@ let intrv = setInterval(() => {
 
 		document.querySelectorAll('.card-wrapper .card').forEach(item => {
 			item.addEventListener('click', () => {
-				
+
 				window.dataLayer = window.dataLayer || [];
 				dataLayer.push({
 					'event': 'event-to-ga',
@@ -346,31 +393,3 @@ dataLayer.push({
 
 console.log('EVENT: loaded');
 
-if(window.location.hostname === 'app.uplead.com') {
-    ;(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:2615465,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-        hj('event', 'hide_annual_plans');
-
-		console.log('HJ for APP uplead domain');
-} else {
-    ;(function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:864509,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-        hj('event', 'hide_annual_plans');
-
-	console.log('HJ for uplead domain');
-
-}
