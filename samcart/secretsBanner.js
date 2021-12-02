@@ -373,7 +373,7 @@ const banner = `
                     <li>1 Page Masterclass <span>($3,995)</span></li>
                     <li>The 1-Page Template <span>($499)</span></li>
                     <li>1 Page Wednesday Coaching Calls</li> 
-                    <li>All My Past Reports<span>($499)</span></li>   
+                    <li>All My Past Reports <span>($499)</span></li>   
                     <li>Private facebook group</li>               
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinar.svg" alt="webinars">
