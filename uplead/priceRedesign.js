@@ -241,12 +241,18 @@ if(window.location.hostname === 'app.uplead.com') {
 </div>
 		
 	</div>
-`
+`	
 
-	let waitedEl = document.querySelectorAll('.product-card__price')[3].innerText
-	let whereEl = document.querySelector('.accountPlans__freeUser-container')
+	let start = setInterval(() => {
+		if(document.querySelectorAll('.product-card__price')[3].innerText) {
+			clearInterval(start)
 
-	startExp(waitedEl, whereEl, plans)
+			const whereEl = document.querySelector('.accountPlans__freeUser-container')
+			
+			startExp(whereEl, plans)
+		}
+	}, 200)
+	
 	// document.querySelector('.product-card__action-btn-wrap button')
 
 
@@ -313,10 +319,15 @@ if(window.location.hostname === 'app.uplead.com') {
 	</div>
 `
 
-	const waitedEl = document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href
-	const whereEl = document.querySelector('.accountPlans__freeUser-container').insertAdjacentHTML('afterend', plans)
+	let start = setInterval(() => {
+		if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href) {
+			clearInterval(start)
 
-	startExp(waitedEl, whereEl, plans)
+			const whereEl = document.querySelector('.accountPlans__freeUser-container').insertAdjacentHTML('afterend', plans)
+
+			startExp(whereEl, plans)
+		}
+	}, 200)
 
 
 	;(function(h,o,t,j,a,r){
@@ -333,10 +344,8 @@ if(window.location.hostname === 'app.uplead.com') {
 	console.log('HJ for uplead domain');
 }
 
-function startExp(waitedEl, whereEl, plans) {
-	let start = setInterval(() => {
-		if(waitedEl) {
-			clearInterval(start)
+function startExp(whereEl, plans) {
+
 
 			whereEl.insertAdjacentHTML('afterend', plans)
 
@@ -406,8 +415,7 @@ function startExp(waitedEl, whereEl, plans) {
 
 				})
 			})
-		}
-	})
+
 }
 
 
