@@ -662,7 +662,7 @@ window.onload  = function () {
                 text-decoration-line: underline;
                 padding: 10px 19px;
                 color: #666666;
-                background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrowLeft.svg') no-repeat left center / 18px;
+                background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
             }
             .address_book_new .editor .title {
                 display: none;
