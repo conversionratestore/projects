@@ -496,7 +496,7 @@ function listener(e) {
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Webinar page special offer',
+		'eventCategory': 'Exp — Webinar page special offer 1729',
 		'eventAction': 'Click on Workshop special offer button',
 	})
 
@@ -528,7 +528,7 @@ function showSaleBtn() {
 				window.dataLayer = window.dataLayer || []
 				dataLayer.push({
 					'event': 'event-to-ga',
-					'eventCategory': 'Exp — Webinar page special offer',
+					'eventCategory': 'Exp — Webinar page special offer 1729',
 					'eventAction': 'Click on Continue to special offer button',
 				})
 			})
@@ -539,7 +539,7 @@ function showSaleBtn() {
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
 	'event': 'event-to-ga',
-	'eventCategory': 'Exp — Webinar page special offer',
+	'eventCategory': 'Exp — Webinar page special offer 1729',
 	'eventAction': 'loaded',
 })
 
@@ -557,4 +557,4 @@ dataLayer.push({
 window.hj = window.hj || function () {
 	(hj.q = hj.q || []).push(arguments)
 }
-hj('event', 'webinar_page_special_offer')
+hj('event', 'webinar_page_special_offer_1729')
