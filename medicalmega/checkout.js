@@ -648,7 +648,7 @@ window.onload  = function () {
                 margin-top: 20px;
                 padding-left: 0!important;}
             #step1_form {
-                padding-bottom: 20px;}
+                padding-bottom: 65px;}
             .address_book_new .small_block .radio_content .radio_cont {
                 font-size: 14px!important;}
             .address_book_new .small_block .radio_content .radio_cont .edit {
