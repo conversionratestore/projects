@@ -367,6 +367,7 @@ let newPageStyle = /*html*/ `
         line-height: 16px;
         color: #1D3871;
         padding: 10px 0;
+        text-align: start;
     }
 
     .payment_inform_box li > div table tbody tr:last-child td{
