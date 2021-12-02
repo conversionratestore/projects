@@ -1143,6 +1143,7 @@ window.onload  = function () {
                 max-width: 303px;
                 width: 100%!important;}
             .cc-recurring-setting {
+                justify-content: space-between;
                 display: flex;
                 align-items: center;
                 font-weight: 500;
