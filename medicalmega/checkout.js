@@ -1121,6 +1121,7 @@ window.onload  = function () {
             .primaryInfo div{
                 margin-left: 0!important; }
             div.cc-recurring {
+                margin-bottom: 40px;
                 padding: 10px 0;}
             .primaryInfo dl dd {
                 font-family: 'Arial', sans-serif; }
