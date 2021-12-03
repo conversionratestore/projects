@@ -175,14 +175,14 @@ let disabledButton = `
 let initial = setInterval(function () {
     console.log('>>> init')
     if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]) {
-
-        console.log('>>> start')
         clearInterval(initial)
         start()
     }
 }, 50)
 
 function start() {
+
+    console.log('>>> start')
 
     let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
         sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
