@@ -71,7 +71,8 @@ hj("event", "signaturely_toggle_switch")
 //   subtree: true,
 // })
 
-document.querySelector(".button.button--primary").addEventListener("click", () => {
+document.querySelector(".header__month-wrapper .button.button--primary").addEventListener("click", () => {
+  console.log("button--primary")
   if (document.querySelector(".react-toggle-screenreader-only")) {
     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
       document.querySelector(".react-toggle-screenreader-only").click()
