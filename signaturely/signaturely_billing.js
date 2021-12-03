@@ -52,7 +52,10 @@ hj("event", "signaturely_toggle_switch")
 let observer = new MutationObserver(() => {
   if (document.querySelector(".react-toggle-screenreader-only")) {
     observer.disconnect()
-    document.querySelector(".react-toggle-screenreader-only").click()
+
+    if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
+      document.querySelector(".react-toggle-screenreader-only").click()
+    }
     toggleSwitch()
 
     observer.observe(document, {
