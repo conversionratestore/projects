@@ -135,11 +135,13 @@ function pushDataLayer(action,label) {
 window.onload  = function () {
     if (mm.grw != 1) {
         if (!window.location.pathname.includes('cart.html')) {
+            document.querySelector('#logo img').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/logo.svg');
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            #logo img {
+                max-width: 361px; }
             #forgot_pass .registerOnLogin {
-                display: block;
-            }
+                display: block; }
             #forgot_pass .addressBookSubmit {
                     background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
                     border: 0.5px solid #780F11;
@@ -157,15 +159,8 @@ window.onload  = function () {
                     align-items: center;
                     max-width: 153px;
                     width: 100%;
-                    margin-top: -12px;
-                }
-                #forgot_pass .addressBookSubmit:ater {
-                    content: '';
-                    margin-left: 4px;
-                    background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
-                    width: 16px;
-                    height: 16px;
-                }
+                    margin-top: -12px; }
+
             .myAccountleft button[name="register"], .myAccountright button[name="user_login"] {
               display: none;}
             .title_head {
