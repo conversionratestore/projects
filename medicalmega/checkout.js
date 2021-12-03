@@ -1281,6 +1281,7 @@ window.onload  = function () {
             })
         } else {
             document.querySelector('.num_line').style.display = 'none';
+            document.querySelector('.payment ').style.padding = '34px 0 20px 0'
         }
     }
 };
