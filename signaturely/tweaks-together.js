@@ -1,6 +1,5 @@
 let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
-    sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link'),
-    count = 0;
+    sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
 
 let configObserve = {
     childList: true,
@@ -74,60 +73,207 @@ document.body.insertAdjacentHTML('afterbegin',`
      .interactModal__header-send[disabled] {
         background: #8C97A3;
      }
+     
+     .signTemplate__templateField {
+        padding-bottom: 20px;
+     }
+     
+     .interactModal__header-send .button--primary:disabled, .interactModal__header-send .button--primary:disabled:hover {
+        background-color: #8C97A3;
+        border-color: #8C97A3;
+        box-shadow: unset;
+     }
+     
+     .interactModal__header-send {
+      position: relative;
+     }
+     
+     .disabled_btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        border-radius: 40px;
+     }
+     
+     .disabled_btn p {
+        position:absolute;
+        right: 150%;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 20px;
+        border: 1px solid #00A3FA;
+        border-radius: 6px;
+        background-color: #fff;
+        color: black;
+        font-size: 14px;
+        width: 300%;
+        display: none;
+        text-align: center;
+     }
+     
+     .disabled_btn p::after {
+        content: '';
+        display: block;
+        position:absolute;
+        background-color: #fff;
+        border: 1px solid #00A3FA;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%) rotateZ(45deg);
+        z-index: 1;
+        height: 16px;
+        width: 16px;
+     }
+     
+     .disabled_btn p::before {
+        content: '';
+        display: block;
+        position:absolute;
+        height: 30px;
+        width: 20px;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        background-color: white;
+     }
+     
+     .disabled_btn:hover p {
+        display: block;
+     }
+     
+     .settingsSignature__item {
+      position:relative;
+     }
+     
+     .settingsSignature__item::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        height: 16px;
+        width: 16px;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 1px solid #ADBFC9;
+        transition: border 0.5s;
+        box-sizing: border-box;
+     }
+     
+     .settingsSignature__item.settingsSignature__item--selected::before {
+        border: 5px solid #00A3FA;
+     }
 </style>`)
-//chenge name link in sidebar
+
+
+let disabledButton = `
+    <div class="disabled_btn">
+      <p>Please drag & drop fields on the left into the document</p>
+    </div>
+`
+
+//change name link in sidebar
 sidebarLinks[0].innerHTML = `Sign a Document`;
 sidebarLinks[1].innerHTML = `Sign & Send for Signature`;
 sidebarLinks[2].innerHTML = `Send for Signature`;
 sidebarLinks[3].innerHTML = `Bulk Send`;
 
-//open 'Sign a Document' 
+//open 'Sign a Document'
 sidebarItem.querySelectorAll('.sidebar__item-trigger')[0];
-sidebarLinks[0].click(); 
+sidebarLinks[0].click();
 
 let mut = new MutationObserver(function (muts) {
 
     //link 1 ("Sign a Document")
     if (sidebarLinks[0].classList.contains('sidebar__item-link--active') && document.querySelector('.signTemplate__title') != null && document.querySelector('.signTemplate__templateField-select-wrapper') != null && count == 0) {
         mut.disconnect();
-        count = 1;
-        document.body.insertAdjacentHTML('afterbegin',`
-        <style>
-            .signTemplate__templateField {
-                padding-bottom: 20px;
-            }
-        </style>`)
+
         let uploadFileSection = document.querySelector('.signTemplate__templateField-select-wrapper'),
             uploadFileWrapper = document.querySelector('.signTemplate__templateField'),
             orElement = document.querySelector('.common__or'),
             h1 = document.querySelector('.signTemplate__title'),
             docForSigningSection = document.querySelector('.signTemplate__form-mainGroupField');
 
-            docForSigningSection.querySelectorAll('.form__field')[0].before(h1);
-            uploadFileWrapper.before(uploadFileSection);
-            uploadFileWrapper.after(docForSigningSection);
-            uploadFileSection.querySelector('.signTemplate__templateField-upload-createButton').after(orElement);
+        docForSigningSection.querySelectorAll('.form__field')[0].before(h1);
+        uploadFileWrapper.before(uploadFileSection);
+        uploadFileWrapper.after(docForSigningSection);
+        uploadFileSection.querySelector('.signTemplate__templateField-upload-createButton').after(orElement);
     }
-    
-    mut.observe(document, configObserve);
 
     //interact modal
     if (document.querySelector('.interactModal__body') != null && document.querySelector('.tooltipe') == null) {
         mut.disconnect();
         let interactModal = document.querySelector('.interactModal__body'),
             sendInteractModal = document.querySelector('.interactModal__header-send');
-        
+
         sendInteractModal.disabled = true;
-        sendInteractModal.querySelector('p').innerHTML = 'Save';
+        if(window.location.pathname === '/only-me') {
+            sendInteractModal.querySelector('p').innerHTML = 'Save';
+        }
 
         interactModal.insertAdjacentHTML('beforeend', tooltipe)
         document.querySelector('.tooltipe button').addEventListener('click', (e) => {
             interactModal.classList.add('active');
             document.querySelector('.tooltipe').hidden = true;
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp — toggle switch desktop',
+                'eventAction': 'Click on GOT IT buttom in pop up'
+            });
         })
-
     }
+
+
+    if(document.querySelector('.interactModal__documentView-inner')) {
+        mut.disconnect()
+        if(document.querySelectorAll('.interactModal__documentView-inner>div').length === 1) {
+            document.querySelector('.interactModal__header-send .button--primary').disabled = true
+            if(!document.querySelector('.disabled_btn')) {
+                document.querySelector('.interactModal__header-send .button--primary').insertAdjacentHTML('afterend', disabledButton)
+                document.querySelector('.disabled_btn').addEventListener('click', function () {
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp — toggle switch desktop',
+                        'eventAction': 'Click on drag drop pop up'
+                    });
+                })
+            }
+        } else {
+            document.querySelector('.interactModal__header-send .button--primary').disabled = false
+            if(document.querySelector('.disabled_btn')) {
+                document.querySelector('.disabled_btn').remove()
+            }
+        }
+    }
+
+    if(document.querySelector('.settingsSignature__item:last-child')) {
+        mut.disconnect()
+        document.querySelector('.settingsSignature__item:last-child').click()
+    }
+
     mut.observe(document, configObserve);
 
 })
 mut.observe(document, configObserve);
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2372209,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('event', 'toggle_switch_desktop');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — toggle switch desktop',
+    'eventAction': 'loaded'
+});
