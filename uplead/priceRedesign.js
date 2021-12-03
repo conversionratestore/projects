@@ -122,7 +122,7 @@ const customStyle = `
 		
 		.banner-custom.app .card,
 		.card-body{
-			padding: 40px 20px 0;
+			padding: 40px 20px 0 !important;
 		}
 		
 		.card.card_free {
