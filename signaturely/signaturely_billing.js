@@ -1,6 +1,6 @@
-let checked = setInterval(() => {
+let toggle = setInterval(() => {
   if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
-    clearInterval(checked)
+    clearInterval(toggle)
     document.querySelector(".react-toggle-screenreader-only").click()
   }
 }, 50)
@@ -32,7 +32,7 @@ window.hj =
 hj("event", "signaturely_toggle_switch")
 
 setTimeout(() => {
-  document.querySelector(".uael-main-btn .uael-rbs-switch-label").addEventListener("click", () => {
+  document.querySelector(".react-toggle.react-toggle--checked.billing__switch-item").addEventListener("click", () => {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
@@ -40,4 +40,4 @@ setTimeout(() => {
       eventAction: "Click on switcher",
     })
   })
-}, 200)
+}, 300)
