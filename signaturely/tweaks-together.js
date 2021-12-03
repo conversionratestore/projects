@@ -173,7 +173,7 @@ let disabledButton = `
 `
 
 let initial = setInterval(function () {
-    if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]?.querySelectorAll('.sidebar__item-link')) {
+    if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]) {
         clearInterval(initial)
         start()
     }
