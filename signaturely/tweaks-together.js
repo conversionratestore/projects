@@ -172,6 +172,13 @@ let disabledButton = `
     </div>
 `
 
+let initial = setInterval(function () {
+    if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]?.querySelectorAll('.sidebar__item-link')) {
+        clearInterval(initial)
+        start()
+    }
+}, 50)
+
 function start() {
 
     let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
@@ -187,90 +194,85 @@ function start() {
 //open 'Sign a Document'
     sidebarItem.querySelectorAll('.sidebar__item-trigger')[0];
     sidebarLinks[0].click();
-}
 
-let initial = setInterval(function () {
-    if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]?.querySelectorAll('.sidebar__item-link')) {
-        clearInterval(initial)
-        start()
-    }
-}, 50)
 
-let mut = new MutationObserver(function (muts) {
+    let mut = new MutationObserver(function (muts) {
 
-    //link 1 ("Sign a Document")
-    if (sidebarLinks[0].classList.contains('sidebar__item-link--active') && document.querySelector('.signTemplate__title') != null && document.querySelector('.signTemplate__templateField-select-wrapper') != null && count == 0) {
-        mut.disconnect();
+        //link 1 ("Sign a Document")
+        if (sidebarLinks[0].classList.contains('sidebar__item-link--active') && document.querySelector('.signTemplate__title') != null && document.querySelector('.signTemplate__templateField-select-wrapper') != null && count == 0) {
+            mut.disconnect();
 
-        let uploadFileSection = document.querySelector('.signTemplate__templateField-select-wrapper'),
-            uploadFileWrapper = document.querySelector('.signTemplate__templateField'),
-            orElement = document.querySelector('.common__or'),
-            h1 = document.querySelector('.signTemplate__title'),
-            docForSigningSection = document.querySelector('.signTemplate__form-mainGroupField');
+            let uploadFileSection = document.querySelector('.signTemplate__templateField-select-wrapper'),
+                uploadFileWrapper = document.querySelector('.signTemplate__templateField'),
+                orElement = document.querySelector('.common__or'),
+                h1 = document.querySelector('.signTemplate__title'),
+                docForSigningSection = document.querySelector('.signTemplate__form-mainGroupField');
 
-        docForSigningSection.querySelectorAll('.form__field')[0].before(h1);
-        uploadFileWrapper.before(uploadFileSection);
-        uploadFileWrapper.after(docForSigningSection);
-        uploadFileSection.querySelector('.signTemplate__templateField-upload-createButton').after(orElement);
-    }
-
-    //interact modal
-    if (document.querySelector('.interactModal__body') != null && document.querySelector('.tooltipe') == null) {
-        mut.disconnect();
-        let interactModal = document.querySelector('.interactModal__body'),
-            sendInteractModal = document.querySelector('.interactModal__header-send');
-
-        sendInteractModal.disabled = true;
-        if(window.location.pathname === '/only-me') {
-            sendInteractModal.querySelector('p').innerHTML = 'Save';
+            docForSigningSection.querySelectorAll('.form__field')[0].before(h1);
+            uploadFileWrapper.before(uploadFileSection);
+            uploadFileWrapper.after(docForSigningSection);
+            uploadFileSection.querySelector('.signTemplate__templateField-upload-createButton').after(orElement);
         }
 
-        interactModal.insertAdjacentHTML('beforeend', tooltipe)
-        document.querySelector('.tooltipe button').addEventListener('click', (e) => {
-            interactModal.classList.add('active');
-            document.querySelector('.tooltipe').hidden = true;
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp — toggle switch desktop',
-                'eventAction': 'Click on GOT IT buttom in pop up'
-            });
-        })
-    }
+        //interact modal
+        if (document.querySelector('.interactModal__body') != null && document.querySelector('.tooltipe') == null) {
+            mut.disconnect();
+            let interactModal = document.querySelector('.interactModal__body'),
+                sendInteractModal = document.querySelector('.interactModal__header-send');
 
-
-    if(document.querySelector('.interactModal__documentView-inner')) {
-        mut.disconnect()
-        if(document.querySelectorAll('.interactModal__documentView-inner>div').length === 1) {
-            document.querySelector('.interactModal__header-send .button--primary').disabled = true
-            if(!document.querySelector('.disabled_btn')) {
-                document.querySelector('.interactModal__header-send .button--primary').insertAdjacentHTML('afterend', disabledButton)
-                document.querySelector('.disabled_btn').addEventListener('click', function () {
-                    window.dataLayer = window.dataLayer || [];
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp — toggle switch desktop',
-                        'eventAction': 'Click on drag drop pop up'
-                    });
-                })
+            sendInteractModal.disabled = true;
+            if (window.location.pathname === '/only-me') {
+                sendInteractModal.querySelector('p').innerHTML = 'Save';
             }
-        } else {
-            document.querySelector('.interactModal__header-send .button--primary').disabled = false
-            if(document.querySelector('.disabled_btn')) {
-                document.querySelector('.disabled_btn').remove()
+
+            interactModal.insertAdjacentHTML('beforeend', tooltipe)
+            document.querySelector('.tooltipe button').addEventListener('click', (e) => {
+                interactModal.classList.add('active');
+                document.querySelector('.tooltipe').hidden = true;
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — toggle switch desktop',
+                    'eventAction': 'Click on GOT IT buttom in pop up'
+                });
+            })
+        }
+
+
+        if (document.querySelector('.interactModal__documentView-inner')) {
+            mut.disconnect()
+            if (document.querySelectorAll('.interactModal__documentView-inner>div').length === 1) {
+                document.querySelector('.interactModal__header-send .button--primary').disabled = true
+                if (!document.querySelector('.disabled_btn')) {
+                    document.querySelector('.interactModal__header-send .button--primary').insertAdjacentHTML('afterend', disabledButton)
+                    document.querySelector('.disabled_btn').addEventListener('click', function () {
+                        window.dataLayer = window.dataLayer || [];
+                        dataLayer.push({
+                            'event': 'event-to-ga',
+                            'eventCategory': 'Exp — toggle switch desktop',
+                            'eventAction': 'Click on drag drop pop up'
+                        });
+                    })
+                }
+            } else {
+                document.querySelector('.interactModal__header-send .button--primary').disabled = false
+                if (document.querySelector('.disabled_btn')) {
+                    document.querySelector('.disabled_btn').remove()
+                }
             }
         }
-    }
 
-    if(document.querySelector('.settingsSignature__item:last-child')) {
-        mut.disconnect()
-        document.querySelector('.settingsSignature__item:last-child').click()
-    }
+        if (document.querySelector('.settingsSignature__item:last-child')) {
+            mut.disconnect()
+            document.querySelector('.settingsSignature__item:last-child').click()
+        }
 
+        mut.observe(document, configObserve);
+
+    })
     mut.observe(document, configObserve);
 
-})
-mut.observe(document, configObserve);
+}
 
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
