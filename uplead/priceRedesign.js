@@ -120,9 +120,9 @@ const customStyle = `
 			margin-bottom: 50px !important;
 		}
 		
-		.banner-custom.app .card:not(.card-pro),
-		.card-body {
-			padding: 40px 20px 0 !important;
+		.banner-custom.app .card,
+		.card-body{
+			padding: 40px 20px 0;
 		}
 		
 		.card.card_free {
