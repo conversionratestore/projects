@@ -48,25 +48,36 @@ window.hj =
 hj("event", "signaturely_toggle_switch")
 
 //MutationObserver
-let observer = new MutationObserver(() => {
-  if (document.querySelector(".react-toggle-screenreader-only")) {
-    observer.disconnect()
+// let observer = new MutationObserver(() => {
+//   if (document.querySelector(".react-toggle-screenreader-only")) {
+//     observer.disconnect()
 
+//     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
+//       document.querySelector(".react-toggle-screenreader-only").click()
+//     }
+
+//     document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
+//     document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
+
+//     observer.observe(document, {
+//       childList: true,
+//       subtree: true,
+//     })
+//   }
+// })
+
+// observer.observe(document, {
+//   childList: true,
+//   subtree: true,
+// })
+
+document.querySelector(".button.button--primary").addEventListener("click", () => {
+  if (document.querySelector(".react-toggle-screenreader-only")) {
     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
       document.querySelector(".react-toggle-screenreader-only").click()
     }
 
     document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
     document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
-
-    observer.observe(document, {
-      childList: true,
-      subtree: true,
-    })
   }
-})
-
-observer.observe(document, {
-  childList: true,
-  subtree: true,
 })
