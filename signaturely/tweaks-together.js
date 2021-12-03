@@ -1,10 +1,8 @@
-let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
-    sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
 
 let configObserve = {
     childList: true,
     subtree: true
-};
+}
 let tooltipe = `
     <div class="tooltipe">
         <div class="tooltipe_container">
@@ -174,15 +172,29 @@ let disabledButton = `
     </div>
 `
 
+function start() {
+
+    let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
+        sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
+
 //change name link in sidebar
-sidebarLinks[0].innerHTML = `Sign a Document`;
-sidebarLinks[1].innerHTML = `Sign & Send for Signature`;
-sidebarLinks[2].innerHTML = `Send for Signature`;
-sidebarLinks[3].innerHTML = `Bulk Send`;
+    sidebarLinks[0].innerHTML = `Sign a Document`;
+    sidebarLinks[1].innerHTML = `Sign & Send for Signature`;
+    sidebarLinks[2].innerHTML = `Send for Signature`;
+    sidebarLinks[3].innerHTML = `Bulk Send`;
+
 
 //open 'Sign a Document'
-sidebarItem.querySelectorAll('.sidebar__item-trigger')[0];
-sidebarLinks[0].click();
+    sidebarItem.querySelectorAll('.sidebar__item-trigger')[0];
+    sidebarLinks[0].click();
+}
+
+let initial = setInterval(function () {
+    if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]?.querySelectorAll('.sidebar__item-link')) {
+        clearInterval(initial)
+        start()
+    }
+}, 50)
 
 let mut = new MutationObserver(function (muts) {
 
