@@ -156,7 +156,7 @@ const customStyle = `
 		}
 	
 		
-		.card button:hover{
+		 .banner-custom:not(.app) .card button:hover {
 			background-color: #00A1BB;
 			border-color: #00A1BB;
 			transition: all .3s;
@@ -262,13 +262,13 @@ const customStyle = `
 document.head.insertAdjacentHTML('afterbegin', customStyle)
 
 if(window.location.hostname === 'app.uplead.com') {
-	
+
 
 	let start = setInterval(() => {
-		if(document.querySelectorAll('.product-card__price')[3].innerText) {
-			clearInterval(start)
+			if(document.querySelectorAll('.product-card__price')[3].innerText) {
+				clearInterval(start)
 
-			plans = `
+				plans = `
 	<div class="banner-custom hide app">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
@@ -317,19 +317,19 @@ if(window.location.hostname === 'app.uplead.com') {
 		
 	</div>
 `
-			const whereEl = document.querySelector('.accountPlans__freeUser-container')
-			const position = 'beforeend'
+				const whereEl = document.querySelector('.accountPlans__freeUser-container')
+				const position = 'beforeend'
 
-			startExp(whereEl, position, plans)
+				startExp(whereEl, position, plans)
 
-			for (let i = 0; i < 4; i++) {
-				document.querySelectorAll('.banner-custom .card')[i].insertAdjacentElement('beforeend',
-				 document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])				
+				for (let i = 0; i < 4; i++) {
+					document.querySelectorAll('.banner-custom .card')[i].insertAdjacentElement('beforeend',
+						document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])
+				}
+
+
 			}
-
-			
-		}
-	}, 200)
+		}, 200)
 
 	;(function(h,o,t,j,a,r){
 		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -344,12 +344,12 @@ if(window.location.hostname === 'app.uplead.com') {
 
 	console.log('HJ for APP uplead domain');
 } else {
-	
-	let start = setInterval(() => {
-		if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href && document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]) {
-			clearInterval(start)
 
-			plans = `
+	let start = setInterval(() => {
+			if(document.querySelectorAll('.uael-rbs-section-1 .elementor-button-wrapper a')[6]?.href && document.querySelectorAll('.uael-rbs-section-1 .elementor-text-editor')[9].innerText.split('/')[0]) {
+				clearInterval(start)
+
+				plans = `
 	<div class="banner-custom hide">
 		<div class="title-wrapper">
 		<p class="title_action">See our monthly plans</p>
@@ -398,12 +398,12 @@ if(window.location.hostname === 'app.uplead.com') {
 		
 	</div>
 `
-			const whereEl = document.querySelector('.uael-rbs-section-2')
-			const position = 'afterend'
-			
-			startExp(whereEl, position, plans)
-		}
-	}, 200)
+				const whereEl = document.querySelector('.uael-rbs-section-2')
+				const position = 'afterend'
+
+				startExp(whereEl, position, plans)
+			}
+		}, 200)
 
 
 	;(function(h,o,t,j,a,r){
@@ -421,74 +421,74 @@ if(window.location.hostname === 'app.uplead.com') {
 }
 
 function startExp(whereEl, position, plans) {
-			whereEl.insertAdjacentHTML(position, plans)
+	whereEl.insertAdjacentHTML(position, plans)
 
-			document.querySelector('.title-wrapper').addEventListener('click', function() {
-				if(this.closest('.banner-custom').classList.contains('hide')) {
-					document.querySelector('.banner-custom').classList.remove('hide')
+	document.querySelector('.title-wrapper').addEventListener('click', function() {
+		if(this.closest('.banner-custom').classList.contains('hide')) {
+			document.querySelector('.banner-custom').classList.remove('hide')
 
 
-					window.dataLayer = window.dataLayer || [];
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — Hide annual plans',
-						'eventAction': 'See our mounthly plans',
-						'eventLabel': 'open'
-					});
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Hide annual plans',
+				'eventAction': 'See our mounthly plans',
+				'eventLabel': 'open'
+			});
 
-					console.log('EVENT: open');
+			console.log('EVENT: open');
 
-				} else {
-					document.querySelector('.banner-custom').classList.add('hide')
+		} else {
+			document.querySelector('.banner-custom').classList.add('hide')
 
-					window.dataLayer = window.dataLayer || [];
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — Hide annual plans',
-						'eventAction': 'See our mounthly plans',
-						'eventLabel': 'close'
-					});
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Hide annual plans',
+				'eventAction': 'See our mounthly plans',
+				'eventLabel': 'close'
+			});
 
-					console.log('EVENT: close');
+			console.log('EVENT: close');
 
-				}
-			})
+		}
+	})
 
-			// let cardInterval = setInterval(() => {
-			// 	if(document.querySelectorAll('.card-wrapper .card')[3]) {
-			// 		clearInterval(cardInterval)
-			//
-			// 		document.querySelectorAll('.card-wrapper .card').forEach(item => {
-			// 			item.addEventListener('click', () => {
-			//
-			// 				window.dataLayer = window.dataLayer || [];
-			// 				dataLayer.push({
-			// 					'event': 'event-to-ga',
-			// 					'eventCategory': 'Exp — Hide annual plans',
-			// 					'eventAction': 'Click on each plan'
-			// 				});
-			//
-			// 				console.log('EVENT: Click on each plan');
-			//
-			// 			})
-			// 		})
-			// 	}
-			// }, 200)
+	// let cardInterval = setInterval(() => {
+	// 	if(document.querySelectorAll('.card-wrapper .card')[3]) {
+	// 		clearInterval(cardInterval)
+	//
+	// 		document.querySelectorAll('.card-wrapper .card').forEach(item => {
+	// 			item.addEventListener('click', () => {
+	//
+	// 				window.dataLayer = window.dataLayer || [];
+	// 				dataLayer.push({
+	// 					'event': 'event-to-ga',
+	// 					'eventCategory': 'Exp — Hide annual plans',
+	// 					'eventAction': 'Click on each plan'
+	// 				});
+	//
+	// 				console.log('EVENT: Click on each plan');
+	//
+	// 			})
+	// 		})
+	// 	}
+	// }, 200)
 
-			document.querySelectorAll('.card-wrapper .card').forEach(item => {
-				item.addEventListener('click', () => {
+	document.querySelectorAll('.card-wrapper .card').forEach(item => {
+		item.addEventListener('click', () => {
 
-					window.dataLayer = window.dataLayer || [];
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — Hide annual plans',
-						'eventAction': 'Click on each plan'
-					});
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Hide annual plans',
+				'eventAction': 'Click on each plan'
+			});
 
-					console.log('EVENT: Click on each plan');
+			console.log('EVENT: Click on each plan');
 
-				})
-			})
+		})
+	})
 
 }
 
