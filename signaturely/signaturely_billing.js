@@ -34,12 +34,14 @@ window.hj =
 hj("event", "signaturely_toggle_switch")
 
 setTimeout(() => {
-  document.querySelector(".react-toggle-screenreader-only").addEventListener("click", () => {
-    window.dataLayer = window.dataLayer || []
-    dataLayer.push({
-      event: "event-to-ga",
-      eventCategory: "Exp - Signaturely toggle switch",
-      eventAction: "Click on switcher",
+  if (document.querySelector(".react-toggle-screenreader-only")) {
+    document.querySelector(".react-toggle-screenreader-only").addEventListener("click", () => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - Signaturely toggle switch",
+        eventAction: "Click on switcher",
+      })
     })
-  })
+  }
 }, 300)
