@@ -137,6 +137,9 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            #forgot_pass .registerOnLogin {
+                display: block;
+            }
             #forgot_pass .addressBookSubmit {
                     background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
                     border: 0.5px solid #780F11;
@@ -153,9 +156,8 @@ window.onload  = function () {
                     justify-content: center;
                     align-items: center;
                     max-width: 153px;
-                    margin-left: auto;
                     width: 100%;
-                    margin-top: 17.75px
+                    margin-top: -12px;
                 }
                 #forgot_pass .addressBookSubmit:ater {
                     content: '';
