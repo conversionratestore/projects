@@ -11,7 +11,7 @@ let checked = setInterval(() => {
 
 function toggleSwitch() {
   document.querySelector(".react-toggle-screenreader-only").addEventListener("click", () => {
-    if (document.querySelector(".react-toggle-screenreader-only:checked")) {
+    if (document.querySelector(".react-toggle-screenreader-only")) {
       window.dataLayer = window.dataLayer || []
       dataLayer.push({
         event: "event-to-ga",
@@ -56,7 +56,6 @@ let observer = new MutationObserver(() => {
     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
       document.querySelector(".react-toggle-screenreader-only").click()
     }
-    toggleSwitch()
 
     observer.observe(document, {
       childList: true,
