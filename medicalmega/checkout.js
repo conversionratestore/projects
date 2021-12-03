@@ -157,6 +157,13 @@ window.onload  = function () {
                     width: 100%;
                     margin-top: 17.75px
                 }
+                #forgot_pass .addressBookSubmit:ater {
+                    content: '';
+                    margin-left: 4px;
+                    background: url(https://conversionratestore.github.io/projects/medicalmega/img/ArrowRight.svg) no-repeat right center / contain;
+                    width: 16px;
+                    height: 16px;
+                }
             .myAccountleft button[name="register"], .myAccountright button[name="user_login"] {
               display: none;}
             .title_head {
@@ -749,7 +756,7 @@ window.onload  = function () {
                 content: '';
                 position: absolute;
                 top: 50%;
-                left: 100%; 
+                left: calc(100% + 1px); 
                 transform: translateY(-50%);
                 height: 1px;
                 width: 120px;
