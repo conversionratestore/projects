@@ -1165,10 +1165,10 @@ let sliderNav = /*html*/ `
     <div>
         <h3>Try BuzzPatch For 30 Days <br> Without Risk</h3>
         <div>
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/guarantee_main.png" alt="guarantee money time" width="192">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/guarantee.png" alt="guarantee money time" width="192">
         </div>
         <p>BuzzPatch covers you from mosquitoes. Our money-back guarantee covers you from any risk.</p>
-        <p>Try BuzzPatch for full 30 days and if you're not happy for whatever reason, shoot one email to name@domain.com and we'll send all your money back.</p>
+        <p>Try BuzzPatch for full 30 days and if you're not happy for whatever reason, shoot one email to name@domain.com and we'll send all your money back. <span>No returns required.</span></p>
         <a href="#getNow" class="button_custom">Keep mosquitos at bay</a>
     </div>
     <p>trusted customer <br> reviews</p>
