@@ -32,7 +32,7 @@ window.hj =
 hj("event", "signaturely_toggle_switch")
 
 setTimeout(() => {
-  document.querySelector(".react-toggle.react-toggle--checked.billing__switch-item").addEventListener("click", () => {
+  document.querySelector(".react-toggle-screenreader-only").addEventListener("click", () => {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
