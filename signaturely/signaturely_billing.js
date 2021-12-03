@@ -51,17 +51,17 @@ function checked() {
 
 //MutationObserver
 let observer = new MutationObserver(() => {
-  if (document.querySelectorAll(".button.button--primary")) {
+  if (document.querySelector(".button.button--primary")) {
     observer.disconnect()
     checked()
-    observer.observe(document.querySelectorAll(".button.button--primary"), {
+    observer.observe(document.querySelector(".button.button--primary"), {
       childList: true,
       subtree: true,
     })
   }
 })
 
-observer.observe(document.querySelectorAll(".button.button--primary"), {
+observer.observe(document.querySelector(".button.button--primary"), {
   childList: true,
   subtree: true,
 })
