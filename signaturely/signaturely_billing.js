@@ -78,6 +78,9 @@ hj("event", "signaturely_toggle_switch")
 let onClickBtn = setInterval(() => {
   if (document.querySelector(".header__month-wrapper .button.button--primary")) {
     clearInterval(onClickBtn)
-    start()
+    document.querySelector(".header__month-wrapper .button.button--primary").addEventListener("click", () => {
+      console.log("button--primary")
+      start()
+    })
   }
 }, 100)
