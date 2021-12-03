@@ -258,7 +258,7 @@ const customStyle = `
 		.card-header {
 			position: relative;
 			border-radius: 16px 16px 0 0;
-			padding: 40px 20px 35px;
+			padding: 40px 20px 30px;
 			background: #00A1BB;
 		}
 		
@@ -505,7 +505,7 @@ function startExp(whereEl, position, plans) {
 	document.querySelector('.title-wrapper').addEventListener('click', function () {
 		if (this.closest('.banner-custom').classList.contains('hide')) {
 			document.querySelector('.banner-custom').classList.remove('hide')
-			
+
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
