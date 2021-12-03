@@ -5,6 +5,10 @@ const customStyle = `
 			display: none !important;
 		}
 		
+		.accountPlans__freeUser-header-title {
+			margin-bottom: 25px;
+		}
+		
 		.banner-custom {
 			display: flex;
 			flex-direction: column;
@@ -112,8 +116,8 @@ const customStyle = `
 			max-width: 270px;
 		}
 		
-		.banner-custom.app .title {
-			margin-bottom: 50px;
+		.banner-custom.app .plans p.title {
+			margin-bottom: 50px !important;
 		}
 		
 		.banner-custom.app .card,
@@ -252,9 +256,25 @@ const customStyle = `
 		}
 		
 		.card-header {
+			position: relative;
 			border-radius: 16px 16px 0 0;
 			padding: 40px 20px 35px;
 			background: #00A1BB;
+		}
+		
+		.banner-custom.app .popular {
+			position: absolute;
+			top: -20px;
+			background: #F0FBF8;
+			padding: 13px;
+			border: 1px solid #00A2BB;
+			border-radius: 40px;
+		}
+		
+		.banner-custom.app .popular p{
+			color: #00A1BB;
+			font-weight: 600;
+			font-size: 14px;
 		}
 		
 		.card-body {
@@ -331,6 +351,7 @@ if(window.location.hostname === 'app.uplead.com') {
 				</div>
 				<div class="card card-pro">
 					<div class="card-header">
+						<div class="popular"><p>Most Popular</p></div>
 						<p class="name">Professional</p>
 						<p class="option">An advanced plan to take you to the next level.</p>
 					</div>	
