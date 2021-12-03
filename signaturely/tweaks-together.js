@@ -176,13 +176,13 @@ let initial = setInterval(function () {
     console.log('>>> init')
     if(document.querySelectorAll('.react-sanfona-item.sidebar__item')[0]) {
         clearInterval(initial)
-        start()
+        start2()
     }
 }, 50)
 
-function start() {
+function start2() {
 
-    console.log('>>> start')
+    console.log('>>> start2')
 
     let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
         sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
