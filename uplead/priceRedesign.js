@@ -155,10 +155,10 @@ const customStyle = `
 			width: 100%;
 			margin-top: 20px;			
 		    font-size: 18px;
-		    fill: #00A2BB;
-		    color: #00A2BB;
-		    background-color: #FFF;
-		    border: 1px solid #00A1BB;
+		    /*fill: #00A2BB;*/
+		    /*color: #00A2BB;*/
+		    /*background-color: #FFF;*/
+		    /*border: 1px solid #00A1BB;*/
 		    font-family: 'Gilroy', sans-serif;
 		    border-radius: 81px;
 		    font-weight: 700;
@@ -242,10 +242,10 @@ const customStyle = `
 			margin: 30px 0 !important;
 		}
 		
-		.banner-custom.app .card-pro button {
-			color: #fff;
-			background: #00A1BB;
-		}
+		/*.banner-custom.app .card-pro button {*/
+		/*	color: #fff;*/
+		/*	background: #00A1BB;*/
+		/*}*/
 
 		.banner-custom.app button {
 			margin: 30px 0 20px !important;
