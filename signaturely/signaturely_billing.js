@@ -4,22 +4,21 @@ let checked = setInterval(() => {
     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
       document.querySelector(".react-toggle-screenreader-only").click()
 
-      toggleSwitch()
+      document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
+      document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
     }
   }
 }, 50)
 
 function toggleSwitch() {
-  document.querySelector(".react-toggle-screenreader-only").addEventListener("click", () => {
-    if (document.querySelector(".react-toggle-screenreader-only")) {
-      window.dataLayer = window.dataLayer || []
-      dataLayer.push({
-        event: "event-to-ga",
-        eventCategory: "Exp - Signaturely toggle switch",
-        eventAction: "Click on switcher",
-      })
-    }
-  })
+  if (document.querySelector(".react-toggle-screenreader-only")) {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp - Signaturely toggle switch",
+      eventAction: "Click on switcher",
+    })
+  }
 }
 
 window.dataLayer = window.dataLayer || []
@@ -56,6 +55,9 @@ let observer = new MutationObserver(() => {
     if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
       document.querySelector(".react-toggle-screenreader-only").click()
     }
+
+    document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
+    document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
 
     observer.observe(document, {
       childList: true,
