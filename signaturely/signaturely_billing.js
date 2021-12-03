@@ -4,7 +4,7 @@ window.onload = function () {
       clearInterval(checked)
       document.querySelector(".react-toggle-screenreader-only").click()
     }
-  }, 50)
+  }, 10)
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
