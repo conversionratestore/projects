@@ -509,7 +509,7 @@ function showSaleBtn() {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/the-samcart-launch-bundle/'">Continue to special offer</button>`
 			document.querySelector('.banner').classList.add('show_sale')
 
 			let priceText
