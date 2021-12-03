@@ -1248,6 +1248,8 @@ window.onload  = function () {
                     label ='Section Your order';
                 pushDataLayer(action,label)
             })
+        } else {
+            document.querySelector('.num_line').style.display = 'none';
         }
     }
 };
