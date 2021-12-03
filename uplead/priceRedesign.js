@@ -283,7 +283,7 @@ const customStyle = `
 		}
 		
 		.card-body {
-			padding: 25px 20px 35px;
+			padding: 30px 20px 0;
 		}
 
 		.banner-custom.app .card .name {
