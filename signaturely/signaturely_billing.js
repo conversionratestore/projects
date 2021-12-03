@@ -71,16 +71,19 @@ hj("event", "signaturely_toggle_switch")
 //   subtree: true,
 // })
 
-if (document.querySelector(".header__month-wrapper .button.button--primary")) {
-  document.querySelector(".header__month-wrapper .button.button--primary").addEventListener("click", () => {
-    console.log("button--primary")
-    if (document.querySelector(".react-toggle-screenreader-only")) {
-      if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
-        document.querySelector(".react-toggle-screenreader-only").click()
-      }
+let checked = setInterval(() => {
+  if (document.querySelector(".header__month-wrapper .button.button--primary")) {
+    clearInterval(checked)
+    document.querySelector(".header__month-wrapper .button.button--primary").addEventListener("click", () => {
+      console.log("button--primary")
+      if (document.querySelector(".react-toggle-screenreader-only")) {
+        if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
+          document.querySelector(".react-toggle-screenreader-only").click()
+        }
 
-      document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
-      document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
-    }
-  })
-}
+        document.querySelector(".react-toggle-screenreader-only").removeEventListener("click", toggleSwitch)
+        document.querySelector(".react-toggle-screenreader-only").addEventListener("click", toggleSwitch)
+      }
+    })
+  }
+}, 100)
