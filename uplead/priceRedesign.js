@@ -389,7 +389,7 @@ if (window.location.hostname === 'app.uplead.com') {
 					const whereEl = document.querySelector('.accountPlans__freeUser-container')
 					const position = 'beforeend'
 
-					startExp(whereEl, position, plans)
+					startExp(whereEl, position, plans, 'app uplead')
 
 					for (let i = 0; i < 4; i++) {
 						if (document.querySelectorAll('.banner-custom .card')[i].classList.contains('card-pro')) {
@@ -481,7 +481,7 @@ if (window.location.hostname === 'app.uplead.com') {
 				const whereEl = document.querySelector('.uael-rbs-section-2')
 				const position = 'afterend'
 
-				startExp(whereEl, position, plans)
+				startExp(whereEl, position, plans, 'uplead')
 			}
 		}, 200)
 
@@ -504,7 +504,7 @@ if (window.location.hostname === 'app.uplead.com') {
 	console.log('HJ for uplead domain')
 }
 
-function startExp(whereEl, position, plans) {
+function startExp(whereEl, position, plans, site) {
 	whereEl.insertAdjacentHTML(position, plans)
 
 	document.querySelector('.title-wrapper').addEventListener('click', function () {
@@ -515,7 +515,7 @@ function startExp(whereEl, position, plans) {
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp — Hide annual plans',
-				'eventAction': 'See our mounthly plans',
+				'eventAction': 'See our mounthly plans on ' + site,
 				'eventLabel': 'open',
 			})
 
@@ -528,7 +528,7 @@ function startExp(whereEl, position, plans) {
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp — Hide annual plans',
-				'eventAction': 'See our mounthly plans',
+				'eventAction': 'See our mounthly plans ' + site,
 				'eventLabel': 'close',
 			})
 
@@ -565,7 +565,7 @@ function startExp(whereEl, position, plans) {
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp — Hide annual plans',
-				'eventAction': 'Click on each plan',
+				'eventAction': 'Click on each plan on' + site,
 			})
 
 			console.log('EVENT: Click on each plan')
