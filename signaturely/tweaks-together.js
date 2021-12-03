@@ -199,7 +199,7 @@ function start() {
     let mut = new MutationObserver(function (muts) {
 
         //link 1 ("Sign a Document")
-        if (sidebarLinks[0].classList.contains('sidebar__item-link--active') && document.querySelector('.signTemplate__title') != null && document.querySelector('.signTemplate__templateField-select-wrapper') != null && count == 0) {
+        if (sidebarLinks[0].classList.contains('sidebar__item-link--active') && document.querySelector('.signTemplate__title') != null && document.querySelector('.signTemplate__templateField-select-wrapper') != null) {
             mut.disconnect();
 
             let uploadFileSection = document.querySelector('.signTemplate__templateField-select-wrapper'),
