@@ -112,6 +112,15 @@ const customStyle = `
 			max-width: 270px;
 		}
 		
+		.banner-custom.app .title {
+			margin-bottom: 50px;
+		}
+		
+		.banner-custom.app .card,
+		.card-body{
+			padding: 40px 20px 0;
+		}
+		
 		.card.card_free {
 			background: #00A1BB;
 			border: none;
@@ -149,6 +158,12 @@ const customStyle = `
 		    font-family: 'Gilroy', sans-serif;
 		    border-radius: 81px;
 		    font-weight: 700;
+		    height: 53px;
+		    text-align: center;
+		}
+		
+		.card button p {
+			margin: 0 auto !important;
 		}
 		
 		.card.card_free button{
@@ -225,16 +240,31 @@ const customStyle = `
 
 		.banner-custom.app button {
 			margin: 30px 0 20px !important;
-		}
-
+		}		
+		
 		.card.card-pro {
-			box-shadow: 0px 2px 6px rgba(22, 127, 158, 0.12);
+			padding: 0 !important;
+			box-shadow: 0 2px 6px rgba(22, 127, 158, 0.12);
+		}
+		
+		.card-pro .card-header p {
+			color: #fff;
+		}
+		
+		.card-header {
+			border-radius: 16px 16px 0 0;
+			padding: 40px 20px 35px;
+			background: #00A1BB;
+		}
+		
+		.card-body {
+			padding: 25px 20px 35px;
 		}
 
 		.banner-custom.app .card .name {
 			margin-bottom: 8px !important;
 		}
-	
+		
 		@media only screen and (max-width: 1250px) {
 			.card {				
 				min-width: auto;
@@ -262,7 +292,11 @@ const customStyle = `
 document.head.insertAdjacentHTML('afterbegin', customStyle)
 
 if(window.location.hostname === 'app.uplead.com') {
+	document.querySelector('.accountPlans__freeUser-switch-labelMonthly').click()
 
+	let arrPrice = document.querySelectorAll('.product-card__price')
+
+	document.querySelector('.accountPlans__freeUser-switch-labelAnnual').click()
 
 	let start = setInterval(() => {
 			if(document.querySelectorAll('.product-card__price')[3].innerText) {
@@ -283,7 +317,7 @@ if(window.location.hostname === 'app.uplead.com') {
 					<p class="name">Essentials</p>
 					<p class="option">A starter plan for those new to sales intelligence.</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[0].innerText}<small>/month</small></p>
+					<p class="price">${arrPrice[0].innerText}<small>/month</small></p>
 					<p class="credits">2,040 Credits <span class="thin">Annually<span></p>
 					<p class="additional">Additional Credits <b>$0.60</b></p>					
 				</div>
@@ -291,23 +325,27 @@ if(window.location.hostname === 'app.uplead.com') {
 					<p class="name">Plus</p>
 					<p class="option">An intermediate plan if you want greater results.</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[1].innerText}<small>/month</small></p>
+					<p class="price">${arrPrice[1].innerText}<small>/month</small></p>
 					<p class="credits">4,800 Credits <span class="thin">Annually<span></p>
 					<p class="additional">Additional Credits <b>$0.50</b></p>					
 				</div>
 				<div class="card card-pro">
-					<p class="name">Professional</p>
-					<p class="option">An advanced plan to take you to the next level.</p>
-					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[2].innerText}<small>/month</small></p>
-					<p class="credits">12,000 Credits <span class="thin">Annually<span></p>
-					<p class="additional">Additional Credits <b>$0.40</b></p>					
+					<div class="card-header">
+						<p class="name">Professional</p>
+						<p class="option">An advanced plan to take you to the next level.</p>
+					</div>	
+					<div class="card-body">
+						<p class="price">${ arrPrice[2].innerText }<small>/month</small></p>
+						<p class="credits">12,000 Credits <span class="thin">Annually<span></p>
+						<p class="additional">Additional Credits <b>$0.40</b></p>
+					</div>			
+									
 				</div>
 				<div class="card">
 					<p class="name">Elite</p>
 					<p class="option">An exceptional plan to drive growth and reach new customers.</p>
 					<hr>
-					<p class="price">${document.querySelectorAll('.product-card__price')[3].innerText}<small>/month</small></p>
+					<p class="price">${arrPrice[3].innerText}<small>/month</small></p>
 					<p class="credits">3,000 Credits <span class="thin">Annually<span></p>
 					<p class="additional">Additional Credits <b>$0.30</b></p>					
 				</div>
@@ -323,11 +361,15 @@ if(window.location.hostname === 'app.uplead.com') {
 				startExp(whereEl, position, plans)
 
 				for (let i = 0; i < 4; i++) {
-					document.querySelectorAll('.banner-custom .card')[i].insertAdjacentElement('beforeend',
-						document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])
+					if(document.querySelectorAll('.banner-custom .card')[i].classList.contains('card-pro')) {
+						document.querySelector('.banner-custom .card .card-body').insertAdjacentElement('beforeend',
+							document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])
+					} else {
+						document.querySelectorAll('.banner-custom .card')[i].insertAdjacentElement('beforeend',
+							document.querySelectorAll('.product-card__action-btn-wrap button')[i + 1])
+					}
+
 				}
-
-
 			}
 		}, 200)
 
