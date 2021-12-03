@@ -1,7 +1,9 @@
 let checked = setInterval(() => {
-  if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
+  if (document.querySelector(".react-toggle-screenreader-only")) {
     clearInterval(checked)
-    document.querySelector(".react-toggle-screenreader-only").click()
+    if (!document.querySelector(".react-toggle-screenreader-only:checked")) {
+      document.querySelector(".react-toggle-screenreader-only").click()
+    }
   }
 }, 50)
 
