@@ -241,6 +241,11 @@ const customStyle = `
 		.banner-custom.app .card hr {
 			margin: 30px 0 !important;
 		}
+		
+		.banner-custom.app .card-pro button {
+			color: #fff;
+			background: #00A1BB;
+		}
 
 		.banner-custom.app button {
 			margin: 30px 0 20px !important;
