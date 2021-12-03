@@ -137,6 +137,26 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            #forgot_pass .addressBookSubmit {
+                    background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
+                    border: 0.5px solid #780F11;
+                    height: fit-content;
+                    border-radius: 4px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 33px;
+                    text-align: center;
+                    text-transform: capitalize;
+                    color: #FFFFFF;
+                    padding: 0 13px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 153px;
+                    margin-left: auto;
+                    width: 100%;
+                    margin-top: 17.75px
+                }
             .myAccountleft button[name="register"], .myAccountright button[name="user_login"] {
               display: none;}
             .title_head {
@@ -831,6 +851,8 @@ window.onload  = function () {
             });
           
             if (document.querySelector('.myAccount')) {
+                document.querySelector('.addressBookSubmit').setAttribute('type','button');
+                document.querySelector('.addressBookSubmit').setAttribute('value','Submit');
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
