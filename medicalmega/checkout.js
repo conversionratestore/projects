@@ -834,6 +834,13 @@ window.onload  = function () {
                     chengeQuantity()
                     removeProduct()
                     localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
+                    document.querySelectorAll('.checkout-product_img').forEach(el => {
+                        el.addEventListener('click', () => {
+                            action = `Click on the number of registration steps`;
+                            label = el.innerText;
+                            pushDataLayer(action,label)
+                        })
+                    })
                 })
 
                 let step = document.querySelectorAll('.num_line .number');
@@ -852,7 +859,7 @@ window.onload  = function () {
                         label = el.innerText;
                         pushDataLayer(action,label)
                     })
-                }
+                })
             }
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
