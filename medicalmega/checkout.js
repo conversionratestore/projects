@@ -837,13 +837,13 @@ window.onload  = function () {
                     if (document.querySelector('.checkout-product_img') != null) {
                         document.querySelectorAll('.checkout-product_img').forEach(el => {
                             el.addEventListener('click', () => {
-                                if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Registration') {
+                                if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Registration' && window.location.pathname.includes('checkout/step1')) {
                                     action = `Click on the product cards`;
                                     label = 'Login step';
-                                } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in') {
+                                } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in' && window.location.pathname.includes('checkout/step1')) {
                                     action = `Click on the product cards`;
                                     label = 'Registration step';
-                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information') {
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1')) {
                                     action = `Click on the product cards`;
                                     label = 'Billing and Shipping information step';
                                 } else if (window.location.pathname.includes('checkout/step2')) {
