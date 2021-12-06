@@ -995,6 +995,20 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.add('pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink');
+                if (document.querySelector('.head2.pointer') != null) {
+                    document.querySelectorAll('.head2.pointer').forEach((el, index) => {
+                        el.addEventListener('click', () => {
+                            if (el.closest('.bill_small')) {
+                                action = 'Click on Billing information button';
+                                label = el.innerText;
+                            } else if (el.closest('.ship_small')) {
+                                action = 'Click on Shipping information button';
+                                label = el.innerText;
+                            }
+                            pushDataLayer(action,label)
+                        })
+                    })
+                }
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
@@ -1240,7 +1254,6 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label);
                 });
-             
             }
 
             if(location.pathname == '/checkout/step4') {
@@ -1261,7 +1274,7 @@ window.onload  = function () {
                 .quantity-row {
                     pointer-events: none;
                 }
-            </style>`);
+                </style>`);
                 document.querySelector('.title_head').innerHTML = 'your order has been placed!';
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
@@ -1272,7 +1285,7 @@ window.onload  = function () {
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
-                    label ='Section Your order';
+                label ='Section Your order';
                 pushDataLayer(action,label)
             })
         } else {
