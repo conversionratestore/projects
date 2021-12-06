@@ -1110,8 +1110,12 @@ window.onload  = function () {
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click Next button';
+                    label = 'Section Delivery method';
+                    pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click();
                 });
+        
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
                 });
