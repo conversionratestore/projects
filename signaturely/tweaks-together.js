@@ -182,7 +182,7 @@ let initial = setInterval(function () {
 
 function start2() {
 
-    console.log('>>> start2')
+    console.log('>>> start')
 
     let sidebarItem = document.querySelectorAll('.react-sanfona-item.sidebar__item')[0],
         sidebarLinks = sidebarItem.querySelectorAll('.sidebar__item-link')
@@ -192,6 +192,10 @@ function start2() {
     sidebarLinks[1].innerHTML = `Sign & Send for Signature`;
     sidebarLinks[2].innerHTML = `Send for Signature`;
     sidebarLinks[3].innerHTML = `Bulk Send`;
+
+    document.querySelectorAll('.react-sanfona.sidebar__list .sidebar__item-trigger')[0].addEventListener('click', function(e) {
+        e.preventDefault()
+    })
 
 
 //open 'Sign a Document'
@@ -268,6 +272,22 @@ function start2() {
         if (document.querySelector('.settingsSignature__item:last-child')) {
             mut.disconnect()
             document.querySelector('.settingsSignature__item:last-child').click()
+        }
+
+        if(document.querySelector('.successSendModal') && window.location.pathname === '/only-me') {
+            mut.disconnect()
+            document.querySelector('.successSendModal .successSendModal__text-wrapper .successSendModal__title').textContent = 'Thanks for saving your document'
+
+            let download = setInterval(function () {
+                if(document.querySelector('.successSendModal .successSendModal__footer-actions button:first-child')) {
+                    clearInterval(download)
+                    document.querySelector('.successSendModal .successSendModal__footer-actions button:first-child').click()
+                }
+            }, 300)
+
+            setTimeout(function () {
+                clearInterval(download)
+            }, 4000)
         }
 
         mut.observe(document, configObserve);
