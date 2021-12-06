@@ -1240,8 +1240,16 @@ window.onload  = function () {
                 document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
 
                 document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click Proceed button';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
                     document.querySelector('form div[align="right"] input').click();
                 });
+                document.querySelector('.btn-back').addEventListener('click', () => {
+                    action = 'Back to Delivery Method';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label)
+                })
                 document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
                 document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
