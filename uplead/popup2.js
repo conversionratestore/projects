@@ -171,28 +171,36 @@ let btnInterval = setInterval(() => {
 	}
 }, 500)
 
-let credits = Number(document.querySelector('.header__credits-text--bold').innerText)
-let myCreditsLeft
+let start = setInterval(() => {
+	if(document.querySelector('.header__credits-text--bold').innerText) {
+		clearInterval(start)
 
-if (credits === 0) {
-	myCreditsLeft = '0%'
+		let credits = Number(document.querySelector('.header__credits-text--bold').innerText)
+		let myCreditsLeft
 
-	sessionStorage.setItem('show100', 'true');
+		if (credits === 0) {
+			myCreditsLeft = '0%'
 
-	showPopup(myCreditsLeft)
-} else if (0 < credits < 250) {
-	myCreditsLeft = '90%'
+			sessionStorage.setItem('show100', 'true');
 
-	sessionStorage.setItem('show90', 'true');
+			showPopup(myCreditsLeft)
+		} else if (0 < credits < 250) {
+			myCreditsLeft = '90%'
 
-	showPopup(myCreditsLeft)
-} else {
-	myCreditsLeft = '75%'
+			sessionStorage.setItem('show90', 'true');
 
-	sessionStorage.setItem('show75', 'true');
+			showPopup(myCreditsLeft)
+		} else {
+			myCreditsLeft = '75%'
 
-	showPopup(myCreditsLeft)
-}
+			sessionStorage.setItem('show75', 'true');
+
+			showPopup(myCreditsLeft)
+		}
+
+	}
+},200)
+
 
 // let show75 = setInterval(() => {
 // 	if (window.google_tag_manager['GTM-MTN4VBZ']?.dataLayer?.get('bannerType') === 'percent75' && !sessionStorage.getItem('show75')) {
