@@ -846,6 +846,13 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].innerHTML = 'Payment Method';
                 document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Confirmation';
                 document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+                document.querySelectorAll('.num_line a').forEach(el => {
+                    el.addEventListener('click', () => {
+                        action = `Click on the number of registration steps`;
+                        label = el.innerText;
+                        pushDataLayer(action,label)
+                    })
+                }
             }
 
             document.querySelectorAll('.btn-eye').forEach((item) => {
