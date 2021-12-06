@@ -7,7 +7,6 @@ function setOptionFetch(bodyOption) {
         },
         method: "POST",
         body: bodyOption
-    }
     return optionFetch
 }
 
@@ -903,6 +902,13 @@ window.onload  = function () {
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
+                document.querySelectorAll('.myAccount .btn-back').forEach(el => {
+                    el.addEventListener('click', () => {
+                        action = `Click on Back to Cart button`;
+                        label = 'Personal Information step';
+                        pushDataLayer(action,label)
+                    });
+                })
                 document.querySelector('.myAccountleft .registerOnLogin dt').remove();
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
