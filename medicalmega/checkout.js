@@ -1303,16 +1303,6 @@ window.onload  = function () {
             }
 
             if(location.pathname == '/checkout/step4') {
-                document.body.insertAdjacentHTML('afterbegin',`
-                <style>
-                    .num_line a {
-                        pointer-events: none;
-
-                    }
-                    #hdr, #banner {
-                        display: none!important;
-                    }
-                </style>`)
                 let header = `
                     <div id="logo" align="center">
                         <a href="https://medicalmega.com/index.html" title="Medical Mega">
@@ -1348,18 +1338,27 @@ window.onload  = function () {
                             <span class="circle_pink">
                                 <span class="number">4</span>
                             </span>
-                            <span class="pink>Confirmation</span>
+                            <span class="pink">Confirmation</span>
                         </a>
                     </div>
                 `
                 document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', header)
 
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+                    .num_line a {
+                        pointer-events: none;
+                    }
+                    #hdr, #banner {
+                        display: none!important;
+                    }
                     .num_line a span{
                         color: #171717!important;
                     }
                     .num_line a span.circle_pink span{
                         color: #C23D31!important;
+                    }
+                    .num_line .circle_pink:before {
+                        content: none!important;
                     }
                     .checkout-left_head, .payment .num_line, .payment h3, .remove, .quantity-btn {
                         display: none!important;
