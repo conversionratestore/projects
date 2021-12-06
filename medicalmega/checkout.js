@@ -834,13 +834,29 @@ window.onload  = function () {
                     chengeQuantity()
                     removeProduct()
                     localStorage.setItem('checkout', document.querySelector('.checkout-right').innerHTML)
-                    document.querySelectorAll('.checkout-product_img').forEach(el => {
-                        el.addEventListener('click', () => {
-                            action = `Click on the number of registration steps`;
-                            label = el.innerText;
-                            pushDataLayer(action,label)
+                    if (document.querySelector('.checkout-product_img') != null) {
+                        document.querySelectorAll('.checkout-product_img').forEach(el => {
+                            el.addEventListener('click', () => {
+                                if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Registration') {
+                                    action = `Click on the product cards`;
+                                    label = 'Login step';
+                                } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in') {
+                                    action = `Click on the product cards`;
+                                    label = 'Registration step';
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information') {
+                                    action = `Click on the product cards`;
+                                    label = 'Billing and Shipping information step';
+                                } else if (window.location.pathname.includes('checkout/step2')) {
+                                    action = `Click on the product cards`;
+                                    label = 'Delivery Method step';
+                                } else if (window.location.pathname.includes('checkout/step3')) {
+                                    action = `Click on the product cards`;
+                                    label = 'Payment Method step';
+                                }
+                                pushDataLayer(action,label)
+                            })
                         })
-                    })
+                    }
                 })
 
                 let step = document.querySelectorAll('.num_line .number');
@@ -877,7 +893,7 @@ window.onload  = function () {
 
                 document.querySelector('.myAccountleft .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
-                    action = `Click Next button`;
+                    action = `Click on Next button`;
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
@@ -985,7 +1001,7 @@ window.onload  = function () {
                     } else {
                         document.querySelectorAll('form div[align="right"] input')[1].click();
                     }
-                    action = 'Click Next button';
+                    action = 'Click on Next button';
                     label = 'Section Billing And Shipping Information';
                     pushDataLayer(action,label)
                 });
@@ -1124,8 +1140,8 @@ window.onload  = function () {
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
-                    action = 'Click Next button';
-                    label = 'Section Delivery method';
+                    action = 'Click on Next button';
+                    label = window.location.href;
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click();
                 });
