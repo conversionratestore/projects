@@ -172,26 +172,26 @@ let btnInterval = setInterval(() => {
 }, 500)
 
 let credits = Number(document.querySelector('.header__credits-text--bold').innerText)
-let creditsLeft
+let myCreditsLeft
 
 if (credits === 0) {
-	creditsLeft = '0%'
+	myCreditsLeft = '0%'
 
 	sessionStorage.setItem('show100', 'true');
 
-	showPopup(creditsLeft)
+	showPopup(myCreditsLeft)
 } else if (0 < credits < 250) {
-	creditsLeft = '90%'
+	myCreditsLeft = '90%'
 
 	sessionStorage.setItem('show90', 'true');
 
-	showPopup(creditsLeft)
+	showPopup(myCreditsLeft)
 } else {
-	creditsLeft = '75%'
+	myCreditsLeft = '75%'
 
 	sessionStorage.setItem('show75', 'true');
 
-	showPopup(creditsLeft)
+	showPopup(myCreditsLeft)
 }
 
 // let show75 = setInterval(() => {
