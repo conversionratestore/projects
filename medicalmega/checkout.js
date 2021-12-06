@@ -960,6 +960,11 @@ window.onload  = function () {
                 document.querySelector('.bill_small').parentElement.classList.add('flex-between');
                 document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
+                document.querySelector('.btn-back').addEventListener('click', () => {
+                    action = 'Click on Back to card button';
+                    label = 'Section Billing And Shipping Information';
+                    pushDataLayer(action,label)
+                })
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     if(document.querySelector('#copy_bill').checked == true) {
                         document.querySelector('.editor .buttons a').click();
