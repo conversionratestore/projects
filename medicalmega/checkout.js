@@ -1106,7 +1106,7 @@ window.onload  = function () {
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><button type="button" class="btn-back">Back to Billing and Shipping Info</button><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
@@ -1124,10 +1124,9 @@ window.onload  = function () {
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
-                    action = 'Click Back button';
+                    action = 'Click Back to Billing and Shipping Info button';
                     label = 'Section Delivery Method';
                     pushDataLayer(action,label)
-                    window.location = '/checkout/step1';
                 });
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
