@@ -327,7 +327,7 @@ const textArr = {
 		voucher: `GARMIN voucher code to be redeemed after 30 Day Trial Resistance bands of different strengths<br><br>Camera cover<br>User manual`,
 		care: `Care`,
 		microfiber: `Microfiber cloth<br>and glass cleaner`,
-		heart: `Heart rate monitor`,
+		heart: `Garmin voucher`,
 		elastic: `Elastic bands`,
 		warranty: '2 year warranty',
 		financing: `Flatrate plans`,
@@ -386,12 +386,12 @@ const textArr = {
 		options: `Optionen zur Finanzierung:`,
 		choose: `Wähle, was dir passt`,
 		rate: `0% Jahreszins`,
-		total: `Gesamtpreis unabhängig von Laufzeit: 2.268€`,
+		total: `Gesamtpreis unabhängig von Laufzeit: 2.268£`,
 		incl: `inkl. MwSt.`,
 		text: [
 			`30 Tage gratis und unverbindlich testen.*`,
 			`Die Zahlung erfolgt erst nach der Testphase und wenn du nicht mit VAHA zufrieden bist, einfach kommentarlos gratis wieder abholen lassen.`,
-			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 €) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
+			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 £) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
 			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
 		],
 		getWord: '',
@@ -413,18 +413,16 @@ const productPage = `
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.png" alt="vaha x">
                     <p class="name">Vaha X</p>
                  	<p class="from">${ obj.from }</p>
-<!--                    <p class="price">€ 2,268</p>-->
-              <!--       <p class="subprice"> € 88 / ${ obj.month }</p>-->
-                    <p class="price">€ 58 / ${ obj.month }</p>
+<!--                    <p class="price">£ 2,268</p>-->
+                    <p class="price">£ 88 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
                     <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.png" alt="vaha x">
                     <p class="name">Vaha S</p>
                     <p class="from">${ obj.from }</p>
-<!--                    <p class="price">€ 1,395</p>-->
-                    <!-- <p class="subprice">€ 68 / ${ obj.month }</p>-->
-                    <p class="price">€ 36 / ${ obj.month }</p>
+<!--                    <p class="price">£ 1,395</p>-->
+                    <p class="price">£ 68 / ${ obj.month }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
             </div>
@@ -654,31 +652,31 @@ const productPage = `
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>39 ${ obj.month }</p>
+                        <p>36 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 88 / ${ obj.month }</p>
-                            <p>€ 68 / ${ obj.month }</p>
+                            <p>£ 88 / ${ obj.month }</p>
+                            <p>£ 68 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>24 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 115 / ${ obj.month }</p>
-                            <p>€ 85 / ${ obj.month }</p>
+                            <p>£ 115 / ${ obj.month }</p>
+                            <p>£ 85 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>12 ${ obj.month }</p>
                         <div class="check">
-                            <p>€ 202 / ${ obj.month }</p>
-                            <p>€ 139 / ${ obj.month }</p>
+                            <p>£ 202 / ${ obj.month }</p>
+                            <p>£ 139 / ${ obj.month }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>${ obj.payment }</p>
                         <div class="check">
-                            <p>${ obj.fromWord }€ 2,418</p>
-                            <p>${ obj.fromWord }€ 1,663</p>
+                            <p>${ obj.fromWord } £ 2,418</p>
+                            <p>${ obj.fromWord } £ 1,663</p>
                         </div>
                     </div>
                 </div>
