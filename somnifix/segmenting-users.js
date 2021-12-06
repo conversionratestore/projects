@@ -27,6 +27,7 @@ let style = `
         width: calc(50% - 10px);
         margin: 0 20px 20px 0;
         font-family: 'Rubik', sans-serif;
+        border: none;
     }
     .sleep-impediments button:nth-child(2n+2) {
         margin-right: 0;
