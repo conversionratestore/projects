@@ -899,7 +899,7 @@ window.onload  = function () {
                 });
                 document.querySelector('.myAccountright .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="user_login"]').click();
-                    action = `Click Next button`;
+                    action = `Click on Next button`;
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
@@ -1141,7 +1141,7 @@ window.onload  = function () {
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
-                    label = window.location.href;
+                    label = 'Delivery Method step';
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click();
                 });
