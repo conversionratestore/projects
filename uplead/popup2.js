@@ -172,7 +172,7 @@ let btnInterval = setInterval(() => {
 }, 500)
 
 let start = setInterval(() => {
-	if(document.querySelector('.header__credits-text--bold').innerText) {
+	if(document.querySelector('.header__credits-text--bold')) {
 		clearInterval(start)
 
 		let credits = Number(document.querySelector('.header__credits-text--bold').innerText)
