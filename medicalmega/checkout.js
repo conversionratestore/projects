@@ -961,10 +961,10 @@ window.onload  = function () {
                 if (!document.querySelectorAll('.checkout-product')) {
                     document.body.insertAdjacentHTML('afterbegin', `
                     <style>
-                .checkout-right {
-                    display: none;
-                }
-                </style>`);
+                    .checkout-right {
+                        display: none;
+                    }
+                    </style>`);
                     document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
                 } else {
                     document.body.insertAdjacentHTML('afterbegin', `
@@ -991,7 +991,7 @@ window.onload  = function () {
                 document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
-                    action = 'Click on Back to card button';
+                    action = 'Click on Back to Cart button';
                     label = 'Section Billing And Shipping Information';
                     pushDataLayer(action,label)
                 })
