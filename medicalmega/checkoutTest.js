@@ -42,7 +42,7 @@ function chengeTotal(data) {
                 } else {
                     values[i].innerHTML = data[key].toFixed(2);
                 }
-                if (data[key] == '0') {
+                if (data[key] == '0' && !values[values.length - 1]) {
                     values[i].closest('p').style.display = 'none';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'none';
                 }
