@@ -137,6 +137,10 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            .num_line a:nth-child(2) {
+                pointer-events: none; }
+            .tooltip {
+                transform: none!important; }
             #logo img {
                 max-width: 361px; }
             #forgot_pass .registerOnLogin {
@@ -1056,86 +1060,88 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
+                #mainbody .quantity-btn {
+                    display: none;}
                 .num_line a:nth-child(2) span { 
                     color: #171717!important;}
-                    .num_line a:nth-child(2) .number{
-                        color: #171717!important;
-                    }
-                    .num_line a:nth-child(2) .circle_grey{
-                        border-color: #171717!important;
-                    }
-        .holiday {
-            margin: 15px 0 0 0!important;}
-        .payment h3, .primaryInfo h2, .remove{
-            display: none}
-        .primaryInfo li {
-            display: flex;
-            align-items: center;}
-        .altPayment, #mainbody .checkout-left_head {
-            display: none;}
-        .primaryInfo {
-            color: transparent;
-            border: none;
-            width: 100%;}
-        .primaryInfo ul {
-            color: #171717;
-            padding-top: 20px;
-            padding-left: 0; }
-        .payment h3 {
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 29px;
-            text-transform: capitalize;
-            color: #222222;
-            border-bottom: 0.5px solid #CCCCCC;}
-        .primaryInfo label {
-            padding-left: 0;}
-        .promocode-block {
-            justify-content: space-between;
-            align-items: center;
-            display: flex;}
-        .promocode-block label {
-            font-size: 18px;
-            color: #222222;
-            padding: 0;}
-        .primaryInfo li p {
-            line-height: 1;}
-        .primaryInfo li input {
-            width: 20px;
-            height: 20px; }
-        .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
-            font-size: 18px;}
-        .primaryInfo li strong {
-            margin-left: 5px;}
-        .promoCode {
-            margin: 0;
-            background: #EDEDED;
-            border: 0.5px solid #CCCCCC;
-            border-radius: 4px;
-            padding: 11px 20px;
-            height: auto;
-            width: 100%;
-            max-width: 270px;}
-        .promocode-block i {
-            font-size: 14px; }
-        .primaryInfo .title{
-            padding-top: 14px;
-            font-size: 18px;
-            line-height: 25px; }
-       .payment {
-            height: 100%;}
-       .payment form {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;}
-        #2_3_days {
-            padding: 5px 0 0 0!important;}
-        .quantity-row {
-            pointer-events: none;}
-        .quantity-btn  {
-            color: #CCCCCC!important;}
-        </style>`);
+                .num_line a:nth-child(2) .number{
+                    color: #171717!important;
+                }
+                .num_line a:nth-child(2) .circle_grey{
+                    border-color: #171717!important;
+                }
+                .holiday {
+                    margin: 15px 0 0 0!important;}
+                .payment h3, .primaryInfo h2, .remove{
+                    display: none}
+                .primaryInfo li {
+                    display: flex;
+                    align-items: center;}
+                .altPayment, #mainbody .checkout-left_head {
+                    display: none;}
+                .primaryInfo {
+                    color: transparent;
+                    border: none;
+                    width: 100%;}
+                .primaryInfo ul {
+                    color: #171717;
+                    padding-top: 20px;
+                    padding-left: 0; }
+                .payment h3 {
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 29px;
+                    text-transform: capitalize;
+                    color: #222222;
+                    border-bottom: 0.5px solid #CCCCCC;}
+                .primaryInfo label {
+                    padding-left: 0;}
+                .promocode-block {
+                    justify-content: space-between;
+                    align-items: center;
+                    display: flex;}
+                .promocode-block label {
+                    font-size: 18px;
+                    color: #222222;
+                    padding: 0;}
+                .primaryInfo li p {
+                    line-height: 1;}
+                .primaryInfo li input {
+                    width: 20px;
+                    height: 20px; }
+                .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
+                    font-size: 18px;}
+                .primaryInfo li strong {
+                    margin-left: 5px;}
+                .promoCode {
+                    margin: 0;
+                    background: #EDEDED;
+                    border: 0.5px solid #CCCCCC;
+                    border-radius: 4px;
+                    padding: 11px 20px;
+                    height: auto;
+                    width: 100%;
+                    max-width: 270px;}
+                .promocode-block i {
+                    font-size: 14px; }
+                .primaryInfo .title{
+                    padding-top: 14px;
+                    font-size: 18px;
+                    line-height: 25px; }
+            .payment {
+                    height: 100%;}
+            .payment form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    height: 100%;}
+                #2_3_days {
+                    padding: 5px 0 0 0!important;}
+                .quantity-row {
+                    pointer-events: none;}
+                .quantity-btn  {
+                    color: #CCCCCC!important;}
+                </style>`);
 
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
