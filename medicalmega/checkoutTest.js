@@ -42,13 +42,9 @@ function chengeTotal(data) {
                 } else {
                     values[i].innerHTML = data[key].toFixed(2);
                 }
-                if (data[key] == '0' && values[i].getAttribute('data-items') != 'shipping') {
+                if (data[key] == '0') {
                     values[i].closest('p').style.display = 'none';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'none';
-                }
-                if (window.location.pathname.includes('checkout/step3') && values[i].getAttribute('data-items') == 'shipping') {
-                    values[i].closest('p').style.display = 'flex';
-                    document.querySelectorAll('.total-headings p')[i].style.display = 'block';
                 }
             }
         }
@@ -465,6 +461,7 @@ window.onload  = function () {
                 flex-wrap: wrap;
                 font-weight: 500;}
             .checkout-right_footer .altTd p:last-child {
+                display: flex!important;
                 margin-bottom: 0;}
             .checkout-right_footer .altTd p:last-child b { 
                 font-weight: 500;
@@ -1206,28 +1203,30 @@ window.onload  = function () {
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
+                .checkout-right_footer .altTd p:nth-child(3) {
+                    display: block!important; }
+                .checkout-right_footer .altTd.total-values p:nth-child(3) {
+                    display: flex!important;}
                 #mainbody .quantity-btn {
                     display: none!important; }
                 .num_line a:nth-child(2) span, .num_line a:nth-child(3) span, .num_line a:nth-child(4) span  { 
                     color: #171717!important;}
-                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number, .num_line a:nth-child(4) .number {
-                        color: #171717!important;
-                    }
-                    .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey, .num_line a:nth-child(4) .circle_grey{
-                        border-color: #171717!important;
-                    }
-            .primaryInfo .error_cart {
-                width: 100%!important; }
-            .payment h3, .checkout-left_head, .remove {
-                display: none!important;}
-            .quantity-row {
-                pointer-events: none;}
-            .quantity-btn {
-                color: #CCCCCC!important; }
-            .primaryInfo {
-                font-family: 'Arial', sans-serif;
-                width: 100%;
-                border: none;}
+                .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number, .num_line a:nth-child(4) .number {
+                    color: #171717!important; }
+                .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey, .num_line a:nth-child(4) .circle_grey{
+                    border-color: #171717!important;}
+                .primaryInfo .error_cart {
+                    width: 100%!important; }
+                .payment h3, .checkout-left_head, .remove {
+                    display: none!important;}
+                .quantity-row {
+                    pointer-events: none;}
+                .quantity-btn {
+                    color: #CCCCCC!important; }
+                .primaryInfo {
+                    font-family: 'Arial', sans-serif;
+                    width: 100%;
+                    border: none;}
             .primaryInfo dl {
                 width: 100%;
                 margin: 0;}
@@ -1299,6 +1298,9 @@ window.onload  = function () {
            .label-check {
                 padding: 15px 0 0 0!important; }
             </style>`);
+            
+                d
+
                 document.querySelector('.title_head').innerHTML = 'Payment method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
