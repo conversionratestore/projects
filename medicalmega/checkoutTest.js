@@ -1298,9 +1298,6 @@ window.onload  = function () {
            .label-check {
                 padding: 15px 0 0 0!important; }
             </style>`);
-            
-                d
-
                 document.querySelector('.title_head').innerHTML = 'Payment method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
