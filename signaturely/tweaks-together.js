@@ -305,6 +305,7 @@ function start2() {
         if(document.querySelector('.Toastify__toast.Toastify__toast--warning')) {
             mut.disconnect()
             document.querySelector('.Toastify__toast.Toastify__toast--warning .Toastify__toast-body span').innerText = 'Go to Sign a Document'
+            document.querySelector('.Toastify__toast.Toastify__toast--warning .Toastify__toast-body>div').childNodes[0].textContent = 'Are you the only signer? Please use Sign a Document option instead.'
         }
 
         mut.observe(document, configObserve);
