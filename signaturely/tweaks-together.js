@@ -302,6 +302,11 @@ function start2() {
             }, 4000)
         }
 
+        if(document.querySelector('.Toastify__toast.Toastify__toast--warning')) {
+            mut.disconnect()
+            document.querySelector('.Toastify__toast.Toastify__toast--warning .Toastify__toast-body span').innerText = 'Go to Sign a Document'
+        }
+
         mut.observe(document, configObserve);
 
     })
