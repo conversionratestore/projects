@@ -73,7 +73,11 @@ document.body.insertAdjacentHTML('afterbegin',`
      }
      
      .signTemplate__templateField {
-        padding-bottom: 20px;
+        padding-bottom: 0;
+     }
+     
+     .uiSelect__wrapper {
+        padding-bottom: 40px;
      }
      
      .interactModal__header-send .button--primary:disabled, .interactModal__header-send .button--primary:disabled:hover {
@@ -219,6 +223,14 @@ function start2() {
             uploadFileWrapper.before(uploadFileSection);
             uploadFileWrapper.after(docForSigningSection);
             uploadFileSection.querySelector('.signTemplate__templateField-upload-createButton').after(orElement);
+        }
+
+        if(sidebarLinks[1].classList.contains('sidebar__item-link--active') || sidebarLinks[2].classList.contains('sidebar__item-link--active')) {
+            mut.disconnect();
+            document.querySelector('h1.signTemplate__title').before(document.querySelector('.signTemplate__templateField-select-wrapper'))
+            document.querySelector('h1.signTemplate__title').before(document.querySelector('.common__or'))
+            document.querySelector('h1.signTemplate__title').before(document.querySelector('.signTemplate__templateField-select-title'))
+            document.querySelector('h1.signTemplate__title').before(document.querySelector('.uiSelect__wrapper'))
         }
 
         //interact modal
