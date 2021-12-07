@@ -879,8 +879,8 @@ window.onload  = function () {
             
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
 
-                document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Payment Method';
-                document.querySelectorAll('.num_line a')[5].querySelectorAll('span')[2].innerHTML = 'Confirmation';
+                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].innerHTML = 'Payment Method';
+                document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Confirmation';
                 
                 let step = document.querySelectorAll('.num_line .number');
                 for (let i = 0; i < step.length; i++) {
