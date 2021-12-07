@@ -42,11 +42,11 @@ function chengeTotal(data) {
                 } else {
                     values[i].innerHTML = data[key].toFixed(2);
                 }
-                if (data[key] == '0' && values[i].getAttribute('data-items') !== 'shipping') {
+                if (data[key] == '0' && values[i].getAttribute('data-items') != 'shipping') {
                     values[i].closest('p').style.display = 'none';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'none';
                 }
-                if (window.location.pathname.includes('checkout/step3') && values[i].getAttribute('data-items') === 'shipping') {
+                if (window.location.pathname.includes('checkout/step3') && values[i].getAttribute('data-items') == 'shipping') {
                     values[i].closest('p').style.display = 'flex';
                     document.querySelectorAll('.total-headings p')[i].style.display = 'block';
                 }
