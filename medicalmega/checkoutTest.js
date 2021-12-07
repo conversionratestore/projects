@@ -1126,14 +1126,14 @@ window.onload  = function () {
                 .primaryInfo li strong {
                     margin-left: 5px;}
                 .promoCode {
-                    margin: 0;
+                    margin: 0 3px 0 0;
                     background: #EDEDED;
                     border: 0.5px solid #CCCCCC;
                     border-radius: 4px;
                     padding: 11px 20px;
                     height: auto;
                     box-sizing: border-box;
-                    max-width: 305px;
+                    max-width: 300px;
                     width: 100%;}
                 .promocode-block i {
                     font-size: 14px; }
