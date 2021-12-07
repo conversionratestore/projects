@@ -1357,24 +1357,25 @@ window.onload  = function () {
                             <span class="number">2</span>
                             </span>
                             <span>Shipping Information</span><span class="line_grey">&nbsp;</span>
-                            </a>
+                        </a>
                         <a href="https://medicalmega.com/checkout/step2">
-                                            <span class="circle_grey">
-                                                <span class="number">3</span>
-                                            </span>
-                                            <span>Payment Method</span>
-                                            <span class="line_pink">&nbsp;</span>
-                                        </a><a href="https://medicalmega.com/checkout/step3">
-                            <span class="circle_pink">
+                            <span class="circle_grey">
+                                <span class="number">3</span>
+                            </span>
+                            <span>Delivery Method</span>
+                            <span class="line_pink">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step3">
+                            <span class="circle_grey">
                             <span class="number">4</span>
                             </span>
-                            <span class="pink">Confirmation</span><span class="line_pink">&nbsp;</span>
+                            <span>Payment Method</span><span class="line_pink">&nbsp;</span>
                         </a>
                         <a href="https://medicalmega.com/checkout/step4">
-                        <span class="circle_grey">
-                        <span class="number">5</span>
-                        </span>
-                        <span>Confirmation</span>
+                            <span class="circle_pink">
+                            <span class="number">5</span>
+                            </span>
+                            <span class="pink">Confirmation</span>
                         </a>
                     </div>
                 `
