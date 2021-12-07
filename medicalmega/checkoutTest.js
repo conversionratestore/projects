@@ -1132,8 +1132,9 @@ window.onload  = function () {
                     border-radius: 4px;
                     padding: 11px 20px;
                     height: auto;
-                    width: 100%;
-                    max-width: 270px;}
+                    box-sizing: border-box;
+                    max-width: 305px;
+                    width: 100%;}
                 .promocode-block i {
                     font-size: 14px; }
                 .primaryInfo .title{
