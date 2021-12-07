@@ -4,20 +4,24 @@ let style = `
         display: flex;
         align-items: center;
     }
-    .sleep-impediments {
+    .sleep_impediments {
+        background: url('https://conversionratestore.github.io/projects/somnifix/img/bg.svg') no-repeat center bottom / 100%;
         padding: 50px 0 40px;
+    }
+    .sleep_impediments .container {
         max-width: 886px;
         margin: 0 auto;
     }
-    .sleep-impediments h2 {
+    .sleep_impediments h2 {
         margin-bottom: 59px;
         font-weight: bold;
         font-size: 32px;
         line-height: 38px;
         color: #000000;
         text-align: center;
+        width: 100%;
     }
-    .sleep-impediments button {
+    .sleep_impediments button {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -29,20 +33,20 @@ let style = `
         font-family: 'Rubik', sans-serif;
         border: none;
     }
-    .sleep-impediments button:nth-child(2n+2) {
+    .sleep_impediments button:nth-child(2n+2) {
         margin-right: 0;
     }
-    .sleep-impediments .span {
+    .sleep_impediments .span {
         display: block;
     }
-    .sleep-impediments .content {
+    .sleep_impediments .content {
         min-height: 85px;
         display: flex; 
         flex-direction: column;
         justify-content: space-between;
         text-align: left;
     }
-    .sleep-impediments .title {
+    .sleep_impediments .title {
         font-weight: bold;
         font-size: 26px;
         line-height: 31px;
@@ -50,7 +54,7 @@ let style = `
         color: #1E415F;
         margin: 0;
     }
-    .sleep-impediments .span {
+    .sleep_impediments .span {
         font-size: 14px;
         line-height: 16px;
         margin-top: 7px; 
@@ -70,7 +74,7 @@ let style = `
 let arr = [
     {
         iconSrc: 'https://conversionratestore.github.io/projects/somnifix/img/snoring.svg',
-        title: 'Reduce<br> snoring'
+        title: 'Reduce snoring'
     },
     {
         iconSrc: 'https://conversionratestore.github.io/projects/somnifix/img/snoring-1.svg',
@@ -78,44 +82,63 @@ let arr = [
     },
     {
         iconSrc: 'https://conversionratestore.github.io/projects/somnifix/img/snoring-2.svg',
-        title: 'poor sleep<br> quality'
+        title: 'poor sleep quality'
     },
     {
         iconSrc: 'https://conversionratestore.github.io/projects/somnifix/img/snoring-3.svg',
-        title: 'Increase CPAP<br> Compliance'
+        title: 'Increase CPAP Compliance'
     }
 ]
 
-let createWrapper = `
-<div class="sleep-impediments">
-    <h2>How to address your sleep impediments</h2>
-    <div class="shg-row"></div>
+let createWrapperBtns = `
+<div class="sleep_impediments">
+    <div class="container">
+        <h2>How to address your sleep impediments</h2>
+        <div class="shg-row"></div>
+    </div>
 </div>
+`
+let createWrapper = `
+    <div class="sleep_issue">
+        <div class="flex-center-between">
+            <ul class="tabs"></ul>
+            <button type="button" class="btn-close">Close <img src="https://conversionratestore.github.io/projects/somnifix/img/close-dark.svg"></button>
+        </div>
+        <div class="sleep_issue_contains">
+            <div class="sleep_issue_item active">
+                <h2>SLEEP SOUNDLY. WITHOUT MAKING A SOUND.</h2>
+                <p>Don’t let your snoring ruin your sleep...and your partner’s too.</p>
+                <div class="sleep_issue_"></div>
+            </div>
+        </div>
+    </div>
 `
 
 function createBtns(iconSrc,title) {
-    let createElementButtons = `
-        <button type="button">
-            <span class="align-items-center">
-                <img class="img_snoring" src="${iconSrc}" alt="icon">
-                <span class="content">
-                    <span class="title">${title}</span>
-                    <span class="span">Tap to learn more</span>
+    return `<button type="button">
+                <span class="align-items-center">
+                    <img class="img_snoring" src="${iconSrc}" alt="icon">
+                    <span class="content">
+                        <span class="title">${title}</span>
+                        <span class="span">Tap to learn more</span>
+                    </span>
                 </span>
-            </span>
-            <img class="img_arrow" src="https://conversionratestore.github.io/projects/somnifix/img/arrow-right.svg" alt="icon arrow">
-        </button>
-    `
-    return createElementButtons
+                <img class="img_arrow" src="https://conversionratestore.github.io/projects/somnifix/img/arrow-right.svg" alt="icon arrow">
+            </button>`
 }
 
 
-let createElementContent = ``;
+function createTabs(tab) {
+    return `<li>${tab}</li>`
+}
+
 
 document.body.insertAdjacentHTML('afterbegin', style);
 
-document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapper);
+document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapperBtns);
 
 for (let i = 0; i < arr.length; i++) {
-    document.querySelector('.sleep-impediments .shg-row').insertAdjacentHTML('beforeend', createBtns(arr[i]["iconSrc"],arr[i]["title"]));
+    document.querySelector('.sleep_impediments .shg-row').insertAdjacentHTML('beforeend', createBtns(arr[i]["iconSrc"],arr[i]["title"]));
 }
+
+document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapper);
