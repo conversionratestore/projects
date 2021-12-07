@@ -878,11 +878,9 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
             
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
+
                 document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Payment Method';
                 document.querySelectorAll('.num_line a')[5].querySelectorAll('span')[2].innerHTML = 'Confirmation';
-        
-                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].innerHTML = 'Payment Method';
-                document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Confirmation';
                 
                 let step = document.querySelectorAll('.num_line .number');
                 for (let i = 0; i < step.length; i++) {
@@ -1344,33 +1342,39 @@ window.onload  = function () {
                     <div class="num_line">
                         <a href="https://medicalmega.com/cart.html">
                             <span class="circle_grey">
-                                <span class="number">0</span>
+                            <span class="number">0</span>
                             </span>
                             <span>My Cart</span><span class="line_grey">&nbsp;</span>
                         </a>
                         <a href="https://medicalmega.com/checkout/step1">
                             <span class="circle_grey">
-                                <span class="number">1</span>
+                            <span class="number">1</span>
                             </span>
                             <span>Personal Information</span><span class="line_grey">&nbsp;</span>
                         </a>
                         <a href="https://medicalmega.com/checkout/step1">
                             <span class="circle_grey">
-                                <span class="number">2</span>
+                            <span class="number">2</span>
                             </span>
                             <span>Shipping Information</span><span class="line_grey">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step3">
-                            <span class="circle_grey">
-                                <span class="number">3</span>
+                            </a>
+                        <a href="https://medicalmega.com/checkout/step2">
+                                            <span class="circle_grey">
+                                                <span class="number">3</span>
+                                            </span>
+                                            <span>Payment Method</span>
+                                            <span class="line_pink">&nbsp;</span>
+                                        </a><a href="https://medicalmega.com/checkout/step3">
+                            <span class="circle_pink">
+                            <span class="number">4</span>
                             </span>
-                            <span>Payment Method</span><span class="line_pink">&nbsp;</span>
+                            <span class="pink">Confirmation</span><span class="line_pink">&nbsp;</span>
                         </a>
                         <a href="https://medicalmega.com/checkout/step4">
-                            <span class="circle_pink">
-                                <span class="number">4</span>
-                            </span>
-                            <span class="pink">Confirmation</span>
+                        <span class="circle_grey">
+                        <span class="number">5</span>
+                        </span>
+                        <span>Confirmation</span>
                         </a>
                     </div>
                 `
