@@ -107,7 +107,7 @@ let style = `
         display: none;
     }
     .sleep_issue {
-        max-width: 1360px;
+        max-width: 1340px;
         margin: 40px auto;
         width: calc(100% - 20px)
     }
@@ -160,7 +160,10 @@ let style = `
         margin-bottom: 70px;
     }
     .item_row h3 {
-        margin-bottom: 15px
+        margin-bottom: 15px;
+        font-weight: bold;
+        line-height: 38px;
+        color: #1E415F;
     }
     .sleep_issue_contents {
         background: url('https://conversionratestore.github.io/projects/somnifix/img/content/bg-content.svg') no-repeat center / cover;
@@ -170,6 +173,31 @@ let style = `
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .sleep_issue_item h2 {
+        text-align: center;
+        font-weight: bold;
+        line-height: 47px;
+        text-align: center;
+        letter-spacing: 0.05em;
+        margin-bottom: 15px;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .item_row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 70px;
+    }
+    .col_content {
+        max-width: 620px;
+    }
+    .odd {
+
+    }
+    .even {
+        
     }
     @media only screen and (min-width: 768px) {
         .mb-md-25 {
@@ -251,7 +279,7 @@ function createItemsContents(titleContent,spanContent,titleGet,spanGet) {
     return `
         <div class="sleep_issue_item">
             <h2>${titleContent}</h2>
-            <p>${spanContent}</p>
+            <p class="text-center">${spanContent}</p>
 
             <div class="get_somnifix">
                 <h3>${titleGet}</h3>
@@ -263,15 +291,15 @@ function createItemsContents(titleContent,spanContent,titleGet,spanGet) {
 }
 
 let items = [ `
-    <div class="item_row">
+    <div class="item_row odd">
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-1.png" alt="image" class="img_content">
         <div class="col_content">
             <h3 class="mb-md-25"> Mouth Breathing: The Leading Cause of Snoring</h3>
-            <p class="w-bold">Many people are surprised to learn that over 90% of snoring can be attributed to one, simple culprit: mouth breathing.</p>
+            <p class="w-bold ">Many people are surprised to learn that over 90% of snoring can be attributed to one, simple culprit: mouth breathing.</p>
             <p>When you mouth breathe, the inhaled air causes the relaxed tissues in your mouth to vibrate as it passes through. This vibration results in that familiar, embarrassing sound that we know as snoring. However, it doesn’t have to be that way. By breathing through yournose instead, air passes through to the lungs easily and silently.</p>
         </div>
     </div>
-    <div class="item_row">
+    <div class="item_row even">
         <div class="col_content">
             <h3 class="mb-md-25">Why Snoring Should be a Concern</h3>
             <p class="w-bold">Snoring isn't just embarrassing for the snorer and extremely annoying for your partner, it actually has significant health implications. Sleep fragmentation caused by snoring can lead to problems such as:</p>
