@@ -1172,14 +1172,6 @@ window.onload  = function () {
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
-                document.querySelectorAll('#ship_options li').forEach((el, i) => {
-                    el.addEventListener('click', () => {
-                        action = `Pick ${el.querySelector('i').innerHTML}`;
-                        label = 'Section Delivery method';
-                        pushDataLayer(action,label)
-                    });
-                });
-
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1419,7 +1411,6 @@ window.onload  = function () {
                     }
                 </style>`)
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
-                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
                 document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
@@ -1427,6 +1418,7 @@ window.onload  = function () {
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
           
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
+                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
                     label = 'Delivery Method step';
@@ -1442,6 +1434,14 @@ window.onload  = function () {
                     action = 'Click Back to Billing and Shipping Info button';
                     label = 'Section Delivery Method';
                     pushDataLayer(action,label)
+                });
+                
+                document.querySelectorAll('#ship_options li').forEach((el, i) => {
+                    el.addEventListener('click', () => {
+                        action = `Pick ${el.querySelector('i').innerHTML}`;
+                        label = 'Section Delivery method';
+                        pushDataLayer(action,label)
+                    });
                 });
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
                 document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
