@@ -949,7 +949,7 @@ window.onload  = function () {
                     step[i].innerHTML = i;
                     document.querySelectorAll('.num_line a')[i].addEventListener('click', () => {
                         action = `Click on the number of registration steps`;
-                        label = el.innerText;
+                        label = document.querySelectorAll('.num_line a')[i].innerText;
                         pushDataLayer(action,label)
                     })
                 }
