@@ -697,8 +697,11 @@ window.onload  = function () {
             .registerOnLogin .g-signin2 {
                 margin: 20px 0 15px auto;
                 max-width: 261px;
+                width: 100%;
             }
-
+            .registerOnLogin .g-signin2 .abcRioButtonBlue {
+                width: 100%!important;
+            }
             .address_book_new .editor .title {
                 display: none;
             }
