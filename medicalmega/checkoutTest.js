@@ -1548,7 +1548,12 @@ window.onload  = function () {
                 document.querySelector('label[for="same_as_bill"]').closest('dd').classList.add('same_as_bill_dd')
 
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
-                document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click on Next button';
+                    label = 'Section Billing And Shipping Information';
+                    pushDataLayer(action,label)
+                    document.querySelector('form div[align="right"] input').click()
+                })
             }
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
