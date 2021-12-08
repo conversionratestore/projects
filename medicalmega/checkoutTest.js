@@ -143,6 +143,9 @@ window.onload  = function () {
                 transform: none!important; }
             #logo img {
                 max-width: 361px; }
+            #forgot_pass {
+                padding-bottom: 20px;
+            }
             #forgot_pass .registerOnLogin {
                 display: block; }
             #forgot_pass .addressBookSubmit {
@@ -693,7 +696,9 @@ window.onload  = function () {
             }
             .registerOnLogin .g-signin2 {
                 margin: 20px 0 15px auto;
+                max-width: 261px;
             }
+
             .address_book_new .editor .title {
                 display: none;
             }
@@ -789,6 +794,7 @@ window.onload  = function () {
             }
             .btn-guest {
                 margin-bottom: 20px;
+                max-width: 261px;
             }
             </style>`);
 
