@@ -996,7 +996,7 @@ window.onload  = function () {
                     document.querySelector('.log').classList.add('active');
                 }
             }
-            if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
+            if (location.pathname == '/checkout/step1') {
                 if (!document.querySelectorAll('.checkout-product')) {
                     document.body.insertAdjacentHTML('afterbegin', `
                     <style>
@@ -1024,9 +1024,11 @@ window.onload  = function () {
                 document.querySelector('.payment h3 ').style.display = 'none';
                 document.querySelector('.checkout-left_head').style.display = 'none';
                 document.querySelector('.checkout-left_head .log ').style.display = 'none';
+             
                 document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+                
                 document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
@@ -1440,6 +1442,11 @@ window.onload  = function () {
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
 
+            if(location.pathname.includes('/guest-checkout1.php')) {
+                document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
+                document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
+                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
+            }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
                 label = 'Section Your order';
