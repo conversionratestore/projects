@@ -1165,11 +1165,8 @@ window.onload  = function () {
                     color: #CCCCCC!important;}
                 </style>`);
 
-                document.querySelector('.title_head').innerHTML = 'Delivery Method';
-                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
 
-        
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
                 });
@@ -1424,6 +1421,8 @@ window.onload  = function () {
                         border-color: #171717!important;
                     }
                 </style>`)
+                document.querySelector('.title_head').innerHTML = 'Delivery Method';
+                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
@@ -1534,11 +1533,7 @@ window.onload  = function () {
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
             if(location.pathname.includes('/guest-checkout2.php')) {
-            
-            
-                document.querySelector('.title_head').after(document.querySelector('.payment'));
-                document.querySelector('.title_head').innerHTML = 'Delivery Method';
-                
+                //guest 2
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
