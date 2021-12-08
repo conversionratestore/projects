@@ -82,6 +82,20 @@ let newPageStyle = /*html*/ `
         content: unset !important;
     }
 
+    .payment_inform_box li > div.card_type{
+        padding: 10px 0 10px 18px !important;
+        font-size: 14px !important;
+        line-height: 19px !important;
+        margin-bottom: 20px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .payment_inform_box li > div.card_type .col-md-4.col-sm-4{
+        padding: 0 !important;
+    }
+
     @media (min-width: 769px){
             body .container {
             width: 80%;
@@ -1021,11 +1035,13 @@ function newPage() {
     document.querySelector(".payment_plan").remove()
 
     document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
+
     document
       .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
 
     document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
     document
       .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
