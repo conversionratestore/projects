@@ -1168,102 +1168,7 @@ window.onload  = function () {
 
             }
             if (location.pathname == '/checkout/step3') {
-                document.body.insertAdjacentHTML('afterbegin',`<style>
-                .checkout-right_footer .altTd p:nth-child(3) {
-                    display: block!important; }
-                .checkout-right_footer .altTd.total-values p:nth-child(3) {
-                    display: flex!important;}
-                #mainbody .quantity-btn {
-                    display: none!important; }
-                .num_line a:nth-child(2) span, .num_line a:nth-child(3) span, .num_line a:nth-child(4) span  { 
-                    color: #171717!important;}
-                .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number, .num_line a:nth-child(4) .number {
-                    color: #171717!important; }
-                .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey, .num_line a:nth-child(4) .circle_grey{
-                    border-color: #171717!important;}
-                .primaryInfo .error_cart {
-                    width: 100%!important; }
-                .payment h3, .checkout-left_head, .remove {
-                    display: none!important;}
-                .quantity-row {
-                    pointer-events: none;}
-                .quantity-btn {
-                    color: #CCCCCC!important; }
-                .primaryInfo {
-                    font-family: 'Arial', sans-serif;
-                    width: 100%;
-                    border: none;}
-            .primaryInfo dl {
-                width: 100%;
-                margin: 0;}
-            .primaryInfo div{
-                margin-left: 0!important; }
-            div.cc-recurring {
-                margin-bottom: 40px;
-                padding: 10px 0;}
-            .primaryInfo dl dd {
-                font-family: 'Arial', sans-serif; }
-            .primaryInfo dl textarea, .primaryInfo dl input{
-                background: #EDEDED;
-                border: 0.5px solid #CCCCCC;
-                border-radius: 4px;
-                padding: 11px 20px; }
-            .primaryInfo dl input  {
-                margin: 0;
-                height: auto!important;}
-            .primaryInfo dl textarea {
-                height: 40px;}
-            span.cc-recurring-setting {
-                width: 100%;}
-            #recurring_billing_period, #card_list {
-                padding: 0 10px;
-                background: #EDEDED;
-                border: 0.5px solid #CCCCCC;
-                box-sizing: border-box;
-                height: 40px;
-                margin-left: 10px;
-                border-radius: 4px;
-                max-width: 303px;
-                width: 100%!important;}
-            .cc-recurring-setting {
-                justify-content: space-between;
-                display: flex;
-                align-items: center;
-                font-weight: 500;
-                font-size: 14px; }
-            .allow-up-to-60 {
-                display: none;
-                white-space: break-spaces; }
-           .primaryInfo label, .card-details {
-                display: flex;
-                align-items: center;}
-           .primaryInfo label {
-                width: 100%;}
-           .quantity-btn {
-                color: #CCCCCC!important;}
-           .card-details p{
-                white-space: nowrap;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 25px;
-                text-transform: capitalize;
-                color: #222222;
-                margin: 0 25px 0 0;}
-           .auto-reorder-header {
-                display: block;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 25px;
-                margin-bottom: 2px;
-                color: #222222;}
-           .cc-recurring {
-                font-size: 12px;
-                line-height: 16px;}
-           .cc-recurring br {
-                display: none; }
-           .label-check {
-                padding: 15px 0 0 0!important; }
-            </style>`);
+
                 document.querySelector('.title_head').innerHTML = 'Payment method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
@@ -1447,6 +1352,104 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
                 document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
+            }
+            if (location.pathname == '/checkout/step3' || location.pathname.includes('/guest-checkout3.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`<style>
+                .checkout-right_footer .altTd p:nth-child(3) {
+                    display: block!important; }
+                .checkout-right_footer .altTd.total-values p:nth-child(3) {
+                    display: flex!important;}
+                #mainbody .quantity-btn {
+                    display: none!important; }
+                .num_line a:nth-child(2) span, .num_line a:nth-child(3) span, .num_line a:nth-child(4) span  { 
+                    color: #171717!important;}
+                .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number, .num_line a:nth-child(4) .number {
+                    color: #171717!important; }
+                .num_line a:nth-child(2) .circle_grey, .num_line a:nth-child(3) .circle_grey, .num_line a:nth-child(4) .circle_grey{
+                    border-color: #171717!important;}
+                .primaryInfo .error_cart {
+                    width: 100%!important; }
+                .payment h3, .checkout-left_head, .remove {
+                    display: none!important;}
+                .quantity-row {
+                    pointer-events: none;}
+                .quantity-btn {
+                    color: #CCCCCC!important; }
+                .primaryInfo {
+                    font-family: 'Arial', sans-serif;
+                    width: 100%;
+                    border: none;}
+                .primaryInfo dl {
+                    width: 100%;
+                    margin: 0;}
+                .primaryInfo div{
+                    margin-left: 0!important; }
+                div.cc-recurring {
+                    margin-bottom: 40px;
+                    padding: 10px 0;}
+                .primaryInfo dl dd {
+                    font-family: 'Arial', sans-serif; }
+                .primaryInfo dl textarea, .primaryInfo dl input{
+                    background: #EDEDED;
+                    border: 0.5px solid #CCCCCC;
+                    border-radius: 4px;
+                    padding: 11px 20px; }
+                .primaryInfo dl input  {
+                    margin: 0;
+                    height: auto!important;}
+                .primaryInfo dl textarea {
+                    height: 40px;}
+                span.cc-recurring-setting {
+                    width: 100%;}
+                #recurring_billing_period, #card_list {
+                    padding: 0 10px;
+                    background: #EDEDED;
+                    border: 0.5px solid #CCCCCC;
+                    box-sizing: border-box;
+                    height: 40px;
+                    margin-left: 10px;
+                    border-radius: 4px;
+                    max-width: 303px;
+                    width: 100%!important;}
+                .cc-recurring-setting {
+                    justify-content: space-between;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 14px; }
+                .allow-up-to-60 {
+                    display: none;
+                    white-space: break-spaces; }
+                .primaryInfo label, .card-details {
+                    display: flex;
+                    align-items: center;}
+                .primaryInfo label {
+                    width: 100%;}
+                .quantity-btn {
+                    color: #CCCCCC!important;}
+                .card-details p{
+                    white-space: nowrap;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 25px;
+                    text-transform: capitalize;
+                    color: #222222;
+                    margin: 0 25px 0 0;}
+                .auto-reorder-header {
+                    display: block;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 25px;
+                    margin-bottom: 2px;
+                    color: #222222;}
+                .cc-recurring {
+                    font-size: 12px;
+                    line-height: 16px;}
+                .cc-recurring br {
+                    display: none; }
+                .label-check {
+                    padding: 15px 0 0 0!important; }
+            </style>`);
             }
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
