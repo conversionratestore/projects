@@ -629,7 +629,7 @@ window.onload  = function () {
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap; }
-            .registerOnLogin dd {
+            .registerOnLogin dd, .addressBook dd {
                 padding: 0!important;
                 width: 100%;
                 max-width: 261px; }
@@ -1445,8 +1445,19 @@ window.onload  = function () {
             if(location.pathname.includes('/guest-checkout1.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
-                    .checkout-left_head {
-                        display: none;
+                    .checkout-left_head, .payment h3 {
+                        display: none!important;
+                    }
+                    .addressBook {
+                        border: none;
+                        padding: 0 0px 20px;
+                    }
+                    .addressBook dl {
+                        clear: both;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        margin: 0;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
