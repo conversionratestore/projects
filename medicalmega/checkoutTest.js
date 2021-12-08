@@ -968,7 +968,11 @@ window.onload  = function () {
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.g-signin2').insertAdjacentHTML('afterend','<button type="button" class="btn btn-next btn-guest">Checkout as a guest</button>')
-
+                document.querySelector('.g-signin2').addEventListener('click', () => {
+                    action = `Click on Sign In with google button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
+                });
                 document.querySelector('.btn-guest').addEventListener('click', () => {
                     action = `Click on Checkout as a guest button`;
                     label = 'Section Sign In';
