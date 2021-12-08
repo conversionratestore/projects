@@ -587,7 +587,7 @@
             document.querySelectorAll('.on-button-get-sominifix-open')[0].click()
 
             action = 'Click on Buy Somnifix button';
-            label = `${document.querySelector('.tabsNav li.active').innerText} card`;
+            label = `${document.querySelector('.tabsNav li.active').innerText.toLowerCase()} card`;
             pushDataLayer(action,label) 
         })
     })
