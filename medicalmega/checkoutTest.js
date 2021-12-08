@@ -1443,10 +1443,11 @@ window.onload  = function () {
             }
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
+                <style>
                     .checkout-left_head, .payment h3 {
                         display: none!important;
                     }
-                `)
+                </style>`)
             }
             if(location.pathname.includes('/guest-checkout1.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
@@ -1504,7 +1505,7 @@ window.onload  = function () {
                         max-width: 100%;
                         height: auto!important;
                     }
-                </style>`)
+                </>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
