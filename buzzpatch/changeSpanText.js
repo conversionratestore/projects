@@ -1,7 +1,11 @@
 document.head.insertAdjacentHTML('beforeend', `<style>
+	.radio-inline {
+		font-size: 20px;
+		letter-spacing: 0.02em;
+	}
 	.radio-inline span {
 		font-weight: 500;
-		font-size: 26px;
+		font-size: 12px;
 		line-height: 14px;
 	}
 </style>`)
