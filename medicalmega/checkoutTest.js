@@ -1451,12 +1451,11 @@ window.onload  = function () {
                     .addressBook {
                         border: none;
                         padding: 0 0px 20px;
+                        display: flex;
+                        justify-content: space-between;
                     }
                     .addressBook dl {
                         clear: both;
-                        display: flex;
-                        justify-content: space-between;
-                        flex-wrap: wrap;
                         margin: 0;
                     }
                 </style>`)
