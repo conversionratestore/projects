@@ -113,7 +113,8 @@ const productStyle = `
             border-bottom: 1px solid #474747;
         }
         
-        .properties .property:last-child .check{
+        .properties .property:last-child .check,
+        .financing .property:last-child .check {
             border: none;
         }
 
@@ -238,27 +239,39 @@ const productStyle = `
         	color: #FFFFFF;
         }
         
-        .price-wrapper {
+        .price-wrapper {        	
         	display:flex;
         	flex-direction: row;
         	justify-content: space-evenly;      
         	margin-bottom: 40px;  	
+        	border-bottom: 1px solid #DCDCDC;
+        	padding-bottom: 35px;
         }
         
         .price-wrapper > div {
+        	position: relative;
         	width: 100%;
-        	border-right: 1px solid #666666;
         }
         
-        .price-wrapper > div:last-child {
-        	border: none;
+        .price-wrapper > div::after {
+        	content: "";
+        	position: absolute;
+        	display: block;
+        	right: 66px;
+        	width: 1px;
+        	background: #DCDCDC;
+        }
+        
+        .price-wrapper > div:last-child::after {
+        	display: none;
         }
         
         .price-wrapper .zero {
-        	font-weight: normal;
-			font-size: 50px;
+        	font-weight: bold;
+			font-size: 40px;
 			color: #000000;
 			position: relative;
+			letter-spacing: 0.02em;
         } 
         
         .price-wrapper .zero sup {
@@ -348,7 +361,7 @@ const textArr = {
 		chooseVaha: 'Choose your Vaha',
 		link: '/product',
 		money: `No money<br>down`,
-		financingPrice: 'Financing',
+		financingPrice: 'Flatrate plans',
 		fees: `No hidden<br>fees`
 	},
 	'ge': {
@@ -399,7 +412,7 @@ const textArr = {
 		chooseVaha: '',
 		link: '/produkt',
 		money: '',
-		financingPrice: '',
+		financingPrice: 'Flatrate-Tarife',
 		fees: ''
 	},
 }
@@ -635,11 +648,11 @@ const productPage = `
                     <p class="title">${ obj.financingPrice }</p>
                     <div class="price-wrapper">
                     	<div>
-                    		<p class="zero"><sup>£</sup>0</p>
+                    		<p class="zero">£0</p>
                     		<p class="subzero">${ obj.money }</p>
 						</div>
 						<div>
-                    		<p class="zero">0<sup>%</sup></p>
+                    		<p class="zero">%0</p>
                     		<p class="subzero">${ obj.financingPrice }</p>
 						</div>
 						<div>
