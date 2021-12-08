@@ -1165,12 +1165,9 @@ window.onload  = function () {
                     color: #CCCCCC!important;}
                 </style>`);
 
-                document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
-
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
                 });
-                document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
 
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
 
@@ -1181,11 +1178,7 @@ window.onload  = function () {
                         pushDataLayer(action,label)
                     });
                 });
-                document.querySelector('.promoCode').addEventListener('click', () => {
-                    action =  'Click on Promotional Code field';
-                    label = 'Section Delivery method';
-                    pushDataLayer(action,label)
-                });
+
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1412,6 +1405,9 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>  
+                    .checkout-left_head, .payment h3 {
+                        display: none!important;
+                    }
                     .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
                         color: #171717!important;}
                     .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
@@ -1423,6 +1419,7 @@ window.onload  = function () {
                 </style>`)
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+                document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
                 document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
@@ -1436,7 +1433,11 @@ window.onload  = function () {
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click();
                 });
-                
+                document.querySelector('.promoCode').addEventListener('click', () => {
+                    action =  'Click on Promotional Code field';
+                    label = 'Section Delivery method';
+                    pushDataLayer(action,label)
+                });
                 document.querySelector('.btn-back').addEventListener('click', () => {
                     action = 'Click Back to Billing and Shipping Info button';
                     label = 'Section Delivery Method';
@@ -1449,9 +1450,7 @@ window.onload  = function () {
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
-                    .checkout-left_head, .payment h3 {
-                        display: none!important;
-                    }
+                  
                 </style>`)
             }
             if(location.pathname.includes('/guest-checkout1.php')) {
