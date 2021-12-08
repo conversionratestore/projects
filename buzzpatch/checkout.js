@@ -195,7 +195,6 @@ const style = `
 			font-weight: bold;
 			font-size: 24px;
 			color: #000000;
-			margin-right: 8px;
 		}
 		
 		 .rate img {
