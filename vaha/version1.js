@@ -288,12 +288,11 @@ const productStyle = `
         
         .price-wrapper .subzero {        	
         	font-weight: normal;
-			font-size: 12px;
-			line-height: 150%;
+			font-size: 14px;
+			line-height: 16px;
 			text-align: center;
 			letter-spacing: 0.01em;		
-			color: #666666;
-			
+			color: #222222;			
         }
 	</style>
 `
