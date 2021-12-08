@@ -342,7 +342,7 @@ window.onload  = function () {
                 width: 100%; }
             .registerOnLogin {
                 padding: 0;}
-            .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select, .addressBook input {
+            .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select, .addressBook input, .addressBook select {
                 width: -webkit-fill-available;
                 background: #EDEDED;
                 height: auto;
