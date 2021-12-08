@@ -929,7 +929,11 @@ window.onload  = function () {
 
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
-                document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+                if (!window.location.pathname.includes('guest-checkout')) {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+                } else {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/guest-checkout1.php');
+                }
             
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
 
