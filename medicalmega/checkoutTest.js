@@ -970,7 +970,15 @@ window.onload  = function () {
                 document.querySelector('.g-signin2').insertAdjacentHTML('afterend','<button type="button" class="btn btn-next btn-guest">Checkout as a guest</button>')
 
                 document.querySelector('.btn-guest').addEventListener('click', () => {
+                    action = `Click on Checkout as a guest button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
                     document.querySelector('.guest_checkout_button input').click();
+                });
+                document.querySelector('.forgot_password').addEventListener('click', () => {
+                    action = `Click on Forgot your password button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
                 });
                 document.querySelector('.myAccountleft .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
