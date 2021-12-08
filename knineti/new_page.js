@@ -90,11 +90,45 @@ let newPageStyle = /*html*/ `
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-radius: 5px;
     }
 
     .payment_inform_box li > div.card_type .col-md-4.col-sm-4{
         padding: 0 !important;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
+
+    input#card1, input#card2{
+        position: absolute;
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+    }
+
+
+
+    .payment_inform_box li > div.card_type label{
+        margin-bottom: 0 !important;
+        display: flex;
+        cursor: pointer;
+    }
+
+    .radio_card_type{
+        margin-left: unset !important;
+        position: relative;
+        margin: 0 !important;
+    }
+
+    .payment_inform_box li > div.card_type input:checked + label .radio_style .ellipse{
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #1D3871;
+        border-radius: 50%;
+    }
+
 
     @media (min-width: 769px){
             body .container {
@@ -1052,6 +1086,22 @@ function newPage() {
 
     document.querySelector("#month").options[0].text = "Month"
     document.querySelector("#year1").options[0].text = "Year"
+
+    //
+    document.querySelector("#card1").insertAdjacentHTML(
+      "afterend",
+      `<label for="card1">
+                         <span class="radio_style"><span class="ellipse"></span></span>
+        </label>
+   `
+    )
+
+    document.querySelector("#card2").insertAdjacentHTML(
+      "afterend",
+      `<label for="card2">
+                         <span class="radio_style"><span class="ellipse"></span></span>
+        </label>`
+    )
 
     document.querySelectorAll("input").forEach((el) => {
       el.placeholder = ""
