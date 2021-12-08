@@ -1443,9 +1443,17 @@ window.onload  = function () {
             }
 
             if(location.pathname.includes('/guest-checkout1.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>
+                    .checkout-left_head {
+                        display: none;
+                    }
+                </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
+                document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
+                document.querySelector('.title_head').after(document.querySelector('.payment'))
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
