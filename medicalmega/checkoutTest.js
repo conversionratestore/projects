@@ -1137,14 +1137,6 @@ window.onload  = function () {
                 <style>
                 #mainbody .quantity-btn {
                     display: none!important;}
-                .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
-                    color: #171717!important;}
-                .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
-                    color: #171717!important;
-                }
-                .num_line a:nth-child(2) .circle_grey{
-                    border-color: #171717!important;
-                }
                 .holiday {
                     margin: 15px 0 0 0!important;}
                 .payment h3, .primaryInfo h2, .remove{
@@ -1176,19 +1168,7 @@ window.onload  = function () {
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
-                document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
-                document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
-                document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
-
-                document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
-                document.querySelector('.btn-next').addEventListener('click', () => {
-                    action = 'Click on Next button';
-                    label = 'Delivery Method step';
-                    pushDataLayer(action,label)
-                    document.querySelector('form div[align="right"] input').click();
-                });
         
                 document.querySelectorAll('.quantity-row .quantity').forEach(element => {
                     element.setAttribute('readonly');
@@ -1197,11 +1177,6 @@ window.onload  = function () {
 
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
 
-                document.querySelector('.btn-back').addEventListener('click', () => {
-                    action = 'Click Back to Billing and Shipping Info button';
-                    label = 'Section Delivery Method';
-                    pushDataLayer(action,label)
-                });
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
                         action = `Pick ${el.querySelector('i').innerHTML}`;
@@ -1214,9 +1189,6 @@ window.onload  = function () {
                     label = 'Section Delivery method';
                     pushDataLayer(action,label)
                 });
-                document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
-                document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
-                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
             }
             if (location.pathname == '/checkout/step3') {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1440,6 +1412,41 @@ window.onload  = function () {
                 });
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
+            if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>  
+                    .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
+                        color: #171717!important;}
+                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
+                        color: #171717!important;
+                    }
+                    .num_line a:nth-child(2) .circle_grey{
+                        border-color: #171717!important;
+                    }
+                </style>`)
+                document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
+
+                document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
+                document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+
+                document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click on Next button';
+                    label = 'Delivery Method step';
+                    pushDataLayer(action,label)
+                    document.querySelector('form div[align="right"] input').click();
+                });
+                
+                document.querySelector('.btn-back').addEventListener('click', () => {
+                    action = 'Click Back to Billing and Shipping Info button';
+                    label = 'Section Delivery Method';
+                    pushDataLayer(action,label)
+                });
+                document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
+                document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
+                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
+            }
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
@@ -1527,24 +1534,11 @@ window.onload  = function () {
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
             if(location.pathname.includes('/guest-checkout2.php')) {
-                document.body.insertAdjacentHTML('afterbegin',`
-                <style>  
-                    .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
-                        color: #171717!important;}
-                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
-                        color: #171717!important;
-                    }
-                    .num_line a:nth-child(2) .circle_grey{
-                        border-color: #171717!important;
-                    }
-                </style>`)
+            
             
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
                 
-                document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
-                document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
-                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
