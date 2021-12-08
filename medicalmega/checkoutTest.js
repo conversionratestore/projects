@@ -137,6 +137,8 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            .addressBook {
+                overflow: visible!important;}
             #logo, .num_line a:nth-child(2) {
                 pointer-events: none; }
             .tooltip {
