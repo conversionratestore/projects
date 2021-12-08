@@ -1169,7 +1169,7 @@ window.onload  = function () {
                     element.setAttribute('readonly');
                 });
 
-                document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
+                // document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
             }
