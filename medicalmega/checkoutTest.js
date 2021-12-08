@@ -1468,6 +1468,12 @@ window.onload  = function () {
                         display: flex;
                         align-items: center;
                     }
+                    .addressBook dd label {
+                        padding-bottom: 8px;
+                    }
+                    .addressBook input {
+                        margin-bottom: 28px;
+                    }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
