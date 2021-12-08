@@ -1170,6 +1170,7 @@ window.onload  = function () {
                 });
 
                 document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
@@ -1424,8 +1425,7 @@ window.onload  = function () {
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
-
+          
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
@@ -1450,7 +1450,9 @@ window.onload  = function () {
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>
-                  
+                    .checkout-left_head, .payment h3 {
+                        display: none!important;
+                    }
                 </style>`)
             }
             if(location.pathname.includes('/guest-checkout1.php')) {
@@ -1532,7 +1534,8 @@ window.onload  = function () {
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
             if(location.pathname.includes('/guest-checkout2.php')) {
-                //guest 2
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
