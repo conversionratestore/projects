@@ -1389,6 +1389,9 @@ window.onload  = function () {
                 });
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
+            if(location.pathname.includes('/guest-checkout2.php')) {
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+            }
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>  
@@ -1531,10 +1534,7 @@ window.onload  = function () {
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
-            if(location.pathname.includes('/guest-checkout2.php')) {
-                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
-            }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
                 label = 'Section Your order';
