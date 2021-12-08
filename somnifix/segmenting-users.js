@@ -337,6 +337,7 @@
     `
 
     function pushDataLayer(action,label) {
+        console.log(action + " : " + label)
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
             'event': 'event-to-ga',
