@@ -1471,8 +1471,14 @@ window.onload  = function () {
                     .addressBook dd label {
                         padding-bottom: 8px;
                     }
+                    .addressBook dd label[for="same_as_bill"] {
+                        padding: 25px 0;
+                    }
                     .addressBook input {
                         margin-bottom: 28px;
+                    }
+                    .addressBook dt {
+                        padding: 25px 0;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
