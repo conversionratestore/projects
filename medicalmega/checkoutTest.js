@@ -1463,6 +1463,7 @@ window.onload  = function () {
                     .addressBook dd label {
                         display: flex;
                         align-items: center;
+                        width: auto;
                     }
                     dl.altaddressBook dd:last-child {
                         display: flex;
@@ -1479,6 +1480,9 @@ window.onload  = function () {
                     }
                     .addressBook dt {
                         padding: 25px 0;
+                    }
+                    .addressBook dd label.label_email {
+                        padding: 10px 0;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
