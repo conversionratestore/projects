@@ -332,7 +332,7 @@ const textArr = {
 		floorStand: `Floor stand`,
 		secure: `Wall Secure`,
 		display: `Display`,
-		inch: `inch touch screen, Full HD`,
+		inch: ` inch touch<br>screen, Full HD`,
 		sound: `Sound`,
 		firstX4: `x4 - max SPL 105<br>dB with custom<br>sound board and<br>amplifier, 65 W`,
 		secondX4: `x4 - max SPL<br>85dB, 30 W`,
@@ -378,19 +378,19 @@ const textArr = {
 		entertainment: `Unterhaltung mit Ihren lieblingsapps`,
 		access: `Zugang zu persönlichen trainern`,
 		specs: `Spezifikationen`,
-		dimension: `Maße`,
+		dimension: `Abmessungen`,
 		weight: `Gewicht`,
 		floorStand: `Ständer`,
-		secure: `Wandsicherung`,
-		display: `Display`,
-		inch: `Zoll Full-HD Touchscreen`,
-		sound: `Lautsprecher`,
-		firstX4: `x4 - max SPL 105<br>dB mit Custom<br>Soundboard und<br>Verstärker, 65 W`,
+		secure: `Sichere wand`,
+		display: `Anzeige`,
+		inch: `-Zoll touch<br>screen, Full HD`,
+		sound: `Ton`,
+		firstX4: `x4 – max. SPL 105<br>dB mit spezieller<br>85 dB, 30 W soundkarte und<br>verstärker, 65 W`,
 		secondX4: `x4 - max SPL<br>85dB, 30 W`,
 		mounting: `Wandmontage`,
 		starterbox: 'VAHA Starterbox',
 		accessories: `Zubehör`,
-		voucher: `GARMIN Gutscheincode einlösbar nach Abschluss der 30-tägigen Testphaset Fitnessbänder in verschiedenen Stärken<br><br>Kameraabdeckung<br>Benutzerhandbuch`,
+		voucher: `GARMIN Gutscheincode zum Einlösen nach der 30-Tage-Testversion Widerstandsbänder unterschiedlicher Stärke Kameraabdeckung Benutzerhandbuch`,
 		care: `Pflege`,
 		microfiber: `Mikrofasertuch<br>und Glasreiniger`,
 		heart: `Pulsmessgerät`,
@@ -561,8 +561,8 @@ const productPage = `
                     <div class="property">
                         <p>${ obj.display }</p>
                         <div class="check">
-                            <p>43 ${ obj.inch }</p>
-                            <p>32 ${ obj.inch }</p>
+                            <p>43${ obj.inch }</p>
+                            <p>32${ obj.inch }</p>
                         </div>
                     </div>
                     <div class="property">
