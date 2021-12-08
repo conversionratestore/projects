@@ -137,7 +137,7 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
-            .addressBook {
+            .addressBook, .myAccount {
                 padding: 0 3px;
                 overflow: visible!important;}
             #logo, .num_line a:nth-child(2) {
@@ -336,7 +336,7 @@ window.onload  = function () {
                 color: #666666;}
             .myAccount {
                 margin: 0;
-                padding: 20px 0;
+                padding: 20px 3px;
                 width: 100%;}
             .myAccountright {
                 width: 100%; }
