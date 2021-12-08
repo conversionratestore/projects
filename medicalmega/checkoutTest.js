@@ -802,10 +802,6 @@ window.onload  = function () {
             .primaryInfo li {
                 display: flex;
                 align-items: center;}
-            .primaryInfo {
-                color: transparent;
-                border: none;
-                width: 100%;}
             .primaryInfo ul {
                 color: #171717;
                 padding-top: 20px;
@@ -1396,6 +1392,10 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>  
+                    .primaryInfo {
+                        color: transparent;
+                        border: none;
+                        width: 100%;}
                     #mainbody .quantity-btn, .checkout-left_head, .payment h3 {
                         display: none!important;
                     }
