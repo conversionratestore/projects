@@ -1464,6 +1464,10 @@ window.onload  = function () {
                         display: flex;
                         align-items: center;
                     }
+                    dl.altaddressBook dd:last-child {
+                        display: flex;
+                        align-items: center;
+                    }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
@@ -1472,6 +1476,8 @@ window.onload  = function () {
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
                 document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
                 document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
+                document.querySelector('#subscribe').insertAdjacentHTML('afterend',`<label class="label_email"><span class="check"></span></label>`);
+                document.querySelector('.label_email .check').before(document.querySelector('#subscribe'));
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
