@@ -1449,14 +1449,20 @@ window.onload  = function () {
                         display: none!important;
                     }
                     .addressBook {
+                        width: 100%;
                         border: none;
                         padding: 0 0px 20px;
-                        display: flex;
-                        justify-content: space-between;
                     }
                     .addressBook dl {
                         clear: both;
                         margin: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                    }
+                    .addressBook dd label {
+                        display: flex;
+                        align-items: center;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
@@ -1464,6 +1470,8 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
                 document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
+                document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+                document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
