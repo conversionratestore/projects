@@ -343,7 +343,8 @@ window.onload  = function () {
             .myAccountright {
                 width: 100%; }
             .myAccountleft {
-                display: none!important;
+                display: none;
+                border: none!important;
                 width: 100%; }
             .registerOnLogin {
                 padding: 0;}
