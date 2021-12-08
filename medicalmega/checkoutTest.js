@@ -1161,8 +1161,6 @@ window.onload  = function () {
                         height: 100%;}
                 #2_3_days {
                     padding: 5px 0 0 0!important;}
-                .quantity-row {
-                    pointer-events: none;}
                 .quantity-btn  {
                     color: #CCCCCC!important;}
                 </style>`);
@@ -1298,6 +1296,8 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>  
+                    .quantity-row {
+                        pointer-events: none;}
                     .primaryInfo {
                         color: transparent;
                         border: none;
