@@ -274,6 +274,7 @@ const productStyle = `
 			color: #000000;
 			position: relative;
 			letter-spacing: 0.02em;
+			line-height: 47px;
         } 
         
         .price-wrapper .zero sup {
@@ -653,7 +654,7 @@ const productPage = `
                     		<p class="subzero">${ obj.money }</p>
 						</div>
 						<div>
-                    		<p class="zero">%0</p>
+                    		<p class="zero">0%</p>
                     		<p class="subzero">${ obj.financing }</p>
 						</div>
 						<div>
