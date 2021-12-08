@@ -1,9 +1,5 @@
 let style = `
 <style>
-    .align-items-center {
-        display: flex;
-        align-items: center;
-    }
     .sleep_impediments {
         background: url('https://conversionratestore.github.io/projects/somnifix/img/bg.svg') no-repeat center bottom / 100%;
         padding: 50px 0 40px;
@@ -130,9 +126,10 @@ let style = `
         line-height: 38px;
         color: #1E415F;
         text-transform: inherit;
+        font-family: "Rubik", sans-serif;
     }
     .sleep_issue * {
-        font-family: "Rubik", sans-serif;
+        font-family: "Roboto", sans-serif;
     }
 
     .btn-close {
@@ -189,6 +186,7 @@ let style = `
         text-align: center;
         letter-spacing: 0.05em;
         margin-bottom: 15px;
+        font-family: "Rubik", sans-serif;
     }
     .text-center {
         text-align: center;
@@ -206,6 +204,9 @@ let style = `
     }
     .even .img_content {
         margin-left: 45px;
+    }
+    .img_content {
+        height: fit-content;
     }
     .row {
         display: flex;
@@ -256,6 +257,14 @@ let style = `
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    .align-items-center {
+        display: flex;
+        align-items: center;
+    }
+    iframe.video {
+        margin-right: 40px;
+    }
     @media only screen and (min-width: 768px) {
         .mb-md-25 {
             margin-bottom: 25px!important;
@@ -450,7 +459,7 @@ let items = [ `
     </div>
     <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-8.png" alt="image" class="img_content">
 </div>
-<div class="item_row odd">
+<div class="item_row odd align-items-center">
     <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-9.png" alt="image" class="img_content">
     <div class="col_content">
         <h3 class="mb-md-25">How to Tell if You Are Overbreathing</h3>
@@ -505,7 +514,13 @@ let items = [ `
     <h3>Do SomniFix Strips really work? Just ask Steve.</h3>
     <p>The key to getting high-quality, silent sleep is simple. Close your mouth, and breathe through your nose. SomniFix Strips make that easy.</p>
 </div>
-<div class=""></div>
+<div class="row align-items-center">
+    <iframe class="video" width="695" height="400" src="https://www.youtube.com/embed/c009zqG6BeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="col">
+        <p class="mb-15">Steve’s doctor prescribed him a CPAP machine to treat his obstructive sleep apnea.</p>
+        <p>However, even with a chin strap he wasn’t getting the therapy - nor the restful sleep - that he needed. Find out how SomniFix drastically improved his relationship with his CPAP.</p>
+    </div>
+</div>
 `
 ]
 
