@@ -799,6 +799,52 @@ window.onload  = function () {
                 margin-bottom: 20px;
                 max-width: 261px;
             }
+            .primaryInfo li {
+                display: flex;
+                align-items: center;}
+            .primaryInfo {
+                color: transparent;
+                border: none;
+                width: 100%;}
+            .primaryInfo ul {
+                color: #171717;
+                padding-top: 20px;
+                padding-left: 0; }
+            .primaryInfo label {
+                padding-left: 0;}
+            .promocode-block {
+                justify-content: space-between;
+                align-items: center;
+                display: flex;}
+            .promocode-block label {
+                font-size: 18px;
+                color: #222222;
+                padding: 0;}
+            .primaryInfo li p {
+                line-height: 1;}
+            .primaryInfo li input {
+                width: 20px;
+                height: 20px; }
+            .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
+                font-size: 18px;}
+            .primaryInfo li strong {
+                margin-left: 5px;}
+            .promoCode {
+                margin: 0 3px 0 0;
+                background: #EDEDED;
+                border: 0.5px solid #CCCCCC;
+                border-radius: 4px;
+                padding: 11px 20px;
+                height: auto;
+                box-sizing: border-box;
+                max-width: 300px;
+                width: 100%;}
+            .promocode-block i {
+                font-size: 14px; }
+            .primaryInfo .title{
+                padding-top: 14px;
+                font-size: 18px;
+                line-height: 25px; }
             </style>`);
 
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -1103,19 +1149,8 @@ window.onload  = function () {
                     margin: 15px 0 0 0!important;}
                 .payment h3, .primaryInfo h2, .remove{
                     display: none}
-                .primaryInfo li {
-                    display: flex;
-                    align-items: center;}
                 .altPayment, #mainbody .checkout-left_head {
                     display: none;}
-                .primaryInfo {
-                    color: transparent;
-                    border: none;
-                    width: 100%;}
-                .primaryInfo ul {
-                    color: #171717;
-                    padding-top: 20px;
-                    padding-left: 0; }
                 .payment h3 {
                     font-weight: 600;
                     font-size: 24px;
@@ -1123,48 +1158,13 @@ window.onload  = function () {
                     text-transform: capitalize;
                     color: #222222;
                     border-bottom: 0.5px solid #CCCCCC;}
-                .primaryInfo label {
-                    padding-left: 0;}
-                .promocode-block {
-                    justify-content: space-between;
-                    align-items: center;
-                    display: flex;}
-                .promocode-block label {
-                    font-size: 18px;
-                    color: #222222;
-                    padding: 0;}
-                .primaryInfo li p {
-                    line-height: 1;}
-                .primaryInfo li input {
-                    width: 20px;
-                    height: 20px; }
-                .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
-                    font-size: 18px;}
-                .primaryInfo li strong {
-                    margin-left: 5px;}
-                .promoCode {
-                    margin: 0 3px 0 0;
-                    background: #EDEDED;
-                    border: 0.5px solid #CCCCCC;
-                    border-radius: 4px;
-                    padding: 11px 20px;
-                    height: auto;
-                    box-sizing: border-box;
-                    max-width: 300px;
-                    width: 100%;}
-                .promocode-block i {
-                    font-size: 14px; }
-                .primaryInfo .title{
-                    padding-top: 14px;
-                    font-size: 18px;
-                    line-height: 25px; }
-            .payment {
-                    height: 100%;}
-            .payment form {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    height: 100%;}
+                .payment {
+                        height: 100%;}
+                .payment form {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 100%;}
                 #2_3_days {
                     padding: 5px 0 0 0!important;}
                 .quantity-row {
