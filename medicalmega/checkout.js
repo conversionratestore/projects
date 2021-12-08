@@ -137,12 +137,19 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+
+            .addressBook, .myAccount {
+                padding: 0 3px;
+                overflow: visible!important;}
             #logo, .num_line a:nth-child(2) {
                 pointer-events: none; }
             .tooltip {
                 transform: none!important; }
             #logo img {
                 max-width: 361px; }
+            #forgot_pass {
+                padding-bottom: 40px;
+            }
             #forgot_pass .registerOnLogin {
                 display: block; }
             #forgot_pass .addressBookSubmit {
@@ -330,16 +337,16 @@ window.onload  = function () {
                 color: #666666;}
             .myAccount {
                 margin: 0;
-                padding: 20px 0;
+                padding: 20px 3px;
                 width: 100%;}
             .myAccountright {
                 width: 100%; }
             .myAccountleft {
-                display: none;
+                display: none!important;
                 width: 100%; }
             .registerOnLogin {
                 padding: 0;}
-            .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select {
+            .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select, .addressBook input, .addressBook select {
                 width: -webkit-fill-available;
                 background: #EDEDED;
                 height: auto;
@@ -352,7 +359,7 @@ window.onload  = function () {
                 padding: 9px 10px;
                 margin-bottom: 16px;
                 border-radius: 4px;}
-            .registerOnLogin dd label {
+            .registerOnLogin dd label, .addressBook dd label {
                 color: #666666;}
             div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
                 width: fit-content;
@@ -626,7 +633,7 @@ window.onload  = function () {
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap; }
-            .registerOnLogin dd {
+            .registerOnLogin dd, .addressBook dd {
                 padding: 0!important;
                 width: 100%;
                 max-width: 261px; }
@@ -692,7 +699,12 @@ window.onload  = function () {
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
             }
             .registerOnLogin .g-signin2 {
-                margin: 20px 0;
+                margin: 20px 0 15px auto;
+                max-width: 261px;
+                width: 100%;
+            }
+            .registerOnLogin .g-signin2 .abcRioButtonBlue {
+                width: 100%!important;
             }
             .address_book_new .editor .title {
                 display: none;
@@ -787,6 +799,52 @@ window.onload  = function () {
                 bottom: 0;
                 width: 100%;
             }
+            .btn-guest {
+                margin-bottom: 20px;
+                max-width: 261px;
+            }
+            .primaryInfo li {
+                display: flex;
+                align-items: center;}
+            .primaryInfo ul {
+                color: #171717;
+                padding-top: 20px;
+                padding-left: 0; }
+            .primaryInfo label {
+                padding-left: 0;}
+            .promocode-block {
+                justify-content: space-between;
+                align-items: center;
+                display: flex;}
+            .promocode-block label {
+                font-size: 18px;
+                color: #222222;
+                padding: 0;}
+            .primaryInfo li p {
+                line-height: 1;}
+            .primaryInfo li input {
+                width: 20px;
+                height: 20px; }
+            .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
+                font-size: 18px;}
+            .primaryInfo li strong {
+                margin-left: 5px;}
+            .promoCode {
+                margin: 0 3px 0 0;
+                background: #EDEDED;
+                border: 0.5px solid #CCCCCC;
+                border-radius: 4px;
+                padding: 11px 20px;
+                height: auto;
+                box-sizing: border-box;
+                max-width: 300px;
+                width: 100%;}
+            .promocode-block i {
+                font-size: 14px; }
+            .primaryInfo .title{
+                padding-top: 14px;
+                font-size: 18px;
+                line-height: 25px; }
             </style>`);
 
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
@@ -809,7 +867,7 @@ window.onload  = function () {
                     <div class="checkout-right_footer"></div>
                 </div>
             </div>`);
-            if (!window.location.pathname.includes('checkout/step4')) {
+            if (!window.location.pathname.includes('checkout/step4') && !window.location.pathname.includes('guest-checkout4.php')) {
                 document.querySelector('#logo img').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/logo.svg');
                 fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                     for (let i = 0; i < data["items"].length; i++) {
@@ -848,16 +906,16 @@ window.onload  = function () {
                                 } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in' && document.querySelector('.myAccount') != null) {
                                     action = `Click on the product cards`;
                                     label = 'Registration step';
-                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1')) {
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Billing and Shipping information step';
-                                } else if (window.location.pathname.includes('checkout/step2')) {
+                                } else if (window.location.pathname.includes('checkout/step2') || window.location.pathname.includes('guest-checkout2.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Delivery Method step';
-                                } else if (window.location.pathname.includes('checkout/step3')) {
+                                } else if (window.location.pathname.includes('checkout/step3') || window.location.pathname.includes('guest-checkout3.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Payment Method step';
-                                }
+                                } 
                                 pushDataLayer(action,label)
                             })
                         })
@@ -873,12 +931,19 @@ window.onload  = function () {
                 </a>`;
 
 
-            
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
-                document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+           
             
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
+
+                if (!window.location.pathname.includes('guest-checkout')) {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+                    document.querySelectorAll('.num_line a')[3].setAttribute('href','https://medicalmega.com/checkout/step2');
+                } else {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/guest-checkout1.php');
+                    document.querySelectorAll('.num_line a')[3].setAttribute('href','https://medicalmega.com/guest-checkout2.php');
+                }
 
                 document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Payment Method';
                 document.querySelectorAll('.num_line a')[5].querySelectorAll('span')[2].innerHTML = 'Confirmation';
@@ -888,7 +953,7 @@ window.onload  = function () {
                     step[i].innerHTML = i;
                     document.querySelectorAll('.num_line a')[i].addEventListener('click', () => {
                         action = `Click on the number of registration steps`;
-                        label = el.innerText;
+                        label = document.querySelectorAll('.num_line a')[i].innerText;
                         pushDataLayer(action,label)
                     })
                 }
@@ -901,18 +966,35 @@ window.onload  = function () {
             });
           
             if (document.querySelector('.myAccount')) {
+              
                 document.querySelector('.addressBookSubmit').setAttribute('type','button');
                 document.querySelector('.addressBookSubmit').setAttribute('value','Submit');
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
-
-                document.querySelector('.myAccountleft .btn-next').addEventListener('click', () => {
+                document.querySelector('.g-signin2').insertAdjacentHTML('afterend','<button type="button" class="btn btn-next btn-guest">Checkout as a guest</button>')
+                document.querySelector('.g-signin2').addEventListener('click', () => {
+                    action = `Click on Sign In with google button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
+                });
+                document.querySelector('.btn-guest').addEventListener('click', () => {
+                    action = `Click on Checkout as a guest button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
+                    document.querySelector('.guest_checkout_button input').click();
+                });
+                document.querySelector('.forgot_password').addEventListener('click', () => {
+                    action = `Click on Forgot your password button`;
+                    label = 'Section Sign In';
+                    pushDataLayer(action,label)
+                });
+                document.querySelector('.myAccountleft .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
                     action = `Click on Next button`;
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
-                document.querySelector('.myAccountright .btn-next').addEventListener('click', () => {
+                document.querySelector('.myAccountright .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="user_login"]').click();
                     action = `Click on Next button`;
                     label = 'Section Registration';
@@ -980,7 +1062,7 @@ window.onload  = function () {
                     document.querySelector('.log').classList.add('active');
                 }
             }
-            if (location.pathname == '/checkout/step1' || location.pathname == '/guest-checkout1.php') {
+            if (location.pathname == '/checkout/step1') {
                 if (!document.querySelectorAll('.checkout-product')) {
                     document.body.insertAdjacentHTML('afterbegin', `
                     <style>
@@ -1008,9 +1090,11 @@ window.onload  = function () {
                 document.querySelector('.payment h3 ').style.display = 'none';
                 document.querySelector('.checkout-left_head').style.display = 'none';
                 document.querySelector('.checkout-left_head .log ').style.display = 'none';
+             
                 document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+                
                 document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
@@ -1071,33 +1155,12 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
-                #mainbody .quantity-btn {
-                    display: none!important;}
-                .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
-                    color: #171717!important;}
-                .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
-                    color: #171717!important;
-                }
-                .num_line a:nth-child(2) .circle_grey{
-                    border-color: #171717!important;
-                }
                 .holiday {
                     margin: 15px 0 0 0!important;}
                 .payment h3, .primaryInfo h2, .remove{
                     display: none}
-                .primaryInfo li {
-                    display: flex;
-                    align-items: center;}
                 .altPayment, #mainbody .checkout-left_head {
                     display: none;}
-                .primaryInfo {
-                    color: transparent;
-                    border: none;
-                    width: 100%;}
-                .primaryInfo ul {
-                    color: #171717;
-                    padding-top: 20px;
-                    padding-left: 0; }
                 .payment h3 {
                     font-weight: 600;
                     font-size: 24px;
@@ -1105,86 +1168,106 @@ window.onload  = function () {
                     text-transform: capitalize;
                     color: #222222;
                     border-bottom: 0.5px solid #CCCCCC;}
-                .primaryInfo label {
-                    padding-left: 0;}
-                .promocode-block {
-                    justify-content: space-between;
-                    align-items: center;
-                    display: flex;}
-                .promocode-block label {
-                    font-size: 18px;
-                    color: #222222;
-                    padding: 0;}
-                .primaryInfo li p {
-                    line-height: 1;}
-                .primaryInfo li input {
-                    width: 20px;
-                    height: 20px; }
-                .primaryInfo li i, .cutoffTimeNote span, .primaryInfo li b {
-                    font-size: 18px;}
-                .primaryInfo li strong {
-                    margin-left: 5px;}
-                .promoCode {
-                    margin: 0 3px 0 0;
-                    background: #EDEDED;
-                    border: 0.5px solid #CCCCCC;
-                    border-radius: 4px;
-                    padding: 11px 20px;
-                    height: auto;
-                    box-sizing: border-box;
-                    max-width: 300px;
-                    width: 100%;}
-                .promocode-block i {
-                    font-size: 14px; }
-                .primaryInfo .title{
-                    padding-top: 14px;
-                    font-size: 18px;
-                    line-height: 25px; }
-            .payment {
-                    height: 100%;}
-            .payment form {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    height: 100%;}
+                .payment {
+                        height: 100%;}
+                .payment form {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 100%;}
                 #2_3_days {
                     padding: 5px 0 0 0!important;}
-                .quantity-row {
-                    pointer-events: none;}
                 .quantity-btn  {
                     color: #CCCCCC!important;}
                 </style>`);
 
+                document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+                    element.setAttribute('readonly');
+                });
 
+                // document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+
+            }
+            if (location.pathname == '/checkout/step3') {
+                document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
+
+                document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
+                document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
+                document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+                document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
+                document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
+
+                document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
+                document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
+                document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
+
+                document.querySelector('.card-details label').addEventListener('click',() => {
+                    action = 'Click Remember my card field';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
+                });
+                document.querySelector('.label-check').addEventListener('click',() => {
+                    action = 'Pick regular reorder';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
+                });
+            }
+
+            if (location.pathname.includes('/guest-checkout2.php')) {
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+            }
+            if (location.pathname.includes('/guest-checkout3.php')) {
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout2.php" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
+                document.querySelectorAll('.payment p')[1].style.display = 'none';
+            }
+            if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>  
+                    .quantity-row {
+                        pointer-events: none;}
+                    .primaryInfo {
+                        color: transparent;
+                        border: none;
+                        width: 100%;}
+                    #mainbody .quantity-btn, .checkout-left_head, .payment h3 {
+                        display: none!important;
+                    }
+                    .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
+                        color: #171717!important;}
+                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
+                        color: #171717!important;
+                    }
+                    .num_line a:nth-child(2) .circle_grey{
+                        border-color: #171717!important;
+                    }
+                </style>`)
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
-                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
-                document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
+                document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
                 document.querySelector('#ship_options').insertAdjacentHTML('afterend',`<div class="promocode-block"><div class="promocode-block_i"></div></div>`);
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
-
+          
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
+                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
                     label = 'Delivery Method step';
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click();
                 });
-        
-                document.querySelectorAll('.quantity-row .quantity').forEach(element => {
-                    element.setAttribute('readonly');
+                document.querySelector('.promoCode').addEventListener('click', () => {
+                    action =  'Click on Promotional Code field';
+                    label = 'Section Delivery method';
+                    pushDataLayer(action,label)
                 });
-                document.querySelectorAll('#ship_options li input')[0].setAttribute('checked','true');
-
-                document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
-
                 document.querySelector('.btn-back').addEventListener('click', () => {
                     action = 'Click Back to Billing and Shipping Info button';
                     label = 'Section Delivery Method';
                     pushDataLayer(action,label)
                 });
+                
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
                         action = `Pick ${el.querySelector('i').innerHTML}`;
@@ -1192,16 +1275,11 @@ window.onload  = function () {
                         pushDataLayer(action,label)
                     });
                 });
-                document.querySelector('.promoCode').addEventListener('click', () => {
-                    action =  'Click on Promotional Code field';
-                    label = 'Section Delivery method';
-                    pushDataLayer(action,label)
-                });
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
                 document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
             }
-            if (location.pathname == '/checkout/step3') {
+            if (location.pathname == '/checkout/step3' || location.pathname.includes('/guest-checkout3.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`<style>
                 .checkout-right_footer .altTd p:nth-child(3) {
                     display: block!important; }
@@ -1227,81 +1305,81 @@ window.onload  = function () {
                     font-family: 'Arial', sans-serif;
                     width: 100%;
                     border: none;}
-            .primaryInfo dl {
-                width: 100%;
-                margin: 0;}
-            .primaryInfo div{
-                margin-left: 0!important; }
-            div.cc-recurring {
-                margin-bottom: 40px;
-                padding: 10px 0;}
-            .primaryInfo dl dd {
-                font-family: 'Arial', sans-serif; }
-            .primaryInfo dl textarea, .primaryInfo dl input{
-                background: #EDEDED;
-                border: 0.5px solid #CCCCCC;
-                border-radius: 4px;
-                padding: 11px 20px; }
-            .primaryInfo dl input  {
-                margin: 0;
-                height: auto!important;}
-            .primaryInfo dl textarea {
-                height: 40px;}
-            span.cc-recurring-setting {
-                width: 100%;}
-            #recurring_billing_period, #card_list {
-                padding: 0 10px;
-                background: #EDEDED;
-                border: 0.5px solid #CCCCCC;
-                box-sizing: border-box;
-                height: 40px;
-                margin-left: 10px;
-                border-radius: 4px;
-                max-width: 303px;
-                width: 100%!important;}
-            .cc-recurring-setting {
-                justify-content: space-between;
-                display: flex;
-                align-items: center;
-                font-weight: 500;
-                font-size: 14px; }
-            .allow-up-to-60 {
-                display: none;
-                white-space: break-spaces; }
-           .primaryInfo label, .card-details {
-                display: flex;
-                align-items: center;}
-           .primaryInfo label {
-                width: 100%;}
-           .quantity-btn {
-                color: #CCCCCC!important;}
-           .card-details p{
-                white-space: nowrap;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 25px;
-                text-transform: capitalize;
-                color: #222222;
-                margin: 0 25px 0 0;}
-           .auto-reorder-header {
-                display: block;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 25px;
-                margin-bottom: 2px;
-                color: #222222;}
-           .cc-recurring {
-                font-size: 12px;
-                line-height: 16px;}
-           .cc-recurring br {
-                display: none; }
-           .label-check {
-                padding: 15px 0 0 0!important; }
-            </style>`);
+                .primaryInfo dl {
+                    width: 100%;
+                    margin: 0;}
+                .primaryInfo div{
+                    margin-left: 0!important; }
+                div.cc-recurring {
+                    margin-bottom: 40px;
+                    padding: 10px 0;}
+                .primaryInfo dl dd {
+                    font-family: 'Arial', sans-serif; }
+                .primaryInfo dl textarea, .primaryInfo dl input{
+                    background: #EDEDED;
+                    border: 0.5px solid #CCCCCC;
+                    border-radius: 4px;
+                    padding: 11px 20px; }
+                .primaryInfo dl input  {
+                    margin: 0;
+                    height: auto!important;}
+                .primaryInfo dl textarea {
+                    width: 100%;
+                    height: 40px;}
+                span.cc-recurring-setting {
+                    width: 100%;}
+                #recurring_billing_period, #card_list {
+                    padding: 0 10px;
+                    background: #EDEDED;
+                    border: 0.5px solid #CCCCCC;
+                    box-sizing: border-box;
+                    height: 40px;
+                    margin-left: 10px;
+                    border-radius: 4px;
+                    max-width: 303px;
+                    width: 100%!important;}
+                .cc-recurring-setting {
+                    justify-content: space-between;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    font-size: 14px; }
+                .allow-up-to-60 {
+                    display: none;
+                    white-space: break-spaces; }
+                .primaryInfo label, .card-details {
+                    display: flex;
+                    align-items: center;}
+                .primaryInfo label {
+                    width: 100%;}
+                .quantity-btn {
+                    color: #CCCCCC!important;}
+                .card-details p{
+                    white-space: nowrap;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 25px;
+                    text-transform: capitalize;
+                    color: #222222;
+                    margin: 0 25px 0 0;}
+                .auto-reorder-header {
+                    display: block;
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 25px;
+                    margin-bottom: 2px;
+                    color: #222222;}
+                .cc-recurring {
+                    font-size: 12px;
+                    line-height: 16px;}
+                .cc-recurring br {
+                    display: none; }
+                .label-check {
+                    padding: 15px 0 0 0!important; }
+                </style>`);
+
                 document.querySelector('.title_head').innerHTML = 'Payment method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
-                document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
-
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click Proceed button';
                     label = 'Section Payment method';
@@ -1313,29 +1391,8 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label)
                 })
-                document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-                document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
-                document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
-                document.querySelector('.label-check .check').before(document.querySelector('#cc-recurring-check'));
-                document.querySelector('.label-check .check').after(document.querySelector('.cc-recurring-setting'));
-
-                document.querySelector('.primaryInfo label').insertAdjacentHTML('beforebegin',`<div class="card-details"><p>Card Details</p></div>`);
-                document.querySelector('.card-details p').after(document.querySelector('.primaryInfo label'));
-                document.querySelectorAll('.primaryInfo div')[1].style.display = 'none';
-
-                document.querySelector('.card-details label').addEventListener('click',() => {
-                    action = 'Click Remember my card field';
-                    label = 'Section Payment method';
-                    pushDataLayer(action,label);
-                });
-                document.querySelector('.label-check').addEventListener('click',() => {
-                    action = 'Pick regular reorder';
-                    label = 'Section Payment method';
-                    pushDataLayer(action,label);
-                });
             }
-
-            if(location.pathname == '/checkout/step4') {
+            if(location.pathname == '/checkout/step4' || location.pathname.includes('/guest-checkout4.php')) { 
                 let header = `
                     <div id="logo" align="center">
                         <a href="https://medicalmega.com/index.html" title="Medical Mega">
@@ -1380,8 +1437,8 @@ window.onload  = function () {
                             </span>
                             <span class="pink">Confirmation</span>
                         </a>
-                    </div>
-                `
+                    </div>`
+
                 document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', header)
 
                 document.body.insertAdjacentHTML('afterbegin',`<style>
@@ -1422,6 +1479,103 @@ window.onload  = function () {
                     element.setAttribute('readonly');
                 });
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
+            }
+            if(location.pathname.includes('/guest-checkout')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>
+                    .checkout-left_head, .payment h3 {
+                        display: none!important;
+                    }
+                </style>`)
+            }
+            if(location.pathname.includes('/guest-checkout1.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>
+                  
+                    .addressBook {
+                        width: 100%;
+                        border: none;
+                        padding: 0 0px 20px;
+                    }
+                    .addressBook dl {
+                        clear: both;
+                        margin: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                    }
+                    .addressBook dd label {
+                        display: flex;
+                        align-items: center;
+                        width: auto;
+                    }
+                    dl.altaddressBook dd:last-child {
+                        display: flex;
+                        align-items: center;
+                        max-width: 100%;
+                    }
+                    .addressBook dd label {
+                        padding-bottom: 8px;
+                    }
+                    .addressBook dd label[for="same_as_bill"] {
+                        padding: 0 0 25px 0;
+                        color: #171717;
+                    }
+                    .addressBook input {
+                        margin-bottom: 28px;
+                    }
+                    .addressBook dt {
+                        padding: 25px 0;
+                    }
+                    .addressBook dd label.label_email {
+                        padding: 10px 0;
+                    }
+                    .checkout-left {
+                        padding: 0 0 40px 0!important;
+                    }
+                    .addressBook .error, .error-front {
+                        padding: 4px 0 4px 25px!important;
+                        max-width: 100%;
+                        width: 100%;
+                        margin-bottom: 10px;
+                        margin-top: -10px;
+                    }
+                    .addressBook dd.same_as_bill_dd {
+                        max-width: 100%;
+                        height: auto!important;
+                    }
+                </>`)
+                document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
+                document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
+                document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
+                document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
+               
+                document.querySelector('.title_head').after(document.querySelector('.payment'))
+                document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
+                document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
+                document.querySelector('#subscribe').insertAdjacentHTML('afterend',`<label class="label_email"><span class="check"></span></label>`);
+                document.querySelector('.label_email .check').before(document.querySelector('#subscribe'));
+                document.querySelector('#b_alt_phn').closest('dd').style.display = 'none';
+                document.querySelector('#s_alt_phn').closest('dd').style.display = 'none';
+                document.querySelector('#b_fax').closest('dd').style.display = 'none';
+                document.querySelector('#s_fax').closest('dd').style.display = 'none';
+                document.querySelector('#b_addr2').closest('dd').style.display = 'none';
+                document.querySelector('#s_addr2').closest('dd').style.display = 'none';
+                document.querySelector('label[for="same_as_bill"]').closest('dd').classList.add('same_as_bill_dd')
+
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Personal Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+                
+                document.querySelector('.btn-back').addEventListener('click', () => {
+                    action = 'Click on Back to Personal Info button';
+                    label = 'Section Billing And Shipping Information';
+                    pushDataLayer(action,label)
+                })
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click on Next button';
+                    label = 'Section Billing And Shipping Information';
+                    pushDataLayer(action,label)
+                    document.querySelector('form div[align="right"] input').click()
+                })
             }
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
