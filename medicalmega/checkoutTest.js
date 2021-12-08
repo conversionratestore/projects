@@ -929,13 +929,17 @@ window.onload  = function () {
 
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
-                if (!window.location.pathname.includes('guest-checkout')) {
-                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
-                } else {
-                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/guest-checkout1.php');
-                }
+           
             
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
+
+                if (!window.location.pathname.includes('guest-checkout')) {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
+                    document.querySelectorAll('.num_line a')[3].setAttribute('href','https://medicalmega.com/checkout/step2');
+                } else {
+                    document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/guest-checkout1.php');
+                    document.querySelectorAll('.num_line a')[3].setAttribute('href','https://medicalmega.com/guest-checkout2.php');
+                }
 
                 document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Payment Method';
                 document.querySelectorAll('.num_line a')[5].querySelectorAll('span')[2].innerHTML = 'Confirmation';
