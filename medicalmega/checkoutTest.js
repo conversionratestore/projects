@@ -1168,22 +1168,8 @@ window.onload  = function () {
 
             }
             if (location.pathname == '/checkout/step3') {
-
-                document.querySelector('.title_head').innerHTML = 'Payment method';
-                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step2" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
 
-                document.querySelector('.btn-next').addEventListener('click', () => {
-                    action = 'Click Proceed button';
-                    label = 'Section Payment method';
-                    pushDataLayer(action,label);
-                    document.querySelector('form div[align="right"] input').click();
-                });
-                document.querySelector('.btn-back').addEventListener('click', () => {
-                    action = 'Back to Delivery Method';
-                    label = 'Section Payment method';
-                    pushDataLayer(action,label)
-                })
                 document.querySelector('#save_cc_info').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.cc-recurring-setting').insertAdjacentHTML('beforebegin',`<label class="label-check"></label>`);
                 document.querySelector('.label-check').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
@@ -1294,8 +1280,11 @@ window.onload  = function () {
                 });
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
-            if(location.pathname.includes('/guest-checkout2.php')) {
+            if (location.pathname.includes('/guest-checkout2.php')) {
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+            }
+            if (location.pathname.includes('/guest-checkout3.php')) {
+                document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/guest-checkout2.php" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
             }
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
@@ -1449,7 +1438,21 @@ window.onload  = function () {
                     display: none; }
                 .label-check {
                     padding: 15px 0 0 0!important; }
-            </style>`);
+                </style>`);
+
+                document.querySelector('.title_head').innerHTML = 'Payment method';
+                document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    action = 'Click Proceed button';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label);
+                    document.querySelector('form div[align="right"] input').click();
+                });
+                document.querySelector('.btn-back').addEventListener('click', () => {
+                    action = 'Back to Delivery Method';
+                    label = 'Section Payment method';
+                    pushDataLayer(action,label)
+                })
             }
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
