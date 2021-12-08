@@ -355,7 +355,7 @@ window.onload  = function () {
                 padding: 9px 10px;
                 margin-bottom: 16px;
                 border-radius: 4px;}
-            .registerOnLogin dd label {
+            .registerOnLogin dd label, .addressBook dd label {
                 color: #666666;}
             div.myAccountleft > form > dd:nth-child(6), div.myAccountright > form > dd:nth-child(5) {
                 width: fit-content;
