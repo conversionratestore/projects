@@ -1173,7 +1173,6 @@ window.onload  = function () {
                     color: #CCCCCC!important;}
                 </style>`);
 
-
                 document.querySelector('.title_head').innerHTML = 'Delivery Method';
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('#ship_options').insertAdjacentHTML('beforebegin',`<h2 class="title">Delivery Method</h2>`);
@@ -1528,8 +1527,24 @@ window.onload  = function () {
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
             if(location.pathname.includes('/guest-checkout2.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>  
+                    .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
+                        color: #171717!important;}
+                    .num_line a:nth-child(2) .number, .num_line a:nth-child(3) .number{
+                        color: #171717!important;
+                    }
+                    .num_line a:nth-child(2) .circle_grey{
+                        border-color: #171717!important;
+                    }
+                </style>`)
+            
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
-                document.querySelector('.title_head').innerHTML = 'Delivery Method'
+                document.querySelector('.title_head').innerHTML = 'Delivery Method';
+                
+                document.querySelectorAll('.num_line a')[2].querySelector('.circle_pink').classList.add('circle_dark');
+                document.querySelectorAll('.num_line a')[3].querySelector('.circle_grey').classList.add('circle_pink');
+                document.querySelectorAll('.num_line a')[3].querySelectorAll('span')[2].classList.add('pink');
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
