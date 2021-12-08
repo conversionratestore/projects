@@ -1474,7 +1474,7 @@ window.onload  = function () {
                         padding-bottom: 8px;
                     }
                     .addressBook dd label[for="same_as_bill"] {
-                        padding: 25px 0;
+                        padding: 0 0 25px 0;
                         color: #171717;
                     }
                     .addressBook input {
@@ -1488,6 +1488,16 @@ window.onload  = function () {
                     }
                     .checkout-left {
                         padding: 0 0 40px 0!important;
+                    }
+                    .addressBook .error, .error-front {
+                        padding: 4px 0 4px 25px!important;
+                        max-width: 100%;
+                        margin-bottom: 10px;
+                        margin-top: -10px;
+                    }
+                    .same_as_bill_dd {
+                        max-width: 100%;
+                        height: auto!important;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
@@ -1505,6 +1515,7 @@ window.onload  = function () {
                 document.querySelector('#s_fax').closest('dd').style.display = 'none';
                 document.querySelector('#b_addr2').closest('dd').style.display = 'none';
                 document.querySelector('#s_addr2').closest('dd').style.display = 'none';
+                document.querySelector('label[for="same_as_bill"]').closest('dd').classList.add('same_as_bill_dd')
 
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
