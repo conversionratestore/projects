@@ -1474,6 +1474,7 @@ window.onload  = function () {
                     }
                     .addressBook dd label[for="same_as_bill"] {
                         padding: 25px 0;
+                        color: #171717;
                     }
                     .addressBook input {
                         margin-bottom: 28px;
