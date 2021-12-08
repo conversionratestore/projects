@@ -902,16 +902,16 @@ window.onload  = function () {
                                 } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in' && document.querySelector('.myAccount') != null) {
                                     action = `Click on the product cards`;
                                     label = 'Registration step';
-                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1')) {
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Billing and Shipping information step';
-                                } else if (window.location.pathname.includes('checkout/step2')) {
+                                } else if (window.location.pathname.includes('checkout/step2') || window.location.pathname.includes('guest-checkout2.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Delivery Method step';
-                                } else if (window.location.pathname.includes('checkout/step3')) {
+                                } else if (window.location.pathname.includes('checkout/step3') || window.location.pathname.includes('guest-checkout3.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Payment Method step';
-                                }
+                                } 
                                 pushDataLayer(action,label)
                             })
                         })
