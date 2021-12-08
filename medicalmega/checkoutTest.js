@@ -1498,12 +1498,11 @@ window.onload  = function () {
                 document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
                 document.querySelector('#subscribe').insertAdjacentHTML('afterend',`<label class="label_email"><span class="check"></span></label>`);
                 document.querySelector('.label_email .check').before(document.querySelector('#subscribe'));
-                document.querySelectorAll('#b_alt_phn').forEach(el => {
-                    el.closest('dd').style.display = 'none';
-                })
-                document.querySelectorAll('#b_fax').forEach(el => {
-                    el.closest('dd').style.display = 'none';
-                })
+                document.querySelector('#b_alt_phn').closest('dd').style.display = 'none';
+                document.querySelector('#s_alt_phn').closest('dd').style.display = 'none';
+                document.querySelector('#b_fax').closest('dd').style.display = 'none';
+                document.querySelector('#s_fax').closest('dd').style.display = 'none';
+
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
