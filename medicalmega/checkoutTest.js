@@ -1484,6 +1484,9 @@ window.onload  = function () {
                     .addressBook dd label.label_email {
                         padding: 10px 0;
                     }
+                    .checkout-left {
+                        padding: 0 0 20px 0;
+                    }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
@@ -1500,6 +1503,8 @@ window.onload  = function () {
                 document.querySelectorAll('#b_fax').forEach(el => {
                     el.closest('dd').style.display = 'none';
                 })
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
