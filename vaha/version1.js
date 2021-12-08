@@ -149,7 +149,7 @@ const productStyle = `
 		}
 		
 		.financing p.title {
-			margin: 20px auto 60px;
+			margin: 20px auto 30px;
 		}
 		
 		.financing .name {
@@ -257,7 +257,9 @@ const productStyle = `
         	content: "";
         	position: absolute;
         	display: block;
-        	right: 66px;
+        	height: 66px;
+        	top: 15px;
+        	right: 0;
         	width: 1px;
         	background: #DCDCDC;
         }
@@ -342,7 +344,7 @@ const textArr = {
 		heart: `Garmin voucher`,
 		elastic: `Elastic bands`,
 		warranty: '2 year warranty',
-		financing: `Flatrate plans`,
+		financing: `Financing`,
 		payment: `One-time payment`,
 		options: `Financing options:`,
 		choose: `Choose what works for you`,
@@ -360,7 +362,7 @@ const textArr = {
 		chooseVaha: 'Choose your Vaha',
 		link: '/product',
 		money: `No money<br>down`,
-		financingPrice: 'Flatrate plans',
+		flatrate: 'Flatrate plans',
 		fees: `No hidden<br>fees`
 	},
 	'ge': {
@@ -393,7 +395,7 @@ const textArr = {
 		heart: ``,
 		elastic: ``,
 		warranty: ``,
-		financing: ``,
+		financing: `Finanzierung`,
 		payment: ``,
 		options: `Optionen zur Finanzierung:`,
 		choose: `Wähle, was dir passt`,
@@ -411,7 +413,7 @@ const textArr = {
 		chooseVaha: '',
 		link: '/produkt',
 		money: '',
-		financingPrice: 'Flatrate-Tarife',
+		flatrate: 'Flatrate-Tarife',
 		fees: ''
 	},
 }
@@ -644,7 +646,7 @@ const productPage = `
          <div class="financing">
             <div class="inner">
                 <div class="characteristic">
-                    <p class="title">${ obj.financingPrice }</p>
+                    <p class="title">${ obj.flatrate }</p>
                     <div class="price-wrapper">
                     	<div>
                     		<p class="zero">£0</p>
@@ -652,7 +654,7 @@ const productPage = `
 						</div>
 						<div>
                     		<p class="zero">%0</p>
-                    		<p class="subzero">${ obj.financingPrice }</p>
+                    		<p class="subzero">${ obj.financing }</p>
 						</div>
 						<div>
                     		<p class="zero">0</p>
