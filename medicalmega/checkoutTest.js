@@ -1135,8 +1135,6 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
                 <style>
-                #mainbody .quantity-btn {
-                    display: none!important;}
                 .holiday {
                     margin: 15px 0 0 0!important;}
                 .payment h3, .primaryInfo h2, .remove{
@@ -1398,7 +1396,7 @@ window.onload  = function () {
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
                 <style>  
-                    .checkout-left_head, .payment h3 {
+                    #mainbody .quantity-btn, .checkout-left_head, .payment h3 {
                         display: none!important;
                     }
                     .num_line a:nth-child(2) span, .num_line a:nth-child(3) span { 
