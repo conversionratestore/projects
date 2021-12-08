@@ -1284,7 +1284,7 @@ window.onload  = function () {
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
             }
             if (location.pathname.includes('/guest-checkout3.php')) {
-                document.querySelector('.primaryInfo').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/guest-checkout2.php" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
+                document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/guest-checkout2.php" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
             }
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
