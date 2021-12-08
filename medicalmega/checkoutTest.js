@@ -144,7 +144,7 @@ window.onload  = function () {
             #logo img {
                 max-width: 361px; }
             #forgot_pass {
-                padding-bottom: 20px;
+                padding-bottom: 40px;
             }
             #forgot_pass .registerOnLogin {
                 display: block; }
