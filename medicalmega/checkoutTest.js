@@ -920,7 +920,7 @@ window.onload  = function () {
                 document.querySelector('.g-signin2').insertAdjacentHTML('afterend','<button type="button" class="btn btn-next btn-guest">Checkout as a guest</button>')
 
                 document.querySelector('.btn-guest').addEventListener('click', () => {
-                    document.querySelector('.guest_checkout_button').click();
+                    document.querySelector('.guest_checkout_button input').click();
                 });
                 document.querySelector('.myAccountleft .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
