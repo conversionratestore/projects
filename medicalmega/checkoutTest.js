@@ -1285,6 +1285,7 @@ window.onload  = function () {
             }
             if (location.pathname.includes('/guest-checkout3.php')) {
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/guest-checkout2.php" class="btn-back">Back to Delivery Method</a><button type="button" class="btn btn-next">Proceed</button></div>`)
+                document.querySelectorAll('.payment p')[1].style.display = 'none';
             }
             if (location.pathname == '/checkout/step2' || location.pathname.includes('/guest-checkout2.php')) {
                 document.body.insertAdjacentHTML('afterbegin',`
@@ -1387,6 +1388,7 @@ window.onload  = function () {
                     margin: 0;
                     height: auto!important;}
                 .primaryInfo dl textarea {
+                    width: 100%;
                     height: 40px;}
                 span.cc-recurring-setting {
                     width: 100%;}
