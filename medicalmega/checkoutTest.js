@@ -1206,94 +1206,6 @@ window.onload  = function () {
                 });
             }
 
-            if(location.pathname == '/checkout/step4') {
-                let header = `
-                    <div id="logo" align="center">
-                        <a href="https://medicalmega.com/index.html" title="Medical Mega">
-                            <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo.svg" alt="" width="502" height="92">
-                        </a>
-                    </div>
-                    <div class="num_line">
-                        <a href="https://medicalmega.com/cart.html">
-                            <span class="circle_grey">
-                            <span class="number">0</span>
-                            </span>
-                            <span>My Cart</span><span class="line_grey">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step1">
-                            <span class="circle_grey">
-                            <span class="number">1</span>
-                            </span>
-                            <span>Personal Information</span><span class="line_grey">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step1">
-                            <span class="circle_grey">
-                            <span class="number">2</span>
-                            </span>
-                            <span>Shipping Information</span><span class="line_grey">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step2">
-                            <span class="circle_grey">
-                                <span class="number">3</span>
-                            </span>
-                            <span>Delivery Method</span>
-                            <span class="line_pink">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step3">
-                            <span class="circle_grey">
-                            <span class="number">4</span>
-                            </span>
-                            <span>Payment Method</span><span class="line_pink">&nbsp;</span>
-                        </a>
-                        <a href="https://medicalmega.com/checkout/step4">
-                            <span class="circle_pink">
-                            <span class="number">5</span>
-                            </span>
-                            <span class="pink">Confirmation</span>
-                        </a>
-                    </div>
-                `
-                document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', header)
-
-                document.body.insertAdjacentHTML('afterbegin',`<style>
-                    .num_line a {
-                        pointer-events: none;
-                    }
-                    #hdr, #banner {
-                        display: none!important;
-                    }
-                    .num_line a span{
-                        color: #171717!important;
-                    }
-                    .num_line a span.circle_pink span{
-                        color: #C23D31!important;
-                    }
-                    .num_line .circle_pink:before {
-                        content: none!important;
-                    }
-                    .checkout-left_head, .payment .num_line, .payment h3, .remove, .quantity-btn {
-                        display: none!important;
-                    }
-                    .payment {
-                        margin: 20px 0;
-                    }
-                    .primaryInfo {
-                        width: 100%;
-                    }
-                    .payment .altprimaryInfo p {
-                        width: 250px
-                    }
-                    .quantity-row {
-                        pointer-events: none;
-                    }
-                </style>`);
-                document.querySelector('.title_head').innerHTML = 'your order has been placed!';
-                document.querySelector('.title_head').after(document.querySelector('.payment'));
-                document.querySelectorAll('.quantity-row .quantity').forEach(element => {
-                    element.setAttribute('readonly');
-                });
-                document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
-            }
             if (location.pathname.includes('/guest-checkout2.php')) {
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/guest-checkout1.php" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
             }
@@ -1471,6 +1383,94 @@ window.onload  = function () {
                     label = 'Section Payment method';
                     pushDataLayer(action,label)
                 })
+            }
+            if(location.pathname == '/checkout/step4' || location.pathname.includes('/guest-checkout4.php')) { 
+                let header = `
+                    <div id="logo" align="center">
+                        <a href="https://medicalmega.com/index.html" title="Medical Mega">
+                            <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo.svg" alt="" width="502" height="92">
+                        </a>
+                    </div>
+                    <div class="num_line">
+                        <a href="https://medicalmega.com/cart.html">
+                            <span class="circle_grey">
+                            <span class="number">0</span>
+                            </span>
+                            <span>My Cart</span><span class="line_grey">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step1">
+                            <span class="circle_grey">
+                            <span class="number">1</span>
+                            </span>
+                            <span>Personal Information</span><span class="line_grey">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step1">
+                            <span class="circle_grey">
+                            <span class="number">2</span>
+                            </span>
+                            <span>Shipping Information</span><span class="line_grey">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step2">
+                            <span class="circle_grey">
+                                <span class="number">3</span>
+                            </span>
+                            <span>Delivery Method</span>
+                            <span class="line_pink">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step3">
+                            <span class="circle_grey">
+                            <span class="number">4</span>
+                            </span>
+                            <span>Payment Method</span><span class="line_pink">&nbsp;</span>
+                        </a>
+                        <a href="https://medicalmega.com/checkout/step4">
+                            <span class="circle_pink">
+                            <span class="number">5</span>
+                            </span>
+                            <span class="pink">Confirmation</span>
+                        </a>
+                    </div>`
+
+                document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', header)
+
+                document.body.insertAdjacentHTML('afterbegin',`<style>
+                    .num_line a {
+                        pointer-events: none;
+                    }
+                    #hdr, #banner {
+                        display: none!important;
+                    }
+                    .num_line a span{
+                        color: #171717!important;
+                    }
+                    .num_line a span.circle_pink span{
+                        color: #C23D31!important;
+                    }
+                    .num_line .circle_pink:before {
+                        content: none!important;
+                    }
+                    .checkout-left_head, .payment .num_line, .payment h3, .remove, .quantity-btn {
+                        display: none!important;
+                    }
+                    .payment {
+                        margin: 20px 0;
+                    }
+                    .primaryInfo {
+                        width: 100%;
+                    }
+                    .payment .altprimaryInfo p {
+                        width: 250px
+                    }
+                    .quantity-row {
+                        pointer-events: none;
+                    }
+                </style>`);
+                document.querySelector('.title_head').innerHTML = 'your order has been placed!';
+                document.querySelector('.title_head').after(document.querySelector('.payment'));
+                document.querySelectorAll('.quantity-row .quantity').forEach(element => {
+                    element.setAttribute('readonly');
+                });
+                document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
             if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
