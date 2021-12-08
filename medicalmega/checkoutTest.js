@@ -692,7 +692,7 @@ window.onload  = function () {
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
             }
             .registerOnLogin .g-signin2 {
-                margin: 20px 0 20px auto;
+                margin: 20px 0 15px auto;
             }
             .address_book_new .editor .title {
                 display: none;
@@ -786,6 +786,9 @@ window.onload  = function () {
                 left: 0;
                 bottom: 0;
                 width: 100%;
+            }
+            .btn-guest {
+                margin-bottom: 20px;
             }
             </style>`);
 
