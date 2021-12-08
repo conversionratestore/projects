@@ -21,6 +21,15 @@ let style = `
         text-align: center;
         width: 100%;
     }
+    .sleep_impediments h4 {
+        font-family: Roboto;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        text-transform: uppercase;
+        color: #414B56;
+        margin-bottom: 15px;
+    }
     .sleep_impediments button {
         display: flex;
         align-items: center;
@@ -74,6 +83,7 @@ let style = `
         border-radius: 15px;
         padding: 30px 20px;
         text-align: center;
+        margin-top: 100px;
     }
     .get_somnifix p {
         font-size: 16px;
@@ -169,11 +179,6 @@ let style = `
         background: url('https://conversionratestore.github.io/projects/somnifix/img/content/bg-content.svg') no-repeat center / cover;
         padding: 70px;
     }
-    .flex-center-between {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
     .sleep_issue_item h2 {
         text-align: center;
         font-weight: bold;
@@ -193,12 +198,28 @@ let style = `
     .col_content {
         max-width: 620px;
     }
-    .odd {
-
+    .odd .img_content {
+        margin-right: 45px;
     }
-    .even {
-        
+    .even .img_content {
+        margin-left: 45px;
     }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+    .row_col {
+        max-width: 535px;
+        width: 100%;
+    }
+    .row_col img {
+        margin-bottom: 15px;
+    }
+    
+    .flex-center-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     @media only screen and (min-width: 768px) {
         .mb-md-25 {
             margin-bottom: 25px!important;
@@ -319,7 +340,7 @@ let items = [ `
     <div class="row">
         <div class="row_col">
             <h4 class="">With SomniFix</h4>
-            <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-2.png" alt="image">
+            <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-3.png" alt="image">
             <p>With SomniFix® Strips, the mouth remains closed during sleep. With the mouth closed, the tongue rests against the roof of the mouth and the jaw does not drop, leaving a clear passage in the respiratory airway for breathing.</p>
         </div>
         <div class="row_col">
