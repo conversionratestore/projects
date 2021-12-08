@@ -1591,7 +1591,6 @@ window.onload  = function () {
     }
 };
 
-
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('label') != null) {
         mut.disconnect();
