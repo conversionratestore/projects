@@ -692,7 +692,7 @@ window.onload  = function () {
                 background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left center / 24px;
             }
             .registerOnLogin .g-signin2 {
-                margin: 20px 0;
+                margin: 20px 0 20px auto;
             }
             .address_book_new .editor .title {
                 display: none;
@@ -873,7 +873,6 @@ window.onload  = function () {
                 </a>`;
 
 
-            
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
                 document.querySelectorAll('.num_line a')[2].setAttribute('href','https://medicalmega.com/checkout/step1');
@@ -901,18 +900,23 @@ window.onload  = function () {
             });
           
             if (document.querySelector('.myAccount')) {
+              
                 document.querySelector('.addressBookSubmit').setAttribute('type','button');
                 document.querySelector('.addressBookSubmit').setAttribute('value','Submit');
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.myAccountright').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.g-signin2').insertAdjacentHTML('afterend','<button type="button" class="btn btn-next btn-guest">Checkout as a guest</button>')
 
-                document.querySelector('.myAccountleft .btn-next').addEventListener('click', () => {
+                document.querySelector('.btn-guest').addEventListener('click', () => {
+                    document.querySelector('.guest_checkout_button').click();
+                });
+                document.querySelector('.myAccountleft .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="register"]').click();
                     action = `Click on Next button`;
                     label = 'Section Registration';
                     pushDataLayer(action,label)
                 });
-                document.querySelector('.myAccountright .btn-next').addEventListener('click', () => {
+                document.querySelector('.myAccountright .bottom .btn-next').addEventListener('click', () => {
                     document.querySelector('button[name="user_login"]').click();
                     action = `Click on Next button`;
                     label = 'Section Registration';
