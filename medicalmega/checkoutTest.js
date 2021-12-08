@@ -138,6 +138,7 @@ window.onload  = function () {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
             .addressBook {
+                padding: 0 3px;
                 overflow: visible!important;}
             #logo, .num_line a:nth-child(2) {
                 pointer-events: none; }
