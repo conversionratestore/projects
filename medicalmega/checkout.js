@@ -138,8 +138,7 @@ window.onload  = function () {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
             .myAccountright dd {
-                overflow: visible!important;
-            }
+                overflow: visible!important; }
             .addressBook, .myAccount {
                 padding: 0 3px;
                 overflow: visible!important;}
@@ -661,7 +660,7 @@ window.onload  = function () {
                 transform: translateY(-50%);
                 right: 20px;}
             .address_book_new {
-                padding: 20px 0 0 0!important; }
+                padding: 20px 3px 0 3px!important; }
             .address_book_new .small_block {
                 width: 50%!important;
                 clear: both;
