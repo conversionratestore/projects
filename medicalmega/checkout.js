@@ -137,7 +137,9 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
-
+            .myAccountright dd {
+                overflow: visible!important;
+            }
             .addressBook, .myAccount {
                 padding: 0 3px;
                 overflow: visible!important;}
