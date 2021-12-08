@@ -1441,13 +1441,17 @@ window.onload  = function () {
                 });
                 document.querySelector('.checkout-right').innerHTML = localStorage.getItem('checkout')
             }
-
-            if(location.pathname.includes('/guest-checkout1.php')) {
+            if(location.pathname.includes('/guest-checkout')) {
                 document.body.insertAdjacentHTML('afterbegin',`
-                <style>
                     .checkout-left_head, .payment h3 {
                         display: none!important;
                     }
+                `)
+            }
+            if(location.pathname.includes('/guest-checkout1.php')) {
+                document.body.insertAdjacentHTML('afterbegin',`
+                <style>
+                  
                     .addressBook {
                         width: 100%;
                         border: none;
@@ -1492,10 +1496,11 @@ window.onload  = function () {
                     .addressBook .error, .error-front {
                         padding: 4px 0 4px 25px!important;
                         max-width: 100%;
+                        width: 100%;
                         margin-bottom: 10px;
                         margin-top: -10px;
                     }
-                    .same_as_bill_dd {
+                    .addressBook dd.same_as_bill_dd {
                         max-width: 100%;
                         height: auto!important;
                     }
@@ -1504,6 +1509,7 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
                 document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
+               
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
                 document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
                 document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
@@ -1519,6 +1525,10 @@ window.onload  = function () {
 
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
+            }
+            if(location.pathname.includes('/guest-checkout2.php')) {
+                document.querySelector('.title_head').after(document.querySelector('.payment'));
+                document.querySelector('.title_head').innerHTML = 'Delivery Method'
             }
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
