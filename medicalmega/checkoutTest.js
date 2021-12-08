@@ -1468,6 +1468,7 @@ window.onload  = function () {
                     dl.altaddressBook dd:last-child {
                         display: flex;
                         align-items: center;
+                        max-width: 100%;
                     }
                     .addressBook dd label {
                         padding-bottom: 8px;
@@ -1502,6 +1503,8 @@ window.onload  = function () {
                 document.querySelector('#s_alt_phn').closest('dd').style.display = 'none';
                 document.querySelector('#b_fax').closest('dd').style.display = 'none';
                 document.querySelector('#s_fax').closest('dd').style.display = 'none';
+                document.querySelector('#b_addr2').closest('dd').style.display = 'none';
+                document.querySelector('#s_addr2').closest('dd').style.display = 'none';
 
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
                 document.querySelector('.btn-next').addEventListener('click', () => document.querySelector('form div[align="right"] input').click())
