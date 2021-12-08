@@ -863,7 +863,7 @@ window.onload  = function () {
                     <div class="checkout-right_footer"></div>
                 </div>
             </div>`);
-            if (!window.location.pathname.includes('checkout/step4')) {
+            if (!window.location.pathname.includes('checkout/step4') && !window.location.pathname.includes('guest-checkout4.php')) {
                 document.querySelector('#logo img').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/logo.svg');
                 fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                     for (let i = 0; i < data["items"].length; i++) {
