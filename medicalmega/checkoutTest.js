@@ -1487,7 +1487,7 @@ window.onload  = function () {
                         padding: 10px 0;
                     }
                     .checkout-left {
-                        padding: 0 0 20px 0;
+                        padding: 0 0 40px 0!important;
                     }
                 </style>`)
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
