@@ -257,7 +257,7 @@ const productStyle = `
         	content: "";
         	position: absolute;
         	display: block;
-        	height: 66px;
+        	height: 52px;
         	top: 15px;
         	right: 0;
         	width: 1px;
