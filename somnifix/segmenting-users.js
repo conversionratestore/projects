@@ -836,7 +836,7 @@ window.onload = function () {
         })
     })
      
-    if (!!window.matchMedia('(max-width: 480px)')) {
+    if (window.matchMedia('(max-width: 480px)').matches) {
         document.querySelectorAll('.line_dashed').forEach(item => {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
