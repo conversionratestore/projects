@@ -439,36 +439,66 @@ function convertDate(date) {
 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
 }
 
-function toggleMyTooltip(e) {
-	e.stopPropagation()
+document.addEventListener('click', handler)
 
-	hideMyTooltips()
-
-	console.log(e.target)
-	console.log(e.currentTarget)
-
-	if (e.target.closest('.myTooltip').classList.contains('show')) {
-		e.target.closest('.myTooltip').classList.remove('show')
-		console.log('here 1')
-	} else {
-		e.target.closest('.myTooltip').classList.add('show')
-
-		console.log('here 2')
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Checkout improvements mobile',
-			'eventAction': 'Clicks on hints',
-		})
+function handler(event) {
+	for (const tooltip of document.querySelectorAll("myTooltip.show")) {
+		tooltip.classList.remove("show");
 	}
+	event.currentTarget.classList.add("show");
 }
 
-function hideMyTooltips() {
-	myTooltip.forEach(item => {
-		item.classList.remove('show')
-	})
-}
+// function toggleMyTooltip(e) {
+// 	e.stopPropagation()
+//
+// 	hideMyTooltips()
+//
+// 	console.log(e.target)
+// 	console.log(e.currentTarget)
+//
+// 	if (e.target.closest('.myTooltip').classList.contains('show')) {
+// 		e.target.closest('.myTooltip').classList.remove('show')
+// 		console.log('here 1')
+// 	} else {
+// 		e.target.closest('.myTooltip').classList.add('show')
+//
+// 		console.log('here 2')
+//
+// 		window.dataLayer = window.dataLayer || []
+// 		dataLayer.push({
+// 			'event': 'event-to-ga',
+// 			'eventCategory': 'Exp — Checkout improvements mobile',
+// 			'eventAction': 'Clicks on hints',
+// 		})
+// 	}
+// }
+//
+// document.addEventListener('DOMContentLoaded', function() {
+//
+// 	const selector = '.myTooltip';
+// 	const elems = Array.from(document.querySelectorAll(selector));
+// 	const navigation = document.querySelector('nav');
+//
+// 	function makeActive(evt) {
+// 		const target = evt.target;
+//
+// 		if (!target || !target.matches(selector)) {
+// 			return;
+// 		}
+//
+// 		elems.forEach(elem => elem.classList.remove('active'));
+// 		evt.target.classList.add('active');
+// 	};
+//
+// 	navigation.addEventListener('mousedown', makeActive);
+//
+// });
+//
+// function hideMyTooltips() {
+// 	myTooltip.forEach(item => {
+// 		item.classList.remove('show')
+// 	})
+// }
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
