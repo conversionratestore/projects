@@ -10,10 +10,10 @@ document.head.insertAdjacentHTML('beforeend', `<style>
 	}
 </style>`)
 
-document.querySelectorAll('.radio-inline span')[0].innerHTML = `180 patches<br>for $0.20 each`
-document.querySelectorAll('.radio-inline span')[1].innerHTML = `240 pathces<br>for $0.18 each`
-document.querySelectorAll('.radio-inline span')[2].innerHTML = `120 patches<br>for $0.23 each`
-document.querySelectorAll('.radio-inline span')[3].innerHTML = `60 patches<br>for $0.25 each`
+document.querySelectorAll('.radio-inline span')[0].innerHTML = `180 patches<br>($0.20 each)`
+document.querySelectorAll('.radio-inline span')[1].innerHTML = `240 pathces<br>$0.18 each)`
+document.querySelectorAll('.radio-inline span')[2].innerHTML = `120 patches<br>($0.23 each)`
+document.querySelectorAll('.radio-inline span')[3].innerHTML = `60 patches<br>($0.25 each)`
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
