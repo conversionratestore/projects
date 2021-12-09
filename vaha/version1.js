@@ -82,6 +82,10 @@ const productStyle = `
             background-color: #000;
         }
         
+        .properties .names-wrapper {
+        	margin-bottom: 10px;
+        }
+        
         .characteristic {
             text-align: center;
         }
