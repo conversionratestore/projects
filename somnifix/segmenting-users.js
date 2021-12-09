@@ -475,6 +475,10 @@ window.onload = function () {
                 font-size: 16px;
                 line-height: 24px;
             }
+            .sleep_issue_wrapper {
+                background-image: url('url(https://conversionratestore.github.io/projects/somnifix/img/content/bg-content_mob.svg)');
+            }
+
         }
         
         @media only screen and (max-width: 359px) {
