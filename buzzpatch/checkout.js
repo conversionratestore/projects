@@ -56,6 +56,9 @@ const style = `
 			display: flex;
 			flex-direction: column;
 		    height: fit-content;
+		    padding: 5px;
+		    margin: -5px;
+		    cursor: pointer;
 		}
 		
 		.myTooltip img {
