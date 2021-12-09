@@ -379,8 +379,8 @@ const textArr = {
 		monthTimeS: 'From £ 1,663',
 	},
 	'ge': {
-		priceX: '€ 58 / monate',
-		priceS: '€ 36 / monate',
+		priceX: '€ 58 / monat',
+		priceS: '€ 36 / monat',
 		month: `monate`,
 		from: `Monatlich von`,
 		fromWord: 'ab',
@@ -432,12 +432,12 @@ const textArr = {
 		flatrate: 'Flatrate-Tarife',
 		fees: `Keine<br>versteckten<br>gebühren`,
 		zero: '€0',
-		month36X: '€ 58 / monate',
-		month36S: '€ 36 / monate',
-		month24X: '€ 94 / monate',
-		month24S: '€ 58 / monate',
-		month12X: '€ 189 / monate',
-		month12S: '€ 116 / monate',
+		month36X: '€ 58 / monat',
+		month36S: '€ 36 / monat',
+		month24X: '€ 94 / monat',
+		month24S: '€ 58 / monat',
+		month12X: '€ 189 / monat',
+		month12S: '€ 116 / monat',
 		monthTimeX: 'Ab € 2,268',
 		monthTimeS: 'Ab € 1,395',
 	},
@@ -691,7 +691,7 @@ const productPage = `
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>36 ${ obj.month }</p>
+                        <p>39 ${ obj.month }</p>
                         <div class="check">
                             <p>${ obj.month36X }</p>
                             <p>${ obj.month36S }</p>
