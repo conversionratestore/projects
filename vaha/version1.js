@@ -404,7 +404,7 @@ const textArr = {
 		mounting: `Wandmontage`,
 		starterbox: 'VAHA Starterbox',
 		accessories: `Zubehör`,
-		voucher: `GARMIN Gutscheincode zum Einlösen nach der 30-Tage-Testversion Widerstandsbänder unterschiedlicher Stärke Kameraabdeckung Benutzerhandbuch`,
+		voucher: `GARMIN Gutscheincode zum Einlösen nach der 30-Tage-Testversion Widerstandsbänder unterschiedlicher Stärke<br>Kameraabdeckung Benutzerhandbuch`,
 		care: `Pflege`,
 		microfiber: `Mikrofasertuch<br>und Glasreiniger`,
 		heart: `Pulsmessgerät`,
