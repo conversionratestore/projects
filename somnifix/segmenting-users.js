@@ -1,7 +1,10 @@
-// window.onload = function () {
+window.onload = function () {
     let action, label;
     let style = `
     <style>
+        .shogun-root {
+            overflow: hidden;
+        }
         .sleep_impediments {
             background: url('https://conversionratestore.github.io/projects/somnifix/img/bg.svg') no-repeat center bottom / 100%;
             padding: 50px 0 40px;
@@ -66,7 +69,7 @@
             margin-right: 30px;
         }
         .img_arrow {
-            margin-left: 25px
+            margin-left: 20px
         }
         .get_somnifix {
             background: #FFFFFF;
@@ -144,6 +147,7 @@
             color: #1E415F;
             display: flex;
             align-items: center;
+            padding: 0;
         }
         .btn-close img {
             margin-left: 10px;
@@ -343,6 +347,7 @@
             }
             .video {
                 max-width: 470px;
+                width: 100%;
                 height: 264px;
             }
         }
@@ -373,13 +378,12 @@
             .tabsNav {
                 padding-bottom: 20px;
             }
-            .tabsNav li {
+            .tabsNav li, .tabsNav li.active {
                 padding: 8px 11px;
                 font-size: 16px;
                 line-height: 19px;
             }
             .tabsNav li.active {
-                padding: 8px 11px;
                 font-weight: 900;
                 border-radius: 10px;
             }
@@ -407,8 +411,32 @@
                 width: 100%;
                 max-width: 100%;
             }
+            .tabsNav {
+                width: calc(100% + 20px);
+                margin-right: -20px;
+                padding-right: 10px;
+            }
+            .video {
+                max-width: 100%;
+                min-height: 180px;
+                height: 100%;
+            }
+            .col {
+                width: 100%;
+                padding: 0 0 20px 0;
+            }
+            .row {
+                flex-direction: column-reverse;
+            }
         }
         @media only screen and (max-width: 767px) {
+            .sleep_impediments button {
+                width: 100%;
+                margin: 0 0 20px 0
+            }
+            .sleep_impediments h2 {
+                margin-bottom: 40px;
+            }
             .line_dashed {
                 margin: 40px 0 0 0;
             }
@@ -446,6 +474,16 @@
             .col_content p.w-bold {
                 font-size: 16px;
                 line-height: 24px;
+            }
+        }
+        
+        @media only screen and (max-width: 359px) {
+            .sleep_issue_contents {
+                padding: 30px 10px 20px;
+            }
+            .sleep_issue_item h2 {
+                font-size: 27px;
+                line-height: 34px;
             }
         }
         
@@ -800,7 +838,7 @@
         })
     }
 
-// };
+};
     
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
