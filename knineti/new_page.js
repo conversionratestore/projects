@@ -911,7 +911,8 @@ let firstBlock = /*html*/ `
     </div>
     <p class="text_mobile">If you are not satisfied with the masterclass, please contact us within 90 days of your enrollment to get a full refund.</p>
 
-    <form action="/enroll-process/" autocomplete="off" data-persist="garlic" id="address-form" method="POST" novalidate onsubmit="return validateCheckoutForm()">
+    
+    <form action="/enroll-process/?d=MjAyMS0xMi0x&ver=vis_ver-0_0-sub_ver-4_1-cust_ver-0_0&subid=281585&age=puppy&firstname=alex&dogname=grey&src=tpst" autocomplete="off" data-persist="garlic" id="address-form" method="POST" novalidate onsubmit="return validateCheckoutForm()">
             <ul class="payment_inform_box">
         <li class="payment_inform_wrapp">
             <p class="subtitle_text">Payment Information</p>
@@ -1095,6 +1096,10 @@ function newPage() {
         </label>
    `
     )
+
+    document.querySelectorAll("form input[type=hidden]").forEach((item) => {
+      document.querySelector(".payment_inform_box").before(item)
+    })
 
     document.querySelector("#card2").insertAdjacentHTML(
       "afterend",
