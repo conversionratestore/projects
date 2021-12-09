@@ -316,6 +316,8 @@ let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 
 const textArr = {
 	'en': {
+		priceX: '£ 88 / month',
+		priceS: '£ 68 / month',
 		month: `month`,
 		from: `Monthly From`,
 		fromWord: 'From',
@@ -358,16 +360,28 @@ const textArr = {
 			`Pay the full amount or via installments for 12, 24, or 39 months. The VAHA membership (from £39) is separate from the purchase of the VAHA mirror and is activated upon receipt.`,
 			`Sufficient creditworthiness is a prerequisite. The installment purchase offered by us is handled by our payment partner Klarna Bank AB (publ). Klarna, therefore, decides whether the installment purchase is accepted or not.`,
 		],
-		getWord: 'GET',
+		getWordX: 'GET VAHA X',
+		getWordS: 'GET VAHA S',
 		try: 'Try 30 days for free',
 		chooseVaha: 'Choose your Vaha',
 		link: '/product',
 		money: `No money<br>down`,
 		flatrate: 'Flatrate plans',
-		fees: `No hidden<br>fees`
+		fees: `No hidden<br>fees`,
+		zero: '£0',
+		month36X: '£ 88 / month',
+		month36S: '£ 68 / month',
+		month24X: '£ 115 / month',
+		month24S: '£ 85 / month',
+		month12X: '£ 202 / month',
+		month12S: '£ 139 / month',
+		monthTimeX: 'From £ 2,418',
+		monthTimeS: 'From £ 1,663',
 	},
 	'ge': {
-		month: `monat`,
+		priceX: '€ 58 / monate',
+		priceS: '€ 36 / monate',
+		month: `monate`,
 		from: `Monatlich von`,
 		fromWord: 'ab',
 		klarna: `mit Klarna oder Splitit`,
@@ -409,13 +423,23 @@ const textArr = {
 			`Zahle via Direkt- oder Ratenkauf für 12, 24 oder 39 Monate. Die VAHA Mitgliedschaft (ab 39 £) ist losgelöst vom Kauf des VAHAs und wird beim Erhalt aktiviert.`,
 			`Eine ausreichende Bonität ist vorausgesetzt. Der von uns angebotene Ratenkauf wird von unserem Zahlungspartner ZAB Abrechnungsgesellschaft mbH abgewickelt. ZAB entscheidet daher, ob der Ratenkauf angenommen wird oder nicht.`,
 		],
-		getWord: '',
+		getWordX: 'VAHA X erhalten',
+		getWordS: 'VAHA S erhalten',
 		try: '30 Tage kostenlos testen',
 		chooseVaha: '',
 		link: '/produkt',
 		money: `Keine<br>anzahlung`,
 		flatrate: 'Flatrate-Tarife',
-		fees: `Keine<br>versteckten<br>gebühren`
+		fees: `Keine<br>versteckten<br>gebühren`,
+		zero: '€0',
+		month36X: '€ 88 / monate',
+		month36S: '€ 68 / monate',
+		month24X: '€ 94 / monate',
+		month24S: '€ 58 / monate',
+		month12X: '€ 189 / monate',
+		month12S: '€ 116 / monate',
+		monthTimeX: 'Ab € 2,268',
+		monthTimeS: 'Ab € 1,395',
 	},
 }
 const obj = textArr[language]
@@ -429,7 +453,7 @@ const productPage = `
                     <p class="name">Vaha X</p>
                  	<p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 2,268</p>-->
-                    <p class="price">£ 88 / ${ obj.month }</p>
+                    <p class="price">${ obj.priceX }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
@@ -437,7 +461,7 @@ const productPage = `
                     <p class="name">Vaha S</p>
                     <p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 1,395</p>-->
-                    <p class="price">£ 68 / ${ obj.month }</p>
+                    <p class="price">${ obj.priceS }</p>
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
             </div>
@@ -561,8 +585,8 @@ const productPage = `
                     <div class="property">
                         <p>${ obj.display }</p>
                         <div class="check">
-                            <p>43${ obj.inch }</p>
-                            <p>32${ obj.inch }</p>
+                            <p>{ obj.inch }</p>
+                            <p>{ obj.inch }</p>
                         </div>
                     </div>
                     <div class="property">
@@ -650,7 +674,7 @@ const productPage = `
                     <p class="title">${ obj.flatrate }</p>
                     <div class="price-wrapper">
                     	<div>
-                    		<p class="zero">£0</p>
+                    		<p class="zero">${ obj.zero }</p>
                     		<p class="subzero">${ obj.money }</p>
 						</div>
 						<div>
@@ -669,29 +693,29 @@ const productPage = `
                     <div class="property">
                         <p>36 ${ obj.month }</p>
                         <div class="check">
-                            <p>£ 88 / ${ obj.month }</p>
-                            <p>£ 68 / ${ obj.month }</p>
+                            <p>${ obj.month36X }</p>
+                            <p>${ obj.month36S }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>24 ${ obj.month }</p>
                         <div class="check">
-                            <p>£ 115 / ${ obj.month }</p>
-                            <p>£ 85 / ${ obj.month }</p>
+                            <p>${ obj.month24X }</p>
+                            <p>${ obj.month24S }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>12 ${ obj.month }</p>
                         <div class="check">
-                            <p>£ 202 / ${ obj.month }</p>
-                            <p>£ 139 / ${ obj.month }</p>
+                            <p>${ obj.month12X }</p>
+                            <p>${ obj.month12S }</p>
                         </div>
                     </div>
                     <div class="property">
                         <p>${ obj.payment }</p>
                         <div class="check">
-                            <p>${ obj.fromWord } £ 2,418</p>
-                            <p>${ obj.fromWord } £ 1,663</p>
+                            <p>${ obj.monthTimeX }</p>
+                            <p>${ obj.monthTimeS }</p>
                         </div>
                     </div>
                 </div>
@@ -728,11 +752,11 @@ const productPage = `
     </section>
     <div class="btn-wrapper">
         <button>
-            <span>${ obj.getWord } VAHA X</span>
+            <span>${ obj.getWordX }</span>
             <span>${ obj.try }</span>
         </button>
         <button>
-            <span>${ obj.getWord } VAHA S</span>
+            <span>${ obj.getWordS }</span>
             <span>${ obj.try }</span>
         </button>
     </div>
