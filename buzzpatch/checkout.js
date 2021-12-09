@@ -448,6 +448,13 @@ document.body.addEventListener('click', function (e) {
 		hideTooltips()
 
 		e.target.closest('.myTooltip')?.classList.add('show')
+		
+		window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Checkout improvements mobile',
+			'eventAction': 'Clicks on hints'
+		})
 	}
 })
 
