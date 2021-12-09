@@ -444,10 +444,16 @@ function toggleMyTooltip(e) {
 
 	hideMyTooltips()
 
+	console.log(e.target)
+	console.log(e.currentTarget)
+
 	if (e.target.closest('.myTooltip').classList.contains('show')) {
 		e.target.closest('.myTooltip').classList.remove('show')
+		console.log('here 1')
 	} else {
 		e.target.closest('.myTooltip').classList.add('show')
+
+		console.log('here 2')
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
