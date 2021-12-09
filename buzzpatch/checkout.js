@@ -68,8 +68,8 @@ const style = `
 				
 		.myTooltip > div {
 			position: absolute;
-			left: -130px;
-			top: 0;
+			left: -124px;
+			top: 5px;
 			margin: 0;
 			max-height: 0;
 			padding: 15px 10px;
@@ -103,7 +103,7 @@ const style = `
 		}
 		
 		.item:last-child .myTooltip > div {
-			left: -109px;
+			left: -105px;
 		}
 			
 		.myTooltip p {
