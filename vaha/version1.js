@@ -218,7 +218,7 @@ const productStyle = `
         .btn-wrapper button span{
         	display: block;
         	font-weight: 400;
-        	font-size: 14px;
+        	font-size: 13px;
         	white-space: nowrap;
         }
         
