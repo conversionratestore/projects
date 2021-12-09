@@ -439,13 +439,18 @@ function convertDate(date) {
 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
 }
 
-document.addEventListener('click', handler)
+document.body.addEventListener('click', handler)
 
 function handler(event) {
-	for (const tooltip of document.querySelectorAll("myTooltip.show")) {
-		tooltip.classList.remove("show");
+	console.log(event.currentTarget)
+
+	if(event.currentTarget.classList.matches("show")) {
+		for (const tooltip of document.querySelectorAll("myTooltip.show")) {
+			tooltip.classList.remove("show");
+		}
+	} else if (event.currentTarget.classList.matches("myTooltip")) {
+		event.currentTarget.classList.add("show");
 	}
-	event.currentTarget.classList.add("show");
 }
 
 // function toggleMyTooltip(e) {
