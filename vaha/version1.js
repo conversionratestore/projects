@@ -426,7 +426,7 @@ const textArr = {
 		getWordX: 'VAHA X erhalten',
 		getWordS: 'VAHA S erhalten',
 		try: '30 Tage kostenlos testen',
-		chooseVaha: '',
+		chooseVaha: 'Wählen Sie Ihr Vaha',
 		link: '/produkt',
 		money: `Keine<br>anzahlung`,
 		flatrate: 'Flatrate-Tarife',
