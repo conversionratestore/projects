@@ -841,7 +841,6 @@ window.onload = function () {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
-
 };
     
 window.dataLayer = window.dataLayer || [];
