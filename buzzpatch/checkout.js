@@ -433,10 +433,10 @@ document.head.insertAdjacentHTML('beforeend', style)
 banner.insertAdjacentHTML('beforeend', shipping)
 footer.insertAdjacentHTML('beforebegin', reviews)
 
-const myTooltip = document.querySelectorAll('.myTooltip')
-
-myTooltip.forEach(item => item.addEventListener('click', toggleMyTooltip))
-document.body.addEventListener('click', hideMyTooltips)
+// const myTooltip = document.querySelectorAll('.myTooltip')
+//
+// myTooltip.forEach(item => item.addEventListener('click', toggleMyTooltip))
+// document.body.addEventListener('click', hideMyTooltips)
 
 function convertDate(date) {
 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
