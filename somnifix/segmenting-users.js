@@ -9,6 +9,7 @@
         .sleep_impediments .container {
             max-width: 886px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         .sleep_impediments h2 {
             margin-bottom: 59px;
@@ -110,7 +111,7 @@
         .sleep_issue {
             max-width: 1340px;
             margin: 40px auto;
-            width: calc(100% - 20px);
+            width: calc(100% - 40px);
             display: none;
         }
         .sleep_issue h4 {
@@ -178,8 +179,11 @@
         .line_dashed {
             margin: 70px 0 0 0;
         }
-        .sleep_issue_contents {
+        .sleep_issue_wrapper {
+            border-radius: 10px;
             background: #E7F4F7 url(https://conversionratestore.github.io/projects/somnifix/img/content/bg-content.svg) no-repeat center top / 100%;
+        }
+        .sleep_issue_contents {
             padding: 70px;
         }
         .sleep_issue_item h2 {
@@ -221,7 +225,7 @@
         }
         .row_col {
             max-width: 535px;
-            width: 100%;
+            width: 49%;
             margin-top: 40px;
             padding-top: 29px;
         }
@@ -272,6 +276,25 @@
             display: flex;
             align-items: center;
         }
+        .sleep_issue_header  {
+            padding: 20px 20px 0 20px;
+        }
+        .sleep_issue_header p {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: uppercase;
+            color: #1E415F;
+            opacity: 0.5;
+        }
+        .sleep_issue_header  .line_dashed {
+            margin: 20px 0 0 0;
+        }
+        @media only screen and (min-width: 992px) {
+            .d-lg-none {
+                display: none;
+            }
+        }
 
         @media only screen and (min-width: 768px) {
             .mb-md-25 {
@@ -281,6 +304,149 @@
                 margin-top: 70px;
             }
         }
+        @media only screen and (max-width: 1199px) {
+            .sleep_issue_contents {
+                padding: 40px 20px 30px;
+            }
+        }
+        @media only screen and (max-width: 1099px) {
+            .tabsNav li {
+                margin: 0 10px 0 0;
+                padding: 8px 20px;
+            }
+            .tabsNav li.active {
+                padding: 20px 25px;
+            }
+            .btn-close {
+                font-size: 14px;
+                line-height: 16px;
+                text-transform: capitalize;
+            }
+            .btn-close img {
+                width: 18px;
+                height: 18px;
+            }
+            .img_content {
+                max-width: 450px;
+            }
+            .odd .img_content {
+                margin-right: 20px;
+            }
+            .even .img_content {
+                margin-left: 20px;
+            }
+            .col {
+                width: calc(100% - 470px);
+                padding-left: 20px;
+            }
+            .video {
+                max-width: 470px;
+                height: 264px;
+            }
+        }
+        @media only screen and (max-width: 991px) {
+            .sleep_impediments button {
+                padding: 15px;
+            }
+            .img_snoring {
+                width: 70px;
+                height: 70px;
+                margin-right: 20px;
+            }
+            .sleep_impediments .content {
+                min-height: auto;
+            }
+            .sleep_impediments .title {
+                font-size: 16px;
+                line-height: 19px;
+            }
+            .sleep_impediments .span {
+                margin-top: 10px;
+                font-size: 12px;
+                line-height: 14px;
+            }
+            .img_arrow {
+                height: 14px;
+            }
+            .tabsNav {
+                padding-bottom: 20px;
+            }
+            .tabsNav li {
+                padding: 8px 11px;
+                font-size: 16px;
+                line-height: 19px;
+            }
+            .tabsNav li.active {
+                padding: 8px 11px;
+                font-weight: 900;
+                border-radius: 10px;
+            }
+            .sleep_issue {
+                margin: 20px auto;
+            }
+            .item_row {
+                flex-direction: column;
+            }
+            .item_row.even, .item_row.odd.lg-reverse {
+                flex-direction: column-reverse;
+            }
+            .item_row.even.lg-reverse {
+                flex-direction: column;
+            }
+            .item_row.lg-reverse .img_content {
+                margin: 40px auto 0;
+                width: calc(100% - 94px);
+            }
+            .col_content {
+                max-width: 100%
+            }
+            .item_row .img_content {
+                margin: 0 0 20px 0;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .line_dashed {
+                margin: 40px 0 0 0;
+            }
+            .item_row {
+                margin-top: 40px;
+            }
+            .sleep_issue_item h2 {
+                font-size: 30px;
+                line-height: 36px;
+            }
+            .row_col {
+                max-width: 100%;
+                width: 100%;
+                padding-top: 0;
+            }
+            .row_col img {
+                width: 100%;
+            }
+            .get_somnifix {
+                padding: 30px 20px 20px 20px;
+                margin-top: 40px;
+            }
+            .sleep_issue h3 {
+                font-size: 20px;
+                line-height: 24px;
+            }
+            .btn_buy {
+                margin-top: 20px;
+                line-height: 55px;
+            }
+            .col_content p {
+                font-size: 14px;
+                line-height: 22px;
+            }
+            .col_content p.w-bold {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+        
     </style>`
 
     let arr = [
@@ -332,7 +498,15 @@
                 <ul class="tabsNav"></ul>
                 <button type="button" class="btn-close">Close <img src="https://conversionratestore.github.io/projects/somnifix/img/close-dark.svg"></button>
             </div>
-            <div class="sleep_issue_contents"></div>
+            <div class="sleep_issue_wrapper">
+                <div class="d-lg-none sleep_issue_header">
+                    <div class="flex-center-between">
+                        <p></p>
+                    </div>
+                    <img src="https://conversionratestore.github.io/projects/somnifix/img/line-dashed.png" alt="line dashed" class="line_dashed">
+                </div>
+                <div class="sleep_issue_contents"></div>
+            </div>
         </div>
     `
 
@@ -387,6 +561,14 @@
         })
     }
 
+    function changeBorderRadius() {
+        if (document.querySelectorAll('.tabsNav li')[0].classList.contains('active')) {
+            document.querySelector('.sleep_issue_contents').style.borderRadius = '0 10px 10px 10px'
+        } else {
+            document.querySelector('.sleep_issue_contents').style.borderRadius = '10px 10px 10px 10px'
+        }
+    }
+
     let items = [ `
         <div class="item_row odd">
             <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-1.png" alt="image" class="img_content">
@@ -429,7 +611,7 @@
         </div>
     `,
     `
-    <div class="item_row odd">
+    <div class="item_row odd lg-reverse">
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-5.png" alt="image" class="img_content">
         <div class="col_content">
             <h3 class="mb-md-25">Mouth Breathing</h3>
@@ -444,7 +626,7 @@
         </div>
     </div>
     <img src="https://conversionratestore.github.io/projects/somnifix/img/line-dashed.png" alt="line dashed" class="line_dashed">
-    <div class="item_row even align-items-end">
+    <div class="item_row even align-items-end lg-reverse">
         <div class="col_content">
             <h3 class="mb-md-25">Nose Breathing</h3>
             <p class="w-bold mb-15 text-up">The first line of defense</p>
@@ -545,8 +727,14 @@
 
     document.body.insertAdjacentHTML('afterbegin', style); //add style
 
-    document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapperBtns); //add wrapper btns
-    document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapper); //add contents
+    if (window.matchMedia('(max-width: 991px)')) {
+        document.querySelectorAll('.shogun-root .shg-box-vertical-align-wrapper')[10].insertAdjacentHTML('afterend', createWrapperBtns); //add wrapper btns
+        document.querySelectorAll('.shogun-root .shg-box-vertical-align-wrapper')[10].insertAdjacentHTML('afterend', createWrapper); //add contents
+        document.querySelector('.sleep_issue_header p').after(document.querySelector('.btn-close'))
+    } else {
+        document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapperBtns); //add wrapper btns
+        document.querySelectorAll('.shg-box-vertical-align-wrapper')[0].insertAdjacentHTML('afterend', createWrapper); //add contents
+    }
 
     for (let i = 0; i < arr.length; i++) {
         document.querySelector('.sleep_impediments .shg-row').insertAdjacentHTML('beforeend', createBtns(arr[i]["iconSrcBtn"],arr[i]["nameBtn"]));  //add 4 btns
@@ -556,27 +744,39 @@
     
         document.querySelectorAll('.sleep_impediments button')[i].addEventListener('click', () => { //click on btn in "How to address your sleep impediments"
             hideItems();
-            document.querySelector('.sleep_issue').style.display = 'block';
-            document.querySelectorAll('.tabsNav li')[i].classList.add('active');
-            document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block';
-            document.querySelector('.sleep_impediments').style.display = 'none';
+            document.querySelector('.sleep_issue').style.display = 'block'; //open contents
+            document.querySelectorAll('.tabsNav li')[i].classList.add('active'); //add active for tab
+            document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block'; //open item contents
+            document.querySelector('.sleep_impediments').style.display = 'none'; //hide wrapper btns
+            document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"];
+            changeBorderRadius() //change Border Radius for contents
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
             pushDataLayer(action,label) 
-
         })
         document.querySelectorAll('.tabsNav li')[i].addEventListener('click', () => { 
             hideItems();
-            document.querySelectorAll('.tabsNav li')[i].classList.add('active');
-            document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block';
+            document.querySelectorAll('.tabsNav li')[i].classList.add('active'); //add active for tab
+            document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block'; //open item contents
+            document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"];
+            //video pause
+            let iframe = document.querySelector('iframe.video');
+            iframe.src = iframe.src;
+            changeBorderRadius() //change Border Radius for contents
+            //events
             action = `Click on ${arr[i]["nameBtn"]} tabs`;
             label = 'How to address your sleep impediments';
             pushDataLayer(action,label) 
         })
     }
+    
     document.querySelector('.btn-close').addEventListener('click', () => {
-        document.querySelector('.sleep_impediments').style.display = 'block';
-        document.querySelector('.sleep_issue').style.display = 'none';
+        document.querySelector('.sleep_impediments').style.display = 'block'; //show btns
+        document.querySelector('.sleep_issue').style.display = 'none'; //hide contents
+        //video pause
+        let iframe = document.querySelector('iframe.video');
+        iframe.src = iframe.src;
+        //events
         action = `Close`;
         label = `${document.querySelector('.tabsNav li.active').innerText} card`;
         pushDataLayer(action,label) 
@@ -585,7 +785,7 @@
     document.querySelectorAll('.btn_buy').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.on-button-get-sominifix-open')[0].click()
-
+            //events
             action = 'Click on Buy Somnifix button';
             label = `${document.querySelector('.tabsNav li.active').innerText.toLowerCase()} card`;
             pushDataLayer(action,label) 
