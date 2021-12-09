@@ -320,8 +320,8 @@ let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 
 const textArr = {
 	'en': {
-		priceX: '£ 88 / month',
-		priceS: '£ 68 / month',
+		priceX: '£ 50 / month',
+		priceS: '£ 31 / month',
 		month: `month`,
 		from: `Monthly From`,
 		fromWord: 'From',
@@ -373,14 +373,14 @@ const textArr = {
 		flatrate: 'Flatrate plans',
 		fees: `No hidden<br>fees`,
 		zero: '£0',
-		month36X: '£ 88 / month',
-		month36S: '£ 68 / month',
-		month24X: '£ 115 / month',
-		month24S: '£ 85 / month',
-		month12X: '£ 202 / month',
-		month12S: '£ 139 / month',
-		monthTimeX: 'From £ 2,418',
-		monthTimeS: 'From £ 1,663',
+		month36X: '£ 50 / month',
+		month36S: '£ 31 / month',
+		month24X: '£ 81 / month',
+		month24S: '£ 50 / month',
+		month12X: '£ 162 / month',
+		month12S: '£ 100 / month',
+		monthTimeX: 'From £ 1,950',
+		monthTimeS: 'From £ 1,195',
 	},
 	'ge': {
 		priceX: '€ 58 / monat',
