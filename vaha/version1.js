@@ -93,7 +93,7 @@ const productStyle = `
         .names-wrapper {
             display: flex;
 	        justify-content: space-around;
-	        margin-bottom: 10px;
+	        margin-bottom: 40px;
 	        gap: 10px;
         }
         
@@ -155,7 +155,7 @@ const productStyle = `
 		.financing .name {
 			border: 1px solid #222222;
 			width: 100%;
-			padding: 7px 0;
+			padding: 5px 0;
 			border-radius: 4px;
 			white-space: nowrap;
 		}
