@@ -444,17 +444,19 @@ document.body.addEventListener('click', function (e) {
 
 	if (e.target.closest('.show')) {
 		e.target.closest('.show').classList.remove('show')
-	} else {
+	} else if (e.target.closest('.myTooltip')) {
 		hideTooltips()
 
 		e.target.closest('.myTooltip')?.classList.add('show')
-		
+
 		window.dataLayer = window.dataLayer || [];
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp — Checkout improvements mobile',
 			'eventAction': 'Clicks on hints'
 		})
+	} else {
+		hideTooltips()
 	}
 })
 
