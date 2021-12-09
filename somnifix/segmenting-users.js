@@ -771,7 +771,7 @@ window.onload = function () {
 
     document.body.insertAdjacentHTML('afterbegin', style); //add style
 
-    if (window.matchMedia('(max-width: 991px)')) {
+    if (window.matchMedia('(max-width: 991px)').matches) {
         document.querySelectorAll('.shogun-root .shg-box-vertical-align-wrapper')[10].insertAdjacentHTML('afterend', createWrapperBtns); //add wrapper btns
         document.querySelectorAll('.shogun-root .shg-box-vertical-align-wrapper')[10].insertAdjacentHTML('afterend', createWrapper); //add contents
         document.querySelector('.sleep_issue_header p').after(document.querySelector('.btn-close'))
