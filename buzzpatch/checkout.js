@@ -448,7 +448,7 @@ function handler(event) {
 	console.log(event.currentTarget)
 
 	if(event.currentTarget.classList.matches("show")) {
-		for (const tooltip of document.querySelectorAll("myTooltip.show")) {
+		for (const tooltip of document.querySelectorAll(".myTooltip.show")) {
 			tooltip.classList.remove("show");
 		}
 	} else if (event.currentTarget.classList.matches("myTooltip")) {
