@@ -585,8 +585,8 @@ const productPage = `
                     <div class="property">
                         <p>${ obj.display }</p>
                         <div class="check">
-                            <p>${ obj.inch }</p>
-                            <p>${ obj.inch }</p>
+                            <p>43${ obj.inch }</p>
+                            <p>32${ obj.inch }</p>
                         </div>
                     </div>
                     <div class="property">
