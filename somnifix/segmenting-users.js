@@ -166,6 +166,7 @@
             height: fit-content;
             margin: 0 20px 0 0;
             cursor: pointer;
+            white-space: nowrap;
         }
         .tabsNav li.active {
             font-weight: bold;
@@ -178,6 +179,7 @@
         }
         .line_dashed {
             margin: 70px 0 0 0;
+            width: 100%;
         }
         .sleep_issue_wrapper {
             border-radius: 10px;
@@ -791,6 +793,13 @@
             pushDataLayer(action,label) 
         })
     })
+     
+    if (window.matchMedia('(max-width: 480px)')) {
+        document.querySelectorAll('.line_dashed').forEach(item => {
+            item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
+        })
+    }
+
 // };
     
 window.dataLayer = window.dataLayer || [];
