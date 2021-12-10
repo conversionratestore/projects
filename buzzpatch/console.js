@@ -426,12 +426,12 @@ const reviews = `
 	</div>
 `
 
-// const banner = document.querySelector('.banner')
-// const footer = document.querySelector('.main__footer')
+const banner = document.querySelector('.banner')
+const footer = document.querySelector('.main__footer')
 
 document.head.insertAdjacentHTML('beforeend', style)
-// banner.insertAdjacentHTML('beforeend', shipping)
-// footer.insertAdjacentHTML('beforebegin', reviews)
+banner.insertAdjacentHTML('beforeend', shipping)
+footer.insertAdjacentHTML('beforebegin', reviews)
 //
 // const myTooltip = document.querySelectorAll('.myTooltip')
 
