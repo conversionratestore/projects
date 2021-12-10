@@ -438,8 +438,6 @@ function convertDate(date) {
 }
 
 document.body.addEventListener('click', function (e) {
-	e.preventDefault()
-
 	if (e.target.closest('.show')) {
 		e.target.closest('.show').classList.remove('show')
 	} else if (e.target.closest('.myTooltip')) {
