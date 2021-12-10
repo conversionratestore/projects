@@ -429,11 +429,11 @@ const reviews = `
 const banner = document.querySelector('.banner')
 const footer = document.querySelector('.main__footer')
 
-const tooltips = document.querySelectorAll('.myTooltip')
-
 document.head.insertAdjacentHTML('beforeend', style)
 banner.insertAdjacentHTML('beforeend', shipping)
 footer.insertAdjacentHTML('beforebegin', reviews)
+
+const myTooltip = document.querySelectorAll('.myTooltip')
 
 function convertDate(date) {
 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
@@ -459,10 +459,8 @@ document.body.addEventListener('click', function (e) {
 })
 
 function hideTooltips() {
-	tooltips.forEach(tooltip => {
-		if(tooltip.hasClass('show')) {
-			tooltip.classList.remove('show')
-		}
+	myTooltip.forEach(tooltip => {
+		tooltip.classList.remove('show')
 	})
 }
 
