@@ -429,6 +429,8 @@ const reviews = `
 const banner = document.querySelector('.banner')
 const footer = document.querySelector('.main__footer')
 
+const tooltips = document.querySelectorAll('.myTooltip')
+
 document.head.insertAdjacentHTML('beforeend', style)
 banner.insertAdjacentHTML('beforeend', shipping)
 footer.insertAdjacentHTML('beforebegin', reviews)
@@ -457,8 +459,10 @@ document.body.addEventListener('click', function (e) {
 })
 
 function hideTooltips() {
-	document.querySelectorAll('.myTooltip').forEach(tooltip => {
-		tooltip.classList.remove('show')
+	tooltips.forEach(tooltip => {
+		if(tooltip.hasClass('show')) {
+			tooltip.classList.remove('show')
+		}
 	})
 }
 
