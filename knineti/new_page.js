@@ -1148,6 +1148,10 @@ function newPage() {
     document.querySelector("#month").setAttribute("tabindex", "12")
     document.querySelector("#year1").setAttribute("tabindex", "13")
     document.querySelector("#cvv").setAttribute("tabindex", "14")
+    document.querySelector("#card1").setAttribute("tabindex", "20")
+    document.querySelector("#card2").setAttribute("tabindex", "21")
+    document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
+    document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
   }
 
   window.dataLayer = window.dataLayer || []
