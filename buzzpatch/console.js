@@ -432,39 +432,37 @@ const footer = document.querySelector('.main__footer')
 document.head.insertAdjacentHTML('beforeend', style)
 banner.insertAdjacentHTML('beforeend', shipping)
 footer.insertAdjacentHTML('beforebegin', reviews)
-//
-// const myTooltip = document.querySelectorAll('.myTooltip')
 
 function convertDate(date) {
 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
 }
 
-// document.body.addEventListener('click', function (e) {
-// 	e.preventDefault()
-//
-// 	if (e.target.closest('.show')) {
-// 		e.target.closest('.show').classList.remove('show')
-// 	} else if (e.target.closest('.myTooltip')) {
-// 		hideTooltips()
-//
-// 		e.target.closest('.myTooltip')?.classList.add('show')
-//
-// 		window.dataLayer = window.dataLayer || [];
-// 		dataLayer.push({
-// 			'event': 'event-to-ga',
-// 			'eventCategory': 'Exp — Checkout improvements mobile',
-// 			'eventAction': 'Clicks on hints'
-// 		})
-// 	} else {
-// 		hideTooltips()
-// 	}
-// })
+document.body.addEventListener('click', function (e) {
+	e.preventDefault()
 
-// function hideTooltips() {
-// 	myTooltip.forEach(tooltip => {
-// 		tooltip.classList.remove('show')
-// 	})
-// }
+	if (e.target.closest('.show')) {
+		e.target.closest('.show').classList.remove('show')
+	} else if (e.target.closest('.myTooltip')) {
+		hideTooltips()
+
+		e.target.closest('.myTooltip')?.classList.add('show')
+
+		window.dataLayer = window.dataLayer || [];
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Checkout improvements mobile',
+			'eventAction': 'Clicks on hints'
+		})
+	} else {
+		hideTooltips()
+	}
+})
+
+function hideTooltips() {
+	document.querySelectorAll('.myTooltip').forEach(tooltip => {
+		tooltip.classList.remove('show')
+	})
+}
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
