@@ -801,11 +801,12 @@ window.onload = function () {
             document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"]; //set name
             changeBorderRadius() //change Border Radius for contents
 
-            window.scrollTo({ //scroll top
-                top: document.querySelector('.tabsNav').offsetTop,
-                left: 0,
-                behavior: 'smooth'
-            });
+            // window.scrollTo({ //scroll top
+            //     top: document.querySelector('.tabsNav').offsetTop,
+            //     left: 0,
+            //     behavior: 'smooth'
+            // });
+            $('html,body').animate({scrollTop:$('.tabsNav').offset().top - 20 + "px"},{duration:1E3});
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
             pushDataLayer(action,label)
