@@ -34,6 +34,7 @@ window.onload = function () {
             margin: 0 20px 20px 0;
             font-family: 'Rubik', sans-serif;
             border: none;
+            cursor: pointer;
         }
         .sleep_impediments button:nth-child(2n+2) {
             margin-right: 0;
@@ -137,7 +138,6 @@ window.onload = function () {
         .sleep_issue * {
             font-family: "Roboto", sans-serif;
         }
-
         .btn-close {
             background: none;
             border: none;
@@ -148,6 +148,7 @@ window.onload = function () {
             display: flex;
             align-items: center;
             padding: 0;
+            cursor: pointer;
         }
         .btn-close img {
             margin-left: 10px;
@@ -355,7 +356,7 @@ window.onload = function () {
             .sleep_issue_wrapper {
                 border-radius: 10px!important;}
             .sleep_impediments button {
-                padding: 15px;
+                padding: 15px; 
             }
             .img_snoring {
                 width: 70px;
