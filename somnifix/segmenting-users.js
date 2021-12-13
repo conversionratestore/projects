@@ -300,9 +300,22 @@ window.onload = function () {
         .sleep_issue_header  .line_dashed {
             margin: 20px 0 0 0;
         }
+        .topbar {
+            width: 100%;
+            top: 0;
+            left: 0;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
         @media only screen and (min-width: 992px) {
             .d-lg-none {
                 display: none;
+            }
+            .topbar.topY {
+                transform: translateY(-100%);
+            }
+            .topbar.fixed {
+                position: fixed;
             }
         }
 
@@ -544,7 +557,7 @@ window.onload = function () {
     `
     let createWrapper = `
         <div class="sleep_issue">
-            <div class="flex-center-between">
+            <div class="flex-center-between topbar">
                 <ul class="tabsNav"></ul>
                 <button type="button" class="btn-close">Close <img src="https://conversionratestore.github.io/projects/somnifix/img/close-dark.svg"></button>
             </div>
@@ -854,6 +867,19 @@ window.onload = function () {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
+    let topbar = document.querySelector('.topbar');
+    window.addEventListener('scroll', () => {
+        if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 < window.pageYOffset && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
+            topbar.classList.add('topY')
+            setTimeout(() => {
+                topbar.classList.remove('topY')
+                topbar.classList.add('fixed')
+            }, 100)
+        } else {
+            topbar.classList.remove('fixed')
+            topbar.classList.remove('topY')
+        }
+    })
 };
 
 window.dataLayer = window.dataLayer || [];
