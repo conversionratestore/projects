@@ -798,7 +798,7 @@ window.onload = function () {
             document.querySelectorAll('.tabsNav li')[i].classList.add('active'); //add active for tab
             document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block'; //open item contents
             document.querySelector('.sleep_impediments').style.display = 'none'; //hide wrapper btns
-            document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"];
+            document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"]; //set name
             changeBorderRadius() //change Border Radius for contents
 
             window.scrollTo(0, document.querySelector('.sleep_issue').offsetTop); //scroll top
