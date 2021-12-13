@@ -302,7 +302,7 @@ window.onload = function () {
         }
         .topbar {
             width: 100%;
-            position: relative;
+            position: absolute;
             z-index: 5;
             top: 0;
             left: 50%;
@@ -312,8 +312,7 @@ window.onload = function () {
             transition: transform 0.3s ease;
         }
         @media only screen and (min-width: 992px) {
-            .sleep_issue_wrapper {
-                margin-top: -65px;
+            .sleep_issue {
                 padding-top: 65px;
             }
             .d-lg-none {
