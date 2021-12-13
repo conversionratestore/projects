@@ -1083,7 +1083,7 @@ let interval = setInterval(() => {
     clearInterval(interval)
     newPage()
   }
-}, 40)
+}, 30)
 
 function newPage() {
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
@@ -1104,7 +1104,9 @@ function newPage() {
       .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
-    document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+    if (document.querySelector(".payment_inform_box")) {
+      document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+    }
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
