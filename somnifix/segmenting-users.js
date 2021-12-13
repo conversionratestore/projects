@@ -303,19 +303,21 @@ window.onload = function () {
         .topbar {
             width: 100%;
             top: 0;
-            left: 0;
-            transform: translateY(0);
             transition: transform 0.3s ease;
+            background: #fff;
+            max-width: 1340px;
         }
         @media only screen and (min-width: 992px) {
             .d-lg-none {
                 display: none;
             }
             .topbar.topY {
-                transform: translateY(-100%);
+                transform: translate(-50%,-100%);
             }
             .topbar.fixed {
                 position: fixed;
+                left: 50%;
+                transform: translate(-50%,0);
             }
         }
 
