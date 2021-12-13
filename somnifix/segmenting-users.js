@@ -122,7 +122,7 @@ window.onload = function () {
             display: none;
         }
         .sleep_issue h4 {
-            font-family: Roboto;
+            font-family: "Roboto", sans-serif;
             font-weight: bold;
             font-size: 20px;
             line-height: 23px;
@@ -814,12 +814,8 @@ window.onload = function () {
             document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"]; //set name
             changeBorderRadius() //change Border Radius for contents
 
-            // window.scrollTo({ //scroll top
-            //     top: document.querySelector('.tabsNav').offsetTop,
-            //     left: 0,
-            //     behavior: 'smooth'
-            // });
-            $('html,body').animate({scrollTop:$('.tabsNav').offset().top - 20 + "px"},{duration:1E3});
+            $('html,body').animate({scrollTop:$('.tabsNav').offset().top - 20 + "px"},{duration:1E3}); //scroll to tabs
+
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
             pushDataLayer(action,label)
@@ -833,6 +829,9 @@ window.onload = function () {
             let iframe = document.querySelector('iframe.video');
             iframe.src = iframe.src;
             changeBorderRadius() //change Border Radius for contents
+
+            $('html,body').animate({scrollTop:$('.tabsNav').offset().top - 20 + "px"},{duration:1E3}); //scroll to tabs
+
             //events
             action = `Click on ${arr[i]["nameBtn"]} tabs`;
             label = 'How to address your sleep impediments';
