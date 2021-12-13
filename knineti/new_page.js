@@ -819,7 +819,7 @@ let newPageStyle = /*html*/ `
     }
 
     .logo_link span{
-        color: #679BD2;
+        color: #579cd7;
         margin-left: 15px;
         text-transform: uppercase;
         font-weight: 700;
