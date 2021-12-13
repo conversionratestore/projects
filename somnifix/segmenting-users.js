@@ -352,6 +352,8 @@ window.onload = function () {
             }
         }
         @media only screen and (max-width: 991px) {
+            .sleep_issue_wrapper {
+                border-radius: 10px!important;}
             .sleep_impediments button {
                 padding: 15px;
             }
