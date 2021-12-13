@@ -809,11 +809,20 @@ let newPageStyle = /*html*/ `
 
     .logo_link{
         display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px auto 17px;
+    }
+
+    .logo_link img{
+        height: 50px;
     }
 
     .logo_link span{
         color: #679BD2;
+        margin-left: 15px;
         text-transform: uppercase;
+        font-weight: 700;
     }
 
 </style>
