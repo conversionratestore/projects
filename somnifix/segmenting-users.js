@@ -607,9 +607,9 @@ window.onload = function () {
 
     function changeBorderRadius() {
         if (document.querySelectorAll('.tabsNav li')[0].classList.contains('active')) {
-            document.querySelector('.sleep_issue_contents').style.borderRadius = '0 10px 10px 10px'
+            document.querySelector('.sleep_issue_wrapper').style.borderRadius = '0 10px 10px 10px'
         } else {
-            document.querySelector('.sleep_issue_contents').style.borderRadius = '10px 10px 10px 10px'
+            document.querySelector('.sleep_issue_wrapper').style.borderRadius = '10px 10px 10px 10px'
         }
     }
 
@@ -654,7 +654,7 @@ window.onload = function () {
             </div>
         </div>
     `,
-    `
+        `
     <div class="item_row odd lg-reverse">
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-5.png" alt="image" class="img_content">
         <div class="col_content">
@@ -686,7 +686,7 @@ window.onload = function () {
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-6.png" alt="image" class="img_content">
     </div>
     `,
-    `
+        `
     <div class="item_row odd">
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-7.png" alt="image" class="img_content">
         <div class="col_content">
@@ -729,7 +729,7 @@ window.onload = function () {
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-10.png" alt="image" class="img_content">
     </div>
     `,
-    `
+        `
     <div class="item_row odd">
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-11.png" alt="image" class="img_content">
         <div class="col_content">
@@ -783,9 +783,9 @@ window.onload = function () {
     for (let i = 0; i < arr.length; i++) {
         document.querySelector('.sleep_impediments .shg-row').insertAdjacentHTML('beforeend', createBtns(arr[i]["iconSrcBtn"],arr[i]["nameBtn"]));  //add 4 btns
         document.querySelector('.sleep_issue_contents').insertAdjacentHTML('beforeend', createItemsContents(arr[i]["titleContent"],arr[i]["spanContent"],arr[i]["titleGet"],arr[i]["spanGet"])); //add 4 items in contents
-        document.querySelector('.tabsNav').insertAdjacentHTML('beforeend', createTabs(arr[i]["nameBtn"])); //add 4 tab 
+        document.querySelector('.tabsNav').insertAdjacentHTML('beforeend', createTabs(arr[i]["nameBtn"])); //add 4 tab
         document.querySelectorAll('.get_somnifix')[i].insertAdjacentHTML('beforebegin', items[i]); //add 4 content in items
-    
+
         document.querySelectorAll('.sleep_impediments button')[i].addEventListener('click', () => { //click on btn in "How to address your sleep impediments"
             hideItems();
             document.querySelector('.sleep_issue').style.display = 'block'; //open contents
@@ -796,9 +796,9 @@ window.onload = function () {
             changeBorderRadius() //change Border Radius for contents
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
-            pushDataLayer(action,label) 
+            pushDataLayer(action,label)
         })
-        document.querySelectorAll('.tabsNav li')[i].addEventListener('click', () => { 
+        document.querySelectorAll('.tabsNav li')[i].addEventListener('click', () => {
             hideItems();
             document.querySelectorAll('.tabsNav li')[i].classList.add('active'); //add active for tab
             document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block'; //open item contents
@@ -810,10 +810,10 @@ window.onload = function () {
             //events
             action = `Click on ${arr[i]["nameBtn"]} tabs`;
             label = 'How to address your sleep impediments';
-            pushDataLayer(action,label) 
+            pushDataLayer(action,label)
         })
     }
-    
+
     document.querySelector('.btn-close').addEventListener('click', () => {
         document.querySelector('.sleep_impediments').style.display = 'block'; //show btns
         document.querySelector('.sleep_issue').style.display = 'none'; //hide contents
@@ -823,7 +823,7 @@ window.onload = function () {
         //events
         action = `Close`;
         label = `${document.querySelector('.tabsNav li.active').innerText} card`;
-        pushDataLayer(action,label) 
+        pushDataLayer(action,label)
     })
 
     document.querySelectorAll('.btn_buy').forEach(button => {
@@ -832,17 +832,17 @@ window.onload = function () {
             //events
             action = 'Click on Buy Somnifix button';
             label = `${document.querySelector('.tabsNav li.active').innerText.toLowerCase()} card`;
-            pushDataLayer(action,label) 
+            pushDataLayer(action,label)
         })
     })
-     
+
     if (window.matchMedia('(max-width: 480px)').matches) {
         document.querySelectorAll('.line_dashed').forEach(item => {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
 };
-    
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
@@ -858,5 +858,5 @@ dataLayer.push({
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('event', 'users_by_intent_on_home_page');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('event', 'users_by_intent_on_home_page');
