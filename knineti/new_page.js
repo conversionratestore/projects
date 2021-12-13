@@ -1083,7 +1083,7 @@ let interval = setInterval(() => {
     clearInterval(interval)
     newPage()
   }
-}, 70)
+}, 40)
 
 function newPage() {
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
