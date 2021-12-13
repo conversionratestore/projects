@@ -1117,41 +1117,36 @@ function newPage() {
     let dQueryDate = atob(params.get("d"))
     let dsp = dQueryDate.split("-")
 
-    let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+    // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+
+    // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+
+    // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+
+    // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+
+    let today = new Date().toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
+    let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
     let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
     document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-    let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-    let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
     document.querySelector(".submit_btn input").value = "Enroll Now"
-
-    //   tab
-    document.querySelector("input#first-name").setAttribute("tabindex", "1")
-    document.querySelector("input#last-name").setAttribute("tabindex", "2")
-    document.querySelector("input#email").setAttribute("tabindex", "3")
-    document.querySelector("input#address1").setAttribute("tabindex", "4")
-    document.querySelector("input#city").setAttribute("tabindex", "5")
-    document.querySelector("input#zip").setAttribute("tabindex", "6")
-    document.querySelector("#selected-country").setAttribute("tabindex", "7")
-    document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
-    document.querySelector("#phone").setAttribute("tabindex", "9")
-    document.querySelector("#cardno").setAttribute("tabindex", "10")
-    document.querySelector("#cardname").setAttribute("tabindex", "11")
-    document.querySelector("#month").setAttribute("tabindex", "12")
-    document.querySelector("#year1").setAttribute("tabindex", "13")
-    document.querySelector("#cvv").setAttribute("tabindex", "14")
-    document.querySelector("#card1").setAttribute("tabindex", "20")
-    document.querySelector("#card2").setAttribute("tabindex", "21")
-    document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
-    document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
   }
 
   window.dataLayer = window.dataLayer || []
