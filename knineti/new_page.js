@@ -806,13 +806,27 @@ let newPageStyle = /*html*/ `
                 padding-bottom: 0px !important;
             }
     }
+
+    .logo_link{
+        display: flex;
+    }
+
+    .logo_link span{
+        color: #679BD2;
+        text-transform: uppercase;
+    }
+
 </style>
 
 `
 
 let firstBlock = /*html*/ `
 <div class="first_block">
-    <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute">
+    <!-- <img src="https://conversionratestore.github.io/projects/knineti/img/logo_training.jpg" alt="logo k9 training institute"> -->
+    <a href="" class="logo_link">
+        <img src="https://conversionratestore.github.io/projects/knineti/img/footer_logo.png" alt="logo k9 training institute">
+        <span>K9 Training Institute</span>
+    </a>
     <h1>Enroll now for <span>unlimited access</span> to our 10-week Total Transformation Masterclass</h1>
     <div class="scroll_bar">
         <ul class="scroll_bar_box">
