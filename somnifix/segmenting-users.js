@@ -867,16 +867,21 @@ window.onload = function () {
         })
     }
     let topbar = document.querySelector('.topbar');
+    let count = 0;
     window.addEventListener('scroll', () => {
         if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 < window.pageYOffset && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
             topbar.classList.add('topY')
-            setTimeout(() => {
-                topbar.classList.remove('topY')
-                topbar.classList.add('fixed')
-            }, 100)
+            if (count == 0) {
+                setTimeout(() => {
+                    topbar.classList.remove('topY')
+                    topbar.classList.add('fixed')
+                }, 100)
+            }
+            count = 1;
         } else {
             topbar.classList.remove('fixed')
             topbar.classList.remove('topY')
+            count = 0;
         }
     })
 };
