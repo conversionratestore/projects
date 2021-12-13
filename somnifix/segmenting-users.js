@@ -877,9 +877,9 @@ window.onload = function () {
                 setTimeout(() => {
                     topbar.classList.remove('topY')
                     topbar.classList.add('fixed')
+                    count = 1;
                 }, 100)
             }
-            count = 1;
         } else {
             topbar.classList.remove('fixed')
             topbar.classList.remove('topY')
