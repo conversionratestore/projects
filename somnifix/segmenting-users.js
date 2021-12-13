@@ -877,28 +877,28 @@ window.onload = function () {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
-    let topbar = document.querySelector('.topbar');
-    let count = 0;
-    window.addEventListener('scroll', () => {
-        if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 < window.pageYOffset && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
-            topbar.classList.add('topY')
-            if (count == 0) {
-                setTimeout(() => {
-                    topbar.classList.remove('topY')
-                    topbar.classList.add('fixed')
-                    count = 1;
-                }, 100)
-            }
-        } else {
-            topbar.classList.remove('topY')
-            topbar.classList.remove('fixed')
-            count = 0;
-        }
-        if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 > window.pageYOffset) {
-            topbar.classList.remove('topY')
-            topbar.classList.remove('fixed')
-        }
-    })
+    // let topbar = document.querySelector('.topbar');
+    // let count = 0;
+    // window.addEventListener('scroll', () => {
+    //     if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 < window.pageYOffset && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
+    //         topbar.classList.add('topY')
+    //         if (count == 0) {
+    //             setTimeout(() => {
+    //                 topbar.classList.remove('topY')
+    //                 topbar.classList.add('fixed')
+    //                 count = 1;
+    //             }, 100)
+    //         }
+    //     } else {
+    //         topbar.classList.remove('topY')
+    //         topbar.classList.remove('fixed')
+    //         count = 0;
+    //     }
+    //     if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 > window.pageYOffset) {
+    //         topbar.classList.remove('topY')
+    //         topbar.classList.remove('fixed')
+    //     }
+    // })
 };
 
 window.dataLayer = window.dataLayer || [];
