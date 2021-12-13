@@ -890,11 +890,13 @@ window.onload = function () {
                 }, 100)
             }
         } else {
+            topbar.classList.remove('topY')
             topbar.classList.remove('fixed')
             count = 0;
         }
         if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 > window.pageYOffset) {
             topbar.classList.remove('topY')
+            topbar.classList.remove('fixed')
         }
     })
 };
