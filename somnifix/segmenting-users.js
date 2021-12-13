@@ -747,7 +747,7 @@ window.onload = function () {
     <div class="item_row even">
         <div class="col_content">
             <h3 class="mb-md-25">Mouth Leaks: The Enemy of CPAP Compliance</h3>
-            <p class="w-bold mb-15">The reason CPAP devices perform so poorly is because they are rendered ineffective by <a href="#" class="c-blue underline"> mouth leaks</a> . When your mouth is open, air delivered through the nose exits the open mouth before reaching the respiratory airway. This drastically reduces CPAP efficacy and will cause the user to wake up frequently throughout the night.</p>
+            <p class="w-bold mb-15">The reason CPAP devices perform so poorly is because they are rendered ineffective by <a href="https://somnifix.com/blogs/snews/cpap-machine-hack-overcoming-mouth-breathing" class="c-blue underline"> mouth leaks</a> . When your mouth is open, air delivered through the nose exits the open mouth before reaching the respiratory airway. This drastically reduces CPAP efficacy and will cause the user to wake up frequently throughout the night.</p>
             <p>The difficult part is that when we sleep, our jaws tend to relax and our mouths fall open. We can’t consciously keep our mouth closed while we sleep. That is, until now.</p>
         </div>
         <img src="https://conversionratestore.github.io/projects/somnifix/img/content/image-12.png" alt="image" class="img_content">
@@ -800,6 +800,9 @@ window.onload = function () {
             document.querySelector('.sleep_impediments').style.display = 'none'; //hide wrapper btns
             document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"];
             changeBorderRadius() //change Border Radius for contents
+
+            window.scrollTo(0, document.querySelector('.sleep_issue').offsetTop); //scroll top
+
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
             pushDataLayer(action,label)
