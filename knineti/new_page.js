@@ -1000,7 +1000,7 @@ let firstBlock = /*html*/ `
                         <span class="radio_style">
                             <span class="ellipse"></span>
                         </span>
-                        <span>One-time payment of <span class='accent_color'>$1705,10</span> $297</span>
+                        <span>One-time payment of <span class='accent_color'>$1705.10</span> $297</span>
                     </label>
                 </div>
                 <div>
