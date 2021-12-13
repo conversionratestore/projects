@@ -320,6 +320,7 @@ window.onload = function () {
             }
             .topbar.fixed {
                 position: fixed;
+                transform: translate(-50%,0);
             }
         }
 
