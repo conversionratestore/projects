@@ -315,6 +315,7 @@ window.onload = function () {
                 transform: translate(-50%,0);
             }
             .sleep_issue {
+                position: relative;
                 padding-top: 65px;
             }
             .d-lg-none {
