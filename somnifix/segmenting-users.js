@@ -518,7 +518,7 @@ window.onload = function () {
         },
         {
             iconSrcBtn: 'https://conversionratestore.github.io/projects/somnifix/img/snoring-2.svg',
-            nameBtn: 'poor sleep quality',
+            nameBtn: 'Poor sleep quality',
             titleContent: `LET'S TALK ABOUT YOUR BREATHING`,
             spanContent: 'Uncover how to optimize your breathing for more energy and better health.',
             titleGet: `Take the first step to reversing overbreathing`,
@@ -801,7 +801,7 @@ window.onload = function () {
             document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"]; //set name
             changeBorderRadius() //change Border Radius for contents
 
-            window.scrollTo(0, document.querySelector('.sleep_issue').offsetTop); //scroll top
+            window.scrollTo(0, document.querySelector('.tabsNav').offsetTop); //scroll top
 
             action = `Click on ${arr[i]["nameBtn"]} card`;
             label = 'How to address your sleep impediments';
