@@ -302,16 +302,18 @@ window.onload = function () {
         }
         .topbar {
             width: 100%;
-            position: absolute;
             z-index: 5;
             top: 0;
             left: 50%;
             background: #fff;
             max-width: 1340px;
-            transform: translate(-50%,0);
             transition: transform 0.3s ease;
         }
         @media only screen and (min-width: 992px) {
+            .topbar {
+                position: absolute;
+                transform: translate(-50%,0);
+            }
             .sleep_issue {
                 padding-top: 65px;
             }
