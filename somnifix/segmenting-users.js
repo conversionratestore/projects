@@ -312,6 +312,10 @@ window.onload = function () {
             transition: transform 0.3s ease;
         }
         @media only screen and (min-width: 992px) {
+            .sleep_issue_wrapper {
+                margin-top: -65px;
+                padding-top: 65px;
+            }
             .d-lg-none {
                 display: none;
             }
@@ -879,13 +883,11 @@ window.onload = function () {
             if (count == 0) {
                 setTimeout(() => {
                     topbar.classList.remove('topY')
-                    document.querySelector('.sleep_issue_wrapper').style.marginTop = '67px';
                     topbar.classList.add('fixed')
                     count = 1;
                 }, 100)
             }
         } else {
-            document.querySelector('.sleep_issue_wrapper').style.marginTop = '0';
             topbar.classList.remove('fixed')
             count = 0;
         }
