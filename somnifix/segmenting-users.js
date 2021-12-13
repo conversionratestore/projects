@@ -56,6 +56,9 @@ window.onload = function () {
             text-transform: uppercase;
             color: #1E415F;
             margin: 0;
+            display: flex;
+            align-items: center;
+            min-height: 62px;
         }
         .sleep_impediments .span {
             font-size: 14px;
