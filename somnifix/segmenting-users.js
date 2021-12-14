@@ -116,9 +116,9 @@ window.onload = function () {
         }
 
         .sleep_issue {
-            max-width: 1340px;
+            max-width: 1380px;
+            padding: 0 20px;
             margin: 40px auto;
-            width: calc(100% - 40px);
             display: none;
         }
         .sleep_issue h4 {
@@ -304,15 +304,19 @@ window.onload = function () {
             width: 100%;
             z-index: 5;
             top: 0;
-            left: 50%;
-            background: #fff;
-            max-width: 1340px;
+            left: 0;
             transition: transform 0.3s ease;
         }
         @media only screen and (min-width: 992px) {
             .topbar {
                 position: absolute;
-                transform: translate(-50%,0);
+                transform: translate(0,0);
+            }
+            .topbar .flex-center-between {
+                background: #fff;
+                max-width: 1380px;
+                padding: 0 20px;
+                margin: 0 auto;
             }
             .sleep_issue {
                 position: relative;
@@ -322,11 +326,10 @@ window.onload = function () {
                 display: none;
             }
             .topbar.topY {
-                transform: translate(-50%,-100%);
+                transform: translate(0,-100%);
             }
             .topbar.fixed {
                 position: fixed;
-                transform: translate(-50%,0);
             }
         }
 
@@ -568,9 +571,11 @@ window.onload = function () {
     `
     let createWrapper = `
         <div class="sleep_issue">
-            <div class="flex-center-between topbar">
-                <ul class="tabsNav"></ul>
-                <button type="button" class="btn-close">Close <img src="https://conversionratestore.github.io/projects/somnifix/img/close-dark.svg"></button>
+            <div class="topbar">
+                <div class="flex-center-between">
+                    <ul class="tabsNav"></ul>
+                    <button type="button" class="btn-close">Close <img src="https://conversionratestore.github.io/projects/somnifix/img/close-dark.svg"></button>
+                </div>
             </div>
             <div class="sleep_issue_wrapper">
                 <div class="d-lg-none sleep_issue_header">
@@ -877,28 +882,28 @@ window.onload = function () {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
-    // let topbar = document.querySelector('.topbar');
-    // let count = 0;
-    // window.addEventListener('scroll', () => {
-    //     if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 < window.pageYOffset && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
-    //         topbar.classList.add('topY')
-    //         if (count == 0) {
-    //             setTimeout(() => {
-    //                 topbar.classList.remove('topY')
-    //                 topbar.classList.add('fixed')
-    //                 count = 1;
-    //             }, 100)
-    //         }
-    //     } else {
-    //         topbar.classList.remove('topY')
-    //         topbar.classList.remove('fixed')
-    //         count = 0;
-    //     }
-    //     if (document.querySelector('.sleep_issue_wrapper').offsetTop + 100 > window.pageYOffset) {
-    //         topbar.classList.remove('topY')
-    //         topbar.classList.remove('fixed')
-    //     }
-    // })
+    let topbar = document.querySelector('.topbar');
+    let count = 0;
+    window.addEventListener('scroll', () => {
+        if (document.querySelector('.sleep_issue').offsetTop + 150 < window.scrollY && window.scrollY < document.querySelector('.sleep_issue_wrapper').offsetHeight + window.innerHeight) {
+            topbar.classList.add('topY')
+            if (count == 0) {
+                setTimeout(() => {
+                    topbar.classList.remove('topY')
+                    topbar.classList.add('fixed')
+                    count = 1;
+                }, 100)
+            }
+        } else {
+            topbar.classList.remove('topY')
+            topbar.classList.remove('fixed')
+            count = 0;
+        }
+        if (document.querySelector('.sleep_issue').offsetTop + 150 > window.scrollY) {
+            topbar.classList.remove('topY')
+            topbar.classList.remove('fixed')
+        }
+    })
 };
 
 window.dataLayer = window.dataLayer || [];
