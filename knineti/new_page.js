@@ -1192,6 +1192,10 @@ function newPage() {
     document.querySelector("#card2").setAttribute("tabindex", "21")
     document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
     document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
+
+    if (document.querySelector(".earlier_order_msz")) {
+      document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
+    }
   }
 
   window.dataLayer = window.dataLayer || []
