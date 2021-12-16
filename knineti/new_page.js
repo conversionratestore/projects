@@ -1175,7 +1175,7 @@ function newPage() {
 
     //   tab
     document.querySelector("input#first-name").setAttribute("tabindex", "1")
-    document.querySelector("input#first-name").setAttribute("autofocus")
+    document.querySelector("input#first-name").autofocus = true
     document.querySelector("input#last-name").setAttribute("tabindex", "2")
     document.querySelector("input#email").setAttribute("tabindex", "3")
     document.querySelector("input#address1").setAttribute("tabindex", "4")
