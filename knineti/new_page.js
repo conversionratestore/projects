@@ -1193,29 +1193,6 @@ function newPage() {
     document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
     document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
 
-    document.querySelectorAll(".form-error").forEach((el) => {
-      if (el.textContent !== "") {
-        document.querySelector("input#first-name").setAttribute("tabindex", "1")
-        document.querySelector("input#last-name").setAttribute("tabindex", "2")
-        document.querySelector("input#email").setAttribute("tabindex", "3")
-        document.querySelector("input#address1").setAttribute("tabindex", "4")
-        document.querySelector("input#city").setAttribute("tabindex", "5")
-        document.querySelector("input#zip").setAttribute("tabindex", "6")
-        document.querySelector("#selected-country").setAttribute("tabindex", "7")
-        document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
-        document.querySelector("#phone").setAttribute("tabindex", "9")
-        document.querySelector("#cardno").setAttribute("tabindex", "10")
-        document.querySelector("#cardname").setAttribute("tabindex", "11")
-        document.querySelector("#month").setAttribute("tabindex", "12")
-        document.querySelector("#year1").setAttribute("tabindex", "13")
-        document.querySelector("#cvv").setAttribute("tabindex", "14")
-        document.querySelector("#card1").setAttribute("tabindex", "20")
-        document.querySelector("#card2").setAttribute("tabindex", "21")
-        document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
-        document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
-      }
-    })
-
     if (document.querySelector(".earlier_order_msz")) {
       document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
     }
