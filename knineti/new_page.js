@@ -7,6 +7,10 @@ let newPageStyle = /*html*/ `
     .row .col-md-12 input#ttm-agree{
         margin-bottom: unset !important;
     }
+
+    .row .col-md-12:nth-child(7){
+        text-align:left;
+    }
     
     p.form-error, span.form-error{
         margin-top: 0 !important;
