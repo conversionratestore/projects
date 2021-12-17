@@ -1207,7 +1207,7 @@ function newPage() {
     document.querySelector(".submit_btn input").addEventListener("click", () => {
       document.querySelectorAll(".col-md-6 .form-error").forEach((el) => {
         if (el.textContent !== "") {
-          el.closest(".col-md-6").querySelector("input").focus()
+          el.closest(".col-md-6").querySelector("input").focus() || el.closest(".col-md-6").querySelector("select").focus()
         }
       })
     })
