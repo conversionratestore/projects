@@ -1104,9 +1104,12 @@ function newPage() {
       .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
-    if (document.querySelector(".payment_inform_box .card_type")) {
-      document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
-    }
+    setTimeout(() => {
+      if (document.querySelector(".payment_inform_box .card_type")) {
+        document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+        document.querySelector(".submit_btn input").value = "Enroll Now"
+      }
+    }, 100)
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
@@ -1171,11 +1174,8 @@ function newPage() {
     let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
     document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-    document.querySelector(".submit_btn input").value = "Enroll Now"
-
     //   tab
     document.querySelector("input#first-name").setAttribute("tabindex", "1")
-    document.querySelector("input#first-name").autofocus = true
     document.querySelector("input#last-name").setAttribute("tabindex", "2")
     document.querySelector("input#email").setAttribute("tabindex", "3")
     document.querySelector("input#address1").setAttribute("tabindex", "4")
