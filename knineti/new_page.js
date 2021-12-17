@@ -1091,7 +1091,7 @@ let interval = setInterval(() => {
 }, 50)
 
 function newPage() {
-    console.log(`hello`)
+  console.log(`hello`)
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
   document.querySelector("p.radio1_text").innerHTML = ""
 
@@ -1211,7 +1211,7 @@ function newPage() {
     }
 
     document.querySelector(".submit_btn input").addEventListener("click", () => {
-      if ($("form .col-md-12 p:visible:first")) {
+      if ($("form .row > div p:visible:first")) {
         $("form input:visible:first").focus() || $("form select:visible:first").focus()
       }
 
