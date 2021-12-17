@@ -1210,7 +1210,7 @@ function newPage() {
     }
 
     document.querySelector(".submit_btn input").addEventListener("click", () => {
-      $("form :visible[class*=form-error]:first").focus()
+      $("form .col-md-12 p:visible:first").focus()
       //   document.querySelectorAll(".col-md-6 .form-error").forEach((el) => {
       //     if (el.textContent !== "") {
       //       el.closest(".col-md-6").querySelector("input").focus() || el.closest(".col-md-6").querySelector("select").focus()
