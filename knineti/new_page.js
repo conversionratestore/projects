@@ -1210,17 +1210,18 @@ function newPage() {
       document.querySelectorAll(".row .col-md-12")[7].style.textAlign = "left"
     }
 
-    document.querySelector(".submit_btn input").addEventListener("click", () => {
-      if ($("form .row > div p:visible:first")) {
-        $("form input:visible:first").focus() || $("form select:visible:first").focus()
-      }
-
-      //   document.querySelectorAll(".col-md-6 .form-error").forEach((el) => {
-      //     if (el.textContent !== "") {
-      //       el.closest(".col-md-6").querySelector("input").focus() || el.closest(".col-md-6").querySelector("select").focus()
-      //     }
-      //   })
-    })
+    document.querySelector(".submit_btn input").addEventListener(
+      "click",
+      () => {
+        setTimeout(() => {
+          if ($("form .row > div p:visible:first")) {
+            console.log($("form .row > div p:visible:first"))
+            $("form input:visible:first").focus() || $("form select:visible:first").focus()
+          }
+        })
+      },
+      1000
+    )
   }
 
   window.dataLayer = window.dataLayer || []
