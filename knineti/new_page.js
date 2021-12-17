@@ -1095,134 +1095,135 @@ function newPage() {
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
   document.querySelector("p.radio1_text").innerHTML = ""
 
-  if (document.querySelector(".first_block")) {
-    document.querySelector(".payment_plan").remove()
+  setTimeout(() => {
+    if (document.querySelector(".first_block")) {
+      document.querySelector(".payment_plan").remove()
 
-    document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
+      document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
 
-    document
-      .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
-      .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
-
-    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
-    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
-    if (document.querySelector(".payment_inform_box .paypament-details")) {
       document
-        .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
-        .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
-    }
+        .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
+        .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
 
-    setTimeout(() => {
+      document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+      document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
       if (document.querySelector(".payment_inform_box .paypament-details")) {
-        document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
-        document.querySelector(".submit_btn input").value = "Enroll Now"
+        document
+          .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
+          .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
       }
-    }, 500)
 
-    document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
+      setTimeout(() => {
+        if (document.querySelector(".payment_inform_box .paypament-details")) {
+          document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+          document.querySelector(".submit_btn input").value = "Enroll Now"
+        }
+      }, 500)
 
-    document.querySelector("#month").options[0].text = "Month"
-    document.querySelector("#year1").options[0].text = "Year"
+      document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
-    //
-    document.querySelector("#card1").insertAdjacentHTML(
-      "afterend",
-      `<label for="card1">
+      document.querySelector("#month").options[0].text = "Month"
+      document.querySelector("#year1").options[0].text = "Year"
+
+      //
+      document.querySelector("#card1").insertAdjacentHTML(
+        "afterend",
+        `<label for="card1">
                          <span class="radio_style"><span class="ellipse"></span></span>
         </label>
    `
-    )
+      )
 
-    document.querySelectorAll("form input[type=hidden]").forEach((item) => {
-      document.querySelector(".payment_inform_box").before(item)
-    })
+      document.querySelectorAll("form input[type=hidden]").forEach((item) => {
+        document.querySelector(".payment_inform_box").before(item)
+      })
 
-    document.querySelector("#card2").insertAdjacentHTML(
-      "afterend",
-      `<label for="card2">
+      document.querySelector("#card2").insertAdjacentHTML(
+        "afterend",
+        `<label for="card2">
                          <span class="radio_style"><span class="ellipse"></span></span>
         </label>`
-    )
+      )
 
-    document.querySelectorAll("input").forEach((el) => {
-      el.placeholder = ""
-    })
+      document.querySelectorAll("input").forEach((el) => {
+        el.placeholder = ""
+      })
 
-    //
-    let params = new URLSearchParams(window.location.search)
-    let dQueryDate = atob(params.get("d"))
-    let dsp = dQueryDate.split("-")
+      //
+      let params = new URLSearchParams(window.location.search)
+      let dQueryDate = atob(params.get("d"))
+      let dsp = dQueryDate.split("-")
 
-    // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
-    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
-    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+      // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-    // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
-    // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+      // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+      // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-    // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
-    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+      // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-    // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
-    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+      // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-    let today = new Date().toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+      let today = new Date().toDateString().split(" ")
+      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-    let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-    let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
-    document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+      let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+      let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
+      document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+      let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
+      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
-    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+      let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
+      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-    //   tab
-    document.querySelector("input#first-name").setAttribute("tabindex", "1")
-    document.querySelector("input#last-name").setAttribute("tabindex", "2")
-    document.querySelector("input#email").setAttribute("tabindex", "3")
-    document.querySelector("input#address1").setAttribute("tabindex", "4")
-    document.querySelector("input#city").setAttribute("tabindex", "5")
-    document.querySelector("input#zip").setAttribute("tabindex", "6")
-    document.querySelector("#selected-country").setAttribute("tabindex", "7")
-    document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
-    document.querySelector("#phone").setAttribute("tabindex", "9")
-    document.querySelector("#cardno").setAttribute("tabindex", "10")
-    document.querySelector("#cardname").setAttribute("tabindex", "11")
-    document.querySelector("#month").setAttribute("tabindex", "12")
-    document.querySelector("#year1").setAttribute("tabindex", "13")
-    document.querySelector("#cvv").setAttribute("tabindex", "14")
-    document.querySelector("#card1").setAttribute("tabindex", "20")
-    document.querySelector("#card2").setAttribute("tabindex", "21")
-    document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
-    document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
+      //   tab
+      document.querySelector("input#first-name").setAttribute("tabindex", "1")
+      document.querySelector("input#last-name").setAttribute("tabindex", "2")
+      document.querySelector("input#email").setAttribute("tabindex", "3")
+      document.querySelector("input#address1").setAttribute("tabindex", "4")
+      document.querySelector("input#city").setAttribute("tabindex", "5")
+      document.querySelector("input#zip").setAttribute("tabindex", "6")
+      document.querySelector("#selected-country").setAttribute("tabindex", "7")
+      document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
+      document.querySelector("#phone").setAttribute("tabindex", "9")
+      document.querySelector("#cardno").setAttribute("tabindex", "10")
+      document.querySelector("#cardname").setAttribute("tabindex", "11")
+      document.querySelector("#month").setAttribute("tabindex", "12")
+      document.querySelector("#year1").setAttribute("tabindex", "13")
+      document.querySelector("#cvv").setAttribute("tabindex", "14")
+      document.querySelector("#card1").setAttribute("tabindex", "20")
+      document.querySelector("#card2").setAttribute("tabindex", "21")
+      document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
+      document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
 
-    if (document.querySelector(".earlier_order_msz")) {
-      document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
+      if (document.querySelector(".earlier_order_msz")) {
+        document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
+      }
+
+      if (document.querySelectorAll(".row .col-md-12")[7]) {
+        document.querySelectorAll(".row .col-md-12")[7].style.textAlign = "left"
+      }
+
+      document.querySelector(".submit_btn input").addEventListener(
+        "click",
+        () => {
+          setTimeout(() => {
+            if ($("form .row > div p:visible:first")) {
+              $("form .row > div p:visible:first").prev().focus()
+            }
+          })
+        },
+        1000
+      )
     }
-
-    if (document.querySelectorAll(".row .col-md-12")[7]) {
-      document.querySelectorAll(".row .col-md-12")[7].style.textAlign = "left"
-    }
-
-    document.querySelector(".submit_btn input").addEventListener(
-      "click",
-      () => {
-        setTimeout(() => {
-          if ($("form .row > div p:visible:first")) {
-            console.log($("form .row > div p:visible:first"))
-            $("form .row > div p:visible:first").prev().focus()
-          }
-        })
-      },
-      1000
-    )
-  }
+  }, 1000)
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
