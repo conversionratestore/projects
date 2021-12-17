@@ -1091,6 +1091,7 @@ let interval = setInterval(() => {
 }, 50)
 
 function newPage() {
+    console.log(`hello`)
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
   document.querySelector("p.radio1_text").innerHTML = ""
 
