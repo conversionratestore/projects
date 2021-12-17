@@ -8,9 +8,6 @@ let newPageStyle = /*html*/ `
         margin-bottom: unset !important;
     }
 
-    .row .col-md-12:nth-child(7){
-        text-align:left;
-    }
     
     p.form-error, span.form-error{
         margin-top: 0 !important;
@@ -1206,6 +1203,10 @@ function newPage() {
 
     if (document.querySelector(".earlier_order_msz")) {
       document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
+    }
+
+    if (document.querySelectorAll(".row .col-md-12")[7]) {
+      document.querySelectorAll(".row .col-md-12")[7].style.textAlign = "left"
     }
 
     document.querySelector(".submit_btn input").addEventListener("click", () => {
