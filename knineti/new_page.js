@@ -1216,7 +1216,7 @@ function newPage() {
         setTimeout(() => {
           if ($("form .row > div p:visible:first")) {
             console.log($("form .row > div p:visible:first"))
-            $("form input:visible:first").focus() || $("form select:visible:first").focus()
+            $("form .row > div p:visible:first").prev().focus()
           }
         })
       },
