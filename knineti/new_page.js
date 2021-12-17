@@ -1223,7 +1223,7 @@ function newPage() {
         1000
       )
     }
-  }, 500)
+  }, 300)
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
