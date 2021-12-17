@@ -1109,7 +1109,7 @@ function newPage() {
         document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
         document.querySelector(".submit_btn input").value = "Enroll Now"
       }
-    }, 500)
+    }, 700)
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
