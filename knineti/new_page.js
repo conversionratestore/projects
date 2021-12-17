@@ -3,6 +3,10 @@ let newPageStyle = /*html*/ `
     .container > .col-md-6:first-child, .container > .row.row1030, .text_mobile, .payment_plan_wrapp h4{
         display: none;
     }
+
+    .row .col-md-12 input#ttm-agree{
+        margin-bottom: unset !important;
+    }
     
     p.form-error, span.form-error{
         margin-top: 0 !important;
@@ -1199,6 +1203,14 @@ function newPage() {
     if (document.querySelector(".earlier_order_msz")) {
       document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
     }
+
+    document.querySelector(".submit_btn input").addEventListener("click", () => {
+      document.querySelectorAll(".col-md-6 .form-error").forEach((el) => {
+        if (el.textContent !== "") {
+          el.closest(".col-md-6").querySelector("input").focus()
+        }
+      })
+    })
   }
 
   window.dataLayer = window.dataLayer || []
