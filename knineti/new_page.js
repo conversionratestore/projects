@@ -1100,16 +1100,18 @@ function newPage() {
 
     document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
     document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
-    document
-      .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
-      .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
+    if (document.querySelector(".payment_inform_box .paypament-details")) {
+      document
+        .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
+        .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
+    }
 
     setTimeout(() => {
       if (document.querySelector(".payment_inform_box .paypament-details")) {
         document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
         document.querySelector(".submit_btn input").value = "Enroll Now"
       }
-    }, 1200)
+    }, 500)
 
     document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
