@@ -1105,7 +1105,7 @@ function newPage() {
       .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
     setTimeout(() => {
-      if (document.querySelector(".payment_inform_box .card_type")) {
+      if (document.querySelector(".payment_inform_box .paypament-details")) {
         document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
         document.querySelector(".submit_btn input").value = "Enroll Now"
       }
