@@ -1210,7 +1210,10 @@ function newPage() {
     }
 
     document.querySelector(".submit_btn input").addEventListener("click", () => {
-      $("form .col-md-12 p:visible:first").focus()
+      if ($("form .col-md-12 p:visible:first")) {
+        $("form input:visible:first").focus() || $("form select:visible:first").focus()
+      }
+
       //   document.querySelectorAll(".col-md-6 .form-error").forEach((el) => {
       //     if (el.textContent !== "") {
       //       el.closest(".col-md-6").querySelector("input").focus() || el.closest(".col-md-6").querySelector("select").focus()
