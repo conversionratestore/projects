@@ -1,5 +1,9 @@
 let newPageStyle = /*html*/ `
 <style>
+    table{
+        width: 100%;
+    }
+
     .container > .col-md-6:first-child, .container > .row.row1030, .text_mobile, .payment_plan_wrapp h4{
         display: none;
     }
