@@ -1,34 +1,47 @@
 const productStyle = `
 	<style>
+		.basket-wrapper-b {
+			padding: 0 !important;
+			background-color: #000;
+		}
+		
+		.basket-wrapper-b header {
+			padding: 1rem 1rem 0;
+		    justify-content: flex-end !important;
+		    margin-bottom: 0 !important;
+		}
+		
+		.basket-wrapper-b header h3 {
+			display: none !important;
+		}
+
+		.basket-container {
+			display: none;
+		}
+	
 		.siq_bR {
 			bottom: 100px;
 		}
 		
-		.promoHeight-3t4KXS {
-			display: none;
-		}
+		/*.promoHeight-3t4KXS {*/
+		/*	display: none;*/
+		/*}*/
 	
-		.container-3dy0SD {
-			display: none
-		}
+		/*.container-3dy0SD {*/
+		/*	display: none*/
+		/*}*/
 		
 		.vaha-nav {
 			z-index: 999;
 			background-color: #000;
 		}	
 			
-		.vaha-main-content > div:first-child {
-			display: none !important;
-		}
+		/*.vaha-main-content > div:first-child {*/
+		/*	display: none !important;*/
+		/*}*/
 		
-		.mobile-menu {
-			top: 48px !important;
-		}
 		
-		.comparison {
-			margin-top: 80px;
-		}
-		
+				
 		.comparison p {
 			margin: 0;
 			color: #fff;
@@ -301,22 +314,19 @@ const productStyle = `
 			letter-spacing: 0.01em;		
 			color: #222222;			
         }
-	</style>
-`
-const homeStyle = `
-	<style>
-			.headline-2zqlww {
-				display: none;
-			}
-			
-			.button-3MJU8U {
-				max-width: 100%;
-				justify-content: space-between;
-			}
+        
+        .headline-2zqlww {
+			display: none;
+		}
+		
+		.button-3MJU8U {
+			max-width: 100%;
+			justify-content: space-between;
+		}
 	</style>
 `
 
-let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
+const language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 
 const textArr = {
 	'en': {
@@ -370,7 +380,7 @@ const textArr = {
 		chooseVaha: 'Choose your Vaha',
 		link: '/product',
 		money: `No money<br>down`,
-		flatrate: '0% Financing Available',
+		flatrate: 'Flatrate plans',
 		fees: `No hidden<br>fees`,
 		zero: '£0',
 		month36X: '£ 50 / month',
@@ -433,7 +443,7 @@ const textArr = {
 		chooseVaha: 'Wählen Sie Ihr Vaha',
 		link: '/produkt',
 		money: `Keine<br>anzahlung`,
-		flatrate: 'Verfügbar ab 0% Finanzierung',
+		flatrate: 'Flatrate-Tarife',
 		fees: `Keine<br>versteckten<br>gebühren`,
 		zero: '€0',
 		month36X: '€ 58 / monat',
@@ -766,6 +776,8 @@ const productPage = `
     </div>
 `
 
+document.head.insertAdjacentHTML('beforeend', productStyle)
+
 let btnInterval = setInterval(() => {
 	if (document.querySelectorAll('.basket-payments-button')[2]) {
 		clearInterval(btnInterval)
@@ -794,42 +806,51 @@ let btnInterval = setInterval(() => {
 		})
 	}
 }, 200)
+let chooseVahaInterval = setInterval(() => {
+	if(document.querySelector('.container-3dy0SD button')) {
+		clearInterval(chooseVahaInterval)
 
-if (window.location.pathname === '/product/' || window.location.pathname === '/produkt/') {
-	document.head.insertAdjacentHTML('beforeend', productStyle)
-	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
+		let btn = document.querySelector('.container-3dy0SD button')
+		let clone = btn.cloneNode(true)
 
-	let myScrollFunc = function () {
-		let y = window.scrollY
-		if (y >= 100) {
-			document.querySelector('.btn-wrapper').classList.add('show')
-		}
-	}
+		btn.style.display = 'none'
 
-	window.addEventListener('scroll', myScrollFunc)
-} else {
-	document.head.insertAdjacentHTML('beforeend', homeStyle)
+		btn.after(clone)
 
-	const btn = document.querySelector('.container-3dy0SD button')
-	const clone = btn.cloneNode(true)
+		clone.querySelector('span').innerText = obj.chooseVaha
 
-	btn.style.display = 'none'
+		clone.addEventListener('click', () => {
+			btn.click()
 
-	btn.after(clone)
-
-	clone.querySelector('span').innerText = obj.chooseVaha
-
-	clone.addEventListener('click', () => {
-		window.location.href = obj.link
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — The new comparison page',
-			'eventAction': 'Click on Choose your Vaha button',
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — The new comparison page',
+				'eventAction': 'Click on Choose your Vaha button',
+			})
 		})
-	})
-}
+	}
+}, 200)
+
+setTimeout(function() {
+	clearInterval(chooseVahaInterval)
+}, 10000)
+
+let basketInterval = setInterval(() => {
+	if(document.querySelector('.basket-container')) {
+		clearInterval(basketInterval)
+		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+
+		let myScrollFunc = function () {
+			let y = window.scrollY
+			if (y >= 100) {
+				document.querySelector('.btn-wrapper').classList.add('show')
+			}
+		}
+
+		window.addEventListener('scroll', myScrollFunc)
+	}
+},200)
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
