@@ -776,7 +776,7 @@ const productPage = `
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
 let btnInterval = setInterval(() => {
-	if (document.querySelectorAll('.basket-payments-button')[2]) {
+	if (document.querySelectorAll('.basket-payments-button')[0]) {
 		clearInterval(btnInterval)
 
 		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
@@ -798,7 +798,7 @@ let btnInterval = setInterval(() => {
 						'eventAction': 'Click on Get vaha s button',
 					})
 				}
-				document.querySelectorAll('.basket-payments-button')[2].click()
+				document.querySelectorAll('.basket-payments-button')[0].click()
 			})
 		})
 	}
