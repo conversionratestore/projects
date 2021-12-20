@@ -807,7 +807,7 @@ let btnInterval = setInterval(() => {
 	}
 }, 200)
 let chooseVahaInterval = setInterval(() => {
-	if(document.querySelector('.container-3dy0SD button')) {
+	if (document.querySelector('.container-3dy0SD button')) {
 		clearInterval(chooseVahaInterval)
 
 		let btn = document.querySelector('.container-3dy0SD button')
@@ -832,32 +832,29 @@ let chooseVahaInterval = setInterval(() => {
 	}
 }, 200)
 
-setTimeout(function() {
+setTimeout(function () {
 	clearInterval(chooseVahaInterval)
 }, 10000)
 
 let basketInterval = setInterval(() => {
-	if(document.querySelector('.basket-container') ) {
-		clearInterval(basketInterval)
-		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+		if (document.querySelector('.basket-container')) {
+			clearInterval(basketInterval)
+			document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
-		let scrollInterval = setInterval(() => {
-			if(document.querySelector('.btn-wrapper')) {
-				console.log('scrollInterval')
-				clearInterval(scrollInterval)
-				
-				let myScrollFunc = function () {
-					let y = window.scrollY
-					if (y >= 100) {
-						document.querySelector('.btn-wrapper').classList.add('show')
-					}
+			let scrollInterval = setInterval(() => {
+				if (document.querySelector('.btn-wrapper')) {
+					console.log('scrollInterval')
+					clearInterval(scrollInterval)
+
+					document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
+						if (evt.target.scrollTop >= 100) {
+							document.querySelector('.btn-wrapper').classList.add('show')
+						}
+					})
 				}
-
-				window.addEventListener('scroll', myScrollFunc)
-			}
-		},100)
-	}
-},200)
+			}, 100)
+		}
+	}, 200)
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
