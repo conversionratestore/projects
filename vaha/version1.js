@@ -840,15 +840,19 @@ let basketInterval = setInterval(() => {
 	if(document.querySelector('.basket-container') ) {
 		clearInterval(basketInterval)
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+		
+		let scrollInterval = setInterval(() => {
+			if(document.querySelector('.btn-wrapper')) {
+				let myScrollFunc = function () {
+					let y = window.scrollY
+					if (y >= 100) {
+						document.querySelector('.btn-wrapper').classList.add('show')
+					}
+				}
 
-		// let myScrollFunc = function () {
-		// 	let y = window.scrollY
-		// 	if (y >= 100) {
-		// 		document.querySelector('.btn-wrapper').classList.add('show')
-		// 	}
-		// }
-		//
-		// window.addEventListener('scroll', myScrollFunc)
+				window.addEventListener('scroll', myScrollFunc)
+			}
+		},100)
 	}
 },200)
 
