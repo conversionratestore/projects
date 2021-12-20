@@ -837,18 +837,18 @@ setTimeout(function() {
 }, 10000)
 
 let basketInterval = setInterval(() => {
-	if(document.querySelector('.basket-container') && document.querySelector('.btn-wrapper')) {
+	if(document.querySelector('.basket-container') ) {
 		clearInterval(basketInterval)
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
-		let myScrollFunc = function () {
-			let y = window.scrollY
-			if (y >= 100) {
-				document.querySelector('.btn-wrapper').classList.add('show')
-			}
-		}
-
-		window.addEventListener('scroll', myScrollFunc)
+		// let myScrollFunc = function () {
+		// 	let y = window.scrollY
+		// 	if (y >= 100) {
+		// 		document.querySelector('.btn-wrapper').classList.add('show')
+		// 	}
+		// }
+		//
+		// window.addEventListener('scroll', myScrollFunc)
 	}
 },200)
 
