@@ -837,7 +837,7 @@ setTimeout(function() {
 }, 10000)
 
 let basketInterval = setInterval(() => {
-	if(document.querySelector('.basket-container')) {
+	if(document.querySelector('.basket-container') && document.querySelector('.btn-wrapper')) {
 		clearInterval(basketInterval)
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
