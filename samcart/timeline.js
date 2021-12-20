@@ -12,31 +12,39 @@ let styles = `
         border-radius: 2px;
         display: flex;
         margin-top: 30px;
+        position: relative;
     }
      .timeline button {
-        min-height: 126px;
         height: 100%;
         width: 30px;
         background: transparent no-repeat center / 10px;
         border: none;
         flex-shrink: 0;
         display: block;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
      }
      .timeline button[disabled] {
         opacity: 0;
         pointer-events: none;
      }
      .timeline button.button-prev {
+        left: 0;
         border-right: 1px solid #C5D3D9;
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-left-double.svg");
      }
      .timeline button.button-next {
+        right: 0;
         border-left: 1px solid #C5D3D9;
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-right-double.svg");
      }
      .tns-outer {
-        width:  calc(100% - 60px);
-        padding: 0 27px!important;
+        width: 100%;
+        padding: 0 48px!important;
+     }
+     .slider {
+         width: calc(100% - 60px);
      }
     .slide {
         position: relative;
@@ -44,7 +52,7 @@ let styles = `
         padding-bottom: 30px;
     }
     .slide:first-child {
-        padding-left: 30px!important;
+        padding-left: 38px!important;
     }
     .slide:first-child:after {
         content: '';
@@ -152,6 +160,14 @@ function setSlide(time,title,tooltip) {
         </div>`
 }
 
+document.body.insertAdjacentHTML('afterbegin', styles);
+document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
+
+for (let key in arrTooltip) {
+    document.querySelector('.slider').insertAdjacentHTML('beforeend',setSlide(key,arrTooltip[key][0],arrTooltip[key][1]))
+}
+
+
 let linkCustom = document.createElement('link');
 linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
 linkCustom.rel = 'stylesheet';
@@ -181,14 +197,8 @@ function tnsInitialization() {
     });
 }
 
-document.body.insertAdjacentHTML('afterbegin', styles);
-document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
-
-for (let key in arrTooltip) {
-    document.querySelector('.slider').insertAdjacentHTML('beforeend',setSlide(key,arrTooltip[key][0],arrTooltip[key][1]))
-}
 let run = setInterval(() => {
     tnsInitialization()
     clearInterval(run)
-},100)
+},200)
 
