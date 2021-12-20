@@ -840,9 +840,12 @@ let basketInterval = setInterval(() => {
 	if(document.querySelector('.basket-container') ) {
 		clearInterval(basketInterval)
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
-		
+
 		let scrollInterval = setInterval(() => {
 			if(document.querySelector('.btn-wrapper')) {
+				console.log('scrollInterval')
+				clearInterval(scrollInterval)
+				
 				let myScrollFunc = function () {
 					let y = window.scrollY
 					if (y >= 100) {
