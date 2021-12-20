@@ -775,34 +775,7 @@ const productPage = `
 
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
-let btnInterval = setInterval(() => {
-	if (document.querySelectorAll('.basket-payments-button')[0]) {
-		clearInterval(btnInterval)
 
-		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
-			btn.addEventListener('click', () => {
-				document.querySelectorAll('.basket-vaha-item')[index].click()
-
-				if (index === 0) {
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — The new comparison page',
-						'eventAction': 'Click on Get vaha x button',
-					})
-				} else if (index === 1) {
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — The new comparison page',
-						'eventAction': 'Click on Get vaha s button',
-					})
-				}
-				document.querySelectorAll('.basket-payments-button')[0].click()
-			})
-		})
-	}
-}, 200)
 let chooseVahaInterval = setInterval(() => {
 	if (document.querySelector('.container-3dy0SD button')) {
 		clearInterval(chooseVahaInterval)
@@ -850,6 +823,35 @@ let basketInterval = setInterval(() => {
 					})
 				}
 			}, 100)
+		}
+	}, 200)
+
+let btnInterval = setInterval(() => {
+		if (document.querySelectorAll('.basket-payments-button')[0]) {
+			clearInterval(btnInterval)
+
+			document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
+				btn.addEventListener('click', () => {
+					document.querySelectorAll('.basket-vaha-item')[index].click()
+
+					if (index === 0) {
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp — The new comparison page',
+							'eventAction': 'Click on Get vaha x button',
+						})
+					} else if (index === 1) {
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp — The new comparison page',
+							'eventAction': 'Click on Get vaha s button',
+						})
+					}
+					document.querySelectorAll('.basket-payments-button')[0].click()
+				})
+			})
 		}
 	}, 200)
 
