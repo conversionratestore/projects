@@ -141,7 +141,7 @@ let newPageStyle = /*html*/ `
 
     @media (min-width: 769px){
             body .container {
-            width: 80%;
+            width: 95%;
             margin: 0 auto;
             max-width: 1110px;
             padding: 0;
