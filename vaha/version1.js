@@ -808,6 +808,9 @@ document.head.insertAdjacentHTML('beforeend', productStyle)
 let startInterval = setInterval(() => {
 	if (document.querySelector('.basket-container')) {
 		clearInterval(startInterval)
+
+		console.log('startIntervalstartIntervalstartIntervalstartInterval')
+		
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
 		// let scrollInterval = setInterval(() => {
