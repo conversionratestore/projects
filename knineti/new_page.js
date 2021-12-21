@@ -569,6 +569,7 @@ let newPageStyle = /*html*/ `
         line-height: 22px;
         color: #734F22 !important;
         margin-bottom: 15px;
+        text-align:left;
     }
 
     .reviews_box li div > span{
