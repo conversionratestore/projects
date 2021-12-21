@@ -826,7 +826,7 @@ let startInterval = setInterval(() => {
 					})
 				}
 			}, 100)
-		}, 500)
+		}, 1000)
 	}
 }, 100)
 
