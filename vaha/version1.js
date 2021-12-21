@@ -810,40 +810,40 @@ let startInterval = setInterval(() => {
 		clearInterval(startInterval)
 		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
-		let scrollInterval = setInterval(() => {
-			if (document.querySelector('.btn-wrapper') && document.querySelector('.sidebar-content')) {
-				clearInterval(scrollInterval)
-
-				document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
-					if (evt.target.scrollTop >= 50) {
-						document.querySelector('.btn-wrapper').classList.add('show')
-					}
-				})
-			}
-		}, 100)
+		// let scrollInterval = setInterval(() => {
+		// 	if (document.querySelector('.btn-wrapper') && document.querySelector('.sidebar-content')) {
+		// 		clearInterval(scrollInterval)
+		//
+		// 		document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
+		// 			if (evt.target.scrollTop >= 50) {
+		// 				document.querySelector('.btn-wrapper').classList.add('show')
+		// 			}
+		// 		})
+		// 	}
+		// }, 100)
 	}
 }, 100)
 
-let chooseVahaInterval = setInterval(() => {
-	if (document.querySelector('.container-3dy0SD button span')) {
-		clearInterval(chooseVahaInterval)
-
-		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
-
-		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp — The new comparison page',
-				'eventAction': 'Click on Choose your Vaha button',
-			})
-		})
-	}
-}, 100)
-
-setTimeout(function () {
-	clearInterval(chooseVahaInterval)
-}, 10000)
+// let chooseVahaInterval = setInterval(() => {
+// 	if (document.querySelector('.container-3dy0SD button span')) {
+// 		clearInterval(chooseVahaInterval)
+//
+// 		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
+//
+// 		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
+// 			window.dataLayer = window.dataLayer || []
+// 			dataLayer.push({
+// 				'event': 'event-to-ga',
+// 				'eventCategory': 'Exp — The new comparison page',
+// 				'eventAction': 'Click on Choose your Vaha button',
+// 			})
+// 		})
+// 	}
+// }, 100)
+//
+// setTimeout(function () {
+// 	clearInterval(chooseVahaInterval)
+// }, 10000)
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
