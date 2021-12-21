@@ -20,7 +20,7 @@ let optionMut = {
 
 function resData(data) {
     if (mm.userId != 0) {
-         let dateArr = data.date.split('-'),
+        let dateArr = data.date.split('-'),
             dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
         if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0 ) {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
@@ -47,7 +47,7 @@ function resData(data) {
             </div>`);
 
             document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
-        
+
             document.querySelector('.ordered .show-more').addEventListener('click', () => {
                 action = 'Click on Show more Orders button';
                 label = 'PL section Your recent orders';
@@ -59,7 +59,7 @@ function resData(data) {
                 pushDataLayer(action,label)
             })
         }
-                  
+
         if (window.location.pathname.includes('/product') && data["items"].length > 0) {
             document.querySelector('.center .products_gallery').insertAdjacentHTML('beforebegin',`
             <div class="ordered-products ordered gallery-parent">
@@ -88,7 +88,7 @@ function resData(data) {
             }
             addToCart();
         }
-          if (data["items"].length > 4) {
+        if (data["items"].length > 4) {
             document.querySelector('.ordered .view-more').hidden = false;
         }
     }
@@ -142,7 +142,7 @@ function addToCart() {
                 }
                 pushDataLayer(action,label)
             });
-       
+
         });
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
             item.addEventListener('change', () => {
@@ -163,7 +163,7 @@ function addToCart() {
                     if (el.closest('.viewed')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently viewed Products';
-                    } 
+                    }
                     if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently Ordered Products';
@@ -171,7 +171,7 @@ function addToCart() {
                     if (item.closest('.ordered-products')) {
                         action = 'Click on button Hide more products';
                         label = 'PDP section Recently ordered Products';
-                    } 
+                    }
                 } else {
                     e.target.innerHTML = 'Hide more products';
                     if (el.closest('.viewed')) {
@@ -180,8 +180,8 @@ function addToCart() {
                     }
                     if (item.closest('.ordered-products')) {
                         action = 'Click on button View more products';
-                        label = 'PDP section Recently ordered Products'; 
-                    } 
+                        label = 'PDP section Recently ordered Products';
+                    }
                     if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
                         action = 'Click on button View more products';
                         label = 'PL section Recently ordered Products';
@@ -216,7 +216,7 @@ function pushProducts() {
             });
         }
     }
-    
+
     recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
         index === self.findIndex((t) => (
             t.place === thing.place && t.productid === thing.productid
@@ -496,7 +496,7 @@ let mut = new MutationObserver(function (muts) {
                 <button type="button" class="view-more" hidden>View more products</button>
             </div>`);
 
-            let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
+            let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts')).reverse();
             for (let i = 0; i < cards.length; i++) {
                 if (i < 12) {
                     document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
@@ -517,14 +517,14 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelector('.view-more').hidden = false;
             }
         }
-    
+
         fetch("/cart.html", optionFetch).then(res => res.json())
             .then(data => {
-                console.log(data) 
+                console.log(data)
                 resData(data)
             })
             .catch(error => console.log('error', error));
-            addToCart();
+        addToCart();
     }
     mut.observe(document, optionMut);
     if (window.location.pathname.includes('/product') && recentlyOrderedProducts === false && document.querySelector('input[name="product_id"]') && document.querySelectorAll('.product_img[src]')[0]) {
@@ -612,7 +612,7 @@ let mut = new MutationObserver(function (muts) {
                 console.log(data)
                 resData(data)
             })
-            .catch(error => console.log('error', error));  
+            .catch(error => console.log('error', error));
     }
 
     mut.observe(document, optionMut);
