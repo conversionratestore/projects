@@ -257,8 +257,9 @@ function pushProducts() {
 }
 
 let style = `
-                <style>
-            
+         <style>
+            #g-switch-user {
+                pointer-events: none;}
             .gallery dd span img {
                     max-height: 140px;}
             [hidden] {
