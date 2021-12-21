@@ -825,12 +825,12 @@ let startInterval = setInterval(() => {
 }, 100)
 
 let chooseVahaInterval = setInterval(() => {
-	if (document.querySelector('.container-3dy0SD button')) {
+	if (document.querySelector('.container-3dy0SD button span')) {
 		clearInterval(chooseVahaInterval)
 
 		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
 
-		clone.addEventListener('click', () => {
+		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
