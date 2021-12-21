@@ -595,6 +595,7 @@ let newPageStyle = /*html*/ `
         line-height: 162%;
         letter-spacing: 0.02em;
         color: #808080;
+        text-align: left;
     }
 
     /* contacts_us */
