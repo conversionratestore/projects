@@ -775,57 +775,6 @@ const productPage = `
 
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
-// let chooseVahaInterval = setInterval(() => {
-// 	if (document.querySelector('.container-3dy0SD button')) {
-// 		clearInterval(chooseVahaInterval)
-//
-// 		let btn = document.querySelector('.container-3dy0SD button')
-// 		let clone = btn.cloneNode(true)
-//
-// 		btn.style.display = 'none'
-//
-// 		btn.after(clone)
-//
-// 		clone.querySelector('span').innerText = obj.chooseVaha
-//
-// 		clone.addEventListener('click', () => {
-// 			btn.click()
-//
-// 			window.dataLayer = window.dataLayer || []
-// 			dataLayer.push({
-// 				'event': 'event-to-ga',
-// 				'eventCategory': 'Exp — The new comparison page',
-// 				'eventAction': 'Click on Choose your Vaha button',
-// 			})
-// 		})
-// 	}
-// }, 200)
-//
-// setTimeout(function () {
-// 	clearInterval(chooseVahaInterval)
-// }, 10000)
-//
-// let basketInterval = setInterval(() => {
-// 		if (document.querySelector('.basket-container')) {
-// 			clearInterval(basketInterval)
-// 			console.log('basketInterval')
-//
-// 			document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
-//
-// 			let scrollInterval = setInterval(() => {
-// 				if (document.querySelector('.btn-wrapper')) {
-// 					console.log('scrollInterval')
-// 					clearInterval(scrollInterval)
-//
-// 					document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
-// 						if (evt.target.scrollTop >= 100) {
-// 							document.querySelector('.btn-wrapper').classList.add('show')
-// 						}
-// 					})
-// 				}
-// 			}, 100)
-// 		}
-// 	}, 200)
 //
 // let btnInterval = setInterval(() => {
 // 		if (document.querySelectorAll('.basket-payments-button')[0]) {
@@ -856,12 +805,45 @@ document.head.insertAdjacentHTML('beforeend', productStyle)
 // 		}
 // 	}, 200)
 
-let interval = setInterval(() => {
-		if (document.querySelector('.basket-container')) {
-			clearInterval(interval)
-			document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
-		}
-	}, 100)
+let startInterval = setInterval(() => {
+	if (document.querySelector('.basket-container')) {
+		clearInterval(startInterval)
+		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+
+		let scrollInterval = setInterval(() => {
+			if (document.querySelector('.btn-wrapper') && document.querySelector('.sidebar-content')) {
+				clearInterval(scrollInterval)
+
+				document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
+					if (evt.target.scrollTop >= 50) {
+						document.querySelector('.btn-wrapper').classList.add('show')
+					}
+				})
+			}
+		}, 100)
+	}
+}, 100)
+
+let chooseVahaInterval = setInterval(() => {
+	if (document.querySelector('.container-3dy0SD button')) {
+		clearInterval(chooseVahaInterval)
+
+		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
+
+		clone.addEventListener('click', () => {
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — The new comparison page',
+				'eventAction': 'Click on Choose your Vaha button',
+			})
+		})
+	}
+}, 100)
+
+setTimeout(function () {
+	clearInterval(chooseVahaInterval)
+}, 10000)
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
