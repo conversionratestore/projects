@@ -600,7 +600,7 @@ let mut = new MutationObserver(function (muts) {
         if (localStorage.getItem('recentlyViewedProducts') != null && localStorage.getItem('recentlyViewedProducts') != []){
             let storageItems = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < storageItems.length; i++) {
-                recentlyViewedProducts.unshift(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
+                recentlyViewedProducts.push(JSON.parse(localStorage.getItem('recentlyViewedProducts'))[i]);
             }
             pushProducts();
         } else {
