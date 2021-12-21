@@ -499,7 +499,7 @@ let mut = new MutationObserver(function (muts) {
             let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < cards.length; i++) {
                 if (i < 12) {
-                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
+                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('beforeend',
                         `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                             <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                             <a href="${cards[i].href}">${cards[i].name}</a>
