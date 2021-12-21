@@ -48,10 +48,17 @@ function resData(data) {
 
             document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
 
-            document.querySelector('.ordered .show-more').addEventListener('click', () => {
-                action = 'Click on Show more Orders button';
-                label = 'PL section Your recent orders';
-                pushDataLayer(action,label)
+            document.querySelectorAll('.show-more').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (item.closest('.ordered')) {
+                        action = 'Click on Show more Orders button';
+                        label = 'PL section Your recent orders';
+                    } else {
+                        action = 'Click on Show more products button';
+                        label = 'PL section';
+                    }
+                    pushDataLayer(action,label)
+                })
             })
             document.querySelector('.btn-reorder').addEventListener('click', () => {
                 action = 'Click on Reorder button';
@@ -135,14 +142,15 @@ function addToCart() {
                         action = 'Click on add to cart button';
                         label = 'PL section Your recent orders';
                     }
-                }
-                if (item.closest('.viewed')) {
+                } else if (item.closest('.viewed')) {
                     action = 'Click on add to cart button';
                     label = 'PL section Recently viewed Products';
+                } else {
+                    action = 'Click on add to cart button';
+                    label = 'PL section';
                 }
                 pushDataLayer(action,label)
             });
-
         });
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
             item.addEventListener('change', () => {
@@ -152,6 +160,28 @@ function addToCart() {
             });
         });
     }
+    document.querySelectorAll('.product-card a').forEach( (item) => {
+        item.addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            if (item.closest('.ordered')) {
+                if (window.location.pathname.includes('/product')) {
+                    action = 'Click on product';
+                    label = 'PDP section Recently viewed Products';
+                } else {
+                    action = 'Click on product';
+                    label = 'PL section Your recent orders';
+                }
+            } else if (item.closest('.viewed')) {
+                action = 'Click on product';
+                label = 'PL section Recently viewed Products';
+            } else {
+                action = 'Click on product';
+                label = 'PL section';
+            }
+            pushDataLayer(action,label)
+            window.location.href = item.getAttribute('href')
+        });
+    });
 
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
