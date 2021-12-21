@@ -806,12 +806,12 @@ document.head.insertAdjacentHTML('beforeend', productStyle)
 // 	}, 200)
 
 let startInterval = setInterval(() => {
-	if (document.querySelector('.basket-container')) {
+	if (document.querySelector('.basket-wrapper-b')) {
 		clearInterval(startInterval)
 
 		console.log('startIntervalstartIntervalstartIntervalstartInterval')
-		
-		document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+
+		document.querySelector('.basket-wrapper-b').insertAdjacentHTML('beforeend', productPage)
 
 		// let scrollInterval = setInterval(() => {
 		// 	if (document.querySelector('.btn-wrapper') && document.querySelector('.sidebar-content')) {
