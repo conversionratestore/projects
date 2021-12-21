@@ -21,7 +21,7 @@ let optionMut = {
 function resData(data) {
     if (mm.userId != 0) {
         let dateArr = data.date.split('-'),
-            dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
+            dateFormat = `${dateArr[1] + '/' + dateArr[2] + '/' + dateArr[0]}`;
         if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0 ) {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
             <div class="gallery-parent ordered">
