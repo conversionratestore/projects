@@ -461,7 +461,7 @@ const productPage = `
         <div class="cards">
             <div class="inner">
                 <div class="item">
-                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.png" alt="vaha x">
+                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.svg" alt="vaha x">
                     <p class="name">Vaha X</p>
                  	<p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 2,268</p>-->
@@ -469,7 +469,7 @@ const productPage = `
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
-                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.png" alt="vaha x">
+                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.svg" alt="vaha s">
                     <p class="name">Vaha S</p>
                     <p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 1,395</p>-->
