@@ -156,6 +156,7 @@ const productStyle = `
         
 		.financing {
 			background-color: #fff;
+			padding-bottom: 30px;
 		}
 		
 		.financing p {
@@ -781,8 +782,6 @@ let startInterval = setInterval(() => {
 	if (document.querySelector('.basket-wrapper-b')) {
 		clearInterval(startInterval)
 
-		console.log('startIntervalstartIntervalstartIntervalstartInterval')
-		
 		setTimeout(() => {
 			document.querySelector('.basket-wrapper-b').insertAdjacentHTML('beforeend', productPage)
 
@@ -798,6 +797,8 @@ let startInterval = setInterval(() => {
 							document.querySelectorAll('.basket-vaha-item')[index].click()
 
 							if (index === 0) {
+								console.log('eventAction Click on Get vaha x  button')
+
 								window.dataLayer = window.dataLayer || []
 								dataLayer.push({
 									'event': 'event-to-ga',
@@ -805,6 +806,8 @@ let startInterval = setInterval(() => {
 									'eventAction': 'Click on Get vaha x button',
 								})
 							} else if (index === 1) {
+								console.log('eventAction Click on Get vaha s button')
+
 								window.dataLayer = window.dataLayer || []
 								dataLayer.push({
 									'event': 'event-to-ga',
@@ -823,9 +826,7 @@ let startInterval = setInterval(() => {
 					})
 				}
 			}, 100)
-		}, 1000)
-
-		
+		}, 500)
 	}
 }, 100)
 
@@ -836,6 +837,8 @@ let chooseVahaInterval = setInterval(() => {
 		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
 
 		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
+			console.log('eventAction Click on Choose your Vaha button')
+
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
@@ -873,7 +876,11 @@ dataLayer.push({
 	'eventAction': 'loaded',
 })
 
+console.log('eventAction: loaded')
+
 document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
+	console.log('eventAction: Click on the sticky button Purchase')
+
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
