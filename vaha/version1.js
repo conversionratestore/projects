@@ -900,3 +900,7 @@ document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
 		'eventAction': 'Click on the sticky button Purchase',
 	})
 })
+
+setInterval(() => {
+	document.querySelectorAll('.basket-wrapper-b')
+}, 100)
