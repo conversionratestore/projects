@@ -902,5 +902,6 @@ document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
 })
 
 setInterval(() => {
+	console.log(document.querySelectorAll('.basket-wrapper-b'))
 	document.querySelectorAll('.basket-wrapper-b')
 }, 100)
