@@ -777,7 +777,7 @@ const productPage = `
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
 let start = setInterval(() => {
-	if(document.querySelector('.basket-container section')) {
+	if(document.querySelectorAll('.basket-wrapper-b')[2]) {
 		clearInterval(start)
 
 		console.log('clearInterval')
@@ -792,7 +792,7 @@ function ass() {
 	console.log('before productPage')
 	console.log(document.querySelector('.basket-container section'))
 
-	document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
+	document.querySelectorAll('.basket-wrapper-b')[2].insertAdjacentHTML('afterend', productPage)
 
 	console.log('after productPage')
 	console.log(document.querySelector('.basket-wrapper-b'))
@@ -903,5 +903,5 @@ document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
 
 let a = setInterval(() => {
 	console.log(document.querySelectorAll('.basket-wrapper-b'))
-	document.querySelectorAll('.basket-wrapper-b')
+
 }, 100)
