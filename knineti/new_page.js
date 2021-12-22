@@ -1151,7 +1151,7 @@ function newPage() {
           document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
           document.querySelector(".submit_btn input").value = "Enroll Now"
         }
-      }, 500)
+      }, 400)
 
       document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
@@ -1256,7 +1256,7 @@ function newPage() {
         1000
       )
     }
-  }, 300)
+  }, 200)
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
@@ -1280,7 +1280,6 @@ function newPage() {
   hj("event", "checkout_improvements")
 
   document.querySelector(".payment_inform_box .input_wrapper > div:last-child label").addEventListener("click", () => {
-    console.log(`object`)
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
@@ -1290,7 +1289,6 @@ function newPage() {
   })
 
   document.querySelector(".hover_box").addEventListener("mouseenter", () => {
-    console.log(`jjj`)
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
