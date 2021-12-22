@@ -20,8 +20,8 @@ let optionMut = {
 
 function resData(data) {
     if (mm.userId != 0) {
-        let dateArr = data.date.split('-'),
-            dateFormat = `${dateArr[1] + '/' + dateArr[2] + '/' + dateArr[0]}`;
+         let dateArr = data.date.split('-'),
+            dateFormat = `${dateArr[2] + '/' + dateArr[1] + '/' + dateArr[0]}`;
         if (document.querySelectorAll('.gallery-parent') && window.location.pathname == '/' && data["items"].length > 0 ) {
             document.querySelectorAll('.gallery-parent')[0].insertAdjacentHTML('beforebegin',`
             <div class="gallery-parent ordered">
@@ -47,18 +47,11 @@ function resData(data) {
             </div>`);
 
             document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
-
-            document.querySelectorAll('.show-more').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (item.closest('.ordered')) {
-                        action = 'Click on Show more Orders button';
-                        label = 'PL section Your recent orders';
-                    } else {
-                        action = 'Click on Show more products button';
-                        label = 'PL section';
-                    }
-                    pushDataLayer(action,label)
-                })
+        
+            document.querySelector('.ordered .show-more').addEventListener('click', () => {
+                action = 'Click on Show more Orders button';
+                label = 'PL section Your recent orders';
+                pushDataLayer(action,label)
             })
             document.querySelector('.btn-reorder').addEventListener('click', () => {
                 action = 'Click on Reorder button';
@@ -66,7 +59,7 @@ function resData(data) {
                 pushDataLayer(action,label)
             })
         }
-
+                  
         if (window.location.pathname.includes('/product') && data["items"].length > 0) {
             document.querySelector('.center .products_gallery').insertAdjacentHTML('beforebegin',`
             <div class="ordered-products ordered gallery-parent">
@@ -95,7 +88,7 @@ function resData(data) {
             }
             addToCart();
         }
-        if (data["items"].length > 4) {
+          if (data["items"].length > 4) {
             document.querySelector('.ordered .view-more').hidden = false;
         }
     }
@@ -142,15 +135,14 @@ function addToCart() {
                         action = 'Click on add to cart button';
                         label = 'PL section Your recent orders';
                     }
-                } else if (item.closest('.viewed')) {
+                }
+                if (item.closest('.viewed')) {
                     action = 'Click on add to cart button';
                     label = 'PL section Recently viewed Products';
-                } else {
-                    action = 'Click on add to cart button';
-                    label = 'PL section';
                 }
                 pushDataLayer(action,label)
             });
+       
         });
         document.querySelectorAll('.add-to-cart').forEach( (item) => {
             item.addEventListener('change', () => {
@@ -160,28 +152,6 @@ function addToCart() {
             });
         });
     }
-    document.querySelectorAll('.product-card a').forEach( (item) => {
-        item.addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
-            if (item.closest('.ordered')) {
-                if (window.location.pathname.includes('/product')) {
-                    action = 'Click on product';
-                    label = 'PDP section Recently viewed Products';
-                } else {
-                    action = 'Click on product';
-                    label = 'PL section Your recent orders';
-                }
-            } else if (item.closest('.viewed')) {
-                action = 'Click on product';
-                label = 'PL section Recently viewed Products';
-            } else {
-                action = 'Click on product';
-                label = 'PL section';
-            }
-            pushDataLayer(action,label)
-            window.location.href = item.getAttribute('href')
-        });
-    });
 
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
@@ -193,7 +163,7 @@ function addToCart() {
                     if (el.closest('.viewed')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently viewed Products';
-                    }
+                    } 
                     if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
                         action = 'Click on button Hide more products';
                         label = 'PL section Recently Ordered Products';
@@ -201,7 +171,7 @@ function addToCart() {
                     if (item.closest('.ordered-products')) {
                         action = 'Click on button Hide more products';
                         label = 'PDP section Recently ordered Products';
-                    }
+                    } 
                 } else {
                     e.target.innerHTML = 'Hide more products';
                     if (el.closest('.viewed')) {
@@ -210,8 +180,8 @@ function addToCart() {
                     }
                     if (item.closest('.ordered-products')) {
                         action = 'Click on button View more products';
-                        label = 'PDP section Recently ordered Products';
-                    }
+                        label = 'PDP section Recently ordered Products'; 
+                    } 
                     if (window.location.href == 'https://medicalmega.com/' && item.closest('.ordered')) {
                         action = 'Click on button View more products';
                         label = 'PL section Recently ordered Products';
@@ -224,7 +194,7 @@ function addToCart() {
 }
 
 function pushProducts() {
-    recentlyViewedProducts.unshift({
+    recentlyViewedProducts.push({
         'productid': document.querySelector('input[name="product_id"]').value,
         'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
         'variationid': document.querySelector('input[name="product_variant_id"]').value,
@@ -236,7 +206,7 @@ function pushProducts() {
         recentlyViewedProducts = [...recentlyViewedProducts,...JSON.parse(localStorage.getItem('recentlyViewedProducts'))]
     } else {
         if (document.querySelector('.product-price')) {
-            recentlyViewedProducts.unshift({
+            recentlyViewedProducts.push({
                 'productid': document.querySelector('input[name="product_id"]').value,
                 'price': document.querySelector('.product-price').innerHTML.replace('$','$ '),
                 'variationid': document.querySelector('input[name="product_variant_id"]').value,
@@ -246,7 +216,7 @@ function pushProducts() {
             });
         }
     }
-
+    
     recentlyViewedProducts = recentlyViewedProducts.filter((thing, index, self) =>
         index === self.findIndex((t) => (
             t.place === thing.place && t.productid === thing.productid
@@ -257,9 +227,8 @@ function pushProducts() {
 }
 
 let style = `
-         <style>
-            #g-switch-user {
-                pointer-events: none;}
+                <style>
+            
             .gallery dd span img {
                     max-height: 140px;}
             [hidden] {
@@ -530,7 +499,7 @@ let mut = new MutationObserver(function (muts) {
             let cards = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
             for (let i = 0; i < cards.length; i++) {
                 if (i < 12) {
-                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('beforeend',
+                    document.querySelector('.gallery-parent.viewed .gallery').insertAdjacentHTML('afterbegin',
                         `<dd class="product-card" data-product-id="${cards[i].productid}" data-product-variant-id="${cards[i].variationid}">
                             <span>&nbsp;<a href="${cards[i].href}"><img src="${cards[i].imgsrc}" alt="${cards[i].name}"></a>&nbsp;</span>
                             <a href="${cards[i].href}">${cards[i].name}</a>
@@ -548,14 +517,14 @@ let mut = new MutationObserver(function (muts) {
                 document.querySelector('.view-more').hidden = false;
             }
         }
-
+    
         fetch("/cart.html", optionFetch).then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data) 
                 resData(data)
             })
             .catch(error => console.log('error', error));
-        addToCart();
+            addToCart();
     }
     mut.observe(document, optionMut);
     if (window.location.pathname.includes('/product') && recentlyOrderedProducts === false && document.querySelector('input[name="product_id"]') && document.querySelectorAll('.product_img[src]')[0]) {
@@ -643,7 +612,7 @@ let mut = new MutationObserver(function (muts) {
                 console.log(data)
                 resData(data)
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error));  
     }
 
     mut.observe(document, optionMut);

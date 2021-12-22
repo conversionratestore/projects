@@ -1,17 +1,8 @@
 let newPageStyle = /*html*/ `
 <style>
-    table{
-        width: 100%;
-    }
-
     .container > .col-md-6:first-child, .container > .row.row1030, .text_mobile, .payment_plan_wrapp h4{
         display: none;
     }
-
-    .row .col-md-12 input#ttm-agree{
-        margin-bottom: unset !important;
-    }
-
     
     p.form-error, span.form-error{
         margin-top: 0 !important;
@@ -141,7 +132,7 @@ let newPageStyle = /*html*/ `
 
     @media (min-width: 769px){
             body .container {
-            width: 95%;
+            width: 80%;
             margin: 0 auto;
             max-width: 1110px;
             padding: 0;
@@ -569,16 +560,11 @@ let newPageStyle = /*html*/ `
         line-height: 22px;
         color: #734F22 !important;
         margin-bottom: 15px;
-        text-align:left;
     }
 
-    .reviews_box li div > span{
+    .reviews_box li div span{
         display: block;
         margin-bottom: 8px;
-    }
-
-    .reviews_box li div p > span{
-        margin-left: 10px;
     }
 
     @media (max-width: 1283px){
@@ -595,7 +581,6 @@ let newPageStyle = /*html*/ `
         line-height: 162%;
         letter-spacing: 0.02em;
         color: #808080;
-        text-align: left;
     }
 
     /* contacts_us */
@@ -786,8 +771,7 @@ let newPageStyle = /*html*/ `
         .reviews_box li p:first-child{
             height: unset;
             font-size: 14px;
-            line-height: 19px;
-            text-align: left;
+            line-height: 19px;  
         }
 
         .reviews_box li p:not(:first-child), .contacts_us p:last-child{
@@ -839,21 +823,6 @@ let newPageStyle = /*html*/ `
         margin-left: 15px;
         text-transform: uppercase;
         font-weight: 700;
-    }
-
-    @media (max-width: 290px){
-        .paymen_method::after{
-            width: 150px;
-            height: 26px;
-        }
-
-        .payment_inform_box .paymen_method p.subtitle_text{
-            font-size: 12px;
-        }
-
-        .reviews_box li p:first-child{
-            text-align: left;
-        }
     }
 
 </style>
@@ -1063,11 +1032,8 @@ let firstBlock = /*html*/ `
                     <p>We were getting really frustrated with Luna (our Chihuahua puppy). She used to bite us constantly and would never come to us when we used to call her in the dog park. And we had tried to housebreak her but she continued to pee occasionally in the house.</p>
                     <p>While your masterclass sounded great, I wasn’t sure it would work for a puppy like her. To be honest, the only reason we signed up is because of your refund policy - I figured we had nothing to lose haha!</p>
                     <p>Well, not only did it work, it worked wonders. We haven’t had a single accident in more than 8 weeks now. The biting has also stopped, and she now comes to us as soon as we call her name - no matter what she might be doing at that time.</p>
-                    <p>We are thinking of getting another dog soon (probably a bigger dog) so that Luna will have someone to play with, and are looking forward to using the things that we had learned in the masterclass with the new dog. <span><svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.2721 16L12.0117 15.2974C13.7478 11.4438 16.6992 6.34464 20.8659 0H25C21.4844 8.06919 19.2817 13.4025 18.3919 16H12.2721ZM0.195312 16L0 15.2974C2.12674 10.8051 5.05642 5.70592 8.78906 0H12.9232C9.73307 7.34531 7.53038 12.6786 6.3151 16H0.195312Z" fill="#734F22"/>
-                </svg>
-                </span></p>
-                </div>
+                    <p>We are thinking of getting another dog soon (probably a bigger dog) so that Luna will have someone to play with, and are looking forward to using the things that we had learned in the masterclass with the new dog.</p>
+            </div>
         </li>
         <li>
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog2.jpg" alt="dog">
@@ -1080,11 +1046,7 @@ let firstBlock = /*html*/ `
                     <p>I purchased the Total Transformation Masterclass from K9 Training Institute and am super-impressed.</p>
                     <p>Walking with Carlo has become so much more enjoyable now! Instead of constantly pulling on his leash like he used to, he now always walks at our side.</p>
                     <p>And instead of trying to run away everytime we open the front door (and almost getting run over by a car once because of this), he now sits patiently in front of the door even without a leash on until I give him permission to go out.</p>
-                    <p>He has become so well-trained and seems to almost behave like a service dog now!  <span><svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.2721 16L12.0117 15.2974C13.7478 11.4438 16.6992 6.34464 20.8659 0H25C21.4844 8.06919 19.2817 13.4025 18.3919 16H12.2721ZM0.195312 16L0 15.2974C2.12674 10.8051 5.05642 5.70592 8.78906 0H12.9232C9.73307 7.34531 7.53038 12.6786 6.3151 16H0.195312Z" fill="#734F22"/>
-                </svg>
-                </span></p>
-                   
+                    <p>He has become so well-trained and seems to almost behave like a service dog now!</p>
             </div>
         </li>
     </ul>
@@ -1120,144 +1082,122 @@ let interval = setInterval(() => {
   if (document.querySelector("section .container")) {
     clearInterval(interval)
     newPage()
-    document.querySelector(".exp")?.remove()
   }
 }, 50)
 
 function newPage() {
-  console.log(`hello`)
   document.querySelector("section .container").insertAdjacentHTML("afterbegin", firstBlock)
   document.querySelector("p.radio1_text").innerHTML = ""
 
-  setTimeout(() => {
-    if (document.querySelector(".first_block")) {
-      document.querySelector(".payment_plan").remove()
+  if (document.querySelector(".first_block")) {
+    document.querySelector(".payment_plan").remove()
 
-      document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
+    document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
 
-      document
-        .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
-        .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
+    document
+      .querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[1]
+      .after(document.querySelectorAll(".payment_inform_box .payment_inform_wrapp .customer_information_wrapper .row")[0])
 
-      document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
-      document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
-      if (document.querySelector(".payment_inform_box .paypament-details")) {
-        document
-          .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
-          .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
-      }
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".paypament-details"))
+    document.querySelector(".payment_inform_box .paymen_method p.subtitle_text").after(document.querySelector(".card_type"))
+    document
+      .querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[1]
+      .after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[0])
 
-      setTimeout(() => {
-        if (document.querySelector(".payment_inform_box .paypament-details")) {
-          document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
-          document.querySelector(".submit_btn input").value = "Enroll Now"
-        }
-      }, 400)
+    if (document.querySelector(".payment_inform_box .card_type")) {
+      document.querySelector(".payment_inform_box").after(document.querySelectorAll(".payment_inform_box .paymen_method .paypament-details .row")[5])
+    }
 
-      document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
+    document.querySelector(".content .page h4, .content .entry-content h4").textContent = "Contact information"
 
-      document.querySelector("#month").options[0].text = "Month"
-      document.querySelector("#year1").options[0].text = "Year"
+    document.querySelector("#month").options[0].text = "Month"
+    document.querySelector("#year1").options[0].text = "Year"
 
-      //
-      document.querySelector("#card1").insertAdjacentHTML(
-        "afterend",
-        `<label for="card1">
+    //
+    document.querySelector("#card1").insertAdjacentHTML(
+      "afterend",
+      `<label for="card1">
                          <span class="radio_style"><span class="ellipse"></span></span>
         </label>
    `
-      )
+    )
 
-      document.querySelectorAll("form input[type=hidden]").forEach((item) => {
-        document.querySelector(".payment_inform_box").before(item)
-      })
+    document.querySelectorAll("form input[type=hidden]").forEach((item) => {
+      document.querySelector(".payment_inform_box").before(item)
+    })
 
-      document.querySelector("#card2").insertAdjacentHTML(
-        "afterend",
-        `<label for="card2">
+    document.querySelector("#card2").insertAdjacentHTML(
+      "afterend",
+      `<label for="card2">
                          <span class="radio_style"><span class="ellipse"></span></span>
         </label>`
-      )
+    )
 
-      document.querySelectorAll("input").forEach((el) => {
-        el.placeholder = ""
-      })
+    document.querySelectorAll("input").forEach((el) => {
+      el.placeholder = ""
+    })
 
-      //
-      let params = new URLSearchParams(window.location.search)
-      let dQueryDate = atob(params.get("d"))
-      let dsp = dQueryDate.split("-")
+    //
+    let params = new URLSearchParams(window.location.search)
+    let dQueryDate = atob(params.get("d"))
+    let dsp = dQueryDate.split("-")
 
-      // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
-      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
-      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    // let today = new Date(dsp[0], dsp[1] - 1, dsp[2]).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-      // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
-      // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    // let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    // document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-      // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
-      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+    // let dayThirty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 30)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-      // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
-      // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+    // let dayNinty = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 90)).toDateString().split(" ")
+    // document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-      let today = new Date().toDateString().split(" ")
-      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
-      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    let today = new Date().toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[0].textContent = `${today[1]} ${today[2]}, ${today[3]}`
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[1].textContent = `${today[1]} ${today[2]}, ${today[3]}`
 
-      let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-      let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
-      document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
+    let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+    let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[2].textContent = `${daySevenToday[1]} ${daySevenToday[2]}, ${daySevenToday[3]}`
+    document.querySelector(".payment_inform_box li > div > p").textContent = `YOUR DISCOUNT IS VALID UNTIL ${daySeven[1]} ${daySeven[2]}, ${daySeven[3]}`
 
-      let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
-      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
+    let dayThirty = new Date(new Date().setDate(new Date().getDate() + 30)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[3].textContent = `${dayThirty[1]} ${dayThirty[2]}, ${dayThirty[3]}`
 
-      let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
-      document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
+    let dayNinty = new Date(new Date().setDate(new Date().getDate() + 90)).toDateString().split(" ")
+    document.querySelectorAll(".scroll_bar_box li .text_block > div:last-child p")[4].textContent = `Until ${dayNinty[1]} ${dayNinty[2]}, ${dayNinty[3]}`
 
-      //   tab
-      document.querySelector("input#first-name").setAttribute("tabindex", "1")
-      document.querySelector("input#last-name").setAttribute("tabindex", "2")
-      document.querySelector("input#email").setAttribute("tabindex", "3")
-      document.querySelector("input#address1").setAttribute("tabindex", "4")
-      document.querySelector("input#city").setAttribute("tabindex", "5")
-      document.querySelector("input#zip").setAttribute("tabindex", "6")
-      document.querySelector("#selected-country").setAttribute("tabindex", "7")
-      document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
-      document.querySelector("#phone").setAttribute("tabindex", "9")
-      document.querySelector("#cardno").setAttribute("tabindex", "10")
-      document.querySelector("#cardname").setAttribute("tabindex", "11")
-      document.querySelector("#month").setAttribute("tabindex", "12")
-      document.querySelector("#year1").setAttribute("tabindex", "13")
-      document.querySelector("#cvv").setAttribute("tabindex", "14")
-      document.querySelector("#card1").setAttribute("tabindex", "20")
-      document.querySelector("#card2").setAttribute("tabindex", "21")
-      document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
-      document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
+    document.querySelector(".submit_btn input").value = "Enroll Now"
 
-      if (document.querySelector(".earlier_order_msz")) {
-        document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
-      }
+    //   tab
+    document.querySelector("input#first-name").setAttribute("tabindex", "1")
+    document.querySelector("input#first-name").autofocus = true
+    document.querySelector("input#last-name").setAttribute("tabindex", "2")
+    document.querySelector("input#email").setAttribute("tabindex", "3")
+    document.querySelector("input#address1").setAttribute("tabindex", "4")
+    document.querySelector("input#city").setAttribute("tabindex", "5")
+    document.querySelector("input#zip").setAttribute("tabindex", "6")
+    document.querySelector("#selected-country").setAttribute("tabindex", "7")
+    document.querySelector("#selected-state-us").setAttribute("tabindex", "8")
+    document.querySelector("#phone").setAttribute("tabindex", "9")
+    document.querySelector("#cardno").setAttribute("tabindex", "10")
+    document.querySelector("#cardname").setAttribute("tabindex", "11")
+    document.querySelector("#month").setAttribute("tabindex", "12")
+    document.querySelector("#year1").setAttribute("tabindex", "13")
+    document.querySelector("#cvv").setAttribute("tabindex", "14")
+    document.querySelector("#card1").setAttribute("tabindex", "20")
+    document.querySelector("#card2").setAttribute("tabindex", "21")
+    document.querySelector("#onetime_pay").setAttribute("tabindex", "22")
+    document.querySelector("#monthly_pay").setAttribute("tabindex", "23")
 
-      if (document.querySelectorAll(".row .col-md-12")[7]) {
-        document.querySelectorAll(".row .col-md-12")[7].style.textAlign = "left"
-      }
-
-      document.querySelector(".submit_btn input").addEventListener(
-        "click",
-        () => {
-          setTimeout(() => {
-            if ($("form .row > div p:visible:first")) {
-              $("form .row > div p:visible:first").prev().focus()
-            }
-          })
-        },
-        1000
-      )
+    if (document.querySelector(".earlier_order_msz")) {
+      document.querySelector("body .container .first_block > h1").after(document.querySelector(".earlier_order_msz"))
     }
-  }, 200)
+  }
 
   window.dataLayer = window.dataLayer || []
   dataLayer.push({
@@ -1281,6 +1221,7 @@ function newPage() {
   hj("event", "checkout_improvements")
 
   document.querySelector(".payment_inform_box .input_wrapper > div:last-child label").addEventListener("click", () => {
+    console.log(`object`)
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
@@ -1290,6 +1231,7 @@ function newPage() {
   })
 
   document.querySelector(".hover_box").addEventListener("mouseenter", () => {
+    console.log(`jjj`)
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
