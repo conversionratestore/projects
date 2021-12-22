@@ -777,7 +777,7 @@ const productPage = `
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
 let start = setInterval(() => {
-	if(document.querySelector('.basket-container')) {
+	if(document.querySelector('.basket-container section')) {
 		clearInterval(start)
 
 		console.log('clearInterval')
@@ -790,13 +790,14 @@ let start = setInterval(() => {
 
 function ass() {
 	console.log('before productPage')
-	console.log(document.querySelector('.basket-container'))
+	console.log(document.querySelector('.basket-container section'))
 
 	document.querySelector('.basket-container').insertAdjacentHTML('afterend', productPage)
 
+	console.log('after productPage')
 	console.log(document.querySelector('.basket-wrapper-b'))
 
-	console.log('after productPage')
+
 
 	let btnInterval = setInterval(() => {
 		if (document.querySelectorAll('.btn-wrapper button')[1] &&
