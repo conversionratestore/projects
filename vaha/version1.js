@@ -776,14 +776,18 @@ const productPage = `
 
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
+let start = setInterval(() => {
+	if(document.querySelector('.basket-wrapper-b')) {
+		clearInterval(start)
+			
+		console.log('clearInterval')
 
-
-let startInterval = setInterval(() => {
-	if (document.querySelector('.basket-wrapper-b')) {
-		clearInterval(startInterval)
-
-		setTimeout(() => {
+		(function() {
+			console.log('before productPage')
+			
 			document.querySelector('.basket-wrapper-b').insertAdjacentHTML('beforeend', productPage)
+
+			console.log('after productPage')
 
 			let btnInterval = setInterval(() => {
 				if (document.querySelectorAll('.btn-wrapper button')[1] &&
@@ -826,7 +830,7 @@ let startInterval = setInterval(() => {
 					})
 				}
 			}, 100)
-		}, 1500)
+		})()
 	}
 }, 100)
 
