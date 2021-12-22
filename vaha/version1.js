@@ -777,7 +777,7 @@ const productPage = `
 document.head.insertAdjacentHTML('beforeend', productStyle)
 
 let start = setInterval(() => {
-	if(document.querySelectorAll('.basket-wrapper-b').length === 1) {
+	if (document.querySelectorAll('.basket-wrapper-b').length === 1) {
 		clearInterval(start)
 
 		console.log('clearInterval')
@@ -796,7 +796,6 @@ function ass() {
 
 	console.log('after productPage')
 	console.log(document.querySelector('.basket-wrapper-b'))
-
 
 
 	let btnInterval = setInterval(() => {
@@ -900,8 +899,3 @@ document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
 		'eventAction': 'Click on the sticky button Purchase',
 	})
 })
-
-let a = setInterval(() => {
-	console.log(document.querySelectorAll('.basket-wrapper-b'))
-
-}, 100)
