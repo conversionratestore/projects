@@ -366,7 +366,7 @@ window.onload = function () {
         function () {
             ;(hj.q = hj.q || []).push(arguments)
         }
-    hj("trigger", "pdp_add_faq")
+    hj("trigger", "pdp_add_faq_desktop")
 
     //observer
     const options = {
