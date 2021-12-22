@@ -1120,7 +1120,7 @@ let interval = setInterval(() => {
   if (document.querySelector("section .container")) {
     clearInterval(interval)
     newPage()
-    document.querySelector(".exp").remove()
+    document.querySelector(".exp")?.remove()
   }
 }, 50)
 
