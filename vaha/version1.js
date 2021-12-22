@@ -1,34 +1,46 @@
 const productStyle = `
 	<style>
+		.basket-wrapper-b {
+			padding: 0 !important;
+			background-color: #000;
+		}
+		
+		.basket-wrapper-b header {
+			padding: 1rem 1rem 0;
+		    justify-content: flex-end !important;
+		    margin-bottom: 0 !important;
+		}
+		
+		.basket-wrapper-b header h3 {
+			display: none !important;
+		}
+		.basket-container {
+			display: none;
+		}
+	
 		.siq_bR {
 			bottom: 100px;
 		}
 		
-		.promoHeight-3t4KXS {
-			display: none;
-		}
+		/*.promoHeight-3t4KXS {*/
+		/*	display: none;*/
+		/*}*/
 	
-		.container-3dy0SD {
-			display: none
-		}
+		/*.container-3dy0SD {*/
+		/*	display: none*/
+		/*}*/
 		
 		.vaha-nav {
 			z-index: 999;
 			background-color: #000;
 		}	
 			
-		.vaha-main-content > div:first-child {
-			display: none !important;
-		}
+		/*.vaha-main-content > div:first-child {*/
+		/*	display: none !important;*/
+		/*}*/
 		
-		.mobile-menu {
-			top: 48px !important;
-		}
 		
-		.comparison {
-			margin-top: 80px;
-		}
-		
+				
 		.comparison p {
 			margin: 0;
 			color: #fff;
@@ -57,7 +69,6 @@ const productStyle = `
             font-size: 23px;
             margin: 17px 0 25px;
         }
-
         .cards .price {
             font-weight: 600;
             font-size: 26px;
@@ -121,7 +132,6 @@ const productStyle = `
         .financing .property:last-child .check {
             border: none;
         }
-
         .check > div {            
         	display: block;
             width: 100%;
@@ -146,6 +156,7 @@ const productStyle = `
         
 		.financing {
 			background-color: #fff;
+			padding-bottom: 30px;
 		}
 		
 		.financing p {
@@ -301,22 +312,19 @@ const productStyle = `
 			letter-spacing: 0.01em;		
 			color: #222222;			
         }
-	</style>
-`
-const homeStyle = `
-	<style>
-			.headline-2zqlww {
-				display: none;
-			}
-			
-			.button-3MJU8U {
-				max-width: 100%;
-				justify-content: space-between;
-			}
+        
+        .headline-2zqlww {
+			display: none;
+		}
+		
+		.button-3MJU8U {
+			max-width: 100%;
+			justify-content: space-between;
+		}
 	</style>
 `
 
-let language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
+const language = window.location.host.split('.')[0] === 'uk' ? 'en' : 'ge'
 
 const textArr = {
 	'en': {
@@ -370,7 +378,7 @@ const textArr = {
 		chooseVaha: 'Choose your Vaha',
 		link: '/product',
 		money: `No money<br>down`,
-		flatrate: '0% Financing Available',
+		flatrate: 'Flatrate plans',
 		fees: `No hidden<br>fees`,
 		zero: '£0',
 		month36X: '£ 50 / month',
@@ -433,7 +441,7 @@ const textArr = {
 		chooseVaha: 'Wählen Sie Ihr Vaha',
 		link: '/produkt',
 		money: `Keine<br>anzahlung`,
-		flatrate: 'Verfügbar ab 0% Finanzierung',
+		flatrate: 'Flatrate-Tarife',
 		fees: `Keine<br>versteckten<br>gebühren`,
 		zero: '€0',
 		month36X: '€ 58 / monat',
@@ -453,7 +461,7 @@ const productPage = `
         <div class="cards">
             <div class="inner">
                 <div class="item">
-                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.png" alt="vaha x">
+                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaX.svg" alt="vaha x">
                     <p class="name">Vaha X</p>
                  	<p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 2,268</p>-->
@@ -461,7 +469,7 @@ const productPage = `
                     <p class="subprice">${ obj.klarna }</p>
                 </div>
                 <div class="item">
-                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.png" alt="vaha x">
+                    <img src="https://conversionratestore.github.io/projects/vaha/images/vahaS.svg" alt="vaha s">
                     <p class="name">Vaha S</p>
                     <p class="from">${ obj.from }</p>
 <!--                    <p class="price">£ 1,395</p>-->
@@ -695,21 +703,21 @@ const productPage = `
                         <p class="name">Vaha S</p>
                     </div>
                     <div class="property">
-                        <p>39 ${ obj.month }</p>
+                        <p>39 ${ obj.month }s</p>
                         <div class="check">
                             <p>${ obj.month36X }</p>
                             <p>${ obj.month36S }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>24 ${ obj.month }</p>
+                        <p>24 ${ obj.month }s</p>
                         <div class="check">
                             <p>${ obj.month24X }</p>
                             <p>${ obj.month24S }</p>
                         </div>
                     </div>
                     <div class="property">
-                        <p>12 ${ obj.month }</p>
+                        <p>12 ${ obj.month }s</p>
                         <div class="check">
                             <p>${ obj.month12X }</p>
                             <p>${ obj.month12S }</p>
@@ -766,70 +774,74 @@ const productPage = `
     </div>
 `
 
-let btnInterval = setInterval(() => {
-	if (document.querySelectorAll('.basket-payments-button')[2]) {
-		clearInterval(btnInterval)
+document.head.insertAdjacentHTML('beforeend', productStyle)
 
-		document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
-			btn.addEventListener('click', () => {
-				document.querySelectorAll('.basket-vaha-item')[index].click()
+let start = setInterval(() => {
+	if (document.querySelectorAll('.basket-wrapper-b').length === 1) {
+		clearInterval(start)
 
-				if (index === 0) {
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — The new comparison page',
-						'eventAction': 'Click on Get vaha x button',
+		document.querySelector('.basket-wrapper-b').insertAdjacentHTML('afterend', productPage)
+
+		let btnInterval = setInterval(() => {
+			if (document.querySelectorAll('.btn-wrapper button')[1] &&
+				document.querySelector('.sidebar-content') &&
+				document.querySelectorAll('.basket-payments-button')[0]
+			) {
+				clearInterval(btnInterval)
+
+				document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
+					btn.addEventListener('click', () => {
+						document.querySelectorAll('.basket-vaha-item')[index].click()
+
+						if (index === 0) {
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp — The new comparison page',
+								'eventAction': 'Click on Get vaha x button',
+							})
+						} else if (index === 1) {
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp — The new comparison page',
+								'eventAction': 'Click on Get vaha s button',
+							})
+						}
+						document.querySelectorAll('.basket-payments-button')[0].click()
 					})
-				} else if (index === 1) {
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp — The new comparison page',
-						'eventAction': 'Click on Get vaha s button',
-					})
-				}
-				document.querySelectorAll('.basket-payments-button')[2].click()
+				})
+
+				document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
+					if (evt.target.scrollTop >= 50) {
+						document.querySelector('.btn-wrapper').classList.add('show')
+					}
+				})
+			}
+		}, 100)
+	}
+}, 100)
+
+let chooseVahaInterval = setInterval(() => {
+	if (document.querySelector('.container-3dy0SD button span')) {
+		clearInterval(chooseVahaInterval)
+
+		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
+
+		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — The new comparison page',
+				'eventAction': 'Click on Choose your Vaha button',
 			})
 		})
 	}
-}, 200)
+}, 100)
 
-if (window.location.pathname === '/product/' || window.location.pathname === '/produkt/') {
-	document.head.insertAdjacentHTML('beforeend', productStyle)
-	document.querySelector('.vaha-main-content div').insertAdjacentHTML('afterend', productPage)
-
-	let myScrollFunc = function () {
-		let y = window.scrollY
-		if (y >= 100) {
-			document.querySelector('.btn-wrapper').classList.add('show')
-		}
-	}
-
-	window.addEventListener('scroll', myScrollFunc)
-} else {
-	document.head.insertAdjacentHTML('beforeend', homeStyle)
-
-	const btn = document.querySelector('.container-3dy0SD button')
-	const clone = btn.cloneNode(true)
-
-	btn.style.display = 'none'
-
-	btn.after(clone)
-
-	clone.querySelector('span').innerText = obj.chooseVaha
-
-	clone.addEventListener('click', () => {
-		window.location.href = obj.link
-
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — The new comparison page',
-			'eventAction': 'Click on Choose your Vaha button',
-		})
-	})
-}
+setTimeout(function () {
+	clearInterval(chooseVahaInterval)
+}, 10000)
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
