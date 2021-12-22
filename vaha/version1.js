@@ -381,12 +381,12 @@ const textArr = {
 		flatrate: 'Flatrate plans',
 		fees: `No hidden<br>fees`,
 		zero: '£0',
-		month36X: '£ 50 / month',
-		month36S: '£ 31 / month',
-		month24X: '£ 81 / month',
-		month24S: '£ 50 / month',
-		month12X: '£ 162 / month',
-		month12S: '£ 100 / month',
+		month36X: '£ 50 / months',
+		month36S: '£ 31 / months',
+		month24X: '£ 81 / months',
+		month24S: '£ 50 / months',
+		month12X: '£ 162 / months',
+		month12S: '£ 100 / months',
 		monthTimeX: 'From £ 1,950',
 		monthTimeS: 'From £ 1,195',
 	},
@@ -780,66 +780,47 @@ let start = setInterval(() => {
 	if (document.querySelectorAll('.basket-wrapper-b').length === 1) {
 		clearInterval(start)
 
-		console.log('clearInterval')
+		document.querySelector('.basket-wrapper-b').insertAdjacentHTML('afterend', productPage)
 
-		ass()
+		let btnInterval = setInterval(() => {
+			if (document.querySelectorAll('.btn-wrapper button')[1] &&
+				document.querySelector('.sidebar-content') &&
+				document.querySelectorAll('.basket-payments-button')[0]
+			) {
+				clearInterval(btnInterval)
 
+				document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
+					btn.addEventListener('click', () => {
+						document.querySelectorAll('.basket-vaha-item')[index].click()
 
+						if (index === 0) {
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp — The new comparison page',
+								'eventAction': 'Click on Get vaha x button',
+							})
+						} else if (index === 1) {
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp — The new comparison page',
+								'eventAction': 'Click on Get vaha s button',
+							})
+						}
+						document.querySelectorAll('.basket-payments-button')[0].click()
+					})
+				})
+
+				document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
+					if (evt.target.scrollTop >= 50) {
+						document.querySelector('.btn-wrapper').classList.add('show')
+					}
+				})
+			}
+		}, 100)
 	}
 }, 100)
-
-function ass() {
-	console.log('before productPage')
-	console.log(document.querySelector('.basket-container section'))
-
-	document.querySelector('.basket-wrapper-b').insertAdjacentHTML('afterend', productPage)
-
-	console.log('after productPage')
-	console.log(document.querySelector('.basket-wrapper-b'))
-
-
-	let btnInterval = setInterval(() => {
-		if (document.querySelectorAll('.btn-wrapper button')[1] &&
-			document.querySelector('.sidebar-content') &&
-			document.querySelectorAll('.basket-payments-button')[0]
-		) {
-			clearInterval(btnInterval)
-
-			document.querySelectorAll('.btn-wrapper button').forEach((btn, index) => {
-				btn.addEventListener('click', () => {
-					document.querySelectorAll('.basket-vaha-item')[index].click()
-
-					if (index === 0) {
-						console.log('eventAction Click on Get vaha x  button')
-
-						window.dataLayer = window.dataLayer || []
-						dataLayer.push({
-							'event': 'event-to-ga',
-							'eventCategory': 'Exp — The new comparison page',
-							'eventAction': 'Click on Get vaha x button',
-						})
-					} else if (index === 1) {
-						console.log('eventAction Click on Get vaha s button')
-
-						window.dataLayer = window.dataLayer || []
-						dataLayer.push({
-							'event': 'event-to-ga',
-							'eventCategory': 'Exp — The new comparison page',
-							'eventAction': 'Click on Get vaha s button',
-						})
-					}
-					document.querySelectorAll('.basket-payments-button')[0].click()
-				})
-			})
-
-			document.querySelector('.sidebar-content').addEventListener('scroll', evt => {
-				if (evt.target.scrollTop >= 50) {
-					document.querySelector('.btn-wrapper').classList.add('show')
-				}
-			})
-		}
-	}, 100)
-}
 
 let chooseVahaInterval = setInterval(() => {
 	if (document.querySelector('.container-3dy0SD button span')) {
@@ -848,8 +829,6 @@ let chooseVahaInterval = setInterval(() => {
 		document.querySelector('.container-3dy0SD button span').innerText = obj.chooseVaha
 
 		document.querySelector('.container-3dy0SD button span').addEventListener('click', () => {
-			console.log('eventAction Click on Choose your Vaha button')
-
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
@@ -887,11 +866,7 @@ dataLayer.push({
 	'eventAction': 'loaded',
 })
 
-console.log('eventAction: loaded')
-
 document.querySelector('.vaha-nav button')?.addEventListener('click', () => {
-	console.log('eventAction: Click on the sticky button Purchase')
-
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
