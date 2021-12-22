@@ -100,6 +100,7 @@ window.onload = function () {
     font-size: 20px !important;
     font-weight: 500 !important;
     text-transform:uppercase;
+    cursor: pointer;
   }
 }
   </style>
