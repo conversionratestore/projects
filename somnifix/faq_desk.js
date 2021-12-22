@@ -97,6 +97,9 @@ window.onload = function () {
   
   .faqBox p {
     max-width: 100%;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    text-transform:uppercase;
   }
 }
   </style>
