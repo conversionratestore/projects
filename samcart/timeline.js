@@ -219,23 +219,6 @@ const styles = `
         }
     }
 </style>`;
-
-let linkCustom = document.createElement('link');
-linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-linkCustom.rel = 'stylesheet';
-
-let scriptCustom = document.createElement('script');
-scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-scriptCustom.async = false;
-
-let scriptPopper = document.createElement('script');
-scriptPopper.src = 'https://unpkg.com/@popperjs/core@2';
-scriptPopper.async = false;
-
-let scriptTippy = document.createElement('script');
-scriptTippy.src = 'https://unpkg.com/tippy.js@6';
-scriptTippy.async = false;
-
 let arrTooltip = {
     '2:44': [`The biggest <br>mistake & <br>how to avoid it`, `The Biggest Mistake I Made When Launching My First Online Course, and How You Can Avoid It`],
     '11:50': [`Become an expert <br>in the field with the '1 Step Rule'`, `The '1 Step Rule' that instantly turns you into an expert...with a course people will line up to buy`],
@@ -291,9 +274,25 @@ let start = setInterval(() => {
     if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
         clearInterval(start)
 
+
+        let linkCustom = document.createElement('link');
+        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+        linkCustom.rel = 'stylesheet';
         document.head.appendChild(linkCustom);
+
+        let scriptCustom = document.createElement('script');
+        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+        scriptCustom.async = false;
         document.head.appendChild(scriptCustom);
+
+        let scriptPopper = document.createElement('script');
+        scriptPopper.src = 'https://unpkg.com/@popperjs/core@2';
+        scriptPopper.async = false;
         document.body.appendChild(scriptPopper);
+
+        let scriptTippy = document.createElement('script');
+        scriptTippy.src = 'https://unpkg.com/tippy.js@6';
+        scriptTippy.async = false;
         document.body.appendChild(scriptTippy);
 
         document.body.insertAdjacentHTML('afterbegin', styles);
