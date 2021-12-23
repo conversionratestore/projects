@@ -211,7 +211,7 @@ const styles = `
             width: 26px;
             background-size: 9px;
         }
-        .timeline button:before {
+        .timeline button.button-next:before {
             width: 65px;
             background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 7%, rgba(255, 254, 254, 0) 90%);
         }
