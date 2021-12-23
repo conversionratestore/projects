@@ -207,19 +207,19 @@ const styles = `
             font-size: 10px;
             max-width: 140px;
         }
-        .slide:nth-child(odd) {
-            padding-right: 56px;
+        .slide[data-point="6"] {
+            padding-right: 110px;
         }
-        .slide:nth-child(odd):before {
-            width: 56px;
+        .slide[data-point="6"]:before {
             background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_5_mob.svg");
+            width: 110px;
         }
-        .slide:nth-child(even) {
-            padding-right: 32px;
+         .slide[data-point="5"] {
+            padding-right: 57px;
         }
-        .slide:nth-child(even):before {
-            width: 32px;
-            background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_2_mob.svg");
+        .slide[data-point="5"]:before {
+            background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_4_mob.svg");
+            width: 57px;
         }
         .timeline {
             padding: 0 30px!important;
