@@ -56,9 +56,6 @@ const styles = `
      .tns-outer {
         width: 100%;
      }
-     .slider {
-         width: calc(100% - 60px);
-     }
     .slide {
         position: relative;
         padding-top: 6px;
