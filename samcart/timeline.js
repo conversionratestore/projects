@@ -181,6 +181,9 @@ const styles = `
         .stage__sidebar {
             flex: 0 0 280px;
         }
+        .react-player__wrapper video {
+            max-height: calc(100vh - 49px - 24px - 170px);
+        }
     }
     @media only screen and (max-width: 992px) {
         .timeline_title {
