@@ -139,9 +139,9 @@ const styles = `
         border-radius: 2px;
         max-width: 230px!important;
     }
-    /*.tippy-tooltip[data-placement="bottom-start"] {*/
-    /*    margin-left: -30px;*/
-    /*}*/
+    .tippy-popper {
+        top: -3px;
+    }
     .tippy-tooltip[data-placement="bottom-end"] {
         margin-right: -30px;
     }
