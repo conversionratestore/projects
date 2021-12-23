@@ -270,62 +270,62 @@ window.onload  = function () {
                 <div class="line"></div>
             </div>`
     }
-    // let start = setInterval(() => {
-    //     if (  document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
-    //         clearInterval(start)
-    //     }
-    // },200)
+    let start = setInterval(() => {
+        if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
+            clearInterval(start)
 
-    document.head.appendChild(linkCustom);
-    document.head.appendChild(scriptCustom);
-    document.body.appendChild(scriptPopper);
-    document.body.appendChild(scriptTippy);
+            document.head.appendChild(linkCustom);
+            document.head.appendChild(scriptCustom);
+            document.body.appendChild(scriptPopper);
+            document.body.appendChild(scriptTippy);
 
-    document.body.insertAdjacentHTML('afterbegin', styles);
-    document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
+            document.body.insertAdjacentHTML('afterbegin', styles);
+            document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
 
-    for (let key in arrTooltip) {
-        document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1]))
-    }
+            for (let key in arrTooltip) {
+                document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1]))
+            }
 
-    let run = setInterval(() => {
-        clearInterval(run)
+            let run = setInterval(() => {
+                clearInterval(run)
 
-        let sliderCategories = tns({
-            container: document.querySelector('.slider'),
-            autoWidth: true,
-            autoplay: false,
-            axis: 'horizontal',
-            controls: true,
-            loop: false,
-            prevButton: document.querySelector('.button-prev'),
-            nextButton: document.querySelector('.button-next'),
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            nav: false,
-            preventScrollOnTouch: 'auto',
-            swipeAngle: false,
-        });
-        document.querySelector('.timeline').style.opacity = '1';
-        document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
-            tippy(el, {
-                content: el.getAttribute('data-title'),
-                placement: 'bottom-start'
-            });
-        });
+                let sliderCategories = tns({
+                    container: document.querySelector('.slider'),
+                    autoWidth: true,
+                    autoplay: false,
+                    axis: 'horizontal',
+                    controls: true,
+                    loop: false,
+                    prevButton: document.querySelector('.button-prev'),
+                    nextButton: document.querySelector('.button-next'),
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    mouseDrag: true,
+                    nav: false,
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: false,
+                });
+                document.querySelector('.timeline').style.opacity = '1';
+                document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
+                    tippy(el, {
+                        content: el.getAttribute('data-title'),
+                        placement: 'bottom-start'
+                    });
+                });
 
-        if (window.matchMedia('(max-width: 992px)').matches) {
-            document.querySelector('.button-next').addEventListener('click', () => {
-                document.querySelector('#tns1-mw').style.paddingLeft = '20px';
-            })
-            document.querySelector('.button-prev').addEventListener('click', (e) => {
-                setTimeout(() => {
-                    if (e.target.disabled === true) {
-                        document.querySelector('#tns1-mw').style.paddingLeft = '0';
-                    }
-                }, 100)
-            })
+                if (window.matchMedia('(max-width: 992px)').matches) {
+                    document.querySelector('.button-next').addEventListener('click', () => {
+                        document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+                    })
+                    document.querySelector('.button-prev').addEventListener('click', (e) => {
+                        setTimeout(() => {
+                            if (e.target.disabled === true) {
+                                document.querySelector('#tns1-mw').style.paddingLeft = '0';
+                            }
+                        }, 100)
+                    })
+                }
+            }, 200)
         }
-    }, 200)
+    },200)
 };
