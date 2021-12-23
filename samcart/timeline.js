@@ -139,15 +139,18 @@ const styles = `
         border-radius: 2px;
         max-width: 230px!important;
     }
-    .tippy-tooltip[data-placement="bottom-start"] {
-        margin-left: -30px;
-    }
+    /*.tippy-tooltip[data-placement="bottom-start"] {*/
+    /*    margin-left: -30px;*/
+    /*}*/
     .tippy-tooltip[data-placement="bottom-end"] {
         margin-right: -30px;
     }
-    .tippy-tooltip>.tippy-arrow:before {
+    .tippy-tooltip>.tippy-arrow {
         border-width: 0 20px 10px!important;
         top: -10px!important;
+    }
+    .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
+        border-bottom-color: #eee;
     }
     .tippy-tooltip[data-placement="bottom-start"]>.tippy-arrow:before {
         left: 13px!important;
