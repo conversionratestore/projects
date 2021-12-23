@@ -178,6 +178,9 @@ const styles = `
         .stage__player {
             width: calc(100% - 280px)
         }
+        .stage__sidebar {
+            flex: 0 0 280px;
+        }
     }
     @media only screen and (max-width: 992px) {
         .timeline_title {
