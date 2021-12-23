@@ -92,19 +92,37 @@ const styles = `
         height: 4px;
         background: no-repeat center / contain;
     }
-    .slide:nth-child(even) {
+
+    .slide[data-point="5"] {
         padding-right: 110px;
     }
-    .slide:nth-child(odd) {
-        padding-right: 54px;
-    }
-    .slide:nth-child(even):before {
+    .slide[data-point="5"]:before {
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_5.svg");
         width: 110px;
     }
-    .slide:nth-child(odd):before {
+     .slide[data-point="2"] {
+        padding-right: 54px;
+    }
+    .slide[data-point="2"]:before {
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_2.svg");
         width: 54px;
+    }
+     .slide[data-point="6"] {
+        padding-right: 130px;
+    }
+    .slide[data-point="6"]:before {
+        background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_6.svg");
+        width: 130px;
+    }
+     .slide[data-point="1"] {
+        padding-right: 34px;
+    }
+     .slide[data-point="1"]:before {
+        background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_1.svg");
+        width: 34px;
+    }
+     .slide[data-point="0"]:before {
+        content: none;
     }
     .timeline_clock {
         /*font-family: Gilroy;*/
