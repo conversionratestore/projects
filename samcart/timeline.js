@@ -252,28 +252,10 @@ function setSlide(time, title, tooltip) {
             <div class="line"></div>
         </div>`
 }
-function initializationTns() {
-    let sliderCategories = tns({
-        container: document.querySelector('.slider'),
-        autoWidth: true,
-        autoplay: false,
-        axis: 'horizontal',
-        controls: true,
-        loop: false,
-        prevButton: document.querySelector('.button-prev'),
-        nextButton: document.querySelector('.button-next'),
-        autoplayButton: false,
-        autoplayButtonOutput: false,
-        mouseDrag: true,
-        nav: false,
-        preventScrollOnTouch: 'auto',
-        swipeAngle: false,
-    });
-}
+
 let start = setInterval(() => {
     if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
         clearInterval(start)
-
 
         let linkCustom = document.createElement('link');
         linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -304,8 +286,24 @@ let start = setInterval(() => {
 
         let run = setInterval(() => {
             if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length >= 10) {
-                clearInterval(run)
-                initializationTns()
+                clearInterval(run);
+                console.log('stopRun')
+                let sliderCategories = tns({
+                    container: document.querySelector('.slider'),
+                    autoWidth: true,
+                    autoplay: false,
+                    axis: 'horizontal',
+                    controls: true,
+                    loop: false,
+                    prevButton: document.querySelector('.button-prev'),
+                    nextButton: document.querySelector('.button-next'),
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    mouseDrag: true,
+                    nav: false,
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: false,
+                });
                 document.querySelector('.timeline').style.opacity = '1';
                 document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
                     tippy(el, {
@@ -327,6 +325,6 @@ let start = setInterval(() => {
                     })
                 }
             }
-        }, 200)
+        }, 250)
     }
 },200)
