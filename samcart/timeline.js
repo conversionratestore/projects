@@ -356,7 +356,7 @@ let mut = new MutationObserver(function (muts) {
                     });
                 });
             }, 200);
-        }, 200)
+        }, 250)
     }
 });
 mut.observe(document, optionMut);
