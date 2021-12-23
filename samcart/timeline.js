@@ -27,7 +27,7 @@ const styles = `
         border-left: 1px solid #C5D3D9;
      }
       
-     .timeline button:before {
+     .timeline button.button-next:before {
         content: '';
         background: linear-gradient(90deg, rgba(255, 255, 255, 1) 20%, rgba(255, 254, 254, 0) 80%);
         position: absolute;
@@ -35,11 +35,6 @@ const styles = `
         width: 130px;
         height: 100%;
         pointer-events: none;
-     }
-     .timeline button.button-prev:before {
-        left: calc(100% + 1px);
-     }
-     .timeline button.button-next:before {
         right: calc(100% + 1px);
         transform: matrix(-1, 0, 0, 1, 0, 0);
      }
