@@ -274,12 +274,12 @@ let mut = new MutationObserver(function (muts) {
         document.head.appendChild(scriptCustom);
 
         let scriptPopper = document.createElement('script');
-        scriptPopper.src = 'https://unpkg.com/@popperjs/core@2';
+        scriptPopper.src = 'https://unpkg.com/popper.js@1';
         scriptPopper.async = false;
         document.body.appendChild(scriptPopper);
 
         let scriptTippy = document.createElement('script');
-        scriptTippy.src = 'https://unpkg.com/tippy.js@6';
+        scriptTippy.src = 'https://unpkg.com/tippy.js@5';
         scriptTippy.async = false;
         document.body.appendChild(scriptTippy);
 
@@ -330,7 +330,7 @@ let mut = new MutationObserver(function (muts) {
 
             document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
                 console.log(index)
-                let tippyTooltipe = tippy(el, {
+                tippy(el, {
                     content: el.getAttribute('data-title'),
                     placement: 'bottom-start'
                 });
