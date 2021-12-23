@@ -11,6 +11,7 @@ const styles = `
         margin: 30px 0 60px;
         position: relative;
         opacity: 0;
+        padding: 0 45px;
     }
      .timeline button {
         height: 100%;
@@ -54,7 +55,6 @@ const styles = `
      }
      .tns-outer {
         width: 100%;
-        padding: 0 48px!important;
      }
      .slider {
          width: calc(100% - 60px);
@@ -222,8 +222,8 @@ const styles = `
             width: 32px;
             background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_2_mob.svg");
         }
-        .tns-outer {
-            padding: 0 15px!important;
+        .timeline {
+            padding: 0 30px!important;
         }
         .tippy-tooltip {
             max-width: 146px!important;
