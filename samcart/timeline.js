@@ -303,27 +303,29 @@ let start = setInterval(() => {
         }
 
         let run = setInterval(() => {
-            clearInterval(run)
-            initializationTns()
-            document.querySelector('.timeline').style.opacity = '1';
-            document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
-                tippy(el, {
-                    content: el.getAttribute('data-title'),
-                    placement: 'bottom-start'
+            if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length >= 10) {
+                clearInterval(run)
+                initializationTns()
+                document.querySelector('.timeline').style.opacity = '1';
+                document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
+                    tippy(el, {
+                        content: el.getAttribute('data-title'),
+                        placement: 'bottom-start'
+                    });
                 });
-            });
 
-            if (window.matchMedia('(max-width: 992px)').matches) {
-                document.querySelector('.button-next').addEventListener('click', () => {
-                    document.querySelector('#tns1-mw').style.paddingLeft = '20px';
-                })
-                document.querySelector('.button-prev').addEventListener('click', (e) => {
-                    setTimeout(() => {
-                        if (e.target.disabled === true) {
-                            document.querySelector('#tns1-mw').style.paddingLeft = '0';
-                        }
-                    }, 100)
-                })
+                if (window.matchMedia('(max-width: 992px)').matches) {
+                    document.querySelector('.button-next').addEventListener('click', () => {
+                        document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+                    })
+                    document.querySelector('.button-prev').addEventListener('click', (e) => {
+                        setTimeout(() => {
+                            if (e.target.disabled === true) {
+                                document.querySelector('#tns1-mw').style.paddingLeft = '0';
+                            }
+                        }, 100)
+                    })
+                }
             }
         }, 200)
     }
