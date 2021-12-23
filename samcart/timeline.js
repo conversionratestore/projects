@@ -1,4 +1,3 @@
-
 const styles = `
 <style>
     .watch-page {
@@ -270,6 +269,24 @@ function setSlide(time, title, tooltip) {
             <div class="line"></div>
         </div>`
 }
+function initializationTns() {
+    let sliderCategories = tns({
+        container: document.querySelector('.slider'),
+        autoWidth: true,
+        autoplay: false,
+        axis: 'horizontal',
+        controls: true,
+        loop: false,
+        prevButton: document.querySelector('.button-prev'),
+        nextButton: document.querySelector('.button-next'),
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        nav: false,
+        preventScrollOnTouch: 'auto',
+        swipeAngle: false,
+    });
+}
 let start = setInterval(() => {
     if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
         clearInterval(start)
@@ -288,23 +305,7 @@ let start = setInterval(() => {
 
         let run = setInterval(() => {
             clearInterval(run)
-
-            let sliderCategories = tns({
-                container: document.querySelector('.slider'),
-                autoWidth: true,
-                autoplay: false,
-                axis: 'horizontal',
-                controls: true,
-                loop: false,
-                prevButton: document.querySelector('.button-prev'),
-                nextButton: document.querySelector('.button-next'),
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                nav: false,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-            });
+            initializationTns()
             document.querySelector('.timeline').style.opacity = '1';
             document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
                 tippy(el, {
