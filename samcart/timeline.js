@@ -321,12 +321,12 @@ let start = setInterval(() => {
 
                 document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
                     console.log(index)
-                    tippy(el, {
+                    let tippyTooltipe = tippy(el, {
                         content: el.getAttribute('data-title'),
                         placement: 'bottom-start'
                     });
                 });
             }
-        }, 250)
+        }, 300)
     }
 },200)
