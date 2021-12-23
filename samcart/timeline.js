@@ -327,14 +327,16 @@ let mut = new MutationObserver(function (muts) {
                     }, 100)
                 })
             }
-
-            document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
-                console.log(index)
-                tippy(el, {
-                    content: el.getAttribute('data-title'),
-                    placement: 'bottom-start'
+            let tippyRun = setInterval(() => {
+                clearInterval(tippyRun)
+                document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
+                    console.log(index)
+                    tippy(el, {
+                        content: el.getAttribute('data-title'),
+                        placement: 'bottom-start'
+                    });
                 });
-            });
+            }, 200);
         }, 200)
     }
 });
