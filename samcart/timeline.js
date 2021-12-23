@@ -229,10 +229,10 @@ const styles = `
             width: 32px;
         }
          .slide[data-point="1"] {
-            padding-right: 24px;
+            padding-right: 18px;
         }
          .slide[data-point="1"]:before {
-            width: 24px;
+            width: 18px;
         }
         .timeline {
             padding: 0 30px!important;
