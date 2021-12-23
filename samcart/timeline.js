@@ -4,14 +4,16 @@ const styles = `
         overflow-x: hidden;
     }
     .timeline {
-        background: #FFFFFF;
         border: 1px solid #C5D3D9;
-        border-radius: 2px;
-        display: flex;
-        margin: 30px 0 60px;
-        position: relative;
+        background: #FFFFFF;
         opacity: 0;
         padding: 0 45px;
+        border-radius: 2px;
+        margin: 30px 0 60px;
+    }
+    .timeline_container {
+        display: flex;
+        position: relative;
     }
      .timeline button {
         height: 100%;
@@ -253,9 +255,11 @@ let arrTooltip = {
 
 let createTimeline = `
     <div class="timeline">
-        <button class="button-prev"></button>
-        <div class="slider"></div>
-        <button class="button-next"></button>
+        <div class="timeline_container">
+            <button class="button-prev"></button>
+            <div class="slider"></div>
+            <button class="button-next"></button>
+        </div>
     </div>
 `;
 
