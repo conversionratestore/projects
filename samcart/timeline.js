@@ -258,6 +258,8 @@ let optionMut = {
     subtree: true
 }
 
+let count = 0;
+
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
         mut.disconnect();
@@ -287,50 +289,53 @@ let mut = new MutationObserver(function (muts) {
         for (let key in arrTooltip) {
             document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1]))
         }
+        count = 1;
     }
     mut.observe(document, optionMut);
-    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9) {
+    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && count == 1) {
         mut.disconnect();
-        console.log('stopRun')
-        let sliderCategories = tns({
-            container: document.querySelector('.slider'),
-            autoWidth: true,
-            autoplay: false,
-            axis: 'horizontal',
-            controls: true,
-            loop: false,
-            prevButton: document.querySelector('.button-prev'),
-            nextButton: document.querySelector('.button-next'),
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            nav: false,
-            preventScrollOnTouch: 'auto',
-            swipeAngle: false,
-        });
-        document.querySelector('.timeline').style.opacity = '1';
-
-        if (window.matchMedia('(max-width: 992px)').matches) {
-            document.querySelector('.button-next').addEventListener('click', () => {
-                document.querySelector('#tns1-mw').style.paddingLeft = '20px';
-            })
-            document.querySelector('.button-prev').addEventListener('click', (e) => {
-                setTimeout(() => {
-                    if (e.target.disabled === true) {
-                        document.querySelector('#tns1-mw').style.paddingLeft = '0';
-                    }
-                }, 100)
-            })
-        }
-
-        document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
-            console.log(index)
-            let tippyTooltipe = tippy(el, {
-                content: el.getAttribute('data-title'),
-                placement: 'bottom-start'
+        let run = setInterval(() => {
+            clearInterval(run)
+            console.log('stopRun')
+            let sliderCategories = tns({
+                container: document.querySelector('.slider'),
+                autoWidth: true,
+                autoplay: false,
+                axis: 'horizontal',
+                controls: true,
+                loop: false,
+                prevButton: document.querySelector('.button-prev'),
+                nextButton: document.querySelector('.button-next'),
+                autoplayButton: false,
+                autoplayButtonOutput: false,
+                mouseDrag: true,
+                nav: false,
+                preventScrollOnTouch: 'auto',
+                swipeAngle: false,
             });
-        });
-    }
+            document.querySelector('.timeline').style.opacity = '1';
 
+            if (window.matchMedia('(max-width: 992px)').matches) {
+                document.querySelector('.button-next').addEventListener('click', () => {
+                    document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+                })
+                document.querySelector('.button-prev').addEventListener('click', (e) => {
+                    setTimeout(() => {
+                        if (e.target.disabled === true) {
+                            document.querySelector('#tns1-mw').style.paddingLeft = '0';
+                        }
+                    }, 100)
+                })
+            }
+
+            document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
+                console.log(index)
+                let tippyTooltipe = tippy(el, {
+                    content: el.getAttribute('data-title'),
+                    placement: 'bottom-start'
+                });
+            });
+        }, 200)
+    }
 });
 mut.observe(document, optionMut);
