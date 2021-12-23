@@ -10,10 +10,10 @@ const styles = `
         padding: 0 45px;
         border-radius: 2px;
         margin: 30px 0 60px;
+        position: relative;
     }
     .timeline_container {
         display: flex;
-        position: relative;
     }
      .timeline button {
         height: 100%;
