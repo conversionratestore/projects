@@ -133,26 +133,26 @@ const styles = `
     .relative {
         position: relative;
     }
-    .tippy-box {
+    .tippy-tooltip {
         background: #EEEEEE;
         box-shadow: 0 0.688073px 4.06px rgba(0, 0, 0, 0.07), 6px 7.26px 20.4px rgba(0, 0, 0, 0.1);
         border-radius: 2px;
         max-width: 230px!important;
     }
-    .tippy-box[data-placement="bottom-start"] {
+    .tippy-tooltip[data-placement="bottom-start"] {
         margin-left: -30px;
     }
-    .tippy-box[data-placement="bottom-end"] {
+    .tippy-tooltip[data-placement="bottom-end"] {
         margin-right: -30px;
     }
-    .tippy-box>.tippy-arrow:before {
+    .tippy-tooltip>.tippy-arrow:before {
         border-width: 0 20px 10px!important;
         top: -10px!important;
     }
-    .tippy-box[data-placement="bottom-start"]>.tippy-arrow:before {
+    .tippy-tooltip[data-placement="bottom-start"]>.tippy-arrow:before {
         left: 13px!important;
     }
-    .tippy-box[data-placement="bottom-end"]>.tippy-arrow:before {
+    .tippy-tooltip[data-placement="bottom-end"]>.tippy-arrow:before {
         left: auto!important;
         right: 13px!important;
     }
@@ -203,7 +203,7 @@ const styles = `
         .tns-outer {
             padding: 0 15px!important;
         }
-        .tippy-box {
+        .tippy-tooltip {
             max-width: 146px!important;
         }
         .tippy-content {
