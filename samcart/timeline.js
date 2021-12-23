@@ -305,13 +305,6 @@ let start = setInterval(() => {
                     swipeAngle: false,
                 });
                 document.querySelector('.timeline').style.opacity = '1';
-                document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
-                    tippy(el, {
-                        content: el.getAttribute('data-title'),
-                        placement: 'bottom-start'
-                    });
-                });
-
                 if (window.matchMedia('(max-width: 992px)').matches) {
                     document.querySelector('.button-next').addEventListener('click', () => {
                         document.querySelector('#tns1-mw').style.paddingLeft = '20px';
@@ -324,6 +317,12 @@ let start = setInterval(() => {
                         }, 100)
                     })
                 }
+                document.querySelectorAll('.tooltip_wrapper').forEach((el) => {
+                    tippy(el, {
+                        content: el.getAttribute('data-title'),
+                        placement: 'bottom-start'
+                    });
+                });
             }
         }, 250)
     }
