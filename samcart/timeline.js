@@ -214,12 +214,25 @@ const styles = `
             background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_5_mob.svg");
             width: 110px;
         }
-         .slide[data-point="5"] {
+        .slide[data-point="5"] {
             padding-right: 57px;
         }
         .slide[data-point="5"]:before {
             background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_4_mob.svg");
             width: 57px;
+        }
+        .slide[data-point="2"] {
+            padding-right: 32px;
+        }
+        .slide[data-point="2"]:before {
+            background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_2_mob.svg");
+            width: 32px;
+        }
+         .slide[data-point="1"] {
+            padding-right: 24px;
+        }
+         .slide[data-point="1"]:before {
+            width: 24px;
         }
         .timeline {
             padding: 0 30px!important;
