@@ -224,16 +224,16 @@ const styles = `
     }
 </style>`;
 let arrTooltip = {
-    '2:44': [`The biggest <br>mistake & <br>how to avoid it`, `The Biggest Mistake I Made When Launching My First Online Course, and How You Can Avoid It`],
-    '11:50': [`Become an expert <br>in the field with the '1 Step Rule'`, `The '1 Step Rule' that instantly turns you into an expert...with a course people will line up to buy`],
-    '17:34': [`The "1 Page Funnel" that sells your course for you`, `The simple '1 Page Funnel' that sells your course for you around the clock (even if you suck at selling, lol)`],
-    '26:22': [`Today's #1 Traffic Source that you can tap in`, `Today's #1 Traffic Source, and how to quickly tap into it & get dozens of new sales each day`],
-    '33:02': [`How to Launch <br>Your Course <br>in 72 Hours`, `The secret to launching your online course business in less than 72 hours (even if you hate technology or don't have a team helping you!)`],
-    '45:50': [`What you get with <br>today's special <br>offer`, `Discover how many awesome and helpful things you will get with today's special offer`],
-    '48:29': [`<span class="w-bold">Masterclass:</span> Launch <br>an Online Business <br>With 1 Page`, `The '1 Page Masterclass' Bonus where you'll discover how to launch an online business with 1 page`],
-    '51:47': [`The Secret <br>to Unlimited <br>Traffic`, `The secret to unlimited traffic (and more bonuses you get with our offer)`],
-    '52:55': [`<span class="w-bold">Guide:</span> Set up Your <br>Course seamlessly <br>through SamCart`, `The help you get to set up your course seamlessly through SamCart`],
-    '54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`]
+    '2:44': [`The biggest <br>mistake & <br>how to avoid it`, `The Biggest Mistake I Made When Launching My First Online Course, and How You Can Avoid It`, 5],
+    '11:50': [`Become an expert <br>in the field with the '1 Step Rule'`, `The '1 Step Rule' that instantly turns you into an expert...with a course people will line up to buy`, 2],
+    '17:34': [`The "1 Page Funnel" that sells your course for you`, `The simple '1 Page Funnel' that sells your course for you around the clock (even if you suck at selling, lol)`, 5],
+    '26:22': [`Today's #1 Traffic Source that you can tap in`, `Today's #1 Traffic Source, and how to quickly tap into it & get dozens of new sales each day`,2],
+    '33:02': [`How to Launch <br>Your Course <br>in 72 Hours`, `The secret to launching your online course business in less than 72 hours (even if you hate technology or don't have a team helping you!)`,6],
+    '45:50': [`What you get with <br>today's special <br>offer`, `Discover how many awesome and helpful things you will get with today's special offer`,2],
+    '48:29': [`<span class="w-bold">Masterclass:</span> Launch <br>an Online Business <br>With 1 Page`, `The '1 Page Masterclass' Bonus where you'll discover how to launch an online business with 1 page`,2],
+    '51:47': [`The Secret <br>to Unlimited <br>Traffic`, `The secret to unlimited traffic (and more bonuses you get with our offer)`,1],
+    '52:55': [`<span class="w-bold">Guide:</span> Set up Your <br>Course seamlessly <br>through SamCart`, `The help you get to set up your course seamlessly through SamCart`,2],
+    '54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`,0]
 };
 
 let createTimeline = `
@@ -244,9 +244,9 @@ let createTimeline = `
     </div>
 `;
 
-function setSlide(time, title, tooltip) {
+function setSlide(time, title, tooltip, count) {
     return ` 
-        <div class="slide">
+        <div class="slide" data-point="${count}">
             <p class="timeline_clock">${time}</p>
             <p class="timeline_title">${title}
                 <span class="tooltip_wrapper relative" data-title="${tooltip}">
@@ -291,7 +291,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
 
         for (let key in arrTooltip) {
-            document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1]))
+            document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
         }
         count = 1;
     }
