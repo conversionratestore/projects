@@ -1,4 +1,4 @@
-const styles = `
+let styles = `
 <style>
     .watch-page {
         overflow-x: hidden;
