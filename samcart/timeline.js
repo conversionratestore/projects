@@ -308,7 +308,7 @@ let optionMut = {
 let countI = 0;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
+    if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null && !document.querySelector('.timeline')) {
         mut.disconnect();
         let linkCustom = document.createElement('link');
         linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
@@ -339,7 +339,7 @@ let mut = new MutationObserver(function (muts) {
         countI = 1;
     }
     mut.observe(document, optionMut);
-    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1) {
+    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1 && !document.querySelector('.tns-outer')) {
         mut.disconnect();
         let run = setInterval(() => {
             clearInterval(run)
@@ -360,6 +360,10 @@ let mut = new MutationObserver(function (muts) {
                 preventScrollOnTouch: 'auto',
                 swipeAngle: false,
             });
+            // if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
+
+            // }
+        
             document.querySelector('.timeline').style.opacity = '1';
             pushDataLayer('loaded')
             if (window.matchMedia('(max-width: 992px)').matches) {
@@ -388,6 +392,7 @@ let mut = new MutationObserver(function (muts) {
                     });
                 });
             }, 200);
+            countI = 0;
         }, 250)
     }
 });
