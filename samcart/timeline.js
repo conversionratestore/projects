@@ -62,6 +62,7 @@ let styles = `
         position: relative;
         padding-top: 6px;
         padding-bottom: 30px;
+        padding-left: 2px;
     }
     .slide:first-child {
         padding-left: 38px!important;
