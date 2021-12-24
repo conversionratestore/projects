@@ -276,9 +276,9 @@ let createTimeline = `
     </div>
 `;
 
-function setSlide(time, title, tooltip, count) {
+function setSlide(time, title, tooltip, countPoint) {
     return ` 
-        <div class="slide" data-point="${count}">
+        <div class="slide" data-point="${countPoint}">
             <p class="timeline_clock">${time}</p>
             <p class="timeline_title">${title}
                 <span class="tooltip_wrapper relative" data-title="${tooltip}">
