@@ -342,58 +342,61 @@ let mut = new MutationObserver(function (muts) {
     if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1 && !document.querySelector('.tns-outer')) {
         mut.disconnect();
         let run = setInterval(() => {
-            clearInterval(run)
             console.log('stopRun')
-            let sliderCategories = tns({
-                container: document.querySelector('.slider'),
-                autoWidth: true,
-                autoplay: false,
-                axis: 'horizontal',
-                controls: true,
-                loop: false,
-                prevButton: document.querySelector('.button-prev'),
-                nextButton: document.querySelector('.button-next'),
-                autoplayButton: false,
-                autoplayButtonOutput: false,
-                mouseDrag: true,
-                nav: false,
-                preventScrollOnTouch: 'auto',
-                swipeAngle: false,
-            });
-            // if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
-
-            // }
-        
-            document.querySelector('.timeline').style.opacity = '1';
-            pushDataLayer('loaded')
-            if (window.matchMedia('(max-width: 992px)').matches) {
-                document.querySelector('.button-next').addEventListener('click', () => {
-                    document.querySelector('#tns1-mw').style.paddingLeft = '20px';
-                    action = 'Click on right arrow button'
-                    pushDataLayer(action)
-                })
-                document.querySelector('.button-prev').addEventListener('click', (e) => {
-                    setTimeout(() => {
-                        if (e.target.disabled === true) {
-                            document.querySelector('#tns1-mw').style.paddingLeft = '0';
-                        }
-                    }, 100)
-                    action =  'Click on left arrow button'
-                    pushDataLayer(action)
-                })
-            }
-            let tippyRun = setInterval(() => {
-                clearInterval(tippyRun)
-                document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
-                    console.log(index)
-                    tippy(el, {
-                        content: el.getAttribute('data-title'),
-                        placement: 'bottom-start'
+          
+            
+            if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
+                clearInterval(run)
+                document.querySelector('.timeline').style.opacity = '1';
+                pushDataLayer('loaded')
+                if (window.matchMedia('(max-width: 992px)').matches) {
+                    document.querySelector('.button-next').addEventListener('click', () => {
+                        document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+                        action = 'Click on right arrow button'
+                        pushDataLayer(action)
+                    })
+                    document.querySelector('.button-prev').addEventListener('click', (e) => {
+                        setTimeout(() => {
+                            if (e.target.disabled === true) {
+                                document.querySelector('#tns1-mw').style.paddingLeft = '0';
+                            }
+                        }, 100)
+                        action =  'Click on left arrow button'
+                        pushDataLayer(action)
+                    })
+                }
+                let tippyRun = setInterval(() => {
+                    clearInterval(tippyRun)
+                    document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
+                        console.log(index)
+                        tippy(el, {
+                            content: el.getAttribute('data-title'),
+                            placement: 'bottom-start'
+                        });
                     });
+                }, 200);
+                countI = 0;
+            } else {
+                let sliderCategories = tns({
+                    container: document.querySelector('.slider'),
+                    autoWidth: true,
+                    autoplay: false,
+                    axis: 'horizontal',
+                    controls: true,
+                    loop: false,
+                    prevButton: document.querySelector('.button-prev'),
+                    nextButton: document.querySelector('.button-next'),
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    mouseDrag: true,
+                    nav: false,
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: false,
                 });
-            }, 200);
-            countI = 0;
-        }, 250)
+            }
+        
+          
+        }, 300)
     }
 });
 mut.observe(document, optionMut);
