@@ -352,8 +352,6 @@ let mut = new MutationObserver(function (muts) {
                 if (window.matchMedia('(max-width: 992px)').matches) {
                     document.querySelector('.button-next').addEventListener('click', () => {
                         document.querySelector('#tns1-mw').style.paddingLeft = '20px';
-                        action = 'Click on right arrow button'
-                        pushDataLayer(action)
                     })
                     document.querySelector('.button-prev').addEventListener('click', (e) => {
                         setTimeout(() => {
@@ -361,10 +359,16 @@ let mut = new MutationObserver(function (muts) {
                                 document.querySelector('#tns1-mw').style.paddingLeft = '0';
                             }
                         }, 100)
-                        action =  'Click on left arrow button'
-                        pushDataLayer(action)
                     })
                 }
+                document.querySelector('.button-next').addEventListener('click', () => {
+                    action = 'Click on right arrow button'
+                    pushDataLayer(action)
+                })
+                document.querySelector('.button-prev').addEventListener('click', () => {
+                    action =  'Click on left arrow button'
+                    pushDataLayer(action)
+                })
                 let tippyRun = setInterval(() => {
                     clearInterval(tippyRun)
                     document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
