@@ -349,7 +349,7 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
                 clearInterval(run)
                 document.querySelector('.timeline').style.opacity = '1';
-                pushDataLayer('loaded')
+              
                 if (window.matchMedia('(max-width: 992px)').matches) {
                     document.querySelector('.button-next').addEventListener('click', () => {
                         document.querySelector('#tns1-mw').style.paddingLeft = '20px';
@@ -399,6 +399,8 @@ let mut = new MutationObserver(function (muts) {
     }
 });
 mut.observe(document, optionMut);
+
+pushDataLayer('loaded')
 
  (function(h,o,t,j,a,r){
  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
