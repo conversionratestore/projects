@@ -343,11 +343,10 @@ let mut = new MutationObserver(function (muts) {
     if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1 && !document.querySelector('.tns-outer')) {
         mut.disconnect();
         let run = setInterval(() => {
-            console.log('stopRun')
-          
-            
             if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
                 clearInterval(run)
+                console.log('stopRun')
+              
                 document.querySelector('.timeline').style.opacity = '1';
               
                 if (window.matchMedia('(max-width: 992px)').matches) {
