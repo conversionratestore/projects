@@ -305,7 +305,7 @@ let optionMut = {
     subtree: true
 }
 
-let count = 0;
+let countI = 0;
 
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null) {
@@ -336,10 +336,10 @@ let mut = new MutationObserver(function (muts) {
         for (let key in arrTooltip) {
             document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
         }
-        count = 1;
+        countI = 1;
     }
     mut.observe(document, optionMut);
-    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && count == 1) {
+    if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1) {
         mut.disconnect();
         let run = setInterval(() => {
             clearInterval(run)
