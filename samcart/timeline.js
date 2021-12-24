@@ -289,6 +289,17 @@ function setSlide(time, title, tooltip, count) {
         </div>`
 }
 
+let action;
+
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp — Add a timeline',
+    'eventAction': action
+    });
+}
+
 let optionMut = {
     childList: true,
     subtree: true
@@ -350,10 +361,12 @@ let mut = new MutationObserver(function (muts) {
                 swipeAngle: false,
             });
             document.querySelector('.timeline').style.opacity = '1';
-
+            pushDataLayer('loaded')
             if (window.matchMedia('(max-width: 992px)').matches) {
                 document.querySelector('.button-next').addEventListener('click', () => {
                     document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+                    action = 'Click on right arrow button'
+                    pushDataLayer(action)
                 })
                 document.querySelector('.button-prev').addEventListener('click', (e) => {
                     setTimeout(() => {
@@ -361,6 +374,8 @@ let mut = new MutationObserver(function (muts) {
                             document.querySelector('#tns1-mw').style.paddingLeft = '0';
                         }
                     }, 100)
+                    action =  'Click on left arrow button'
+                    pushDataLayer(action)
                 })
             }
             let tippyRun = setInterval(() => {
@@ -377,3 +392,15 @@ let mut = new MutationObserver(function (muts) {
     }
 });
 mut.observe(document, optionMut);
+
+ (function(h,o,t,j,a,r){
+ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+ h._hjSettings={hjid:2078786,hjsv:6};
+ a=o.getElementsByTagName('head')[0];
+ r=o.createElement('script');r.async=1;
+ r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+ a.appendChild(r);
+ })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+ window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+ hj('trigger', 'add_a_timeline_passive_income_video');
+ hj('event', 'add_a_timeline_passive_income_heatmap');
