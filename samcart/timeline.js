@@ -318,7 +318,7 @@ let mut = new MutationObserver(function (muts) {
         let scriptCustom = document.createElement('script');
         scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
         scriptCustom.async = false;
-        document.head.appendChild(scriptCustom);
+        document.body.appendChild(scriptCustom);
 
         let scriptPopper = document.createElement('script');
         scriptPopper.src = 'https://unpkg.com/popper.js@1';
