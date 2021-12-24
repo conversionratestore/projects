@@ -292,6 +292,7 @@ function setSlide(time, title, tooltip, countPoint) {
 let action;
 
 function pushDataLayer(action) {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
     'event': 'event-to-ga',
@@ -394,8 +395,6 @@ let mut = new MutationObserver(function (muts) {
                     swipeAngle: false,
                 });
             }
-        
-          
         }, 300)
     }
 });
