@@ -157,12 +157,15 @@ let styles = `
     .tippy-tooltip[data-placement="bottom-end"] {
         margin-right: -30px;
     }
-    .tippy-tooltip>.tippy-arrow {
-        border-width: 0 20px 10px!important;
-        top: -10px!important;
+    .tippy-tooltip[data-placement^=top]>.tippy-arrow {
+        border-top-color: #eee;
+        border-width: 10px 20px 0!important;
+        bottom: -10px!important;
     }
     .tippy-tooltip[data-placement^=bottom]>.tippy-arrow {
         border-bottom-color: #eee;
+        border-width: 0 20px 10px!important;
+        top: -10px!important;
     }
     .tippy-tooltip[data-placement="bottom-start"]>.tippy-arrow:before {
         left: 13px!important;
@@ -372,7 +375,6 @@ let mut = new MutationObserver(function (muts) {
                 let tippyRun = setInterval(() => {
                     clearInterval(tippyRun)
                     document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
-                        console.log(index)
                         tippy(el, {
                             content: el.getAttribute('data-title'),
                             placement: 'bottom-start'
