@@ -351,6 +351,7 @@ let mut = new MutationObserver(function (muts) {
                 console.log('stopRun')
               
                 document.querySelector('.timeline').style.opacity = '1';
+                pushDataLayer('loaded')
               
                 if (window.matchMedia('(max-width: 992px)').matches) {
                     document.querySelector('.button-next').addEventListener('click', () => {
@@ -405,7 +406,6 @@ let mut = new MutationObserver(function (muts) {
 });
 mut.observe(document, optionMut);
 
-pushDataLayer('loaded')
 
  (function(h,o,t,j,a,r){
  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
