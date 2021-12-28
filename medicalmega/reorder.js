@@ -495,14 +495,6 @@ function setGalleryParent(titleGallery, idCategory) {
             <dl class="gallery" data-id="${idCategory}"></dl>
             <a href="https://medicalmega.com/category/${changedTitle}" class="show-more">Show more</a>
         </div> `
-                                
-        document.querySelectorAll('.show-more').forEach(item => {
-            item.addEventListener('click', (e) => {
-                action = 'Click on Show more products button';
-                label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
-                pushDataLayer(action,label)
-            })
-        })
     }
     return gallery;
 }
@@ -536,6 +528,13 @@ let mut = new MutationObserver(function (muts) {
             }
           
         }
+        document.querySelectorAll('.show-more').forEach(item => {
+            item.addEventListener('click', (e) => {
+                action = 'Click on Show more products button';
+                label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
+                pushDataLayer(action,label)
+            })
+        })
      
         const galleryDd = document.querySelectorAll('.gallery dd');
         for (let i = 0; i < galleryDd.length; i++) {
