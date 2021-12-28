@@ -225,6 +225,9 @@ let styles = `
             background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_4_mob.svg");
             width: 57px;
         }
+        .slide[data-point="0"] {
+            padding-right: 32px;
+        }
         .slide[data-point="2"] {
             padding-right: 32px;
         }
