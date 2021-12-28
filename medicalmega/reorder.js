@@ -47,14 +47,6 @@ function resData(data) {
             </div>`);
 
             document.querySelector('.ordered-bottom .sum').innerHTML = `$${data.total.toFixed(2)}`;
-
-            document.querySelectorAll('.show-more').forEach(item => {
-                item.addEventListener('click', () => {
-                    action = 'Click on Show more products button';
-                    label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
-                    pushDataLayer(action,label)
-                })
-            })
             document.querySelector('.btn-reorder').addEventListener('click', () => {
                 action = 'Click on Reorder button';
                 label = 'PL section Your recent orders';
@@ -161,7 +153,15 @@ function addToCart() {
             window.location.href = item.getAttribute('href')
         });
     });
-
+    
+    document.querySelectorAll('.show-more').forEach(item => {
+        item.addEventListener('click', () => {
+            action = 'Click on Show more products button';
+            label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
+            pushDataLayer(action,label)
+        })
+    })
+    
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
             e.stopImmediatePropagation();
