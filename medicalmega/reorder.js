@@ -525,7 +525,7 @@ let mut = new MutationObserver(function (muts) {
                     console.log(data)
                     dataProducts = data["products"];
                     for (let i = 0; i < dataProducts.length; i++) {
-                        setCard(dataProducts[i]["variants"][0]["product_id"],dataProducts[i]["variants"][0]["variant_id"],dataProducts[i]["url"],dataProducts[i]["variants"][0]["image_url"],dataProducts[i]["title"],dataProducts[i]["variants"][0]["price"],arrTitle[key])  
+                        setCard(dataProducts[i]["variants"][0]["product_id"],dataProducts[i]["variants"][0]["variant_id"],dataProducts[i]["url"],dataProducts[i]["variants"][0]["image_url"],dataProducts[i]["title"],dataProducts[i]["variants"][0]["price"].toFixed(2),arrTitle[key])  
                     }
                     document.querySelectorAll('.gallery-parent').forEach((element, index) => {
                         element.style.height = 'auto';
@@ -536,14 +536,6 @@ let mut = new MutationObserver(function (muts) {
             }
           
         }
-        // let intervalGallery = setInterval(() => {
-        //     clearInterval(intervalGallery);
-        //     document.querySelectorAll('.gallery-parent').forEach((element, index) => {
-        //         if (index == 4) {
-        //             element.insertAdjacentHTML('afterend',` <h2 class="title" style="padding-top: 30px">Other products</h2>`)
-        //         }
-        //     });
-        // }, 200)
      
         const galleryDd = document.querySelectorAll('.gallery dd');
         for (let i = 0; i < galleryDd.length; i++) {
