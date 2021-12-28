@@ -293,16 +293,25 @@ function setSlide(time, title, tooltip, countPoint) {
         </div>`
 }
 
-let action;
+let action, label;
 
-function pushDataLayer(action) {
+function pushDataLayer(action, label) {
     console.log(action)
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — Add a timeline',
-    'eventAction': action
-    });
+    if (label) {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Add a timeline',
+            'eventAction': action,
+            'eventLabel': label
+        });
+    } else {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Add a timeline',
+            'eventAction': action
+        });
+    }
 }
 
 let optionMut = {
@@ -385,6 +394,11 @@ let mut = new MutationObserver(function (muts) {
                             content: el.getAttribute('data-title'),
                             placement: 'bottom-start'
                         });
+                        el.addEventListener('mouseover', () => {
+                            action = 'hover on tooltipe';
+                            label = el.closest('.timeline_title').innerText;
+                            pushDataLayer(action, label)
+                        })
                     });
                 }, 200);
                 countI = 0;
