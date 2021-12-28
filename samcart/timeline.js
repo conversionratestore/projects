@@ -296,7 +296,7 @@ function setSlide(time, title, tooltip, countPoint) {
 let action, label;
 
 function pushDataLayer(action, label) {
-    console.log(action)
+    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
