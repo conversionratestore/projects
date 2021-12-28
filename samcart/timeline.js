@@ -242,7 +242,7 @@ let styles = `
             width: 18px;
         }
         .timeline {
-            padding: 0 15px!important;
+            padding: 0 5px 0 20px!important;
         }
         .tippy-tooltip {
             max-width: 146px!important;
