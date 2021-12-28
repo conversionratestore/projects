@@ -153,15 +153,7 @@ function addToCart() {
             window.location.href = item.getAttribute('href')
         });
     });
-    
-    document.querySelectorAll('.show-more').forEach(item => {
-        item.addEventListener('click', () => {
-            action = 'Click on Show more products button';
-            label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
-            pushDataLayer(action,label)
-        })
-    })
-    
+
     document.querySelectorAll('.view-more').forEach((item) => {
         item.addEventListener('click', (e) => {
             e.stopImmediatePropagation();
@@ -503,6 +495,14 @@ function setGalleryParent(titleGallery, idCategory) {
             <dl class="gallery" data-id="${idCategory}"></dl>
             <a href="https://medicalmega.com/category/${changedTitle}" class="show-more">Show more</a>
         </div> `
+                                
+        document.querySelectorAll('.show-more').forEach(item => {
+            item.addEventListener('click', (e) => {
+                action = 'Click on Show more products button';
+                label = `PL section ${item.closest('.gallery-parent').querySelector('.title').innerText}`; 
+                pushDataLayer(action,label)
+            })
+        })
     }
     return gallery;
 }
