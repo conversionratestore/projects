@@ -383,11 +383,11 @@ const reviews = `
 			</div>
 			<div class="commentary">
 				<div class="info">
-					<img class="photo" src="https://conversionratestore.github.io/projects/buzzpatch/img/commentary2.png" alt="commentator">
+<!--					<img class="photo" src="https://conversionratestore.github.io/projects/buzzpatch/img/commentary2.png" alt="commentator">-->
 					<div>
-						<p class="name">jaime p.</p>
+						<p class="name">Tanya M.</p>
 						<p class="country"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/country2.svg" alt="country">United States</p>
-						<p class="date">02/27/2020</p> 
+						<p class="date">01/26/2021</p> 
 						<div class="star-wrapper">
 							<img src="https://conversionratestore.github.io/projects/buzzpatch/img/star.svg" alt="star">
 							<img src="https://conversionratestore.github.io/projects/buzzpatch/img/star.svg" alt="star">
@@ -399,16 +399,16 @@ const reviews = `
 					
 				</div>
 				<div class="text">
-					<p>These work amazing and are so fun for the kids! Kids love stickers!</p>
+					<p>Love the Buzz Patch. Our grandson is allergic to Mozzies (He blows up like a balloon). Since using the Buzz Patch  he has not been bitten. His mum also puts them on his bed head at nighttime and the keep the Mozzies away. Will definitely recommend to anyone.&#128522;&#128077;</p>
 				</div>
 			</div>
 			<div class="commentary">
 				<div class="info">
-					<img class="photo" src="https://conversionratestore.github.io/projects/buzzpatch/img/commentary3.png" alt="commentator">
+<!--					<img class="photo" src="https://conversionratestore.github.io/projects/buzzpatch/img/commentary3.png" alt="commentator">-->
 					<div>
-						<p class="name">Brooke L.</p>
+						<p class="name">Louise C.</p>
 						<p class="country"><img src="https://conversionratestore.github.io/projects/buzzpatch/img/country3.svg" alt="country">Canada</p>
-						<p class="date">08/28/2020</p> 
+						<p class="date">01/10/2021</p> 
 						<div class="star-wrapper">
 							<img src="https://conversionratestore.github.io/projects/buzzpatch/img/star.svg" alt="star">
 							<img src="https://conversionratestore.github.io/projects/buzzpatch/img/star.svg" alt="star">
@@ -419,7 +419,7 @@ const reviews = `
 					</div>
 				</div>
 				<div class="text">
-					<p>They are great! They come in sealed packages so that they stay fresh, my kids think they are cute and they have so far worked really well to keep the miquito's away! I am very satisfied with this product and would totally recommend them to a friend!! I will be ordering again next summer!</p>
+					<p>Hi there. I have found BuzzPatch to be very efficient. Since my grandies have been wearing them on their clothes, the mozzies have been leaving them alone.  Carolyn has been lovely via our emails. Louise Crowe</p>
 				</div>
 			</div>
 		</div>
