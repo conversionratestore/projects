@@ -340,7 +340,7 @@ const reviews = `
 		<div class="guarantee">
 			<div>
 				<div class="img-wrap">
-					<img src="https://conversionratestore.github.io/projects/buzzpatch/img/moneyback.svg" alt="moneyback">
+					<img src="https://conversionratestore.github.io/projects/buzzpatch/img/30days.svg" alt="moneyback">
 				</div>
 				<div class="text">
 					<p>30 DAYs Money-back Guarantee</p>				
@@ -430,7 +430,7 @@ const banner = document.querySelector('.banner')
 const footer = document.querySelector('.main__footer')
 
 document.head.insertAdjacentHTML('beforeend', style)
-banner.insertAdjacentHTML('beforeend', shipping)
+// banner.insertAdjacentHTML('beforeend', shipping)
 footer.insertAdjacentHTML('beforebegin', reviews)
 
 const myTooltip = document.querySelectorAll('.myTooltip')
