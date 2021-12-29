@@ -299,7 +299,7 @@ function setSlide(time, title, tooltip, countPoint) {
         </div>`
 }
 
-let action, label;
+let action;
 
 function pushDataLayer(action, label) {
     window.dataLayer = window.dataLayer || [];
@@ -403,7 +403,7 @@ let mut = new MutationObserver(function (muts) {
                         });
                         el.addEventListener('mouseover', () => {
                             action = 'hover on tooltipe';
-                            label = el.closest('.timeline_title').innerText;
+                            let label = el.closest('.timeline_title').innerText;
                             pushDataLayer(action, label)
                         })
                     });
