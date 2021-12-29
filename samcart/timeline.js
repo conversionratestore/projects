@@ -3,6 +3,9 @@ let styles = `
     .watch-page {
         overflow-x: hidden;
     }
+    .tooltip_wrapper img {
+        pointer-events: none;
+    }
     .timeline {
         border: 1px solid #C5D3D9;
         background: #FFFFFF;
@@ -366,10 +369,10 @@ let mut = new MutationObserver(function (muts) {
             if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
                 clearInterval(run)
                 console.log('stopRun')
-              
+
                 document.querySelector('.timeline').style.opacity = '1';
                 pushDataLayer('loaded')
-              
+
                 if (window.matchMedia('(max-width: 992px)').matches) {
                     document.querySelector('.button-next').addEventListener('click', () => {
                         document.querySelector('#tns1-mw').style.paddingLeft = '20px';
@@ -435,7 +438,7 @@ mut.observe(document, optionMut);
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
-    hj('trigger', 'add_a_timeline_passive_income_video');
-    hj('event', 'add_a_timeline_passive_income_heatmap');
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+hj('trigger', 'add_a_timeline_passive_income_video');
+hj('event', 'add_a_timeline_passive_income_heatmap');
