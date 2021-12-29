@@ -302,9 +302,9 @@ function setSlide(time, title, tooltip, countPoint) {
 let action, label;
 
 function pushDataLayer(action, label) {
-    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
+        console.log(action + " : " + label)
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Add a timeline',
@@ -312,6 +312,7 @@ function pushDataLayer(action, label) {
             'eventLabel': label
         });
     } else {
+        console.log(action)
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Add a timeline',
