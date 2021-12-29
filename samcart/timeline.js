@@ -315,7 +315,8 @@ function pushDataLayer(action, label) {
         dataLayer.push({
             'event': 'event-to-ga',
             'eventCategory': 'Exp — Add a timeline',
-            'eventAction': action
+            'eventAction': action,
+            'eventLabel': ''
         });
     }
 }
