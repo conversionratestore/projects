@@ -242,6 +242,7 @@ const style = `
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
+			gap: 15px;
 		}
 		
 		.info > div p {
@@ -253,6 +254,7 @@ const style = `
 		
 		.info p.date {
 			color: #5E5E5E;
+			margin-bottom: 7px;
 		}
 		
 		.info .country img {
