@@ -242,7 +242,7 @@ const style = `
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			gap: 15px;
+			gap: 5px;
 		}
 		
 		.info > div p {
