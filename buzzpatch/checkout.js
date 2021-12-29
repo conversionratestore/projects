@@ -419,7 +419,7 @@ const reviews = `
 					</div>
 				</div>
 				<div class="text">
-					<p>Hi there. I have found BuzzPatch to be very efficient. Since my grandies have been wearing them on their clothes, the mozzies have been leaving them alone.  Carolyn has been lovely via our emails. Louise Crowe</p>
+					<p>Hi there. I have found BuzzPatch to be very efficient. Since my grandies have been wearing them on their clothes, the mozzies have been leaving them alone.  Carolyn has been lovely via our emails.</p>
 				</div>
 			</div>
 		</div>
