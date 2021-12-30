@@ -817,7 +817,7 @@ const page = /*html*/ `
                   <div class="first_block info">
                       <div class="slider-for"></div>
                       <div class="slider_nav">
-                          
+                          ${mapImg}
                       </div>
                       <table class="table_section">
 					    <tbody>
