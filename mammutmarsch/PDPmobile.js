@@ -1127,13 +1127,25 @@ let jqueryLoaded2 = setInterval(() => {
 					}
 				})
 
+				document.body.addEventListener("click", function (e) {
+					if (!e.target.closest(".second_block_inform li")?.classList.contains("show")) {
+						removeShowClass()
+						e.target.closest(".second_block_inform li")?.classList.add("show")
+					} else {
+						removeShowClass()
+					}
+				})
+
 				$('.second_block_inform ul li div svg').click(function () {
 					if (!$(this).closest('li').hasClass('show')) {
+
 						$(this).closest('li').find('.hidden_text').slideDown()
 						$(this).closest('li').addClass('show')
+
 					} else {
 						$(this).closest('li').find('.hidden_text').slideUp()
 						$(".second_block_inform .show").removeClass('show')
+						$(".second_block_inform .show").find('.hidden_text').slideDown()
 					}
 				})
 
