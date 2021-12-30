@@ -93,6 +93,7 @@ const style = /*html*/ `
     }
     
     .dropdown .subject {
+    	position: relative;
         font-weight: bold;
         font-size: 14px;
         line-height: 16px;
@@ -109,7 +110,7 @@ const style = /*html*/ `
         width: 12px;
         height: 8px;
         top: 50%;
-        right: 0;
+        right: 16px;
         transform: translateY(-50%);
         background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
     }
