@@ -692,9 +692,9 @@ const version = {
   },
   ruhrgebiet: {
     eventDetails: {
-      title: "Mammutmarsch Ruhrgebiet - 30/55 km",
-      start: "Landschaftspark Duisburg – Nord, Emscherstraße 71, 47137 Duisburg",
-      dataStart: `23.04.2022 ab 07:30 Uhr (55 KM) ab 10:30 Uhr (30 KM)`,
+      title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
+      start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
+      dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
       dataFinish: "24:00 Uhr",
       routes: "30km /55km",
       altitude: "130m/270m",
@@ -711,9 +711,9 @@ const version = {
   },
   munchen: {
     eventDetails: {
-      title: "Mammutmarsch  München - 30/55 km",
-      start: `Südbad, Seestraße 20, 82327 Tutzing`,
-      dataStart: ` 26.03.2022 ab 07:30 Uhr (55 KM) ab 09:30 Uhr (30 KM)`,
+      title: `Mammutmarsch <br>München - 30/55 km`,
+      start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
+      dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
       dataFinish: "24:00 Uhr",
       routes: "30km /55km",
       altitude: "270m/550m",
@@ -948,7 +948,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>42 km (mit T-Shirt)<img
+                        <p>${cityObj.paket[0]}<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -970,7 +970,7 @@ const page = /*html*/ `
                             <input type="radio" name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>42 km (nur Teilnahme)</p>
+                        <p>${cityObj.paket[1]}</p>
                     </div>
                     <p class="item_price">€47.50</p>
                 </div>
@@ -989,7 +989,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>60 km (mit T-Shirt)<img
+                        <p>${cityObj.paket[2]}<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -1011,7 +1011,7 @@ const page = /*html*/ `
                             <input type="radio"  name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>60 km (nur Teilnahme)</p>
+                        <p>${cityObj.paket[3]}</p>
                     </div>
                     <p class="item_price">€57.50</p>
                 </div>
