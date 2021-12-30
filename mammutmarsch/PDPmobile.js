@@ -1130,7 +1130,7 @@ let jqueryLoaded2 = setInterval(() => {
         	</div>
         `,
 				})
-				$('.first_block .slider_nav').slick({
+				let mySlider = $('.first_block .slider_nav').slick({
 					slidesToShow: 4,
 					slidesToScroll: 1,
 					arrows: false,
@@ -1138,10 +1138,25 @@ let jqueryLoaded2 = setInterval(() => {
 					focusOnSelect: true,
 				})
 
+				mySlider.on("swipe", () => {
+
+					window.dataLayer = window.dataLayer || [];
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: PDP improvements',
+						'eventAction': 'Main image scrolled'
+					});
+
+					console.log('eventAction: Main image scrolled')
+
+				})
+
 				$('.subject').click(function () {
 					$(this).closest('li').toggleClass('hide-custom')
 					if ($(this).closest('li').hasClass('hide-custom')) {
 						$(this).closest('li').find('.info').slideUp()
+					} else {
+						$(this).closest('li').find('.info').slideDown()
 
 						let subjectName = $(this).find('p').text()
 
@@ -1153,10 +1168,6 @@ let jqueryLoaded2 = setInterval(() => {
 						});
 
 						console.log(`eventAction: ${subjectName} section opened`)
-
-
-					} else {
-						$(this).closest('li').find('.info').slideDown()
 					}
 				})
 
