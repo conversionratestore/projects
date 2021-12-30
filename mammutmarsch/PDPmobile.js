@@ -1131,7 +1131,7 @@ let jqueryLoaded2 = setInterval(() => {
         `,
 				})
 
-				sliderFor.on("swipe", () => {
+				sliderFor.on("swipe", function()  {
 
 					window.dataLayer = window.dataLayer || [];
 					dataLayer.push({
@@ -1143,7 +1143,7 @@ let jqueryLoaded2 = setInterval(() => {
 					console.log('eventAction: sliderFor Main image scrolled')
 
 				})
-				
+
 				let mySlider = $('.first_block .slider_nav').slick({
 					slidesToShow: 4,
 					slidesToScroll: 1,
@@ -1152,7 +1152,7 @@ let jqueryLoaded2 = setInterval(() => {
 					focusOnSelect: true,
 				})
 
-				mySlider.on("swipe", () => {
+				mySlider.on("swipe", function() {
 
 					window.dataLayer = window.dataLayer || [];
 					dataLayer.push({
