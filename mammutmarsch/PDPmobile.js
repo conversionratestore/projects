@@ -1142,6 +1142,19 @@ let jqueryLoaded2 = setInterval(() => {
 					$(this).closest('li').toggleClass('hide-custom')
 					if ($(this).closest('li').hasClass('hide-custom')) {
 						$(this).closest('li').find('.info').slideUp()
+
+						let subjectName = $(this).find('p').text()
+
+						window.dataLayer = window.dataLayer || [];
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': `${subjectName} section opened`
+						});
+
+						console.log(`eventAction: ${subjectName} section opened`)
+
+
 					} else {
 						$(this).closest('li').find('.info').slideDown()
 					}
@@ -1213,7 +1226,7 @@ let jqueryLoaded2 = setInterval(() => {
 							'eventAction': `${paketname} selected`
 						});
 
-						console.log(`${paketname} selected`)
+						console.log(`eventAction: ${paketname} selected`)
 
 
 
@@ -1226,14 +1239,14 @@ let jqueryLoaded2 = setInterval(() => {
 						$('.total_block .alarm').slideDown()
 						$('.total_block button').attr('disabled', true)
 
-						console.log('Proceed to checkout click')
-
 						window.dataLayer = window.dataLayer || []
 						dataLayer.push({
 							'event': 'event-to-ga',
 							'eventCategory': 'Exp: PDP improvements',
 							'eventAction': 'Proceed to checkout click',
 						})
+
+						console.log('eventAction: Proceed to checkout click')
 
 					} else {
 						document.querySelector('#proceed_to_checkout').click()
@@ -1252,7 +1265,7 @@ document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
 	document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
 })
 
-console.log('loaded')
+console.log('eventAction: loaded')
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
