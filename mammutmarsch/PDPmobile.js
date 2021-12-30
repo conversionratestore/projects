@@ -23,7 +23,6 @@ let jqueryLoaded = setInterval(() => {
 	}
 }, 100)
 
-
 const style = /*html*/ `
 <style>
     .custom_main *,
@@ -655,6 +654,87 @@ const style = /*html*/ `
 		}
 </style>
 `
+
+const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
+let product
+
+switch (pathProduct) {
+	case '/mammut-hamburg/'
+		product = 'hamburg'
+		break;
+	case '/ruhr/'
+		product = 'ruhrgebiet'
+		break;
+	case '/mammutmarsch-muenchen/'
+		product = 'munchen'
+		break;
+	default:
+		break;
+}
+
+const version = {
+	hamburg: {
+		eventDetails: {
+			title: "Mammutmarsch  Hamburg – 42/60 km",
+			start: "Elbinsel Kaltehofe, Kaltehofe-Hauptdeich 6-7, 20539 Hamburg",
+			dataStart: "26.02.2021, ab 07:00 Uhr",
+			dataFinish: "27.02.2021, 01:00 Uhr",
+			routes: "42km /60km",
+			altitude: "150m/370m",
+		},
+		eventHighlights: [
+			"Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
+			"Hafencity mit Elbphilharmonie",
+			"Elbufer mit Hafenblick",
+			"Außenalster & Binnenalster",
+			"Speicherstadt",
+			"Blankenese",
+		],
+		paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
+	},
+	ruhrgebiet: {
+		eventDetails: {
+			title: "Mammutmarsch Ruhrgebiet - 30/55 km",
+			start: "Landschaftspark Duisburg – Nord, Emscherstraße 71, 47137 Duisburg",
+			dataStart: `23.04.2022 ab 07:30 Uhr (55 KM) ab 10:30 Uhr (30 KM)`,
+			dataFinish: "24:00 Uhr",
+			routes: "30km /55km",
+			altitude: "130m/270m",
+		},
+		eventHighlights: [
+			"100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
+			"Start im alten Eisenwerk LaPaDu",
+			"Zeche Zollverein (55 KM)",
+			"Ausblick vom Tetraeder (55 KM)",
+			"Gasometer Oberhausen",
+			"Zeche Osterfeld",
+		],
+		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+	},
+	munchen: {
+		eventDetails: {
+			title: "Mammutmarsch  München - 30/55 km",
+			start: `Südbad, Seestraße 20, 82327 Tutzing`,
+			dataStart: ` 26.03.2022 ab 07:30 Uhr (55 KM) ab 09:30 Uhr (30 KM)`,
+			dataFinish: "24:00 Uhr",
+			routes: "30km /55km",
+			altitude: "270m/550m",
+		},
+		eventHighlights: [
+			"Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
+			"Start und Ziel am Starnberger See",
+			"Ammersee",
+			"Kloster Andechs",
+			"Alpenblick",
+			"Viel Natur",
+		],
+		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+	},
+}
+
+const cityObj = version[product]
+
+console.log(cityObj.title)
 
 const page = /*html*/ `
     <main class="custom_main">
