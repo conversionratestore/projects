@@ -204,7 +204,7 @@ const style = /*html*/ `
         background: #FFFFFF;
         border: 1px solid #E5E5E5;
         border-radius: 5px;
-        margin-top: 12px;
+        margin-top: 12px !important;
     }
 
 	.show .hidden_text{
@@ -1202,16 +1202,18 @@ let jqueryLoaded2 = setInterval(() => {
 								break
 						}
 
+						let paketname = $(this).find('.paketname').text()
+
 						// $(this).find('.visible p')
 
 						window.dataLayer = window.dataLayer || [];
 						dataLayer.push({
 							'event': 'event-to-ga',
 							'eventCategory': 'Exp: PDP improvements',
-							'eventAction': `$(this).find('.paketname').text() selected`
+							'eventAction': `${paketname} selected`
 						});
 
-						console.log(`$(this).find('.paketname').text() selected`)
+						console.log(`${paketname} selected`)
 
 
 
