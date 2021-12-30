@@ -341,7 +341,8 @@ const style = /*html*/ `
         color: transparent;
         border: 0;
         outline: none;
-        background: transparent;
+        background-color: transparent !important;
+        border-color: transparent !important;
         padding: 5px;
     }
 
@@ -364,6 +365,10 @@ const style = /*html*/ `
         background-color: #008000;
         width: 8px;
         height: 8px;
+    }
+    
+    .slider_reviews li.slick-active {
+    	pointer-events: none;
     }
     
     .slick-dots {
