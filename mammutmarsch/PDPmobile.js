@@ -676,6 +676,10 @@ const style = /*html*/ `
 		.total_block button[disabled] {
 			background-color: #E1E1E1 !important;
 		}
+		
+	.slick-current {
+		display: none;
+	}
 </style>
 `
 
@@ -1082,7 +1086,7 @@ let jqueryLoaded2 = setInterval(() => {
 			) {
 				clearInterval(slickInterval)
 
-				$('.slider_reviews .slider_nav').on({
+				$('.slider_reviews .slider_nav').on('click',{
 					beforeChange: function (event, slick, current_slide_index, next_slide_index) {
 						$('.slider_nav .slick-slide').removeClass('slick-main-active');
 						$('.slider_nav .slick-slide[data-index=' + next_slide_index + ']').addClass('slick-main-active');
@@ -1129,15 +1133,6 @@ let jqueryLoaded2 = setInterval(() => {
 						$(this).closest('li').find('.info').slideUp()
 					} else {
 						$(this).closest('li').find('.info').slideDown()
-					}
-				})
-
-				document.body.addEventListener("click", function (e) {
-					if (!e.target.closest(".second_block_inform li")?.classList.contains("show")) {
-						removeShowClass()
-						e.target.closest(".second_block_inform li")?.classList.add("show")
-					} else {
-						removeShowClass()
 					}
 				})
 
