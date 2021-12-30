@@ -1139,7 +1139,7 @@ let jqueryLoaded2 = setInterval(() => {
 					mainSwipeEvent()
 				})
 
-				$('.slick-arrow').click(function() {
+				$('.first_block .slick-arrow').click(function() {
 					mainSwipeEvent()
 				})
 
@@ -1155,7 +1155,7 @@ let jqueryLoaded2 = setInterval(() => {
 					thumbSwipeEvent()
 				})
 
-				$('.slider_nav .slick-slide').click(function() {
+				$('.first_block .slider_nav .slick-slide').click(function() {
 					thumbSwipeEvent()
 				})
 
