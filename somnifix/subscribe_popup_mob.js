@@ -125,7 +125,7 @@ let block = `
                 <h3>Looks like this is your repeat purchase</h3>
                 <p>We are thrilled to know that Somnifix strips<br>help you improve your sleep.</p>    
             </div>
-            <p class="new_user">Did you know that<br><b>you can save 10% off<br>on this purchase</b><br>by subscribing to shipment<br>every 3 month.</p>
+            <p class="new_user">Did you know that<br><b>you can save 10% off<br>on this purchase</b><br>by subscribing to shipment<br>every <span>3</span> month.</p>
             <img src="https://conversionratestore.github.io/projects/somnifix/img/popup-img.png" alt="product">
             <p class="user"><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
             <p class="cancel_anytime">Don’t worry, you can unsubscribe anytime.</p>
@@ -203,6 +203,7 @@ let start = setInterval(function () {
                 } else {
                     if ($('.select_pack .choosen').text().includes('12-month')) {
                         $('.popup_sub img+p span').text('12')
+                        $('.new_user span').text('12')
                     }
 
                     $('.dark_bg_exp').addClass('active')
