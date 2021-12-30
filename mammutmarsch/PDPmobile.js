@@ -1102,12 +1102,16 @@ let jqueryLoaded2 = setInterval(() => {
 			) {
 				clearInterval(slickInterval)
 
-				$('.slider_reviews .slider_nav').slick({
+				let reviewsSlider = $('.slider_reviews .slider_nav').slick({
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					arrows: false,
 					focusOnSelect: true,
 					dots: true,
+				})
+
+				reviewsSlider.on('swipe', function() {
+					reviewScrolled()
 				})
 
 				let sliderFor = $('.first_block .slider-for').slick({
@@ -1148,11 +1152,11 @@ let jqueryLoaded2 = setInterval(() => {
 				})
 
 				mySlider.on("swipe", function()  {
-					mainSwipeEvent()
+					thumbSwipeEvent()
 				})
 
 				$('.slider_nav .slick-slide').click(function() {
-					mainSwipeEvent()
+					thumbSwipeEvent()
 				})
 
 				$('.subject').click(function () {
@@ -1284,7 +1288,29 @@ function mainSwipeEvent() {
 		'eventAction': 'Main image scrolled'
 	});
 
-	console.log('eventAction: sliderFor Main image scrolled')
+	console.log('eventAction: Main image scrolled')
+}
+
+function thumbSwipeEvent() {
+	window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp: PDP improvements',
+		'eventAction': 'Thumbnail clicked/scrolled'
+	});
+
+	console.log('eventAction: Thumbnail clicked/scrolled')
+}
+
+function reviewScrolled() {
+	window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp: PDP improvements',
+		'eventAction': 'Review scrolled'
+	});
+
+	console.log('eventAction Review scrolled')
 }
 
 document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
