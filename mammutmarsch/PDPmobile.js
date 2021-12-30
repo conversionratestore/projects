@@ -26,9 +26,9 @@ let jqueryLoaded = setInterval(() => {
 
 const style = /*html*/ `
 <style>
-    *,
-    *::before,
-    *::after {
+    .custom_main *,
+    .custom_main *::before,
+    .custom_main *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -52,6 +52,14 @@ const style = /*html*/ `
     /*    padding: 0;*/
     /*    margin: 0;*/
     /*}*/
+    
+   .content-area {
+   	display: none;
+   }
+   
+   .custom_main {
+	    padding: 15px;
+   }
 
     .custom_main li {
         list-style: none;        
@@ -59,6 +67,10 @@ const style = /*html*/ `
     
     .dropdown ul li {
     	margin-bottom: 8px;
+    }
+    
+    .custom_main p {
+    	line-height: normal;
     }
     
     /* heading */
@@ -439,7 +451,7 @@ const style = /*html*/ `
   user-select: none;
 }
 
-/* Hide the browser's default radio button */
+/* hide-custom the browser's default radio button */
 .radio_container input {
   position: absolute;
   opacity: 0;
@@ -534,7 +546,7 @@ const style = /*html*/ `
         padding: 8px 12px 8px 0;
         }
         
-        .hidden div {
+        .hidden_custom div {
         	display: flex;
         	flex-direction: row;
         	border-top: 1px solid #E5E5E5;
@@ -542,7 +554,7 @@ const style = /*html*/ `
         	padding: 8px;
         }
         
-        .hidden div .title {
+        .hidden_custom div .title {
         	font-weight: 500;
 			font-size: 14px;
 			line-height: 16px;
@@ -557,7 +569,7 @@ const style = /*html*/ `
 			color: #7F7F7F;
         }
         
-        .hidden {
+        .hidden_custom {
         	display: none;
         }
         
@@ -605,10 +617,8 @@ const style = /*html*/ `
 			margin: 15px 0;
 			width: 100%;
 			font-size: 14px;
-color: #333333;
+			color: #333333;
 		}
-		
-		
 		
 		.fourth_block .item.selected {
 			border: 1px solid #008000;
@@ -633,8 +643,8 @@ color: #333333;
 			margin-right: 4px;
 		}
 		
-		.total_block.alarmed .total_block button {
-			background-color: #E1E1E1;
+		.total_block button[disabled] {
+			background-color: #E1E1E1 !important;
 		}
 </style>
 `
@@ -860,7 +870,7 @@ const page = /*html*/ `
                     <p class="item_price">€67.50</p>
                     <p class="pseudo favorit">Favorit</p>
                 </div>
-                <div class="hidden">
+                <div class="hidden_custom">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt-black.svg" alt="">
                         <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt</span></p>
@@ -879,7 +889,7 @@ const page = /*html*/ `
                     </div>
                     <p class="item_price">€47.50</p>
                 </div>
-                <div class="hidden">
+                <div class="hidden_custom">
                     <div>
                         <p class="subtitle">Teilnahme, Streckenposten (mit Snacks, Wasser und Überraschungen),
                             Shuttle-Service/Ausstiegspunkte, Urkunde, Medaille & Finisherband, Betreuung durch
@@ -901,7 +911,7 @@ const page = /*html*/ `
                     <p class="item_price">€77.50</p>
                     <p class="pseudo beliebt">Beliebt</p>
                 </div>
-                <div class="hidden">
+                <div class="hidden_custom">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt-black.svg" alt="">
                         <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt</span></p>
@@ -920,7 +930,7 @@ const page = /*html*/ `
                     </div>
                     <p class="item_price">€57.50</p>
                 </div>
-                <div class="hidden">
+                <div class="hidden_custom">
                     <div>
                         <p class="subtitle">Teilnahme, Streckenposten (mit Snacks, Wasser und Überraschungen),
                             Shuttle-Service/Ausstiegspunkte, Urkunde, Medaille & Finisherband, Betreuung durch
@@ -947,7 +957,8 @@ const page = /*html*/ `
 `
 
 document.body.insertAdjacentHTML('afterbegin', style)
-document.body.insertAdjacentHTML('afterbegin', page)
+// document.body.insertAdjacentHTML('afterbegin', page)
+document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
 
 
 // document.body.addEventListener('click', function (e) {
@@ -1011,8 +1022,8 @@ let jqueryLoaded2 = setInterval(() => {
 				})
 
 				$('.subject').click(function () {
-					$(this).closest('li').toggleClass('hide')
-					if ($(this).closest('li').hasClass('hide')) {
+					$(this).closest('li').toggleClass('hide-custom')
+					if ($(this).closest('li').hasClass('hide-custom')) {
 						$(this).closest('li').find('.info').slideUp()
 					} else {
 						$(this).closest('li').find('.info').slideDown()
@@ -1024,7 +1035,6 @@ let jqueryLoaded2 = setInterval(() => {
 						$(this).closest('li').find('.hidden_text').slideDown()
 						$(this).closest('li').addClass('show')
 					} else {
-						console.log($(this))
 						$(this).closest('li').find('.hidden_text').slideUp()
 						(this).closest('li').removeClass('show')
 					}
@@ -1035,10 +1045,10 @@ let jqueryLoaded2 = setInterval(() => {
 					if (!$(this).hasClass('selected')) {
 						let indexItem = $(this).index()
 
-						$('.fourth_block .selected .hidden').slideUp()
+						$('.fourth_block .selected .hidden_custom').slideUp()
 						$('.fourth_block .selected').removeClass('selected')
 
-						$(this).find('.hidden').slideDown()
+						$(this).find('.hidden_custom').slideDown()
 						$(this).addClass('selected')
 
 						$('.price-wrap .price').text($(this).find('.item_price').text())
@@ -1046,18 +1056,24 @@ let jqueryLoaded2 = setInterval(() => {
 						$('.total_block .alarm').slideUp()
 						$('.fourth_block').removeClass('alarmed')
 
+						$('.total_block button').attr('disabled', false)
+
 						switch (+indexItem) {
 							case 0:
 								document.querySelectorAll('.radio-container')[0].click()
+								console.log(+indexItem)
 								break;
 							case 1:
 								document.querySelectorAll('.radio-container')[2].click()
+								console.log(+indexItem)
 								break;
 							case 2:
 								document.querySelectorAll('.radio-container')[1].click()
+								console.log(+indexItem)
 								break;
 							case 3:
 								document.querySelectorAll('.radio-container')[3].click()
+								console.log(+indexItem)
 								break;
 							default:
 								break;
@@ -1069,9 +1085,42 @@ let jqueryLoaded2 = setInterval(() => {
 					if($('.item.selected').length === 0) {
 						$('.fourth_block').addClass('alarmed')
 						$('.total_block .alarm').slideDown()
+						$('.total_block button').attr('disabled', true)
 
-						$('#proceed_to_checkout').click()
+
+
+						console.log('Proceed to checkout click')
+
+						window.dataLayer = window.dataLayer || [];
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': 'Proceed to checkout click'
+						});
+
 					} else {
+						// let indexItem = $('.fourth_block .item').index();
+						//
+						// switch (+indexItem) {
+						// 	case 0:
+						// 		document.querySelectorAll('.radio-container')[0].click()
+						// 		break;
+						// 	case 1:
+						// 		document.querySelectorAll('.radio-container')[2].click()
+						// 		break;
+						// 	case 2:
+						// 		document.querySelectorAll('.radio-container')[1].click()
+						// 		break;
+						// 	case 3:
+						// 		document.querySelectorAll('.radio-container')[3].click()
+						// 		break;
+						// 	default:
+						// 		break;
+						// }
+
+						document.querySelector('#proceed_to_checkout').click()
+
+						$('.total_block button').attr('disabled', false)
 						$('.total_block .alarm').slideUp()
 						$('.fourth_block').removeClass('alarmed')
 					}
@@ -1087,3 +1136,21 @@ document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
 	document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
 })
 
+console.log('loaded')
+
+;(function(h,o,t,j,a,r){
+	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+	h._hjSettings={hjid:1191175,hjsv:6};
+	a=o.getElementsByTagName('head')[0];
+	r=o.createElement('script');r.async=1;
+	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+	a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'pdp_improvements');
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp: PDP improvements',
+	'eventAction': 'loaded'
+});
