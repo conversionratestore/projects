@@ -1123,7 +1123,7 @@ let jqueryLoaded2 = setInterval(() => {
 						$(this).closest('li').addClass('show')
 					} else {
 						$(this).closest('li').find('.hidden_text').slideUp()
-						$(this).closest('li').removeClass('show')
+						$(".second_block_inform .show").removeClass('show')
 					}
 
 				})
