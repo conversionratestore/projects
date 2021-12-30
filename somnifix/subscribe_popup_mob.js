@@ -21,6 +21,7 @@ let style = `
             width: 95%;
             margin: 20px auto;
             position: relative;
+            color: #1E415F;
         }
         .popup_sub p {
             line-height: 1;
