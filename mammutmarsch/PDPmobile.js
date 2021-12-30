@@ -514,6 +514,9 @@ const style = /*html*/ `
  margin: 8px 0;
 }
 
+.grecaptcha-badge {
+	z-index: 1000;
+}
 
 .first_block .slider-for img{
 	width: 296px;
