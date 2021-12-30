@@ -4,8 +4,6 @@ script.async = false
 document.getElementsByTagName('head')[0].appendChild(script)
 
 let jqueryLoaded = setInterval(() => {
-	console.log('ssss')
-
 	if (typeof jQuery === 'function') {
 		clearInterval(jqueryLoaded)
 
@@ -1155,9 +1153,9 @@ let jqueryLoaded2 = setInterval(() => {
 								break
 						}
 
-						// $(this).find('.visible p')
-						$('.fourth_block .visible p')
-						.fourth_block .visible p
+						// // $(this).find('.visible p')
+						// $('.fourth_block .visible p')
+						// .fourth_block .visible p
 					}
 				})
 
