@@ -1140,7 +1140,7 @@ let jqueryLoaded2 = setInterval(() => {
 					} else {
 						$(this).closest('li').find('.hidden_text').slideUp()
 						$(".second_block_inform .show").removeClass('show')
-						$(".second_block_inform .show").find('.hidden_text').slideDown()
+						$(".second_block_inform .show").find('.hidden_text').slideUp()
 					}
 				})
 
