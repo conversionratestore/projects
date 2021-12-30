@@ -208,8 +208,7 @@ const style = /*html*/ `
     }
 
 	.show .hidden_text{
-		display: block;
-		margin-top: 11px;
+		display: block;		
 	} 
 	
 	/*.show svg {*/
