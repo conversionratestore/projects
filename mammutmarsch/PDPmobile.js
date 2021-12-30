@@ -377,7 +377,7 @@ const style = /*html*/ `
     }
     
     .third_block > ol {
-    	padding-left: 20px;
+    	padding-left: 40px;
     }
 
     .third_block h2{
@@ -389,9 +389,9 @@ const style = /*html*/ `
         margin-bottom: 12px;
     }
 
-    .third_block > ol{
-        padding: 0 20px;
-    }
+    /*.third_block > ol{*/
+    /*    padding: 0 20px;*/
+    /*}*/
 
     .third_block > ol li + li{
         margin-top: 12px;
