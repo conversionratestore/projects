@@ -719,6 +719,14 @@ const version = {
 			"Blankenese",
 		],
 		paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
+		img: [
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg",
+		],
 	},
 	ruhrgebiet: {
 		eventDetails: {
@@ -738,6 +746,16 @@ const version = {
 			"Zeche Osterfeld",
 		],
 		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		img: [
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_rahr.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_rahr.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg",
+		],
 	},
 	munchen: {
 		eventDetails: {
@@ -757,10 +775,32 @@ const version = {
 			"Viel Natur",
 		],
 		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		img: [
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_mun.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_mun.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg",
+			"https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg",
+		],
 	},
 }
 
-const cityObj = version[product]
+let cityObj = version[product]
+
+
+
+let {img} = cityObj
+
+
+
+function mapImg() {
+	img.map((el, idx) => {
+		return ` <img src="${el[idx]}" alt="photo">`
+	})
+}
+
+
 
 const page = /*html*/ `
     <main class="custom_main">
@@ -777,22 +817,7 @@ const page = /*html*/ `
                   <div class="first_block info">
                       <div class="slider-for"></div>
                       <div class="slider_nav">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png" alt="photo">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png" alt="photo">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg" alt="img0">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg" alt="img1">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg" alt="img2">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg" alt="img3">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg" alt="img4">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg" alt="img5">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg" alt="img6">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg" alt="img7">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg" alt="img8">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg" alt="img9">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg" alt="img10">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg" alt="img11">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg" alt="img12">
-                          <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg" alt="img13">
+                          
                       </div>
                       <table class="table_section">
 					    <tbody>
@@ -1062,8 +1087,7 @@ const page = /*html*/ `
             </div>
         </div>
         </div>
-        
-</li>
+        </li>
           </ul>
       </section>
     </main>
