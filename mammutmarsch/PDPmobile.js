@@ -33,6 +33,10 @@ const style = /*html*/ `
     padding: 0;
     margin: 0;
     }
+    
+    .custom_main p {
+    	margin: 0;
+    }
 	
 	/*body {*/
 	/* padding: 15px !important;*/
