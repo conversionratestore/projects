@@ -1151,6 +1151,10 @@ let jqueryLoaded2 = setInterval(() => {
 					focusOnSelect: true,
 				})
 
+				mySlider.on("swipe", function()  {
+					mainSwipeEvent()
+				})
+
 				$('.subject').click(function () {
 					$(this).closest('li').toggleClass('hide-custom')
 					if ($(this).closest('li').hasClass('hide-custom')) {
