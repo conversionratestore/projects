@@ -1264,8 +1264,9 @@ let jqueryLoaded2 = setInterval(() => {
 					if ($('.item.selected').length === 0) {
 						$('.fourth_block').addClass('alarmed')
 						$('.total_block .alarm').slideDown()
-						$('.total_block button').attr('disabled', true)
+						$('.total_block button').attr('disabled', true)					
 
+					} else {
 						window.dataLayer = window.dataLayer || []
 						dataLayer.push({
 							'event': 'event-to-ga',
@@ -1274,8 +1275,7 @@ let jqueryLoaded2 = setInterval(() => {
 						})
 
 						console.log('eventAction: Proceed to checkout click')
-
-					} else {
+						
 						document.querySelector('#proceed_to_checkout').click()
 
 						$('.total_block button').attr('disabled', false)
