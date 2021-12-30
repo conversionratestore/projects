@@ -1114,6 +1114,14 @@ let jqueryLoaded2 = setInterval(() => {
 					reviewScrolled()
 				})
 
+				reviewsSlider.find('.slick-slide').click(function() {
+					reviewScrolled()
+				})
+
+				reviewsSlider.find('.slick-dots li').click(function() {
+					reviewScrolled()
+				})
+
 				let sliderFor = $('.first_block .slider-for').slick({
 					slidesToShow: 1,
 					slidesToScroll: 1,
@@ -1139,7 +1147,7 @@ let jqueryLoaded2 = setInterval(() => {
 					mainSwipeEvent()
 				})
 
-				$('.first_block .slick-arrow').click(function() {
+				sliderFor.find('.slick-arrow').click(function() {
 					mainSwipeEvent()
 				})
 
@@ -1155,7 +1163,7 @@ let jqueryLoaded2 = setInterval(() => {
 					thumbSwipeEvent()
 				})
 
-				$('.first_block .slider_nav .slick-slide').click(function() {
+				mySlider.find('.slick-slide').click(function() {
 					thumbSwipeEvent()
 				})
 
