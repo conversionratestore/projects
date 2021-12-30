@@ -710,20 +710,20 @@ const version = {
 		eventDetails: {
 			title: `Mammutmarsch<br>Hamburg – 42/60 km`,
 			start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
-			dataStart: "26.02.2021, ab 07:00 Uhr",
-			dataFinish: "27.02.2021, 01:00 Uhr",
-			routes: "42km /60km",
-			altitude: "150m/370m",
+			dataStart: '26.02.2021, ab 07:00 Uhr',
+			dataFinish: '27.02.2021, 01:00 Uhr',
+			routes: '42km /60km',
+			altitude: '150m/370m',
 		},
 		eventHighlights: [
-			"Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
-			"Hafencity mit Elbphilharmonie",
-			"Elbufer mit Hafenblick",
-			"Außenalster & Binnenalster",
-			"Speicherstadt",
-			"Blankenese",
+			'Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!',
+			'Hafencity mit Elbphilharmonie',
+			'Elbufer mit Hafenblick',
+			'Außenalster & Binnenalster',
+			'Speicherstadt',
+			'Blankenese',
 		],
-		paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
+		paket: ['42 km (mit T-Shirt)', '42 km (nur Teilnahme)', '60 km (mit T-Shirt)', '60 km (nur Teilnahme)'],
 		img: [
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png">`,
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png">`,
@@ -738,19 +738,19 @@ const version = {
 			title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
 			start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
 			dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
-			dataFinish: "24:00 Uhr",
-			routes: "30km /55km",
-			altitude: "130m/270m",
+			dataFinish: '24:00 Uhr',
+			routes: '30km /55km',
+			altitude: '130m/270m',
 		},
 		eventHighlights: [
-			"100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
-			"Start im alten Eisenwerk LaPaDu",
-			"Zeche Zollverein (55 KM)",
-			"Ausblick vom Tetraeder (55 KM)",
-			"Gasometer Oberhausen",
-			"Zeche Osterfeld",
+			'100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets',
+			'Start im alten Eisenwerk LaPaDu',
+			'Zeche Zollverein (55 KM)',
+			'Ausblick vom Tetraeder (55 KM)',
+			'Gasometer Oberhausen',
+			'Zeche Osterfeld',
 		],
-		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
 		img: [
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_rahr.jpg">`,
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_rahr.jpg">`,
@@ -767,19 +767,19 @@ const version = {
 			title: `Mammutmarsch <br>München - 30/55 km`,
 			start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
 			dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
-			dataFinish: "24:00 Uhr",
-			routes: "30km /55km",
-			altitude: "270m/550m",
+			dataFinish: '24:00 Uhr',
+			routes: '30km /55km',
+			altitude: '270m/550m',
 		},
 		eventHighlights: [
-			"Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
-			"Start und Ziel am Starnberger See",
-			"Ammersee",
-			"Kloster Andechs",
-			"Alpenblick",
-			"Viel Natur",
+			'Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.',
+			'Start und Ziel am Starnberger See',
+			'Ammersee',
+			'Kloster Andechs',
+			'Alpenblick',
+			'Viel Natur',
 		],
-		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
 		img: [
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_mun.jpg">`,
 			`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_mun.jpg">`,
@@ -793,7 +793,7 @@ const version = {
 
 let cityObj = version[product]
 
-let imagesString;
+let imagesString
 
 cityObj.img.forEach(img => {
 	imagesString += img
@@ -802,7 +802,7 @@ cityObj.img.forEach(img => {
 const page = /*html*/ `
     <main class="custom_main">
       <section class="heading">
-          <p class="title">${cityObj.eventDetails.title}</p>
+          <p class="title">${ cityObj.eventDetails.title }</p>
           <p class="subtitle">Nimmst du die Herausforderung an?</p>
       </section>
       <section class="dropdown">
@@ -814,29 +814,29 @@ const page = /*html*/ `
                   <div class="first_block info">
                       <div class="slider-for"></div>
                       <div class="slider_nav">      
-                      	${imagesString}                    
+                      	${ imagesString }                    
                       </div>
                       <table class="table_section">
 					    <tbody>
 					        <tr>
 					            <td>Start/<br> Zieladresse</td>
-					            <td>${cityObj.eventDetails.start}</td>
+					            <td>${ cityObj.eventDetails.start }</td>
 					        </tr>
 					        <tr>
 					            <td>Datum & Uhrzeit:</td>
-					            <td>${cityObj.eventDetails.dataStart}</td>
+					            <td>${ cityObj.eventDetails.dataStart }</td>
 					        </tr>
 					        <tr>
 					            <td>Spätester Finish:</td>
-					            <td>${cityObj.eventDetails.dataFinish}</td>
+					            <td>${ cityObj.eventDetails.dataFinish }</td>
 					        </tr>
 					        <tr>
 					            <td>Routen</td>
-					            <td>${cityObj.eventDetails.routes}</td>
+					            <td>${ cityObj.eventDetails.routes }</td>
 					        </tr>
 					        <tr>
 					            <td>Höhenmeter</td>
-					            <td>${cityObj.eventDetails.altitude}</td>
+					            <td>${ cityObj.eventDetails.altitude }</td>
 					        </tr>
 					    </tbody>
 					</table>
@@ -966,22 +966,22 @@ const page = /*html*/ `
                       <p>Event Highlights</p>
                   </div>
                   <div class="third_block info">
-                      <h2>${cityObj.eventHighlights[0]}</h2>
+                      <h2>${ cityObj.eventHighlights[0] }</h2>
                       <ol>
                           <li>  
-                            ${cityObj.eventHighlights[1]}
+                            ${ cityObj.eventHighlights[1] }
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[2]}
+                            ${ cityObj.eventHighlights[2] }
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[3]}
+                            ${ cityObj.eventHighlights[3] }
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[4]}
+                            ${ cityObj.eventHighlights[4] }
                           </li>
                           <li>
-                            ${cityObj.eventHighlights[5]}
+                            ${ cityObj.eventHighlights[5] }
                           </li>
                       </ol>
                   </div>
@@ -998,7 +998,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="paketname">${cityObj.paket[0]}<img
+                        <p class="paketname">${ cityObj.paket[0] }<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -1020,7 +1020,7 @@ const page = /*html*/ `
                             <input type="radio" name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="paketname">${cityObj.paket[1]}</p>
+                        <p class="paketname">${ cityObj.paket[1] }</p>
                     </div>
                     <p class="item_price">€47.50</p>
                 </div>
@@ -1039,7 +1039,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="paketname">${cityObj.paket[2]}<img
+                        <p class="paketname">${ cityObj.paket[2] }<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -1061,7 +1061,7 @@ const page = /*html*/ `
                             <input type="radio"  name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p class="paketname">${cityObj.paket[3]}</p>
+                        <p class="paketname">${ cityObj.paket[3] }</p>
                     </div>
                     <p class="item_price">€57.50</p>
                 </div>
@@ -1115,15 +1115,15 @@ let jqueryLoaded2 = setInterval(() => {
 					dots: true,
 				})
 
-				reviewsSlider.on('swipe', function() {
+				reviewsSlider.on('swipe', function () {
 					reviewScrolled()
 				})
 
-				reviewsSlider.find('.slick-slide').click(function() {
+				reviewsSlider.find('.slick-slide').click(function () {
 					reviewScrolled()
 				})
 
-				reviewsSlider.find('.slick-dots li').click(function() {
+				reviewsSlider.find('.slick-dots li').click(function () {
 					reviewScrolled()
 				})
 
@@ -1148,11 +1148,11 @@ let jqueryLoaded2 = setInterval(() => {
         `,
 				})
 
-				sliderFor.on("swipe", function()  {
+				sliderFor.on('swipe', function () {
 					mainSwipeEvent()
 				})
 
-				sliderFor.find('.slick-arrow').click(function() {
+				sliderFor.find('.slick-arrow').click(function () {
 					mainSwipeEvent()
 				})
 
@@ -1164,11 +1164,11 @@ let jqueryLoaded2 = setInterval(() => {
 					focusOnSelect: true,
 				})
 
-				mySlider.on("swipe", function()  {
+				mySlider.on('swipe', function () {
 					thumbSwipeEvent()
 				})
 
-				mySlider.find('.slick-slide').click(function() {
+				mySlider.find('.slick-slide').click(function () {
 					thumbSwipeEvent()
 				})
 
@@ -1181,30 +1181,30 @@ let jqueryLoaded2 = setInterval(() => {
 
 						let subjectName = $(this).find('p').text()
 
-						window.dataLayer = window.dataLayer || [];
+						window.dataLayer = window.dataLayer || []
 						dataLayer.push({
 							'event': 'event-to-ga',
 							'eventCategory': 'Exp: PDP improvements',
-							'eventAction': `${subjectName} section opened`
-						});
+							'eventAction': `${ subjectName } section opened`,
+						})
 
-						console.log(`eventAction: ${subjectName} section opened`)
+						console.log(`eventAction: ${ subjectName } section opened`)
 					}
 				})
 
 				$('.second_block_inform ul li div svg').click(function () {
 					if (!$(this).closest('li').hasClass('show')) {
 
-						$(".second_block_inform .show").find('.hidden_text').slideUp()
-						$(".second_block_inform .show").removeClass('show')
+						$('.second_block_inform .show').find('.hidden_text').slideUp()
+						$('.second_block_inform .show').removeClass('show')
 
 						$(this).closest('li').find('.hidden_text').slideDown()
 						$(this).closest('li').addClass('show')
 
 					} else {
 
-						$(".second_block_inform .show").find('.hidden_text').slideUp()
-						$(".second_block_inform .show").removeClass('show')
+						$('.second_block_inform .show').find('.hidden_text').slideUp()
+						$('.second_block_inform .show').removeClass('show')
 
 					}
 				})
@@ -1229,19 +1229,15 @@ let jqueryLoaded2 = setInterval(() => {
 						switch (+indexItem) {
 							case 0:
 								document.querySelectorAll('.radio-container')[0].click()
-								console.log(+indexItem)
 								break
 							case 1:
 								document.querySelectorAll('.radio-container')[2].click()
-								console.log(+indexItem)
 								break
 							case 2:
 								document.querySelectorAll('.radio-container')[1].click()
-								console.log(+indexItem)
 								break
 							case 3:
 								document.querySelectorAll('.radio-container')[3].click()
-								console.log(+indexItem)
 								break
 							default:
 								break
@@ -1251,15 +1247,14 @@ let jqueryLoaded2 = setInterval(() => {
 
 						// $(this).find('.visible p')
 
-						window.dataLayer = window.dataLayer || [];
+						window.dataLayer = window.dataLayer || []
 						dataLayer.push({
 							'event': 'event-to-ga',
 							'eventCategory': 'Exp: PDP improvements',
-							'eventAction': `${paketname} selected`
-						});
+							'eventAction': `${ paketname } selected`,
+						})
 
-						console.log(`eventAction: ${paketname} selected`)
-
+						console.log(`eventAction: ${ paketname } selected`)
 
 
 					}
@@ -1294,34 +1289,34 @@ let jqueryLoaded2 = setInterval(() => {
 }, 100)
 
 function mainSwipeEvent() {
-	window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Main image scrolled'
-	});
+		'eventAction': 'Main image scrolled',
+	})
 
 	console.log('eventAction: Main image scrolled')
 }
 
 function thumbSwipeEvent() {
-	window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Thumbnail clicked/scrolled'
-	});
+		'eventAction': 'Thumbnail clicked/scrolled',
+	})
 
 	console.log('eventAction: Thumbnail clicked/scrolled')
 }
 
 function reviewScrolled() {
-	window.dataLayer = window.dataLayer || [];
+	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Review scrolled'
-	});
+		'eventAction': 'Review scrolled',
+	})
 
 	console.log('eventAction Review scrolled')
 }
