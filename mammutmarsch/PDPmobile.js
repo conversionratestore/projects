@@ -59,6 +59,7 @@ const style = /*html*/ `
    }
    
    .custom_main {
+   	margin-top: -40px;
 	    padding: 15px;
    }
 
