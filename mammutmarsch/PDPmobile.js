@@ -1110,7 +1110,7 @@ let jqueryLoaded2 = setInterval(() => {
 					dots: true,
 				})
 
-				$('.first_block .slider-for').slick({
+				let sliderFor = $('.first_block .slider-for').slick({
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					fade: true,
@@ -1130,6 +1130,20 @@ let jqueryLoaded2 = setInterval(() => {
         	</div>
         `,
 				})
+
+				sliderFor.on("swipe", () => {
+
+					window.dataLayer = window.dataLayer || [];
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: PDP improvements',
+						'eventAction': 'Main image scrolled'
+					});
+
+					console.log('eventAction: sliderFor Main image scrolled')
+
+				})
+				
 				let mySlider = $('.first_block .slider_nav').slick({
 					slidesToShow: 4,
 					slidesToScroll: 1,
