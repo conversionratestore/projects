@@ -102,6 +102,17 @@ const style = /*html*/ `
         color: #FFFFFF;
         padding: 10px;        
     }
+    
+    .dropdown .subject::after{
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 8px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
+    }
 
     /* first_block*/
     .first_block .slick-list{
@@ -528,6 +539,7 @@ const style = /*html*/ `
 	width: 69px;
 	height: 69px;
 	padding-right: 8px;
+	object-fit: cover;
 }
 
 .table_section{
