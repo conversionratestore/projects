@@ -273,9 +273,9 @@ const style = /*html*/ `
         border-radius: 5px;
     }
     
-    .slider_nav .slick-active {
-    	display: none;
-    }
+    /*.slider_nav .slick-active {*/
+    /*	display: none;*/
+    /*}*/
 
     .slider_reviews .slider_nav .slider_custom_list > div:first-child{
         display: flex;
@@ -1082,7 +1082,12 @@ let jqueryLoaded2 = setInterval(() => {
 			) {
 				clearInterval(slickInterval)
 
-				$('.slider_reviews .slider_nav').slick({
+				$('.slider_reviews .slider_nav').on({
+					beforeChange: function (event, slick, current_slide_index, next_slide_index) {
+						$('.slider_nav .slick-slide').removeClass('slick-main-active');
+						$('.slider_nav .slick-slide[data-index=' + next_slide_index + ']').addClass('slick-main-active');
+					}
+				}).slick({
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					arrows: false,
