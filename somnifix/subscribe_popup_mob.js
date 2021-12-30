@@ -167,7 +167,7 @@ let start = setInterval(function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: Popup with subscription offer',
+                'eventCategory': 'Exp: Popup with subscription offer - mobile',
                 'eventAction': 'Click on cross button'
             });
             document.querySelectorAll('.to_checkout')[1].click()
@@ -179,7 +179,7 @@ let start = setInterval(function () {
                 window.dataLayer = window.dataLayer || [];
                 dataLayer.push({
                     'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Popup with subscription offer',
+                    'eventCategory': 'Exp: Popup with subscription offer - mobile',
                     'eventAction': 'Click on area around Pop-Up'
                 });
                 document.querySelectorAll('.to_checkout')[1].click()}
@@ -190,7 +190,7 @@ let start = setInterval(function () {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
-                'eventCategory': 'Exp: Popup with subscription offer',
+                'eventCategory': 'Exp: Popup with subscription offer - mobile',
                 'eventAction': 'Click on "Get 10% off by subscribing button'
             });
             document.querySelectorAll('.to_checkout')[1].click()
@@ -209,7 +209,7 @@ let start = setInterval(function () {
                     window.dataLayer = window.dataLayer || [];
                     dataLayer.push({
                         'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Popup with subscription offer',
+                        'eventCategory': 'Exp: Popup with subscription offer - mobile',
                         'eventAction': 'Pop-Up appearence'
                     });
                 }
@@ -225,7 +225,7 @@ let start = setInterval(function () {
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
-    'eventCategory': 'Exp: Popup with subscription offer',
+    'eventCategory': 'Exp: Popup with subscription offer - mobile',
     'eventAction': 'loaded'
 });
 
