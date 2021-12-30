@@ -267,6 +267,10 @@ const style = /*html*/ `
         border: 2px solid #F5F5F5; 
         border-radius: 5px;
     }
+    
+    .slider_nav .slick-active {
+    	display: none;
+    }
 
     .slider_reviews .slider_nav .slider_custom_list > div:first-child{
         display: flex;
