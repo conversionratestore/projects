@@ -116,7 +116,7 @@ const style = /*html*/ `
         background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_up.svg) center no-repeat;
     }
     
-    .hide-custom .dropdown .subject::after{
+    .dropdown .hide-custom .subject::after{
     	background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
     }
 
