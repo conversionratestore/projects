@@ -134,6 +134,7 @@ const style = /*html*/ `
  	background-color: rgba(255,255,255, 0.7);
 	padding: 15px;
 	border-radius: 2px;
+	    line-height: 0;
     }
 
     .first_block .slick-arrow.prev{
@@ -591,7 +592,7 @@ const style = /*html*/ `
 			color: #333333;
         }
         
-        .hidden div .subtitle {
+        .hidden_custom div .subtitle {
 	        font-weight: normal;
 			font-size: 12px;
 			line-height: 14px;
