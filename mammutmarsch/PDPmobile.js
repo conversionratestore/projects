@@ -113,7 +113,11 @@ const style = /*html*/ `
         top: 50%;
         right: 16px;
         transform: translateY(-50%);
-        background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
+        background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_up.svg) center no-repeat;
+    }
+    
+    .hide-custom .dropdown .subject::after{
+    	background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
     }
 
     /* first_block*/
