@@ -1134,6 +1134,9 @@ let jqueryLoaded2 = setInterval(() => {
 				$('.second_block_inform ul li div svg').click(function () {
 					if (!$(this).closest('li').hasClass('show')) {
 
+						$(".second_block_inform .show").find('.hidden_text').slideUp()
+						$(".second_block_inform .show").removeClass('show')
+
 						$(this).closest('li').find('.hidden_text').slideDown()
 						$(this).closest('li').addClass('show')
 
