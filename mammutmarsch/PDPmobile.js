@@ -659,76 +659,76 @@ const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
 let product
 
 switch (pathProduct) {
-	case '/mammut-hamburg/'
+	case '/mammut-hamburg/':
 		product = 'hamburg'
-		break;
-	case '/ruhr/'
+		break
+	case '/ruhr/':
 		product = 'ruhrgebiet'
-		break;
-	case '/mammutmarsch-muenchen/'
+		break
+	case '/mammutmarsch-muenchen/':
 		product = 'munchen'
-		break;
+		break
 	default:
-		break;
+		break
 }
 
 const version = {
 	hamburg: {
 		eventDetails: {
-			title: "Mammutmarsch  Hamburg – 42/60 km",
-			start: "Elbinsel Kaltehofe, Kaltehofe-Hauptdeich 6-7, 20539 Hamburg",
-			dataStart: "26.02.2021, ab 07:00 Uhr",
-			dataFinish: "27.02.2021, 01:00 Uhr",
-			routes: "42km /60km",
-			altitude: "150m/370m",
+			title: 'Mammutmarsch  Hamburg – 42/60 km',
+			start: 'Elbinsel Kaltehofe, Kaltehofe-Hauptdeich 6-7, 20539 Hamburg',
+			dataStart: '26.02.2021, ab 07:00 Uhr',
+			dataFinish: '27.02.2021, 01:00 Uhr',
+			routes: '42km /60km',
+			altitude: '150m/370m',
 		},
 		eventHighlights: [
-			"Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
-			"Hafencity mit Elbphilharmonie",
-			"Elbufer mit Hafenblick",
-			"Außenalster & Binnenalster",
-			"Speicherstadt",
-			"Blankenese",
+			'Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!',
+			'Hafencity mit Elbphilharmonie',
+			'Elbufer mit Hafenblick',
+			'Außenalster & Binnenalster',
+			'Speicherstadt',
+			'Blankenese',
 		],
-		paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
+		paket: ['42 km (mit T-Shirt)', '42 km (nur Teilnahme)', '60 km (mit T-Shirt)', '60 km (nur Teilnahme)'],
 	},
 	ruhrgebiet: {
 		eventDetails: {
-			title: "Mammutmarsch Ruhrgebiet - 30/55 km",
-			start: "Landschaftspark Duisburg – Nord, Emscherstraße 71, 47137 Duisburg",
+			title: 'Mammutmarsch Ruhrgebiet - 30/55 km',
+			start: 'Landschaftspark Duisburg – Nord, Emscherstraße 71, 47137 Duisburg',
 			dataStart: `23.04.2022 ab 07:30 Uhr (55 KM) ab 10:30 Uhr (30 KM)`,
-			dataFinish: "24:00 Uhr",
-			routes: "30km /55km",
-			altitude: "130m/270m",
+			dataFinish: '24:00 Uhr',
+			routes: '30km /55km',
+			altitude: '130m/270m',
 		},
 		eventHighlights: [
-			"100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
-			"Start im alten Eisenwerk LaPaDu",
-			"Zeche Zollverein (55 KM)",
-			"Ausblick vom Tetraeder (55 KM)",
-			"Gasometer Oberhausen",
-			"Zeche Osterfeld",
+			'100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets',
+			'Start im alten Eisenwerk LaPaDu',
+			'Zeche Zollverein (55 KM)',
+			'Ausblick vom Tetraeder (55 KM)',
+			'Gasometer Oberhausen',
+			'Zeche Osterfeld',
 		],
-		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
 	},
 	munchen: {
 		eventDetails: {
-			title: "Mammutmarsch  München - 30/55 km",
+			title: 'Mammutmarsch  München - 30/55 km',
 			start: `Südbad, Seestraße 20, 82327 Tutzing`,
 			dataStart: ` 26.03.2022 ab 07:30 Uhr (55 KM) ab 09:30 Uhr (30 KM)`,
-			dataFinish: "24:00 Uhr",
-			routes: "30km /55km",
-			altitude: "270m/550m",
+			dataFinish: '24:00 Uhr',
+			routes: '30km /55km',
+			altitude: '270m/550m',
 		},
 		eventHighlights: [
-			"Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
-			"Start und Ziel am Starnberger See",
-			"Ammersee",
-			"Kloster Andechs",
-			"Alpenblick",
-			"Viel Natur",
+			'Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.',
+			'Start und Ziel am Starnberger See',
+			'Ammersee',
+			'Kloster Andechs',
+			'Alpenblick',
+			'Viel Natur',
 		],
-		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+		paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
 	},
 }
 
@@ -1149,41 +1149,40 @@ let jqueryLoaded2 = setInterval(() => {
 							case 0:
 								document.querySelectorAll('.radio-container')[0].click()
 								console.log(+indexItem)
-								break;
+								break
 							case 1:
 								document.querySelectorAll('.radio-container')[2].click()
 								console.log(+indexItem)
-								break;
+								break
 							case 2:
 								document.querySelectorAll('.radio-container')[1].click()
 								console.log(+indexItem)
-								break;
+								break
 							case 3:
 								document.querySelectorAll('.radio-container')[3].click()
 								console.log(+indexItem)
-								break;
+								break
 							default:
-								break;
+								break
 						}
 					}
 				})
 
-				$('.total_block button').click(function() {
-					if($('.item.selected').length === 0) {
+				$('.total_block button').click(function () {
+					if ($('.item.selected').length === 0) {
 						$('.fourth_block').addClass('alarmed')
 						$('.total_block .alarm').slideDown()
 						$('.total_block button').attr('disabled', true)
 
 
-
 						console.log('Proceed to checkout click')
 
-						window.dataLayer = window.dataLayer || [];
+						window.dataLayer = window.dataLayer || []
 						dataLayer.push({
 							'event': 'event-to-ga',
 							'eventCategory': 'Exp: PDP improvements',
-							'eventAction': 'Proceed to checkout click'
-						});
+							'eventAction': 'Proceed to checkout click',
+						})
 
 					} else {
 						// let indexItem = $('.fourth_block .item').index();
@@ -1225,19 +1224,22 @@ document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
 
 console.log('loaded')
 
-;(function(h,o,t,j,a,r){
-	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-	h._hjSettings={hjid:1191175,hjsv:6};
-	a=o.getElementsByTagName('head')[0];
-	r=o.createElement('script');r.async=1;
-	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-	a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('event', 'pdp_improvements');
+;(function (h, o, t, j, a, r) {
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 1191175, hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+hj('event', 'pdp_improvements')
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
 	'event': 'event-to-ga',
 	'eventCategory': 'Exp: PDP improvements',
-	'eventAction': 'loaded'
-});
+	'eventAction': 'loaded',
+})
