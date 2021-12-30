@@ -1132,16 +1132,15 @@ let jqueryLoaded2 = setInterval(() => {
 				})
 
 				sliderFor.on("swipe", function()  {
+					mainSwipeEvent()
+				})
 
-					window.dataLayer = window.dataLayer || [];
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp: PDP improvements',
-						'eventAction': 'Main image scrolled'
-					});
+				$('.slick-arrow').click(function() {
+					mainSwipeEvent()
+				})
 
-					console.log('eventAction: sliderFor Main image scrolled')
-
+				$('.slider_nav .slick-slide').click(function() {
+					mainSwipeEvent()
 				})
 
 				let mySlider = $('.first_block .slider_nav').slick({
@@ -1150,19 +1149,6 @@ let jqueryLoaded2 = setInterval(() => {
 					arrows: false,
 					asNavFor: '.slider-for',
 					focusOnSelect: true,
-				})
-
-				mySlider.on("swipe", function() {
-
-					window.dataLayer = window.dataLayer || [];
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp: PDP improvements',
-						'eventAction': 'Main image scrolled'
-					});
-
-					console.log('eventAction: Main image scrolled')
-
 				})
 
 				$('.subject').click(function () {
@@ -1285,6 +1271,17 @@ let jqueryLoaded2 = setInterval(() => {
 		}, 100)
 	}
 }, 100)
+
+function mainSwipeEvent() {
+	window.dataLayer = window.dataLayer || [];
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp: PDP improvements',
+		'eventAction': 'Main image scrolled'
+	});
+
+	console.log('eventAction: sliderFor Main image scrolled')
+}
 
 document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
 	document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
