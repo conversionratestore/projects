@@ -17,13 +17,11 @@ let style = `
             padding: 30px 20px;
             border-radius: 12px;
             background-color:#fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
-            width: 485px;
-        }        
+            width: 95%;
+            margin: 20px auto;
+            position: relative;
+        }
         .popup_sub p {
             line-height: 1;
         }    
@@ -74,7 +72,7 @@ let style = `
             color: white;
             text-transform: uppercase;
             font-size: 12px;
-            padding: 12px 45px;
+            padding: 17px 45px;
             border: none;
             border-radius: 40px;
             background-color: #4090D1;
@@ -96,8 +94,7 @@ let style = `
             border-radius: 30px;
             font-weight: 700;
             font-family: 'Roboto', sans-serif;
-            margin-top: auto;
-            cursor: pointer;
+            margin-top: 30px;
             text-align: center;
         }
         
@@ -125,9 +122,9 @@ let block = `
             <img class="logo" src="https://conversionratestore.github.io/projects/somnifix/img/logo.svg" alt="logo">
             <div class="user">
                 <h3>Looks like this is your repeat purchase</h3>
-                <p>We are thrilled to know that Somnifix strips help you improve your sleep.</p>    
+                <p>We are thrilled to know that Somnifix strips<br>help you improve your sleep.</p>    
             </div>
-            <p class="new_user">Did you know that<br><b>you can save 10% off on this purchase</b><br>by subscribing to shipment every 3 month.</p>
+            <p class="new_user">Did you know that<br><b>you can save 10% off<br>on this purchase</b><br>by subscribing to shipment<br>every 3 month.</p>
             <img src="https://conversionratestore.github.io/projects/somnifix/img/popup-img.png" alt="product">
             <p class="user"><b>Get 10% off on this purchase</b><br>by subscribing to shipment every <span>3</span> months.</p>
             <p class="cancel_anytime">Don’t worry, you can unsubscribe anytime.</p>
@@ -139,7 +136,7 @@ let block = `
 document.body.insertAdjacentHTML('afterbegin', style)
 document.body.insertAdjacentHTML('beforeend', block)
 
-document.querySelectorAll('.to_checkout')[0].insertAdjacentHTML('afterend', `<div class="popup_btn">add to cart</div>`)
+document.querySelectorAll('.to_checkout')[1].insertAdjacentHTML('afterend', `<div class="popup_btn">add to cart</div>`)
 
 let id = localStorage.getItem('customer')
 if(id) {
@@ -169,7 +166,7 @@ $('.popup_sub .close').click(function () {
         'eventCategory': 'Exp: Popup with subscription offer',
         'eventAction': 'Click on cross button'
     });
-    document.querySelectorAll('.to_checkout')[0].click()
+    document.querySelectorAll('.to_checkout')[1].click()
 })
 
 $('.dark_bg_exp').click(function (e) {
@@ -181,26 +178,26 @@ $('.dark_bg_exp').click(function (e) {
             'eventCategory': 'Exp: Popup with subscription offer',
             'eventAction': 'Click on area around Pop-Up'
         });
-        document.querySelectorAll('.to_checkout')[0].click()}
+        document.querySelectorAll('.to_checkout')[1].click()}
 })
 
 $('.active_sub').click(function () {
-    $('.subscribe-custom__checkbox').eq(0).prop('checked', true)
+    $('.subscribe-custom__checkbox').eq(1).prop('checked', true)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
         'eventCategory': 'Exp: Popup with subscription offer',
         'eventAction': 'Click on "Get 10% off by subscribing button'
     });
-    document.querySelectorAll('.to_checkout')[0].click()
+    document.querySelectorAll('.to_checkout')[1].click()
 })
 
 $('.popup_btn').click(function () {
-    if(!$('.subscribe-custom__checkbox').eq(0).prop('checked')) {
-        if ($('.swatchCustom__item[data-title="1 Pack"]').hasClass('swatchCustom__item--active')) {
-            document.querySelectorAll('.to_checkout')[0].click()
+    if(!$('.subscribe-custom__checkbox').eq(1).prop('checked')) {
+        if ($('.select_pack .choosen').text().includes('1-month')) {
+            document.querySelectorAll('.to_checkout')[1].click()
         } else {
-            if ($('.swatchCustom__item[data-title="12 Pack"]').hasClass('swatchCustom__item--active')) {
+            if ($('.select_pack .choosen').text().includes('12-month')) {
                 $('.popup_sub img+p span').text('12')
             }
 
@@ -213,7 +210,7 @@ $('.popup_btn').click(function () {
             });
         }
     } else {
-        document.querySelectorAll('.to_checkout')[0].click()
+        document.querySelectorAll('.to_checkout')[1].click()
     }
 })
 
