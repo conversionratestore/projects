@@ -993,7 +993,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>${cityObj.paket[0]}<img
+                        <p class="paketname">${cityObj.paket[0]}<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -1015,7 +1015,7 @@ const page = /*html*/ `
                             <input type="radio" name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>${cityObj.paket[1]}</p>
+                        <p class="paketname">${cityObj.paket[1]}</p>
                     </div>
                     <p class="item_price">€47.50</p>
                 </div>
@@ -1034,7 +1034,7 @@ const page = /*html*/ `
                             <input type="radio"   name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>${cityObj.paket[2]}<img
+                        <p class="paketname">${cityObj.paket[2]}<img
                                 src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt.png"
                                 alt="tshirt"></p>
                     </div>
@@ -1056,7 +1056,7 @@ const page = /*html*/ `
                             <input type="radio"  name="radio">
                             <span class="checkmark"></span>
                         </label>
-                        <p>${cityObj.paket[3]}</p>
+                        <p class="paketname">${cityObj.paket[3]}</p>
                     </div>
                     <p class="item_price">€57.50</p>
                 </div>
@@ -1202,9 +1202,19 @@ let jqueryLoaded2 = setInterval(() => {
 								break
 						}
 
-						// // $(this).find('.visible p')
-						// $('.fourth_block .visible p')
-						// .fourth_block .visible p
+						// $(this).find('.visible p')
+
+						window.dataLayer = window.dataLayer || [];
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': `$(this).find('.paketname').text() selected`
+						});
+
+						console.log(`$(this).find('.paketname').text() selected`)
+
+
+
 					}
 				})
 
