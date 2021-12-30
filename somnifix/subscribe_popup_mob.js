@@ -136,83 +136,90 @@ let block = `
 document.body.insertAdjacentHTML('afterbegin', style)
 document.body.insertAdjacentHTML('beforeend', block)
 
-document.querySelectorAll('.to_checkout')[1].insertAdjacentHTML('afterend', `<div class="popup_btn">add to cart</div>`)
+let start = setInterval(function () {
+    if(document.querySelectorAll('.to_checkout')[1]) {
+        clearInterval(start)
+        document.querySelectorAll('.to_checkout')[1].insertAdjacentHTML('afterend', `<div class="popup_btn">add to cart</div>`)
 
-let id = localStorage.getItem('customer')
-if(id) {
-    $.ajax({
-        type: 'POST',
-        url: "https://somnifix-recharge.herokuapp.com/somnifix/getOrders.php",
-        data: {cid: id},
-        dataType: "JSON",
-        success: function (result) {
-            console.log(result)
-            if (!result.success) {
-                $('.user').css('display', 'block')
-                $('.new_user').css('display', 'none')
-                $('.cancel_anytime').text('Cancel anytime')
-                $('.popup_sub img:not(.logo)').css('height', '148px').css('width', '148px')
-            }
+        let id = localStorage.getItem('customer')
+        if(id) {
+            $.ajax({
+                type: 'POST',
+                url: "https://somnifix-recharge.herokuapp.com/somnifix/getOrders.php",
+                data: {cid: id},
+                dataType: "JSON",
+                success: function (result) {
+                    console.log(result)
+                    if (!result.success) {
+                        $('.user').css('display', 'block')
+                        $('.new_user').css('display', 'none')
+                        $('.cancel_anytime').text('Cancel anytime')
+                        $('.popup_sub img:not(.logo)').css('height', '148px').css('width', '148px')
+                    }
+                }
+            })
         }
-    })
-}
 
 
-$('.popup_sub .close').click(function () {
-    $('.dark_bg_exp').removeClass('active')
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Popup with subscription offer',
-        'eventAction': 'Click on cross button'
-    });
-    document.querySelectorAll('.to_checkout')[1].click()
-})
-
-$('.dark_bg_exp').click(function (e) {
-    if(e.target === this){
-        $('.dark_bg_exp').removeClass('active')
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Popup with subscription offer',
-            'eventAction': 'Click on area around Pop-Up'
-        });
-        document.querySelectorAll('.to_checkout')[1].click()}
-})
-
-$('.active_sub').click(function () {
-    $('.subscribe-custom__checkbox').eq(1).prop('checked', true)
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp: Popup with subscription offer',
-        'eventAction': 'Click on "Get 10% off by subscribing button'
-    });
-    document.querySelectorAll('.to_checkout')[1].click()
-})
-
-$('.popup_btn').click(function () {
-    if(!$('.subscribe-custom__checkbox').eq(1).prop('checked')) {
-        if ($('.select_pack .choosen').text().includes('1-month')) {
-            document.querySelectorAll('.to_checkout')[1].click()
-        } else {
-            if ($('.select_pack .choosen').text().includes('12-month')) {
-                $('.popup_sub img+p span').text('12')
-            }
-
-            $('.dark_bg_exp').addClass('active')
+        $('.popup_sub .close').click(function () {
+            $('.dark_bg_exp').removeClass('active')
             window.dataLayer = window.dataLayer || [];
             dataLayer.push({
                 'event': 'event-to-ga',
                 'eventCategory': 'Exp: Popup with subscription offer',
-                'eventAction': 'Pop-Up appearence'
+                'eventAction': 'Click on cross button'
             });
-        }
-    } else {
-        document.querySelectorAll('.to_checkout')[1].click()
+            document.querySelectorAll('.to_checkout')[1].click()
+        })
+
+        $('.dark_bg_exp').click(function (e) {
+            if(e.target === this){
+                $('.dark_bg_exp').removeClass('active')
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp: Popup with subscription offer',
+                    'eventAction': 'Click on area around Pop-Up'
+                });
+                document.querySelectorAll('.to_checkout')[1].click()}
+        })
+
+        $('.active_sub').click(function () {
+            $('.subscribe-custom__checkbox').eq(1).prop('checked', true)
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Popup with subscription offer',
+                'eventAction': 'Click on "Get 10% off by subscribing button'
+            });
+            document.querySelectorAll('.to_checkout')[1].click()
+        })
+
+        $('.popup_btn').click(function () {
+            if(!$('.subscribe-custom__checkbox').eq(1).prop('checked')) {
+                if ($('.select_pack .choosen').text().includes('1-month')) {
+                    document.querySelectorAll('.to_checkout')[1].click()
+                } else {
+                    if ($('.select_pack .choosen').text().includes('12-month')) {
+                        $('.popup_sub img+p span').text('12')
+                    }
+
+                    $('.dark_bg_exp').addClass('active')
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Popup with subscription offer',
+                        'eventAction': 'Pop-Up appearence'
+                    });
+                }
+            } else {
+                document.querySelectorAll('.to_checkout')[1].click()
+            }
+        })
     }
-})
+}, 100)
+
+
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
