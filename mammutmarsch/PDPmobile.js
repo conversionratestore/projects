@@ -1058,7 +1058,7 @@ const page = /*html*/ `
             </div>
             <p class="alarm"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/alarm.svg" alt="alarm">Bitte wähle ein Paket aus</p>
             <div class="btn-wrap">
-                <button>Anmeldung abschlie&szlig;en</button>
+                <button>Anmeldung abschliesen</button>
             </div>
         </div>
         </div>
@@ -1138,9 +1138,10 @@ let jqueryLoaded2 = setInterval(() => {
 						$(this).closest('li').addClass('show')
 
 					} else {
-						$(this).closest('li').find('.hidden_text').slideUp()
-						$(".second_block_inform .show").removeClass('show')
+
 						$(".second_block_inform .show").find('.hidden_text').slideUp()
+						$(".second_block_inform .show").removeClass('show')
+
 					}
 				})
 
