@@ -1139,10 +1139,6 @@ let jqueryLoaded2 = setInterval(() => {
 					mainSwipeEvent()
 				})
 
-				$('.slider_nav .slick-slide').click(function() {
-					mainSwipeEvent()
-				})
-
 				let mySlider = $('.first_block .slider_nav').slick({
 					slidesToShow: 4,
 					slidesToScroll: 1,
@@ -1152,6 +1148,10 @@ let jqueryLoaded2 = setInterval(() => {
 				})
 
 				mySlider.on("swipe", function()  {
+					mainSwipeEvent()
+				})
+
+				$('.slider_nav .slick-slide').click(function() {
 					mainSwipeEvent()
 				})
 
