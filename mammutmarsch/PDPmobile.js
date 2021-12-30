@@ -1,24 +1,26 @@
-const script = document.createElement("script")
-script.src = "https://code.jquery.com/jquery-3.4.1.min.js"
+const script = document.createElement('script')
+script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
 script.async = false
-document.getElementsByTagName("head")[0].appendChild(script)
+document.getElementsByTagName('head')[0].appendChild(script)
 
 let jqueryLoaded = setInterval(() => {
-  console.log("ssss")
+	console.log('ssss')
 
-  if (typeof jQuery === "function") {
-    clearInterval(jqueryLoaded)
+	if (typeof jQuery === 'function') {
+		clearInterval(jqueryLoaded)
 
-    let scriptCustom = document.createElement("script")
-    scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-    scriptCustom.async = false
-    document.head.appendChild(scriptCustom)
+		let scriptCustom = document.createElement('script')
+		scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
+		scriptCustom.async = false
+		document.head.appendChild(scriptCustom)
 
-    let scriptCustomStyle = document.createElement("link")
-    scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-    scriptCustomStyle.rel = "stylesheet"
-    document.head.appendChild(scriptCustomStyle)
-  }
+		let scriptCustomStyle = document.createElement('link')
+		scriptCustomStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
+		scriptCustomStyle.rel = 'stylesheet'
+		document.head.appendChild(scriptCustomStyle)
+
+
+	}
 }, 100)
 
 const style = /*html*/ `
@@ -191,9 +193,8 @@ const style = /*html*/ `
 
 	.show .hidden_text{
 		display: block;
+		margin-top: 11px;
 	} 
-	
-	
 	
 	/*.show svg {*/
 	/*	position: relative;*/
@@ -353,7 +354,11 @@ const style = /*html*/ `
     /*third_block */
     
     .third_block  {
-    	padding: 20px;
+    	padding: 20px 0;
+    }
+    
+    .third_block > ol {
+    	padding-left: 20px;
     }
 
     .third_block h2{
@@ -382,7 +387,7 @@ const style = /*html*/ `
     }
 
     .third_block > ol li {
-        list-style: auto;
+        list-style: inherit;
     }
     
     /*fourth_block*/
@@ -585,8 +590,9 @@ const style = /*html*/ `
 			display: flex;
 			justify-content: space-between;
 			background-color: #F5F5F5;
-        	padding: 10px;
+        	padding: 15px;
         	align-items: center;
+        	margin: 0 -15px;
 		}
 		
 		.total_block .btn-wrap {
@@ -618,7 +624,7 @@ const style = /*html*/ `
 			border-radius: 29px;
 			padding: 13px;
 			border: none;
-			margin: 15px 0;
+			margin-top: 15px;
 			width: 100%;
 			font-size: 14px;
 			color: #333333;
@@ -653,86 +659,84 @@ const style = /*html*/ `
 </style>
 `
 
-const pathProduct = window.location.pathname.split("/50-km-marsch")[1]
+const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
 let product
 
 switch (pathProduct) {
-  case "/mammut-hamburg/":
-    product = "hamburg"
-    break
-  case "/ruhr/":
-    product = "ruhrgebiet"
-    break
-  case "/mammutmarsch-muenchen/":
-    product = "munchen"
-    break
-  default:
-    break
+	case '/mammut-hamburg/':
+		product = 'hamburg'
+		break
+	case '/ruhr/':
+		product = 'ruhrgebiet'
+		break
+	case '/mammutmarsch-muenchen/':
+		product = 'munchen'
+		break
+	default:
+		break
 }
 
 const version = {
-  hamburg: {
-    eventDetails: {
-      title: `Mammutmarsch<br>Hamburg – 42/60 km`,
-      start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
-      dataStart: "26.02.2021, ab 07:00 Uhr",
-      dataFinish: "27.02.2021, 01:00 Uhr",
-      routes: "42km /60km",
-      altitude: "150m/370m",
-    },
-    eventHighlights: [
-      "Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
-      "Hafencity mit Elbphilharmonie",
-      "Elbufer mit Hafenblick",
-      "Außenalster & Binnenalster",
-      "Speicherstadt",
-      "Blankenese",
-    ],
-    paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
-  },
-  ruhrgebiet: {
-    eventDetails: {
-      title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
-      start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
-      dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
-      dataFinish: "24:00 Uhr",
-      routes: "30km /55km",
-      altitude: "130m/270m",
-    },
-    eventHighlights: [
-      "100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
-      "Start im alten Eisenwerk LaPaDu",
-      "Zeche Zollverein (55 KM)",
-      "Ausblick vom Tetraeder (55 KM)",
-      "Gasometer Oberhausen",
-      "Zeche Osterfeld",
-    ],
-    paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
-  },
-  munchen: {
-    eventDetails: {
-      title: `Mammutmarsch <br>München - 30/55 km`,
-      start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
-      dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
-      dataFinish: "24:00 Uhr",
-      routes: "30km /55km",
-      altitude: "270m/550m",
-    },
-    eventHighlights: [
-      "Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
-      "Start und Ziel am Starnberger See",
-      "Ammersee",
-      "Kloster Andechs",
-      "Alpenblick",
-      "Viel Natur",
-    ],
-    paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
-  },
+	hamburg: {
+		eventDetails: {
+			title: `Mammutmarsch<br>Hamburg – 42/60 km`,
+			start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
+			dataStart: "26.02.2021, ab 07:00 Uhr",
+			dataFinish: "27.02.2021, 01:00 Uhr",
+			routes: "42km /60km",
+			altitude: "150m/370m",
+		},
+		eventHighlights: [
+			"Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!",
+			"Hafencity mit Elbphilharmonie",
+			"Elbufer mit Hafenblick",
+			"Außenalster & Binnenalster",
+			"Speicherstadt",
+			"Blankenese",
+		],
+		paket: ["42 km (mit T-Shirt)", "42 km (nur Teilnahme)", "60 km (mit T-Shirt)", "60 km (nur Teilnahme)"],
+	},
+	ruhrgebiet: {
+		eventDetails: {
+			title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
+			start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
+			dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
+			dataFinish: "24:00 Uhr",
+			routes: "30km /55km",
+			altitude: "130m/270m",
+		},
+		eventHighlights: [
+			"100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets",
+			"Start im alten Eisenwerk LaPaDu",
+			"Zeche Zollverein (55 KM)",
+			"Ausblick vom Tetraeder (55 KM)",
+			"Gasometer Oberhausen",
+			"Zeche Osterfeld",
+		],
+		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+	},
+	munchen: {
+		eventDetails: {
+			title: `Mammutmarsch <br>München - 30/55 km`,
+			start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
+			dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
+			dataFinish: "24:00 Uhr",
+			routes: "30km /55km",
+			altitude: "270m/550m",
+		},
+		eventHighlights: [
+			"Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.",
+			"Start und Ziel am Starnberger See",
+			"Ammersee",
+			"Kloster Andechs",
+			"Alpenblick",
+			"Viel Natur",
+		],
+		paket: ["30 km (mit T-Shirt)", "30 km (nur Teilnahme)", "55 km (mit T-Shirt)", "55 km (nur Teilnahme)"],
+	},
 }
 
 const cityObj = version[product]
-
-console.log(cityObj.title)
 
 const page = /*html*/ `
     <main class="custom_main">
@@ -1041,199 +1045,172 @@ const page = /*html*/ `
     </main>
 `
 
-document.body.insertAdjacentHTML("afterbegin", style)
+document.body.insertAdjacentHTML('afterbegin', style)
 // document.body.insertAdjacentHTML('afterbegin', page)
-document.querySelector("#main").insertAdjacentHTML("afterbegin", page)
-
-// document.body.addEventListener('click', function (e) {
-// 	if (!e.target.closest('.second_block_inform li')?.classList.contains('show')) {
-// 		removeShowClass()
-//
-// 		e.target.closest('.second_block_inform li')?.classList.add('show')
-// 	} else {
-// 		removeShowClass()
-// 	}
-// })
+document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
 
 let jqueryLoaded2 = setInterval(() => {
-  if (typeof jQuery === "function") {
-    clearInterval(jqueryLoaded2)
 
-    let slickInterval = setInterval(() => {
-      if (
-        typeof jQuery(".slider_reviews .slider_nav").slick === "function" &&
-        document.querySelector(".slider_reviews .slider_nav") &&
-        document.querySelector(".first_block .slider_nav")
-      ) {
-        clearInterval(slickInterval)
+	if (typeof jQuery === 'function') {
+		clearInterval(jqueryLoaded2)
 
-        // setTimeout(() => {
-        $(".slider_reviews .slider_nav").slick({
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-          focusOnSelect: true,
-          dots: true,
-        })
+		let slickInterval = setInterval(() => {
+			if (
+				typeof jQuery('.slider_reviews .slider_nav').slick === 'function' &&
+				document.querySelector('.slider_reviews .slider_nav') &&
+				document.querySelector('.first_block .slider_nav')
+			) {
+				clearInterval(slickInterval)
 
-        $(".first_block .slider-for").slick({
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          fade: true,
-          asNavFor: ".first_block .slider_nav",
-          prevArrow: `
+				$('.slider_reviews .slider_nav').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					arrows: false,
+					focusOnSelect: true,
+					dots: true,
+				})
+
+				$('.first_block .slider-for').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					fade: true,
+					asNavFor: '.first_block .slider_nav',
+					prevArrow: `
 					<div class="prev" >
 						<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					        <path d="M12.5098 1.8701L10.7298 0.100098L0.839844 10.0001L10.7398 19.9001L12.5098 18.1301L4.37984 10.0001L12.5098 1.8701Z" fill="#333333" fill-opacity="0.8"/>
 					        </svg>
 					</div>
 				`,
-          nextArrow: `
+					nextArrow: `
 <div class="next" >
 			<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         		<path d="M0.490234 18.1301L2.26023 19.9001L12.1602 10.0001L2.26023 0.100098L0.490234 1.8701L8.62023 10.0001L0.490234 18.1301Z" fill="#333333" fill-opacity="0.8"/>
         	</svg>
         	</div>
         `,
-        })
-        $(".first_block .slider_nav").slick({
-          slidesToShow: 4,
-          slidesToScroll: 1,
-          arrows: false,
-          asNavFor: ".slider-for",
-          focusOnSelect: true,
-        })
+				})
+				$('.first_block .slider_nav').slick({
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					arrows: false,
+					asNavFor: '.slider-for',
+					focusOnSelect: true,
+				})
 
-        $(".subject").click(function () {
-          $(this).closest("li").toggleClass("hide-custom")
-          if ($(this).closest("li").hasClass("hide-custom")) {
-            $(this).closest("li").find(".info").slideUp()
-          } else {
-            $(this).closest("li").find(".info").slideDown()
-          }
-        })
+				$('.subject').click(function () {
+					$(this).closest('li').toggleClass('hide-custom')
+					if ($(this).closest('li').hasClass('hide-custom')) {
+						$(this).closest('li').find('.info').slideUp()
+					} else {
+						$(this).closest('li').find('.info').slideDown()
+					}
+				})
 
-        $(".second_block_inform ul li div svg").click(function () {
-          if (!$(this).closest("li").hasClass("show")) {
-            $(this).closest("li").find(".hidden_text").slideDown()
-            $(this).closest("li").addClass("show")
-          } else {
-            $(this).closest("li").find(".hidden_text").slideUp()
-            $(this).closest("li").removeClass("show")
-          }
-        })
+				$('.second_block_inform ul li div svg').click(function () {
+					if (!$(this).closest('li').hasClass('show')) {
+						$(this).closest('li').find('.hidden_text').slideDown()
+						$(this).closest('li').addClass('show')
+					} else {
+						$(this).closest('li').find('.hidden_text').slideUp()
+						$(".second_block_inform .show").removeClass('show')
+					}
+				})
 
-        $(".fourth_block .item").click(function () {
-          if (!$(this).hasClass("selected")) {
-            let indexItem = $(this).index()
+				$('.fourth_block .item').click(function () {
+					if (!$(this).hasClass('selected')) {
+						let indexItem = $(this).index()
 
-            $(".fourth_block .selected .hidden_custom").slideUp()
-            $(".fourth_block .selected").removeClass("selected")
+						$('.fourth_block .selected .hidden_custom').slideUp()
+						$('.fourth_block .selected').removeClass('selected')
 
-            $(this).find(".hidden_custom").slideDown()
-            $(this).addClass("selected")
+						$(this).find('.hidden_custom').slideDown()
+						$(this).addClass('selected')
 
-            $(".price-wrap .price").text($(this).find(".item_price").text())
+						$('.price-wrap .price').text($(this).find('.item_price').text())
 
-            $(".total_block .alarm").slideUp()
-            $(".fourth_block").removeClass("alarmed")
+						$('.total_block .alarm').slideUp()
+						$('.fourth_block').removeClass('alarmed')
 
-            $(".total_block button").attr("disabled", false)
+						$('.total_block button').attr('disabled', false)
 
-            switch (+indexItem) {
-              case 0:
-                document.querySelectorAll(".radio-container")[0].click()
-                console.log(+indexItem)
-                break
-              case 1:
-                document.querySelectorAll(".radio-container")[2].click()
-                console.log(+indexItem)
-                break
-              case 2:
-                document.querySelectorAll(".radio-container")[1].click()
-                console.log(+indexItem)
-                break
-              case 3:
-                document.querySelectorAll(".radio-container")[3].click()
-                console.log(+indexItem)
-                break
-              default:
-                break
-            }
-          }
-        })
+						switch (+indexItem) {
+							case 0:
+								document.querySelectorAll('.radio-container')[0].click()
+								console.log(+indexItem)
+								break
+							case 1:
+								document.querySelectorAll('.radio-container')[2].click()
+								console.log(+indexItem)
+								break
+							case 2:
+								document.querySelectorAll('.radio-container')[1].click()
+								console.log(+indexItem)
+								break
+							case 3:
+								document.querySelectorAll('.radio-container')[3].click()
+								console.log(+indexItem)
+								break
+							default:
+								break
+						}
 
-        $(".total_block button").click(function () {
-          if ($(".item.selected").length === 0) {
-            $(".fourth_block").addClass("alarmed")
-            $(".total_block .alarm").slideDown()
-            $(".total_block button").attr("disabled", true)
+						// $(this).find('.visible p')
+						$('.fourth_block .visible p')
+						.fourth_block .visible p
+					}
+				})
 
-            console.log("Proceed to checkout click")
+				$('.total_block button').click(function () {
+					if ($('.item.selected').length === 0) {
+						$('.fourth_block').addClass('alarmed')
+						$('.total_block .alarm').slideDown()
+						$('.total_block button').attr('disabled', true)
 
-            window.dataLayer = window.dataLayer || []
-            dataLayer.push({
-              event: "event-to-ga",
-              eventCategory: "Exp: PDP improvements",
-              eventAction: "Proceed to checkout click",
-            })
-          } else {
-            // let indexItem = $('.fourth_block .item').index();
-            //
-            // switch (+indexItem) {
-            // 	case 0:
-            // 		document.querySelectorAll('.radio-container')[0].click()
-            // 		break;
-            // 	case 1:
-            // 		document.querySelectorAll('.radio-container')[2].click()
-            // 		break;
-            // 	case 2:
-            // 		document.querySelectorAll('.radio-container')[1].click()
-            // 		break;
-            // 	case 3:
-            // 		document.querySelectorAll('.radio-container')[3].click()
-            // 		break;
-            // 	default:
-            // 		break;
-            // }
+						console.log('Proceed to checkout click')
 
-            document.querySelector("#proceed_to_checkout").click()
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': 'Proceed to checkout click',
+						})
 
-            $(".total_block button").attr("disabled", false)
-            $(".total_block .alarm").slideUp()
-            $(".fourth_block").removeClass("alarmed")
-          }
-        })
+					} else {
+						document.querySelector('#proceed_to_checkout').click()
 
-        // }, 1000)
-      }
-    }, 100)
-  }
+						$('.total_block button').attr('disabled', false)
+						$('.total_block .alarm').slideUp()
+						$('.fourth_block').removeClass('alarmed')
+					}
+				})
+			}
+		}, 100)
+	}
 }, 100)
 
-document.querySelectorAll(".first_block .slider_nav img").forEach((el) => {
-  document.querySelector(".first_block .slider-for").insertAdjacentHTML("beforeend", `<img class="product1" src="${el.src}" alt="photo">`)
+document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
+	document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
 })
 
-console.log("loaded")
+console.log('loaded')
+
 ;(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      ;(h.hj.q = h.hj.q || []).push(arguments)
-    }
-  h._hjSettings = { hjid: 1191175, hjsv: 6 }
-  a = o.getElementsByTagName("head")[0]
-  r = o.createElement("script")
-  r.async = 1
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-  a.appendChild(r)
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-hj("event", "pdp_improvements")
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 1191175, hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+hj('event', 'pdp_improvements')
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp: PDP improvements",
-  eventAction: "loaded",
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp: PDP improvements',
+	'eventAction': 'loaded',
 })
