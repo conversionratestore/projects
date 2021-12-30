@@ -1058,7 +1058,7 @@ const page = /*html*/ `
             </div>
             <p class="alarm"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/alarm.svg" alt="alarm">Bitte wähle ein Paket aus</p>
             <div class="btn-wrap">
-                <button>Anmeldung abschließen</button>
+                <button>Anmeldung abschlie&szlig;en</button>
             </div>
         </div>
         </div>
