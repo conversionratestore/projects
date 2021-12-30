@@ -677,8 +677,8 @@ const style = /*html*/ `
 			background-color: #E1E1E1 !important;
 		}
 		
-	.slick-current {
-		display: none;
+	.slider_nav .slick-current {
+		display: none !important;
 	}
 </style>
 `
@@ -1086,12 +1086,7 @@ let jqueryLoaded2 = setInterval(() => {
 			) {
 				clearInterval(slickInterval)
 
-				$('.slider_reviews .slider_nav').on('click',{
-					beforeChange: function (event, slick, current_slide_index, next_slide_index) {
-						$('.slider_nav .slick-slide').removeClass('slick-main-active');
-						$('.slider_nav .slick-slide[data-index=' + next_slide_index + ']').addClass('slick-main-active');
-					}
-				}).slick({
+				$('.slider_reviews .slider_nav').slick({
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					arrows: false,
