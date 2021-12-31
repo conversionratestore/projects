@@ -243,7 +243,7 @@ let styles = /*html*/ `
     @media only screen and (max-width: 992px) {
         .timeline_title {
             font-size: 10px;
-            max-width: 140px;
+            
         }
         .slide[data-point="6"] {
             padding-right: 68px;
