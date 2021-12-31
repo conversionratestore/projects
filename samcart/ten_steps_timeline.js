@@ -127,6 +127,25 @@ let styles = /*html*/ `
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_1.svg");
         width: 34px;
     }
+
+    .slide[data-point="3"] {
+        padding-right: 60px;
+    }
+
+     .slide[data-point="3"]:before {
+        background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_3.svg");
+        width: 34px;
+    }
+
+    .slide[data-point="4"] {
+        padding-right: 80px;
+    }
+
+    .slide[data-point="4"]:before {
+        background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_4.svg");
+        width: 34px;
+    }
+
      .slide[data-point="0"]:before {
         content: none;
     }
@@ -267,31 +286,19 @@ let styles = /*html*/ `
     }
 </style>`
 let arrTooltip = {
-  "2:44": [`The biggest <br>mistake & <br>how to avoid it`, `The Biggest Mistake I Made When Launching My First Online Course, and How You Can Avoid It`, 5],
-  "11:50": [`Become an expert <br>in the field with the '1 Step Rule'`, `The '1 Step Rule' that instantly turns you into an expert...with a course people will line up to buy`, 2],
-  "17:34": [
-    `The "1 Page Funnel" that sells your course for you`,
-    `The simple '1 Page Funnel' that sells your course for you around the clock (even if you suck at selling, lol)`,
-    5,
-  ],
-  "26:22": [`Today's #1 Traffic Source that you can tap in`, `Today's #1 Traffic Source, and how to quickly tap into it & get dozens of new sales each day`, 2],
-  "33:02": [
-    `How to Launch <br>Your Course <br>in 72 Hours`,
-    `The secret to launching your online course business in less than 72 hours (even if you hate technology or don't have a team helping you!)`,
-    6,
-  ],
-  "45:50": [`What you get with <br>today's special <br>offer`, `Discover how many awesome and helpful things you will get with today's special offer`, 2],
-  "48:29": [
-    `<span class="w-bold">Masterclass:</span> Launch <br>an Online Business <br>With 1 Page`,
-    `The '1 Page Masterclass' Bonus where you'll discover how to launch an online business with 1 page`,
-    2,
-  ],
-  "51:47": [`The Secret <br>to Unlimited <br>Traffic`, `The secret to unlimited traffic (and more bonuses you get with our offer)`, 1],
-  "52:55": [`<span class="w-bold">Guide:</span> Set up Your <br>Course seamlessly <br>through SamCart`, `The help you get to set up your course seamlessly through SamCart`, 2],
-  "54:32": [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`, 0],
+  "5:58": [`The reason preventing that initial sale`, `The one reason most entrepreneurs don't make their first sale`, 1],
+  "7:07": [`What to sell when you're a beginner`, `The only type of product you should attempt to sell when you're just starting out`, 4],
+  "11:48": [`Time to triple your sales!`, `My simple "problem test" and how it can triple your sales if you use it correctly`, 4],
+  "15:18": [`Learn about optimal pricing`, `The exact price you should use for your product, and why this exact price boost conversion in every niche`, 1],
+  "16:33": [`DITCH YOUR FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what you should put in it's place if you want sales to start flowing in FAST)`, 3],
+  "19:12": [`Make your first sale using the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
+  "21:09": [`The perfect Facebook ad formula`, `The 4-part Facebook Ad Formula, that shows how to create the perfect formula that DRIVES TRAFFIC and CLICKS`, 2],
+  "23:13": [`The special setting to generate purchases`, `The special setting to optimize ad for PURCHASES, not views, clicks or likes`, 1],
+  "24:53": [`The final secret: Secret #10!`, ``, 2],
+  "26:46": [`Your gifts and special offer`, `Our 6 FREE gifts and very special offer available today`, 0],
 }
 
-let createTimeline = `
+let createTimeline = /*html*/ `
     <div class="timeline">
         <div class="timeline_container">
             <button class="button-prev"></button>
@@ -314,12 +321,12 @@ function setSlide(time, title, tooltip, countPoint) {
         </div>`
 }
 
-let action, label
+let action
 
 function pushDataLayer(action, label) {
+  console.log(action + " : " + label)
   window.dataLayer = window.dataLayer || []
   if (label) {
-    console.log(action + " : " + label)
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp — Add a timeline",
@@ -327,11 +334,11 @@ function pushDataLayer(action, label) {
       eventLabel: label,
     })
   } else {
-    console.log(action)
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp — Add a timeline",
       eventAction: action,
+      eventLabel: "",
     })
   }
 }
@@ -424,7 +431,7 @@ let mut = new MutationObserver(function (muts) {
             })
             el.addEventListener("mouseover", () => {
               action = "hover on tooltipe"
-              label = el.closest(".timeline_title").innerText
+              let label = el.closest(".timeline_title").innerText
               pushDataLayer(action, label)
             })
           })
