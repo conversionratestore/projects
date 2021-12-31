@@ -1,6 +1,4 @@
-
-document.addEventListener("DOMContentLoaded", () => {
-	const style = /*html*/ `
+const style = /*html*/ `
 <style>
     .custom_main *,
     .custom_main *::before,
@@ -667,9 +665,9 @@ document.addEventListener("DOMContentLoaded", () => {
 </style>
 `
 
-	document.body.insertAdjacentHTML('afterbegin', style)
+document.body.insertAdjacentHTML('afterbegin', style)
 
-
+window.onload = function () {
 	const script = document.createElement('script')
 	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
 	script.async = false
