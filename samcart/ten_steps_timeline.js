@@ -303,8 +303,8 @@ let arrTooltip = {
   "19:12": [`Make your first sale using<br/> the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
   "21:09": [`The perfect Facebook<br/> ad formula`, `The 4-part Facebook Ad Formula, that shows how to create the perfect formula that DRIVES TRAFFIC and CLICKS`, 2],
   "23:13": [`The special setting to<br/> generate purchases`, `The special setting to optimize ad for PURCHASES, not views, clicks or likes`, 1],
-  "24:53": [`The final secret:<br/> Secret #10!`, ``, 2],
-  "26:46": [`Your gifts and<br/> special offer`, `Our 6 FREE gifts and very special offer available today`, 0],
+  "24:53": [`<span class="w-bold">The final secret:</span><br/> Secret #10!`, ``, 2],
+  "26:46": [`<span class="w-bold">Your gifts and<br/> special offer</span>`, `Our 6 FREE gifts and very special offer available today`, 0],
 }
 
 let createTimeline = /*html*/ `
