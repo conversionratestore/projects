@@ -134,21 +134,26 @@ let styles = /*html*/ `
 
      .slide[data-point="3"]:before {
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_3.svg");
-        width: 34px;
+        width: 55px;
     }
 
     .slide[data-point="4"] {
-        padding-right: 80px;
+        padding-right: 75px;
     }
 
     .slide[data-point="4"]:before {
         background-image: url("https://conversionratestore.github.io/projects/samcart/img/point_4.svg");
-        width: 34px;
+        width: 75px;
     }
 
      .slide[data-point="0"]:before {
         content: none;
     }
+
+    .slide.tns-item.tns-slide-active:nth-child(9) .tooltip_wrapper.relative{
+      display: none;
+    }
+
     .timeline_clock {
         /*font-family: Gilroy;*/
         font-style: normal;
@@ -159,8 +164,12 @@ let styles = /*html*/ `
         color: #183B56;
         margin-bottom: 5px;
     }
+
+    .slide.tns-item:nth-child(6) .timeline_title{
+      max-width: 199px;
+    }
     .timeline_title {
-        max-width: 159px;
+        max-width: 170px;
         font-weight: bold;
         font-size: 12px;
         line-height: 15px;
@@ -286,16 +295,16 @@ let styles = /*html*/ `
     }
 </style>`
 let arrTooltip = {
-  "5:58": [`The reason preventing that initial sale`, `The one reason most entrepreneurs don't make their first sale`, 1],
-  "7:07": [`What to sell when you're a beginner`, `The only type of product you should attempt to sell when you're just starting out`, 4],
-  "11:48": [`Time to triple your sales!`, `My simple "problem test" and how it can triple your sales if you use it correctly`, 4],
-  "15:18": [`Learn about optimal pricing`, `The exact price you should use for your product, and why this exact price boost conversion in every niche`, 1],
-  "16:33": [`DITCH YOUR FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what you should put in it's place if you want sales to start flowing in FAST)`, 3],
-  "19:12": [`Make your first sale using the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
-  "21:09": [`The perfect Facebook ad formula`, `The 4-part Facebook Ad Formula, that shows how to create the perfect formula that DRIVES TRAFFIC and CLICKS`, 2],
-  "23:13": [`The special setting to generate purchases`, `The special setting to optimize ad for PURCHASES, not views, clicks or likes`, 1],
-  "24:53": [`The final secret: Secret #10!`, ``, 2],
-  "26:46": [`Your gifts and special offer`, `Our 6 FREE gifts and very special offer available today`, 0],
+  "5:58": [`The reason preventing <br/>that initial sale`, `The one reason most entrepreneurs don't make their first sale`, 1],
+  "7:07": [`What to sell when<br/>you're a beginner`, `The only type of product you should attempt to sell when you're just starting out`, 4],
+  "11:48": [`Time to triple<br/> your sales!`, `My simple "problem test" and how it can triple your sales if you use it correctly`, 4],
+  "15:18": [`Learn about<br/> optimal pricing`, `The exact price you should use for your product, and why this exact price boost conversion in every niche`, 1],
+  "16:33": [`DITCH YOUR<br/> FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what you should put in it's place if you want sales to start flowing in FAST)`, 3],
+  "19:12": [`Make your first sale using<br/> the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
+  "21:09": [`The perfect Facebook<br/> ad formula`, `The 4-part Facebook Ad Formula, that shows how to create the perfect formula that DRIVES TRAFFIC and CLICKS`, 2],
+  "23:13": [`The special setting to<br/> generate purchases`, `The special setting to optimize ad for PURCHASES, not views, clicks or likes`, 1],
+  "24:53": [`The final secret:<br/> Secret #10!`, ``, 2],
+  "26:46": [`Your gifts and<br/> special offer`, `Our 6 FREE gifts and very special offer available today`, 0],
 }
 
 let createTimeline = /*html*/ `
