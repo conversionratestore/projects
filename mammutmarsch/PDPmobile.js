@@ -665,7 +665,7 @@ const style = /*html*/ `
 </style>
 `
 
-document.head.insertAdjacentHTML('afterbegin', style)
+document.head.insertAdjacentHTML('beforeend', style)
 
 window.onload = function () {
 	const script = document.createElement('script')
