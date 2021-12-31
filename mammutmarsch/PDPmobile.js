@@ -107,7 +107,7 @@ const style = /*html*/ `
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 1111;
+      z-index: 2;
  	background-color: rgba(255,255,255, 0.7);
 	padding: 15px;
 	border-radius: 2px;
