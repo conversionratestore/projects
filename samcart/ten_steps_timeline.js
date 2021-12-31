@@ -2,6 +2,7 @@ let styles = /*html*/ `
 <style>
     .tooltip_wrapper.relative{
         cursor: pointer;
+        z-index: 1;
     }
     .watch-page {
         overflow-x: hidden;
