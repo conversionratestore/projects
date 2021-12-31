@@ -1096,10 +1096,12 @@ document.body.insertAdjacentHTML('afterbegin', style)
 let mainLoaded = setInterval(() => {
 	if(document.querySelector('#main')) {
 		clearInterval(mainLoaded)
-		
+
 		document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
 	}
 }, 100)
+
+
 
 let jqueryLoaded2 = setInterval(() => {
 
@@ -1110,7 +1112,9 @@ let jqueryLoaded2 = setInterval(() => {
 			if (
 				typeof jQuery('.slider_reviews .slider_nav').slick === 'function' &&
 				document.querySelector('.slider_reviews .slider_nav') &&
-				document.querySelector('.first_block .slider_nav')
+				document.querySelector('.first_block .slider_nav') &&
+				document.querySelector('.slider-for')
+				
 			) {
 				clearInterval(slickInterval)
 
