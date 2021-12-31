@@ -667,15 +667,11 @@ const style = /*html*/ `
 
 document.body.insertAdjacentHTML('afterbegin', style)
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", () => {
 	const script = document.createElement('script')
 	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
 	script.async = false
 	document.getElementsByTagName('head')[0].appendChild(script)
-	
-	if (!style) {
-		document.body.insertAdjacentHTML('afterbegin', style)
-	}
 
 	let jqueryLoaded = setInterval(() => {
 		if (typeof jQuery === 'function') {
@@ -693,7 +689,7 @@ window.onload = function () {
 
 
 		}
-	}, 100)	
+	}, 100)
 
 	const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
 	let product
@@ -1096,7 +1092,7 @@ window.onload = function () {
       </section>
     </main>
 `
-	
+
 // document.body.insertAdjacentHTML('afterbegin', page)
 
 	document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
