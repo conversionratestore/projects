@@ -1,28 +1,4 @@
-window.onload = function () {
-	const script = document.createElement('script')
-	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
-	script.async = false
-	document.getElementsByTagName('head')[0].appendChild(script)
-
-	let jqueryLoaded = setInterval(() => {
-		if (typeof jQuery === 'function') {
-			clearInterval(jqueryLoaded)
-
-			let scriptCustom = document.createElement('script')
-			scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
-			scriptCustom.async = false
-			document.head.appendChild(scriptCustom)
-
-			let scriptCustomStyle = document.createElement('link')
-			scriptCustomStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
-			scriptCustomStyle.rel = 'stylesheet'
-			document.head.appendChild(scriptCustomStyle)
-
-
-		}
-	}, 100)
-
-	const style = /*html*/ `
+const style = /*html*/ `
 <style>
     .custom_main *,
     .custom_main *::before,
@@ -689,6 +665,36 @@ window.onload = function () {
 </style>
 `
 
+document.body.insertAdjacentHTML('afterbegin', style)
+
+window.onload = function () {
+	const script = document.createElement('script')
+	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
+	script.async = false
+	document.getElementsByTagName('head')[0].appendChild(script)
+	
+	if (!style) {
+		document.body.insertAdjacentHTML('afterbegin', style)
+	}
+
+	let jqueryLoaded = setInterval(() => {
+		if (typeof jQuery === 'function') {
+			clearInterval(jqueryLoaded)
+
+			let scriptCustom = document.createElement('script')
+			scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
+			scriptCustom.async = false
+			document.head.appendChild(scriptCustom)
+
+			let scriptCustomStyle = document.createElement('link')
+			scriptCustomStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
+			scriptCustomStyle.rel = 'stylesheet'
+			document.head.appendChild(scriptCustomStyle)
+
+
+		}
+	}, 100)	
+
 	const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
 	let product
 
@@ -1090,8 +1096,7 @@ window.onload = function () {
       </section>
     </main>
 `
-
-	document.body.insertAdjacentHTML('afterbegin', style)
+	
 // document.body.insertAdjacentHTML('afterbegin', page)
 
 	document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
