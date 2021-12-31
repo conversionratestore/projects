@@ -1092,7 +1092,14 @@ const page = /*html*/ `
 
 document.body.insertAdjacentHTML('afterbegin', style)
 // document.body.insertAdjacentHTML('afterbegin', page)
-document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
+
+let mainLoaded = setInterval(() => {
+	if(document.querySelector('#main')) {
+		clearInterval(mainLoaded)
+		
+		document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
+	}
+}, 100)
 
 let jqueryLoaded2 = setInterval(() => {
 
@@ -1264,7 +1271,7 @@ let jqueryLoaded2 = setInterval(() => {
 					if ($('.item.selected').length === 0) {
 						$('.fourth_block').addClass('alarmed')
 						$('.total_block .alarm').slideDown()
-						$('.total_block button').attr('disabled', true)					
+						$('.total_block button').attr('disabled', true)
 
 					} else {
 						window.dataLayer = window.dataLayer || []
@@ -1275,7 +1282,7 @@ let jqueryLoaded2 = setInterval(() => {
 						})
 
 						console.log('eventAction: Proceed to checkout click')
-						
+
 						document.querySelector('#proceed_to_checkout').click()
 
 						$('.total_block button').attr('disabled', false)
