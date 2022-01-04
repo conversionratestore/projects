@@ -1085,7 +1085,7 @@ window.onload = function () {
             </div>
             <p class="alarm"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/alarm.svg" alt="alarm">Bitte wähle ein Paket aus</p>
             <div class="btn-wrap">
-                <button>Anmeldung abschliesen</button>
+                <button>Anmeldung abschlie&szlig;en</button>
             </div>
         </div>
         </div>
@@ -1231,21 +1231,57 @@ window.onload = function () {
 
 							$('.total_block button').attr('disabled', false)
 
-							switch (+indexItem) {
-								case 0:
-									document.querySelectorAll('.radio-container')[0].click()
-									break
-								case 1:
-									document.querySelectorAll('.radio-container')[2].click()
-									break
-								case 2:
-									document.querySelectorAll('.radio-container')[1].click()
-									break
-								case 3:
-									document.querySelectorAll('.radio-container')[3].click()
-									break
-								default:
-									break
+							if(product === 'hamburg') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									default:
+										break
+								}
+							} else if(product === 'munchen') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									default:
+										break
+								}
+							} else if(product === 'ruhrgebiet') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									default:
+										break
+								}
 							}
 
 							let paketname = $(this).find('.paketname').text()
