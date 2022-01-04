@@ -153,7 +153,7 @@ window.onload = function () {
   font-family: 'Roboto', sans-serif !important;
   font-weight: 400 !important;
   font-size: 16px !important;
-  line-height: 1.5 !important;
+  line-height: 1.3 !important;
   color: #1E415F !important;
   opacity: 0.5;
 }
@@ -378,7 +378,7 @@ window.onload = function () {
             </div>
           </div>
           <p class="textFaq">
-            Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging. Learn more in our <a href="https://somnifix.com/pages/shipping-and-returns-policy" target="blank">Refund Policy</a>.
+            Our return policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange.<br>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.<br>Learn more in our <a href="https://somnifix.com/pages/shipping-and-returns-policy" target="blank">Refund Policy</a>.
           </p>
         </li>
         <li>
