@@ -1272,21 +1272,21 @@ window.onload = function () {
 							$('.total_block button').attr('disabled', true)
 
 						} else {
-							window.dataLayer = window.dataLayer || []
-							dataLayer.push({
-								'event': 'event-to-ga',
-								'eventCategory': 'Exp: PDP improvements',
-								'eventAction': 'Proceed to checkout click',
-							})
-
-							console.log('eventAction: Proceed to checkout click')
-
 							document.querySelector('#proceed_to_checkout').click()
 
 							$('.total_block button').attr('disabled', false)
 							$('.total_block .alarm').slideUp()
 							$('.fourth_block').removeClass('alarmed')
 						}
+
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': 'Proceed to checkout click',
+						})
+
+						console.log('eventAction: Proceed to checkout click')
 					})
 				}
 			}, 100)
