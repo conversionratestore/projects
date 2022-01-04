@@ -1233,16 +1233,16 @@ window.onload = function () {
 
 							switch (+indexItem) {
 								case 0:
-									document.querySelectorAll('.radio-container')[1].click()
-									break
-								case 1:
-									document.querySelectorAll('.radio-container')[3].click()
-									break
-								case 2:
 									document.querySelectorAll('.radio-container')[0].click()
 									break
-								case 3:
+								case 1:
 									document.querySelectorAll('.radio-container')[2].click()
+									break
+								case 2:
+									document.querySelectorAll('.radio-container')[1].click()
+									break
+								case 3:
+									document.querySelectorAll('.radio-container')[3].click()
 									break
 								default:
 									break
