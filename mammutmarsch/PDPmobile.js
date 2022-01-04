@@ -1085,7 +1085,7 @@ window.onload = function () {
             </div>
             <p class="alarm"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/alarm.svg" alt="alarm">Bitte wähle ein Paket aus</p>
             <div class="btn-wrap">
-                <button>Anmeldung abschließen</button>
+                <button>Anmeldung abschliesen</button>
             </div>
         </div>
         </div>
