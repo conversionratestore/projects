@@ -298,7 +298,7 @@ let styles = /*html*/ `
 let arrTooltip = {
   "5:58": [`The reason preventing <br/>that initial sale`, `The one reason most entrepreneurs don't make their first sale`, 1],
   "7:07": [`What to sell when<br/>you're a beginner`, `The only type of product you should attempt to sell when you're just starting out`, 4],
-  "11:48": [`Time to triple<br/> your sales!`, `My simple <span>"problem test"</span> and how it can triple your sales if you use it correctly`, 4],
+  "11:48": [`Time to triple<br/> your sales!`, `My simple &quot;problem test&quot; and how it can triple your sales if you use it correctly`, 4],
   "15:18": [`Learn about<br/> optimal pricing`, `The exact price you should use for your product, and why this exact price boost conversion in every niche`, 1],
   "16:33": [`DITCH YOUR<br/> FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what you should put in it's place if you want sales to start flowing in FAST)`, 3],
   "19:12": [`Make your first sale using<br/> the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
