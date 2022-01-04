@@ -296,16 +296,20 @@ let styles = /*html*/ `
     }
 </style>`
 let arrTooltip = {
-  "5:58": [`The reason preventing <br/>that initial sale`, `The one reason most entrepreneurs don't make their first sale`, 1],
-  "7:07": [`What to sell when<br/>you're a beginner`, `The only type of product you should attempt to sell when you're just starting out`, 4],
-  "11:48": [`Time to triple<br/> your sales!`, `My simple &quot;problem test&quot; and how it can triple your sales if you use it correctly`, 4],
-  "15:18": [`Learn about<br/> optimal pricing`, `The exact price you should use for your product, and why this exact price boost conversion in every niche`, 1],
-  "16:33": [`DITCH YOUR<br/> FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what you should put in it's place if you want sales to start flowing in FAST)`, 3],
-  "19:12": [`Make your first sale using<br/> the '1-page Blueprint'`, `The simple "1 Page Blueprint" and how over 19,284 people have used it to make their first sale`, 2],
-  "21:09": [`The perfect Facebook<br/> ad formula`, `The 4-part Facebook Ad Formula, that shows how to create the perfect formula that DRIVES TRAFFIC and CLICKS`, 2],
-  "23:13": [`The special setting to<br/> generate purchases`, `The special setting to optimize ad for PURCHASES, not views, clicks or likes`, 1],
+  "5:58": [`The reason preventing <br/>that initial sale`, `The one reason most entrepreneurs never make their first sale`, 1],
+  "7:07": [`What to sell when<br/>you're a beginner`, `The only product type you should sell when starting out`, 4],
+  "11:48": [`Time to triple<br/> your sales!`, `My simple &quot;problem test&quot; and how it can triple your sales`, 4],
+  "15:18": [`Learn about<br/> optimal pricing`, `What you should charge for your product, and why this price boosts conversion in every niche`, 1],
+  "16:33": [`DITCH YOUR<br/> FUNNEL`, `The four reasons you should DITCH YOUR FUNNEL (and what to replace it with for FAST increasing sales)`, 3],
+  "19:12": [
+    `Make your first sale using<br/> the '1-page Blueprint'`,
+    `The simple &quot;1-page Blueprint&quot; and how 19,284 people (so far) have used it to make their first sale`,
+    2,
+  ],
+  "21:09": [`The perfect Facebook<br/> ad formula`, `The 4-part Facebook Ad Formula that shows how to DRIVE TRAFFIC and CLICKS`, 2],
+  "23:13": [`The special setting to<br/> generate purchases`, `The special setting to optimize ads to bring PURCHASES (not views, clicks or likes)`, 1],
   "24:53": [`<span class="w-bold">The final secret:</span><br/> Secret #10!`, ``, 2],
-  "26:46": [`<span class="w-bold">Your gifts and<br/> special offer</span>`, `Our 6 FREE gifts and very special offer available today`, 0],
+  "26:46": [`<span class="w-bold">Your gifts and<br/> special offer</span>`, `6 FREE gifts and today's very special offer`, 0],
 }
 
 let createTimeline = /*html*/ `
