@@ -808,7 +808,7 @@ let start = setInterval(() => {
 								'eventAction': 'Click on Get vaha s button',
 							})
 						}
-						document.querySelectorAll('.basket-payments-button')[0].click()
+						document.querySelectorAll('.basket-payments-button')[2].click()
 					})
 				})
 
