@@ -1,5 +1,8 @@
 let styleComparisonBlock = /*html*/ `
 <style>
+  .bp-comparison.js-mobile, .wave-effect.js-mobile{
+    display: none;
+  }
   .comparison_block table thead tr:last-child td,
   table thead tr:last-child th {
     border-bottom: none;
@@ -27,6 +30,7 @@ let styleComparisonBlock = /*html*/ `
     background-size: 100%;
     background-color: #eceef0;
     padding: 30px 16px;
+    margin-bottom: 50px;
   }
 
   .comparison_block h2 {
