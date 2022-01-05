@@ -251,19 +251,35 @@
         color: #171717;
     }
     .listing li {
+        width: calc(50% - 7.5px);
+        margin: 0 15px 15px 0;
         background: #FFFFFF;
         border: 1px solid #EEEEEE;
         box-sizing: border-box;
         border-radius: 4px;
-        width: calc(50% - 7.5px);
-        margin: 0 15px 15px 0;
-        padding: 8px;
     }
     .listing li:nth-child(2n+2) {
         margin-right: 0;
     }
     .listing ul {
         margin: 0
+    }
+    .listing li a {
+        padding: 8px;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .listing li img {
+        border: 1px solid #EEEEEE;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-left: 4px;
+        flex-shrink: 0;
     }
     </style>`
 
@@ -366,34 +382,27 @@
     //listing
     if (window.location.pathname.includes('/category')) {
         document.querySelectorAll('.listing p')[0].style.display = 'none';
-        let subcategory = [], 
-            count = 0;
+      
         document.querySelectorAll('.listing li').forEach((el) => {
-            subcategory.push(el.querySelector('a').innerText.split(' ')[0]);         
-        })
-        console.log(subcategory)
-        document.querySelectorAll('.list_box2').forEach((item) => {
-            if (item.querySelector('h3 a').innerHTML.includes(subcategory) ) {
-                // count = 1;
-                console.log(subcategory + " 2")
-                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="${item.querySelector('.list_type3 img').getAttribute('src')}" alt="${ item.querySelector('h3 a').innerHTML}">`)
-            }
+            el.setAttribute('data-use','false')
+            el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+
+            let subcategory = el.querySelector('a').innerText.split(' ')[0];         
+            let cardList = document.querySelectorAll('.list_box2');
             
+            for (let i = 2; i < cardList.length; i++) {
+                cardList[i]
+                if (cardList[i].querySelector('h3 a').innerText.includes(subcategory) && !cardList[i].getAttribute('data-use','true')) {
+                    console.log(subcategory)
+                    cardList[i].setAttribute('data-use','true')
+                    el.querySelector('img').setAttribute('src', cardList[i].querySelector('.list_type3 img').getAttribute('src'))
+                    el.querySelector('img').setAttribute('alt', cardList[i].querySelector('h3 a').innerHTML)
+            
+                    break;
+                }
+                
+            }
         })
-        // document.querySelectorAll('#search_c_id option').forEach( (el) => {
-        //     if (el.innerText == document.querySelector('.categoryTop').innerText) {
-        //         console.log(el.value)
-        //     }
-        // })  
-        
-        // fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=11216`, {
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     method: "GET",
-        // }).then(res => res.json()).then(data => {
-        //     console.log(data)
-        
-        // })
+
     }
 
