@@ -808,7 +808,12 @@ let start = setInterval(() => {
 								'eventAction': 'Click on Get vaha s button',
 							})
 						}
-						document.querySelectorAll('.basket-payments-button')[2].click()
+
+						if(window.location.pathname === '/product') {
+							document.querySelectorAll('.basket-payments-button')[2].click()
+						} else {
+							document.querySelectorAll('.basket-payments-button')[0].click()
+						}
 					})
 				})
 
