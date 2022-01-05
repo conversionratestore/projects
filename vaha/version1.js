@@ -814,6 +814,8 @@ let start = setInterval(() => {
 						} else {
 							document.querySelectorAll('.basket-payments-button')[0].click()
 						}
+
+						console.log('hello')
 					})
 				})
 
