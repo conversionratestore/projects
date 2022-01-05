@@ -142,10 +142,14 @@ const style = `
 			background: #0C0B0B;
 		}
 		
+		.banner {
+			padding: 1.5em 0 0;
+		}
+		
 		.guarantee {
 			/*padding: 30px 0;				 */
 			background: #FFFFFF;
-			margin: 15px 0 -25px;
+			margin-top: 1.5rem;
 		}
 		
 		.guarantee p,
@@ -159,7 +163,7 @@ const style = `
 			align-items: center;
 			gap: 12px;
 			padding: 12px;	
-			border: 1px solid #E5E5E5;
+			border-top: 1px solid #E5E5E5;
 			border-radius: 5px;
 		}
 		
