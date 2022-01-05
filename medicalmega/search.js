@@ -1,7 +1,15 @@
 let styles = `
 <style>
-#hdr, #banner {
+#hdr, #banner, .listing .category, .listing .subhead {
     display: none;
+}
+.listing span.categoryTop {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #171717;
 }
 #wrap {
     padding-top: 50px;
@@ -18,7 +26,7 @@ let styles = `
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99;
+    z-index: 9999;
     background-color: #fff;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
     padding: 6px 20px;
@@ -66,6 +74,9 @@ input#search_key {
 .search {
     width: calc(100% - 24px - 16px - 24px - 16px);
 }
+.search dd {
+    width: 100%;
+}
 .shoppingcart {
     background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/shopping_cart.svg');
     background-size: contain;
@@ -79,6 +90,7 @@ input#search_key {
     top: -1px;
     right: 50%;
     transform: translateX(50%);
+    pointer-events: none;
 }
 .by_num span {
     font-weight: bold;
@@ -88,6 +100,8 @@ input#search_key {
     color: #C23D31;
 }
 .nav-menu {
+    opacity: 0;
+    pointer-events: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -95,6 +109,14 @@ input#search_key {
     background: rgba(0,0,0,0.5);
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease;
+}
+.nav-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.nav-menu.active .nav-menu_container {
+    transform: translateX(0)
 }
 .nav-menu_container {
     max-width: 315px;
@@ -102,6 +124,8 @@ input#search_key {
     height: 100%;
     background: #fff;
     overflow-y: auto;
+    transition: all 0.3s ease;
+    transform: translateX(-100px);
 }
 .nav-menu_login li {
     background: url("https://conversionratestore.github.io/projects/medicalmega/img/user.svg") no-repeat left center / 28px;
@@ -112,7 +136,7 @@ input#search_key {
 .nav-menu_login li a {
     font-weight: bold;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 28px;
     color: #171717;
 }
 .nav span, .nav span span {
@@ -123,7 +147,7 @@ input#search_key {
     top: 0;
     z-index: 2;
     background-color: #fff;
-    padding: 12px 20px 16px;
+    padding: 12px 12px 16px 20px;
     border-bottom: 1px solid #C0C0C0;
 }
 .justify-content-between {
@@ -131,16 +155,19 @@ input#search_key {
     justify-content: space-between;
 }
 .header .nav {
-    padding: 12px 0;
+    padding: 12px 0 20px;
     width: 100%;
     border-bottom: 1px solid #C0C0C0;
 }
 .header .nav li {
     clear: both;
 }
+.header .nav li:last-child {
+    display: none!important;
+}
 .header .nav a {
     background: none;
-    padding: 4px 20px;
+    padding: 4px 11px;
     margin: 8px 0;
     display: block;
     font-weight: normal;
@@ -149,18 +176,27 @@ input#search_key {
     text-transform: uppercase;
     color: #171717;
 }
+.header .nav a:hover span{
+    background: none!important;
+    color: #C23D31;
+}
 .category_popular { 
-    padding: 24px 20px;
+    padding: 24px 0 11px;
+    border-bottom: 1px solid #C0C0C0;
 }
 .category_popular .title {
     font-weight: normal;
     font-size: 20px;
     line-height: 20px;
     color: #666666;
-    padding: 0;
+    padding: 0 20px;
+    margin-bottom: 16px;
 }
 .category_popular .altnav {
     width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    background: none;
 }
 .category_popular .altnav li a {
     color: #171717;
@@ -168,6 +204,7 @@ input#search_key {
     padding: 7px 0;
     width: 100%;
     display: block;
+    font-weight: bold;
 }
 .category_popular .altnav li a:hover {
     color: #C23D31;
@@ -177,6 +214,56 @@ input#search_key {
     border: none;
     line-height: 20px;
     margin: 0;
+}
+.btn_all-category, .btn_back  {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: #666666;
+    width: 100%;
+    text-align: left;
+    border: none;
+}
+.btn_back {
+    z-index: 1;
+    position: sticky;
+    top: 110px;
+    padding: 14px 20px 14px 52px;
+    border-bottom: 1px solid #C0C0C0;
+    background: #fff url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left 20px center / 24px;
+}
+.btn_all-category {
+    padding: 14px 52px 14px 20px;
+    background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward-right.svg') no-repeat right 20px center / 24px;   
+}
+.menu_footer {
+    padding: 25px 20px 0;
+}
+.menu_footer p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 23px;
+    color: #666666;
+    margin-bottom: 21px;
+}
+.menu_footer a {
+    text-decoration: underline;
+    color: #171717;
+}
+.listing li {
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: calc(50% - 7.5px);
+    margin: 0 15px 15px 0;
+    padding: 8px;
+}
+.listing li:nth-child(2n+2) {
+    margin-right: 0;
+}
+.listing ul {
+    margin: 0
 }
 </style>`
 
@@ -193,9 +280,16 @@ let header = `
                 </div>
                 <ul class="nav-menu_login"></ul>
             </div>
+            <button type='button' class="btn_back" hidden>Main Menu</button>
             <div class="category_popular">
                 <p class="title">Most Popular Categories</p>
+                <ul class="altnav"></ul>
+                <button type='button' class="btn_all-category">View All Categories</button>
             </div>
+            <div class="menu_footer">
+                <p>Local Phone #   <a href="#" class="tel:17182084380">1-718-208-4380</a></p>
+                <p>Toll Free Phone # <a class="tel:18556336342">1-855-MED-MEGA (633-6342)</a></p>
+            </div>  
         </div>
     </div>
 </header>`;
@@ -204,7 +298,13 @@ document.body.insertAdjacentHTML('afterbegin', styles);
 document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
 document.querySelector('.header .icon_burger').after(document.querySelector('.search.search-box'));
-document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
+if (document.querySelector('.topnav .signup') != null) {
+    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
+}
+if (document.querySelector('.topnav .logout') != null) {
+    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
+}
+
 document.querySelector('.sticky-top').after(document.querySelector('.nav'));
 document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
 document.querySelectorAll('.nav li').forEach(el => {
@@ -214,4 +314,75 @@ document.querySelectorAll('.nav li').forEach(el => {
 })
 
 document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
+
+fetch(`/api/categories&limit=100`, {
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    method: "GET",
+}).then(res => res.json()).then(data => {
+    console.log(data)
+    for (let key in data.categories) {
+        if(data.categories[key] <= data.categories.length) {
+            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
+        }
+    }
+    document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
+        if (i > 4) {
+            el.hidden = true;
+        }
+    })    
+})
+
+function toggleCategory(boolean) {
+    document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
+        if (i > 4) {
+            el.hidden = boolean;
+        }
+    })
+    document.querySelector('.btn_back').hidden = boolean;
+    if (boolean == false) {
+        document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
+        document.querySelector('.btn_all-category').hidden = true;
+        document.querySelector('.nav-menu .nav').hidden = true;
+    } else {
+        document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
+        document.querySelector('.btn_all-category').hidden = false;
+        document.querySelector('.nav-menu .nav').hidden = false;
+    }
+}
+
+document.querySelector('.btn_all-category').addEventListener('click', () => toggleCategory(false)); //open all category
+document.querySelector('.btn_back').addEventListener('click', () => toggleCategory(true)); //hide all category
+
+document.querySelector('.icon_burger').addEventListener('click', () => document.querySelector('.nav-menu').classList.add('active'));
+document.querySelector('.btn_close').addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('active'));
+document.querySelector('.nav-menu').addEventListener('click', (e) => {
+    if (e.target.classList.contains('nav-menu')) {
+        document.querySelector('.nav-menu').classList.remove('active')
+    }
+});
+
+//listing
+if (window.location.pathname.includes('/category')) {
+    document.querySelectorAll('.listing p')[0].style.display = 'none';
+    document.querySelectorAll('.listing li').forEach( (el) => {
+
+    })
+    // document.querySelectorAll('#search_c_id option').forEach( (el) => {
+    //     if (el.innerText == document.querySelector('.categoryTop').innerText) {
+    //         console.log(el.value)
+    //     }
+    // })  
+    
+    // fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=11216`, {
+    //     headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     method: "GET",
+    // }).then(res => res.json()).then(data => {
+    //     console.log(data)
+       
+    // })
+}
 
