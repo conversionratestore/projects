@@ -18,7 +18,7 @@ const style = `
 		
 		.custom-block {
 			border-top: 1px solid #e6e6e6;
-			margin: 20px 0 30px;
+			/*margin: 20px 0 30px;*/
 		}
 		
 		.item {
@@ -142,14 +142,14 @@ const style = `
 			background: #0C0B0B;
 		}
 		
-		.banner {
-			padding: 1.5em 0 0;
-		}
+		/*.banner {*/
+		/*	padding: 1.5em 0 0px;*/
+		/*}*/
 		
 		.guarantee {
 			/*padding: 30px 0;				 */
 			background: #FFFFFF;
-			margin-top: 1.5rem;
+			/*margin-top: 1.5rem;*/
 		}
 		
 		.guarantee p,
