@@ -809,11 +809,9 @@ let start = setInterval(() => {
 							})
 						}
 
-						if(window.location.pathname === '/product') {
-							document.querySelectorAll('.basket-payments-button')[2].click()
-						} else {
-							document.querySelectorAll('.basket-payments-button')[0].click()
-						}
+						document.querySelectorAll('.basket-payments-button')[2]
+							? document.querySelectorAll('.basket-payments-button')[2].click()
+							: document.querySelectorAll('.basket-payments-button')[0].click()
 					})
 				})
 
