@@ -18,7 +18,7 @@ const style = `
 		
 		.custom-block {
 			border-top: 1px solid #e6e6e6;
-			margin-bottom: 30px;
+			margin: 20px 0 30px;
 		}
 		
 		.item {
@@ -143,8 +143,9 @@ const style = `
 		}
 		
 		.guarantee {
-			padding: 30px 0;				 
+			/*padding: 30px 0;				 */
 			background: #FFFFFF;
+			margin: 15px 0 -25px;
 		}
 		
 		.guarantee p,
