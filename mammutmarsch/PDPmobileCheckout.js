@@ -674,17 +674,15 @@ const style = /*html*/ `
 document.head.insertAdjacentHTML('beforeend', style)
 
 if (window.location.pathname.replace(/\//g,"") === 'checkout') {
-
     let checkoutLoaded = setInterval(() => {
-      if(document.querySelector('.woocommerce-info .showlogin') && document.querySelector('.checkout_coupon')) {
+      if (document.querySelector('.woocommerce-info .showlogin') && document.querySelector('.checkout_coupon')) {
         clearInterval(checkoutLoaded)
 
         console.log('checkoutLoaded')
 
         document.querySelector('.woocommerce-info .showlogin').click()
       }
-
-  }
+    }, 200)
 } else {
   window.onload = function () {
     const script = document.createElement('script')
