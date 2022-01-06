@@ -679,8 +679,12 @@ if (window.location.pathname.replace(/\//g,"") === 'checkout') {
         clearInterval(checkoutLoaded)
 
         console.log('checkoutLoaded')
+        
+        setTimeout(() => {
+          document.querySelector('.woocommerce-info .showlogin').click()
+        }, 1000)
 
-        document.querySelector('.woocommerce-info .showlogin').click()
+        
       }
     }, 200)
 } else {
