@@ -194,7 +194,7 @@ const style = `
 		
 		.reviews {
 			background: #F5F5F5;	
-			margin: -1em;
+			margin: 0 -1em -1em; 
 			padding: 0 12px;		
 		}
 		
