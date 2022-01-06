@@ -151,6 +151,14 @@ const style = `
 			background: #FFFFFF;
 		}
 		
+		.guarantee .img-wrap {
+			display: flex;
+		}
+		
+		.guarantee .img-wrap img {
+			max-width: none;
+		}
+		
 		.guarantee p,
 		.reviews p {
 			margin: 0;
