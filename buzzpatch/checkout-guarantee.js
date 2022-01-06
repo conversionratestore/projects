@@ -302,63 +302,63 @@ const guaranteeDate = new Date()
 estimatedDate.setDate(today.getDate() + 5)
 guaranteeDate.setDate(today.getDate() + 30)
 
-const shipping = `
-	<div class="shipping">
-		<div class="inner">
-			<div class="item">				
-				<div class="head">
-					<p class="title">Buy now</p>					
-				</div>									
-				<div class="date">
-					<p>${ convertDate(today) }</p>					
-					<div class="dots-wrapper">
-						<div class="black-line"></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>	
-				</div>						
-			</div>
-			<div class="item">
-				<div class="head">
-					<p class="title">Estimated<br>Shipment</p>
-					<div class="myTooltip">
-						<img src="https://conversionratestore.github.io/projects/buzzpatch/img/tooltip.svg" alt="myTooltip">
-						<div><p>Shipping time may vary</p></div>
-					</div>	
-				</div>				
-				<div class="date">
-					<p>${ convertDate(estimatedDate) }</p>						
-					<div class="dots-wrapper">
-						<div class="black-line"></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>	
-				</div>		
-			</div>
-			<div class="item">
-				<div class="head">
-					<p class="title">30 days money-<br>back guarantee</p>
-					<div class="myTooltip">
-						<img src="https://conversionratestore.github.io/projects/buzzpatch/img/tooltip.svg" alt="myTooltip">
-						<div><p>No returns required</p></div>
-					</div>	
-				</div>				
-				<div class="date">
-					<p>${ convertDate(guaranteeDate) }</p>
-					<div class="dots-wrapper">
-						<div class="black-line"></div>
-					</div>	
-				</div>			
-			</div>
-		</div>
-	</div>
-`
+// const shipping = `
+// 	<div class="shipping">
+// 		<div class="inner">
+// 			<div class="item">				
+// 				<div class="head">
+// 					<p class="title">Buy now</p>					
+// 				</div>									
+// 				<div class="date">
+// 					<p>${ convertDate(today) }</p>					
+// 					<div class="dots-wrapper">
+// 						<div class="black-line"></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 					</div>	
+// 				</div>						
+// 			</div>
+// 			<div class="item">
+// 				<div class="head">
+// 					<p class="title">Estimated<br>Shipment</p>
+// 					<div class="myTooltip">
+// 						<img src="https://conversionratestore.github.io/projects/buzzpatch/img/tooltip.svg" alt="myTooltip">
+// 						<div><p>Shipping time may vary</p></div>
+// 					</div>	
+// 				</div>				
+// 				<div class="date">
+// 					<p>${ convertDate(estimatedDate) }</p>						
+// 					<div class="dots-wrapper">
+// 						<div class="black-line"></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 						<div></div>
+// 					</div>	
+// 				</div>		
+// 			</div>
+// 			<div class="item">
+// 				<div class="head">
+// 					<p class="title">30 days money-<br>back guarantee</p>
+// 					<div class="myTooltip">
+// 						<img src="https://conversionratestore.github.io/projects/buzzpatch/img/tooltip.svg" alt="myTooltip">
+// 						<div><p>No returns required</p></div>
+// 					</div>	
+// 				</div>				
+// 				<div class="date">
+// 					<p>${ convertDate(guaranteeDate) }</p>
+// 					<div class="dots-wrapper">
+// 						<div class="black-line"></div>
+// 					</div>	
+// 				</div>			
+// 			</div>
+// 		</div>
+// 	</div>
+// `
 
 const guarantee = `
 	<div class="guarantee">
@@ -461,36 +461,36 @@ document.head.insertAdjacentHTML('beforeend', style)
 banner.insertAdjacentHTML('beforeend', guarantee)
 footer.insertAdjacentHTML('beforebegin', reviews)
 
-const myTooltip = document.querySelectorAll('.myTooltip')
+// const myTooltip = document.querySelectorAll('.myTooltip')
 
-function convertDate(date) {
-	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
-}
+// function convertDate(date) {
+// 	return date.toLocaleDateString('pt-PT').replace(/\//g, '.')
+// }
 
-document.body.addEventListener('click', function (e) {
-	if (e.target.closest('.show')) {
-		e.target.closest('.show').classList.remove('show')
-	} else if (e.target.closest('.myTooltip')) {
-		hideTooltips()
-
-		e.target.closest('.myTooltip')?.classList.add('show')
-
-		window.dataLayer = window.dataLayer || [];
-		dataLayer.push({
-			'event': 'event-to-ga',
-			'eventCategory': 'Exp — Checkout improvements mobile',
-			'eventAction': 'Clicks on hints'
-		})
-	} else {
-		hideTooltips()
-	}
-})
-
-function hideTooltips() {
-	myTooltip.forEach(tooltip => {
-		tooltip.classList.remove('show')
-	})
-}
+// document.body.addEventListener('click', function (e) {
+// 	if (e.target.closest('.show')) {
+// 		e.target.closest('.show').classList.remove('show')
+// 	} else if (e.target.closest('.myTooltip')) {
+// 		hideTooltips()
+//
+// 		e.target.closest('.myTooltip')?.classList.add('show')
+//
+// 		window.dataLayer = window.dataLayer || [];
+// 		dataLayer.push({
+// 			'event': 'event-to-ga',
+// 			'eventCategory': 'Exp — Checkout improvements mobile',
+// 			'eventAction': 'Clicks on hints'
+// 		})
+// 	} else {
+// 		hideTooltips()
+// 	}
+// })
+//
+// function hideTooltips() {
+// 	myTooltip.forEach(tooltip => {
+// 		tooltip.classList.remove('show')
+// 	})
+// }
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
