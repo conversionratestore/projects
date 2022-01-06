@@ -1,11 +1,5 @@
 const style = /*html*/ `
 <style>
-	.checkout_coupon .button {
-		background-color: #0269AB !important;
-		border: none;
-		color: #fff;
-	}
-
     .custom_main *,
     .custom_main *::before,
     .custom_main *::after {
@@ -45,7 +39,6 @@ const style = /*html*/ `
    	margin-top: -40px;
 	    padding: 15px;
    }
-
     .custom_main li {
         list-style: none;        
     }
@@ -102,13 +95,10 @@ const style = /*html*/ `
     .dropdown .hide-custom .subject::after{
     	background: url(https://conversionratestore.github.io/projects/mammutmarsch/img/keyboard_arrow_down.svg) center no-repeat;
     }
-
     /* first_block*/
     .first_block .slick-list{
       position: relative;
     }
-
-
     .first_block .slick-arrow{
       position: absolute;
       top: 50%;
@@ -119,11 +109,9 @@ const style = /*html*/ `
 	border-radius: 2px;
 	    line-height: 0;
     }
-
     .first_block .slick-arrow.prev{
       left: 0;
     }
-
     .first_block .slick-arrow.next{
       right: 0;
     }
@@ -132,7 +120,6 @@ const style = /*html*/ `
     .second_block_inform ul{
         padding: 20px;
     }
-
     .second_block_inform ul li > div{
         position: relative;
         padding-left: 15px;
@@ -140,11 +127,9 @@ const style = /*html*/ `
         align-items: center;
         width: fit-content;
     }
-
     .second_block_inform > ul li + li{
         margin-top: 16px;
     }
-
     .second_block_inform ul li div p{
         /*font-family: 'Roboto', sans-serif;*/
         font-weight: 700;
@@ -152,7 +137,6 @@ const style = /*html*/ `
         line-height: 1.14;
         color: #333333;
     }
-
     .second_block_inform ul li div svg{
         fill: #008000;
         margin-left: 10px;
@@ -161,7 +145,6 @@ const style = /*html*/ `
     .second_block_inform ul li p {
     	position: relative;
     }
-
     .second_block_inform ul li p:first-child:before{
         content: "";
         position: absolute;
@@ -189,7 +172,6 @@ const style = /*html*/ `
         border-radius: 5px;
         margin-top: 12px !important;
     }
-
 	.show .hidden_text{
 		display: block;		
 	} 
@@ -224,11 +206,9 @@ const style = /*html*/ `
 	}
 	
 	
-
     /*.toggle_inform{*/
     /*    fill: rgba(0, 128, 0, 0.5) !important;*/
     /*}*/
-
     /* slider_reviews*/
     .slider_reviews h2{
         /*margin-bottom: 16px;*/
@@ -240,16 +220,12 @@ const style = /*html*/ `
         text-transform: uppercase;
         color: #333333;
     }
-
     .slider_reviews .slick-list{
         padding: 10% 8%;
     }
-
     .slider_reviews .slick-initialized .slick-slide{
         margin-right: 10px;
     }
-
-
     .slider_reviews .slider_nav .slider_custom_list{
         padding: 8px;
         border: 2px solid #F5F5F5; 
@@ -259,15 +235,12 @@ const style = /*html*/ `
     /*.slider_nav .slick-active {*/
     /*	display: none;*/
     /*}*/
-
     .slider_reviews .slider_nav .slider_custom_list > div:first-child{
         display: flex;
     }
-
     .slider_reviews .slider_nav .slider_custom_list > div:first-child > div{
         margin-left: 12px;
     }
-
     .slider_reviews .slider_nav .slider_custom_list > div:first-child > div > p{
         /*font-family: 'Roboto', sans-serif;*/
         font-weight: 700;
@@ -277,7 +250,6 @@ const style = /*html*/ `
         text-transform: uppercase;
         color: #333333;
     }
-
     .slider_reviews .slider_nav .slider_custom_list > div:first-child > div > span{
         display: block;
         /*font-family: 'Roboto', sans-serif;*/
@@ -289,12 +261,10 @@ const style = /*html*/ `
         color: #7F7F7F;
         margin: 8px 0;
     }
-
     .slider_reviews .slider_nav .slider_custom_list > div:last-child, 
     .slider_reviews .slider_nav .slider_custom_list > div:last-child p + p{
         margin-top: 8px;
     }
-
     .slider_reviews .slider_nav .slider_custom_list > div:last-child p{
         /*font-family: 'Roboto', sans-serif;*/
         font-weight: 400;
@@ -302,17 +272,14 @@ const style = /*html*/ `
         line-height: 125%;
         color: #7F7F7F;
     }
-
     .slider_reviews ul{
         display: flex;
         align-items: center;
         justify-content: center;
     }
-
     .slider_reviews .slick-dots li + li{
         margin-left: 2px;
     }
-
     .slider_reviews .slick-dots li button {
         position: relative;
         display: flex;
@@ -328,7 +295,6 @@ const style = /*html*/ `
         border-color: transparent !important;
         padding: 5px;
     }
-
     .slider_reviews .slick-dots li button:before {
         opacity: 0.75;
         position: absolute;
@@ -343,7 +309,6 @@ const style = /*html*/ `
         border-radius: 50%;
         background-color: #fff;
     }
-
     .slider_reviews .slick-dots li.slick-active button:before {
         background-color: #008000;
         width: 8px;
@@ -357,7 +322,6 @@ const style = /*html*/ `
     .slick-dots {
 		padding: 0 !important;
 	}
-
     /*third_block */
     
     .third_block  {
@@ -367,7 +331,6 @@ const style = /*html*/ `
     .third_block > ol {
     	padding-left: 40px;
     }
-
     .third_block h2{
         /*font-family: 'Roboto', sans-serif;*/
         font-weight: 700;
@@ -376,15 +339,12 @@ const style = /*html*/ `
         color: #333333;
         margin-bottom: 12px;
     }
-
     /*.third_block > ol{*/
     /*    padding: 0 20px;*/
     /*}*/
-
     .third_block > ol li + li{
         margin-top: 12px;
     }
-
     .third_block > ol li {
         /*font-family: 'Roboto', sans-serif;*/
         font-weight: 500;
@@ -392,7 +352,6 @@ const style = /*html*/ `
         line-height: 16px;
         color: #333333;
     }
-
     .third_block > ol li {
         list-style: inherit;
     }
@@ -463,14 +422,12 @@ const style = /*html*/ `
   -ms-user-select: none;
   user-select: none;
 }
-
 /* hide-custom the browser's default radio button */
 .radio_container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
-
 /* Create a custom radio button */
 .checkmark {
   position: absolute;
@@ -481,33 +438,27 @@ const style = /*html*/ `
   border-radius: 50%;
   border: 2px solid #7F7F7F;
 }
-
 .alarmed .checkmark {
 	border-color: #CC0000;
 }
-
 /* On mouse-over, add a grey background color */
 /*.radio_container:hover input ~ .checkmark {*/
 /*  background-color: #fff;*/
 /*}*/
-
 /* When the radio button is checked, add a blue background */
 .selected .checkmark {
   border-color: #008000 !important;
 }
-
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
-
 /* Show the indicator (dot/circle) when checked */
 .selected .checkmark:after {
   display: block;
 }
-
 /* Style the indicator (dot/circle) */
 .radio_container .checkmark:after {
   top: 50%;
@@ -518,28 +469,23 @@ const style = /*html*/ `
   border-radius: 50%;
   background: #008000;
 }
-
 .first_block .slider-for {
  margin: 8px 0;
 }
-
 .grecaptcha-badge {
 	z-index: 1000;
 }
-
 .first_block .slider-for img{
 	width: 296px;
 	height: 296px;
 	object-fit: contain;
 }
-
 .first_block .slider_nav img{
 	width: 69px;
 	height: 69px;
 	padding-right: 8px;
 	object-fit: cover;
 }
-
 .table_section{
         width: 100%;
         border-collapse: collapse;
@@ -673,151 +619,144 @@ const style = /*html*/ `
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-if (window.location.pathname.replace(/\//g,"") === 'checkout') {
-	let checkoutLoaded = setInterval(() => {
-		if(document.querySelector('.woocommerce-info .showlogin')) {
-			clearInterval(checkoutLoaded)
+window.onload = function () {
+	const script = document.createElement('script')
+	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
+	script.async = false
+	document.getElementsByTagName('head')[0].appendChild(script)
 
-			document.querySelector('.woocommerce-info .showlogin').click()
+
+
+	let jqueryLoaded = setInterval(() => {
+		if (typeof jQuery === 'function') {
+			clearInterval(jqueryLoaded)
+
+			let scriptCustom = document.createElement('script')
+			scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
+			scriptCustom.async = false
+			document.head.appendChild(scriptCustom)
+
+			let scriptCustomStyle = document.createElement('link')
+			scriptCustomStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
+			scriptCustomStyle.rel = 'stylesheet'
+			document.head.appendChild(scriptCustomStyle)
+
+
 		}
-	}, 200)
-} else {
-	window.onload = function () {
-		const script = document.createElement('script')
-		script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
-		script.async = false
-		document.getElementsByTagName('head')[0].appendChild(script)
+	}, 100)
 
-		let jqueryLoaded = setInterval(() => {
-			if (typeof jQuery === 'function') {
-				clearInterval(jqueryLoaded)
+	const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
+	let product
 
-				let scriptCustom = document.createElement('script')
-				scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
-				scriptCustom.async = false
-				document.head.appendChild(scriptCustom)
+	switch (pathProduct) {
+		case '/mammut-hamburg/':
+			product = 'hamburg'
+			break
+		case '/ruhr/':
+			product = 'ruhrgebiet'
+			break
+		case '/mammutmarsch-muenchen/':
+			product = 'munchen'
+			break
+		default:
+			break
+	}
 
-				let scriptCustomStyle = document.createElement('link')
-				scriptCustomStyle.href = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css'
-				scriptCustomStyle.rel = 'stylesheet'
-				document.head.appendChild(scriptCustomStyle)
-
-
-			}
-		}, 100)
-
-		const pathProduct = window.location.pathname.split('/50-km-marsch')[1]
-		let product
-
-		switch (pathProduct) {
-			case '/mammut-hamburg/':
-				product = 'hamburg'
-				break
-			case '/ruhr/':
-				product = 'ruhrgebiet'
-				break
-			case '/mammutmarsch-muenchen/':
-				product = 'munchen'
-				break
-			default:
-				break
-		}
-
-		const version = {
-			hamburg: {
-				eventDetails: {
-					title: `Mammutmarsch<br>Hamburg – 42/60 km`,
-					start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
-					dataStart: '26.02.2021, ab 07:00 Uhr',
-					dataFinish: '27.02.2021, 01:00 Uhr',
-					routes: '42km /60km',
-					altitude: '150m/370m',
-				},
-				eventHighlights: [
-					'Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!',
-					'Hafencity mit Elbphilharmonie',
-					'Elbufer mit Hafenblick',
-					'Außenalster & Binnenalster',
-					'Speicherstadt',
-					'Blankenese',
-				],
-				paket: ['42 km (mit T-Shirt)', '42 km (nur Teilnahme)', '60 km (mit T-Shirt)', '60 km (nur Teilnahme)'],
-				img: [
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg">`,
-				],
+	const version = {
+		hamburg: {
+			eventDetails: {
+				title: `Mammutmarsch<br>Hamburg – 42/60 km`,
+				start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
+				dataStart: '26.02.2021, ab 07:00 Uhr',
+				dataFinish: '27.02.2021, 01:00 Uhr',
+				routes: '42km /60km',
+				altitude: '150m/370m',
 			},
-			ruhrgebiet: {
-				eventDetails: {
-					title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
-					start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
-					dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
-					dataFinish: '24:00 Uhr',
-					routes: '30km /55km',
-					altitude: '130m/270m',
-				},
-				eventHighlights: [
-					'100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets',
-					'Start im alten Eisenwerk LaPaDu',
-					'Zeche Zollverein (55 KM)',
-					'Ausblick vom Tetraeder (55 KM)',
-					'Gasometer Oberhausen',
-					'Zeche Osterfeld',
-				],
-				paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
-				img: [
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_rahr.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_rahr.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg">`,
-				],
+			eventHighlights: [
+				'Hamburg, meine Perle. Urbanes und grünes Sightseeing zugleich!',
+				'Hafencity mit Elbphilharmonie',
+				'Elbufer mit Hafenblick',
+				'Außenalster & Binnenalster',
+				'Speicherstadt',
+				'Blankenese',
+			],
+			paket: ['42 km (mit T-Shirt)', '42 km (nur Teilnahme)', '60 km (mit T-Shirt)', '60 km (nur Teilnahme)'],
+			img: [
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map42.png">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map60.png">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img0.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img1.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img2.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img3.jpg">`,
+			],
+		},
+		ruhrgebiet: {
+			eventDetails: {
+				title: `Mammutmarsch <br>Ruhrgebiet - 30/55 km`,
+				start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
+				dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
+				dataFinish: '24:00 Uhr',
+				routes: '30km /55km',
+				altitude: '130m/270m',
 			},
-			munchen: {
-				eventDetails: {
-					title: `Mammutmarsch <br>München - 30/55 km`,
-					start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
-					dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
-					dataFinish: '24:00 Uhr',
-					routes: '30km /55km',
-					altitude: '270m/550m',
-				},
-				eventHighlights: [
-					'Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.',
-					'Start und Ziel am Starnberger See',
-					'Ammersee',
-					'Kloster Andechs',
-					'Alpenblick',
-					'Viel Natur',
-				],
-				paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
-				img: [
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_mun.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_mun.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg">`,
-					`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg">`,
-				],
+			eventHighlights: [
+				'100% Industriekultur. Wir führen dich hautnah durch die beeindruckendsten Industrieanlagen des Ruhrgebiets',
+				'Start im alten Eisenwerk LaPaDu',
+				'Zeche Zollverein (55 KM)',
+				'Ausblick vom Tetraeder (55 KM)',
+				'Gasometer Oberhausen',
+				'Zeche Osterfeld',
+			],
+			paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
+			img: [
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_rahr.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_rahr.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img4.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img5.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img9.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img6.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img7.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img8.jpg">`,
+			],
+		},
+		munchen: {
+			eventDetails: {
+				title: `Mammutmarsch <br>München - 30/55 km`,
+				start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
+				dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
+				dataFinish: '24:00 Uhr',
+				routes: '30km /55km',
+				altitude: '270m/550m',
 			},
-		}
+			eventHighlights: [
+				'Back to Nature , ruhige lange Wanderwege durch Wald und Felder mit viel Seeblick.',
+				'Start und Ziel am Starnberger See',
+				'Ammersee',
+				'Kloster Andechs',
+				'Alpenblick',
+				'Viel Natur',
+			],
+			paket: ['30 km (mit T-Shirt)', '30 km (nur Teilnahme)', '55 km (mit T-Shirt)', '55 km (nur Teilnahme)'],
+			img: [
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map30_mun.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/new_map55_mun.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img10.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img11.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img12.jpg">`,
+				`<img src="https://conversionratestore.github.io/projects/mammutmarsch/img/slider-img13.jpg">`,
+			],
+		},
+	}
 
-		let cityObj = version[product]
+	let cityObj = version[product]
 
-		let imagesString
+	let imagesString
 
-		cityObj.img.forEach(img => {
-			imagesString += img
-		})
+	cityObj.img.forEach(img => {
+		imagesString += img
+	})
 
-		const page = /*html*/ `
+	const page = /*html*/ `
     <main class="custom_main">
       <section class="heading">
           <p class="title">${ cityObj.eventDetails.title }</p>
@@ -1110,281 +1049,294 @@ if (window.location.pathname.replace(/\//g,"") === 'checkout') {
 
 // document.body.insertAdjacentHTML('afterbegin', page)
 
-		document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
+	document.querySelector('#main').insertAdjacentHTML('afterbegin', page)
 
-		let jqueryLoaded2 = setInterval(() => {
+	let jqueryLoaded2 = setInterval(() => {
 
-			if (typeof jQuery === 'function') {
-				clearInterval(jqueryLoaded2)
+		if (typeof jQuery === 'function') {
+			clearInterval(jqueryLoaded2)
 
-				let slickInterval = setInterval(() => {
-					if (
-						typeof jQuery('.slider_reviews .slider_nav').slick === 'function' &&
-						document.querySelector('.slider_reviews .slider_nav') &&
-						document.querySelector('.first_block .slider_nav')
-					) {
-						clearInterval(slickInterval)
+			let slickInterval = setInterval(() => {
+				if (
+					typeof jQuery('.slider_reviews .slider_nav').slick === 'function' &&
+					document.querySelector('.slider_reviews .slider_nav') &&
+					document.querySelector('.first_block .slider_nav')
+				) {
+					clearInterval(slickInterval)
 
-						let reviewsSlider = $('.slider_reviews .slider_nav').slick({
-							slidesToShow: 1,
-							slidesToScroll: 1,
-							arrows: false,
-							focusOnSelect: true,
-							dots: true,
-						})
+					let reviewsSlider = $('.slider_reviews .slider_nav').slick({
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						arrows: false,
+						focusOnSelect: true,
+						dots: true,
+					})
 
-						reviewsSlider.on('swipe', function () {
-							reviewScrolled()
-						})
+					reviewsSlider.on('swipe', function () {
+						reviewScrolled()
+					})
 
-						reviewsSlider.find('.slick-slide').click(function () {
-							reviewScrolled()
-						})
+					reviewsSlider.find('.slick-slide').click(function () {
+						reviewScrolled()
+					})
 
-						reviewsSlider.find('.slick-dots li').click(function () {
-							reviewScrolled()
-						})
+					reviewsSlider.find('.slick-dots li').click(function () {
+						reviewScrolled()
+					})
 
-						let sliderFor = $('.first_block .slider-for').slick({
-							slidesToShow: 1,
-							slidesToScroll: 1,
-							fade: true,
-							asNavFor: '.first_block .slider_nav',
-							prevArrow: `
+					let sliderFor = $('.first_block .slider-for').slick({
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						fade: true,
+						asNavFor: '.first_block .slider_nav',
+						prevArrow: `
 					<div class="prev" >
 						<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					        <path d="M12.5098 1.8701L10.7298 0.100098L0.839844 10.0001L10.7398 19.9001L12.5098 18.1301L4.37984 10.0001L12.5098 1.8701Z" fill="#333333" fill-opacity="0.8"/>
 					        </svg>
 					</div>
 				`,
-							nextArrow: `
+						nextArrow: `
 <div class="next" >
 			<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         		<path d="M0.490234 18.1301L2.26023 19.9001L12.1602 10.0001L2.26023 0.100098L0.490234 1.8701L8.62023 10.0001L0.490234 18.1301Z" fill="#333333" fill-opacity="0.8"/>
         	</svg>
         	</div>
         `,
-						})
+					})
 
-						sliderFor.on('swipe', function () {
-							mainSwipeEvent()
-						})
+					sliderFor.on('swipe', function () {
+						mainSwipeEvent()
+					})
 
-						sliderFor.find('.slick-arrow').click(function () {
-							mainSwipeEvent()
-						})
+					sliderFor.find('.slick-arrow').click(function () {
+						mainSwipeEvent()
+					})
 
-						let mySlider = $('.first_block .slider_nav').slick({
-							slidesToShow: 4,
-							slidesToScroll: 1,
-							arrows: false,
-							asNavFor: '.slider-for',
-							focusOnSelect: true,
-						})
+					let mySlider = $('.first_block .slider_nav').slick({
+						slidesToShow: 4,
+						slidesToScroll: 1,
+						arrows: false,
+						asNavFor: '.slider-for',
+						focusOnSelect: true,
+					})
 
-						mySlider.on('swipe', function () {
-							thumbSwipeEvent()
-						})
+					mySlider.on('swipe', function () {
+						thumbSwipeEvent()
+					})
 
-						mySlider.find('.slick-slide').click(function () {
-							thumbSwipeEvent()
-						})
+					mySlider.find('.slick-slide').click(function () {
+						thumbSwipeEvent()
+					})
 
-						$('.subject').click(function () {
-							$(this).closest('li').toggleClass('hide-custom')
-							if ($(this).closest('li').hasClass('hide-custom')) {
-								$(this).closest('li').find('.info').slideUp()
-							} else {
-								$(this).closest('li').find('.info').slideDown()
+					$('.subject').click(function () {
+						$(this).closest('li').toggleClass('hide-custom')
+						if ($(this).closest('li').hasClass('hide-custom')) {
+							$(this).closest('li').find('.info').slideUp()
+						} else {
+							$(this).closest('li').find('.info').slideDown()
 
-								let subjectName = $(this).find('p').text()
-
-								window.dataLayer = window.dataLayer || []
-								dataLayer.push({
-									'event': 'event-to-ga',
-									'eventCategory': 'Exp: PDP improvements',
-									'eventAction': `${ subjectName } section opened`,
-								})
-							}
-						})
-
-						$('.second_block_inform ul li div svg').click(function () {
-							if (!$(this).closest('li').hasClass('show')) {
-
-								$('.second_block_inform .show').find('.hidden_text').slideUp()
-								$('.second_block_inform .show').removeClass('show')
-
-								$(this).closest('li').find('.hidden_text').slideDown()
-								$(this).closest('li').addClass('show')
-
-							} else {
-
-								$('.second_block_inform .show').find('.hidden_text').slideUp()
-								$('.second_block_inform .show').removeClass('show')
-
-							}
-						})
-
-						$('.fourth_block .item').click(function () {
-							if (!$(this).hasClass('selected')) {
-								let indexItem = $(this).index()
-
-								$('.fourth_block .selected .hidden_custom').slideUp()
-								$('.fourth_block .selected').removeClass('selected')
-
-								$(this).find('.hidden_custom').slideDown()
-								$(this).addClass('selected')
-
-								$('.price-wrap .price').text($(this).find('.item_price').text())
-
-								$('.total_block .alarm').slideUp()
-								$('.fourth_block').removeClass('alarmed')
-
-								$('.total_block button').attr('disabled', false)
-
-								if(product === 'hamburg') {
-									switch (+indexItem) {
-										case 0:
-											document.querySelectorAll('.radio-container')[0].click()
-											break
-										case 1:
-											document.querySelectorAll('.radio-container')[2].click()
-											break
-										case 2:
-											document.querySelectorAll('.radio-container')[1].click()
-											break
-										case 3:
-											document.querySelectorAll('.radio-container')[3].click()
-											break
-										default:
-											break
-									}
-								} else if(product === 'munchen') {
-									switch (+indexItem) {
-										case 0:
-											document.querySelectorAll('.radio-container')[1].click()
-											break
-										case 1:
-											document.querySelectorAll('.radio-container')[3].click()
-											break
-										case 2:
-											document.querySelectorAll('.radio-container')[0].click()
-											break
-										case 3:
-											document.querySelectorAll('.radio-container')[2].click()
-											break
-										default:
-											break
-									}
-								} else if(product === 'ruhrgebiet') {
-									switch (+indexItem) {
-										case 0:
-											document.querySelectorAll('.radio-container')[1].click()
-											break
-										case 1:
-											document.querySelectorAll('.radio-container')[3].click()
-											break
-										case 2:
-											document.querySelectorAll('.radio-container')[0].click()
-											break
-										case 3:
-											document.querySelectorAll('.radio-container')[2].click()
-											break
-										default:
-											break
-									}
-								}
-
-								let paketname = $(this).find('.paketname').text()
-
-								// $(this).find('.visible p')
-
-								window.dataLayer = window.dataLayer || []
-								dataLayer.push({
-									'event': 'event-to-ga',
-									'eventCategory': 'Exp: PDP improvements',
-									'eventAction': `${ paketname } selected`,
-								})
-							}
-						})
-
-						$('.total_block button').click(function () {
-							if ($('.item.selected').length === 0) {
-								$('.fourth_block').addClass('alarmed')
-								$('.total_block .alarm').slideDown()
-								$('.total_block button').attr('disabled', true)
-
-							} else {
-								document.querySelector('#proceed_to_checkout').click()
-
-								$('.total_block button').attr('disabled', false)
-								$('.total_block .alarm').slideUp()
-								$('.fourth_block').removeClass('alarmed')
-							}
+							let subjectName = $(this).find('p').text()
 
 							window.dataLayer = window.dataLayer || []
 							dataLayer.push({
 								'event': 'event-to-ga',
 								'eventCategory': 'Exp: PDP improvements',
-								'eventAction': 'Proceed to checkout click',
+								'eventAction': `${ subjectName } section opened`,
 							})
+
+							console.log(`eventAction: ${ subjectName } section opened`)
+						}
+					})
+
+					$('.second_block_inform ul li div svg').click(function () {
+						if (!$(this).closest('li').hasClass('show')) {
+
+							$('.second_block_inform .show').find('.hidden_text').slideUp()
+							$('.second_block_inform .show').removeClass('show')
+
+							$(this).closest('li').find('.hidden_text').slideDown()
+							$(this).closest('li').addClass('show')
+
+						} else {
+
+							$('.second_block_inform .show').find('.hidden_text').slideUp()
+							$('.second_block_inform .show').removeClass('show')
+
+						}
+					})
+
+					$('.fourth_block .item').click(function () {
+						if (!$(this).hasClass('selected')) {
+							let indexItem = $(this).index()
+
+							$('.fourth_block .selected .hidden_custom').slideUp()
+							$('.fourth_block .selected').removeClass('selected')
+
+							$(this).find('.hidden_custom').slideDown()
+							$(this).addClass('selected')
+
+							$('.price-wrap .price').text($(this).find('.item_price').text())
+
+							$('.total_block .alarm').slideUp()
+							$('.fourth_block').removeClass('alarmed')
+
+							$('.total_block button').attr('disabled', false)
+
+							if(product === 'hamburg') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									default:
+										break
+								}
+							} else if(product === 'munchen') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									default:
+										break
+								}
+							} else if(product === 'ruhrgebiet') {
+								switch (+indexItem) {
+									case 0:
+										document.querySelectorAll('.radio-container')[1].click()
+										break
+									case 1:
+										document.querySelectorAll('.radio-container')[3].click()
+										break
+									case 2:
+										document.querySelectorAll('.radio-container')[0].click()
+										break
+									case 3:
+										document.querySelectorAll('.radio-container')[2].click()
+										break
+									default:
+										break
+								}
+							}
+
+							let paketname = $(this).find('.paketname').text()
+
+							// $(this).find('.visible p')
+
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp: PDP improvements',
+								'eventAction': `${ paketname } selected`,
+							})
+
+							console.log(`eventAction: ${ paketname } selected`)
+
+
+						}
+					})
+
+					$('.total_block button').click(function () {
+						if ($('.item.selected').length === 0) {
+							$('.fourth_block').addClass('alarmed')
+							$('.total_block .alarm').slideDown()
+							$('.total_block button').attr('disabled', true)
+
+						} else {
+							document.querySelector('#proceed_to_checkout').click()
+
+							$('.total_block button').attr('disabled', false)
+							$('.total_block .alarm').slideUp()
+							$('.fourth_block').removeClass('alarmed')
+						}
+
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvements',
+							'eventAction': 'Proceed to checkout click',
 						})
-					}
-				}, 100)
-			}
-		}, 100)
 
-
-
-		function mainSwipeEvent() {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: PDP improvements',
-				'eventAction': 'Main image scrolled',
-			})
+						console.log('eventAction: Proceed to checkout click')
+					})
+				}
+			}, 100)
 		}
+	}, 100)
 
-		function thumbSwipeEvent() {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: PDP improvements',
-				'eventAction': 'Thumbnail clicked/scrolled',
-			})
-		}
-
-		function reviewScrolled() {
-			window.dataLayer = window.dataLayer || []
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: PDP improvements',
-				'eventAction': 'Review scrolled',
-			})
-		}
-
-		document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
-			document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
+	function mainSwipeEvent() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Main image scrolled',
 		})
+
+		console.log('eventAction: Main image scrolled')
 	}
+
+	function thumbSwipeEvent() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Thumbnail clicked/scrolled',
+		})
+
+		console.log('eventAction: Thumbnail clicked/scrolled')
+	}
+
+	function reviewScrolled() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Review scrolled',
+		})
+
+		console.log('eventAction Review scrolled')
+	}
+
+	document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
+		document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
+	})
+
+	console.log('eventAction: loaded')
+
+	;(function (h, o, t, j, a, r) {
+		h.hj = h.hj || function () {
+			(h.hj.q = h.hj.q || []).push(arguments)
+		}
+		h._hjSettings = {hjid: 1191175, hjsv: 6}
+		a = o.getElementsByTagName('head')[0]
+		r = o.createElement('script')
+		r.async = 1
+		r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+		a.appendChild(r)
+	})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+	hj('event', 'pdp_improvements')
+
+	window.dataLayer = window.dataLayer || []
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp: PDP improvements',
+		'eventAction': 'loaded',
+	})
 }
-
-;(function (h, o, t, j, a, r) {
-	h.hj = h.hj || function () {
-		(h.hj.q = h.hj.q || []).push(arguments)
-	}
-	h._hjSettings = {hjid: 1191175, hjsv: 6}
-	a = o.getElementsByTagName('head')[0]
-	r = o.createElement('script')
-	r.async = 1
-	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-	a.appendChild(r)
-})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
-hj('event', 'pdp_improvements')
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp: PDP improvements',
-	'eventAction': 'loaded',
-})
