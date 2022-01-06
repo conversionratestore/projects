@@ -2,8 +2,8 @@ const style = /*html*/ `
 <style>
 	.checkout_coupon .button {
 		background-color: #0269AB !important;
-		border: none;
-		color: #fff;
+		border: none !important;
+		color: #fff !important;
 	}
 
     .custom_main *,
@@ -674,13 +674,17 @@ const style = /*html*/ `
 document.head.insertAdjacentHTML('beforeend', style)
 
 if (window.location.pathname.replace(/\//g,"") === 'checkout') {
-	let checkoutLoaded = setInterval(() => {
-		if(document.querySelector('.woocommerce-info .showlogin')) {
-			clearInterval(checkoutLoaded)
+	window.onload = function() {
+		let checkoutLoaded = setInterval(() => {
+			if(document.querySelector('.woocommerce-info .showlogin')) {
+				clearInterval(checkoutLoaded)
 
-			document.querySelector('.woocommerce-info .showlogin').click()
-		}
-	}, 200)
+				console.log('checkoutLoaded')
+
+				document.querySelector('.woocommerce-info .showlogin').click()
+			}
+		}, 200)
+	}
 } else {
 	window.onload = function () {
 		const script = document.createElement('script')
