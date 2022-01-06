@@ -18,7 +18,7 @@ const style = `
 		
 		.custom-block {
 			border-top: 1px solid #e6e6e6;
-			/*margin: 20px 0 30px;*/
+			margin-bottom: 30px;
 		}
 		
 		.item {
@@ -142,14 +142,9 @@ const style = `
 			background: #0C0B0B;
 		}
 		
-		/*.banner {*/
-		/*	padding: 1.5em 0 0px;*/
-		/*}*/
-		
 		.guarantee {
-			/*padding: 30px 0;				 */
+			padding: 30px 0;				 
 			background: #FFFFFF;
-			/*margin-top: 1.5rem;*/
 		}
 		
 		.guarantee p,
@@ -163,16 +158,24 @@ const style = `
 			align-items: center;
 			gap: 12px;
 			padding: 12px;	
-			border-top: 1px solid #E5E5E5;
+			border: 1px solid #E5E5E5;
 			border-radius: 5px;
 		}
 		
-		.guarantee > div p {
+		.guarantee > div p.money {
 			color: #0065A3;
-			line-height: 23px;
-			letter-spacing: 0.02em;
-			font-size: 18px;
+			line-height: 20px;
+			font-size: 15px;
 			font-weight: bold;
+			text-transform: uppercase;
+		}
+		
+		.guarantee > div p.returns {
+			color: #6F6F6F;
+			line-height: 14px;
+			font-size: 15px;
+			font-weight: normal;
+			letter-spacing: 1px;
 			text-transform: uppercase;
 		}
 		
@@ -342,6 +345,20 @@ const shipping = `
 		</div>
 	</div>
 `
+
+const guarantee = `
+	<div class="guarantee">
+		<div>
+			<div class="img-wrap">
+				<img src="https://conversionratestore.github.io/projects/buzzpatch/img/30daysCopy.svg" alt="moneyback">
+			</div>
+			<div class="text">
+				<p class="money">30 DAYs Money-back Guarantee</p>		
+				<p class="returns">NO returns required - test as much as you want</p>		
+			</div>
+		</div>
+	</div>
+`
 const reviews = `
 	<div class="custom-block">		
 		<div class="reviews">
@@ -422,17 +439,6 @@ const reviews = `
 		</div>
 	</div>
 `
-
-const guarantee = `<div class="guarantee">
-			<div>
-				<div class="img-wrap">
-					<img src="https://conversionratestore.github.io/projects/buzzpatch/img/30days.svg" alt="moneyback">
-				</div>
-				<div class="text">
-					<p>30 DAYs Money-back Guarantee</p>				
-				</div>
-			</div>
-		</div>`
 
 const banner = document.querySelector('.banner')
 const footer = document.querySelector('.main__footer')
