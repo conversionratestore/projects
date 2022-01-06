@@ -1,5 +1,9 @@
 const style = `
 	<style>
+		.banner {
+			padding: 1.5em 0 0;
+		}
+	
 		.shipping {
 			padding: 30px 20px;
 			background: #EBEBEB;
@@ -143,7 +147,7 @@ const style = `
 		}
 		
 		.guarantee {
-			padding: 30px 0;				 
+			padding: 30px 1em;				 
 			background: #FFFFFF;
 		}
 		
@@ -171,6 +175,7 @@ const style = `
 		}
 		
 		.guarantee > div p.returns {
+			margin-top: 4px;
 			color: #6F6F6F;
 			line-height: 14px;
 			font-size: 12px;
