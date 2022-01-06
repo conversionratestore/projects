@@ -23,6 +23,7 @@ const style = `
 		.custom-block {
 			border-top: 1px solid #e6e6e6;
 			margin-bottom: 30px;
+			padding-top: 10px;
 		}
 		
 		.item {
