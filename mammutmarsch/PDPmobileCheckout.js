@@ -1,10 +1,10 @@
 const style = /*html*/ `
 <style>
-	.checkout_coupon .button {
-		background-color: #0269AB !important;
-		border: none !important;
-		color: #fff !important;
-	}
+	/*.checkout_coupon .button {*/
+	/*	background-color: #0269AB !important;*/
+	/*	border: none !important;*/
+	/*	color: #fff !important;*/
+	/*}*/
 	
 	.checkout_coupon {
 	    display: flex;
@@ -13,12 +13,12 @@ const style = /*html*/ `
 	
 	.checkout_coupon p {
 	    width: 100% !important;
-	    margin: 0;
+	    margin: 0 !important;
 	}
 	
 	.checkout_coupon p.form-row-last {
         text-align: center; 
-        margin-top: 6px;
+        margin-top: 6px !important;
 	}
 
     .custom_main *,
