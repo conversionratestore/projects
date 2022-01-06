@@ -690,16 +690,16 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 if (window.location.pathname.replace(/\//g,"") === 'checkout') {
     let checkoutLoaded = setInterval(() => {
-      if (document.querySelector('.woocommerce-info .showlogin') && document.querySelector('.checkout_coupon')) {
+      if (document.querySelector('.woocommerce-info .showcoupon') && document.querySelector('.checkout_coupon')) {
         clearInterval(checkoutLoaded)
 
         console.log('checkoutLoaded')
 
-        setTimeout(() => {
+        // setTimeout(() => {
 
-          document.querySelector('.woocommerce-info .showlogin').click()
+          document.querySelector('.woocommerce-info .showcoupon').click()
           console.log('clicked')
-        }, 5000)
+        // }, 5000)
 
 
       }
