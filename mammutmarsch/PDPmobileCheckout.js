@@ -5,6 +5,21 @@ const style = /*html*/ `
 		border: none !important;
 		color: #fff !important;
 	}
+	
+	.checkout_coupon {
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+	.checkout_coupon p {
+	    width: 100% !important;
+	    margin: 0;
+	}
+	
+	.checkout_coupon p:last-child {
+        text-align: center; 
+        margin-top: 6px;
+	}
 
     .custom_main *,
     .custom_main *::before,
@@ -681,7 +696,7 @@ if (window.location.pathname.replace(/\//g,"") === 'checkout') {
         console.log('checkoutLoaded')
 
         setTimeout(() => {
-          
+
           document.querySelector('.woocommerce-info .showlogin').click()
           console.log('clicked')
         }, 5000)
