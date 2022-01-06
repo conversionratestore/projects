@@ -173,7 +173,7 @@ const style = `
 		.guarantee > div p.returns {
 			color: #6F6F6F;
 			line-height: 14px;
-			font-size: 15px;
+			font-size: 12px;
 			font-weight: normal;
 			letter-spacing: 1px;
 			text-transform: uppercase;
