@@ -16,7 +16,7 @@ const style = /*html*/ `
 	    margin: 0;
 	}
 	
-	.checkout_coupon p:last-child {
+	.checkout_coupon p.form-row-last {
         text-align: center; 
         margin-top: 6px;
 	}
