@@ -425,7 +425,9 @@ document.querySelector('.nav-menu').addEventListener('click', (e) => {
 
 //listing
 if (window.location.pathname.includes('/category')) {
-    document.querySelectorAll('.listing p')[0].style.display = 'none';
+    if (document.querySelector('.subhead') != null) {
+        document.querySelectorAll('.listing p')[0].style.display = 'none';
+    }
 
     document.querySelectorAll('#search_c_id option').forEach((el,i) => {
         if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
@@ -481,10 +483,16 @@ if (window.location.pathname.includes('/category')) {
         <button type="button" class="btn_close"></button>
         <div class="popup_filter_container">
             <h3 class="title">Filters</h3>
-            <div class="select">
+            <div class="select filter_brands">
                 <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                <ul class="select_dropdown"></ul>
+            </div>
+            <div class="select filter_price">
+                <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
                 <ul class="select_dropdown"></ul>
             </div>
         </div>
     </div>`)
+
+
 }
