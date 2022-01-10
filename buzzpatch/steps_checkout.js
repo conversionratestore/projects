@@ -1,6 +1,5 @@
 let style = `
     <style>
-      .breadcrumb li:nth-child(2),
       .field[data-address-field="company"] {
         display: none;
       }
@@ -18,6 +17,12 @@ function start() {
 
     document.body.insertAdjacentHTML('afterbegin', style)
 
+    document.querySelectorAll('.breadcrumb__item span').forEach(item => {
+        if(item.innerText === 'Shipping') {
+            item.closest('li').style.display = 'none'
+        }
+    })
+
     if (document.querySelector('[aria-current="step"]').innerText === "Information") {
         let s = setInterval(function () {
             if (document.querySelector('#continue_button')) {
@@ -32,7 +37,7 @@ function start() {
                             }
                         }
                     })
-                    
+
                     if(document.querySelector('#checkout_shipping_address_province:not([hidden])')?.value === 'State') {
                         toPayment = false
                     }
