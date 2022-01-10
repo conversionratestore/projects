@@ -7,7 +7,7 @@ let style = `
 `
 
 let setup = setInterval(function () {
-    if(document.querySelector('.breadcrumb__item span')) {
+    if(document.querySelector('[aria-current="step"]')) {
         clearInterval(setup)
         start()
     }
