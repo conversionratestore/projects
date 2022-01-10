@@ -1,4 +1,4 @@
-    let styles = `
+let styles = `
     <style>
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
@@ -10,6 +10,7 @@
         text-align: center;
         text-transform: capitalize;
         color: #171717;
+        padding-left: 0;
     }
     #wrap {
         padding-top: 50px;
@@ -252,7 +253,8 @@
     }
     .listing li {
         width: calc(50% - 7.5px);
-        margin: 0 15px 15px 0;
+        margin: 5px 15px 10px 0;
+        padding: 0;
         background: #FFFFFF;
         border: 1px solid #EEEEEE;
         box-sizing: border-box;
@@ -281,9 +283,51 @@
         margin-left: 4px;
         flex-shrink: 0;
     }
+    .list_type1 span {
+        opacity: 0;
+    }
+    .list_type2 label {
+        font-weight: 400;
+        width: auto!important;
+        font-size: 12px;
+        padding-right: 8px;
+    }
+    .list_type1 p {
+        float: right;
+        position: relative;
+        width: calc(50% - 7.5px);
+        margin-left: 15px;
+    }
+    .list_type1 label {
+        position: absolute;
+        left: 12px;
+        top: 0;
+        line-height: 30px;
+        font-size: 12px;
+        color: #171717;
+        font-weight: 400;
+    }
+     .list_type1 select {
+        height: 30px;
+        border: 1px solid #666666;
+        border-radius: 4px;
+        margin: 0;
+        width: 100%!important;
+        padding: 0 7px;
+     }
+    .btn_filter {
+        width: calc(50% - 7.5px);
+        background: #171717;
+        border-radius: 4px;
+        line-height: 30px;
+        border: none;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+        color: #FFFFFF;
+    }
     </style>`
-
-    let header = `
+let header = `
     <header class="header">
         <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger">
         <ul class="header_cart"></ul>
@@ -310,99 +354,127 @@
         </div>
     </header>`;
 
-    document.body.insertAdjacentHTML('afterbegin', styles);
-    document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
-    document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
-    document.querySelector('.header .icon_burger').after(document.querySelector('.search.search-box'));
-    if (document.querySelector('.topnav .signup') != null) {
-        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
-    }
-    if (document.querySelector('.topnav .logout') != null) {
-        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
-    }
+document.body.insertAdjacentHTML('afterbegin', styles);
+document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
+document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
+document.querySelector('.header .icon_burger').after(document.querySelector('.search.search-box'));
+if (document.querySelector('.topnav .signup') != null) {
+    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
+}
+if (document.querySelector('.topnav .logout') != null) {
+    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
+}
 
-    document.querySelector('.sticky-top').after(document.querySelector('.nav'));
-    document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
-    document.querySelectorAll('.nav li').forEach(el => {
-        if (el.classList.contains('hide-mobile')) {
-            el.classList.remove('hide-mobile','hide-mobile-landscape')
+document.querySelector('.sticky-top').after(document.querySelector('.nav'));
+document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
+document.querySelectorAll('.nav li').forEach(el => {
+    if (el.classList.contains('hide-mobile')) {
+        el.classList.remove('hide-mobile','hide-mobile-landscape')
+    }
+})
+
+document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
+
+fetch(`/api/categories&limit=100`, {
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    method: "GET",
+}).then(res => res.json()).then(data => {
+    console.log(data)
+    for (let key in data.categories) {
+        if (data.categories[key].url) {
+            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
+        }
+    }
+    document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
+        if (i > 4) {
+            el.hidden = true;
+        }
+    })
+})
+
+function toggleCategory(boolean) {
+    document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
+        if (i > 4) {
+            el.hidden = boolean;
+        }
+    })
+    document.querySelector('.btn_back').hidden = boolean;
+    if (boolean == false) {
+        document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
+        document.querySelector('.btn_all-category').hidden = true;
+        document.querySelector('.nav-menu .nav').hidden = true;
+    } else {
+        document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
+        document.querySelector('.btn_all-category').hidden = false;
+        document.querySelector('.nav-menu .nav').hidden = false;
+    }
+}
+
+document.querySelector('.btn_all-category').addEventListener('click', () => toggleCategory(false)); //open all category
+document.querySelector('.btn_back').addEventListener('click', () => toggleCategory(true)); //hide all category
+
+document.querySelector('.icon_burger').addEventListener('click', () => document.querySelector('.nav-menu').classList.add('active'));
+document.querySelector('.btn_close').addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('active'));
+document.querySelector('.nav-menu').addEventListener('click', (e) => {
+    if (e.target.classList.contains('nav-menu')) {
+        document.querySelector('.nav-menu').classList.remove('active')
+    }
+});
+
+//listing
+if (window.location.pathname.includes('/category')) {
+    document.querySelectorAll('.listing p')[0].style.display = 'none';
+
+    document.querySelectorAll('#search_c_id option').forEach((el,i) => {
+        if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
+            fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}`, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                method: "GET",
+            }).then(res => res.json()).then(data => {
+
+                let products = data.products;
+                console.log(data)
+
+                document.querySelectorAll('.listing li').forEach((el) => {
+                    el.setAttribute('data-use','false')
+                    el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+
+                    let subcategory = el.querySelector('a').innerText.split(' ')[0];
+
+                    for (let i = 2; i < products.length; i++) {
+
+                        if (products[i].title.includes(subcategory)) {
+                            console.log(subcategory)
+                            console.log(products[i].title)
+                            el.setAttribute('data-use','true')
+                            el.querySelector('img').setAttribute('src', products[i].variants[0].image_url)
+                            el.querySelector('img').setAttribute('alt', products[i].title)
+
+                            break;
+                        }
+
+                    }
+                })
+            })
         }
     })
 
-    document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
 
-    fetch(`/api/categories&limit=100`, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        method: "GET",
-    }).then(res => res.json()).then(data => {
-        console.log(data)
-        for (let key in data.categories) {
-            if (data.categories[key].url) {
-                document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
-            }
-        }
-        document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
-            if (i > 4) {
-                el.hidden = true;
-            }
-        })    
-    })
 
-    function toggleCategory(boolean) {
-        document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
-            if (i > 4) {
-                el.hidden = boolean;
-            }
-        })
-        document.querySelector('.btn_back').hidden = boolean;
-        if (boolean == false) {
-            document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
-            document.querySelector('.btn_all-category').hidden = true;
-            document.querySelector('.nav-menu .nav').hidden = true;
+    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `<button type="button" class="btn_filter">Filters</button>`)
+
+    function checkSelected() {
+        if (document.querySelector('.list_type1 select').value != '') {
+            document.querySelector('.list_type1 label').style.opacity = '0'
         } else {
-            document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
-            document.querySelector('.btn_all-category').hidden = false;
-            document.querySelector('.nav-menu .nav').hidden = false;
+            document.querySelector('.list_type1 label').style.opacity = '1'
         }
     }
-
-    document.querySelector('.btn_all-category').addEventListener('click', () => toggleCategory(false)); //open all category
-    document.querySelector('.btn_back').addEventListener('click', () => toggleCategory(true)); //hide all category
-
-    document.querySelector('.icon_burger').addEventListener('click', () => document.querySelector('.nav-menu').classList.add('active'));
-    document.querySelector('.btn_close').addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('active'));
-    document.querySelector('.nav-menu').addEventListener('click', (e) => {
-        if (e.target.classList.contains('nav-menu')) {
-            document.querySelector('.nav-menu').classList.remove('active')
-        }
-    });
-
-    //listing
-    if (window.location.pathname.includes('/category')) {
-        document.querySelectorAll('.listing p')[0].style.display = 'none';
-      
-        document.querySelectorAll('.listing li').forEach((el) => {
-            el.setAttribute('data-use','false')
-            el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-
-            let subcategory = el.querySelector('a').innerText.split(' ')[0];         
-            let cardList = document.querySelectorAll('.list_box2');
-            
-            for (let i = 2; i < cardList.length; i++) {
-                cardList[i]
-                if (cardList[i].querySelector('h3 a').innerText.includes(subcategory) && !cardList[i].getAttribute('data-use','true')) {
-                    console.log(subcategory)
-                    cardList[i].setAttribute('data-use','true')
-                    el.querySelector('img').setAttribute('src', cardList[i].querySelector('.list_type3 img').getAttribute('src'))
-                    el.querySelector('img').setAttribute('alt', cardList[i].querySelector('h3 a').innerHTML)
-            
-                    break;
-                }
-                
-            }
-        })
-
-    }
-
+    checkSelected()
+    document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
+    document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;'
+}
