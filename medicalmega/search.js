@@ -439,25 +439,26 @@ if (window.location.pathname.includes('/category')) {
                 let products = data.products;
                 console.log(data)
 
-                document.querySelectorAll('.listing li').forEach((el) => {
-                    el.setAttribute('data-use','false')
+                document.querySelectorAll('.listing li').forEach((el,index) => {
                     el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
 
                     let subcategory = el.querySelector('a').innerText.split(' ')[0];
 
-                    for (let i = 2; i < products.length; i++) {
-
-                        if (products[i].title.includes(subcategory)) {
-                            console.log(subcategory)
-                            console.log(products[i].title)
-                            el.setAttribute('data-use','true')
-                            el.querySelector('img').setAttribute('src', products[i].variants[0].image_url)
-                            el.querySelector('img').setAttribute('alt', products[i].title)
-
-                            break;
+                    for (let i = 0; i < products.length; i++) {
+                        if (products[i].title.includes(subcategory) ) {
+                            if (el.getAttribute('data-index-products') == null) {
+                                el.setAttribute('data-index-products', i)
+                            } else {
+                                el.setAttribute('data-index-products', el.getAttribute('data-index-products') + ', ' + i )
+                            }
                         }
-
                     }
+                    let randomArray = el.getAttribute('data-index-products').split(', ');
+                    let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
+
+                    el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                    el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                    console.log(randomNum)
                 })
             })
         }
