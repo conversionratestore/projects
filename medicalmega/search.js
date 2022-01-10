@@ -326,6 +326,65 @@ let styles = `
         text-align: center;
         color: #FFFFFF;
     }
+    .popup_filter {
+        position: fixed;
+        top: 0;
+        left: 0; 
+        height: 100%; 
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        display: inline-flex;
+        opacity: 0;
+        pointer-events: none; 
+        transition: all 0.3s ease; 
+    }
+    .popup_container {
+        background: #FFFFFF;
+        border-radius: 10px 10px 0px 0px;
+        width: 100%; 
+        margin-top: auto;
+        padding: 12px;
+    }
+    .btn_close {
+        width: 24px;
+        height: 24px; 
+        background: url('https://conversionratestore.github.io/projects/medicalmega/img/close2.svg') no-repeat center / contain;
+        margin-left: auto;
+        display: block;
+        border: none;
+    }
+    .filter_content {
+        padding: 4px 28px 28px;
+    }
+    .filter_content .title {
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        text-transform: capitalize;
+    }
+    .select_current {
+        border-bottom: 1px solid #C0C0C0;
+        padding: 10px 0;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 20px;
+        color: #666666;
+        display: flex; 
+        justify-content: space-between;
+    }
+    .select_current img {
+        width: 12px;
+        hegith: 12px;
+    }
+    .select_dropdown {
+        text-align: left;
+    }
+    .select_dropdown li {
+        margin-top: 22px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+    }
     </style>`
 let header = `
     <header class="header">
@@ -480,19 +539,30 @@ if (window.location.pathname.includes('/category')) {
     document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;';
 
     document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter">
-        <button type="button" class="btn_close"></button>
-        <div class="popup_filter_container">
-            <h3 class="title">Filters</h3>
-            <div class="select filter_brands">
-                <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                <ul class="select_dropdown"></ul>
-            </div>
-            <div class="select filter_price">
-                <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                <ul class="select_dropdown"></ul>
+        <div class="popup_container">
+            <button type="button" class="btn_close"></button>
+            <div class="filter_content">
+                <h3 class="title">Filters</h3>
+                <div class="select filter_brands">
+                    <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                    <ul class="select_dropdown"></ul>
+                </div>
+                <div class="select filter_price">
+                    <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                    <ul class="select_dropdown"></ul>
+                </div>
             </div>
         </div>
     </div>`)
 
-
+    document.querySelectorAll('#left-navigation .altnav')[0].querySelectorAll('li a').forEach((el,i) => {
+        if (i > 0) {
+            document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label><input type="checkbox" class="checkbox"><span class="check"></span><span>${el.innerHTML}</span></label></li>`)
+        }
+    })
+    document.querySelectorAll('#left-navigation .altnav')[1].querySelectorAll('li a').forEach((el,i) => {
+        if (i > 0) {
+            document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label><input type="checkbox" class="checkbox"><span class="check"></span><span>${el.innerHTML}</span></label></li>`)
+        }
+    })
 }
