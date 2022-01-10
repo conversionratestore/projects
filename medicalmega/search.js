@@ -464,8 +464,6 @@ if (window.location.pathname.includes('/category')) {
         }
     })
 
-
-
     document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `<button type="button" class="btn_filter">Filters</button>`)
 
     function checkSelected() {
@@ -477,5 +475,16 @@ if (window.location.pathname.includes('/category')) {
     }
     checkSelected()
     document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
-    document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;'
+    document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;';
+
+    document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter">
+        <button type="button" class="btn_close"></button>
+        <div class="popup_filter_container">
+            <h3 class="title">Filters</h3>
+            <div class="select">
+                <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                <ul class="select_dropdown"></ul>
+            </div>
+        </div>
+    </div>`)
 }
