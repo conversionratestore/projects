@@ -43,7 +43,7 @@ function start() {
                     }
 
                     if (toPayment) {
-                        e.preventDefault()
+                        // e.preventDefault()
                         window.location.search = '?previous_step=shipping_method&step=payment_method'
                     }
                 })
