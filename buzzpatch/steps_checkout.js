@@ -7,7 +7,6 @@ let style = `
 `
 
 let setup = setInterval(function () {
-    console.log('>>> init')
     if(document.querySelector('.breadcrumb__item span')) {
         clearInterval(setup)
         start()
@@ -16,12 +15,10 @@ let setup = setInterval(function () {
 
 function start() {
 
-    console.log('>>> start')
-
     document.body.insertAdjacentHTML('afterbegin', style)
 
     document.querySelectorAll('.breadcrumb__item span').forEach(item => {
-        console.log(item.innerText)
+        
         if(item.innerText === 'Shipping') {
             item.closest('li').style.display = 'none'
         }
