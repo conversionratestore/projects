@@ -17,16 +17,15 @@ function start() {
 
     document.body.insertAdjacentHTML('afterbegin', style)
 
-    document.querySelectorAll('.breadcrumb__item span').forEach(item => {
-        
+    document.querySelectorAll('.breadcrumb__item').forEach(item => {
         if(item.innerText === 'Shipping') {
             item.closest('li').style.display = 'none'
         }
     })
-
-    if (document.querySelector('[aria-current="step"]').innerText === "Shipping") {
+    if (document.querySelector('[aria-current="step"]').innerText === "Information") {
+        document.querySelector('#continue_button .btn__content').innerText = 'Continue to payment'
+    } else if (document.querySelector('[aria-current="step"]').innerText === "Shipping") {
         document.querySelector('#continue_button').click()
-
     } else if (document.querySelector('[aria-current="step"]').innerText === "Payment") {
         document.querySelector('.test').remove()
         let s = setInterval(function () {
