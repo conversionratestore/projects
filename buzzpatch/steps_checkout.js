@@ -7,6 +7,7 @@ let style = `
 `
 
 let setup = setInterval(function () {
+    console.log('>>> init')
     if(document.querySelector('.breadcrumb__item span')) {
         clearInterval(setup)
         start()
@@ -14,6 +15,8 @@ let setup = setInterval(function () {
 },100)
 
 function start() {
+
+    console.log('>>> start')
 
     document.body.insertAdjacentHTML('afterbegin', style)
 
