@@ -32,6 +32,10 @@ function start() {
                             }
                         }
                     })
+                    
+                    if(document.querySelector('#checkout_shipping_address_province:not([hidden])')?.value === 'State') {
+                        toPayment = false
+                    }
 
                     if (toPayment) {
                         e.preventDefault()
