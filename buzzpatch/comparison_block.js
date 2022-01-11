@@ -201,7 +201,7 @@ let comparisonBlock = /*html*/ `
               <div>3 patches</div>
             </td>
             <td>
-              <div>~35 ml</div>
+              <div>~38 ml</div>
             </td>
           </tr>
           <tr>
