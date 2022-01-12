@@ -9,13 +9,26 @@ let html = `
         </div>
         <div class="midbar">
           <div class="container">
-            <div class="flex-center-between"><a class="logo" href="#">Medical<span>Mega</span></a>
-              <button class="btn btn_white" type="button" data-button="advanced-search">Advanced Search</button>
-              <form class="form-search">
-                <input type="text" placeholder="Search by Name">
-                <button type="submit"></button>
-              </form>
-              <div class="align-items-center"><a class="align-items-center midbar_action" href="https://medicalmega.com/myaccount.html"><img class="mr-12" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center ml-40 midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-12" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart</span></a></div>
+            <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
+                <div class="d-flex">
+                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
+                  <form class="form-search">
+                    <input type="text" placeholder="Search by Name">
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#clip0_114_1946)" stroke="#fff"><path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"/></g><defs><clipPath id="clip0_114_1946"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+                    </button>
+                  </form>
+                </div>
+                <div class="align-items-center">
+                    <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
+                        <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
+                        <span>Account</span>
+                    </a>
+                    <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
+                        <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
+                        <span>Cart</span>
+                    </a>
+                </div>
             </div>
           </div>
         </div>
@@ -43,7 +56,7 @@ let html = `
           </div>
         </form>
         <div class="subbar">
-          <div class="container d-flex">
+          <div class="container flex-center-between">
             <nav class="nav_category"><a class="align-items-center" href="#">
                 <div class="burger_category">
                   <div class="burger_line"></div>
@@ -51,15 +64,16 @@ let html = `
                   <div class="burger_line"></div>
                 </div><span class="p-main">All Categories</span></a></nav>
             <ul class="d-flex category_popular">
-              <li> <a href="#">New Products</a></li>
-              <li> <a href="#">Sale Products</a></li>
-              <li> <a href="#">Hand Sanitizing</a></li>
-              <li> <a href="#">Wound care</a></li>
-              <li> <a href="#">Gloves</a></li>
-              <li> <a href="#">Disinfectants</a></li>
-              <li> <a href="#">Ostomy</a></li>
-              <li> <a href="#">Instruments</a></li>
+              <li> <a href="/category/new-products">New Products</a></li>
+              <li> <a href="/sales.html">Sale Products</a></li>
+              <li> <a href="/category/hand-sanitizing">Hand Sanitizing</a></li>
+              <li> <a href="/category/wound-care">Wound care</a></li>
+              <li> <a href="/category/gloves">Gloves</a></li>
+              <li> <a href="/category/disinfectants">Disinfectants</a></li>
+              <li> <a href="/category/ostomy">Ostomy</a></li>
+              <li> <a href="/category/instruments">Instruments</a></li>
             </ul>
+            <p class="previous-version">switch to the previous version</p>
           </div>
         </div>
         <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
@@ -70,7 +84,7 @@ let html = `
           <div class="col_left flex-wrap"> 
             <div class="side_one">
               <div class="slider-nav"></div>
-              <div class="trustpilot">trustpilot</div>
+              <div class="trustpilot"></div>
             </div>
             <div class="side_two">
               <div class="slider-for">
@@ -85,7 +99,7 @@ let html = `
             <div class="range"> 
               <div class="flex-center-between">
                 <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
-                <p class="text-up"> <span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span>left for free shipping</p>
+                <p class="text-up l-t-02"> <span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span>left for free shipping</p>
               </div>
               <div class="range_slider"><span></span></div>
             </div>
@@ -97,75 +111,34 @@ let html = `
                 <div class="content-discription"></div>
               </div>
               <div class="product_sidebar">
-                <div class="align-items-center"> <img class="mr-12" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                <div class="align-items-center"> <img class="mr-16" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                   <div> 
                     <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
                     <p class="c-gray">2-3 business days*</p>
                   </div>
                 </div>
                 <div class="line"></div>
-                <div class="flex-center-between fw-semi price">
+                <div class="flex-end-between fw-semi total">
                   <p class="fs-16">Price:</p>
-                  <p class="fs-24">${document.querySelector('.product-price').innerText}</p>
+                  <p class="fs-24">$<span class="pr">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
                 </div>
                 <div class="flex-center-center calc"> 
                   <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                   <input class="calc-qty" type="number" value="1">
                   <button class="btn-calc btn-calc_plus" type="button"></button>
                 </div>
-                <button class="btn btn_dark" type="button">Add to Cart</button>
+                <button class="btn btn_dark add-cart" type="button">Add to Cart</button>
               </div>
             </div>
           </div>
         </div>
         <section class="similar-products">
           <h2 class="text-center">Similar Products</h2>
-          <div class="justify-content-between"> 
-            <div class="card"><a class="card_name" href="#"><img src="https://medicalmegaimgs.net/prod/uploaded/product/159907855915375725325f50009f9b40e.jpg" alt="Procedure Surgical Face Mask, 3 Ply, Ear Loop, Blue"><span>Procedure Surgical Face Mask, 3 Ply, Ear Loop, Blue</span></a>
-              <div>
-                <div class="flex-center-center calc"> 
-                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                  <input class="calc-qty" type="number" value="1">
-                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                </div>
-                <button class="btn btn_dark" type="button"><span>$15.95 | Add to Cart</span></button>
-              </div>
-            </div>
-            <div class="card"><a class="card_name" href="#"><img src="https://medicalmegaimgs.net/prod/uploaded/product/159907855915375725325f50009f9b40e.jpg" alt="3M Particulate Respirator Mask"><span>3M Particulate Respirator Mask</span></a>
-              <div>
-                <div class="flex-center-center calc"> 
-                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                  <input class="calc-qty" type="number" value="1">
-                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                </div>
-                <button class="btn btn_dark" type="button"><span>$15.95 | Add to Cart</span></button>
-              </div>
-            </div>
-            <div class="card"><a class="card_name" href="#"><img src="https://medicalmegaimgs.net/prod/uploaded/product/159907855915375725325f50009f9b40e.jpg" alt="Hand Sanitizer, 70% Alcohol with Aloe , Citrus Fragrance, 4oz"><span>Hand Sanitizer, 70% Alcohol with Aloe , Citrus Fragrance, 4oz</span></a>
-              <div>
-                <div class="flex-center-center calc"> 
-                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                  <input class="calc-qty" type="number" value="1">
-                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                </div>
-                <button class="btn btn_dark" type="button"><span>$2.75 | Add to Cart</span></button>
-              </div>
-            </div>
-            <div class="card"><a class="card_name" href="#"><img src="https://medicalmegaimgs.net/prod/uploaded/product/159907855915375725325f50009f9b40e.jpg" alt="Ansel Latex Exam Gloves, Medium Box of 150"><span>Ansel Latex Exam Gloves, Medium Box of 150</span></a>
-              <div>
-                <div class="flex-center-center calc"> 
-                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                  <input class="calc-qty" type="number" value="1">
-                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                </div>
-                <button class="btn btn_dark" type="button"><span>$150.00 | Add to Cart</span></button>
-              </div>
-            </div>
-          </div>
+          <div class="justify-content-between cards_similar"></div>
         </section>
       </div>
     </div>
-`
+`;
 
 let styles = `
 <style>
@@ -205,7 +178,7 @@ let styles = `
     font-weight: 800;
     font-style: "normal"; }
   
-  *, *::before, *::after {
+  .main *, .main *::before, .main *::after {
     -webkit-appearance: none;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -232,19 +205,19 @@ let styles = `
   
   *::-webkit-input-placeholder {
     color: #6D7E85;
-    line-height: 25px; }
+    line-height: 26px; }
   
   *:-moz-placeholder {
     color: #6D7E85;
-    line-height: 25px; }
+    line-height: 26px; }
   
   *::-moz-placeholder {
     color: #6D7E85;
-    line-height: 25px; }
+    line-height: 26px; }
   
   *:-ms-input-placeholder {
     color: #6D7E85;
-    line-height: 25px; }
+    line-height: 26px; }
   
   input {
     -webkit-appearance: none;
@@ -256,7 +229,7 @@ let styles = `
     padding: 7.5px 20px;
     width: 100%;
     font-size: 14px;
-    line-height: 25px; }
+    line-height: 26px; }
   
   .container {
     max-width: 1270px;
@@ -271,39 +244,45 @@ let styles = `
     color: #091114;
     text-align: left;
     line-height: 16px; }
-  
+
   .btn {
     font-family: "Inter", sans-serif;
-    background: #1E3944;
+    background-color: #1E3944;
     border: 2px solid #1E3944;
     border-radius: 40px;
+    color: #FBFBFB;
     font-weight: 700;
     text-align: center;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     line-height: 44px;
     font-size: 14px;
-    padding: 0 40px;
+    padding: 0 21px;
     cursor: pointer;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     white-space: nowrap; }
-    .btn_red {
-      background-color: #96280F;
-      border-color: #96280F;
-      color: #FFFFFF; }
+      .btn:hover, .btn:focus  {
+        background-color: #344D57;
+        border-color: #344D57; }
+    .btn[disabled] {
+        color: #9AA6AB;
+        background: #F0F1F2;
+        border-color: #F0F1F2; }
+    .btn[disabled] svg, .form-search button[disabled] svg {
+        fill: #9AA6AB; }
     .btn_white {
-      background: #FFFFFF;
-      font-size: 10px;
+      background-color: #FFFFFF;
       color: #1E3944; }
-    .btn_dark {
-      background: #1E3944;
-      color: #FFFFFF; }
-      .btn_dark:hover {
-        background-color: #96280F;
-        border-color: #96280F; }
-  
+      .btn_white:hover {
+        background-color: #F0F1F2;}
+     .btn_white:focus {
+        background-color: #E9EBEC; }
+    .btn_white[disabled], .form-search button[disabled] {
+        border-color: #F0F1F2;
+        background-color: #FBFBFB;
+        color: #9AA6AB; }
   .check {
     border: 1px solid #091114;
     width: 18px;
@@ -331,28 +310,30 @@ let styles = `
   
   .supbar {
     background: #1E3944;
-    padding: 8px 0; }
+    padding: 10px 0 11px; }
     .supbar p, .supbar a {
       font-size: 12px;
       line-height: 1;
       color: #E9EBEC; }
     .supbar img {
       margin-right: 8px; }
-  
+
   .midbar {
     padding: 20px 0; }
-  
+  .midbar_action {
+    padding: 12px;}
   .midbar_action span {
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 10px;
     color: #1E3944; }
-  
+   .midbar .btn {
+    font-size: 12px;}
   .logo {
-    margin-right: 25px;
     font-weight: 800;
     font-size: 24px;
-    line-height: 30px;
+    line-height: 18px;
     letter-spacing: 0.01em;
     text-transform: uppercase;
     color: #1E3944; }
@@ -361,13 +342,11 @@ let styles = `
   
   .form-search {
     position: relative;
-    max-width: 545px;
-    width: 100%;
-    margin-right: 25px; }
+    width: 545px; }
     .form-search input {
       background: #E9EBEC;
       border-radius: 38px;
-      padding: 16px 50px 16px 20px;
+      padding: 11px 50px 11px 20px;
       width: 100%; }
     .form-search button {
       position: absolute;
@@ -383,29 +362,31 @@ let styles = `
   
   .subbar {
     border-top: 1px solid #BCC4C7;
-    padding: 6px 0; }
-  
+    padding: 9px 0; }
+  .nav_category a {
+       padding: 13px 10px; }
   .nav_category .p-main {
     font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    color: #96280F;
-    padding: 6px 0; }
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #1E3944; }
   
   .burger_category {
     position: relative;
-    width: 12px;
-    height: 10px;
-    margin-right: 8px; }
+    width: 14px;
+    height: 13px;
+    margin-right: 10px; }
     .burger_category .burger_line {
       position: absolute;
       left: 50%;
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
-      background: #96280F;
-      width: 12px;
-      height: 0.6px; }
+      background: #1E3944;
+      width: 100%;
+      height: 1.7px; }
       .burger_category .burger_line:first-child {
         top: 0; }
       .burger_category .burger_line:nth-child(2) {
@@ -419,15 +400,22 @@ let styles = `
   .category_popular a {
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;
-    color: #344D57;
-    padding: 6px;
+    line-height: 21px;
+    color: #6D7E85;
+    padding: 12px 6px;
     display: block;
-    margin-left: 30px; }
-    .category_popular a:hover {
-      text-decoration: underline;
-      color: #96280F; }
-  
+    margin: 0 8px; }
+    .category_popular a:hover, .previous-version:hover {
+      color: #091114; }
+  .previous-version {
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 10px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 12px;
+        color: #1E3944;}
   .burger {
     display: none;
     width: 21px;
@@ -543,11 +531,11 @@ let styles = `
       top: 0;
       height: 100%;
       width: 10%; }
-  
   .col_left {
     width: 456px;
     position: sticky;
-    top: 220px;
+    top: 200px;
+    margin-top: 14px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -559,22 +547,14 @@ let styles = `
   
   .side_one {
     width: 96px;
-    padding-right: 12px;
     padding-top: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column; }
-  
+  .trustpilot iframe {
+    width: 88%!important;
+    height: 91px!important;}
   .slide_two {
     width: calc(100% - 96px); }
   
@@ -615,7 +595,7 @@ let styles = `
     position: relative;
     width: 360px;
     height: 360px;
-    margin-bottom: 12px; }
+    margin: 49px 0 12px; }
     .slider-for img {
       width: 100%;
       height: 360px;
@@ -623,31 +603,34 @@ let styles = `
       object-fit: contain; }
   
   .list {
-    margin-bottom: 32px; }
+    margin-bottom: 15px; }
     .list li {
       font-size: 16px;
       line-height: 170%; }
   
   .product_sidebar {
-    background: #FFFFFF;
-    border: 1px solid #E9EBEC;
-    -webkit-box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
-    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+    background: #F0F1F2;
+    border: 1px solid #E3E6E7;
+    box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
-    padding: 36px;
+    width: 280px;
+    padding: 56px 40px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     position: sticky;
-    top: 220px; }
-  
+    margin-bottom: 22px;
+    top: 250px; }
+   .product_sidebar .btn {
+    width: 100%;
+   }
   .product_content {
     padding-top: 28px; }
     .product_content h2, .product_content .title {
       font-weight: 600;
-      font-size: 24px;
+      font-size: 32px;
       line-height: 120%;
-      margin-bottom: 22px; }
+      margin-bottom: 24px; }
     .product_content .col_mid {
       width: 416px; }
   
@@ -658,9 +641,9 @@ let styles = `
     display: block;
     margin: 12px 0; }
   
-  .price {
-    padding: 13px 0;
-    margin-bottom: 20px; }
+  .total {
+    padding: 14px 0;
+    margin-bottom: 25px; }
   
   .calc {
     margin-bottom: 16px; }
@@ -682,7 +665,7 @@ let styles = `
     cursor: pointer;
     width: 40px;
     height: 40px;
-    margin: 0 8px; }
+    margin: 0 4px; }
     .btn-calc:hover:before, .btn-calc:hover:after {
       background: #96280F; }
     .btn-calc:before, .btn-calc:after {
@@ -709,22 +692,36 @@ let styles = `
       content: ''; }
   
   .content-discription {
-    color: #344D57;
+    color: #6D7E85;
     padding-top: 24px; }
-    .content-discription p {
+    .content-discription{
       font-size: 16px;
-      line-height: 150%;
-      margin-bottom: 15px; }
+      line-height: 150%; }
+  .content-discription p {
+      margin-bottom: 15px;}
       .content-discription p:last-child {
         margin-bottom: 0; }
-  
+    .content-discription ul {
+        padding-left: 20px;}
+  .content-discription ul li {
+      list-style-type: disc;}
+ .content-discription table td {
+    border-bottom: 1px solid #344D57;
+    padding: 4px 0; }
+    .content-discription table td:first-child {
+        width: 40%;
+        padding-right: 10px;
+        word-break: break-word; }
   .tabs-discription li {
+    text-transform: lowercase;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 21px;
     color: #091114;
     border-bottom: 1px solid #BCC4C7;
-    padding: 16px 15px;
+    padding: 13px 15px;
     cursor: pointer; }
+    .tabs-discription li:first-letter {
+        text-transform: uppercase;}
     .tabs-discription li:first-child {
       padding-left: 0; }
     .tabs-discription li:last-child {
@@ -759,7 +756,8 @@ let styles = `
     position: relative; }
     .card img {
       width: 100%;
-      height: 200px;
+      height: 199px;
+      object-fit: contain;
       margin-bottom: 20px; }
     .card_name {
       font-weight: 600;
@@ -783,6 +781,7 @@ let styles = `
       margin-bottom: 56px; }
   
   .product {
+    padding-top: 17px;
     padding-bottom: 45px; }
   
   .breadcrumbs {
@@ -806,10 +805,13 @@ let styles = `
   
   .ml-40 {
     margin-left: 40px; }
-  
-  .mr-12 {
-    margin-right: 12px; }
-  
+    
+  .mr-8 {
+    margin-right: 8px; }
+    
+  .mr-16 {
+    margin-right: 16px; }
+    
   .mt-22 {
     margin-top: 22px; }
   
@@ -954,9 +956,20 @@ let styles = `
   .max-295 {
     max-width: 295px; }
   
-</style>`
+</style>`;
+
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', styles);
+
+//description
+document.querySelectorAll('.product-desc h3').forEach((el, i) => {
+    document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
+    document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+    document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
+        document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+        document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+    })
+})
 
 let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     btnMinus = document.querySelectorAll('.btn-calc_minus'), //btn -
@@ -967,7 +980,8 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     dataButton = document.querySelectorAll('[data-button]'), // btn for open popup or block
     closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
     slidesFor = document.querySelectorAll('.slider-for .slide'), //slider main
-    addToCartBtn = document.querySelector('.product_sidebar .btn'); //add To Cart button
+    addToCartMain = document.querySelector('.product_sidebar .add-cart'), //add To Cart button pdp
+    addToCartSimilar = document.querySelectorAll('.card .add-cart'); //add To Cart buttons in "similar products"
 
 // let scriptCustom = document.createElement('script');
 // scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
@@ -995,6 +1009,8 @@ calc.forEach((el, i) => {
 
 //descriptions
 for (let i = 0; i < tabs.length; i++) {
+    tabs[0].classList.add('active');
+    contents[0].classList.add('active');
     tabs[i].addEventListener('click', () => {
         tabs[i].closest('.tabs-discription').querySelector('.active').classList.remove('active');
         contents[i].closest('.content-discription').querySelector('.active').classList.remove('active');
@@ -1021,7 +1037,7 @@ for (let i = 0; i < dataButton.length; i++) {
 slidesFor.forEach((el) => {
     el.addEventListener('mousemove', (e) => {
         document.querySelector('.img-zoom-result').style.visibility = 'visible';
-        document.querySelector('.img-zoom-lens').style.visibility = 'visible';  
+        document.querySelector('.img-zoom-lens').style.visibility = 'visible';
     })
     el.addEventListener('mouseout', (e) => {
         document.querySelector('.img-zoom-result').style.visibility = 'hidden';
@@ -1063,9 +1079,52 @@ document.querySelectorAll('.type2 label').forEach(el => {
     }
 })
 
-//description
-document.querySelectorAll('.product-desc h3').forEach((el, i) => {
-    document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li class="${i==0?'active':''}">${el.innerText}</li>`);
-    document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item ${i==0?'active':''}">${el.nextElementSibling.innerHTML}</div>`);
+//trustpilot
+document.querySelector('.trustpilot').appendChild(document.querySelector('.trustpilot-widget'))
+
+//Similar Products
+document.querySelectorAll('.products_gallery dd').forEach((el) => {
+    document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+    <div class="card" data-variant="" data-id="">
+        <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
+            <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+            <span>${el.querySelectorAll('a')[1].innerText}</span>
+        </a>
+        <div>
+            <div class="flex-center-center calc"> 
+              <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+              <input class="calc-qty" type="number" value="1">
+              <button class="btn-calc btn-calc_plus" type="button"></button>
+            </div>
+            <button class="btn btn_dark" type="button"><span>$ <span class="pr">15.95</span> | Add to Cart</span></button>
+         </div>
+    </div>`)
+})
+
+//add To Cart button main pdp
+addToCartMain.addEventListener('click', () => {
+    document.querySelector('#qty_block select').selectedIndex = document.querySelector('.product_sidebar .calc-qty').value - 1;
+    document.querySelectorAll('#cart_box a')[0].click();
+})
+
+// add To Cart buttons in Similar products
+addToCartSimilar.forEach((el) => {
+    let variantId = el.getAttribute('data-variant'),
+        id = el.getAttribute('data-id'),
+        qty = el.closest('.card').querySelector('.calc-qty').value;
+
+    fetch(`/cart.html`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: "POST",
+        body: `api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`
+    }).then(res => res.json()).then(data => console.log(data))
+})
+
+// switch to the previous version
+document.querySelector('.previous-version').addEventListener('click', () => {
+    document.querySelector('.main').style.display = 'none';
+    document.querySelector('#wrap').style.display = 'block';
 })
 
