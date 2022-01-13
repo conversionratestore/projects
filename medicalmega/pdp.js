@@ -13,8 +13,8 @@ let html = `
                 <div class="d-flex">
                  <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                   <form class="form-search">
-                    <input type="text" placeholder="Search by Name">
-                    <button type="submit">
+                    <input type="text" placeholder="Search by Name" name="search_key">
+                    <button type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#clip0_114_1946)" stroke="#fff"><path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"/></g><defs><clipPath id="clip0_114_1946"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
                     </button>
                   </form>
@@ -26,7 +26,7 @@ let html = `
                     </a>
                     <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
                         <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
-                        <span>Cart</span>
+                        <span>Cart (<span class="cart_count">${document.querySelector('.by_num span').innerHTML}</span>)</span>
                     </a>
                 </div>
             </div>
@@ -34,23 +34,19 @@ let html = `
         </div>
         <form class="advanced-search" data-item="advanced-search">
           <div class="container flex-center-between">
-            <p class="fs-10">Advanced Search</p>
+            <p class="fs-14 c-gray">Advanced Search</p>
             <div class="d-flex">
-              <input type="text" placeholder="Enter Item #">
-              <input type="text" placeholder="Enter Keyword">
-              <div class="select">
-                <select>
-                  <option value="Select Category" disabled selected>Select Category</option>
-                  <option value="Category 1">Category 1</option>
-                </select>
+              <input type="text" placeholder="Enter Item #" name="search_item">
+              <input type="text" placeholder="Enter Keyword" name="search_keyword">
+              <div class="select select_category" name="search_c_id">
+                <p class="select_current"><span>Select Category</span></p>
+                <ul class="select_dropdown"></ul>
               </div>
-              <div class="select">
-                <select>
-                  <option value="Select Manufacturer" disabled selected>Select Manufacturer</option>
-                  <option value="Manufacturer 1">Manufacturer 1</option>
-                </select>
+              <div class="select select_brand" name="search_m_id"> 
+                <p class="select_current"><span >Select Manufacturer</span></p>
+                <ul class="select_dropdown"> </ul>
               </div>
-              <button class="btn btn_dark" type="submit">Submit</button>
+              <button class="btn btn_dark" type="button">Submit</button>
             </div>
             <button class="btn_reset" type="reset" data-close="advanced-search"></button>
           </div>
@@ -58,11 +54,8 @@ let html = `
         <div class="subbar">
           <div class="container flex-center-between">
             <nav class="nav_category"><a class="align-items-center" href="#">
-                <div class="burger_category">
-                  <div class="burger_line"></div>
-                  <div class="burger_line"></div>
-                  <div class="burger_line"></div>
-                </div><span class="p-main">All Categories</span></a></nav>
+                <img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" class="burger_category" alt="icon burger">
+                <span class="p-main">All Categories</span></a></nav>
             <ul class="d-flex category_popular">
               <li> <a href="/category/new-products">New Products</a></li>
               <li> <a href="/sales.html">Sale Products</a></li>
@@ -99,7 +92,7 @@ let html = `
             <div class="range"> 
               <div class="flex-center-between">
                 <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
-                <p class="text-up l-t-02"> <span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span>left for free shipping</p>
+                <p class="text-up l-t-02" id="left_for"> <span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span>left for free shipping</p>
               </div>
               <div class="range_slider"><span></span></div>
             </div>
@@ -120,7 +113,7 @@ let html = `
                 <div class="line"></div>
                 <div class="flex-end-between fw-semi total">
                   <p class="fs-16">Price:</p>
-                  <p class="fs-24">$<span class="pr">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
+                  <p class="fs-24">$<span class="pr" data-price=""></span></p>
                 </div>
                 <div class="flex-center-center calc"> 
                   <button class="btn-calc btn-calc_minus" type="button" disabled></button>
@@ -204,19 +197,27 @@ let styles = `
     -moz-appearance: textfield; }
   
   *::-webkit-input-placeholder {
-    color: #6D7E85;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #9AA6AB;
     line-height: 26px; }
   
   *:-moz-placeholder {
-    color: #6D7E85;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #9AA6AB;
     line-height: 26px; }
   
   *::-moz-placeholder {
-    color: #6D7E85;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #9AA6AB;
     line-height: 26px; }
   
   *:-ms-input-placeholder {
-    color: #6D7E85;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #9AA6AB;
     line-height: 26px; }
   
   input {
@@ -229,8 +230,9 @@ let styles = `
     padding: 7.5px 20px;
     width: 100%;
     font-size: 14px;
+    outline-color: #344D57;
     line-height: 26px; }
-  
+
   .container {
     max-width: 1270px;
     padding: 0 15px;
@@ -268,10 +270,12 @@ let styles = `
         border-color: #344D57; }
     .btn[disabled] {
         color: #9AA6AB;
-        background: #F0F1F2;
+        background-color: #F0F1F2;
         border-color: #F0F1F2; }
     .btn[disabled] svg, .form-search button[disabled] svg {
         fill: #9AA6AB; }
+    .product_sidebar .btn[disabled] {
+        border-color: #9AA6AB; }
     .btn_white {
       background-color: #FFFFFF;
       color: #1E3944; }
@@ -330,6 +334,8 @@ let styles = `
     color: #1E3944; }
    .midbar .btn {
     font-size: 12px;}
+   .midbar_action span.cart_count {
+    color: #96280F;}
   .logo {
     font-weight: 800;
     font-size: 24px;
@@ -358,13 +364,13 @@ let styles = `
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #1E3944 url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/magnifier.svg") no-repeat center/16px; }
+      background-color: #1E3944; }
   
   .subbar {
     border-top: 1px solid #BCC4C7;
     padding: 9px 0; }
   .nav_category a {
-       padding: 13px 10px; }
+       padding: 13px 10px 13px 8px; }
   .nav_category .p-main {
     font-weight: 600;
     font-size: 10px;
@@ -372,31 +378,10 @@ let styles = `
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #1E3944; }
-  
   .burger_category {
-    position: relative;
-    width: 14px;
-    height: 13px;
+    width: 18px;
+    height: 18px;
     margin-right: 10px; }
-    .burger_category .burger_line {
-      position: absolute;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
-      background: #1E3944;
-      width: 100%;
-      height: 1.7px; }
-      .burger_category .burger_line:first-child {
-        top: 0; }
-      .burger_category .burger_line:nth-child(2) {
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%); }
-      .burger_category .burger_line:last-child {
-        bottom: 0; }
-  
   .category_popular a {
     font-weight: 400;
     font-size: 14px;
@@ -458,9 +443,9 @@ let styles = `
         transform: translateY(-50%) rotate(-224deg); }
   
   .btn_reset {
-    background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat center/contain;
-    width: 20px;
-    height: 20px;
+    background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
+    width: 150px;
+    height: 24px;
     cursor: pointer; }
   
   .advanced-search {
@@ -473,49 +458,100 @@ let styles = `
     transition: all 0.3s ease;
     pointer-events: none; }
     .advanced-search.active {
-      padding: 13px 0;
+      padding: 16px 0;
       height: 60px;
       opacity: 1;
       pointer-events: auto; }
     .advanced-search input {
-      padding: 4px 28px;
-      background: #E9EBEC;
-      width: -webkit-fit-content;
-      width: -moz-fit-content;
+      padding: 2px 14px;
+      background-color: #F0F1F2;
       width: fit-content;
-      max-width: 153px;
+      border: 1px solid #E0E4E5;
+      max-width: 115px;
+      font-size: 12px;
+      line-height: 26px;
       text-align: center;
-      margin-right: 28px; }
+      margin-right: 20px; }
     .advanced-search .btn {
-      line-height: 29px;
-      font-size: 12px; }
+        font-weight: 600;
+      line-height: 28px;
+      margin-left: 20px;
+      font-size: 10px; }
     .advanced-search .select {
-      margin-right: 28px; }
+      margin-right: 20px; }
   
   .select {
     position: relative;
-    max-width: 214px; }
+    z-index: 6;
+    max-width: 165px; }
     .select:before {
       content: '';
       position: absolute;
       top: 50%;
+      right: 13px;
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-      right: 0;
-      width: 30px;
-      height: 100%;
-      background: url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/arrow-down.svg") no-repeat left center/14px; }
-    .select select {
-      background: #E9EBEC;
+      transition: all 0.3s ease;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 4px 4px 0 4px;
+      border-radius: 0.5px;
+      border-color: #9AA6AB transparent transparent transparent;}
+    .select_current {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: #F0F1F2;
       border-radius: 30px;
+      border: 1px solid #E0E4E5;
       font-weight: normal;
-      font-size: 14px;
-      line-height: 25px;
-      color: #6D7E85;
-      border: none;
-      padding: 4px 59px 4px 20px; }
-  
+      font-size: 12px;
+      line-height: 30px;
+      color: #344D57;
+      padding: 0 30px 0 16px; }
+     .select_current span {
+        pointer-events: none;
+        color: #9AA6AB; }
+    .select_dropdown {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 4px);
+        background-color: #FBFBFB;
+        border: 1px solid #E3E6E7;
+        box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0 12px 32px rgba(0, 0, 0, 0.05);
+        overflow-y: auto; 
+        transition: all 0.3s ease;
+        height: 0;
+        visibility: hidden;
+        max-width: 315px;
+        padding: 0 16px;}
+    .select.active:before {
+        transform: translateY(-50%) scaleY(-1);}
+    .select.active .select_dropdown {
+        visibility: visible;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: 312px;}
+    .select_option {
+        font-size: 14px;
+        line-height: 21px;
+        padding: 4px 12px;
+        color: #344D57;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        margin: 8px 0;}
+    .select_option:hover {
+        border-color: #E0E4E5;
+        background-color: #E0E4E5; }
+    .select_option.active {
+        background: #344D57;
+        border-color: #344D57;
+        color: #FBFBFB; }
+    .select_option:focus {
+        border-color: #344D57;}
   .range_slider {
     position: relative;
     background: #E9EBEC;
@@ -609,17 +645,21 @@ let styles = `
       line-height: 170%; }
   
   .product_sidebar {
+    min-height: 360px;
     background: #F0F1F2;
     border: 1px solid #E3E6E7;
     box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     width: 280px;
-    padding: 56px 40px;
+    padding: 20px 40px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     position: sticky;
     margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     top: 250px; }
    .product_sidebar .btn {
     width: 100%;
@@ -647,14 +687,17 @@ let styles = `
   
   .calc {
     margin-bottom: 16px; }
-  
+  .calc.disabled {
+    pointer-events: none;
+    opacity: 0.7;}
   .calc-qty {
     width: 40px;
     height: 40px;
     line-height: 40px;
     color: #171717;
     font-size: 12px;
-    background: #E9EEF0;
+    background-color: #FBFBFB;
+    border: 1px solid #E0E4E5;
     border-radius: 50%;
     text-align: center;
     padding: 0; }
@@ -690,18 +733,18 @@ let styles = `
       height: 14px; }
     .btn-calc_plus:after {
       content: ''; }
-  
   .content-discription {
     color: #6D7E85;
-    padding-top: 24px; }
+    padding-top: 9px; }
     .content-discription{
       font-size: 16px;
       line-height: 150%; }
+      .content-discription * {
+        color: #6D7E85;}
   .content-discription p {
-      margin-bottom: 15px;}
-      .content-discription p:last-child {
-        margin-bottom: 0; }
+      margin-top: 15px;}
     .content-discription ul {
+      margin-top: 15px;
         padding-left: 20px;}
   .content-discription ul li {
       list-style-type: disc;}
@@ -758,12 +801,12 @@ let styles = `
       width: 100%;
       height: 199px;
       object-fit: contain;
-      margin-bottom: 20px; }
+      margin-bottom: 16px; }
     .card_name {
       font-weight: 600;
       font-size: 14px;
-      line-height: 140%;
-      color: #000000; }
+      line-height: 130%;
+      color: #344D57; }
       .card_name span {
         margin-bottom: 20px;
         display: block; }
@@ -776,13 +819,13 @@ let styles = `
     padding: 60px 0; }
     .similar-products h2 {
       font-weight: 600;
-      font-size: 22px;
-      line-height: 27px;
+      font-size: 24px;
+      line-height: 29px;
       margin-bottom: 56px; }
   
   .product {
     padding-top: 17px;
-    padding-bottom: 45px; }
+    padding-bottom: 60px; }
   
   .breadcrumbs {
     padding: 10px 0 5px;
@@ -963,12 +1006,33 @@ document.body.insertAdjacentHTML('afterbegin', styles);
 
 //description
 document.querySelectorAll('.product-desc h3').forEach((el, i) => {
-    document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
-    document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-    document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-        document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-        document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
-    })
+    if (i == 0) {
+        document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
+        document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+        document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
+            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+        })
+    }
+})
+
+//Similar Products
+document.querySelectorAll('.products_gallery dd').forEach((el) => {
+    document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+    <div class="card" data-variant="" data-id="">
+        <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
+            <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+            <span>${el.querySelectorAll('a')[1].innerText}</span>
+        </a>
+        <div>
+            <div class="flex-center-center calc"> 
+              <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+              <input class="calc-qty" type="number" value="1">
+              <button class="btn-calc btn-calc_plus" type="button"></button>
+            </div>
+            <button class="btn btn_dark" type="button"><span>$ <span class="pr" data-price="15.95">15.95</span> | Add to Cart</span></button>
+         </div>
+    </div>`)
 })
 
 let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
@@ -981,13 +1045,14 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
     slidesFor = document.querySelectorAll('.slider-for .slide'), //slider main
     addToCartMain = document.querySelector('.product_sidebar .add-cart'), //add To Cart button pdp
-    addToCartSimilar = document.querySelectorAll('.card .add-cart'); //add To Cart buttons in "similar products"
+    addToCartSimilar = document.querySelectorAll('.card .add-cart'), //add To Cart buttons in "similar products"
+    price = document.querySelectorAll('.pr'); //price
 
 // let scriptCustom = document.createElement('script');
 // scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
 // document.head.appendChild(scriptCustom);
 
-function changeQty(qty,action) {
+function changeQty(qty,pr,action) {
     if (action == 'plus') {
         qty.value = parseInt(qty.value) + 1;
     } else if (action == 'minus') {
@@ -999,12 +1064,29 @@ function changeQty(qty,action) {
         qty.previousElementSibling.disabled = true;
         qty.value = 1;
     }
+    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+}
+
+//price product
+if (document.querySelector('.product-price') != null) {
+    document.querySelector('.total .pr').dataset.price = document.querySelector('.product-price').innerText.replace('$','');
+    document.querySelector('.total .pr').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
+} else {
+    document.querySelector('.total').innerHTML = '<p class="fs-16">Out Of Stock</p>';
+    document.querySelector('.product_sidebar .calc').classList.add('disabled');
+    document.querySelector('.product_sidebar .btn').setAttribute('disabled','');
+}
+
+//Available Options
+if (document.querySelector('.box_item') != null) {
+    document.querySelector('.product_sidebar').insertAdjacentHTML('beforeend','<p>Available Options: </p>')
 }
 
 //+/- btns quantity
 calc.forEach((el, i) => {
-    btnPlus[i].addEventListener('click', () => changeQty(inputQty[i],'plus'))
-    btnMinus[i].addEventListener('click', () => changeQty(inputQty[i],'minus'))
+    btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
+    btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
+    inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
 })
 
 //descriptions
@@ -1082,25 +1164,6 @@ document.querySelectorAll('.type2 label').forEach(el => {
 //trustpilot
 document.querySelector('.trustpilot').appendChild(document.querySelector('.trustpilot-widget'))
 
-//Similar Products
-document.querySelectorAll('.products_gallery dd').forEach((el) => {
-    document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-    <div class="card" data-variant="" data-id="">
-        <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-            <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-            <span>${el.querySelectorAll('a')[1].innerText}</span>
-        </a>
-        <div>
-            <div class="flex-center-center calc"> 
-              <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-              <input class="calc-qty" type="number" value="1">
-              <button class="btn-calc btn-calc_plus" type="button"></button>
-            </div>
-            <button class="btn btn_dark" type="button"><span>$ <span class="pr">15.95</span> | Add to Cart</span></button>
-         </div>
-    </div>`)
-})
-
 //add To Cart button main pdp
 addToCartMain.addEventListener('click', () => {
     document.querySelector('#qty_block select').selectedIndex = document.querySelector('.product_sidebar .calc-qty').value - 1;
@@ -1128,3 +1191,97 @@ document.querySelector('.previous-version').addEventListener('click', () => {
     document.querySelector('#wrap').style.display = 'block';
 })
 
+//search
+document.querySelector('.form-search input').addEventListener('input', (e) => {
+    document.querySelector('#search_key').value = e.target.value;
+})
+document.querySelector('.form-search button').addEventListener('click', (e) => {
+    document.querySelector('.search-box__button').click();
+})
+
+let nameSearch = document.querySelectorAll('.advanced-search [name]');
+let nameSearchOld = document.querySelectorAll('.advance_search [name]');
+for (let i = 0; i < nameSearch.length; i++) {
+    nameSearch[i].addEventListener('input', () => {
+        if (nameSearch[i].name === nameSearchOld[i].name) {
+            if (nameSearch[i].tagName == 'INPUT') {
+                nameSearchOld[i].value = nameSearch[i].value;
+            } else if (nameSearch[i].tagName == 'SELECT') {
+                nameSearchOld[i].selectedIndex = nameSearch[i].selectedIndex;
+            }
+        }
+    })
+}
+document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+    document.querySelector('.advance_search #search_submit').click();
+})
+
+//shipping
+fetch("/cart.html", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
+}).then(res => res.json()).then(data => {
+    console.log(data)
+    let subtotal = parseFloat(data.total - data.shipping).toFixed(2);
+    document.querySelector('#order-pr').innerHTML = subtotal;
+    document.querySelector('.range span').style.width = subtotal * 100 / 150 + '%';
+    if (subtotal < 150 && subtotal >= 130) {
+        document.querySelector('#left_for').innerHTML = `<span class="c-red fw-semi">$<span id="last-pr">${(150 - subtotal).toFixed(2)}</span></span>  only left for free delivery`;
+    } else if (subtotal >= 150) {
+        document.querySelector('#left_for').innerHTML = `You Have Free Shipping`;
+        document.querySelector('#left_for').classList.add('fw-semi');
+    } else {
+        document.querySelector('#last-pr').innerHTML = (150 - subtotal).toFixed(2);
+    }
+})
+
+//set option in selects
+
+document.querySelectorAll('#search_c_id option').forEach((el) => {
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${el.innerHTML.replace(/[^\w\s!?]/g,'')}</li>`)
+})
+document.querySelectorAll('#search_m_id option').forEach((el) => {
+    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${el.innerHTML}</li>`)
+})
+
+//select
+document.querySelectorAll('.select_current').forEach((el) => {
+    el.addEventListener('click',() => {
+        el.closest('.select').classList.toggle('active');
+    })
+    el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+        option.addEventListener('click', (e) => {
+            let name = option.closest('.select').getAttribute('name');
+
+            if (option.closest('.select').querySelector('.active') != null) {
+                option.closest('.select').querySelector('.active').classList.remove('active');
+            }
+            option.classList.add('active');
+
+            if (name == 'search_c_id') {
+                document.querySelector('#search_c_id').selectedIndex = index;
+            } else if (name == 'search_m_id') {
+                document.querySelector('#search_m_id').selectedIndex = index;
+            }
+            if (index == 0) {
+                el.querySelector('span').innerHTML = option.innerHTML;
+            } else {
+                el.innerHTML = option.innerHTML;
+            }
+            el.closest('.select').classList.remove('active');
+        })
+    })
+})
+
+document.body.addEventListener('click', (e) => {
+
+    if (e.target.className != 'select_current') {
+        document.querySelectorAll('.select').forEach(el => {
+            el.classList.remove('active')
+        })
+    }
+
+})
