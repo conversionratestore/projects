@@ -44,7 +44,7 @@ let html = `
               </div>
               <div class="select select_brand" name="search_m_id"> 
                 <p class="select_current"><span >Select Manufacturer</span></p>
-                <ul class="select_dropdown"> </ul>
+                <ul class="select_dropdown right"> </ul>
               </div>
               <button class="btn btn_dark" type="button">Submit</button>
             </div>
@@ -92,7 +92,7 @@ let html = `
             <div class="range"> 
               <div class="flex-center-between">
                 <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
-                <p class="text-up l-t-02" id="left_for"> <span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span>left for free shipping</p>
+                <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span> left for free shipping</p>
               </div>
               <div class="range_slider"><span></span></div>
             </div>
@@ -479,11 +479,9 @@ let styles = `
       font-size: 10px; }
     .advanced-search .select {
       margin-right: 20px; }
-  
   .select {
     position: relative;
-    z-index: 6;
-    max-width: 165px; }
+    z-index: 6;}
     .select:before {
       content: '';
       position: absolute;
@@ -499,6 +497,10 @@ let styles = `
       border-width: 4px 4px 0 4px;
       border-radius: 0.5px;
       border-color: #9AA6AB transparent transparent transparent;}
+  .select_brand {
+    width: 165px; }
+  .select_category {
+    width: 142px;}
     .select_current {
       width: 100%;
       white-space: nowrap;
@@ -526,16 +528,23 @@ let styles = `
         transition: all 0.3s ease;
         height: 0;
         visibility: hidden;
-        max-width: 315px;
+        width: max-content;
+        max-width: 327px;
         padding: 0 16px;}
+    .select_dropdown.right {
+        left: auto;
+        right: 0;}
     .select.active:before {
         transform: translateY(-50%) scaleY(-1);}
     .select.active .select_dropdown {
         visibility: visible;
         padding-top: 8px;
         padding-bottom: 8px;
-        height: 312px;}
+        height: 330px;}
+     .select_dropdown::-webkit-scrollbar-track {
+        width: 6px;}
     .select_option {
+        cursor: pointer;
         font-size: 14px;
         line-height: 21px;
         padding: 4px 12px;
@@ -565,8 +574,7 @@ let styles = `
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 10%; }
+      height: 100%; }
   .col_left {
     width: 456px;
     position: sticky;
@@ -667,6 +675,7 @@ let styles = `
   .product_content {
     padding-top: 28px; }
     .product_content h2, .product_content .title {
+        padding-left: 0;
       font-weight: 600;
       font-size: 32px;
       line-height: 120%;
@@ -1169,20 +1178,22 @@ addToCartMain.addEventListener('click', () => {
     document.querySelector('#qty_block select').selectedIndex = document.querySelector('.product_sidebar .calc-qty').value - 1;
     document.querySelectorAll('#cart_box a')[0].click();
 })
-
+function fetchOption(method,bodyItem){
+    return {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: method,
+        body: bodyItem
+    }
+}
 // add To Cart buttons in Similar products
 addToCartSimilar.forEach((el) => {
     let variantId = el.getAttribute('data-variant'),
         id = el.getAttribute('data-id'),
         qty = el.closest('.card').querySelector('.calc-qty').value;
 
-    fetch(`/cart.html`, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        method: "POST",
-        body: `api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`
-    }).then(res => res.json()).then(data => console.log(data))
+    fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => console.log(data))
 })
 
 // switch to the previous version
@@ -1217,19 +1228,13 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
 })
 
 //shipping
-fetch("/cart.html", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `api=c&cart_action=cart&ctoken=${mm.ctoken}`
-}).then(res => res.json()).then(data => {
+fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
     console.log(data)
     let subtotal = parseFloat(data.total - data.shipping).toFixed(2);
     document.querySelector('#order-pr').innerHTML = subtotal;
     document.querySelector('.range span').style.width = subtotal * 100 / 150 + '%';
     if (subtotal < 150 && subtotal >= 130) {
-        document.querySelector('#left_for').innerHTML = `<span class="c-red fw-semi">$<span id="last-pr">${(150 - subtotal).toFixed(2)}</span></span>  only left for free delivery`;
+        document.querySelector('#left_for').innerHTML = `<span class="c-red fw-semi">$<span id="last-pr">${(150 - subtotal).toFixed(2)} </span></span>  only left for free delivery`;
     } else if (subtotal >= 150) {
         document.querySelector('#left_for').innerHTML = `You Have Free Shipping`;
         document.querySelector('#left_for').classList.add('fw-semi');
@@ -1239,49 +1244,86 @@ fetch("/cart.html", {
 })
 
 //set option in selects
-
-document.querySelectorAll('#search_c_id option').forEach((el) => {
-    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${el.innerHTML.replace(/[^\w\s!?]/g,'')}</li>`)
+let req1 = fetch(`/api/categories&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
+    let categories = data.categories;
+    for (let i = 0; i < categories.length; i++) {
+        document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
+    }
 })
-document.querySelectorAll('#search_m_id option').forEach((el) => {
-    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${el.innerHTML}</li>`)
-})
+let offset, totalCount;
+fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
+    console.log(data)
+    let brands = data.brands;
 
-//select
-document.querySelectorAll('.select_current').forEach((el) => {
-    el.addEventListener('click',() => {
-        el.closest('.select').classList.toggle('active');
-    })
-    el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
-        option.addEventListener('click', (e) => {
-            let name = option.closest('.select').getAttribute('name');
+    offset = data.limit;
+    totalCount = data['total_count'] / 100;
 
-            if (option.closest('.select').querySelector('.active') != null) {
-                option.closest('.select').querySelector('.active').classList.remove('active');
-            }
-            option.classList.add('active');
+    for (let i = 0; i < brands.length; i++) {
+        document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${brands[i]["brand_id"]}">${brands[i].title}</li>`)
+    }
+    for (let i = 1; i < Math.ceil(totalCount); i++) {
+        fetch(`/api/brands&limit=100&offset=${offset * i}`, fetchOption("GET")).then(res => res.json()).then(dataI => {
+            console.log(dataI)
+            let brandsI = dataI.brands;
+            for (let i = 0; i < brandsI.length; i++) {
+                document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${brandsI[i]["brand_id"]}">${brandsI[i].title}</li>`)
 
-            if (name == 'search_c_id') {
-                document.querySelector('#search_c_id').selectedIndex = index;
-            } else if (name == 'search_m_id') {
-                document.querySelector('#search_m_id').selectedIndex = index;
             }
-            if (index == 0) {
-                el.querySelector('span').innerHTML = option.innerHTML;
-            } else {
-                el.innerHTML = option.innerHTML;
-            }
-            el.closest('.select').classList.remove('active');
+
         })
-    })
+    }
+})
+
+function remActiveSelect() {
+    document.querySelectorAll('.select').forEach(el => el.classList.remove('active'))
+}
+
+let mutation = new MutationObserver(function (muts) {
+    //select
+
+    if (document.querySelectorAll('.select_brand .select_option').length == totalCount.split('.').join('')) {
+        mutation.disconnect();
+        document.querySelectorAll('.select_current').forEach((el) => {
+            el.addEventListener('click',(e) => {
+                el.closest('.select').classList.toggle('active');
+            })
+            el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+                option.addEventListener('click', (e) => {
+                    console.log('click')
+                    let name = option.closest('.select').getAttribute('name'),
+                        value = option.dataset.value;
+
+                    option.classList.add('active');
+                    console.log(document.querySelector(`#search_c_id option[value="${value}"]`))
+                    if (name == 'search_c_id') {
+                        document.querySelector(`#search_c_id option[value="${value}"]`).selected = true;
+                    } else if (name == 'search_m_id') {
+                        document.querySelector(`#search_m_id option[value="${value}"]`).selected = true;
+                    }
+                    if (index == 0) {
+                        el.innerHTML = `<span>${option.innerHTML}</span>`;
+                    } else {
+                        el.innerHTML = option.innerHTML;
+                    }
+                    el.closest('.select').classList.remove('active');
+                })
+            })
+        })
+    }
+});
+
+mut.observe(document,{
+    childList: true,
+        subtree: true
 })
 
 document.body.addEventListener('click', (e) => {
-
     if (e.target.className != 'select_current') {
-        document.querySelectorAll('.select').forEach(el => {
-            el.classList.remove('active')
-        })
+        console.log(e.target.className)
+        remActiveSelect()
     }
+})
 
+window.addEventListener('scroll', () => {
+    remActiveSelect()
 })
