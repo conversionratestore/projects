@@ -736,7 +736,7 @@ window.onload = function () {
 				start: `Elbinsel Kaltehofe, Kaltehofe-<br>Hauptdeich 6-7, 20539 <br>Hamburg`,
 				dataStart: '26.02.2022, ab 07:00 Uhr',
 				dataFinish: '27.02.2022, 01:00 Uhr',
-				routes: '42km /60km',
+				routes: '42km/60km',
 				altitude: '150m/370m',
 			},
 			eventHighlights: [
@@ -763,7 +763,7 @@ window.onload = function () {
 				start: `Landschaftspark Duisburg –<br> Nord, Emscherstraße 71,<br> 47137 Duisburg`,
 				dataStart: `23.04.2022<br> ab 07:30 Uhr (55 KM)<br> ab 10:30 Uhr (30 KM)`,
 				dataFinish: '24:00 Uhr',
-				routes: '30km /55km',
+				routes: '30km/55km',
 				altitude: '130m/270m',
 			},
 			eventHighlights: [
@@ -792,7 +792,7 @@ window.onload = function () {
 				start: `Südbad, Seestraße 20,<br> 82327 Tutzing`,
 				dataStart: `26.03.2022<br> ab 07:30 Uhr (55 KM)<br> ab 09:30 Uhr (30 KM)`,
 				dataFinish: '24:00 Uhr',
-				routes: '30km /55km',
+				routes: '30km/55km',
 				altitude: '270m/550m',
 			},
 			eventHighlights: [
