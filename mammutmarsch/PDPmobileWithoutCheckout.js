@@ -688,21 +688,12 @@ const style = /*html*/ `
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-const script = document.createElement('script')
-script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
-script.async = false
-document.getElementsByTagName('head')[0].appendChild(script)
-
-// if (window.location.pathname.replace(/\//g, '') === 'checkout') {
-// 	let checkoutLoaded = setInterval(() => {
-// 		if (document.querySelector('.woocommerce-info .showcoupon') && document.querySelector('.checkout_coupon') && document.querySelector('#coupon_code')) {
-// 			clearInterval(checkoutLoaded)
-// 			document.querySelector('.woocommerce-info .showcoupon').click()
-// 			document.querySelector('#coupon_code').focus()
-// 		}
-// 	}, 200)
-// } else {
 window.onload = function () {
+	let script = document.createElement('script')
+	script.src = 'https://code.jquery.com/jquery-3.4.1.min.js'
+	script.async = false
+	document.getElementsByTagName('head')[0].appendChild(script)
+
 	let jqueryLoaded = setInterval(() => {
 		if (typeof jQuery === 'function') {
 			clearInterval(jqueryLoaded)
@@ -1353,38 +1344,37 @@ window.onload = function () {
 		}
 	}, 100)
 
+	function mainSwipeEvent() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Main image scrolled',
+		})
+	}
+
+	function thumbSwipeEvent() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Thumbnail clicked/scrolled',
+		})
+	}
+
+	function reviewScrolled() {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: PDP improvements',
+			'eventAction': 'Review scrolled',
+		})
+	}
+
 	document.querySelectorAll('.first_block .slider_nav img').forEach((el) => {
 		document.querySelector('.first_block .slider-for').insertAdjacentHTML('beforeend', `<img class="product1" src="${ el.src }" alt="photo">`)
 	})
 }
-
-function mainSwipeEvent() {
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Main image scrolled',
-	})
-}
-
-function thumbSwipeEvent() {
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Thumbnail clicked/scrolled',
-	})
-}
-
-function reviewScrolled() {
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp: PDP improvements',
-		'eventAction': 'Review scrolled',
-	})
-}
-
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
