@@ -1032,7 +1032,7 @@ window.onload = function () {
                 <div class="hidden_custom">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/tshirt-black.svg" alt="">
-                        <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt, Teilnahme, Streckenposten (mit Snacks, Wasser und Überraschungen),
+                        <p class="title">Hochwertiges, gut geschnittenes<br><span class="subtitle">Event T-Shirt, Teilnahme,<br>Streckenposten (mit Snacks, Wasser und Überraschungen),<br>
                             Shuttle-Service/Ausstiegspunkte, Urkunde, Medaille & Finisherband, Betreuung durch
                             Sanitätsdienst, Teilnehmerheft</span></p>
                     </div>
