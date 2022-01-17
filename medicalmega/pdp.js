@@ -570,6 +570,7 @@ let styles = `
     overflow: hidden;
     margin-top: 8px; }
     .range_slider span {
+    transition: all 0.3s ease;
       background: #1E3944;
       position: absolute;
       left: 0;
@@ -1028,7 +1029,7 @@ document.querySelectorAll('.product-desc h3').forEach((el, i) => {
 //Similar Products
 document.querySelectorAll('.products_gallery dd').forEach((el) => {
     document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-    <div class="card" data-variant="" data-id="">
+    <div class="card" data-variant="${el.getAttribute('data-product-variant-id')}" data-id="${el.getAttribute('data-product-id')}">
         <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
             <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
             <span>${el.querySelectorAll('a')[1].innerText}</span>
@@ -1039,7 +1040,7 @@ document.querySelectorAll('.products_gallery dd').forEach((el) => {
               <input class="calc-qty" type="number" value="1">
               <button class="btn-calc btn-calc_plus" type="button"></button>
             </div>
-            <button class="btn btn_dark" type="button"><span>$ <span class="pr" data-price="15.95">15.95</span> | Add to Cart</span></button>
+            <button class="btn btn_dark add-cart" type="button"><span>$ <span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | Add to Cart</span></button>
          </div>
     </div>`)
 })
@@ -1054,7 +1055,7 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
     slidesFor = document.querySelectorAll('.slider-for .slide'), //slider main
     addToCartMain = document.querySelector('.product_sidebar .add-cart'), //add To Cart button pdp
-    addToCartSimilar = document.querySelectorAll('.card .add-cart'), //add To Cart buttons in "similar products"
+    cardsSimilar = document.querySelectorAll('.card'), //add To Cart buttons in "similar products"
     price = document.querySelectorAll('.pr'); //price
 
 // let scriptCustom = document.createElement('script');
@@ -1188,12 +1189,23 @@ function fetchOption(method,bodyItem){
     }
 }
 // add To Cart buttons in Similar products
-addToCartSimilar.forEach((el) => {
-    let variantId = el.getAttribute('data-variant'),
-        id = el.getAttribute('data-id'),
-        qty = el.closest('.card').querySelector('.calc-qty').value;
+cardsSimilar.forEach((el) => {
+    el.querySelector('.add-cart').addEventListener('click', () => {
+        let variantId = el.getAttribute('data-variant'),
+            id = el.getAttribute('data-id'),
+            qty = el.closest('.card').querySelector('.calc-qty').value;
 
-    fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => console.log(data))
+        fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
+            console.log(data);
+            let product = data['cart']['items'];
+            let sumQuantity = 0;
+            for (let i = 0; i < product.length; i++) {
+                sumQuantity = product[i].quantity + +sumQuantity;
+            }
+            document.querySelector('.cart_count').innerHTML = sumQuantity;
+            window.location.href = 'https://medicalmega.com/cart.html'
+        })
+    })
 })
 
 // switch to the previous version
@@ -1232,7 +1244,7 @@ fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoke
     console.log(data)
     let subtotal = parseFloat(data.total - data.shipping).toFixed(2);
     document.querySelector('#order-pr').innerHTML = subtotal;
-    document.querySelector('.range span').style.width = subtotal * 100 / 150 + '%';
+    document.querySelector('.range_slider span').style.width = subtotal * 100 / 150 + '%';
     if (subtotal < 150 && subtotal >= 130) {
         document.querySelector('#left_for').innerHTML = `<span class="c-red fw-semi">$<span id="last-pr">${(150 - subtotal).toFixed(2)} </span></span>  only left for free delivery`;
     } else if (subtotal >= 150) {
@@ -1245,11 +1257,13 @@ fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoke
 
 //set option in selects
 let req1 = fetch(`/api/categories&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
+    console.log(data)
     let categories = data.categories;
     for (let i = 0; i < categories.length; i++) {
         document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
     }
 })
+
 let offset, totalCount;
 fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
     console.log(data)
@@ -1261,69 +1275,55 @@ fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(
     for (let i = 0; i < brands.length; i++) {
         document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${brands[i]["brand_id"]}">${brands[i].title}</li>`)
     }
+
     for (let i = 1; i < Math.ceil(totalCount); i++) {
         fetch(`/api/brands&limit=100&offset=${offset * i}`, fetchOption("GET")).then(res => res.json()).then(dataI => {
             console.log(dataI)
             let brandsI = dataI.brands;
             for (let i = 0; i < brandsI.length; i++) {
                 document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${brandsI[i]["brand_id"]}">${brandsI[i].title}</li>`)
-
             }
 
-        })
-    }
-})
+            document.querySelectorAll('.select_current').forEach((el) => {
+                el.addEventListener('click',(e) => {
+                    e.stopImmediatePropagation()
+                    el.parentElement.classList.toggle('active');
+                })
+                el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+                    option.addEventListener('click', (e) => {
+                        e.stopImmediatePropagation()
+                        let name = option.closest('.select').getAttribute('name'),
+                            value = option.dataset.value;
+                        if (option.closest('.select').querySelector('.active') != null) {
+                            option.closest('.select').querySelector('.active').classList.remove('active');
+                        }
 
-function remActiveSelect() {
-    document.querySelectorAll('.select').forEach(el => el.classList.remove('active'))
-}
-
-let mutation = new MutationObserver(function (muts) {
-    //select
-
-    if (document.querySelectorAll('.select_brand .select_option').length == totalCount.split('.').join('')) {
-        mutation.disconnect();
-        document.querySelectorAll('.select_current').forEach((el) => {
-            el.addEventListener('click',(e) => {
-                el.closest('.select').classList.toggle('active');
-            })
-            el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
-                option.addEventListener('click', (e) => {
-                    console.log('click')
-                    let name = option.closest('.select').getAttribute('name'),
-                        value = option.dataset.value;
-
-                    option.classList.add('active');
-                    console.log(document.querySelector(`#search_c_id option[value="${value}"]`))
-                    if (name == 'search_c_id') {
-                        document.querySelector(`#search_c_id option[value="${value}"]`).selected = true;
-                    } else if (name == 'search_m_id') {
-                        document.querySelector(`#search_m_id option[value="${value}"]`).selected = true;
-                    }
-                    if (index == 0) {
-                        el.innerHTML = `<span>${option.innerHTML}</span>`;
-                    } else {
-                        el.innerHTML = option.innerHTML;
-                    }
-                    el.closest('.select').classList.remove('active');
+                        option.classList.add('active');
+                        if (name == 'search_c_id') {
+                            document.querySelector(`#search_c_id option[value="${value}"]`).selected = true;
+                        } else if (name == 'search_m_id') {
+                            document.querySelector(`#search_m_id option[value="${value}"]`).selected = true;
+                        }
+                        if (index == 0) {
+                            el.innerHTML = `<span>${option.innerHTML}</span>`;
+                        } else {
+                            el.innerHTML = option.innerHTML;
+                        }
+                        option.closest('.select').classList.remove('active');
+                    })
                 })
             })
         })
     }
-});
-
-mut.observe(document,{
-    childList: true,
-        subtree: true
 })
 
 document.body.addEventListener('click', (e) => {
-    if (e.target.className != 'select_current') {
-        console.log(e.target.className)
-        remActiveSelect()
+    if (!e.target.matches('.select_current')) {
+        let dropdowns = document.querySelectorAll(".select");
+        for (let i = 0; i < dropdowns.length; i++) {
+            if (dropdowns[i].classList.contains('active')) {
+                dropdowns[i].classList.remove('active');
+            }
+        }
     }
-})
-
-window.addEventListener('scroll', () => {
-    remActiveSelect()
 })
