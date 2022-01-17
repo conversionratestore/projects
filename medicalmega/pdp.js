@@ -234,11 +234,12 @@ let styles = `
     line-height: 26px; }
 
   .container {
-    max-width: 1270px;
-    padding: 0 15px;
+    max-width: 1260px;
+    padding: 0 10px;
     width: 100%;
     margin: 0 auto; }
-  
+  #wrap, .modal {
+    display: none;}
   .main {
     font-family: "Inter", sans-serif;
     font-style: normal;
@@ -682,7 +683,9 @@ let styles = `
       line-height: 120%;
       margin-bottom: 24px; }
     .product_content .col_mid {
-      width: 416px; }
+        padding-right: 10px;
+        width: calc(100% - 280px);
+        max-width: 426px; }
   
   .line {
     background: #BCC4C7;
@@ -762,6 +765,7 @@ let styles = `
     border-bottom: 1px solid #344D57;
     padding: 4px 0; }
     .content-discription table td:first-child {
+        color: #091114;
         width: 40%;
         padding-right: 10px;
         word-break: break-word; }
@@ -796,15 +800,8 @@ let styles = `
     border: 1px solid #BCC4C7;
     border-radius: 4px;
     padding: 40px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
     position: relative; }
     .card img {
@@ -839,8 +836,6 @@ let styles = `
   
   .breadcrumbs {
     padding: 10px 0 5px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex; }
     .breadcrumbs__item {
       float: left; }
@@ -915,89 +910,49 @@ let styles = `
     white-space: nowrap; }
   
   .d-flex {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex; }
   
   .align-items-center {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center; }
   
   .justify-content-center {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center; }
   
   .justify-content-between {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between; }
   
   .justify-content-around {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
     justify-content: space-around; }
   
   .flex-center-between {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center; }
   
   .flex-end-between {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
     align-items: flex-end; }
   
   .flex-center-around {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center; }
   
   .flex-wrap {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
   
   .flex-center-center {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center; }
   
   .w-100 {
@@ -1008,6 +963,15 @@ let styles = `
   
   .max-295 {
     max-width: 295px; }
+    
+     @media only screen and (max-width: 1250px) {
+      .category_popular a {
+        margin: 0 3px
+      }
+      .product_content h2, .product_content .title {
+        font-size: 26px;
+      }
+     }
   
 </style>`;
 
@@ -1058,9 +1022,9 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     cardsSimilar = document.querySelectorAll('.card'), //add To Cart buttons in "similar products"
     price = document.querySelectorAll('.pr'); //price
 
-// let scriptCustom = document.createElement('script');
-// scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
-// document.head.appendChild(scriptCustom);
+let scriptCustom = document.createElement('script');
+scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
+document.head.appendChild(scriptCustom);
 
 function changeQty(qty,pr,action) {
     if (action == 'plus') {
@@ -1137,14 +1101,12 @@ slidesFor.forEach((el) => {
     })
 })
 
-// window.onload = function() {
-//     setTimeout(() => {imageZoom("forImg", "zoomResult")}, 100)
-// };
-
 document.querySelectorAll('.mySlides .product_img').forEach((el) => {
     document.querySelector('.slider-nav').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${el.getAttribute('src')}" alt="${el.getAttribute('alt')}"></div>`)
 })
 document.querySelectorAll('.slider-nav .slide')[0].classList.add('active');
+
+setTimeout(() => {imageZoom("forImg", "zoomResult")}, 200)
 
 //slider
 document.querySelectorAll('.slider-nav .slide').forEach(el => {
