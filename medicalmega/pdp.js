@@ -104,23 +104,27 @@ let html = `
                 <div class="content-discription"></div>
               </div>
               <div class="product_sidebar">
-                <div class="align-items-center"> <img class="mr-16" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                  <div> 
-                    <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                    <p class="c-gray">2-3 business days*</p>
-                  </div>
+                <div>
+                    <div class="align-items-center"> <img class="mr-16" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                      <div> 
+                        <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                        <p class="c-gray">2-3 business days*</p>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="flex-end-between fw-semi total">
+                      <p class="fs-16">Price:</p>
+                      <p class="fs-24">$<span class="pr-state"></span></p>
+                    </div>
                 </div>
-                <div class="line"></div>
-                <div class="flex-end-between fw-semi total">
-                  <p class="fs-16">Price:</p>
-                  <p class="fs-24">$<span class="pr" data-price=""></span></p>
+                <div>
+                    <div class="flex-center-center calc"> 
+                      <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                      <input class="calc-qty" type="number" value="1">
+                      <button class="btn-calc btn-calc_plus" type="button"></button>
+                    </div>
+                    <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price=""></span> | </span>Add to Cart</button>
                 </div>
-                <div class="flex-center-center calc"> 
-                  <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                  <input class="calc-qty" type="number" value="1">
-                  <button class="btn-calc btn-calc_plus" type="button"></button>
-                </div>
-                <button class="btn btn_dark add-cart" type="button">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -254,13 +258,13 @@ let styles = `
     border: 2px solid #1E3944;
     border-radius: 40px;
     color: #FBFBFB;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     line-height: 44px;
-    font-size: 14px;
-    padding: 0 21px;
+    font-size: 12px;
+    padding: 0 22px;
     cursor: pointer;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -474,7 +478,6 @@ let styles = `
       text-align: center;
       margin-right: 20px; }
     .advanced-search .btn {
-        font-weight: 600;
       line-height: 28px;
       margin-left: 20px;
       font-size: 10px; }
@@ -655,25 +658,24 @@ let styles = `
       line-height: 170%; }
   
   .product_sidebar {
-    min-height: 360px;
+    min-height: 381px;
     background: #F0F1F2;
     border: 1px solid #E3E6E7;
     box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     width: 280px;
-    padding: 20px 40px;
+    padding: 48px 40px 40px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     position: sticky;
-    margin-bottom: 22px;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
-    justify-content: center;
     top: 250px; }
    .product_sidebar .btn {
-    width: 100%;
-   }
+   padding: 0;
+    width: 100%;}
   .product_content {
     padding-top: 28px; }
     .product_content h2, .product_content .title {
@@ -695,7 +697,7 @@ let styles = `
     margin: 12px 0; }
   
   .total {
-    padding: 14px 0;
+    padding: 10px 0;
     margin-bottom: 25px; }
   
   .calc {
@@ -993,7 +995,7 @@ document.querySelectorAll('.product-desc h3').forEach((el, i) => {
 //Similar Products
 document.querySelectorAll('.products_gallery dd').forEach((el) => {
     document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-    <div class="card" data-variant="${el.getAttribute('data-product-variant-id')}" data-id="${el.getAttribute('data-product-id')}">
+    <div class="card" >
         <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
             <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
             <span>${el.querySelectorAll('a')[1].innerText}</span>
@@ -1004,7 +1006,7 @@ document.querySelectorAll('.products_gallery dd').forEach((el) => {
               <input class="calc-qty" type="number" value="1">
               <button class="btn-calc btn-calc_plus" type="button"></button>
             </div>
-            <button class="btn btn_dark add-cart" type="button"><span>$ <span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | Add to Cart</span></button>
+            <button class="btn btn_dark add-cart" type="button" data-variant="${el.getAttribute('data-product-variant-id')}" data-id="${el.getAttribute('data-product-id')}"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | Add to Cart</span></button>
          </div>
     </div>`)
 })
@@ -1018,13 +1020,21 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     dataButton = document.querySelectorAll('[data-button]'), // btn for open popup or block
     closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
     slidesFor = document.querySelectorAll('.slider-for .slide'), //slider main
-    addToCartMain = document.querySelector('.product_sidebar .add-cart'), //add To Cart button pdp
-    cardsSimilar = document.querySelectorAll('.card'), //add To Cart buttons in "similar products"
+    addToCartButton = document.querySelectorAll('.add-cart'), //add To Cart buttons
     price = document.querySelectorAll('.pr'); //price
 
 let scriptCustom = document.createElement('script');
 scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
 document.head.appendChild(scriptCustom);
+
+function remActiveSelect() {
+    let dropdowns = document.querySelectorAll(".select");
+    for (let i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].classList.contains('active')) {
+            dropdowns[i].classList.remove('active');
+        }
+    }
+}
 
 function changeQty(qty,pr,action) {
     if (action == 'plus') {
@@ -1039,21 +1049,28 @@ function changeQty(qty,pr,action) {
         qty.value = 1;
     }
     pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+    if (qty.closest('.product_sidebar') && qty.value > 1) {
+        document.querySelector('.product_sidebar .add-cart span').hidden = false;
+    } else {
+        document.querySelector('.product_sidebar .add-cart span').hidden = true;
+    }
 }
 
 //price product
 if (document.querySelector('.product-price') != null) {
-    document.querySelector('.total .pr').dataset.price = document.querySelector('.product-price').innerText.replace('$','');
-    document.querySelector('.total .pr').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
+    document.querySelector('.total .pr-state').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
+    document.querySelector('.product_sidebar .add-cart .pr').dataset.price = document.querySelector('.product-price').innerText.replace('$','');
+    document.querySelector('.product_sidebar .add-cart .pr').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
 } else {
-    document.querySelector('.total').innerHTML = '<p class="fs-16">Out Of Stock</p>';
-    document.querySelector('.product_sidebar .calc').classList.add('disabled');
-    document.querySelector('.product_sidebar .btn').setAttribute('disabled','');
+    document.querySelector('.product_sidebar .btn').classList.add('btn_white')
+    document.querySelector('.product_sidebar .btn').innerHTML = 'notify when available'
+    document.querySelector('.product_sidebar .line').insertAdjacentHTML('afterend','<p class="out-of-stick">Out Of Stock</p><div class="available-options"> <p class="title fs-14">Available Options: </p> </div>')
+
 }
 
 //Available Options
 if (document.querySelector('.box_item') != null) {
-    document.querySelector('.product_sidebar').insertAdjacentHTML('beforeend','<p>Available Options: </p>')
+    document.querySelector('.product_sidebar .line').insertAdjacentHTML('afterend','<div class="available-options"> <p class="title">Available Options: </p> </div>')
 }
 
 //+/- btns quantity
@@ -1136,11 +1153,6 @@ document.querySelectorAll('.type2 label').forEach(el => {
 //trustpilot
 document.querySelector('.trustpilot').appendChild(document.querySelector('.trustpilot-widget'))
 
-//add To Cart button main pdp
-addToCartMain.addEventListener('click', () => {
-    document.querySelector('#qty_block select').selectedIndex = document.querySelector('.product_sidebar .calc-qty').value - 1;
-    document.querySelectorAll('#cart_box a')[0].click();
-})
 function fetchOption(method,bodyItem){
     return {
         headers: {
@@ -1150,12 +1162,13 @@ function fetchOption(method,bodyItem){
         body: bodyItem
     }
 }
+
 // add To Cart buttons in Similar products
-cardsSimilar.forEach((el) => {
-    el.querySelector('.add-cart').addEventListener('click', () => {
-        let variantId = el.getAttribute('data-variant'),
-            id = el.getAttribute('data-id'),
-            qty = el.closest('.card').querySelector('.calc-qty').value;
+addToCartButton.forEach((el) => {
+    el.addEventListener('click', () => {
+        let variantId = el.dataset.variant,
+            id = el.dataset.id,
+            qty = el.parentElement.querySelector('.calc-qty').value;
 
         fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
             console.log(data);
@@ -1218,7 +1231,7 @@ fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoke
 })
 
 //set option in selects
-let req1 = fetch(`/api/categories&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
+fetch(`/api/categories&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
     console.log(data)
     let categories = data.categories;
     for (let i = 0; i < categories.length; i++) {
@@ -1249,6 +1262,7 @@ fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(
             document.querySelectorAll('.select_current').forEach((el) => {
                 el.addEventListener('click',(e) => {
                     e.stopImmediatePropagation()
+                    remActiveSelect()
                     el.parentElement.classList.toggle('active');
                 })
                 el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
@@ -1280,12 +1294,7 @@ fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(
 })
 
 document.body.addEventListener('click', (e) => {
-    if (!e.target.matches('.select_current')) {
-        let dropdowns = document.querySelectorAll(".select");
-        for (let i = 0; i < dropdowns.length; i++) {
-            if (dropdowns[i].classList.contains('active')) {
-                dropdowns[i].classList.remove('active');
-            }
-        }
-    }
+    if (!e.target.matches('.select_current')) remActiveSelect();
 })
+
+window.addEventListener('scroll', () => remActiveSelect());
