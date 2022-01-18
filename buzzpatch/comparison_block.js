@@ -1,8 +1,52 @@
-let styleComparisonBlock = /*html*/ `
+window.onload = function () {
+  let scriptCustom = document.createElement("script")
+  scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+  scriptCustom.async = false
+  document.head.appendChild(scriptCustom)
+
+  let scriptCustomStyle = document.createElement("link")
+  scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+  scriptCustomStyle.rel = "stylesheet"
+  document.head.appendChild(scriptCustomStyle)
+
+  let styleComparisonBlock = /*html*/ `
 <style>
-  .bp-comparison.js-mobile, .wave-effect.js-mobile{
-    display: none;
-  }
+
+.comparison_slider_nav{
+  padding-bottom: 72px;
+  margin-bottom: 40px;
+}
+
+.comparison_slider_nav, .comparison_slider_nav .bp-comparison{
+  background: #ECEEF0;
+}
+
+.comparison_slider_nav .bp-comparison{
+  padding: 30px 0 40px;
+  margin-bottom: 0 !important;
+}
+
+.wave-effect.js-mobile svg{
+  display: none;
+}
+
+.wave-effect.js-mobile svg path{
+fill:#ECEEF0;
+}
+.wave-effect{
+  margin-bottom: -2px;
+}
+
+.comparison_slider_nav .col-lg-3.text-center.js-heading{
+  margin-top: 10px;
+}
+
+.comparison_slider_nav .bp-mob-table-container p{
+font-weight: 600;
+font-size: 14px !important;
+line-height: 20px !important;
+}
+
   .comparison_block table thead tr:last-child td,
   table thead tr:last-child th {
     border-bottom: none;
@@ -29,11 +73,10 @@ let styleComparisonBlock = /*html*/ `
   .comparison_block {
     background-size: 100%;
     background-color: #eceef0;
-    padding: 30px 16px;
-    margin-bottom: 50px;
+    padding: 30px 16px 40px;
   }
 
-  .comparison_block h2 {
+  .comparison_block h2, .comparison_slider_nav .js-title.text-dark {
     font-family: "DINEngschrift LT", sans-serif;
     font-weight: 400;
     font-size: 30px;
@@ -43,6 +86,10 @@ let styleComparisonBlock = /*html*/ `
     text-transform: uppercase;
     color: #0c0b0b;
     margin-bottom: 40px;
+  }
+
+  .comparison_slider_nav .js-title.text-dark{
+    margin-bottom: 56px;
   }
 
   .comparison_block > p {
@@ -58,6 +105,7 @@ let styleComparisonBlock = /*html*/ `
     border-radius: 6px;
     padding: 20px 47px;
     margin-top: 40px;
+    margin-bottom: 0;
   }
 
   .comparison_block > p span {
@@ -132,6 +180,25 @@ let styleComparisonBlock = /*html*/ `
     height: 26px;
   }
 
+  .comparison_slider_nav .slick-dots li a::before, .slick-dots li button::before{
+    background: #F1F3F4;
+    border: 1px solid #212529;
+    width: 12px;
+    height: 12px;
+    content:"";
+    transform: unset;
+    color: unset;
+  }
+
+   .comparison_slider_nav .slick-dots li.slick-active a::before, .slick-dots li.slick-active button::before{
+    content:"";
+    transform: unset;
+    color: unset;
+    background: #212529;
+  }
+
+
+
   @media (max-width: 321px) {
     .comparison_block > p {
       padding: 20px 19px;
@@ -144,11 +211,15 @@ let styleComparisonBlock = /*html*/ `
 </style>
 `
 
-let comparisonBlock = /*html*/ `
+  let imgBlock = `
 <div class="img_block">
   <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block.svg" alt="background figure">
 </div>
-    <section class="comparison_block">
+`
+
+  let sliderBox = /*html */ `
+<div class="comparison_slider_nav">
+  <section class="comparison_block slider_custom_list">
       <h2>
         How expensive is Buzzpatch <br />
         compared to mosquito <br />
@@ -232,28 +303,69 @@ let comparisonBlock = /*html*/ `
         Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray
       </p>
     </section>
+</div>
 `
 
-document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
-document.querySelector(".js-mobile.effectiveness").insertAdjacentHTML("afterend", comparisonBlock)
+  document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
+  document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterbegin", imgBlock)
+  document.querySelector(".bp-comparison.js-mobile").classList.add("slider_custom_list")
 
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  event: "event-to-ga",
-  eventCategory: "Exp: Pricing comparison option",
-  eventAction: "loaded",
-})
-;(function (h, o, t, j, a, r) {
-  h.hj =
-    h.hj ||
-    function () {
-      ;(h.hj.q = h.hj.q || []).push(arguments)
+  document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterend", sliderBox)
+
+  document.querySelectorAll(".col-lg-7.text-center.d-flex.align-items-center").forEach((el) => el.remove())
+
+  if (document.querySelector(".comparison_slider_nav")) {
+    document.querySelector(".comparison_block").after(document.querySelector(".bp-comparison.js-mobile"))
+
+    document.querySelector(".comparison_slider_nav .js-title.text-dark").innerText = `Buzzpatch \nvs other mosquito\n repellents`
+  }
+
+  let slickInterval = setInterval(() => {
+    if (typeof jQuery(".comparison_slider_nav").slick === "function" && document.querySelector(".comparison_slider_nav")) {
+      clearInterval(slickInterval)
+
+      //  slider
+      setTimeout(() => {
+        let slider = $(".comparison_slider_nav").slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: true,
+          focusOnSelect: true,
+          adaptiveHeight: true,
+        })
+
+        slider.on("swipe", () => {
+          window.dataLayer = window.dataLayer || []
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: "Exp: Pricing comparison option",
+            eventAction: "Swipe slider",
+            eventLabel: `Slider swipe`,
+          })
+        })
+      }, 100)
     }
-  h._hjSettings = { hjid: 2247058, hjsv: 6 }
-  a = o.getElementsByTagName("head")[0]
-  r = o.createElement("script")
-  r.async = 1
-  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-  a.appendChild(r)
-})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-hj("event", "pricing_comparison_option")
+  }, 100)
+
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp: Pricing comparison option",
+    eventAction: "loaded",
+  })
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 2247058, hjsv: 6 }
+    a = o.getElementsByTagName("head")[0]
+    r = o.createElement("script")
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+  hj("event", "pricing_comparison_option")
+}
