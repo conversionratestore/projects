@@ -11,7 +11,7 @@ let html = `
           <div class="container">
             <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
                 <div class="d-flex">
-                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
+                <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                   <form class="form-search">
                     <input type="text" placeholder="Search by Name" name="search_key">
                     <button type="button">
@@ -104,27 +104,25 @@ let html = `
                 <div class="content-discription"></div>
               </div>
               <div class="product_sidebar">
-                <div>
-                    <div class="align-items-center"> <img class="mr-16" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                      <div> 
-                        <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                        <p class="c-gray">2-3 business days*</p>
+                <div class="product_sidebar_top">
+                  <div class="shipping_block">
+                      <div class="align-items-center"> 
+                        <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                        <div> 
+                          <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                          <p class="c-gray">2-3 business days*</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="flex-end-between fw-semi total">
-                      <p class="fs-16">Price:</p>
-                      <p class="fs-24">$<span class="pr-state"></span></p>
-                    </div>
+                      <div class="line"></div>
+                  </div> 
                 </div>
                 <div>
                     <div class="flex-center-center calc"> 
                       <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                      <input class="calc-qty" type="number" value="1">
+                      <input class="calc-qty" type="number" value="1" data-case="1">
                       <button class="btn-calc btn-calc_plus" type="button"></button>
                     </div>
-                    <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price=""></span> | </span>Add to Cart</button>
-                </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -286,7 +284,7 @@ let styles = `
       color: #1E3944; }
       .btn_white:hover {
         background-color: #F0F1F2;}
-     .btn_white:focus {
+    .btn_white:focus {
         background-color: #E9EBEC; }
     .btn_white[disabled], .form-search button[disabled] {
         border-color: #F0F1F2;
@@ -307,7 +305,10 @@ let styles = `
     display: none; }
     .checkbox:checked ~ .check {
       background: url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/check.svg") no-repeat center/18px; }
-  
+    .checkbox:checked ~ .radio-check {
+      border-color: #96280F; }
+    .checkbox:checked ~ .radio-check .radio-check_price{
+      color: #96280F;}
   .header {
     -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
@@ -337,9 +338,9 @@ let styles = `
     text-transform: uppercase;
     line-height: 10px;
     color: #1E3944; }
-   .midbar .btn {
+  .midbar .btn {
     font-size: 12px;}
-   .midbar_action span.cart_count {
+  .midbar_action span.cart_count {
     color: #96280F;}
   .logo {
     font-weight: 800;
@@ -375,7 +376,7 @@ let styles = `
     border-top: 1px solid #BCC4C7;
     padding: 9px 0; }
   .nav_category a {
-       padding: 13px 10px 13px 8px; }
+      padding: 13px 10px 13px 8px; }
   .nav_category .p-main {
     font-weight: 600;
     font-size: 10px;
@@ -501,6 +502,17 @@ let styles = `
       border-width: 4px 4px 0 4px;
       border-radius: 0.5px;
       border-color: #9AA6AB transparent transparent transparent;}
+      .select:after {
+        content: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #344D57;
+        pointer-events: none;
+        border-radius: 30px;
+      }
   .select_brand {
     width: 165px; }
   .select_category {
@@ -518,7 +530,7 @@ let styles = `
       line-height: 30px;
       color: #344D57;
       padding: 0 30px 0 16px; }
-     .select_current span {
+    .select_current span {
         pointer-events: none;
         color: #9AA6AB; }
     .select_dropdown {
@@ -540,12 +552,14 @@ let styles = `
         right: 0;}
     .select.active:before {
         transform: translateY(-50%) scaleY(-1);}
+    .select.active:after {
+      content: '';}
     .select.active .select_dropdown {
         visibility: visible;
         padding-top: 8px;
         padding-bottom: 8px;
         height: 330px;}
-     .select_dropdown::-webkit-scrollbar-track {
+    .select_dropdown::-webkit-scrollbar-track {
         width: 6px;}
     .select_option {
         cursor: pointer;
@@ -602,7 +616,7 @@ let styles = `
     align-items: flex-start;
     flex-direction: column; }
   .trustpilot iframe {
-    width: 88%!important;
+    width: 90%!important;
     height: 91px!important;}
   .slide_two {
     width: calc(100% - 96px); }
@@ -656,7 +670,14 @@ let styles = `
     .list li {
       font-size: 16px;
       line-height: 170%; }
-  
+  .out-of-stick {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 14px;
+    line-height: 150%;
+    color: #96280F!important;}
+
   .product_sidebar {
     min-height: 381px;
     background: #F0F1F2;
@@ -673,8 +694,8 @@ let styles = `
     justify-content: space-between;
     flex-direction: column;
     top: 250px; }
-   .product_sidebar .btn {
-   padding: 0;
+  .product_sidebar .btn {
+  padding: 0;
     width: 100%;}
   .product_content {
     padding-top: 28px; }
@@ -756,14 +777,15 @@ let styles = `
       line-height: 150%; }
       .content-discription * {
         color: #6D7E85;}
-  .content-discription p {
-      margin-top: 15px;}
-    .content-discription ul {
-      margin-top: 15px;
-        padding-left: 20px;}
+  .content-discription p {    
+    text-align: left!important;
+    margin-top: 15px;}
+  .content-discription ul {
+    margin-top: 15px;
+    padding-left: 20px;}
   .content-discription ul li {
       list-style-type: disc;}
- .content-discription table td {
+.content-discription table td {
     border-bottom: 1px solid #344D57;
     padding: 4px 0; }
     .content-discription table td:first-child {
@@ -965,15 +987,50 @@ let styles = `
   
   .max-295 {
     max-width: 295px; }
-    
-     @media only screen and (max-width: 1250px) {
+  .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
+    pointer-events: none;}
+  .product_sidebar.disabled p {
+    color: #9AA6AB; }
+  .product_sidebar.disabled .radio-check {
+    border-color: #E3E6E7; }
+  .product_sidebar.disabled .radio-check span {
+    color: #BCC4C7!important; }
+  .product_sidebar.disabled .calc-qty {
+    border-color: #E3E6E7;
+    color: #BCC4C7; }
+  .available-options .justify-content-between label {
+    width: 48%; }
+  .available-options .fs-14 {
+    margin: 15px 0 5px; }
+  .radio-check {
+    background: #FBFBFB;
+    border: 1px solid #E0E4E5;
+    border-radius: 2px;
+    display: block;
+    padding: 11px;}
+  .radio-check span {
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    color: #344D57;
+    display: block;
+  }
+  .radio-check span.radio-check_price {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 130%;
+    color: #091114;
+    margin-top: 8px;
+  }
+  
+    @media only screen and (max-width: 1250px) {
       .category_popular a {
         margin: 0 3px
       }
       .product_content h2, .product_content .title {
         font-size: 26px;
       }
-     }
+    }
   
 </style>`;
 
@@ -1003,13 +1060,30 @@ document.querySelectorAll('.products_gallery dd').forEach((el) => {
         <div>
             <div class="flex-center-center calc"> 
               <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-              <input class="calc-qty" type="number" value="1">
+              <input class="calc-qty" type="number" value="1" data-case="1">
               <button class="btn-calc btn-calc_plus" type="button"></button>
             </div>
             <button class="btn btn_dark add-cart" type="button" data-variant="${el.getAttribute('data-product-variant-id')}" data-id="${el.getAttribute('data-product-id')}"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | Add to Cart</span></button>
-         </div>
+        </div>
     </div>`)
 })
+
+//price product
+if (document.querySelector('.product-price') != null) {
+  if (document.querySelector('.box_item') == null && document.querySelector('.product-page-bulk__box') == null) {
+    document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend',`
+    <div class="flex-end-between fw-semi total">
+      <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
+    </div>`)
+  }
+  document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);     
+} else {
+  document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
+  document.querySelector('.product_sidebar').classList.add('disabled');
+  document.querySelector('.product_sidebar .btn-calc_plus').disabled = true;
+  document.querySelector('.product_sidebar .icon-car').src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car-gray.svg';
+  document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_white" type="button" disabled>Out Of Stock</button>`);
+}
 
 let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     btnMinus = document.querySelectorAll('.btn-calc_minus'), //btn -
@@ -1056,21 +1130,62 @@ function changeQty(qty,pr,action) {
     }
 }
 
-//price product
-if (document.querySelector('.product-price') != null) {
-    document.querySelector('.total .pr-state').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
-    document.querySelector('.product_sidebar .add-cart .pr').dataset.price = document.querySelector('.product-price').innerText.replace('$','');
-    document.querySelector('.product_sidebar .add-cart .pr').innerHTML = document.querySelector('.product-price').innerText.replace('$','');
-} else {
-    document.querySelector('.product_sidebar .btn').classList.add('btn_white')
-    document.querySelector('.product_sidebar .btn').innerHTML = 'notify when available'
-    document.querySelector('.product_sidebar .line').insertAdjacentHTML('afterend','<p class="out-of-stick">Out Of Stock</p><div class="available-options"> <p class="title fs-14">Available Options: </p> </div>')
-
-}
-
 //Available Options
-if (document.querySelector('.box_item') != null) {
-    document.querySelector('.product_sidebar .line').insertAdjacentHTML('afterend','<div class="available-options"> <p class="title">Available Options: </p> </div>')
+
+let availableOptionsHtml = `
+<div class="available-options"> 
+  <p class="fs-14 fw-semi">Available Options: </p> 
+  <div class="justify-content-between"> </div>
+</div>`;
+
+if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
+  document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHtml)
+  if (document.querySelector('.product-page-bulk__box') != null) {
+    document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
+    <label>
+      <input type="radio" name="radio" class="checkbox" checked>
+      <span class="radio-check">
+        <span>Each</span>
+        <span class="radio-check_price">${document.querySelector('.product-price').innerHTML}</span>
+      </span>
+    </label>
+    <label>
+      <input type="radio" name="radio" class="checkbox">
+      <span class="radio-check">
+        <span>Case of ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
+        <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
+      </span>
+    </label>`)
+  }
+  if (document.querySelector('.box_item') != null) {
+    document.querySelectorAll('.box_item').forEach((item) => {
+      document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
+      <label>
+        <input type="radio" name="radio" class="checkbox" ${item.classList.contains('box_item_active') ? 'checked' : ''}>
+        <span class="radio-check">
+          <span>${item.querySelectorAll('span')[0].innerText}</span>
+          <span class="radio-check_price">${item.querySelectorAll('span')[1].innerText}</span>
+        </span>
+      </label>`)
+    })
+  }
+  document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+    checkbox.addEventListener('click', (e) => {
+      if (checkbox.checked) {
+        let optionAvailable = checkbox.nextElementSibling.querySelectorAll('span')[0],
+        optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''),
+        caseCount = 1;
+        if (optionAvailable.innerText.includes('Each')) {
+          caseCount = 1;
+        } else {
+          caseCount = optionAvailable.innerText.replace(/\D/g, '')
+        }
+        document.querySelector('.product_sidebar .calc-qty').dataset.case = caseCount;
+        document.querySelector('.product_sidebar .add-cart .pr').dataset.price = optionPrice;
+        document.querySelector('.product_sidebar .add-cart .pr').innerHTML = (+optionPrice * +document.querySelector('.product_sidebar .calc-qty').value).toFixed(2);
+      }
+    })
+  })
 }
 
 //+/- btns quantity
@@ -1123,8 +1238,6 @@ document.querySelectorAll('.mySlides .product_img').forEach((el) => {
 })
 document.querySelectorAll('.slider-nav .slide')[0].classList.add('active');
 
-setTimeout(() => {imageZoom("forImg", "zoomResult")}, 200)
-
 //slider
 document.querySelectorAll('.slider-nav .slide').forEach(el => {
     el.addEventListener('click', () => {
@@ -1168,7 +1281,7 @@ addToCartButton.forEach((el) => {
     el.addEventListener('click', () => {
         let variantId = el.dataset.variant,
             id = el.dataset.id,
-            qty = el.parentElement.querySelector('.calc-qty').value;
+            qty = el.parentElement.querySelector('.calc-qty').value * +el.parentElement.querySelector('.calc-qty').dataset.case;
 
         fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
             console.log(data);
@@ -1298,3 +1411,11 @@ document.body.addEventListener('click', (e) => {
 })
 
 window.addEventListener('scroll', () => remActiveSelect());
+
+//zoom
+let startZoom = setInterval(() => {
+  if (document.querySelector('.slider-for_img') != null) {
+    clearInterval(startZoom)
+    imageZoom("forImg", "zoomResult")
+  }
+}, 100);
