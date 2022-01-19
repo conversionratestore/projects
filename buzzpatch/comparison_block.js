@@ -1,4 +1,4 @@
-window.onload = function () {
+// window.onload = function () {
   let scriptCustom = document.createElement("script")
   scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
   scriptCustom.async = false
@@ -14,8 +14,8 @@ window.onload = function () {
 
   .bp-tooltip .bp-tooltiptext{
     max-width: 180px;
-    left: calc(50% - 61px) !important;
-    width: 112px !important;
+    left: calc(50% - 55px) !important;
+    width: 100px !important;
   }
 
   .comparison_slider_nav{
@@ -351,7 +351,7 @@ window.onload = function () {
             eventLabel: `Slider swipe`,
           })
         })
-      }, 100)
+      }, 200)
     }
   }, 100)
 
@@ -375,4 +375,4 @@ window.onload = function () {
     a.appendChild(r)
   })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
   hj("event", "pricing_comparison_option")
-}
+// }
