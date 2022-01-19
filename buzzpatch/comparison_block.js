@@ -14,7 +14,7 @@ let styleComparisonBlock = /*html*/ `
 
   .bp-tooltip .bp-tooltiptext{
     max-width: 180px;
-    left: calc(50% - 52px) !important;
+    left: calc(50% - 54px) !important;
     width: 95px !important;
   }
 
