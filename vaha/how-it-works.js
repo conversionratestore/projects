@@ -18,8 +18,10 @@ document.head.appendChild(scriptCustom)
 
 const myStyle = `
 	<style>	
-		.quiz {			
-			margin: 30px 0 -30px;
+		.container-3dy0SD {
+			bottom: -1px;
+			flex-wrap: wrap;
+			height: auto;
 		}
 		
 		.container-3dy0SD.hidden-32gGOP {
@@ -43,6 +45,7 @@ const myStyle = `
 			max-height: 1000px;
 			transition: max-height 1s ease-in-out;
 			overflow: hidden;
+			box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.05), 0px -4px 60px rgba(0, 0, 0, 0.1);
 			/*opacity: 1;*/
 		}
 		
@@ -67,23 +70,32 @@ const myStyle = `
 			align-items: center;
 			gap: 9px;
 			width: 100%;		
-			padding: 17px;
-			background-color: #000;
-			border: 2px solid #FFD26E;
-			border-radius: 4px;
+			padding: 0 13px;
+			background-color: #FFF;
+			border: 1px solid #FFD26E;
+			border-radius: 5px;
 			font-size: 16px;
-			color: #FFD26E;
+			color: #222;
 			font-weight: 900;
-			line-height: 14px;
+			line-height: normal;
+			height: 48px;
 		}	
 		
+		.container-3dy0SD .btn-wrapper,
+		.button-3MJU8U {
+			flex: 0 1 47%
+		}
+		
+		.btn-wrapper button span {
+			line-height: normal;
+		}
+		
 		.slider-wrapper .btn-wrapper {
-			margin-top: 16px;
+			margin: 16px auto 0; 
 		}	
 		
 		.slider-wrapper .btn-wrapper button {
-			background-color: #FFD26E;
-			color: #222;
+			background-color: #FFD26E;			
 		}
 		
 		/*.items {*/
@@ -96,8 +108,9 @@ const myStyle = `
 		
 		.closeX {
 			position: absolute;
-			top: 19px;
-			right: 25px;
+			top: 14px;
+			right: 20px;
+			padding: 5px;
 		}
 		
 		.items .step,
@@ -155,6 +168,35 @@ const myStyle = `
 		.tns-controls {
 			display: none;
 		}
+		
+		.headline-2zqlww {
+			display: none;
+		}
+		
+		.button-3MJU8U {
+			height: 48px;
+			background-color: #F9D37D;
+		}
+		
+		.button-3MJU8U span {
+			text-transform: uppercase;
+		}
+		
+		.default-2nRAol .icon {
+			width: auto;
+			height: auto;
+			margin-left: 9px;
+		}
+		
+		.days {
+			flex: 1 0 100%;
+			margin-top: 6px;
+			font-weight: 500;
+			font-size: 12px;
+			letter-spacing: 0.16px;
+			text-align: center;
+			line-height: normal;
+		}
 	</style>
 `
 
@@ -170,6 +212,7 @@ const textArr = {
 		step: 'step',
 		next: 'Next',
 		free: 'Try VAHA for free',
+		freeDays: 'Try VAHA 30 days for free!',
 		items: [
 			[
 				`30-Day Free Trial &<br> Free Delivery`,
@@ -194,6 +237,7 @@ const textArr = {
 		step: 'schritt',
 		next: 'Weiter',
 		free: 'VAHA kostenlos testen',
+		freeDays: 'Teste VAHA 30 Tage kostenlos!',
 		items: [
 			[
 				`Kostenlose 30-tägige Testversion & kostenlose Lieferung`,
@@ -241,6 +285,15 @@ localObj.items.forEach((item, index) => {
     general template
 */
 
+const openPopup = `
+	<div class="btn-wrapper">
+		<button class="open-popup">
+			<span>${ localObj.how }</span>
+			<img src="https://conversionratestore.github.io/projects/vaha/images/arrow_right_black.svg" alt="arrow">
+		</button>
+	</div>
+`
+
 const template = `
 	<div class="quiz">
 		<div class="slider-wrapper hide">
@@ -260,17 +313,15 @@ const template = `
 				</div>
 				<img class="closeX" src="https://conversionratestore.github.io/projects/vaha/images/closeX.svg" alt="close">
 			</div>
-		</div>		
-		<div class="btn-wrapper">
-			<button class="open-popup">
-				<span>${ localObj.how }</span>				
-				<img src="https://conversionratestore.github.io/projects/vaha/images/arrow_right_gold.svg" alt="arrow">
-			</button>
-		</div>	
+		</div>				
 	</div>
 `
 
-document.querySelector('.container-38AkxZ').insertAdjacentHTML('afterbegin', template)
+const tryVaha = `<p class="days">${localObj.freeDays}</p>`
+
+document.querySelector('.container-3dy0SD').insertAdjacentHTML('afterbegin', openPopup)
+document.querySelector('.container-3dy0SD').insertAdjacentHTML('beforeend', tryVaha)
+document.querySelector('.vaha-container').insertAdjacentHTML('afterbegin', template)
 
 /*
     Slider
