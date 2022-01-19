@@ -14,7 +14,8 @@ window.onload = function () {
 
   .bp-tooltip .bp-tooltiptext{
     max-width: 180px;
-    width: 135px !important;
+    left: calc(50% - 61px);
+    width: 112px !important;
   }
 
   .comparison_slider_nav{
