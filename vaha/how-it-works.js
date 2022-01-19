@@ -433,8 +433,8 @@ document.querySelector('.open-popup').addEventListener('click', () => {
 })
 
 document.querySelector('.btn-free').addEventListener('click', () => {
-	document.querySelector('.container-3dy0SD button').click()
-
+	document.querySelector('.purchase-button[data-v-59f223e7]').click()
+	
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
@@ -445,7 +445,6 @@ document.querySelector('.btn-free').addEventListener('click', () => {
 	console.log('eventAction Click on Try vaha for free button')
 
 	document.querySelector('.slider-wrapper').classList.add('hide')
-
 })
 
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
@@ -467,7 +466,7 @@ let elInterval = setInterval(() => {
 		})
 	}
 }, 100)
-	
+
 // document.querySelector('.purchase-button').addEventListener('click', () => {
 // 	document.querySelector('.slider-wrapper').classList.add('hide')
 // })
