@@ -459,15 +459,15 @@ let elInterval = setInterval(() => {
 		clearInterval(elInterval)
 
 		elements.forEach(element => {
-			element.addEventListener('click', () => {
+			document.querySelector(element).addEventListener('click', () => {
+				console.log('close')
+
 				document.querySelector('.slider-wrapper').classList.add('hide')
 			})
 		})
 	}
 }, 100)
-
-
-
+	
 // document.querySelector('.purchase-button').addEventListener('click', () => {
 // 	document.querySelector('.slider-wrapper').classList.add('hide')
 // })
