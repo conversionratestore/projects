@@ -14,7 +14,7 @@ window.onload = function () {
 
   .bp-tooltip .bp-tooltiptext{
     max-width: 180px;
-    left: calc(50% - 61px);
+    left: calc(50% - 61px) !important;
     width: 112px !important;
   }
 
