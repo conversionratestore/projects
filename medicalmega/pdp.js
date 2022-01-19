@@ -450,7 +450,7 @@ let styles = `
   
   .btn_reset {
     background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
-    width: 150px;
+    width: 130px;
     height: 24px;
     cursor: pointer; }
   
@@ -465,7 +465,7 @@ let styles = `
     pointer-events: none; }
     .advanced-search.active {
       padding: 16px 0;
-      height: 60px;
+      height: 64px;
       opacity: 1;
       pointer-events: auto; }
     .advanced-search input {
@@ -597,7 +597,7 @@ let styles = `
   .col_left {
     width: 456px;
     position: sticky;
-    top: 200px;
+    top: 205px;
     margin-top: 14px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -693,7 +693,7 @@ let styles = `
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    top: 250px; }
+    top: 255px; }
   .product_sidebar .btn {
   padding: 0;
     width: 100%;}
@@ -711,7 +711,7 @@ let styles = `
         max-width: 426px; }
   
   .line {
-    background: #BCC4C7;
+    background: #DCE0E1;
     width: 100%;
     height: 1px;
     display: block;
@@ -776,7 +776,7 @@ let styles = `
       font-size: 16px;
       line-height: 150%; }
       .content-discription * {
-        color: #6D7E85;}
+        color: #6D7E85!important;}
   .content-discription p {    
     text-align: left!important;
     margin-top: 15px;}
@@ -985,8 +985,9 @@ let styles = `
   .relative {
     position: relative; }
   
-  .max-295 {
-    max-width: 295px; }
+  .max-391{
+    width: 100%;
+    max-width: 391px; }
   .product_sidebar.disabled .product_sidebar_top, .product_sidebar.disabled .calc {
     pointer-events: none;}
   .product_sidebar.disabled p {
@@ -1007,7 +1008,7 @@ let styles = `
     border: 1px solid #E0E4E5;
     border-radius: 2px;
     display: block;
-    padding: 11px;}
+    padding: 11px 0;}
   .radio-check span {
     font-size: 12px;
     line-height: 150%;
@@ -1041,10 +1042,23 @@ document.body.insertAdjacentHTML('afterbegin', styles);
 document.querySelectorAll('.product-desc h3').forEach((el, i) => {
     if (i == 0) {
         document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
-        document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+        if (el.nextElementSibling.innerHTML.includes('<h2>')) {
+          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+          console.log(el.nextElementSibling.innerHTML.split('<h2>')[0])
+        } else {
+          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
+          console.log(el.nextElementSibling.innerHTML.split('<p><strong>')[0])
+        }
+
         document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+          document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+        })
+        document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
+          if (strong.parentElement.tagName != 'SPAN') {
+            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
+            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);     
+          }
         })
     }
 })
@@ -1123,15 +1137,16 @@ function changeQty(qty,pr,action) {
         qty.value = 1;
     }
     pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-    if (qty.closest('.product_sidebar') && qty.value > 1) {
+    if (qty.closest('.product_sidebar')) {
+      if (qty.value > 1) {
         document.querySelector('.product_sidebar .add-cart span').hidden = false;
-    } else {
+      } else {
         document.querySelector('.product_sidebar .add-cart span').hidden = true;
-    }
+      }
+    } 
 }
 
 //Available Options
-
 let availableOptionsHtml = `
 <div class="available-options"> 
   <p class="fs-14 fw-semi">Available Options: </p> 
@@ -1152,10 +1167,10 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
     <label>
       <input type="radio" name="radio" class="checkbox">
       <span class="radio-check">
-        <span>Case of ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
+        <span> ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
         <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
       </span>
-    </label>`)
+    </label>`) //Case of
   }
   if (document.querySelector('.box_item') != null) {
     document.querySelectorAll('.box_item').forEach((item) => {
