@@ -397,7 +397,7 @@ document.querySelector('.btn-free').addEventListener('click', () => {
 
 })
 
-const elements = ['purchase-button', 'mobile-menu', 'promo-overlay-button']
+const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
 elements.forEach(element => {
 	element.addEventListener('click', () => {
