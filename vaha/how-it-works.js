@@ -450,13 +450,23 @@ document.querySelector('.btn-free').addEventListener('click', () => {
 
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
-elements.forEach(element => {
-	element.addEventListener('click', () => {
-		console.log('ss')
+let elInterval = setInterval(() => {
+	if (
+		document.querySelector('.purchase-button') &&
+		document.querySelector('.mobile-menu') &&
+		document.querySelector('.promo-overlay-button')
+	) {
+		clearInterval(elInterval)
 
-		document.querySelector('.slider-wrapper').classList.add('hide')
-	})
-})
+		elements.forEach(element => {
+			element.addEventListener('click', () => {
+				document.querySelector('.slider-wrapper').classList.add('hide')
+			})
+		})
+	}
+}, 100)
+
+
 
 // document.querySelector('.purchase-button').addEventListener('click', () => {
 // 	document.querySelector('.slider-wrapper').classList.add('hide')
