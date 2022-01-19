@@ -12,40 +12,45 @@ window.onload = function () {
   let styleComparisonBlock = /*html*/ `
 <style>
 
-.comparison_slider_nav{
-  padding-bottom: 72px;
-  margin-bottom: 40px;
-}
+  .bp-tooltip .bp-tooltiptext{
+    max-width: 180px;
+  }
 
-.comparison_slider_nav, .comparison_slider_nav .bp-comparison{
-  background: #ECEEF0;
-}
+  .comparison_slider_nav{
+    padding-bottom: 42px;
+    margin-bottom: 40px;
+  }
 
-.comparison_slider_nav .bp-comparison{
-  padding: 30px 0 40px;
-  margin-bottom: 0 !important;
-}
+  .comparison_slider_nav, .comparison_slider_nav .bp-comparison{
+    background: #ECEEF0;
+  }
 
-.wave-effect.js-mobile svg{
-  display: none;
-}
+  .comparison_slider_nav .bp-comparison{
+    padding: 30px 0 40px;
+    margin-bottom: 0 !important;
+  }
 
-.wave-effect.js-mobile svg path{
-fill:#ECEEF0;
-}
-.wave-effect{
-  margin-bottom: -2px;
-}
+  .wave-effect.js-mobile svg{
+    display: none;
+  }
 
-.comparison_slider_nav .col-lg-3.text-center.js-heading{
-  margin-top: 10px;
-}
+  .wave-effect.js-mobile svg path{
+  fill:#ECEEF0;
+  }
 
-.comparison_slider_nav .bp-mob-table-container p{
-font-weight: 600;
-font-size: 14px !important;
-line-height: 20px !important;
-}
+  .wave-effect{
+    margin-bottom: -2px;
+  }
+
+  .comparison_slider_nav .col-lg-3.text-center.js-heading{
+    margin-top: 10px;
+  }
+
+  .comparison_slider_nav .bp-mob-table-container p{
+  font-weight: 600;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  }
 
   .comparison_block table thead tr:last-child td,
   table thead tr:last-child th {
