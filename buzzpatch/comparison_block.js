@@ -1,21 +1,21 @@
 // window.onload = function () {
-  let scriptCustom = document.createElement("script")
-  scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-  scriptCustom.async = false
-  document.head.appendChild(scriptCustom)
+let scriptCustom = document.createElement("script")
+scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+scriptCustom.async = false
+document.head.appendChild(scriptCustom)
 
-  let scriptCustomStyle = document.createElement("link")
-  scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-  scriptCustomStyle.rel = "stylesheet"
-  document.head.appendChild(scriptCustomStyle)
+let scriptCustomStyle = document.createElement("link")
+scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+scriptCustomStyle.rel = "stylesheet"
+document.head.appendChild(scriptCustomStyle)
 
-  let styleComparisonBlock = /*html*/ `
+let styleComparisonBlock = /*html*/ `
 <style>
 
   .bp-tooltip .bp-tooltiptext{
     max-width: 180px;
-    left: calc(50% - 55px) !important;
-    width: 100px !important;
+    left: calc(50% - 52px) !important;
+    width: 95px !important;
   }
 
   .comparison_slider_nav{
@@ -218,13 +218,13 @@
 </style>
 `
 
-  let imgBlock = `
+let imgBlock = `
 <div class="img_block">
   <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block.svg" alt="background figure">
 </div>
 `
 
-  let sliderBox = /*html */ `
+let sliderBox = /*html */ `
 <div class="comparison_slider_nav">
   <section class="comparison_block slider_custom_list">
       <h2>
@@ -313,66 +313,66 @@
 </div>
 `
 
-  document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
-  document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterbegin", imgBlock)
-  document.querySelector(".bp-comparison.js-mobile").classList.add("slider_custom_list")
+document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
+document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterbegin", imgBlock)
+document.querySelector(".bp-comparison.js-mobile").classList.add("slider_custom_list")
 
-  document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterend", sliderBox)
+document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterend", sliderBox)
 
-  document.querySelectorAll(".col-lg-7.text-center.d-flex.align-items-center").forEach((el) => el.remove())
+document.querySelectorAll(".col-lg-7.text-center.d-flex.align-items-center").forEach((el) => el.remove())
 
-  if (document.querySelector(".comparison_slider_nav")) {
-    document.querySelector(".comparison_block").after(document.querySelector(".bp-comparison.js-mobile"))
+if (document.querySelector(".comparison_slider_nav")) {
+  document.querySelector(".comparison_block").after(document.querySelector(".bp-comparison.js-mobile"))
 
-    document.querySelector(".comparison_slider_nav .js-title.text-dark").innerText = `Buzzpatch \nvs other mosquito\n repellents`
+  document.querySelector(".comparison_slider_nav .js-title.text-dark").innerText = `Buzzpatch \nvs other mosquito\n repellents`
+}
+
+let slickInterval = setInterval(() => {
+  if (typeof jQuery(".comparison_slider_nav").slick === "function" && document.querySelector(".comparison_slider_nav")) {
+    clearInterval(slickInterval)
+
+    //  slider
+    setTimeout(() => {
+      let slider = $(".comparison_slider_nav").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        focusOnSelect: true,
+        adaptiveHeight: true,
+      })
+
+      slider.on("swipe", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp: Pricing comparison option",
+          eventAction: "Swipe slider",
+          eventLabel: `Slider swipe`,
+        })
+      })
+    }, 200)
   }
+}, 100)
 
-  let slickInterval = setInterval(() => {
-    if (typeof jQuery(".comparison_slider_nav").slick === "function" && document.querySelector(".comparison_slider_nav")) {
-      clearInterval(slickInterval)
-
-      //  slider
-      setTimeout(() => {
-        let slider = $(".comparison_slider_nav").slick({
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-          dots: true,
-          focusOnSelect: true,
-          adaptiveHeight: true,
-        })
-
-        slider.on("swipe", () => {
-          window.dataLayer = window.dataLayer || []
-          dataLayer.push({
-            event: "event-to-ga",
-            eventCategory: "Exp: Pricing comparison option",
-            eventAction: "Swipe slider",
-            eventLabel: `Slider swipe`,
-          })
-        })
-      }, 200)
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+  event: "event-to-ga",
+  eventCategory: "Exp: Pricing comparison option",
+  eventAction: "loaded",
+})
+;(function (h, o, t, j, a, r) {
+  h.hj =
+    h.hj ||
+    function () {
+      ;(h.hj.q = h.hj.q || []).push(arguments)
     }
-  }, 100)
-
-  window.dataLayer = window.dataLayer || []
-  dataLayer.push({
-    event: "event-to-ga",
-    eventCategory: "Exp: Pricing comparison option",
-    eventAction: "loaded",
-  })
-  ;(function (h, o, t, j, a, r) {
-    h.hj =
-      h.hj ||
-      function () {
-        ;(h.hj.q = h.hj.q || []).push(arguments)
-      }
-    h._hjSettings = { hjid: 2247058, hjsv: 6 }
-    a = o.getElementsByTagName("head")[0]
-    r = o.createElement("script")
-    r.async = 1
-    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-    a.appendChild(r)
-  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
-  hj("event", "pricing_comparison_option")
+  h._hjSettings = { hjid: 2247058, hjsv: 6 }
+  a = o.getElementsByTagName("head")[0]
+  r = o.createElement("script")
+  r.async = 1
+  r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+  a.appendChild(r)
+})(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+hj("event", "pricing_comparison_option")
 // }
