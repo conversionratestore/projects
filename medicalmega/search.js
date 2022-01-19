@@ -283,8 +283,16 @@ let styles = `
         margin-left: 4px;
         flex-shrink: 0;
     }
+    .list_type1 {
+        width: 100%;
+    }
     .list_type1 span {
         opacity: 0;
+        text-align: right;
+        width: 100%;
+    }
+    .list_type2 {
+        padding-right: 0px;
     }
     .list_type2 label {
         font-weight: 400;
@@ -484,9 +492,11 @@ document.querySelector('.nav-menu').addEventListener('click', (e) => {
 
 //listing
 if (window.location.pathname.includes('/category')) {
-    if (document.querySelector('.subhead') != null) {
-        document.querySelectorAll('.listing p')[0].style.display = 'none';
-    }
+    document.querySelectorAll('.listing p').forEach((el,i) => {
+        if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
+            el.style.display = 'none';
+        }
+    })
 
     document.querySelectorAll('#search_c_id option').forEach((el,i) => {
         if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
