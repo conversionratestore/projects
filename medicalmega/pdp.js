@@ -1043,22 +1043,22 @@ document.querySelectorAll('.product-desc h3').forEach((el, i) => {
     if (i == 0) {
         document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
         if (el.nextElementSibling.innerHTML.includes('<h2>')) {
-          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-          console.log(el.nextElementSibling.innerHTML.split('<h2>')[0])
+            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+            console.log(el.nextElementSibling.innerHTML.split('<h2>')[0])
         } else {
-          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
-          console.log(el.nextElementSibling.innerHTML.split('<p><strong>')[0])
+            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
+            console.log(el.nextElementSibling.innerHTML.split('<p><strong>')[0])
         }
 
         document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-          document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-          document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
         })
         document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
-          if (strong.parentElement.tagName != 'SPAN') {
-            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
-            document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);     
-          }
+            if (strong.parentElement.tagName != 'SPAN') {
+                document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
+                document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
+            }
         })
     }
 })
@@ -1084,19 +1084,21 @@ document.querySelectorAll('.products_gallery dd').forEach((el) => {
 
 //price product
 if (document.querySelector('.product-price') != null) {
-  if (document.querySelector('.box_item') == null && document.querySelector('.product-page-bulk__box') == null) {
-    document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend',`
+    if (document.querySelector('.box_item') == null && document.querySelector('.product-page-bulk__box') == null) {
+        document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend',`
     <div class="flex-end-between fw-semi total">
       <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
     </div>`)
-  }
-  document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);     
-} else {
-  document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
-  document.querySelector('.product_sidebar').classList.add('disabled');
-  document.querySelector('.product_sidebar .btn-calc_plus').disabled = true;
-  document.querySelector('.product_sidebar .icon-car').src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car-gray.svg';
-  document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_white" type="button" disabled>Out Of Stock</button>`);
+    }
+    document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
+} else if (document.querySelector('.product-price') == null) {
+    document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
+    document.querySelector('.product_sidebar').classList.add('disabled');
+    document.querySelector('.product_sidebar .btn-calc_plus').disabled = true;
+    document.querySelector('.product_sidebar .icon-car').src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car-gray.svg';
+    document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_white" type="button" disabled><span class="pr" data-price="" hidden></span>Out Of Stock</button>`);
+} else if (document.querySelector('#product_bulk') != null) {
+    console.log('product_bulk')
 }
 
 let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
@@ -1138,12 +1140,12 @@ function changeQty(qty,pr,action) {
     }
     pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
     if (qty.closest('.product_sidebar')) {
-      if (qty.value > 1) {
-        document.querySelector('.product_sidebar .add-cart span').hidden = false;
-      } else {
-        document.querySelector('.product_sidebar .add-cart span').hidden = true;
-      }
-    } 
+        if (qty.value > 1) {
+            document.querySelector('.product_sidebar .add-cart span').hidden = false;
+        } else {
+            document.querySelector('.product_sidebar .add-cart span').hidden = true;
+        }
+    }
 }
 
 //Available Options
@@ -1154,9 +1156,9 @@ let availableOptionsHtml = `
 </div>`;
 
 if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
-  document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHtml)
-  if (document.querySelector('.product-page-bulk__box') != null) {
-    document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
+    document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHtml)
+    if (document.querySelector('.product-page-bulk__box') != null) {
+        document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
     <label>
       <input type="radio" name="radio" class="checkbox" checked>
       <span class="radio-check">
@@ -1171,10 +1173,10 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
         <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
       </span>
     </label>`) //Case of
-  }
-  if (document.querySelector('.box_item') != null) {
-    document.querySelectorAll('.box_item').forEach((item) => {
-      document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
+    }
+    if (document.querySelector('.box_item') != null) {
+        document.querySelectorAll('.box_item').forEach((item) => {
+            document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
       <label>
         <input type="radio" name="radio" class="checkbox" ${item.classList.contains('box_item_active') ? 'checked' : ''}>
         <span class="radio-check">
@@ -1182,25 +1184,25 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
           <span class="radio-check_price">${item.querySelectorAll('span')[1].innerText}</span>
         </span>
       </label>`)
+        })
+    }
+    document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+        checkbox.addEventListener('click', (e) => {
+            if (checkbox.checked) {
+                let optionAvailable = checkbox.nextElementSibling.querySelectorAll('span')[0],
+                    optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''),
+                    caseCount = 1;
+                if (optionAvailable.innerText.includes('Each')) {
+                    caseCount = 1;
+                } else {
+                    caseCount = optionAvailable.innerText.replace(/\D/g, '')
+                }
+                document.querySelector('.product_sidebar .calc-qty').dataset.case = caseCount;
+                document.querySelector('.product_sidebar .add-cart .pr').dataset.price = optionPrice;
+                document.querySelector('.product_sidebar .add-cart .pr').innerHTML = (+optionPrice * +document.querySelector('.product_sidebar .calc-qty').value).toFixed(2);
+            }
+        })
     })
-  }
-  document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-    checkbox.addEventListener('click', (e) => {
-      if (checkbox.checked) {
-        let optionAvailable = checkbox.nextElementSibling.querySelectorAll('span')[0],
-        optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''),
-        caseCount = 1;
-        if (optionAvailable.innerText.includes('Each')) {
-          caseCount = 1;
-        } else {
-          caseCount = optionAvailable.innerText.replace(/\D/g, '')
-        }
-        document.querySelector('.product_sidebar .calc-qty').dataset.case = caseCount;
-        document.querySelector('.product_sidebar .add-cart .pr').dataset.price = optionPrice;
-        document.querySelector('.product_sidebar .add-cart .pr').innerHTML = (+optionPrice * +document.querySelector('.product_sidebar .calc-qty').value).toFixed(2);
-      }
-    })
-  })
 }
 
 //+/- btns quantity
@@ -1429,8 +1431,10 @@ window.addEventListener('scroll', () => remActiveSelect());
 
 //zoom
 let startZoom = setInterval(() => {
-  if (document.querySelector('.slider-for_img') != null) {
-    clearInterval(startZoom)
-    imageZoom("forImg", "zoomResult")
-  }
+
+    if (document.querySelector('.slider-for_img') != null) {
+        console.log('true')
+        clearInterval(startZoom)
+        imageZoom("forImg", "zoomResult")
+    }
 }, 100);
