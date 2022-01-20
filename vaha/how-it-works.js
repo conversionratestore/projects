@@ -435,7 +435,7 @@ let popupInterval = setInterval(() => {
 			console.log('eventAction Clicks on the See how it works button')
 		})
 	}
-}, 100)
+}, 200)
 
 let btnInberval = setInterval(() => {
 	if (document.querySelector('.btn-free') && document.querySelector('.slider-wrapper')) {
@@ -456,7 +456,7 @@ let btnInberval = setInterval(() => {
 			document.querySelector('.slider-wrapper').classList.add('hide')
 		})
 	}
-}, 100)
+}, 200)
 
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
@@ -477,7 +477,7 @@ let elInterval = setInterval(() => {
 				})
 			})
 		}
-	}, 100)
+	}, 200)
 
 
 ;(function (h, o, t, j, a, r) {
