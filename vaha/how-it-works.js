@@ -224,11 +224,11 @@ const textArr = {
 			],
 			[
 				`Join 2000+<br> Live & On-Demand Classes`,
-				`<span class="bold">Train any time you want. Pilates bootcamp, back training, yoga class, dance, boxing</span> and more. Work out with your community, every single day.`,
+				`<span class="bold">Train any time you want.<br>Pilates bootcamp, back training, yoga class, dance, boxing</span> and more. Work out with your community, every single day.`,
 			],
 			[
 				`1:1 PERSONAL TRAINING<br> AT YOUR HOME`,
-				`<span class="bold">Certified and professional —</span> VAHA's personal trainers provide you with 1 to 1 support and keep you motivated.`,
+				`<span class="bold">Certified and professional —</span><br>VAHA's personal trainers provide you with 1 to 1 support and keep you motivated.`,
 			],
 			[
 				`Smart Tracking &<br> Tailored Workout Plans`,
@@ -253,7 +253,7 @@ const textArr = {
 			],
 			[
 				`INDIVIDUELLES PERSONAL TRAINING BEI DIR ZU HAUS`,
-				`<span class="bold">Zertifiziert und professionell – die Personal Trainer von VAHA stehen dir persönlich zur Seite und sorgen dafür, dass du motiviert bleibst.</span>`,
+				`<span class="bold">Zertifiziert und professionell –<br>die Personal Trainer von VAHA stehen dir persönlich zur Seite und sorgen dafür, dass du motiviert bleibst.</span>`,
 			],
 			[
 				`Smartes Tracking & individuelle Trainingspläne`,
