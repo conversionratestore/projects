@@ -460,25 +460,21 @@ let btnInberval = setInterval(() => {
 
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
-let elInterval = setInterval(() => {
+elements.forEach(element => {
+	let elInterval = setInterval(() => {
 		if (
-			document.querySelector('.purchase-button') &&
-			document.querySelector('.mobile-menu') &&
-			document.querySelector('.promo-overlay-button') &&
-			document.querySelector('.slider-wrapper')
+			document.querySelector(element) && document.querySelector('.slider-wrapper')
 		) {
 			clearInterval(elInterval)
 
-			elements.forEach(element => {
-				document.querySelector(element).addEventListener('click', () => {
-					console.log('close')
+			document.querySelector(element).addEventListener('click', () => {
+				console.log('close')
 
-					document.querySelector('.slider-wrapper').classList.add('hide')
-				})
+				document.querySelector('.slider-wrapper').classList.add('hide')
 			})
 		}
 	}, 200)
-
+})
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
