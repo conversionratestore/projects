@@ -220,7 +220,7 @@ const textArr = {
 			],
 			[
 				`Join 2000+<br> Live & On-Demand Classes`,
-				`Train any time you want. Pilates bootcamp, back training, yoga class, dance, boxing and more. Work out with your community, every single day.`,
+				`Train any time you want.Pilates bootcamp, back training, yoga class, dance, boxing and more. Work out with your community, every single day.`,
 			],
 			[
 				`1:1 PERSONAL TRAINING<br> AT YOUR HOME`,
@@ -429,11 +429,10 @@ document.querySelector('.open-popup').addEventListener('click', () => {
 	})
 
 	console.log('eventAction Clicks on the See how it works button')
-
 })
 
 document.querySelector('.btn-free').addEventListener('click', () => {
-	document.querySelector('.purchase-button[data-v-59f223e7]').click()
+	document.querySelector('.purchase-button[data-v-401aacb4]').click()
 
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
