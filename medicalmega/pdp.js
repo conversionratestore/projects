@@ -1044,10 +1044,8 @@ document.querySelectorAll('.product-desc h3').forEach((el, i) => {
         document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
         if (el.nextElementSibling.innerHTML.includes('<h2>')) {
             document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-            console.log(el.nextElementSibling.innerHTML.split('<h2>')[0])
         } else {
             document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
-            console.log(el.nextElementSibling.innerHTML.split('<p><strong>')[0])
         }
 
         document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
@@ -1091,14 +1089,12 @@ if (document.querySelector('.product-price') != null) {
     </div>`)
     }
     document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
-} else if (document.querySelector('.product-price') == null) {
+} else {
     document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
     document.querySelector('.product_sidebar').classList.add('disabled');
     document.querySelector('.product_sidebar .btn-calc_plus').disabled = true;
     document.querySelector('.product_sidebar .icon-car').src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car-gray.svg';
     document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_white" type="button" disabled><span class="pr" data-price="" hidden></span>Out Of Stock</button>`);
-} else if (document.querySelector('#product_bulk') != null) {
-    console.log('product_bulk')
 }
 
 let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
@@ -1159,31 +1155,31 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
     document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHtml)
     if (document.querySelector('.product-page-bulk__box') != null) {
         document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
-    <label>
-      <input type="radio" name="radio" class="checkbox" checked>
-      <span class="radio-check">
-        <span>Each</span>
-        <span class="radio-check_price">${document.querySelector('.product-price').innerHTML}</span>
-      </span>
-    </label>
-    <label>
-      <input type="radio" name="radio" class="checkbox">
-      <span class="radio-check">
-        <span> ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
-        <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
-      </span>
-    </label>`) //Case of
+        <label>
+          <input type="radio" name="radio" class="checkbox" checked>
+          <span class="radio-check">
+            <span>Each</span>
+            <span class="radio-check_price">${document.querySelector('.product-price').innerHTML}</span>
+          </span>
+        </label>
+        <label>
+          <input type="radio" name="radio" class="checkbox">
+          <span class="radio-check">
+            <span> ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
+            <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
+          </span>
+        </label>`) //Case of
     }
     if (document.querySelector('.box_item') != null) {
         document.querySelectorAll('.box_item').forEach((item) => {
             document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
-      <label>
-        <input type="radio" name="radio" class="checkbox" ${item.classList.contains('box_item_active') ? 'checked' : ''}>
-        <span class="radio-check">
-          <span>${item.querySelectorAll('span')[0].innerText}</span>
-          <span class="radio-check_price">${item.querySelectorAll('span')[1].innerText}</span>
-        </span>
-      </label>`)
+              <label>
+                <input type="radio" name="radio" class="checkbox" ${item.classList.contains('box_item_active') ? 'checked' : ''}>
+                <span class="radio-check">
+                  <span>${item.querySelectorAll('span')[0].innerText}</span>
+                  <span class="radio-check_price">${item.querySelectorAll('span')[1].innerText}</span>
+                </span>
+              </label>`)
         })
     }
     document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
@@ -1203,6 +1199,26 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
             }
         })
     })
+}
+
+//3 available options
+if (document.querySelector('.product-price') != null && document.querySelector('#product_bulk') != null) {
+    console.log('product_bulk')
+    // for (let i = 0; i < pb_values.length; i++) {
+    //     document.querySelectorAll('.available-options label').forEach((label,index) => {
+    //
+    //         if (!label.querySelectorAll('.radio-check span')[0].innerText.includes(pb_values[i][2])) {
+    //             document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
+    //               <label>
+    //                 <input type="radio" name="radio" class="checkbox">
+    //                 <span class="radio-check">
+    //                   <span>${pb_values[i][2]}</span>
+    //                   <span class="radio-check_price">${pb_values[i][0]}</span>
+    //                 </span>
+    //               </label>`)
+    //         }
+    //     })
+    // }
 }
 
 //+/- btns quantity
