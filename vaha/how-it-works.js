@@ -45,7 +45,7 @@ const myStyle = `
 			max-height: 1000px;
 			transition: max-height 1s ease-in-out;
 			overflow: hidden;
-			box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.05), 0px -4px 60px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.05), 0px -4px 60px rgba(0, 0, 0, 0.1);
 			/*opacity: 1;*/
 		}
 		
@@ -317,7 +317,7 @@ const template = `
 	</div>
 `
 
-const tryVaha = `<p class="days">${localObj.freeDays}</p>`
+const tryVaha = `<p class="days">${ localObj.freeDays }</p>`
 
 document.querySelector('.container-3dy0SD').insertAdjacentHTML('afterbegin', openPopup)
 document.querySelector('.container-3dy0SD').insertAdjacentHTML('beforeend', tryVaha)
@@ -418,33 +418,45 @@ function observeElement() {
 	})
 }
 
-document.querySelector('.open-popup').addEventListener('click', () => {
-	document.querySelector('.slider-wrapper').classList.remove('hide')
+let popupInterval = setInterval(() => {
+	if (document.querySelector('.open-popup') && document.querySelector('.slider-wrapper')) {
+		clearInterval(popupInterval)
 
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp: See how it works flow',
-		'eventAction': 'Clicks on the See how it works button',
-	})
+		document.querySelector('.open-popup').addEventListener('click', () => {
+			document.querySelector('.slider-wrapper').classList.remove('hide')
 
-	console.log('eventAction Clicks on the See how it works button')
-})
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: See how it works flow',
+				'eventAction': 'Clicks on the See how it works button',
+			})
 
-document.querySelector('.btn-free').addEventListener('click', () => {
-	document.querySelector('.settings-F00Ayd').click()
+			console.log('eventAction Clicks on the See how it works button')
+		})
+	}
+}, 100)
 
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp: See how it works flow',
-		'eventAction': 'Click on Try vaha for free button',
-	})
+let btnInberval = setInterval(() => {
+	if (document.querySelector('.btn-free') && document.querySelector('.slider-wrapper')) {
+		clearInterval(btnInberval)
 
-	console.log('eventAction Click on Try vaha for free button')
+		document.querySelector('.btn-free').addEventListener('click', () => {
+			document.querySelector('.settings-F00Ayd').click()
 
-	document.querySelector('.slider-wrapper').classList.add('hide')
-})
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: See how it works flow',
+				'eventAction': 'Click on Try vaha for free button',
+			})
+
+			console.log('eventAction Click on Try vaha for free button')
+
+			document.querySelector('.slider-wrapper').classList.add('hide')
+		})
+	}
+}, 100)
 
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
@@ -452,7 +464,8 @@ let elInterval = setInterval(() => {
 		if (
 			document.querySelector('.purchase-button') &&
 			document.querySelector('.mobile-menu') &&
-			document.querySelector('.promo-overlay-button')
+			document.querySelector('.promo-overlay-button') &&
+			document.querySelector('.slider-wrapper')
 		) {
 			clearInterval(elInterval)
 
@@ -466,17 +479,6 @@ let elInterval = setInterval(() => {
 		}
 	}, 100)
 
-// document.querySelector('.purchase-button').addEventListener('click', () => {
-// 	document.querySelector('.slider-wrapper').classList.add('hide')
-// })
-//
-// document.querySelector('.mobile-menu').addEventListener('click', () => {
-// 	document.querySelector('.slider-wrapper').classList.add('hide')
-// })
-//
-// document.querySelector('.promo-overlay-button').addEventListener('click', () => {
-// 	document.querySelector('.slider-wrapper').classList.add('hide')
-// })
 
 ;(function (h, o, t, j, a, r) {
 	h.hj = h.hj || function () {
