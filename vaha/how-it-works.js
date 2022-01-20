@@ -139,6 +139,10 @@ const myStyle = `
 			line-height: 24px;
 		}
 		
+		.items .text .bold {
+			font-weight: 600 !important;
+		}
+		
 		.btn-wrapper button img {
 			margin-top: 2px;
 		}
@@ -220,15 +224,15 @@ const textArr = {
 			],
 			[
 				`Join 2000+<br> Live & On-Demand Classes`,
-				`Train any time you want.Pilates bootcamp, back training, yoga class, dance, boxing and more. Work out with your community, every single day.`,
+				`<span class="bold">Train any time you want. Pilates bootcamp, back training, yoga class, dance, boxing</span> and more. Work out with your community, every single day.`,
 			],
 			[
 				`1:1 PERSONAL TRAINING<br> AT YOUR HOME`,
-				`Certified and professional — VAHA's personal trainers provide you with 1 to 1 support and keep you motivated.`,
+				`<span class="bold">Certified and professional —</span> VAHA's personal trainers provide you with 1 to 1 support and keep you motivated.`,
 			],
 			[
 				`Smart Tracking &<br> Tailored Workout Plans`,
-				`Get perfect technique with VAHA's sensors and our AI technology. Your tailored workout plan progresses according to your own goals.`,
+				`<span class="bold">Get perfect technique with VAHA's sensors and our AI technology.</span> Your tailored workout plan progresses according to your own goals.`,
 			],
 		],
 	},
@@ -245,11 +249,11 @@ const textArr = {
 			],
 			[
 				`Teilnahme an mehr als 2000 Live- & On-Demand-Kursen`,
-				`Trainiere, wann immer du möchtest. Pilates-Bootcamps, Rücken-Workouts, Yoga-Kurse, Tanzen, Boxen und mehr. Trainiere jeden Tag gemeinsam mit deiner Community.`,
+				`<span class="bold">Trainiere, wann immer du möchtest. Pilates-Bootcamps, Rücken-Workouts, Yoga-Kurse, Tanzen, Boxen und mehr. Trainiere jeden Tag gemeinsam mit deiner Community.</span>`,
 			],
 			[
 				`INDIVIDUELLES PERSONAL TRAINING BEI DIR ZU HAUS`,
-				`Zertifiziert und professionell – die Personal Trainer von VAHA stehen dir persönlich zur Seite und sorgen dafür, dass du motiviert bleibst.`,
+				`<span class="bold">Zertifiziert und professionell – die Personal Trainer von VAHA stehen dir persönlich zur Seite und sorgen dafür, dass du motiviert bleibst.</span>`,
 			],
 			[
 				`Smartes Tracking & individuelle Trainingspläne`,
