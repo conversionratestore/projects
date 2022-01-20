@@ -432,7 +432,7 @@ document.querySelector('.open-popup').addEventListener('click', () => {
 })
 
 document.querySelector('.btn-free').addEventListener('click', () => {
-	document.querySelector('.purchase-button[data-v-401aacb4]').click()
+	document.querySelector('.settings-F00Ayd').click()
 
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
