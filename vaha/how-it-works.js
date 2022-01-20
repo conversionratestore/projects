@@ -220,7 +220,7 @@ const textArr = {
 			],
 			[
 				`Join 2000+<br> Live & On-Demand Classes`,
-				`Train any time you want.Pilates bootcamp, back training, yoga class, dance, boxing and more. Work out with your community, every single day.`,
+				`Train any time you want. Pilates bootcamp, back training, yoga class, dance, boxing and more. Work out with your community, every single day.`,
 			],
 			[
 				`1:1 PERSONAL TRAINING<br> AT YOUR HOME`,
@@ -434,7 +434,7 @@ document.querySelector('.open-popup').addEventListener('click', () => {
 
 document.querySelector('.btn-free').addEventListener('click', () => {
 	document.querySelector('.purchase-button[data-v-59f223e7]').click()
-	
+
 	window.dataLayer = window.dataLayer || []
 	dataLayer.push({
 		'event': 'event-to-ga',
@@ -450,22 +450,22 @@ document.querySelector('.btn-free').addEventListener('click', () => {
 const elements = ['.purchase-button', '.mobile-menu', '.promo-overlay-button']
 
 let elInterval = setInterval(() => {
-	if (
-		document.querySelector('.purchase-button') &&
-		document.querySelector('.mobile-menu') &&
-		document.querySelector('.promo-overlay-button')
-	) {
-		clearInterval(elInterval)
+		if (
+			document.querySelector('.purchase-button') &&
+			document.querySelector('.mobile-menu') &&
+			document.querySelector('.promo-overlay-button')
+		) {
+			clearInterval(elInterval)
 
-		elements.forEach(element => {
-			document.querySelector(element).addEventListener('click', () => {
-				console.log('close')
+			elements.forEach(element => {
+				document.querySelector(element).addEventListener('click', () => {
+					console.log('close')
 
-				document.querySelector('.slider-wrapper').classList.add('hide')
+					document.querySelector('.slider-wrapper').classList.add('hide')
+				})
 			})
-		})
-	}
-}, 100)
+		}
+	}, 100)
 
 // document.querySelector('.purchase-button').addEventListener('click', () => {
 // 	document.querySelector('.slider-wrapper').classList.add('hide')
