@@ -679,6 +679,8 @@ if (window.innerWidth > 768) {
     }
   }, 300)
 
+  document.querySelector(".exp").remove()
+
   //array
   const months = {
     Jan: "January",
