@@ -603,6 +603,10 @@ let startFunc = setInterval(() => {
           document.querySelector("#demo1").remove()
         }
 
+        if (document.querySelector("#below_video_text")) {
+          document.querySelector("#below_video_text").remove()
+        }
+
         if (document.querySelector(".main > section")) {
           document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
         }
