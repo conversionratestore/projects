@@ -513,11 +513,11 @@ let arrText = {
   "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
   "40:04": [`2 important <br/> commands to make <br/> your dog obedient`, 8],
   "40:43": [`Training your dog <br/> to walk without <br/> pulling its leash`, 9],
-  "45:14": [`Coming to you <br/> when you call <br/> them (great tips)`, 10],
+  "45:14": [`Training your <br/> dog to come to <br/> you when called`, 10],
   "45:55": [`Learn what’s ‘puppy push- <br/> ups’ and why you should <br/> train your dog to do them`, 11],
   "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
   "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
-  "50:11": [`Training your <br/> dog to come to <br/> you when called`, 14],
+  "50:11": [`Preventing dog- <br/> related accidents <br/> in your home`, 14],
   "1:33:57": [``, 15],
 }
 
