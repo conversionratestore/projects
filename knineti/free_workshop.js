@@ -615,19 +615,6 @@ if (window.innerWidth > 768) {
       clearInterval(runSlider)
 
       document.querySelector(".timeline").style.opacity = "1"
-
-      //   if (window.matchMedia("(max-width: 992px)").matches) {
-      //     document.querySelector(".button-next").addEventListener("click", () => {
-      //       document.querySelector("#tns1-mw").style.paddingLeft = "20px"
-      //     })
-      //     document.querySelector(".button-prev").addEventListener("click", (e) => {
-      //       setTimeout(() => {
-      //         if (e.target.disabled === true) {
-      //           document.querySelector("#tns1-mw").style.paddingLeft = "0"
-      //         }
-      //       }, 100)
-      //     })
-      //   }
       document.querySelector(".button-next").addEventListener("click", () => {
         console.log(`button-next`)
 
@@ -649,6 +636,8 @@ if (window.innerWidth > 768) {
           eventAction: "timeline scrolling button-prev",
         })
       })
+
+      document.querySelector(".exp").remove()
     } else {
       let sliderCategories = tns({
         container: document.querySelector(".slider"),
@@ -678,8 +667,6 @@ if (window.innerWidth > 768) {
       })
     }
   }, 300)
-
-  document.querySelector(".exp").remove()
 
   //array
   const months = {
