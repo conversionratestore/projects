@@ -999,8 +999,16 @@ let styles = `
   .product_sidebar.disabled .calc-qty {
     border-color: #E3E6E7;
     color: #BCC4C7; }
+  .scroll-x {
+    overflow-x: auto;}
+  .scroll-x::-webkit-scrollbar {
+    display: none; }
   .available-options .justify-content-between label {
+    min-width: 95px;
+    margin-right: 8px;
     width: 48%; }
+    .available-options .justify-content-between label:last-child {
+        margin-right: 0; }
   .available-options .fs-14 {
     margin: 15px 0 5px; }
   .radio-check {
@@ -1088,7 +1096,7 @@ if (document.querySelector('.product-price') != null) {
       <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
     </div>`)
     }
-    document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('[name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
+    document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('.type2 [name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
 } else {
     document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
     document.querySelector('.product_sidebar').classList.add('disabled');
@@ -1145,42 +1153,45 @@ function changeQty(qty,pr,action) {
 }
 
 //Available Options
-let availableOptionsHtml = `
+let availableOptionsHTML = `
 <div class="available-options"> 
   <p class="fs-14 fw-semi">Available Options: </p> 
-  <div class="justify-content-between"> </div>
+  <div class="justify-content-between scroll-x"> </div>
 </div>`;
 
+function setBulkOptionHTML(i=1,bulk,price,variantId) {
+    return `
+        <label>
+            <input type="radio" name="radio" class="checkbox" ${i==0?'checked':''} data-variant="${variantId}">
+            <span class="radio-check">
+              <span>${bulk}</span>
+              <span class="radio-check_price">${price}</span>
+            </span>
+         </label>`
+}
+
 if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
-    document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHtml)
-    if (document.querySelector('.product-page-bulk__box') != null) {
-        document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
-        <label>
-          <input type="radio" name="radio" class="checkbox" checked>
-          <span class="radio-check">
-            <span>Each</span>
-            <span class="radio-check_price">${document.querySelector('.product-price').innerHTML}</span>
-          </span>
-        </label>
-        <label>
-          <input type="radio" name="radio" class="checkbox">
-          <span class="radio-check">
-            <span> ${document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0]}</span>
-            <span class="radio-check_price">${document.querySelector('#bulk_tag .number').innerHTML}</span>
-          </span>
-        </label>`) //Case of
+    document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHTML)
+
+    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+
+    if (document.querySelector('.product-page-bulk__box') != null && document.querySelector('#product_bulk') == null) {
+        contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
+        contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0],document.querySelector('#bulk_tag .number').innerHTML));
     }
     if (document.querySelector('.box_item') != null) {
-        document.querySelectorAll('.box_item').forEach((item) => {
-            document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
-              <label>
-                <input type="radio" name="radio" class="checkbox" ${item.classList.contains('box_item_active') ? 'checked' : ''}>
-                <span class="radio-check">
-                  <span>${item.querySelectorAll('span')[0].innerText}</span>
-                  <span class="radio-check_price">${item.querySelectorAll('span')[1].innerText}</span>
-                </span>
-              </label>`)
+        document.querySelectorAll('.box_item').forEach((item,i) => {
+            contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(i,item.querySelectorAll('span')[0].innerText,item.querySelectorAll('span')[1].innerText));
         })
+    }
+
+//3 available options
+    if (document.querySelector('.product-price') != null && document.querySelector('#product_bulk') != null) {
+        console.log('product_bulk')
+        contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
+        for (let i = 0; i < pb_values.length; i++) {
+            contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,pb_values[i][2],pb_values[i][0],pb_values[i][3]))
+        }
     }
     document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
         checkbox.addEventListener('click', (e) => {
@@ -1201,25 +1212,6 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
     })
 }
 
-//3 available options
-if (document.querySelector('.product-price') != null && document.querySelector('#product_bulk') != null) {
-    console.log('product_bulk')
-    // for (let i = 0; i < pb_values.length; i++) {
-    //     document.querySelectorAll('.available-options label').forEach((label,index) => {
-    //
-    //         if (!label.querySelectorAll('.radio-check span')[0].innerText.includes(pb_values[i][2])) {
-    //             document.querySelector('.product_sidebar .available-options .justify-content-between').insertAdjacentHTML('beforeend', `
-    //               <label>
-    //                 <input type="radio" name="radio" class="checkbox">
-    //                 <span class="radio-check">
-    //                   <span>${pb_values[i][2]}</span>
-    //                   <span class="radio-check_price">${pb_values[i][0]}</span>
-    //                 </span>
-    //               </label>`)
-    //         }
-    //     })
-    // }
-}
 
 //+/- btns quantity
 calc.forEach((el, i) => {
