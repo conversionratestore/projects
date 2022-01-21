@@ -132,11 +132,23 @@ margin: 0;
         content: '';
         position: absolute;
         top: 0;
-        width: 130px;
+        width: 400px;
         height: 100%;
         pointer-events: none;
         right: calc(100% + 1px);
+        background: linear-gradient(90deg, #DFE8F0 1.63%, rgba(223, 232, 240, 0) 17.13%);
         transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+
+    .timeline button.button-prev:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 400px;
+        height: 100%;
+        pointer-events: none;
+        left: calc(100% + 1px);
+        background: linear-gradient(90deg, #DFE8F0 1.63%, rgba(223, 232, 240, 0) 17.13%);
     }
 
     .timeline button[disabled] {
@@ -336,6 +348,10 @@ padding-right: 10px;
     border-radius: 2px;
     padding: 5px 0;
     margin: 10px 0;
+}
+
+.price_block .blur_block> p:nth-of-type(2) span:last-child{
+    text-transform: lowercase;
 }
 
 .price_block .blur_block> button{
@@ -558,7 +574,7 @@ let priceBlock = /*html */ `
         <div>
             <img src="https://conversionratestore.github.io/projects/knineti/img/dogs.jpg" alt="dogs">
         </div>
-        <p>Offer is valid until <span>January 17th</span></p>
+        <p>Offer is valid until <span>January</span><span>17th</span></p>
         <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
     </div>
 </div>
@@ -566,170 +582,238 @@ let priceBlock = /*html */ `
 
 document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
-function setSlide(time, title, countPoint) {
-  return `
+if (window.innerWidth > 768) {
+  document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
+
+  function setSlide(time, title, countPoint) {
+    return `
         <div class="slide" data-point="${countPoint}">
             <p class="timeline_clock">${time}</p>
             <span class="timeline_title">${title}</span>
         </div>
     `
-}
-
-if (document.querySelector("section .container-fluid #myCarousel")) {
-  document.querySelector("section .container-fluid #myCarousel").insertAdjacentHTML("beforeend", freeWorkShop)
-  for (let key in arrText) {
-    document.querySelector(".slider").insertAdjacentHTML("beforeend", setSlide(key, arrText[key][0], arrText[key][1]))
   }
-}
 
-let runSlider = setInterval(() => {
-  if (document.querySelector(".tns-outer") && document.querySelector(".tns-outer") != null) {
-    clearInterval(runSlider)
+  if (document.querySelector("section .container-fluid #myCarousel")) {
+    document.querySelector("section .container-fluid #myCarousel").insertAdjacentHTML("beforeend", freeWorkShop)
+    for (let key in arrText) {
+      document.querySelector(".slider").insertAdjacentHTML("beforeend", setSlide(key, arrText[key][0], arrText[key][1]))
+    }
+  }
 
-    document.querySelector(".timeline").style.opacity = "1"
+  let runSlider = setInterval(() => {
+    if (document.querySelector(".tns-outer") && document.querySelector(".tns-outer") != null) {
+      clearInterval(runSlider)
 
-    if (window.matchMedia("(max-width: 992px)").matches) {
+      document.querySelector(".timeline").style.opacity = "1"
+
+      //   if (window.matchMedia("(max-width: 992px)").matches) {
+      //     document.querySelector(".button-next").addEventListener("click", () => {
+      //       document.querySelector("#tns1-mw").style.paddingLeft = "20px"
+      //     })
+      //     document.querySelector(".button-prev").addEventListener("click", (e) => {
+      //       setTimeout(() => {
+      //         if (e.target.disabled === true) {
+      //           document.querySelector("#tns1-mw").style.paddingLeft = "0"
+      //         }
+      //       }, 100)
+      //     })
+      //   }
       document.querySelector(".button-next").addEventListener("click", () => {
-        document.querySelector("#tns1-mw").style.paddingLeft = "20px"
-      })
-      document.querySelector(".button-prev").addEventListener("click", (e) => {
-        setTimeout(() => {
-          if (e.target.disabled === true) {
-            document.querySelector("#tns1-mw").style.paddingLeft = "0"
-          }
-        }, 100)
-      })
-    }
-    document.querySelector(".button-next").addEventListener("click", () => {
-      console.log(`button-next`)
-    })
-    document.querySelector(".button-prev").addEventListener("click", () => {
-      console.log(`button-prev`)
-    })
-  } else {
-    let sliderCategories = tns({
-      container: document.querySelector(".slider"),
-      autoWidth: true,
-      autoplay: false,
-      axis: "horizontal",
-      controls: true,
-      loop: false,
-      prevButton: document.querySelector(".button-prev"),
-      nextButton: document.querySelector(".button-next"),
-      autoplayButton: false,
-      autoplayButtonOutput: false,
-      mouseDrag: true,
-      nav: false,
-      preventScrollOnTouch: "auto",
-      swipeAngle: false,
-    })
-  }
-}, 300)
+        console.log(`button-next`)
 
-document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
-
-//array
-const months = {
-  Jan: "January",
-  Feb: "February",
-  Mar: "March",
-  Apr: "April",
-  May: "May",
-  Jun: "June",
-  Jul: "July",
-  Aug: "August",
-  Sep: "September",
-  Oct: "October",
-  Nov: "November",
-  Dec: "December",
-}
-const days = {
-  1: "st",
-  2: "nd",
-  3: "rd",
-  4: "th",
-  5: "th",
-  6: "th",
-  7: "th",
-  8: "th",
-  9: "th",
-  10: "th",
-  11: "th",
-  12: "th",
-  13: "th",
-  14: "th",
-  15: "th",
-  16: "th",
-  17: "th",
-  18: "th",
-  19: "th",
-  20: "th",
-  21: "st",
-  22: "nd",
-  23: "rd",
-  24: "th",
-  25: "th",
-  26: "th",
-  27: "th",
-  28: "th",
-  29: "th",
-  30: "th",
-  31: "st",
-}
-
-// Offer is valid until XXXX
-let paramsLocation = new URLSearchParams(window.location.search)
-let dQueryDate = atob(paramsLocation.get("d"))
-let dsp = dQueryDate.split("-")
-
-let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
-
-// document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
-document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}${days[daySeven[2]]}`
-
-// timer
-timerVideo()
-
-function timerVideo() {
-  let intevalVideo = setInterval(() => {
-    if (document.querySelector("video")) {
-      clearInterval(intevalVideo)
-
-      setTimeout(() => {
-        // let counter
-        const videoItem = document.querySelector("video")
-
-        videoItem.addEventListener("timeupdate", (event) => {
-          let timer = 35 * 60 + 45
-          //   let timer = 16
-
-          let currentTime = Math.floor(videoItem.currentTime)
-
-          if (currentTime > 45) {
-            timer -= currentTime
-            let minutes = timer / 60 < 10 ? `0${Math.floor(timer / 60)}` : Math.floor(timer / 60)
-            let seconds = timer % 60 < 10 ? `0${timer % 60}` : timer % 60
-            if (document.querySelector(".price_block .blur_block> button span")) {
-              document.querySelector(".price_block .blur_block> button b").textContent = `${minutes}:${seconds}`
-            }
-
-            if (timer < 0) {
-              document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
-              document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
-              document.querySelector(".active_blur_text").style.opacity = 0
-              document.querySelector(".price_block .blur_block> button")?.classList.add("active_enroll_now")
-              document.querySelector(".price_block .blur_block> button")?.removeAttribute("disabled")
-              //   document.querySelector(".price_block .blur_block> button span").textContent = `00:00`
-              document.querySelector(".price_block .blur_block> button.active_enroll_now").innerText = "ENROLL NOW"
-            }
-          }
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp: FW improvements",
+          eventAction: `timeline scrolling button-next`,
         })
-      }, 1000)
-    }
-  }, 100)
-}
+      })
 
-document.querySelector(".price_block .blur_block> button.active_enroll_now")?.addEventListener("click", () => {
-  document.querySelector(".pattern-block a.button-blue-large").click()
-})
+      document.querySelector(".button-prev").addEventListener("click", () => {
+        console.log(`button-prev`)
+
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp: FW improvements",
+          eventAction: "timeline scrolling button-prev",
+        })
+      })
+    } else {
+      let sliderCategories = tns({
+        container: document.querySelector(".slider"),
+        autoWidth: true,
+        autoplay: false,
+        axis: "horizontal",
+        controls: true,
+        loop: false,
+        prevButton: document.querySelector(".button-prev"),
+        nextButton: document.querySelector(".button-next"),
+        autoplayButton: false,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        nav: false,
+        preventScrollOnTouch: "auto",
+        swipeAngle: false,
+      })
+
+      sliderCategories.events.on("touchStart", () => {
+        window.dataLayer = window.dataLayer || []
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: "Exp: FW improvements",
+          eventAction: "Swipe slider",
+          eventLabel: `Slider swipe`,
+        })
+      })
+    }
+  }, 300)
+
+  //array
+  const months = {
+    Jan: "January",
+    Feb: "February",
+    Mar: "March",
+    Apr: "April",
+    May: "May",
+    Jun: "June",
+    Jul: "July",
+    Aug: "August",
+    Sep: "September",
+    Oct: "October",
+    Nov: "November",
+    Dec: "December",
+  }
+  const days = {
+    1: "st",
+    2: "nd",
+    3: "rd",
+    4: "th",
+    5: "th",
+    6: "th",
+    7: "th",
+    8: "th",
+    9: "th",
+    10: "th",
+    11: "th",
+    12: "th",
+    13: "th",
+    14: "th",
+    15: "th",
+    16: "th",
+    17: "th",
+    18: "th",
+    19: "th",
+    20: "th",
+    21: "st",
+    22: "nd",
+    23: "rd",
+    24: "th",
+    25: "th",
+    26: "th",
+    27: "th",
+    28: "th",
+    29: "th",
+    30: "th",
+    31: "st",
+  }
+
+  // Offer is valid until XXXX
+  let paramsLocation = new URLSearchParams(window.location.search)
+  let dQueryDate = atob(paramsLocation.get("d"))
+  let dsp = dQueryDate.split("-")
+
+  let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
+  let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+
+  // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
+  document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
+  document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+
+  // timer
+  timerVideo()
+
+  function timerVideo() {
+    let intevalVideo = setInterval(() => {
+      if (document.querySelector("video")) {
+        clearInterval(intevalVideo)
+
+        setTimeout(() => {
+          // let counter
+          const videoItem = document.querySelector("video")
+
+          videoItem.addEventListener("timeupdate", (event) => {
+            // let timer = 35 * 60 + 45
+            let timer = 16 + 45
+
+            let currentTime = Math.floor(videoItem.currentTime)
+
+            if (currentTime > 45) {
+              console.log(currentTime)
+              timer -= currentTime
+              let minutes = timer / 60 < 10 ? `0${Math.floor(timer / 60)}` : Math.floor(timer / 60)
+              let seconds = timer % 60 < 10 ? `0${timer % 60}` : timer % 60
+              if (document.querySelector(".price_block .blur_block> button span")) {
+                document.querySelector(".price_block .blur_block> button b").textContent = `${minutes}:${seconds}`
+              }
+
+              if (timer < 0) {
+                document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
+                document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
+                document.querySelector(".active_blur_text").style.opacity = 0
+                document.querySelector(".price_block .blur_block> button")?.classList.add("active_enroll_now")
+                document.querySelector(".price_block .blur_block> button")?.removeAttribute("disabled")
+                //   document.querySelector(".price_block .blur_block> button span").textContent = `00:00`
+                document.querySelector(".price_block .blur_block> button.active_enroll_now").innerText = "ENROLL NOW"
+
+                document.querySelector(".price_block .blur_block> button.active_enroll_now")?.addEventListener("click", () => {
+                  window.dataLayer = window.dataLayer || []
+                  dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp: FW improvements",
+                    eventAction: "Enroll Now clicked",
+                  })
+
+                  document.querySelector(".pattern-block a.button-blue-large").click()
+                })
+              }
+            }
+          })
+        }, 1000)
+      }
+    }, 100)
+  }
+
+  document.querySelector(".price_block .blur_block> button.active_enroll_now")?.addEventListener("click", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp: FW improvements",
+      eventAction: "Enroll Now clicked",
+    })
+
+    document.querySelector(".pattern-block a.button-blue-large").click()
+  })
+
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp: FW improvements",
+    eventAction: "loaded",
+  })
+  ;(function (h, o, t, j, a, r) {
+    h.hj =
+      h.hj ||
+      function () {
+        ;(h.hj.q = h.hj.q || []).push(arguments)
+      }
+    h._hjSettings = { hjid: 2689748, hjsv: 6 }
+    a = o.getElementsByTagName("head")[0]
+    r = o.createElement("script")
+    r.async = 1
+    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+    a.appendChild(r)
+  })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
+  hj("event", "FW_improvements")
+}
