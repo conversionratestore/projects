@@ -1001,11 +1001,14 @@ let styles = `
     overflow-x: auto;}
   .scroll-x::-webkit-scrollbar {
     display: none; }
+  .tns-outer {
+    margin-left: -4px;
+    margin-right: -4px; }
   .available-options .justify-content-between label {
-      position: relative;
-      z-index: 1;
+    position: relative;
+    z-index: 1;
     min-width: 95px;
-    margin-right: 8px;
+    margin: 0 4px;
     width: 48%; }
     .available-options .justify-content-between label:last-child {
         margin-right: 0; }
@@ -1029,8 +1032,8 @@ let styles = `
     font-size: 14px;
     line-height: 130%;
     color: #091114;
-    margin-top: 8px;
-  }
+    margin-top: 8px;}
+    
   .arrow_buttons {
     position: absolute;
     top: 50%;
@@ -1038,16 +1041,16 @@ let styles = `
     left: 0;
     width: 100%;
     z-index: 0;
-  } 
-    .arrow_button[disabled] svg {
-        fill: #BCC4C7;
-    }
+    display: flex;
+    justify-content: space-between;} 
+  .arrow_button {
+    cursor: pointer; }
+  .arrow_button[disabled] svg path{
+     fill: #BCC4C7;}
   .arrow_button_prev {
-    margin-left: -26px;
-  }
+    margin-left: -26px; }
   .arrow_button_next {
-    margin-right: -26px;
-  }
+    margin-right: -26px;}
     @media only screen and (max-width: 1250px) {
       .category_popular a {
         margin: 0 3px
@@ -1202,8 +1205,7 @@ function setBulkOptionHTML(i=1,bulk,price,variantId) {
 if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
     document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHTML)
 
-    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between'),
-        labelsAvailable = contentAvailableOptions.querySelectorAll('label');
+    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
 
     if (document.querySelector('.product-page-bulk__box') != null && document.querySelector('#product_bulk') == null) {
         contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
@@ -1223,6 +1225,8 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
             contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,pb_values[i][2],pb_values[i][0],pb_values[i][3]))
         }
     }
+    //add arrows
+    let labelsAvailable = contentAvailableOptions.querySelectorAll('label')
     if (labelsAvailable.length > 2) {
         contentAvailableOptions.insertAdjacentHTML('beforebegin',`
             <div class="arrow_buttons">
@@ -1237,7 +1241,40 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
                     </svg>
                 </button>
             </div>`)
+        let linkCustom = document.createElement('link');
+        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+        linkCustom.rel = 'stylesheet';
+        document.head.appendChild(linkCustom);
+
+        let scriptCustom = document.createElement('script');
+        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+        scriptCustom.async = false;
+        document.head.appendChild(scriptCustom);
+
+        let startInterval = setInterval(() => {
+            if (contentAvailableOptions != null) {
+                clearInterval(startInterval)
+                let sliderCategories = tns({
+                    container: contentAvailableOptions,
+                    items: 2,
+                    axis: 'horizontal',
+                    controls: true,
+                    loop: false,
+                    prevButton: document.querySelector('.arrow_button_prev'),
+                    nextButton: document.querySelector('.arrow_button_next'),
+                    autoplayButton: false,
+                    autoplayButtonOutput: false,
+                    mouseDrag: true,
+                    nav: false,
+                    // autoWidth: true,
+                    preventScrollOnTouch: 'auto',
+                    swipeAngle: false,
+                });
+            }
+        }, 150)
+
     }
+    //checkbox choice
     document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
         checkbox.addEventListener('click', (e) => {
             if (checkbox.checked) {
