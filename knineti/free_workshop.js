@@ -728,8 +728,13 @@ if (window.innerWidth > 768) {
   let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
 
   // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
-  document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
-  document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+  if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child")) {
+    document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
+  }
+
+  if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
+    document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+  }
 
   // timer
   timerVideo()
