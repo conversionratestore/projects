@@ -119,7 +119,7 @@ let html = `
                 <div>
                     <div class="flex-center-center calc"> 
                       <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                      <input class="calc-qty" type="number" value="1" data-case="1">
+                      <input class="calc-qty" type="number" value="1">
                       <button class="btn-calc btn-calc_plus" type="button"></button>
                     </div>
                   </div>
@@ -264,8 +264,6 @@ let styles = `
     font-size: 12px;
     padding: 0 22px;
     cursor: pointer;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     white-space: nowrap; }
       .btn:hover, .btn:focus  {
@@ -984,7 +982,7 @@ let styles = `
   
   .relative {
     position: relative; }
-  
+ 
   .max-391{
     width: 100%;
     max-width: 391px; }
@@ -1004,6 +1002,8 @@ let styles = `
   .scroll-x::-webkit-scrollbar {
     display: none; }
   .available-options .justify-content-between label {
+      position: relative;
+      z-index: 1;
     min-width: 95px;
     margin-right: 8px;
     width: 48%; }
@@ -1031,7 +1031,23 @@ let styles = `
     color: #091114;
     margin-top: 8px;
   }
-  
+  .arrow_buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    z-index: 0;
+  } 
+    .arrow_button[disabled] svg {
+        fill: #BCC4C7;
+    }
+  .arrow_button_prev {
+    margin-left: -26px;
+  }
+  .arrow_button_next {
+    margin-right: -26px;
+  }
     @media only screen and (max-width: 1250px) {
       .category_popular a {
         margin: 0 3px
@@ -1080,7 +1096,7 @@ document.querySelectorAll('.products_gallery dd').forEach((el) => {
         <div>
             <div class="flex-center-center calc"> 
               <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-              <input class="calc-qty" type="number" value="1" data-case="1">
+              <input class="calc-qty" type="number" value="1">
               <button class="btn-calc btn-calc_plus" type="button"></button>
             </div>
             <button class="btn btn_dark add-cart" type="button" data-variant="${el.getAttribute('data-product-variant-id')}" data-id="${el.getAttribute('data-product-id')}"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | Add to Cart</span></button>
@@ -1152,11 +1168,24 @@ function changeQty(qty,pr,action) {
     }
 }
 
+//fetch
+function fetchOption(method,bodyItem){
+    return {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method: method,
+        body: bodyItem
+    }
+}
+
 //Available Options
 let availableOptionsHTML = `
 <div class="available-options"> 
   <p class="fs-14 fw-semi">Available Options: </p> 
-  <div class="justify-content-between scroll-x"> </div>
+  <div class="relative">
+    <div class="justify-content-between scroll-x"></div>
+  </div>
 </div>`;
 
 function setBulkOptionHTML(i=1,bulk,price,variantId) {
@@ -1173,19 +1202,20 @@ function setBulkOptionHTML(i=1,bulk,price,variantId) {
 if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
     document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHTML)
 
-    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+    let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between'),
+        labelsAvailable = contentAvailableOptions.querySelectorAll('label');
 
     if (document.querySelector('.product-page-bulk__box') != null && document.querySelector('#product_bulk') == null) {
         contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
-        contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0],document.querySelector('#bulk_tag .number').innerHTML));
+        contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0],document.querySelector('#bulk_tag .number').innerHTML,document.querySelector('.boxcon1 [name="product_variant_id"]').value));
     }
+
     if (document.querySelector('.box_item') != null) {
         document.querySelectorAll('.box_item').forEach((item,i) => {
-            contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(i,item.querySelectorAll('span')[0].innerText,item.querySelectorAll('span')[1].innerText));
+            contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(i,item.querySelectorAll('span')[0].innerText,item.querySelectorAll('span')[1].innerText,item.getAttribute('onclick').split('(')[1].split(',')[0]));
         })
     }
 
-//3 available options
     if (document.querySelector('.product-price') != null && document.querySelector('#product_bulk') != null) {
         console.log('product_bulk')
         contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
@@ -1193,18 +1223,27 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
             contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,pb_values[i][2],pb_values[i][0],pb_values[i][3]))
         }
     }
+    if (labelsAvailable.length > 2) {
+        contentAvailableOptions.insertAdjacentHTML('beforebegin',`
+            <div class="arrow_buttons">
+                <button class="arrow_button arrow_button_prev" type="button" disabled>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                    </svg>
+                </button>
+                <button class="arrow_button arrow_button_next" type="button">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                    </svg>
+                </button>
+            </div>`)
+    }
     document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
         checkbox.addEventListener('click', (e) => {
             if (checkbox.checked) {
-                let optionAvailable = checkbox.nextElementSibling.querySelectorAll('span')[0],
-                    optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''),
-                    caseCount = 1;
-                if (optionAvailable.innerText.includes('Each')) {
-                    caseCount = 1;
-                } else {
-                    caseCount = optionAvailable.innerText.replace(/\D/g, '')
-                }
-                document.querySelector('.product_sidebar .calc-qty').dataset.case = caseCount;
+                let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$','');
+
+                document.querySelector('.product_sidebar .add-cart').dataset.variant = checkbox.dataset.variant;
                 document.querySelector('.product_sidebar .add-cart .pr').dataset.price = optionPrice;
                 document.querySelector('.product_sidebar .add-cart .pr').innerHTML = (+optionPrice * +document.querySelector('.product_sidebar .calc-qty').value).toFixed(2);
             }
@@ -1291,22 +1330,12 @@ document.querySelectorAll('.type2 label').forEach(el => {
 //trustpilot
 document.querySelector('.trustpilot').appendChild(document.querySelector('.trustpilot-widget'))
 
-function fetchOption(method,bodyItem){
-    return {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        method: method,
-        body: bodyItem
-    }
-}
-
 // add To Cart buttons in Similar products
 addToCartButton.forEach((el) => {
     el.addEventListener('click', () => {
         let variantId = el.dataset.variant,
             id = el.dataset.id,
-            qty = el.parentElement.querySelector('.calc-qty').value * +el.parentElement.querySelector('.calc-qty').dataset.case;
+            qty = el.parentElement.querySelector('.calc-qty').value;
 
         fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
             console.log(data);
