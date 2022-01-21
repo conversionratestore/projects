@@ -591,7 +591,7 @@ let startFunc = setInterval(() => {
             <img src="https://conversionratestore.github.io/projects/knineti/img/dogs.jpg" alt="dogs">
         </div>
         <p>Offer is valid until <span>January</span><span>17th</span></p>
-        <button disabled><span>Your special offer will be <br/> available in <b>02:00</b></span></button>
+        <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
     </div>
 </div>
 `
@@ -767,8 +767,8 @@ let startFunc = setInterval(() => {
 
                   function timeUpdate() {
                     console.log(videoItem.currentTime)
-                    // let timer = 35 * 60 + 45
-                    let timer = 2 * 60 + 45
+                    let timer = 35 * 60 + 45
+                    // let timer = 2 * 60 + 45
 
                     let currentTime = Math.floor(videoItem.currentTime)
 
