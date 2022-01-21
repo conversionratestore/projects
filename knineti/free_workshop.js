@@ -517,7 +517,7 @@ let arrText = {
   "45:55": [`Learn what’s ‘puppy push- <br/> ups’ and why you should <br/> train your dog to do them`, 11],
   "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
   "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
-  "50:11": [`Preventing dog- <br/> related accidents <br/> in your home`, 14],
+  "50:11": [`Training your <br/> dog to come to <br/> you when called`, 14],
   "1:33:57": [``, 15],
 }
 
