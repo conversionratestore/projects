@@ -648,32 +648,37 @@ let startFunc = setInterval(() => {
 
             document.querySelector(".exp").remove()
           } else {
-            let sliderCategories = tns({
-              container: document.querySelector(".slider"),
-              autoWidth: true,
-              autoplay: false,
-              axis: "horizontal",
-              controls: true,
-              loop: false,
-              prevButton: document.querySelector(".button-prev"),
-              nextButton: document.querySelector(".button-next"),
-              autoplayButton: false,
-              autoplayButtonOutput: false,
-              mouseDrag: true,
-              nav: false,
-              preventScrollOnTouch: "auto",
-              swipeAngle: false,
-            })
+            let tnsInterval = setInterval(() => {
+              if (typeof tns === "function") {
+                clearInterval(tnsInterval)
+                let sliderCategories = tns({
+                  container: document.querySelector(".slider"),
+                  autoWidth: true,
+                  autoplay: false,
+                  axis: "horizontal",
+                  controls: true,
+                  loop: false,
+                  prevButton: document.querySelector(".button-prev"),
+                  nextButton: document.querySelector(".button-next"),
+                  autoplayButton: false,
+                  autoplayButtonOutput: false,
+                  mouseDrag: true,
+                  nav: false,
+                  preventScrollOnTouch: "auto",
+                  swipeAngle: false,
+                })
 
-            sliderCategories.events.on("touchStart", () => {
-              window.dataLayer = window.dataLayer || []
-              dataLayer.push({
-                event: "event-to-ga",
-                eventCategory: "Exp: FW improvements",
-                eventAction: "Swipe slider",
-                eventLabel: `Slider swipe`,
-              })
-            })
+                sliderCategories.events.on("touchStart", () => {
+                  window.dataLayer = window.dataLayer || []
+                  dataLayer.push({
+                    event: "event-to-ga",
+                    eventCategory: "Exp: FW improvements",
+                    eventAction: "Swipe slider",
+                    eventLabel: `Slider swipe`,
+                  })
+                })
+              }
+            }, 100)
           }
         }, 300)
 
@@ -759,7 +764,7 @@ let startFunc = setInterval(() => {
                   function timeUpdate() {
                     console.log(videoItem.currentTime)
                     // let timer = 35 * 60 + 45
-                    let timer = 2*60 + 45
+                    let timer = 2 * 60 + 45
 
                     let currentTime = Math.floor(videoItem.currentTime)
 
