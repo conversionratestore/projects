@@ -599,6 +599,10 @@ let startFunc = setInterval(() => {
       document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
       if (window.innerWidth > 768) {
+        if (document.querySelector("#demo1")) {
+          document.querySelector("#demo1").remove()
+        }
+
         if (document.querySelector(".main > section")) {
           document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
         }
