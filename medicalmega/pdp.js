@@ -1136,9 +1136,20 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     addToCartButton = document.querySelectorAll('.add-cart'), //add To Cart buttons
     price = document.querySelectorAll('.pr'); //price
 
+let action;
+
 let scriptCustom = document.createElement('script');
 scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
 document.head.appendChild(scriptCustom);
+
+function pushDataLayer(action) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: New PDP',
+        'eventAction': action
+    });
+}
 
 function remActiveSelect() {
     let dropdowns = document.querySelectorAll(".select");
@@ -1512,3 +1523,52 @@ let startZoom = setInterval(() => {
         imageZoom("forImg", "zoomResult")
     }
 }, 100);
+
+//for events
+document.querySelectorAll('.btn').forEach((button) => {
+    button.addEventListener('click', () => {
+        let notes = '';
+        if (button.closest('.product_sidebar')) {
+            notes = ' Product'
+        } else if (button.closest('.similar-products')) {
+            notes = ' Similar products'
+        } else if (button.closest('.advanced-search')) {
+            notes = ' in advanced search';
+        } else {
+            notes = '';
+        }
+        action = `Click on ${button.innerText + notes}`;
+        pushDataLayer(action)
+    })
+
+})
+document.querySelectorAll('.btn_reset').forEach((button) => {
+    button.addEventListener('click', () => {
+        action = `Click on close button`;
+        pushDataLayer(action)
+    })
+})
+document.querySelectorAll('.main input').forEach((input) => {
+    input.addEventListener('click', () => {
+        let notes = input.placeholder;
+        if (input.closest('.similar-products')) {
+            notes = ' quantity Similar products'
+        } else if (input.closest('.product_sidebar')) {
+            notes = ' quantity Product'
+        } else if (input.closest('.advanced-search')) {
+            notes = ` ${input.placeholder} in Advanced Search`
+        } else {
+            notes = input.placeholder;
+        }
+
+        action = `Click on ${notes}`;
+        pushDataLayer(action)
+    })
+
+})
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: New PDP',
+    'eventAction': 'loaded'
+});
