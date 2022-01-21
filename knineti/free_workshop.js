@@ -727,82 +727,84 @@ if (window.innerWidth > 768) {
   let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
   let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
 
-  // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
-  if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child")) {
-    document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
-  }
+  if (document.querySelector(".price_block .blur_block")) {
+    // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
+    if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child")) {
+      document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
+    }
 
-  if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
-    document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
-  }
+    if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
+      document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+    }
 
-  // timer
-  timerVideo()
+    // timer
+    timerVideo()
 
-  function timerVideo() {
-    let intevalVideo = setInterval(() => {
-      if (document.querySelector("video")) {
-        clearInterval(intevalVideo)
+    function timerVideo() {
+      let intevalVideo = setInterval(() => {
+        if (document.querySelector("video")) {
+          clearInterval(intevalVideo)
 
-        setTimeout(() => {
-          // let counter
-          const videoItem = document.querySelector("video")
+          setTimeout(() => {
+            // let counter
+            const videoItem = document.querySelector("video")
 
-          function timeUpdate() {
-            console.log(videoItem.currentTime)
-            // let timer = 35 * 60 + 45
-            let timer = 16 + 45
+            function timeUpdate() {
+              console.log(videoItem.currentTime)
+              // let timer = 35 * 60 + 45
+              let timer = 16 + 45
 
-            let currentTime = Math.floor(videoItem.currentTime)
+              let currentTime = Math.floor(videoItem.currentTime)
 
-            if (currentTime > 45) {
-              timer -= currentTime
-              let minutes = timer / 60 < 10 ? `0${Math.floor(timer / 60)}` : Math.floor(timer / 60)
-              let seconds = timer % 60 < 10 ? `0${timer % 60}` : timer % 60
-              if (document.querySelector(".price_block .blur_block> button span")) {
-                document.querySelector(".price_block .blur_block> button b").textContent = `${minutes}:${seconds}`
-              }
+              if (currentTime > 45) {
+                timer -= currentTime
+                let minutes = timer / 60 < 10 ? `0${Math.floor(timer / 60)}` : Math.floor(timer / 60)
+                let seconds = timer % 60 < 10 ? `0${timer % 60}` : timer % 60
+                if (document.querySelector(".price_block .blur_block> button span")) {
+                  document.querySelector(".price_block .blur_block> button b").textContent = `${minutes}:${seconds}`
+                }
 
-              if (timer < 0) {
-                document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
-                document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
-                document.querySelector(".active_blur_text").style.opacity = 0
-                document.querySelector(".price_block .blur_block> button")?.classList.add("active_enroll_now")
-                document.querySelector(".price_block .blur_block> button")?.removeAttribute("disabled")
-                //   document.querySelector(".price_block .blur_block> button span").textContent = `00:00`
-                document.querySelector(".price_block .blur_block> button.active_enroll_now").innerText = "ENROLL NOW"
-                console.log(document.querySelector(".price_block .blur_block> button.active_enroll_now"))
+                if (timer < 0) {
+                  document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
+                  document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
+                  document.querySelector(".active_blur_text").style.opacity = 0
+                  document.querySelector(".price_block .blur_block> button")?.classList.add("active_enroll_now")
+                  document.querySelector(".price_block .blur_block> button")?.removeAttribute("disabled")
+                  //   document.querySelector(".price_block .blur_block> button span").textContent = `00:00`
+                  document.querySelector(".price_block .blur_block> button.active_enroll_now").innerText = "ENROLL NOW"
+                  console.log(document.querySelector(".price_block .blur_block> button.active_enroll_now"))
 
-                let int = setInterval(() => {
-                  if (document.querySelector(".price_block .blur_block> button.active_enroll_now")) {
-                    clearInterval(int)
+                  let int = setInterval(() => {
+                    if (document.querySelector(".price_block .blur_block> button.active_enroll_now")) {
+                      clearInterval(int)
 
-                    videoItem.removeEventListener("timeupdate", timeUpdate)
-                    onClickBtnEnroll()
-                  }
-                }, 10)
+                      videoItem.removeEventListener("timeupdate", timeUpdate)
+                      onClickBtnEnroll()
+                    }
+                  }, 10)
+                }
               }
             }
-          }
 
-          videoItem.addEventListener("timeupdate", timeUpdate)
+            videoItem.addEventListener("timeupdate", timeUpdate)
 
-          function onClickBtnEnroll() {
-            console.log(`onClickBtnEnroll`)
-            document.querySelector(".price_block .blur_block> button.active_enroll_now").addEventListener("click", () => {
-              window.dataLayer = window.dataLayer || []
-              dataLayer.push({
-                event: "event-to-ga",
-                eventCategory: "Exp: FW improvements",
-                eventAction: "Enroll Now clicked",
+            function onClickBtnEnroll() {
+              console.log(`onClickBtnEnroll`)
+              document.querySelector(".price_block .blur_block> button.active_enroll_now").addEventListener("click", () => {
+                window.dataLayer = window.dataLayer || []
+                dataLayer.push({
+                  event: "event-to-ga",
+                  eventCategory: "Exp: FW improvements",
+                  eventAction: "Enroll Now clicked",
+                })
+
+                document.querySelector(".pattern-block a.button-blue-large").click()
               })
-
-              document.querySelector(".pattern-block a.button-blue-large").click()
-            })
-          }
-        }, 1000)
-      }
-    }, 100)
+            }
+          }, 1000)
+        }
+      }, 100)
+    }
   }
 
   window.dataLayer = window.dataLayer || []
