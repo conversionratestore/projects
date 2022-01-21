@@ -592,7 +592,9 @@ let priceBlock = /*html */ `
 document.head.insertAdjacentHTML("beforeend", styleFreeWorkShop)
 
 if (window.innerWidth > 768) {
-  document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
+  if (document.querySelector(".main > section")) {
+    document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
+  }
 
   function setSlide(time, title, countPoint) {
     return `
