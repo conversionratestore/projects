@@ -1136,13 +1136,14 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
     addToCartButton = document.querySelectorAll('.add-cart'), //add To Cart buttons
     price = document.querySelectorAll('.pr'); //price
 
-let action;
+let action = '';
 
 let scriptCustom = document.createElement('script');
 scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
 document.head.appendChild(scriptCustom);
 
 function pushDataLayer(action) {
+    console.log(action)
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({
         'event': 'event-to-ga',
@@ -1516,7 +1517,6 @@ window.addEventListener('scroll', () => remActiveSelect());
 
 //zoom
 let startZoom = setInterval(() => {
-
     if (document.querySelector('.slider-for_img') != null) {
         console.log('true')
         clearInterval(startZoom)
@@ -1548,6 +1548,11 @@ document.querySelectorAll('.btn_reset').forEach((button) => {
         pushDataLayer(action)
     })
 })
+document.querySelector('.form-search button').addEventListener('click', () => {
+    action = `Click on search button`;
+    pushDataLayer(action)
+})
+
 document.querySelectorAll('.main input').forEach((input) => {
     input.addEventListener('click', () => {
         let notes = input.placeholder;
@@ -1566,6 +1571,15 @@ document.querySelectorAll('.main input').forEach((input) => {
     })
 
 })
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1483840,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'new_pdp');
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
