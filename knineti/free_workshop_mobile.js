@@ -582,7 +582,7 @@ let startFuncMobile = setInterval(() => {
     </div>
     <div class="blur_block">
         <p>Get Total Transformation Masterclass and <br/> FREE gifts now </p>
-        <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
+        <button disabled><span>Your special offer will be <br/> available in <b>02:00</b></span></button>
         <div class="pricing_text_box active_blur_parent">
             <ul class="active_blur">
                 <li>
@@ -811,8 +811,8 @@ let startFuncMobile = setInterval(() => {
 
                   function timeUpdate() {
                     console.log(videoItem.currentTime)
-                    let timer = 35 * 60 + 45
-                    // let timer = 2 * 60 + 45
+                    // let timer = 35 * 60 + 45
+                    let timer = 2 * 60 + 45
 
                     let currentTime = Math.floor(videoItem.currentTime)
 
