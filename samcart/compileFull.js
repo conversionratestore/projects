@@ -501,12 +501,12 @@ function showSaleBtn() {
 	}, 100)
 }
 
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp — Timeline & SO banner',
-	'eventAction': 'loaded',
-})
+// window.dataLayer = window.dataLayer || []
+// dataLayer.push({
+// 	'event': 'event-to-ga',
+// 	'eventCategory': 'Exp — Timeline & SO banner',
+// 	'eventAction': 'loaded',
+// })
 
 // PART TWO
 
