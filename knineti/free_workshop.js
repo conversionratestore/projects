@@ -487,6 +487,7 @@ let startFunc = setInterval(() => {
                 left: 50%;
                 width: 100%;
                 transform: translateX(-50%) translateY(-50%);
+                pointer-events: none;
             }
 
             .active_blur_text > p{
