@@ -536,6 +536,8 @@ let startFuncMobile = setInterval(() => {
 
             .price_block .pricing_text_box ul li div {
               opacity: 0;
+              display: flex;
+              justify-content: flex-start;
             }
         </style>
 `
