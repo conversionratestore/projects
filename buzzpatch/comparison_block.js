@@ -355,6 +355,8 @@ let slickInterval = setInterval(() => {
   }
 }, 100)
 
+clarity("set", "hypothesis_3", "comparison_table")
+
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
   event: "event-to-ga",
