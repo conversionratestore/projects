@@ -26,7 +26,7 @@ let startFuncMobile = setInterval(() => {
             }
 
             .main > section .container-fluid{
-                width: 55vw;
+                width: 100%;
                 margin: 0;
                 padding: 0;
             }
@@ -36,14 +36,31 @@ let startFuncMobile = setInterval(() => {
             }
             .main > section{
                 background: #DFE8F0;
-                display: flex;
+               
                 justify-content: center;
-                padding: 60px 15px 35px;
+                padding:20px 23px 25px;
             }
 
             .main > section .row.flowplayer_breed_vdo, .main > section .row.flowplayer_breed_vdo .col-md-12{
                 padding: 0;
                 margin: 0;
+            }
+
+              body #player.flowplayer {
+                 max-width: unset !important;
+              }
+
+            .main > section .enroll_btn_txt{
+                margin: 10px 0 0 !important;
+            }
+
+            .main > section .enroll_btn_txt p{
+              font-weight: 800;
+              font-size: 14px !important;
+              line-height: 19px !important;
+              max-width: 329px;
+              text-align: center;
+              margin: 0 auto;
             }
 
             #myCarousel{
@@ -59,7 +76,7 @@ let startFuncMobile = setInterval(() => {
             
             .free_work_shop_container{
                 width: 100%;
-                padding: 40px 0 60px;
+                padding: 40px 0 0;
             }
 
             .free_work_shop_box .title_block{
@@ -71,17 +88,18 @@ let startFuncMobile = setInterval(() => {
             .free_work_shop_box .title_block h2{
                 font-family: 'Open Sans', sans-serif;
                 font-weight: 800;
-                font-size: 14px;
-                line-height: 19px;
+                font-size: 12px !important;
+                line-height: 16px !important;
                 text-transform: uppercase;
                 color: #1D3871;
+                margin-bottom: 12px;
             }
 
             .free_work_shop_box .title_block span{
                 font-family: 'Open Sans', sans-serif;
                 font-weight: 700;
-                font-size: 12px;
-                line-height: 16px;
+                font-size: 10px;
+                line-height: 14px;
                 text-transform: uppercase;
                 color: #FFFFFF;
                 background: #1D3871;
@@ -103,7 +121,6 @@ let startFuncMobile = setInterval(() => {
 
             .free_work_shop_box .timeline_container {
                 display: flex;
-                background: linear-gradient(90deg, #DFE8F0 1.63%, rgba(223, 232, 240, 0) 17.13%);
                 position: relative;
             }
 
@@ -137,7 +154,7 @@ let startFuncMobile = setInterval(() => {
                 content: '';
                 position: absolute;
                 top: 0;
-                width: 400px;
+                width: 160px;
                 height: 100%;
                 pointer-events: none;
                 right: calc(100% + 1px);
@@ -149,7 +166,7 @@ let startFuncMobile = setInterval(() => {
                 content: '';
                 position: absolute;
                 top: 0;
-                width: 400px;
+                width: 150px;
                 height: 100%;
                 pointer-events: none;
                 left: calc(100% + 1px);
@@ -195,7 +212,6 @@ let startFuncMobile = setInterval(() => {
                 font-size: 12px;
                 line-height: 15px;
                 color: #1D3871;
-                max-width: 163px;
                 position: relative;
                 padding-left: 11px;
                 display: block;
@@ -244,7 +260,7 @@ let startFuncMobile = setInterval(() => {
 
             .slide {
                 padding-top: 6px;
-                padding-bottom: 30px;
+                padding-bottom: 20px;
                 padding-left: 2px;
             }
 
@@ -253,7 +269,7 @@ let startFuncMobile = setInterval(() => {
             }
 
             .slide[data-point="2"]{
-                padding-right: 51px;
+                padding-right: 57px;
             }
 
             .slide[data-point="3"]{
@@ -261,59 +277,58 @@ let startFuncMobile = setInterval(() => {
             }
 
             .slide[data-point="4"]{
-                padding-right: 30px;
+                padding-right: 21px;
             }
 
             .slide[data-point="5"]{
-                padding-right: 127px;
+                padding-right: 111px;
             }
 
             .slide[data-point="6"]{
-                padding-right: 159px;
+                padding-right: 156px;
             }
 
             .slide[data-point="7"]{
-                padding-right: 110px;
+                padding-right: 71px;
             }
 
             .slide[data-point="8"]{
                 padding-right: 73px;
             }
             .slide[data-point="9"]{
-                padding-right: 141px;
+                padding-right: 130px;
             }
 
             .slide[data-point="10"]{
-                padding-right: 64px;
+                padding-right: 49px;
             }
 
             .slide[data-point="11"]{
-                padding-right: 61px;
+                padding-right: 109px;
             }
 
             .slide[data-point="12"]{
-                padding-right: 21px;
+                padding-right: 17px;
             }
 
             .slide[data-point="13"]{
-                padding-right: 125px;
+                padding-right: 121px;
             }
 
             .slide[data-point="15"]{
-                padding-right: 10px;
+                padding-right: 5px;
             }
 
             /* */
 
             .price_block{
                 background: #FFFFFF;
-                border-radius: 2px;
-                border: 5px solid #734F22;
-                max-width: 279px;
+                border-radius: 5px;
+                border: 3px solid #734F22;
                 width: 100%;
                 height: 100%;
                 padding: 10px;
-                margin-left: 30px;
+                margin-top: 30px;
             }
 
             .price_block .block_gradient{
@@ -322,6 +337,8 @@ let startFuncMobile = setInterval(() => {
                 height: 126px;
                 margin: -11px;
                 border-left: 1px solid #734F22;
+                border-right: 1px solid #734F22;
+                border-top: 1px solid #734F22;
             }
 
             .price_block .block_gradient p{
@@ -336,7 +353,7 @@ let startFuncMobile = setInterval(() => {
             }
 
             .price_block .blur_block{
-                padding: 10px;
+                padding: 15px 15px 10px;
                 background: #FFFFFF;
                 border: 1px solid #734F22;
                 box-shadow: 0px 7.49835px 29.2436px rgb(127 143 156 / 7%);
@@ -350,6 +367,7 @@ let startFuncMobile = setInterval(() => {
                 line-height: 17px;
                 text-align: center;
                 color: #203B54 !important;
+                margin-bottom: 20px;
             }
 
             .price_block .blur_block> p:nth-of-type(2){
@@ -362,7 +380,7 @@ let startFuncMobile = setInterval(() => {
                 background: #DFE8F0;
                 border-radius: 2px;
                 padding: 5px 0;
-                margin: 10px 0;
+                margin: 20px 0;
             }
 
             .price_block .blur_block> p:nth-of-type(2) span:last-child{
@@ -391,7 +409,7 @@ let startFuncMobile = setInterval(() => {
 
             /* */
             .price_block .pricing_text_box{
-                margin-bottom: 27px;
+                margin: 20px 0;
             }
 
             .price_block .pricing_text_box ul {
@@ -400,19 +418,21 @@ let startFuncMobile = setInterval(() => {
             }
 
             .price_block .pricing_text_box ul li {
-                text-align: center;
                 position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
             }
 
             .price_block .pricing_text_box ul li:not(:last-child){
-                margin-bottom: 20px;
+                margin-bottom: 23px;
             }
 
             .price_block .pricing_text_box ul li:not(:last-child)::after{
                 position: absolute;
                 content: '';
-                width: 150px;
-                border-bottom: 1px dashed #DFE8F0;
+                width: 100%;
+                border-bottom: 2px dashed #DFE8F0;
                 bottom: -10px;
                 left: 50%;
                 transform: translateX(-50%);
@@ -422,7 +442,7 @@ let startFuncMobile = setInterval(() => {
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 15px;
-                text-align: center;
+                text-align: left;
                 color: #1D3871 !important;
                 margin-bottom: 5px;
             }
@@ -431,7 +451,7 @@ let startFuncMobile = setInterval(() => {
                 font-weight: 800;
             }
 
-            .price_block .pricing_text_box ul li > span{
+            .price_block .pricing_text_box ul li div > span{
                 font-weight: 400;
                 font-size: 12px;
                 line-height: 16px;
@@ -439,11 +459,11 @@ let startFuncMobile = setInterval(() => {
                 color: #808080;
             }
 
-            .price_block .pricing_text_box ul li > span:first-of-type{
+            .price_block .pricing_text_box ul li div > span:first-of-type{
                 padding-right: 5px;
             }
 
-            .price_block .pricing_text_box ul li > span:last-of-type{
+            .price_block .pricing_text_box ul li div > span:last-of-type{
                 font-weight: 800;
                 color: #734F22;
                 text-decoration-line: unset;
@@ -451,7 +471,7 @@ let startFuncMobile = setInterval(() => {
                 padding-left: 5px;
             }
 
-            .price_block .pricing_text_box ul li > span:last-of-type::before{
+            .price_block .pricing_text_box ul li div > span:last-of-type::before{
                 position: absolute;
                 content: "";
                 border-bottom: 1px solid #734F22;
@@ -487,6 +507,7 @@ let startFuncMobile = setInterval(() => {
                 left: 50%;
                 width: 100%;
                 transform: translateX(-50%) translateY(-50%);
+                 pointer-events: none;
             }
 
             .active_blur_text > p{
@@ -512,15 +533,15 @@ let startFuncMobile = setInterval(() => {
 `
       let arrTextMobile = {
         "0:00": [``, 1],
-        "6:14": [`3 key rules to train <br/> your dog to be a <br/> service dog`, 2],
+        "6:14": [`3 key rules to <br/> train your dog to <br/> be a service dog`, 2],
         "13:34": [`Stop your dog pulling its <br/> leash - an effective <br/> technique`, 3],
         "16:30": [`Using body <br/> language to <br/> train your dog`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
-        "21:45": [`Dealing <br/> with <br/> unnecessary barking`, 6],
-        "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
+        "21:45": [`Dealing with <br/> unnecessary <br/> barking`, 6],
+        "36:11": [`Why you should wean your <br/> dog away from treats, and <br/> how to do it`, 7],
         "40:04": [`2 important <br/> commands to make <br/> your dog obedient`, 8],
         "40:43": [`Training your dog <br/> to walk without <br/> pulling its leash`, 9],
-        "45:14": [`Training your <br/> dog to come to <br/> you when called`, 10],
+        "45:14": [`Training your dog <br/> to come to you <br/> when called`, 10],
         "45:55": [`Learn what’s ‘puppy push- <br/> ups’ and why you should <br/> train your dog to do them`, 11],
         "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
         "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
@@ -553,32 +574,43 @@ let startFuncMobile = setInterval(() => {
     </div>
     <div class="blur_block">
         <p>Get Total Transformation Masterclass and <br/> FREE gifts now </p>
+        <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
         <div class="pricing_text_box active_blur_parent">
             <ul class="active_blur">
                 <li>
-                    <p>Total Transformation Masterclass </p>
-                    <span>$497.00</span>
-                    <span>$297.00</span>
+                    <p>Total Transformation <br> Masterclass </p>
+                    <div>
+                      <span>$497.00</span>
+                      <span>$297.00</span>
+                    </div>
                 </li>
                 <li>
-                    <p>10 weeks of personal coaching with our training experts </p>
-                    <span>$999.00</span>
-                    <span>$0.00</span>
+                    <p>10 weeks of personal <br> coaching with our <br> training experts </p>
+                    <div>
+                      <span>$999.00</span>
+                      <span>$0.00</span>
+                    </div>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> How to housebreak your dog</p>
-                    <span>$69.70</span>
-                    <span>$0.00</span>
+                    <p><span>BONUS CLASS </span> <br/> ‘How to housebreak <br> your dog’</p>
+                    <div>
+                      <span>$69.70</span>
+                      <span>$0.00</span>
+                    </div>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> How to prevent your dog’s separation anxiety</p>
-                    <span>$69.70</span>
-                    <span>$0.00</span>
+                    <p><span>BONUS CLASS </span> <br/> ‘How to prevent your <br> dog’s separation anxiety’</p>
+                    <div>
+                      <span>$69.70</span>
+                      <span>$0.00</span>
+                    </div>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> How to get your dog adjusted to kids</p>
-                    <span>$69.70</span>
-                    <span>$0.00</span>
+                    <p><span>BONUS CLASS </span> <br/> ‘How to get your dog <br> adjusted to kids’</p>
+                    <div>
+                      <span>$69.70</span>
+                      <span>$0.00</span>
+                    </div>
                 </li>
             </ul>
             <div class="active_blur_text">
@@ -587,11 +619,11 @@ let startFuncMobile = setInterval(() => {
                 <p>will be <br/> available <br/> shortly</p>
             </div>
         </div>
+
+        <p>Offer is valid until <span>January</span><span>17th</span></p>
         <div>
             <img src="https://conversionratestore.github.io/projects/knineti/img/dogs.jpg" alt="dogs">
         </div>
-        <p>Offer is valid until <span>January</span><span>17th</span></p>
-        <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
     </div>
 </div>
 `
@@ -608,7 +640,7 @@ let startFuncMobile = setInterval(() => {
         }
 
         if (document.querySelector(".main > section")) {
-          document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlockMobile)
+          document.querySelector(".main > section .container-fluid").insertAdjacentHTML("afterend", priceBlockMobile)
         }
 
         function setSlide(time, title, countPoint) {
@@ -621,7 +653,7 @@ let startFuncMobile = setInterval(() => {
         }
 
         if (document.querySelector("section .container-fluid #myCarousel")) {
-          document.querySelector("section .container-fluid #myCarousel").insertAdjacentHTML("beforeend", freeWorkShopMobile)
+          document.querySelector(".main section .price_block").insertAdjacentHTML("afterend", freeWorkShopMobile)
           for (let key in arrTextMobile) {
             document.querySelector(".slider").insertAdjacentHTML("beforeend", setSlide(key, arrTextMobile[key][0], arrTextMobile[key][1]))
           }
@@ -654,7 +686,7 @@ let startFuncMobile = setInterval(() => {
               })
             })
 
-            document.querySelector(".expMob").remove()
+            // document.querySelector(".expMob").remove()
           } else {
             let tnsInterval = setInterval(() => {
               if (typeof tns === "function") {
