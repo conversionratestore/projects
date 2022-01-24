@@ -529,6 +529,14 @@ let startFuncMobile = setInterval(() => {
             .active_blur_text > p:last-of-type{
                 line-height: 24px;
             }
+
+            .blur_block div> img{
+              width: 100%;
+            }
+
+            .price_block .pricing_text_box ul li div {
+              opacity: 0;
+            }
         </style>
 `
       let arrTextMobile = {
@@ -817,6 +825,9 @@ let startFuncMobile = setInterval(() => {
                       }
 
                       if (timer < 0) {
+                        document.querySelectorAll(".price_block .pricing_text_box ul li div").forEach((el) => {
+                          el.style.opacity = 1
+                        })
                         document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
                         document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
                         document.querySelector(".active_blur_text").style.opacity = 0
