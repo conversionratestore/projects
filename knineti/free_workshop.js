@@ -46,6 +46,14 @@ let startFunc = setInterval(() => {
                 margin: 0;
             }
 
+            .main > section .banner_txt{
+            padding: 0 !important;
+            }
+
+            #player .fp-ratio{
+              padding-top: 56%;
+            }
+
             #myCarousel{
                 float: unset !important;
             }
