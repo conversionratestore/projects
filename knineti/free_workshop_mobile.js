@@ -686,7 +686,7 @@ let startFuncMobile = setInterval(() => {
               })
             })
 
-            // document.querySelector(".expMob").remove()
+            document.querySelector(".expMob").remove()
           } else {
             let tnsInterval = setInterval(() => {
               if (typeof tns === "function") {
