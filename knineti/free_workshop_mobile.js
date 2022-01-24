@@ -52,6 +52,7 @@ let startFuncMobile = setInterval(() => {
 
             .main > section .enroll_btn_txt{
                 margin: 10px 0 0 !important;
+                display: block !important;
             }
 
             .main > section .enroll_btn_txt p{
