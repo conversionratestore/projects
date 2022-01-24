@@ -917,7 +917,7 @@ window.onload  = function () {
                                 } else if (window.location.pathname.includes('checkout/step3') || window.location.pathname.includes('guest-checkout3.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Payment Method step';
-                                } 
+                                }
                                 pushDataLayer(action,label)
                             })
                         })
@@ -935,8 +935,8 @@ window.onload  = function () {
 
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].innerHTML = 'Personal Information';
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].innerHTML = 'Shipping Information';
-           
-            
+
+
                 document.querySelectorAll('.num_line a')[3].insertAdjacentHTML('beforebegin', stepDeliveryMethod);
 
                 if (!window.location.pathname.includes('guest-checkout')) {
@@ -949,7 +949,7 @@ window.onload  = function () {
 
                 document.querySelectorAll('.num_line a')[4].querySelectorAll('span')[2].innerHTML = 'Payment Method';
                 document.querySelectorAll('.num_line a')[5].querySelectorAll('span')[2].innerHTML = 'Confirmation';
-                
+
                 let step = document.querySelectorAll('.num_line .number');
                 for (let i = 0; i < step.length; i++) {
                     step[i].innerHTML = i;
@@ -966,9 +966,9 @@ window.onload  = function () {
                     item.previousElementSibling.setAttribute('type', type);
                 });
             });
-          
+
             if (document.querySelector('.myAccount')) {
-              
+
                 document.querySelector('.addressBookSubmit').setAttribute('type','button');
                 document.querySelector('.addressBookSubmit').setAttribute('value','Submit');
                 document.querySelector('.myAccountleft').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
@@ -1009,7 +1009,7 @@ window.onload  = function () {
                         pushDataLayer(action,label)
                     });
                 })
-               
+
                 document.querySelector('.myAccountleft .registerOnLogin dt').remove();
                 document.querySelector('.title_head').after(document.querySelector('.myAccount'));
                 document.querySelectorAll('.myAccountleft dd')[5].insertAdjacentHTML('afterbegin',`  
@@ -1043,7 +1043,7 @@ window.onload  = function () {
                     }
                 });
                 if (location.pathname.includes('login')) {
-                  
+
                     document.querySelector('.log').innerHTML = 'Registration';
                     document.querySelector('.checkout-left_head .title').innerHTML = 'Sign in';
                     document.querySelector('.myAccountleft').style.display = 'none';
@@ -1092,11 +1092,11 @@ window.onload  = function () {
                 document.querySelector('.payment h3 ').style.display = 'none';
                 document.querySelector('.checkout-left_head').style.display = 'none';
                 document.querySelector('.checkout-left_head .log ').style.display = 'none';
-             
+
                 document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
                 document.querySelector('.bill_small').parentElement.classList.add('flex-between');
-                
+
                 document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
@@ -1250,7 +1250,7 @@ window.onload  = function () {
 
                 document.querySelector('.promocode-block_i').after(document.querySelector('.promoCode'));
                 document.querySelector('.promocode-block_i').after(document.querySelector('.primaryInfo label'))
-          
+
                 document.querySelector('.primaryInfo').innerHTML.split('<div style=" clear: both">&nbsp;</div>').join(' ');
                 document.querySelector('.title_head').after(document.querySelector('.payment.in_center'));
                 document.querySelector('.btn-next').addEventListener('click', () => {
@@ -1269,7 +1269,7 @@ window.onload  = function () {
                     label = 'Section Delivery Method';
                     pushDataLayer(action,label)
                 });
-                
+
                 document.querySelectorAll('#ship_options li').forEach((el, i) => {
                     el.addEventListener('click', () => {
                         action = `Pick ${el.querySelector('i').innerHTML}`;
@@ -1394,7 +1394,7 @@ window.onload  = function () {
                     pushDataLayer(action,label)
                 })
             }
-            if(location.pathname == '/checkout/step4' || location.pathname.includes('/guest-checkout4.php')) { 
+            if(location.pathname == '/checkout/step4' || location.pathname.includes('/guest-checkout4.php')) {
                 let header = `
                     <div id="logo" align="center">
                         <a href="https://medicalmega.com/index.html" title="Medical Mega">
@@ -1551,7 +1551,7 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
                 document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
-               
+
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
                 document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
                 document.querySelector('label[for="same_as_bill"] .check').before(document.querySelector('#same_as_bill'));
@@ -1566,7 +1566,7 @@ window.onload  = function () {
                 document.querySelector('label[for="same_as_bill"]').closest('dd').classList.add('same_as_bill_dd')
 
                 document.querySelector('.checkout-left').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Personal Info</a><button type="button" class="btn btn-next">Next</button></div>`)
-                
+
                 document.querySelector('.btn-back').addEventListener('click', () => {
                     action = 'Click on Back to Personal Info button';
                     label = 'Section Billing And Shipping Information';
@@ -1582,7 +1582,7 @@ window.onload  = function () {
 
             document.querySelector('.checkout-right_head .link').addEventListener('click', ()=> {
                 action = 'Click Back to Shoping button',
-                label = 'Section Your order';
+                    label = 'Section Your order';
                 pushDataLayer(action,label)
             })
         } else {
