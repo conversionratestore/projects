@@ -38,7 +38,7 @@ let startFunc = setInterval(() => {
                 background: #DFE8F0;
                 display: flex;
                 justify-content: center;
-                padding: 60px 0 35px;
+                padding: 60px 15px 35px;
             }
 
             .main > section .row.flowplayer_breed_vdo, .main > section .row.flowplayer_breed_vdo .col-md-12{
@@ -308,7 +308,7 @@ let startFunc = setInterval(() => {
             .price_block{
                 background: #FFFFFF;
                 border-radius: 2px;
-                border: 7px solid #734F22;
+                border: 5px solid #734F22;
                 max-width: 279px;
                 width: 100%;
                 height: 100%;
