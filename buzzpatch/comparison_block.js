@@ -110,9 +110,9 @@ let styleComparisonBlock = /*html*/ `
     border: 2px solid #ff3c81;
     border-radius: 6px;
     padding: 20px 47px;
-    margin-top: 40px;
-    margin-bottom: 0;
     position: relative;
+    margin: 40px auto 0;
+    width: max-content;
   }
 
   .comparison_block > p > svg{
@@ -153,18 +153,7 @@ let styleComparisonBlock = /*html*/ `
     text-align: left;
   }
 
-     @media (min-width: 413px){
-     .mini_box {
-          right: 40px !important;
-      }
-      .comparison_block > p > svg {
-       right: 40px;
-     }
 
-     .hidden_text{
-       right: 30px;
-     }
-   }
 
   @media (max-width: 320px){
      .mini_box {
@@ -172,34 +161,6 @@ let styleComparisonBlock = /*html*/ `
       }
       .comparison_block > p > svg {
        right: -6px;
-     }
-
-     .hidden_text{
-           right: -10px;
-     }
-   }
-
-     @media (width: 360px){
-     .mini_box {
-        bottom: 100px !important;
-      }
-      .comparison_block > p > svg {
-      right: 19px;
-      bottom: 84px;
-     }
-
-     .hidden_text{
-           right: -10px;
-     }
-   }
-
-    @media (max-width: 280px){
-     .mini_box {
-        bottom: 84px !important;
-      }
-
-      .comparison_block > p > svg {
-      bottom: 65px;
      }
 
      .hidden_text{
