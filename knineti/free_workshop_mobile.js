@@ -797,7 +797,7 @@ let startFuncMobile = setInterval(() => {
           }
 
           if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
-            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[daySeven[2]]}`
+            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[+daySeven[2]]}`
           }
 
           // timer
