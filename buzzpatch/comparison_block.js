@@ -10,47 +10,47 @@ document.head.appendChild(scriptCustomStyle)
 
 let styleComparisonBlock = /*html*/ `
 <style>
-
-  .bp-tooltip .bp-tooltiptext{
+  .bp-tooltip .bp-tooltiptext {
     max-width: 180px;
     left: calc(50% - 54px) !important;
     width: 95px !important;
   }
 
-  .comparison_slider_nav{
+  .comparison_slider_nav {
     padding-bottom: 42px;
     margin-bottom: 40px;
   }
 
-  .comparison_slider_nav, .comparison_slider_nav .bp-comparison{
-    background: #ECEEF0;
+  .comparison_slider_nav,
+  .comparison_slider_nav .bp-comparison {
+    background: #eceef0;
   }
 
-  .comparison_slider_nav .bp-comparison{
+  .comparison_slider_nav .bp-comparison {
     padding: 30px 0 40px;
     margin-bottom: 0 !important;
   }
 
-  .wave-effect.js-mobile svg{
+  .wave-effect.js-mobile svg {
     display: none;
   }
 
-  .wave-effect.js-mobile svg path{
-  fill:#ECEEF0;
+  .wave-effect.js-mobile svg path {
+    fill: #eceef0;
   }
 
-  .wave-effect{
+  .wave-effect {
     margin-bottom: -2px;
   }
 
-  .comparison_slider_nav .col-lg-3.text-center.js-heading{
+  .comparison_slider_nav .col-lg-3.text-center.js-heading {
     margin-top: 10px;
   }
 
-  .comparison_slider_nav .bp-mob-table-container p{
-  font-weight: 600;
-  font-size: 14px !important;
-  line-height: 20px !important;
+  .comparison_slider_nav .bp-mob-table-container p {
+    font-weight: 600;
+    font-size: 14px !important;
+    line-height: 20px !important;
   }
 
   .comparison_block table thead tr:last-child td,
@@ -82,7 +82,8 @@ let styleComparisonBlock = /*html*/ `
     padding: 30px 16px 40px;
   }
 
-  .comparison_block h2, .comparison_slider_nav .js-title.text-dark {
+  .comparison_block h2,
+  .comparison_slider_nav .js-title.text-dark {
     font-family: "DINEngschrift LT", sans-serif;
     font-weight: 400;
     font-size: 30px;
@@ -94,7 +95,7 @@ let styleComparisonBlock = /*html*/ `
     margin-bottom: 40px;
   }
 
-  .comparison_slider_nav .js-title.text-dark{
+  .comparison_slider_nav .js-title.text-dark {
     margin-bottom: 56px;
   }
 
@@ -115,7 +116,7 @@ let styleComparisonBlock = /*html*/ `
     width: max-content;
   }
 
-  .comparison_block > p > svg{
+  .comparison_block > p > svg {
     position: absolute;
     content: "";
     bottom: 41px;
@@ -123,23 +124,20 @@ let styleComparisonBlock = /*html*/ `
     width: 40px;
   }
 
-
-
-  .mini_box{
+  .mini_box {
     bottom: 72px !important;
     right: 19px !important;
     opacity: 0;
   }
 
-
-  .hidden_text{
+  .hidden_text {
     opacity: 0;
     position: absolute;
     top: -72px;
     right: 7px;
     width: 100%;
-    background: #FFFFFF;
-    font-family: 'Roboto', sans-serif;
+    background: #ffffff;
+    font-family: "Roboto", sans-serif;
     text-transform: none;
     box-shadow: 0px 0.688073px 4.06px rgb(0 0 0 / 7%), 6px 7.26px 20.4px rgb(0 0 0 / 10%);
     border-radius: 7px;
@@ -153,43 +151,41 @@ let styleComparisonBlock = /*html*/ `
     text-align: left;
   }
 
+  @media (max-width: 320px) {
+    .mini_box {
+      right: -3px !important;
+    }
+    .comparison_block > p > svg {
+      right: -6px;
+    }
 
+    .hidden_text {
+      right: -10px;
+    }
+  }
 
-  @media (max-width: 320px){
-     .mini_box {
-        right: -3px !important;
-      }
-      .comparison_block > p > svg {
-       right: -6px;
-     }
+  @media (max-width: 280px) {
+    .mini_box {
+      bottom: 108px !important;
+      right: -6px !important;
+    }
 
-     .hidden_text{
-           right: -10px;
-     }
-   }
+    .comparison_block > p > svg {
+      bottom: 92px;
+      right: -8px;
+    }
 
-       @media (max-width: 280px){
-     .mini_box {
-        bottom: 107px !important;
-        right: -6px !important;
-      }
+    .hidden_text {
+      right: -10px;
+      top: -96px;
+    }
 
-      .comparison_block > p > svg {
-        bottom: 92px;
-        right: -8px;
-     }
+    .comparison_block > p {
+      width: 100%;
+    }
+  }
 
-     .hidden_text{
-           right: -10px;
-           top: -96px;
-     }
-
-     .comparison_block > p{
-           width: 100%;
-     }
-   }
-
-  .comparison_block > p >span span {
+  .comparison_block > p > span span {
     color: #ff3c81;
   }
 
@@ -261,18 +257,20 @@ let styleComparisonBlock = /*html*/ `
     height: 26px;
   }
 
-  .comparison_slider_nav .slick-dots li a::before, .slick-dots li button::before{
-    background: #F1F3F4;
+  .comparison_slider_nav .slick-dots li a::before,
+  .slick-dots li button::before {
+    background: #f1f3f4;
     border: 1px solid #212529;
     width: 12px;
     height: 12px;
-    content:"";
+    content: "";
     transform: unset;
     color: unset;
   }
 
-   .comparison_slider_nav .slick-dots li.slick-active a::before, .slick-dots li.slick-active button::before{
-    content:"";
+  .comparison_slider_nav .slick-dots li.slick-active a::before,
+  .slick-dots li.slick-active button::before {
+    content: "";
     transform: unset;
     color: unset;
     background: #212529;
@@ -288,7 +286,7 @@ let styleComparisonBlock = /*html*/ `
     }
   }
 
-  .toggle_opacity{
+  .toggle_opacity {
     opacity: 1;
   }
 </style>
