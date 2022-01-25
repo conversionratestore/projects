@@ -1105,13 +1105,13 @@ function pushDataLayer(action,label) {
                         font-size: 12px;
                         width: 100%;
                         color: red;
-                    }
+                        display: none;}
+                    .error_message.active {
+                        display: block;}
                     .small_block {
-                        margin-bottom: 20px;
-                    }
+                        margin-bottom: 20px; }
                     .small_block.bill_small {
-                        margin-right: 10px;
-                    }
+                        margin-right: 10px; }
                </style>`);
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
@@ -1119,7 +1119,8 @@ function pushDataLayer(action,label) {
                 document.querySelector('.payment h3 ').style.display = 'none';
 
                 document.querySelector('.payment').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
-           
+                document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`)
+
                 let formShipping = document.querySelector('#editor_fields'),
                     btnBack = document.querySelector('.btn-back'),
                     formBilling, 
@@ -1147,7 +1148,7 @@ function pushDataLayer(action,label) {
                     document.querySelectorAll('.address_book_new .small_block').forEach(el => el.style.display = 'none')
                     document.querySelectorAll('#editor_block .buttons').forEach(el => el.style.display = 'none')
                     
-                    function eachFieldsShip(selector) {
+                    function eachFieldsForms(selector) {
                         formShipping.querySelectorAll(selector).forEach((input, index) => {
                             !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '';
                             input.addEventListener('input', (e) => {
@@ -1158,8 +1159,8 @@ function pushDataLayer(action,label) {
                         })
                         formBilling.querySelectorAll(selector).forEach((input) => !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '');
                     }
-                    eachFieldsShip('input')
-                    eachFieldsShip('select')
+                    eachFieldsForms('input')
+                    eachFieldsForms('select')
 
                     btnsBlock.querySelector('.checkbox').addEventListener('click', (e) => {
                         e.target.checked ? btnEditBilling.style.display = 'none' : btnEditBilling.style.display = 'flex';
@@ -1178,9 +1179,13 @@ function pushDataLayer(action,label) {
                     })
                 } else {
                     document.querySelector('#editor_block').style.display = 'none';
+                    document.querySelectorAll('.small_block').forEach((block) => {
+                        if (block.querySelector('.content_small') == null) {
+                            block.querySelector('.head2').click();
+                        }
+                    })
                 }
 
-            
                 btnBack.addEventListener('click', (e) => {
                     if (formBilling.classList.contains('active')) {
                         e.preventDefault()
@@ -1229,7 +1234,8 @@ function pushDataLayer(action,label) {
                     }
                 }
                 function setError(className,messages) {
-                    document.querySelectorAll(`${className} .error_message`).forEach(error => error.innerHTML = '')
+                    document.querySelectorAll(`${className} .error_message`).forEach(error => error.classList.remove('active'))
+
                     for (let i = 0; i < messages.length; i++) {
                         let firstWordError = messages[i].split(' ')[0].toLowerCase();
                         console.log(firstWordError)
@@ -1237,6 +1243,7 @@ function pushDataLayer(action,label) {
                             console.log(el.innerHTML.includes(firstWordError))
                             if (el.innerHTML.toLowerCase().includes(firstWordError) == true) {
                                 document.querySelectorAll(`${className} .error_message`)[index].innerHTML = messages[i];
+                                document.querySelectorAll(`${className} .error_message`)[index].classList.add('active');
                             }
                         })  
                     }
@@ -1284,8 +1291,13 @@ function pushDataLayer(action,label) {
                         })
 
                         Promise.all([request1,request2]).then(res => {
-                            if (errorsData.length == 0) window.location.href = '/checkout/step2'
+                            if (document.querySelector('.error_message.active') == null) {
+                                window.location.href = '/checkout/step2'
+                            }
                         })
+                    } else {
+                        document.querySelector('#step1_form div[align="right"] input').click()
+
                     }
 
                     action = 'Click on Next button';
@@ -1317,20 +1329,19 @@ function pushDataLayer(action,label) {
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.add('pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink');
-                // if (document.querySelector('.head2.pointer') != null) {
-                //     document.querySelectorAll('.head2.pointer').forEach((el, index) => {
-                //         el.addEventListener('click', () => {
-                //             if (el.closest('.bill_small')) {
-                //                 action = 'Click on Billing information button';
-                //                 label = el.innerText;
-                //             } else if (el.closest('.ship_small')) {
-                //                 action = 'Click on Shipping information button';
-                //                 label = el.innerText;
-                //             }
-                //             pushDataLayer(action,label)
-                //         })
-                //     })
-                // }
+                if (document.querySelector('.head2.pointer') != null) {
+                    document.querySelectorAll('.head2.pointer').forEach((el, index) => {
+                        el.addEventListener('click', () => {
+                            if (el.closest('.bill_small')) {
+                                action = 'Click on Billing Address button';
+                            } else if (el.closest('.ship_small')) {
+                                action = 'Click on Shipping Address button';
+                            }
+                            label = el.innerText;
+                            pushDataLayer(action,label)
+                        })
+                    })
+                }
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
