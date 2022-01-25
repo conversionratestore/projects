@@ -472,6 +472,8 @@ if (document.querySelector(".comparison_block > p > svg")) {
       eventAction: "Click tooltip",
     })
 
+    e.stopPropagation()
+
     toggleMenu()
   })
 
