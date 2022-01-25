@@ -47,12 +47,10 @@ const style = `
         	margin: 0;
         	text-align: center;
         }
-
         .banner img {
             width: 100%;
             object-fit: cover;
         }
-
         p.title {
 			/*font-size: 10px;*/
 			margin: 10px 0 -10px;
@@ -187,7 +185,6 @@ const style = `
 			font-size: 11px;
         	color: #5A7386;
         }
-
 		p.price sup::after{
 			content:"";
 			display:block;
@@ -199,7 +196,6 @@ const style = `
 			border-bottom: 1px solid #5A7386;
 			transform:rotate(345deg);
 		}
-
 		p.subprice {
 			color: #183B56;
 			font-weight: 500;
@@ -260,11 +256,9 @@ const mobileCSS = `
 		.banner::after {			
         	top: 15px;      	
 		}
-
 		.banner.mobile::after {
 			opacity: 0;
 		}
-
 		p.title {
 			font-size: 10px;
 			margin: 0;
@@ -290,7 +284,6 @@ const mobileCSS = `
         .banner.mobile .title {
             font-size: 16px;
         }
-
         p.subtitle {
             margin-top: 10px;
             font-size: 20px; 
@@ -299,7 +292,6 @@ const mobileCSS = `
         .banner.mobile p.tap {
         	display: block;
         }
-
 		p.tap {
 			display: none;
 			position: relative;
@@ -309,7 +301,6 @@ const mobileCSS = `
 			font-size: 10px;
 			cursor: pointer;
 		}
-
 		.tap::after {
 			content: "";
 			display: block;
@@ -326,17 +317,14 @@ const mobileCSS = `
 		.features {
 			margin-top: 10px;
 		}
-
        .features ul {
        		padding: 0 10%;
        }
-
         .btn-wrapper button {
             font-size: 12px;
             padding: 15px 5px !important;
             line-height: 15px;
         }
-
         .btn-wrapper button.btn-wrapper_sale {
         	font-size: 14px;
             display: flex;
@@ -344,7 +332,6 @@ const mobileCSS = `
             align-items: center;
             padding: 10px 0 !important;
         }
-
         .btn-wrapper .btn-wrapper_sale span {
             margin: 0;
             font-size: 12px;
@@ -607,7 +594,6 @@ let styles = `
         height: 4px;
         background: no-repeat center / contain;
     }
-
     .slide[data-point="5"] {
         padding-right: 110px;
     }
