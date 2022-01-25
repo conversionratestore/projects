@@ -928,4 +928,7 @@ let mut = new MutationObserver(function (muts) {
 		}, 300)
 	}
 });
+
 mut.observe(document, optionMut);
+
+clarity("set", "timeline_and_SO_banner", "variant_1");
