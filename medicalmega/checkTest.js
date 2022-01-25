@@ -1086,8 +1086,6 @@ function pushDataLayer(action,label) {
                         display: block; }
                     .btn_edit-billing {
                         margin: 15px 0; }
-                    #editor_block {
-                        display: block!important;}
                     .address_book_new .editor {
                         padding-top: 0!important; }
                     .payment {
@@ -1096,44 +1094,93 @@ function pushDataLayer(action,label) {
                         flex-direction: column;}
                     #editor_fields div:nth-child(4), #form_billing div:nth-child(4), #form_billing .editor_right div:nth-child(6) {
                         display: none;} 
-                    #editor_fields .editor_right div:nth-child(6), .address_book_new .small_block, .save_default_address, #editor_block .buttons{
+                    #editor_fields .editor_right div:nth-child(6), .save_default_address {
                         display: none;}
+                    .editor_left div, .editor_right div {
+                        position: relative;}
+                    .error_message {
+                        position: absolute!important;
+                        top: calc(100% - 15px);
+                        left: 0; 
+                        font-size: 12px;
+                        width: 100%;
+                        color: red;
+                    }
+                    .small_block {
+                        margin-bottom: 20px;
+                    }
+                    .small_block.bill_small {
+                        margin-right: 10px;
+                    }
                </style>`);
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
                 document.querySelector('.title_head').innerHTML = 'Shipping Information';
                 document.querySelector('.payment h3 ').style.display = 'none';
 
-                document.querySelector('#step1_form #editor_fields').insertAdjacentHTML('afterend',`
-                    <div class="btns_block">
-                        <label class="align-items-center">
-                            <input type="checkbox" class="checkbox" checked>
-                            <span class="check"></span>
-                            <span>Copy from Shipping info</span>
-                        </label>
-                        <button type="button" class="btn btn_edit-billing">Edit billing information</button>
-                    </div>
-                    <div id="form_billing">${document.querySelector('#editor_fields').innerHTML}</div>
-                `)
-
                 document.querySelector('.payment').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+           
+                let formShipping = document.querySelector('#editor_fields'),
+                    btnBack = document.querySelector('.btn-back'),
+                    formBilling, 
+                    btnsBlock;
 
-                let formBilling = document.querySelector('#form_billing'),
-                    formShipping = document.querySelector('#editor_fields'),
-                    btnsBlock = document.querySelector('.btns_block'),
-                    btnBack = document.querySelector('.btn-back');
+                if (document.querySelector('.content_small') == null) {
+                    document.querySelector('#step1_form #editor_fields').insertAdjacentHTML('afterend',`
+                        <div class="btns_block">
+                            <label class="align-items-center">
+                                <input type="checkbox" class="checkbox" checked>
+                                <span class="check"></span>
+                                <span>Copy from Shipping info to Billing info</span>
+                            </label>
+                            <button type="button" class="btn btn_edit-billing" style="display:none;">Edit billing information</button>
+                        </div>
+                        <div id="form_billing">${document.querySelector('#editor_fields').innerHTML}</div>
+                    `);
 
-                document.querySelector('.btn_edit-billing').addEventListener('click', (e) => {
-                    formBilling.classList.add('active');
-                    formShipping.style.display = 'none';
-                    btnsBlock.style.display = 'none';
-                    document.querySelector('.title_head').innerHTML = `Billing information`;
-                    btnBack.innerHTML = `Back to Shipping info`;
+                    formBilling = document.querySelector('#form_billing'),
+                    btnsBlock = document.querySelector('.btns_block');
 
-                    action = 'Click on edit billing button';
-                    label = 'Step Shipping Information';
-                    pushDataLayer(action,label)
-                })
+                    let btnEditBilling = document.querySelector('.btn_edit-billing');
+
+                    document.querySelector('#editor_block').style.display = 'block';
+                    document.querySelectorAll('.address_book_new .small_block').forEach(el => el.style.display = 'none')
+                    document.querySelectorAll('#editor_block .buttons').forEach(el => el.style.display = 'none')
+                    
+                    function eachFieldsShip(selector) {
+                        formShipping.querySelectorAll(selector).forEach((input, index) => {
+                            !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '';
+                            input.addEventListener('input', (e) => {
+                                if (!formBilling.classList.contains('active') && btnsBlock.querySelector('.checkbox').checked == true) {
+                                    formBilling.querySelectorAll(selector)[index].value = input.value;
+                                }
+                            })
+                        })
+                        formBilling.querySelectorAll(selector).forEach((input) => !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '');
+                    }
+                    eachFieldsShip('input')
+                    eachFieldsShip('select')
+
+                    btnsBlock.querySelector('.checkbox').addEventListener('click', (e) => {
+                        e.target.checked ? btnEditBilling.style.display = 'none' : btnEditBilling.style.display = 'flex';
+                    })
+
+                    btnEditBilling.addEventListener('click', (e) => {
+                        formBilling.classList.add('active');
+                        formShipping.style.display = 'none';
+                        btnsBlock.style.display = 'none';
+                        document.querySelector('.title_head').innerHTML = `Billing information`;
+                        btnBack.innerHTML = `Back to Shipping info`;
+    
+                        action = 'Click on edit billing button';
+                        label = 'Step Shipping Information';
+                        pushDataLayer(action,label)
+                    })
+                } else {
+                    document.querySelector('#editor_block').style.display = 'none';
+                }
+
+            
                 btnBack.addEventListener('click', (e) => {
                     if (formBilling.classList.contains('active')) {
                         e.preventDefault()
@@ -1153,21 +1200,7 @@ function pushDataLayer(action,label) {
                     }
                     pushDataLayer(action,label)
                 })
-                formShipping.querySelectorAll('input').forEach((input, index) => {
-                    input.addEventListener('input', (e) => {
-                        if (!formBilling.classList.contains('active')) {
-                            formBilling.querySelectorAll('input')[index].value = input.value;
-                        }
-                    })
-                })
-                formShipping.querySelectorAll('select').forEach((select, index) => {
-                    select.addEventListener('input', (e) => {
-                        if (!formBilling.classList.contains('active')) {
-                            formBilling.querySelectorAll('select')[index].value = select.value;
-                        }
-                    })
-                })
-
+              
                 function postAddress(type,fname,lname,addr1,city,state,zip,country,phn,email) {
                     return {
                         headers: {
@@ -1195,55 +1228,65 @@ function pushDataLayer(action,label) {
                         )
                     }
                 }
-
-                document.querySelector('.btn-next').addEventListener('click', () => {
-
-                    let addressesObj = [
-                        {
-                            "type": 'ship',
-                            "fname": formShipping.querySelector('#fname').value,
-                            "lname": formShipping.querySelector('#lname').value,
-                            "addr1": formShipping.querySelector('#addr1').value,
-                            "city": formShipping.querySelector('#city').value,
-                            "state": formShipping.querySelector('#state').value,
-                            "zip": formShipping.querySelector('#zip').value,
-                            "country": formShipping.querySelector('#country').value,
-                            "phn": formShipping.querySelector('#phn').value,
-                            "email": formShipping.querySelector('#email').value
-                        },
-                        {
-                            "type": 'bill',
-                            "fname": formBilling.querySelector('#fname').value,
-                            "lname": formBilling.querySelector('#lname').value,
-                            "addr1": formBilling.querySelector('#addr1').value,
-                            "city": formBilling.querySelector('#city').value,
-                            "state": formBilling.querySelector('#state').value,
-                            "zip": formBilling.querySelector('#zip').value,
-                            "country": formBilling.querySelector('#country').value,
-                            "phn": formBilling.querySelector('#phn').value,
-                            "email": formBilling.querySelector('#email').value
-                        }
-                    ]
-                    // addressesObj["ship"].push(
-                    //    )
-                    // addressesObj["bill"].push()
-
-                    for (let j = 0; j < addressesObj.length; j++) {
-                        console.log(addressesObj[j].type + " : " + addressesObj[j].fname)
-                        fetch(`/api/v1/addresses`, postAddress(addressesObj[j].type,addressesObj[j].fname,addressesObj[j].lname,addressesObj[j].addr1,addressesObj[j].city,addressesObj[j].state,addressesObj[j].zip,addressesObj[j].country,addressesObj[j].phn,addressesObj[j].email)).then(res => res.json()).then(data => {
-                            console.log(data)
-                            console.log(data.errors)
-                            let errorsData = data.errors;
-                            for (let i = 0; i < errorsData.length; i++) {
-                                if (j == 0) {
-
-                                }
+                function setError(className,messages) {
+                    document.querySelectorAll(`${className} .error_message`).forEach(error => error.innerHTML = '')
+                    for (let i = 0; i < messages.length; i++) {
+                        let firstWordError = messages[i].split(' ')[0].toLowerCase();
+                        console.log(firstWordError)
+                        document.querySelectorAll(`${className} span div label`).forEach((el,index) => {
+                            console.log(el.innerHTML.includes(firstWordError))
+                            if (el.innerHTML.toLowerCase().includes(firstWordError) == true) {
+                                document.querySelectorAll(`${className} .error_message`)[index].innerHTML = messages[i];
                             }
+                        })  
+                    }
+                }
+                function setAddressesObj(parent,type) {
+                    return  {
+                        "type": type,
+                        "fname": parent.querySelector('#fname').value,
+                        "lname": parent.querySelector('#lname').value,
+                        "addr1": parent.querySelector('#addr1').value,
+                        "city": parent.querySelector('#city').value,
+                        "state": parent.querySelector('#state').value,
+                        "zip": parent.querySelector('#zip').value,
+                        "country": parent.querySelector('#country').value,
+                        "phn": parent.querySelector('#phn').value,
+                        "email": parent.querySelector('#email').value
+                    }
+                }
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    if (document.querySelector('.content_small') == null) {
+                 
+                        let addressesObj = [];
+                        if (btnsBlock.querySelector('.checkbox').checked) {
+                            addressesObj.push(setAddressesObj(formShipping,'ship'))
+                            addressesObj.push(setAddressesObj(formShipping,'bill'))
+                        } else {
+                            addressesObj.push(setAddressesObj(formShipping,'ship'))
+                            addressesObj.push(setAddressesObj(formBilling,'bill'))
+                        }
+                    
+                        let request1 = fetch(`/api/v1/addresses`, postAddress(addressesObj[0].type,addressesObj[0].fname,addressesObj[0].lname,addressesObj[0].addr1,addressesObj[0].city,addressesObj[0].state,addressesObj[0].zip,addressesObj[0].country,addressesObj[0].phn,addressesObj[0].email)).then(res => res.json()).then(data => {
+                            console.log(data)
+                            let errorsData = data.errors;
+                            setError('#editor_fields', errorsData)
                         }).catch((error) => {
                             console.error('Error:', error);
                         })
-                    }
 
+                        let request2 = fetch(`/api/v1/addresses`, postAddress(addressesObj[1].type,addressesObj[1].fname,addressesObj[1].lname,addressesObj[1].addr1,addressesObj[1].city,addressesObj[1].state,addressesObj[1].zip,addressesObj[1].country,addressesObj[1].phn,addressesObj[1].email)).then(res => res.json()).then(data => {
+                            console.log(data)
+                            let errorsData = data.errors;
+                            setError('#form_billing', errorsData)
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                        })
+
+                        Promise.all([request1,request2]).then(res => {
+                            if (errorsData.length == 0) window.location.href = '/checkout/step2'
+                        })
+                    }
 
                     action = 'Click on Next button';
                     label = 'Step Shipping Information';
