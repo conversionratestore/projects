@@ -1,4 +1,3 @@
-// window.onload = function () {
 let scriptCustom = document.createElement("script")
 scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
 scriptCustom.async = false
@@ -113,9 +112,102 @@ let styleComparisonBlock = /*html*/ `
     padding: 20px 47px;
     margin-top: 40px;
     margin-bottom: 0;
+    position: relative;
   }
 
-  .comparison_block > p span {
+  .comparison_block > p > svg{
+    position: absolute;
+    content: "";
+    bottom: 41px;
+    right: 19px;
+    width: 40px;
+  }
+
+
+
+  .mini_box{
+    bottom: 72px !important;
+    right: 19px !important;
+    opacity: 0;
+  }
+
+
+  .hidden_text{
+    opacity: 0;
+    position: absolute;
+    top: -72px;
+    right: 7px;
+    width: 100%;
+    background: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    text-transform: none;
+    box-shadow: 0px 0.688073px 4.06px rgb(0 0 0 / 7%), 6px 7.26px 20.4px rgb(0 0 0 / 10%);
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 12px !important;
+    line-height: 17px !important;
+    color: #212529;
+    margin: 0;
+    padding: 10px;
+    max-width: 245px;
+    text-align: left;
+  }
+
+     @media (min-width: 413px){
+     .mini_box {
+          right: 40px !important;
+      }
+      .comparison_block > p > svg {
+       right: 40px;
+     }
+
+     .hidden_text{
+       right: 30px;
+     }
+   }
+
+  @media (max-width: 320px){
+     .mini_box {
+        right: -3px !important;
+      }
+      .comparison_block > p > svg {
+       right: -6px;
+     }
+
+     .hidden_text{
+           right: -10px;
+     }
+   }
+
+     @media (width: 360px){
+     .mini_box {
+        bottom: 100px !important;
+      }
+      .comparison_block > p > svg {
+      right: 19px;
+      bottom: 84px;
+     }
+
+     .hidden_text{
+           right: -10px;
+     }
+   }
+
+    @media (max-width: 280px){
+     .mini_box {
+        bottom: 84px !important;
+      }
+
+      .comparison_block > p > svg {
+      bottom: 65px;
+     }
+
+     .hidden_text{
+           right: -10px;
+     }
+   }
+
+  .comparison_block > p >span span {
     color: #ff3c81;
   }
 
@@ -204,8 +296,6 @@ let styleComparisonBlock = /*html*/ `
     background: #212529;
   }
 
-
-
   @media (max-width: 321px) {
     .comparison_block > p {
       padding: 20px 19px;
@@ -214,6 +304,10 @@ let styleComparisonBlock = /*html*/ `
     .comparison_block table tbody tr td:first-child div {
       padding-right: 20px;
     }
+  }
+
+  .toggle_opacity{
+    opacity: 1;
   }
 </style>
 `
@@ -306,9 +400,18 @@ let sliderBox = /*html */ `
           </tr>
         </tbody>
       </table>
-      <p>
-        Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray
-      </p>
+     
+        <p>
+          <span>Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray</span>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.47506 7.3V5.5M5.47506 3.70005H5.4858M9.95 5.5C9.95 3.01472 7.94647 1 5.475 1C3.00353 1 1 3.01472 1 5.5C1 7.98528 3.00353 10 5.475 10C7.94647 10 9.95 7.98528 9.95 5.5Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="hidden_text">The calculation is based on comparing the price of Buzzpatch to the price of the most popular mosquito repelling spay available on the market.</span>
+          <svg class="mini_box" width="27" height="10" viewBox="0 0 27 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.6905 9.11818C13.9833 9.64203 13.0167 9.64203 12.3095 9.11818L0 -9.53674e-07L27 -9.53674e-07L14.6905 9.11818Z" fill="white"/>
+          </svg>
+        </p>
+
     </section>
 </div>
 `
@@ -355,6 +458,20 @@ let slickInterval = setInterval(() => {
   }
 }, 100)
 
+if (document.querySelector(".comparison_block > p > svg")) {
+  document.querySelector(".comparison_block > p > svg").addEventListener("click", () => {
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp: Pricing comparison option",
+      eventAction: "Click tooltip",
+    })
+
+    document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
+    document.querySelector(".mini_box").classList.toggle("toggle_opacity")
+  })
+}
+
 clarity("set", "hypothesis_3", "comparison_table")
 
 window.dataLayer = window.dataLayer || []
@@ -377,4 +494,3 @@ dataLayer.push({
   a.appendChild(r)
 })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=")
 hj("event", "pricing_comparison_option")
-// }
