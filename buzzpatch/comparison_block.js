@@ -459,7 +459,12 @@ let slickInterval = setInterval(() => {
 }, 100)
 
 if (document.querySelector(".comparison_block > p > svg")) {
-  document.querySelector(".comparison_block > p > svg").addEventListener("click", () => {
+  const toggleMenu = () => {
+    document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
+    document.querySelector(".mini_box").classList.toggle("toggle_opacity")
+  }
+
+  document.querySelector(".comparison_block > p > svg").addEventListener("click", (e) => {
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
@@ -467,8 +472,12 @@ if (document.querySelector(".comparison_block > p > svg")) {
       eventAction: "Click tooltip",
     })
 
-    document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
-    document.querySelector(".mini_box").classList.toggle("toggle_opacity")
+    toggleMenu()
+  })
+
+  document.addEventListener("click", (e) => {
+    document.querySelector(".hidden_text")?.classList.remove("toggle_opacity")
+    document.querySelector(".mini_box")?.classList.remove("toggle_opacity")
   })
 }
 
