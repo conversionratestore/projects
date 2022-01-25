@@ -168,6 +168,27 @@ let styleComparisonBlock = /*html*/ `
      }
    }
 
+       @media (max-width: 280px){
+     .mini_box {
+        bottom: 107px !important;
+        right: -6px !important;
+      }
+
+      .comparison_block > p > svg {
+        bottom: 92px;
+        right: -8px;
+     }
+
+     .hidden_text{
+           right: -10px;
+           top: -96px;
+     }
+
+     .comparison_block > p{
+           width: 100%;
+     }
+   }
+
   .comparison_block > p >span span {
     color: #ff3c81;
   }
