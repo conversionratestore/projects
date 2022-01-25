@@ -1,6 +1,3 @@
-$(document).ready(function() {
-	console.log( "ready!" );
-
 // PART ONE
 const style = `
     <style>  
@@ -946,9 +943,3 @@ let mut = new MutationObserver(function (muts) {
 	}
 });
 mut.observe(document, optionMut);
-
-
-console.log('loaded')
-
-});
-
