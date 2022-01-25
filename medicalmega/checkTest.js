@@ -1132,7 +1132,7 @@ function pushDataLayer(action,label) {
                             <label class="align-items-center">
                                 <input type="checkbox" class="checkbox" checked>
                                 <span class="check"></span>
-                                <span>Copy from Shipping info to Billing info</span>
+                                <span>Copy from Shipping to Billing address</span>
                             </label>
                             <button type="button" class="btn btn_edit-billing" style="display:none;">Edit billing information</button>
                         </div>
@@ -1181,8 +1181,18 @@ function pushDataLayer(action,label) {
                     document.querySelector('#editor_block').style.display = 'none';
                     document.querySelectorAll('.small_block').forEach((block) => {
                         if (block.querySelector('.content_small') == null) {
-                            block.querySelector('.head2').click();
+                            block.querySelector('.head2:last-child').click();
                         }
+                        block.querySelector('.head2:last-child').addEventListener('click', () => {
+                            if (block.classList.contains('bill_small')) {
+                                document.querySelector('#editor_fields').insertAdjacentHTML('afterbegin',` 
+                                    <label class="align-items-center">
+                                        <input type="checkbox" class="checkbox" checked>
+                                        <span class="check"></span>
+                                        <span>Copy from Shipping address</span>
+                                    </label>`)
+                            }
+                        })
                     })
                 }
 
