@@ -1,13 +1,3 @@
-let scriptCustom = document.createElement("script")
-scriptCustom.src = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
-scriptCustom.async = false
-document.head.appendChild(scriptCustom)
-
-let scriptCustomStyle = document.createElement("link")
-scriptCustomStyle.href = "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
-scriptCustomStyle.rel = "stylesheet"
-document.head.appendChild(scriptCustomStyle)
-
 let styleComparisonBlock = /*html*/ `
 <style>
   .bp-tooltip .bp-tooltiptext {
@@ -31,17 +21,9 @@ let styleComparisonBlock = /*html*/ `
     margin-bottom: 0 !important;
   }
 
-  .wave-effect.js-mobile svg {
-    display: none;
-  }
 
-  .wave-effect.js-mobile svg path {
-    fill: #eceef0;
-  }
 
-  .wave-effect {
-    margin-bottom: -2px;
-  }
+
 
   .comparison_slider_nav .col-lg-3.text-center.js-heading {
     margin-top: 10px;
@@ -68,8 +50,13 @@ let styleComparisonBlock = /*html*/ `
     color: #ff3c81 !important;
   }
 
+  section#purchase{
+    padding-bottom: 0;
+  }
+
   .img_block {
     margin-bottom: -2px;
+    background: #F9F8F6;
   }
 
   .img_block img {
@@ -80,6 +67,7 @@ let styleComparisonBlock = /*html*/ `
     background-size: 100%;
     background-color: #eceef0;
     padding: 30px 16px 40px;
+    margin-bottom: 37px;
   }
 
   .comparison_block h2,
@@ -149,6 +137,12 @@ let styleComparisonBlock = /*html*/ `
     padding: 10px;
     max-width: 245px;
     text-align: left;
+  }
+
+  @media (width: 360px) {
+    .comparison_block > p{
+      font-size: 24px !important;
+    }
   }
 
   @media (max-width: 320px) {
@@ -292,15 +286,11 @@ let styleComparisonBlock = /*html*/ `
 </style>
 `
 
-let imgBlock = `
+let comparisonBlock = /*html*/ `
 <div class="img_block">
-  <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block.svg" alt="background figure">
+  <img src="https://conversionratestore.github.io/projects/buzzpatch/img/background_comparison_block2.svg" alt="background figure">
 </div>
-`
-
-let sliderBox = /*html */ `
-<div class="comparison_slider_nav">
-  <section class="comparison_block slider_custom_list">
+    <section class="comparison_block">
       <h2>
         How expensive is Buzzpatch <br />
         compared to mosquito <br />
@@ -380,7 +370,6 @@ let sliderBox = /*html */ `
           </tr>
         </tbody>
       </table>
-     
         <p>
           <span>Buzzpatch is <span>UP to 25% <br />cheaper</span> than a bug spray</span>
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -391,53 +380,13 @@ let sliderBox = /*html */ `
             <path d="M14.6905 9.11818C13.9833 9.64203 13.0167 9.64203 12.3095 9.11818L0 -9.53674e-07L27 -9.53674e-07L14.6905 9.11818Z" fill="white"/>
           </svg>
         </p>
-
     </section>
-</div>
 `
 
 document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
-document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterbegin", imgBlock)
-document.querySelector(".bp-comparison.js-mobile").classList.add("slider_custom_list")
+document.querySelector("#reviews").insertAdjacentHTML("beforebegin", comparisonBlock)
 
-document.querySelector(".wave-effect.js-mobile").insertAdjacentHTML("afterend", sliderBox)
-
-document.querySelectorAll(".col-lg-7.text-center.d-flex.align-items-center").forEach((el) => el.remove())
-
-if (document.querySelector(".comparison_slider_nav")) {
-  document.querySelector(".comparison_block").after(document.querySelector(".bp-comparison.js-mobile"))
-
-  document.querySelector(".comparison_slider_nav .js-title.text-dark").innerText = `Buzzpatch \nvs other mosquito\n repellents`
-}
-
-let slickInterval = setInterval(() => {
-  if (typeof jQuery(".comparison_slider_nav").slick === "function" && document.querySelector(".comparison_slider_nav")) {
-    clearInterval(slickInterval)
-
-    //  slider
-    setTimeout(() => {
-      let slider = $(".comparison_slider_nav").slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true,
-        focusOnSelect: true,
-        adaptiveHeight: true,
-      })
-
-      slider.on("swipe", () => {
-        window.dataLayer = window.dataLayer || []
-        dataLayer.push({
-          event: "event-to-ga",
-          eventCategory: "Exp: Pricing comparison option",
-          eventAction: "Swipe slider",
-          eventLabel: `Slider swipe`,
-        })
-      })
-    }, 200)
-  }
-}, 100)
-
+// click on tooltip
 if (document.querySelector(".comparison_block > p > svg")) {
   const toggleMenu = () => {
     document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
@@ -449,7 +398,7 @@ if (document.querySelector(".comparison_block > p > svg")) {
     dataLayer.push({
       event: "event-to-ga",
       eventCategory: "Exp: Pricing comparison option",
-      eventAction: "Click tooltip",
+      eventAction: "Click on the hint",
     })
 
     e.stopPropagation()
@@ -463,7 +412,7 @@ if (document.querySelector(".comparison_block > p > svg")) {
   })
 }
 
-clarity("set", "hypothesis_3", "comparison_table")
+clarity("set", "comparison_option", "variant_1")
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
