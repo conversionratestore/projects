@@ -179,7 +179,7 @@ let styleComparisonBlock = /*html*/ `
     justify-content: center;
   }
 
-  .comparison_block table thead th div:first-of-type{
+  .comparison_block table thead th div:first-of-type > img{
     padding-top: 25px;
   }
 
