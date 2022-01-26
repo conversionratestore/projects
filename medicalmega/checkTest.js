@@ -938,9 +938,9 @@ function pushDataLayer(action,label) {
                                 } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in' && document.querySelector('.myAccount') != null) {
                                     action = `Click on the product cards`;
                                     label = 'Registration step';
-                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
                                     action = `Click on the product cards`;
-                                    label = 'Billing and Shipping information step';
+                                    label = 'Shipping information step';
                                 } else if (window.location.pathname.includes('checkout/step2') || window.location.pathname.includes('guest-checkout2.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Delivery Method step';
@@ -1215,7 +1215,7 @@ function pushDataLayer(action,label) {
                     })
                 } else {
                     document.querySelector('#editor_fields').insertAdjacentHTML('beforebegin',` 
-                        <label class="align-items-center copy_ship" style="display:none;">
+                        <label class="align-items-center copy_ship" style="opacity:0;pointer-events:none;">
                             <input type="checkbox" class="checkbox">
                             <span class="check"></span>
                             <span>Copy from Shipping address</span>
@@ -1223,23 +1223,28 @@ function pushDataLayer(action,label) {
 
                     let copyShip = document.querySelector('.copy_ship');
 
-                    document.querySelector('#editor_block').style.display = 'none';
+                    function toggleCopyShip(e) {
+                        copyShip.querySelector('.checkbox').checked = false;
+                        if (e.target.closest('.bill_small') && document.querySelector('.ship_small .radio_block') != null) {
+                            copyShip.style = 'opacity:1;pointer-events:auto;'
+                        } else {
+                            copyShip.style = 'opacity:0;pointer-events:none;'
+                        }
+                        action = `Click on ${e.target.innerText} button`;
+                        label = 'Step Shipping information';
+                        pushDataLayer(action,label)
+                    }
+
                     document.querySelectorAll('.small_block').forEach((block) => {
                         if (block.querySelector('.content_small') == null) {
+                            console.log('click')
                             block.querySelector('.head2:last-child').click();
+                        } else {
+                            block.querySelector('.editLink').addEventListener('click', (e) => toggleCopyShip(e))
                         }
-                        block.querySelector('.head2:last-child').addEventListener('click', (e) => {
-                            console.log(e.target.closest('.bill_small') != null)
-                            if (e.target.closest('.bill_small')) {
-                                copyShip.style = 'opacity:1;pointer-events:auto;'
-                            } else {
-                                copyShip.style = 'opacity:0;pointer-events:none;'
-                            }
-                            action = `Click on ${e.target.innerText} button`;
-                            label = 'Step Shipping information';
-                            pushDataLayer(action,label)
-                         })
+                        block.querySelector('.head2:last-child').addEventListener('click', (e) => toggleCopyShip(e))
                     })
+                    
                 }
 
                 btnBack.addEventListener('click', (e) => {
@@ -1324,8 +1329,7 @@ function pushDataLayer(action,label) {
                             }
                         })
                     } else {
-                        document.querySelector('#step1_form div[align="right"] input').click()
-
+                        document.querySelector('#step1_form div[align="right"] input[alt="Submit"]').click();
                     }
 
                     action = 'Click on Next button';
@@ -1393,7 +1397,7 @@ function pushDataLayer(action,label) {
                 });
 
                 // document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
             }
             if (location.pathname == '/checkout/step3') {
@@ -1755,7 +1759,7 @@ function pushDataLayer(action,label) {
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
-                document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
+                document.querySelector('.title_head').innerHTML = 'Shipping Information'
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
                 document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
@@ -1774,12 +1778,12 @@ function pushDataLayer(action,label) {
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
                     action = 'Click on Back to Personal Info button';
-                    label = 'Section Billing And Shipping Information';
+                    label = 'Shipping Information step';
                     pushDataLayer(action,label)
                 })
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
-                    label = 'Section Billing And Shipping Information';
+                    label = 'Shipping Information step';
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click()
                 })
@@ -1800,8 +1804,9 @@ let configMut = {
     childList: true,
     subtree: true
 };
+
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.copy_ship') && window.location.href.includes('/checkout/step1')) {
+    if (document.querySelector('.copy_ship') && window.location.href.includes('/checkout/step1') && document.querySelector('.ship_small .radio_block')) {
         mut.disconnect();
         document.querySelector('.copy_ship').addEventListener('click', (e) => {
             e.stopImmediatePropagation()
@@ -1826,7 +1831,7 @@ let mut = new MutationObserver(function (muts) {
                         setAddress('input')
                         setAddress('select')
                     }
-
+        
                 }).catch((error) => {
                     console.error('Error:', error);
                 })
