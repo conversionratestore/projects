@@ -788,7 +788,7 @@ let startFuncMobile = setInterval(() => {
         let dsp = dQueryDate.split("-")
 
         let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-        let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+        let daySeven = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
 
         if (document.querySelector(".price_block .blur_block")) {
           // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
