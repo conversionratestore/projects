@@ -113,8 +113,8 @@ let styleComparisonBlock = /*html*/ `
 
   .mini_box {
     position: absolute;
-    bottom: 72px !important;
-    right: 19px !important;
+    bottom: -9px;
+    right: 20px;
     opacity: 0;
   }
 
@@ -375,10 +375,11 @@ let comparisonBlock = /*html*/ `
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.47506 7.3V5.5M5.47506 3.70005H5.4858M9.95 5.5C9.95 3.01472 7.94647 1 5.475 1C3.00353 1 1 3.01472 1 5.5C1 7.98528 3.00353 10 5.475 10C7.94647 10 9.95 7.98528 9.95 5.5Z" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span class="hidden_text">The calculation is based on comparing the price of Buzzpatch to the price of the most popular mosquito repelling spay available on the market.</span>
+          <span class="hidden_text">The calculation is based on comparing the price of Buzzpatch to the price of the most popular mosquito repelling spay available on the market.
           <svg class="mini_box" width="27" height="10" viewBox="0 0 27 10" xmlns="http://www.w3.org/2000/svg">
             <path d="M14.6905 9.11818C13.9833 9.64203 13.0167 9.64203 12.3095 9.11818L0 -9.53674e-07L27 -9.53674e-07L14.6905 9.11818Z" fill="white"/>
           </svg>
+          </span>
         </p>
     </section>
 `
