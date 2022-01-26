@@ -112,6 +112,7 @@ let styleComparisonBlock = /*html*/ `
   }
 
   .mini_box {
+    position: absolute;
     bottom: 72px !important;
     right: 19px !important;
     opacity: 0;
