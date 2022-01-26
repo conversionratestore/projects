@@ -931,4 +931,11 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-clarity("set", "timeline_and_SO_banner", "variant_1");
+let isClarify = setInterval(() => {
+	if(typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity("set", "timeline_and_SO_banner", "variant_1");
+	}
+}, 100)
+
+
