@@ -759,7 +759,7 @@ let startFunc = setInterval(() => {
         let dsp = dQueryDate.split("-")
 
         let daySevenToday = new Date(new Date().setDate(new Date().getDate() + 7)).toDateString().split(" ")
-        let daySeven = new Date(new Date().setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
+        let daySeven = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
         console.log(daySeven)
 
         if (document.querySelector(".price_block .blur_block")) {
