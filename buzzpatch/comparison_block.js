@@ -104,9 +104,8 @@ let styleComparisonBlock = /*html*/ `
     width: max-content;
   }
 
-  .comparison_block > p > svg {
+  .comparison_block > p > svg:not(.mini_box) {
     position: absolute;
-    content: "";
     bottom: 41px;
     right: 19px;
     width: 40px;
@@ -280,7 +279,7 @@ let styleComparisonBlock = /*html*/ `
     }
   }
 
-  .toggle_opacity {
+  .hidden_text.toggle_opacity,  .mini_box.toggle_opacity {
     opacity: 1;
   }
 </style>
