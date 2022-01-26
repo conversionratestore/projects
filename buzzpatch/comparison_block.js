@@ -145,35 +145,9 @@ let styleComparisonBlock = /*html*/ `
     }
   }
 
-  @media (max-width: 320px) {
-    .mini_box {
-      right: -3px !important;
-    }
-    .comparison_block > p > svg {
-      right: -6px;
-    }
 
-    .hidden_text {
-      right: -10px;
-    }
-  }
 
   @media (max-width: 280px) {
-    .mini_box {
-      bottom: 108px !important;
-      right: -6px !important;
-    }
-
-    .comparison_block > p > svg {
-      bottom: 92px;
-      right: -8px;
-    }
-
-    .hidden_text {
-      right: -10px;
-      top: -96px;
-    }
-
     .comparison_block > p {
       width: 100%;
     }
@@ -278,11 +252,22 @@ let styleComparisonBlock = /*html*/ `
     .comparison_block table tbody tr td:first-child div {
       padding-right: 20px;
     }
+
+      .comparison_block > p > svg:not(.mini_box){
+        bottom: 57px;
+        right: 6px;
+      }
+      
+      .hidden_text{
+            right: -7px;
+      }
   }
 
   .hidden_text.toggle_opacity,  .mini_box.toggle_opacity {
     opacity: 1;
   }
+
+
 </style>
 `
 
@@ -387,7 +372,7 @@ let comparisonBlock = /*html*/ `
 document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
 document.querySelector("#reviews").insertAdjacentHTML("beforebegin", comparisonBlock)
 
-// click on tooltip
+// click on hint
 if (document.querySelector(".comparison_block > p > svg")) {
   const toggleMenu = () => {
     document.querySelector(".hidden_text").classList.toggle("toggle_opacity")
