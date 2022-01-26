@@ -1,6 +1,12 @@
 let action, label, data;
 
-function setOptionFetch(bodyOption) {
+let headerOptionsAddress =  {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cart-Token': mm.ctoken,
+    'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
+}
+
+function postCart(bodyOption) {
     let optionFetch = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -9,6 +15,31 @@ function setOptionFetch(bodyOption) {
         body: bodyOption
     }
     return optionFetch
+}
+
+
+function postAddress(type,fname,lname,addr1,city,state,zip,country,phn,email) {
+    return {
+        headers: headerOptionsAddress,
+        method: 'POST',
+        body: JSON.stringify({
+                "isPrimary": "1",
+                "type": type,
+                "fname": fname,
+                "lname": lname,
+                "addr1": addr1,
+                "addr2": "",
+                "city": city,
+                "state": state,
+                "zip": zip,
+                "country": country,
+                "phn": phn,
+                "alt_phn": "",
+                "email": email,
+                "fax": ""
+            }
+        )
+    }
 }
 
 function chengeTotal(data) {
@@ -83,7 +114,7 @@ function chengeQuantity() {
 
                 let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
 
-                fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+                fetch('/cart.html', postCart(updateCart)).then(res => res.json()).then(data => {
                     chengeTotal(data["cart"])
                 })
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
@@ -97,7 +128,7 @@ function chengeQuantity() {
 
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
 
-            fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
+            fetch('/cart.html', postCart(chengedCart)).then(res => res.json()).then(data => {
                 chengeTotal(data["cart"])
             })
         });
@@ -113,7 +144,7 @@ function removeProduct() {
 
             let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
 
-            fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+            fetch('/cart.html', postCart(updateCart)).then(res => res.json()).then(data => {
                 chengeTotal(data["cart"])
             })
             item.closest('.checkout-product').remove();
@@ -870,7 +901,7 @@ function pushDataLayer(action,label) {
             </div>`);
             if (!window.location.pathname.includes('checkout/step4') && !window.location.pathname.includes('guest-checkout4.php')) {
                 document.querySelector('#logo img').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/logo.svg');
-                fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
+                fetch('/cart.html', postCart(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                     for (let i = 0; i < data["items"].length; i++) {
                         let product = `
                         <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
@@ -1112,6 +1143,11 @@ function pushDataLayer(action,label) {
                         margin-bottom: 20px; }
                     .small_block.bill_small {
                         margin-right: 10px; }
+                    #editor_block label {
+                        display: flex!important;
+                        align-items: center;}
+                    #editor_block label.copy_ship {
+                        margin-bottom: 32px;}
                </style>`);
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
@@ -1178,21 +1214,31 @@ function pushDataLayer(action,label) {
                         pushDataLayer(action,label)
                     })
                 } else {
+                    document.querySelector('#editor_fields').insertAdjacentHTML('beforebegin',` 
+                        <label class="align-items-center copy_ship" style="display:none;">
+                            <input type="checkbox" class="checkbox">
+                            <span class="check"></span>
+                            <span>Copy from Shipping address</span>
+                        </label>`)
+
+                    let copyShip = document.querySelector('.copy_ship');
+
                     document.querySelector('#editor_block').style.display = 'none';
                     document.querySelectorAll('.small_block').forEach((block) => {
                         if (block.querySelector('.content_small') == null) {
                             block.querySelector('.head2:last-child').click();
                         }
-                        block.querySelector('.head2:last-child').addEventListener('click', () => {
-                            if (block.classList.contains('bill_small')) {
-                                document.querySelector('#editor_fields').insertAdjacentHTML('afterbegin',` 
-                                    <label class="align-items-center">
-                                        <input type="checkbox" class="checkbox" checked>
-                                        <span class="check"></span>
-                                        <span>Copy from Shipping address</span>
-                                    </label>`)
+                        block.querySelector('.head2:last-child').addEventListener('click', (e) => {
+                            console.log(e.target.closest('.bill_small') != null)
+                            if (e.target.closest('.bill_small')) {
+                                copyShip.style = 'opacity:1;pointer-events:auto;'
+                            } else {
+                                copyShip.style = 'opacity:0;pointer-events:none;'
                             }
-                        })
+                            action = `Click on ${e.target.innerText} button`;
+                            label = 'Step Shipping information';
+                            pushDataLayer(action,label)
+                         })
                     })
                 }
 
@@ -1215,34 +1261,6 @@ function pushDataLayer(action,label) {
                     }
                     pushDataLayer(action,label)
                 })
-              
-                function postAddress(type,fname,lname,addr1,city,state,zip,country,phn,email) {
-                    return {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'Cart-Token': mm.ctoken,
-                            'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
-                        },
-                        method: 'POST',
-                        body: JSON.stringify({
-                                "isPrimary": "1",
-                                "type": type,
-                                "fname": fname,
-                                "lname": lname,
-                                "addr1": addr1,
-                                "addr2": "",
-                                "city": city,
-                                "state": state,
-                                "zip": zip,
-                                "country": country,
-                                "phn": phn,
-                                "alt_phn": "",
-                                "email": email,
-                                "fax": ""
-                            }
-                        )
-                    }
-                }
                 function setError(className,messages) {
                     document.querySelectorAll(`${className} .error_message`).forEach(error => error.classList.remove('active'))
 
@@ -1339,19 +1357,7 @@ function pushDataLayer(action,label) {
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.add('pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink');
-                if (document.querySelector('.head2.pointer') != null) {
-                    document.querySelectorAll('.head2.pointer').forEach((el, index) => {
-                        el.addEventListener('click', () => {
-                            if (el.closest('.bill_small')) {
-                                action = 'Click on Billing Address button';
-                            } else if (el.closest('.ship_small')) {
-                                action = 'Click on Shipping Address button';
-                            }
-                            label = el.innerText;
-                            pushDataLayer(action,label)
-                        })
-                    })
-                }
+          
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
@@ -1790,8 +1796,46 @@ function pushDataLayer(action,label) {
         }
     }
 // };
-
+let configMut = {
+    childList: true,
+    subtree: true
+};
 let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('.copy_ship') && window.location.href.includes('/checkout/step1')) {
+        mut.disconnect();
+        document.querySelector('.copy_ship').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            if (e.target.checked == true) {
+                fetch(`/api/v1/addresses/${document.querySelector('.ship_small .radio_block:last-child').getAttribute('id').split('_')[2]}`, {
+                    headers: headerOptionsAddress,
+                    method: 'GET'
+                }).then(res => res.json()).then(data => {
+                    console.log(data) 
+                    document.querySelector('#editor_fields').style.display = 'none';
+                    let address = data.address;
+                    console.log(address.length) 
+                    for (const key in address) {
+                        console.log(key + " : " + address[key])
+                        function setAddress(element) {
+                            document.querySelectorAll(`#editor_fields ${element}`).forEach((input) => {
+                                if (input.getAttribute('id') == key) {
+                                    input.value = address[key]
+                                }
+                            })
+                        }
+                        setAddress('input')
+                        setAddress('select')
+                    }
+
+                }).catch((error) => {
+                    console.error('Error:', error);
+                })
+            } else {
+                document.querySelector('#editor_fields').style.display = 'block';
+            }
+        })
+    }
+    mut.observe(document, configMut);
     if (document.querySelector('label') != null) {
         mut.disconnect();
         document.querySelectorAll('label').forEach(el => {
@@ -1800,11 +1844,10 @@ let mut = new MutationObserver(function (muts) {
             }
         })
     }
+    mut.observe(document, configMut);
 })
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+mut.observe(document, configMut);
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1483840,hjsv:6};
