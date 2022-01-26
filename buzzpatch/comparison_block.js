@@ -179,6 +179,10 @@ let styleComparisonBlock = /*html*/ `
     justify-content: center;
   }
 
+  .comparison_block table thead th div:first-of-type{
+    padding-top: 25px;
+  }
+
   .comparison_block table thead th span {
     display: inline-block;
     margin-top: 7px;
