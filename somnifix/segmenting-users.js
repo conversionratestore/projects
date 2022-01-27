@@ -520,7 +520,11 @@ window.onload = function () {
             }
 
         }
-        
+        @media only screen and (max-width: 480px) {
+            .sleep_impediments {
+                background-image: url('url(https://conversionratestore.github.io/projects/somnifix/img/content/drops.svg)');
+            }
+        }
         @media only screen and (max-width: 359px) {
             .sleep_issue_contents {
                 padding: 30px 10px 20px;
