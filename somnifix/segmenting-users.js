@@ -307,7 +307,13 @@ window.onload = function () {
             left: 0;
             transition: transform 0.3s ease;
         }
+        .flex-column-reverse {
+            flex-direction: column-reverse;
+        }
         @media only screen and (min-width: 992px) {
+            .flex-lg-row {
+                flex-direction: row;
+            }
             .topbar {
                 position: absolute;
                 transform: translate(0,0);
@@ -459,9 +465,9 @@ window.onload = function () {
                 width: 100%;
                 padding: 0 0 20px 0;
             }
-            .row {
-                flex-direction: column-reverse;
-            }
+            // .row {
+            //     flex-direction: column-reverse;
+            // }
         }
         @media only screen and (max-width: 767px) {
             .sleep_impediments button {
@@ -795,7 +801,7 @@ window.onload = function () {
         <h3>Do SomniFix Strips really work? Just ask Steve.</h3>
         <p>The key to getting high-quality, silent sleep is simple. Close your mouth, and breathe through your nose. SomniFix Strips make that easy.</p>
     </div>
-    <div class="row align-items-center mt-md-70 mt-40">
+    <div class="row align-items-center flex-lg-row flex-column-reverse mt-md-70 mt-40">
         <iframe class="video" width="695" height="400" src="https://www.youtube.com/embed/c009zqG6BeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="col">
             <p class="mb-15 text-up w-bold">Steve’s doctor prescribed him a CPAP machine to treat his obstructive sleep apnea.</p>
