@@ -1170,7 +1170,7 @@ window.onload  = function () {
                                 <span class="check"></span>
                                 <span>Copy from Shipping to Billing address</span>
                             </label>
-                            <button type="button" class="btn btn_edit-billing" style="display:none;">Edit billing information</button>
+                            <button type="button" class="btn btn_edit-billing" style="display:none;">Edit billing address</button>
                         </div>
                         <div id="form_billing">${document.querySelector('#editor_fields').innerHTML}</div>
                     `);
@@ -1800,6 +1800,7 @@ window.onload  = function () {
         }
     }
 };
+
 let configMut = {
     childList: true,
     subtree: true
