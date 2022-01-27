@@ -516,12 +516,12 @@ window.onload = function () {
                 line-height: 24px;
             }
             .sleep_issue_wrapper {
-                background-image: url('url(https://conversionratestore.github.io/projects/somnifix/img/content/bg-content_mob.svg)');
+                background-image: url(https://conversionratestore.github.io/projects/somnifix/img/content/bg-content_mob.svg);
             }
         }
         @media only screen and (max-width: 480px) {
             .sleep_impediments {
-                background-image: url('url(https://conversionratestore.github.io/projects/somnifix/img/drops.svg)');
+                background-image: url(https://conversionratestore.github.io/projects/somnifix/img/drops.svg);
                 background-position: center top;
             }
         }
@@ -893,6 +893,7 @@ window.onload = function () {
             item.setAttribute('src','https://conversionratestore.github.io/projects/somnifix/img/line-dashed_mob.png')
         })
     }
+
 };
 
 window.dataLayer = window.dataLayer || [];
