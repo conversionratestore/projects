@@ -1,6 +1,12 @@
 let action, label, data;
 
-function setOptionFetch(bodyOption) {
+let headerOptionsAddress =  {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cart-Token': mm.ctoken,
+    'x-api-key': 'Ojza12AGCMUzG6omNmSK8Qx2mdgiSVB5'
+}
+
+function postCart(bodyOption) {
     let optionFetch = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -9,6 +15,31 @@ function setOptionFetch(bodyOption) {
         body: bodyOption
     }
     return optionFetch
+}
+
+
+function postAddress(type,fname,lname,addr1,city,state,zip,country,phn,email) {
+    return {
+        headers: headerOptionsAddress,
+        method: 'POST',
+        body: JSON.stringify({
+                "isPrimary": "1",
+                "type": type,
+                "fname": fname,
+                "lname": lname,
+                "addr1": addr1,
+                "addr2": "",
+                "city": city,
+                "state": state,
+                "zip": zip,
+                "country": country,
+                "phn": phn,
+                "alt_phn": "",
+                "email": email,
+                "fax": ""
+            }
+        )
+    }
 }
 
 function chengeTotal(data) {
@@ -83,7 +114,7 @@ function chengeQuantity() {
 
                 let updateCart =  `api=c&cart_action=update&variant_id=${button.closest('.checkout-product').dataset.variantId}&quantity=${button.closest('.quantity-row').querySelector('.quantity').value}&ctoken=${mm.ctoken}`;
 
-                fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+                fetch('/cart.html', postCart(updateCart)).then(res => res.json()).then(data => {
                     chengeTotal(data["cart"])
                 })
                 quantity.nextElementSibling.querySelector('b').innerHTML = `${(parseFloat(quantity.querySelector('.quantity').value) *  parseFloat(quantity.nextElementSibling.dataset.price)).toFixed(2)}`;
@@ -97,7 +128,7 @@ function chengeQuantity() {
 
             let chengedCart = `api=c&cart_action=update&variant_id=${quantity.closest('.checkout-product').dataset.variantId}&quantity=${quantity.querySelector('.quantity').value}&ctoken=${mm.ctoken}`
 
-            fetch('/cart.html', setOptionFetch(chengedCart)).then(res => res.json()).then(data => {
+            fetch('/cart.html', postCart(chengedCart)).then(res => res.json()).then(data => {
                 chengeTotal(data["cart"])
             })
         });
@@ -113,7 +144,7 @@ function removeProduct() {
 
             let updateCart = `api=c&cart_action=remove&variant_id=${item.closest('.checkout-product').dataset.variantId}&ctoken=${mm.ctoken}`;
 
-            fetch('/cart.html', setOptionFetch(updateCart)).then(res => res.json()).then(data => {
+            fetch('/cart.html', postCart(updateCart)).then(res => res.json()).then(data => {
                 chengeTotal(data["cart"])
             })
             item.closest('.checkout-product').remove();
@@ -137,6 +168,9 @@ window.onload  = function () {
         if (!window.location.pathname.includes('cart.html')) {
             document.body.insertAdjacentHTML('afterbegin', `
             <style>
+            .align-items-center {
+                display: flex;
+                align-items: center;}
             .myAccountright dd {
                 overflow: visible!important; }
             .addressBook, .myAccount {
@@ -329,7 +363,7 @@ window.onload  = function () {
                 flex-wrap: wrap;}
             .form-col {
                 min-width: 224px;}
-            .myAccount label, #editor_fields label {
+            .myAccount label, #editor_block label {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 16px;
@@ -348,7 +382,7 @@ window.onload  = function () {
                 width: 100%; }
             .registerOnLogin {
                 padding: 0;}
-            .registerOnLogin dd input[type=text], #editor_fields input[type=text], #editor_fields select, .registerOnLogin dd input[type=password], .registerOnLogin dd select, .addressBook input, .addressBook select {
+            .registerOnLogin dd input[type=text], #editor_block input[type=text], #editor_block select, .registerOnLogin dd input[type=password], .registerOnLogin dd select, .addressBook input, .addressBook select {
                 width: -webkit-fill-available;
                 background: #EDEDED;
                 height: auto;
@@ -852,10 +886,6 @@ window.onload  = function () {
             document.querySelector('#mainbody').insertAdjacentHTML('afterbegin', `
             <div class="flex-between">
                 <div class="checkout-left">
-                    <div class="checkout-left_head flex-center-between">
-                        <h2 class="title">Sign In</h2>
-                        <p class="link log">Registration</p>
-                    </div>
                     <div class="title_head">Personal information</div>
                 </div>
                 <div class="checkout-right">
@@ -871,7 +901,7 @@ window.onload  = function () {
             </div>`);
             if (!window.location.pathname.includes('checkout/step4') && !window.location.pathname.includes('guest-checkout4.php')) {
                 document.querySelector('#logo img').setAttribute('src','https://conversionratestore.github.io/projects/medicalmega/img/logo.svg');
-                fetch('/cart.html', setOptionFetch(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
+                fetch('/cart.html', postCart(`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                     for (let i = 0; i < data["items"].length; i++) {
                         let product = `
                         <div class="d-flex checkout-product" data-id="${data["items"][i].product_id}" data-variant-id="${data["items"][i].variant_id}">
@@ -908,9 +938,9 @@ window.onload  = function () {
                                 } else if (document.querySelector('.link.log') != null && document.querySelector('.link.log').innerHTML == 'Sign in' && document.querySelector('.myAccount') != null) {
                                     action = `Click on the product cards`;
                                     label = 'Registration step';
-                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Billing and Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
+                                } else if (document.querySelector('.title_head') != null && document.querySelector('.title_head').innerHTML == 'Shipping information' && window.location.pathname.includes('checkout/step1') || window.location.pathname.includes('guest-checkout1.php')) {
                                     action = `Click on the product cards`;
-                                    label = 'Billing and Shipping information step';
+                                    label = 'Shipping information step';
                                 } else if (window.location.pathname.includes('checkout/step2') || window.location.pathname.includes('guest-checkout2.php')) {
                                     action = `Click on the product cards`;
                                     label = 'Delivery Method step';
@@ -968,6 +998,11 @@ window.onload  = function () {
             });
 
             if (document.querySelector('.myAccount')) {
+                document.querySelector('.checkout-left .title_head').insertAdjacentHTML('beforebegin', `
+                    <div class="checkout-left_head flex-center-between">
+                        <h2 class="title">Sign In</h2>
+                        <p class="link log">Registration</p>
+                    </div>`);
 
                 document.querySelector('.addressBookSubmit').setAttribute('type','button');
                 document.querySelector('.addressBookSubmit').setAttribute('value','Submit');
@@ -1068,91 +1103,265 @@ window.onload  = function () {
                 if (!document.querySelectorAll('.checkout-product')) {
                     document.body.insertAdjacentHTML('afterbegin', `
                     <style>
-                    .checkout-right {
-                        display: none;
-                    }
+                        .checkout-right {
+                            display: none;
+                        }
                     </style>`);
                     document.querySelector('.checkout-left').innerHTML = `<a href="https://medicalmega.com" class="btn">Continue shopping</a>`
-                } else {
-                    document.body.insertAdjacentHTML('afterbegin', `
-                    <style>
-                        .payment {
-                            height: 100%;
-                            display: flex;
-                            flex-direction: column;}
-                        #editor_fields div:nth-child(4){
-                            display: none;} 
-                        #editor_fields .editor_right div:nth-child(6){
-                            display: none;}
-                    </style>`);
                 }
+                document.body.insertAdjacentHTML('afterbegin', `
+                <style>
+                    #form_billing {
+                        display: none; }
+                    #form_billing.active {
+                        display: block; }
+                    .btn_edit-billing {
+                        margin: 15px 0; }
+                    .address_book_new .editor {
+                        padding-top: 0!important; }
+                    .payment {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;}
+                    #editor_fields div:nth-child(4), #form_billing div:nth-child(4), #form_billing .editor_right div:nth-child(6) {
+                        display: none;} 
+                    #editor_fields .editor_right div:nth-child(6), .save_default_address {
+                        display: none;}
+                    .editor_left div, .editor_right div {
+                        position: relative;}
+                    .error_message {
+                        position: absolute!important;
+                        top: calc(100% - 15px);
+                        left: 0; 
+                        font-size: 12px;
+                        width: 100%;
+                        color: red;
+                        display: none;}
+                    .error_message.active {
+                        display: block;}
+                    .small_block {
+                        margin-bottom: 20px; }
+                    .small_block.bill_small {
+                        margin-right: 10px; }
+                    #editor_block label {
+                        display: flex!important;
+                        align-items: center;}
+                    #editor_block label.copy_ship {
+                        margin-bottom: 32px;}
+               </style>`);
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'));
-                document.querySelector('.checkout-left_head .title ').innerHTML = 'Addres Book';
+                document.querySelector('.title_head').innerHTML = 'Shipping Information';
                 document.querySelector('.payment h3 ').style.display = 'none';
-                document.querySelector('.checkout-left_head').style.display = 'none';
-                document.querySelector('.checkout-left_head .log ').style.display = 'none';
 
-                document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-                document.querySelector('#make_primary').insertAdjacentHTML('afterend',`<span class="check"></span>`);
-                document.querySelector('.bill_small').parentElement.classList.add('flex-between');
+                document.querySelector('.payment').insertAdjacentHTML('beforeend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('#copy_bill').insertAdjacentHTML('afterend',`<span class="check"></span>`)
 
-                document.querySelector('#step1_form').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/cart.html" class="btn-back">Back to Cart</a><button type="button" class="btn btn-next">Next</button></div>`)
+                let formShipping = document.querySelector('#editor_fields'),
+                    btnBack = document.querySelector('.btn-back'),
+                    formBilling, 
+                    btnsBlock;
 
-                document.querySelector('.btn-back').addEventListener('click', () => {
-                    action = 'Click on Back to Cart button';
-                    label = 'Section Billing And Shipping Information';
+                if (document.querySelector('.content_small') == null) {
+                    document.querySelector('#step1_form #editor_fields').insertAdjacentHTML('afterend',`
+                        <div class="btns_block">
+                            <label class="align-items-center">
+                                <input type="checkbox" class="checkbox" checked>
+                                <span class="check"></span>
+                                <span>Copy from Shipping to Billing address</span>
+                            </label>
+                            <button type="button" class="btn btn_edit-billing" style="display:none;">Edit billing information</button>
+                        </div>
+                        <div id="form_billing">${document.querySelector('#editor_fields').innerHTML}</div>
+                    `);
+
+                    formBilling = document.querySelector('#form_billing'),
+                    btnsBlock = document.querySelector('.btns_block');
+
+                    let btnEditBilling = document.querySelector('.btn_edit-billing');
+
+                    document.querySelector('#editor_block').style.display = 'block';
+                    document.querySelectorAll('.address_book_new .small_block').forEach(el => el.style.display = 'none')
+                    document.querySelectorAll('#editor_block .buttons').forEach(el => el.style.display = 'none')
+                    
+                    function eachFieldsForms(selector) {
+                        formShipping.querySelectorAll(selector).forEach((input, index) => {
+                            !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '';
+                            input.addEventListener('input', (e) => {
+                                if (!formBilling.classList.contains('active') && btnsBlock.querySelector('.checkbox').checked == true) {
+                                    formBilling.querySelectorAll(selector)[index].value = input.value;
+                                }
+                            })
+                        })
+                        formBilling.querySelectorAll(selector).forEach((input) => !input.nextElementSibling ? input.insertAdjacentHTML('afterend',`<div class="error_message"></div>`) : '');
+                    }
+                    eachFieldsForms('input')
+                    eachFieldsForms('select')
+
+                    btnsBlock.querySelector('.checkbox').addEventListener('click', (e) => {
+                        e.target.checked ? btnEditBilling.style.display = 'none' : btnEditBilling.style.display = 'flex';
+                    })
+
+                    btnEditBilling.addEventListener('click', (e) => {
+                        formBilling.classList.add('active');
+                        formShipping.style.display = 'none';
+                        btnsBlock.style.display = 'none';
+                        document.querySelector('.title_head').innerHTML = `Billing information`;
+                        btnBack.innerHTML = `Back to Shipping info`;
+    
+                        action = 'Click on edit billing button';
+                        label = 'Step Shipping Information';
+                        pushDataLayer(action,label)
+                    })
+                } else {
+                    document.querySelector('#editor_fields').insertAdjacentHTML('beforebegin',` 
+                        <label class="align-items-center copy_ship" style="opacity:0;pointer-events:none;">
+                            <input type="checkbox" class="checkbox">
+                            <span class="check"></span>
+                            <span>Copy from Shipping address</span>
+                        </label>`)
+
+                    let copyShip = document.querySelector('.copy_ship');
+
+                    function toggleCopyShip(e) {
+                        copyShip.querySelector('.checkbox').checked = false;
+                        if (e.target.closest('.bill_small') && document.querySelector('.ship_small .radio_block') != null) {
+                            copyShip.style = 'opacity:1;pointer-events:auto;'
+                        } else {
+                            copyShip.style = 'opacity:0;pointer-events:none;'
+                        }
+                        action = `Click on ${e.target.innerText} button`;
+                        label = 'Step Shipping information';
+                        pushDataLayer(action,label)
+                    }
+
+                    document.querySelectorAll('.small_block').forEach((block) => {
+                        if (block.querySelector('.content_small') == null) {
+                            console.log('click')
+                            block.querySelector('.head2:last-child').click();
+                        } else {
+                            block.querySelector('.editLink').addEventListener('click', (e) => toggleCopyShip(e))
+                        }
+                        block.querySelector('.head2:last-child').addEventListener('click', (e) => toggleCopyShip(e))
+                    })
+                    
+                }
+
+                btnBack.addEventListener('click', (e) => {
+                    if (formBilling.classList.contains('active')) {
+                        e.preventDefault()
+                        formBilling.classList.remove('active');
+                        formShipping.style.display = 'block';
+                        btnsBlock.style.display = 'block';
+                        document.querySelector('.title_head').innerHTML = `Shipping information`;
+                        btnBack.innerHTML = `Back to Cart`;
+                        btnsBlock.querySelector('.checkbox').checked = false;
+                        action = 'Click on Back to Shipping info button';
+                        label = 'Section Billing Information';
+                    } else {
+                        document.querySelector('.title_head').innerHTML = `Billing information`;
+                        btnBack.innerHTML = `Back to Shipping info`;
+                        action = 'Click on Back to Cart button';
+                        label = 'Step Shipping Information';
+                    }
                     pushDataLayer(action,label)
                 })
-                document.querySelector('.btn-next').addEventListener('click', () => {
-                    if(document.querySelector('#copy_bill').checked == true) {
-                        document.querySelector('.editor .buttons a').click();
-                    } else {
-                        document.querySelectorAll('form div[align="right"] input')[1].click();
+                function setError(className,messages) {
+                    document.querySelectorAll(`${className} .error_message`).forEach(error => error.classList.remove('active'))
+
+                    for (let i = 0; i < messages.length; i++) {
+                        let firstWordError = messages[i].split(' ')[0].toLowerCase();
+                        console.log(firstWordError)
+                        document.querySelectorAll(`${className} span div label`).forEach((el,index) => {
+                            console.log(el.innerHTML.includes(firstWordError))
+                            if (el.innerHTML.toLowerCase().includes(firstWordError) == true) {
+                                document.querySelectorAll(`${className} .error_message`)[index].innerHTML = messages[i];
+                                document.querySelectorAll(`${className} .error_message`)[index].classList.add('active');
+                            }
+                        })  
                     }
+                }
+                function setAddressesObj(parent,type) {
+                    return  {
+                        "type": type,
+                        "fname": parent.querySelector('#fname').value,
+                        "lname": parent.querySelector('#lname').value,
+                        "addr1": parent.querySelector('#addr1').value,
+                        "city": parent.querySelector('#city').value,
+                        "state": parent.querySelector('#state').value,
+                        "zip": parent.querySelector('#zip').value,
+                        "country": parent.querySelector('#country').value,
+                        "phn": parent.querySelector('#phn').value,
+                        "email": parent.querySelector('#email').value
+                    }
+                }
+                document.querySelector('.btn-next').addEventListener('click', () => {
+                    if (document.querySelector('.content_small') == null) {
+                 
+                        let addressesObj = [];
+                        if (btnsBlock.querySelector('.checkbox').checked) {
+                            addressesObj.push(setAddressesObj(formShipping,'ship'))
+                            addressesObj.push(setAddressesObj(formShipping,'bill'))
+                        } else {
+                            addressesObj.push(setAddressesObj(formShipping,'ship'))
+                            addressesObj.push(setAddressesObj(formBilling,'bill'))
+                        }
+                    
+                        let request1 = fetch(`/api/v1/addresses`, postAddress(addressesObj[0].type,addressesObj[0].fname,addressesObj[0].lname,addressesObj[0].addr1,addressesObj[0].city,addressesObj[0].state,addressesObj[0].zip,addressesObj[0].country,addressesObj[0].phn,addressesObj[0].email)).then(res => res.json()).then(data => {
+                            console.log(data)
+                            let errorsData = data.errors;
+                            setError('#editor_fields', errorsData)
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                        })
+
+                        let request2 = fetch(`/api/v1/addresses`, postAddress(addressesObj[1].type,addressesObj[1].fname,addressesObj[1].lname,addressesObj[1].addr1,addressesObj[1].city,addressesObj[1].state,addressesObj[1].zip,addressesObj[1].country,addressesObj[1].phn,addressesObj[1].email)).then(res => res.json()).then(data => {
+                            console.log(data)
+                            let errorsData = data.errors;
+                            setError('#form_billing', errorsData)
+                        }).catch((error) => {
+                            console.error('Error:', error);
+                        })
+
+                        Promise.all([request1,request2]).then(res => {
+                            if (document.querySelector('.error_message.active') == null) {
+                                window.location.href = '/checkout/step2'
+                            }
+                        })
+                    } else {
+                        document.querySelector('#step1_form div[align="right"] input[alt="Submit"]').click();
+                    }
+
                     action = 'Click on Next button';
-                    label = 'Section Billing And Shipping Information';
+                    label = 'Step Shipping Information';
                     pushDataLayer(action,label)
                 });
 
-                if (document.querySelector('.editLink') == null) {
-                    document.querySelector('.bill_small .head2:last-child').click();
-                    document.querySelector('.title_head').innerHTML = 'Billing Information';
-                    document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
-                        document.querySelector('.title_head').innerHTML = 'Billing Information';
-                    });
-                    document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
-                        document.querySelector('.title_head').innerHTML = 'Shipping information';
-                    });
-                } else {
-                    document.querySelector('.title_head').innerHTML = 'Billing and Shipping information';
-                    document.querySelector('.address_book_new .editor .title').style.display = 'block';
-                    document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
-                }
-                document.querySelector('.copy_bill label').addEventListener('click',() => {
-                    action = 'Click Copy from Billing info field';
-                    label = 'Section Shipping information';
-                    pushDataLayer(action,label)
-                });
+                // if (document.querySelector('.editLink') == null) {
+                //     document.querySelector('.bill_small .head2:last-child').click();
+                //     document.querySelector('.title_head').innerHTML = 'Shipping Information';
+                //     // document.querySelector('.bill_small .head2').addEventListener('click', (e) => {
+                //     //     document.querySelector('.title_head').innerHTML = 'Billing Information';
+                //     // });
+                //     // document.querySelector('.ship_small .head2').addEventListener('click', (e) => {
+                //     //     document.querySelector('.title_head').innerHTML = 'Shipping information';
+                //     // });
+                // } else {
+                //     document.querySelector('.title_head').innerHTML = 'Billing and Shipping information';
+                //     document.querySelector('.address_book_new .editor .title').style.display = 'block';
+                //     document.querySelector('#step1_form div.copy_bill[align="right"]').style.float = 'right';
+                // }
+                // document.querySelector('.copy_bill label').addEventListener('click',() => {
+                //     action = 'Click Copy from Billing info field';
+                //     label = 'Section Shipping information';
+                //     pushDataLayer(action,label)
+                // });
 
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[0].classList.add('circle_dark');
                 document.querySelectorAll('.num_line a')[1].querySelectorAll('span')[2].classList.add('pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[0].classList.add('circle_pink');
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink');
-                if (document.querySelector('.head2.pointer') != null) {
-                    document.querySelectorAll('.head2.pointer').forEach((el, index) => {
-                        el.addEventListener('click', () => {
-                            if (el.closest('.bill_small')) {
-                                action = 'Click on Billing information button';
-                                label = el.innerText;
-                            } else if (el.closest('.ship_small')) {
-                                action = 'Click on Shipping information button';
-                                label = el.innerText;
-                            }
-                            pushDataLayer(action,label)
-                        })
-                    })
-                }
+          
             }
             if (location.pathname == '/checkout/step2') {
                 document.body.insertAdjacentHTML('afterbegin', `
@@ -1188,7 +1397,7 @@ window.onload  = function () {
                 });
 
                 // document.querySelector('.primaryInfo .title').before(document.querySelector('.holiday'));
-                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Billing and Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
+                document.querySelector('.primaryInfo').insertAdjacentHTML('afterend',`<div class="flex-center-between bottom"><a href="https://medicalmega.com/checkout/step1" class="btn-back">Back to Shipping Info</a><button type="button" class="btn btn-next">Next</button></div>`)
 
             }
             if (location.pathname == '/checkout/step3') {
@@ -1550,7 +1759,7 @@ window.onload  = function () {
                 document.querySelectorAll('.num_line a')[1].querySelector('.circle_pink').classList.add('circle_dark')
                 document.querySelectorAll('.num_line a')[2].querySelector('.circle_grey').classList.add('circle_pink')
                 document.querySelectorAll('.num_line a')[2].querySelectorAll('span')[2].classList.add('pink')
-                document.querySelector('.title_head').innerHTML = 'Billing And Shipping Information'
+                document.querySelector('.title_head').innerHTML = 'Shipping Information'
 
                 document.querySelector('.title_head').after(document.querySelector('.payment'))
                 document.querySelector('label[for="same_as_bill"]').insertAdjacentHTML('afterbegin',`<span class="check"></span>`);
@@ -1569,12 +1778,12 @@ window.onload  = function () {
 
                 document.querySelector('.btn-back').addEventListener('click', () => {
                     action = 'Click on Back to Personal Info button';
-                    label = 'Section Billing And Shipping Information';
+                    label = 'Shipping Information step';
                     pushDataLayer(action,label)
                 })
                 document.querySelector('.btn-next').addEventListener('click', () => {
                     action = 'Click on Next button';
-                    label = 'Section Billing And Shipping Information';
+                    label = 'Shipping Information step';
                     pushDataLayer(action,label)
                     document.querySelector('form div[align="right"] input').click()
                 })
@@ -1591,8 +1800,47 @@ window.onload  = function () {
         }
     }
 };
+let configMut = {
+    childList: true,
+    subtree: true
+};
 
 let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('.copy_ship') && window.location.href.includes('/checkout/step1') && document.querySelector('.ship_small .radio_block')) {
+        mut.disconnect();
+        document.querySelector('.copy_ship').addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            if (e.target.checked == true) {
+                fetch(`/api/v1/addresses/${document.querySelector('.ship_small .radio_block:last-child').getAttribute('id').split('_')[2]}`, {
+                    headers: headerOptionsAddress,
+                    method: 'GET'
+                }).then(res => res.json()).then(data => {
+                    console.log(data) 
+                    document.querySelector('#editor_fields').style.display = 'none';
+                    let address = data.address;
+                    console.log(address.length) 
+                    for (const key in address) {
+                        console.log(key + " : " + address[key])
+                        function setAddress(element) {
+                            document.querySelectorAll(`#editor_fields ${element}`).forEach((input) => {
+                                if (input.getAttribute('id') == key) {
+                                    input.value = address[key]
+                                }
+                            })
+                        }
+                        setAddress('input')
+                        setAddress('select')
+                    }
+        
+                }).catch((error) => {
+                    console.error('Error:', error);
+                })
+            } else {
+                document.querySelector('#editor_fields').style.display = 'block';
+            }
+        })
+    }
+    mut.observe(document, configMut);
     if (document.querySelector('label') != null) {
         mut.disconnect();
         document.querySelectorAll('label').forEach(el => {
@@ -1601,11 +1849,10 @@ let mut = new MutationObserver(function (muts) {
             }
         })
     }
+    mut.observe(document, configMut);
 })
-mut.observe(document, {
-    childList: true,
-    subtree: true
-});
+mut.observe(document, configMut);
+
 (function(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1483840,hjsv:6};
