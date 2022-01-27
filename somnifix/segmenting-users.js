@@ -399,6 +399,7 @@ window.onload = function () {
             .sleep_impediments .title {
                 font-size: 16px;
                 line-height: 19px;
+                min-height: auto;
             }
             .sleep_impediments .span {
                 margin-top: 10px;
