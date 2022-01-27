@@ -826,7 +826,7 @@ window.onload = function () {
             hideItems();
             document.querySelector('.sleep_issue').style.display = 'block'; //open contents
             document.querySelectorAll('.tabsNav li')[i].classList.add('active'); //add active for tab
-            document.querySelector('.tabsNav').scrollLeft = document.querySelector('.tabsNav li.active').offsetLeft;
+            document.querySelector('.tabsNav').scrollLeft = document.querySelector('.tabsNav li.active').offsetLeft - 20;
             document.querySelectorAll('.sleep_issue_item')[i].style.display = 'block'; //open item contents
             document.querySelector('.sleep_impediments').style.display = 'none'; //hide wrapper btns
             document.querySelector('.sleep_issue_header p').innerHTML = arr[i]["nameBtn"]; //set name
