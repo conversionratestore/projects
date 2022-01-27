@@ -500,8 +500,8 @@ window.onload = function () {
                 margin-top: 40px;
             }
             .sleep_issue h3 {
-                font-size: 20px;
-                line-height: 24px;
+                font-size: 24px;
+                line-height: 28.44px;
             }
             .btn_buy {
                 margin-top: 20px;
