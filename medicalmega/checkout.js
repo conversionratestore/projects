@@ -1326,6 +1326,11 @@ window.onload  = function () {
                         Promise.all([request1,request2]).then(res => {
                             if (document.querySelector('.error_message.active') == null) {
                                 window.location.href = '/checkout/step2'
+                            } else {
+                                if (formShipping.querySelector('active') == null && formBilling.querySelector('active') != null){
+                                    formShipping.style.display = 'none';
+                                    formBilling.classList.add('active');
+                                }
                             }
                         })
                     } else {
