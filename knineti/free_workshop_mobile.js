@@ -612,7 +612,7 @@ let startFuncMobile = setInterval(() => {
                     </div>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> ‘How to prevent biting/nipping and get your dog adjusted to kids’</p>
+                    <p><span>BONUS CLASS </span> <br/> ‘How to prevent <br/> biting/nipping and get your dog <br/> adjusted to kids’</p>
                     <div>
                       <span>$69.70</span>
                       <span>$0.00</span>
