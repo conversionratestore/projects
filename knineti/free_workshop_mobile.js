@@ -17,10 +17,6 @@ let startFuncMobile = setInterval(() => {
 
       let styleFreeWorkShopMobile = /*html */ `
         <style>
-            #myHeaderr{
-                display: none !important;
-            }
-
             #demo1 .item_mc{
                 height: 0;
             }
