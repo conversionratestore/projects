@@ -1,167 +1,3 @@
-let html = `
-  <div class="main">
-    <header class="header">
-      <div class="supbar">
-        <div class="container flex-center-between">
-          <p class="align-items-center"><img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/quotation.svg" alt="icon quotation">Customer Service</p>
-          <div class="d-flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
-        </div>
-      </div>
-      <div class="midbar">
-        <div class="container">
-          <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
-              <div class="d-flex">
-              <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
-                <form class="form-search">
-                  <input type="text" placeholder="Search by Name" name="search_key">
-                  <button type="button">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#clip0_114_1946)" stroke="#fff"><path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"/></g><defs><clipPath id="clip0_114_1946"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
-                  </button>
-                </form>
-              </div>
-              <div class="align-items-center">
-                  <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
-                      <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
-                      <span>Account</span>
-                  </a>
-                  <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
-                      <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
-                      <span>Cart (<span class="cart_count">${document.querySelector('.by_num span').innerHTML}</span>)</span>
-                  </a>
-              </div>
-          </div>
-        </div>
-      </div>
-      <form class="advanced-search" data-item="advanced-search">
-        <div class="container flex-center-between">
-          <p class="fs-14 c-gray">Advanced Search</p>
-          <div class="d-flex">
-            <input type="text" placeholder="Enter Item #" name="search_item">
-            <input type="text" placeholder="Enter Keyword" name="search_keyword">
-            <div class="select select_category" name="search_c_id">
-              <p class="select_current"><span>Select Category</span></p>
-              <ul class="select_dropdown"></ul>
-            </div>
-            <div class="select select_brand" name="search_m_id"> 
-              <p class="select_current"><span >Select Manufacturer</span></p>
-              <ul class="select_dropdown right"> </ul>
-            </div>
-            <button class="btn btn_dark" type="button">Submit</button>
-          </div>
-          <button class="btn_reset" type="reset" data-close="advanced-search"></button>
-        </div>
-      </form>
-      <div class="subbar">
-        <div class="container flex-center-between">
-           <nav class="nav_category">
-              <div class="align-items-center all_category"><img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
-                <p class="p-main">All Categories</p>
-              </div>
-              <div class="dropdown_categories">
-              <ul class="alphabet"> 
-                <li class="active">a</li>
-                <li>b</li>
-                <li>c</li>
-                <li>d</li>
-                <li>e</li>
-                <li>f</li>
-                <li>g</li>
-                <li>h</li>
-                <li>i</li>
-                <li>l</li>
-                <li>m</li>
-                <li>n</li>
-                <li>o</li>
-                <li>p</li>
-                <li>r</li>
-                <li>s</li>
-                <li>t</li>
-                <li>u</li>
-                <li>v</li>
-                <li>w</li>
-              </ul>
-                <ul class="list_categories"></ul>
-              </div>
-            </nav>
-          <ul class="d-flex category_popular">
-            <li> <a href="/category/new-products">New Products</a></li>
-            <li> <a href="/sales.html">Sale Products</a></li>
-            <li> <a href="/category/hand-sanitizing">Hand Sanitizing</a></li>
-            <li> <a href="/category/wound-care">Wound care</a></li>
-            <li> <a href="/category/gloves">Gloves</a></li>
-            <li> <a href="/category/disinfectants">Disinfectants</a></li>
-            <li> <a href="/category/ostomy">Ostomy</a></li>
-            <li> <a href="/category/instruments">Instruments</a></li>
-          </ul>
-          <p class="previous-version">switch to the previous version</p>
-        </div>
-      </div>
-      <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
-    </header>
-    <div class="container"> 
-      <ul class="breadcrumbs"></ul>
-      <div class="flex-wrap w-100 justify-content-between product"> 
-        <div class="col_left flex-wrap"> 
-          <div class="side_one">
-            <div class="slider-nav"></div>
-            <div class="trustpilot"></div>
-          </div>
-          <div class="side_two">
-            <div class="slider-for">
-              <div class="slide" data-item="show-zoom"><img class="slider-for_img" id="forImg" src="${document.querySelectorAll('.product_img')[0].getAttribute('src')}" alt="image 2">
-                <div class="img-zoom-result" id="zoomResult"></div>
-              </div>
-            </div>
-            <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
-          </div>
-        </div>
-        <div class="col_right"> 
-          <div class="range"> 
-            <div class="flex-center-between">
-              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
-              <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span> left for free shipping</p>
-            </div>
-            <div class="range_slider"><span></span></div>
-          </div>
-          <div class="product_content justify-content-between"> 
-            <div class="col_mid">
-              <h2 class="title"> ${document.querySelectorAll('.center h3')[0].innerText}</h2>
-              <ul class="list">  </ul>
-              <ul class="tabs-discription d-flex"></ul>
-              <div class="content-discription"></div>
-            </div>
-            <div class="product_sidebar">
-              <div class="product_sidebar_top">
-                <div class="shipping_block">
-                    <div class="align-items-center"> 
-                      <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                      <div> 
-                        <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                        <p class="c-gray">2-3 business days*</p>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                </div> 
-              </div>
-              <div>
-                  <div class="flex-center-center calc"> 
-                    <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                    <input class="calc-qty" type="number" value="1">
-                    <button class="btn-calc btn-calc_plus" type="button"></button>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <section class="similar-products">
-        <h2 class="text-center">Similar Products</h2>
-        <div class="justify-content-between cards_similar"></div>
-      </section>
-    </div>
-  </div>
-`;
-
 let styles = `
 <style>
 @font-face {
@@ -1163,6 +999,170 @@ padding: 0;
 </style>`;
 
 window.onload  = function () {
+  let html = `
+  <div class="main">
+    <header class="header">
+      <div class="supbar">
+        <div class="container flex-center-between">
+          <p class="align-items-center"><img src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/quotation.svg" alt="icon quotation">Customer Service</p>
+          <div class="d-flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
+        </div>
+      </div>
+      <div class="midbar">
+        <div class="container">
+          <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
+              <div class="d-flex">
+              <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
+                <form class="form-search">
+                  <input type="text" placeholder="Search by Name" name="search_key">
+                  <button type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#clip0_114_1946)" stroke="#fff"><path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"/></g><defs><clipPath id="clip0_114_1946"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+                  </button>
+                </form>
+              </div>
+              <div class="align-items-center">
+                  <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
+                      <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account">
+                      <span>Account</span>
+                  </a>
+                  <a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html">
+                      <img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart">
+                      <span>Cart (<span class="cart_count">${document.querySelector('.by_num span').innerHTML}</span>)</span>
+                  </a>
+              </div>
+          </div>
+        </div>
+      </div>
+      <form class="advanced-search" data-item="advanced-search">
+        <div class="container flex-center-between">
+          <p class="fs-14 c-gray">Advanced Search</p>
+          <div class="d-flex">
+            <input type="text" placeholder="Enter Item #" name="search_item">
+            <input type="text" placeholder="Enter Keyword" name="search_keyword">
+            <div class="select select_category" name="search_c_id">
+              <p class="select_current"><span>Select Category</span></p>
+              <ul class="select_dropdown"></ul>
+            </div>
+            <div class="select select_brand" name="search_m_id"> 
+              <p class="select_current"><span >Select Manufacturer</span></p>
+              <ul class="select_dropdown right"> </ul>
+            </div>
+            <button class="btn btn_dark" type="button">Submit</button>
+          </div>
+          <button class="btn_reset" type="reset" data-close="advanced-search"></button>
+        </div>
+      </form>
+      <div class="subbar">
+        <div class="container flex-center-between">
+           <nav class="nav_category">
+              <div class="align-items-center all_category"><img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
+                <p class="p-main">All Categories</p>
+              </div>
+              <div class="dropdown_categories">
+              <ul class="alphabet"> 
+                <li class="active">a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+                <li>e</li>
+                <li>f</li>
+                <li>g</li>
+                <li>h</li>
+                <li>i</li>
+                <li>l</li>
+                <li>m</li>
+                <li>n</li>
+                <li>o</li>
+                <li>p</li>
+                <li>r</li>
+                <li>s</li>
+                <li>t</li>
+                <li>u</li>
+                <li>v</li>
+                <li>w</li>
+              </ul>
+                <ul class="list_categories"></ul>
+              </div>
+            </nav>
+          <ul class="d-flex category_popular">
+            <li> <a href="/category/new-products">New Products</a></li>
+            <li> <a href="/sales.html">Sale Products</a></li>
+            <li> <a href="/category/hand-sanitizing">Hand Sanitizing</a></li>
+            <li> <a href="/category/wound-care">Wound care</a></li>
+            <li> <a href="/category/gloves">Gloves</a></li>
+            <li> <a href="/category/disinfectants">Disinfectants</a></li>
+            <li> <a href="/category/ostomy">Ostomy</a></li>
+            <li> <a href="/category/instruments">Instruments</a></li>
+          </ul>
+          <p class="previous-version">switch to the previous version</p>
+        </div>
+      </div>
+      <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
+    </header>
+    <div class="container"> 
+      <ul class="breadcrumbs"></ul>
+      <div class="flex-wrap w-100 justify-content-between product"> 
+        <div class="col_left flex-wrap"> 
+          <div class="side_one">
+            <div class="slider-nav"></div>
+            <div class="trustpilot"></div>
+          </div>
+          <div class="side_two">
+            <div class="slider-for">
+              <div class="slide" data-item="show-zoom"><img class="slider-for_img" id="forImg" src="${document.querySelectorAll('.product_img')[0].getAttribute('src')}" alt="image 2">
+                <div class="img-zoom-result" id="zoomResult"></div>
+              </div>
+            </div>
+            <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
+          </div>
+        </div>
+        <div class="col_right"> 
+          <div class="range"> 
+            <div class="flex-center-between">
+              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
+              <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span> left for free shipping</p>
+            </div>
+            <div class="range_slider"><span></span></div>
+          </div>
+          <div class="product_content justify-content-between"> 
+            <div class="col_mid">
+              <h2 class="title"> ${document.querySelectorAll('.center h3')[0].innerText}</h2>
+              <ul class="list">  </ul>
+              <ul class="tabs-discription d-flex"></ul>
+              <div class="content-discription"></div>
+            </div>
+            <div class="product_sidebar">
+              <div class="product_sidebar_top">
+                <div class="shipping_block">
+                    <div class="align-items-center"> 
+                      <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                      <div> 
+                        <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                        <p class="c-gray">2-3 business days*</p>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                </div> 
+              </div>
+              <div>
+                  <div class="flex-center-center calc"> 
+                    <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                    <input class="calc-qty" type="number" value="1">
+                    <button class="btn-calc btn-calc_plus" type="button"></button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="similar-products">
+        <h2 class="text-center">Similar Products</h2>
+        <div class="justify-content-between cards_similar"></div>
+      </section>
+    </div>
+  </div>
+`;
+
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', styles);
 
