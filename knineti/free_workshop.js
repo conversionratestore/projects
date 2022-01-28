@@ -111,7 +111,6 @@ let startFunc = setInterval(() => {
                 background: #dde8f1;
                 padding-left: 15px;
                 padding-right: 15px;
-                cursor: pointer;
             }
 
             .free_work_shop_box .timeline_container {
@@ -208,7 +207,7 @@ let startFunc = setInterval(() => {
                 font-size: 12px;
                 line-height: 15px;
                 color: #1D3871;
-                max-width: 163px;
+                max-width: 197px;
                 position: relative;
                 padding-left: 11px;
                 display: block;
@@ -528,7 +527,7 @@ let startFunc = setInterval(() => {
         "0:00": [``, 1],
         "6:14": [`3 key rules to train <br/> your dog to be a <br/> service dog`, 2],
         "13:34": [`Stop your dog pulling its <br/> leash - an effective <br/> technique`, 3],
-        "16:30": [`Using body <br/> language to <br/> train your dog`, 4],
+        "16:30": [`How to prevent <br/> biting/nipping and get <br/> your dog adjusted to kids`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
         "21:45": [`Dealing <br/> with <br/> unnecessary barking`, 6],
         "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
@@ -566,7 +565,7 @@ let startFunc = setInterval(() => {
         <p>workshop Special offer</p>
     </div>
     <div class="blur_block">
-        <p>Get Total Transformation Masterclass and <br/> FREE gifts now </p>
+        <p>Get Total Transformation Masterclass and <br/> your FREE gifts now </p>
         <div class="pricing_text_box active_blur_parent">
             <ul class="active_blur">
                 <li>
