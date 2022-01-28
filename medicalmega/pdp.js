@@ -55,12 +55,33 @@ let html = `
       <div class="subbar">
         <div class="container flex-center-between">
            <nav class="nav_category">
-              <div class="align-items-center select_category"><img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
+              <div class="align-items-center all_category"><img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
                 <p class="p-main">All Categories</p>
               </div>
               <div class="dropdown_categories">
-                <ul class="alphabet"> </ul>
-                <div class="list_categories"></div>
+              <ul class="alphabet"> 
+                <li class="active">a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+                <li>e</li>
+                <li>f</li>
+                <li>g</li>
+                <li>h</li>
+                <li>i</li>
+                <li>l</li>
+                <li>m</li>
+                <li>n</li>
+                <li>o</li>
+                <li>p</li>
+                <li>r</li>
+                <li>s</li>
+                <li>t</li>
+                <li>u</li>
+                <li>v</li>
+                <li>w</li>
+              </ul>
+                <ul class="list_categories"></ul>
               </div>
             </nav>
           <ul class="d-flex category_popular">
@@ -381,19 +402,15 @@ input {
   border-top: 1px solid #BCC4C7;
   padding: 9px 0; }
 
-.select_category {
+.all_category {
   padding: 13px 10px 13px 8px;
   border-radius: 100px;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease; }
 
 .dropdown_categories {
   position: absolute;
   top: 99%;
   left: -100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   padding-top: calc(1% + 9px);
   opacity: 0;
@@ -406,6 +423,9 @@ input {
   min-width: 61px;
   background: #FFFFFF;
   border: 1px solid #E3E6E7; }
+  .alphabet::-webkit-scrollbar {
+    display: none;
+  }
   .alphabet li {
     font-size: 12px;
     line-height: 29px;
@@ -440,12 +460,13 @@ input {
 
 .nav_category {
   position: relative; }
-  .nav_category:hover .select_category {
+  .nav_category:hover .all_category {
     background: #E9EBEC; }
   .nav_category:hover .dropdown_categories {
     opacity: 1;
     pointer-events: auto; }
 .nav_category .p-main {
+  pointer-events: none;
   font-weight: 600;
   font-size: 10px;
   line-height: 10px;
@@ -453,6 +474,7 @@ input {
   text-transform: uppercase;
   color: #1E3944; }
 .burger_category {
+  pointer-events: none;
   width: 18px;
   height: 18px;
   margin-right: 10px; }
@@ -1074,12 +1096,16 @@ padding: 0;
 .tns-outer {
   margin-left: -4px;
   margin-right: -4px; }
+  .tns-outer .scroll-x {
+    margin-left: 0!important;}
 .available-options .justify-content-between label {
   position: relative;
   z-index: 1;
   min-width: 95px;
   margin: 0 4px;
   width: 48%; }
+  .available-options .scroll-x {
+    margin-left: -5px; }
   .available-options .justify-content-between label:last-child {
       margin-right: 0; }
 .available-options .fs-14 {
@@ -1121,6 +1147,11 @@ padding: 0;
   margin-left: -26px; }
 .arrow_button_next {
   margin-right: -26px;}
+  @media only screen and (max-width: 1460px) {
+    .dropdown_categories {
+      left: 0;
+    }
+  }
   @media only screen and (max-width: 1250px) {
     .category_popular a {
       margin: 0 3px
@@ -1206,19 +1237,21 @@ let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
   addToCartButton = document.querySelectorAll('.add-cart'), //add To Cart buttons
   price = document.querySelectorAll('.pr'); //price
 
-let actionDataLayer = '';
+let actionDataLayer = '', 
+    labelDataLayer = '';
 
 let scriptCustom = document.createElement('script');
 scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
 document.head.appendChild(scriptCustom);
 
-function pushDataLayer(actionDataLayer) {
-  console.log(actionDataLayer)
+function pushDataLayer(actionDataLayer, labelDataLayer) {
+  console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
       'eventCategory': 'Exp: New PDP',
-      'eventAction': actionDataLayer
+      'eventAction': actionDataLayer,
+      'event:abel': labelDataLayer
   });
 }
 
@@ -1353,7 +1386,7 @@ if (document.querySelector('.box_item') != null || document.querySelector('.prod
                   swipeAngle: false,
               });
           }
-      }, 150)
+      }, 200)
 
   }
   //checkbox choice
@@ -1377,6 +1410,16 @@ calc.forEach((el, i) => {
   inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
 })
 
+function sortAlphabet() {
+  document.querySelectorAll('.list_categories li').forEach(el => {
+    if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+      el.style.display = "none";
+    } else {
+      el.style.display = "block";
+    }
+  })
+}
+
 //change Class active
 function toggleClass(item,content) {
   item[0].classList.add('active');
@@ -1387,6 +1430,15 @@ function toggleClass(item,content) {
             content[i].parentElement.querySelector('.active').classList.remove('active');
             item[i].classList.add('active');
             content[i].classList.add('active');
+            sortAlphabet()
+            if (item[i].closest('.tabs-discription')) {
+              actionDataLayer = `Click at the ${item[i].innerText} tab`;
+              labelDataLayer = `Product section`;
+            } else if (item[i].closest('.alphabet')) {
+              actionDataLayer = `Click on ${item[i].innerText} letter`;
+              labelDataLayer = `All categories`;
+            }
+            pushDataLayer(actionDataLayer, labelDataLayer)
         })
     }
 }
@@ -1523,16 +1575,28 @@ fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoke
 let fetchCategories = fetch(`/api/categories&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
   console.log(data)
   let categories = data.categories;
+      categories.sort(function(a, b) {
+        if(a.title < b.title) { return -1; }
+        if(a.title > b.title) { return 1; }
+        return 0;
+      }).reverse();
   for (let i = 0; i < categories.length; i++) {
-      document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
   
-      document.querySelector('.alphabet').insertAdjacentHTML('afterbegin',`<li></li>`);
-      document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i]["url"]}">${categories[i].title}</a></li>`); 
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
+    document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`); 
+ 
   }
-  // let alphabet = document.querySelector('.alphabet li'), //alphabet
-  let listCategories = document.querySelector('.list_categories li'); 
-  // toggleClass(alphabet,listCategories) //all categories         
-
+  sortAlphabet()
+  let alphabet = document.querySelectorAll('.alphabet li'), //alphabet
+  listCategories = document.querySelectorAll('.list_categories li'); 
+  toggleClass(alphabet,listCategories) //all categories         
+  document.querySelectorAll('.list_categories li a').forEach((el) => {
+    el.addEventListener('click', () => {
+      actionDataLayer = `Click on category item - ${el.innerText}`;
+      labelDataLayer = `All categories`;
+      pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+  })
 })
 
 
@@ -1565,6 +1629,17 @@ fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(
               el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
                   option.addEventListener('click', (e) => {
                       e.stopImmediatePropagation()
+                   
+                      let notes = 'select';
+                      if (option.closest('.select_category')) {
+                          notes = 'select category'
+                      } else if (option.closest('.select_brand')) {
+                          notes = 'select manufacturer'
+                      } 
+                      actionDataLayer = `Click on option ${notes}`;
+                      labelDataLayer = 'Advanced Search';
+                      pushDataLayer(actionDataLayer, labelDataLayer)
+                   
                       let name = option.closest('.select').getAttribute('name'),
                           value = option.dataset.value;
                       if (option.closest('.select').querySelector('.active') != null) {
@@ -1598,67 +1673,171 @@ window.addEventListener('scroll', () => remActiveSelect());
 
 //zoom
 let startZoom = setInterval(() => {
-  if (document.querySelector('.slider-for_img') != null) {
+  if (document.querySelector('.img-zoom-result') != null) {
       console.log('true')
       clearInterval(startZoom)
       imageZoom("forImg", "zoomResult")
   }
-}, 100);
+}, 200);
 
 //for events
+document.querySelector('.previous-version').addEventListener('click', (e) => {
+  actionDataLayer = `Click on ${e.target.innerText}`;
+  labelDataLayer = 'Header';
+  pushDataLayer(actionDataLayer, labelDataLayer)
+})
+document.querySelector('.trustpilot').addEventListener('click', (e) => {
+  actionDataLayer = `Click at the review`;
+  labelDataLayer = 'Product section';
+  pushDataLayer(actionDataLayer,labelDataLayer)
+})
 document.querySelectorAll('.btn').forEach((button) => {
   button.addEventListener('click', () => {
-      let notes = '';
-      if (button.closest('.product_sidebar')) {
-          notes = ' Product'
-      } else if (button.closest('.similar-products')) {
-          notes = ' Similar products'
-      } else if (button.closest('.advanced-search')) {
-          notes = ' in advanced search';
+    if (button.closest('.product_sidebar')) {
+      actionDataLayer = `Click on Add to cart button`;
+      labelDataLayer = 'Product section';
+    } else if (button.closest('.similar-products')) {
+      actionDataLayer = `Click on Add to cart button`;
+      labelDataLayer = 'Similar products section';
+    } else if (button.closest('.advanced-search')) {
+      actionDataLayer = `Click on the Advanced search button`;
+      labelDataLayer = 'Header';
+    } else {
+      actionDataLayer = `Click on ${button.innerText} button`;
+      if (button.closest('.header')) {
+        labelDataLayer = 'Header';
       } else {
-          notes = '';
+        labelDataLayer = 'Product section';
       }
-      actionDataLayer = `Click on ${button.innerText + notes}`;
-      pushDataLayer(actionDataLayer)
+    }
+    pushDataLayer(actionDataLayer, labelDataLayer)
   })
-
 })
-document.querySelectorAll('.btn_reset').forEach((button) => {
-  button.addEventListener('click', () => {
+document.querySelector('.btn_reset').addEventListener('click', () => {
     actionDataLayer = `Click on close button`;
-    pushDataLayer(actionDataLayer)
-  })
+    labelDataLayer = 'Advanced Search';
+    pushDataLayer(actionDataLayer, labelDataLayer)
 })
+
 document.querySelector('.form-search button').addEventListener('click', () => {
   actionDataLayer = `Click on search button`;
-  pushDataLayer(actionDataLayer)
+  labelDataLayer = 'Header';
+  pushDataLayer(actionDataLayer, labelDataLayer)
+})
+document.querySelectorAll('.btn-calc').forEach(btn => {
+  btn.addEventListener('click', () => {
+    let notes = '';
+    if (btn.classList.contains('btn-calc_plus')) {
+      notes = 'plus button'
+    } else {
+      notes = 'minus button'
+    }
+    if (btn.closest('.similar-products')) {
+      labelDataLayer = 'Similar products section'
+    } else {
+      labelDataLayer = 'Product section'
+    }
+    actionDataLayer = `Click on ${notes}`;
+    pushDataLayer(actionDataLayer, labelDataLayer)
+  })
 })
 
 document.querySelectorAll('.main input').forEach((input) => {
   input.addEventListener('click', () => {
+    if (!input.classList.contains('checkbox')) {
       let notes = input.placeholder;
       if (input.closest('.similar-products')) {
-          notes = ' quantity Similar products'
+          notes = 'quantity';
+          labelDataLayer = 'Similar products section';
       } else if (input.closest('.product_sidebar')) {
-          notes = ' quantity Product'
+          notes = 'quantity';
+          labelDataLayer = 'Product section';
       } else if (input.closest('.advanced-search')) {
-          notes = ` ${input.placeholder} in Advanced Search`
+          notes = `${input.placeholder}`;
+          labelDataLayer = 'Advanced Search';
       } else {
           notes = input.placeholder;
+          if (btn.closest('.header')) {
+            labelDataLayer = 'Header'
+          } else if (btn.closest('.similar-product')) {
+            labelDataLayer = 'Similar products section'
+          } else {
+            labelDataLayer = 'Product section'
+          }
       }
-
-      actionDataLayer = `Click on ${notes}`;
-      pushDataLayer(actionDataLayer)
+      actionDataLayer = `Click on the ${notes}`;
+    } else {
+      actionDataLayer = `Click on Available Options: ${input.nextElementSibling.querySelectorAll('span')[0].innerText}`;
+      labelDataLayer = 'Product section'
+    }
+    pushDataLayer(actionDataLayer,labelDataLayer)
   })
-
 })
+
+document.querySelectorAll('.main .select_current').forEach((select) => {
+  select.addEventListener('click', () => {
+    let notes = ' select';
+    if (select.closest('.select_category')) {
+        notes = ' select category';
+    } else if (select.closest('.select_brand')) {
+        notes = ' select brand'
+    } 
+    if (select.closest('.header')) {
+      labelDataLayer = `Header`;
+    } else {
+      labelDataLayer = 'Product section';
+    }
+    actionDataLayer = `Click on ${notes}`;
+    pushDataLayer(actionDataLayer, labelDataLayer)
+  })
+})
+
+document.querySelectorAll('.main a').forEach((el) => {
+  el.addEventListener('click', () => {
+    actionDataLayer = `Click on ${el.innerText}`;
+    if (el.closest('.header')) {
+      if (el.closest('.dropdown_categories') || el.closest('.category_popular')) {
+        actionDataLayer = `Click on category item - ${el.innerText}`;
+      } 
+      labelDataLayer = 'Header';
+    } else if (el.closest('.similar-product')) {
+      labelDataLayer = 'Similar products section';
+    } else if (el.closest('.nav_category')) {
+      labelDataLayer = 'All categories';
+    } else {
+      labelDataLayer = 'Product section';
+    }
+    pushDataLayer(actionDataLayer,labelDataLayer)
+  })
+})
+
+document.querySelector('.all_category').addEventListener('mouseover', (e) => {
+    actionDataLayer = `Hover on all categories`; 
+    labelDataLayer = 'Product section';
+    pushDataLayer(actionDataLayer,labelDataLayer)
+})
+
+document.querySelectorAll('.slider-nav .slide').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    actionDataLayer = `Click on slide button`;
+    labelDataLayer = 'Product section';
+    pushDataLayer(actionDataLayer,labelDataLayer)
+  })
+})
+document.querySelectorAll('.card_name').forEach((el) => {
+  el.addEventListener('click', (e) => {
+    actionDataLayer = `Click at the product detail`;
+    labelDataLayer = 'Similar products section';
+    pushDataLayer(actionDataLayer,labelDataLayer)
+  })
+})
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
-  'event': 'event-to-ga',
-  'eventCategory': 'Exp: New PDP',
-  'eventAction': 'loaded'
+ 'event': 'event-to-ga',
+ 'eventCategory': 'Exp — New PDP',
+ 'eventAction': 'loaded'
 });
-
 
 (function(h,o,t,j,a,r){
   h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -1667,5 +1846,6 @@ dataLayer.push({
   r=o.createElement('script');r.async=1;
   r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
   a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('event', 'new_pdp');
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+  hj('event', 'new_pdp_desktop');
