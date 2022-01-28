@@ -1534,12 +1534,8 @@ document.querySelector('.previous-version').addEventListener('click', () => {
 })
 
 //search
-document.querySelector('.form-search input').addEventListener('input', (e) => {
-  document.querySelector('#search_key').value = e.target.value;
-})
-document.querySelector('.form-search button').addEventListener('click', (e) => {
-  document.querySelector('.search-box__button').click();
-})
+document.querySelector('.form-search input').addEventListener('input', (e) => document.querySelector('#search_key').value = e.target.value)
+document.querySelector('.form-search button').addEventListener('click', (e) => document.querySelector('.search-box__button').click())
 
 let nameSearch = document.querySelectorAll('.advanced-search [name]');
 let nameSearchOld = document.querySelectorAll('.advance_search [name]');
@@ -1554,9 +1550,7 @@ for (let i = 0; i < nameSearch.length; i++) {
       }
   })
 }
-document.querySelector('.advanced-search .btn').addEventListener('click', () => {
-  document.querySelector('.advance_search #search_submit').click();
-})
+document.querySelector('.advanced-search .btn').addEventListener('click', () => document.querySelector('.advance_search #search_submit').click())
 
 //shipping
 fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
@@ -1584,15 +1578,17 @@ let fetchCategories = fetch(`/api/categories&limit=100`, fetchOption("GET")).the
         return 0;
       }).reverse();
   for (let i = 0; i < categories.length; i++) {
-  
     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
     document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`); 
- 
   }
+
   sortAlphabet()
+
   let alphabet = document.querySelectorAll('.alphabet li'), //alphabet
   listCategories = document.querySelectorAll('.list_categories li'); 
-  toggleClass(alphabet,listCategories) //all categories         
+
+  toggleClass(alphabet,listCategories) //all categories      
+
   document.querySelectorAll('.list_categories li a').forEach((el) => {
     el.addEventListener('click', () => {
       actionDataLayer = `Click on category item - ${el.innerText}`;
@@ -1601,7 +1597,6 @@ let fetchCategories = fetch(`/api/categories&limit=100`, fetchOption("GET")).the
     })
   })
 })
-
 
 let offset, totalCount;
 fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
