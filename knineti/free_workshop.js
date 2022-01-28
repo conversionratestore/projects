@@ -17,10 +17,6 @@ let startFunc = setInterval(() => {
 
       let styleFreeWorkShop = /*html */ `
         <style>
-            #myHeaderr{
-                display: none !important;
-            }
-
             #demo1 .item_mc{
                 height: 0;
             }
