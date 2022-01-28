@@ -523,7 +523,7 @@ let startFunc = setInterval(() => {
         "0:00": [``, 1],
         "6:14": [`3 key rules to train <br/> your dog to be like a <br/> service dog`, 2],
         "13:34": [`Stop your dog pulling its <br/> leash - a powerful <br/> technique`, 3],
-        "16:30": [`How to prevent <br/> biting/nipping and get <br/> your dog adjusted to kids`, 4],
+        "16:30": [`Using body <br/> language to <br/> train your dog`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
         "21:45": [`Prevent <br/> excessive <br/> barking`, 6],
         "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
@@ -585,7 +585,7 @@ let startFunc = setInterval(() => {
                     <span>$0.00</span>
                 </li>
                 <li>
-                    <p><span>BONUS CLASS </span> <br/> How to get your dog adjusted to kids</p>
+                    <p><span>BONUS CLASS </span> <br/> How to prevent biting/nipping and get your dog adjusted to kids</p>
                     <span>$69.70</span>
                     <span>$0.00</span>
                 </li>
