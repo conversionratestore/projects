@@ -538,7 +538,7 @@ let startFunc = setInterval(() => {
         "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
         "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
         "50:11": [`Preventing dog- <br/> related accidents <br/> in your home`, 14],
-        "1:33:57": [``, 15],
+        "56:25": [``, 15],
       }
 
       let freeWorkShop = /*html */ `
@@ -546,7 +546,7 @@ let startFunc = setInterval(() => {
     <div class="free_work_shop_container">
         <div class="title_block">
             <h2>TOPICS COVERED In this video</h2>
-            <span>1:33:57</span>
+            <span>56:25</span>
         </div>
         <div class="timeline">
             <div class="timeline_container">
