@@ -1,4 +1,3 @@
-
 let html = `
   <div class="main">
     <header class="header">
@@ -1253,7 +1252,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
-      'eventCategory': 'Exp: New PDP',
+      'eventCategory': 'Exp — New PDP',
       'eventAction': actionDataLayer,
       'event:abel': labelDataLayer
   });
