@@ -1190,6 +1190,10 @@ document.querySelectorAll('.product-desc h3').forEach((el, i) => {
 })
 
 //Similar Products
+if (!document.querySelector('.products_gallery')) {
+  document.querySelector('.similar-products').style.display = 'none';
+}
+
 document.querySelectorAll('.products_gallery dd').forEach((el) => {
   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
   <div class="card" >
