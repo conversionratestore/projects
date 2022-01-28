@@ -117,7 +117,6 @@ let startFuncMobile = setInterval(() => {
                 background: #dde8f1;
                 padding-left: 15px;
                 padding-right: 15px;
-                cursor: pointer;
             }
 
             .free_work_shop_box .timeline_container {
@@ -546,7 +545,7 @@ let startFuncMobile = setInterval(() => {
         "0:00": [``, 1],
         "6:14": [`3 key rules to <br/> train your dog to <br/> be a service dog`, 2],
         "13:34": [`Stop your dog pulling its <br/> leash - an effective <br/> technique`, 3],
-        "16:30": [`Using body <br/> language to <br/> train your dog`, 4],
+        "16:30": [`How to prevent <br/> biting/nipping and get <br/> your dog adjusted to kids`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
         "21:45": [`Dealing with <br/> unnecessary <br/> barking`, 6],
         "36:11": [`Why you should wean your <br/> dog away from treats, and <br/> how to do it`, 7],
@@ -584,7 +583,7 @@ let startFuncMobile = setInterval(() => {
         <p>workshop Special offer</p>
     </div>
     <div class="blur_block">
-        <p>Get Total Transformation Masterclass and <br/> FREE gifts now </p>
+        <p>Get Total Transformation Masterclass and <br/> your FREE gifts now </p>
         <button disabled><span>Your special offer will be <br/> available in <b>35:00</b></span></button>
         <div class="pricing_text_box active_blur_parent">
             <ul class="active_blur">
