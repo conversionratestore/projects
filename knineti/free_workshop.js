@@ -521,19 +521,19 @@ let startFunc = setInterval(() => {
 `
       let arrText = {
         "0:00": [``, 1],
-        "6:14": [`3 key rules to train <br/> your dog to be a <br/> service dog`, 2],
-        "13:34": [`Stop your dog pulling its <br/> leash - an effective <br/> technique`, 3],
+        "6:14": [`3 key rules to train <br/> your dog to be like a <br/> service dog`, 2],
+        "13:34": [`Stop your dog pulling its <br/> leash - a powerful <br/> technique`, 3],
         "16:30": [`How to prevent <br/> biting/nipping and get <br/> your dog adjusted to kids`, 4],
         "17:22": [`Body language to <br/> stop your dog <br/> jumping on people`, 5],
-        "21:45": [`Dealing <br/> with <br/> unnecessary barking`, 6],
+        "21:45": [`Prevent <br/> excessive <br/> barking`, 6],
         "36:11": [`Why you should wean <br/> your dog away from <br/> treats, and how to do it`, 7],
-        "40:04": [`2 important <br/> commands to make <br/> your dog obedient`, 8],
+        "40:04": [`2 important <br/> cues taught <br/> to service dogs`, 8],
         "40:43": [`Training your dog <br/> to walk without <br/> pulling its leash`, 9],
         "45:14": [`Training your <br/> dog to come to <br/> you when called`, 10],
-        "45:55": [`Learn what’s ‘puppy push- <br/> ups’ and why you should <br/> train your dog to do them`, 11],
-        "47:09": [`Master new approaches <br/> to improve your dog’s <br/> impulse control`, 12],
-        "47:33": [`Priceless advice to stop <br/> your dog being aggressive <br/> towards dogs and people`, 13],
-        "50:11": [`Preventing dog- <br/> related accidents <br/> in your home`, 14],
+        "45:55": [`Learn what’s a ‘puppy-pushup’  <br/> and why you should <br/>  train your dog to do them`, 11],
+        "47:09": [`Dramatically <br/> improve your dog’s <br/> impulse control`, 12],
+        "47:33": [`How to stop <br/> your dog from <br/> being aggressive`, 13],
+        "50:11": [`Housebreaking: <br/> preventing accidents <br/> in your home`, 14],
         "56:25": [``, 15],
       }
 
