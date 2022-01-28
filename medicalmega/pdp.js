@@ -1,3 +1,5 @@
+
+
 let styles = `
 <style>
 @font-face {
@@ -1577,9 +1579,12 @@ window.onload  = function () {
           if(a.title < b.title) { return -1; }
           if(a.title > b.title) { return 1; }
           return 0;
-        }).reverse();
+        });
     for (let i = 0; i < categories.length; i++) {
       document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
+    }
+    categories.reverse()
+    for (let i = 0; i < categories.length; i++) {
       document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`); 
     }
 
