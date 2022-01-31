@@ -346,12 +346,21 @@ let styles = `
         pointer-events: none; 
         transition: all 0.3s ease; 
     }
+    .popup_filter.active {
+        opacity: 1;
+        pointer-events: auto; 
+    }
+    .popup_filter.active .popup_container{
+        transform: translateY(0);
+    }
     .popup_container {
         background: #FFFFFF;
         border-radius: 10px 10px 0px 0px;
         width: 100%; 
         margin-top: auto;
         padding: 12px;
+        transform: translateY(100px);
+        transition: all 0.3s ease; 
     }
     .btn_close {
         width: 24px;
@@ -392,6 +401,28 @@ let styles = `
         font-weight: 400;
         font-size: 14px;
         line-height: 18px;
+    }
+    .checkbox {
+        display: none;
+    }
+    .checkbox:checked ~ .check {
+        background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/check.svg')
+    }
+    .check {
+        display: block;
+        border: 2px solid #171717;
+        width: 18px;
+        height: 18px;
+        margin-right: 15px;
+        background: no-repeat center / 100%;
+        border-radius: 4px;
+    }
+    .filter_brands {
+        margin-bottom: 20px;
+    }
+    .align-items-center {
+        display: flex;
+        align-items: center;
     }
     </style>`
 let header = `
@@ -451,7 +482,7 @@ fetch(`/api/categories&limit=100`, {
     console.log(data)
     for (let key in data.categories) {
         if (data.categories[key].url) {
-            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
+            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
         }
     }
     document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
@@ -535,7 +566,7 @@ if (window.location.pathname.includes('/category')) {
         }
     })
 
-    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `<button type="button" class="btn_filter">Filters</button>`)
+    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `<button type="button" class="btn_filter" data-button="popup_filter">Filters</button>`)
 
     function checkSelected() {
         if (document.querySelector('.list_type1 select').value != '') {
@@ -548,9 +579,9 @@ if (window.location.pathname.includes('/category')) {
     document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
     document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;';
 
-    document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter">
+    document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
         <div class="popup_container">
-            <button type="button" class="btn_close"></button>
+            <button type="button" class="btn_close" data-button="popup_filter"></button>
             <div class="filter_content">
                 <h3 class="title">Filters</h3>
                 <div class="select filter_brands">
@@ -567,12 +598,40 @@ if (window.location.pathname.includes('/category')) {
 
     document.querySelectorAll('#left-navigation .altnav')[0].querySelectorAll('li a').forEach((el,i) => {
         if (i > 0) {
-            document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label><input type="checkbox" class="checkbox"><span class="check"></span><span>${el.innerHTML}</span></label></li>`)
-        }
+            document.querySelectorAll('#search_m_id option').forEach(option => {
+                if (el.getAttribute('title') == option.innerText) {
+                    document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-id="${option.value}" class="checkbox"><span class="check"></span><span>${el.innerHTML}</span></label></li>`)
+                }
+            })
+       }
     })
     document.querySelectorAll('#left-navigation .altnav')[1].querySelectorAll('li a').forEach((el,i) => {
         if (i > 0) {
             document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label><input type="checkbox" class="checkbox"><span class="check"></span><span>${el.innerHTML}</span></label></li>`)
         }
     })
+
+    document.querySelectorAll('[data-button]').forEach(button => {
+        button.addEventListener('click', () => document.querySelector(`[data-item="${button.dataset.button}"]`).classList.toggle('active'))
+    })
+
+    //get products on categories and brand
+    // fetch(`/api/products&offset=0&limit=100&is_featured=0&brand=388&ctoken=${mm.ctoken}&category=11216`, {
+    //     headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     method: "GET",
+    // }).then(res => res.json()).then(data => {
+    //     console.log(data)
+    // })
+
+    //get products on categories
+    // fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=11216`, {
+    //     headers: {
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //     },
+    //     method: "GET",
+    // }).then(res => res.json()).then(data => {
+    //     console.log(data)
+    // })
 }
