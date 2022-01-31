@@ -306,16 +306,13 @@ let styles = `
         width: calc(50% - 7.5px);
         margin-left: 15px;
     }
-    .list_type1 label {
-        position: absolute;
-        left: 12px;
-        top: 0;
-        line-height: 30px;
-        font-size: 12px;
-        color: #171717;
-        font-weight: 400;
+    .list_type1 p {
+        display: none;
     }
-     .list_type1 select {
+    .btn_sort {
+        width: calc(50% - 7.5px);
+    }
+    .btn_sort select {
         height: 30px;
         border: 1px solid #666666;
         border-radius: 4px;
@@ -446,6 +443,7 @@ let styles = `
         color: #666666;
     }
     </style>`
+
 let header = `
     <header class="header">
         <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger">
@@ -516,7 +514,7 @@ document.querySelectorAll('.nav li').forEach(el => {
 
 document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
 
-fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => {
+let requestAllCaterories = fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => {
     console.log(data)
     for (let key in data.categories) {
         if (data.categories[key].url) {
@@ -530,7 +528,6 @@ fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(dat
     })
     
     idCategory = document.querySelector(`.category_popular li a[href="${window.location.href}"]`).dataset.id;
-
 })
 
 function toggleCategory(boolean) {
@@ -569,6 +566,20 @@ if (window.location.pathname.includes('/category')) {
             el.style.display = 'none';
         }
     })
+    Promise.all([requestAllCaterories]).then(res => {
+        fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+            console.log(data)
+            let dataBrand = data.filters.brands,
+                dataPrices = data.filters.prices;
+
+            for (let i = 0; i < dataBrand.length; i++) {
+                document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
+            }
+            for (let i = 0; i < dataPrices.length; i++) {
+                document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
+            }
+        })
+    })
 
     document.querySelectorAll('#search_c_id option').forEach((el,i) => {
         if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
@@ -602,17 +613,27 @@ if (window.location.pathname.includes('/category')) {
         }
     })
 
-    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `<button type="button" class="btn_filter" data-button="popup_filter">Filters</button>`)
+    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
+    <div class="justify-content-between">
+        <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
+        <div class="btn_sort">
+            <select>
+                <option value="">Sort by</option>
+                <option value="+name">Product Name ASC</option>
+                <option value="-name">Product Name DESC</option>
+            </select>
+        </div>
+    </div>`)
 
-    function checkSelected() {
-        if (document.querySelector('.list_type1 select').value != '') {
-            document.querySelector('.list_type1 label').style.opacity = '0'
-        } else {
-            document.querySelector('.list_type1 label').style.opacity = '1'
-        }
-    }
-    checkSelected()
-    document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
+    // function checkSelected() {
+    //     if (document.querySelector('.list_type1 select').value != '') {
+    //         document.querySelector('.list_type1 label').style.opacity = '0'
+    //     } else {
+    //         document.querySelector('.list_type1 label').style.opacity = '1'
+    //     }
+    // }
+    // checkSelected()
+    // document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
     document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;';
 
     document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
@@ -674,7 +695,12 @@ if (window.location.pathname.includes('/category')) {
     }
     function getProductsForFilters(brandsFilter, priceRange) {
         let perPage = document.querySelector('[name="mm_per_page"]').value;
-        fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+
+        console.log(brandsFilter.toString() + " (id brands)")
+        console.log(priceRange.toString() + " (price range)")
+        console.log(idCategory + " (id category)")
+
+        fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
             console.log(data)
         })
     }
@@ -685,39 +711,29 @@ if (window.location.pathname.includes('/category')) {
         setFilter('.filter_brands .checkbox', brandsFilter)
         setFilter('.filter_price .checkbox', priceRange)
            
-        console.log(brandsFilter.toString())
-        console.log(priceRange.toString())
-        console.log(idCategory)
         getProductsForFilters(brandsFilter.toString(),priceRange.toString())
       
     })
     document.querySelector('[name="mm_per_page"]').addEventListener('input', () => {
         getProductsForFilters(brandsFilter, priceRange)
     })
+
+    document.querySelector('.btn_sort select').addEventListener('input', (e) => {
+        getProductsForFilters(brandsFilter.toString(),priceRange.toString())
+    })
 }
 
-let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
-}
+// let optionMut = {
+//     childList: true,
+//     subtree: true,
+//     attributes: true
+// }
 
-let mut = new MutationObserver(function (muts) {
-    if (window.location.pathname.includes('/category') && idCategory != '' && document.querySelector('.popup_filter') != null) {
-        mut.disconnect();
-        fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('[name="mm_order_by"]').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-            console.log(data)
-            let dataBrand = data.filters.brands,
-                dataPrices = data.filters.prices;
-
-            for (let i = 0; i < dataBrand.length; i++) {
-                document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
-            }
-            for (let i = 0; i < dataPrices.length; i++) {
-                document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
-            }
-        })
-    }
+// let mut = new MutationObserver(function (muts) {
+//     if (window.location.pathname.includes('/category') && idCategory != '' && document.querySelector('.popup_filter') != null) {
+//         mut.disconnect();
+      
+//     }
    
-})
-mut.observe(document, optionMut);
+// })
+// mut.observe(document, optionMut);
