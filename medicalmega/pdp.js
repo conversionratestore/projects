@@ -1374,7 +1374,7 @@ window.onload  = function () {
         document.head.appendChild(scriptCustom);
 
         let startInterval = setInterval(() => {
-            if (contentAvailableOptions != null && document.querySelector('.tns-outer') == null) {
+            if (labelsAvailable != null && document.querySelector('.tns-outer') == null) {
                 clearInterval(startInterval)
                 let sliderCategories = tns({
                     container: contentAvailableOptions,
