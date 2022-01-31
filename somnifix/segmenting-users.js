@@ -896,12 +896,12 @@ window.onload = function () {
 
 };
 
-let isClarify = setInterval(() => {
-	if(typeof clarity == 'function') {
-		clearInterval(isClarify)
+// let isClarify = setInterval(() => {
+// 	if(typeof clarity == 'function') {
+// 		clearInterval(isClarify)
 		clarity("set", "users_by_intent_on_home_page", "variant_1");
-	}
-}, 100)
+// 	}
+// }, 100)
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
