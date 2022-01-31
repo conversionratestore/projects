@@ -224,6 +224,7 @@ input {
     padding: 11px 50px 11px 20px;
     width: 100%; }
   .form-search button {
+      cursor: pointer;
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
