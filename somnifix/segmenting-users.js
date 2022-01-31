@@ -913,3 +913,5 @@ dataLayer.push({
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('event', 'users_by_intent_on_home_page');
+
+clarity(“set”, “users_by_intent_on_home_page”, “variant_1”);
