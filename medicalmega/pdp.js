@@ -1397,7 +1397,7 @@ window.onload  = function () {
                   });
                   clearInterval(startInterval)
                 }
-                document.querySelector('.arrow_button').forEach(arrow => {
+                document.querySelectoAll('.arrow_button').forEach(arrow => {
                   arrow.addEventListener('click', () => {
                     actionDataLayer = 'Click on arrow-slide button';
                     labelDataLayer = 'Product section';
