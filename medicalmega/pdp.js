@@ -651,7 +651,7 @@ padding: 0;
 .calc.disabled {
   pointer-events: none;
   opacity: 0.7;}
-.calc-qty {
+.calc-qty, .main input.calc-qty {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -922,7 +922,7 @@ padding: 0;
   border-color: #E3E6E7; }
 .product_sidebar.disabled .radio-check span {
   color: #BCC4C7!important; }
-.product_sidebar.disabled .calc-qty {
+.product_sidebar.disabled .calc-qty, .main .product_sidebar.disabled input.calc-qty {
   border-color: #E3E6E7;
   color: #BCC4C7; }
 .scroll-x {
