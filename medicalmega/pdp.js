@@ -1375,8 +1375,10 @@ window.onload  = function () {
         let startInterval = setInterval(() => {
             if (contentAvailableOptions != null) {
                 if (document.querySelector('.tns-outer') != null) {
+                  console.log('true')
                   clearInterval(startInterval)
                 } else {
+                  console.log('false')
                   let sliderCategories = tns({
                     container: contentAvailableOptions,
                     items: 2,
