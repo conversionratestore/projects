@@ -488,7 +488,9 @@ const message = {
     failure: 'Error..'
 }
 
-let requestAllCaterories = fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => { requestAllCaterories = data })
+let requestAllCaterories = new Promise((resolve, reject) => {
+    fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
+})
 
 let optionMut = {
     childList: true,
@@ -577,8 +579,7 @@ document.querySelector('.nav-menu').addEventListener('click', (e) => {
     }
 });
 
-Promise.all([requestAllCaterories]).then(res => {
-    let data = requestAllCaterories;
+requestAllCaterories.then(data => {
     console.log(data)
     for (let key in data.categories) {
         if (data.categories[key].url) {
@@ -597,20 +598,29 @@ Promise.all([requestAllCaterories]).then(res => {
             }
         })
 
-        fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-            console.log(data)
-            totalCountProducts = data.total_count;
-
-            let dataBrand = data.filters.brands,
-                dataPrices = data.filters.prices;
-
-            for (let i = 0; i < dataBrand.length; i++) {
-                document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
-            }
-            for (let i = 0; i < dataPrices.length; i++) {
-                document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
-            }
+        let requestFilters = new Promise((resolve, reject) => {
+            fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(dataFilters => {
+                console.log(dataFilters)
+                totalCountProducts = dataFilters.total_count;
+    
+                let dataBrand = dataFilters.filters.brands,
+                    dataPrices = dataFilters.filters.prices;
+    
+                for (let i = 0; i < dataBrand.length; i++) {
+                    document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
+                }
+                for (let i = 0; i < dataPrices.length; i++) {
+                    document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
+                }
+                resolve(dataFilters)
+            })
         })
+
+        // requestFilters.then(dataFilters => {
+        //     console.log(dataFilters)
+        //     brandsFilter = dataFilters.filters.brands;
+        //     priceRange = dataFilters.filters.prices;
+        // })
     }
 })
 
@@ -895,15 +905,13 @@ if (window.location.pathname.includes('/category')) {
             // }
           
         })
-        .catch(error => {
-            statusMessage.innerHTML = message.failure;
-        })
 
     }
 
     document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
         brandsFilter = [];
         priceRange = [];
+    
         setFilter('.filter_brands .checkbox', brandsFilter)
         setFilter('.filter_price .checkbox', priceRange)
            
