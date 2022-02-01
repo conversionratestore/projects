@@ -1395,6 +1395,7 @@ window.onload  = function () {
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                   });
+                  clearInterval(startInterval)
                 }
             }
         }, 200)
