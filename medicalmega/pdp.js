@@ -209,7 +209,7 @@ input[type=number] {
   line-height: 18px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: #1E3944; }
+  color: #1E3944!important; }
   .logo span {
     color: #96280F; }
 
