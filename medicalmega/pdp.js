@@ -1257,7 +1257,7 @@ window.onload  = function () {
         'event': 'event-to-ga',
         'eventCategory': 'Exp — New PDP',
         'eventAction': actionDataLayer,
-        'event:abel': labelDataLayer
+        'eventLabel': labelDataLayer
     });
   }
 
