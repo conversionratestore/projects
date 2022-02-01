@@ -267,6 +267,7 @@ let styles = `
         margin: 0
     }
     .listing li a {
+        min-height: 36px;
         padding: 8px;
         font-weight: normal;
         font-size: 14px;
@@ -339,14 +340,11 @@ let styles = `
         height: 100%; 
         width: 100%;
         background: rgba(0,0,0,0.5);
-        display: inline-flex;
-        opacity: 0;
-        pointer-events: none; 
+        display: none;
         transition: all 0.3s ease; 
     }
     .popup_filter.active {
-        opacity: 1;
-        pointer-events: auto; 
+        display: inline-flex;
     }
     .popup_filter.active .popup_container{
         transform: translateY(0);
@@ -361,6 +359,7 @@ let styles = `
         transition: all 0.3s ease; 
         overflow-y: auto;
         max-height: 100%;
+        height: auto;
     }
     .btn_close {
         width: 24px;
@@ -482,6 +481,38 @@ let headerFetch = {
     },
     method: "GET",
 }
+
+const message = {
+    loading: 'loading',
+    success: 'Check!',
+    failure: 'Error..'
+}
+
+let requestAllCaterories = fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => { requestAllCaterories = data })
+
+let optionMut = {
+    childList: true,
+    subtree: true,
+    attributes: true
+}
+
+let totalCountProducts = '';
+let loaded = false;
+
+// let mut = new MutationObserver(function (muts) {
+//     console.log('mut')
+//     if (typeof(requestAllCaterories) != 'undefined') {
+//         mut.disconnect();
+//         // window.addEventListener('load', (event) => {
+        
+                        
+           
+//         // });
+    
+//     }
+
+// })
+// mut.observe(document, optionMut);
 // function pushDataLayer(action,label) {
 //     console.log(action + " : " + label)
 //     window.dataLayer = window.dataLayer || [];
@@ -493,6 +524,9 @@ let headerFetch = {
 //     });
 // }
 
+window.onload = function() {
+
+}
 document.body.insertAdjacentHTML('afterbegin', styles);
 document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
@@ -514,23 +548,7 @@ document.querySelectorAll('.nav li').forEach(el => {
 
 document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
 
-let requestAllCaterories = fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => {
-    console.log(data)
-    for (let key in data.categories) {
-        if (data.categories[key].url) {
-            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
-        }
-    }
-    document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
-        if (i > 4) {
-            el.hidden = true;
-        }
-    })
-    
-    idCategory = document.querySelector(`.category_popular li a[href="${window.location.href}"]`).dataset.id;
-})
-
-function toggleCategory(boolean) {
+function viewAllCategories(boolean) {
     document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
         if (i > 4) {
             el.hidden = boolean;
@@ -548,8 +566,8 @@ function toggleCategory(boolean) {
     }
 }
 
-document.querySelector('.btn_all-category').addEventListener('click', () => toggleCategory(false)); //open all category
-document.querySelector('.btn_back').addEventListener('click', () => toggleCategory(true)); //hide all category
+document.querySelector('.btn_all-category').addEventListener('click', () => viewAllCategories(false)); //open all category
+document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
 
 document.querySelector('.icon_burger').addEventListener('click', () => document.querySelector('.nav-menu').classList.add('active'));
 document.querySelector('.btn_close').addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('active'));
@@ -559,16 +577,30 @@ document.querySelector('.nav-menu').addEventListener('click', (e) => {
     }
 });
 
-//listing
-if (window.location.pathname.includes('/category')) {
-    document.querySelectorAll('.listing p').forEach((el,i) => {
-        if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
-            el.style.display = 'none';
+Promise.all([requestAllCaterories]).then(res => {
+    let data = requestAllCaterories;
+    console.log(data)
+    for (let key in data.categories) {
+        if (data.categories[key].url) {
+            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
         }
+    }
+
+    document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
+        if (i > 4) el.hidden = true;
     })
-    Promise.all([requestAllCaterories]).then(res => {
+
+    if (window.location.pathname.includes('/category')) {
+        document.querySelectorAll('#search_c_id option').forEach(el => {
+            if (el.innerText.includes(document.querySelector('.listing .categoryTop').innerText)) {
+                idCategory = el.value;
+            }
+        })
+
         fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
             console.log(data)
+            totalCountProducts = data.total_count;
+
             let dataBrand = data.filters.brands,
                 dataPrices = data.filters.prices;
 
@@ -579,14 +611,24 @@ if (window.location.pathname.includes('/category')) {
                 document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
             }
         })
+    }
+})
+
+//listing
+if (window.location.pathname.includes('/category')) {
+    document.querySelectorAll('.listing p').forEach((el,i) => {
+        if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
+            el.style.display = 'none';
+        }
     })
 
     document.querySelectorAll('#search_c_id option').forEach((el,i) => {
         if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
-            fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}`, headerFetch).then(res => res.json()).then(data => {
+            console.log(el.value)
+            fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
 
                 let products = data.products;
-                console.log(data)
+                console.log(data + " (data " + el.value + ")")
 
                 document.querySelectorAll('.listing li').forEach((el,index) => {
                     el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
@@ -612,7 +654,6 @@ if (window.location.pathname.includes('/category')) {
             })
         }
     })
-
     document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
     <div class="justify-content-between">
         <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
@@ -625,16 +666,119 @@ if (window.location.pathname.includes('/category')) {
         </div>
     </div>`)
 
-    // function checkSelected() {
-    //     if (document.querySelector('.list_type1 select').value != '') {
-    //         document.querySelector('.list_type1 label').style.opacity = '0'
-    //     } else {
-    //         document.querySelector('.list_type1 label').style.opacity = '1'
-    //     }
-    // }
-    // checkSelected()
-    // document.querySelector('.list_type1 select').addEventListener('change', () => checkSelected())
-    document.querySelector('.list_box1 ').style.marginBottom = '-18px!important;';
+    function listBoxes(link,title,srcImage,brandName,soldBy,itemNumber,price,id) {
+        let listBox1 = `
+            <fieldset class="list_box2" style="position: relative;">
+                <div class="list_type3">
+                    <span>
+                        <a href="${link}">
+                            <img id="product_img_0" alt="${title}" src="${srcImage}">
+                        </a>
+                    </span>
+                </div>
+                <div class="list_type4">
+                    <h3><a href="${link}">${title}</a></h3>
+                    <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                        <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                            <span style="display:block; font-size:12px;">Manufacturer: ${brand}</span>
+                            <span id="variant_tag_0">
+                                <span style="display:block; font-size:12px;">Sold By: ${soldBy}</span>
+                                <span style="display:block; font-size:12px;">Item Number: ${itemNumber}/span>
+                                <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${price}</i></span>
+                            </span>
+                        </span>
+                        <input type="hidden" name="product_id" value="${id}">
+                        <input type="hidden" name="add_to_cart" value="variant">
+                    </form>
+                </div>
+            </fieldset>`
+
+        let var1 = `
+            <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+                <span id="product_quantity_0" class="nostyle" style="">
+                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;">
+                        <option value="1">1</option>
+                    
+                    </select>
+                </span>
+                <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
+                <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:none; ">
+                    <p class="out-of-stock__message--pv">Out Of Stock</p>
+                </div>
+            </span>
+            <p style="clear:both;">
+                <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
+                <select class="product-variant product-variant__options-box__select" name="product_variant_id" id="product_variant_0" style="font-size:11px;float:left;margin-top:2px;" onchange="change_variant_tag(this.value, pv_0, '0');">
+                    <script type="text/javascript">
+                        var pv_0 = new Array();
+                    </script>
+                    <option value="102086"> Box/100 </option>
+                    <script type="text/javascript">
+                        pv_0[0] =
+                            new Array(
+                                '20.00', // 0
+                                '2', // 1
+                                '', // 2
+                                '0', // 3
+                                '102086', // 4
+                                'Box/100', // 5
+                                'Nitrile Powder Free Gloves, Small', // 6
+                                'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
+                                '94821', // 8
+                                'N104S', // 9
+                                '', // 10
+                                '143', // 11
+                                '0', // 12
+                                '0', // 13
+                                '0', // 14
+                                '0' // 15
+                            );
+                    </script>
+                    <option value="102087"> Case_10 </option>
+                    <script type="text/javascript">
+                        pv_0[1] =
+                            new Array(
+                                '190.00', // 0
+                                '2', // 1
+                                '', // 2
+                                '0', // 3
+                                '102087', // 4
+                                'Case_10', // 5
+                                'Nitrile Powder Free Gloves, Small', // 6
+                                'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
+                                '94821', // 8
+                                'N104S', // 9
+                                '', // 10
+                                '14', // 11
+                                '0', // 12
+                                '0', // 13
+                                '0', // 14
+                                '0' // 15
+                            );
+                    </script>
+                </select>
+            </p>`
+
+    let var2 = `
+        <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+            <span id="product_quantity_0" class="nostyle" style="">
+                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">
+                    <option value="1">1</option>
+                </select>
+            </span>
+            <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
+            <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:none; ">
+                <p class="out-of-stock__message--pv">Out Of Stock</p>
+            </div>
+        </span>
+        <p style="clear:both;">
+            <input type="hidden" name="product_variant_id" value="101917">
+        </p>
+        `
+
+        return listBox1
+    }
+  
 
     document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
         <div class="popup_container">
@@ -685,24 +829,76 @@ if (window.location.pathname.includes('/category')) {
 
     function setFilter(item, arrFilter) {
         document.querySelectorAll(item).forEach(checkbox => {
-            // checkbox.addEventListener('click', () => {
-                if (checkbox.checked == true) {
-                    console.log(checkbox.dataset.option)
-                    arrFilter.push(checkbox.dataset.option) 
-                } 
-            // })
+            if (checkbox.checked == true) {
+                console.log(checkbox.dataset.option)
+                arrFilter.push(checkbox.dataset.option) 
+            } 
         })
     }
     function getProductsForFilters(brandsFilter, priceRange) {
         let perPage = document.querySelector('[name="mm_per_page"]').value;
 
-        console.log(brandsFilter.toString() + " (id brands)")
-        console.log(priceRange.toString() + " (price range)")
         console.log(idCategory + " (id category)")
-
-        fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-            console.log(data)
+        document.querySelectorAll('.listing .list_box2').forEach(el => {
+            el.remove()
         })
+        
+        const statusMessage = document.createElement('div');
+        statusMessage.classList.add('status');
+        statusMessage.innerHTML = message.loading;
+        document.querySelector('.listing').append(statusMessage)
+
+        const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            let products = data.products;
+            statusMessage.innerHTML = message.success;
+            let variants;
+            for (let key in products) {
+           
+                variants = products[key].variants;
+
+                // listBoxes(link,title,brandName,itemNumber,variants)
+                document.querySelector('.listing').insertAdjacentHTML('beforeend',`
+                    <fieldset class="list_box2" style="position: relative;">
+                        <div class="list_type3">
+                            <span>
+                                <a href="${products[key].url}">
+                                    <img id="product_img_0" alt="${products[key].title}" src="${products[key].variants[0].image_url}">
+                                </a>
+                            </span>
+                        </div>
+                        <div class="list_type4">
+                            <h3><a href="${products[key].url}">${products[key].title}</a></h3>
+                            <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                                <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                                    <span style="display:block; font-size:12px;">Manufacturer: ${products[key].brand}</span>
+                                    <span id="variant_tag_0">
+                                        <span style="display:block; font-size:12px;">Sold By: ${products[key].variants[0].title}</span>
+                                        <span style="display:block; font-size:12px;">Item Number: ${products[key].itemNumber}</span>
+                                        <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${products[key].variants[0].price}</i></span>
+                                    </span>
+                                </span>
+                                <input type="hidden" name="product_id" value="${products[key].variants[0].product_id}">
+                                <input type="hidden" name="add_to_cart" value="variant">
+                            </form>
+                        </div>
+                    </fieldset>`)
+            }
+            // for (let keyVariant in variants) {
+            //     let soldBy = variants[keyVariant].title,
+            //         price = variants[keyVariant].price,
+            //         srcImage = variants[keyVariant].image_url,
+            //         status = variants[keyVariant].stock_status,
+            //         id = variants[keyVariant].product_id;
+            // }
+          
+        })
+        .catch(error => {
+            statusMessage.innerHTML = message.failure;
+        })
+
     }
 
     document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
@@ -711,29 +907,20 @@ if (window.location.pathname.includes('/category')) {
         setFilter('.filter_brands .checkbox', brandsFilter)
         setFilter('.filter_price .checkbox', priceRange)
            
+        console.log(brandsFilter.toString() + " (id brands)")
+        console.log(priceRange.toString() + " (price range)")
         getProductsForFilters(brandsFilter.toString(),priceRange.toString())
       
     })
-    document.querySelector('[name="mm_per_page"]').addEventListener('input', () => {
-        getProductsForFilters(brandsFilter, priceRange)
+    document.querySelector('[name="mm_per_page"]').addEventListener('change', () => {
+        console.log(brandsFilter.toString() + " (id brands)")
+        console.log(priceRange.toString() + " (price range)")
+        getProductsForFilters(brandsFilter.toString(), priceRange.toString())
     })
 
-    document.querySelector('.btn_sort select').addEventListener('input', (e) => {
+    document.querySelector('.btn_sort select').addEventListener('change', (e) => {
+        console.log(brandsFilter.toString() + " (id brands)")
+        console.log(priceRange.toString() + " (price range)")
         getProductsForFilters(brandsFilter.toString(),priceRange.toString())
     })
 }
-
-// let optionMut = {
-//     childList: true,
-//     subtree: true,
-//     attributes: true
-// }
-
-// let mut = new MutationObserver(function (muts) {
-//     if (window.location.pathname.includes('/category') && idCategory != '' && document.querySelector('.popup_filter') != null) {
-//         mut.disconnect();
-      
-//     }
-   
-// })
-// mut.observe(document, optionMut);
