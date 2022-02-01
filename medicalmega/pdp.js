@@ -1362,6 +1362,15 @@ window.onload  = function () {
                     </svg>
                 </button>
             </div>`)
+            
+        document.querySelectoAll('.arrow_button').forEach(arrow => {
+          arrow.addEventListener('click', () => {
+            actionDataLayer = 'Click on arrow-slide button';
+            labelDataLayer = 'Product section';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+          })
+        })
+        
         let linkCustom = document.createElement('link');
         linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
         linkCustom.rel = 'stylesheet';
@@ -1397,13 +1406,6 @@ window.onload  = function () {
                   });
                   clearInterval(startInterval)
                 }
-                document.querySelectoAll('.arrow_button').forEach(arrow => {
-                  arrow.addEventListener('click', () => {
-                    actionDataLayer = 'Click on arrow-slide button';
-                    labelDataLayer = 'Product section';
-                    pushDataLayer(actionDataLayer, labelDataLayer)
-                  })
-                })
             }
         }, 200)
 
