@@ -1,5 +1,3 @@
-
-
 let styles = `
 <style>
 @font-face {
@@ -224,7 +222,6 @@ input {
     padding: 11px 50px 11px 20px;
     width: 100%; }
   .form-search button {
-      cursor: pointer;
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -1374,8 +1371,8 @@ window.onload  = function () {
         document.head.appendChild(scriptCustom);
 
         let startInterval = setInterval(() => {
-            if (contentAvailableOptions != null && document.querySelector('.tns-outer') == null) {
-               
+            if (contentAvailableOptions != null) {
+                clearInterval(startInterval)
                 let sliderCategories = tns({
                     container: contentAvailableOptions,
                     items: 2,
@@ -1392,7 +1389,6 @@ window.onload  = function () {
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                 });
-               clearInterval(startInterval)
             }
         }, 200)
 
@@ -1606,68 +1602,12 @@ window.onload  = function () {
     })
   })
 
-  let offset, totalCount;
-  fetch(`/api/brands&limit=100`, fetchOption("GET")).then(res => res.json()).then(data => {
+  // let offset, totalCount;
+  fetch(`/api/products&with_filters=1`, fetchOption("GET")).then(res => res.json()).then(data => {
     console.log(data)
-    let brands = data.brands;
-
-    offset = data.limit;
-    totalCount = data['total_count'] / 100;
-
+    let brands = data.filters.brands;
     for (let i = 0; i < brands.length; i++) {
-        document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${brands[i]["brand_id"]}">${brands[i].title}</li>`)
-    }
-
-    for (let i = 1; i < Math.ceil(totalCount); i++) {
-        fetch(`/api/brands&limit=100&offset=${offset * i}`, fetchOption("GET")).then(res => res.json()).then(dataI => {
-            console.log(dataI)
-            let brandsI = dataI.brands;
-            for (let i = 0; i < brandsI.length; i++) {
-                document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${brandsI[i]["brand_id"]}">${brandsI[i].title}</li>`)
-            }
-
-            document.querySelectorAll('.select_current').forEach((el) => {
-                el.addEventListener('click',(e) => {
-                    e.stopImmediatePropagation()
-                    remActiveSelect()
-                    el.parentElement.classList.toggle('active');
-                })
-                el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
-                    option.addEventListener('click', (e) => {
-                        e.stopImmediatePropagation()
-                    
-                        let notes = 'select';
-                        if (option.closest('.select_category')) {
-                            notes = 'select category'
-                        } else if (option.closest('.select_brand')) {
-                            notes = 'select manufacturer'
-                        } 
-                        actionDataLayer = `Click on option ${notes}`;
-                        labelDataLayer = 'Advanced Search';
-                        pushDataLayer(actionDataLayer, labelDataLayer)
-                    
-                        let name = option.closest('.select').getAttribute('name'),
-                            value = option.dataset.value;
-                        if (option.closest('.select').querySelector('.active') != null) {
-                            option.closest('.select').querySelector('.active').classList.remove('active');
-                        }
-
-                        option.classList.add('active');
-                        if (name == 'search_c_id') {
-                            document.querySelector(`#search_c_id option[value="${value}"]`).selected = true;
-                        } else if (name == 'search_m_id') {
-                            document.querySelector(`#search_m_id option[value="${value}"]`).selected = true;
-                        }
-                        if (index == 0) {
-                            el.innerHTML = `<span>${option.innerHTML}</span>`;
-                        } else {
-                            el.innerHTML = option.innerHTML;
-                        }
-                        option.closest('.select').classList.remove('active');
-                    })
-                })
-            })
-        })
+        document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${brands[i].brand_id}">${brands[i].brand_name}</li>`)
     }
   })
 
