@@ -1697,7 +1697,7 @@ window.onload  = function () {
     labelDataLayer = 'Header';
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
-  document.querySelector('.trustpilot iframe').addEventListener('click', (e) => {
+  document.querySelector('.trustpilot').addEventListener('click', (e) => {
     actionDataLayer = `Click at the review`;
     labelDataLayer = 'Product section';
     pushDataLayer(actionDataLayer,labelDataLayer)
