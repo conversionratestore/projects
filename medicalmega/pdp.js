@@ -1370,11 +1370,10 @@ window.onload  = function () {
         let scriptCustom = document.createElement('script');
         scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
         scriptCustom.async = false;
-        document.head.appendChild(scriptCustom);
+        document.body.appendChild(scriptCustom);
 
         let startInterval = setInterval(() => {
             if (contentAvailableOptions != null) {
-                clearInterval(startInterval)
                 let sliderCategories = tns({
                     container: contentAvailableOptions,
                     items: 2,
@@ -1391,6 +1390,7 @@ window.onload  = function () {
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
                 });
+                clearInterval(startInterval)
             }
         }, 200)
 
