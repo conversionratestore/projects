@@ -1560,12 +1560,14 @@ window.onload  = function () {
     })
   }
   document.querySelector('.advanced-search .btn').addEventListener('click', () => document.querySelector('.advance_search #search_submit').click())
-  document.querySelector('.advanced-search input').addEventListener('keypress', (e) => {
-    if (e.keyCode == '13') {
-      document.querySelector('.advance_search #search_submit').click()
-    }
+  document.querySelectorAll('.advanced-search input').forEach(input => {
+    input.addEventListener('keypress', (e) => {
+      if (e.keyCode == '13') {
+        document.querySelector('.advance_search #search_submit').click();
+      }
+    })  
   })
-
+  
   //shipping
   fetch("/cart.html", fetchOption("POST",`api=c&cart_action=cart&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
     console.log(data)
