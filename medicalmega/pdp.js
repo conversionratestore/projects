@@ -1397,6 +1397,13 @@ window.onload  = function () {
                   });
                   clearInterval(startInterval)
                 }
+                document.querySelector('.arrow_button').forEach(arrow => {
+                  arrow.addEventListener('click', () => {
+                    actionDataLayer = 'Click on arrow-slide button';
+                    labelDataLayer = 'Product section';
+                    pushDataLayer(actionDataLayer, labelDataLayer)
+                  })
+                })
             }
         }, 200)
 
@@ -1701,9 +1708,6 @@ window.onload  = function () {
       } else if (button.closest('.similar-products')) {
         actionDataLayer = `Click on Add to cart button`;
         labelDataLayer = 'Similar products section';
-      } else if (button.closest('.advanced-search')) {
-        actionDataLayer = `Click on the Advanced search button`;
-        labelDataLayer = 'Header';
       } else {
         actionDataLayer = `Click on ${button.innerText} button`;
         if (button.closest('.header')) {
