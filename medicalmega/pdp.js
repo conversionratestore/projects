@@ -540,7 +540,7 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-direction: column; }
+  flex-direction: column; } 
 .trustpilot iframe {
   width: 90%!important;
   height: 91px!important;}
@@ -1697,7 +1697,7 @@ window.onload  = function () {
     labelDataLayer = 'Header';
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
-  document.querySelector('.trustpilot').addEventListener('click', (e) => {
+  document.querySelector('.trustpilot iframe').addEventListener('click', (e) => {
     actionDataLayer = `Click at the review`;
     labelDataLayer = 'Product section';
     pushDataLayer(actionDataLayer,labelDataLayer)
