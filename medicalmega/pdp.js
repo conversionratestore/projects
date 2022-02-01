@@ -733,6 +733,7 @@ padding: 0;
   .tabs-discription li:last-child {
     padding-right: 0; }
   .tabs-discription li.active {
+    cursor: auto;
     border-bottom-color: #091114;
     font-weight: 600;
     color: #091114; }
