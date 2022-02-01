@@ -1373,9 +1373,11 @@ window.onload  = function () {
         document.body.appendChild(scriptCustom);
 
         let startInterval = setInterval(() => {
-            if (contentAvailableOptions != null && document.querySelector('.tns-outer') == null && labelsAvailable.length > 2) {
-                clearInterval(startInterval)
-                let sliderCategories = tns({
+            if (contentAvailableOptions != null) {
+                if (document.querySelector('.tns-outer') != null) {
+                  clearInterval(startInterval)
+                } else {
+                  let sliderCategories = tns({
                     container: contentAvailableOptions,
                     items: 2,
                     axis: 'horizontal',
@@ -1390,7 +1392,8 @@ window.onload  = function () {
                     // autoWidth: true,
                     preventScrollOnTouch: 'auto',
                     swipeAngle: false,
-                });
+                  });
+                }
             }
         }, 200)
 
