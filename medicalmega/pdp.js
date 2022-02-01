@@ -61,31 +61,31 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield; }
 
-*::-webkit-input-placeholder {
+.main *::-webkit-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*:-moz-placeholder {
+.main *:-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*::-moz-placeholder {
+.main *::-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*:-ms-input-placeholder {
+.main *:-ms-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-input {
+.main input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
