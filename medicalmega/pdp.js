@@ -1703,9 +1703,9 @@ window.onload  = function () {
             labelDataLayer = 'Advanced Search';
         } else {
             notes = input.placeholder;
-            if (btn.closest('.header')) {
+            if (input.closest('.header')) {
               labelDataLayer = 'Header'
-            } else if (btn.closest('.similar-product')) {
+            } else if (input.closest('.similar-product')) {
               labelDataLayer = 'Similar products section'
             } else {
               labelDataLayer = 'Product section'
