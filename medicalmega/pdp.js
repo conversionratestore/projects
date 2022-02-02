@@ -1282,10 +1282,12 @@ window.onload  = function () {
         } else if (action == 'minus') {
             qty.value = parseInt(qty.value) - 1;
         }
-        if (qty.value > 0) {
+        if (qty.value > 1) {
             qty.previousElementSibling.disabled = false;
         } else {
             qty.previousElementSibling.disabled = true;
+        }
+        if (qty.value <= 0) {
             qty.value = 1;
         }
         pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
