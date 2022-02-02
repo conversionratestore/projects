@@ -1699,9 +1699,15 @@ window.onload  = function () {
 
     document.body.addEventListener('click', (e) => {
         if (!e.target.matches('.select_current')) remActiveSelect();
+        if (!e.target.matches('.nav_category')) {
+            document.querySelector(`.nav_category`).classList.remove('active');
+        }
     })
 
-    window.addEventListener('scroll', () => remActiveSelect());
+    window.addEventListener('scroll', () => {
+        remActiveSelect();
+        document.querySelector(`.nav_category`).classList.remove('active');
+    });
 
     //zoom
     let startZoom = setInterval(() => {
