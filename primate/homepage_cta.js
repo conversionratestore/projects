@@ -93,6 +93,7 @@ let style = `
         border-radius: 40px;
         position:relative;
         margin-top: 20px;
+        cursor: pointer;
       }
       
       .new_homepage button::after {
@@ -163,6 +164,7 @@ function start() {
     document.body.insertAdjacentHTML('afterbegin', style)
 
     document.querySelector('.home-hero-content').insertAdjacentHTML('beforebegin', block)
+    document.querySelector(".exp")?.remove()
 
     document.querySelector('.new_homepage ul li').addEventListener('click', function () {
         window.location.pathname = '/zamowienie'
@@ -203,4 +205,3 @@ dataLayer.push({
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 hj('event', 'homepage_ctr');
-
