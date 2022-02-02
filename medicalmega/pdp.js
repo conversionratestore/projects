@@ -261,7 +261,7 @@ input[type=number] {
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #E3E6E7; }
-  .alphabet::-webkit-scrollbar, .list_categories::-webkit-scrollbar {
+  .nav_category *::-webkit-scrollbar, .nav_category *::-webkit-scrollbar-track {
     width: 4px;
   }
   .alphabet li {
