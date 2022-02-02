@@ -1,5 +1,8 @@
 let styles = `
     <style>
+    .hide {
+        display: none!important;
+    }
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
     }
@@ -394,18 +397,13 @@ let styles = `
         transition: all 0.3s ease; 
     }
     .select_dropdown {
-        height: 0;
         opacity: 0;
-        pointer-events: none;
-        transition: height 0.3s ease; 
+        transition: opacity 0.3s ease; 
+        display: none;
     }
     .select.active .select_dropdown {
-        height: auto;
         opacity: 1;
-        pointer-events: auto;
-    }
-    .select.active .select_dropdown li {
-        margin-top: 22px;
+        display: block;
     }
     .select.active .select_current img {
         transform: scaleY(-1)
@@ -415,6 +413,7 @@ let styles = `
         font-size: 14px;
         line-height: 18px;
         transition: all 0.3s ease; 
+        margin-top: 22px;
     }
     .checkbox {
         display: none;
@@ -423,12 +422,13 @@ let styles = `
         background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/check.svg')
     }
     .check {
+        box-sizing: border-box;
         display: block;
         border: 2px solid #171717;
         width: 18px;
         height: 18px;
         margin-right: 15px;
-        background: no-repeat center / 100%;
+        background: no-repeat center / cover;
         border-radius: 4px;
     }
     .filter_brands {
@@ -506,15 +506,17 @@ let loaded = false;
 //     if (typeof(requestAllCaterories) != 'undefined') {
 //         mut.disconnect();
 //         // window.addEventListener('load', (event) => {
-        
-                        
-           
+
+
+
 //         // });
-    
+
 //     }
 
 // })
 // mut.observe(document, optionMut);
+
+
 // function pushDataLayer(action,label) {
 //     console.log(action + " : " + label)
 //     window.dataLayer = window.dataLayer || [];
@@ -526,103 +528,252 @@ let loaded = false;
 //     });
 // }
 
-window.onload = function() {
 
-}
-document.body.insertAdjacentHTML('afterbegin', styles);
-document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
-document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
-document.querySelector('.header .icon_burger').after(document.querySelector('.search.search-box'));
-if (document.querySelector('.topnav .signup') != null) {
-    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
-}
-if (document.querySelector('.topnav .logout') != null) {
-    document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
-}
+window.onload = function() {}
+    document.body.insertAdjacentHTML('afterbegin', styles);
+    document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
-document.querySelector('.sticky-top').after(document.querySelector('.nav'));
-document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
-document.querySelectorAll('.nav li').forEach(el => {
-    if (el.classList.contains('hide-mobile')) {
-        el.classList.remove('hide-mobile','hide-mobile-landscape')
+    document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
+    document.querySelector('.header .icon_burger').after(document.querySelector('.search.search-box'));
+    if (document.querySelector('.topnav .signup') != null) {
+        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
     }
-})
+    if (document.querySelector('.topnav .logout') != null) {
+        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
+    }
 
-document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
-
-function viewAllCategories(boolean) {
-    document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
-        if (i > 4) {
-            el.hidden = boolean;
+    document.querySelector('.sticky-top').after(document.querySelector('.nav'));
+    document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
+    document.querySelectorAll('.nav li').forEach(el => {
+        if (el.classList.contains('hide-mobile')) {
+            el.classList.remove('hide-mobile','hide-mobile-landscape')
         }
     })
-    document.querySelector('.btn_back').hidden = boolean;
-    if (boolean == false) {
-        document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
-        document.querySelector('.btn_all-category').hidden = true;
-        document.querySelector('.nav-menu .nav').hidden = true;
-    } else {
-        document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
-        document.querySelector('.btn_all-category').hidden = false;
-        document.querySelector('.nav-menu .nav').hidden = false;
-    }
-}
 
-document.querySelector('.btn_all-category').addEventListener('click', () => viewAllCategories(false)); //open all category
-document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
+    document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
 
-document.querySelector('.icon_burger').addEventListener('click', () => document.querySelector('.nav-menu').classList.add('active'));
-document.querySelector('.btn_close').addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('active'));
-document.querySelector('.nav-menu').addEventListener('click', (e) => {
-    if (e.target.classList.contains('nav-menu')) {
-        document.querySelector('.nav-menu').classList.remove('active')
-    }
-});
-
-requestAllCaterories.then(data => {
-    console.log(data)
-    for (let key in data.categories) {
-        if (data.categories[key].url) {
-            document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
-        }
-    }
-
-    document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
-        if (i > 4) el.hidden = true;
-    })
-
-    if (window.location.pathname.includes('/category')) {
-        document.querySelectorAll('#search_c_id option').forEach(el => {
-            if (el.innerText.includes(document.querySelector('.listing .categoryTop').innerText)) {
-                idCategory = el.value;
+    function viewAllCategories(boolean) {
+        document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
+            if (i > 4) {
+                el.hidden = boolean;
             }
         })
+        document.querySelector('.btn_back').hidden = boolean;
+        if (boolean == false) {
+            document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
+            document.querySelector('.btn_all-category').hidden = true;
+            document.querySelector('.nav-menu .nav').hidden = true;
+        } else {
+            document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
+            document.querySelector('.btn_all-category').hidden = false;
+            document.querySelector('.nav-menu .nav').hidden = false;
+        }
+    }
 
-        let requestFilters = new Promise((resolve, reject) => {
-            fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch).then(res => res.json()).then(dataFilters => {
-                console.log(dataFilters)
-                totalCountProducts = dataFilters.total_count;
-    
-                let dataBrand = dataFilters.filters.brands,
-                    dataPrices = dataFilters.filters.prices;
-    
-                for (let i = 0; i < dataBrand.length; i++) {
-                    document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
-                }
-                for (let i = 0; i < dataPrices.length; i++) {
-                    document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
-                }
-                resolve(dataFilters)
-            })
+    let menu = document.querySelector('.nav-menu');
+
+    document.querySelector('.btn_all-category').addEventListener('click', () => viewAllCategories(false)); //open all category
+    document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
+
+    document.querySelector('.icon_burger').addEventListener('click', () => menu.classList.add('active'));
+    document.querySelector('.btn_close').addEventListener('click', () => menu.classList.remove('active'));
+
+    menu.addEventListener('click', (e) => {
+        if (e.target.classList.contains('nav-menu')) {
+            menu.classList.remove('active')
+        }
+    });
+
+    requestAllCaterories.then(data => {
+        console.log(data)
+
+        for (let key in data.categories) {
+            if (data.categories[key].url) {
+                document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
+            }
+        }
+
+        document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
+            if (i > 4) el.hidden = true;
         })
 
-        // requestFilters.then(dataFilters => {
-        //     console.log(dataFilters)
-        //     brandsFilter = dataFilters.filters.brands;
-        //     priceRange = dataFilters.filters.prices;
-        // })
-    }
-})
+        if (window.location.pathname.includes('/category')) {
+            document.querySelectorAll('#search_c_id option').forEach(el => {
+                if (el.innerText.includes(document.querySelector('.listing .categoryTop').innerText)) {
+                    idCategory = el.value;
+                }
+            })
+            document.querySelector('.listing').insertAdjacentHTML('beforeend',`<div class="products_list"></div>`)
+
+            document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
+                <div class="justify-content-between hide">
+                    <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
+                    <div class="btn_sort">
+                        <select>
+                            <option value="">Sort by</option>
+                            <option value="+name">Product Name ASC</option>
+                            <option value="-name">Product Name DESC</option>
+                        </select>
+                    </div>
+                </div>`)
+
+            let requestFilters = new Promise((resolve, reject) => {
+                fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                    .then(res => res.json())
+                    .then(dataFilters => resolve(dataFilters))
+            })
+
+            requestFilters.then(dataFilters => {
+                console.log(dataFilters)
+                totalCountProducts = dataFilters.total_count;
+
+                let dataBrand = dataFilters.filters.brands,
+                    dataPrices = dataFilters.filters.prices;
+
+                document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
+                    <div class="popup_container">
+                        <button type="button" class="btn_close" data-button="popup_filter"></button>
+                        <div class="filter_content">
+                            <h3 class="title">Filters</h3>
+                            <div class="select filter_brands active">
+                                <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                                <ul class="select_dropdown"></ul>
+                            </div>
+                            <div class="select filter_price">
+                                <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                                <ul class="select_dropdown"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+
+                for (let i = 0; i < dataBrand.length; i++) {
+                    if (dataBrand[i].products_count != 0) {
+                        document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
+                    }
+                }
+                for (let i = 0; i < dataPrices.length; i++) {
+                    if (dataPrices[i].products_count != 0) {
+                        document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
+                    }
+                }
+
+                document.querySelector('.list_type1 .hide').classList.remove('hide');
+                let selectCurrent = document.querySelectorAll('.select_current');
+
+                selectCurrent.forEach(el => {
+                    el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
+                })
+                document.querySelectorAll('[data-button]').forEach(button => {
+                    button.addEventListener('click', () => document.querySelector(`[data-item="${button.dataset.button}"]`).classList.toggle('active'))
+                })
+                document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
+                    brandsFilter = [];
+                    priceRange = [];
+
+                    setFilter('.filter_brands .checkbox', brandsFilter)
+                    setFilter('.filter_price .checkbox', priceRange)
+
+                    console.log(brandsFilter.toString() + " (id brands)")
+                    console.log(priceRange.toString() + " (price range)")
+                    getProductsForFilters(brandsFilter.toString(),priceRange.toString())
+
+                })
+
+                document.querySelector('.btn_sort select').addEventListener('change', (e) => {
+                    console.log(brandsFilter.toString() + " (id brands)")
+                    console.log(priceRange.toString() + " (price range)")
+                    getProductsForFilters(brandsFilter.toString(),priceRange.toString())
+                })
+
+            })
+        }
+    })
+
+function setFilter(item, arrFilter) {
+    document.querySelectorAll(item).forEach(checkbox => {
+        if (checkbox.checked == true) {
+            console.log(checkbox.dataset.option)
+            arrFilter.push(checkbox.dataset.option)
+        }
+    })
+}
+
+function getProductsForFilters(brandsFilter, priceRange) {
+    let perPage = document.querySelector('[name="mm_per_page"]').value;
+
+    console.log(idCategory + " (id category)")
+    document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
+
+    const statusMessage = document.createElement('div');
+    statusMessage.classList.add('status');
+    statusMessage.innerHTML = message.loading;
+    document.querySelector('.listing').append(statusMessage)
+
+    const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            let products = data.products;
+            statusMessage.remove()
+
+            let variants;
+            document.querySelector('.listing')
+            for (let key in products) {
+
+                variants = products[key].variants;
+
+                // listBoxes(link,title,brandName,itemNumber,variants)
+                document.querySelector('.products_list').insertAdjacentHTML('afterbegin',`
+                    <fieldset class="list_box2" style="position: relative;">
+                        <div class="list_type3">
+                            <span>
+                                <a href="${products[key].url}">
+                                    <img id="product_img_0" alt="${products[key].title}" src="${products[key].variants[0].image_url}">
+                                </a>
+                            </span>
+                        </div>
+                        <div class="list_type4">
+                            <h3><a href="${products[key].url}">${products[key].title}</a></h3>
+                            <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                                <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                                    <span style="display:block; font-size:12px;">Manufacturer: ${products[key].brand}</span>
+                                    <span id="variant_tag_0">
+                                        <span style="display:block; font-size:12px;">Sold By: ${products[key].variants[0].title}</span>
+                                        <span style="display:block; font-size:12px;">Item Number: ${products[key].item_number}</span>
+                                        <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${products[key].variants[0].price}</i></span>
+                                    </span>
+                                </span>
+                                <input type="hidden" name="product_id" value="${products[key].variants[0].product_id}">
+                                <input type="hidden" name="add_to_cart" value="variant">
+                            </form>
+                        </div>
+                    </fieldset>`)
+
+                if () {
+                    `<span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+                        <span id="product_quantity_7" class="nostyle" style="">
+                            <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">
+                                <option value="1">1</option>
+                            </select>
+                        </span>
+                        <input type="image" name="register_user" id="buy_product_7" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
+                        <div id="product_out_stock_7" class="out-of-stock__box--pv" style="display:none; ">
+                            <p class="out-of-stock__message--pv">Out Of Stock</p>
+                        </div>
+                    </span>`
+                }
+            }
+            // for (let keyVariant in variants) {
+            //     let soldBy = variants[keyVariant].title,
+            //         price = variants[keyVariant].price,
+            //         srcImage = variants[keyVariant].image_url,
+            //         status = variants[keyVariant].stock_status,
+            //         id = variants[keyVariant].product_id;
+            // }
+
+        })
+}
 
 //listing
 if (window.location.pathname.includes('/category')) {
@@ -664,17 +815,7 @@ if (window.location.pathname.includes('/category')) {
             })
         }
     })
-    document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
-    <div class="justify-content-between">
-        <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-        <div class="btn_sort">
-            <select>
-                <option value="">Sort by</option>
-                <option value="+name">Product Name ASC</option>
-                <option value="-name">Product Name DESC</option>
-            </select>
-        </div>
-    </div>`)
+
 
     function listBoxes(link,title,srcImage,brandName,soldBy,itemNumber,price,id) {
         let listBox1 = `
@@ -769,7 +910,7 @@ if (window.location.pathname.includes('/category')) {
                 </select>
             </p>`
 
-    let var2 = `
+        let var2 = `
         <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
             <span id="product_quantity_0" class="nostyle" style="">
                 <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">
@@ -788,34 +929,8 @@ if (window.location.pathname.includes('/category')) {
 
         return listBox1
     }
-  
 
-    document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
-        <div class="popup_container">
-            <button type="button" class="btn_close" data-button="popup_filter"></button>
-            <div class="filter_content">
-                <h3 class="title">Filters</h3>
-                <div class="select filter_brands active">
-                    <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                    <ul class="select_dropdown"></ul>
-                </div>
-                <div class="select filter_price">
-                    <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                    <ul class="select_dropdown"></ul>
-                </div>
-            </div>
-        </div>
-    </div>`)
 
-    document.querySelectorAll('[data-button]').forEach(button => {
-        button.addEventListener('click', () => document.querySelector(`[data-item="${button.dataset.button}"]`).classList.toggle('active'))
-    })
-    
-    let selectCurrent = document.querySelectorAll('.select_current');
-
-    selectCurrent.forEach(el => {
-        el.addEventListener('click', () => el.parentElement.classList.toggle('active')) 
-    })
 
     //get products on categories and brand
     // fetch(`/api/products&offset=0&limit=100&is_featured=0&brand=477,1668&ctoken=${mm.ctoken}&category=11210&price_range=0_20`, {
@@ -837,98 +952,12 @@ if (window.location.pathname.includes('/category')) {
     //     console.log(data)
     // })
 
-    function setFilter(item, arrFilter) {
-        document.querySelectorAll(item).forEach(checkbox => {
-            if (checkbox.checked == true) {
-                console.log(checkbox.dataset.option)
-                arrFilter.push(checkbox.dataset.option) 
-            } 
-        })
-    }
-    function getProductsForFilters(brandsFilter, priceRange) {
-        let perPage = document.querySelector('[name="mm_per_page"]').value;
 
-        console.log(idCategory + " (id category)")
-        document.querySelectorAll('.listing .list_box2').forEach(el => {
-            el.remove()
-        })
-        
-        const statusMessage = document.createElement('div');
-        statusMessage.classList.add('status');
-        statusMessage.innerHTML = message.loading;
-        document.querySelector('.listing').append(statusMessage)
 
-        const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            let products = data.products;
-            statusMessage.innerHTML = message.success;
-            let variants;
-            for (let key in products) {
-           
-                variants = products[key].variants;
-
-                // listBoxes(link,title,brandName,itemNumber,variants)
-                document.querySelector('.listing').insertAdjacentHTML('beforeend',`
-                    <fieldset class="list_box2" style="position: relative;">
-                        <div class="list_type3">
-                            <span>
-                                <a href="${products[key].url}">
-                                    <img id="product_img_0" alt="${products[key].title}" src="${products[key].variants[0].image_url}">
-                                </a>
-                            </span>
-                        </div>
-                        <div class="list_type4">
-                            <h3><a href="${products[key].url}">${products[key].title}</a></h3>
-                            <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
-                                <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
-                                    <span style="display:block; font-size:12px;">Manufacturer: ${products[key].brand}</span>
-                                    <span id="variant_tag_0">
-                                        <span style="display:block; font-size:12px;">Sold By: ${products[key].variants[0].title}</span>
-                                        <span style="display:block; font-size:12px;">Item Number: ${products[key].itemNumber}</span>
-                                        <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${products[key].variants[0].price}</i></span>
-                                    </span>
-                                </span>
-                                <input type="hidden" name="product_id" value="${products[key].variants[0].product_id}">
-                                <input type="hidden" name="add_to_cart" value="variant">
-                            </form>
-                        </div>
-                    </fieldset>`)
-            }
-            // for (let keyVariant in variants) {
-            //     let soldBy = variants[keyVariant].title,
-            //         price = variants[keyVariant].price,
-            //         srcImage = variants[keyVariant].image_url,
-            //         status = variants[keyVariant].stock_status,
-            //         id = variants[keyVariant].product_id;
-            // }
-          
-        })
-
-    }
-
-    document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
-        brandsFilter = [];
-        priceRange = [];
-    
-        setFilter('.filter_brands .checkbox', brandsFilter)
-        setFilter('.filter_price .checkbox', priceRange)
-           
-        console.log(brandsFilter.toString() + " (id brands)")
-        console.log(priceRange.toString() + " (price range)")
-        getProductsForFilters(brandsFilter.toString(),priceRange.toString())
-      
-    })
     document.querySelector('[name="mm_per_page"]').addEventListener('change', () => {
         console.log(brandsFilter.toString() + " (id brands)")
         console.log(priceRange.toString() + " (price range)")
         getProductsForFilters(brandsFilter.toString(), priceRange.toString())
     })
 
-    document.querySelector('.btn_sort select').addEventListener('change', (e) => {
-        console.log(brandsFilter.toString() + " (id brands)")
-        console.log(priceRange.toString() + " (price range)")
-        getProductsForFilters(brandsFilter.toString(),priceRange.toString())
-    })
 }
