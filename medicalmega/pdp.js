@@ -1285,6 +1285,11 @@ window.onload  = function () {
         } else if (action == 'minus') {
             qty.value = parseInt(qty.value) - 1;
         }
+        if (action == 'plus' || action == 'minus') {
+            if (qty.value == '') {
+                qty.value = 1;
+            }
+        }
         if (qty.value > 1) {
             qty.previousElementSibling.disabled = false;
         } else {
@@ -1636,12 +1641,8 @@ window.onload  = function () {
         let alphabet = document.querySelectorAll('.alphabet li'), //alphabet
             listCategories = document.querySelectorAll('.list_categories li');
 
-        // alphabet.forEach(el => {
-        //     el.addEventListener('mouseover', () => {
-                toggleClass(alphabet,listCategories,'mouseover')
-        //         sortAlphabet()
-        //     })
-        // })
+        toggleClass(alphabet,listCategories,'mouseover')
+
         document.querySelectorAll('.list_categories li a').forEach((el) => {
             el.addEventListener('click', () => {
                 actionDataLayer = `Click on category item - ${el.innerText}`;
