@@ -246,7 +246,7 @@ input[type=number] {
 .dropdown_categories {
   position: absolute;
   top: 99%;
-  left: -100px;
+  left: 0;
   display: flex;
   padding-top: calc(1% + 9px);
   opacity: 0;
@@ -298,11 +298,9 @@ input[type=number] {
     .list_categories a:hover {
       color: #091114; }
 
-.nav_category {
-  position: relative; }
-  .nav_category:hover .all_category {
+  .nav_category.active .all_category {
     background: #E9EBEC; }
-  .nav_category:hover .dropdown_categories {
+  .nav_category.active .dropdown_categories {
     opacity: 1;
     pointer-events: auto; }
 .nav_category .p-main {
@@ -988,11 +986,14 @@ padding: 0;
   margin-left: -26px; }
 .arrow_button_next {
   margin-right: -26px;}
-  @media only screen and (max-width: 1460px) {
+  @media only screen and (min-width: 1460px) {
+    .nav_category {
+      position: relative; }
     .dropdown_categories {
-      left: 0;
+      left: -100px;
     }
   }
+
   @media only screen and (max-width: 1250px) {
     .category_popular a {
       margin: 0 3px
@@ -1245,7 +1246,8 @@ window.onload  = function () {
         closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
         slidesFor = document.querySelectorAll('.slider-for .slide'), //slider main
         addToCartButton = document.querySelectorAll('.add-cart'), //add To Cart buttons
-        price = document.querySelectorAll('.pr'); //price
+        price = document.querySelectorAll('.pr'), //price
+        btnAllCategories = document.querySelector('.all_category');
 
     let actionDataLayer = '',
         labelDataLayer = '';
@@ -1471,6 +1473,9 @@ window.onload  = function () {
     toggleClass(tabs,contents) //descriptions
 
     function toggleActive(getData, action) {
+        document.querySelectorAll(`[data-item]`).forEach(el => {
+            el.classList.remove('active')
+        })
         if (document.querySelector(`[data-item=${getData}]`)) {
             // if (action == true) {
                 document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
@@ -1831,8 +1836,9 @@ window.onload  = function () {
         })
     })
 
-    document.querySelector('.all_category').addEventListener('mouseover', (e) => {
-        actionDataLayer = `Hover on all categories`;
+    btnAllCategories.addEventListener('click', (e) => {
+        e.target.parentElement.classList.toggle('active');
+        actionDataLayer = `Click on all categories`;
         labelDataLayer = 'Product section';
         pushDataLayer(actionDataLayer,labelDataLayer)
     })
