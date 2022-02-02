@@ -1466,7 +1466,7 @@ window.onload  = function () {
                     actionDataLayer = `Click at the ${item[i].innerText} tab`;
                     labelDataLayer = `Product section`;
                 } else if (item[i].closest('.alphabet')) {
-                    actionDataLayer = `Click on ${item[i].innerText} letter`;
+                    actionDataLayer = `Hover on ${item[i].innerText} letter`;
                     labelDataLayer = `All categories`;
                 }
                 pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1699,7 +1699,7 @@ window.onload  = function () {
 
     document.body.addEventListener('click', (e) => {
         if (!e.target.matches('.select_current')) remActiveSelect();
-        if (!e.target.matches('.align-items-center.all_category')) {
+        if (!e.target.matches('.align-items-center .all_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
     })
