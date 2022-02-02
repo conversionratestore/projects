@@ -1472,20 +1472,15 @@ window.onload  = function () {
 
     toggleClass(tabs,contents) //descriptions
 
-    function toggleActive(getData, action) {
-
+    function toggleActive(getData) {
         if (document.querySelector(`[data-item=${getData}]`)) {
-            // if (action == true) {
-                document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
-            // } else {
-            //     document.querySelector(`[data-item=${getData}]`).classList.remove('active')
-            // }
+            document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
         }
     }
 
     for (let i = 0; i < dataButton.length; i++) {
-        dataButton[i].addEventListener('click', () => toggleActive(dataButton[i].getAttribute('data-button'),true))
-        closeBtn[i].addEventListener('click', () => toggleActive(closeBtn[i].getAttribute('data-close'),false))
+        dataButton[i].addEventListener('click', () => toggleActive(dataButton[i].getAttribute('data-button')))
+        closeBtn[i].addEventListener('click', () => toggleActive(closeBtn[i].getAttribute('data-close')))
     }
 
     slidesFor.forEach((el) => {
