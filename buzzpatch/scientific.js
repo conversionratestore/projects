@@ -5,7 +5,7 @@ let startFunc = setInterval(() => {
     let styleScientific = /*html */ `
       <style>
       .scientific_block {
-
+          margin-bottom: 80px;
       }
 
       .scientific_block > div{
@@ -64,7 +64,7 @@ let startFunc = setInterval(() => {
         letter-spacing: 0.02em;
         text-transform: uppercase;
         color: #0C0B0B;
-        margin: 30px 0 80px;
+        margin: 30px 0 0;
       }
 
       .scientific_block > p:last-child span{
