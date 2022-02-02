@@ -136,6 +136,10 @@ let startFunc = setInterval(() => {
         .js-mobile.effectiveness .container .row:nth-child(2) .col-md-8.col-sm-8.col-xs-8.d-flex.align-items-center{
             padding: 0 5px;
         }
+
+        .ziplock{
+            margin-top: 23px !important;
+        }
       </style>
       `
 
