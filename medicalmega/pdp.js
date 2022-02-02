@@ -990,6 +990,8 @@ padding: 0;
       position: relative; }
     .dropdown_categories {
       left: -100px;
+      top: 99%;
+      padding-top: calc(1% + 9px);
     }
   }
 
