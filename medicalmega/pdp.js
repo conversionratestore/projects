@@ -1311,12 +1311,12 @@ window.onload  = function () {
 
     //Available Options
     let availableOptionsHTML = `
-  <div class="available-options"> 
-  <p class="fs-14 fw-semi">Available Options: </p> 
-  <div class="relative">
-    <div class="justify-content-between scroll-x"></div>
-  </div>
-  </div>`;
+     <div class="available-options"> 
+          <p class="fs-14 fw-semi">Available Options: </p> 
+          <div class="relative">
+            <div class="justify-content-between scroll-x"></div>
+          </div>
+     </div>`;
 
     function setBulkOptionHTML(i=1,bulk,price,variantId) {
         return `
@@ -1475,6 +1475,9 @@ window.onload  = function () {
     function toggleActive(getData) {
         if (document.querySelector(`[data-item=${getData}]`)) {
             document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
+            if (getData == 'advanced-search') {
+                document.querySelector(`.nav_category`).classList.remove('active')
+            }
         }
     }
 
@@ -1831,6 +1834,7 @@ window.onload  = function () {
 
     btnAllCategories.addEventListener('click', (e) => {
         e.target.parentElement.classList.toggle('active');
+        document.querySelector('.advanced-search').classList.remove('active');
         actionDataLayer = `Click on all categories`;
         labelDataLayer = 'Product section';
         pushDataLayer(actionDataLayer,labelDataLayer)
