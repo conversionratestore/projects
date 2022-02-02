@@ -573,7 +573,7 @@ input[type=number] {
   height: 140px;
   visibility: hidden; }
 
-.img-zoom-result {
+.main .img-zoom-result {
   border: 1px solid #d4d4d4;
   width: 300px;
   height: 300px;
@@ -1290,10 +1290,13 @@ window.onload  = function () {
         } else {
             qty.previousElementSibling.disabled = true;
         }
+
+        pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
         if (qty.value == 0 && qty.value != '') {
             qty.value = 1;
+            pr.innerHTML= pr.dataset.price
         }
-        pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
         if (qty.closest('.product_sidebar')) {
             if (qty.value > 1) {
                 document.querySelector('.product_sidebar .add-cart span').hidden = false;
@@ -1700,7 +1703,7 @@ window.onload  = function () {
 
     document.body.addEventListener('click', (e) => {
         if (!e.target.matches('.select_current')) remActiveSelect();
-        if (!e.target.matches('.nav_category')) {
+        if (!e.target.matches('.all_category') || !e.target.matches('.dropdown_categories')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
     })
