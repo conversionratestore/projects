@@ -239,6 +239,7 @@ input[type=number] {
   padding: 9px 0; }
 
 .all_category {
+    cursor: pointer;
   padding: 13px 10px 13px 8px;
   border-radius: 100px;
   transition: all 0.3s ease; }
