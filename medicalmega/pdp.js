@@ -1020,12 +1020,12 @@ window.onload  = function () {
           <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
               <div class="d-flex">
               <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
-                <form class="form-search">
+                <div class="form-search">
                   <input type="text" placeholder="Search by Name" name="search_key">
                   <button type="button">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"><g clip-path="url(#clip0_114_1946)" stroke="#fff"><path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"/></g><defs><clipPath id="clip0_114_1946"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
                   </button>
-                </form>
+                </div>
               </div>
               <div class="align-items-center">
                   <a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html">
