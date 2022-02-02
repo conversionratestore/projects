@@ -1452,11 +1452,11 @@ window.onload  = function () {
     }
 
     //change Class active
-    function toggleClass(item,content) {
+    function toggleClass(item,content,event) {
         item[0].classList.add('active');
         content[0].classList.add('active');
         for (let i = 0; i < item.length; i++) {
-            item[i].addEventListener('click', () => {
+            item[i].addEventListener(event, () => {
                 item[i].parentElement.querySelector('.active').classList.remove('active');
                 content[i].parentElement.querySelector('.active').classList.remove('active');
                 item[i].classList.add('active');
@@ -1474,7 +1474,7 @@ window.onload  = function () {
         }
     }
 
-    toggleClass(tabs,contents) //descriptions
+    toggleClass(tabs,contents,'click') //descriptions
 
     function toggleActive(getData) {
         if (document.querySelector(`[data-item=${getData}]`)) {
@@ -1632,8 +1632,12 @@ window.onload  = function () {
         let alphabet = document.querySelectorAll('.alphabet li'), //alphabet
             listCategories = document.querySelectorAll('.list_categories li');
 
-        toggleClass(alphabet,listCategories) //all categories
-
+        // alphabet.forEach(el => {
+        //     el.addEventListener('mouseover', () => {
+                toggleClass(alphabet,listCategories)
+        //         sortAlphabet()
+        //     })
+        // })
         document.querySelectorAll('.list_categories li a').forEach((el) => {
             el.addEventListener('click', () => {
                 actionDataLayer = `Click on category item - ${el.innerText}`;
