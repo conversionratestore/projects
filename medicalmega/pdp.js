@@ -1539,7 +1539,7 @@ window.onload  = function () {
                 id = el.dataset.id,
                 qty = el.parentElement.querySelector('.calc-qty').value;
 
-            fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
+            fetch(`/cart.html`, fetchOption("POST",`api=c&cart_action=add&variant_id=${variantId}&quantity=${qty==''?'1':qty}&product_id=${id}&ctoken=${mm.ctoken}`)).then(res => res.json()).then(data => {
                 console.log(data);
                 let product = data['cart']['items'];
                 let sumQuantity = 0;
