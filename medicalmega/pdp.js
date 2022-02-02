@@ -1300,7 +1300,9 @@ window.onload  = function () {
 
         if (qty.value == 0 && qty.value != '') {
             qty.value = 1;
-            pr.innerHTML= pr.dataset.price
+        }
+        if (qty.value == '') {
+            pr.innerHTML = pr.dataset.price
         }
         if (qty.closest('.product_sidebar')) {
             if (qty.value > 1) {
