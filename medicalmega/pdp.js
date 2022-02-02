@@ -1634,7 +1634,7 @@ window.onload  = function () {
 
         // alphabet.forEach(el => {
         //     el.addEventListener('mouseover', () => {
-                toggleClass(alphabet,listCategories)
+                toggleClass(alphabet,listCategories,'mouseover')
         //         sortAlphabet()
         //     })
         // })
