@@ -1709,10 +1709,7 @@ window.onload  = function () {
         }
     })
 
-    window.addEventListener('scroll', () => {
-        remActiveSelect();
-        document.querySelector(`.nav_category`).classList.remove('active');
-    });
+    window.addEventListener('scroll', () => remActiveSelect());
 
     //zoom
     let startZoom = setInterval(() => {
