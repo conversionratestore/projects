@@ -245,10 +245,9 @@ input[type=number] {
 
 .dropdown_categories {
   position: absolute;
-  top: 99%;
+  top: 188px;
   left: 0;
   display: flex;
-  padding-top: calc(1% + 9px);
   opacity: 0;
   pointer-events: none; }
 
@@ -986,7 +985,7 @@ padding: 0;
   margin-left: -26px; }
 .arrow_button_next {
   margin-right: -26px;}
-  @media only screen and (min-width: 1460px) {
+  @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
     .dropdown_categories {
