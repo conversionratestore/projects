@@ -446,6 +446,7 @@ input[type=number] {
   width: 142px;}
   .select_current {
     width: 100%;
+    cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
