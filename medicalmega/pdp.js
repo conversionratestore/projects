@@ -295,7 +295,7 @@ input[type=number] {
     margin-bottom: 12px;
     display: block; }
     .list_categories a:hover {
-      color: #091114; }
+      text-decoration: underline; }
 
   .nav_category.active .all_category {
     background: #E9EBEC; }
