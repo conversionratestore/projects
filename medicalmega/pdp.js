@@ -1699,7 +1699,7 @@ window.onload  = function () {
 
     document.body.addEventListener('click', (e) => {
         if (!e.target.matches('.select_current')) remActiveSelect();
-        if (!e.target.matches('.align-items-center.all_category')) {
+        if (!e.target.matches('.nav_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
     })
