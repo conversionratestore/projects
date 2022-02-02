@@ -166,14 +166,16 @@ function start() {
     document.querySelector('.home-hero-content').insertAdjacentHTML('beforebegin', block)
     document.querySelector(".exp")?.remove()
 
-    document.querySelector('.new_homepage ul li').addEventListener('click', function () {
-        window.location.pathname = '/zamowienie'
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Homepage CTR',
-            'eventAction': 'Click on Diet item'
-        });
+    document.querySelectorAll('.new_homepage ul li').forEach(item => {
+        item.addEventListener('click', function () {
+            window.location.pathname = '/zamowienie'
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'event-to-ga',
+                'eventCategory': 'Exp: Homepage CTR',
+                'eventAction': 'Click on Diet item'
+            });
+        })
     })
 
     document.querySelector('.new_homepage button').addEventListener('click', function () {
