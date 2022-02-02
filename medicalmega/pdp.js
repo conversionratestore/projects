@@ -1703,7 +1703,7 @@ window.onload  = function () {
 
     document.body.addEventListener('click', (e) => {
         if (!e.target.matches('.select_current')) remActiveSelect();
-        if (!e.target.matches('.all_category') || !e.target.matches('.dropdown_categories')) {
+        if (!e.target.closest('.nav_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
     })
