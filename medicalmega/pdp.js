@@ -1473,9 +1473,7 @@ window.onload  = function () {
     toggleClass(tabs,contents) //descriptions
 
     function toggleActive(getData, action) {
-        document.querySelectorAll(`[data-item]`).forEach(el => {
-            el.classList.remove('active')
-        })
+
         if (document.querySelector(`[data-item=${getData}]`)) {
             // if (action == true) {
                 document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
