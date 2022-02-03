@@ -85,9 +85,9 @@ input[type=number] {
   color: #9AA6AB;
   line-height: 26px; }
 
-.main input:-webkit-autofill{
-  background-color: #E9EBEC;}
-  
+.main input:-webkit-autofill, .main input:-internal-autofill-selected{
+  background-color: #E9EBEC!important;}
+
 .main input {
   -webkit-appearance: none;
   -moz-appearance: none;
