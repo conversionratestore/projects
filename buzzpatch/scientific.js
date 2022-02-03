@@ -26,7 +26,7 @@ let startFunc = setInterval(() => {
         margin-left: 15px;
         font-family: "Roboto", sans-serif;
         font-weight: 600;
-        font-size: 22px !important;
+        font-size: 21px !important;
         line-height: 26px !important;
         letter-spacing: -0.03em;
         color: #0C0B0B;        
