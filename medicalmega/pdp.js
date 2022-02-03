@@ -85,8 +85,17 @@ input[type=number] {
   color: #9AA6AB;
   line-height: 26px; }
 
-.main input:-webkit-autofill, .main input:-internal-autofill-selected{
-  background-color: #E9EBEC!important;}
+@-webkit-keyframes autofill {
+    to {
+        color: #091114;
+        background-color: #E9EBEC;
+    }
+}
+
+.main input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
 
 .main input {
   -webkit-appearance: none;
