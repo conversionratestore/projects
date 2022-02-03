@@ -416,6 +416,7 @@ input[type=number] {
   position: relative;
   z-index: 6;}
   .select:before {
+    pointer-events: none;
     content: '';
     position: absolute;
     top: 50%;
