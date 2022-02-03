@@ -1573,7 +1573,7 @@ window.onload  = function () {
 
     //breadcrumbs
     document.querySelectorAll('.category a').forEach(el => {
-        document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="${el.getAttribute('href')}">${el.innerText.replace('>','')} &gt; </a></li>`)
+        document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="${el.getAttribute('href')}">${el.innerText.split(' >')[0]} &gt; </a></li>`)
     })
     document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><span class="breadcrumbs__text"> ${document.querySelectorAll('.center h3')[0].innerText}</span></li> `)
 
