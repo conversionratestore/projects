@@ -768,7 +768,7 @@ padding: 0;
   position: relative; }
   .card img {
     width: 100%;
-    height: 199px;
+    height: 100px;
     object-fit: none;
     margin-bottom: 16px; }
   .card_name {
