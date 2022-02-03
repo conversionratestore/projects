@@ -767,6 +767,7 @@ padding: 0;
   flex-direction: column;
   position: relative; }
   .card img {
+    border-radius: 2px;
     width: 100px;
     height: 100px;
     object-fit: contain;
