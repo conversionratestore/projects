@@ -1562,9 +1562,14 @@ window.onload  = function () {
         })
     })
 
+  if (document.querySelectorAll('.mySlides .product_img') != null) {
     document.querySelectorAll('.mySlides .product_img').forEach((el) => {
         document.querySelector('.slider-nav').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${el.getAttribute('src')}" alt="${el.getAttribute('alt')}"></div>`)
     })
+  } else {
+         document.querySelector('.slider-nav').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${document.querySelector('.type1 img').getAttribute('src')}" alt="${document.querySelector('.type1 img').getAttribute('alt')}"></div>`)
+  }
+
     document.querySelectorAll('.slider-nav .slide')[0].classList.add('active');
 
     //slider
