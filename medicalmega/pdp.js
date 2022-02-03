@@ -1373,7 +1373,7 @@ window.onload  = function () {
             <input type="radio" name="radio" class="checkbox" ${i==0?'checked':''} data-variant="${variantId}">
             <span class="radio-check">
               <span>${bulk}</span>
-              <span class="radio-check_price">${price.replace(' ','')}</span>
+              <span class="radio-check_price">${price}</span>
             </span>
         </label>`
     }
@@ -1471,7 +1471,7 @@ window.onload  = function () {
         document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
             checkbox.addEventListener('click', (e) => {
                 if (checkbox.checked) {
-                    let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''), 
+                    let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
                         qty = document.querySelector('.product_sidebar .calc-qty'),
                         priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
 
