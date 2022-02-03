@@ -710,6 +710,66 @@ function getProductsForFilters(brandsFilter, priceRange) {
     statusMessage.innerHTML = message.loading;
     document.querySelector('.listing').append(statusMessage)
 
+    class ProductCard { 
+        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, parent=document.querySelector('.products_list')) {
+            this.src = src;
+            this.url = url;
+            this.title = title;
+            this.manufacturer = manufacturer;
+            this.soldBy = soldBy;
+            this.number = number;
+            this.price = price;
+            this.status = status;
+            this.id = id;
+            this.parent = parent;
+        }
+
+        render() {
+            const element = document.createElement('fieldset');
+            element.classList.add('list_box2');
+            element.style.position = 'relative';
+
+            element.innerHTML = `
+                <div class="list_type3">
+                    <span>
+                        <a href="${this.url}">
+                            <img id="product_img_0" alt="${this.title}" src="${this.src}">
+                        </a>
+                    </span>
+                </div>
+                <div class="list_type4">
+                    <h3><a href="${this.url}">${this.title}</a></h3>
+                    <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                        <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                            <span style="display:block; font-size:12px;">Manufacturer: ${this.manufacturer}</span>
+                            <span id="variant_tag_0">
+                                <span style="display:block; font-size:12px;">Sold By: ${this.soldBy}</span>
+                                <span style="display:block; font-size:12px;">Item Number: ${this.number}</span>
+                                <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${this.price}</i></span>
+                            </span>
+                        </span>
+                        <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+                            <span id="product_quantity_0" class="nostyle" style="display:${this.status=='Out of stock'?'none':'block'};">
+                                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select"></select>
+                            </span>
+                            <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${this.status=='Out of stock'?'none':'block'};">
+                            <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:${this.status=='Out of stock'?'block':'none'}; ">
+                                <p class="out-of-stock__message--pv">Out Of Stock</p>
+                            </div>
+                        </span>
+                        
+                        <input type="hidden" name="product_id" value="${this.id}">
+                        <input type="hidden" name="add_to_cart" value="variant">
+                    </form>
+                </div>`;
+
+            this.parent.append(element);
+
+            for (let n = 1; n <= 200; n++) {
+                element.querySelector('.product-variant__quantity__select').insertAdjacentHTML('beforeend',`<option value="${n}">${n}</option>`)
+            }
+        }
+    }
     const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
         .then(res => res.json())
         .then(data => {
@@ -718,51 +778,89 @@ function getProductsForFilters(brandsFilter, priceRange) {
             statusMessage.remove()
 
             let variants;
-            document.querySelector('.listing')
             for (let key in products) {
-
                 variants = products[key].variants;
+ 
+                new ProductCard(
+                    variants[0].image_url,
+                    products[key].url,
+                    products[key].title,
+                    products[key].brand,
+                    variants[0].title,
+                    products[key].item_number,
+                    variants[0].price,
+                    products[key].stock_status,
+                    variants[0].product_id,
+                    document.querySelector('.products_list')
+                ).render()
 
-                // listBoxes(link,title,brandName,itemNumber,variants)
-                document.querySelector('.products_list').insertAdjacentHTML('afterbegin',`
-                    <fieldset class="list_box2" style="position: relative;">
-                        <div class="list_type3">
-                            <span>
-                                <a href="${products[key].url}">
-                                    <img id="product_img_0" alt="${products[key].title}" src="${products[key].variants[0].image_url}">
-                                </a>
-                            </span>
-                        </div>
-                        <div class="list_type4">
-                            <h3><a href="${products[key].url}">${products[key].title}</a></h3>
-                            <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
-                                <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
-                                    <span style="display:block; font-size:12px;">Manufacturer: ${products[key].brand}</span>
-                                    <span id="variant_tag_0">
-                                        <span style="display:block; font-size:12px;">Sold By: ${products[key].variants[0].title}</span>
-                                        <span style="display:block; font-size:12px;">Item Number: ${products[key].item_number}</span>
-                                        <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${products[key].variants[0].price}</i></span>
-                                    </span>
-                                </span>
-                                <input type="hidden" name="product_id" value="${products[key].variants[0].product_id}">
-                                <input type="hidden" name="add_to_cart" value="variant">
-                            </form>
-                        </div>
-                    </fieldset>`)
+                // for (let i = 0; i < variants.length; i++) {
+                   
+                //     console.log(variants[i])
+                //     // document.querySelector('.product-variant__quantity__select').append(`<p style="clear:both;"><input type="hidden" name="product_variant_id" value="101021"></p>`)
+                    
+                // }
+              
+                // console.log('___________')
 
-                if () {
-                    `<span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-                        <span id="product_quantity_7" class="nostyle" style="">
-                            <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">
-                                <option value="1">1</option>
-                            </select>
-                        </span>
-                        <input type="image" name="register_user" id="buy_product_7" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
-                        <div id="product_out_stock_7" class="out-of-stock__box--pv" style="display:none; ">
-                            <p class="out-of-stock__message--pv">Out Of Stock</p>
-                        </div>
-                    </span>`
-                }
+                // if () {
+                //     `<p style="clear:both;">
+                //                     <input type="hidden" name="product_variant_id" value="101021">
+                //                 </p>`
+
+                //     `<p style="clear:both;">
+                //         <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
+                //         <select class="product-variant product-variant__options-box__select" name="product_variant_id" id="product_variant_0" style="font-size:11px;float:left;margin-top:2px;" onchange="change_variant_tag(this.value, pv_0, '0');">
+                //             <script type="text/javascript">
+                //                 var pv_0 = new Array();
+                //             </script>
+                //             <option value="102086"> Box/100 </option>
+                //             <script type="text/javascript">
+                //                 pv_0[0] =
+                //                     new Array(
+                //                         '20.00', // 0
+                //                         '2', // 1
+                //                         '', // 2
+                //                         '0', // 3
+                //                         '102086', // 4
+                //                         'Box/100', // 5
+                //                         'Nitrile Powder Free Gloves, Small', // 6
+                //                         'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
+                //                         '94821', // 8
+                //                         'N104S', // 9
+                //                         '', // 10
+                //                         '143', // 11
+                //                         '0', // 12
+                //                         '0', // 13
+                //                         '0', // 14
+                //                         '0' // 15
+                //                     );
+                //             </script>
+                //             <option value="102087"> Case_10 </option>
+                //             <script type="text/javascript">
+                //                 pv_0[1] =
+                //                     new Array(
+                //                         '190.00', // 0
+                //                         '2', // 1
+                //                         '', // 2
+                //                         '0', // 3
+                //                         '102087', // 4
+                //                         'Case_10', // 5
+                //                         'Nitrile Powder Free Gloves, Small', // 6
+                //                         'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
+                //                         '94821', // 8
+                //                         'N104S', // 9
+                //                         '', // 10
+                //                         '14', // 11
+                //                         '0', // 12
+                //                         '0', // 13
+                //                         '0', // 14
+                //                         '0' // 15
+                //                     );
+                //             </script>
+                //         </select>
+                //     </p>`
+                // }
             }
             // for (let keyVariant in variants) {
             //     let soldBy = variants[keyVariant].title,
@@ -773,6 +871,21 @@ function getProductsForFilters(brandsFilter, priceRange) {
             // }
 
         })
+        // .then(data => {
+            
+            // function setQty(select) {
+            //     let result = '';
+            //     let i = 0;
+
+            //     do {
+            //     i = i + 1;
+            //     result = result + i;
+            //     select.insertAdjacentHTML('beforeend',`<option value="${result}">${result}</option>`)
+            //     } while (i <= 200);
+            // }
+            
+            // document.querySelectorAll('.product-variant__quantity__select').forEach(select => setQty(select))
+        // })
 }
 
 //listing
@@ -788,176 +901,34 @@ if (window.location.pathname.includes('/category')) {
             console.log(el.value)
             fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
 
+                console.log(data)
+
                 let products = data.products;
-                console.log(data + " (data " + el.value + ")")
-
                 document.querySelectorAll('.listing li').forEach((el,index) => {
-                    el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-
+                    let randomArray = [];
                     let subcategory = el.querySelector('a').innerText.split(' ')[0];
 
                     for (let i = 0; i < products.length; i++) {
                         if (products[i].title.includes(subcategory) ) {
-                            if (el.getAttribute('data-index-products') == null) {
-                                el.setAttribute('data-index-products', i)
-                            } else {
-                                el.setAttribute('data-index-products', el.getAttribute('data-index-products') + ', ' + i )
-                            }
+                            randomArray.push(i)
                         }
                     }
-                    let randomArray = el.getAttribute('data-index-products').split(', ');
-                    let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
+                    if (randomArray.length > 0) {
+                        el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                        let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
 
-                    el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                    el.querySelector('img').setAttribute('alt', products[randomNum].title)
-                    console.log(randomNum)
+                        el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                        el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                        console.log(randomNum)
+                    }
                 })
             })
         }
     })
-
-
-    function listBoxes(link,title,srcImage,brandName,soldBy,itemNumber,price,id) {
-        let listBox1 = `
-            <fieldset class="list_box2" style="position: relative;">
-                <div class="list_type3">
-                    <span>
-                        <a href="${link}">
-                            <img id="product_img_0" alt="${title}" src="${srcImage}">
-                        </a>
-                    </span>
-                </div>
-                <div class="list_type4">
-                    <h3><a href="${link}">${title}</a></h3>
-                    <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
-                        <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
-                            <span style="display:block; font-size:12px;">Manufacturer: ${brand}</span>
-                            <span id="variant_tag_0">
-                                <span style="display:block; font-size:12px;">Sold By: ${soldBy}</span>
-                                <span style="display:block; font-size:12px;">Item Number: ${itemNumber}/span>
-                                <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${price}</i></span>
-                            </span>
-                        </span>
-                        <input type="hidden" name="product_id" value="${id}">
-                        <input type="hidden" name="add_to_cart" value="variant">
-                    </form>
-                </div>
-            </fieldset>`
-
-        let var1 = `
-            <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-                <span id="product_quantity_0" class="nostyle" style="">
-                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;">
-                        <option value="1">1</option>
-                    
-                    </select>
-                </span>
-                <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
-                <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:none; ">
-                    <p class="out-of-stock__message--pv">Out Of Stock</p>
-                </div>
-            </span>
-            <p style="clear:both;">
-                <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                <select class="product-variant product-variant__options-box__select" name="product_variant_id" id="product_variant_0" style="font-size:11px;float:left;margin-top:2px;" onchange="change_variant_tag(this.value, pv_0, '0');">
-                    <script type="text/javascript">
-                        var pv_0 = new Array();
-                    </script>
-                    <option value="102086"> Box/100 </option>
-                    <script type="text/javascript">
-                        pv_0[0] =
-                            new Array(
-                                '20.00', // 0
-                                '2', // 1
-                                '', // 2
-                                '0', // 3
-                                '102086', // 4
-                                'Box/100', // 5
-                                'Nitrile Powder Free Gloves, Small', // 6
-                                'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
-                                '94821', // 8
-                                'N104S', // 9
-                                '', // 10
-                                '143', // 11
-                                '0', // 12
-                                '0', // 13
-                                '0', // 14
-                                '0' // 15
-                            );
-                    </script>
-                    <option value="102087"> Case_10 </option>
-                    <script type="text/javascript">
-                        pv_0[1] =
-                            new Array(
-                                '190.00', // 0
-                                '2', // 1
-                                '', // 2
-                                '0', // 3
-                                '102087', // 4
-                                'Case_10', // 5
-                                'Nitrile Powder Free Gloves, Small', // 6
-                                'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
-                                '94821', // 8
-                                'N104S', // 9
-                                '', // 10
-                                '14', // 11
-                                '0', // 12
-                                '0', // 13
-                                '0', // 14
-                                '0' // 15
-                            );
-                    </script>
-                </select>
-            </p>`
-
-        let var2 = `
-        <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-            <span id="product_quantity_0" class="nostyle" style="">
-                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">
-                    <option value="1">1</option>
-                </select>
-            </span>
-            <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:;">
-            <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:none; ">
-                <p class="out-of-stock__message--pv">Out Of Stock</p>
-            </div>
-        </span>
-        <p style="clear:both;">
-            <input type="hidden" name="product_variant_id" value="101917">
-        </p>
-        `
-
-        return listBox1
-    }
-
-
-
-    //get products on categories and brand
-    // fetch(`/api/products&offset=0&limit=100&is_featured=0&brand=477,1668&ctoken=${mm.ctoken}&category=11210&price_range=0_20`, {
-    //     headers: {
-    //         'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     method: "GET",
-    // }).then(res => res.json()).then(data => {
-    //     console.log(data)
-    // })
-
-    //get products on categories
-    // fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=11216`, {
-    //     headers: {
-    //         'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     method: "GET",
-    // }).then(res => res.json()).then(data => {
-    //     console.log(data)
-    // })
-
-
 
     document.querySelector('[name="mm_per_page"]').addEventListener('change', () => {
         console.log(brandsFilter.toString() + " (id brands)")
         console.log(priceRange.toString() + " (price range)")
         getProductsForFilters(brandsFilter.toString(), priceRange.toString())
     })
-
 }
