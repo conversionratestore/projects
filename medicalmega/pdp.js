@@ -790,8 +790,7 @@ padding: 0;
       -webkit-box-orient: vertical;
       line-height: 130%;
       height: 55px;
-      margin-bottom: 20px;
-      display: block; }
+      margin-bottom: 20px; }
   .card .btn {
     padding: 0;
     font-size: 12px;
