@@ -143,10 +143,10 @@ input[type=number] {
   .btn_white {
     background-color: #FFFFFF;
     color: #1E3944; }
-    .btn_white:hover {
-      background-color: #F0F1F2;}
   .btn_white:focus {
       background-color: #E9EBEC; }
+      .btn_white:hover {
+        background-color: #F0F1F2;}
   .btn_white[disabled], .form-search button[disabled] {
       border-color: #F0F1F2;
       background-color: #FBFBFB;
