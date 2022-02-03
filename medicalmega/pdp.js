@@ -1327,7 +1327,7 @@ window.onload  = function () {
 
         pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
 
-        if (qty.value == 0) {
+        if (qty.value == 0 && qty.value != '') {
             qty.value = 1;
             pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
         }
