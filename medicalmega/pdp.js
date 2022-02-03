@@ -53,12 +53,12 @@ button {
   appearance: none; }
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+.main input::-webkit-outer-spin-button, .main input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 
 /* Firefox */
-input[type=number] {
+.main input[type=number] {
   -moz-appearance: textfield; }
 
 .main *::-webkit-input-placeholder {
