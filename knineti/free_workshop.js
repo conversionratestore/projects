@@ -377,26 +377,6 @@ let startFunc = setInterval(() => {
                 text-transform: lowercase;
             }
 
-            .price_block .blur_block> button{
-                display: flex;
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-                padding: 8px 0;
-                font-weight: 600;
-                font-size: 12px;
-                line-height: 15px;
-                text-align: center;
-                letter-spacing: -0.01em;
-                color: #183B56;
-                background: #FFFFFF;
-                border: 1px solid #1D3871;
-                outline: none;
-                border-radius: 5px;
-                cursor: unset;
-                height: 46px;
-            }
-
             /* */
             .price_block .pricing_text_box{
                 margin-bottom: 27px;
@@ -469,11 +449,31 @@ let startFunc = setInterval(() => {
                 left: -10px;
             }
 
-            .price_block .blur_block> button.active_enroll_now{
+            .main > section .enroll_btn_txt{
+                margin: 10px 0 0 !important;
+                display: block !important;
+            }
+
+          button.active_enroll_now{
+                display: flex;
+                width: 300px;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 0;
+                font-size: 18px;
+                line-height: 15px;
+                text-align: center;
+                letter-spacing: -0.01em;
+                border: 1px solid #1D3871;
+                outline: none;
+                border-radius: 5px;
+                height: 46px;
                 background: #1D3871;
                 cursor: pointer;
                 font-weight: 700;
                 color: #FFFFFF;
+                box-shadow: 5px 5px 10px #272020;
+                margin: 30px auto 0;
             }
 
             .active_blur{
@@ -616,10 +616,6 @@ let startFunc = setInterval(() => {
           document.querySelector("#below_video_text").remove()
         }
 
-        // if (document.querySelector(".main > section")) {
-        //   document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
-        // }
-
         function setSlide(time, title, countPoint) {
           return `
         <div class="slide" data-point="${countPoint}">
@@ -699,55 +695,6 @@ let startFunc = setInterval(() => {
           }
         }, 300)
 
-        //array
-        const months = {
-          Jan: "January",
-          Feb: "February",
-          Mar: "March",
-          Apr: "April",
-          May: "May",
-          Jun: "June",
-          Jul: "July",
-          Aug: "August",
-          Sep: "September",
-          Oct: "October",
-          Nov: "November",
-          Dec: "December",
-        }
-        const days = {
-          01: "st",
-          02: "nd",
-          03: "rd",
-          04: "th",
-          05: "th",
-          06: "th",
-          07: "th",
-          08: "th",
-          09: "th",
-          10: "th",
-          11: "th",
-          12: "th",
-          13: "th",
-          14: "th",
-          15: "th",
-          16: "th",
-          17: "th",
-          18: "th",
-          19: "th",
-          20: "th",
-          21: "st",
-          22: "nd",
-          23: "rd",
-          24: "th",
-          25: "th",
-          26: "th",
-          27: "th",
-          28: "th",
-          29: "th",
-          30: "th",
-          31: "st",
-        }
-
         // Offer is valid until XXXX
         let paramsLocation = new URLSearchParams(window.location.search)
         let dQueryDate = atob(paramsLocation.get("d"))
@@ -757,16 +704,7 @@ let startFunc = setInterval(() => {
         let daySeven = new Date(new Date(dsp[0], dsp[1] - 1, dsp[2]).setDate(new Date(dsp[0], dsp[1] - 1, dsp[2]).getDate() + 7)).toDateString().split(" ")
         console.log(daySeven)
 
-        if (document.querySelector(".price_block .blur_block")) {
-          // document.querySelector(".price_block .blur_block> p:nth-of-type(2) span").textContent = ` ${months[daySevenToday[1]]} ${daySevenToday[2]}${days[daySevenToday[2]]}`
-          if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child")) {
-            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:first-child").textContent = ` ${months[daySeven[1]]} ${daySeven[2]}`
-          }
-
-          if (document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child")) {
-            document.querySelector(".price_block .blur_block> p:nth-of-type(2) span:last-child").textContent = `${days[+daySeven[2]]}`
-          }
-
+        if (document.querySelector(".free_work_shop_box")) {
           // timer
           timerVideo()
 
@@ -790,22 +728,12 @@ let startFunc = setInterval(() => {
                       timer -= currentTime
                       let minutes = timer / 60 < 10 ? `0${Math.floor(timer / 60)}` : Math.floor(timer / 60)
                       let seconds = timer % 60 < 10 ? `0${timer % 60}` : timer % 60
-                      if (document.querySelector(".price_block .blur_block> button span")) {
-                        document.querySelector(".price_block .blur_block> button b").textContent = `${minutes}:${seconds}`
-                      }
 
                       if (timer < 0) {
-                        document.querySelector(".price_block .pricing_text_box ul.active_blur")?.classList.remove("active_blur")
-                        document.querySelector(".price_block .pricing_text_box.active_blur_parent")?.classList.remove("active_blur_parent")
-                        document.querySelector(".active_blur_text").style.opacity = 0
-                        document.querySelector(".price_block .blur_block> button")?.classList.add("active_enroll_now")
-                        document.querySelector(".price_block .blur_block> button")?.removeAttribute("disabled")
-                        //   document.querySelector(".price_block .blur_block> button span").textContent = `00:00`
-                        document.querySelector(".price_block .blur_block> button.active_enroll_now").innerText = "ENROLL NOW"
-                        console.log(document.querySelector(".price_block .blur_block> button.active_enroll_now"))
-
                         let int = setInterval(() => {
-                          if (document.querySelector(".price_block .blur_block> button.active_enroll_now")) {
+                          document.querySelector(".main > section .enroll_btn_txt").insertAdjacentHTML("afterend", `<button class="active_enroll_now">ENROLL NOW</button>`)
+
+                          if (document.querySelector("button.active_enroll_now")) {
                             clearInterval(int)
 
                             videoItem.removeEventListener("timeupdate", timeUpdate)
@@ -820,7 +748,7 @@ let startFunc = setInterval(() => {
 
                   function onClickBtnEnroll() {
                     console.log(`onClickBtnEnroll`)
-                    document.querySelector(".price_block .blur_block> button.active_enroll_now").addEventListener("click", () => {
+                    document.querySelector("button.active_enroll_now").addEventListener("click", () => {
                       window.dataLayer = window.dataLayer || []
                       dataLayer.push({
                         event: "event-to-ga",
