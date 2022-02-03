@@ -769,7 +769,7 @@ padding: 0;
   .card img {
     width: 100%;
     height: 199px;
-    object-fit: contain;
+    object-fit: none;
     margin-bottom: 16px; }
   .card_name {
     font-weight: 600;
