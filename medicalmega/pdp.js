@@ -1373,7 +1373,7 @@ window.onload  = function () {
             <input type="radio" name="radio" class="checkbox" ${i==0?'checked':''} data-variant="${variantId}">
             <span class="radio-check">
               <span>${bulk}</span>
-              <span class="radio-check_price">${price}</span>
+              <span class="radio-check_price">${price.replace(' ','')}</span>
             </span>
         </label>`
     }
