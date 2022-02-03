@@ -619,7 +619,6 @@ input[type=number] {
   min-height: 381px;
   background: #F0F1F2;
   border: 1px solid #E3E6E7;
-  box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   width: 280px;
   padding: 48px 40px 40px;
@@ -759,7 +758,6 @@ padding: 0;
     display: block; }
 
 .card {
-  box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   max-width: 281px;
   width: calc(25% - 10px);
   background: #FFFFFF;
@@ -769,7 +767,11 @@ padding: 0;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  transition: all 0.3s ease;
   position: relative; }
+  .card:hover {
+    box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+  }
   .card img {
     border-radius: 2px;
     width: 100px;
