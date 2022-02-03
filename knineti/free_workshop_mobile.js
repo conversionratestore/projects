@@ -45,6 +45,7 @@ let startFuncMobile = setInterval(() => {
               body #player.flowplayer {
                  max-width: unset !important;
               }
+              
 
             .main > section .enroll_btn_txt{
                 margin: 10px 0 0 !important;
@@ -318,6 +319,7 @@ let startFuncMobile = setInterval(() => {
             /* */
 
             .price_block{
+                display: none;
                 background: #FFFFFF;
                 border-radius: 5px;
                 border: 3px solid #734F22;
@@ -645,9 +647,9 @@ let startFuncMobile = setInterval(() => {
           document.querySelector("#below_video_text").remove()
         }
 
-        if (document.querySelector(".main > section")) {
-          document.querySelector(".main > section .container-fluid").insertAdjacentHTML("afterend", priceBlockMobile)
-        }
+        // if (document.querySelector(".main > section")) {
+        //   document.querySelector(".main > section .container-fluid").insertAdjacentHTML("afterend", priceBlockMobile)
+        // }
 
         function setSlide(time, title, countPoint) {
           return `
@@ -659,7 +661,7 @@ let startFuncMobile = setInterval(() => {
         }
 
         if (document.querySelector("section .container-fluid #myCarousel")) {
-          document.querySelector(".main section .price_block").insertAdjacentHTML("afterend", freeWorkShopMobile)
+          document.querySelector(".main section .container-fluid").insertAdjacentHTML("afterend", freeWorkShopMobile)
           for (let key in arrTextMobile) {
             document.querySelector(".slider").insertAdjacentHTML("beforeend", setSlide(key, arrTextMobile[key][0], arrTextMobile[key][1]))
           }
