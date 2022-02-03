@@ -1650,7 +1650,7 @@ window.onload  = function () {
             return 0;
         });
         for (let i = 0; i < categories.length; i++) {
-            document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
+            document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
         }
         categories.reverse()
         for (let i = 0; i < categories.length; i++) {
@@ -1678,7 +1678,7 @@ window.onload  = function () {
         console.log(data)
         let brands = data.filters.brands;
         for (let i = 0; i < brands.length; i++) {
-            document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option ${i==0?'active':''}" data-value="${brands[i].brand_id}">${brands[i].brand_name}</li>`)
+            document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${brands[i].brand_id}">${brands[i].brand_name}</li>`)
         }
         document.querySelectorAll('.select_current').forEach((el) => {
             el.addEventListener('click',(e) => {
