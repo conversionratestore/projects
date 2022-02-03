@@ -1179,7 +1179,7 @@ window.onload  = function () {
         <div class="col_right"> 
           <div class="range"> 
             <div class="flex-center-between">
-              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">00.00</span></p>
+              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr"></span></p>
               <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">150.00 </span></span> left for free shipping</p>
             </div>
             <div class="range_slider"><span></span></div>
