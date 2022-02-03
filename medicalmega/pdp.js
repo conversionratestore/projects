@@ -1312,9 +1312,7 @@ window.onload  = function () {
         let dropdowns = document.querySelectorAll(".select");
         for (let i = 0; i < dropdowns.length; i++) {
             if (dropdowns[i].classList.contains('active')) {
-              if (index && !dropdowns[index]) {
-                dropdowns[i].classList.remove('active');
-              }
+              dropdowns[i].classList.remove('active');
             }
         }
     }
@@ -1723,7 +1721,6 @@ window.onload  = function () {
         document.querySelectorAll('.select_current').forEach((el,index) => {
             el.addEventListener('click',(e) => {
                 e.stopImmediatePropagation()
-                remActiveSelect(index)
                 el.parentElement.classList.toggle('active');
             })
             el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
