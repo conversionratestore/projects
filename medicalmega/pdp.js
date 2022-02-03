@@ -1539,8 +1539,8 @@ window.onload  = function () {
     function toggleActive(getData) {
         if (document.querySelector(`[data-item=${getData}]`)) {
             document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
-            document.querySelector(`[data-button=${getData}]`).classList.toggle('active')
             if (getData == 'advanced-search') {
+                document.querySelector(`[data-button=${getData}]`).classList.toggle('active')
                 document.querySelector(`.nav_category`).classList.remove('active')
             }
         }
