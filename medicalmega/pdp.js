@@ -143,7 +143,7 @@ input[type=number] {
   .btn_white {
     background-color: #FFFFFF;
     color: #1E3944; }
-  .btn_white:focus, .btn_white.active {
+  .btn_white.active {
       background-color: #E9EBEC; }
       .btn_white:hover {
         background-color: #F0F1F2;}
