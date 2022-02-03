@@ -755,10 +755,11 @@ padding: 0;
     display: block; }
 
 .card {
+  box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   max-width: 281px;
   width: calc(25% - 10px);
   background: #FFFFFF;
-  border: 1px solid #BCC4C7;
+  border: 1px solid #E3E6E7;
   border-radius: 4px;
   padding: 40px;
   display: flex;
@@ -776,6 +777,12 @@ padding: 0;
     line-height: 130%;
     color: #344D57; }
     .card_name span {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      line-height: 130%;
+      height: 55px;
       margin-bottom: 20px;
       display: block; }
   .card .btn {
@@ -1216,7 +1223,7 @@ window.onload  = function () {
     <div class="card" >
         <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
             <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-            <span>${el.querySelectorAll('a')[1].innerText}</span>
+            <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
         </a>
         <div>
             <div class="flex-center-center calc"> 
