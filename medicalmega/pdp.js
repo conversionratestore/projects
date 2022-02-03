@@ -1950,6 +1950,14 @@ window.onload  = function () {
         })
     })
 };
+
+let isClarify = setInterval(() => {
+	if(typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity("set", "new_pdp_desktop", "variant_1");
+	}
+}, 100)
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
