@@ -1179,15 +1179,15 @@ window.onload  = function () {
         <div class="col_right"> 
           <div class="range"> 
             <div class="flex-center-between">
-              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">15.00</span></p>
-              <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">135.00 </span></span> left for free shipping</p>
+              <p> <span class="c-gray">Your Order: </span>$<span id="order-pr">00.00</span></p>
+              <p class="text-up l-t-02" id="left_for"><span class="c-red fw-semi">$<span id="last-pr">150.00 </span></span> left for free shipping</p>
             </div>
             <div class="range_slider"><span></span></div>
           </div>
           <div class="product_content justify-content-between"> 
             <div class="col_mid">
               <h2 class="title"> ${document.querySelectorAll('.center h3')[0].innerText}</h2>
-              <ul class="list">  </ul>
+              <ul class="list"> </ul>
               <ul class="tabs-discription d-flex"></ul>
               <div class="content-discription"></div>
             </div>
@@ -1513,6 +1513,11 @@ window.onload  = function () {
         btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
         btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
         inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
+        inputQty[i].addEventListener('blur', (e) => {
+          if (e.target == '') {
+            e.target.value = 1;
+          }
+        }, true)
     })
 
     function sortAlphabet() {
@@ -1797,7 +1802,7 @@ window.onload  = function () {
         if (!e.target.closest('.select')) remActiveSelect();
         if (!e.target.closest('.nav_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
-        }
+        }  
     })
 
     window.addEventListener('scroll', () => remActiveSelect());
