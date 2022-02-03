@@ -1561,7 +1561,7 @@ window.onload  = function () {
         })
     })
 
-  if (document.querySelectorAll('.mySlides .product_img') != null) {
+  if (document.querySelector('.mySlides .product_img') != null) {
     document.querySelectorAll('.mySlides .product_img').forEach((el) => {
         document.querySelector('.slider-nav').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${el.getAttribute('src')}" alt="${el.getAttribute('alt')}"></div>`)
     })
