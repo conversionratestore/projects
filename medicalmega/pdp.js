@@ -1308,7 +1308,7 @@ window.onload  = function () {
         });
     }
 
-    function remActiveSelect(index) {
+    function remActiveSelect() {
         let dropdowns = document.querySelectorAll(".select");
         for (let i = 0; i < dropdowns.length; i++) {
             if (dropdowns[i].classList.contains('active')) {
@@ -1761,7 +1761,7 @@ window.onload  = function () {
     })
 
     document.body.addEventListener('click', (e) => {
-        if (!e.target.matches('.select_current')) remActiveSelect();
+        if (!e.target.closest('.select')) remActiveSelect();
         if (!e.target.closest('.nav_category')) {
             document.querySelector(`.nav_category`).classList.remove('active');
         }
