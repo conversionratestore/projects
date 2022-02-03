@@ -1722,6 +1722,27 @@ window.onload  = function () {
             el.addEventListener('click',(e) => {
                 e.stopImmediatePropagation()
                 el.parentElement.classList.toggle('active');
+
+                if (index == 0) {
+                    document.querySelectorAll('.select')[1].classList.remove('active');
+                } 
+                if (index == 1)  {
+                    document.querySelectorAll('.select')[0].classList.remove('active');
+                }
+                //events
+                let notes = ' select';
+                if (select.closest('.select_category')) {
+                    notes = ' select category';
+                } else if (select.closest('.select_brand')) {
+                    notes = ' select brand'
+                }
+                if (select.closest('.header')) {
+                    labelDataLayer = `Header`;
+                } else {
+                    labelDataLayer = 'Product section';
+                }
+                actionDataLayer = `Click on ${notes}`;
+                pushDataLayer(actionDataLayer, labelDataLayer)
             })
             el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
                 option.addEventListener('click', (e) => {
@@ -1866,24 +1887,6 @@ window.onload  = function () {
                 labelDataLayer = 'Product section'
             }
             pushDataLayer(actionDataLayer,labelDataLayer)
-        })
-    })
-
-    document.querySelectorAll('.main .select_current').forEach((select) => {
-        select.addEventListener('click', () => {
-            let notes = ' select';
-            if (select.closest('.select_category')) {
-                notes = ' select category';
-            } else if (select.closest('.select_brand')) {
-                notes = ' select brand'
-            }
-            if (select.closest('.header')) {
-                labelDataLayer = `Header`;
-            } else {
-                labelDataLayer = 'Product section';
-            }
-            actionDataLayer = `Click on ${notes}`;
-            pushDataLayer(actionDataLayer, labelDataLayer)
         })
     })
 
