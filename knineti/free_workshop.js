@@ -22,7 +22,7 @@ let startFunc = setInterval(() => {
             }
 
             .main > section .container-fluid{
-                width: 55vw;
+
                 margin: 0;
                 padding: 0;
             }
@@ -32,7 +32,7 @@ let startFunc = setInterval(() => {
             }
             .main > section{
                 background: #DFE8F0;
-                display: flex;
+
                 justify-content: center;
                 padding: 60px 15px 35px;
             }
@@ -616,9 +616,9 @@ let startFunc = setInterval(() => {
           document.querySelector("#below_video_text").remove()
         }
 
-        if (document.querySelector(".main > section")) {
-          document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
-        }
+        // if (document.querySelector(".main > section")) {
+        //   document.querySelector(".main > section").insertAdjacentHTML("beforeend", priceBlock)
+        // }
 
         function setSlide(time, title, countPoint) {
           return `
