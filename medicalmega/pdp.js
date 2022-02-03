@@ -813,7 +813,22 @@ padding: 0;
     line-height: 15px;
     color: #344D57;
     display: block;
-    padding: 10px 0; }
+    position: relative;
+    margin-right: 11px;
+    padding: 10px 19px 10px 0; }
+    .breadcrumbs__link:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 4px 0 4px 4px;
+      border-color: transparent transparent transparent #E0E4E5;
+      border-radius: 0.5px;
+    }
   .breadcrumbs__text {
     color: #6D7E85;
     display: block;
@@ -1558,7 +1573,7 @@ window.onload  = function () {
 
     //breadcrumbs
     document.querySelectorAll('.category a').forEach(el => {
-        document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="${el.getAttribute('href')}">${el.innerText} &gt; </a></li>`)
+        document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="${el.getAttribute('href')}">${el.innerText.replace('>','')} &gt; </a></li>`)
     })
     document.querySelector('.breadcrumbs').insertAdjacentHTML('beforeend',`<li class="breadcrumbs__item"><span class="breadcrumbs__text"> ${document.querySelectorAll('.center h3')[0].innerText}</span></li> `)
 
