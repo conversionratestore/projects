@@ -164,7 +164,7 @@ let startFunc = setInterval(() => {
         </div>
         <p>Poseidon Science R&D conducted scientific research to compare BuzzPatch mosquito repellant with other commonly available repellants on the market.</p>
         <p>BuzzPatch stickers were scientifically proven to provide 16% better protection than next best alternatives.</p>
-        <p>BuzzPatch provides <span>16% better protection <br> for your family</span> han the next best <br> repellant of similar kind on the market</p>
+        <p>BuzzPatch provides <span>16% better protection <br> for your family</span> than the next best <br> repellant of similar kind on the market</p>
     </div>      
       `
     document.head.insertAdjacentHTML("beforeend", styleScientific)
