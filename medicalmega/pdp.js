@@ -1514,7 +1514,7 @@ window.onload  = function () {
         btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
         inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
         inputQty[i].addEventListener('blur', (e) => {
-          if (e.target == '') {
+          if (e.target.value == '') {
             e.target.value = 1;
           }
         }, true)
