@@ -1308,11 +1308,13 @@ window.onload  = function () {
         });
     }
 
-    function remActiveSelect() {
+    function remActiveSelect(index) {
         let dropdowns = document.querySelectorAll(".select");
         for (let i = 0; i < dropdowns.length; i++) {
             if (dropdowns[i].classList.contains('active')) {
+              if (index && !dropdowns[index]) {
                 dropdowns[i].classList.remove('active');
+              }
             }
         }
     }
@@ -1718,11 +1720,11 @@ window.onload  = function () {
         for (let i = 0; i < brands.length; i++) {
             document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${brands[i].brand_id}">${brands[i].brand_name}</li>`)
         }
-        document.querySelectorAll('.select_current').forEach((el) => {
+        document.querySelectorAll('.select_current').forEach((el,index) => {
             el.addEventListener('click',(e) => {
                 e.stopImmediatePropagation()
-                remActiveSelect()
-                el.parentElement.classList.add('active');
+                remActiveSelect(index)
+                el.parentElement.classList.toggle('active');
             })
             el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
                 option.addEventListener('click', (e) => {
