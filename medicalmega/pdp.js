@@ -1232,9 +1232,9 @@ window.onload  = function () {
     if (document.querySelector('.product-price') != null) {
         if (document.querySelector('.box_item') == null && document.querySelector('.product-page-bulk__box') == null) {
             document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend',`
-    <div class="flex-end-between fw-semi total">
-      <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
-    </div>`)
+            <div class="flex-end-between fw-semi total">
+              <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
+            </div>`)
         }
         document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="button" data-variant="${document.querySelector('.type2 [name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
     } else {
@@ -1448,11 +1448,17 @@ window.onload  = function () {
         document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
             checkbox.addEventListener('click', (e) => {
                 if (checkbox.checked) {
-                    let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$','');
+                    let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerHTML.replace('$',''), 
+                        qty = document.querySelector('.product_sidebar .calc-qty'),
+                        priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
 
                     document.querySelector('.product_sidebar .add-cart').dataset.variant = checkbox.dataset.variant;
-                    document.querySelector('.product_sidebar .add-cart .pr').dataset.price = optionPrice;
-                    document.querySelector('.product_sidebar .add-cart .pr').innerHTML = (+optionPrice * +document.querySelector('.product_sidebar .calc-qty').value).toFixed(2);
+                    priceProduct.dataset.price = optionPrice;
+                   
+                    priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                    if (qty.value == '') {
+                      priceProduct.innerHTML = optionPrice
+                    }
                 }
             })
         })
