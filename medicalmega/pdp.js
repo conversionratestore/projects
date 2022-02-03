@@ -595,6 +595,7 @@ input[type=number] {
     object-fit: contain; }
 
 .list {
+  color: #344D57;
   margin-bottom: 15px; }
   .list .fw-semi {
     color: #091114;}
