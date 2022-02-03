@@ -464,6 +464,7 @@ input[type=number] {
       pointer-events: none;
       color: #9AA6AB; }
   .select_dropdown {
+      display: grid;
       position: absolute;
       left: 0;
       top: calc(100% + 4px);
@@ -493,6 +494,7 @@ input[type=number] {
       width: 6px;}
   .select_option {
       cursor: pointer;
+      order: 2;
       font-size: 14px;
       line-height: 21px;
       padding: 4px 12px;
@@ -500,6 +502,8 @@ input[type=number] {
       border-radius: 4px;
       border: 1px solid transparent;
       margin: 8px 0;}
+  .select_option[data-value="408"] {
+    order: 1; }
   .select_option:hover {
       border-color: #E0E4E5;
       background-color: #E0E4E5; }
@@ -779,6 +783,7 @@ padding: 0;
     line-height: 130%;
     color: #344D57; }
     .card_name span {
+      text-overflow: ellipsis;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -1150,7 +1155,7 @@ window.onload  = function () {
           </div>
           <div class="side_two">
             <div class="slider-for">
-              <div class="slide" data-item="show-zoom"><img class="slider-for_img" id="forImg" src="${document.querySelectorAll('.product_img')[0].getAttribute('src')}" alt="image 2">
+              <div class="slide" data-item="show-zoom"><img class="slider-for_img" id="forImg" src="${document.querySelector('.type1 img').getAttribute('src')}" alt="image 2">
                 <div class="img-zoom-result" id="zoomResult"></div>
               </div>
             </div>
@@ -1709,7 +1714,7 @@ window.onload  = function () {
             el.addEventListener('click',(e) => {
                 e.stopImmediatePropagation()
                 remActiveSelect()
-                el.parentElement.classList.toggle('active');
+                el.parentElement.classList.add('active');
             })
             el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
                 option.addEventListener('click', (e) => {
