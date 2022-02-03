@@ -596,6 +596,8 @@ input[type=number] {
 
 .list {
   margin-bottom: 15px; }
+  .list .fw-semi {
+    color: #091114;}
   .list li {
     font-size: 16px;
     line-height: 170%; }
@@ -626,7 +628,8 @@ input[type=number] {
 .product_sidebar .btn {
 padding: 0;
   width: 100%;}
-.product_content {
+.product_content { 
+  font-family: 'Inter', sans-serif;
   padding-top: 28px; }
   .product_content h2, .product_content .title {
       padding-left: 0;
@@ -698,6 +701,8 @@ padding: 0;
     height: 14px; }
   .btn-calc_plus:after {
     content: ''; }
+  .content-discription * {
+    font-family: 'Inter', sans-serif!important; }
 .content-discription {
   color: #6D7E85;
   padding-top: 9px; }
@@ -1308,7 +1313,11 @@ window.onload  = function () {
             if (qty.value > 1) {
                 document.querySelector('.product_sidebar .add-cart span').hidden = false;
             } else {
+              if (document.querySelector('.available-options') == null) {
                 document.querySelector('.product_sidebar .add-cart span').hidden = true;
+              } else {
+                document.querySelector('.product_sidebar .add-cart span').hidden = false;
+              }
             }
         }
     }
@@ -1346,6 +1355,8 @@ window.onload  = function () {
 
     if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
         document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHTML)
+
+        document.querySelector('.product_sidebar .add-cart span').hidden = false;
 
         let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
 
