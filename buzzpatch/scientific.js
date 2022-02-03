@@ -113,7 +113,7 @@ let startFunc = setInterval(() => {
 
         @media (max-width: 280px) {
             .scientific_block > div h3{
-                font-size: 18px !important;
+                font-size: 14px !important;
             }
 
             .scientific_block > p:not(:last-child){
@@ -125,7 +125,7 @@ let startFunc = setInterval(() => {
             }
 
             .scientific_block .hidden_text{
-                left: -93px;
+                left: -106px;
             }
         }
 
