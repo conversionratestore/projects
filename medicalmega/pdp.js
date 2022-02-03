@@ -1154,7 +1154,8 @@ window.onload  = function () {
           </div>
           <div class="side_two">
             <div class="slider-for">
-              <div class="slide" data-item="show-zoom"><img class="slider-for_img" id="forImg" src="${document.querySelector('.type1 img').getAttribute('src')}" alt="image 2">
+              <div class="slide" data-item="show-zoom">
+                <img class="slider-for_img" id="forImg" src="${document.querySelector('.type1 img').getAttribute('src')}" alt="image 2">
                 <div class="img-zoom-result" id="zoomResult"></div>
               </div>
             </div>
@@ -1907,6 +1908,7 @@ window.onload  = function () {
     btnAllCategories.addEventListener('click', (e) => {
         e.target.parentElement.classList.toggle('active');
         document.querySelector('.advanced-search').classList.remove('active');
+        document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
         actionDataLayer = `Click on all categories`;
         labelDataLayer = 'Product section';
         pushDataLayer(actionDataLayer,labelDataLayer)
