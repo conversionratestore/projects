@@ -767,10 +767,11 @@ padding: 0;
   flex-direction: column;
   position: relative; }
   .card img {
-    width: 100%;
+    width: 100px;
     height: 100px;
-    object-fit: none;
-    margin-bottom: 16px; }
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 16px; }
   .card_name {
     font-weight: 600;
     font-size: 14px;
