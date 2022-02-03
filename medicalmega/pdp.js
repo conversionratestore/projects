@@ -129,7 +129,7 @@ input[type=number] {
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap; }
-    .btn:hover, .btn:focus  {
+    .btn:hover, .btn:not(.btn_white):focus  {
       background-color: #344D57;
       border-color: #344D57; }
   .btn[disabled] {
@@ -145,8 +145,8 @@ input[type=number] {
     color: #1E3944; }
   .btn_white.active {
       background-color: #E9EBEC; }
-      .btn_white:hover {
-        background-color: #F0F1F2;}
+  .btn_white:hover {
+    background-color: #F0F1F2;}
   .btn_white[disabled], .form-search button[disabled] {
       border-color: #F0F1F2;
       background-color: #FBFBFB;
