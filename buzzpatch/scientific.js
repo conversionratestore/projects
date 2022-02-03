@@ -176,12 +176,28 @@ let startFunc = setInterval(() => {
       "Our stickers are most effective within 8 hours, and continue to be effective for up to 72 hours."
 
     document.querySelector(".scientific_block .hint")?.addEventListener("click", (e) => {
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp: Scientific research",
+        eventAction: "Click on hint",
+      })
+
       e.stopPropagation()
       document.querySelector(".scientific_block .hidden_text").classList.toggle("toggle_opacity")
     })
 
     document.addEventListener("click", (e) => {
       document.querySelector(".scientific_block .hidden_text")?.classList.remove("toggle_opacity")
+    })
+
+    clarity("set", "scientific_research", "variant_1")
+
+    window.dataLayer = window.dataLayer || []
+    dataLayer.push({
+      event: "event-to-ga",
+      eventCategory: "Exp: Scientific research",
+      eventAction: "loaded",
     })
   }
 }, 10)
