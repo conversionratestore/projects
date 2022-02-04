@@ -165,6 +165,7 @@ let styles = `
     }
     .header .nav li {
         clear: both;
+        width: 100%;
     }
     .header .nav li:last-child {
         display: none!important;
@@ -173,6 +174,7 @@ let styles = `
         background: none;
         padding: 4px 11px;
         margin: 8px 0;
+        width: 100%;
         display: block;
         font-weight: normal;
         font-size: 18px;
@@ -507,18 +509,38 @@ let optionMut = {
 
 let totalCountProducts = ''; //total count products
 
-// function pushDataLayer(action,label) {
-//     console.log(action + " : " + label)
-//     window.dataLayer = window.dataLayer || [];
-//     dataLayer.push({
-//         'event': 'event-to-ga',
-//         'eventCategory': 'Exp: Easy reorder desktop',
-//         'eventAction': `${action}`,
-//         'eventLabel': `${label}`
-//     });
-// }
+let actionDataLayer = '',
+    labelDataLayer = '';
 
-window.onload = function() {}
+function pushDataLayer(action,label) {
+    console.log(action + " : " + label)
+    window.dataLayer = window.dataLayer || [];
+    if (label) {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Search filters slide-in menu',
+            'eventAction': `${action}`,
+            'eventLabel': `${label}`
+        });
+    } else {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Search filters slide-in menu',
+            'eventAction': `${action}`
+        });
+    }
+}
+
+function checkedFilter(item, arrFilter) {
+    document.querySelectorAll(item).forEach(checkbox => {
+        if (checkbox.checked == true) {
+            console.log(checkbox.dataset.option)
+            arrFilter.push(checkbox.dataset.option)
+        }
+    })
+}
+
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -561,7 +583,12 @@ window.onload = function() {}
 
     let menu = document.querySelector('.nav-menu');
 
-    document.querySelector('.btn_all-category').addEventListener('click', () => viewAllCategories(false)); //open all category
+    document.querySelector('.btn_all-category').addEventListener('click', () => {
+        viewAllCategories(false)
+        actionDataLayer = 'Click on view all categories';
+        pushDataLayer(actionDataLayer)
+
+    }); //open all category
     document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
 
     document.querySelector('.icon_burger').addEventListener('click', () => menu.classList.add('active'));
@@ -579,6 +606,16 @@ window.onload = function() {}
         for (let key in data.categories) {
             if (data.categories[key].url) {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
+              
+                document.querySelectorAll('.category_popular .altnav a')[data.categories[key]].addEventListener('click', (e) => {
+                    if (data.categories[key] < 6) {
+                        actionDataLayer = 'Click on most popular categories items';
+                    } else {
+                        actionDataLayer = 'Click on other categories items';
+                    }
+                    labelDataLayer = e.target.innerText;
+                    pushDataLayer(actionDataLayer,labelDataLayer)
+                })
             }
         }
 
@@ -681,15 +718,6 @@ window.onload = function() {}
             })
         }
     })
-
-    function checkedFilter(item, arrFilter) {
-        document.querySelectorAll(item).forEach(checkbox => {
-            if (checkbox.checked == true) {
-                console.log(checkbox.dataset.option)
-                arrFilter.push(checkbox.dataset.option)
-            }
-        })
-    }
 
     //card product
     class ProductCard { 
@@ -885,3 +913,33 @@ window.onload = function() {}
 
         getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
     }
+    //events 
+    document.querySelector('.signup a').addEventListener('click', () => {
+        actionDataLayer = 'Click on Sign in button in menu';
+        pushDataLayer(actionDataLayer)
+    })
+    document.querySelectorAll('.header .nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            actionDataLayer = 'Click on menu categories for the Use';
+            labelDataLayer = e.target.innerText;
+            pushDataLayer(actionDataLayer,labelDataLayer)
+        })
+    })
+};
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Search filters slide-in menu',
+    'eventAction': 'loaded'
+});
+
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1483840,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+hj('event', 'search_filters_slide_in_menu');
