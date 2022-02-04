@@ -1,6 +1,6 @@
 let styles = `
     <style>
-    .hide {
+    .hide, .altPayment {
         display: none!important;
     }
     #hdr, #banner, .listing .category, .listing .subhead {
@@ -291,7 +291,7 @@ let styles = `
         width: 100%;
     }
     .list_type1 span {
-        opacity: 0;
+        // opacity: 0;
         text-align: right;
         width: 100%;
     }
@@ -400,6 +400,8 @@ let styles = `
         opacity: 0;
         transition: opacity 0.3s ease; 
         display: none;
+        max-height: 60vh;
+        overflow-y: auto;
     }
     .select.active .select_dropdown {
         opacity: 1;
@@ -440,6 +442,11 @@ let styles = `
     }
     .count_brand {
         color: #666666;
+    }
+    .list_type3 span img {
+        width: 100%;
+        height: 100%!important;
+        object-fit: contain;
     }
     </style>`
 
@@ -498,24 +505,7 @@ let optionMut = {
     attributes: true
 }
 
-let totalCountProducts = '';
-let loaded = false;
-
-// let mut = new MutationObserver(function (muts) {
-//     console.log('mut')
-//     if (typeof(requestAllCaterories) != 'undefined') {
-//         mut.disconnect();
-//         // window.addEventListener('load', (event) => {
-
-
-
-//         // });
-
-//     }
-
-// })
-// mut.observe(document, optionMut);
-
+let totalCountProducts = ''; //total count products
 
 // function pushDataLayer(action,label) {
 //     console.log(action + " : " + label)
@@ -527,7 +517,6 @@ let loaded = false;
 //         'eventLabel': `${label}`
 //     });
 // }
-
 
 window.onload = function() {}
     document.body.insertAdjacentHTML('afterbegin', styles);
@@ -595,15 +584,16 @@ window.onload = function() {}
 
         document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
             if (i > 4) el.hidden = true;
+            el.querySelector('a').addEventListener('click', (e) => {
+                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id)) 
+            })
         })
 
         if (window.location.pathname.includes('/category')) {
-            document.querySelectorAll('#search_c_id option').forEach(el => {
-                if (el.innerText.includes(document.querySelector('.listing .categoryTop').innerText)) {
-                    idCategory = el.value;
-                }
-            })
-            document.querySelector('.listing').insertAdjacentHTML('beforeend',`<div class="products_list"></div>`)
+          
+            idCategory = JSON.parse(localStorage.getItem('idCategory'));
+                
+            document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
 
             document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
                 <div class="justify-content-between hide">
@@ -664,54 +654,46 @@ window.onload = function() {}
                 selectCurrent.forEach(el => {
                     el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
                 })
+
                 document.querySelectorAll('[data-button]').forEach(button => {
-                    button.addEventListener('click', () => document.querySelector(`[data-item="${button.dataset.button}"]`).classList.toggle('active'))
+                    button.addEventListener('click', () => {
+                        let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
+                        popup.classList.toggle('active')
+
+                        if (popup.classList.contains('active')) {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = 'inherit';
+                        }
+                    })
                 })
                 document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
                     brandsFilter = [];
                     priceRange = [];
 
-                    setFilter('.filter_brands .checkbox', brandsFilter)
-                    setFilter('.filter_price .checkbox', priceRange)
-
-                    console.log(brandsFilter.toString() + " (id brands)")
-                    console.log(priceRange.toString() + " (price range)")
-                    getProductsForFilters(brandsFilter.toString(),priceRange.toString())
-
+                    checkedFilter('.filter_brands .checkbox', brandsFilter)
+                    checkedFilter('.filter_price .checkbox', priceRange)
                 })
 
-                document.querySelector('.btn_sort select').addEventListener('change', (e) => {
-                    console.log(brandsFilter.toString() + " (id brands)")
-                    console.log(priceRange.toString() + " (price range)")
-                    getProductsForFilters(brandsFilter.toString(),priceRange.toString())
-                })
+                getProductsFilters('.popup_filter .btn_close','click',brandsFilter.toString(),priceRange.toString())
+                getProductsFilters('.btn_sort select','change',brandsFilter.toString(),priceRange.toString())
 
             })
         }
     })
 
-function setFilter(item, arrFilter) {
-    document.querySelectorAll(item).forEach(checkbox => {
-        if (checkbox.checked == true) {
-            console.log(checkbox.dataset.option)
-            arrFilter.push(checkbox.dataset.option)
-        }
-    })
-}
+    function checkedFilter(item, arrFilter) {
+        document.querySelectorAll(item).forEach(checkbox => {
+            if (checkbox.checked == true) {
+                console.log(checkbox.dataset.option)
+                arrFilter.push(checkbox.dataset.option)
+            }
+        })
+    }
 
-function getProductsForFilters(brandsFilter, priceRange) {
-    let perPage = document.querySelector('[name="mm_per_page"]').value;
-
-    console.log(idCategory + " (id category)")
-    document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
-
-    const statusMessage = document.createElement('div');
-    statusMessage.classList.add('status');
-    statusMessage.innerHTML = message.loading;
-    document.querySelector('.listing').append(statusMessage)
-
+    //card product
     class ProductCard { 
-        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, parent=document.querySelector('.products_list')) {
+        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants) {
             this.src = src;
             this.url = url;
             this.title = title;
@@ -721,43 +703,64 @@ function getProductsForFilters(brandsFilter, priceRange) {
             this.price = price;
             this.status = status;
             this.id = id;
-            this.parent = parent;
+            this.variantId = variantId;
+            this.parent = document.querySelector(parent);
+            this.variants = variants;
+            this.qty();
+            this.optionBox();
         }
 
+        qty() {
+            let option = ``;
+            for (let n = 1; n <= 200; n++) {
+                option = option + `<option value="${n}">${n}</option>`;
+            }
+            return option
+        }
+
+        optionBox() {
+            let option = ``;
+            for (let i = 0; i < this.variants.length; i++) {
+                let variantsArr = this.variants[i];
+                console.log(variantsArr)
+                option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>`          
+            }
+            return option
+        }
+    
         render() {
             const element = document.createElement('fieldset');
             element.classList.add('list_box2');
-            element.style.position = 'relative';
 
             element.innerHTML = `
                 <div class="list_type3">
-                    <span>
-                        <a href="${this.url}">
-                            <img id="product_img_0" alt="${this.title}" src="${this.src}">
-                        </a>
-                    </span>
+                    <span><a href="${this.url}"><img class="product_img" alt="${this.title}" src="${this.src}"></a></span>
                 </div>
                 <div class="list_type4">
                     <h3><a href="${this.url}">${this.title}</a></h3>
                     <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
                         <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
                             <span style="display:block; font-size:12px;">Manufacturer: ${this.manufacturer}</span>
-                            <span id="variant_tag_0">
+                            <span class="variant_tag">
                                 <span style="display:block; font-size:12px;">Sold By: ${this.soldBy}</span>
                                 <span style="display:block; font-size:12px;">Item Number: ${this.number}</span>
                                 <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${this.price}</i></span>
                             </span>
                         </span>
                         <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-                            <span id="product_quantity_0" class="nostyle" style="display:${this.status=='Out of stock'?'none':'block'};">
-                                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select"></select>
+                            <span class="product_quantity nostyle" style="display:${this.status=='Out of stock'?'none':'block'};">
+                                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">${this.qty()}</select>
                             </span>
-                            <input type="image" name="register_user" id="buy_product_0" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${this.status=='Out of stock'?'none':'block'};">
-                            <div id="product_out_stock_0" class="out-of-stock__box--pv" style="display:${this.status=='Out of stock'?'block':'none'}; ">
+                            <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${this.status=='Out of stock'?'none':'block'};">
+                            <div class="out-of-stock__box--pv" style="display:${this.status=='Out of stock'?'block':'none'}; ">
                                 <p class="out-of-stock__message--pv">Out Of Stock</p>
                             </div>
                         </span>
-                        
+                        <p style="clear:both;display:${this.variants.length>1?'block':'none'}">
+                            <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
+                            <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">${this.optionBox()}</select>
+                        </p>
+                        <input type="hidden" name="product_variant_id" value="${this.variantId}">
                         <input type="hidden" name="product_id" value="${this.id}">
                         <input type="hidden" name="add_to_cart" value="variant">
                     </form>
@@ -765,170 +768,120 @@ function getProductsForFilters(brandsFilter, priceRange) {
 
             this.parent.append(element);
 
-            for (let n = 1; n <= 200; n++) {
-                element.querySelector('.product-variant__quantity__select').insertAdjacentHTML('beforeend',`<option value="${n}">${n}</option>`)
-            }
-        }
-    }
-    const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            let products = data.products;
-            statusMessage.remove()
-
-            let variants;
-            for (let key in products) {
-                variants = products[key].variants;
- 
-                new ProductCard(
-                    variants[0].image_url,
-                    products[key].url,
-                    products[key].title,
-                    products[key].brand,
-                    variants[0].title,
-                    products[key].item_number,
-                    variants[0].price,
-                    products[key].stock_status,
-                    variants[0].product_id,
-                    document.querySelector('.products_list')
-                ).render()
-
-                // for (let i = 0; i < variants.length; i++) {
-                   
-                //     console.log(variants[i])
-                //     // document.querySelector('.product-variant__quantity__select').append(`<p style="clear:both;"><input type="hidden" name="product_variant_id" value="101021"></p>`)
+            element.querySelector('.product-variant__options-box__select').addEventListener('change', (e) => {
+                console.log('change')
+                let price = e.target.options[e.target.selectedIndex].dataset.price,
+                    variantId = e.target.options[e.target.selectedIndex].value,
+                    srcImg = e.target.options[e.target.selectedIndex].dataset.src,
+                    id = e.target.options[e.target.selectedIndex].dataset.id,
+                    title = e.target.options[e.target.selectedIndex].innerText;
                     
-                // }
-              
-                // console.log('___________')
+                element.querySelector(`.variant_tag span i`).innerHTML = price;
+                element.querySelector(`[name="product_id"]`).value = id;
+                element.querySelector(`.product_img`).src = srcImg;   
+                element.querySelector(`[name="product_variant_id"]`).value = variantId;
+                element.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${title.replace('(Out of stock)','')}`;
 
-                // if () {
-                //     `<p style="clear:both;">
-                //                     <input type="hidden" name="product_variant_id" value="101021">
-                //                 </p>`
-
-                //     `<p style="clear:both;">
-                //         <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                //         <select class="product-variant product-variant__options-box__select" name="product_variant_id" id="product_variant_0" style="font-size:11px;float:left;margin-top:2px;" onchange="change_variant_tag(this.value, pv_0, '0');">
-                //             <script type="text/javascript">
-                //                 var pv_0 = new Array();
-                //             </script>
-                //             <option value="102086"> Box/100 </option>
-                //             <script type="text/javascript">
-                //                 pv_0[0] =
-                //                     new Array(
-                //                         '20.00', // 0
-                //                         '2', // 1
-                //                         '', // 2
-                //                         '0', // 3
-                //                         '102086', // 4
-                //                         'Box/100', // 5
-                //                         'Nitrile Powder Free Gloves, Small', // 6
-                //                         'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
-                //                         '94821', // 8
-                //                         'N104S', // 9
-                //                         '', // 10
-                //                         '143', // 11
-                //                         '0', // 12
-                //                         '0', // 13
-                //                         '0', // 14
-                //                         '0' // 15
-                //                     );
-                //             </script>
-                //             <option value="102087"> Case_10 </option>
-                //             <script type="text/javascript">
-                //                 pv_0[1] =
-                //                     new Array(
-                //                         '190.00', // 0
-                //                         '2', // 1
-                //                         '', // 2
-                //                         '0', // 3
-                //                         '102087', // 4
-                //                         'Case_10', // 5
-                //                         'Nitrile Powder Free Gloves, Small', // 6
-                //                         'https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg', // 7
-                //                         '94821', // 8
-                //                         'N104S', // 9
-                //                         '', // 10
-                //                         '14', // 11
-                //                         '0', // 12
-                //                         '0', // 13
-                //                         '0', // 14
-                //                         '0' // 15
-                //                     );
-                //             </script>
-                //         </select>
-                //     </p>`
-                // }
-            }
-            // for (let keyVariant in variants) {
-            //     let soldBy = variants[keyVariant].title,
-            //         price = variants[keyVariant].price,
-            //         srcImage = variants[keyVariant].image_url,
-            //         status = variants[keyVariant].stock_status,
-            //         id = variants[keyVariant].product_id;
-            // }
-
-        })
-        // .then(data => {
-            
-            // function setQty(select) {
-            //     let result = '';
-            //     let i = 0;
-
-            //     do {
-            //     i = i + 1;
-            //     result = result + i;
-            //     select.insertAdjacentHTML('beforeend',`<option value="${result}">${result}</option>`)
-            //     } while (i <= 200);
-            // }
-            
-            // document.querySelectorAll('.product-variant__quantity__select').forEach(select => setQty(select))
-        // })
-}
-
-//listing
-if (window.location.pathname.includes('/category')) {
-    document.querySelectorAll('.listing p').forEach((el,i) => {
-        if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
-            el.style.display = 'none';
-        }
-    })
-
-    document.querySelectorAll('#search_c_id option').forEach((el,i) => {
-        if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
-            console.log(el.value)
-            fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-
-                console.log(data)
-
-                let products = data.products;
-                document.querySelectorAll('.listing li').forEach((el,index) => {
-                    let randomArray = [];
-                    let subcategory = el.querySelector('a').innerText.split(' ')[0];
-
-                    for (let i = 0; i < products.length; i++) {
-                        if (products[i].title.includes(subcategory) ) {
-                            randomArray.push(i)
-                        }
-                    }
-                    if (randomArray.length > 0) {
-                        el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-                        let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
-
-                        el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                        el.querySelector('img').setAttribute('alt', products[randomNum].title)
-                        console.log(randomNum)
-                    }
-                })
+                if (title.includes('Out of stock')) {
+                    element.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                    element.querySelector('.product_quantity').style.display = 'none';
+                    element.querySelector('.buynow2').style.display = 'none';
+                } else {
+                    element.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                    element.querySelector('.product_quantity').style.display = 'block';
+                    element.querySelector('.buynow2').style.display = 'block';
+                }
             })
         }
-    })
+    }
 
-    document.querySelector('[name="mm_per_page"]').addEventListener('change', () => {
-        console.log(brandsFilter.toString() + " (id brands)")
-        console.log(priceRange.toString() + " (price range)")
-        getProductsForFilters(brandsFilter.toString(), priceRange.toString())
-    })
-}
+    function getProductsFilters(element,event,brandsFilter, priceRange) {
+        document.querySelector(element).addEventListener(event, (e) => {
+            console.log(brandsFilter.toString() + " (id brands)")
+            console.log(priceRange.toString() + " (price range)")
+
+            let perPage = document.querySelector('[name="mm_per_page"]').value;
+
+            console.log(idCategory + " (id category)")
+            document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.innerHTML = message.loading;
+            document.querySelector('.listing').append(statusMessage)
+
+            const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    let products = data.products;
+                    statusMessage.remove()
+
+                    for (let key in products) {
+                        variantsProduct = products[key].variants;
+                        console.log(variantsProduct[0])
+                
+                        new ProductCard(
+                            variantsProduct[0].image_url,
+                            products[key].url,
+                            products[key].title,
+                            products[key].brand,
+                            variantsProduct[0].title,
+                            products[key].item_number,
+                            variantsProduct[0].price,
+                            products[key].stock_status,
+                            variantsProduct[0].product_id,
+                            variantsProduct[0].variant_id,
+                            '.products_list',
+                            products[key].variants
+                        ).render()
+                    }
+
+                    var count = products[key].total_count; //всего записей
+                    var cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
+                    var cnt_page = Math.ceil(count / cnt); //кол-во страниц
+                    console.log(cnt_page)
+
+                })
+        })
+    }
+    
+    //listing
+    if (window.location.pathname.includes('/category')) {
+        document.querySelectorAll('.listing p').forEach((el,i) => {
+            if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
+                el.style.display = 'none';
+            }
+        })
+
+        document.querySelectorAll('#search_c_id option').forEach((el,i) => {
+            if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
+                console.log(el.value)
+                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+
+                    console.log(data)
+                    let products = data.products;
+                    document.querySelectorAll('.listing li').forEach((el,index) => {
+                        let randomArray = [];
+                        let subcategory = el.querySelector('a').innerText.split(' ')[0];
+
+                        for (let i = 0; i < products.length; i++) {
+                            if (products[i].title.includes(subcategory) ) {
+                                randomArray.push(i)
+                            }
+                        }
+                        if (randomArray.length > 0) {
+                            el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
+
+                            el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                            el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                            console.log(randomNum)
+                        }
+                    })
+                })
+            }
+        })
+
+        getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
+    }
