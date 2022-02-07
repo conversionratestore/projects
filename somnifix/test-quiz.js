@@ -1,7 +1,19 @@
 if (window.location.pathname.includes('blogs')) {
-    blogPage()
+    let start = setInterval(function () {
+        if(document.querySelectorAll(`h2`)) {
+            clearInterval(start)
+            blogPage()
+        }
+    }, 100)
+    
+    
 } else {
-    mainPage()
+    let start = setInterval(function () {
+        if(document.querySelectorAll('.shg-btn-wrapper')) {
+            clearInterval(start)
+            mainPage()
+        }
+    }, 100)
 }
 
 
