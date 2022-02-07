@@ -1,6 +1,6 @@
 if (window.location.pathname.includes('blogs')) {
     let start = setInterval(function () {
-        if(document.querySelectorAll(`h2`)) {
+        if(document.querySelectorAll(`h2`)[1]) {
             clearInterval(start)
             blogPage()
         }
@@ -9,7 +9,7 @@ if (window.location.pathname.includes('blogs')) {
 
 } else {
     let start = setInterval(function () {
-        if(document.querySelectorAll('.shg-btn-wrapper')) {
+        if(document.querySelectorAll('.shg-btn-wrapper')[0]) {
             clearInterval(start)
             mainPage()
         }
