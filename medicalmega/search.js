@@ -1,5 +1,16 @@
 let styles = `
     <style>
+     .products_list .list_box2 {
+        display: none;}
+        .paginator span {
+            margin: 0 4px;
+            font-size: 11px;
+            color: #000;
+        }
+     .paginator span.active {
+        margin: 0 4px;
+        font-weight: 700;
+        }
     .hide, .altPayment {
         display: none!important;
     }
@@ -281,6 +292,14 @@ let styles = `
         align-items: center;
         justify-content: space-between;
     }
+     .listing li a span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        height: 36px;
+     }
     .listing li img {
         border: 1px solid #EEEEEE;
         width: 35px;
@@ -528,13 +547,12 @@ function pushDataLayer(action,label) {
 function checkedFilter(item, arrFilter) {
     document.querySelectorAll(item).forEach(checkbox => {
         if (checkbox.checked == true) {
-            console.log(checkbox.dataset.option)
             arrFilter.push(checkbox.dataset.option)
         }
     })
 }
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -700,13 +718,6 @@ window.onload = function() {
                         }
                     })
                 })
-                document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
-                    brandsFilter = [];
-                    priceRange = [];
-
-                    checkedFilter('.filter_brands .checkbox', brandsFilter)
-                    checkedFilter('.filter_price .checkbox', priceRange)
-                })
 
                 getProductsFilters('.popup_filter .btn_close','click',brandsFilter.toString(),priceRange.toString())
                 getProductsFilters('.btn_sort select','change',brandsFilter.toString(),priceRange.toString())
@@ -717,7 +728,7 @@ window.onload = function() {
 
     //card product
     class ProductCard {
-        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants) {
+        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants, index) {
             this.src = src;
             this.url = url;
             this.title = title;
@@ -732,6 +743,7 @@ window.onload = function() {
             this.variants = variants;
             this.qty();
             this.optionBox();
+            this.count = index;
         }
 
         qty() {
@@ -746,7 +758,6 @@ window.onload = function() {
             let option = ``;
             for (let i = 0; i < this.variants.length; i++) {
                 let variantsArr = this.variants[i];
-                console.log(variantsArr)
                 option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>`
             }
             return option
@@ -755,6 +766,7 @@ window.onload = function() {
         render() {
             const element = document.createElement('fieldset');
             element.classList.add('list_box2');
+            element.setAttribute('data-num',  this.count)
 
             element.innerHTML = `
                 <div class="list_type3">
@@ -821,12 +833,17 @@ window.onload = function() {
 
     function getProductsFilters(element,event,brandsFilter, priceRange) {
         document.querySelector(element).addEventListener(event, (e) => {
-            console.log(brandsFilter.toString() + " (id brands)")
-            console.log(priceRange.toString() + " (price range)")
+            if (element == '.popup_filter .btn_close') {
+                brandsFilter = [];
+                priceRange = [];
+
+                checkedFilter('.filter_brands .checkbox', brandsFilter)
+                checkedFilter('.filter_price .checkbox', priceRange)
+            }
+
 
             let perPage = document.querySelector('[name="mm_per_page"]').value;
 
-            console.log(idCategory + " (id category)")
             document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
 
             const statusMessage = document.createElement('div');
@@ -834,35 +851,113 @@ window.onload = function() {
             statusMessage.innerHTML = message.loading;
             document.querySelector('.listing').append(statusMessage)
 
-            const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+            console.log(idCategory + " (id category)")
+            console.log(perPage)
+            console.log(brandsFilter.toString() + '(id brands)')
+            console.log(priceRange.toString() + '(price range)')
+            console.log(document.querySelector('.btn_sort select').value)
+
+            const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
                     let products = data.products;
                     statusMessage.remove()
 
-                    for (let key in products) {
-
+                    for (let i = 0; i < products.length; i++) {
+                        console.log(products[i].variants[0])
                         new ProductCard(
-                            products[key].variants[0].image_url,
-                            products[key].url,
-                            products[key].title,
-                            products[key].brand,
-                            products[key].variants[0].title,
-                            products[key].item_number,
-                            products[key].variants[0].price,
-                            products[key].stock_status,
-                            products[key].variants[0].product_id,
-                            products[key].variants[0].variant_id,
+                            products[i].variants[0].image_url,
+                            products[i].url,
+                            products[i].title,
+                            products[i].brand,
+                            products[i].variants[0].title,
+                            products[i].item_number,
+                            products[i].variants[0].price,
+                            products[i].stock_status,
+                            products[i].variants[0].product_id,
+                            products[i].variants[0].variant_id,
                             '.products_list',
-                            products[key].variants
+                            products[i].variants,
+                            i
                         ).render()
                     }
 
                     let count = data.total_count; //всего записей
-                    let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
+                    let cnt = 5; //+document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
                     let cnt_page = Math.ceil(count / cnt); //кол-во страниц
+
                     console.log(cnt_page)
+                    if (cnt_page > 1) {
+                        document.querySelector('.list_type2 i').remove();
+                        document.querySelector('.list_type2').insertAdjacentHTML('beforeend','<nav class="paginator" style="float:right; clear:both;"></nav>')
+                        let paginator = document.querySelector(".paginator");
+                        let page = "";
+                        for (let i = 0; i < cnt_page; i++) {
+                            page += "<span data-page=" + i * cnt + "  id=\"page" + (i + 1) + "\">" + (i + 1) + "</span>";
+                        }
+                        paginator.innerHTML = page;
+
+                        //выводим первые записи {cnt}
+                        let div_num = document.querySelectorAll(".products_list .list_box2");
+                        for (let i = 0; i < div_num.length; i++) {
+                            if (i < cnt) {
+                                div_num[i].style.display = "block";
+                            }
+                        }
+
+                        let main_page = document.getElementById("page1");
+                        main_page.classList.add("active");
+
+                        //листаем
+                        function pagination(event) {
+                            let e = event || window.event;
+                            let target = e.target;
+                            let id = target.id;
+
+                            console.log(e,target,id)
+                            if (target.tagName.toLowerCase() != "span") return;
+
+                            let num_ = id.substr(4);
+                            let data_page = +target.dataset.page;
+
+                            console.log(num_,data_page)
+                            main_page.classList.remove("active");
+                            main_page = document.getElementById(id);
+                            main_page.classList.add("active");
+
+                            let j = 0;
+                            for (let i = 0; i < div_num.length; i++) {
+                                let data_num = div_num[i].dataset.num;
+                                console.log(data_num)
+                                if (data_num <= data_page || data_num >= data_page) {
+                                    div_num[i].style.display = "none";
+                                }
+                            }
+
+                            for (let i = data_page; i < div_num.length; i++) {
+                                if (j >= cnt) break;
+                                div_num[i].style.display = "block";
+                                j++;
+                            }
+                        }
+                        paginator.addEventListener('click', (e) => pagination(e))
+                       // let pagination = `
+                       // <i style="float:right; clear:both;">
+                       //     <b>1</b>
+                       //     |
+                       //     <a href="https://medicalmega.com/category/enteral/item50">2</a>
+                       //     |
+                       //     <a href="https://medicalmega.com/category/enteral/item100">3</a>
+                       //     ...
+                       //     <a href="https://medicalmega.com/category/enteral/item1750">36</a>
+                       //     |
+                       //     <a href="https://medicalmega.com/category/enteral/item1800">37</a>
+                       //     |
+                       //     <a href="https://medicalmega.com/category/enteral/item1850">38</a>
+                       //     <a class="next" href="https://medicalmega.com/category/enteral/item50">Next</a>
+                       // </i>`
+                    }
 
                 })
         })
@@ -876,6 +971,7 @@ window.onload = function() {
             }
         })
 
+        getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
         document.querySelectorAll('#search_c_id option').forEach((el,i) => {
             if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
                 console.log(el.value)
@@ -885,13 +981,19 @@ window.onload = function() {
                     let products = data.products;
                     document.querySelectorAll('.listing li').forEach((el,index) => {
                         let randomArray = [];
-                        let subcategory = el.querySelector('a').innerText.split(' ')[0];
+                        let subcategory = el.innerText;
+                        let firstLetterCategory = el.innerText.split(' ')[0];
 
-                        for (let i = 0; i < products.length; i++) {
-                            if (products[i].title.includes(subcategory) ) {
-                                randomArray.push(i)
+                        el.querySelector('a').setAttribute('title',subcategory)
+                        el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
+
+                        for (let j = 0; j < products.length; j++) {
+                            let title = products[j].title.toString();
+                            if (title.includes(firstLetterCategory) ) {
+                                randomArray.push(j)
                             }
                         }
+
                         if (randomArray.length > 0) {
                             el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
                             let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
@@ -904,8 +1006,6 @@ window.onload = function() {
                 })
             }
         })
-
-        getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
     }
     //events
     document.querySelector('.signup a').addEventListener('click', () => {
@@ -920,7 +1020,7 @@ window.onload = function() {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-};
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
