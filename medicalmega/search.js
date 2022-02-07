@@ -501,12 +501,6 @@ let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
 
-let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
-}
-
 let totalCountProducts = ''; //total count products
 
 let actionDataLayer = '',
@@ -848,19 +842,19 @@ window.onload = function() {
                     statusMessage.remove()
 
                     for (let key in products) {
-                        let variantsProduct = products[key].variants;
+                        let variantsProduct = products[key].variants[0];
 
                         new ProductCard(
-                            variantsProduct[0].image_url,
+                            variantsProduct.image_url,
                             products[key].url,
                             products[key].title,
                             products[key].brand,
-                            variantsProduct[0].title,
+                            variantsProduct.title,
                             products[key].item_number,
-                            variantsProduct[0].price,
+                            variantsProduct.price,
                             products[key].stock_status,
-                            variantsProduct[0].product_id,
-                            variantsProduct[0].variant_id,
+                            variantsProduct.product_id,
+                            variantsProduct.variant_id,
                             '.products_list',
                             products[key].variants
                         ).render()
@@ -919,6 +913,7 @@ window.onload = function() {
         actionDataLayer = 'Click on Sign in button in menu';
         pushDataLayer(actionDataLayer)
     })
+
     document.querySelectorAll('.header .nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             actionDataLayer = 'Click on menu categories for the Use';
