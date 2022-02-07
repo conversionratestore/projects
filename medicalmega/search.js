@@ -849,7 +849,6 @@ window.onload = function() {
 
                     for (let key in products) {
                         variantsProduct = products[key].variants;
-                        console.log(variantsProduct[0])
 
                         new ProductCard(
                             variantsProduct[0].image_url,
@@ -867,9 +866,9 @@ window.onload = function() {
                         ).render()
                     }
 
-                    var count = products[key].total_count; //всего записей
-                    var cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
-                    var cnt_page = Math.ceil(count / cnt); //кол-во страниц
+                    let count = products[key].total_count; //всего записей
+                    let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
+                    let cnt_page = Math.ceil(count / cnt); //кол-во страниц
                     console.log(cnt_page)
 
                 })
