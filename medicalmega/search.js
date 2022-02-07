@@ -941,7 +941,8 @@ window.onload = function() {
                             main_page.classList.remove("active");
                             main_page = document.getElementById(id);
                             main_page.classList.add("active");
-
+                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',main_page.nextElementSibling.id);
+                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',main_page.previousElementSibling.id);
                             fetchProduct(data_page)
                         })
                     })
@@ -960,6 +961,9 @@ window.onload = function() {
                                 }
                             }
                             let data_page = +main_page.dataset.page;
+                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',main_page.nextElementSibling.id);
+                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',main_page.previousElementSibling.id);
+
                             fetchProduct(data_page)
                         })
                     })
