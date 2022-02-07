@@ -606,30 +606,32 @@ window.onload = function() {
         for (let key in data.categories) {
             if (data.categories[key].url) {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
-              
-                document.querySelectorAll('.category_popular .altnav a')[data.categories[key]].addEventListener('click', (e) => {
-                    if (data.categories[key] < 6) {
-                        actionDataLayer = 'Click on most popular categories items';
-                    } else {
-                        actionDataLayer = 'Click on other categories items';
-                    }
-                    labelDataLayer = e.target.innerText;
-                    pushDataLayer(actionDataLayer,labelDataLayer)
-                })
             }
         }
+    
+        document.querySelectorAll('.category_popular .altnav a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (data.categories[key] < 6) {
+                    actionDataLayer = 'Click on most popular categories items';
+                } else {
+                    actionDataLayer = 'Click on other categories items';
+                }
+                labelDataLayer = e.target.innerText;
+                pushDataLayer(actionDataLayer,labelDataLayer)
+            })
+        })
 
         document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
             if (i > 4) el.hidden = true;
             el.querySelector('a').addEventListener('click', (e) => {
-                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id)) 
+                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
             })
         })
 
         if (window.location.pathname.includes('/category')) {
-          
+
             idCategory = JSON.parse(localStorage.getItem('idCategory'));
-                
+
             document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
 
             document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
@@ -720,7 +722,7 @@ window.onload = function() {
     })
 
     //card product
-    class ProductCard { 
+    class ProductCard {
         constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants) {
             this.src = src;
             this.url = url;
@@ -751,11 +753,11 @@ window.onload = function() {
             for (let i = 0; i < this.variants.length; i++) {
                 let variantsArr = this.variants[i];
                 console.log(variantsArr)
-                option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>`          
+                option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>`
             }
             return option
         }
-    
+
         render() {
             const element = document.createElement('fieldset');
             element.classList.add('list_box2');
@@ -803,10 +805,10 @@ window.onload = function() {
                     srcImg = e.target.options[e.target.selectedIndex].dataset.src,
                     id = e.target.options[e.target.selectedIndex].dataset.id,
                     title = e.target.options[e.target.selectedIndex].innerText;
-                    
+
                 element.querySelector(`.variant_tag span i`).innerHTML = price;
                 element.querySelector(`[name="product_id"]`).value = id;
-                element.querySelector(`.product_img`).src = srcImg;   
+                element.querySelector(`.product_img`).src = srcImg;
                 element.querySelector(`[name="product_variant_id"]`).value = variantId;
                 element.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${title.replace('(Out of stock)','')}`;
 
@@ -848,7 +850,7 @@ window.onload = function() {
                     for (let key in products) {
                         variantsProduct = products[key].variants;
                         console.log(variantsProduct[0])
-                
+
                         new ProductCard(
                             variantsProduct[0].image_url,
                             products[key].url,
@@ -873,7 +875,7 @@ window.onload = function() {
                 })
         })
     }
-    
+
     //listing
     if (window.location.pathname.includes('/category')) {
         document.querySelectorAll('.listing p').forEach((el,i) => {
@@ -913,7 +915,7 @@ window.onload = function() {
 
         getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
     }
-    //events 
+    //events
     document.querySelector('.signup a').addEventListener('click', () => {
         actionDataLayer = 'Click on Sign in button in menu';
         pushDataLayer(actionDataLayer)
