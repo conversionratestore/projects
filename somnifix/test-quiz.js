@@ -89,7 +89,7 @@ function blogPage() {
 function mainPage() {
     const style = `
     <style>
-       .to_quiz {
+       .to_quiz1 {
         display: inline-flex;
         justify-content:center;
         align-items: center;
@@ -103,7 +103,7 @@ function mainPage() {
         margin: 40px 0;
        }
        
-       .to_quiz:hover {
+       .to_quiz1:hover {
         color: #68A1C0;
         font-size: 14px;
        }
