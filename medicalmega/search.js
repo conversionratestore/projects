@@ -608,10 +608,10 @@ window.onload = function() {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
             }
         }
-    
-        document.querySelectorAll('.category_popular .altnav a').forEach(el => {
+
+        document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
             el.addEventListener('click', (e) => {
-                if (data.categories[key] < 6) {
+                if (index < 5) {
                     actionDataLayer = 'Click on most popular categories items';
                 } else {
                     actionDataLayer = 'Click on other categories items';
