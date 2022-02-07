@@ -73,7 +73,7 @@ function blogPage() {
     document.body.insertAdjacentHTML('afterbegin', style)
     document.querySelectorAll(`h2`)[1].insertAdjacentHTML('beforebegin', banner)
 
-    document.querySelector('.to_quiz1').addEventListener('click', function () {
+    document.querySelector('.to_quiz2').addEventListener('click', function () {
         let page = window.location.pathname.split('snews/')[1]
 
         window.dataLayer = window.dataLayer || [];
