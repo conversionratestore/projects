@@ -848,7 +848,7 @@ window.onload = function() {
                     statusMessage.remove()
 
                     for (let key in products) {
-                        variantsProduct = products[key].variants;
+                        let variantsProduct = products[key].variants;
 
                         new ProductCard(
                             variantsProduct[0].image_url,
