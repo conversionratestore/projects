@@ -1,22 +1,37 @@
 let styles = `
     <style>
-     .products_list .list_box2 {
-        display: none;}
-        .paginator span {
-            margin: 0 4px;
-            font-size: 11px;
-            color: #000;
+       .paginator {
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         }
-     .paginator span.active {
-        margin: 0 4px;
-        font-weight: 700;
+        .btn_paginator {
+            background: #fff;
+            color: #000;
+            font-size: 11px;
+            border: none;
+            margin: 0 4px;
+        }
+     .paginator li {
+        cursor: pointer;
+        font-size: 11px;
+        color: #000;
+        margin: 0!important;
+        border: none!important;
+        }
+     .paginator li span{
+        padding: 0 4px;
+        }
+     .paginator li span.active {
+        font-weight: 700; 
         }
     .hide, .altPayment {
         display: none!important;
-    }
+        }
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
-    }
+        }
     .listing span.categoryTop {
         font-weight: bold;
         font-size: 24px;
@@ -25,7 +40,7 @@ let styles = `
         text-transform: capitalize;
         color: #171717;
         padding-left: 0;
-    }
+        }
     #wrap {
         padding-top: 50px;
     }
@@ -552,7 +567,7 @@ function checkedFilter(item, arrFilter) {
     })
 }
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -728,7 +743,7 @@ function checkedFilter(item, arrFilter) {
 
     //card product
     class ProductCard {
-        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants, index) {
+        constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants) {
             this.src = src;
             this.url = url;
             this.title = title;
@@ -743,7 +758,6 @@ function checkedFilter(item, arrFilter) {
             this.variants = variants;
             this.qty();
             this.optionBox();
-            this.count = index;
         }
 
         qty() {
@@ -766,7 +780,6 @@ function checkedFilter(item, arrFilter) {
         render() {
             const element = document.createElement('fieldset');
             element.classList.add('list_box2');
-            element.setAttribute('data-num',  this.count)
 
             element.innerHTML = `
                 <div class="list_type3">
@@ -857,109 +870,102 @@ function checkedFilter(item, arrFilter) {
             console.log(priceRange.toString() + '(price range)')
             console.log(document.querySelector('.btn_sort select').value)
 
-            const productsRequest = fetch(`/api/products&offset=0&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    let products = data.products;
-                    statusMessage.remove()
+            function fetchProduct(offset=0) {
+                document.querySelector('.products_list').innerHTML = '';
+                document.querySelector('.listing').append(statusMessage)
+                let productsRequest = new Promise((resolve, reject) => {
+                    fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            statusMessage.remove()
+                            let products = data.products;
 
-                    for (let i = 0; i < products.length; i++) {
-                        console.log(products[i].variants[0])
-                        new ProductCard(
-                            products[i].variants[0].image_url,
-                            products[i].url,
-                            products[i].title,
-                            products[i].brand,
-                            products[i].variants[0].title,
-                            products[i].item_number,
-                            products[i].variants[0].price,
-                            products[i].stock_status,
-                            products[i].variants[0].product_id,
-                            products[i].variants[0].variant_id,
-                            '.products_list',
-                            products[i].variants,
-                            i
-                        ).render()
-                    }
-
-                    let count = data.total_count; //всего записей
-                    let cnt = 5; //+document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
-                    let cnt_page = Math.ceil(count / cnt); //кол-во страниц
-
-                    console.log(cnt_page)
-                    if (cnt_page > 1) {
-                        document.querySelector('.list_type2 i').remove();
-                        document.querySelector('.list_type2').insertAdjacentHTML('beforeend','<nav class="paginator" style="float:right; clear:both;"></nav>')
-                        let paginator = document.querySelector(".paginator");
-                        let page = "";
-                        for (let i = 0; i < cnt_page; i++) {
-                            page += "<span data-page=" + i * cnt + "  id=\"page" + (i + 1) + "\">" + (i + 1) + "</span>";
-                        }
-                        paginator.innerHTML = page;
-
-                        //выводим первые записи {cnt}
-                        let div_num = document.querySelectorAll(".products_list .list_box2");
-                        for (let i = 0; i < div_num.length; i++) {
-                            if (i < cnt) {
-                                div_num[i].style.display = "block";
+                            for (let i = 0; i < products.length; i++) {
+                                new ProductCard(
+                                    products[i].variants[0].image_url,
+                                    products[i].url,
+                                    products[i].title,
+                                    products[i].brand,
+                                    products[i].variants[0].title,
+                                    products[i].item_number,
+                                    products[i].variants[0].price,
+                                    products[i].stock_status,
+                                    products[i].variants[0].product_id,
+                                    products[i].variants[0].variant_id,
+                                    '.products_list',
+                                    products[i].variants
+                                ).render()
                             }
+                            resolve(data)
+                        })
+                })
+                return productsRequest
+            }
+
+            fetchProduct().then(data => {
+
+                let count = data.total_count; //всего записей
+                let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
+                let cnt_page = Math.ceil(count / cnt); //кол-во страниц
+
+                console.log(cnt_page)
+
+                if (cnt_page > 1) {
+                    document.querySelector('.list_type2 i').remove();
+                    document.querySelector('.list_type2').insertAdjacentHTML('beforeend', '<nav class="paginator" style="float:right; clear:both;"><button class="btn_paginator btn_paginator_prev" type="button">Prev</button><ul class="align-items-center"></ul><button class="btn_paginator btn_paginator_next" type="button">Next</button></nav>')
+                    let paginator = document.querySelector(".paginator");
+                    let page = "";
+                    let count = 0;
+                    for (let i = 0; i < cnt_page; i++) {
+                        let a = i > 2 && i < cnt_page - 3 && cnt_page > 6 ? 'none' : 'block';
+                        if (a == 'none' && count == 0) {
+                            page += "<li><span>...</span>|</li>";
+                            count = 1;
+                        } else {
+                            page += `<li style='display:${a}' data-page='${i * cnt}' id='page${i + 1}' ><span>${i + 1}</span>${i == (cnt_page - 1) ? '' : '|'}</li>`;
                         }
+                    }
+                    paginator.querySelector('ul').innerHTML = page;
 
-                        let main_page = document.getElementById("page1");
-                        main_page.classList.add("active");
+                    let main_page = document.getElementById("page1");
+                    main_page.classList.add("active");
 
-                        //листаем
-                        function pagination(event) {
-                            let e = event || window.event;
-                            let target = e.target;
-                            let id = target.id;
+                    document.querySelectorAll(".paginator li").forEach(page => {
+                        page.addEventListener('click', (e) => {
+                            let data_page = +page.dataset.page;
 
-                            console.log(e,target,id)
-                            if (target.tagName.toLowerCase() != "span") return;
+                            let id = page.id;
 
-                            let num_ = id.substr(4);
-                            let data_page = +target.dataset.page;
-
-                            console.log(num_,data_page)
+                            console.log(id, data_page)
                             main_page.classList.remove("active");
                             main_page = document.getElementById(id);
                             main_page.classList.add("active");
 
-                            let j = 0;
-                            for (let i = 0; i < div_num.length; i++) {
-                                let data_num = div_num[i].dataset.num;
-                                console.log(data_num)
-                                if (data_num <= data_page || data_num >= data_page) {
-                                    div_num[i].style.display = "none";
+                            fetchProduct(data_page)
+                        })
+                    })
+                    document.querySelectorAll(".btn_paginator").forEach(btn => {
+                        btn.addEventListener('click', (event) => {
+                            if (btn.classList.contains("btn_paginator_next")) {
+                                if (main_page.nextElementSibling != null) {
+                                    main_page.classList.remove('active')
+                                    main_page.nextElementSibling.classList.add('active')
                                 }
                             }
-
-                            for (let i = data_page; i < div_num.length; i++) {
-                                if (j >= cnt) break;
-                                div_num[i].style.display = "block";
-                                j++;
+                            if (btn.classList.contains("btn_paginator_prev")) {
+                                if (main_page.previousElementSibling != null) {
+                                    main_page.classList.remove('active')
+                                    main_page.previousElementSibling.classList.add('active')
+                                }
                             }
-                        }
-                        paginator.addEventListener('click', (e) => pagination(e))
-                       // let pagination = `
-                       // <i style="float:right; clear:both;">
-                       //     <b>1</b>
-                       //     |
-                       //     <a href="https://medicalmega.com/category/enteral/item50">2</a>
-                       //     |
-                       //     <a href="https://medicalmega.com/category/enteral/item100">3</a>
-                       //     ...
-                       //     <a href="https://medicalmega.com/category/enteral/item1750">36</a>
-                       //     |
-                       //     <a href="https://medicalmega.com/category/enteral/item1800">37</a>
-                       //     |
-                       //     <a href="https://medicalmega.com/category/enteral/item1850">38</a>
-                       //     <a class="next" href="https://medicalmega.com/category/enteral/item50">Next</a>
-                       // </i>`
-                    }
+                            let data_page = +main_page.dataset.page;
+                            fetchProduct(data_page)
+                        })
+                    })
+                }
+            })
 
-                })
         })
     }
 
@@ -1020,7 +1026,7 @@ function checkedFilter(item, arrFilter) {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-// };
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
