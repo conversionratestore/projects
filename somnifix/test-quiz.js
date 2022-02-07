@@ -72,6 +72,18 @@ function blogPage() {
     `
     document.body.insertAdjacentHTML('afterbegin', style)
     document.querySelectorAll(`h2`)[1].insertAdjacentHTML('beforebegin', banner)
+
+    document.querySelector('.to_quiz1').addEventListener('click', function () {
+        let page = window.location.pathname.split('snews/')[1]
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz hp and blog pages',
+            'eventAction': 'Click on the Lets find out button',
+            'eventLabel': `On blog page: ${page}`
+        });
+    })
 }
 
 function mainPage() {
@@ -103,36 +115,17 @@ function mainPage() {
 `
     document.body.insertAdjacentHTML('afterbegin', style)
     document.querySelectorAll('.shg-btn-wrapper')[0].insertAdjacentHTML('beforeend', mainLink)
+
+    document.querySelector('.to_quiz1').addEventListener('click', function () {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp — Quiz hp and blog pages',
+            'eventAction': 'Click on the Define Your Sleep Quality button',
+            'eventLabel': 'On first screen homepage'
+        });
+    })
 }
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp — Quiz hp and blog pages',
-    'eventAction': 'loaded'
-});
-
-document.querySelector('.to_quiz1').addEventListener('click', function () {
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Quiz hp and blog pages',
-        'eventAction': 'Click on the Define Your Sleep Quality button',
-        'eventLabel': 'On first screen homepage'
-    });
-})
-
-document.querySelector('.to_quiz1').addEventListener('click', function () {
-    let page = window.location.pathname.split('snews/')[1]
-
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        'event': 'event-to-ga',
-        'eventCategory': 'Exp — Quiz hp and blog pages',
-        'eventAction': 'Click on the Lets find out button',
-        'eventLabel': `On blog page: ${page}`
-    });
-})
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
