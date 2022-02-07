@@ -866,7 +866,7 @@ window.onload = function() {
                         ).render()
                     }
 
-                    let count = products[key].total_count; //всего записей
+                    let count = data.total_count; //всего записей
                     let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
                     let cnt_page = Math.ceil(count / cnt); //кол-во страниц
                     console.log(cnt_page)
