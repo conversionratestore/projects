@@ -842,19 +842,18 @@ window.onload = function() {
                     statusMessage.remove()
 
                     for (let key in products) {
-                        let variantsProduct = products[key].variants[0];
 
                         new ProductCard(
-                            variantsProduct.image_url,
+                            products[key].variants[0].image_url,
                             products[key].url,
                             products[key].title,
                             products[key].brand,
-                            variantsProduct.title,
+                            products[key].variants[0].title,
                             products[key].item_number,
-                            variantsProduct.price,
+                            products[key].variants[0].price,
                             products[key].stock_status,
-                            variantsProduct.product_id,
-                            variantsProduct.variant_id,
+                            products[key].variants[0].product_id,
+                            products[key].variants[0].variant_id,
                             '.products_list',
                             products[key].variants
                         ).render()
