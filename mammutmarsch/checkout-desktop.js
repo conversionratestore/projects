@@ -1144,9 +1144,9 @@ let intr = setInterval(() => {
 $('select[name="billing_country"] option').innerText = 'Bitte auswählen'
 $('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 
-let isBr = setInterval(() => {
-  if($('#wc-stripe-cc-form br')) {
-    clearInterval(isBr)
+let isBr = () => {
+  if ($('#wc-stripe-cc-form br')) {
+
 
     setTimeout(() => {
       $('#wc-stripe-cc-form br').remove()
@@ -1154,12 +1154,14 @@ let isBr = setInterval(() => {
 
 
   }
-}, 200)
+}
+
+isBr()
 
 function reorder() {
   setTimeout(() => {
     $('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-  }, 1500)
+  }, 1000)
 
 }
 
@@ -1174,6 +1176,7 @@ const config = {
 const callback = function(mutationsList, observer) {
   observer.disconnect();
   reorder()
+  isBr()
   addDark()
   observerTimeout()
 };
