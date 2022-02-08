@@ -1146,13 +1146,7 @@ $('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 
 let isBr = () => {
   if ($('#wc-stripe-cc-form br')) {
-
-
-    setTimeout(() => {
       $('#wc-stripe-cc-form br').remove()
-    }, 1000)
-
-
   }
 }
 
