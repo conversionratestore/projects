@@ -1156,6 +1156,13 @@ let isBr = setInterval(() => {
   }
 }, 200)
 
+function reorder() {
+  setTimeout(() => {
+    $('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
+  }, 1500)
+
+}
+
 const target = $('#order_review')
 
 const config = {
@@ -1166,11 +1173,14 @@ const config = {
 
 const callback = function(mutationsList, observer) {
   observer.disconnect();
+  reorder()
   addDark()
   observerTimeout()
 };
 
-const observer = new MutationObserver(callback);
+const observer = new MutationObserver(callback)
+
+reorder()
 
 function observerTimeout() {
   setTimeout(() => {
