@@ -13,17 +13,32 @@ let styles = `
             border: none;
             margin: 0 4px;
         }
+        .list_type2 {
+            width: 100%;
+        }
      .paginator li {
         cursor: pointer;
         font-size: 11px;
         color: #000;
         margin: 0!important;
-        border: none!important;
-        }
-     .paginator li span{
         padding: 0 4px;
+        border: none!important;
+        position: relative;
+        font-weight: 400;
         }
-     .paginator li span.active {
+        .paginator li:after {
+            content: '|';
+            font-size: 11px;
+            color: #000;
+        }
+        .paginator li.ellipsis:after {
+            content: '...';
+            margin: 0 4px;
+        }
+        .paginator li:last-child:after {
+            content: none;
+        }
+     .paginator li.active {
         font-weight: 700; 
         }
     .hide, .altPayment {
@@ -327,7 +342,7 @@ let styles = `
         width: 100%;
     }
     .list_type1 span {
-        // opacity: 0;
+        opacity: 0;
         text-align: right;
         width: 100%;
     }
@@ -674,7 +689,7 @@ function checkedFilter(item, arrFilter) {
                 </div>`)
 
             let requestFilters = new Promise((resolve, reject) => {
-                fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                     .then(res => res.json())
                     .then(dataFilters => resolve(dataFilters))
             })
@@ -854,7 +869,6 @@ function checkedFilter(item, arrFilter) {
                 checkedFilter('.filter_price .checkbox', priceRange)
             }
 
-
             let perPage = document.querySelector('[name="mm_per_page"]').value;
 
             document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
@@ -872,16 +886,13 @@ function checkedFilter(item, arrFilter) {
 
             function fetchProduct(offset=0) {
                 document.querySelector('.products_list').innerHTML = '';
-                document.querySelector('.listing').append(statusMessage)
                 let productsRequest = new Promise((resolve, reject) => {
-                    fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                    fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                         .then(res => res.json())
                         .then(data => {
-                            document.querySelector('.products_list').innerHTML = '';
                             console.log(data)
-                            if (statusMessage) {
-                                statusMessage.remove()
-                            }
+                            statusMessage.innerHTML = ''
+
                             let products = data.products;
 
                             for (let i = 0; i < products.length; i++) {
@@ -914,57 +925,77 @@ function checkedFilter(item, arrFilter) {
 
                 console.log(cnt_page)
 
+
                 if (cnt_page > 1) {
-                    document.querySelector('.list_type2 i').remove();
+                    // document.querySelector('.list_type2 i').remove();
                     document.querySelector('.list_type2').insertAdjacentHTML('beforeend', '<nav class="paginator" style="float:right; clear:both;"><button class="btn_paginator btn_paginator_prev" type="button">Prev</button><ul class="align-items-center"></ul><button class="btn_paginator btn_paginator_next" type="button">Next</button></nav>')
                     let paginator = document.querySelector(".paginator");
                     let page = "";
                     let count = 0;
                     for (let i = 0; i < cnt_page; i++) {
-                        let a = i > 2 && i < cnt_page - 3 && cnt_page > 6 ? 'none' : 'block';
-                        if (a == 'none' && count == 0) {
-                            page += "<li class='ellipsis'><span>...</span>|</li>";
-                            count = 1;
+                        if (i < 3 || i > (cnt_page - 4)) {
+                            page += `<li data-page='${i * cnt}' id='page${i + 1}' class="">${i + 1}</li>`;
                         }
-                        page += `<li style='display:${a}' data-page='${i * cnt}' id='page${i + 1}' ><span>${i + 1}</span>${i == (cnt_page - 1) ? '' : '|'}</li>`;
-
                     }
+
                     paginator.querySelector('ul').innerHTML = page;
+
+                    if (cnt_page > 6) {
+                        paginator.querySelectorAll('li')[2].classList.add('ellipsis')
+                    }
 
                     let main_page = document.getElementById("page1");
                     main_page.classList.add("active");
 
-                    document.querySelectorAll(".paginator li").forEach(page => {
-                        page.addEventListener('click', (e) => {
-                            let data_page = +page.dataset.page;
 
-                            let id = page.id;
+                    function pagination(event) {
+                        let e = event || window.event;
+                        let target = e.target;
+                        let id = target.id;
 
-                            console.log(id, data_page)
-                            main_page.classList.remove("active");
-                            main_page = document.getElementById(id);
-                            main_page.classList.add("active");
-                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',page.nextElementSibling.id);
-                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',page.previousElementSibling.id);
-                            if (page.nextElementSibling.classList.contains('ellipsis')) {
-                                let ellipsis = page.nextElementSibling;
-                                page.nextElementSibling.nextElementSibling.style.display = 'block';
-                                page.nextElementSibling.nextElementSibling.after(ellipsis)
-                                if (document.querySelector(".ellipsis").nextElementSibling.style.display == 'block') {
-                                    document.querySelector(".ellipsis").remove()
-                                }
-                            }
-                            if (page.previousElementSibling.classList.contains('ellipsis')) {
-                                let ellipsis = page.previousElementSibling;
-                                page.previousElementSibling.previousElementSibling.style.display = 'block';
-                                page.previousElementSibling.previousElementSibling.before(ellipsis)
-                                if (document.querySelector(".ellipsis").previousElementSibling.style.display == 'block') {
-                                    document.querySelector(".ellipsis").remove()
-                                }
-                            }
-                            fetchProduct(data_page)
-                        })
+                        if (target.tagName.toLowerCase() != 'li') return
+
+                        console.log(target.tagName)
+                        let data_page = +target.dataset.page;
+
+                        console.log(id, data_page)
+
+                        main_page.classList.remove("active");
+                        main_page = document.getElementById(id);
+                        main_page.classList.add("active");
+                        // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',page.nextElementSibling.id);
+                        // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',page.previousElementSibling.id);
+
+                        if (target.classList.contains('ellipsis')) {
+                            let str = +id.substring(4);
+                            target.classList.remove('ellipsis');
+                            target.insertAdjacentHTML('afterend',`<li data-page='${str * cnt}' id='page${str + 1}' class="ellipsis">${str + 1}</li>`);
+                        }
+                        fetchProduct(data_page)
+
+
+                        // var j = 0;
+                        // for (var i = 0; i < div_num.length; i++) {
+                        //     var data_num = div_num[i].dataset.num;
+                        //     if (data_num <= data_page || data_num >= data_page)
+                        //         div_num[i].style.display = "none";
+                        //
+                        // }
+                        // for (var i = data_page; i < div_num.length; i++) {
+                        //     if (j >= cnt) break;
+                        //     div_num[i].style.display = "block";
+                        //     j++;
+                        // }
+                    }
+                    // paginator.querySelectorAll('.paginator').forEach((page,index) => {
+                    paginator.addEventListener('click',(event) => {
+                        console.log(event.target)
+                        pagination(event)
                     })
+                    // })
+
+
+
                     document.querySelectorAll(".btn_paginator").forEach(btn => {
                         btn.addEventListener('click', (event) => {
                             if (btn.classList.contains("btn_paginator_next")) {
