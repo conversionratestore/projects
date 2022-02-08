@@ -835,6 +835,17 @@ color: #333333
 	.place-order [type="checkbox"]:checked + .custom-check{
 		background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/check_box.svg") no-repeat;
 	}
+	
+	.tooltip-wrap {
+	    display: flex;
+        justify-content: flex-end;
+        align-items: center;
+	}
+	
+	.tooltip-wrap .remove-text {
+	    left:-150%;
+	    width: 300px;
+	}
 
 		</style>
 		
@@ -1086,7 +1097,13 @@ let isBtnForward = setInterval(function() {
 $('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
 	<div class="under-block">
 		<button>Bestellung abschliessen</button>
-		<p><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="money	back">Geld-zurück-Garantie </p>
+		<div class="tooltip-wrap">
+		    <div class="remove">
+		        <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="moneyback">
+		        <span class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</span>
+            </div>
+            <p>Geld-zurück-Garantie </p>
+        </div>
 	</div>
 `)
 
@@ -1109,6 +1126,8 @@ let isGreenBtn = setInterval(() => {
 
   }
 }, 200)
+
+document.querySelector('.col-1 .woocommerce-info').innerHTML = '\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t'
 
 $('select[name="title"] option').innerText = 'Bitte auswählen'
 $('select[name="birthday_day"] option').innerText = 'DD'
@@ -1145,27 +1164,13 @@ const config = {
   subtree: true
 };
 
-function reorder() {
-  // setTimeout(() => {
-  $('.wc_payment_method.payment_method_paypal').before($('.wc_payment_method.payment_method_stripe'))
-  $('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-
-  // }, 500)
-
-}
-
 const callback = function(mutationsList, observer) {
   observer.disconnect();
-
   addDark()
-  reorder()
-
   observerTimeout()
 };
 
 const observer = new MutationObserver(callback);
-
-reorder()
 
 function observerTimeout() {
   setTimeout(() => {
@@ -1175,9 +1180,9 @@ function observerTimeout() {
 
 observerTimeout()
 
-isexist = setInterval(() => {
+isExist = setInterval(() => {
   if($('#payment')) {
-    clearInterval(isexist)
+    clearInterval(isExist)
     $('#payment').insertAdjacentHTML('beforebegin', `
 	<div class="custom-payment">
 	<p class="title">Bezahlung</p>
@@ -1216,7 +1221,6 @@ dataLayer.push({
   'eventCategory': 'Exp: Checkout improvements',
   'eventAction': 'loaded'
 });
-
 
 (function(h,o,t,j,a,r){
   h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
