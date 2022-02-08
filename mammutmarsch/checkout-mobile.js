@@ -1296,7 +1296,7 @@ let isBtnForward = setInterval(function() {
 
 		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
 
-		$('.subblock .product-name').insertAdjacentHTML('beforeend', remove)
+		$('.subblock').insertAdjacentHTML('beforeend', remove)
 
 		setTimeout(() => {
 			$('.remove').addEventListener('click',() => {
