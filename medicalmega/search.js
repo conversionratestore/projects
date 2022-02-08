@@ -567,7 +567,7 @@ function checkedFilter(item, arrFilter) {
     })
 }
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -877,8 +877,11 @@ window.onload = function() {
                     fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                         .then(res => res.json())
                         .then(data => {
+                            document.querySelector('.products_list').innerHTML = '';
                             console.log(data)
-                            statusMessage.remove()
+                            if (statusMessage) {
+                                statusMessage.remove()
+                            }
                             let products = data.products;
 
                             for (let i = 0; i < products.length; i++) {
@@ -920,11 +923,11 @@ window.onload = function() {
                     for (let i = 0; i < cnt_page; i++) {
                         let a = i > 2 && i < cnt_page - 3 && cnt_page > 6 ? 'none' : 'block';
                         if (a == 'none' && count == 0) {
-                            page += "<li><span>...</span>|</li>";
+                            page += "<li class='ellipsis'><span>...</span>|</li>";
                             count = 1;
-                        } else {
-                            page += `<li style='display:${a}' data-page='${i * cnt}' id='page${i + 1}' ><span>${i + 1}</span>${i == (cnt_page - 1) ? '' : '|'}</li>`;
                         }
+                        page += `<li style='display:${a}' data-page='${i * cnt}' id='page${i + 1}' ><span>${i + 1}</span>${i == (cnt_page - 1) ? '' : '|'}</li>`;
+
                     }
                     paginator.querySelector('ul').innerHTML = page;
 
@@ -941,8 +944,24 @@ window.onload = function() {
                             main_page.classList.remove("active");
                             main_page = document.getElementById(id);
                             main_page.classList.add("active");
-                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',main_page.nextElementSibling.id);
-                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',main_page.previousElementSibling.id);
+                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',page.nextElementSibling.id);
+                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',page.previousElementSibling.id);
+                            if (page.nextElementSibling.classList.contains('ellipsis')) {
+                                let ellipsis = page.nextElementSibling;
+                                page.nextElementSibling.nextElementSibling.style.display = 'block';
+                                page.nextElementSibling.nextElementSibling.after(ellipsis)
+                                if (document.querySelector(".ellipsis").nextElementSibling.style.display == 'block') {
+                                    document.querySelector(".ellipsis").remove()
+                                }
+                            }
+                            if (page.previousElementSibling.classList.contains('ellipsis')) {
+                                let ellipsis = page.previousElementSibling;
+                                page.previousElementSibling.previousElementSibling.style.display = 'block';
+                                page.previousElementSibling.previousElementSibling.before(ellipsis)
+                                if (document.querySelector(".ellipsis").previousElementSibling.style.display == 'block') {
+                                    document.querySelector(".ellipsis").remove()
+                                }
+                            }
                             fetchProduct(data_page)
                         })
                     })
@@ -1030,7 +1049,7 @@ window.onload = function() {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-};
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
