@@ -21,7 +21,7 @@ let styles = `
         font-size: 11px;
         color: #000;
         margin: 0!important;
-        padding: 0 4px;
+        padding: 0 4px!important;
         border: none!important;
         position: relative;
         font-weight: 400;
@@ -30,6 +30,7 @@ let styles = `
             content: '|';
             font-size: 11px;
             color: #000;
+            margin: 0 -4px 0 4px;
         }
         .paginator li.ellipsis:after {
             content: '...';
@@ -44,7 +45,7 @@ let styles = `
     .hide, .altPayment {
         display: none!important;
         }
-    #hdr, #banner, .listing .category, .listing .subhead {
+    #hdr, #banner, .listing .category, .listing .subhead, .list_type2 i {
         display: none;
         }
     .listing span.categoryTop {
@@ -582,7 +583,7 @@ function checkedFilter(item, arrFilter) {
     })
 }
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -887,6 +888,7 @@ function checkedFilter(item, arrFilter) {
             function fetchProduct(offset=0) {
                 document.querySelector('.products_list').innerHTML = '';
                 let productsRequest = new Promise((resolve, reject) => {
+                    statusMessage.innerHTML = message.loading;
                     fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                         .then(res => res.json())
                         .then(data => {
@@ -928,7 +930,7 @@ function checkedFilter(item, arrFilter) {
 
                 if (cnt_page > 1) {
                     // document.querySelector('.list_type2 i').remove();
-                    document.querySelector('.list_type2').insertAdjacentHTML('beforeend', '<nav class="paginator" style="float:right; clear:both;"><button class="btn_paginator btn_paginator_prev" type="button">Prev</button><ul class="align-items-center"></ul><button class="btn_paginator btn_paginator_next" type="button">Next</button></nav>')
+                    document.querySelector('.list_type2').insertAdjacentHTML('beforeend', '<nav class="paginator" style="float:right; clear:both;"><button class="btn_paginator btn_paginator_prev" type="button" hidden>Prev</button><ul class="align-items-center"></ul><button class="btn_paginator btn_paginator_next" type="button">Next</button></nav>')
                     let paginator = document.querySelector(".paginator");
                     let page = "";
                     let count = 0;
@@ -966,11 +968,25 @@ function checkedFilter(item, arrFilter) {
                         // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',page.nextElementSibling.id);
                         // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',page.previousElementSibling.id);
 
+
                         if (target.classList.contains('ellipsis')) {
                             let str = +id.substring(4);
                             target.classList.remove('ellipsis');
                             target.insertAdjacentHTML('afterend',`<li data-page='${str * cnt}' id='page${str + 1}' class="ellipsis">${str + 1}</li>`);
                         }
+                        
+                        if (target.nextElementSibling == null) {
+                            document.querySelector('.btn_paginator_next').hidden = true
+                        } else {
+                            document.querySelector('.btn_paginator_next').hidden = false
+                        }
+
+                        if (target.previousElementSibling == null) {
+                            document.querySelector('.btn_paginator_prev').hidden = true
+                        } else {
+                            document.querySelector('.btn_paginator_prev').hidden = false
+                        }
+                        
                         fetchProduct(data_page)
 
 
@@ -1080,7 +1096,7 @@ function checkedFilter(item, arrFilter) {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-// };
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
