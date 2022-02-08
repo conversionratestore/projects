@@ -102,7 +102,7 @@ const style = `
 			#cms-theme.woocommerce-page select {
 				border-color: #E5E5E5 !important;
 				border-radius: 2px !important;
-				color: #C4C4C4 !important;
+				/*color: #C4C4C4 !important;*/
 			}	
 			
 			/*#cms-theme.woocommerce-page input::placeholder,*/
@@ -846,6 +846,10 @@ color: #333333
 	    left:-150%;
 	    width: 300px;
 	}
+	
+	.tooltip-wrap img {
+	    cursor: pointer;
+	}
 
 		</style>
 		
@@ -1089,8 +1093,6 @@ let isBtnForward = setInterval(function() {
 
       })
     }, 1500)
-
-
   }
 }, 200)
 
@@ -1123,7 +1125,6 @@ let isGreenBtn = setInterval(() => {
 
       console.log('eventAction Click on Place Order')
     })
-
   }
 }, 200)
 
@@ -1170,8 +1171,8 @@ const config = {
 const callback = function(mutationsList, observer) {
   observer.disconnect();
   reorder()
-  isBr()
   addDark()
+  isBr()
   observerTimeout()
 };
 
