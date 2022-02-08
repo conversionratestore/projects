@@ -106,7 +106,7 @@ const style = `
 			#cms-theme.woocommerce-page select {
 				border-color: #E5E5E5 !important;
 				border-radius: 2px !important;
-				color: #C4C4C4 !important;
+				/*color: #C4C4C4 !important;*/
 			}	
 			
 			/*#cms-theme.woocommerce-page input::placeholder,*/
@@ -1095,6 +1095,29 @@ flex-basis: 100%;
 margin-bottom: 10px !important;
 color: #333333
 	}
+	
+	.under-block .remove {
+		overflow: hidden;
+	}
+	
+.under-block .remove-text {
+visibility: visible;
+max-height: 0;
+position: relative;
+margin: 0;
+transition: all 1s ease-in-out;
+margin: 15px !important;
+}
+
+.remove:hover .remove-text {
+	  visibility: visible;
+	  opacity: 1;
+	  max-height: 500px;
+	}
+	
+	.remove-text::after {
+		display: none;
+	}
 
 		</style>
 		
@@ -1319,7 +1342,15 @@ let isBtnForward = setInterval(function() {
 $('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
 	<div class="under-block">
 		<button>Bestellung abschliessen</button>
+		<div class="remove">
 		<p><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="money	back">Geld-zurück-Garantie </p>
+		
+			<p class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</p>
+
+		
+</div>
+		
+		
 	</div>
 `)
 
@@ -1343,6 +1374,8 @@ let isGreenBtn = setInterval(() => {
 	}
 }, 200)
 
+document.querySelector('.col-1 .woocommerce-info').innerHTML = '\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t'
+
 $('select[name="title"] option').innerText = 'Bitte auswählen'
 $('select[name="birthday_day"] option').innerText = 'DD'
 $('select[name="birthday_month"] option').innerText = 'MM'
@@ -1358,17 +1391,13 @@ let intr = setInterval(() => {
 $('select[name="billing_country"] option').innerText = 'Bitte auswählen'
 $('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 
-let isBr = setInterval(() => {
-	if($('#wc-stripe-cc-form br')) {
-		clearInterval(isBr)
-
-		setTimeout(() => {
-			$('#wc-stripe-cc-form br').remove()
-		}, 1000)
-
-
+let isBr = () => {
+	if ($('#wc-stripe-cc-form br')) {
+		$('#wc-stripe-cc-form br').remove()
 	}
-}, 200)
+}
+
+isBr()
 
 const target = $('#order_review')
 
@@ -1379,26 +1408,20 @@ const config = {
 };
 
 function reorder() {
-	// setTimeout(() => {
-	$('.wc_payment_method.payment_method_paypal').before($('.wc_payment_method.payment_method_stripe'))
-	$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-
-	// }, 500)
-
+	setTimeout(() => {
+		$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
+	}, 1500)
 }
 
 const callback = function(mutationsList, observer) {
 	observer.disconnect();
-
-	addDark()
 	reorder()
-
+	addDark()
+	isBr()
 	observerTimeout()
 };
 
 const observer = new MutationObserver(callback);
-
-reorder()
 
 function observerTimeout() {
 	setTimeout(() => {
@@ -1407,6 +1430,8 @@ function observerTimeout() {
 }
 
 observerTimeout()
+
+reorder()
 
 
 	let interval = setInterval(() => {
@@ -1435,9 +1460,9 @@ Vielen Dank</p>
 
 
 
-isexist = setInterval(() => {
+isExist = setInterval(() => {
 	if($('#payment')) {
-		clearInterval(isexist)
+		clearInterval(isExist)
 		$('#payment').insertAdjacentHTML('beforebegin', `
 	<div class="custom-payment">
 	<p class="title">Bezahlung</p>
