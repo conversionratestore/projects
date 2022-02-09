@@ -151,3 +151,5 @@ dataLayer.push({
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
 hj('event', 'quiz_hp_blog');
+
+clarity("set", "quiz_hp_blog", "variant_1");
