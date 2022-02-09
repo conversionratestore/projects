@@ -101,6 +101,7 @@ function mainPage() {
         padding: 12px 30px;
         line-height: 1;
         margin: 40px 0;
+        background-color: #fff;
        }
        
        .to_quiz1:hover {
