@@ -673,10 +673,6 @@ const style = `
 		display: none;
 	}
 	
-    .place-order .required {
-		color: #323232 !important;
-	}
-	
 	.big-text  {
 	margin-top: 100px;
 	}
