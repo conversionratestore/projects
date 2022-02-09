@@ -255,7 +255,7 @@ function start() {
         })
     })
 
-    document.querySelector('.new_homepage button').addEventListener('click', function () {
+    document.querySelector('.new_homepage>button').addEventListener('click', function () {
         window.location.pathname = '/zamowienie'
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
