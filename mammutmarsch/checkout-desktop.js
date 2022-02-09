@@ -673,8 +673,7 @@ const style = `
 		display: none;
 	}
 	
-	.place-order .red-text,
-	.place-order .required {
+    .place-order .required {
 		color: #323232 !important;
 	}
 	
@@ -1147,7 +1146,7 @@ $('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 
 let isBr = () => {
   if ($('#wc-stripe-cc-form br')) {
-      $('#wc-stripe-cc-form br').remove()
+    $('#wc-stripe-cc-form br').remove()
   }
 }
 
