@@ -71,7 +71,13 @@ function blogPage() {
         </div>
     `
     document.body.insertAdjacentHTML('afterbegin', style)
-    document.querySelectorAll(`h2`)[1].insertAdjacentHTML('beforebegin', banner)
+    
+
+    if(window.location.pathname.includes('cpap-machine-hack-overcoming-mouth-breathing')) {
+        document.querySelectorAll(`.article-content img`)[1].insertAdjacentHTML('afterend', banner)
+    } else {
+        document.querySelectorAll(`h2`)[1]?.insertAdjacentHTML('beforebegin', banner)
+    }
 
     document.querySelector('.to_quiz2').addEventListener('click', function () {
         let page = window.location.pathname.split('snews/')[1]
@@ -101,7 +107,7 @@ function mainPage() {
         padding: 12px 30px;
         line-height: 1;
         margin: 40px 0;
-        background-color: #fff;
+        background-color: white;
        }
        
        .to_quiz1:hover {
