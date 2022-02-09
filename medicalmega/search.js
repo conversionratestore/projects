@@ -1,14 +1,11 @@
 let styles = `
     <style>
-       .paginator {
+   #pagination {
         padding-top: 15px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        }
-        .paginator[disabled] {
-            display: none!important;
         }
         .btn_paginator {
             background: #fff;
@@ -20,7 +17,7 @@ let styles = `
         .list_type2 {
             width: 100%;
         }
-     .paginator li {
+     #pagination li,  #pagination i {
         cursor: pointer;
         font-size: 11px;
         color: #000;
@@ -29,20 +26,35 @@ let styles = `
         border: none!important;
         position: relative;
         font-weight: 400;
+        width: fit-content;
+        line-height: 1;
         }
-        .paginator li:after {
+        #pagination li:last-child:after {
+            content: none;
+        }
+         #pagination li:after,  #pagination i:after {
             content: '|';
             font-size: 11px;
             color: #000;
-            margin: 0 -4px 0 4px;
-        }
-        .paginator li.ellipsis:after {
+            margin: 0 -4px 0 4px
+         }
+          #pagination li.ellipsis-after:after {
             content: '...';
+          }
+          #pagination li.after-not:after {
+          content: none;
+          }
+            #pagination li.ellipsis-before:before {
+            content: '...';
+            font-size: 11px;
+            color: #000;
+            margin: 0 4px 0 0
+          }
+        #pagination i {
+            paddin: 0;
         }
-        .paginator li:last-child:after {
-            content: none;
-        }
-     .paginator li.active {
+    
+     #pagination li.active {
         font-weight: 700; 
         }
     .hide, .altPayment {
@@ -863,6 +875,200 @@ window.onload = function() {
         }
     }
 
+    const createPagination = document.createElement('div');
+    createPagination.id = 'pagination';
+    createPagination.style.display = 'none';
+    document.querySelector('.list_type2').append(createPagination)
+
+    const statusMessage = document.createElement('div');
+    statusMessage.classList.add('status');
+    statusMessage.innerHTML = message.loading;
+
+    function fetchProduct(offset=0) {
+        let perPage = document.querySelector('[name="mm_per_page"]').value;
+        document.querySelector('.products_list').innerHTML = '';
+        document.querySelectorAll('.list_type2 i').forEach(el => el.remove())
+        if (document.querySelector('[name="category_form"]') != null) {
+            document.querySelector('[name="category_form"]').remove()
+        }
+
+        document.querySelector('.listing').append(statusMessage)
+        let productsRequest = new Promise((resolve, reject) => {
+            statusMessage.innerHTML = message.loading;
+            fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    statusMessage.remove()
+
+
+                    let products = data.products;
+
+                    for (let i = 0; i < products.length; i++) {
+                        new ProductCard(
+                            products[i].variants[0].image_url,
+                            products[i].url,
+                            products[i].title,
+                            products[i].brand,
+                            products[i].variants[0].title,
+                            products[i].item_number,
+                            products[i].variants[0].price,
+                            products[i].stock_status,
+                            products[i].variants[0].product_id,
+                            products[i].variants[0].variant_id,
+                            '.products_list',
+                            products[i].variants
+                        ).render()
+                    }
+                    resolve(data)
+                })
+        })
+        return productsRequest
+    }
+
+    //Pagination
+    let Pagination = {
+
+        code: '',
+
+        // Utility
+        // converting initialize data
+        Extend: function(data) {
+            data = data || {};
+            Pagination.size = data.size || 300;
+            Pagination.page = data.page || 1;
+            Pagination.step = data.step || 3;
+        },
+
+        // add pages by number (from [s] to [f])
+        Add: function(s, f) {
+            for (let i = s; i < f; i++) {
+               Pagination.code += '<li>' + i + '</li>';
+            }
+        },
+
+        // add last page with separator
+        Last: function() {
+            Pagination.code += '<li class="ellipsis-before">' + (Pagination.size - 1) + '</li><li>' + Pagination.size + '</li>';
+        },
+
+        // add first page with separator
+        First: function() {
+            Pagination.code += '<li>1</li><li class="ellipsis-after">2</li>';
+        },
+
+        // Handlers
+        // change page
+        Click: function() {
+            Pagination.page = +this.innerHTML;
+            console.log(+this.innerHTML)
+            let prev = document.getElementsByClassName('btn_paginator_prev');
+            let next = document.getElementsByClassName('btn_paginator_next');
+            if (Pagination.page == 1) {
+                prev.hidden = true
+            } else if (Pagination.page == Pagination.size) {
+                next.hidden = true
+            } else {
+                prev.hidden = false;
+                next.hidden = false;
+            }
+            fetchProduct((+this.innerHTML - 1) * +document.querySelector('[name="mm_per_page"]').value)
+
+            Pagination.Start();
+
+        },
+
+        // previous page
+        Prev: function() {
+            Pagination.page--;
+            if (Pagination.page < 1) {
+                Pagination.page = 1;
+            }
+            Pagination.Start();
+        },
+
+        // next page
+        Next: function() {
+            Pagination.page++;
+            if (Pagination.page > Pagination.size) {
+                Pagination.page = Pagination.size;
+            }
+            Pagination.Start();
+        },
+
+        // Script
+        // binding pages
+        Bind: function() {
+            let a = Pagination.e.getElementsByTagName('li');
+            for (let i = 0; i < a.length; i++) {
+                if (+a[i].innerHTML === Pagination.page) a[i].className = 'active';
+                a[i].addEventListener('click', Pagination.Click, false);
+            }
+        },
+
+        // write pagination
+        Finish: function() {
+            Pagination.e.innerHTML = Pagination.code;
+            Pagination.code = '';
+            Pagination.Bind();
+        },
+
+        // find pagination type
+        Start: function() {
+            if (Pagination.size < Pagination.step * 2 + 6) {
+                Pagination.Add(1, Pagination.size + 1);
+            }
+            else if (Pagination.page < Pagination.step * 2 + 1) {
+                Pagination.Add(1, Pagination.step * 2 + 4);
+                Pagination.Last();
+            }
+            else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+                Pagination.First();
+                Pagination.Add(Pagination.size - Pagination.step * 2 - 2, Pagination.size + 1);
+            }
+            else {
+                Pagination.First();
+                Pagination.Add(Pagination.page - Pagination.step + 1, Pagination.page + Pagination.step + 4);
+                Pagination.Last();
+            }
+
+            // let ellipsisBefore = document.getElementsByClassName('ellipsis-before');
+            // console.log(ellipsisBefore)
+            // if (ellipsisBefore != null) ellipsisBefore.previousElementSibling.setAttribute('class','after-not')
+
+            Pagination.Finish();
+        },
+
+        // Initialization
+        // binding buttons
+        Buttons: function(e) {
+            let nav = e.getElementsByTagName('button');
+            nav[0].addEventListener('click', Pagination.Prev, false);
+            nav[1].addEventListener('click', Pagination.Next, false);
+        },
+
+        // create skeleton
+        Create: function(e) {
+            let html = [
+                '<button class="btn_paginator btn_paginator_prev" type="button">Prev</button>', // previous button
+                '<ul class="align-items-center"></ul>',  // pagination container
+                '<button class="btn_paginator btn_paginator_next" type="button">Next</button>'  // next button
+            ];
+
+            e.innerHTML = html.join('');
+            Pagination.e = e.getElementsByTagName('ul')[0];
+            Pagination.Buttons(e);
+        },
+
+        // init
+        Init: function(e, data) {
+            Pagination.Extend(data);
+            Pagination.Create(e);
+            Pagination.Start();
+        }
+    };
+
+
     function getProductsFilters(element,event,brandsFilter, priceRange) {
         document.querySelector(element).addEventListener(event, (e) => {
             if (element == '.popup_filter .btn_close') {
@@ -877,9 +1083,6 @@ window.onload = function() {
 
             document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
 
-            const statusMessage = document.createElement('div');
-            statusMessage.classList.add('status');
-            statusMessage.innerHTML = message.loading;
             document.querySelector('.listing').append(statusMessage)
 
             console.log(idCategory + " (id category)")
@@ -887,56 +1090,6 @@ window.onload = function() {
             console.log(brandsFilter.toString() + '(id brands)')
             console.log(priceRange.toString() + '(price range)')
             console.log(document.querySelector('.btn_sort select').value)
-
-            const createPagination = document.createElement('nav');
-            createPagination.classList.add('paginator');
-            createPagination.innerHTML = '<button class="btn_paginator btn_paginator_prev" type="button" hidden>Prev</button><ul class="align-items-center"></ul><button class="btn_paginator btn_paginator_next" type="button">Next</button>'
-            createPagination.style.display = 'none';
-
-            document.querySelector('.list_type2').append(createPagination)
-
-            function fetchProduct(offset=0) {
-                document.querySelector('.products_list').innerHTML = '';
-                document.querySelectorAll('.list_type2 i').forEach(el => el.remove())
-                if (document.querySelector('[name="category_form"]') != null) {
-                    document.querySelector('[name="category_form"]').remove()
-                }
-
-                createPagination.style.display = 'none';
-
-                document.querySelector('.listing').append(statusMessage)
-                let productsRequest = new Promise((resolve, reject) => {
-                    statusMessage.innerHTML = message.loading;
-                    fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            statusMessage.remove()
-                            createPagination.style.display = 'flex';
-
-                            let products = data.products;
-
-                            for (let i = 0; i < products.length; i++) {
-                                new ProductCard(
-                                    products[i].variants[0].image_url,
-                                    products[i].url,
-                                    products[i].title,
-                                    products[i].brand,
-                                    products[i].variants[0].title,
-                                    products[i].item_number,
-                                    products[i].variants[0].price,
-                                    products[i].stock_status,
-                                    products[i].variants[0].product_id,
-                                    products[i].variants[0].variant_id,
-                                    '.products_list',
-                                    products[i].variants
-                                ).render()
-                            }
-                            resolve(data)
-                        })
-                })
-                return productsRequest
-            }
 
             fetchProduct().then(data => {
 
@@ -947,133 +1100,19 @@ window.onload = function() {
                 console.log(cnt_page)
 
                 if (cnt_page > 1) {
-                    let paginator = document.querySelector(".paginator");
-                  
-                    let page = '';
 
-                    for (let i = 0; i < cnt_page; i++) {
-                        if (i < 3 || i > (cnt_page - 4)) {
-                            page += `<li data-page='${i * cnt}' id='page${i + 1}' class="">${i + 1}</li>`;
-                        }
-                    }
-
-                    paginator.querySelector('ul').innerHTML = page;
-
-                    if (cnt_page > 6) {
-                        paginator.querySelectorAll('li')[2].classList.add('ellipsis')
-                    }
-
-                    let main_page = document.getElementById("page1");
-                    main_page.classList.add("active");
+                    //Initialization pagination
+                    let init = function() {
+                        Pagination.Init(document.getElementById('pagination'), {
+                            size: cnt_page, // pages size
+                            page: 1,  // selected page
+                            step: 1  // pages before and after current
+                        });
+                    };
+                    init()
 
 
-                    function pagination(event) {
-                        let e = event || window.event;
-                        let target = e.target;
-                        let id = target.id;
-
-                        if (target.tagName.toLowerCase() != 'li') return
-
-                        console.log(target.tagName)
-                        let data_page = +target.dataset.page;
-
-                        console.log(id, data_page)
-
-                        main_page.classList.remove("active");
-                        main_page = document.getElementById(id);
-                        main_page.classList.add("active");
-                        // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',page.nextElementSibling.id);
-                        // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',page.previousElementSibling.id);
-
-                        let num = +id.substring(4);
-                        if (target.classList.contains('ellipsis')) {
-                            target.classList.remove('ellipsis');
-                            cnt = +document.querySelector('[name="mm_per_page"]').value;
-                            console.log(num, cnt, num * cnt);
-                            if (document.querySelector(`#page${num + 1}`) == null) {
-                                target.insertAdjacentHTML('afterend',`<li data-page='${num * cnt}' id='page${num + 1}' class="ellipsis">${num + 1}</li>`);
-                              
-                                if (document.querySelector(`#page${num + 1}`).nextElementSibling.id == `page${num + 2}`) {
-                                    document.querySelector(`#page${num + 1}`).classList.remove('ellipsis');
-                                }
-                                
-                            }
-                        }
-                        let numActive = +main_page.id.substring(4);
-                        if (main_page.classList.contains('active') && numActive > 4) {
-                            document.querySelector('#page2').classList.add('ellipsis');
-                            for (let i = 3; i < (numActive - 1); i++) {
-                                document.querySelector(`#page${i}`).remove();
-                            }
-                        }
-
-                        // if (main_page.classList.contains('active') && numActive < 5 && cnt_page > cnt_page - 4) {
-                        //     // if (document.querySelector(`#page4`).nextElementSibling.id != 'page5') {
-                        //         document.querySelector(`#page3`).classList.add('ellipsis');
-                        //     // }
-                        //     for (let i = 4; i < (cnt_page - 4); i++) {
-                        //         document.querySelector(`#page${i}`).remove();
-                        //     }
-                        // }
-                        
-                        if (target.nextElementSibling == null) {
-                            document.querySelector('.btn_paginator_next').hidden = true
-                        } else {
-                            document.querySelector('.btn_paginator_next').hidden = false
-                        }
-
-                        if (target.previousElementSibling == null) {
-                            document.querySelector('.btn_paginator_prev').hidden = true
-                        } else {
-                            document.querySelector('.btn_paginator_prev').hidden = false
-                        }
-                        
-                        fetchProduct(data_page)
-
-
-                        // var j = 0;
-                        // for (var i = 0; i < div_num.length; i++) {
-                        //     var data_num = div_num[i].dataset.num;
-                        //     if (data_num <= data_page || data_num >= data_page)
-                        //         div_num[i].style.display = "none";
-                        //
-                        // }
-                        // for (var i = data_page; i < div_num.length; i++) {
-                        //     if (j >= cnt) break;
-                        //     div_num[i].style.display = "block";
-                        //     j++;
-                        // }
-                    }
-                    // paginator.querySelectorAll('.paginator').forEach((page,index) => {
-                    paginator.addEventListener('click',(event) => {
-                        console.log(event.target)
-                        pagination(event)
-                    })
-                    // })
-
-
-
-                    document.querySelectorAll(".btn_paginator").forEach(btn => {
-                        btn.addEventListener('click', (event) => {
-                            if (btn.classList.contains("btn_paginator_next")) {
-                                if (main_page.nextElementSibling != null) {
-                                    main_page.classList.remove('active')
-                                    main_page.nextElementSibling.classList.add('active')
-                                }
-                            }
-                            if (btn.classList.contains("btn_paginator_prev")) {
-                                if (main_page.previousElementSibling != null) {
-                                    main_page.classList.remove('active')
-                                    main_page.previousElementSibling.classList.add('active')
-                                }
-                            }
-                            let data_page = +main_page.dataset.page;
-                            // paginator.querySelector('.btn_paginator_next').setAttribute('data-next',main_page.nextElementSibling.id);
-                            // paginator.querySelector('.btn_paginator_prev').setAttribute('data-next',main_page.previousElementSibling.id);
-
-                            fetchProduct(data_page)
-                        })
-                    })
+                    createPagination.style.display = 'flex';
                 }
             })
 
