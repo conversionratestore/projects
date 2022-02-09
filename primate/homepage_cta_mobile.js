@@ -224,7 +224,8 @@ function start() {
         center: true,
         items: 2,
         gutter: 20,
-        fixedWidth: 210
+        fixedWidth: 210,
+        preventScrollOnTouch: "auto"
     })
 
     document.querySelectorAll('.tns-slide-active').forEach((item, i) => {
