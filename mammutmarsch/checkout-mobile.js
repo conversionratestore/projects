@@ -677,7 +677,7 @@ const style = `
 		display: none;
 	}
 	
-	.place-order .red-text,
+	
 	.place-order .required {
 		color: #323232 !important;
 	}
@@ -1434,11 +1434,11 @@ observerTimeout()
 reorder()
 
 
-	let interval = setInterval(() => {
-		if($('.checkout_coupon') && $('#payment')) {
-			clearInterval(interval)
-			$('.checkout_coupon').after($('#payment'))
-			$('.checkout_coupon').insertAdjacentHTML('afterend', `
+let interval = setInterval(() => {
+	if($('.checkout_coupon') && $('#payment')) {
+		clearInterval(interval)
+		$('.checkout_coupon').after($('#payment'))
+		$('.checkout_coupon').insertAdjacentHTML('afterend', `
 		<div class="review">
   <div class="header">
       <img class="two-mens" src="https://conversionratestore.github.io/projects/mammutmarsch/img/two_mens.svg" alt="two mens">
@@ -1455,8 +1455,8 @@ Vielen Dank</p>
   </div>
 </div>
 	`)
-		}
-	}, 200)
+	}
+}, 200)
 
 
 
