@@ -353,7 +353,7 @@ let startFunk2 = setInterval(() => {
     z-index: 10;
   }
   .card_box .back {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
   }
 
   .card_box .front button,
@@ -662,8 +662,8 @@ let startFunk2 = setInterval(() => {
       document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
       document.querySelector(".card_box .front button").addEventListener("click", () => {
-        document.querySelector(".front").style.transform = "rotateY(180deg)"
-        document.querySelector(".back").style.transform = "rotateY(360deg)"
+        document.querySelector(".front").style.transform = "rotateY(-180deg)"
+        document.querySelector(".back").style.transform = "rotateY(-360deg)"
         document.querySelector(".front").style.zIndex = "0"
       })
 
