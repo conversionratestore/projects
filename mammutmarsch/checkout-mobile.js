@@ -552,21 +552,21 @@ const style = `
 	filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.1));
 	  }
 	  
-	  .remove-text::after {
-	  content: "";
-	  position: absolute;
-	  top: 100%;
-	  left: 50%;
-	  margin-left: -5px;
-	  border-width: 5px;
-	  border-style: solid;
-	  border-color: #fff transparent transparent transparent;
-	}
+	/*  .remove-text::after {*/
+	/*  content: "";*/
+	/*  position: absolute;*/
+	/*  top: 100%;*/
+	/*  left: 50%;*/
+	/*  margin-left: -5px;*/
+	/*  border-width: 5px;*/
+	/*  border-style: solid;*/
+	/*  border-color: #fff transparent transparent transparent;*/
+	/*}*/
 	
-	.remove:hover .remove-text {
-	  visibility: visible;
-	  opacity: 1;
-	}
+	/*.remove:hover .remove-text {*/
+	/*  visibility: visible;*/
+	/*  opacity: 1;*/
+	/*}*/
 	
 	#cms-theme table.shop_table {
 		display: none;
@@ -986,9 +986,9 @@ font-size: 28px;
 	 	font-size: 16px;
 	 }
 	 
-	 .product-mobile .remove-text {
-	 	bottom: 110%;
-	 }
+	 /*.product-mobile .remove-text {*/
+	 /*	bottom: 110%;*/
+	 /*}*/
 	 
 	 .side-block, .side-block, .under-block {
 	 	padding: 0;
@@ -1095,24 +1095,24 @@ color: #333333
 		overflow: hidden;
 	}
 	
-.under-block .remove-text {
-visibility: visible;
-max-height: 0;
-position: relative;
-margin: 0;
-transition: all 1s ease-in-out;
-margin: 15px !important;
-}
+/*.under-block .remove-text {*/
+/*visibility: visible;*/
+/*max-height: 0;*/
+/*position: relative;*/
+/*margin: 0;*/
+/*transition: all 1s ease-in-out;*/
+/*margin: 15px !important;*/
+/*}*/
 
-.remove:hover .remove-text {
-	  visibility: visible;
-	  opacity: 1;
-	  max-height: 500px;
-	}
-	
-	.remove-text::after {
-		display: none;
-	}
+/*.remove:hover .remove-text {*/
+/*	  visibility: visible;*/
+/*	  opacity: 1;*/
+/*	  max-height: 500px;*/
+/*	}*/
+/*	*/
+/*	.remove-text::after {*/
+/*		display: none;*/
+/*	}*/
 
 		</style>
 		
@@ -1277,7 +1277,7 @@ let isBtnForward = setInterval(function () {
 	if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
 		clearInterval(isBtnForward)
 
-		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
+		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
 
 		$('.subblock').insertAdjacentHTML('beforeend', remove)
 
@@ -1408,7 +1408,6 @@ function isFee() {
 		}
 	}, 200)
 }
-
 function isAppliedCoupon() {
 	let is = setInterval(() => {
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
@@ -1429,7 +1428,6 @@ function isAppliedCoupon() {
 		}
 	}, 200)
 }
-
 function isBr() {
 	let is = setInterval(() => {
 		if ($('#wc-stripe-cc-form br')) {
@@ -1439,7 +1437,6 @@ function isBr() {
 		}
 	}, 200)
 }
-
 function isCheckbox() {
 	let is = setInterval(() => {
 		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
@@ -1450,7 +1447,6 @@ function isCheckbox() {
 		}
 	}, 200)
 }
-
 function addDark() {
 	let is = setInterval(() => {
 		if ($('.wc_payment_method [checked]')) {
@@ -1463,7 +1459,6 @@ function addDark() {
 		}
 	}, 100)
 }
-
 function reorder() {
 	let is = setInterval(() => {
 		if ($('.payment_method_stripe img')?.src) {
@@ -1475,34 +1470,38 @@ function reorder() {
 }
 
 /* mut observer */
+let isOrder = setInterval(() => {
+	if($('#order_review')) {
+		clearInterval(isOrder)
+		let target = $('#order_review')
+		let config = {
+			attributes: true,
+			childList: true,
+			subtree: true,
+		}
 
-const target = $('#order_review')
-const config = {
-	attributes: true,
-	childList: true,
-	subtree: true,
-}
+		let callback = function (mutationsList, observer) {
+			observer.disconnect()
+			observerTimeout()
+		}
+		let observer = new MutationObserver(callback)
 
-const callback = function (mutationsList, observer) {
-	observer.disconnect()
-	observerTimeout()
-}
-const observer = new MutationObserver(callback)
+		function observerTimeout() {
+			reorder()
+			addDark()
+			isBr()
+			isCheckbox()
+			isFee()
+			isAppliedCoupon()
 
-function observerTimeout() {
-	reorder()
-	addDark()
-	isBr()
-	isCheckbox()
-	isFee()
-	isAppliedCoupon()
+			setTimeout(() => {
+				observer.observe(target, config)
+			}, 1000)
+		}
 
-	setTimeout(() => {
-		observer.observe(target, config)
-	}, 1000)
-}
-
-observerTimeout()
+		observerTimeout()
+	}
+}, 100)
 
 console.log('eventAction loaded')
 
