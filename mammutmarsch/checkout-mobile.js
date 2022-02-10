@@ -1494,8 +1494,7 @@ let isOrder = setInterval(() => {
 		}
 		let observer = new MutationObserver(callback)
 
-		function observerTimeout() {
-			setTimeout(() => {
+		function observerTimeout() {			
                 reorder()
                 addDark()
                 isBr()
@@ -1507,10 +1506,12 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            }, 3000)		
+            
 		}
 
-		observerTimeout()
+        setTimeout(() => {
+		    observerTimeout()
+        }, 1000)		
 	}
 }, 100)
 
