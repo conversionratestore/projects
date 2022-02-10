@@ -1108,12 +1108,11 @@ window.onload = function() {
                     li.setAttribute('data-id', option.value)
                 }
                 li.addEventListener('click', () => {
-                    idCategory = li.dataset,id;
+                    idCategory = li.dataset.id;
                     console.log(idCategory)
                     localStorage.setItem('idCategory', JSON.stringify(idCategory))
                 })
             })
-          
         })
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
