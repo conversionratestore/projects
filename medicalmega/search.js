@@ -629,7 +629,21 @@ let mut = new MutationObserver(function (muts) {
         </style>`)
     }
     mut.observe(document, optionMut);
+    
+    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null) {
+        mut.disconnect();
+        document.querySelectorAll('#search_c_id option').forEach(option => {
+            let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
+            if (document.querySelector('.categoryTop').innerText == title) {
+                console.log(option.value)
+                localStorage.setItem('idCategory', JSON.stringify(option.value))
+                idCategory = option.value;
+            }
+        })
+    }
+    mut.observe(document, optionMut);
 })
+
 mut.observe(document, optionMut);
 
 window.onload = function() {
@@ -993,13 +1007,6 @@ window.onload = function() {
         for (let key in data.categories) {
             if (data.categories[key].url) {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
-            }
-            if (window.location.pathname.includes('/category')) {
-                if (document.querySelector('.categoryTop').innerText == data.categories[key].title) {
-                    console.log(data.categories[key].category_id)
-                    localStorage.setItem('idCategory', JSON.stringify(data.categories[key].category_id))
-                    idCategory = data.categories[key].category_id;
-                }
             }
         }
 
