@@ -719,7 +719,7 @@ window.onload = function() {
             let option = ``;
             for (let i = 0; i < this.variants.length; i++) {
                 let variantsArr = this.variants[i];
-                option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>`
+                option = option + `<option value="${variantsArr.variant_id}" data-price="${variantsArr.price}" data-id="${variantsArr.product_id}" data-src="${variantsArr.image_url}"> ${variantsArr.title} ${variantsArr.stock_status=='Out of stock'? ' (Out of stock)':''} </option>` 
             }
             return option
         }
@@ -738,7 +738,7 @@ window.onload = function() {
                         <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
                             <span style="display:block; font-size:12px;">Manufacturer: ${this.manufacturer}</span>
                             <span class="variant_tag">
-                                <span style="display:block; font-size:12px;">Sold By: ${this.soldBy}</span>
+                                <span style="display:block"; font-size:12px;">Sold By: ${this.soldBy}</span>
                                 <span style="display:block; font-size:12px;">Item Number: ${this.number}</span>
                                 <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${this.price}</i></span>
                             </span>
@@ -1081,10 +1081,12 @@ window.onload = function() {
         
         document.querySelectorAll('.listing li').forEach(li => {
             li.addEventListener('click', () => {
-                idCategory = li.dataset.id;
+                if (li.dataset.id != null) {
+                    idCategory = li.dataset.id;
                 
-                console.log(idCategory)
-                localStorage.setItem('idCategory', JSON.stringify(idCategory))
+                    console.log(idCategory)
+                    localStorage.setItem('idCategory', JSON.stringify(idCategory))
+                }
                 actionDataLayer = 'Click on subcategory icon';
                 pushDataLayer(actionDataLayer)
             })
@@ -1218,7 +1220,6 @@ window.onload = function() {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-
 
     //events
     document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
