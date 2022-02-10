@@ -622,7 +622,6 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`)
     }
-    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
