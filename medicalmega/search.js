@@ -604,6 +604,12 @@ let mut = new MutationObserver(function (muts) {
         countMut == 1;
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .list_box2 {
+                display: none;
+            }
+            .products_list .list_box2 {
+                display: block!important;
+            }
             .list_type1 p {
                 float: right;
                 position: relative;
