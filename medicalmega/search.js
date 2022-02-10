@@ -542,6 +542,11 @@ let headerFetch = {
     method: "GET",
 }
 
+let optionMut = {
+    childList: true,
+    subtree: true
+}
+
 const message = {
     loading: 'loading',
     success: 'Check!',
@@ -591,6 +596,15 @@ function checkedFilter(item, arrFilter) {
         }
     })
 }
+
+let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('.listing .list_box2') != null && document.querySelector('.listing .list_box2').parentElement.className != 'products_list') {
+        document.querySelectorAll('.listing .list_box2').forEach(el => {
+            if (el.parentElement.className != 'products_list') el.remove()
+        })
+    } 
+})
+mut.observe(document, optionMut);
 
 window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
@@ -1127,10 +1141,6 @@ window.onload = function() {
             getProductsFilters('.popup_filter .btn_close','click')
             getProductsFilters('.btn_sort select','change')
 
-        })
-                
-        document.querySelectorAll('.listing .list_box2').forEach(el => {
-            if (el.parentElement != 'products_list') el.remove()
         })
 
         requestProducts.then(dataP => {
