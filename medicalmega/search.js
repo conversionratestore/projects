@@ -781,60 +781,52 @@ window.onload = function() {
 
     function listing(data) {
         statusMessage.remove()
+        if (data.length > 0) {
+            let products = data.products;
 
-        let products = data.products;
-
-        for (let i = 0; i < products.length; i++) {
-            new ProductCard(
-                products[i].variants[0].image_url,
-                products[i].url,
-                products[i].title,
-                products[i].brand,
-                products[i].variants[0].title,
-                products[i].item_number,
-                products[i].variants[0].price,
-                products[i].stock_status,
-                products[i].variants[0].product_id,
-                products[i].variants[0].variant_id,
-                '.products_list',
-                products[i].variants
-            ).render()
+            for (let i = 0; i < products.length; i++) {
+                new ProductCard(
+                    products[i].variants[0].image_url,
+                    products[i].url,
+                    products[i].title,
+                    products[i].brand,
+                    products[i].variants[0].title,
+                    products[i].item_number,
+                    products[i].variants[0].price,
+                    products[i].stock_status,
+                    products[i].variants[0].product_id,
+                    products[i].variants[0].variant_id,
+                    '.products_list',
+                    products[i].variants
+                ).render()
+            }
+            
+            let count = data.total_count; //всего записей
+            let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
+            let cnt_page = Math.ceil(count / cnt); //кол-во страниц
+    
+            console.log(cnt_page)
+    
+            if (cnt_page > 1) {
+    
+                //Initialization pagination
+                let init = function() {
+                    Pagination.Init(document.getElementById('pagination'), {
+                        size: cnt_page, // pages size
+                        page: selectedPage,  // selected page
+                        step: 1  // pages before and after current
+                    });
+                };
+                init()
+    
+                createPagination.style = 'display: flex; opacity: 1; pointer-events: auto;';
+            } else {
+                createPagination.style = 'display: none; ';
+            }
         }
-        
-        let count = data.total_count; //всего записей
-        let cnt = +document.querySelector('[name="mm_per_page"]').value; //сколько отображаем сначала
-        let cnt_page = Math.ceil(count / cnt); //кол-во страниц
-
-        console.log(cnt_page)
-
-        if (cnt_page > 1) {
-
-            //Initialization pagination
-            let init = function() {
-                Pagination.Init(document.getElementById('pagination'), {
-                    size: cnt_page, // pages size
-                    page: selectedPage,  // selected page
-                    step: 1  // pages before and after current
-                });
-            };
-            init()
-
-            createPagination.style = 'display: flex; opacity: 1; pointer-events: auto;';
-        }
+      
     }
 
-    function fetchProduct(offset=0) {
-        let perPage = document.querySelector('[name="mm_per_page"]').value;
-        document.querySelector('.products_list').innerHTML = '';
-        document.querySelector('.listing').append(statusMessage)
-        createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
-        fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                listing(data)
-            })
-    }
 
     //Pagination
     let Pagination = {
@@ -871,10 +863,11 @@ window.onload = function() {
         // change page
         Click: function() {
             Pagination.page = +this.innerHTML;
-            Pagination.Start();
-            fetchProduct((Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value)
+            let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            fetchProduct(offset,brandsFilter,priceRange)
             selectedPage = Pagination.page;
-            console.log(Pagination.page)
+            console.log(offset,brandsFilter,priceRange)
+            Pagination.Start();
         },
 
         // previous page
@@ -883,9 +876,9 @@ window.onload = function() {
             if (Pagination.page < 1) {
                 Pagination.page = 1;
             }
-            fetchProduct((Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value)
-            selectedPage = Pagination.page;
-            console.log(Pagination.page)
+            let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            fetchProduct(offset,brandsFilter,priceRange)
+            console.log(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
 
@@ -895,9 +888,9 @@ window.onload = function() {
             if (Pagination.page > Pagination.size) {
                 Pagination.page = Pagination.size;
             }
-            fetchProduct((Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value)
-            selectedPage = Pagination.page;
-            console.log(Pagination.page)
+            let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            fetchProduct(offset,brandsFilter,priceRange)
+            console.log(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
 
@@ -976,10 +969,18 @@ window.onload = function() {
             if (data.categories[key].url) {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
             }
+            if (document.querySelector('.categoryTop').innerText == data.categories[key].title) {
+                console.log(data.categories[key].category_id)
+                localStorage.setItem('idCategory', JSON.stringify(data.categories[key].category_id))
+                idCategory = data.categories[key].category_id;
+            }
         }
 
         document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
+            if (index > 4) el.parentElement.hidden = true;
             el.addEventListener('click', (e) => {
+
+                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
                 if (index < 5) {
                     actionDataLayer = 'Click on most popular categories items';
                 } else {
@@ -989,130 +990,143 @@ window.onload = function() {
                 pushDataLayer(actionDataLayer,labelDataLayer)
             })
         })
-
-        document.querySelectorAll('.category_popular .altnav li').forEach((el,i) => {
-            if (i > 4) el.hidden = true;
-            el.querySelector('a').addEventListener('click', (e) => {
-                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
-            })
-        })
-
-        if (window.location.pathname.includes('/category')) {
-
-            document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
-            document.querySelector('.list_type2').append(createPagination)
-
-            document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
-                <div class="justify-content-between hide">
-                    <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-                    <div class="btn_sort">
-                        <select>
-                            <option value="">Sort by</option>
-                            <option value="+name">Product Name ASC</option>
-                            <option value="-name">Product Name DESC</option>
-                        </select>
-                    </div>
-                </div>`)
-
-            let requestFilters = new Promise((resolve, reject) => {
-                fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
-                    .then(res => res.json())
-                    .then(dataFilters => resolve(dataFilters))
-            })
-
-            requestFilters.then(dataFilters => {
-                console.log(dataFilters)
-                totalCountProducts = dataFilters.total_count;
-
-                let dataBrand = dataFilters.filters.brands,
-                    dataPrices = dataFilters.filters.prices;
-
-                document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
-                    <div class="popup_container">
-                        <button type="button" class="btn_close" data-button="popup_filter"></button>
-                        <div class="filter_content">
-                            <h3 class="title">Filters</h3>
-                            <div class="select filter_brands active">
-                                <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                                <ul class="select_dropdown"></ul>
-                            </div>
-                            <div class="select filter_price">
-                                <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                                <ul class="select_dropdown"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>`)
-
-                for (let i = 0; i < dataBrand.length; i++) {
-                    if (dataBrand[i].products_count != 0) {
-                        document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
-                    }
-                }
-                for (let i = 0; i < dataPrices.length; i++) {
-                    if (dataPrices[i].products_count != 0) {
-                        document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
-                    }
-                }
-
-                document.querySelector('.list_type1 .hide').classList.remove('hide');
-                let selectCurrent = document.querySelectorAll('.select_current');
-
-                selectCurrent.forEach(el => {
-                    el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
-                })
-
-                document.querySelectorAll('[data-button]').forEach(button => {
-                    button.addEventListener('click', () => {
-                        let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
-                        popup.classList.toggle('active')
-
-                        if (popup.classList.contains('active')) {
-                            document.body.style.overflow = 'hidden';
-                        } else {
-                            document.body.style.overflow = 'inherit';
-                        }
-                    })
-                })
-
-                getProductsFilters('.popup_filter .btn_close','click',brandsFilter.toString(),priceRange.toString())
-                getProductsFilters('.btn_sort select','change',brandsFilter.toString(),priceRange.toString())
-
-            })
-                    
-            requestProducts.then(dataP => {
-                document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
-                console.log(dataP)
-                listing(dataP)
-            })
-            getProductsFilters('[name="mm_per_page"]','change', brandsFilter.toString(), priceRange.toString())
-        }
     })
 
-    function getProductsFilters(element,event,brandsFilter, priceRange) {
+    function getProductsFilters(element,event) {
         document.querySelector(element).addEventListener(event, (e) => {
-            if (element == '.popup_filter .btn_close') {
+            // if (element == '.popup_filter .btn_close') {
                 brandsFilter = [];
                 priceRange = [];
 
                 checkedFilter('.filter_brands .checkbox', brandsFilter)
                 checkedFilter('.filter_price .checkbox', priceRange)
-            }
+                
+            // }
 
             let perPage = document.querySelector('[name="mm_per_page"]').value;
 
-            
-
+         
             console.log(idCategory + " (id category)")
             console.log(perPage)
             console.log(brandsFilter.toString() + '(id brands)')
             console.log(priceRange.toString() + '(price range)')
             console.log(document.querySelector('.btn_sort select').value)
 
-            fetchProduct()
+            fetchProduct(0,brandsFilter,priceRange)
         })
     }
 
+    function fetchProduct(offset=0,brandsFilter,priceRange) {
+        let perPage = document.querySelector('[name="mm_per_page"]').value;
+        document.querySelector('.products_list').innerHTML = '';
+        document.querySelector('.listing').append(statusMessage)
+        createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
+        console.log(brandsFilter.toString())
+        let productsRequest = new Promise((resolve, reject) => {
+            fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    listing(data)
+                    resolve(data)
+                })
+        })
+        return productsRequest
+    }
+
+    if (window.location.pathname.includes('/category')) {
+        
+        document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
+        document.querySelector('.list_type2').append(createPagination)
+
+        document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
+            <div class="justify-content-between hide">
+                <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
+                <div class="btn_sort">
+                    <select>
+                        <option value="">Sort by</option>
+                        <option value="+name">Product Name ASC</option>
+                        <option value="-name">Product Name DESC</option>
+                    </select>
+                </div>
+            </div>`)
+
+        getProductsFilters('[name="mm_per_page"]','change')
+
+        let requestFilters = new Promise((resolve, reject) => {
+            idCategory = JSON.parse(localStorage.getItem('idCategory'));
+            fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+                .then(res => res.json())
+                .then(dataFilters => resolve(dataFilters))
+        })
+        
+        requestFilters.then(dataFilters => {
+            console.log(dataFilters)
+            totalCountProducts = dataFilters.total_count;
+
+            let dataBrand = dataFilters.filters.brands,
+                dataPrices = dataFilters.filters.prices;
+
+            document.body.insertAdjacentHTML('beforeend',`<div class="popup_filter" data-item="popup_filter">
+                <div class="popup_container">
+                    <button type="button" class="btn_close" data-button="popup_filter"></button>
+                    <div class="filter_content">
+                        <h3 class="title">Filters</h3>
+                        <div class="select filter_brands active">
+                            <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                            <ul class="select_dropdown"></ul>
+                        </div>
+                        <div class="select filter_price">
+                            <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
+                            <ul class="select_dropdown"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+
+            for (let i = 0; i < dataBrand.length; i++) {
+                if (dataBrand[i].products_count != 0) {
+                    document.querySelector('.filter_brands .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataBrand[i].brand_id}" class="checkbox"><span class="check"></span><span>${dataBrand[i].brand_name} <span class="count_brand">(${dataBrand[i].products_count})</span></span></label></li>`)
+                }
+            }
+            for (let i = 0; i < dataPrices.length; i++) {
+                if (dataPrices[i].products_count != 0) {
+                    document.querySelector('.filter_price .select_dropdown').insertAdjacentHTML('beforeend',`<li><label class="align-items-center"><input type="checkbox" data-option="${dataPrices[i].price_range}" class="checkbox"><span class="check"></span><span>${dataPrices[i].name} <span class="count_brand">(${dataPrices[i].products_count})</span></span></label></li>`)
+                }
+            }
+
+            document.querySelector('.list_type1 .hide').classList.remove('hide');
+            let selectCurrent = document.querySelectorAll('.select_current');
+
+            selectCurrent.forEach(el => {
+                el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
+            })
+
+            document.querySelectorAll('[data-button]').forEach(button => {
+                button.addEventListener('click', () => {
+                    let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
+                    popup.classList.toggle('active')
+
+                    if (popup.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'inherit';
+                    }
+                })
+            })
+
+            getProductsFilters('.popup_filter .btn_close','click')
+            getProductsFilters('.btn_sort select','change')
+
+        })
+                
+        requestProducts.then(dataP => {
+            document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
+            console.log(dataP)
+            listing(dataP)
+        })
+    }
+  
     //listing
     if (window.location.pathname.includes('/category')) {
 
@@ -1137,9 +1151,10 @@ window.onload = function() {
                         let randomArray = [];
                         let subcategory = el.innerText;
                         let firstLetterCategory = el.innerText.split(' ')[0];
-
-                        el.querySelector('a').setAttribute('title',subcategory)
-                        el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
+                        if (el.querySelector('a') != null) {
+                            el.querySelector('a').setAttribute('title', subcategory)
+                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
+                        }
 
                         for (let j = 0; j < products.length; j++) {
                             let title = products[j].title.toString();
@@ -1149,11 +1164,14 @@ window.onload = function() {
                         }
 
                         if (randomArray.length > 0) {
-                            el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                            if (el.querySelector('a') != null) {
+                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                            }
                             let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
-
-                            el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                            el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                            if (el.querySelector('img') != null) {
+                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                            }
                             console.log(randomNum)
                         }
                     })
