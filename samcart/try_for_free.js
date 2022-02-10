@@ -38,6 +38,10 @@ let startFunk2 = setInterval(() => {
   section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
     padding-top: 65px;
   }
+  
+  .recaptcha-error{
+  text-align: center !important;
+  }
 
   #sc51e54003-0fac-46db-80a2-881825e46c45 h1 {
     max-width: 445px;
