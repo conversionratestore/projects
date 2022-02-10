@@ -678,7 +678,11 @@ window.onload = function() {
     document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
 
     document.querySelector('.icon_burger').addEventListener('click', () => menu.classList.add('active'));
-    document.querySelector('.btn_close').addEventListener('click', () => menu.classList.remove('active'));
+    document.querySelector('.btn_close').addEventListener('click', () => {
+        menu.classList.remove('active')
+        actionDataLayer = 'Click on cross button';
+        pushDataLayer(actionDataLayer)
+    });
 
     menu.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-menu')) {
@@ -1106,6 +1110,8 @@ window.onload = function() {
                 idCategory = li.dataset.id;
                 console.log(idCategory)
                 localStorage.setItem('idCategory', JSON.stringify(idCategory))
+                actionDataLayer = 'Click on subcategory icon';
+                pushDataLayer(actionDataLayer)
             })
         })
 
@@ -1185,6 +1191,8 @@ window.onload = function() {
                     } else {
                         document.body.style.overflow = 'inherit';
                     }
+                    actionDataLayer = `Click on ${e.target.innerText} button`;
+                    pushDataLayer(actionDataLayer,labelDataLayer)
                 })
             })
 
@@ -1229,6 +1237,14 @@ window.onload = function() {
             labelDataLayer = e.target.innerText;
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
+    })
+    document.querySelector('#search_key').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on search field';
+        pushDataLayer(actionDataLayer)
+    })
+    document.querySelector('.btn_sort select').addEventListener('change', (e) => {
+        actionDataLayer = 'Click on sort by field';
+        pushDataLayer(actionDataLayer)
     })
 };
 
