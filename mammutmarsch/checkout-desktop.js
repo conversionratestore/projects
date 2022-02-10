@@ -248,7 +248,7 @@ const style = `
 			}
 					
 			.checkout.woocommerce-checkout {  display: grid;
-			  grid-template-columns: 1fr 1fr 1fr;
+			  grid-template-columns: 1fr 1.2fr 0.8fr;
 			  /*gap: 20px;*/
 			  grid-auto-flow: row;
 			  grid-template-areas:
