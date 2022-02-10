@@ -1156,34 +1156,7 @@ window.onload = function() {
                 el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
             })
 
-            document.querySelectorAll('[data-button]').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
-                    popup.classList.toggle('active')
-
-                    if (popup.classList.contains('active')) {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = 'inherit';
-                    }
-                    
-                    if (button.classList.contains('btn_close')) {
-                        actionDataLayer = 'Click on cross button';
-                        if (button.closest('.popup_filter')) {
-                            labelDataLayer = 'Filters'
-                        } else if (button.closest('.nav-menu')) {
-                            labelDataLayer = 'Menu'
-                        }
-                    } else if (button.classList.contains('icon_burger')) {
-                        labelDataLayer = 'Header'
-                    } else {
-                        actionDataLayer = `Click on ${e.target.innerText} button`;
-                        labelDataLayer = 'Listing'
-                    }
-                    pushDataLayer(actionDataLayer,labelDataLayer)
-                })
-            })
-
+        
             getProductsFilters('.popup_filter .btn_close','click')
             getProductsFilters('.btn_sort select','change')
             
@@ -1216,6 +1189,36 @@ window.onload = function() {
             pushDataLayer(actionDataLayer)
         })
     }
+
+    document.querySelectorAll('[data-button]').forEach(button => {
+        button.addEventListener('click', (e) => {
+            let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
+            popup.classList.toggle('active')
+
+            if (popup.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'inherit';
+            }
+            
+            if (e.target.classList.contains('btn_close')) {
+                actionDataLayer = 'Click on cross button';
+                if (button.closest('.popup_filter')) {
+                    labelDataLayer = 'Filters'
+                } else if (button.closest('.nav-menu')) {
+                    labelDataLayer = 'Menu'
+                }
+            } else if (button.classList.contains('icon_burger')) {
+                actionDataLayer = `Click on burger button`;
+                labelDataLayer = 'Header'
+            } else {
+                actionDataLayer = `Click on ${e.target.innerText} button`;
+                labelDataLayer = 'Listing'
+            }
+            pushDataLayer(actionDataLayer,labelDataLayer)
+        })
+    })
+
 
     //events
     document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
