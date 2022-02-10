@@ -1129,8 +1129,11 @@ window.onload = function() {
 
         })
                 
+        document.querySelectorAll('.listing .list_box2').forEach(el => {
+            if (el.parentElement != 'products_list') el.remove()
+        })
+
         requestProducts.then(dataP => {
-            document.querySelectorAll('.listing .list_box2').forEach(el => el.remove())
             console.log(dataP)
             listing(dataP)
         })
