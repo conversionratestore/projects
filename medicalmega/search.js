@@ -557,7 +557,7 @@ let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
 
-
+let countMut = 0;
 
 let totalCountProducts = ''; //total count products
 
@@ -624,8 +624,9 @@ let mut = new MutationObserver(function (muts) {
     }
     mut.observe(document, optionMut);
     
-    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null && window.location.pathname.includes('/category')) {
+    if (countMut == 0 && document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
+        countMut = 1;
         document.querySelectorAll('#search_c_id option').forEach(option => {
             let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
             if (document.querySelector('.categoryTop').innerText == title) {
