@@ -666,7 +666,7 @@ const style = `
 	[data-name="coupon-sale"] .cancel{
 		font-weight: 700;
 		cursor: pointer;
-		color: #212121;
+		color: #c00;
 	}
 	
 	.woocommerce-message .button.wc-forward {
