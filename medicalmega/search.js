@@ -557,13 +557,6 @@ let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
 
-let requestProducts = new Promise((resolve, reject) => {
-    idCategory = JSON.parse(localStorage.getItem('idCategory'));
-    console.log(idCategory)
-    fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
-        .then(res => res.json())
-        .then(dataP => resolve(dataP))
-})
 
 
 let totalCountProducts = ''; //total count products
@@ -639,7 +632,7 @@ let mut = new MutationObserver(function (muts) {
                 console.log(option.value)
                 localStorage.setItem('idCategory', JSON.stringify(option.value))
                 idCategory = option.value;
-                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategoryd}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
                     console.log(data)
                     let products = data.products;
                     document.querySelectorAll('.listing li').forEach((el,index) => {
@@ -1188,15 +1181,20 @@ window.onload = function() {
 
             getProductsFilters('.popup_filter .btn_close','click')
             getProductsFilters('.btn_sort select','change')
-
-        })
-
-        requestProducts.then(dataP => {
-            console.log(dataP)
+            
+       
             idCategory = JSON.parse(localStorage.getItem('idCategory'));
             console.log(idCategory)
-            listing(dataP)
+            fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
+                .then(res => res.json())
+                .then(dataP => {
+                    console.log(dataP)
+                    idCategory = JSON.parse(localStorage.getItem('idCategory'));
+                    console.log(idCategory)
+                    listing(dataP)
+                })
         })
+  
 
         document.querySelector('.listing').append(statusMessage)
         document.querySelector('[name="mm_per_page"]').setAttribute('onchange','');
@@ -1205,7 +1203,6 @@ window.onload = function() {
                 el.style.display = 'none';
             }
         })
-
     }
 
     //events
