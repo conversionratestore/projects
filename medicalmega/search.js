@@ -1059,11 +1059,6 @@ window.onload = function() {
                 if (li.innerText == title) {
                     li.setAttribute('data-id', option.value)
                 }
-                li.addEventListener('click', () => {
-                    idCategory = li.dataset.id;
-                    console.log(idCategory)
-                    localStorage.setItem('idCategory', JSON.stringify(idCategory))
-                })
             })
 
             if (document.querySelector('.categoryTop').innerText == title) {
@@ -1104,6 +1099,14 @@ window.onload = function() {
                     })
                 })
             }
+        })
+        
+        document.querySelectorAll('.listing li').forEach(li => {
+            li.addEventListener('click', () => {
+                idCategory = li.dataset.id;
+                console.log(idCategory)
+                localStorage.setItem('idCategory', JSON.stringify(idCategory))
+            })
         })
 
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
