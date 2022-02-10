@@ -60,7 +60,7 @@ let styles = `
     .hide, .altPayment {
         display: none!important;
         }
-    #hdr, #banner, .listing .category, .listing .subhead, .list_type2 i {
+    #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
         }
     .listing span.categoryTop {
@@ -357,11 +357,6 @@ let styles = `
     .list_type1 {
         width: 100%;
     }
-    .list_type1 span {
-        opacity: 0;
-        text-align: right;
-        width: 100%;
-    }
     .list_type2 {
         padding-right: 0px;
     }
@@ -370,15 +365,6 @@ let styles = `
         width: auto!important;
         font-size: 12px;
         padding-right: 8px;
-    }
-    .list_type1 p {
-        float: right;
-        position: relative;
-        width: calc(50% - 7.5px);
-        margin-left: 15px;
-    }
-    .list_type1 p {
-        display: none;
     }
     .btn_sort {
         width: calc(50% - 7.5px);
@@ -1039,7 +1025,26 @@ window.onload = function() {
     }
 
     if (window.location.pathname.includes('/category')) {
-        
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+            .list_type1 p {
+                float: right;
+                position: relative;
+                width: calc(50% - 7.5px);
+                margin-left: 15px;
+            }
+            .list_type1 p {
+                display: none;
+            }
+            .list_type1 span {
+                opacity: 0;
+                text-align: right;
+                width: 100%;
+            }
+            .list_type2 i {
+                display: none;
+            }
+        </style>`)
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
 
