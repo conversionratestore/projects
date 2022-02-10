@@ -1081,12 +1081,11 @@ window.onload = function() {
         
         document.querySelectorAll('.listing li').forEach(li => {
             li.addEventListener('click', () => {
-                if (li.dataset.id != null) {
-                    idCategory = li.dataset.id;
+                idCategory = li.dataset.id;
+            
+                console.log(idCategory)
+                localStorage.setItem('idCategory', JSON.stringify(idCategory))
                 
-                    console.log(idCategory)
-                    localStorage.setItem('idCategory', JSON.stringify(idCategory))
-                }
                 actionDataLayer = 'Click on subcategory icon';
                 pushDataLayer(actionDataLayer)
             })
