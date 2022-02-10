@@ -512,7 +512,7 @@ let header = `
                 <div class="sticky-top">
                     <div class="justify-content-between">
                         <a href="/"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo"></a>
-                        <img src="https://conversionratestore.github.io/projects/medicalmega/img/close.svg" class="btn_close" >
+                        <img src="https://conversionratestore.github.io/projects/medicalmega/img/close.svg" class="btn_close" data-button="menu">
                     </div>
                     <ul class="nav-menu_login"></ul>
                 </div>
@@ -1077,7 +1077,6 @@ window.onload = function() {
                 console.log(option.value)
                 localStorage.setItem('idCategory', JSON.stringify(option.value))
                 idCategory = option.value;
-              
             }
         })
         
