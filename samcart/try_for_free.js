@@ -494,7 +494,7 @@ let startFunk2 = setInterval(() => {
     border: 1px solid #bfc7ce;
     border-radius: 6px;
     padding: 10px 17px 10px 10px;
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     margin-top: 20px;
   }
@@ -613,7 +613,7 @@ let startFunk2 = setInterval(() => {
           <span class="testik2"></span>
           <div class="quarantee">
             <div>
-              <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
+              <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
             </div>
             <div>
               <p>Risk-free trial. Cancel anytime during the next 14 days</p>
