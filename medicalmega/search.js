@@ -48,7 +48,7 @@ let styles = `
             content: '...';
             font-size: 11px;
             color: #000;
-            margin: 0 4px 0 0
+            margin: 0 4px 0 -4px;
           }
         #pagination i {
             paddin: 0;
@@ -818,7 +818,7 @@ window.onload = function() {
                     });
                 };
                 init()
-    
+                Array.from(document.querySelectorAll('.pagination_page')).pop().classList.add('after-not')
                 createPagination.style = 'display: flex; opacity: 1; pointer-events: auto;';
             } else {
                 createPagination.style = 'display: none; ';
