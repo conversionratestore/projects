@@ -623,53 +623,6 @@ let mut = new MutationObserver(function (muts) {
         </style>`)
     }
     mut.observe(document, optionMut);
-    
-    if (countMut == 0 && document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null && window.location.pathname.includes('/category')) {
-        mut.disconnect();
-        countMut = 1;
-        document.querySelectorAll('#search_c_id option').forEach(option => {
-            let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
-            if (document.querySelector('.categoryTop').innerText == title) {
-                console.log(option.value)
-                localStorage.setItem('idCategory', JSON.stringify(option.value))
-                idCategory = option.value;
-                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-                    console.log(data)
-                    let products = data.products;
-                    document.querySelectorAll('.listing li').forEach((el,index) => {
-                        let randomArray = [];
-                        let subcategory = el.innerText;
-                        let firstLetterCategory = el.innerText.split(' ')[0];
-                        
-                        if (el.querySelector('a') != null) {
-                            el.querySelector('a').setAttribute('title', subcategory)
-                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
-                        }
-        
-                        for (let j = 0; j < products.length; j++) {
-                            let title = products[j].title.toString();
-                            if (title.includes(firstLetterCategory) ) {
-                                randomArray.push(j)
-                            }
-                        }
-        
-                        if (randomArray.length > 0) {
-                            if (el.querySelector('a') != null) {
-                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-                            }
-                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
-                            if (el.querySelector('img') != null) {
-                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
-                            }
-                            console.log(randomNum)
-                        }
-                    })
-                })
-            }
-        })
-    }
-    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
@@ -1102,6 +1055,7 @@ window.onload = function() {
     if (window.location.pathname.includes('/category')) {
         document.querySelectorAll('#search_c_id option').forEach(option => {
             let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
+
             document.querySelectorAll('.listing li').forEach(li => {
                 if (li.innerText == title) {
                     li.setAttribute('data-id', option.value)
@@ -1112,7 +1066,47 @@ window.onload = function() {
                     localStorage.setItem('idCategory', JSON.stringify(idCategory))
                 })
             })
+
+            if (document.querySelector('.categoryTop').innerText == title) {
+                console.log(option.value)
+                localStorage.setItem('idCategory', JSON.stringify(option.value))
+                idCategory = option.value;
+                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+                    console.log(data)
+                    let products = data.products;
+                    document.querySelectorAll('.listing li').forEach((el,index) => {
+                        let randomArray = [];
+                        let subcategory = el.innerText;
+                        let firstLetterCategory = el.innerText.split(' ')[0];
+                        
+                        if (el.querySelector('a') != null) {
+                            el.querySelector('a').setAttribute('title', subcategory)
+                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
+                        }
+        
+                        for (let j = 0; j < products.length; j++) {
+                            let title = products[j].title.toString();
+                            if (title.includes(firstLetterCategory) ) {
+                                randomArray.push(j)
+                            }
+                        }
+        
+                        if (randomArray.length > 0) {
+                            if (el.querySelector('a') != null) {
+                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                            }
+                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
+                            if (el.querySelector('img') != null) {
+                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                            }
+                            console.log(randomNum)
+                        }
+                    })
+                })
+            }
         })
+
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
 
