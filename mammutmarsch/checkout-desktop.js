@@ -1190,33 +1190,39 @@ function addDark() {
 }
 
 /* mut observer */
+let isOrder = setInterval(() => {
+	if($('#order_review')) {
+		clearInterval(isOrder)
+		let target = $('#order_review')
+		let config = {
+			attributes: true,
+			childList: true,
+			subtree: true,
+		}
 
-const target = $('#order_review')
-const config = {
-	attributes: true,
-	childList: true,
-	subtree: true,
-}
-const callback = function (mutationsList, observer) {
-	observer.disconnect()
+		let callback = function (mutationsList, observer) {
+			observer.disconnect()
+			observerTimeout()
+		}
+		let observer = new MutationObserver(callback)
 
-	observerTimeout()
-}
-const observer = new MutationObserver(callback)
+		function observerTimeout() {
+			console.log('observeeeee')
+			reorder()
+			addDark()
+			isBr()
+			isCheckbox()
+			isFee()
+			isAppliedCoupon()
 
-function observerTimeout() {
-	reorder()
-	addDark()
-	isBr()
-	isCheckbox()
-	isFee()
-    isAppliedCoupon()
+			setTimeout(() => {
+				observer.observe(target, config)
+			}, 1000)
+		}
 
-	setTimeout(() => {
-		observer.observe(target, config)
-	}, 1000)
-}
-observerTimeout()
+		observerTimeout()
+	}
+}, 100)
 
 console.log('eventAction loaded')
 
