@@ -57,9 +57,6 @@ let styles = `
      #pagination li.active {
         font-weight: 700; 
         }
-    .hide, .altPayment {
-        display: none!important;
-        }
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
         }
@@ -597,6 +594,9 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            .hide, .altPayment {
+                display: none!important;
+            }
             .list_box2 {
                 display: none!important;
             }
@@ -1225,7 +1225,7 @@ window.onload = function() {
 
     document.querySelectorAll('.header .nav a').forEach(link => {
         link.addEventListener('click', (e) => {
-            actionDataLayer = 'Click on menu categories for the Use';
+            actionDataLayer = 'Click on menu categories for the User';
             labelDataLayer = e.target.innerText;
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
