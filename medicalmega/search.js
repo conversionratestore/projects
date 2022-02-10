@@ -1069,39 +1069,7 @@ window.onload = function() {
                 console.log(option.value)
                 localStorage.setItem('idCategory', JSON.stringify(option.value))
                 idCategory = option.value;
-                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-                    console.log(data)
-                    let products = data.products;
-                    document.querySelectorAll('.listing li').forEach((el,index) => {
-                        let randomArray = [];
-                        let subcategory = el.innerText;
-                        let firstLetterCategory = el.innerText.split(' ')[0];
-                        
-                        if (el.querySelector('a') != null) {
-                            el.querySelector('a').setAttribute('title', subcategory)
-                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
-                        }
-        
-                        for (let j = 0; j < products.length; j++) {
-                            let title = products[j].title.toString();
-                            if (title.includes(firstLetterCategory) ) {
-                                randomArray.push(j)
-                            }
-                        }
-        
-                        if (randomArray.length > 0) {
-                            if (el.querySelector('a') != null) {
-                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-                            }
-                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
-                            if (el.querySelector('img') != null) {
-                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
-                            }
-                            console.log(randomNum)
-                        }
-                    })
-                })
+              
             }
         })
         
@@ -1112,6 +1080,17 @@ window.onload = function() {
                 localStorage.setItem('idCategory', JSON.stringify(idCategory))
                 actionDataLayer = 'Click on subcategory icon';
                 pushDataLayer(actionDataLayer)
+            })
+
+            let idSubCategory = li.dataset.id;
+            let textSubcategory = li.innerText;
+            li.querySelector('a').setAttribute('title', textSubcategory)
+            li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
+
+            fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+                console.log(data)
+                let products = data.products;
+                document.querySelector(`.listing li[data-id="${idSubCategory}"] a`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
             })
         })
 
