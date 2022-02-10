@@ -599,10 +599,36 @@ function checkedFilter(item, arrFilter) {
 
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.listing .list_box2') != null && document.querySelector('.listing .list_box2').parentElement.className != 'products_list') {
+        mut.disconnect();
         document.querySelectorAll('.listing .list_box2').forEach(el => {
             if (el.parentElement.className != 'products_list') el.remove()
         })
     } 
+    mut.observe(document, optionMut);
+    if (document.body != null && window.location.pathname.includes('/category')) {
+        mut.disconnect();
+        document.body.insertAdjacentHTML('afterbegin',`
+        <style>
+            .list_type1 p {
+                float: right;
+                position: relative;
+                width: calc(50% - 7.5px);
+                margin-left: 15px;
+            }
+            .list_type1 p {
+                display: none;
+            }
+            .list_type1 span {
+                opacity: 0;
+                text-align: right;
+                width: 100%;
+            }
+            .list_type2 i {
+                display: none;
+            }
+        </style>`)
+    }
+    mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
 
@@ -1039,26 +1065,7 @@ window.onload = function() {
 
     //listing
     if (window.location.pathname.includes('/category')) {
-        document.body.insertAdjacentHTML('afterbegin',`
-        <style>
-            .list_type1 p {
-                float: right;
-                position: relative;
-                width: calc(50% - 7.5px);
-                margin-left: 15px;
-            }
-            .list_type1 p {
-                display: none;
-            }
-            .list_type1 span {
-                opacity: 0;
-                text-align: right;
-                width: 100%;
-            }
-            .list_type2 i {
-                display: none;
-            }
-        </style>`)
+
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
 
