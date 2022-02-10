@@ -1387,6 +1387,7 @@ function isFee() {
 			$(`.product-wrapper [data-name="fee"]`)
 		) {
 			clearInterval(is)
+
 			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
@@ -1398,6 +1399,7 @@ function isFee() {
 
 		} else {
 			clearInterval(is)
+
 			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
@@ -1412,6 +1414,7 @@ function isAppliedCoupon() {
 	let is = setInterval(() => {
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			clearInterval(is)
+
 			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
 
 			$('.custom-coupon').classList.add('applied')
@@ -1419,6 +1422,7 @@ function isAppliedCoupon() {
 
 		} else {
 			clearInterval(is)
+
 			if ($('.coupon-wrapper').classList.contains('show')) {
 				$('.coupon-wrapper').classList.remove('show')
 			}
@@ -1441,6 +1445,7 @@ function isCheckbox() {
 	let is = setInterval(() => {
 		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
 			clearInterval(is)
+
 			$$('.place-order [type="checkbox"]').forEach(checkbox => {
 				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
 			})
@@ -1482,12 +1487,13 @@ let isOrder = setInterval(() => {
 
 		let callback = function (mutationsList, observer) {
 			observer.disconnect()
+
 			observerTimeout()
 		}
 		let observer = new MutationObserver(callback)
 
 		function observerTimeout() {
-			console.log('Observed!!')
+			console.log('Observed!!!')
 			reorder()
 			addDark()
 			isBr()
@@ -1497,7 +1503,7 @@ let isOrder = setInterval(() => {
 
 			setTimeout(() => {
 				observer.observe(target, config)
-			}, 1000)
+			}, 2000)
 			console.log('Observed ssss!!')
 		}
 
