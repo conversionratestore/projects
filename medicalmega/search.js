@@ -1062,12 +1062,12 @@ window.onload = function() {
                     li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
         
                     console.log(textSubcategory)
-                    console.log(idSubCategory)
                     fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
                         console.log(data)
                         let products = data.products;
+                        console.log(idSubCategory)
                         if (data.total_count > 0) {
-                            document.querySelector(`.listing li[data-id="${products[0].product_id}"] a`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
+                            document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
                         }
                     })
                 }
