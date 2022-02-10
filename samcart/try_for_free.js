@@ -530,6 +530,20 @@ let startFunk2 = setInterval(() => {
     color: #5a7386;
     margin: 0;
   }
+
+
+    .btn_back{
+    color: #273542;
+    background-color: #f4f5f6;
+    padding: 5px 11px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: lowercase;
+    font-size: 11px;
+    }
+
 </style>
       `
 
@@ -595,6 +609,7 @@ let startFunk2 = setInterval(() => {
           </button>
         </div>
         <div class="back">
+          <span class="btn_back">&#8249; Back</span>
           <span class="testik2"></span>
           <div class="quarantee">
             <div>
@@ -704,6 +719,15 @@ let startFunk2 = setInterval(() => {
       }, 100)
 
       document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
+
+      //
+      document.querySelector(".btn_back").addEventListener("click", function (e) {
+        e.preventDefault()
+        document.querySelector(".front").style.transform = "rotateY(0deg)"
+        document.querySelector(".back").style.transform = "rotateY(-180deg)"
+        document.querySelector(".front").style.zIndex = "15"
+        console.log(`back to front`)
+      })
 
       // validate form
       if (document.querySelector("form .front .border-bottom.mb-16")) {
