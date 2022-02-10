@@ -1051,7 +1051,7 @@ window.onload = function() {
     //listing
     if (window.location.pathname.includes('/category')) {
         document.querySelectorAll('#search_c_id option').forEach(option => {
-            let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
+            let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '')
 
             document.querySelectorAll('.listing li').forEach(li => {
                 if (li.innerText == title) {
