@@ -547,8 +547,6 @@ let optionMut = {
     subtree: true
 }
 
-let countMut = 0;
-
 const message = {
     loading: 'loading',
     success: 'Check!',
@@ -592,9 +590,8 @@ function checkedFilter(item, arrFilter) {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (countMut == 0 && document.body != null && window.location.pathname.includes('/category')) {
+    if (document.body != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
-        countMut == 1;
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .list_box2 {
@@ -1208,6 +1205,9 @@ window.onload = function() {
             if (el.innerText.toLowerCase().includes(document.querySelector('.listing .categoryTop').innerText.toLowerCase())) {
                 el.style.display = 'none';
             }
+        })
+        document.querySelectorAll('.listing .list_box2').forEach(el => {
+            if (el.parentElement.className != 'products_list') el.remove()
         })
     }
 
