@@ -781,7 +781,7 @@ window.onload = function() {
 
     function listing(data) {
         statusMessage.remove()
-        if (data.length > 0) {
+        if (data.products != null) {
             let products = data.products;
 
             for (let i = 0; i < products.length; i++) {
@@ -845,7 +845,7 @@ window.onload = function() {
         // add pages by number (from [s] to [f])
         Add: function(s, f) {
             for (let i = s; i < f; i++) {
-               Pagination.code += '<li>' + i + '</li>';
+               Pagination.code += '<li class="pagination_page">' + i + '</li>';
             }
         },
 
@@ -1022,11 +1022,13 @@ window.onload = function() {
         document.querySelector('.listing').append(statusMessage)
         createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
         console.log(brandsFilter.toString())
+        selectedPage = offset;
         let productsRequest = new Promise((resolve, reject) => {
-            fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+            fetch(`/api/products&offset=${offset}&limit=${perPage}&is_featured=0&brand=${brandsFilter.toString()}&ctoken=${mm.ctoken}&category=${idCategory}&price_range=${priceRange.toString()}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    
                     listing(data)
                     resolve(data)
                 })
@@ -1045,7 +1047,7 @@ window.onload = function() {
                 <div class="btn_sort">
                     <select>
                         <option value="">Sort by</option>
-                        <option value="+name">Product Name ASC</option>
+                        <option value="name">Product Name ASC</option>
                         <option value="-name">Product Name DESC</option>
                     </select>
                 </div>
@@ -1055,7 +1057,7 @@ window.onload = function() {
 
         let requestFilters = new Promise((resolve, reject) => {
             idCategory = JSON.parse(localStorage.getItem('idCategory'));
-            fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort_options=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
+            fetch(`/api/products&offset=0&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&sort=${document.querySelector('.btn_sort select').value}&with_filters=1`, headerFetch)
                 .then(res => res.json())
                 .then(dataFilters => resolve(dataFilters))
         })
