@@ -501,6 +501,9 @@ let styles = `
         height: 100%!important;
         object-fit: contain;
     }
+    a#top-navigation {
+        display: none!important;
+    }
     </style>`
 
 let header = `
