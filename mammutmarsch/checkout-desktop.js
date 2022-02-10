@@ -961,8 +961,8 @@ let isPrice = setInterval(() => {
 		clearInterval(isPrice)
 
 		let name = ($(`.cart_item .product-name`).innerText).trim()
-		let price = '€' + $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-		let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
+		let price = $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 		$$('.table-custom tr td')[0].innerText = name
 		$$('.table-custom tr td')[1].innerText = price
@@ -1125,8 +1125,8 @@ function isFee() {
 			$$('.table-custom tr td')[3]
 		) {
 			clearInterval(is)
-			let fee = '€' + $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-			let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
+			let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€' 
 
 			$$('.table-custom tr td')[3].innerText = total
 
@@ -1136,7 +1136,7 @@ function isFee() {
 
 		} else {
 			clearInterval(is)
-			let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
 			$(`.product-wrapper [data-name="fee"]`).innerText = ''
