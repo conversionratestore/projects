@@ -813,7 +813,6 @@ window.onload = function() {
       
     }
 
-
     //Pagination
     let Pagination = {
 
@@ -1024,6 +1023,7 @@ window.onload = function() {
         return productsRequest
     }
 
+    //listing
     if (window.location.pathname.includes('/category')) {
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
@@ -1134,10 +1134,6 @@ window.onload = function() {
             console.log(dataP)
             listing(dataP)
         })
-    }
-  
-    //listing
-    if (window.location.pathname.includes('/category')) {
 
         document.querySelector('.listing').append(statusMessage)
         document.querySelector('[name="mm_per_page"]').setAttribute('onchange','');
@@ -1146,8 +1142,6 @@ window.onload = function() {
                 el.style.display = 'none';
             }
         })
-
-        
 
         document.querySelectorAll('#search_c_id option').forEach((el,i) => {
             if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
@@ -1188,6 +1182,7 @@ window.onload = function() {
             }
         })
     }
+
     //events
     document.querySelector('.signup a').addEventListener('click', () => {
         actionDataLayer = 'Click on Sign in button in menu';
