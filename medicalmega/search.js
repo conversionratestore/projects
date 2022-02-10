@@ -1087,7 +1087,7 @@ window.onload = function() {
             li.querySelector('a').setAttribute('title', textSubcategory)
             li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
 
-            fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+            fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
                 console.log(data)
                 let products = data.products;
                 document.querySelector(`.listing li[data-id="${idSubCategory}"] a`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
