@@ -198,6 +198,28 @@ let startFunc = setInterval(() => {
 
     clarity("set", "scientific_research", "variant_1")
 
+    // //observer
+    const options = {
+      root: null,
+      threshold: 0.5,
+    }
+
+    let containerHint = document.querySelector(".scientific_block")
+    let observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return
+      //
+      window.dataLayer = window.dataLayer || []
+      dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp: Scientific research",
+        eventAction: "Block with info",
+      })
+
+      observer.disconnect()
+    })
+
+    observer.observe(containerHint, options)
+
     window.dataLayer = window.dataLayer || []
     dataLayer.push({
       event: "event-to-ga",
