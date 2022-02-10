@@ -1126,7 +1126,7 @@ function isFee() {
 		) {
 			clearInterval(is)
 			let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€' 
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 			$$('.table-custom tr td')[3].innerText = total
 
@@ -1198,11 +1198,9 @@ const config = {
 	subtree: true,
 }
 const callback = function (mutationsList, observer) {
-	console.log('st')
 	observer.disconnect()
 
 	observerTimeout()
-	console.log('end')
 }
 const observer = new MutationObserver(callback)
 
