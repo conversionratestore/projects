@@ -1210,6 +1210,10 @@ window.onload = function() {
         document.querySelectorAll('.listing .list_box2').forEach(el => {
             if (el.parentElement.className != 'products_list') el.remove()
         })
+        document.querySelector('.btn_sort select').addEventListener('change', (e) => {
+            actionDataLayer = 'Click on sort by field';
+            pushDataLayer(actionDataLayer)
+        })
     }
 
     //events
@@ -1229,10 +1233,7 @@ window.onload = function() {
         actionDataLayer = 'Click on search field';
         pushDataLayer(actionDataLayer)
     })
-    document.querySelector('.btn_sort select').addEventListener('change', (e) => {
-        actionDataLayer = 'Click on sort by field';
-        pushDataLayer(actionDataLayer)
-    })
+
     document.querySelectorAll('.checkbox').forEach(checkbox => {
         checkbox.addEventListener('click', () => {
             if (checkbox.closest('.filter_brands')) {
