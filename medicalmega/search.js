@@ -350,6 +350,7 @@ let styles = `
         border-radius: 50%;
         margin-left: 4px;
         flex-shrink: 0;
+        object-fit: contain;
     }
     .list_type1 {
         width: 100%;
