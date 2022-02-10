@@ -626,7 +626,7 @@ let startFunk2 = setInterval(() => {
     `
 
     let totalText = /* html*/ `
-      <p class="total_text"><span class="accent_color">*You pay nothing today.</span> Then $1, 180.00 yearly starting in 2 weeks.
+      <p class="total_text"><span class="accent_color">*You pay nothing today.</span> Then $950 yearly starting in 2 weeks.
         <span>
           <svg class="hint" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_96_133)">
