@@ -1117,7 +1117,6 @@ function isAppliedCoupon() {
 		}
 	}, 200)
 }
-
 function isFee() {
 	let is = setInterval(() => {
 		if (
@@ -1147,7 +1146,6 @@ function isFee() {
 		}
 	}, 200)
 }
-
 function isCheckbox() {
 	let is = setInterval(() => {
 		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
@@ -1160,7 +1158,6 @@ function isCheckbox() {
 		}
 	}, 200)
 }
-
 function isBr() {
 	let is = setInterval(() => {
 		if ($('#wc-stripe-cc-form br')) {
@@ -1170,7 +1167,6 @@ function isBr() {
 		}
 	}, 100)
 }
-
 function reorder() {
 	let is = setInterval(() => {
 		if ($('.payment_method_stripe img')?.src) {
@@ -1180,7 +1176,6 @@ function reorder() {
 		}
 	}, 100)
 }
-
 function addDark() {
 	let is = setInterval(() => {
 		if ($('.wc_payment_method [checked]')) {
@@ -1197,13 +1192,11 @@ function addDark() {
 /* mut observer */
 
 const target = $('#order_review')
-
 const config = {
 	attributes: true,
 	childList: true,
 	subtree: true,
 }
-
 const callback = function (mutationsList, observer) {
 	console.log('st')
 	observer.disconnect()
@@ -1211,7 +1204,6 @@ const callback = function (mutationsList, observer) {
 	observerTimeout()
 	console.log('end')
 }
-
 const observer = new MutationObserver(callback)
 
 function observerTimeout() {
@@ -1224,9 +1216,8 @@ function observerTimeout() {
 
 	setTimeout(() => {
 		observer.observe(target, config)
-	}, 2000)
+	}, 1000)
 }
-
 observerTimeout()
 
 console.log('eventAction loaded')
