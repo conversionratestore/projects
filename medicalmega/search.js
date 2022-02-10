@@ -557,13 +557,7 @@ let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
 
-let requestProducts = new Promise((resolve, reject) => {
-    idCategory = JSON.parse(localStorage.getItem('idCategory'));
-    console.log(idCategory)
-    fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
-        .then(res => res.json())
-        .then(dataP => resolve(dataP))
-})
+let requestProducts;
 
 let totalCountProducts = ''; //total count products
 
@@ -630,7 +624,7 @@ let mut = new MutationObserver(function (muts) {
     }
     mut.observe(document, optionMut);
     
-    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null) {
+    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
         document.querySelectorAll('#search_c_id option').forEach(option => {
             let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
@@ -639,7 +633,6 @@ let mut = new MutationObserver(function (muts) {
                 localStorage.setItem('idCategory', JSON.stringify(option.value))
                 idCategory = option.value;
                 fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-
                     console.log(data)
                     let products = data.products;
                     document.querySelectorAll('.listing li').forEach((el,index) => {
@@ -650,14 +643,14 @@ let mut = new MutationObserver(function (muts) {
                             el.querySelector('a').setAttribute('title', subcategory)
                             el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
                         }
-
+        
                         for (let j = 0; j < products.length; j++) {
                             let title = products[j].title.toString();
                             if (title.includes(firstLetterCategory) ) {
                                 randomArray.push(j)
                             }
                         }
-
+        
                         if (randomArray.length > 0) {
                             if (el.querySelector('a') != null) {
                                 el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
@@ -670,6 +663,13 @@ let mut = new MutationObserver(function (muts) {
                             console.log(randomNum)
                         }
                     })
+                })
+                requestProducts = new Promise((resolve, reject) => {
+                    idCategory = JSON.parse(localStorage.getItem('idCategory'));
+                    console.log(idCategory)
+                    fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
+                        .then(res => res.json())
+                        .then(dataP => resolve(dataP))
                 })
             }
         })
