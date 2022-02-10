@@ -630,7 +630,7 @@ let mut = new MutationObserver(function (muts) {
     }
     mut.observe(document, optionMut);
     
-    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null) {
+    if (document.querySelector('.categoryTop') != null && document.querySelector('#search_c_id') != null && document.querySelector('.listing li') != null) {
         mut.disconnect();
         document.querySelectorAll('#search_c_id option').forEach(option => {
             let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
@@ -638,6 +638,39 @@ let mut = new MutationObserver(function (muts) {
                 console.log(option.value)
                 localStorage.setItem('idCategory', JSON.stringify(option.value))
                 idCategory = option.value;
+                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
+
+                    console.log(data)
+                    let products = data.products;
+                    document.querySelectorAll('.listing li').forEach((el,index) => {
+                        let randomArray = [];
+                        let subcategory = el.innerText;
+                        let firstLetterCategory = el.innerText.split(' ')[0];
+                        if (el.querySelector('a') != null) {
+                            el.querySelector('a').setAttribute('title', subcategory)
+                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
+                        }
+
+                        for (let j = 0; j < products.length; j++) {
+                            let title = products[j].title.toString();
+                            if (title.includes(firstLetterCategory) ) {
+                                randomArray.push(j)
+                            }
+                        }
+
+                        if (randomArray.length > 0) {
+                            if (el.querySelector('a') != null) {
+                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
+                            }
+                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
+                            if (el.querySelector('img') != null) {
+                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
+                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
+                            }
+                            console.log(randomNum)
+                        }
+                    })
+                })
             }
         })
     }
@@ -1170,44 +1203,6 @@ window.onload = function() {
             }
         })
 
-        document.querySelectorAll('#search_c_id option').forEach((el,i) => {
-            if (el.innerText == document.querySelector('.listing span.categoryTop').innerText) {
-                console.log(el.value)
-                fetch(`/api/products&offset=0&limit=100&is_featured=0&ctoken=${mm.ctoken}&category=${el.value}&with_filters=1`, headerFetch).then(res => res.json()).then(data => {
-
-                    console.log(data)
-                    let products = data.products;
-                    document.querySelectorAll('.listing li').forEach((el,index) => {
-                        let randomArray = [];
-                        let subcategory = el.innerText;
-                        let firstLetterCategory = el.innerText.split(' ')[0];
-                        if (el.querySelector('a') != null) {
-                            el.querySelector('a').setAttribute('title', subcategory)
-                            el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
-                        }
-
-                        for (let j = 0; j < products.length; j++) {
-                            let title = products[j].title.toString();
-                            if (title.includes(firstLetterCategory) ) {
-                                randomArray.push(j)
-                            }
-                        }
-
-                        if (randomArray.length > 0) {
-                            if (el.querySelector('a') != null) {
-                                el.querySelector('a').insertAdjacentHTML('beforeend',`<img src="" alt="">`)
-                            }
-                            let randomNum = randomArray[Math.floor(Math.random()*randomArray.length)]
-                            if (el.querySelector('img') != null) {
-                                el.querySelector('img').setAttribute('src', products[randomNum].variants[0].image_url)
-                                el.querySelector('img').setAttribute('alt', products[randomNum].title)
-                            }
-                            console.log(randomNum)
-                        }
-                    })
-                })
-            }
-        })
     }
 
     //events
