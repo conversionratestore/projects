@@ -547,6 +547,8 @@ let optionMut = {
     subtree: true
 }
 
+let countMut = 0;
+
 const message = {
     loading: 'loading',
     success: 'Check!',
@@ -556,8 +558,6 @@ const message = {
 let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
-
-let countMut = 0;
 
 let totalCountProducts = ''; //total count products
 
@@ -599,8 +599,9 @@ let mut = new MutationObserver(function (muts) {
         })
     } 
     mut.observe(document, optionMut);
-    if (document.body != null && window.location.pathname.includes('/category')) {
+    if (countMut == 0 && document.body != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
+        countMut == 1;
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .list_type1 p {
@@ -622,6 +623,7 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`)
     }
+    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
