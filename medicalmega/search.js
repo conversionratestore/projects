@@ -593,12 +593,10 @@ function checkedFilter(item, arrFilter) {
 
 let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.listing .list_box2') != null && document.querySelector('.listing .list_box2').parentElement.className != 'products_list') {
-        mut.disconnect();
         document.querySelectorAll('.listing .list_box2').forEach(el => {
             if (el.parentElement.className != 'products_list') el.remove()
         })
     } 
-    mut.observe(document, optionMut);
     if (countMut == 0 && document.body != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
         countMut == 1;
