@@ -557,8 +557,6 @@ let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
 
-let requestProducts;
-
 let totalCountProducts = ''; //total count products
 
 let actionDataLayer = '',
@@ -664,13 +662,20 @@ let mut = new MutationObserver(function (muts) {
                         }
                     })
                 })
-                requestProducts = new Promise((resolve, reject) => {
-                    idCategory = JSON.parse(localStorage.getItem('idCategory'));
-                    console.log(idCategory)
-                    fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
-                        .then(res => res.json())
-                        .then(dataP => resolve(dataP))
-                })
+                window.onload = function() {
+                    let requestProducts = new Promise((resolve, reject) => {
+                        idCategory = JSON.parse(localStorage.getItem('idCategory'));
+                        console.log(idCategory)
+                        fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
+                            .then(res => res.json())
+                            .then(dataP => resolve(dataP))
+                    })
+                    
+                    requestProducts.then(dataP => {
+                        console.log(dataP)
+                        listing(dataP)
+                    })
+                }
             }
         })
     }
@@ -1188,11 +1193,6 @@ window.onload = function() {
             getProductsFilters('.popup_filter .btn_close','click')
             getProductsFilters('.btn_sort select','change')
 
-        })
-
-        requestProducts.then(dataP => {
-            console.log(dataP)
-            listing(dataP)
         })
 
         document.querySelector('.listing').append(statusMessage)
