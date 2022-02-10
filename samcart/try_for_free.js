@@ -39,7 +39,7 @@ let startFunk2 = setInterval(() => {
     padding-top: 65px;
   }
   
-  .recaptcha-error{
+  #recaptcha-error{
   text-align: center !important;
   }
 
