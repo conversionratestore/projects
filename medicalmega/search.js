@@ -640,6 +640,7 @@ let mut = new MutationObserver(function (muts) {
                         let randomArray = [];
                         let subcategory = el.innerText;
                         let firstLetterCategory = el.innerText.split(' ')[0];
+                        
                         if (el.querySelector('a') != null) {
                             el.querySelector('a').setAttribute('title', subcategory)
                             el.querySelector('a').innerHTML = `<span>${subcategory}</span>`;
@@ -1100,7 +1101,20 @@ window.onload = function() {
 
     //listing
     if (window.location.pathname.includes('/category')) {
-
+        document.querySelectorAll('#search_c_id option').forEach(option => {
+            let title = option.innerHTML.split('_').join('').split('|').join('').split('&nbsp;').join('');
+            document.querySelectorAll('.listing li').forEach(li => {
+                if (li.innerText == title) {
+                    li.setAttribute('data-id', option.value)
+                }
+                li.addEventListener('click', () => {
+                    idCategory = li.dataset,id;
+                    console.log(idCategory)
+                    localStorage.setItem('idCategory', JSON.stringify(idCategory))
+                })
+            })
+          
+        })
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
 
