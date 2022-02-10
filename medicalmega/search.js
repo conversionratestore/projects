@@ -605,7 +605,7 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .list_box2 {
-                display: none;
+                display: none!important;
             }
             .products_list .list_box2 {
                 display: block!important;
