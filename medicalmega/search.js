@@ -1219,6 +1219,15 @@ window.onload = function() {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
+    document.querySelector('.nav-menu').addEventListener('click', (e) => {
+        if (e.target.className == 'nav-menu') {
+            if (e.target.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'inherit';
+            }
+        }
+    })
 
     //events
     document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
