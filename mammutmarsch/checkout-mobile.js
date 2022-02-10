@@ -1345,17 +1345,7 @@ let isName = setInterval(() => {
 		$('select[name="size"] option').innerText = 'Bitte auswählen'
 	}
 }, 200)
-let isExist = setInterval(() => {
-	if ($('#payment')) {
-		clearInterval(isExist)
-		$('#payment').insertAdjacentHTML('beforebegin', `
-	<div class="custom-payment">
-	<p class="title">Bezahlung</p>
-	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
-</div>
-`)
-	}
-}, 200)
+
 let isComment = setInterval(() => {
 	if ($('.checkout_coupon') && $('#payment')) {
 		clearInterval(isComment)
@@ -1376,6 +1366,11 @@ let isComment = setInterval(() => {
   </div>
 </div>
 	`)
+    $('#payment').insertAdjacentHTML('beforebegin', `
+	<div class="custom-payment">
+	<p class="title">Bezahlung</p>
+	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
+</div>`)
 	}
 }, 200)
 
@@ -1500,19 +1495,19 @@ let isOrder = setInterval(() => {
 		let observer = new MutationObserver(callback)
 
 		function observerTimeout() {
-			
-			reorder()
-			addDark()
-			isBr()
-			isCheckbox()
-			isFee()
-			isAppliedCoupon()
+			setTimeout(() => {
+                reorder()
+                addDark()
+                isBr()
+                isCheckbox()
+                isFee()
+                isAppliedCoupon()
 
-			setTimeout(() => {                
-				observer.observe(target, config)
-                console.log('observed');
-			}, 1000)
-			
+                setTimeout(() => {                
+                    observer.observe(target, config)
+                    console.log('observed');
+                }, 1000)
+            }, 3000)		
 		}
 
 		observerTimeout()
