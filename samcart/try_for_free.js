@@ -333,7 +333,7 @@ let startFunk2 = setInterval(() => {
 
   .card_box {
     position: relative;
-    perspective: 1000px;
+    perspective: 5000px;
     width: 100%;
     height: 100%;
   }
@@ -356,7 +356,8 @@ let startFunk2 = setInterval(() => {
     transform: rotateY(-180deg);
   }
 
-  .card_box .front button,
+
+  .card_box .front button.btn_continue,
   .card_box #placeOrder {
     display: flex;
     align-items: center;
@@ -376,6 +377,7 @@ let startFunk2 = setInterval(() => {
     margin-top: 30px;
     position: relative;
     border: none;
+    cursor: pointer;
   }
 
   .card_box #order-summary-widget {
@@ -390,7 +392,7 @@ let startFunk2 = setInterval(() => {
     margin: 0 !important;
   }
 
-  .card_box .front button svg {
+  .card_box .front button.btn_continue svg {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -585,7 +587,7 @@ let startFunk2 = setInterval(() => {
       <div class="card_box">
         <div class="front">
           <span class="testik"></span>        
-          <button type="submit">Continue
+          <button class="btn_continue">Continue
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.16699 10H15.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -659,12 +661,10 @@ let startFunk2 = setInterval(() => {
       document.querySelector('input[name="fname"]').placeholder = "John"
       document.querySelector('input[name="lname"]').placeholder = "Smith"
       document.querySelector('input[name="email"]').placeholder = "johnsmth@gmail.com"
-      document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
+      // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
-      document.querySelector(".card_box .front button").addEventListener("click", () => {
-        document.querySelector(".front").style.transform = "rotateY(-180deg)"
-        document.querySelector(".back").style.transform = "rotateY(-360deg)"
-        document.querySelector(".front").style.zIndex = "0"
+      document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
+        validationForm("form .wrapper_card .card_box .front")
       })
 
       document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
@@ -704,6 +704,64 @@ let startFunk2 = setInterval(() => {
       }, 100)
 
       document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
+
+      // validate form
+      if (document.querySelector("form .front .border-bottom.mb-16")) {
+        function validationForm(parent) {
+          let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
+          let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
+          let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
+          let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
+          let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
+
+          // name
+          if (inputValueName === null) {
+            document.querySelector(`${parent} input[name='fname']`).classList.add("error")
+          } else {
+            document.querySelector(`${parent} input[name='fname']`).classList.remove("error")
+          }
+
+          // lname
+          if (inputValueLastName === null) {
+            document.querySelector(`${parent} input[name='lname']`).classList.add("error")
+          } else {
+            document.querySelector(`${parent} input[name='lname']`).classList.remove("error")
+          }
+
+          // phone
+          // if (inputValuePhone === null) {
+          //   document.querySelector(`${parent} input[name='phone']`).classList.add("error")
+          // } else {
+          //   document.querySelector(`${parent} input[name='phone']`).classList.remove("error")
+          // }
+
+          // email
+          if (inputValueEmail === null) {
+            document.querySelector(`${parent} input[name='email']`).classList.add("error")
+          } else {
+            document.querySelector(`${parent} input[name='email']`).classList.remove("error")
+          }
+
+          // select
+          if (selectValue === "") {
+            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.add("error")
+          } else if (selectValue !== "") {
+            document.querySelector(`${parent} select[name='custom_ubiGdEid']`).classList.remove("error")
+          }
+
+          if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
+            document.querySelector(".front").style.transform = "rotateY(-180deg)"
+            document.querySelector(".back").style.transform = "rotateY(-360deg)"
+            document.querySelector(".front").style.zIndex = "0"
+
+            setTimeout(() => {
+              if (document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error")) {
+                document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error").remove()
+              }
+            }, 100)
+          }
+        }
+      }
     }
   }
 }, 10)
