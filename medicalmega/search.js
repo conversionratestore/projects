@@ -1170,7 +1170,7 @@ window.onload = function() {
                     
                     if (button.classList.contains('btn_close')) {
                         actionDataLayer = 'Click on cross button';
-                        if (button.closest('popup_filter')) {
+                        if (button.closest('.popup_filter')) {
                             labelDataLayer = 'Filters'
                         } else if (button.closest('.nav-menu')) {
                             labelDataLayer = 'Menu'
