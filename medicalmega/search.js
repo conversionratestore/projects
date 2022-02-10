@@ -1069,21 +1069,23 @@ window.onload = function() {
         document.querySelectorAll('.listing li').forEach(li => {
             li.addEventListener('click', () => {
                 idCategory = li.dataset.id;
+                
                 console.log(idCategory)
                 localStorage.setItem('idCategory', JSON.stringify(idCategory))
                 actionDataLayer = 'Click on subcategory icon';
                 pushDataLayer(actionDataLayer)
             })
-
             let idSubCategory = li.dataset.id;
             let textSubcategory = li.innerText;
             li.querySelector('a').setAttribute('title', textSubcategory)
             li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
 
+            console.log(textSubcategory)
+            console.log(idSubCategory)
             fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
                 console.log(data)
                 let products = data.products;
-                document.querySelector(`.listing li[data-id="${idSubCategory}"] a`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
+                document.querySelector(`.listing li[data-id="${products[0].product_id}"] a`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
             })
         })
 
