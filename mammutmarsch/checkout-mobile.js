@@ -1457,6 +1457,8 @@ function addDark() {
 		if ($('.wc_payment_method [checked]')) {
 			clearInterval(is)
 
+            console.log('addDark');
+
 			if ($('.dark')) {
 				$('.dark').classList.remove('dark')
 			}
@@ -1469,6 +1471,8 @@ function reorder() {
 		if ($('.payment_method_stripe img')?.src) {
 			clearInterval(is)
 
+            console.log('reorder');
+
 			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
 		}
 	}, 100)
@@ -1478,6 +1482,9 @@ function reorder() {
 let isOrder = setInterval(() => {
 	if($('#order_review')) {
 		clearInterval(isOrder)
+
+        console.log('isOrder');
+
 		let target = $('#order_review')
 		let config = {
 			attributes: true,
@@ -1493,7 +1500,7 @@ let isOrder = setInterval(() => {
 		let observer = new MutationObserver(callback)
 
 		function observerTimeout() {
-			console.log('Observed!!!')
+			
 			reorder()
 			addDark()
 			isBr()
@@ -1501,10 +1508,11 @@ let isOrder = setInterval(() => {
 			isFee()
 			isAppliedCoupon()
 
-			setTimeout(() => {
+			setTimeout(() => {                
 				observer.observe(target, config)
-			}, 2000)
-			console.log('Observed ssss!!')
+                console.log('observed');
+			}, 1000)
+			
 		}
 
 		observerTimeout()
