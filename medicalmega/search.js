@@ -505,9 +505,9 @@ let styles = `
 
 let header = `
     <header class="header">
-        <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger">
+        <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger" data-button="menu">
         <ul class="header_cart"></ul>
-        <div class="nav-menu">
+        <div class="nav-menu" data-item="menu">
             <div class="nav-menu_container">
                 <div class="sticky-top">
                     <div class="justify-content-between">
@@ -676,13 +676,6 @@ window.onload = function() {
 
     }); //open all category
     document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
-
-    document.querySelector('.icon_burger').addEventListener('click', () => menu.classList.add('active'));
-    document.querySelector('.btn_close').addEventListener('click', () => {
-        menu.classList.remove('active')
-        actionDataLayer = 'Click on cross button';
-        pushDataLayer(actionDataLayer)
-    });
 
     menu.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-menu')) {
@@ -1161,7 +1154,7 @@ window.onload = function() {
             })
 
             document.querySelectorAll('[data-button]').forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', (e) => {
                     let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
                     popup.classList.toggle('active')
 
@@ -1170,7 +1163,20 @@ window.onload = function() {
                     } else {
                         document.body.style.overflow = 'inherit';
                     }
-                    actionDataLayer = `Click on ${e.target.innerText} button`;
+                    
+                    if (button.classList.contains('btn_close')) {
+                        actionDataLayer = 'Click on cross button';
+                        if (button.closest('popup_filter')) {
+                            labelDataLayer = 'Filters'
+                        } else if (button.closest('.nav-menu')) {
+                            labelDataLayer = 'Menu'
+                        }
+                    } else if (button.classList.contains('icon_burger')) {
+                        labelDataLayer = 'Header'
+                    } else {
+                        actionDataLayer = `Click on ${e.target.innerText} button`;
+                        labelDataLayer = 'Listing'
+                    }
                     pushDataLayer(actionDataLayer,labelDataLayer)
                 })
             })
@@ -1224,6 +1230,17 @@ window.onload = function() {
     document.querySelector('.btn_sort select').addEventListener('change', (e) => {
         actionDataLayer = 'Click on sort by field';
         pushDataLayer(actionDataLayer)
+    })
+    document.querySelectorAll('.checkbox').forEach(checkbox => {
+        checkbox.addEventListener('click', () => {
+            if (checkbox.closest('.filter_brands')) {
+                actionDataLayer = 'Click on one of the brand items on filters';
+            } else if (checkbox.closest('.filter_price')) {
+                actionDataLayer = 'Click on one of the price items on filters';
+            }
+            pushDataLayer(actionDataLayer)
+        })
+      
     })
 };
 
