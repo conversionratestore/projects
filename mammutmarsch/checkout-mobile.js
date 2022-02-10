@@ -252,7 +252,7 @@ const style = `
 			}
 					
 			.checkout.woocommerce-checkout {  display: grid;
-			  grid-template-columns: 1fr 1fr 1fr;
+			  grid-template-columns: 1fr 1.2fr 0.8fr;
 			  /*gap: 20px;*/
 			  grid-auto-flow: row;
 			  grid-template-areas:
@@ -670,7 +670,7 @@ const style = `
 	[data-name="coupon-sale"] .cancel{
 		font-weight: 700;
 		cursor: pointer;
-		color: #212121;
+		color: #c00;
 	}
 	
 	.woocommerce-message .button.wc-forward {
@@ -1118,7 +1118,6 @@ margin: 15px !important;
 		
 		
 	`
-
 const customHTML = `
 		<nav class="navbar-custom">
 			<ol>
@@ -1146,7 +1145,6 @@ const customHTML = `
 				</div>
 			</div>
 	`
-
 const sideBlock = `
 		<div class="side-block">
 			<div class="product-wrapper">
@@ -1172,10 +1170,12 @@ const sideBlock = `
 		</div>
 	`
 
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 document.head.insertAdjacentHTML('beforeend', style)
+
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+
+/* intervals */
 
 let isBar = setInterval(() => {
 	if ($('.checkout_navigation_bar')) {
@@ -1184,12 +1184,30 @@ let isBar = setInterval(() => {
 		$('.checkout_navigation_bar').insertAdjacentHTML('afterend', customHTML)
 	}
 }, 200)
+let isBilling = setInterval(() => {
+	if (
+		$('.woocommerce-billing-fields') &&
+		$('.checkout.woocommerce-checkout') &&
+		$('.woocommerce-form-login') &&
+		$$('.woocommerce-info')[0]
+	) {
+		clearInterval(isBilling)
 
-$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
-$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
-$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
-$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
-
+		$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
+		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
+		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
+		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
+		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
+	<div class="under-block">
+		<button>Bestellung abschliessen</button>
+		<div class="remove">
+			<p><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="money	back">Geld-zurück-Garantie </p>		
+			<p class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</p>
+		</div>
+	</div>
+`)
+	}
+}, 200)
 let isPrice = setInterval(() => {
 	if (
 		$('.cart_item .product-name')?.innerText &&
@@ -1201,8 +1219,8 @@ let isPrice = setInterval(() => {
 		clearInterval(isPrice)
 
 		let name = ($(`.cart_item .product-name`).innerText).trim()
-		let price = '€' + $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-		let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
+		let price = $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 		$('.product-wrapper .product-name').innerText = name
 
@@ -1213,65 +1231,20 @@ let isPrice = setInterval(() => {
 		$('.product-mobile [data-name="total"]').innerText = total
 	}
 }, 200)
-
-let isFee = setInterval(() => {
-	if (
-		$('.fee .woocommerce-Price-amount.amount') &&
-		$(`.product-wrapper [data-name="fee"]`)
-
-	) {
-		let fee = '€' + $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-		let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-
-		$(`.product-wrapper .fee-wrapper`).classList.add('show')
-		$(`.product-wrapper [data-name="fee"]`).innerText = fee
-		$(`.product-wrapper [data-name="total"]`).innerText = total
-
-		$(`.product-mobile [data-name="total"]`).innerText = total
-
-	} else {
-		let total = '€' + $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0]
-
-		$(`.product-wrapper .fee-wrapper`).classList.remove('show')
-		$(`.product-wrapper [data-name="fee"]`).innerText = ''
-		$(`.product-wrapper [data-name="total"]`).innerText = total
-
-		$(`.product-mobile [data-name="total"]`).innerText = total
-	}
-}, 2000)
-
 let isCoupon = setInterval(() => {
-	if ($('.product-wrapper') && $('.checkout_coupon')) {
+	if ($('.product-wrapper') && $('.checkout_coupon') && $('#coupon_code')) {
 		clearInterval(isCoupon)
+
 		$('.checkout_coupon').insertAdjacentHTML('afterbegin', `<p class="title">Gutschein</p>`)
 		$('.product-wrapper').after($('.checkout_coupon'))
+		$('.checkout_coupon').insertAdjacentHTML('beforeend', `
+	<button class="custom-coupon"></button>	
+`)
+		$('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 	}
 }, 200)
-
-
-let isAppliedCoupon = setInterval(() => {
-	if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
-
-		$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
-
-		$('.custom-coupon').classList.add('applied')
-		$('.coupon-wrapper').classList.add('show')
-
-
-		// $('.custom-coupon img').src = "https://conversionratestore.github.io/projects/mammutmarsch/img/download_done.svg"
-		// $('.custom-coupon')
-	} else {
-		if($('.coupon-wrapper').classList.contains('show')) {
-			$('.coupon-wrapper').classList.remove('show')
-		}
-		if($('.custom-coupon').classList.contains('applied')) {
-			$('.custom-coupon').classList.remove('applied')
-		}
-	}
-}, 1000)
-
 let isCancel = setInterval(() => {
-	if($('.coupon-wrapper .cancel') && $('.woocommerce-remove-coupon')) {
+	if ($('.coupon-wrapper .cancel') && $('.woocommerce-remove-coupon')) {
 		clearInterval(isCancel)
 
 		$('.coupon-wrapper .cancel').addEventListener('click', () => {
@@ -1280,158 +1253,112 @@ let isCancel = setInterval(() => {
 	}
 
 }, 500)
-
-
-$('.checkout_coupon').insertAdjacentHTML('beforeend', `
-	<button class="custom-coupon"></button>
-	
-`)
-
-$('[name="apply_coupon"]').value = ''
-
-isCustomCoupon = setInterval(function() {
-	if($('[name="apply_coupon"]') && $('.custom-coupon')) {
+let isCustomCoupon = setInterval(function () {
+	if ($('[name="apply_coupon"]') && $('.custom-coupon')) {
 		clearInterval(isCustomCoupon)
+
+		$('[name="apply_coupon"]').value = ''
 
 		$('.custom-coupon').addEventListener('click', () => {
 			$('[name="apply_coupon"]').click()
 
-			window.dataLayer = window.dataLayer || [];
+			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Checkout improvements',
-				'eventAction': 'Promo code apply click'
-			});
+				'eventAction': 'Promo code apply click',
+			})
 
 			console.log('eventAction Promo code apply click')
 		})
 	}
 }, 200)
-
-let isBtnForward = setInterval(function() {
-	if($('.woocommerce-message .button.wc-forward')) {
+let isBtnForward = setInterval(function () {
+	if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
 		clearInterval(isBtnForward)
 
 		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
 
 		$('.subblock').insertAdjacentHTML('beforeend', remove)
 
-		setTimeout(() => {
-			$('.remove').addEventListener('click',() => {
+		let isRemove = setInterval(() => {
+			if ($('.remove')) {
+				clearInterval(isRemove)
+				$('.remove').addEventListener('click', () => {
 
-				$('.woocommerce-message .button.wc-forward').click()
+					$('.woocommerce-message .button.wc-forward').click()
 
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: Checkout improvements',
-					'eventAction': 'Click on Remove item'
-				});
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: Checkout improvements',
+						'eventAction': 'Click on Remove item',
+					})
 
-				console.log('eventAction Click on Remove item')
-			})
-		}, 1500)
+					console.log('eventAction Click on Remove item')
+				})
+			}
+		}, 200)
 	}
 }, 200)
-
-$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
-	<div class="under-block">
-		<button>Bestellung abschliessen</button>
-		<div class="remove">
-		<p><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="money	back">Geld-zurück-Garantie </p>
-		
-			<p class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</p>
-
-		
-</div>
-		
-		
-	</div>
-`)
-
 let isGreenBtn = setInterval(() => {
-	if($('.under-block button') && $('.button#place_order.button.alt')) {
+	if ($('.under-block button') && $('.button#place_order.button.alt')) {
 		clearInterval(isGreenBtn)
 
 		$('.under-block button').addEventListener('click', () => {
 			$('.button#place_order.button.alt').click()
 
-			window.dataLayer = window.dataLayer || [];
+			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Checkout improvements',
-				'eventAction': 'Click on Place Order'
-			});
+				'eventAction': 'Click on Place Order',
+			})
 
 			console.log('eventAction Click on Place Order')
 		})
-
 	}
 }, 200)
+let isInfo = setInterval(() => {
+	if ($('.col-1 .woocommerce-info')) {
+		clearInterval(isInfo)
 
-document.querySelector('.col-1 .woocommerce-info').innerHTML = '\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t'
+		$('.col-1 .woocommerce-info').innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+	}
+}, 200)
+let isName = setInterval(() => {
+	if (
+		$('select[name="title"] option') &&
+		$('select[name="birthday_day"] option') &&
+		$('select[name="birthday_month"] option') &&
+		$('select[name="birthday_year"] option') &&
+		$('select[name="billing_country"] option') &&
+		$('select[name="size"] option')
+	) {
+		clearInterval(isName)
 
-$('select[name="title"] option').innerText = 'Bitte auswählen'
-$('select[name="birthday_day"] option').innerText = 'DD'
-$('select[name="birthday_month"] option').innerText = 'MM'
-$('select[name="birthday_year"] option').innerText = 'YY'
-
-let intr = setInterval(() => {
-	if($('select[name="size"] option')) {
-		clearInterval(intr)
+		$('select[name="title"] option').innerText = 'Bitte auswählen'
+		$('select[name="birthday_day"] option').innerText = 'DD'
+		$('select[name="birthday_month"] option').innerText = 'MM'
+		$('select[name="birthday_year"] option').innerText = 'YY'
+		$('select[name="billing_country"] option').innerText = 'Bitte auswählen'
 		$('select[name="size"] option').innerText = 'Bitte auswählen'
 	}
-}, 1000)
-
-$('select[name="billing_country"] option').innerText = 'Bitte auswählen'
-$('#coupon_code').placeholder = 'Gutschein / Rabattcode'
-
-let isBr = () => {
-	if ($('#wc-stripe-cc-form br')) {
-		$('#wc-stripe-cc-form br').remove()
+}, 200)
+let isExist = setInterval(() => {
+	if ($('#payment')) {
+		clearInterval(isExist)
+		$('#payment').insertAdjacentHTML('beforebegin', `
+	<div class="custom-payment">
+	<p class="title">Bezahlung</p>
+	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
+</div>
+`)
 	}
-}
-
-isBr()
-
-const target = $('#order_review')
-
-const config = {
-	attributes: true,
-	childList: true,
-	subtree: true
-};
-
-function reorder() {
-	setTimeout(() => {
-		$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-	}, 1500)
-}
-
-const callback = function(mutationsList, observer) {
-	observer.disconnect();
-	reorder()
-	addDark()
-	isBr()
-	observerTimeout()
-};
-
-const observer = new MutationObserver(callback);
-
-function observerTimeout() {
-	setTimeout(() => {
-		observer.observe(target, config);
-	}, 2000)
-}
-
-observerTimeout()
-
-reorder()
-
-
-let interval = setInterval(() => {
-	if($('.checkout_coupon') && $('#payment')) {
-		clearInterval(interval)
+}, 200)
+let isComment = setInterval(() => {
+	if ($('.checkout_coupon') && $('#payment')) {
+		clearInterval(isComment)
 		$('.checkout_coupon').after($('#payment'))
 		$('.checkout_coupon').insertAdjacentHTML('afterend', `
 		<div class="review">
@@ -1444,8 +1371,7 @@ let interval = setInterval(() => {
       <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/stars_group.svg" alt="">
     </div>
     <div class="text">
-      <p>Es hat einen riesen Spaß gemacht. Von meiner Seite aus war alles in Ordnung.<br>
-Vielen Dank</p>
+      <p>Es hat einen riesen Spaß gemacht. Von meiner Seite aus war alles in Ordnung.<br>Vielen Dank</p>
     </div>
   </div>
 </div>
@@ -1453,58 +1379,149 @@ Vielen Dank</p>
 	}
 }, 200)
 
+/* mut functions */
+function isFee() {
+	let is = setInterval(() => {
+		if (
+			$('.fee .woocommerce-Price-amount.amount') &&
+			$(`.product-wrapper [data-name="fee"]`)
+		) {
+			clearInterval(is)
+			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
+			$(`.product-wrapper .fee-wrapper`).classList.add('show')
+			$(`.product-wrapper [data-name="fee"]`).innerText = fee
+			$(`.product-wrapper [data-name="total"]`).innerText = total
 
-isExist = setInterval(() => {
-	if($('#payment')) {
-		clearInterval(isExist)
-		$('#payment').insertAdjacentHTML('beforebegin', `
-	<div class="custom-payment">
-	<p class="title">Bezahlung</p>
-	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
-</div>
-`)
-	}
-},200)
+			$(`.product-mobile [data-name="total"]`).innerText = total
 
+		} else {
+			clearInterval(is)
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
+			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
+			$(`.product-wrapper [data-name="fee"]`).innerText = ''
+			$(`.product-wrapper [data-name="total"]`).innerText = total
 
-let isCheckbox = setInterval(() => {
-	if($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
-
-
-		// setTimeout(() => {
-		$$('.place-order [type="checkbox"]').forEach(checkbox => {
-			checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-		})
-		// }, 2000)
-	}
-}, 1000)
-
-function addDark() {
-	if($('.dark')) {
-		$('.dark').classList.remove('dark')
-	}
-	$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
+			$(`.product-mobile [data-name="total"]`).innerText = total
+		}
+	}, 200)
 }
 
-addDark()
+function isAppliedCoupon() {
+	let is = setInterval(() => {
+		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
+			clearInterval(is)
+			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
+
+			$('.custom-coupon').classList.add('applied')
+			$('.coupon-wrapper').classList.add('show')
+
+		} else {
+			clearInterval(is)
+			if ($('.coupon-wrapper').classList.contains('show')) {
+				$('.coupon-wrapper').classList.remove('show')
+			}
+			if ($('.custom-coupon').classList.contains('applied')) {
+				$('.custom-coupon').classList.remove('applied')
+			}
+		}
+	}, 200)
+}
+
+function isBr() {
+	let is = setInterval(() => {
+		if ($('#wc-stripe-cc-form br')) {
+			clearInterval(is)
+
+			$('#wc-stripe-cc-form br').remove()
+		}
+	}, 200)
+}
+
+function isCheckbox() {
+	let is = setInterval(() => {
+		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
+			clearInterval(is)
+			$$('.place-order [type="checkbox"]').forEach(checkbox => {
+				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+			})
+		}
+	}, 200)
+}
+
+function addDark() {
+	let is = setInterval(() => {
+		if ($('.wc_payment_method [checked]')) {
+			clearInterval(is)
+
+			if ($('.dark')) {
+				$('.dark').classList.remove('dark')
+			}
+			$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
+		}
+	}, 100)
+}
+
+function reorder() {
+	let is = setInterval(() => {
+		if ($('.payment_method_stripe img')?.src) {
+			clearInterval(is)
+
+			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
+		}
+	}, 100)
+}
+
+/* mut observer */
+
+const target = $('#order_review')
+const config = {
+	attributes: true,
+	childList: true,
+	subtree: true,
+}
+
+const callback = function (mutationsList, observer) {
+	observer.disconnect()
+	observerTimeout()
+}
+const observer = new MutationObserver(callback)
+
+function observerTimeout() {
+	reorder()
+	addDark()
+	isBr()
+	isCheckbox()
+	isFee()
+	isAppliedCoupon()
+
+	setTimeout(() => {
+		observer.observe(target, config)
+	}, 1000)
+}
+
+observerTimeout()
 
 console.log('eventAction loaded')
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
 	'event': 'event-to-ga',
 	'eventCategory': 'Exp: Checkout improvements',
-	'eventAction': 'loaded'
-});
+	'eventAction': 'loaded',
+})
 
-(function(h,o,t,j,a,r){
-	h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-	h._hjSettings={hjid:1191175,hjsv:6};
-	a=o.getElementsByTagName('head')[0];
-	r=o.createElement('script');r.async=1;
-	r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-	a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('event', 'checkout_improvements');
+;(function (h, o, t, j, a, r) {
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 1191175, hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+hj('event', 'checkout_improvements')
