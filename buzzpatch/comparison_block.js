@@ -381,6 +381,28 @@ let comparisonBlock = /*html*/ `
 document.head.insertAdjacentHTML("beforeend", styleComparisonBlock)
 document.querySelector("#reviews").insertAdjacentHTML("beforebegin", comparisonBlock)
 
+// //observer
+const options = {
+  root: null,
+  threshold: 0.5,
+}
+
+let containerHint = document.querySelector(".comparison_block > p")
+let observer = new IntersectionObserver((entries) => {
+  if (!entries[0].isIntersecting) return
+  //
+  window.dataLayer = window.dataLayer || []
+  dataLayer.push({
+    event: "event-to-ga",
+    eventCategory: "Exp: Pricing comparison option",
+    eventAction: "Table appearance with additional info",
+  })
+
+  observer.disconnect()
+})
+
+observer.observe(containerHint, options)
+
 // click on hint
 if (document.querySelector(".comparison_block > p > svg")) {
   const toggleMenu = () => {
