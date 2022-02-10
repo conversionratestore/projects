@@ -511,7 +511,7 @@ let header = `
             <div class="nav-menu_container">
                 <div class="sticky-top">
                     <div class="justify-content-between">
-                        <img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo">
+                        <a href="/"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo"></a>
                         <img src="https://conversionratestore.github.io/projects/medicalmega/img/close.svg" class="btn_close" >
                     </div>
                     <ul class="nav-menu_login"></ul>
@@ -1218,8 +1218,8 @@ window.onload = function() {
     }
 
     //events
-    document.querySelector('.signup a').addEventListener('click', () => {
-        actionDataLayer = 'Click on Sign in button in menu';
+    document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
+        actionDataLayer = `Click on ${e.target.innerText.split(',')[1]} button in menu`;
         pushDataLayer(actionDataLayer)
     })
 
