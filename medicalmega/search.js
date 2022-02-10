@@ -665,7 +665,6 @@ let mut = new MutationObserver(function (muts) {
                             console.log(randomNum)
                         }
                     })
-                    resolve(data)
                 })
             }
         })
