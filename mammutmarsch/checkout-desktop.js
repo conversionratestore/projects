@@ -1008,31 +1008,7 @@ let isCustomCoupon = setInterval(function () {
 		})
 	}
 }, 200)
-let isBtnForward = setInterval(function () {
-	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4]) {
-		clearInterval(isBtnForward)
 
-		$$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
-
-		let isRemove = setInterval(() => {
-			if ($('.table-custom .remove')) {
-				clearInterval(isRemove)
-				$('.table-custom .remove').addEventListener('click', () => {
-					$('.woocommerce-message .button.wc-forward').click()
-
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp: Checkout improvements',
-						'eventAction': 'Click on Remove item',
-					})
-
-					console.log('eventAction Click on Remove item')
-				})
-			}
-		}, 200)
-	}
-}, 200)
 let isGreenBtn = setInterval(() => {
 	if ($('.under-block button') && $('.button#place_order.button.alt')) {
 		clearInterval(isGreenBtn)
@@ -1188,6 +1164,32 @@ function addDark() {
 		}
 	}, 100)
 }
+function isBtnForward() {
+	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4]) {
+		
+
+		$$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
+
+		let isRemove = setInterval(() => {
+			if ($('.table-custom .remove')) {
+				clearInterval(isRemove)
+				$('.table-custom .remove').addEventListener('click', () => {
+					$('.woocommerce-message .button.wc-forward').click()
+
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: Checkout improvements',
+						'eventAction': 'Click on Remove item',
+					})
+
+					console.log('eventAction Click on Remove item')
+				})
+			}
+		}, 200)
+	}
+}
+
 
 /* mut observer */
 let isOrder = setInterval(() => {
@@ -1213,7 +1215,8 @@ let isOrder = setInterval(() => {
 				reorder()
 				addDark()
 				isAppliedCoupon()
-			}, 1000);
+				isBtnForward()
+			}, 1500);
 			
 			isBr()
 			isCheckbox()
