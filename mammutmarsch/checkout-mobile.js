@@ -1282,10 +1282,9 @@ let isBtnForward = setInterval(function () {
 		$('.subblock').insertAdjacentHTML('beforeend', remove)
 
 		let isRemove = setInterval(() => {
-			if ($('.remove')) {
+			if ($('.subblock .remove')) {
 				clearInterval(isRemove)
-				$('.remove').addEventListener('click', () => {
-
+				$('.subblock .remove').addEventListener('click', () => {                                      
 					$('.woocommerce-message .button.wc-forward').click()
 
 					window.dataLayer = window.dataLayer || []
