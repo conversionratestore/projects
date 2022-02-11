@@ -1,6 +1,6 @@
 let styles = `
     <style>
-   #pagination {
+   #pagination, #pagination2 {
         padding-top: 15px;
         width: 100%;
         display: flex;
@@ -17,7 +17,7 @@ let styles = `
         .list_type2 {
             width: 100%;
         }
-     #pagination li,  #pagination i {
+     #pagination li, #pagination2 li{
         cursor: pointer;
         font-size: 11px;
         color: #000;
@@ -29,32 +29,29 @@ let styles = `
         width: fit-content;
         line-height: 1;
         }
-        #pagination li:last-child:after {
+        #pagination li:last-child:after, #pagination2 li:last-child:after{
             content: none;
         }
-         #pagination li:after,  #pagination i:after {
+         #pagination li:after, #pagination2 li:after{
             content: '|';
             font-size: 11px;
             color: #000;
             margin: 0 -4px 0 4px
          }
-          #pagination li.ellipsis-after:after {
+          #pagination li.ellipsis-after:after, #pagination2 li.ellipsis-after:after{
             content: '...';
           }
-          #pagination li.after-not:after {
+          #pagination li.after-not:after, #pagination2 li.after-not:after{
           content: none;
           }
-            #pagination li.ellipsis-before:before {
+            #pagination li.ellipsis-before:before, #pagination2 li.ellipsis-before:before{
             content: '...';
             font-size: 11px;
             color: #000;
             margin: 0 4px 0 -4px;
           }
-        #pagination i {
-            paddin: 0;
-        }
     
-     #pagination li.active {
+     #pagination li.active, #pagination2 li.active {
         font-weight: 700; 
         }
     #hdr, #banner, .listing .category, .listing .subhead {
@@ -711,7 +708,11 @@ window.onload = function() {
     const createPagination = document.createElement('div');
     createPagination.id = 'pagination';
     createPagination.style.display = 'none';
-    
+
+    const createPaginationTwo = document.createElement('div');
+    createPaginationTwo.id = 'pagination2';
+    createPaginationTwo.style.display = 'none';
+
     //card product
     class ProductCard {
         constructor(src, url, title, manufacturer, soldBy, number, price, status, id, variantId, parent, variants) {
@@ -858,12 +859,19 @@ window.onload = function() {
                         page: selectedPage,  // selected page
                         step: 1  // pages before and after current
                     });
+                    Pagination.Init(document.getElementById('pagination2'), {
+                        size: cnt_page, // pages size
+                        page: selectedPage,  // selected page
+                        step: 1  // pages before and after current
+                    });
                 };
                 init()
                 Array.from(document.querySelectorAll('.pagination_page')).pop().classList.add('after-not')
                 createPagination.style = 'display: flex; opacity: 1; pointer-events: auto;';
+                createPaginationTwo.style = 'display: flex; opacity: 1; pointer-events: auto;';
             } else {
                 createPagination.style = 'display: none; ';
+                createPaginationTwo.style = 'display: none; ';
             }
         }
       
@@ -906,6 +914,7 @@ window.onload = function() {
             Pagination.page = +this.innerHTML;
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
             createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
+            createPaginationTwo.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
             selectedPage = Pagination.page;
             Pagination.Start();
@@ -919,6 +928,7 @@ window.onload = function() {
             }
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
             createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
+            createPaginationTwo.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
@@ -931,6 +941,7 @@ window.onload = function() {
             }
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
             createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
+            createPaginationTwo.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
@@ -1059,6 +1070,7 @@ window.onload = function() {
             console.log(document.querySelector('.btn_sort select').value)
 
             createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
+            createPaginationTwo.style = 'display: flex; opacity: 0; pointer-events: none;';
             fetchProduct(0,brandsFilter,priceRange)
         })
     }
@@ -1089,7 +1101,7 @@ window.onload = function() {
                 let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '').toLowerCase();
     
                 document.querySelectorAll('.listing li').forEach(li => {
-                    if (!li.closest('#pagination')) {
+                    if (!li.closest('#pagination') && !li.closest('#pagination2')) {
                         if (li.innerText.toLowerCase() == title) {
                             li.setAttribute('data-id', option.value)
         
@@ -1110,7 +1122,7 @@ window.onload = function() {
                                 }
 
                                 document.querySelectorAll(`.listing li a[data-total]`).forEach(itemLink => {
-                                    if (!itemLink.closest('#pagination')) {
+                                    if (!itemLink.closest('#pagination') && !itemLink.closest('#pagination2')) {
                                         let dataTotal = itemLink.dataset.total
                                         if (dataTotal == 0) {
                                             itemLink.closest('li').style.display = 'none';
@@ -1145,6 +1157,7 @@ window.onload = function() {
 
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
+        document.querySelector('.list_box1 .list_type2').append(createPaginationTwo)
 
         document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
             <div class="justify-content-between hide">
@@ -1245,6 +1258,7 @@ window.onload = function() {
                     console.log(document.querySelector('.btn_sort select').value)
         
                     createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
+                    createPaginationTwo.style = 'display: flex; opacity: 0; pointer-events: none;';
                     fetchProduct(0,brandsFilter,priceRange)
                 }
             })
