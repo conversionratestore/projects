@@ -1216,12 +1216,31 @@ window.onload = function() {
                 if (e.target.classList.contains('popup_filter')) {
                     popupFilter.classList.remove('active')
                     document.body.style.overflow = 'inherit';
+                    brandsFilter = [];
+                    priceRange = [];
+        
+                    checkedFilter('.filter_brands .checkbox', brandsFilter)
+                    checkedFilter('.filter_price .checkbox', priceRange)
+                    
+        
+                    let perPage = document.querySelector('[name="mm_per_page"]').value;
+        
+                 
+                    console.log(idCategory + " (id category)")
+                    console.log(perPage)
+                    console.log(brandsFilter.toString() + '(id brands)')
+                    console.log(priceRange.toString() + '(price range)')
+                    console.log(document.querySelector('.btn_sort select').value)
+        
+                    createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
+                    fetchProduct(0,brandsFilter,priceRange)
                 }
             })
 
             getProductsFilters('.popup_filter .btn_close','click') 
             getProductsFilters('.btn_sort select','change')
-            
+
+
             idCategory = JSON.parse(localStorage.getItem('idCategory'));
             console.log(idCategory)
             fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
