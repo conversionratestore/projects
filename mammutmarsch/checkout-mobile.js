@@ -1507,11 +1507,10 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            }, 1000)
-		}
-
-        
-		    observerTimeout()
+            }, 2000)
+		}     
+           
+        observerTimeout()
         		
 	}
 }, 100)
