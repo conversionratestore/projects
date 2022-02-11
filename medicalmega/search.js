@@ -612,7 +612,6 @@ let mut = new MutationObserver(function (muts) {
             }
             .list_type1 span {
                 opacity: 0;
-                text-align: right;
                 width: 100%;
             }
             .list_type2 i {
@@ -850,6 +849,7 @@ window.onload = function() {
     
             console.log(cnt_page)
             document.querySelector('.list_type1 span').innerHTML = `Displaying <b>${data.offset + 1} to ${data.limit * selectedPage}</b> (of <b>${count}</b> products)`
+            document.querySelector('.list_type1 span').style.opacity = '1'
             if (cnt_page > 1) {
     
                 //Initialization pagination
