@@ -1104,11 +1104,12 @@ window.onload = function() {
                                 console.log(idSubCategory)
                                 if (data.total_count > 0 && document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null && document.querySelector(`.listing li a[title="${textSubcategory}"]`) != null) {
                                     document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
-                                } else {
+                                } 
+                                if (data.total_count > 0) {
                                     document.querySelector(`.listing li a[title="${textSubcategory}"]`).setAttribute('data-total',data.total_count)
-                               
                                 }
-                                document.querySelectorAll(`.listing li a`).forEach(itemLink => {
+
+                                document.querySelectorAll(`.listing li a[data-total]`).forEach(itemLink => {
                                     if (!itemLink.closest('#pagination')) {
                                         let dataTotal = itemLink.dataset.total
                                         if (dataTotal == 0) {
