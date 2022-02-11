@@ -627,41 +627,9 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('.btn_filter') != null || document.querySelector('.icon_burger') != null) {
         console.log('load')
         mut.disconnect();
-        document.querySelectorAll('[data-button]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-                popup.classList.toggle('active')
-
-                console.log(popup)
-
-                if (popup.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'inherit';
-                }
-                
-                if (btn.classList.contains('btn_close')) {
-                    actionDataLayer = 'Click on cross button';
-                    if (btn.closest('.popup_filter')) {
-                        getProductsFilters('.popup_filter .btn_close','click')
-                        labelDataLayer = 'Filters'
-                    } else if (btn.closest('.nav-menu')) {
-                        labelDataLayer = 'Menu'
-                    }
-                } else if (btn.classList.contains('icon_burger')) {
-                    actionDataLayer = `Click on burger button`;
-                    labelDataLayer = 'Header'
-                } else {
-                    actionDataLayer = `Click on ${btn.innerText} button`;
-                    labelDataLayer = 'Listing'
-                }
-                pushDataLayer(actionDataLayer,labelDataLayer)
-            })
-        })
-        
+    
         document.querySelectorAll('[data-item]').forEach(item => {
-            item.addEventListener('click', (e) => {
+            document.querySelector('.nav-menu').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 console.log(e.target.classList.contains(item.dataset.item))
                 if (e.target.classList.contains(item.dataset.item)) {
@@ -694,6 +662,28 @@ window.onload = function() {
         if (el.classList.contains('hide-mobile')) {
             el.classList.remove('hide-mobile','hide-mobile-landscape')
         }
+    })
+
+    document.querySelector('.header .icon_burger').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+        popup.classList.add('active')
+
+        document.body.style.overflow = 'hidden';
+  
+        actionDataLayer = `Click on burger button`;
+        labelDataLayer = 'Header';
+        pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+    document.querySelector('.header .btn_close').addEventListener('click', (e) => {
+        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+        popup.classList.remove('active')
+
+        document.body.style.overflow = 'inherit';
+
+        actionDataLayer = 'Click on cross button';
+        labelDataLayer = 'Menu'
+        pushDataLayer(actionDataLayer,labelDataLayer)
     })
 
     document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
@@ -1197,7 +1187,27 @@ window.onload = function() {
                 el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
             })
 
+            document.querySelector('.btn_filter').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+                popup.classList.add('active')
         
+                document.body.style.overflow = 'hidden';
+          
+                actionDataLayer = `Click on ${e.target.innerText} button`;
+                labelDataLayer = 'Filters'
+                pushDataLayer(actionDataLayer,labelDataLayer)
+            })
+            document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
+                let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+                popup.classList.remove('active')
+        
+                document.body.style.overflow = 'inherit';
+        
+                actionDataLayer = 'Click on cross button';
+                labelDataLayer = 'Filters'
+                pushDataLayer(actionDataLayer,labelDataLayer)
+            })
            
             getProductsFilters('.btn_sort select','change')
             
