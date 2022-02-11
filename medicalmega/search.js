@@ -659,6 +659,17 @@ let mut = new MutationObserver(function (muts) {
                 pushDataLayer(actionDataLayer,labelDataLayer)
             })
         })
+        
+        document.querySelectorAll('[data-item]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                console.log(e.target.classList.contains(item.dataset.item))
+                if (e.target.classList.contains(item.dataset.item)) {
+                    item.classList.remove('active')
+                    document.body.style.overflow = 'inherit';
+                }
+            })
+        })
     }
 })
 
@@ -1219,16 +1230,6 @@ window.onload = function() {
             pushDataLayer(actionDataLayer)
         })
     }
-
-    document.querySelectorAll('[data-item]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            console.log(e.target.classList.contains(item.dataset.item))
-            if (e.target.classList.contains(item.dataset.item)) {
-                item.classList.remove('active')
-                document.body.style.overflow = 'inherit';
-            }
-        })
-    })
 
     //events
     document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
