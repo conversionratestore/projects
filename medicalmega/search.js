@@ -1101,7 +1101,7 @@ window.onload = function() {
                             console.log(data)
                             let products = data.products;
                             console.log(idSubCategory)
-                            if (data.total_count > 0 && document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null) {
+                            if (data.total_count > 0 && document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null && cument.querySelector(`.listing li a[title="${textSubcategory}"]`) != null) {
                                 document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
                             }
                             if (data.total_count == 0 && document.querySelector(`.listing li a[title="${textSubcategory}"]`).closest('li') != null) {
