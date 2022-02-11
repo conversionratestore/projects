@@ -1382,9 +1382,10 @@ let isComment = setInterval(() => {
 /* mut functions */
 function isAppliedCoupon() {
 	setTimeout(() => {
-        console.log('isAppliedCoupon');
+		console.log('set');
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
-			clearInterval(is)
+			
+			console.log('remove coupon');
 
 			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
 
@@ -1392,8 +1393,9 @@ function isAppliedCoupon() {
 			$('.coupon-wrapper').classList.add('show')
 
 		} else {
-			clearInterval(is)
 
+			console.log('set coupon');
+			
 			if ($('.coupon-wrapper').classList.contains('show')) {
 				$('.coupon-wrapper').classList.remove('show')
 			}
@@ -1401,7 +1403,7 @@ function isAppliedCoupon() {
 				$('.custom-coupon').classList.remove('applied')
 			}
 		}
-	}, 2000)
+	}, 2000);
 }
 function isFee() {
 	let is = setInterval(() => {
