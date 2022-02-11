@@ -1102,13 +1102,18 @@ window.onload = function() {
                                 console.log(data)
                                 let products = data.products;
                                 console.log(idSubCategory)
-                                if (document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null && document.querySelector(`.listing li a[title="${textSubcategory}"]`) != null) {
-                                    document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}" data-total="${data.total_count}">`)
+                                if (data.total_count > 0 && document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null && document.querySelector(`.listing li a[title="${textSubcategory}"]`) != null) {
+                                    document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
+                                } else {
+                                    document.querySelector(`.listing li a[title="${textSubcategory}"]`).setAttribute('data-total',data.total_count)
+                               
                                 }
-                                document.querySelectorAll(`.listing li img`).forEach(itemImg => {
-                                    let dataTotal = itemImg.dataset.total
-                                    if (dataTotal == 0) {
-                                        itemImg.closest('li').style.display = 'none';
+                                document.querySelectorAll(`.listing li a`).forEach(itemLink => {
+                                    if (!itemLink.closest('#pagination')) {
+                                        let dataTotal = itemLink.dataset.total
+                                        if (dataTotal == 0) {
+                                            itemLink.closest('li').style.display = 'none';
+                                        }
                                     }
                                 })
                             })
