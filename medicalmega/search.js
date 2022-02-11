@@ -1158,7 +1158,7 @@ window.onload = function() {
             })
 
         
-            getProductsFilters('.popup_filter .btn_close','click')
+           
             getProductsFilters('.btn_sort select','change')
             
        
@@ -1205,6 +1205,7 @@ window.onload = function() {
             if (btn.classList.contains('btn_close')) {
                 actionDataLayer = 'Click on cross button';
                 if (btn.closest('.popup_filter')) {
+                    getProductsFilters('.popup_filter .btn_close','click')
                     labelDataLayer = 'Filters'
                 } else if (btn.closest('.nav-menu')) {
                     labelDataLayer = 'Menu'
