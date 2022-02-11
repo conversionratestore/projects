@@ -166,7 +166,7 @@ let styles = `
         z-index: 999;
         background: rgba(0,0,0,0.5);
         width: 100%;
-        height: 100%;
+        height: 100vh;
         transition: all 0.3s ease;
     }
     .nav-menu.active {
