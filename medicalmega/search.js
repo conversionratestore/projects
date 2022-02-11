@@ -849,7 +849,7 @@ window.onload = function() {
             let cnt_page = Math.ceil(count / cnt); //кол-во страниц
     
             console.log(cnt_page)
-            document.querySelector('.list_type1 span').innerHTML = `Displaying <b>${data.offset + 1} to ${data.limit * data.offset}</b> (of <b>${count}</b> products)`
+            document.querySelector('.list_type1 span').innerHTML = `Displaying <b>${data.offset + 1} to ${data.limit * selectedPage}</b> (of <b>${count}</b> products)`
             if (cnt_page > 1) {
     
                 //Initialization pagination
