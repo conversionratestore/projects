@@ -1093,7 +1093,7 @@ let isName = setInterval(() => {
 /* mut functions */
 
 function isAppliedCoupon() {
-	setTimeout(() => {
+	
 		console.log('set');
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			
@@ -1115,7 +1115,7 @@ function isAppliedCoupon() {
 				$('.custom-coupon').classList.remove('applied')
 			}
 		}
-	}, 2000);
+	
 }
 function isFee() {
 	let is = setInterval(() => {
@@ -1208,16 +1208,20 @@ let isOrder = setInterval(() => {
 
 		function observerTimeout() {
 			console.log('observeeeee')
-			reorder()
-			addDark()
+			
+			setTimeout(() => {
+				reorder()
+				addDark()
+				isAppliedCoupon()
+			}, 1000);
+			
 			isBr()
 			isCheckbox()
-			isFee()
-			isAppliedCoupon()
+			isFee()			
 
 			setTimeout(() => {
 				observer.observe(target, config)
-			}, 1000)
+			}, 2000)
 		}
 
 		observerTimeout()
