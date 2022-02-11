@@ -623,22 +623,6 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`)
     }
- 
-    if (document.querySelector('.btn_filter') != null || document.querySelector('.icon_burger') != null) {
-        console.log('load')
-        mut.disconnect();
-    
-        document.querySelectorAll('[data-item]').forEach(item => {
-            document.querySelector('.nav-menu').addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                console.log(e.target.classList.contains(item.dataset.item))
-                if (e.target.classList.contains(item.dataset.item)) {
-                    item.classList.remove('active')
-                    document.body.style.overflow = 'inherit';
-                }
-            })
-        })
-    }
 })
 
 mut.observe(document, optionMut);
@@ -684,6 +668,14 @@ window.onload = function() {
         actionDataLayer = 'Click on cross button';
         labelDataLayer = 'Menu'
         pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+
+    let navMenu = document.querySelector('.nav-menu');
+    navMenu.addEventListener('click', (e) => {
+        if (e.target.classList.contains('nav-menu')) {
+            navMenu.classList.remove('active')
+            document.body.style.overflow = 'inherit';
+        }
     })
 
     document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
@@ -1207,6 +1199,13 @@ window.onload = function() {
                 actionDataLayer = 'Click on cross button';
                 labelDataLayer = 'Filters'
                 pushDataLayer(actionDataLayer,labelDataLayer)
+            })
+            let popupFilter = document.querySelector('.popup_filter');
+            popupFilter.addEventListener('click', (e) => {
+                if (e.target.classList.contains('popup_filter')) {
+                    popupFilter.classList.remove('active')
+                    document.body.style.overflow = 'inherit';
+                }
             })
            
             getProductsFilters('.btn_sort select','change')
