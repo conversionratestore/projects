@@ -1215,7 +1215,7 @@ window.onload = function() {
     document.querySelectorAll('[data-item]').forEach(item => {
         item.addEventListener('click', (e) => {
             if (e.target.className == item.dataset.item) {
-                menu.classList.remove('active')
+                item.classList.remove('active')
                 document.body.style.overflow = 'inherit';
             }
         })
