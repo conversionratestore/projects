@@ -1027,17 +1027,27 @@ window.onload = function() {
             })
         })
     })
-
+   
     function getProductsFilters(element,event) {
         document.querySelector(element).addEventListener(event, (e) => {
-            // if (element == '.popup_filter .btn_close') {
-                brandsFilter = [];
-                priceRange = [];
+            if (element == '.popup_filter .btn_close') {
+                let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
 
-                checkedFilter('.filter_brands .checkbox', brandsFilter)
-                checkedFilter('.filter_price .checkbox', priceRange)
-                
-            // }
+                popup.classList.remove('active')
+                document.body.style.overflow = 'inherit';
+        
+                actionDataLayer = 'Click on cross button';
+                labelDataLayer = 'Filters'
+                pushDataLayer(actionDataLayer,labelDataLayer)
+              
+            }
+
+            brandsFilter = [];
+            priceRange = [];
+
+            checkedFilter('.filter_brands .checkbox', brandsFilter)
+            checkedFilter('.filter_price .checkbox', priceRange)
+            
 
             let perPage = document.querySelector('[name="mm_per_page"]').value;
 
@@ -1195,26 +1205,17 @@ window.onload = function() {
             })
             let popupFilter = document.querySelector('.popup_filter');
             
-            popupFilter.querySelector('.btn_close').addEventListener('click', (e) => {
-                let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-
-                popup.classList.remove('active')
-                document.body.style.overflow = 'inherit';
-        
-                actionDataLayer = 'Click on cross button';
-                labelDataLayer = 'Filters'
-                pushDataLayer(actionDataLayer,labelDataLayer)
-            })
+       
             popupFilter.addEventListener('click', (e) => {
                 if (e.target.classList.contains('popup_filter')) {
                     popupFilter.classList.remove('active')
                     document.body.style.overflow = 'inherit';
                 }
             })
-           
+            
+            getProductsFilters('.popup_filter .btn_close','click') 
             getProductsFilters('.btn_sort select','change')
             
-       
             idCategory = JSON.parse(localStorage.getItem('idCategory'));
             console.log(idCategory)
             fetch(`/api/products&offset=0&limit=50&is_featured=0&ctoken=${mm.ctoken}&category=${idCategory}&with_filters=1`, headerFetch)
