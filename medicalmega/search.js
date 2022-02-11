@@ -1276,6 +1276,11 @@ window.onload = function() {
         })
       
     })
+    document.querySelector('.shoppingcart a').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on cart ';
+        labelDataLayer = 'Header';
+        pushDataLayer(actionDataLayer)
+    })
 };
 
 window.dataLayer = window.dataLayer || [];
