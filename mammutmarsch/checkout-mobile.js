@@ -1494,25 +1494,27 @@ let isOrder = setInterval(() => {
 		}
 		let observer = new MutationObserver(callback)
 
-		let isUI = setInterval(() => {
-            if(!$('blockUI.blockOverlay')){
+        function observerTimeout() {   
+            let isUI = setInterval(() => {
+                if(!$('blockUI.blockOverlay')){
+                    clearInterval(isUI)
 
+                    console.log('non exist!!!');
+                    reorder()
+                    addDark()
+                    isBr()
+                    isCheckbox()
+                    isFee()
+                    isAppliedCoupon()
 
-                clearInterval(isUI)
-                console.log('non exist!!!');
-                reorder()
-                addDark()
-                isBr()
-                isCheckbox()
-                isFee()
-                isAppliedCoupon()
+                    setTimeout(() => {                
+                        observer.observe(target, config)
+                        console.log('observed');
+                    }, 1000)
+                }
+            }, 200)
 
-                setTimeout(() => {                
-                    observer.observe(target, config)
-                    console.log('observed');
-                }, 1000)
-            }
-        }, 200)
+        }
 
         observerTimeout()
         		
