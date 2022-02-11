@@ -1280,33 +1280,7 @@ let isCustomCoupon = setInterval(function () {
 		})
 	}
 }, 200)
-let isBtnForward = setInterval(function () {
-	if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
-		clearInterval(isBtnForward)
 
-		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
-
-		$('.subblock').insertAdjacentHTML('beforeend', remove)
-
-		let isRemove = setInterval(() => {
-			if ($('.subblock .remove')) {
-				clearInterval(isRemove)
-				$('.subblock .remove').addEventListener('click', () => {                                      
-					$('.woocommerce-message .button.wc-forward').click()
-
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp: Checkout improvements',
-						'eventAction': 'Click on Remove item',
-					})
-
-					console.log('eventAction Click on Remove item')
-				})
-			}
-		}, 200)
-	}
-}, 200)
 let isGreenBtn = setInterval(() => {
 	if ($('.under-block button') && $('.button#place_order.button.alt')) {
 		clearInterval(isGreenBtn)
@@ -1381,7 +1355,7 @@ let isComment = setInterval(() => {
 
 /* mut functions */
 function isAppliedCoupon() {
-	setTimeout(() => {
+	
 		console.log('set');
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			
@@ -1403,7 +1377,7 @@ function isAppliedCoupon() {
 				$('.custom-coupon').classList.remove('applied')
 			}
 		}
-	}, 2000);
+	
 }
 function isFee() {
 	let is = setInterval(() => {
@@ -1480,6 +1454,35 @@ function reorder() {
 		}
 	}, 100)
 }
+function isBtnForward() {
+	// let isBtnForward = setInterval(function () {
+		if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
+			
+	
+			let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
+	
+			$('.subblock').insertAdjacentHTML('beforeend', remove)
+	
+			let isRemove = setInterval(() => {
+				if ($('.subblock .remove')) {
+					clearInterval(isRemove)
+					$('.subblock .remove').addEventListener('click', () => {                                      
+						$('.woocommerce-message .button.wc-forward').click()
+	
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: Checkout improvements',
+							'eventAction': 'Click on Remove item',
+						})
+	
+						console.log('eventAction Click on Remove item')
+					})
+				}
+			}, 200)
+		}
+	// }, 200)
+}
 
 /* mut observer */
 let isOrder = setInterval(() => {
@@ -1503,21 +1506,24 @@ let isOrder = setInterval(() => {
 
 		let observer = new MutationObserver(callback)
 
-		function observerTimeout() {	
-            setTimeout(() => {
-                reorder()
-                addDark()
-                isBr()
-                isCheckbox()
-                isFee()
-                isAppliedCoupon()
+		function observerTimeout() {
+			console.log('observeeeee')
+			
+			setTimeout(() => {
+				reorder()
+				addDark()
+				isAppliedCoupon()
+				isBtnForward()
+			}, 1500);
+			
+			isBr()
+			isCheckbox()
+			isFee()			
 
-                setTimeout(() => {                
-                    observer.observe(target, config)
-                    console.log('observed');
-                }, 1000)
-            }, 1500)
-		}     
+			setTimeout(() => {
+				observer.observe(target, config)
+			}, 2000)
+		}   
 
         observerTimeout()
 	}
