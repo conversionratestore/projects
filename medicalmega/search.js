@@ -1157,7 +1157,7 @@ window.onload = function() {
 
         document.querySelector('.listing .list_box1').insertAdjacentHTML('afterend',`<div class="products_list"></div>`)
         document.querySelector('.list_type2').append(createPagination)
-        document.querySelector('.list_box1 .list_type2').append(createPaginationTwo)
+        document.querySelectorAll('.list_box1 .list_type2')[1].append(createPaginationTwo)
 
         document.querySelector('.list_type1 p').insertAdjacentHTML('beforebegin', `
             <div class="justify-content-between hide">
