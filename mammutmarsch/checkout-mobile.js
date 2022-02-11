@@ -1351,7 +1351,6 @@ let isName = setInterval(() => {
 		$('select[name="size"] option').innerText = 'Bitte auswählen'
 	}
 }, 200)
-
 let isComment = setInterval(() => {
 	if ($('.checkout_coupon') && $('#payment')) {
 		clearInterval(isComment)
@@ -1381,6 +1380,29 @@ let isComment = setInterval(() => {
 }, 200)
 
 /* mut functions */
+function isAppliedCoupon() {
+	let is = setInterval(() => {
+        console.log('isAppliedCoupon');
+		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
+			clearInterval(is)
+
+			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
+
+			$('.custom-coupon').classList.add('applied')
+			$('.coupon-wrapper').classList.add('show')
+
+		} else {
+			clearInterval(is)
+
+			if ($('.coupon-wrapper').classList.contains('show')) {
+				$('.coupon-wrapper').classList.remove('show')
+			}
+			if ($('.custom-coupon').classList.contains('applied')) {
+				$('.custom-coupon').classList.remove('applied')
+			}
+		}
+	}, 200)
+}
 function isFee() {
 	let is = setInterval(() => {
 		if (
@@ -1408,29 +1430,6 @@ function isFee() {
 			$(`.product-wrapper [data-name="total"]`).innerText = total
 
 			$(`.product-mobile [data-name="total"]`).innerText = total
-		}
-	}, 200)
-}
-function isAppliedCoupon() {
-	let is = setInterval(() => {
-        console.log('isAppliedCoupon');
-		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
-			clearInterval(is)
-
-			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
-
-			$('.custom-coupon').classList.add('applied')
-			$('.coupon-wrapper').classList.add('show')
-
-		} else {
-			clearInterval(is)
-
-			if ($('.coupon-wrapper').classList.contains('show')) {
-				$('.coupon-wrapper').classList.remove('show')
-			}
-			if ($('.custom-coupon').classList.contains('applied')) {
-				$('.custom-coupon').classList.remove('applied')
-			}
 		}
 	}, 200)
 }
@@ -1482,7 +1481,7 @@ function reorder() {
 
 /* mut observer */
 let isOrder = setInterval(() => {
-	if($('#order_review table') && $('.side-block')) {
+	if($('#order_review')) {
 		clearInterval(isOrder)
 
         console.log('isOrder');
