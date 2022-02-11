@@ -1086,10 +1086,10 @@ window.onload = function() {
     if (window.location.pathname.includes('/category')) {
         if (document.querySelector('.listing li') != null) {
             document.querySelectorAll('#search_c_id option').forEach(option => {
-                let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '')
+                let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '').toLowerCase();
     
                 document.querySelectorAll('.listing li').forEach(li => {
-                    if (li.innerText == title) {
+                    if (li.innerText.toLowerCase() == title) {
                         li.setAttribute('data-id', option.value)
     
                         let idSubCategory = option.value;
