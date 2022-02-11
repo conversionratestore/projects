@@ -24,8 +24,6 @@ let startFunc = setInterval(() => {
     function onClickPricingUrl() {
       document.location = "https://checkout.samcart.com/products/samcart-grow-yearly-trial?_ga=2.142421298.1224594291.1644311332-453639727.1633503243"
     }
-
-    //
   }
 }, 10)
 
@@ -34,13 +32,13 @@ let startFunk2 = setInterval(() => {
     clearInterval(startFunk2)
 
     let styleBox = /* html*/ `
-      <style>
+<style>
   section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
     padding-top: 65px;
   }
-  
-  #recaptcha-error{
-  text-align: center !important;
+
+  #recaptcha-error {
+    text-align: center !important;
   }
 
   #sc51e54003-0fac-46db-80a2-881825e46c45 h1 {
@@ -62,7 +60,8 @@ let startFunk2 = setInterval(() => {
     color: #ffffff !important;
   }
 
-  .v2-horizontal-grid-container {
+  .v2-horizontal-grid-container,
+  div[ng-if="subscriptionsByProductId[checkoutContext.order.invoice.items[0].product_id]"] {
     display: none;
   }
 
@@ -220,10 +219,10 @@ let startFunk2 = setInterval(() => {
     cursor: pointer;
   }
 
-  .absolute_box p span .hint:hover~.mini_box,
-  .absolute_box p span .hint:hover~.hidden_text,
-  p.total_text span .hint:hover~.mini_box,
-  p.total_text span .hint:hover~.hidden_text {
+  .absolute_box p span .hint:hover ~ .mini_box,
+  .absolute_box p span .hint:hover ~ .hidden_text,
+  p.total_text span .hint:hover ~ .mini_box,
+  p.total_text span .hint:hover ~ .hidden_text {
     opacity: 1;
   }
 
@@ -319,7 +318,7 @@ let startFunk2 = setInterval(() => {
   .tpl-t1__col-form {
     height: 100%;
   }
-  
+
   #paymentForm {
     position: relative;
     width: 100%;
@@ -359,7 +358,6 @@ let startFunk2 = setInterval(() => {
   .card_box .back {
     transform: rotateY(-180deg);
   }
-
 
   .card_box .front button.btn_continue,
   .card_box #placeOrder {
@@ -432,6 +430,10 @@ let startFunk2 = setInterval(() => {
     text-transform: capitalize;
     color: #5a7386;
     margin-bottom: 5px;
+  }
+
+  #paymentForm .card_box .front label.error{
+    color: #FF3465;
   }
 
   .card_box .back .tpl-t1__terms.mx-auto.text-center {
@@ -535,8 +537,7 @@ let startFunk2 = setInterval(() => {
     margin: 0;
   }
 
-
-    .btn_back{
+  .btn_back {
     color: #273542;
     background-color: #f4f5f6;
     padding: 5px 11px;
@@ -546,149 +547,214 @@ let startFunk2 = setInterval(() => {
     cursor: pointer;
     text-transform: lowercase;
     font-size: 11px;
-    }
-
+  }
 </style>
       `
 
     let steps = /* html*/ `
-    <div class="steps">
-        <ol>
-            <li>
-                <span class="active">1</span>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/line1.png" alt="line">
-                <div class="absolute_box">
-                    <p>Start your free trial and get access to samcart</p>
-                    <span>Feb / 03 / 22</span>
-                </div>
-            </li>
-            <li>
-                <span>2</span>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/line2.png" alt="line">
-                <div class="absolute_box">
-                    <p>Create your new storefront</p>
-                    <span>Feb / 03 / 22</span>
-                </div>
-            </li>
-            <li>
-                <span>3</span>
-                <div class="absolute_box">
-                    <p>Risk-free trial. Cancel anytime during the next 14 days.
-                      <span>
-                        <svg class="hint" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip0_98_179)">
-                          <path d="M5.00065 1.3254C7.30184 1.3254 9.16732 3.16917 9.16732 5.44358C9.16732 7.71799 7.30184 9.56177 5.00065 9.56177C2.69946 9.56177 0.833984 7.71799 0.833984 5.44358C0.833984 3.16917 2.69946 1.3254 5.00065 1.3254Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M5 7.09082V5.44355" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M5 3.79639H5.011" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip0_98_179">
-                          <rect width="10" height="9.88364" fill="white" transform="matrix(1 0 0 -1 0 10.3855)"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-                        <svg class="mini_box" width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6"/>
-                        </svg>
-                        <span class="hidden_text">Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel you risk-free trial within 14 days and we will not charge you anything.</span>
-                      </span>
-                    </p>
-                    <span>Mar / 05 / 22</span>
-                </div>
-            </li>
-        </ol>
-    </div>
+<div class="steps">
+  <ol>
+    <li>
+      <span class="active">1</span>
+      <img src="https://conversionratestore.github.io/projects/samcart/img/line1.png" alt="line" />
+      <div class="absolute_box">
+        <p>Start your free trial and get access to samcart</p>
+        <span>Feb / 03 / 22</span>
+      </div>
+    </li>
+    <li>
+      <span>2</span>
+      <img src="https://conversionratestore.github.io/projects/samcart/img/line2.png" alt="line" />
+      <div class="absolute_box">
+        <p>Create your new storefront</p>
+        <span>Feb / 03 / 22</span>
+      </div>
+    </li>
+    <li>
+      <span>3</span>
+      <div class="absolute_box">
+        <p>
+          Risk-free trial. Cancel anytime during the next 14 days.
+          <span>
+            <svg class="hint" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_98_179)">
+                <path
+                  d="M5.00065 1.3254C7.30184 1.3254 9.16732 3.16917 9.16732 5.44358C9.16732 7.71799 7.30184 9.56177 5.00065 9.56177C2.69946 9.56177 0.833984 7.71799 0.833984 5.44358C0.833984 3.16917 2.69946 1.3254 5.00065 1.3254Z"
+                  stroke="white"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path d="M5 7.09082V5.44355" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M5 3.79639H5.011" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
+              <defs>
+                <clipPath id="clip0_98_179">
+                  <rect width="10" height="9.88364" fill="white" transform="matrix(1 0 0 -1 0 10.3855)" />
+                </clipPath>
+              </defs>
+            </svg>
+            <svg class="mini_box" width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6" />
+            </svg>
+            <span class="hidden_text"
+              >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel you
+              risk-free trial within 14 days and we will not charge you anything.</span
+            >
+          </span>
+        </p>
+        <span>Mar / 05 / 22</span>
+      </div>
+    </li>
+  </ol>
+</div>
     `
 
     let card = /* html*/ `
-    <div class="wrapper_card">
-      <div class="card_box">
-        <div class="front">
-          <span class="testik"></span>        
-          <button class="btn_continue">Continue
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.16699 10H15.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+<div class="wrapper_card">
+  <div class="card_box">
+    <div class="front">
+      <span class="testik"></span>
+      <button class="btn_continue">
+        Continue
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.16699 10H15.8337" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="back">
+      <span class="btn_back">&#8249; Back</span>
+      <span class="testik2"></span>
+      <div class="quarantee">
+        <div>
+          <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
         </div>
-        <div class="back">
-          <span class="btn_back">&#8249; Back</span>
-          <span class="testik2"></span>
-          <div class="quarantee">
-            <div>
-              <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
-            </div>
-            <div>
-              <p>Risk-free trial. Cancel anytime during the next 14 days</p>
-              <p>Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</p>
-            </div>
-          </div>
+        <div>
+          <p>Risk-free trial. Cancel anytime during the next 14 days</p>
+          <p>
+            Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
+            risk-free trial within 14 days and we will not charge you anything.
+          </p>
+        </div>
       </div>
-      </div>
-    </div>    
+    </div>
+  </div>
+</div>
     `
 
     let totalText = /* html*/ `
-      <p class="total_text"><span class="accent_color">*You pay nothing today.</span> Then $950 yearly starting in 2 weeks.
-        <span>
-          <svg class="hint" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_96_133)">
-            <path d="M5.05947 1.44767C7.38775 1.44767 9.27519 3.31315 9.27519 5.61434C9.27519 7.91553 7.38775 9.78101 5.05947 9.78101C2.73119 9.78101 0.84375 7.91553 0.84375 5.61434C0.84375 3.31315 2.73119 1.44767 5.05947 1.44767Z" stroke="#69727A" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M5.05859 7.28125V5.61458" stroke="#69727A" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M5.05859 3.94775H5.06959" stroke="#69727A" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            <defs>
-            <clipPath id="clip0_96_133">
-            <rect width="10.1177" height="10" fill="white" transform="matrix(1 0 0 -1 0 10.6145)"/>
-            </clipPath>
-            </defs>
-          </svg>
-          <svg class="mini_box" width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6"/>
-          </svg>
-          <span class="hidden_text">Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free trial within 14 days and we will not charge you anything.</span>
-        </span>
-      </p>
+<p class="total_text">
+  <span class="accent_color">*You pay nothing today.</span> Then $950 yearly starting in 2 weeks.
+  <span>
+    <svg class="hint" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_96_133)">
+        <path
+          d="M5.05947 1.44767C7.38775 1.44767 9.27519 3.31315 9.27519 5.61434C9.27519 7.91553 7.38775 9.78101 5.05947 9.78101C2.73119 9.78101 0.84375 7.91553 0.84375 5.61434C0.84375 3.31315 2.73119 1.44767 5.05947 1.44767Z"
+          stroke="#69727A"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path d="M5.05859 7.28125V5.61458" stroke="#69727A" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5.05859 3.94775H5.06959" stroke="#69727A" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <defs>
+        <clipPath id="clip0_96_133">
+          <rect width="10.1177" height="10" fill="white" transform="matrix(1 0 0 -1 0 10.6145)" />
+        </clipPath>
+      </defs>
+    </svg>
+    <svg class="mini_box" width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6" />
+    </svg>
+    <span class="hidden_text"
+      >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+      trial within 14 days and we will not charge you anything.</span
+    >
+  </span>
+</p>
+    `
+
+    let quaranteeBlock = /* html*/ `
+<div class="quarantee">
+  <div>
+    <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+  </div>
+  <div>
+    <p>Risk-free trial. Cancel anytime during the next 14 days</p>
+    <p>
+      Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+      trial within 14 days and we will not charge you anything.
+    </p>
+  </div>
+</div>
+
     `
 
     document.head.insertAdjacentHTML("beforeend", styleBox)
 
-    document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your new business today!"
-    document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").textContent =
-      "Create your account to start your 14-day trial and set up your new storefront."
+    if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
+      document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").insertAdjacentHTML("afterend", steps)
+    }
 
-    document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").insertAdjacentHTML("afterend", steps)
+    if (document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong")) {
+      document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your new business today!"
+    }
 
-    document.querySelector(".hint").addEventListener("mouseover", () => {
-      console.log(`first`)
-    })
+    if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
+      document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").textContent =
+        "Create your account to start your 14-day trial and set up your new storefront."
+    }
 
     // 3d card
     document.querySelector("#paymentForm")?.insertAdjacentHTML("afterbegin", card)
     document.querySelector(".testik")?.after(document.querySelector(".mb-24.text-uppercase"))
     document.querySelector(".front .mb-24.text-uppercase")?.after(document.querySelectorAll(".border-bottom.mb-16")[0])
-
     document.querySelector(".testik2").after(document.querySelector(".my-32.text-uppercase"))
     document.querySelector(".back .my-32.text-uppercase")?.after(document.querySelector("#payments"))
     document.querySelector(".back #payments")?.after(document.querySelector(".tpl-t1__terms.mx-auto.text-center"))
-    document.querySelector(".tpl-t1__terms.mx-auto.text-center").after(document.querySelector("#order-summary-widget"))
-    document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
-    document.querySelector(".back .quarantee")?.after(document.querySelector(".g-recaptcha-container"))
+    document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector("#order-summary-widget"))
+    document.querySelector(".tpl-t1__terms.mx-auto.text-center")?.after(document.querySelector(".g-recaptcha-container"))
+    // document.querySelector(".back")?.append(document.querySelector(".g-recaptcha-container"))
+    if (document.querySelector("#placeOrder")) {
+      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#placeOrder"))
+    }
+    if (document.querySelector("#payment-request-button")) {
+      document.querySelector(".back #order-summary-widget")?.after(document.querySelector("#payment-request-button"))
+    }
 
     if (document.querySelector(".card_box")) {
+      //placeholder input front card
       document.querySelector('input[name="fname"]').placeholder = "John"
       document.querySelector('input[name="lname"]').placeholder = "Smith"
       document.querySelector('input[name="email"]').placeholder = "johnsmth@gmail.com"
       // document.querySelector('input[name="phone"]').placeholder = "+1 (000) - 000 - 0000"
 
+      // click on btn_continue
       document.querySelector(".card_box .front button.btn_continue").addEventListener("click", () => {
         validationForm("form .wrapper_card .card_box .front")
       })
 
-      document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
+      // hover on hint -> event
+      // document.querySelector(".hint").addEventListener("mouseover", () => {
+      //   console.log(`first`)
+      // })
 
-      document.querySelector("#placeOrder").textContent = "Start your free trial now"
+      // click on btn_back
+      document.querySelector(".btn_back").addEventListener("click", function (e) {
+        e.preventDefault()
+        document.querySelector(".front").style.transform = "rotateY(0deg)"
+        document.querySelector(".back").style.transform = "rotateY(-180deg)"
+        document.querySelector(".front").style.zIndex = "15"
+      })
+
+      //label, input textContent back card
+      if (document.querySelector(".card_box .back h3.my-32.text-uppercase")) {
+        document.querySelector(".card_box .back h3.my-32.text-uppercase").innerHTML = "Please add your payment details  <br> to start free trial"
+      }
+
+      if (document.querySelector("#placeOrder")) {
+        document.querySelector("#placeOrder").textContent = "Start your free trial now"
+      }
 
       setTimeout(() => {
         if (document.querySelector("#payments #cards")) {
@@ -723,15 +789,6 @@ let startFunk2 = setInterval(() => {
       }, 100)
 
       document.querySelector("#order-summary-widget .invoice-amount-col #total").insertAdjacentHTML("afterend", totalText)
-
-      //
-      document.querySelector(".btn_back").addEventListener("click", function (e) {
-        e.preventDefault()
-        document.querySelector(".front").style.transform = "rotateY(0deg)"
-        document.querySelector(".back").style.transform = "rotateY(-180deg)"
-        document.querySelector(".front").style.zIndex = "15"
-        console.log(`back to front`)
-      })
 
       // validate form
       if (document.querySelector("form .front .border-bottom.mb-16")) {
@@ -790,6 +847,39 @@ let startFunk2 = setInterval(() => {
           }
         }
       }
+
+      // observe Form
+      const options = {
+        childList: true,
+        subtree: true,
+      }
+
+      let observerForm = new MutationObserver(() => {
+        if (document.querySelector("form")) {
+          observerForm.disconnect()
+
+          onObserverForm("#placeOrder")
+          onObserverForm("#payment-request-button")
+
+          function onObserverForm(selectorBtn) {
+            if (document.querySelector(`${selectorBtn}`)) {
+              document.querySelector(".back #order-summary-widget")?.after(document.querySelector(`${selectorBtn}`))
+
+              if (selectorBtn === "#placeOrder") {
+                document.querySelector(`${selectorBtn}`).textContent = "Start your free trial now"
+              }
+
+              if (!document.querySelector(".quarantee")) {
+                document.querySelector(`.back ${selectorBtn}`).insertAdjacentHTML("afterend", quaranteeBlock)
+              }
+            }
+          }
+
+          observerForm.observe(document.querySelector("form"), options)
+        }
+      })
+
+      observerForm.observe(document.querySelector("form"), options)
     }
   }
 }, 10)
