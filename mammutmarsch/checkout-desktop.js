@@ -1,9 +1,5 @@
 const style = `
 		<style>
-			.woocommerce-message {
-			margin-bottom: 0 !important;
-			}
-		
 			.checkout_navigation_bar {
 				display: none !important;
 			}
@@ -552,21 +548,21 @@ const style = `
 	filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.1));
 	  }
 	  
-	/*  .remove-text::after {*/
-	/*  content: "";*/
-	/*  position: absolute;*/
-	/*  top: 100%;*/
-	/*  left: 50%;*/
-	/*  margin-left: -5px;*/
-	/*  border-width: 5px;*/
-	/*  border-style: solid;*/
-	/*  border-color: #fff transparent transparent transparent;*/
-	/*}*/
+	  .remove-text::after {
+	  content: "";
+	  position: absolute;
+	  top: 100%;
+	  left: 50%;
+	  margin-left: -5px;
+	  border-width: 5px;
+	  border-style: solid;
+	  border-color: #fff transparent transparent transparent;
+	}
 	
-	/*.remove:hover .remove-text {*/
-	/*  visibility: visible;*/
-	/*  opacity: 1;*/
-	/*}*/
+	.remove:hover .remove-text {
+	  visibility: visible;
+	  opacity: 1;
+	}
 	
 	#cms-theme table.shop_table {
 		display: none;
@@ -715,11 +711,9 @@ font-weight: bold;
 font-size: 16px;
 line-height: 19px;
 /* identical to box height */
-
 text-align: center;
 letter-spacing: 0.03em;
 text-transform: uppercase;
-
 color: #FFFFFF;
 margin-bottom: 15px;
 	}
@@ -729,8 +723,6 @@ margin-bottom: 15px;
 font-size: 16px;
 line-height: 24px;
 /* identical to box height, or 150% */
-
-
 color: #666666;
 	}
 	
@@ -815,267 +807,7 @@ line-height: 39px;
 		background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/check_box_outline.svg") no-repeat;
 	}
 	
-	.place-order [type="checkbox"]:checked + .custom-check{
-		background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/check_box.svg") no-repeat;
-	}
-	.product-mobile {
-	 	display: none;
-	 }
-	
-	
-	.navbar-custom {
-		padding: 15px 0;
-		background-color: transparent;
-	}
-	
-		.under-block {
-	text-align: center;
-	}
-.under-block button {
-
-font-size: 14px;
-border-radius: 29px;
-}
-	
-	.woocommerce-billing-fields p {
-		flex: 100%;
-		padding-right: 0 !important;
-	}
-	
-	#wc-stripe-cc-form .form-row.form-row-last::after {
-		bottom: 0;
-		right: 5px;
-	}
-	
-	
-	
-	.woocommerce-checkout #payment ul.payment_methods li .stripe-credit-card-brand,
-	#wc-stripe-cc-form .form-row.form-row-last::after {
-	    transform: scale(0.8);
-	}
-	
-	#birthday_day_field, 
-			#birthday_month_field,
-			#birthday_year_field {
-				max-width: 33.3%;
-				
-			}
-	
-	.col-1 {
-		padding-top: 30px !important;
-		margin-top: 0;
-	}
-	
-	#birthday_day_field, #birthday_month_field {
-		padding-right: 8px !important;
-	}
-	
-	.wc-credit-card-form.wc-payment-form {
-				flex-wrap: wrap;
-				flex-direction: column;
-			}
-			
-			.wc-credit-card-form.wc-payment-form div {
-			width: 100%;
-			padding: 0 !important;
-			}
-	
-	.navbar-custom ol {
-	width: 100%;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-	}
-	
-	.navbar-custom ol::before {
-		width: 3px;
-		height: 65%;
-		top: 0;
-		left: auto;
-		right: 0;
-	}
-	
-	.navbar-custom ol::after {
-		width: 3px;
-		height: 35%;
-		bottom: 0;
-		left: auto;
-		right: 0;	
-	}
-	
-	.navbar-custom li{
-		margin: 0 !important;
-	}
-	
-	.checkout.woocommerce-checkout {
-		display: flex;
-		flex-direction: column;
-	}
-	
-	.wc_payment_method label, .wc_payment_method .description {
-		white-space: normal;
-	}
-	 
-	 .table-custom {
-	 	display: none;
-	 }
-	 
-	 .product-mobile {
-	 	display: block;
-	 }
-	 
-	 .subblock {
-	 	display: flex;
-	 	justify-content: space-between;
-	 }
-	 
-	 .product-mobile .remove{
-	 padding: 0 35px;
-	 }
-	 
-	 .product-mobile p{margin: 0;}
-	 
-	 .product-mobile {		 	
-	 	background: #F5F5F5;
-		border-radius: 2px;
-	 }
-	 
-	 .product-mobile .title,
-	 .product-mobile .subblock {
-	 padding: 8px;
-	 }
-	 
-	 .product-mobile .subblock ~ div {
-	 	padding: 8px;
-	 	border-top: 1px solid #E5E5E5;
-	 	    display: flex;
-    justify-content: space-between;
-	 }
-	 
-	 .product-mobile .subblock ~ div p:first-child {
-	 	font-weight: 600;
-font-size: 16px;
-color: #212121;	 	
-	 }
-	 
-	 .product-mobile .subblock ~ div p:last-child {
-font-weight: 500;
-font-size: 14px;
-letter-spacing: 0.03em;
-
-color: #7F7F7F;	
-	 }
-	 
-	 [data-name="total"] {
-	 	font-weight: 600 !important;
-		color: #212121 !important;
-	 }
-	 
-	 .product-mobile .title {
-	 color: #333333;
-	 font-weight: 300;
-font-size: 28px;
-	 }
-	 
-	 .woocommerce-checkout-payment .row {	 	
-    	align-items: flex-start;
-	 }
-	 
-	 .product-mobile .product-name {
-	 	color: #7F7F7F;
-	 	font-size: 16px;
-	 }
-	 
-	 /*.product-mobile .remove-text {*/
-	 /*	bottom: 110%;*/
-	 /*}*/
-	 
-	 .side-block, .side-block, .under-block {
-	 	padding: 0;
-	 	margin: 0;
-	 }
-	 
-	 .checkout.woocommerce-checkout,
-	  .checkout.woocommerce-checkout .col-1, .checkout.woocommerce-checkout .col-2, #order_review, #order_review_heading {
-	 	padding: 0;
-	 }
-	 
-	 #order_review {
-	 	margin: 0;
-	 }
-	 
-	 .under-block {
-	 	background-color: #fff;
-	 }
-	 
-	 .mobile-hide {
-	 	display: none !important;
-	 }
-	 
-	 
-	 .custom-payment {
-	 	padding-top: 30px;
-	 }
-	 
-	 .woocommerce-checkout-payment .row .col-md-6.col-xs-4 img {
-	 width: 44px;
-height: 28px;
-	 }
-	 
-	 .wc_payment_method.payment_method_stripe .row {
-	 	    align-items: center !important;
-	 }
-	 
-	 .showlogin {
-	 	display: block;
-	 }
-	 
-	.review {
-  border: 1px solid #E5E5E5;
-border-radius: 5px;
-  padding: 8px;
-}
-
-.review p{
-  margin: 0;
-  line-height: normal;
-}
-
-.two-mens {
-  float: left;
-  margin-right: 10px;
-}
-
-.author p {
-  color: #333333;
-  letter-spacing: 0.03em;
-text-transform: uppercase;
-  font-weight: bold;
-font-size: 14px;
-}
-
-.author .date {
-  font-weight: normal;
-color: #7F7F7F;
-margin: 8px 0;
-}
-
-.text p {
-  margin-top: 8px;
-  clear: both;
-  color: #888888;
-  font-size: 12px;
-  line-height: 125%;
-}
-
-.side-block {
-padding-top: 30px;
-}
-
-.big-text {
-	display: none;}
-	
-		.checkout_coupon {
+	.checkout_coupon {
 	flex-wrap: wrap;
 	}
 	
@@ -1091,29 +823,24 @@ margin-bottom: 10px !important;
 color: #333333
 	}
 	
-	.under-block .remove {
-		overflow: hidden;
+	.place-order [type="checkbox"]:checked + .custom-check{
+		background: url("https://conversionratestore.github.io/projects/mammutmarsch/img/check_box.svg") no-repeat;
 	}
 	
-/*.under-block .remove-text {*/
-/*visibility: visible;*/
-/*max-height: 0;*/
-/*position: relative;*/
-/*margin: 0;*/
-/*transition: all 1s ease-in-out;*/
-/*margin: 15px !important;*/
-/*}*/
-
-/*.remove:hover .remove-text {*/
-/*	  visibility: visible;*/
-/*	  opacity: 1;*/
-/*	  max-height: 500px;*/
-/*	}*/
-/*	*/
-/*	.remove-text::after {*/
-/*		display: none;*/
-/*	}*/
-
+	.tooltip-wrap {
+	    display: flex;
+        justify-content: flex-end;
+        align-items: center;
+	}
+	
+	.tooltip-wrap .remove-text {
+	    left:-150%;
+	    width: 300px;
+	}
+	
+	.tooltip-wrap img {
+	    cursor: pointer;
+	}
 		</style>
 		
 		
@@ -1126,30 +853,35 @@ const customHTML = `
 				<li>3. Antreten und dein bestes geben</li>			
 			</ol>		
 		</nav>
-		<div class="product-mobile">
-				<p class="title">Dein Event</p>
-				<div class="subblock">
-					<p class="product-name"></p>					
-				</div>				
-				<div>
-					<p>Preis</p>
-					<p data-name="price"></p>
-				</div>
-				<div>
-					<p>Menge</p>
-					<p data-name="number">1</p>
-				</div>
-				<div>
-					<p>Gesamtsumme</p>
-					<p data-name="total"></p>
-				</div>
-			</div>
+		<table class="table-custom">
+			<tr>
+				<th>Dein Event</th>
+				<th>Preis</th>
+				<th>Menge</th>
+				<th style="color: #212121;">Gesamtsumme</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>		
 	`
 const sideBlock = `
 		<div class="side-block">
 			<div class="product-wrapper">
 				<p class="title">Produkt</p>
 				<p class="product-name"></p>
+				<div class="mobile-hide">
+					<p>Preis</p>
+					<p data-name="price"></p>
+				</div>
+				<div class="mobile-hide">
+					<p>Menge</p>
+					<p data-name="number">1</p>
+				</div>
 				<div class="fee-wrapper">
 					<p>Bearbeitungsgebühr</p>
 					<p data-name="fee"></p>
@@ -1197,24 +929,29 @@ let isBilling = setInterval(() => {
 		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
 		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
+
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
-	<div class="under-block">
-		<button>Bestellung abschliessen</button>
-		<div class="remove">
-			<p><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="money	back">Geld-zurück-Garantie </p>		
-			<p class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</p>
-		</div>
-	</div>
-`)
+          <div class="under-block">
+              <button>Bestellung abschliessen</button>
+              <div class="tooltip-wrap">
+                  <div class="remove">
+                      <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/money-back.svg" alt="moneyback">
+                      <span class="remove-text">Wir garantieren, dass kein Ticket verfällt! Falls es Covid-bedingt doch nochmal zu einer Absage kommen sollte, kannst du problemlos auf einen anderen Termin umbuchen oder erhältst eine Rückerstattung</span>
+                  </div>
+                  <p>Geld-zurück-Garantie </p>
+              </div>
+          </div>
+      `)
 	}
 }, 200)
 let isPrice = setInterval(() => {
 	if (
+		$$('.table-custom tr td')[4] &&
 		$('.cart_item .product-name')?.innerText &&
 		$('.woocommerce-Price-amount.amount') &&
 		$('.order-total .woocommerce-Price-amount.amount')?.innerHTML &&
 		$(`.product-wrapper [data-name="total"]`) &&
-		$$('.product-wrapper [data-name="price"]')
+		$('.product-wrapper [data-name="price"]')
 	) {
 		clearInterval(isPrice)
 
@@ -1222,13 +959,13 @@ let isPrice = setInterval(() => {
 		let price = $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
+		$$('.table-custom tr td')[0].innerText = name
+		$$('.table-custom tr td')[1].innerText = price
+		$$('.table-custom tr td')[3].innerText = total
+
 		$('.product-wrapper .product-name').innerText = name
-
+		$('.product-wrapper [data-name="price"]').innerText = price
 		$('.product-wrapper [data-name="total"]').innerText = total
-
-		$('.product-mobile .product-name').innerText = name
-		$('.product-mobile [data-name="price"]').innerText = price
-		$('.product-mobile [data-name="total"]').innerText = total
 	}
 }, 200)
 let isCoupon = setInterval(() => {
@@ -1237,9 +974,7 @@ let isCoupon = setInterval(() => {
 
 		$('.checkout_coupon').insertAdjacentHTML('afterbegin', `<p class="title">Gutschein</p>`)
 		$('.product-wrapper').after($('.checkout_coupon'))
-		$('.checkout_coupon').insertAdjacentHTML('beforeend', `
-	<button class="custom-coupon"></button>	
-`)
+		$('.checkout_coupon').insertAdjacentHTML('beforeend', `<button class="custom-coupon"></button>`)
 		$('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 	}
 }, 200)
@@ -1251,7 +986,6 @@ let isCancel = setInterval(() => {
 			$('.woocommerce-remove-coupon').click()
 		})
 	}
-
 }, 500)
 let isCustomCoupon = setInterval(function () {
 	if ($('[name="apply_coupon"]') && $('.custom-coupon')) {
@@ -1270,21 +1004,20 @@ let isCustomCoupon = setInterval(function () {
 			})
 
 			console.log('eventAction Promo code apply click')
+
 		})
 	}
 }, 200)
 let isBtnForward = setInterval(function () {
-	if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
+	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4]) {
 		clearInterval(isBtnForward)
 
-		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
-
-		$('.subblock').insertAdjacentHTML('beforeend', remove)
+		$$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
 
 		let isRemove = setInterval(() => {
-			if ($('.subblock .remove')) {
+			if ($('.table-custom .remove')) {
 				clearInterval(isRemove)
-				$('.subblock .remove').addEventListener('click', () => {                                      
+				$('.table-custom .remove').addEventListener('click', () => {
 					$('.woocommerce-message .button.wc-forward').click()
 
 					window.dataLayer = window.dataLayer || []
@@ -1318,6 +1051,18 @@ let isGreenBtn = setInterval(() => {
 		})
 	}
 }, 200)
+let isExist = setInterval(() => {
+	if ($('#payment')) {
+		clearInterval(isExist)
+
+		$('#payment').insertAdjacentHTML('beforebegin', `
+	<div class="custom-payment">
+	<p class="title">Bezahlung</p>
+	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
+</div>
+`)
+	}
+}, 200)
 let isInfo = setInterval(() => {
 	if ($('.col-1 .woocommerce-info')) {
 		clearInterval(isInfo)
@@ -1345,70 +1090,12 @@ let isName = setInterval(() => {
 	}
 }, 200)
 
-let isComment = setInterval(() => {
-	if ($('.checkout_coupon') && $('#payment')) {
-		clearInterval(isComment)
-		$('.checkout_coupon').after($('#payment'))
-		$('.checkout_coupon').insertAdjacentHTML('afterend', `
-		<div class="review">
-  <div class="header">
-      <img class="two-mens" src="https://conversionratestore.github.io/projects/mammutmarsch/img/two_mens.svg" alt="two mens">
-    
-    <div class="author">
-      <p>Matthias Schipper</p>
-      <p class="date">05/12/2020</p>
-      <img src="https://conversionratestore.github.io/projects/mammutmarsch/img/stars_group.svg" alt="">
-    </div>
-    <div class="text">
-      <p>Es hat einen riesen Spaß gemacht. Von meiner Seite aus war alles in Ordnung.<br>Vielen Dank</p>
-    </div>
-  </div>
-</div>
-	`)
-    $('#payment').insertAdjacentHTML('beforebegin', `
-	<div class="custom-payment">
-	<p class="title">Bezahlung</p>
-	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
-</div>`)
-	}
-}, 200)
-
 /* mut functions */
-function isFee() {
-	let is = setInterval(() => {
-		if (
-			$('.fee .woocommerce-Price-amount.amount') &&
-			$(`.product-wrapper [data-name="fee"]`)
-		) {
-			clearInterval(is)
 
-			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-
-			$(`.product-wrapper .fee-wrapper`).classList.add('show')
-			$(`.product-wrapper [data-name="fee"]`).innerText = fee
-			$(`.product-wrapper [data-name="total"]`).innerText = total
-
-			$(`.product-mobile [data-name="total"]`).innerText = total
-
-		} else {
-			clearInterval(is)
-
-			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-
-			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
-			$(`.product-wrapper [data-name="fee"]`).innerText = ''
-			$(`.product-wrapper [data-name="total"]`).innerText = total
-
-			$(`.product-mobile [data-name="total"]`).innerText = total
-		}
-	}, 200)
-}
 function isAppliedCoupon() {
 	let is = setInterval(() => {
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			clearInterval(is)
-
 			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
 
 			$('.custom-coupon').classList.add('applied')
@@ -1416,13 +1103,53 @@ function isAppliedCoupon() {
 
 		} else {
 			clearInterval(is)
-
 			if ($('.coupon-wrapper').classList.contains('show')) {
 				$('.coupon-wrapper').classList.remove('show')
 			}
 			if ($('.custom-coupon').classList.contains('applied')) {
 				$('.custom-coupon').classList.remove('applied')
 			}
+		}
+	}, 200)
+}
+function isFee() {
+	let is = setInterval(() => {
+		if (
+			$('.fee .woocommerce-Price-amount.amount') &&
+			$(`.product-wrapper [data-name="fee"]`) &&
+			$$('.table-custom tr td')[3]
+		) {
+			clearInterval(is)
+			let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+
+			$$('.table-custom tr td')[3].innerText = total
+
+			$(`.product-wrapper .fee-wrapper`).classList.add('show')
+			$(`.product-wrapper [data-name="fee"]`).innerText = fee
+			$(`.product-wrapper [data-name="total"]`).innerText = total
+
+		} else {
+			clearInterval(is)
+			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+
+			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
+			$(`.product-wrapper [data-name="fee"]`).innerText = ''
+			$(`.product-wrapper [data-name="total"]`).innerText = total
+
+			$$('.table-custom tr td')[3].innerText = total
+		}
+	}, 200)
+}
+function isCheckbox() {
+	let is = setInterval(() => {
+		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
+			clearInterval(is)
+			// setTimeout(() => {
+			$$('.place-order [type="checkbox"]').forEach(checkbox => {
+				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+			})
+			// }, 2000)
 		}
 	}, 200)
 }
@@ -1433,25 +1160,21 @@ function isBr() {
 
 			$('#wc-stripe-cc-form br').remove()
 		}
-	}, 200)
+	}, 100)
 }
-function isCheckbox() {
+function reorder() {
 	let is = setInterval(() => {
-		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
+		if ($('.payment_method_stripe img')?.src) {
 			clearInterval(is)
 
-			$$('.place-order [type="checkbox"]').forEach(checkbox => {
-				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-			})
+			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
 		}
-	}, 200)
+	}, 100)
 }
 function addDark() {
 	let is = setInterval(() => {
 		if ($('.wc_payment_method [checked]')) {
 			clearInterval(is)
-
-            console.log('addDark');
 
 			if ($('.dark')) {
 				$('.dark').classList.remove('dark')
@@ -1460,25 +1183,11 @@ function addDark() {
 		}
 	}, 100)
 }
-function reorder() {
-	let is = setInterval(() => {
-		if ($('.payment_method_stripe img')?.src) {
-			clearInterval(is)
-
-            console.log('reorder');
-
-			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-		}
-	}, 100)
-}
 
 /* mut observer */
 let isOrder = setInterval(() => {
 	if($('#order_review')) {
 		clearInterval(isOrder)
-
-        console.log('isOrder');
-
 		let target = $('#order_review')
 		let config = {
 			attributes: true,
@@ -1488,29 +1197,25 @@ let isOrder = setInterval(() => {
 
 		let callback = function (mutationsList, observer) {
 			observer.disconnect()
-
 			observerTimeout()
 		}
 		let observer = new MutationObserver(callback)
 
-		function observerTimeout() {			
-                reorder()
-                addDark()
-                isBr()
-                isCheckbox()
-                isFee()
-                isAppliedCoupon()
+		function observerTimeout() {
+			console.log('observeeeee')
+			reorder()
+			addDark()
+			isBr()
+			isCheckbox()
+			isFee()
+			isAppliedCoupon()
 
-                setTimeout(() => {                
-                    observer.observe(target, config)
-                    console.log('observed');
-                }, 1000)
-            
+			setTimeout(() => {
+				observer.observe(target, config)
+			}, 1000)
 		}
 
-        setTimeout(() => {
-		    observerTimeout()
-        }, 1000)		
+		observerTimeout()
 	}
 }, 100)
 
