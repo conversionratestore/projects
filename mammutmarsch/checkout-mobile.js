@@ -1406,6 +1406,7 @@ function isFee() {
 }
 function isAppliedCoupon() {
 	let is = setInterval(() => {
+        console.log('isAppliedCoupon');
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			clearInterval(is)
 
@@ -1493,7 +1494,8 @@ let isOrder = setInterval(() => {
 		}
 		let observer = new MutationObserver(callback)
 
-		function observerTimeout() {			
+		function observerTimeout() {	
+            setTimeout(() => {
                 reorder()
                 addDark()
                 isBr()
@@ -1505,12 +1507,12 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            
+            }, 1000)
 		}
 
-        setTimeout(() => {
+        
 		    observerTimeout()
-        }, 1000)		
+        		
 	}
 }, 100)
 
