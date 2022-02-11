@@ -1125,7 +1125,7 @@ window.onload = function() {
                                     if (!itemLink.closest('#pagination') && !itemLink.closest('#pagination2')) {
                                         let dataTotal = itemLink.dataset.total
                                         if (dataTotal == 0) {
-                                            itemLink.closest('li').style.display = 'none';
+                                            itemLink.closest('li').remove();
                                         }
                                     }
                                 })
