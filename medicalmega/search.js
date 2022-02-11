@@ -1066,7 +1066,7 @@ window.onload = function() {
         let perPage = document.querySelector('[name="mm_per_page"]').value;
         document.querySelector('.products_list').innerHTML = '';
         document.querySelector('.listing').append(statusMessage)
-        createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
+        createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
         console.log(brandsFilter.toString())
         selectedPage = offset;
         let productsRequest = new Promise((resolve, reject) => {
@@ -1212,7 +1212,7 @@ window.onload = function() {
                     document.body.style.overflow = 'inherit';
                 }
             })
-            
+
             getProductsFilters('.popup_filter .btn_close','click') 
             getProductsFilters('.btn_sort select','change')
             
