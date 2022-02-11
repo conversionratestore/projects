@@ -905,9 +905,9 @@ window.onload = function() {
         Click: function() {
             Pagination.page = +this.innerHTML;
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
             selectedPage = Pagination.page;
-            console.log(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
 
@@ -918,8 +918,8 @@ window.onload = function() {
                 Pagination.page = 1;
             }
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
-            console.log(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
 
@@ -930,8 +930,8 @@ window.onload = function() {
                 Pagination.page = Pagination.size;
             }
             let offset = (Pagination.page - 1) * +document.querySelector('[name="mm_per_page"]').value
+            createPagination.style = 'display: flex; opacity: 0.5; pointer-events: none;';
             fetchProduct(offset,brandsFilter,priceRange)
-            console.log(offset,brandsFilter,priceRange)
             Pagination.Start();
         },
 
@@ -1058,6 +1058,7 @@ window.onload = function() {
             console.log(priceRange.toString() + '(price range)')
             console.log(document.querySelector('.btn_sort select').value)
 
+            createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
             fetchProduct(0,brandsFilter,priceRange)
         })
     }
@@ -1066,7 +1067,6 @@ window.onload = function() {
         let perPage = document.querySelector('[name="mm_per_page"]').value;
         document.querySelector('.products_list').innerHTML = '';
         document.querySelector('.listing').append(statusMessage)
-        createPagination.style = 'display: flex; opacity: 0; pointer-events: none;';
         console.log(brandsFilter.toString())
         selectedPage = offset;
         let productsRequest = new Promise((resolve, reject) => {
