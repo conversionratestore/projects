@@ -659,10 +659,13 @@ window.onload = function() {
         labelDataLayer = 'Header';
         pushDataLayer(actionDataLayer,labelDataLayer)
     })
-    document.querySelector('.header .btn_close').addEventListener('click', (e) => {
-        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-        popup.classList.remove('active')
 
+    let navMenu = document.querySelector('.nav-menu');
+
+    navMenu.querySelector('.btn_close').addEventListener('click', (e) => {
+        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+
+        popup.classList.remove('active')
         document.body.style.overflow = 'inherit';
 
         actionDataLayer = 'Click on cross button';
@@ -670,7 +673,6 @@ window.onload = function() {
         pushDataLayer(actionDataLayer,labelDataLayer)
     })
 
-    let navMenu = document.querySelector('.nav-menu');
     navMenu.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-menu')) {
             navMenu.classList.remove('active')
@@ -1183,8 +1185,8 @@ window.onload = function() {
             document.querySelector('.btn_filter').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-                popup.classList.add('active')
-        
+                
+                popup.classList.add('active');
                 document.body.style.overflow = 'hidden';
           
                 actionDataLayer = `Click on ${e.target.innerText} button`;
@@ -1195,8 +1197,8 @@ window.onload = function() {
             
             popupFilter.querySelector('.btn_close').addEventListener('click', (e) => {
                 let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
+
                 popup.classList.remove('active')
-        
                 document.body.style.overflow = 'inherit';
         
                 actionDataLayer = 'Click on cross button';
