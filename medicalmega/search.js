@@ -1179,6 +1179,7 @@ window.onload = function() {
                 el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
             })
 
+
             document.querySelector('.btn_filter').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
                 let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
@@ -1190,7 +1191,9 @@ window.onload = function() {
                 labelDataLayer = 'Filters'
                 pushDataLayer(actionDataLayer,labelDataLayer)
             })
-            document.querySelector('.popup_filter .btn_close').addEventListener('click', (e) => {
+            let popupFilter = document.querySelector('.popup_filter');
+            
+            popupFilter.querySelector('.btn_close').addEventListener('click', (e) => {
                 let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
                 popup.classList.remove('active')
         
@@ -1200,7 +1203,6 @@ window.onload = function() {
                 labelDataLayer = 'Filters'
                 pushDataLayer(actionDataLayer,labelDataLayer)
             })
-            let popupFilter = document.querySelector('.popup_filter');
             popupFilter.addEventListener('click', (e) => {
                 if (e.target.classList.contains('popup_filter')) {
                     popupFilter.classList.remove('active')
