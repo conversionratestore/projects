@@ -552,21 +552,21 @@ const style = `
 	filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.1));
 	  }
 	  
-	/*  .remove-text::after {*/
-	/*  content: "";*/
-	/*  position: absolute;*/
-	/*  top: 100%;*/
-	/*  left: 50%;*/
-	/*  margin-left: -5px;*/
-	/*  border-width: 5px;*/
-	/*  border-style: solid;*/
-	/*  border-color: #fff transparent transparent transparent;*/
-	/*}*/
-	
-	/*.remove:hover .remove-text {*/
-	/*  visibility: visible;*/
-	/*  opacity: 1;*/
-	/*}*/
+	  .remove-text::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #fff transparent transparent transparent;
+	  }
+	  
+	  .remove:hover .remove-text {
+		visibility: visible;
+		opacity: 1;
+	  }
 	
 	#cms-theme table.shop_table {
 		display: none;
@@ -986,9 +986,9 @@ font-size: 28px;
 	 	font-size: 16px;
 	 }
 	 
-	 /*.product-mobile .remove-text {*/
-	 /*	bottom: 110%;*/
-	 /*}*/
+	 .product-mobile .remove-text {
+	 	bottom: 110%;
+	 }
 	 
 	 .side-block, .side-block, .under-block {
 	 	padding: 0;
@@ -1095,24 +1095,24 @@ color: #333333
 		overflow: hidden;
 	}
 	
-/*.under-block .remove-text {*/
-/*visibility: visible;*/
-/*max-height: 0;*/
-/*position: relative;*/
-/*margin: 0;*/
-/*transition: all 1s ease-in-out;*/
-/*margin: 15px !important;*/
-/*}*/
-
-/*.remove:hover .remove-text {*/
-/*	  visibility: visible;*/
-/*	  opacity: 1;*/
-/*	  max-height: 500px;*/
-/*	}*/
-/*	*/
-/*	.remove-text::after {*/
-/*		display: none;*/
-/*	}*/
+	.under-block .remove-text {
+		visibility: visible;
+		max-height: 0;
+		position: relative;
+		margin: 0;
+		transition: all 1s ease-in-out;
+		margin: 15px !important;
+		}
+		
+		.remove:hover .remove-text {
+			  visibility: visible;
+			  opacity: 1;
+			  max-height: 500px;
+			}
+			
+			.remove-text::after {
+				display: none;
+			}
 
 		</style>
 		
@@ -1381,7 +1381,7 @@ let isComment = setInterval(() => {
 
 /* mut functions */
 function isAppliedCoupon() {
-	let is = setInterval(() => {
+	setTimeout(() => {
         console.log('isAppliedCoupon');
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			clearInterval(is)
@@ -1401,7 +1401,7 @@ function isAppliedCoupon() {
 				$('.custom-coupon').classList.remove('applied')
 			}
 		}
-	}, 200)
+	}, 2000)
 }
 function isFee() {
 	let is = setInterval(() => {
