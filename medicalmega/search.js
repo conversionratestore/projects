@@ -1084,35 +1084,37 @@ window.onload = function() {
 
     //listing
     if (window.location.pathname.includes('/category')) {
-        document.querySelectorAll('#search_c_id option').forEach(option => {
-            let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '')
-
-            document.querySelectorAll('.listing li').forEach(li => {
-                if (li.innerText == title) {
-                    li.setAttribute('data-id', option.value)
-
-                    let idSubCategory = option.value;
-                    let textSubcategory = li.innerText;
-                    li.querySelector('a').setAttribute('title', textSubcategory)
-                    li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
-        
-                    fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
-                        console.log(data)
-                        let products = data.products;
-                        if (data.total_count > 0 &&  document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null) {
-                            document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
-                        }
-                    })
+        if (document.querySelector('.listing li') != null) {
+            document.querySelectorAll('#search_c_id option').forEach(option => {
+                let title = option.innerHTML.replace(/^[&nbsp;|_]+/, '')
+    
+                document.querySelectorAll('.listing li').forEach(li => {
+                    if (li.innerText == title) {
+                        li.setAttribute('data-id', option.value)
+    
+                        let idSubCategory = option.value;
+                        let textSubcategory = li.innerText;
+                        li.querySelector('a').setAttribute('title', textSubcategory)
+                        li.querySelector('a').innerHTML = `<span>${textSubcategory}</span>`;
+            
+                        fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
+                            console.log(data)
+                            let products = data.products;
+                            if (data.total_count > 0 &&  document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null) {
+                                document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
+                            }
+                        })
+                    }
+                })
+    
+                if (document.querySelector('.categoryTop').innerText == title) {
+                    console.log(option.value)
+                    localStorage.setItem('idCategory', JSON.stringify(option.value))
+                    idCategory = option.value;
                 }
             })
-
-            if (document.querySelector('.categoryTop').innerText == title) {
-                console.log(option.value)
-                localStorage.setItem('idCategory', JSON.stringify(option.value))
-                idCategory = option.value;
-            }
-        })
-        
+        }
+ 
         document.querySelectorAll('.listing li').forEach(li => {
             li.addEventListener('click', () => {
                 idCategory = li.dataset.id;
