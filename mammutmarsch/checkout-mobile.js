@@ -1475,12 +1475,12 @@ function reorder() {
 
 /* mut observer */
 let isOrder = setInterval(() => {
-	if($('#order_review table') && $('.side-block') && $('.checkout.woocommerce-checkout')) {
+	if($('#order_review table') && $('.side-block') && $('.checkout.woocommerce-checkout') && $('#payment')) {
 		clearInterval(isOrder)
 
         console.log('isOrder');
 
-		let target = $('#order_review')
+		let target = $('#payment')
 		let config = {
 			attributes: true,
 			childList: true,
