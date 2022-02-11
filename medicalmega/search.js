@@ -668,8 +668,6 @@ window.onload = function() {
         }
     }
 
-    let menu = document.querySelector('.nav-menu');
-
     document.querySelector('.btn_all-category').addEventListener('click', () => {
         viewAllCategories(false)
         actionDataLayer = 'Click on view all categories';
@@ -677,12 +675,6 @@ window.onload = function() {
 
     }); //open all category
     document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
-
-    menu.addEventListener('click', (e) => {
-        if (e.target.classList.contains('nav-menu')) {
-            menu.classList.remove('active')
-        }
-    });
 
     const createPagination = document.createElement('div');
     createPagination.id = 'pagination';
@@ -1220,14 +1212,13 @@ window.onload = function() {
             pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
-    document.querySelector('.nav-menu').addEventListener('click', (e) => {
-        if (e.target.className == 'nav-menu') {
-            if (e.target.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
+    document.querySelectorAll('[data-item]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (e.target.className == item.dataset.item) {
+                menu.classList.remove('active')
                 document.body.style.overflow = 'inherit';
             }
-        }
+        })
     })
 
     //events
