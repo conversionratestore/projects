@@ -512,7 +512,7 @@ let header = `
             <div class="nav-menu_container">
                 <div class="sticky-top">
                     <div class="justify-content-between">
-                        <a href="/"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo"></a>
+                        <a href="/" class="link_logo"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo"></a>
                         <img src="https://conversionratestore.github.io/projects/medicalmega/img/close.svg" class="btn_close" data-button="menu">
                     </div>
                     <ul class="nav-menu_login"></ul>
@@ -1100,8 +1100,12 @@ window.onload = function() {
                         fetch(`/api/products&offset=0&limit=1&is_featured=0&ctoken=${mm.ctoken}&category=${idSubCategory}`, headerFetch).then(res => res.json()).then(data => {
                             console.log(data)
                             let products = data.products;
+                            console.log(idSubCategory)
                             if (data.total_count > 0 &&  document.querySelector(`.listing li a[title="${textSubcategory}"] img`) == null) {
                                 document.querySelector(`.listing li a[title="${textSubcategory}"]`).insertAdjacentHTML('beforeend',`<img src="${products[0].variants[0].image_url}" alt="${products[0].title}">`)
+                            }
+                            if (data.total_count == 0) {
+                                document.querySelector(`.listing li a[title="${textSubcategory}"]`).closest('li').remove()
                             }
                         })
                     }
@@ -1278,6 +1282,11 @@ window.onload = function() {
     })
     document.querySelector('.shoppingcart a').addEventListener('click', (e) => {
         actionDataLayer = 'Click on cart ';
+        labelDataLayer = 'Header';
+        pushDataLayer(actionDataLayer)
+    })
+    document.querySelector('.link_logo').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on Logo';
         labelDataLayer = 'Header';
         pushDataLayer(actionDataLayer)
     })
