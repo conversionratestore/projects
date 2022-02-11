@@ -1214,7 +1214,8 @@ window.onload = function() {
     })
     document.querySelectorAll('[data-item]').forEach(item => {
         item.addEventListener('click', (e) => {
-            if (e.target.className == item.dataset.item) {
+            console.log(e.target.className, item.dataset.item)
+            if (e.target.classList.contains(item.dataset.item)) {
                 item.classList.remove('active')
                 document.body.style.overflow = 'inherit';
             }
