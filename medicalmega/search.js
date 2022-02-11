@@ -1185,8 +1185,10 @@ window.onload = function() {
 
     document.querySelectorAll('[data-button]').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            let popup = document.querySelector(`[data-item="${btn.dataset.button}"]`);
+            let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
             popup.classList.toggle('active')
+
+            console.log(popup)
 
             if (popup.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
