@@ -735,8 +735,8 @@ color: #666666;
 	}
 	
 	.remove img {
-		width: 18px;
-		height: 18px;
+		width: 20px;
+		height: 20px;
 	}
 	
 	.under-block img {
@@ -930,7 +930,7 @@ border-radius: 29px;
 	 }
 	 
 	 .product-mobile .remove{
-	 padding: 0 35px;
+	 padding: 0 30px;
 	 }
 	 
 	 .product-mobile p{margin: 0;}
@@ -1509,7 +1509,7 @@ let isOrder = setInterval(() => {
                 }, 1000)
             }, 2000)
 		}     
-           
+
         observerTimeout()
         		
 	}
