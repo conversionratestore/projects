@@ -1494,8 +1494,12 @@ let isOrder = setInterval(() => {
 		}
 		let observer = new MutationObserver(callback)
 
-		function observerTimeout() {	
-            setTimeout(() => {
+		let isUI = setInterval(() => {
+            if(!$('blockUI.blockOverlay')){
+
+
+                clearInterval(isUI)
+                console.log('non exist!!!');
                 reorder()
                 addDark()
                 isBr()
@@ -1507,8 +1511,8 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            }, 3000)
-		}     
+            }
+        }, 200)
 
         observerTimeout()
         		
