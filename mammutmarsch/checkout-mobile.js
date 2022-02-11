@@ -1249,6 +1249,13 @@ let isCancel = setInterval(() => {
 
 		$('.coupon-wrapper .cancel').addEventListener('click', () => {
 			$('.woocommerce-remove-coupon').click()
+
+            if ($('.coupon-wrapper').classList.contains('show')) {
+				$('.coupon-wrapper').classList.remove('show')
+			}
+			if ($('.custom-coupon').classList.contains('applied')) {
+				$('.custom-coupon').classList.remove('applied')
+			}
 		})
 	}
 
@@ -1492,10 +1499,11 @@ let isOrder = setInterval(() => {
 
 			observerTimeout()
 		}
+
 		let observer = new MutationObserver(callback)
 
 		function observerTimeout() {	
-            setTimeout(() => {
+            
                 reorder()
                 addDark()
                 isBr()
@@ -1507,11 +1515,10 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            }, 3000)
+            
 		}     
 
         observerTimeout()
-        		
 	}
 }, 100)
 
