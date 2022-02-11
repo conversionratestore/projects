@@ -1475,12 +1475,12 @@ function reorder() {
 
 /* mut observer */
 let isOrder = setInterval(() => {
-	if($('#order_review table') && $('.side-block') && $('.checkout.woocommerce-checkout') && $('#payment')) {
+	if($('#order_review table') && $('.side-block')) {
 		clearInterval(isOrder)
 
         console.log('isOrder');
 
-		let target = $('#order_review table')
+		let target = $('#order_review')
 		let config = {
 			attributes: true,
 			childList: true,
@@ -1494,27 +1494,21 @@ let isOrder = setInterval(() => {
 		}
 		let observer = new MutationObserver(callback)
 
-        function observerTimeout() {   
-            let isUI = setInterval(() => {
-                if(!$('blockUI.blockOverlay')){
-                    clearInterval(isUI)
+		function observerTimeout() {	
+            setTimeout(() => {
+                reorder()
+                addDark()
+                isBr()
+                isCheckbox()
+                isFee()
+                isAppliedCoupon()
 
-                    console.log('non exist!!!');
-                    reorder()
-                    addDark()
-                    isBr()
-                    isCheckbox()
-                    isFee()
-                    isAppliedCoupon()
-
-                    setTimeout(() => {                
-                        observer.observe(target, config)
-                        console.log('observed');
-                    }, 1000)
-                }
-            }, 200)
-
-        }
+                setTimeout(() => {                
+                    observer.observe(target, config)
+                    console.log('observed');
+                }, 1000)
+            }, 3000)
+		}     
 
         observerTimeout()
         		
