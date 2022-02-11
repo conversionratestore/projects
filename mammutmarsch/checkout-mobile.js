@@ -1480,7 +1480,7 @@ let isOrder = setInterval(() => {
 
         console.log('isOrder');
 
-		let target = $('#payment')
+		let target = $('#order_review table')
 		let config = {
 			attributes: true,
 			childList: true,
