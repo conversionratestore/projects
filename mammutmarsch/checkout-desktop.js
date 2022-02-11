@@ -1093,7 +1093,7 @@ let isName = setInterval(() => {
 /* mut functions */
 
 function isAppliedCoupon() {
-	let is = setInterval(() => {
+	setTimeout(() => {
 		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 			clearInterval(is)
 			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
@@ -1110,7 +1110,7 @@ function isAppliedCoupon() {
 				$('.custom-coupon').classList.remove('applied')
 			}
 		}
-	}, 200)
+	}, 2000);
 }
 function isFee() {
 	let is = setInterval(() => {
