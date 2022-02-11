@@ -1475,7 +1475,7 @@ function reorder() {
 
 /* mut observer */
 let isOrder = setInterval(() => {
-	if($('#order_review')) {
+	if($('#order_review table') && $('.side-block') && $('.checkout.woocommerce-checkout')) {
 		clearInterval(isOrder)
 
         console.log('isOrder');
@@ -1507,7 +1507,7 @@ let isOrder = setInterval(() => {
                     observer.observe(target, config)
                     console.log('observed');
                 }, 1000)
-            }, 2000)
+            }, 1000)
 		}     
 
         observerTimeout()
