@@ -1191,9 +1191,9 @@ window.onload = function() {
         })
     }
 
-    document.querySelectorAll('[data-button]').forEach(button => {
-        button.addEventListener('click', (e) => {
-            let popup = document.querySelector(`[data-item="${button.dataset.button}"]`);
+    document.querySelectorAll('[data-button]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let popup = document.querySelector(`[data-item="${btn.dataset.button}"]`);
             popup.classList.toggle('active')
 
             if (popup.classList.contains('active')) {
@@ -1202,18 +1202,18 @@ window.onload = function() {
                 document.body.style.overflow = 'inherit';
             }
             
-            if (e.target.classList.contains('btn_close')) {
+            if (btn.classList.contains('btn_close')) {
                 actionDataLayer = 'Click on cross button';
-                if (button.closest('.popup_filter')) {
+                if (btn.closest('.popup_filter')) {
                     labelDataLayer = 'Filters'
-                } else if (button.closest('.nav-menu')) {
+                } else if (btn.closest('.nav-menu')) {
                     labelDataLayer = 'Menu'
                 }
-            } else if (button.classList.contains('icon_burger')) {
+            } else if (btn.classList.contains('icon_burger')) {
                 actionDataLayer = `Click on burger button`;
                 labelDataLayer = 'Header'
             } else {
-                actionDataLayer = `Click on ${e.target.innerText} button`;
+                actionDataLayer = `Click on ${btn.innerText} button`;
                 labelDataLayer = 'Listing'
             }
             pushDataLayer(actionDataLayer,labelDataLayer)
