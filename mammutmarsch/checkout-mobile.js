@@ -1404,9 +1404,8 @@ function isBr() {
 }
 function isCheckbox() {
 		if ($$('.place-order [type="checkbox"]')[2] && !$('.custom-check')) {
-			$$('.place-order [type="checkbox"]').forEach(checkbox => {
-				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-			})
+			$$('.place-order [type="checkbox"]')[1].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+			$$('.place-order [type="checkbox"]')[2].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
 		}
 }
 function addDark() {
@@ -1425,10 +1424,8 @@ function reorder() {
 }
 function isBtnForward() {
 	if ($('.woocommerce-message .button.wc-forward') && $('.subblock') && !$('.subblock .remove')) {
-
-		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
-
-		$('.subblock').insertAdjacentHTML('beforeend', remove)
+		console.log('yes')
+		$('.subblock').insertAdjacentHTML('beforeend', `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`)
 
 		let isRemove = setInterval(() => {
 			if ($('.subblock .remove')) {
