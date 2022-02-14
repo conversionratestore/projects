@@ -1463,7 +1463,6 @@ let isOrder = setInterval(() => {
 		}
 
 		let observer = new MutationObserver((mutationsList) => {
-			console.log(mutationsList)
 			observerTimeout()
 		})
 
