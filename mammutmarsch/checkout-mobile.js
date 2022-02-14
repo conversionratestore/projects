@@ -1425,7 +1425,7 @@ function reorder() {
 
 }
 function isBtnForward() {
-	if ($('.woocommerce-message .button.wc-forward') && $('.subblock') && !$('.remove')) {
+	if ($('.woocommerce-message .button.wc-forward') && $('.subblock') && !$('.subblock .remove')) {
 
 		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
 
