@@ -1105,7 +1105,7 @@ function isFee() {
 	}
 }
 function isCheckbox() {
-	if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
+	if ($$('.place-order [type="checkbox"]')[2] && !$('.custom-check')) {
 		$$('.place-order [type="checkbox"]').forEach(checkbox => {
 			checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
 		})
