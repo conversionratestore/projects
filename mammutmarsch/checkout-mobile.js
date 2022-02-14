@@ -1360,14 +1360,9 @@ function isAppliedCoupon() {
 		$('.custom-coupon').classList.add('applied')
 		$('.coupon-wrapper').classList.add('show')
 
-	} else {
-
-		if ($('.coupon-wrapper').classList.contains('show')) {
-			$('.coupon-wrapper').classList.remove('show')
-		}
-		if ($('.custom-coupon').classList.contains('applied')) {
-			$('.custom-coupon').classList.remove('applied')
-		}
+	} else if ($('.coupon-wrapper') && $('.custom-coupon')) {
+		$('.coupon-wrapper').classList.remove('show')
+		$('.custom-coupon').classList.remove('applied')
 	}
 
 }
