@@ -670,7 +670,6 @@ window.onload = function() {
     })
 
     navMenu.addEventListener('click', (e) => {
-        console.log(`backDrop`)
         actionDataLayer = `Click on the screen outside the menu`;
         labelDataLayer = 'Menu';
         pushDataLayer(actionDataLayer,labelDataLayer)
