@@ -1250,7 +1250,7 @@ let isCancel = setInterval(() => {
 		$('.coupon-wrapper .cancel').addEventListener('click', () => {
 			$('.woocommerce-remove-coupon').click()
 
-            if ($('.coupon-wrapper').classList.contains('show')) {
+			if ($('.coupon-wrapper').classList.contains('show')) {
 				$('.coupon-wrapper').classList.remove('show')
 			}
 			if ($('.custom-coupon').classList.contains('applied')) {
@@ -1294,8 +1294,6 @@ let isGreenBtn = setInterval(() => {
 				'eventCategory': 'Exp: Checkout improvements',
 				'eventAction': 'Click on Place Order',
 			})
-
-			console.log('eventAction Click on Place Order')
 		})
 	}
 }, 200)
@@ -1345,7 +1343,7 @@ let isComment = setInterval(() => {
   </div>
 </div>
 	`)
-    $('#payment').insertAdjacentHTML('beforebegin', `
+		$('#payment').insertAdjacentHTML('beforebegin', `
 	<div class="custom-payment">
 	<p class="title">Bezahlung</p>
 	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
@@ -1355,37 +1353,29 @@ let isComment = setInterval(() => {
 
 /* mut functions */
 function isAppliedCoupon() {
-	
-		console.log('set');
-		if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
-			
-			console.log('remove coupon');
+	if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 
-			$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
+		$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
 
-			$('.custom-coupon').classList.add('applied')
-			$('.coupon-wrapper').classList.add('show')
+		$('.custom-coupon').classList.add('applied')
+		$('.coupon-wrapper').classList.add('show')
 
-		} else {
+	} else {
 
-			console.log('set coupon');
-			
-			if ($('.coupon-wrapper').classList.contains('show')) {
-				$('.coupon-wrapper').classList.remove('show')
-			}
-			if ($('.custom-coupon').classList.contains('applied')) {
-				$('.custom-coupon').classList.remove('applied')
-			}
+		if ($('.coupon-wrapper').classList.contains('show')) {
+			$('.coupon-wrapper').classList.remove('show')
 		}
-	
+		if ($('.custom-coupon').classList.contains('applied')) {
+			$('.custom-coupon').classList.remove('applied')
+		}
+	}
+
 }
 function isFee() {
-	let is = setInterval(() => {
 		if (
 			$('.fee .woocommerce-Price-amount.amount') &&
 			$(`.product-wrapper [data-name="fee"]`)
 		) {
-			clearInterval(is)
 
 			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
@@ -1397,8 +1387,6 @@ function isFee() {
 			$(`.product-mobile [data-name="total"]`).innerText = total
 
 		} else {
-			clearInterval(is)
-
 			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
@@ -1407,89 +1395,66 @@ function isFee() {
 
 			$(`.product-mobile [data-name="total"]`).innerText = total
 		}
-	}, 200)
 }
 function isBr() {
-	let is = setInterval(() => {
 		if ($('#wc-stripe-cc-form br')) {
-			clearInterval(is)
 
 			$('#wc-stripe-cc-form br').remove()
 		}
-	}, 200)
 }
 function isCheckbox() {
-	let is = setInterval(() => {
 		if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
-			clearInterval(is)
 
 			$$('.place-order [type="checkbox"]').forEach(checkbox => {
 				checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
 			})
 		}
-	}, 200)
 }
 function addDark() {
-	let is = setInterval(() => {
 		if ($('.wc_payment_method [checked]')) {
-			clearInterval(is)
-
-            console.log('addDark');
-
 			if ($('.dark')) {
 				$('.dark').classList.remove('dark')
 			}
 			$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
 		}
-	}, 100)
 }
 function reorder() {
-	let is = setInterval(() => {
 		if ($('.payment_method_stripe img')?.src) {
-			clearInterval(is)
-
-            console.log('reorder');
-
 			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
 		}
-	}, 100)
+
 }
 function isBtnForward() {
-	// let isBtnForward = setInterval(function () {
-		if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
-			
-	
-			let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
-	
-			$('.subblock').insertAdjacentHTML('beforeend', remove)
-	
-			let isRemove = setInterval(() => {
-				if ($('.subblock .remove')) {
-					clearInterval(isRemove)
-					$('.subblock .remove').addEventListener('click', () => {                                      
-						$('.woocommerce-message .button.wc-forward').click()
-	
-						window.dataLayer = window.dataLayer || []
-						dataLayer.push({
-							'event': 'event-to-ga',
-							'eventCategory': 'Exp: Checkout improvements',
-							'eventAction': 'Click on Remove item',
-						})
-	
-						console.log('eventAction Click on Remove item')
+	if ($('.woocommerce-message .button.wc-forward') && $('.subblock')) {
+
+		let remove = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"></div>`
+
+		$('.subblock').insertAdjacentHTML('beforeend', remove)
+
+		let isRemove = setInterval(() => {
+			if ($('.subblock .remove')) {
+				clearInterval(isRemove)
+				$('.subblock .remove').addEventListener('click', () => {
+					$('.woocommerce-message .button.wc-forward').click()
+
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: Checkout improvements',
+						'eventAction': 'Click on Remove item',
 					})
-				}
-			}, 200)
-		}
-	// }, 200)
+
+					console.log('eventAction Click on Remove item')
+				})
+			}
+		}, 200)
+	}
 }
 
 /* mut observer */
 let isOrder = setInterval(() => {
 	if($('#order_review')) {
 		clearInterval(isOrder)
-
-        console.log('isOrder');
 
 		let target = $('#order_review')
 		let config = {
@@ -1498,34 +1463,24 @@ let isOrder = setInterval(() => {
 			subtree: true,
 		}
 
-		let callback = function (mutationsList, observer) {
-			observer.disconnect()
-
+		let observer = new MutationObserver((mutationsList) => {
+			console.log(mutationsList)
 			observerTimeout()
-		}
-
-		let observer = new MutationObserver(callback)
+		})
 
 		function observerTimeout() {
-			console.log('observeeeee')
-			
-			setTimeout(() => {
-				reorder()
-				addDark()
-				isAppliedCoupon()
-				isBtnForward()
-			}, 1500);
-			
+			observer.disconnect()
+			reorder()
+			addDark()
+			isAppliedCoupon()
+			isBtnForward()
 			isBr()
 			isCheckbox()
-			isFee()			
+			isFee()
+			observer.observe(target, config)
+		}
 
-			setTimeout(() => {
-				observer.observe(target, config)
-			}, 2000)
-		}   
-
-        observerTimeout()
+		observer.observe(target, config)
 	}
 }, 100)
 
