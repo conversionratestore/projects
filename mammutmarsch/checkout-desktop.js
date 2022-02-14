@@ -978,7 +978,6 @@ let isCoupon = setInterval(() => {
 		$('#coupon_code').placeholder = 'Gutschein / Rabattcode'
 	}
 }, 200)
-
 let isCancel = setInterval(() => {
 	if ($('.coupon-wrapper .cancel') && $('.woocommerce-remove-coupon')) {
 		clearInterval(isCancel)
@@ -1132,7 +1131,7 @@ function addDark() {
 }
 
 function isBtnForward() {
-	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4] && !$('.remove')) {
+	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4] && !$('.table-custom .remove')) {
 
 		$$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
 
@@ -1159,7 +1158,7 @@ function isBtnForward() {
 let startMut = setInterval(() => {
 	if($('#order_review')) {
 		clearInterval(startMut)
-		
+
 		let target = $('#order_review')
 		let config = {
 			attributes: true,
