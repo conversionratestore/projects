@@ -1082,7 +1082,7 @@ function isFee() {
 	if (
 		$('.fee .woocommerce-Price-amount.amount') &&
 		$(`.product-wrapper [data-name="fee"]`) &&
-		$$('.table-custom tr td')[3]
+		$$('.table-custom tr td')[3] && $(`.product-wrapper .fee-wrapper`)
 	) {
 		let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
@@ -1093,7 +1093,7 @@ function isFee() {
 		$(`.product-wrapper [data-name="fee"]`).innerText = fee
 		$(`.product-wrapper [data-name="total"]`).innerText = total
 
-	} else {
+	} else if($(`.product-wrapper .fee-wrapper`) && $(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`) && $$('.table-custom tr td')[3]) {
 
 		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
