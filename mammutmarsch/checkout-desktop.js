@@ -910,27 +910,27 @@ const $$ = document.querySelectorAll.bind(document)
 /* intervals */
 
 let isBar = setInterval(() => {
-    if ($('.checkout_navigation_bar')) {
+	if ($('.checkout_navigation_bar')) {
 
-        clearInterval(isBar)
-        $('.checkout_navigation_bar').insertAdjacentHTML('afterend', customHTML)
-    }
+		clearInterval(isBar)
+		$('.checkout_navigation_bar').insertAdjacentHTML('afterend', customHTML)
+	}
 }, 200)
 let isBilling = setInterval(() => {
-    if (
-        $('.woocommerce-billing-fields') &&
-        $('.checkout.woocommerce-checkout') &&
-        $('.woocommerce-form-login') &&
-        $$('.woocommerce-info')[0]
-    ) {
-        clearInterval(isBilling)
+	if (
+		$('.woocommerce-billing-fields') &&
+		$('.checkout.woocommerce-checkout') &&
+		$('.woocommerce-form-login') &&
+		$$('.woocommerce-info')[0]
+	) {
+		clearInterval(isBilling)
 
-        $('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
-        $('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
-        $('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
-        $('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
+		$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
+		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
+		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
+		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
 
-        $('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
+		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
           <div class="under-block">
               <button>Bestellung abschliessen</button>
               <div class="tooltip-wrap">
@@ -942,266 +942,272 @@ let isBilling = setInterval(() => {
               </div>
           </div>
       `)
-    }
+	}
 }, 200)
 let isPrice = setInterval(() => {
-    if (
-        $$('.table-custom tr td')[4] &&
-        $('.cart_item .product-name')?.innerText &&
-        $('.woocommerce-Price-amount.amount') &&
-        $('.order-total .woocommerce-Price-amount.amount')?.innerHTML &&
-        $(`.product-wrapper [data-name="total"]`) &&
-        $('.product-wrapper [data-name="price"]')
-    ) {
-        clearInterval(isPrice)
+	if (
+		$$('.table-custom tr td')[4] &&
+		$('.cart_item .product-name')?.innerText &&
+		$('.woocommerce-Price-amount.amount') &&
+		$('.order-total .woocommerce-Price-amount.amount')?.innerHTML &&
+		$(`.product-wrapper [data-name="total"]`) &&
+		$('.product-wrapper [data-name="price"]')
+	) {
+		clearInterval(isPrice)
 
-        let name = ($(`.cart_item .product-name`).innerText).trim()
-        let price = $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-        let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let name = ($(`.cart_item .product-name`).innerText).trim()
+		let price = $(`.woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
-        $$('.table-custom tr td')[0].innerText = name
-        $$('.table-custom tr td')[1].innerText = price
-        $$('.table-custom tr td')[3].innerText = total
+		$$('.table-custom tr td')[0].innerText = name
+		$$('.table-custom tr td')[1].innerText = price
+		$$('.table-custom tr td')[3].innerText = total
 
-        $('.product-wrapper .product-name').innerText = name
-        $('.product-wrapper [data-name="price"]').innerText = price
-        $('.product-wrapper [data-name="total"]').innerText = total
-    }
+		$('.product-wrapper .product-name').innerText = name
+		$('.product-wrapper [data-name="price"]').innerText = price
+		$('.product-wrapper [data-name="total"]').innerText = total
+	}
 }, 200)
 let isCoupon = setInterval(() => {
-    if ($('.product-wrapper') && $('.checkout_coupon') && $('#coupon_code')) {
-        clearInterval(isCoupon)
+	if ($('.product-wrapper') && $('.checkout_coupon') && $('#coupon_code')) {
+		clearInterval(isCoupon)
 
-        $('.checkout_coupon').insertAdjacentHTML('afterbegin', `<p class="title">Gutschein</p>`)
-        $('.product-wrapper').after($('.checkout_coupon'))
-        $('.checkout_coupon').insertAdjacentHTML('beforeend', `<button class="custom-coupon"></button>`)
-        $('#coupon_code').placeholder = 'Gutschein / Rabattcode'
-    }
+		$('.checkout_coupon').insertAdjacentHTML('afterbegin', `<p class="title">Gutschein</p>`)
+		$('.product-wrapper').after($('.checkout_coupon'))
+		$('.checkout_coupon').insertAdjacentHTML('beforeend', `<button class="custom-coupon"></button>`)
+		$('#coupon_code').placeholder = 'Gutschein / Rabattcode'
+	}
 }, 200)
 
 let isCancel = setInterval(() => {
-    if ($('.coupon-wrapper .cancel') && $('.woocommerce-remove-coupon')) {
-        clearInterval(isCancel)
+	if ($('.coupon-wrapper .cancel') && $('.woocommerce-remove-coupon')) {
+		clearInterval(isCancel)
 
-        $('.coupon-wrapper .cancel').addEventListener('click', () => {
-            $('.woocommerce-remove-coupon').click()
-        })
-    }
+		$('.coupon-wrapper .cancel').addEventListener('click', () => {
+			$('.woocommerce-remove-coupon').click()
+		})
+	}
 }, 500)
 let isCustomCoupon = setInterval(function () {
-    if ($('[name="apply_coupon"]') && $('.custom-coupon')) {
-        clearInterval(isCustomCoupon)
-        $('[name="apply_coupon"]').value = ''
+	if ($('[name="apply_coupon"]') && $('.custom-coupon')) {
+		clearInterval(isCustomCoupon)
+		$('[name="apply_coupon"]').value = ''
 
-        $('.custom-coupon').addEventListener('click', () => {
-            $('[name="apply_coupon"]').click()
+		$('.custom-coupon').addEventListener('click', () => {
+			$('[name="apply_coupon"]').click()
 
-            window.dataLayer = window.dataLayer || []
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: Checkout improvements',
-                'eventAction': 'Promo code apply click',
-            })
-        })
-    }
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: Checkout improvements',
+				'eventAction': 'Promo code apply click',
+			})
+		})
+	}
 }, 200)
 
 let isGreenBtn = setInterval(() => {
-    if ($('.under-block button') && $('.button#place_order.button.alt')) {
-        clearInterval(isGreenBtn)
+	if ($('.under-block button') && $('.button#place_order.button.alt')) {
+		clearInterval(isGreenBtn)
 
-        $('.under-block button').addEventListener('click', () => {
-            $('.button#place_order.button.alt').click()
+		$('.under-block button').addEventListener('click', () => {
+			$('.button#place_order.button.alt').click()
 
-            window.dataLayer = window.dataLayer || []
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: Checkout improvements',
-                'eventAction': 'Click on Place Order',
-            })
-        })
-    }
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: Checkout improvements',
+				'eventAction': 'Click on Place Order',
+			})
+		})
+	}
 }, 200)
 let isExist = setInterval(() => {
-    if ($('#payment')) {
-        clearInterval(isExist)
+	if ($('#payment')) {
+		clearInterval(isExist)
 
-        $('#payment').insertAdjacentHTML('beforebegin', `
+		$('#payment').insertAdjacentHTML('beforebegin', `
 	<div class="custom-payment">
 	<p class="title">Bezahlung</p>
 	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
 </div>
 `)
-    }
+	}
 }, 200)
 let isInfo = setInterval(() => {
-    if ($('.col-1 .woocommerce-info')) {
-        clearInterval(isInfo)
+	if ($('.col-1 .woocommerce-info')) {
+		clearInterval(isInfo)
 
-        $('.col-1 .woocommerce-info').innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
-    }
+		$('.col-1 .woocommerce-info').innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+	}
 }, 200)
 let isName = setInterval(() => {
-    if (
-        $('select[name="title"] option') &&
-        $('select[name="birthday_day"] option') &&
-        $('select[name="birthday_month"] option') &&
-        $('select[name="birthday_year"] option') &&
-        $('select[name="billing_country"] option') &&
-        $('select[name="size"] option')
-    ) {
-        clearInterval(isName)
+	if (
+		$('select[name="title"] option') &&
+		$('select[name="birthday_day"] option') &&
+		$('select[name="birthday_month"] option') &&
+		$('select[name="birthday_year"] option') &&
+		$('select[name="billing_country"] option') &&
+		$('select[name="size"] option')
+	) {
+		clearInterval(isName)
 
-        $('select[name="title"] option').innerText = 'Bitte auswählen'
-        $('select[name="birthday_day"] option').innerText = 'DD'
-        $('select[name="birthday_month"] option').innerText = 'MM'
-        $('select[name="birthday_year"] option').innerText = 'YY'
-        $('select[name="billing_country"] option').innerText = 'Bitte auswählen'
-        $('select[name="size"] option').innerText = 'Bitte auswählen'
-    }
+		$('select[name="title"] option').innerText = 'Bitte auswählen'
+		$('select[name="birthday_day"] option').innerText = 'DD'
+		$('select[name="birthday_month"] option').innerText = 'MM'
+		$('select[name="birthday_year"] option').innerText = 'YY'
+		$('select[name="billing_country"] option').innerText = 'Bitte auswählen'
+		$('select[name="size"] option').innerText = 'Bitte auswählen'
+	}
 }, 200)
 
 /* mut functions */
 
 function isAppliedCoupon() {
 
-    if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
+	if ($('.woocommerce-remove-coupon') && $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount') && $('.coupon-wrapper .cancel')) {
 
-        $('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
+		$('[data-name="coupon-sale"] .minus').innerText = '-' + $('.cart-discount.coupon-crotest .woocommerce-Price-amount.amount').innerText
 
-        $('.custom-coupon').classList.add('applied')
-        $('.coupon-wrapper').classList.add('show')
+		$('.custom-coupon').classList.add('applied')
+		$('.coupon-wrapper').classList.add('show')
 
-    } else {
-        $('.coupon-wrapper').classList.remove('show')
-        $('.custom-coupon').classList.remove('applied')
-    }
+	} else {
+		$('.coupon-wrapper').classList.remove('show')
+		$('.custom-coupon').classList.remove('applied')
+	}
 
 }
 
 function isFee() {
-        if (
-            $('.fee .woocommerce-Price-amount.amount') &&
-            $(`.product-wrapper [data-name="fee"]`) &&
-            $$('.table-custom tr td')[3]
-        ) {
-            let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-            let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+	if (
+		$('.fee .woocommerce-Price-amount.amount') &&
+		$(`.product-wrapper [data-name="fee"]`) &&
+		$$('.table-custom tr td')[3]
+	) {
+		let fee =  $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
-            $$('.table-custom tr td')[3].innerText = total
+		$$('.table-custom tr td')[3].innerText = total
 
-            $(`.product-wrapper .fee-wrapper`).classList.add('show')
-            $(`.product-wrapper [data-name="fee"]`).innerText = fee
-            $(`.product-wrapper [data-name="total"]`).innerText = total
+		$(`.product-wrapper .fee-wrapper`).classList.add('show')
+		$(`.product-wrapper [data-name="fee"]`).innerText = fee
+		$(`.product-wrapper [data-name="total"]`).innerText = total
 
-        } else {
+	} else {
 
-            let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
-            $(`.product-wrapper .fee-wrapper`).classList.remove('show')
-            $(`.product-wrapper [data-name="fee"]`).innerText = ''
-            $(`.product-wrapper [data-name="total"]`).innerText = total
+		$(`.product-wrapper .fee-wrapper`).classList.remove('show')
+		$(`.product-wrapper [data-name="fee"]`).innerText = ''
+		$(`.product-wrapper [data-name="total"]`).innerText = total
 
-            $$('.table-custom tr td')[3].innerText = total
-        }
+		$$('.table-custom tr td')[3].innerText = total
+	}
 }
 function isCheckbox() {
-        if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
-            $$('.place-order [type="checkbox"]').forEach(checkbox => {
-                checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-            })
-        }
+	if ($$('.place-order [type="checkbox"]')[1] && !$('.custom-check')) {
+		$$('.place-order [type="checkbox"]').forEach(checkbox => {
+			checkbox.insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+		})
+	}
 }
 function isBr() {
-        if ($('#wc-stripe-cc-form br')) {
-            $('#wc-stripe-cc-form br').remove()
-        }
+	if ($('#wc-stripe-cc-form br')) {
+		$('#wc-stripe-cc-form br').remove()
+	}
 }
 function reorder() {
-        if ($('.payment_method_stripe img')?.src) {
-            $('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-        }
+	if ($('.payment_method_stripe img')?.src) {
+		$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
+	}
 }
 function addDark() {
-        if ($('.wc_payment_method [checked]')) {
-            if ($('.dark')) {
-                $('.dark').classList.remove('dark')
-            }
-            $('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
-        }
+	if ($('.wc_payment_method [checked]')) {
+		if ($('.dark')) {
+			$('.dark').classList.remove('dark')
+		}
+		$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
+	}
 }
 
 function isBtnForward() {
-    if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4] && !$('.remove')) {
+	if ($('.woocommerce-message .button.wc-forward') && $$('.table-custom td')[4] && !$('.remove')) {
 
-        $$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
+		$$('.table-custom td')[4].innerHTML = `<div class="remove"><img src="https://conversionratestore.github.io/projects/mammutmarsch/img/delete.svg" alt="remove"><span class="remove-text">Entfernen</span></div>`
 
-        let isRemove = setInterval(() => {
-            if ($('.table-custom .remove')) {
-                clearInterval(isRemove)
-                $('.table-custom .remove').addEventListener('click', () => {
-                    $('.woocommerce-message .button.wc-forward').click()
+		let isRemove = setInterval(() => {
+			if ($('.table-custom .remove')) {
+				clearInterval(isRemove)
+				$('.table-custom .remove').addEventListener('click', () => {
+					$('.woocommerce-message .button.wc-forward').click()
 
-                    window.dataLayer = window.dataLayer || []
-                    dataLayer.push({
-                        'event': 'event-to-ga',
-                        'eventCategory': 'Exp: Checkout improvements',
-                        'eventAction': 'Click on Remove item',
-                    })
-                })
-            }
-        }, 200)
-    }
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: Checkout improvements',
+						'eventAction': 'Click on Remove item',
+					})
+				})
+			}
+		}, 200)
+	}
 }
 
 
 /* mut observer */
+let startMut = setInterval(() => {
+	if($('#order_review')) {
+		clearInterval(startMut)
+		
+		let target = $('#order_review')
+		let config = {
+			attributes: true,
+			childList: true,
+			subtree: true,
+		}
 
-        let target = $('#order_review')
-        let config = {
-            attributes: true,
-            childList: true,
-            subtree: true,
-        }
+		let observer = new MutationObserver((mutationsList) => {
+			console.log(mutationsList)
+			observerTimeout()
+		})
 
-        let observer = new MutationObserver((mutationsList) => {
-            console.log(mutationsList)
-            observerTimeout()
-        })
+		function observerTimeout() {
+			observer.disconnect()
+			reorder()
+			addDark()
+			isAppliedCoupon()
+			isBtnForward()
+			isBr()
+			isCheckbox()
+			isFee()
+			observer.observe(target, config)
 
-        function observerTimeout() {
-            observer.disconnect()
-            reorder()
-            addDark()
-            isAppliedCoupon()
-            isBtnForward()
-            isBr()
-            isCheckbox()
-            isFee()
-            observer.observe(target, config)
+		}
 
-        }
+		observer.observe(target, config)
+	}
+}, 200)
 
-        observer.observe(target, config)
 
 
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: Checkout improvements',
-    'eventAction': 'loaded',
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp: Checkout improvements',
+	'eventAction': 'loaded',
 })
 
 ;(function (h, o, t, j, a, r) {
-    h.hj = h.hj || function () {
-        (h.hj.q = h.hj.q || []).push(arguments)
-    }
-    h._hjSettings = {hjid: 1191175, hjsv: 6}
-    a = o.getElementsByTagName('head')[0]
-    r = o.createElement('script')
-    r.async = 1
-    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
-    a.appendChild(r)
+	h.hj = h.hj || function () {
+		(h.hj.q = h.hj.q || []).push(arguments)
+	}
+	h._hjSettings = {hjid: 1191175, hjsv: 6}
+	a = o.getElementsByTagName('head')[0]
+	r = o.createElement('script')
+	r.async = 1
+	r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
+	a.appendChild(r)
 })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
 hj('event', 'checkout_improvements')
