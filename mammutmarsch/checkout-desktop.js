@@ -1071,7 +1071,7 @@ function isAppliedCoupon() {
 		$('.custom-coupon').classList.add('applied')
 		$('.coupon-wrapper').classList.add('show')
 
-	} else {
+	} else if($('.coupon-wrapper') && $('.custom-coupon')){
 		$('.coupon-wrapper').classList.remove('show')
 		$('.custom-coupon').classList.remove('applied')
 	}
@@ -1179,7 +1179,6 @@ let startMut = setInterval(() => {
 			isCheckbox()
 			isFee()
 			observer.observe(target, config)
-
 		}
 
 		observer.observe(target, config)
