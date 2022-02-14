@@ -1369,7 +1369,7 @@ function isAppliedCoupon() {
 function isFee() {
 		if (
 			$('.fee .woocommerce-Price-amount.amount') &&
-			$(`.product-wrapper [data-name="fee"]`)
+			$(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`) && $(`.order-total .woocommerce-Price-amount.amount`)
 		) {
 
 			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
@@ -1381,7 +1381,7 @@ function isFee() {
 
 			$(`.product-mobile [data-name="total"]`).innerText = total
 
-		} else {
+		} else if ($(`.order-total .woocommerce-Price-amount.amount`) && $(`.product-wrapper .fee-wrapper`) && $(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`)){
 			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
