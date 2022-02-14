@@ -670,10 +670,11 @@ window.onload = function() {
     })
 
     navMenu.addEventListener('click', (e) => {
-        actionDataLayer = `Click on the screen outside the menu`;
-        labelDataLayer = 'Menu';
-        pushDataLayer(actionDataLayer,labelDataLayer)
+       
         if (e.target.classList.contains('nav-menu')) {
+             actionDataLayer = `Click on the screen outside the menu`;
+            labelDataLayer = 'Menu';
+            pushDataLayer(actionDataLayer,labelDataLayer)
             navMenu.classList.remove('active')
             document.body.style.overflow = 'inherit';
         }
