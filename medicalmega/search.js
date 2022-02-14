@@ -670,6 +670,10 @@ window.onload = function() {
     })
 
     navMenu.addEventListener('click', (e) => {
+        console.log(`backDrop`)
+        actionDataLayer = `Click on the screen outside the menu`;
+        labelDataLayer = 'Menu';
+        pushDataLayer(actionDataLayer,labelDataLayer)
         if (e.target.classList.contains('nav-menu')) {
             navMenu.classList.remove('active')
             document.body.style.overflow = 'inherit';
