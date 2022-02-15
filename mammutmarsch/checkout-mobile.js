@@ -240,12 +240,7 @@ const style = `
 				line-height: 48px;
 				letter-spacing: -0.02em;			
 				color: #666666
-			}
-			
-			.product-wrapper .title, 
-			.product-mobile .title {
-				padding-top: 20px;
-			}
+			}		
 			
 			#order_review {
 				background-color: #fff;
@@ -1117,6 +1112,11 @@ color: #333333
 			
 			.remove-text::after {
 				display: none;
+			}
+			
+						.product-wrapper .title, 
+			.product-mobile .title {
+				padding-top: 20px;
 			}
 
 		</style>
