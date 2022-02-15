@@ -110,6 +110,10 @@ const style = `
 			/*	color: #C4C4C4 !important;*/
 			/*}*/
 			
+			.woocommerce-info {
+				display: none;
+			}
+			
 			form.checkout .woocommerce-info {
 				display: block !important;
 			}
@@ -570,10 +574,6 @@ const style = `
 	
 	.checkout_coupon {
 		display: block !important;
-	}
-	
-	.woocommerce-info:not(.col-1 .woocommerce-info) {
-		display: none;
 	}
 	
 	.product-wrapper [data-name="fee"] {
@@ -1189,9 +1189,6 @@ let startMut = setInterval(() => {
 		observer.observe(target, config)
 	}
 }, 200)
-
-
-
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
