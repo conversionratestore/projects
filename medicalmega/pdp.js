@@ -1204,8 +1204,8 @@ window.onload  = function () {
                         <div class="align-items-center"> 
                           <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
                           <div> 
-                            <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                            <p class="c-gray">2-3 business days*</p>
+                            <p class="c-red text-up fw-semi l-t-02">Estimated delivery</p>
+                            <p class="c-gray">2-5 business days*</p>
                           </div>
                         </div>
                         <div class="line"></div>
