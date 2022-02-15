@@ -108,13 +108,9 @@ const style = `
 				border-radius: 2px !important;
 				/*color: #C4C4C4 !important;*/
 			}	
+
 			
-			/*#cms-theme.woocommerce-page input::placeholder,*/
-			/* #cms-theme.woocommerce-page [data-placeholder] {*/
-			/*	color: #C4C4C4 !important;*/
-			/*}*/
-			
-			form.checkout .woocommerce-info {
+			form.checkout #customer_details .woocommerce-info {
 				display: block !important;
 			}
 			
