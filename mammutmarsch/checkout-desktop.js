@@ -105,20 +105,12 @@ const style = `
 				/*color: #C4C4C4 !important;*/
 			}	
 			
-			/*#cms-theme.woocommerce-page input::placeholder,*/
-			/* #cms-theme.woocommerce-page [data-placeholder] {*/
-			/*	color: #C4C4C4 !important;*/
-			/*}*/
-			
-			.woocommerce-info {
-				display: none;
-			}
-			
-			form.checkout .woocommerce-info {
+			form.checkout #customer_details .woocommerce-info {
 				display: block !important;
 			}
 			
 			.woocommerce-info {
+				display: none;
 				padding: 0 !important;
 				border: none;
 				color: #008000 !important;
