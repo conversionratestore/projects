@@ -242,6 +242,11 @@ const style = `
 				color: #666666
 			}
 			
+			.product-wrapper .title, 
+			.product-mobile .title {
+				padding-top: 20px;
+			}
+			
 			#order_review {
 				background-color: #fff;
 				border-radius: 5px;
