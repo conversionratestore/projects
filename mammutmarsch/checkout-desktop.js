@@ -841,6 +841,11 @@ color: #333333
 	.tooltip-wrap img {
 	    cursor: pointer;
 	}
+	
+	.product-wrapper .title, 
+	.product-mobile .title {
+		padding-top: 20px;
+	}
 		</style>
 		
 		
