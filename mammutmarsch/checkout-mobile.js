@@ -207,6 +207,7 @@ const style = `
 			
 			#size_field {
 				order: 9;
+				margin-top: 6px;
 			}
 			
 			.create-account {
