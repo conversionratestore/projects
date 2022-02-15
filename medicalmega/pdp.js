@@ -527,6 +527,9 @@ button {
       color: #FBFBFB; }
   .select_option:focus {
       border-color: #344D57;}
+      .range{
+      display: none;
+      }
 .range_slider {
   position: relative;
   background: #E9EBEC;
