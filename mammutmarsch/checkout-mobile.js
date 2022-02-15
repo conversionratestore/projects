@@ -170,43 +170,43 @@ const style = `
 			#title_field {
 			    order: 1;
 			    padding-right: 20px;
-			}
-			
-			#billing_email_field {
-			    order: 2;
-			}
+			}					
 			
 			#billing_first_name_field {
-				order: 3;
+				order: 2;
 				padding-right: 20px;
 			}
 			
-			#birthday_day_field {
-				order: 4;
-				padding-right: 10px;	
+			#billing_last_name_field {
+				order: 3;
+				padding-right: 20px;		
 			}
 			
+			#billing_country_field {
+				order: 4;
+				padding-right: 20px;
+			}
+			
+			#billing_email_field {
+			    order: 5;
+			}
+			
+			#birthday_day_field {
+				order: 6;
+				padding-right: 10px;	
+			}	
+			
 			#birthday_month_field {
-				order: 5;		
+				order: 7;		
 				padding-right: 10px;		
 			}
 			
 			#birthday_year_field {
-				order: 6;
+				order: 8;
 			}       
 			
-			#billing_last_name_field {
-				order: 7;
-				padding-right: 20px;		
-			}
-			
 			#size_field {
-				order: 8;
-			}
-			
-			#billing_country_field {
 				order: 9;
-				padding-right: 20px;
 			}
 			
 			.create-account {
@@ -1367,54 +1367,54 @@ function isAppliedCoupon() {
 
 }
 function isFee() {
-		if (
-			$('.fee .woocommerce-Price-amount.amount') &&
-			$(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`) && $(`.order-total .woocommerce-Price-amount.amount`)
-		) {
+	if (
+		$('.fee .woocommerce-Price-amount.amount') &&
+		$(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`) && $(`.order-total .woocommerce-Price-amount.amount`)
+	) {
 
-			let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
-			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let fee = $(`.fee .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
-			$(`.product-wrapper .fee-wrapper`).classList.add('show')
-			$(`.product-wrapper [data-name="fee"]`).innerText = fee
-			$(`.product-wrapper [data-name="total"]`).innerText = total
+		$(`.product-wrapper .fee-wrapper`).classList.add('show')
+		$(`.product-wrapper [data-name="fee"]`).innerText = fee
+		$(`.product-wrapper [data-name="total"]`).innerText = total
 
-			$(`.product-mobile [data-name="total"]`).innerText = total
+		$(`.product-mobile [data-name="total"]`).innerText = total
 
-		} else if ($(`.order-total .woocommerce-Price-amount.amount`) && $(`.product-wrapper .fee-wrapper`) && $(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`)){
-			let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
+	} else if ($(`.order-total .woocommerce-Price-amount.amount`) && $(`.product-wrapper .fee-wrapper`) && $(`.product-wrapper [data-name="fee"]`) && $(`.product-wrapper [data-name="total"]`)){
+		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
-			$(`.product-wrapper .fee-wrapper`).classList.remove('show')
-			$(`.product-wrapper [data-name="fee"]`).innerText = ''
-			$(`.product-wrapper [data-name="total"]`).innerText = total
+		$(`.product-wrapper .fee-wrapper`).classList.remove('show')
+		$(`.product-wrapper [data-name="fee"]`).innerText = ''
+		$(`.product-wrapper [data-name="total"]`).innerText = total
 
-			$(`.product-mobile [data-name="total"]`).innerText = total
-		}
+		$(`.product-mobile [data-name="total"]`).innerText = total
+	}
 }
 function isBr() {
-		if ($('#wc-stripe-cc-form br')) {
+	if ($('#wc-stripe-cc-form br')) {
 
-			$('#wc-stripe-cc-form br').remove()
-		}
+		$('#wc-stripe-cc-form br').remove()
+	}
 }
 function isCheckbox() {
-		if ($$('.place-order [type="checkbox"]')[2] && !$('.custom-check')) {
-			$$('.place-order [type="checkbox"]')[1].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-			$$('.place-order [type="checkbox"]')[2].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
-		}
+	if ($$('.place-order [type="checkbox"]')[2] && !$('.custom-check')) {
+		$$('.place-order [type="checkbox"]')[1].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+		$$('.place-order [type="checkbox"]')[2].insertAdjacentHTML('afterend', `<p class="custom-check"></p>`)
+	}
 }
 function addDark() {
-		if ($('.wc_payment_method [checked]')) {
-			if ($('.dark')) {
-				$('.dark').classList.remove('dark')
-			}
-			$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
+	if ($('.wc_payment_method [checked]')) {
+		if ($('.dark')) {
+			$('.dark').classList.remove('dark')
 		}
+		$('.wc_payment_method [checked]').closest('.row').querySelector('.col-xs-6 label').classList.add('dark')
+	}
 }
 function reorder() {
-		if ($('.payment_method_stripe img')?.src) {
-			$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
-		}
+	if ($('.payment_method_stripe img')?.src) {
+		$('.payment_method_stripe img').src = 'https://conversionratestore.github.io/projects/mammutmarsch/img/card_group.svg'
+	}
 
 }
 function isBtnForward() {
