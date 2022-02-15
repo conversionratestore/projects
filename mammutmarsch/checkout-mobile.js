@@ -119,6 +119,7 @@ const style = `
 			}
 			
 			.woocommerce-info {
+				display: none;
 				padding: 0 !important;
 				border: none;
 				color: #008000 !important;
@@ -575,10 +576,6 @@ const style = `
 	
 	.checkout_coupon {
 		display: block !important;
-	}
-	
-	.woocommerce-info:not(.col-1 .woocommerce-info) {
-		display: none;
 	}
 	
 	.product-wrapper [data-name="fee"] {
