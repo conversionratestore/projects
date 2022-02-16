@@ -1149,7 +1149,7 @@ const sideBlock = `
 		<div class="side-block">
 			<div class="product-wrapper">
 				<p class="title">Produkt</p>
-				<div>
+				<div style="border: none;">
 					<p class="product-name"></p>
 					<p class="product-price"></p>
 				</div>				
