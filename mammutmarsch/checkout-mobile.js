@@ -480,10 +480,9 @@ const style = `
 	border-radius: 2px;
 	}
 	
-	.product-wrapper .title,  
-	.product-wrapper .product-name,  
+	.product-wrapper .title,  	
 	.product-wrapper div  {
-	padding: 10px;
+		padding: 10px;
 	}
 	
 	.product-wrapper .title{
@@ -492,8 +491,9 @@ const style = `
 	color: #333333;
 	}
 	.product-wrapper .product-name{
-	font-size: 16px;
-	color: #7F7F7F;
+	font-size: 16px !important;
+	color: #7F7F7F !important;
+	font-weight: 400 !important;
 	width: 65%;
 	}
 	
@@ -1112,7 +1112,8 @@ color: #333333
 			.product-mobile .title {
 				padding-top: 20px;
 			}
-
+			
+		
 		</style>
 		
 		
@@ -1148,7 +1149,10 @@ const sideBlock = `
 		<div class="side-block">
 			<div class="product-wrapper">
 				<p class="title">Produkt</p>
-				<p class="product-name"></p>
+				<div>
+					<p class="product-name"></p>
+					<p class="product-price"></p>
+				</div>				
 				<div class="fee-wrapper">
 					<p>Bearbeitungsgebühr</p>
 					<p data-name="fee"></p>
@@ -1213,7 +1217,8 @@ let isPrice = setInterval(() => {
 		$('.woocommerce-Price-amount.amount') &&
 		$('.order-total .woocommerce-Price-amount.amount')?.innerHTML &&
 		$(`.product-wrapper [data-name="total"]`) &&
-		$$('.product-wrapper [data-name="price"]')
+		$$('.product-wrapper [data-name="price"]') &&
+		$(`.product-wrapper .product-price`)
 	) {
 		clearInterval(isPrice)
 
@@ -1222,6 +1227,7 @@ let isPrice = setInterval(() => {
 		let total = $(`.order-total .woocommerce-Price-amount.amount`).innerHTML.split('<span')[0] + '€'
 
 		$('.product-wrapper .product-name').innerText = name
+		$('.product-wrapper .product-price').innerText = price
 
 		$('.product-wrapper [data-name="total"]').innerText = total
 
