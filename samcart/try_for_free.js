@@ -402,7 +402,7 @@ let startFunk2 = setInterval(() => {
 
   .card_box #placeOrder {
     text-transform: unset;
-    margin: 0 !important;
+    margin: 0 0 15px !important;
   }
 
   .card_box .front button.btn_continue svg {
@@ -511,7 +511,7 @@ let startFunk2 = setInterval(() => {
     border: 1px solid #bfc7ce;
     border-radius: 6px;
     padding: 10px 17px 10px 10px;
-    /*display: flex;*/
+    display: flex;
     align-items: center;
     margin-top: 20px;
   }
@@ -549,15 +549,19 @@ let startFunk2 = setInterval(() => {
   }
 
   .btn_back {
-    color: #273542;
-    background-color: #f4f5f6;
-    padding: 5px 11px;
-    margin-bottom: 30px;
-    border-radius: 4px;
-    display: inline-block;
+    color: #183B56;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     cursor: pointer;
-    text-transform: lowercase;
-    font-size: 11px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 30px;
+  }
+
+  .btn_back >svg{
+    margin-right: 10px;
   }
 </style>
       `;
@@ -634,11 +638,22 @@ let startFunk2 = setInterval(() => {
       </button>
     </div>
     <div class="back">
-      <span class="btn_back">&#8249; Back</span>
+      <span class="btn_back">
+        <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <rect x="14.875" width="14" height="14.875" transform="rotate(90 14.875 0)" fill="url(#pattern0)"/>
+          <defs>
+          <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlink:href="#image0_20_788" transform="scale(0.0625 0.0588235)"/>
+          </pattern>
+          <image id="image0_20_788" width="16" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAuElEQVQ4Ee2TwQ3DIAxFGaEjILMAB/uOTAfJRs0m7QjZoNmk3aDVJzJCDSLqsVIjIYz/+w44xLnBQ6IrSb4PkLEUJL8wxtRA/Rdw7od6EDjfcGF8TL79qr0jgAEbOF8rG1gXwMT68JKiCZ8FoIEpedbFOOdjOmEXZgiiE0Rbb7FOtgYLTy1gAYnOBhHrpcZtXnQ2vjvj7Wbcz9vOusY26fmciPPTCiBGrmUO49Kw8jvr2jb20Pgt8Ab/wWmi0HxujAAAAABJRU5ErkJggg=="/>
+          </defs>
+        </svg>
+        Back
+      </span>
       <span class="testik2"></span>
       <div class="quarantee">
         <div>
-          <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
         </div>
         <div>
           <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -688,7 +703,7 @@ let startFunk2 = setInterval(() => {
     let quaranteeBlock = /* html*/ `
 <div class="quarantee">
   <div>
-    <!-- <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee"> -->
+    <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
   </div>
   <div>
     <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -700,6 +715,21 @@ let startFunk2 = setInterval(() => {
 </div>
 
     `;
+
+    let btnBack = /* html*/ `
+    <span class="btn_back">
+    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <rect x="14.875" width="14" height="14.875" transform="rotate(90 14.875 0)" fill="url(#pattern0)"/>
+      <defs>
+      <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <use xlink:href="#image0_20_788" transform="scale(0.0625 0.0588235)"/>
+      </pattern>
+      <image id="image0_20_788" width="16" height="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAuElEQVQ4Ee2TwQ3DIAxFGaEjILMAB/uOTAfJRs0m7QjZoNmk3aDVJzJCDSLqsVIjIYz/+w44xLnBQ6IrSb4PkLEUJL8wxtRA/Rdw7od6EDjfcGF8TL79qr0jgAEbOF8rG1gXwMT68JKiCZ8FoIEpedbFOOdjOmEXZgiiE0Rbb7FOtgYLTy1gAYnOBhHrpcZtXnQ2vjvj7Wbcz9vOusY26fmciPPTCiBGrmUO49Kw8jvr2jb20Pgt8Ab/wWmi0HxujAAAAABJRU5ErkJggg=="/>
+      </defs>
+    </svg>
+    Back
+  </span>
+    `
 
     document.head.insertAdjacentHTML("beforeend", styleBox);
 
@@ -842,22 +872,32 @@ let startFunk2 = setInterval(() => {
       },100)
 
       // click on btn_back
-      document
-        .querySelector(".btn_back")
-        .addEventListener("click", function (e) {
-          e.preventDefault();
-          window.dataLayer = window.dataLayer || [];
-          dataLayer.push({
-              'event': 'event-to-ga',
-              'eventCategory': 'Exp: New free trial flow',
-              'eventAction': 'Click on Back link',
-              'eventLabel': 'Step 2'
-          });
-
-          document.querySelector(".front").style.transform = "rotateY(0deg)";
-          document.querySelector(".back").style.transform = "rotateY(-180deg)";
-          document.querySelector(".front").style.zIndex = "15";
-        });
+      let onBtnBack = setInterval(()=>{
+        if(document
+          .querySelector(".btn_back")){
+            clearInterval(onBtnBack)
+            
+            if(document
+              .querySelector(".btn_back")){
+                document
+                  .querySelector(".btn_back")
+                  .addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: New free trial flow',
+                        'eventAction': 'Click on Back link',
+                        'eventLabel': 'Step 2'
+                    });
+          
+                    document.querySelector(".front").style.transform = "rotateY(0deg)";
+                    document.querySelector(".back").style.transform = "rotateY(-180deg)";
+                    document.querySelector(".front").style.zIndex = "15";
+                  });
+              }
+          }
+      },10)
 
       //label, input textContent back card
       if (document.querySelector(".card_box .back h3.my-32.text-uppercase")) {
@@ -1048,6 +1088,15 @@ let startFunk2 = setInterval(() => {
                   .querySelector(`.back ${selectorBtn}`)
                   .insertAdjacentHTML("afterend", quaranteeBlock);
               }
+
+              // if (document.querySelector(".quarantee")){
+              //   if(!document.querySelector('.btn_back')){
+              //     document
+              //     .querySelector(`.back .quarantee`)
+              //     .insertAdjacentHTML("beforebegin", btnBack);
+              //   }
+              // }
+
             }
           }
 
