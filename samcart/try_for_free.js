@@ -12,14 +12,14 @@ let startFunc = setInterval(() => {
       onClickPricingUrl()
     })
 
-    document.querySelectorAll(".nav-action a.nav-link").forEach((el) => {
-      if (el.textContent.includes("Pricing")) {
-        el.addEventListener("click", (e) => {
-          e.preventDefault()
-          onClickPricingUrl()
-        })
-      }
-    })
+    // document.querySelectorAll(".nav-action a.nav-link").forEach((el) => {
+    //   if (el.textContent.includes("Pricing")) {
+    //     el.addEventListener("click", (e) => {
+    //       e.preventDefault()
+    //       onClickPricingUrl()
+    //     })
+    //   }
+    // })
 
     function onClickPricingUrl() {
       document.location = "https://checkout.samcart.com/products/samcart-grow-yearly-trial?_ga=2.142421298.1224594291.1644311332-453639727.1633503243"
