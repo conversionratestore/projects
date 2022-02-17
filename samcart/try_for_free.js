@@ -347,7 +347,7 @@ let startFunk2 = setInterval(() => {
     height: 100%;
     left: 0;
     top: 0;
-    transition: all 1.3s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
+    transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
     backface-visibility: hidden;
     background: #ffffff;
   }
