@@ -696,6 +696,14 @@ let startFunk2 = setInterval(() => {
       document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").insertAdjacentHTML("afterend", steps)
     }
 
+    if(document.querySelector('.steps')){
+      let today = new Date().toDateString().split(" ")
+      let dayFourteenthToday = new Date(new Date().setDate(new Date().getDate() + 14)).toDateString().split(" ")
+      document.querySelectorAll('.absolute_box > span')[0].textContent = `${today[1]} / ${today[2]} / ${today[3]}`
+      document.querySelectorAll('.absolute_box > span')[1].textContent = `${today[1]} / ${today[2]} / ${today[3]}`
+      document.querySelectorAll('.absolute_box > span')[2].textContent = `${dayFourteenthToday[1]} / ${dayFourteenthToday[2]} / ${dayFourteenthToday[3]}`
+    }
+
     if (document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong")) {
       document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your new business today!"
     }
@@ -755,6 +763,7 @@ let startFunk2 = setInterval(() => {
       if (document.querySelector("#placeOrder")) {
         document.querySelector("#placeOrder").textContent = "Start your free trial now"
       }
+      
 
       setTimeout(() => {
         if (document.querySelector("#payments #cards")) {
