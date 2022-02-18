@@ -1032,6 +1032,7 @@ let isExist = setInterval(() => {
 `)
 	}
 }, 200)
+
 let isName = setInterval(() => {
 	if (
 		$('select[name="title"] option') &&
@@ -1042,7 +1043,7 @@ let isName = setInterval(() => {
 		$('select[name="size"] option')
 	) {
 		clearInterval(isName)
-
+		console.log('sss');
 		$('select[name="title"] option').innerText = 'Bitte auswählen'
 		$('select[name="birthday_day"] option').innerText = 'DD'
 		$('select[name="birthday_month"] option').innerText = 'MM'
@@ -1051,6 +1052,12 @@ let isName = setInterval(() => {
 		$('select[name="size"] option').innerText = 'Bitte auswählen'
 	}
 }, 200)
+
+let isSize = setInterval(() => {
+	if($('select[name="size"] option')) {
+		$('select[name="size"] option').innerText = 'Bitte auswählen'
+	}
+}, 200);
 
 /* mut functions */
 
@@ -1181,39 +1188,39 @@ let startMut = setInterval(() => {
 function changeLogForm() {
 	$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
 	$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))	
-	$$('.woocommerce-info')[0].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
-	$$('.woocommerce-info')[0].classList.add('logged')
+	$$('.woocommerce-info')[1].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+	$$('.woocommerce-info')[1].classList.add('logged')
 }
 
 let isLoginForm = setInterval(() => {
 	if($('.woocommerce-form-login') && $('.woocommerce-billing-fields') && $$('.woocommerce-info')[0]) {
 		clearInterval(isLoginForm)
-
+		console.log('isLoginForm >>>');
 		changeLogForm()
 	}
 }, 200) 
 
-let loginMut = setInterval(() => {
-	if($('.top_bar .text-right')) {
-		clearInterval(loginMut)
+// let loginMut = setInterval(() => {
+// 	if($('.top_bar .text-right')) {
+// 		clearInterval(loginMut)
 
-		let target = $('.top_bar .text-right')		
+// 		let target = $('.top_bar .text-right')		
 
-		let observer = new MutationObserver((mutationsList) => {
-			observer.disconnect()
+// 		let observer = new MutationObserver((mutationsList) => {
+// 			observer.disconnect()
 
-			if(!$('.woocommerce-form-login') && $$('.woocommerce-info')[0]) {
-				$$('.woocommerce-info')[0].classList.remove('logged')	
-			} else {
-				changeLogForm()
-			}
+// 			if(!$('.woocommerce-form-login') && $$('.woocommerce-info')[0]) {
+// 				$$('.woocommerce-info')[0].classList.remove('logged')	
+// 			} else {
+// 				changeLogForm()
+// 			}
 
-			observer.observe(target, config)
-		})
+// 			observer.observe(target, config)
+// 		})
 
-		observer.observe(target, config)
-	}
-}, 200)
+// 		observer.observe(target, config)
+// 	}
+// }, 200)
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
