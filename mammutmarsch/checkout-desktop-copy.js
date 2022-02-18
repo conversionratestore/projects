@@ -1179,21 +1179,25 @@ let startMut = setInterval(() => {
 }, 200)
 
 let loginMut = setInterval(() => {
-	if($('.woocommerce-form-login')) {
+	if($('.top_bar .text-right')) {
 		clearInterval(startMut)
 
-		let target = $('.woocommerce-form-login')		
+		let target = $('.top_bar .text-right')		
 
 		let observer = new MutationObserver((mutationsList) => {
 			observer.disconnect()
-			if ($('.woocommerce-form-login')) {
-				$$('.woocommerce-info')[0].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
-				$$('.woocommerce-info')[0].classList.add('logged')	
+
+			if ($('.woocommerce-form-login') && $('.woocommerce-billing-fields') && $$('.woocommerce-info')[0]) {
+				console.log('yesss');
 				$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
 				$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))	
+				$$('.woocommerce-info')[0].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+				$$('.woocommerce-info')[0].classList.add('logged')	
+				
 			} else {
 				$$('.woocommerce-info')[0].classList.remove('logged')	
 			}
+
 			observer.observe(target, config)
 		})
 
