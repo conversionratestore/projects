@@ -940,12 +940,6 @@ let isBilling = setInterval(() => {
       `)
 	}
 }, 200)
-let isLogin = setInterval(() => {
-	if($('.woocommerce-form-login') && $('.woocommerce-billing-fields')){
-		clearInterval(isLogin)
-		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
-	}
-}, 200)
 let isPrice = setInterval(() => {
 	if (
 		$$('.table-custom tr td')[4] &&
@@ -1033,13 +1027,6 @@ let isExist = setInterval(() => {
 	<p class="subtitle">Alle Transaktionen sind gesichert und verschlüsselt.</p>
 </div>
 `)
-	}
-}, 200)
-let isInfo = setInterval(() => {
-	if ($('.col-1 .woocommerce-info')) {
-		clearInterval(isInfo)
-
-		$('.col-1 .woocommerce-info').innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
 	}
 }, 200)
 let isName = setInterval(() => {
@@ -1161,6 +1148,7 @@ let startMut = setInterval(() => {
 		clearInterval(startMut)
 
 		let target = $('#order_review')
+
 		let config = {
 			attributes: true,
 			childList: true,
@@ -1186,6 +1174,34 @@ let startMut = setInterval(() => {
 		observer.observe(target, config)
 	}
 }, 200)
+
+let isAuth = setInterval(() => {
+	if($('.woocommerce-form-login')) {
+		clearInterval(isAuth)
+
+		let target = $('.woocommerce-form-login')
+		
+		let config = {
+			attributes: true,
+			childList: true,
+			subtree: true,
+		}
+
+		let observer = new MutationObserver((mutationsList) => {	
+			observer.disconnect()
+			if($('.woocommerce-form-login') && $('.woocommerce-billing-fields')) {					
+				$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
+
+				$('.col-1 .woocommerce-info')?.innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+			} else {
+				$('.col-1 .woocommerce-info').style.display = 'none'
+			}
+			observer.observe(target, config)
+		})
+
+		observer.observe(target, config)
+	}
+}, 1000)
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
