@@ -1178,7 +1178,7 @@ let startMut = setInterval(() => {
 	}
 }, 200)
 
-let startMut = setInterval(() => {
+let loginMut = setInterval(() => {
 	if($('.woocommerce-form-login')) {
 		clearInterval(startMut)
 
