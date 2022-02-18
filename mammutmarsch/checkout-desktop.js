@@ -917,14 +917,13 @@ let isBilling = setInterval(() => {
 	if (
 		$('.woocommerce-billing-fields') &&
 		$('.checkout.woocommerce-checkout') &&
-		$('.woocommerce-form-login') &&
+		
 		$$('.woocommerce-info')[0]
 	) {
 		clearInterval(isBilling)
 
 		$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
-		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
-		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
+		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])		
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
 
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
@@ -939,6 +938,12 @@ let isBilling = setInterval(() => {
               </div>
           </div>
       `)
+	}
+}, 200)
+let isLogin = setInterval(() => {
+	if($('.woocommerce-form-login') && $('.woocommerce-billing-fields')){
+		clearInterval(isLogin)
+		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
 	}
 }, 200)
 let isPrice = setInterval(() => {
