@@ -1178,11 +1178,26 @@ let startMut = setInterval(() => {
 	}
 }, 200)
 
-let loginMut = setInterval(() => {
+function changeLogForm() {
+	$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
+	$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))	
+	$$('.woocommerce-info')[0].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+	$$('.woocommerce-info')[0].classList.add('logged')
+}
+
+let isLoginForm = setInterval(() => {
 	if($('.woocommerce-form-login') && $('.woocommerce-billing-fields') && $$('.woocommerce-info')[0]) {
+		clearInterval(isLoginForm)
+
+		changeLogForm()
+	}
+}, 200) 
+
+let loginMut = setInterval(() => {
+	if($('.top_bar .text-right')) {
 		clearInterval(loginMut)
 
-		let target = $('.woocommerce-form-login')		
+		let target = $('.top_bar .text-right')		
 
 		let observer = new MutationObserver((mutationsList) => {
 			observer.disconnect()
@@ -1190,10 +1205,7 @@ let loginMut = setInterval(() => {
 			if(!$('.woocommerce-form-login') && $$('.woocommerce-info')[0]) {
 				$$('.woocommerce-info')[0].classList.remove('logged')	
 			} else {
-				$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
-				$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))	
-				$$('.woocommerce-info')[0].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
-				$$('.woocommerce-info')[0].classList.add('logged')
+				changeLogForm()
 			}
 
 			observer.observe(target, config)
