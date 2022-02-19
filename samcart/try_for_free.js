@@ -581,7 +581,7 @@ let startFunk2 = setInterval(() => {
       <span>2</span>
       <img src="https://conversionratestore.github.io/projects/samcart/img/line2.png" alt="line" />
       <div class="absolute_box">
-        <p>Create your new storefront</p>
+        <p>Create your new marketplace</p>
         <span>Feb / 03 / 22</span>
       </div>
     </li>
@@ -622,7 +622,7 @@ let startFunk2 = setInterval(() => {
     </li>
   </ol>
 </div>
-    `;
+    `
 
     let card = /* html*/ `
 <div class="wrapper_card">
