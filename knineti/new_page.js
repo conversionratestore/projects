@@ -1132,6 +1132,7 @@ function newPage() {
   setTimeout(() => {
     if (document.querySelector(".first_block")) {
       document.querySelector(".payment_plan").remove()
+      document.querySelectorAll('form')[0].action = `/enroll-process/` + window.location.search
 
       document.querySelector(".payment_inform_box .payment_inform_wrapp p.subtitle_text").after(document.querySelector(".customer_information_wrapper"))
 
