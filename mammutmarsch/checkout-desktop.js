@@ -105,7 +105,7 @@ const style = `
 				/*color: #C4C4C4 !important;*/
 			}	
 			
-			form.checkout #customer_details .woocommerce-info {
+			form.checkout #customer_details .woocommerce-info.logged {
 				display: block !important;
 			}
 			
@@ -838,6 +838,8 @@ color: #333333
 	.product-mobile .title {
 		padding-top: 20px;
 	}
+
+	
 		</style>
 		
 		
@@ -916,15 +918,15 @@ let isBar = setInterval(() => {
 let isBilling = setInterval(() => {
 	if (
 		$('.woocommerce-billing-fields') &&
-		$('.checkout.woocommerce-checkout') &&
-		$('.woocommerce-form-login') &&
-		$$('.woocommerce-info')[0]
+		$('.checkout.woocommerce-checkout')
+		
+			
 	) {
 		clearInterval(isBilling)
 
-		$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)
-		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
-		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))
+		$('.woocommerce-billing-fields').insertAdjacentHTML('beforebegin', `<h3>Rechnungsdetails</h3>`)	
+	
+		
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', sideBlock)
 
 		$('.checkout.woocommerce-checkout').insertAdjacentHTML('beforeend', `
@@ -1030,13 +1032,7 @@ let isExist = setInterval(() => {
 `)
 	}
 }, 200)
-let isInfo = setInterval(() => {
-	if ($('.col-1 .woocommerce-info')) {
-		clearInterval(isInfo)
 
-		$('.col-1 .woocommerce-info').innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
-	}
-}, 200)
 let isName = setInterval(() => {
 	if (
 		$('select[name="title"] option') &&
@@ -1047,7 +1043,6 @@ let isName = setInterval(() => {
 		$('select[name="size"] option')
 	) {
 		clearInterval(isName)
-
 		$('select[name="title"] option').innerText = 'Bitte auswählen'
 		$('select[name="birthday_day"] option').innerText = 'DD'
 		$('select[name="birthday_month"] option').innerText = 'MM'
@@ -1056,6 +1051,12 @@ let isName = setInterval(() => {
 		$('select[name="size"] option').innerText = 'Bitte auswählen'
 	}
 }, 200)
+
+let isSize = setInterval(() => {
+	if($('select[name="size"] option')) {
+		$('select[name="size"] option').innerText = 'Bitte auswählen'
+	}
+}, 200);
 
 /* mut functions */
 
@@ -1151,16 +1152,17 @@ function isBtnForward() {
 
 
 /* mut observer */
+const config = {
+	attributes: true,
+	childList: true,
+	subtree: true,
+}
+
 let startMut = setInterval(() => {
 	if($('#order_review')) {
 		clearInterval(startMut)
 
 		let target = $('#order_review')
-		let config = {
-			attributes: true,
-			childList: true,
-			subtree: true,
-		}
 
 		let observer = new MutationObserver((mutationsList) => {
 			observerTimeout()
@@ -1179,6 +1181,17 @@ let startMut = setInterval(() => {
 		}
 
 		observer.observe(target, config)
+	}
+}, 200)
+
+let isLoginForm = setInterval(() => {
+	if($('.woocommerce-form-login') && $('.woocommerce-billing-fields') && $$('.woocommerce-info')[0]) {
+		clearInterval(isLoginForm)
+
+		$('.woocommerce-billing-fields').before($$('.woocommerce-info')[0])
+		$('.woocommerce-billing-fields').before($('.woocommerce-form-login'))	
+		$$('.woocommerce-info')[1].innerHTML = `\n\t\tHast du bereits ein Kundenkonto? <a href="#" class="showlogin">Klicke hier, um dich anzumelden.</a>\t`
+		$$('.woocommerce-info')[1].classList.add('logged')
 	}
 }, 200)
 
