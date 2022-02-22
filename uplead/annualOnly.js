@@ -121,13 +121,13 @@ const style = /*html*/`
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-window.onload = function() {
-if (window.location.hostname.includes('app')) {
-    document.querySelectorAll('.product-card').forEach(card => {
-        card.querySelector('.product-card__price-note').innerText = ' paid annually'
-        let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
+window.onload = function () {
+    if (window.location.hostname.includes('app')) {
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.querySelector('.product-card__price-note').innerText = ' paid annually'
+            let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
 
-        card.querySelector('.product-card__advantages').innerHTML = /*html*/`
+            card.querySelector('.product-card__advantages').innerHTML = /*html*/`
             <div class="credits-wrapper">
                 <p class="credits">${credits}</p>            
                 <div class="tooltip">
@@ -137,28 +137,28 @@ if (window.location.hostname.includes('app')) {
                 <span>per year</span>
             </div>
         `
-    })   
-} else {
-    const elements = ['b90f425', 'f2eed8c', 'bb6fb2c', '9af5ee2']
+        })
+    } else {
+        const elements = ['b90f425', 'f2eed8c', 'bb6fb2c', '9af5ee2']
 
-    elements.forEach((el, index) => {
-        let node = document.querySelector(`[data-id="${el}"]`)
+        elements.forEach((el, index) => {
+            let node = document.querySelector(`[data-id="${el}"]`)
 
-        let price = node.querySelectorAll(`span.blue-credits`)[1]?.innerText || '$0'
-        let credits = node.querySelectorAll(`span.blue-credits`)[0]?.innerText || node.querySelectorAll(`span.white-credits`)[0]?.innerText
+            let price = node.querySelectorAll(`span.blue-credits`)[1]?.innerText || '$0'
+            let credits = node.querySelectorAll(`span.blue-credits`)[0]?.innerText || node.querySelectorAll(`span.white-credits`)[0]?.innerText
 
-        let whiteClass = ''
-        let whiteClassImg = ''
-        let perYear = `<span>per year</span>`
+            let whiteClass = ''
+            let whiteClassImg = ''
+            let perYear = `<span>per year</span>`
 
-        if (index === 0) {
-            whiteClass += 'white'
-            whiteClassImg = '_white'
-            perYear = ''
-        }
+            if (index === 0) {
+                whiteClass += 'white'
+                whiteClassImg = '_white'
+                perYear = ''
+            }
 
-        node.querySelector(`.elementor-text-editor`).innerHTML = `<p class="price ${whiteClass}">${price} <span> paid annually</span></p>`
-        node.querySelectorAll(`.elementor-text-editor`)[1].innerHTML = /*html*/`
+            node.querySelector(`.elementor-text-editor`).innerHTML = `<p class="price ${whiteClass}">${price} <span> paid annually</span></p>`
+            node.querySelectorAll(`.elementor-text-editor`)[1].innerHTML = /*html*/`
         <div class="credits-wrapper">
             <p class="credits ${whiteClass}">${credits}</p>            
             <div class="tooltip">
@@ -168,38 +168,38 @@ if (window.location.hostname.includes('app')) {
             ${perYear}   
         </div>
         `
-        node.querySelectorAll(`.elementor-text-editor`)[3]?.classList.add('hide')
-    })
-}
-
-let isTooltips = setInterval(() => {
-    if(document.querySelectorAll('.tooltip')[3]) {
-        clearInterval(isTooltips)
-
-        document.querySelectorAll('.tooltip').forEach(item => {
-            item.addEventListener('mouseenter', (e) => {                
-                let plan = e.target?.closest('.product-card')?.querySelector('.product-card__header').innerText || e.target?.closest('[data-element_type="column"]')?.querySelector('.elementor-heading-title').innerText
-                
-                window.dataLayer = window.dataLayer || [];
-                dataLayer.push({
-                    'event': 'event-to-ga',
-                    'eventCategory': 'Exp: Without month plans',
-                    'eventAction': 'Hover on hint',
-                    'eventLabel': plan
-                });
-
-                console.log('Hover on hint. Label: ', plan);
-            })
+            node.querySelectorAll(`.elementor-text-editor`)[3]?.classList.add('hide')
         })
     }
-}, 200) 
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: Without month plans',
-    'eventAction': 'loaded'
-});
+    let isTooltips = setInterval(() => {
+        if (document.querySelectorAll('.tooltip')[3]) {
+            clearInterval(isTooltips)
 
-clarity('set', 'without_month_plans', 'variant_1');
-})
+            document.querySelectorAll('.tooltip').forEach(item => {
+                item.addEventListener('mouseenter', (e) => {
+                    let plan = e.target?.closest('.product-card')?.querySelector('.product-card__header').innerText || e.target?.closest('[data-element_type="column"]')?.querySelector('.elementor-heading-title').innerText
+
+                    window.dataLayer = window.dataLayer || [];
+                    dataLayer.push({
+                        'event': 'event-to-ga',
+                        'eventCategory': 'Exp: Without month plans',
+                        'eventAction': 'Hover on hint',
+                        'eventLabel': plan
+                    });
+
+                    console.log('Hover on hint. Label: ', plan);
+                })
+            })
+        }
+    }, 200)
+
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: Without month plans',
+        'eventAction': 'loaded'
+    });
+
+    clarity('set', 'without_month_plans', 'variant_1');
+}
