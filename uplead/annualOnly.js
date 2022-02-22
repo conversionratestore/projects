@@ -23,7 +23,7 @@ const style = /*html*/`
 
         .price span, .product-card__price-note {
             font-weight: bold !important;
-            font-size: 18px !important;
+            font-size: 17px !important;
             color: #0098B0 !important;
         }
 
