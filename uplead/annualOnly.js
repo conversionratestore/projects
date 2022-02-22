@@ -124,8 +124,11 @@ document.head.insertAdjacentHTML('beforeend', style)
 window.onload = function () {
     if (window.location.hostname.includes('app')) {
         document.querySelectorAll('.product-card').forEach(card => {
-            card.querySelector('.product-card__price-note').innerText = ' paid annually'
             let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
+            let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]            
+            
+            card.querySelector('.product-card__price').innerText = price
+            card.querySelector('.product-card__price-note').innerText = ' paid annually'
 
             card.querySelector('.product-card__advantages').innerHTML = /*html*/`
             <div class="credits-wrapper">
@@ -135,8 +138,7 @@ window.onload = function () {
                     <p class="tooltip-text">Each Credit allows you to reveal the contact details for one lead</p>                
                 </div>     
                 <span>per year</span>
-            </div>
-        `
+            </div>`
         })
     } else {
         const elements = ['b90f425', 'f2eed8c', 'bb6fb2c', '9af5ee2']
