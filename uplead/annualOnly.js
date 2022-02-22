@@ -121,7 +121,7 @@ const style = /*html*/`
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-window.onload(() => {
+window.onload = function() {
 if (window.location.hostname.includes('app')) {
     document.querySelectorAll('.product-card').forEach(card => {
         card.querySelector('.product-card__price-note').innerText = ' paid annually'
