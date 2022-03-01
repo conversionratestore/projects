@@ -122,35 +122,30 @@ const style = /*html*/`
 document.head.insertAdjacentHTML('beforeend', style)
 
 if (window.location.hostname.includes('app')) {
-    console.log('app >>>>');
-    const observer = new MutationObserver(() => {
-        if (location.pathname.includes('subscriptions')) {
-            observer.disconnect()
+    let isExist = setInterval(() => {
+        if (document.querySelectorAll('.product-card .product-card__advantages')[7]) {
+            clearInterval(isExist)
 
-            console.log('subscriptions >>>>');
             document.querySelectorAll('.product-card').forEach(card => {
-              let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
-              let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
-      
-              card.querySelector('.product-card__price').innerText = price
-              card.querySelector('.product-card__price-note').innerText = ' paid annually'
-      
-              card.querySelector('.product-card__advantages').innerHTML = /*html*/`
-                  <div class="credits-wrapper">
-                      <p class="credits">${credits}</p>            
-                      <div class="tooltip">
-                          <img src="https://conversionratestore.github.io/projects/uplead/img/question_mark.svg" alt="tooltip">
-                          <p class="tooltip-text">Each Credit allows you to reveal the contact details for one lead</p>                
-                      </div>     
-                      <span>per year</span>
-                  </div>`
-          })
+                let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
+                let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
+
+                card.querySelector('.product-card__price').innerText = price
+                card.querySelector('.product-card__price-note').innerText = ' paid annually'
+
+                card.querySelector('.product-card__advantages').innerHTML = /*html*/`
+                    <div class="credits-wrapper">
+                        <p class="credits">${credits}</p>            
+                        <div class="tooltip">
+                            <img src="https://conversionratestore.github.io/projects/uplead/img/question_mark.svg" alt="tooltip">
+                            <p class="tooltip-text">Each Credit allows you to reveal the contact details for one lead</p>                
+                        </div>     
+                        <span>per year</span>
+                    </div>`
+            })
         }
-      })
-      
-      observer.observe(document, {subtree: true, childList: true});
+    })
 } else {
-    console.log('price >>>>');
     let isExist = setInterval(() => {
         if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
             clearInterval(isExist)
@@ -227,4 +222,4 @@ let isClarity = setInterval(() => {
     }
 }, 200)
 
-
+console.log('eventAction: loaded >>>')
