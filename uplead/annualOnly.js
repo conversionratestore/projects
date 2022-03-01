@@ -134,6 +134,9 @@ observer.observe(target, options)
 
 function addChanges() {
     if (location.pathname.includes('subscriptions') && document.querySelectorAll('.product-card .product-card__advantages')[7]) {
+        window.dataLayer = window.dataLayer || [];
+dataLayer.push({ 'event': 'optimize.activate' });
+
         document.querySelectorAll('.product-card').forEach(card => {
             let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
             let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
@@ -153,6 +156,9 @@ function addChanges() {
         })
     } else {
         if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
+            window.dataLayer = window.dataLayer || [];
+dataLayer.push({ 'event': 'optimize.activate' });
+
             const elements = ['b90f425', 'f2eed8c', 'bb6fb2c', '9af5ee2']
 
             elements.forEach((el, index) => {
@@ -217,8 +223,7 @@ dataLayer.push({
     'eventAction': 'loaded'
 });
 
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({ 'event': 'optimize.activate' });
+
 
 let isClarity = setInterval(() => {
     if (typeof clarity == 'function') {
