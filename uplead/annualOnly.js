@@ -215,6 +215,9 @@ dataLayer.push({
     'eventAction': 'loaded'
 });
 
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({'event': 'optimize.activate'});
+
 let isClarity = setInterval(() => {
     if (typeof clarity == 'function') {
         clearInterval(isClarity)
