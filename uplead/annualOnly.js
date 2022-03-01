@@ -123,10 +123,12 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 if (window.location.hostname.includes('app')) {
     console.log('app >>>>');
-    new MutationObserver(() => {
+    const observer = new MutationObserver(() => {
         if (location.pathname.includes('subscriptions')) {
+            observer.disconnect()
+
             console.log('subscriptions >>>>');
-          document.querySelectorAll('.product-card').forEach(card => {
+            document.querySelectorAll('.product-card').forEach(card => {
               let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
               let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
       
@@ -144,7 +146,9 @@ if (window.location.hostname.includes('app')) {
                   </div>`
           })
         }
-      }).observe(document, {subtree: true, childList: true});
+      })
+      
+      observer.observe(document, {subtree: true, childList: true});
 } else {
     console.log('price >>>>');
     let isExist = setInterval(() => {
