@@ -121,35 +121,38 @@ const style = /*html*/`
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-if (window.location.hostname.includes('app')) {
-    let isExist = setInterval(() => {
-        if (document.querySelectorAll('.product-card .product-card__advantages')[7]) {
-            clearInterval(isExist)
+let target = document
+let options = { subtree: true, childList: true }
 
-            document.querySelectorAll('.product-card').forEach(card => {
-                let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
-                let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
+let observer = new MutationObserver(() => {
+    observer.disconnect()
+    addChanges()
+    observer.observe()
+})
 
-                card.querySelector('.product-card__price').innerText = price
-                card.querySelector('.product-card__price-note').innerText = ' paid annually'
+observer.observe(target, options)
 
-                card.querySelector('.product-card__advantages').innerHTML = /*html*/`
-                    <div class="credits-wrapper">
-                        <p class="credits">${credits}</p>            
-                        <div class="tooltip">
-                            <img src="https://conversionratestore.github.io/projects/uplead/img/question_mark.svg" alt="tooltip">
-                            <p class="tooltip-text">Each Credit allows you to reveal the contact details for one lead</p>                
-                        </div>     
-                        <span>per year</span>
-                    </div>`
-            })
-        }
-    })
-} else {
-    let isExist = setInterval(() => {
+function addChanges() {
+    if (location.pathname.includes('subscriptions') && document.querySelectorAll('.product-card .product-card__advantages')[7]) {
+        document.querySelectorAll('.product-card').forEach(card => {
+            let credits = card.querySelectorAll('.product-card__advantages')[0].innerText.split('Annually')[0]
+            let price = card.querySelectorAll('.product-card__advantages')[1].innerText.split('Annually')[0]
+
+            card.querySelector('.product-card__price').innerText = price
+            card.querySelector('.product-card__price-note').innerText = ' paid annually'
+
+            card.querySelector('.product-card__advantages').innerHTML = /*html*/`
+                <div class="credits-wrapper">
+                    <p class="credits">${credits}</p>            
+                    <div class="tooltip">
+                        <img src="https://conversionratestore.github.io/projects/uplead/img/question_mark.svg" alt="tooltip">
+                        <p class="tooltip-text">Each Credit allows you to reveal the contact details for one lead</p>                
+                    </div>     
+                    <span>per year</span>
+                </div>`
+        })
+    } else {
         if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
-            clearInterval(isExist)
-
             const elements = ['b90f425', 'f2eed8c', 'bb6fb2c', '9af5ee2']
 
             elements.forEach((el, index) => {
@@ -181,9 +184,8 @@ if (window.location.hostname.includes('app')) {
                     `
                 node.querySelectorAll(`.elementor-text-editor`)[3]?.classList.add('hide')
             })
-
         }
-    })
+    }
 }
 
 let isTooltips = setInterval(() => {
@@ -216,7 +218,7 @@ dataLayer.push({
 });
 
 window.dataLayer = window.dataLayer || [];
-dataLayer.push({'event': 'optimize.activate'});
+dataLayer.push({ 'event': 'optimize.activate' });
 
 let isClarity = setInterval(() => {
     if (typeof clarity == 'function') {
