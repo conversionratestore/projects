@@ -1,4 +1,4 @@
-const style = /*html*/`
+const customStyle = /*html*/`
     <style>
         .elementor-16422 .elementor-element.elementor-element-b1aa2aa, .accountPlans__monthlyPlans-link, .elementor-text-editor.hide, .product-card__advantages:nth-child(2n) { display: none; }
         .elementor-16422 .elementor-element.elementor-element-a2a14e8 {margin-bottom: 11px;}
@@ -119,7 +119,7 @@ const style = /*html*/`
     </style>
 `
 
-document.head.insertAdjacentHTML('beforeend', style)
+document.head.insertAdjacentHTML('beforeend', customStyle)
 
 let target = document
 let options = { subtree: true, childList: true }
