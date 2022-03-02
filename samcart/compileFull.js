@@ -336,6 +336,18 @@ const mobileCSS = `
             padding: 17px 0 !important;
             font-size: 18px;
         }
+        .btn-wrapper_sale {
+            border-color: #8C9294!important;
+            background: #8C9294!important;
+            pointer-events: none;
+            cursor: no-drop;
+        }
+        .btn-wrapper_sale.active {
+            border-color: #183B56!important;
+            background: #183B56!important;
+            pointer-events: auto;
+            cursor: pointer;
+        }
 	</style>
 `
 const banner = `
@@ -357,7 +369,7 @@ const banner = `
                 </ul>
                 <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
-                	<button class="btn-wrapper_wait">Instant Access</button>
+                	<button class="btn-wrapper_wait">Your special offer will be available in <span>00:00:00</span></button>
 				</div>
             </div>
         </div>
@@ -425,6 +437,7 @@ function setMobile() {
 
 	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
 	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `<p class="tap">Tap to see more</p>`)
+    document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
 
 	// document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
     document.querySelector('.features ul').before(document.querySelector('.banner img'))
@@ -451,7 +464,7 @@ function showSaleBtn() {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
+			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
 			document.querySelector('.banner').classList.add('show_sale')
 
 			let priceText
@@ -716,18 +729,7 @@ let styles = `
         line-height: 20px;
         color: #F2543F;
     }
-    .btn-wrapper_sale {
-        border-color: #8C9294!important;
-        background: #8C9294!important;
-        pointer-events: none;
-        cursor: no-drop;
-    }
-    .btn-wrapper_sale.active {
-        border-color: #183B56!important;
-        background: #183B56!important;
-        pointer-events: auto;
-        cursor: pointer;
-    }
+
     @media only screen and (min-width: 993px) {
         .stage__player {
             width: calc(100% - 280px)
@@ -932,9 +934,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
 
         startTimer();
-        if (window.matchMedia('(max-width: 992px)')) {
-            document.querySelector('.timeline').after(document.querySelector('.banner'));    
-        }
+      
 		for (let key in arrTooltip) {
 			document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
 		}
