@@ -8,11 +8,6 @@ let startFunc = setInterval(() => {
       onClickPricingUrl()
     })
 
-    // document.querySelector(".nav-try a.button.button--solid.button--small").addEventListener("click", (e) => {
-    //   e.preventDefault()
-    //   onClickPricingUrl()
-    // })
-
     document.querySelector(".block.block-cta.block-cta--a.block-cta--dark .buttons a").addEventListener("click", (e) => {
       e.preventDefault()
       onClickPricingUrl()
@@ -31,7 +26,8 @@ let startFunk2 = setInterval(() => {
     let styleBox = /* html*/ `
 <style>
   section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
-    padding-top: 65px;
+    height: 1470px;
+    padding: 0 !important;
   }
 
   #recaptcha-error {
@@ -216,6 +212,7 @@ let startFunk2 = setInterval(() => {
   p.total_text span .hidden_text {
     left: unset;
     right: -28px;
+    top: -193px;
   }
 
   .absolute_box p span .mini_box,
@@ -243,15 +240,18 @@ let startFunk2 = setInterval(() => {
 
   p.total_text {
     font-family: "Poppins", sans-serif !important;
-    font-weight: 400;
-    font-size: 7px;
-    line-height: 13px;
+    font-weight: 300;
+    font-size: 8px;
+    line-height: 18px;
     text-align: right;
     color: #5a7386;
   }
 
   p.total_text .accent_color {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 18px;
+    color: #5A7386;
   }
 
   .card_box .invoice-item.total-row {
@@ -281,14 +281,6 @@ let startFunk2 = setInterval(() => {
     color: #286cd2 !important;
   }
 
-  @media (max-width: 1210px) {
-
-  }
-
-  @media (max-width: 1098px) {
-
-  }
-
   /*3d card */
   .tpl-t1__col-form {
     height: 100%;
@@ -307,6 +299,8 @@ let startFunk2 = setInterval(() => {
     left: 0;
     top: 0;
     background: #ffffff;
+    padding: 25px 25px;
+    border-radius: 10px;
   }
 
   .card_box {
@@ -357,10 +351,10 @@ let startFunk2 = setInterval(() => {
   }
 
   .card_box #order-summary-widget {
-    margin: 20px 0 !important;
+    margin: 25px 0 !important;
     background: #f4f5f6 !important;
     border-radius: 4px !important;
-    padding: 10px 20px 5px !important;
+    padding: 12px !important;
   }
 
   .card_box #placeOrder {
@@ -380,7 +374,7 @@ let startFunk2 = setInterval(() => {
     line-height: 19px;
     text-transform: uppercase !important;
     color: #5a7386 !important;
-    margin-bottom: 27px !important;
+    margin-bottom: 12px !important;
     margin-top: 0 !important;
   }
 
@@ -399,7 +393,7 @@ let startFunk2 = setInterval(() => {
     line-height: 12px;
     text-transform: capitalize;
     color: #5a7386;
-    margin-bottom: 8px;
+    margin-top: 15px;
   }
 
   #paymentForm .card_box .front label.error{
@@ -413,8 +407,8 @@ let startFunk2 = setInterval(() => {
 
   #paymentForm .card_box .back label#terms_conditions_checkbox-error {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 17px;
+    left: 29px;
     color: red;
   }
 
@@ -465,6 +459,7 @@ let startFunk2 = setInterval(() => {
     margin: 20px 0 !important;
   }
 
+
   /*quarantee */
   .quarantee {
     border: 1px solid #bfc7ce;
@@ -472,14 +467,15 @@ let startFunk2 = setInterval(() => {
     padding: 10px 17px 10px 10px;
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 42px;
+    flex-direction: column;
+    text-align: center;
   }
 
   .quarantee div:first-child {
-    width: 31%;
-    min-width: 48px;
-    max-width: 48px;
-    margin-right: 10px;
+    margin-bottom: 16px;
+    max-width: 120px;
+    max-height: 120px;
   }
 
   .quarantee div:first-child img {
@@ -494,16 +490,16 @@ let startFunk2 = setInterval(() => {
     font-size: 12px;
     line-height: 18px;
     text-transform: uppercase;
-    color: #273542;
-    margin-bottom: 5px;
+    color: #0B1A26;
+    margin-bottom: 8px;
   }
 
   .quarantee div:last-child > p:last-child {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
-    font-size: 9px;
-    line-height: 13px;
-    color: #5a7386;
+    font-size: 12px;
+    line-height: 17px;
+    color: #0B1A26;
     margin: 0;
   }
 
@@ -514,7 +510,7 @@ let startFunk2 = setInterval(() => {
     justify-content: flex-start;
     cursor: pointer;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 18px;
     margin-bottom: 30px;
   }
@@ -535,6 +531,9 @@ let startFunk2 = setInterval(() => {
     color: #FFFFFF;
   }
 
+  iframe[title="reCAPTCHA"]{
+    width: 100%;
+  }
 
 
   .col-6.px-8{
@@ -542,7 +541,7 @@ let startFunk2 = setInterval(() => {
     flex: 0 0 100%;
   }
 </style>
-      `
+`
 
     let steps = /* html*/ `
 <div class="steps">
@@ -636,7 +635,7 @@ let startFunk2 = setInterval(() => {
       <span class="testik2"></span>
       <div class="quarantee">
         <div>
-          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
+          <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group_mobile.png" alt="quarantee">
         </div>
         <div>
           <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -653,7 +652,7 @@ let startFunk2 = setInterval(() => {
 
     let totalText = /* html*/ `
 <p class="total_text">
-  <span class="accent_color">*You pay nothing today.</span> Then $950 yearly starting in 2 weeks.
+  <span class="accent_color">*You pay nothing today.</span> <br> Then $950 yearly starting in 2 weeks.
   <span>
     <svg class="hint" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_96_133)">
@@ -672,8 +671,9 @@ let startFunk2 = setInterval(() => {
         </clipPath>
       </defs>
     </svg>
-    <svg class="mini_box" width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6" />
+
+    <svg class="mini_box" width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white"/>
     </svg>
     <span class="hidden_text"
       >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
@@ -686,7 +686,7 @@ let startFunk2 = setInterval(() => {
     let quaranteeBlock = /* html*/ `
 <div class="quarantee">
   <div>
-    <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group.png" alt="quarantee">
+    <img src="https://conversionratestore.github.io/projects/samcart/img/mask_group_mobile.png" alt="quarantee">
   </div>
   <div>
     <p>Risk-free trial. Cancel anytime during the next 14 days</p>
@@ -811,7 +811,7 @@ let startFunk2 = setInterval(() => {
           dataLayer.push({
             event: "event-to-ga",
             eventCategory: "Exp: New free trial flow",
-            eventAction: "Hover on the tips Risk free trial",
+            eventAction: "Hover on the tips Plan free trial",
           })
           e.stopPropagation()
 
