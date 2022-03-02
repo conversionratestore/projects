@@ -25,13 +25,29 @@ let startFunk2 = setInterval(() => {
 
     let styleBox = /* html*/ `
 <style>
+  .sc-row:nth-child(3), #sc3294902f-6f2d-47dc-89f9-07d498b310f3{
+    display: none;
+  }
+
   section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form {
-    height: 1470px;
+    height: 645px;
     padding: 0 !important;
   }
 
   #recaptcha-error {
     text-align: center !important;
+  }
+
+  #sc-checkout{
+    margin-bottom: 20px !important;
+  }
+
+  .sc-element:nth-child(5) .mobile-column-width .sc-text{
+    padding: 0 !important;
+  }
+
+  .form-group:not(:last-child){
+    margin-bottom: 18px !important;
   }
 
   .sc-headline:nth-child(1){
@@ -63,7 +79,7 @@ let startFunk2 = setInterval(() => {
   }
 
   .steps {
-    margin: 24px 0 30px;
+    margin: 24px 0 0;
   }
 
   .steps ol {
@@ -326,6 +342,7 @@ let startFunk2 = setInterval(() => {
   }
   .card_box .back {
     transform: rotateY(-180deg);
+    display: none;
   }
 
   .card_box .front button.btn_continue,
@@ -393,7 +410,6 @@ let startFunk2 = setInterval(() => {
     line-height: 12px;
     text-transform: capitalize;
     color: #5a7386;
-    margin-top: 15px;
   }
 
   #paymentForm .card_box .front label.error{
@@ -951,6 +967,8 @@ let startFunk2 = setInterval(() => {
           if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
             document.querySelector(".front").style.transform = "rotateY(-180deg)"
             document.querySelector(".back").style.transform = "rotateY(-360deg)"
+            document.querySelector(".back").style.display = "block"
+            document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1385px"
             document.querySelector(".front").style.zIndex = "0"
 
             setTimeout(() => {
