@@ -435,7 +435,7 @@ if (count > 0) {
 function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
-	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
+	document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', banner)
 	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `<p class="tap">Tap to see more</p>`)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
 
