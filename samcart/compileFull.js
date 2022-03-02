@@ -464,17 +464,19 @@ function showSaleBtn() {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
 			document.querySelector('.banner').classList.add('show_sale')
 
 			let priceText
 
 			if (mediaQuery.matches) {
 				priceText = `<p class="price">$349<sub>$588</sub></p>`
-
+                document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
+			
 			} else {
 				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
 				priceText = `<p class="price">$349<sub>$588</sub></p>`
+                document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+			
 			}
 
 			document.querySelector('.subtitle').insertAdjacentHTML('afterend', priceText)
