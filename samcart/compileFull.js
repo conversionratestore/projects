@@ -234,7 +234,7 @@ const mobileCSS = `
 		}
 		
 		.banner::after {	
-            width: 88px;
+            width: 104px;
             height: 35px;		
         	top: 97px;     
             right: -6px; 	
@@ -322,7 +322,7 @@ const mobileCSS = `
             display: flex;
         }
         .features ul li span {
-            font-weight: 600;
+            font-weight: 600!important;
             font-size: 11px;
             line-height: 13px;
             color: #F2813F;
@@ -355,7 +355,7 @@ const banner = `
                     <li>The 1 page template! <span class="priceless">Priceless</span></li>
                     <li>30 Day money back guarantee</li>                    
                 </ul>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/webinar.png" alt="webinars">
+                <img src="https://conversionratestore.github.io/projects/samcart/img/webinars.png" alt="webinars">
                 <div class="btn-wrapper">
                 	<button class="btn-wrapper_wait">Instant Access</button>
 				</div>
