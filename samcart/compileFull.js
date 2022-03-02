@@ -29,19 +29,12 @@ const style = `
     		pointer-events: none;
         }
         
-        /*.banner.show_sale::after {*/
-		/*	!*display: block;*!*/
-		/*	opacity: 1;*/
-		/*}*/
-		
-        
         .banner.mobile::before {
         	display: none;
         }
-        
-         /*.banner.mobile p.title {*/
-         /*	margin: 0;*/
-         /*}*/
+        .banner.mobile .subprice {
+            display: none;
+        }
         
         .banner p {
         	margin: 0;
@@ -49,7 +42,10 @@ const style = `
         }
         .banner img {
             width: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            max-width: 214px;
+            margin: 0 auto;
+            display: block;
         }
         p.title {
 			/*font-size: 10px;*/
@@ -178,14 +174,14 @@ const style = `
        		white-space: nowrap;	
        	} 
        	
-        p.price sup{
+        p.price sub{
 			margin: 5px;
 			position: absolute;
         	font-weight: 400;
 			font-size: 11px;
         	color: #5A7386;
         }
-		p.price sup::after{
+		p.price sub::after{
 			content:"";
 			display:block;
 			position:absolute;
@@ -211,10 +207,16 @@ const style = `
 `
 const mobileCSS = `
 	<style>
+    p.subtitle {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 20px;
+        margin-top: 2px;
+    }
 		.banner {
 			margin-top: 0;
 			max-width: 100%;
-			padding: 10px;
+			padding: 15px 10px 12px;
 		}
 		
 		.banner.mobile {
@@ -222,39 +224,21 @@ const mobileCSS = `
 		}
 		
 		
-		/*.banner.mobile .close {*/
-		/*	display: none !important;*/
-		/*}*/
-		
-		/*.banner.show_sale .close {*/
-		/*	display: block;*/
-		/*	opacity: 1;*/
-		/*	pointer-events: auto;*/
-		/*}*/
-		
-		/*.close {*/
-        /*	position: absolute;*/
-        /*	!*display: block;*!*/
-        /*	width: 15px;*/
-		/*	height: 5px;*/
-        /*	right: 10px;*/
-        /*	top: 12px;*/
-        /*	background: url("https://conversionratestore.github.io/projects/samcart/img/arrow-up.svg") no-repeat;*/
-        /*	object-fit: cover;*/
-        /*	cursor: pointer;*/
-        /*	padding: 5px;*/
-        /*	opacity: 0;*/
-        /*	transition: opacity 1s ease;*/
-        /*	pointer-events: none;*/
-		/*}*/
-		
+		p.price {
+            text-align: left;
+            line-height: 30px;
+        }
 		
 		.banner.mobile::after {
 			opacity: 0 !important;
 		}
 		
-		.banner::after {			
-        	top: 15px;      	
+		.banner::after {	
+            width: 88px;
+            height: 35px;		
+        	top: 97px;     
+            right: -6px; 	
+        	background-image: url("https://conversionratestore.github.io/projects/samcart/img/off40.svg");
 		}
 		.banner.mobile::after {
 			opacity: 0;
@@ -273,7 +257,6 @@ const mobileCSS = `
 			cursor: pointer;
 		}
 		
-	
 		.banner.mobile .features {
             max-height: 0;
             margin: 0;
@@ -283,10 +266,6 @@ const mobileCSS = `
         
         .banner.mobile .title {
             font-size: 16px;
-        }
-        p.subtitle {
-            margin-top: 10px;
-            font-size: 20px; 
         }
         
         .banner.mobile p.tap {
@@ -315,10 +294,10 @@ const mobileCSS = `
 		}
 		
 		.features {
-			margin-top: 10px;
+			margin-top: 15px;
 		}
        .features ul {
-       		padding: 0 10%;
+       		padding: 0 0 0 19px;
        }
         .btn-wrapper button {
             font-size: 12px;
@@ -337,11 +316,25 @@ const mobileCSS = `
             font-size: 12px;
             padding: 5px 15px;
         }
-        
+        .features ul li {
+            font-size: 11px;
+            justify-content: space-between;
+            display: flex;
+        }
+        .features ul li span {
+            font-weight: 600;
+            font-size: 11px;
+            line-height: 13px;
+            color: #F2813F;
+        }
         .features ul li::before {
         	height: 15px;
     		width: 15px;
     		left: -20px;
+        }
+        .btn-wrapper button.btn-wrapper_sale {
+            padding: 17px 0 !important;
+            font-size: 18px;
         }
 	</style>
 `
@@ -353,19 +346,18 @@ const banner = `
                 <p class="subtitle">Get SamCart and<br>FREE gifts now</p>
                 <ul>
                     <li>1 Year of SamCart</li>
-                    <li>1 Page Masterclass <span>($3,995)</span></li>
-                    <li>Traffic Tactics <span>($1,997)</span></li>
-                    <li>Course Creation Challenge <span>($995)</span></li>
-                    <li>1 Page Wednesday Calls <span>($995!)</span></li>
-                    <li>Private Facebook Group <span>($495)</span></li>
-                    <li>Top Seller Strategies <span>($995)</span></li>
-                    <li>My Personal Course Sales Page Template <span class="priceless">(Priceless)</span></li>
-                    <li>30-Day Money-Back Guarantee <span class="priceless">(Priceless)</span></li>
-                    <li>40% SamCart Discount for Life! <span class="priceless">(Priceless)</span></li>                    
+                    <li>1 Page masterclass <span>$3,995</span></li>
+                    <li>Traffic tactics <span>$1,997</span></li>
+                    <li>Course creation challenge <span>$995</span></li>
+                    <li>1 Page wednesday Calls <span>$995!</span></li>
+                    <li>Private facebook Group <span>$495</span></li>
+                    <li>Top seller strategies  <span>$995</span></li>
+                    <li>The 1 page template! <span class="priceless">Priceless</span></li>
+                    <li>30 Day money back guarantee</li>                    
                 </ul>
-                <img src="https://conversionratestore.github.io/projects/samcart/img/webinar.svg" alt="webinars">
+                <img src="https://conversionratestore.github.io/projects/samcart/img/webinar.png" alt="webinars">
                 <div class="btn-wrapper">
-                	<button class="btn-wrapper_wait">Your special offer will be available in <span>00:00:00</span></button>
+                	<button class="btn-wrapper_wait">Instant Access</button>
 				</div>
             </div>
         </div>
@@ -432,12 +424,10 @@ function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
 	document.querySelector('.stage__player').insertAdjacentHTML('afterbegin', banner)
-	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `
-				<p class="tap">Tap to see more</p>
-			`)
+	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `<p class="tap">Tap to see more</p>`)
 
-	document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
-
+	// document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
+    document.querySelector('.features ul').before(document.querySelector('.banner img'))
 	document.querySelector('.banner').classList.add('mobile')
 
 	document.querySelector('.banner.mobile').addEventListener('click', listener)
@@ -461,17 +451,17 @@ function showSaleBtn() {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
 
-			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+			document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
 			document.querySelector('.banner').classList.add('show_sale')
 
 			let priceText
 
 			if (mediaQuery.matches) {
-				priceText = `<p class="price">$349<sup>$588</sup></p><p class="subprice">and get $10k in FREE gifts now</p>`
+				priceText = `<p class="price">$349<sub>$588</sub></p>`
 
 			} else {
 				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
-				priceText = `<p class="price">$349<sup>$588</sup></p>`
+				priceText = `<p class="price">$349<sub>$588</sub></p>`
 			}
 
 			document.querySelector('.subtitle').insertAdjacentHTML('afterend', priceText)
@@ -695,7 +685,49 @@ let styles = `
         font-weight: 900;
         color: #F2813F;
     }
-    
+    #special_offer {
+        display: none;
+        padding-top: 12px;
+        text-align: center;
+        font-family: "Gilroy", sans-serif;
+    }
+    #special_offer p {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 20px;
+        color: #203B54;
+        margin-bottom: 12px;
+    }
+    #special_offer button {
+        background: #F2813F;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 56px;
+        color: #FFFFFF;
+        width: 100%;
+        display: block;
+        font-family: "Inter", sans-serif;
+    }
+    #count {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
+        color: #F2543F;
+    }
+    .btn-wrapper_sale {
+        border-color: #8C9294!important;
+        background: #8C9294!important;
+        pointer-events: none;
+        cursor: no-drop;
+    }
+    .btn-wrapper_sale.active {
+        border-color: #183B56!important;
+        background: #183B56!important;
+        pointer-events: auto;
+        cursor: pointer;
+    }
     @media only screen and (min-width: 993px) {
         .stage__player {
             width: calc(100% - 280px)
@@ -708,6 +740,9 @@ let styles = `
         }
     }
     @media only screen and (max-width: 992px) {
+        #special_offer {
+            display: block;
+        }
         .timeline_title {
             font-size: 10px;
             max-width: 140px;
@@ -797,6 +832,50 @@ function setSlide(time, title, tooltip, countPoint) {
         </div>`
 }
 
+let specialOffer = `
+    <div id="special_offer">
+        <p>Your special offer will be available in:</p>
+        <div id="count">1:00:01</div>
+    </div>
+`;
+
+function startTimer() {
+    let arrTime = document.getElementById('count').innerHTML.split(':');
+    let h = arrTime[0],
+        m = arrTime[1],
+        s = arrTime[2];
+
+    if (s == 0) {
+        if (m == 0) {
+            if (h == 0) {
+                document.getElementById('count').remove();
+                document.getElementById('special_offer').insertAdjacentHTML('beginend', `<button type="button">Get it Now</button>`);
+                document.querySelector('.btn-wrapper_sale').classList.add('active');
+                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
+                document.querySelector('#special_offer button').addEventListener('click', () => {
+                        const scrollTarget = document.querySelector('.banner');
+                        const elementPosition = scrollTarget.getBoundingClientRect().top;
+                
+                        window.scrollBy({
+                            top: elementPosition,
+                            behavior: 'smooth'
+                        });
+                })
+                return;
+            }
+            h--;
+            m = 60;
+            if (h < 10) h = "0" + h 
+        }
+        m--;
+        if (m < 10) m = "0" + m;
+        s = 59;
+    } else s--; 
+    if (s < 10) s = "0" + s;
+    document.getElementById('count').innerHTML = h + ':' + m + ':' + s;
+    setTimeout(startTimer,1000)
+}
+
 let action;
 
 function pushDataLayer(action, label) {
@@ -850,8 +929,12 @@ let mut = new MutationObserver(function (muts) {
 		document.body.appendChild(scriptTippy);
 
 		document.body.insertAdjacentHTML('afterbegin', styles);
-		document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
+        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
 
+        startTimer();
+        if (window.matchMedia('(max-width: 992px)')) {
+            document.querySelector('.timeline').after(document.querySelector('.banner'));    
+        }
 		for (let key in arrTooltip) {
 			document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
 		}
@@ -937,3 +1020,5 @@ let isClarify = setInterval(() => {
 		clarity("set", "timeline_and_SO_banner", "variant_1");
 	}
 }, 100)
+
+
