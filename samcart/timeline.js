@@ -197,45 +197,7 @@ let styles = `
         font-weight: 900;
         color: #F2813F;
     }
-    #special_offer {
-        display: block;
-        padding-top: 12px;
-        text-align: center;
-        font-family: "Gilroy", sans-serif;
-    }
-    #special_offer p {
-        font-weight: 900;
-        font-size: 18px;
-        line-height: 20px;
-        color: #203B54;
-        margin-bottom: 12px;
-    }
-    #special_offer button {
-        background: #F2813F;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 56px;
-        color: #FFFFFF;
-        width: 100%;
-        display: block;
-        font-family: "Inter", sans-serif;
-    }
-    #count {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 20px;
-        color: #F2543F;
-    }
-    .btn-wrapper_sale {
-        background: #8C9294;
-        pointer-events: none;
-    }
-    .btn-wrapper_sale.active {
-        background: #183B56;
-        pointer-events: auto;
-    }
+   
     @media only screen and (min-width: 993px) {
         .stage__player {
             width: calc(100% - 280px)
@@ -314,49 +276,6 @@ let arrTooltip = {
     '54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`,0]
 };
 
-let specialOffer = `
-    <div id="special_offer">
-        <p>Your special offer will be available in:</p>
-        <div id="count">1:00:00</div>
-    </div>
-`;
-
-function startTimer() {
-    let arrTime = document.getElementById('count').innerHTML.split(':');
-    let h = arrTime[0],
-        m = arrTime[1],
-        s = arrTime[2];
-
-    if (s == 0) {
-        if (m == 0) {
-            if (h == 0) {
-                document.getElementById('count').remove();
-                document.getElementById('special_offer').insertAdjacentHTML('beginend', `<button type="button">Get it Now</button>`);
-                document.querySelector('.btn-wrapper_sale').classList.add('active');
-                document.querySelector('#special_offer button').addEventListener('click', () => {
-                        const scrollTarget = document.querySelector('.banner');
-                        const elementPosition = scrollTarget.getBoundingClientRect().top;
-                
-                        window.scrollBy({
-                            top: elementPosition,
-                            behavior: 'smooth'
-                        });
-                })
-                return;
-            }
-            h--;
-            m = 60;
-            if (h < 10) h = "0" + h 
-        }
-        m--;
-        if (m < 10) m = "0" + m;
-        s = 59;
-    } else s--; 
-    if (s < 10) s = "0" + s;
-    document.getElementById('count').innerHTML = h + ':' + m + ':' + s;
-    setTimeout(startTimer,1000)
-}
-
 let createTimeline = `
     <div class="timeline">
         <div class="timeline_container">
@@ -433,10 +352,7 @@ let mut = new MutationObserver(function (muts) {
         document.body.appendChild(scriptTippy);
 
         document.body.insertAdjacentHTML('afterbegin', styles);
-        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
-
-        startTimer();
-        document.querySelector('.timeline').after(document.querySelector('.banner'));
+        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
 
         for (let key in arrTooltip) {
             document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
