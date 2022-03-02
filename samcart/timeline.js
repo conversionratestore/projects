@@ -197,7 +197,37 @@ let styles = `
         font-weight: 900;
         color: #F2813F;
     }
-    
+    #special_offer {
+        display: block;
+        padding: 12px 0;
+        text-align: center;
+        font-family: "Gilroy", sans-serif;
+    }
+    #special_offer p {
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 20px;
+        color: #203B54;
+        margin-bottom: 12px;
+    }
+    #special_offer button {
+        background: #F2813F;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 56px;
+        color: #FFFFFF;
+        width: 100%;
+        display: block;
+        font-family: "Inter", sans-serif;
+    }
+    #count {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 20px;
+        color: #F2543F;
+    }
     @media only screen and (min-width: 993px) {
         .stage__player {
             width: calc(100% - 280px)
@@ -276,6 +306,13 @@ let arrTooltip = {
     '54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`,0]
 };
 
+let specialOffer = `
+    <div id="special_offer">
+        <p>Your special offer will be available in:</p>
+        <div id="count">1:00:00</div>
+    </div>
+`;
+
 let createTimeline = `
     <div class="timeline">
         <div class="timeline_container">
@@ -352,7 +389,7 @@ let mut = new MutationObserver(function (muts) {
         document.body.appendChild(scriptTippy);
 
         document.body.insertAdjacentHTML('afterbegin', styles);
-        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', createTimeline);
+        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
 
         for (let key in arrTooltip) {
             document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
