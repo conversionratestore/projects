@@ -872,6 +872,10 @@ let startFunk2 = setInterval(() => {
               document.querySelector(".front").style.transform = "rotateY(0deg)"
               document.querySelector(".back").style.transform = "rotateY(-180deg)"
               document.querySelector(".front").style.zIndex = "15"
+              setTimeout(() => {
+                document.querySelector(".back").style.display = "none"
+                document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "645px"
+              }, 1010)
             })
           }
         }
@@ -967,8 +971,10 @@ let startFunk2 = setInterval(() => {
           if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
             document.querySelector(".front").style.transform = "rotateY(-180deg)"
             document.querySelector(".back").style.transform = "rotateY(-360deg)"
-            document.querySelector(".back").style.display = "block"
-            document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1385px"
+            setTimeout(() => {
+              document.querySelector(".back").style.display = "block"
+              document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1385px"
+            }, 1010)
             document.querySelector(".front").style.zIndex = "0"
 
             setTimeout(() => {
