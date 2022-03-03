@@ -28,14 +28,7 @@ const style = `
     		opacity: 1;
     		pointer-events: none;
         }
-        
-        .banner.mobile::before {
-        	display: none;
-        }
-        .banner.mobile .subprice {
-            display: none;
-        }
-        
+       
         .banner p {
         	margin: 0;
         	text-align: center;
@@ -57,11 +50,6 @@ const style = `
 			color: #FFFFFF;
 			transition: font-size 1s ease;
         }
-        
-        /*.banner.show_sale p.title {
-        	font-size: 10px;
-			margin: 10px 0 -10px;
-        }*/
               
         p.subtitle {
         	color: #203B54;
@@ -113,7 +101,6 @@ const style = `
         }
         
         .features ul li span {
-        	display: none;
         	text-decoration: line-through;
         }
         
@@ -218,21 +205,12 @@ const mobileCSS = `
 			max-width: 100%;
 			padding: 15px 10px 12px;
 		}
-		
-		.banner.mobile {
-			padding-bottom: 5px;
-		}
-		
-		
+				
 		p.price {
             text-align: left;
             line-height: 30px;
         }
-		
-		.banner.mobile::after {
-			opacity: 0 !important;
-		}
-		
+	
 		.banner::after {	
             width: 104px;
             height: 35px;		
@@ -240,59 +218,12 @@ const mobileCSS = `
             right: -6px; 	
         	background-image: url("https://conversionratestore.github.io/projects/samcart/img/off40.svg");
 		}
-		.banner.mobile::after {
-			opacity: 0;
-		}
+
 		p.title {
 			font-size: 10px;
 			margin: 0;
 		}
-		
-		.banner.mobile p.title {
-			font-size: 12px;
-			margin: 0;
-		}
-		
-		.banner.mobile {
-			cursor: pointer;
-		}
-		
-		.banner.mobile .features {
-            max-height: 0;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-		}
-        
-        .banner.mobile .title {
-            font-size: 16px;
-        }
-        
-        .banner.mobile p.tap {
-        	display: block;
-        }
-		p.tap {
-			display: none;
-			position: relative;
-            width: fit-content;
-            margin: 5px auto 10px;
-			color: #FFFFFF;
-			font-size: 10px;
-			cursor: pointer;
-		}
-		.tap::after {
-			content: "";
-			display: block;
-			width: 10px;
-			height: 5px;
-			background-image: url("https://conversionratestore.github.io/projects/samcart/img/arrow-down9.svg");
-			object-fit: cover;
-			position: absolute;
-			top: 14px;
-			left: 50%;
-			transform: translateX(-50%);			
-		}
-		
+
 		.features {
 			margin-top: 15px;
 		}
@@ -436,35 +367,14 @@ function setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
-	document.querySelector('.inner .title').insertAdjacentHTML('afterend', `<p class="tap">Tap to see more</p>`)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
-
-	// document.querySelector('.banner .subtitle').innerText = 'Launch your business now!'
     document.querySelector('.features ul').before(document.querySelector('.banner img'))
-	document.querySelector('.banner').classList.add('mobile')
-
-	document.querySelector('.banner.mobile').addEventListener('click', listener)
-}
-
-function listener(e) {
-	e.currentTarget.classList.remove('mobile')
-
-	window.dataLayer = window.dataLayer || []
-	dataLayer.push({
-		'event': 'event-to-ga',
-		'eventCategory': 'Exp — Timeline & SO banner',
-		'eventAction': 'Click on Workshop special offer button',
-	})
-
-	e.currentTarget.removeEventListener('click', listener)
 }
 
 function showSaleBtn() {
 	let interval = setInterval(() => {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
-
-			document.querySelector('.banner').classList.add('show_sale')
 
 			let priceText
 
@@ -722,6 +632,7 @@ let styles = `
         color: #FFFFFF;
         width: 100%;
         display: block;
+        border: none;
         font-family: "Inter", sans-serif;
     }
     #count {
@@ -853,7 +764,7 @@ function startTimer() {
         if (m == 0) {
             if (h == 0) {
                 document.getElementById('count').remove();
-                document.getElementById('special_offer').insertAdjacentHTML('beginend', `<button type="button">Get it Now</button>`);
+                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
                 document.querySelector('.btn-wrapper_sale').classList.add('active');
                 document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
                 document.querySelector('#special_offer button').addEventListener('click', () => {
@@ -1022,5 +933,3 @@ let isClarify = setInterval(() => {
 		clarity("set", "timeline_and_SO_banner", "variant_1");
 	}
 }, 100)
-
-
