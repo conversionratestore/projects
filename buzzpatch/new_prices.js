@@ -71,3 +71,19 @@ function start() {
 
     })
 }
+
+
+let record = setInterval(function () {
+    if(typeof clarity === 'function') {
+        clearInterval(record)
+        clarity("set", "price_elasticity_hypothesis", "variant_1");
+    }
+})
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Price elasticity hypothesis',
+    'eventAction': 'loaded'
+});
+
