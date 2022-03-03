@@ -574,6 +574,63 @@ if (window.innerWidth <= 768) {
         .back .form-group .exp-col.col-md-6:not(:last-child) {
           margin-bottom: 9px;
         }
+
+         @media (max-width: 360px) {
+           .absolute_box p span .hidden_text{
+             right: -154px;
+           }
+
+           .card_box #placeOrder{
+             font-size: 17px;
+           }
+
+           p.total_text{
+             font-size: 6px;
+           }
+
+           .quarantee div:last-child > p:last-child{
+             font-size: 10px;
+           }
+           .quarantee div:last-child > p:first-child{
+             font-size: 10px;
+           }
+           .card_box .front .mb-24.text-uppercase, .card_box .back .my-32.text-uppercase{
+             font-size: 13px;
+           }
+         }
+
+         @media (width: 320px) {
+           p.hint_plan > span .hidden_text.toggle_opacity{
+             right: -61px;
+           }
+           .absolute_box p span .hidden_text {
+              right: -120px;
+          }
+         }
+
+          @media (width: 280px) {
+            .absolute_box p span .hidden_text {
+                right: -120px;
+            }
+
+            .card_box #placeOrder {
+                font-size: 14px;
+            }
+            p.total_text {
+                font-size: 4px;
+            }
+            p.total_text .accent_color {
+                font-size: 7px;
+            }
+
+            .stripe-processor-form .error{
+              font-size: 9px;
+            }
+
+            #paymentForm .card_box .back label#terms_conditions_checkbox-error{
+              top: 28px;
+            }
+          }
       </style>
     `
 
