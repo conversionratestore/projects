@@ -316,7 +316,7 @@ let startFunk2 = setInterval(() => {
 
         .card_box {
           position: relative;
-          perspective: 3000px;
+          perspective: 2000px;
           width: 100%;
           height: 100%;
         }
