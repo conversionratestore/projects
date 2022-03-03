@@ -339,6 +339,7 @@ if (window.innerWidth <= 768) {
         .card_box .back {
           transform: rotateY(-180deg);
           opacity: 0;
+          display: none;
         }
 
         .card_box .front button.btn_continue,
@@ -909,6 +910,7 @@ if (window.innerWidth <= 768) {
                 setTimeout(() => {
                   document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "725px"
                   document.querySelector(".back").style.opacity = "0"
+                  document.querySelector(".back").style.display = "none"
                 }, 1010)
               })
             }
@@ -1010,7 +1012,8 @@ if (window.innerWidth <= 768) {
               setTimeout(() => {
                 document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1420px"
                 document.querySelector(".back").style.opacity = "1"
-              }, 600)
+                document.querySelector(".back").style.display = "block"
+              }, 400)
 
               setTimeout(() => {
                 if (document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error")) {
