@@ -316,7 +316,7 @@ let startFunk2 = setInterval(() => {
 
         .card_box {
           position: relative;
-          perspective: 5000px;
+          perspective: 3000px;
           width: 100%;
           height: 100%;
         }
@@ -337,7 +337,7 @@ let startFunk2 = setInterval(() => {
         }
         .card_box .back {
           transform: rotateY(-180deg);
-          display: none;
+          opacity: 0;
         }
 
         .card_box .front button.btn_continue,
@@ -906,8 +906,8 @@ let startFunk2 = setInterval(() => {
               document.querySelector(".back").style.transform = "rotateY(-180deg)"
               document.querySelector(".front").style.zIndex = "15"
               setTimeout(() => {
-                document.querySelector(".back").style.display = "none"
                 document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "725px"
+                document.querySelector(".back").style.opacity = "0"
               }, 1010)
             })
           }
@@ -1004,11 +1004,12 @@ let startFunk2 = setInterval(() => {
           if (document.querySelector(`${parent} input.error`) == null && document.querySelector(`${parent} select.error`) == null) {
             document.querySelector(".front").style.transform = "rotateY(-180deg)"
             document.querySelector(".back").style.transform = "rotateY(-360deg)"
-            setTimeout(() => {
-              document.querySelector(".back").style.display = "block"
-              document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1420px"
-            }, 100)
             document.querySelector(".front").style.zIndex = "0"
+
+            setTimeout(() => {
+              document.querySelector("section.tpl-t1.pb-sm-40.pb-24 .tpl-t1__col-form").style.height = "1420px"
+              document.querySelector(".back").style.opacity = "1"
+            }, 600)
 
             setTimeout(() => {
               if (document.querySelector("#paymentForm .card_box .back label#terms_conditions_checkbox-error")) {
