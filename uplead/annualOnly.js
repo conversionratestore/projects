@@ -122,23 +122,27 @@ if (!document.querySelector('.custom_style')) {
     document.head.insertAdjacentHTML('beforeend', style)
 }
 
-let subsInterval = setInterval(() => {
-    if (document.querySelectorAll('.product-card .product-card__advantages')[7]) {
-        clearInterval(subsInterval)
+if(typeof subsInterval === 'undefined') {
+    let subsInterval = setInterval(() => {
+        if (document.querySelectorAll('.product-card .product-card__advantages')[7]) {
+            clearInterval(subsInterval)
+    
+            addSubs()
+        }
+    })
+}
 
-        addSubs()
-    }
-})
+if(typeof subsInterval === 'undefined') {
+    let priceInterval = setInterval(() => {
+        if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
+            clearInterval(priceInterval)
+    
+            addPrice()
+        }
+    })    
+}
 
-let priceInterval = setInterval(() => {
-    if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
-        clearInterval(priceInterval)
-
-        addPrice()
-    }
-})
-
-if (!target) {
+if (typeof target === 'undefined') {
     let currUrl = location.pathname
 
     let target = document
@@ -218,7 +222,7 @@ function addPrice() {
     })
 }
 
-if (!isTooltips) {
+if (typeof isTooltips === 'undefined') {
     let isTooltips = setInterval(() => {
         if (document.querySelectorAll('.tooltip')[3]) {
             clearInterval(isTooltips)
@@ -242,7 +246,7 @@ if (!isTooltips) {
     }, 200)
 }
 
-if (!isClarity) {
+if (typeof isClarity === 'undefined') {
     let isClarity = setInterval(() => {
         if (typeof clarity == 'function') {
             clearInterval(isClarity)
