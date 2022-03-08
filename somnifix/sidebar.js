@@ -291,7 +291,7 @@ const TEMPLATE = `
 	            </div>
 		            <div class="subscribe_block">
 		                <label class="custom_checkbox">
-		                    <input type="checkbox" checked>
+		                    <input type="checkbox">
 		                    <p>Subscribe and <span style="color: #F0752D;">save 10%</span></p>
 		                </label>
 		                <p class="undertext"><span>Auto delivery every 3 month for <span class="check_price">$49.97</span><br>Cancel anytime</span></p>
@@ -384,6 +384,8 @@ let isTemplate = setInterval(() => {
 			}
 		}
 		function changeCheckboxText (month, price, strips, time, card) {
+			checkInput.checked = true
+			
 			checkbox.classList.add('visible')
 			checkboxText.innerHTML = `Auto delivery every ${month} month for <span class="check_price">${price}</span><br>Cancel anytime`
 			stripsText.innerText = `${strips} Strips = ${time}`
@@ -402,8 +404,6 @@ let isTemplate = setInterval(() => {
 			console.log(`eventAction: Click at pack; eventLabel: ${ month } months >>>`)
 		}
 		function calculatePatches() {
-			checkInput.checked = true
-
 			document.querySelector('.sign.plus').addEventListener('click', () => {
 				if (counter < 20) {
 					counter++
