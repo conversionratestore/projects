@@ -231,6 +231,7 @@ const STYLE = `
 				color: #fff;
 				margin-top: 25px;
 				cursor: pointer;
+				font-family: 'Roboto', sans-serif;
 	        }
 	    </style>
 	    `
@@ -486,9 +487,9 @@ let isTemplate = setInterval(() => {
 		addToCart()
 	}
 }, 300)
-let isClarity = setInterval(() => {
+let isClarityCustom = setInterval(() => {
 	if(typeof clarity == 'function') {
-		clearInterval(isClarity)
+		clearInterval(isClarityCustom)
 		clarity("set", "slide_subscription_offer", "variant_1");
 	}
 }, 200)
