@@ -1302,7 +1302,7 @@ window.onload = function() {
     }
 
      if (window.location.pathname.includes('/search')) {
-        document.querySelector('.list_box1').insertAdjacentHTML('afterend',`
+        document.querySelector('.listing).insertAdjacentHTML('afterend',`
         
         <div id="search-box"></div>
         <div id="stats-container"></div>
