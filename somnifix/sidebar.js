@@ -378,10 +378,15 @@ let isTemplate = setInterval(() => {
 					changeCheckboxText('12', '$199.97', '365', '12 Months', card)
 					break
 				default:
-					checkbox.classList.remove('visible')
 					stripsText.innerText = '28 Strips = 4 Weeks'
+					
 					checkInput.checked = false
+					
+					checkbox.classList.remove('visible')
 					signs.classList.remove('blur')
+					
+					fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
+					salePrice.innerText = card.querySelectorAll('.price span')[1].innerText
 					break
 			}
 		}
