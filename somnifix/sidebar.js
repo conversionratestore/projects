@@ -365,8 +365,6 @@ let isTemplate = setInterval(() => {
 
 			counter = 1
 			cardQuantity.innerText = 1
-			fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
-			salePrice.innerText = card.querySelectorAll('.price span')[1].innerText
 
 			signs.classList.add('blur')
 
@@ -453,10 +451,12 @@ let isTemplate = setInterval(() => {
 		}
 		function addToCart() {
 			let btn = document.querySelector('.calc_btn button')
-			let selectedCardId = document.querySelector('.selected').dataset.id
 
 			btn.addEventListener('click', () => {
-				console.log('sss')
+				let selectedCardId = document.querySelector('.selected').dataset.id
+				let quantity = cardQuantity.innerText
+
+				console.log(selectedCardId)
 
 				if(checkInput.checked) {
 					if (selectedCardId === "32115046056051") {
@@ -466,7 +466,7 @@ let isTemplate = setInterval(() => {
 				        addItemToCart("32190023958643", 1, "12", "Month", "95310");
 				    }
 				} else {
-					addItemToCart(selectedCardId, cardQuantity);
+					addItemToCart(selectedCardId, quantity);
 				}
 			})
 		}
