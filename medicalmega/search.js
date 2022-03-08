@@ -1303,6 +1303,9 @@ window.onload = function() {
 
      if (window.location.pathname.includes('/search')) {
         document.querySelector('.list_box1').insertAdjacentHTML('afterend',`
+        <div id="stats-container"></div>
+        <div id="price"></div>
+        <div id="categories"></div>
         <div id="pagination"></div>
         <div id="additional-categories"></div>
         <div id="hits"></div>`)
