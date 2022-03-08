@@ -126,7 +126,7 @@ if(typeof subsInterval === 'undefined') {
     let subsInterval = setInterval(() => {
         if (document.querySelectorAll('.product-card .product-card__advantages')[7]) {
             clearInterval(subsInterval)
-
+    
             addSubs()
         }
     })
@@ -136,10 +136,10 @@ if(typeof subsInterval === 'undefined') {
     let priceInterval = setInterval(() => {
         if (document.querySelector('.elementor-16422 .elementor-element.elementor-element-8caf1df .blue-credits')) {
             clearInterval(priceInterval)
-
+    
             addPrice()
         }
-    })
+    })    
 }
 
 if (typeof target === 'undefined') {
@@ -153,7 +153,7 @@ if (typeof target === 'undefined') {
             observer.disconnect()
             addChanges()
             observer.observe(target, options)
-        }
+        }        
     })
 
     observer.observe(target, options)
