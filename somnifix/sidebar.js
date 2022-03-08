@@ -20,7 +20,7 @@ const STYLE = `
 	        	display: flex;
 	        	flex-direction: column;
 	        	justify-content: space-between;
-	        	height: 90%;
+	        	min-height: 90%;
 	            margin-top: 20px;
 	            background: #F5F6F7;
 	            border-radius: 22px;
