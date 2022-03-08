@@ -1301,6 +1301,13 @@ window.onload = function() {
         })
     }
 
+     if (window.location.pathname.includes('/search')) {
+        document.querySelector('.list_box1').insertAdjacentHTML('afterend',`
+        <div id="pagination"></div>
+        <div id="additional-categories"></div>
+        <div id="hits"></div>`)
+    }
+    
     //events
     document.querySelector('.nav-menu_login a').addEventListener('click', (e) => {
         actionDataLayer = `Click on ${e.target.innerText.split(',')[1]} button in menu`;
