@@ -380,12 +380,13 @@ let isTemplate = setInterval(() => {
 				default:
 					checkbox.classList.remove('visible')
 					stripsText.innerText = '28 Strips = 4 Weeks'
+					checkInput.checked = false
 					break
 			}
 		}
 		function changeCheckboxText (month, price, strips, time, card) {
 			checkInput.checked = true
-			
+
 			checkbox.classList.add('visible')
 			checkboxText.innerHTML = `Auto delivery every ${month} month for <span class="check_price">${price}</span><br>Cancel anytime`
 			stripsText.innerText = `${strips} Strips = ${time}`
