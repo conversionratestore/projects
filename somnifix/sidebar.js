@@ -381,6 +381,7 @@ let isTemplate = setInterval(() => {
 					checkbox.classList.remove('visible')
 					stripsText.innerText = '28 Strips = 4 Weeks'
 					checkInput.checked = false
+					signs.classList.remove('blur')
 					break
 			}
 		}
