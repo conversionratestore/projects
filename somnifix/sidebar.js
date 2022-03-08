@@ -366,14 +366,15 @@ let isTemplate = setInterval(() => {
 			counter = 1
 			cardQuantity.innerText = 1
 
+
 			signs.classList.add('blur')
 
 			switch(index) {
 				case 1:
-					changeCheckboxText('3', '$49.97', '84', '12 Weeks')
+					changeCheckboxText('3', '$49.97', '84', '12 Weeks', card)
 					break
 				case 2:
-					changeCheckboxText('12', '$199.97', '365', '12 Months')
+					changeCheckboxText('12', '$199.97', '365', '12 Months', card)
 					break
 				default:
 					checkbox.classList.remove('visible')
@@ -381,10 +382,13 @@ let isTemplate = setInterval(() => {
 					break
 			}
 		}
-		function changeCheckboxText (month, price, strips, time) {
+		function changeCheckboxText (month, price, strips, time, card) {
 			checkbox.classList.add('visible')
 			checkboxText.innerHTML = `Auto delivery every ${month} month for <span class="check_price">${price}</span><br>Cancel anytime`
 			stripsText.innerText = `${strips} Strips = ${time}`
+
+			fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
+			salePrice.innerText = price
 
 			window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
