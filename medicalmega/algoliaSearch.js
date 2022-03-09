@@ -1,59 +1,13 @@
 let styles = `
     <style>
-   #pagination, #pagination2 {
-        padding-top: 15px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        }
-        .btn_paginator {
-            background: #fff;
-            color: #000;
-            font-size: 11px;
-            border: none;
-            margin: 0 4px;
-        }
+    html:first-child .list_type3 span {
+        line-height: 1;
+    }
+ 
         .list_type2 {
             width: 100%;
         }
-     #pagination li, #pagination2 li{
-        cursor: pointer;
-        font-size: 11px;
-        color: #000;
-        margin: 0!important;
-        padding: 0 4px!important;
-        border: none!important;
-        position: relative;
-        font-weight: 400;
-        width: fit-content;
-        line-height: 1;
-        }
-        #pagination li:last-child:after, #pagination2 li:last-child:after{
-            content: none;
-        }
-         #pagination li:after, #pagination2 li:after{
-            content: '|';
-            font-size: 11px;
-            color: #000;
-            margin: 0 -4px 0 4px
-         }
-          #pagination li.ellipsis-after:after, #pagination2 li.ellipsis-after:after{
-            content: '...';
-          }
-          #pagination li.after-not:after, #pagination2 li.after-not:after{
-          content: none;
-          }
-            #pagination li.ellipsis-before:before, #pagination2 li.ellipsis-before:before{
-            content: '...';
-            font-size: 11px;
-            color: #000;
-            margin: 0 4px 0 -4px;
-          }
-    
-     #pagination li.active, #pagination2 li.active {
-        font-weight: 700; 
-        }
+  
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
         }
@@ -87,7 +41,11 @@ let styles = `
         padding: 6px 20px;
         box-sizing: border-box;
     }
-    input#search_key {
+    #search-box {
+        width: calc(100% - 80px);
+        position: relative;
+    }
+    .ais-SearchBox-input {
         box-sizing: border-box;
         background: #EEEEEE;
         border: 1px solid #C0C0C0;
@@ -95,12 +53,12 @@ let styles = `
         font-weight: normal;
         font-size: 12px;
         line-height: 16px;
-        padding: 10px 20px;
+        padding: 10px 80px 10px 20px;
         color: #666666;
         height: auto;
         width: 100%;
     }
-    .search-box__button {
+    .ais-SearchBox-submit {
         text-indent: 1px;
         width: fit-content;
         background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
@@ -115,9 +73,19 @@ let styles = `
         top: 50%;
         transform: translateY(-50%);
         right: 4px;
+        position: absolute;
     }
-    .search-box__button:before {
-        content: none;
+    .ais-SearchBox-reset {
+        padding: 7px;
+        backgorund: none;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 62px;
+        position: absolute;
+        border: none;
+    }
+    .listing_container {
+        padding-top: 40px;
     }
     .shoppingcart a {
         margin: 0;
@@ -820,11 +788,6 @@ document.querySelector('.popup_filter .btn_close').addEventListener(event, (e) =
     pushDataLayer(actionDataLayer,labelDataLayer)  
 });
 
-//add text search result
-document.querySelector('#search-box').addEventListener('input', (e) => {
-    document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.innerText}'`;
-})
-
 search.addWidgets([
     instantsearch.widgets.configure({
         hitsPerPage: 50,
@@ -836,22 +799,6 @@ search.addWidgets([
     instantsearch.widgets.hits({
         container: '#hits',
         templates: {
-            qty() {
-                let option = ``;
-                for (let n = 1; n <= hit.qty; n++) {
-                    option = option + `<option value="${n}">${n}</option>`;
-                }
-                return option
-            },
-    
-            optionBox() {
-                let option = ``;
-                for (let i = 0; i < hit.variants.length; i++) {
-                    let variantsArr = hit.variants[i];
-                    option = option + `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-id="${variantsArr.pv_id}" data-src="${variantsArr.image}"> ${variantsArr.name} ${variantsArr.in_stock==true? ' (Out of stock)':''} </option>` 
-                }
-                return option
-            },
             item: (hit) => `
                 <fieldset class="list_box2">
                     <div class="list_type3">
@@ -870,7 +817,7 @@ search.addWidgets([
                             </span>
                             <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
                                 <span class="product_quantity nostyle" style="display:${hit.in_stock==true?'none':'block'};">
-                                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select">${hit.qty()}</select>
+                                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty}"></select>
                                 </span>
                                 <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${hit.in_stock==true?'none':'block'};">
                                 <div class="out-of-stock__box--pv" style="display:${hit.in_stock==true?'block':'none'}; ">
@@ -879,7 +826,9 @@ search.addWidgets([
                             </span>
                             <p style="clear:both;display:none">
                                 <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                                <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">1</select>
+                                <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
+                                  <script>${hit.variants}</script>
+                               </select>
                             </p>
                             <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
                             <input type="hidden" name="product_id" value="${hit.objectID}">
@@ -889,25 +838,6 @@ search.addWidgets([
                 </fieldset>
                 <br>
             `
-            //${hit.variants.length>1?'block':'none'}
-        // <figure class="hit-image-container">
-        //     <div class="hit-image-container-box">
-        //         <img class="hit-image" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}" alt="${hit._highlightResult.name.value}">
-        //     </div>
-        // </figure>
-        // <p class="hit-category">&#8203;​</p>
-        // <div class="item-content">
-        //     <p class="brand hit-tag">${
-        //     hit._highlightResult.brand
-        //         ? hit._highlightResult.brand.value
-        //         : ''
-        //     }</p>
-        //     <p class="name">${hit._highlightResult.name.value}</p>
-        //     <div class="hit-description">
-        //         <b class="hit-currency">$</b>${
-        //     hit.price
-        //     }</div>
-        // </div>
         },
     }),
     instantsearch.widgets.pagination({
@@ -983,3 +913,10 @@ document.addEventListener('click', function (event) {
 
 
 search.start();
+
+
+//add text search result
+document.querySelector('#search-box input').addEventListener('input', (e) => {
+    document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.innerText}'`;
+})
+document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
