@@ -343,6 +343,21 @@ if (count > 0) {
 			clearInterval(counter)
 
 			showSaleBtn()
+            if (mediaQuery.matches) {
+                document.getElementById('count').remove();
+                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
+                document.querySelector('.btn-wrapper_sale').classList.add('active');
+                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
+                document.querySelector('#special_offer button').addEventListener('click', () => {
+                        const scrollTarget = document.querySelector('.banner');
+                        const elementPosition = scrollTarget.getBoundingClientRect().top;
+                
+                        window.scrollBy({
+                            top: elementPosition,
+                            behavior: 'smooth'
+                        });
+                })
+            }
 		}
 
 		let seconds = count % 60
@@ -356,8 +371,11 @@ if (count > 0) {
 		seconds = ('0' + seconds.toFixed(0)).slice(-2)
 
 		if (document.querySelector('.btn-wrapper_wait span')) {
-			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds
+			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds;
 		}
+        if (document.querySelector('#count')) {
+            document.querySelector('#count').innerHTML = hours + ':' + minutes + ':' + seconds;
+        }
 	}, 1000)
 } else {
 	showSaleBtn()
@@ -369,7 +387,7 @@ function setMobile() {
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
     document.querySelector('.features ul').before(document.querySelector('.banner img'));
-    document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`);
+    showSaleBtn()
 }
 
 function showSaleBtn() {
@@ -751,46 +769,46 @@ function setSlide(time, title, tooltip, countPoint) {
 let specialOffer = `
     <div id="special_offer">
         <p>Your special offer will be available in:</p>
-        <div id="count">0:05:00</div>
+        <div id="count">01:00:00</div>
     </div>
 `;
 
-function startTimer() {
-    let arrTime = document.getElementById('count').innerHTML.split(':');
-    let h = arrTime[0],
-        m = arrTime[1],
-        s = arrTime[2];
+// function startTimer() {
+//     let arrTime = document.getElementById('count').innerHTML.split(':');
+//     let h = arrTime[0],
+//         m = arrTime[1],
+//         s = arrTime[2];
 
-    if (s == 0) {
-        if (m == 0) {
-            if (h == 0) {
-                document.getElementById('count').remove();
-                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
-                document.querySelector('.btn-wrapper_sale').classList.add('active');
-                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
-                document.querySelector('#special_offer button').addEventListener('click', () => {
-                        const scrollTarget = document.querySelector('.banner');
-                        const elementPosition = scrollTarget.getBoundingClientRect().top;
+//     if (s == 0) {
+//         if (m == 0) {
+//             if (h == 0) {
+//                 document.getElementById('count').remove();
+//                 document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
+//                 document.querySelector('.btn-wrapper_sale').classList.add('active');
+//                 document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
+//                 document.querySelector('#special_offer button').addEventListener('click', () => {
+//                         const scrollTarget = document.querySelector('.banner');
+//                         const elementPosition = scrollTarget.getBoundingClientRect().top;
                 
-                        window.scrollBy({
-                            top: elementPosition,
-                            behavior: 'smooth'
-                        });
-                })
-                return;
-            }
-            h--;
-            m = 60;
-            if (h < 10) h = "0" + h 
-        }
-        m--;
-        if (m < 10) m = "0" + m;
-        s = 59;
-    } else s--; 
-    if (s < 10) s = "0" + s;
-    document.getElementById('count').innerHTML = h + ':' + m + ':' + s;
-    setTimeout(startTimer,1000)
-}
+//                         window.scrollBy({
+//                             top: elementPosition,
+//                             behavior: 'smooth'
+//                         });
+//                 })
+//                 return;
+//             }
+//             h--;
+//             m = 60;
+//             if (h < 10) h = "0" + h 
+//         }
+//         m--;
+//         if (m < 10) m = "0" + m;
+//         s = 59;
+//     } else s--; 
+//     if (s < 10) s = "0" + s;
+//     document.getElementById('count').innerHTML = h + ':' + m + ':' + s;
+//     setTimeout(startTimer,1000)
+// }
 
 let action;
 
