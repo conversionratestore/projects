@@ -750,7 +750,7 @@ function setSlide(time, title, tooltip, countPoint) {
 let specialOffer = `
     <div id="special_offer">
         <p>Your special offer will be available in:</p>
-        <div id="count">1:00:01</div>
+        <div id="count">0:05:00</div>
     </div>
 `;
 
