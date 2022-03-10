@@ -292,7 +292,7 @@ const banner = `
                     <li>1 Page masterclass <span>$3,995</span></li>
                     <li>Traffic tactics <span>$1,997</span></li>
                     <li>Course creation challenge <span>$995</span></li>
-                    <li>1 Page wednesday Calls <span>$995!</span></li>
+                    <li>1 Page wednesday Calls <span>$995</span></li>
                     <li>Private facebook Group <span>$495</span></li>
                     <li>Top seller strategies  <span>$995</span></li>
                     <li>The 1 page template! <span class="priceless">Priceless</span></li>
@@ -368,7 +368,8 @@ function setMobile() {
 
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
-    document.querySelector('.features ul').before(document.querySelector('.banner img'))
+    document.querySelector('.features ul').before(document.querySelector('.banner img'));
+    document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`);
 }
 
 function showSaleBtn() {
