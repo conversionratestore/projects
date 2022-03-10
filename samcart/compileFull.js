@@ -365,6 +365,7 @@ function setMobile() {
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
     document.querySelector('.features ul').before(document.querySelector('.banner img'));
+    document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
 }
 
 function showSaleBtn() {
@@ -375,8 +376,6 @@ function showSaleBtn() {
 			let priceText
 
 			if (mediaQuery.matches) {
-                
-				priceText = `<p class="price">$349<sub>$588</sub></p>`
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
                 document.getElementById('count').remove();
                 document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
