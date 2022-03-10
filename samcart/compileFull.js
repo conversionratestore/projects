@@ -112,7 +112,6 @@ const style = `
         .banner.show_sale .features ul li span {
         	display: inline;
         	font-weight: 300;
-        	
         }
   
         .btn-wrapper button {
@@ -260,6 +259,7 @@ const mobileCSS = `
             color: #F2813F;
             display: initial;
         }
+        
         .features ul li::before {
         	height: 15px;
     		width: 15px;
@@ -397,7 +397,7 @@ function showSaleBtn() {
 	let interval = setInterval(() => {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
-
+            
 			let priceText
 
 			if (mediaQuery.matches) {
@@ -405,6 +405,7 @@ function showSaleBtn() {
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
 			
 			} else {
+                document.querySelector('.banner').classList.add('show_sale')
 				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
 				priceText = `<p class="price">$349<sub>$588</sub></p>`
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
