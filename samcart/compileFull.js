@@ -346,21 +346,6 @@ if (count > 0) {
 			clearInterval(counter)
 
 			showSaleBtn()
-            if (mediaQuery.matches) {
-                document.getElementById('count').remove();
-                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
-                document.querySelector('.btn-wrapper_sale').classList.add('active');
-                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
-                document.querySelector('#special_offer button').addEventListener('click', () => {
-                        const scrollTarget = document.querySelector('.banner');
-                        const elementPosition = scrollTarget.getBoundingClientRect().top;
-                
-                        window.scrollBy({
-                            top: elementPosition,
-                            behavior: 'smooth'
-                        });
-                })
-            }
 		}
 
 		let seconds = count % 60
@@ -390,7 +375,6 @@ function setMobile() {
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
     document.querySelector('.features ul').before(document.querySelector('.banner img'));
-    showSaleBtn()
 }
 
 function showSaleBtn() {
@@ -401,9 +385,22 @@ function showSaleBtn() {
 			let priceText
 
 			if (mediaQuery.matches) {
+                
 				priceText = `<p class="price">$349<sub>$588</sub></p>`
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
-			
+                document.getElementById('count').remove();
+                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
+                document.querySelector('.btn-wrapper_sale').classList.add('active');
+                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
+                document.querySelector('#special_offer button').addEventListener('click', () => {
+                        const scrollTarget = document.querySelector('.banner');
+                        const elementPosition = scrollTarget.getBoundingClientRect().top;
+                
+                        window.scrollBy({
+                            top: elementPosition,
+                            behavior: 'smooth'
+                        });
+                })
 			} else {
                 document.querySelector('.banner').classList.add('show_sale')
 				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
