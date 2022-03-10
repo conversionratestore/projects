@@ -231,18 +231,19 @@ const mobileCSS = `
        		padding: 0 0 0 19px;
        }
         .btn-wrapper button {
-            font-size: 12px;
-            padding: 15px 5px !important;
             line-height: 15px;
-        }
-        .btn-wrapper button.btn-wrapper_sale {
-        	font-size: 14px;
+        	font-size: 18px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            padding: 10px 0 !important;
+            padding: 17px 0 !important;
+            border-color: #8C9294!important;
+            background: #8C9294!important;
+            color: #fff;
+            pointer-events: none;
+            cursor: no-drop;
         }
-        .btn-wrapper .btn-wrapper_sale span {
+        .btn-wrapper button span {
             margin: 0;
             font-size: 12px;
             padding: 5px 15px;
@@ -263,17 +264,6 @@ const mobileCSS = `
         	height: 15px;
     		width: 15px;
     		left: -20px;
-        }
-        .btn-wrapper button.btn-wrapper_sale {
-            padding: 17px 0 !important;
-            font-size: 18px;
-        }
-        .btn-wrapper button {
-            border-color: #8C9294!important;
-            background: #8C9294!important;
-            color: #fff;
-            pointer-events: none;
-            cursor: no-drop;
         }
         .btn-wrapper button.active {
             border-color: #183B56!important;
