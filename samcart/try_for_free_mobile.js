@@ -207,7 +207,7 @@ function mobileVar() {
         .absolute_box p {
           font-family: "Poppins", sans-serif !important;
           font-weight: 700;
-          font-size: 13.6px !important;
+          font-size: 14px !important;
           line-height: 16px;
           letter-spacing: 0.1em;
           text-transform: uppercase;
@@ -250,7 +250,7 @@ function mobileVar() {
           line-height: 17px;
           color: #5a7386;
           top: -211px;
-          right: -40px;
+          right: -58px;
           z-index: 5;
           text-transform: none;
           transition: all 250ms ease;
