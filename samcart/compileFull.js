@@ -334,7 +334,7 @@ if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('p
 	intervalTime = currentDate - window.localStorage.getItem('startDate')
 }
 
-let count = 3601 - (intervalTime / 1000)
+let count = 360100 - (intervalTime / 1000) //3601 - (intervalTime / 1000)
 
 if (count > 0) {
 	let counter = setInterval(() => {
@@ -769,46 +769,9 @@ function setSlide(time, title, tooltip, countPoint) {
 let specialOffer = `
     <div id="special_offer">
         <p>Your special offer will be available in:</p>
-        <div id="count">01:00:00</div>
+        <div id="count"></div>
     </div>
 `;
-
-// function startTimer() {
-//     let arrTime = document.getElementById('count').innerHTML.split(':');
-//     let h = arrTime[0],
-//         m = arrTime[1],
-//         s = arrTime[2];
-
-//     if (s == 0) {
-//         if (m == 0) {
-//             if (h == 0) {
-//                 document.getElementById('count').remove();
-//                 document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
-//                 document.querySelector('.btn-wrapper_sale').classList.add('active');
-//                 document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
-//                 document.querySelector('#special_offer button').addEventListener('click', () => {
-//                         const scrollTarget = document.querySelector('.banner');
-//                         const elementPosition = scrollTarget.getBoundingClientRect().top;
-                
-//                         window.scrollBy({
-//                             top: elementPosition,
-//                             behavior: 'smooth'
-//                         });
-//                 })
-//                 return;
-//             }
-//             h--;
-//             m = 60;
-//             if (h < 10) h = "0" + h 
-//         }
-//         m--;
-//         if (m < 10) m = "0" + m;
-//         s = 59;
-//     } else s--; 
-//     if (s < 10) s = "0" + s;
-//     document.getElementById('count').innerHTML = h + ':' + m + ':' + s;
-//     setTimeout(startTimer,1000)
-// }
 
 let action;
 
@@ -864,8 +827,6 @@ let mut = new MutationObserver(function (muts) {
 
 		document.body.insertAdjacentHTML('afterbegin', styles);
         document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
-
-        // startTimer();
       
 		for (let key in arrTooltip) {
 			document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
