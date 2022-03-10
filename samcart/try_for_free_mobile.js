@@ -371,6 +371,7 @@ function mobileVar() {
           top: 0;
           transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
           backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
           background: #ffffff;
         }
 
@@ -1485,6 +1486,7 @@ function desktopVar() {
     top: 0;
     transition: all 1s 0s cubic-bezier(0.47, 0, 0.75, 0.72);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     background: #ffffff;
   }
 
