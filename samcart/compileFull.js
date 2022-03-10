@@ -239,7 +239,7 @@ const mobileCSS = `
             padding: 17px 0 !important;
             border-color: #8C9294!important;
             background: #8C9294!important;
-            color: #fff;
+            color: #fff!important;
             pointer-events: none;
             cursor: no-drop;
         }
