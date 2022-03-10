@@ -207,7 +207,7 @@ function mobileVar() {
         .absolute_box p {
           font-family: "Poppins", sans-serif !important;
           font-weight: 700;
-          font-size: 14px !important;
+          font-size: 13.6px !important;
           line-height: 16px;
           letter-spacing: 0.1em;
           text-transform: uppercase;
