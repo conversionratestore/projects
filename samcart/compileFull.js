@@ -372,8 +372,6 @@ function showSaleBtn() {
 	let interval = setInterval(() => {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
-            
-			let priceText
 
 			if (mediaQuery.matches) {
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
@@ -392,13 +390,12 @@ function showSaleBtn() {
                 })
 			} else {
                 document.querySelector('.banner').classList.add('show_sale')
-				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
-				priceText = `<p class="price">$349<sub>$588</sub></p>`
+				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
 			
+                document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
 			}
 
-			document.querySelector('.subtitle').insertAdjacentHTML('afterend', priceText)
 
 			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
 				window.dataLayer = window.dataLayer || []
