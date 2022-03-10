@@ -259,7 +259,6 @@ const mobileCSS = `
             color: #F2813F;
             display: initial;
         }
-        
         .features ul li::before {
         	height: 15px;
     		width: 15px;
@@ -269,13 +268,14 @@ const mobileCSS = `
             padding: 17px 0 !important;
             font-size: 18px;
         }
-        .btn-wrapper_sale {
+        .btn-wrapper button {
             border-color: #8C9294!important;
             background: #8C9294!important;
+            color: #fff;
             pointer-events: none;
             cursor: no-drop;
         }
-        .btn-wrapper_sale.active {
+        .btn-wrapper button.active {
             border-color: #183B56!important;
             background: #183B56!important;
             pointer-events: auto;
