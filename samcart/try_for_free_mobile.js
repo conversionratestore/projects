@@ -1035,7 +1035,7 @@ function mobileVar() {
           function validationForm(parent) {
             let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
             let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
-            let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
+            // let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
             let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
             let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
 
@@ -1991,7 +1991,7 @@ function desktopVar() {
           function validationForm(parent) {
             let inputValueName = document.querySelector(`${parent} input[name='fname']`).value.match(/^.{1,30}$/)
             let inputValueLastName = document.querySelector(`${parent} input[name='lname']`).value.match(/^.{1,30}$/)
-            let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
+            // let inputValuePhone = document.querySelector(`${parent} input[name='phone']`).value.match(/(?<=^|\s|>|\;|\:|\))(?:\+|7|8|9|\()[\d\-\(\) ]{8,}\d/)
             let inputValueEmail = document.querySelector(`${parent} input[name='email']`).value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/)
             let selectValue = document.querySelector(`${parent} select[name='custom_ubiGdEid']`).value
 
