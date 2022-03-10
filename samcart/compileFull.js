@@ -865,7 +865,7 @@ let mut = new MutationObserver(function (muts) {
 		document.body.insertAdjacentHTML('afterbegin', styles);
         document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
 
-        startTimer();
+        // startTimer();
       
 		for (let key in arrTooltip) {
 			document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
