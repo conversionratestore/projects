@@ -101,6 +101,7 @@ const style = `
         }
         
         .features ul li span {
+            display: none;
         	text-decoration: line-through;
         }
         
@@ -257,6 +258,7 @@ const mobileCSS = `
             font-size: 11px;
             line-height: 13px;
             color: #F2813F;
+            display: initial;
         }
         .features ul li::before {
         	height: 15px;
