@@ -212,11 +212,11 @@ const mobileCSS = `
         }
 	
 		.banner::after {	
-            width: 104px;
-            height: 35px;		
+            width: 100%;
+            height: 104px;		
         	top: 97px;     
-            right: -6px; 	
-        	background-image: url("https://conversionratestore.github.io/projects/samcart/img/off40.svg");
+            right: -13px; 	
+        	background: url("https://conversionratestore.github.io/projects/samcart/img/off40.svg") no-repeat right top;
 		}
 
 		p.title {
