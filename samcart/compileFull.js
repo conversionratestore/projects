@@ -366,12 +366,14 @@ function setMobile() {
     document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
     document.querySelector('.features ul').before(document.querySelector('.banner img'));
     document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
+    document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
 }
 
 function showSaleBtn() {
 	let interval = setInterval(() => {
 		if (document.querySelector('.btn-wrapper')) {
 			clearInterval(interval)
+            document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
 
 			if (mediaQuery.matches) {
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
@@ -394,9 +396,9 @@ function showSaleBtn() {
                             'eventAction': 'Click on Get it Now button',
                         })
                 })
+                
 			} else {
                 document.querySelector('.banner').classList.add('show_sale')
-				document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
                 document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
                 document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
 			}
