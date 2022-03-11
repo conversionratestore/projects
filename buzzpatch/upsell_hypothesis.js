@@ -477,47 +477,58 @@ if (window.innerWidth <= 768) {
         subtree: true,
       })
 
-      //
-      //   let formData = {
-      //     items: [
-      //       {
-      //         id: 39558788972588,
-      //         quantity: 1,
-      //       },
-      //       {
-      //         id: 39558788972588,
-      //         quantity: 1,
-      //       },
-      //     ],
-      //   }
-      //   fetch("/cart/add.js", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(formData),
-      //   })
-      //     .then((response) => {
-      //       return response.json()
-      //     })
-      //     .catch((error) => {
-      //       console.error("Error:", error)
-      //     })
+      document.querySelector(".your_cart .btn_wrap > a:last-of-type").addEventListener("click", function (e) {
+        e.preventDefault()
+        addToCart()
+      })
 
-      //   window.location.pathname = "/checkout"
+      //add to cart and checkout
+      let idValue = document.querySelector(".js-packs input[type=radio]:checked+label").previousElementSibling.value
+      function addToCart() {
+        fetch("/cart/clear.js", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            return response.json()
+          })
+          .catch((error) => {
+            console.error("Error:", error)
+          })
 
-      //   fetch("/cart/clear.js", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   })
-      //     .then((response) => {
-      //       return response.json()
-      //     })
-      //     .catch((error) => {
-      //       console.error("Error:", error)
-      //     })
+        setTimeout(() => {
+          let formData = {
+            items: [
+              {
+                id: idValue,
+                quantity: 1,
+              },
+              {
+                id: 39558788972588,
+                quantity: 1,
+              },
+            ],
+          }
+
+          fetch("/cart/add.js", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => {
+              return response.json()
+            })
+            .catch((error) => {
+              console.error("Error:", error)
+            })
+
+          window.location.pathname = "/checkout"
+        }, 100)
+      }
     }
   }, 10)
 }
