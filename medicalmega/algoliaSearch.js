@@ -77,6 +77,16 @@ let styles = `
     .ais-SearchBox-reset {
         display: none;
     }
+    .ais-SearchBox-loadingIndicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99; 
+        background: rgba(255,255,255,0.8);
+        
+    }
     .listing_container {
         padding-top: 40px;
     }
@@ -409,8 +419,8 @@ let styles = `
         opacity: 0;
         transition: opacity 0.3s ease; 
         display: none;
-        max-height: 60vh;
-        overflow-y: auto;
+        // max-height: 60vh;
+        // overflow-y: auto;
     }
     .select.active .select_dropdown {
         opacity: 1;
@@ -459,6 +469,16 @@ let styles = `
     }
     a#top-navigation {
         display: none!important;
+    }
+    .ais-Pagination-list {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .ais-Pagination-link {
+        display: block;
+        margin: 0 4px;
+        font-size: 11px;
     }
    
     </style>`
@@ -514,7 +534,7 @@ let requestAllCaterories = new Promise((resolve, reject) => {
 
 const searchClient = algoliasearch(
     'PXDJAQHDPZ',
-    'e3a0cffec873466acf71806748550356'
+    'e3a0cffec873466acf71806748550356',
 );
 
 const search = instantsearch({
@@ -765,7 +785,8 @@ popupFilter.addEventListener('click', (e) => {
     }
 })
 
-document.querySelector('.popup_filter .btn_close').addEventListener(event, (e) => {
+//hide popup filter
+popupFilter.querySelector('.btn_close').addEventListener(event, (e) => {
     document.querySelector(`[data-item="${e.target.dataset.button}"]`).classList.remove('active')
     document.body.style.overflow = 'inherit';
 
@@ -773,6 +794,7 @@ document.querySelector('.popup_filter .btn_close').addEventListener(event, (e) =
     labelDataLayer = 'Filters'
     pushDataLayer(actionDataLayer,labelDataLayer)  
 });
+
 
 //change selects option
 function changeSelect(event) {
@@ -804,13 +826,16 @@ function changeSelect(event) {
 search.addWidgets([
     instantsearch.widgets.configure({
         hitsPerPage: 50,
+        facets: ["*"]
     }),
+
     instantsearch.widgets.searchBox({
         container: '#search-box',
         placeholder: 'Search Our Store',
     }),
     instantsearch.widgets.hits({
         container: '#hits',
+        showLoadingIndicator: true,
         templates: {
             item: (hit) => {
                 function qty() {
@@ -879,7 +904,7 @@ search.addWidgets([
     instantsearch.widgets.stats({
         container: '#stats-container',
         templates: {
-            text(data) {
+            item: (data) => {
                 console.log(data)
                 let hits = data.nbHits;
                 let to = data.hitsPerPage * (data.page + 1); 
@@ -892,14 +917,39 @@ search.addWidgets([
     instantsearch.widgets.refinementList({
         container: '#manufacturer',
         attribute: 'manufacturer',
-        limit: 10,
-        showMore: true,
-        autoHideContainer: true,
+        limitMin: 100,
+        templates: {
+            item: (data) => {
+                let checkbox = `
+                    <label class="align-items-center">
+                        <input type="checkbox" class="checkbox">
+                        <span class="check"></span>
+                        <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                    </label>
+                `;
+
+                return checkbox
+            },
+        },
     }),
     instantsearch.widgets.refinementList({
         container: '#price_group',
         attribute: 'price_group',
-        limit: 10
+        limit: 10,
+        templates: {
+            item: (data) => {
+                let checkbox = `
+                    <label class="align-items-center">
+                        <input type="checkbox" class="checkbox">
+                        <span class="check"></span>
+                        <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                    </label>
+                `;
+
+                return checkbox
+            },
+        },
+
     }),
     instantsearch.widgets.queryRuleContext({
         trackedFilters: {
@@ -967,3 +1017,4 @@ document.querySelector('#search-box input').addEventListener('input', (e) => {
     console.log(e.target)
     document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.value}'`;
 })
+
