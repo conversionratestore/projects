@@ -3,23 +3,22 @@ let styles = `
     html:first-child .list_type3 span {
         line-height: 1;
     }
- 
-        .list_type2 {
-            width: 100%;
-        }
-  
+    .list_type2 {
+        width: 100%;
+    }
     #hdr, #banner, .listing .category, .listing .subhead {
         display: none;
-        }
-    .listing span.categoryTop {
+    }
+    span.categoryTop, .listing span.categoryTop {
         font-weight: bold;
         font-size: 24px;
         line-height: 28px;
         text-align: center;
         text-transform: capitalize;
         color: #171717;
-        padding-left: 0;
-        }
+        display: block;
+        padding: 10px 0;
+    }
     #wrap {
         padding-top: 50px;
     }
@@ -53,7 +52,7 @@ let styles = `
         font-weight: normal;
         font-size: 12px;
         line-height: 16px;
-        padding: 10px 80px 10px 20px;
+        padding: 10px 66px 10px 20px;
         color: #666666;
         height: auto;
         width: 100%;
@@ -76,13 +75,7 @@ let styles = `
         position: absolute;
     }
     .ais-SearchBox-reset {
-        padding: 7px;
-        backgorund: none;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 62px;
-        position: absolute;
-        border: none;
+        display: none;
     }
     .listing_container {
         padding-top: 40px;
@@ -307,7 +300,7 @@ let styles = `
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         height: 36px;
-     }
+    }
     .listing li img {
         border: 1px solid #EEEEEE;
         width: 35px;
@@ -339,7 +332,7 @@ let styles = `
         margin: 0;
         width: 100%!important;
         padding: 0 7px;
-     }
+    }
     .btn_filter {
         width: calc(50% - 7.5px);
         background: #171717;
@@ -515,12 +508,6 @@ let optionMut = {
     subtree: true
 }
 
-// const message = {
-//     loading: 'loading',
-//     success: 'Check!',
-//     failure: 'Error..'
-// }
-
 let requestAllCaterories = new Promise((resolve, reject) => {
     fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
 })
@@ -678,7 +665,6 @@ document.querySelector('.btn_all-category').addEventListener('click', () => {
 }); //open all category
 document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
 
-
 requestAllCaterories.then(data => {
     console.log(data)
 
@@ -788,6 +774,33 @@ document.querySelector('.popup_filter .btn_close').addEventListener(event, (e) =
     pushDataLayer(actionDataLayer,labelDataLayer)  
 });
 
+//change selects option
+function changeSelect(event) {
+    let parent = event.closest('.list_box2');
+    
+    let price = event.options[event.selectedIndex].dataset.price,
+        variantId = event.options[event.selectedIndex].value,
+        srcImg = event.options[event.selectedIndex].dataset.src,
+        // id = event.options[event.selectedIndex].dataset.id,
+        name = event.options[event.selectedIndex].innerText;
+
+        parent.querySelector(`.variant_tag span i`).innerHTML = price;
+        // event.querySelector(`[name="product_id"]`).value = id;
+        parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
+        parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+        parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+
+    if (name.includes('Out of stock')) {
+        parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+        parent.querySelector('.product_quantity').style.display = 'none';
+        parent.querySelector('.buynow2').style.display = 'none';
+    } else {
+        parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+        parent.querySelector('.product_quantity').style.display = 'block';
+        parent.querySelector('.buynow2').style.display = 'block';
+    }
+}
+
 search.addWidgets([
     instantsearch.widgets.configure({
         hitsPerPage: 50,
@@ -799,45 +812,65 @@ search.addWidgets([
     instantsearch.widgets.hits({
         container: '#hits',
         templates: {
-            item: (hit) => `
-                <fieldset class="list_box2">
-                    <div class="list_type3">
-                        <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}"></a></span>
-                    </div>
-                    <div class="list_type4">
-                        <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
-                        <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
-                            <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
-                                <span style="display:block; font-size:12px;">Manufacturer: ${hit.manufacturer}</span>
-                                <span class="variant_tag">
-                                    <span style="display:block"; font-size:12px;">Sold By: ${hit.extra}</span>
-                                    <span style="display:block; font-size:12px;">Item Number: ${hit.item_num}</span>
-                                    <span style="margin-right:100px; float:left;">Price: <i style="color:#CD1109; font-style:normal;">${hit.price}</i></span>
+            item: (hit) => {
+                function qty() {
+                    let option = ``;
+                    for (let n = 1; n <= +hit.qty; n++) {
+                        option = option + `<option value="${n}">${n}</option>`;
+                    }
+                    return option
+                }
+                function optionBox() {
+                    let option = ``;
+                    for (let i = 0; i < hit.variants.length; i++) {
+                        let variantsArr = hit.variants[i];
+                        option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                    }
+                    return option
+                }
+
+                let boxItem = `
+                    <fieldset class="list_box2">
+                        <div class="list_type3">
+                            <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}"></a></span>
+                        </div>
+                        <div class="list_type4">
+                            <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
+                            <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                                <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                                    <span style="display:block; font-size:12px;">Manufacturer: ${hit.manufacturer}</span>
+                                    <span class="variant_tag">
+                                        <span style="display:block"; font-size:12px;">Sold By: ${hit.extra}</span>
+                                        <span style="display:block; font-size:12px;">Item Number: ${hit.item_num}</span>
+                                        <span style="margin-right:100px; float:left;display:${hit.in_stock==false?'none':'block'};">Price: <i style="color:#CD1109; font-style:normal;">${hit.price}</i></span>
+                                    </span>
                                 </span>
-                            </span>
-                            <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-                                <span class="product_quantity nostyle" style="display:${hit.in_stock==true?'none':'block'};">
-                                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty}"></select>
+                                <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+                                    <span class="product_quantity nostyle" style="display:${hit.in_stock==false?'none':'block'};">
+                                        <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty}">${qty()}</select>
+                                    </span>
+                                    <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${hit.in_stock==false?'none':'block'};">
+                                    <div class="out-of-stock__box--pv" style="display:${hit.in_stock==false?'block':'none'}; ">
+                                        <p class="out-of-stock__message--pv">Out Of Stock</p>
+                                    </div>
                                 </span>
-                                <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${hit.in_stock==true?'none':'block'};">
-                                <div class="out-of-stock__box--pv" style="display:${hit.in_stock==true?'block':'none'}; ">
-                                    <p class="out-of-stock__message--pv">Out Of Stock</p>
-                                </div>
-                            </span>
-                            <p style="clear:both;display:none">
-                                <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                                <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
-                                  <script>${hit.variants}</script>
-                               </select>
-                            </p>
-                            <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
-                            <input type="hidden" name="product_id" value="${hit.objectID}">
-                            <input type="hidden" name="add_to_cart" value="variant">
-                        </form>
-                    </div>
-                </fieldset>
-                <br>
-            `
+                                <p style="clear:both;display:${hit.variants.length>1?'block':'none'}">
+                                    <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
+                                    <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;" onchange="changeSelect(event.target)">
+                                        ${optionBox()}
+                                    </select>
+                                </p>
+                                <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+                                <input type="hidden" name="product_id" value="${hit.objectID}">
+                                <input type="hidden" name="add_to_cart" value="variant">
+                            </form>
+                        </div>
+                    </fieldset>
+                    <br>
+                `
+
+                return boxItem
+            }
         },
     }),
     instantsearch.widgets.pagination({
@@ -845,14 +878,28 @@ search.addWidgets([
     }),
     instantsearch.widgets.stats({
         container: '#stats-container',
+        templates: {
+            text(data) {
+                console.log(data)
+                let hits = data.nbHits;
+                let to = data.hitsPerPage * (data.page + 1); 
+                return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} products)`;
+              },
+          },
+
     }),
+    
     instantsearch.widgets.refinementList({
         container: '#manufacturer',
         attribute: 'manufacturer',
+        limit: 10,
+        showMore: true,
+        autoHideContainer: true,
     }),
     instantsearch.widgets.refinementList({
         container: '#price_group',
         attribute: 'price_group',
+        limit: 10
     }),
     instantsearch.widgets.queryRuleContext({
         trackedFilters: {
@@ -911,12 +958,12 @@ document.addEventListener('click', function (event) {
     }
 });
 
-
 search.start();
 
+document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
 //add text search result
 document.querySelector('#search-box input').addEventListener('input', (e) => {
-    document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.innerText}'`;
+    console.log(e.target)
+    document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.value}'`;
 })
-document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
