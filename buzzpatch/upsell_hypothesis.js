@@ -542,7 +542,7 @@ if (window.innerWidth <= 768) {
         })
 
         //add to cart and checkout
-        function addToCart(idValue, parent = "") {
+        async function addToCart(idValue, parent = "") {
           clearCart()
 
           let formData = {
@@ -570,7 +570,7 @@ if (window.innerWidth <= 768) {
           }
 
           setTimeout(() => {
-            fetch("/cart/add.js", {
+            await fetch("/cart/add.js", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -589,8 +589,8 @@ if (window.innerWidth <= 768) {
         }
 
         // clearCart
-        function clearCart() {
-          fetch("/cart/clear.js", {
+        async function clearCart() {
+          await fetch("/cart/clear.js", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
