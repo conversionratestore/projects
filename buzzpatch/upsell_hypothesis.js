@@ -205,6 +205,7 @@ if (window.innerWidth <= 768) {
             }
 
             .your_cart .price_box > div:last-of-type p{
+                font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
                 font-size: 16px !important;
                 line-height: 110% !important;
