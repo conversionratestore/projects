@@ -542,7 +542,7 @@ if (window.innerWidth <= 768) {
         })
 
         //add to cart and checkout
-        async function addToCart(idValue, parent = "") {
+        function addToCart(idValue, parent = "") {
           clearCart()
 
           let formData = {
@@ -570,7 +570,7 @@ if (window.innerWidth <= 768) {
           }
 
           setTimeout(() => {
-            await fetch("/cart/add.js", {
+            fetch("/cart/add.js", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
