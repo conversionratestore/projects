@@ -382,7 +382,7 @@ if (window.innerWidth <= 768) {
                         <span>off</span>
                     </div>
 
-                    <div class="price_box">
+                    <div class="price_box" id='MagicPacks'>
                         <div class="img_box">
                             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/upsell_4.png" alt="">
                         </div>
@@ -431,10 +431,19 @@ if (window.innerWidth <= 768) {
           let oldPrice = document.querySelector(".js-strike .rp").textContent
           let countVal = document.querySelector(".js-packs input[type=radio]:checked+label").textContent.split(" ")[0]
           let text = "BuzzPatch Packs"
+          let upsellSalePrice = document.querySelector(".js-packs label[for=radios-3] span").textContent.split(" ")[0]
           let imgSrc = ""
 
           document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:first-of-type").textContent = `$${salePrice}`
           document.querySelector(".your_cart #BuzzPacks.price_box > div:last-of-type span:last-of-type").textContent = `$${oldPrice}`
+
+          document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:first-of-type").textContent = upsellSalePrice
+
+          if (upsellSalePrice === "$14.99") {
+            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$24.99"
+          } else {
+            document.querySelector(".your_cart #MagicPacks.price_box > div:last-of-type span:last-of-type").textContent = "$31.00"
+          }
 
           if (countVal === "1") {
             text = "BuzzPatch Pack"
