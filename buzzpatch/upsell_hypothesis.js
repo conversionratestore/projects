@@ -598,7 +598,7 @@ if (window.innerWidth <= 768) {
 
           setTimeout(() => {
             window.location.pathname = "/checkout"
-          }, 450)
+          }, 300)
         }
 
         // clearCart
