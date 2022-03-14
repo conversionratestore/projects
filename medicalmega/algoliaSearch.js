@@ -494,7 +494,7 @@ let styles = `
     .ais-Pagination-link {
         display: block;
         margin: 0 4px;
-        font-size: 11px;
+        font-size: 11px; 
     }
     .icon_burger {
         position: relative;
@@ -505,6 +505,24 @@ let styles = `
     }
     .ais-Pagination-item--disabled {
         display: none;
+    }
+    .pagination {
+        padding-top: 15px;
+    }
+    #stats-container {
+        color: #3d3d3d;
+        font-size: 11px;
+        font-weight: 400;
+        padding: 15px 0;
+    }
+    .page-result p {
+        padding-right: 10px;
+        font-size: 11px;
+        font-weight: 700;
+    }
+    .ais-Pagination-item--selected a {
+      
+        font-weight: 700;
     }
     </style>`
 
@@ -672,7 +690,6 @@ navMenu.querySelector('.btn_close').addEventListener('click', (e) => {
 })
 
 navMenu.addEventListener('click', (e) => {
-   
     if (e.target.classList.contains('nav-menu')) {
          actionDataLayer = `Click on the screen outside the menu`;
         labelDataLayer = 'Menu';
@@ -739,21 +756,21 @@ requestAllCaterories.then(data => {
 if (window.location.pathname == '/') {
     document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div>`);
 }
-
+{/* <select>
+<option value="">Sort by</option>
+<option value="name">Product Name ASC</option>
+<option value="-name">Product Name DESC</option>
+</select> */}
 document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
     <span class="categoryTop"></span>
     <div class="justify-content-between">
         <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
         <div class="btn_sort">
-            <select>
-                <option value="">Sort by</option>
-                <option value="name">Product Name ASC</option>
-                <option value="-name">Product Name DESC</option>
-            </select>
         </div>
     </div>
+    <div id="sort-name"></div>
     <div id="stats-container"></div>
-    <div class="flex-center-end">
+    <div class="flex-center-end page-result">
         <p>Results Per Page: </p>
         <div id="mm_per_page" ></div>
     </div>
@@ -855,9 +872,23 @@ function changeSelect(event) {
 
 search.addWidgets([
     instantsearch.widgets.configure({
-        // hitsPerPage: +document.querySelector('#listing_container [name="mm_per_page"]').value,
         facets: ["*"],
         snippetEllipsisText: '...',
+        // customRanking: [
+        //     'asc(textual_attribute)'
+        // ],
+        // ranking: [
+        //     'asc(name)',
+        //     'desc(name)',
+        //     "typo",
+        //     "geo",
+        //     "words",
+        //     "filters",
+        //     "proximity",
+        //     "attribute",
+        //     "exact",
+        //     "custom"
+        // ]
     }),
     instantsearch.widgets.hitsPerPage({
         container: '#mm_per_page',
@@ -879,6 +910,7 @@ search.addWidgets([
         container: '#hits',
         showLoadingIndicator: true,
         templates: {
+            empty: `No results for "{{query}}"`,
             item: (hit) => {
                 function qty() {
                     let option = ``;
@@ -940,6 +972,54 @@ search.addWidgets([
             }
         },
     }),
+//     instantsearch.widgets.sortBy({
+//         // container: '#sort-name',
+//         attributeName: 'brand',
+//         // now the default is ['isRefined', 'count:desc', 'name:asc']
+//         // sortBy: ['name:desc'],
+//         items: instant.sortOrders,
+// //     const replicaIndex = search.initIndex('dev_products_name_desc');
+
+// // replicaIndex.setSettings({
+// //   customRanking: [
+// //     "desc(name)"
+// //   ]
+// // }).then((data) => {
+// //   console.log(data)
+// // });
+//       }),
+
+    instantsearch.widgets.sortBy({
+        container: '#sort-name',
+        // customRanking: [
+        //     'asc(name)'
+        // ],
+        items: [{
+            value: "dev_product",
+            label: "Most relevant"
+        }, {
+            value: "dev_product",
+            label: "Lowest name"
+        }, {
+            value: "dev_product_name_desc",
+            label: "Highest name"
+        }]
+        // items: [
+        //     // {value: 'instant_search', label: 'Sort by'},
+        //     {value: 'alpha:asc', label: 'Product Name ASC'},
+        //     {value: 'alpha:desc', label: 'Product Name DESC'}
+        // ],  
+        // items: instant.sortOrders,
+        // ranking: [
+        //     'asc(name)',
+        //     'desc(name)',
+        // ]
+        // items: [
+        // //   { value: 'Sort by', label: 'Sort by', default: true },
+        //   { value: 'count:asc', label: 'Product Name ASC', default: true},
+        //   { value: 'count:desc', label: 'Product Name DESC' }
+        // ]
+    }),
     instantsearch.widgets.pagination({
         container: '.pagination',
         totalPages: 9,
@@ -960,9 +1040,9 @@ search.addWidgets([
                 let to = data.hitsPerPage * (data.page + 1); 
           
                 if (data.hasManyResults) {
-                    return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} products)`;
+                    return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
                 } else if (data.hasOneResult) {
-                    return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} product)`;
+                    return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
                 } else {
                     return `no result`;
                 }
@@ -975,6 +1055,7 @@ search.addWidgets([
         container: '#manufacturer',
         attribute: 'manufacturer',
         limit: 100,
+        sortBy: ['name:asc'],
         templates: {
             item: (data) => {
                 let checkbox = `
@@ -1066,6 +1147,8 @@ document.addEventListener('click', function (event) {
 });
 
 search.start();
+
+
 
 document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
