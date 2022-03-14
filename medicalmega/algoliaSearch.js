@@ -503,6 +503,9 @@ let styles = `
     #mm_per_page {
         min-width: 52px;
     }
+    .ais-Pagination-item--disabled {
+        display: none;
+    }
     </style>`
 
 let header = `
@@ -942,17 +945,10 @@ search.addWidgets([
         totalPages: 9,
         showFirst: false,
         showLast: false,
-        padding: 2,
-        cssClasses: {
-            root: 'pagination',
-            active: 'active'
-        },
         templates: {
             previous: 'Prev',
             next: 'Next',
         },
-        
-      
     }),
     instantsearch.widgets.stats({
         container: '#stats-container',
