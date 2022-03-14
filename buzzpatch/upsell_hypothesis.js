@@ -542,8 +542,21 @@ if (window.innerWidth <= 768) {
         })
 
         //add to cart and checkout
-        function addToCart(idValue, parent = "") {
-          clearCart()
+        async function addToCart(idValue, parent = "") {
+          // clearCart()
+
+          await fetch("/cart/clear.js", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              return response.json()
+            })
+            .catch((error) => {
+              console.error("Error:", error)
+            })
 
           let formData = {
             items: [
@@ -569,32 +582,12 @@ if (window.innerWidth <= 768) {
             }
           }
 
-          setTimeout(() => {
-            fetch("/cart/add.js", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            })
-              .then((response) => {
-                return response.json()
-              })
-              .catch((error) => {
-                console.error("Error:", error)
-              })
-
-            window.location.pathname = "/checkout"
-          }, 450)
-        }
-
-        // clearCart
-        async function clearCart() {
-          await fetch("/cart/clear.js", {
+          await fetch("/cart/add.js", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
+            body: JSON.stringify(formData),
           })
             .then((response) => {
               return response.json()
@@ -602,7 +595,27 @@ if (window.innerWidth <= 768) {
             .catch((error) => {
               console.error("Error:", error)
             })
+
+          setTimeout(() => {
+            window.location.pathname = "/checkout"
+          }, 450)
         }
+
+        // clearCart
+        // async function clearCart() {
+        //   await fetch("/cart/clear.js", {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //   })
+        //     .then((response) => {
+        //       return response.json()
+        //     })
+        //     .catch((error) => {
+        //       console.error("Error:", error)
+        //     })
+        // }
 
         pushDataLayer("loaded")
         clarity("set", "upsell_hypothesis_1", "variant_1")
