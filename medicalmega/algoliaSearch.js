@@ -56,6 +56,8 @@ let styles = `
         color: #666666;
         height: auto;
         width: 100%;
+        position: relative;
+        z-index: 2;
     }
     .ais-SearchBox-submit {
         text-indent: 1px;
@@ -73,6 +75,7 @@ let styles = `
         transform: translateY(-50%);
         right: 4px;
         position: absolute;
+        z-index: 3;
     }
     .ais-SearchBox-reset {
         display: none;
@@ -83,7 +86,7 @@ let styles = `
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 99; 
+        z-index: 1; 
         background: rgba(255,255,255,0.8);
         
     }
@@ -109,6 +112,7 @@ let styles = `
         height: 24px;
         width: 24px;
         position: relative;
+        z-index: 3;
     }
     .by_num {
         color: transparent;
@@ -376,12 +380,18 @@ let styles = `
         border-radius: 10px 10px 0px 0px;
         width: 100%; 
         margin-top: auto;
-        padding: 12px;
         transform: translateY(100px);
         transition: all 0.3s ease; 
         overflow-y: auto;
         max-height: 100%;
         height: auto;
+    }
+    .popup_header {
+        padding: 12px;
+        position: sticky;
+        top: 0; 
+        background-color: #fff;
+        z-index: 1;
     }
     .btn_close {
         width: 24px;
@@ -390,11 +400,12 @@ let styles = `
         margin-left: auto;
         display: block;
         border: none;
+        margin-bottom: 4px;
     }
     .filter_content {
-        padding: 4px 28px 28px;
+        padding: 0 40px 40px;
     }
-    .filter_content .title {
+    .popup_filter .title {
         font-size: 24px;
         line-height: 28px;
         text-align: center;
@@ -459,6 +470,11 @@ let styles = `
         display: flex;
         align-items: center;
     }
+    .flex-center-end {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
     .count_brand {
         color: #666666;
     }
@@ -480,7 +496,13 @@ let styles = `
         margin: 0 4px;
         font-size: 11px;
     }
-   
+    .icon_burger {
+        position: relative;
+        z-index: 2;
+    }
+    #mm_per_page {
+        min-width: 52px;
+    }
     </style>`
 
 let header = `
@@ -728,6 +750,10 @@ document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
         </div>
     </div>
     <div id="stats-container"></div>
+    <div class="flex-center-end">
+        <p>Results Per Page: </p>
+        <div id="mm_per_page" ></div>
+    </div>
     <div class="pagination"></div>
     <div id="additional-categories"></div>
     <div id="hits"></div>
@@ -735,9 +761,11 @@ document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
 
     <div class="popup_filter" data-item="popup_filter">
         <div class="popup_container">
-            <button type="button" class="btn_close" data-button="popup_filter"></button>
-            <div class="filter_content">
+            <div class="popup_header">
+                <button type="button" class="btn_close" data-button="popup_filter"></button>
                 <h3 class="title">Filters</h3>
+            </div>
+            <div class="filter_content">
                 <div class="select filter_brands active">
                     <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
                     <div class="select_dropdown">
@@ -786,7 +814,7 @@ popupFilter.addEventListener('click', (e) => {
 })
 
 //hide popup filter
-popupFilter.querySelector('.btn_close').addEventListener(event, (e) => {
+popupFilter.querySelector('.btn_close').addEventListener('click', (e) => {
     document.querySelector(`[data-item="${e.target.dataset.button}"]`).classList.remove('active')
     document.body.style.overflow = 'inherit';
 
@@ -794,7 +822,6 @@ popupFilter.querySelector('.btn_close').addEventListener(event, (e) => {
     labelDataLayer = 'Filters'
     pushDataLayer(actionDataLayer,labelDataLayer)  
 });
-
 
 //change selects option
 function changeSelect(event) {
@@ -825,13 +852,25 @@ function changeSelect(event) {
 
 search.addWidgets([
     instantsearch.widgets.configure({
-        hitsPerPage: 50,
-        facets: ["*"]
+        // hitsPerPage: +document.querySelector('#listing_container [name="mm_per_page"]').value,
+        facets: ["*"],
+        snippetEllipsisText: '...',
     }),
-
+    instantsearch.widgets.hitsPerPage({
+        container: '#mm_per_page',
+        items: [
+          { label: '5', value: 5 },
+          { label: '10', value: 10 },
+          { label: '15', value: 15 },
+          { label: '25', value: 25 },
+          { label: '50', value: 50, default: true },
+          { label: '100', value: 100 }
+        ],
+    }), 
     instantsearch.widgets.searchBox({
         container: '#search-box',
         placeholder: 'Search Our Store',
+        loadingIndicator: false,
     }),
     instantsearch.widgets.hits({
         container: '#hits',
@@ -900,24 +939,46 @@ search.addWidgets([
     }),
     instantsearch.widgets.pagination({
         container: '.pagination',
+        totalPages: 9,
+        showFirst: false,
+        showLast: false,
+        padding: 2,
+        cssClasses: {
+            root: 'pagination',
+            active: 'active'
+        },
+        templates: {
+            previous: 'Prev',
+            next: 'Next',
+        },
+        
+      
     }),
     instantsearch.widgets.stats({
         container: '#stats-container',
         templates: {
-            item: (data) => {
+            text(data) {
                 console.log(data)
+
                 let hits = data.nbHits;
                 let to = data.hitsPerPage * (data.page + 1); 
-                return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} products)`;
-              },
+          
+                if (data.hasManyResults) {
+                    return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} products)`;
+                } else if (data.hasOneResult) {
+                    return `Displaying ${data.page + 1} to ${to > hits?hits:to} (of ${hits} product)`;
+                } else {
+                    return `no result`;
+                }
+          
+            },
           },
-
     }),
     
     instantsearch.widgets.refinementList({
         container: '#manufacturer',
         attribute: 'manufacturer',
-        limitMin: 100,
+        limit: 100,
         templates: {
             item: (data) => {
                 let checkbox = `
