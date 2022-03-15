@@ -521,9 +521,9 @@ let styles = `
         font-weight: 700;
     }
     .ais-Pagination-item--selected a {
-      
         font-weight: 700;
     }
+
     </style>`
 
 let header = `
@@ -995,8 +995,6 @@ search.addWidgets([
         container: '#stats-container',
         templates: {
             text(data) {
-                console.log(data)
-
                 let hits = data.nbHits;
                 let to = data.hitsPerPage * (data.page + 1); 
           
@@ -1018,6 +1016,7 @@ search.addWidgets([
         sortBy: ['name:asc'],
         templates: {
             item: (data) => {
+                console.log(data)
                 let checkbox = `
                     <label class="align-items-center">
                         <input type="checkbox" class="checkbox">
@@ -1034,17 +1033,21 @@ search.addWidgets([
         container: '#price_group',
         attribute: 'price_group',
         limit: 10,
-        // sortBy: ['name:asc'],
+        sortBy: ['isRefined'],
+       
         templates: {
             item: (data) => {
+                console.log(data)
+          
                 let checkbox = `
-                    <label class="align-items-center">
+                    <label class="align-items-center price_group_${data.value.split(' ')[0]}">
                         <input type="checkbox" class="checkbox">
                         <span class="check"></span>
-                        <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                        <span class="check_text">${data.value} <span class="count_brand">(${data.count})</span></span>
                     </label>
                 `;
-
+               
+               
                 return checkbox
             },
         },
@@ -1113,6 +1116,5 @@ document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
 //add text search result
 document.querySelector('#search-box input').addEventListener('input', (e) => {
-    console.log(e.target)
     document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.value}'`;
 })
