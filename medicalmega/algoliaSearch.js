@@ -620,12 +620,7 @@ let mut = new MutationObserver(function (muts) {
             .hide, .altPayment {
                 display: none!important;
             }
-            .list_box2 {
-                display: none!important;
-            }
-            .products_list .list_box2 {
-                display: block!important;
-            }
+         
             .list_type1 p {
                 float: right;
                 position: relative;
@@ -894,8 +889,7 @@ search.addWidgets([
         container: '#search-box',
         placeholder: 'Search Our Store',
         loadingIndicator: false,
-        autofocus: true,
-        searchAsYouType: false
+        searchAsYouType: window.location.pathname.includes('/category') ? true : false
     }),
     instantsearch.widgets.hits({
         container: '#hits',
@@ -1046,62 +1040,8 @@ search.addWidgets([
         },
 
     }),
-    instantsearch.widgets.queryRuleContext({
-        trackedFilters: {
-            categories: (values) => values,
-        },
-    }),
-    instantsearch.widgets.queryRuleCustomData({
-        container: '#additional-categories',
-        transformItems: function (items) {
-            if (items.length > 0) {
-                let transformedFilters = items[0].filters.map(function (item) {
-                if (typeof item.filter === 'object') {
-                    item.filter = JSON.stringify(item.filter);
-                }
-                return item;
-                });
-                return [{ filters: transformedFilters }];
-            } else {
-                return items;
-            }
-        },
-        templates: {
-            default: `
-                {{#items}}
-                    {{#filters}}
-                    <button class="additional-filter" data-filter="{{filter}}" data-filter-type="{{type}}", data-clear-filters="{{clear}}">{{name}}</button>
-                    {{/filters}}
-                {{/items}}
-            `,
-        },
-    }),
+ 
 ]);
-
-document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('additional-filter')) {
-        let helper = search.helper;
-        let data = event.target.dataset;
-        let filter = JSON.parse(data.filter);
-        if (data.clearFilters == 'true') {
-            helper.clearRefinements();
-        }
-
-        if (data.filterType === 'disjunctive') {
-            helper.addDisjunctiveFacetRefinement(filter.attribute, filter.value);
-        }
-        if (data.filterType === 'numeric') {
-            helper.removeNumericRefinement(filter.attribute);
-            helper.addNumericRefinement(
-                filter.attribute,
-                filter.operator,
-                filter.value
-            );
-        }
-
-        helper.search();
-    }
-});
 
 search.start();
 
