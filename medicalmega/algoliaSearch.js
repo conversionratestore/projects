@@ -725,6 +725,7 @@ document.querySelector('.btn_all-category').addEventListener('click', () => {
     pushDataLayer(actionDataLayer)
 
 }); //open all category
+
 document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
 
 requestAllCaterories.then(data => {
@@ -756,19 +757,15 @@ requestAllCaterories.then(data => {
 if (window.location.pathname == '/') {
     document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div>`);
 }
-{/* <select>
-<option value="">Sort by</option>
-<option value="name">Product Name ASC</option>
-<option value="-name">Product Name DESC</option>
-</select> */}
+
 document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
     <span class="categoryTop"></span>
     <div class="justify-content-between">
         <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-        <div class="btn_sort">
+        <div class="btn_sort" id="sort-name">
         </div>
     </div>
-    <div id="sort-name"></div>
+    
     <div id="stats-container"></div>
     <div class="flex-center-end page-result">
         <p>Results Per Page: </p>
@@ -972,53 +969,14 @@ search.addWidgets([
             }
         },
     }),
-//     instantsearch.widgets.sortBy({
-//         // container: '#sort-name',
-//         attributeName: 'brand',
-//         // now the default is ['isRefined', 'count:desc', 'name:asc']
-//         // sortBy: ['name:desc'],
-//         items: instant.sortOrders,
-// //     const replicaIndex = search.initIndex('dev_products_name_desc');
-
-// // replicaIndex.setSettings({
-// //   customRanking: [
-// //     "desc(name)"
-// //   ]
-// // }).then((data) => {
-// //   console.log(data)
-// // });
-//       }),
 
     instantsearch.widgets.sortBy({
         container: '#sort-name',
-        // customRanking: [
-        //     'asc(name)'
-        // ],
-        items: [{
-            value: "dev_product",
-            label: "Most relevant"
-        }, {
-            value: "dev_product",
-            label: "Lowest name"
-        }, {
-            value: "dev_product_name_desc",
-            label: "Highest name"
-        }]
-        // items: [
-        //     // {value: 'instant_search', label: 'Sort by'},
-        //     {value: 'alpha:asc', label: 'Product Name ASC'},
-        //     {value: 'alpha:desc', label: 'Product Name DESC'}
-        // ],  
-        // items: instant.sortOrders,
-        // ranking: [
-        //     'asc(name)',
-        //     'desc(name)',
-        // ]
-        // items: [
-        // //   { value: 'Sort by', label: 'Sort by', default: true },
-        //   { value: 'count:asc', label: 'Product Name ASC', default: true},
-        //   { value: 'count:desc', label: 'Product Name DESC' }
-        // ]
+        items: [
+            { label: 'Sort by', value: 'staging_products', default: true },
+            { label: 'Name (asc)', value: 'staging_products' },
+            { label: 'Name (desc)', value: 'staging_products_name_desc' },
+        ],
     }),
     instantsearch.widgets.pagination({
         container: '.pagination',
@@ -1028,6 +986,9 @@ search.addWidgets([
         templates: {
             previous: 'Prev',
             next: 'Next',
+            item: (data) => {
+                console.log(data)
+            }
         },
     }),
     instantsearch.widgets.stats({
@@ -1050,7 +1011,6 @@ search.addWidgets([
             },
           },
     }),
-    
     instantsearch.widgets.refinementList({
         container: '#manufacturer',
         attribute: 'manufacturer',
@@ -1074,6 +1034,7 @@ search.addWidgets([
         container: '#price_group',
         attribute: 'price_group',
         limit: 10,
+        // sortBy: ['name:asc'],
         templates: {
             item: (data) => {
                 let checkbox = `
@@ -1148,8 +1109,6 @@ document.addEventListener('click', function (event) {
 
 search.start();
 
-
-
 document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
 //add text search result
@@ -1157,4 +1116,3 @@ document.querySelector('#search-box input').addEventListener('input', (e) => {
     console.log(e.target)
     document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.value}'`;
 })
-
