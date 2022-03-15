@@ -88,10 +88,11 @@ let styles = `
         height: 100%;
         z-index: 1; 
         background: rgba(255,255,255,0.8);
-        
+        display: none;
     }
-    .listing_container {
-        padding-top: 40px;
+    #listing_container {
+        padding-top: 10px;
+        display: none;
     }
     .shoppingcart a {
         margin: 0;
@@ -179,6 +180,9 @@ let styles = `
         background-color: #fff;
         padding: 12px 12px 16px 20px;
         border-bottom: 1px solid #C0C0C0;
+    }
+    #listing_container .justify-content-between {
+        padding-top: 20px;
     }
     .justify-content-between {
         display: flex;
@@ -757,6 +761,9 @@ requestAllCaterories.then(data => {
 if (window.location.pathname == '/') {
     document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div>`);
 }
+if (document.querySelector('#mainbody') != null) {
+    document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div>`);
+}
 
 document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
     <span class="categoryTop"></span>
@@ -799,6 +806,8 @@ document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
         </div>
     </div>
 `)
+
+
 
 //select
 let selectCurrent = document.querySelectorAll('.select_current');
@@ -847,11 +856,9 @@ function changeSelect(event) {
     let price = event.options[event.selectedIndex].dataset.price,
         variantId = event.options[event.selectedIndex].value,
         srcImg = event.options[event.selectedIndex].dataset.src,
-        // id = event.options[event.selectedIndex].dataset.id,
         name = event.options[event.selectedIndex].innerText;
 
         parent.querySelector(`.variant_tag span i`).innerHTML = price;
-        // event.querySelector(`[name="product_id"]`).value = id;
         parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
         parent.querySelector(`[name="product_variant_id"]`).value = variantId;
         parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
@@ -871,21 +878,6 @@ search.addWidgets([
     instantsearch.widgets.configure({
         facets: ["*"],
         snippetEllipsisText: '...',
-        // customRanking: [
-        //     'asc(textual_attribute)'
-        // ],
-        // ranking: [
-        //     'asc(name)',
-        //     'desc(name)',
-        //     "typo",
-        //     "geo",
-        //     "words",
-        //     "filters",
-        //     "proximity",
-        //     "attribute",
-        //     "exact",
-        //     "custom"
-        // ]
     }),
     instantsearch.widgets.hitsPerPage({
         container: '#mm_per_page',
@@ -902,10 +894,12 @@ search.addWidgets([
         container: '#search-box',
         placeholder: 'Search Our Store',
         loadingIndicator: false,
+        autofocus: true,
+        searchAsYouType: false
     }),
     instantsearch.widgets.hits({
         container: '#hits',
-        showLoadingIndicator: true,
+        // showLoadingIndicator: true,
         templates: {
             empty: `No results for "{{query}}"`,
             item: (hit) => {
@@ -974,8 +968,8 @@ search.addWidgets([
         container: '#sort-name',
         items: [
             { label: 'Sort by', value: 'staging_products', default: true },
-            { label: 'Name (asc)', value: 'staging_products' },
-            { label: 'Name (desc)', value: 'staging_products_name_desc' },
+            { label: 'Product Name ASC', value: 'staging_products' },
+            { label: 'Product Name DESC', value: 'staging_products_name_desc' },
         ],
     }),
     instantsearch.widgets.pagination({
@@ -983,6 +977,8 @@ search.addWidgets([
         totalPages: 9,
         showFirst: false,
         showLast: false,
+        // paginationLimitedTo: '4',
+        // offset: '4',
         templates: {
             previous: 'Prev',
             next: 'Next',
@@ -1005,9 +1001,8 @@ search.addWidgets([
                 } else {
                     return `no result`;
                 }
-          
             },
-          },
+        },
     }),
     instantsearch.widgets.refinementList({
         container: '#manufacturer',
@@ -1033,20 +1028,18 @@ search.addWidgets([
         container: '#price_group',
         attribute: 'price_group',
         limit: 10,
-        sortBy: ['isRefined'],
+        sortBy: ['count:desc', 'name:asc'],
        
         templates: {
             item: (data) => {
                 console.log(data)
-          
                 let checkbox = `
-                    <label class="align-items-center price_group_${data.value.split(' ')[0]}">
+                    <label class="align-items-center">
                         <input type="checkbox" class="checkbox">
                         <span class="check"></span>
                         <span class="check_text">${data.value} <span class="count_brand">(${data.count})</span></span>
                     </label>
                 `;
-               
                
                 return checkbox
             },
@@ -1114,7 +1107,41 @@ search.start();
 
 document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
+function inputChange() {
+    let value = document.querySelector('#search-box input').value;
+    if (value.length > 0) {
+        document.querySelector('#listing_container').style.display = 'block';
+        if (window.location.pathname == '/') {
+            document.querySelector('.homepage-container').style.display = 'none';
+        }
+        if (document.querySelector('#mainbody') != null) {
+            document.querySelector('#mainbody').style.display = 'none';
+        }
+
+    } else {
+        document.querySelector('#listing_container').style.display = 'none';
+        if (window.location.pathname == '/') {
+            document.querySelector('.homepage-container').style.display = 'block';
+        }
+        if (document.querySelector('#mainbody') != null) {
+            document.querySelector('#mainbody').style.display = 'block';
+        }
+    }
+}
+
 //add text search result
 document.querySelector('#search-box input').addEventListener('input', (e) => {
     document.querySelector('.categoryTop').innerHTML = `Search result for '${e.target.value}'`;
+    if (e.target.value.length < 1) {
+        document.querySelector('#listing_container').style.display = 'none';
+        if (window.location.pathname == '/') {
+            document.querySelector('.homepage-container').style.display = 'block';
+        }
+    }
 })
+
+document.querySelector('#search-box input').addEventListener('keypress', (e) => {
+    if (e.keyCode == '13') inputChange()
+})
+
+document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => inputChange())
