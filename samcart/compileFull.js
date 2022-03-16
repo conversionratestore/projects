@@ -188,8 +188,6 @@ const style = `
         .fullscreen__ctas  {
         	display: none;
         }
-        
-        
     </style>
 `
 const mobileCSS = `
@@ -307,123 +305,118 @@ let attendeeInterval = setInterval(() => {
 		clearInterval(attendeeInterval)
 
 		if (mediaQuery.matches) {
-			setMobile()
+			_setMobile()
 		} else {
 			document.querySelector('.attendee-list').insertAdjacentHTML('afterend', banner)
 		}
 	}
 }, 200)
+let timerInterval = setInterval(() => {
+	if (document.querySelector('.attendee-list') && document.querySelector('.btn-wrapper')) {
+		clearInterval(timerInterval)
 
-let intervalTime = 0
+		startTimer()
+	}
+}, 200)
 
-if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('pathName')) {
-	window.localStorage.setItem('startDate', Date.now().toString())
-	window.localStorage.setItem('pathName', window.location.pathname)
-} else {
-	let currentDate = Date.now()
-	window.localStorage.setItem('currentDate', currentDate.toString())
-
-	intervalTime = currentDate - window.localStorage.getItem('startDate');
-
-}
-
-let count = 3601 - (intervalTime / 1000)
-
-if (count > 0) {
-	let counter = setInterval(() => {
-		count = count - 1
-		if (count <= 0) {
-			clearInterval(counter)
-
-			showSaleBtn()
-		}
-
-		let seconds = count % 60
-		let minutes = Math.floor(count / 60)
-		let hours = Math.floor(minutes / 60)
-		minutes %= 60
-		hours %= 60
-
-		hours = ('0' + hours.toFixed(0)).slice(-2)
-		minutes = ('0' + minutes.toFixed(0)).slice(-2)
-		seconds = ('0' + seconds.toFixed(0)).slice(-2)
-
-		if (document.querySelector('.btn-wrapper_wait span')) {
-			document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds;
-		}
-        if (document.querySelector('#count')) {
-            document.querySelector('#count').innerHTML = hours + ':' + minutes + ':' + seconds;
-        }
-	}, 1000)
-} else {
-	showSaleBtn()
-}
-
-function setMobile() {
+function _setMobile() {
 	document.head.insertAdjacentHTML('beforeend', mobileCSS)
 
 	document.querySelector('.audience-experience').insertAdjacentHTML('afterbegin', banner)
-    document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`;
-    document.querySelector('.features ul').before(document.querySelector('.banner img'));
-    document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
-    document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
+	document.querySelector('.btn-wrapper_wait').innerHTML = `Instant Access`
+	document.querySelector('.features ul').before(document.querySelector('.banner img'))
+	document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
+	document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
 }
 
-function showSaleBtn() {
-	let interval = setInterval(() => {
-		if (document.querySelector('.btn-wrapper')) {
-			clearInterval(interval)
-            document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`;
+function _showSaleBtn() {
+	document.querySelector('.banner .subtitle').innerHTML = `Get SamCart and $10k<br>in FREE gifts now`
 
-			if (mediaQuery.matches) {
-                document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
-                document.getElementById('count').remove();
-                document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`);
-                document.querySelector('.btn-wrapper_sale').classList.add('active');
-                document.querySelector('#special_offer p').innerHTML = `Your special offer is available`;
-                document.querySelector('#special_offer button').addEventListener('click', () => {
-                        const scrollTarget = document.querySelector('.banner');
-                        const elementPosition = scrollTarget.getBoundingClientRect().top;
-                
-                        window.scrollBy({
-                            top: elementPosition,
-                            behavior: 'smooth'
-                        });
-                        window.dataLayer = window.dataLayer || []
-                        dataLayer.push({
-                            'event': 'event-to-ga',
-                            'eventCategory': 'Exp — Timeline & SO banner',
-                            'eventAction': 'Click on Get it Now button',
-                        })
-                })
-                
-			} else {
-                document.querySelector('.banner').classList.add('show_sale')
-                document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
-                document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
+	if (mediaQuery.matches) {
+		document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
+		document.getElementById('count').remove()
+		document.querySelector('#special_offer').insertAdjacentHTML('beforeend', `<button type="button">Get it Now</button>`)
+		document.querySelector('.btn-wrapper_sale').classList.add('active')
+		document.querySelector('#special_offer p').innerHTML = `Your special offer is available`
+		document.querySelector('#special_offer button').addEventListener('click', () => {
+			const scrollTarget = document.querySelector('.banner')
+			const elementPosition = scrollTarget.getBoundingClientRect().top
+
+			window.scrollBy({
+				top: elementPosition,
+				behavior: 'smooth',
+			})
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp — Timeline & SO banner',
+				'eventAction': 'Click on Get it Now button',
+			})
+		})
+	} else {
+		document.querySelector('.banner').classList.add('show_sale')
+		document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+		document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
+	}
+
+	document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Timeline & SO banner',
+			'eventAction': 'Click on Continue to special offer button',
+		})
+	})
+}
+
+function startTimer() {
+	let intervalTime = 0
+
+	if (!window.localStorage.getItem('startDate') && !window.localStorage.getItem('pathName')) {
+		window.localStorage.setItem('startDate', Date.now().toString())
+		window.localStorage.setItem('pathName', window.location.pathname)
+	} else {
+		let currentDate = Date.now()
+		window.localStorage.setItem('currentDate', currentDate.toString())
+
+		intervalTime = currentDate - window.localStorage.getItem('startDate')
+	}
+
+	let count = 3601 - (intervalTime / 1000)
+
+	if (count > 0) {
+		let counter = setInterval(() => {
+			count--
+
+			if (count <= 0) {
+				clearInterval(counter)
+
+				_showSaleBtn()
 			}
 
-			document.querySelector('.btn-wrapper .btn-wrapper_sale').addEventListener('click', () => {
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp — Timeline & SO banner',
-					'eventAction': 'Click on Continue to special offer button',
-				})
-			})
-		}
-	}, 100)
+			let seconds = count % 60
+			let minutes = Math.floor(count / 60)
+			let hours = Math.floor(minutes / 60)
+			minutes %= 60
+			hours %= 60
+
+			hours = ('0' + hours.toFixed(0)).slice(-2)
+			minutes = ('0' + minutes.toFixed(0)).slice(-2)
+			seconds = ('0' + seconds.toFixed(0)).slice(-2)
+
+			if (document.querySelector('.btn-wrapper_wait span')) {
+				document.querySelector('.btn-wrapper_wait span').innerHTML = hours + ':' + minutes + ':' + seconds
+			}
+			if (document.querySelector('#count')) {
+				document.querySelector('#count').innerHTML = hours + ':' + minutes + ':' + seconds
+			}
+		}, 1000)
+	} else {
+		_showSaleBtn()
+	}
 }
 
-// window.dataLayer = window.dataLayer || []
-// dataLayer.push({
-// 	'event': 'event-to-ga',
-// 	'eventCategory': 'Exp — Timeline & SO banner',
-// 	'eventAction': 'loaded',
-// })
-
 // PART TWO
-
 let styles = `
 <style>
     .watch-page {
@@ -722,19 +715,19 @@ let styles = `
             background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 7%, rgba(255, 254, 254, 0) 90%);
         }
     }
-</style>`;
+</style>`
 let arrTooltip = {
 	'2:44': [`The biggest <br>mistake & <br>how to avoid it`, `The Biggest Mistake I Made When Launching My First Online Course, and How You Can Avoid It`, 5],
 	'11:50': [`Become an expert <br>in the field with the '1 Step Rule'`, `The '1 Step Rule' that instantly turns you into an expert...with a course people will line up to buy`, 2],
 	'17:34': [`The "1 Page Funnel" that sells your course for you`, `The simple '1 Page Funnel' that sells your course for you around the clock (even if you suck at selling, lol)`, 5],
-	'26:22': [`Today's #1 Traffic Source that you can tap in`, `Today's #1 Traffic Source, and how to quickly tap into it & get dozens of new sales each day`,2],
-	'33:02': [`How to Launch <br>Your Course <br>in 72 Hours`, `The secret to launching your online course business in less than 72 hours (even if you hate technology or don't have a team helping you!)`,6],
-	'45:50': [`What you get with <br>today's special <br>offer`, `Discover how many awesome and helpful things you will get with today's special offer`,2],
-	'48:29': [`<span class="w-bold">Masterclass:</span> Launch <br>an Online Business <br>With 1 Page`, `The '1 Page Masterclass' Bonus where you'll discover how to launch an online business with 1 page`,2],
-	'51:47': [`The Secret <br>to Unlimited <br>Traffic`, `The secret to unlimited traffic (and more bonuses you get with our offer)`,1],
-	'52:55': [`<span class="w-bold">Guide:</span> Set up Your <br>Course seamlessly <br>through SamCart`, `The help you get to set up your course seamlessly through SamCart`,2],
-	'54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`,0]
-};
+	'26:22': [`Today's #1 Traffic Source that you can tap in`, `Today's #1 Traffic Source, and how to quickly tap into it & get dozens of new sales each day`, 2],
+	'33:02': [`How to Launch <br>Your Course <br>in 72 Hours`, `The secret to launching your online course business in less than 72 hours (even if you hate technology or don't have a team helping you!)`, 6],
+	'45:50': [`What you get with <br>today's special <br>offer`, `Discover how many awesome and helpful things you will get with today's special offer`, 2],
+	'48:29': [`<span class="w-bold">Masterclass:</span> Launch <br>an Online Business <br>With 1 Page`, `The '1 Page Masterclass' Bonus where you'll discover how to launch an online business with 1 page`, 2],
+	'51:47': [`The Secret <br>to Unlimited <br>Traffic`, `The secret to unlimited traffic (and more bonuses you get with our offer)`, 1],
+	'52:55': [`<span class="w-bold">Guide:</span> Set up Your <br>Course seamlessly <br>through SamCart`, `The help you get to set up your course seamlessly through SamCart`, 2],
+	'54:32': [`Reach the <br>Community of <br>20,000+ Creators`, `Find out the way how to reach the community of 20,000+ creators`, 0],
+}
 
 let createTimeline = `
     <div class="timeline">
@@ -744,14 +737,14 @@ let createTimeline = `
             <button class="button-next"></button>
         </div>
     </div>
-`;
+`
 
 function setSlide(time, title, tooltip, countPoint) {
 	return ` 
-        <div class="slide" data-point="${countPoint}">
-            <p class="timeline_clock">${time}</p>
-            <p class="timeline_title">${title}
-                <span class="tooltip_wrapper relative" data-title="${tooltip}">
+        <div class="slide" data-point="${ countPoint }">
+            <p class="timeline_clock">${ time }</p>
+            <p class="timeline_title">${ title }
+                <span class="tooltip_wrapper relative" data-title="${ tooltip }">
                     <img src="https://conversionratestore.github.io/projects/samcart/img/alert-circle.svg" alt="icon">
                 </span>
             </p>
@@ -764,91 +757,91 @@ let specialOffer = `
         <p>Your special offer will be available in:</p>
         <div id="count"></div>
     </div>
-`;
+`
 
-let action;
+let action
 
 function pushDataLayer(action, label) {
-	console.log(action + " : " + label)
-	window.dataLayer = window.dataLayer || [];
+	console.log(action + ' : ' + label)
+	window.dataLayer = window.dataLayer || []
 	if (label) {
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp — Timeline & SO banner',
 			'eventAction': action,
-			'eventLabel': label
-		});
+			'eventLabel': label,
+		})
 	} else {
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp — Timeline & SO banner',
 			'eventAction': action,
-			'eventLabel': ''
-		});
+			'eventLabel': '',
+		})
 	}
 }
 
 let optionMut = {
 	childList: true,
-	subtree: true
+	subtree: true,
 }
 
-let countI = 0;
+let countI = 0
 
 let mut = new MutationObserver(function (muts) {
 	if (document.querySelector('.audience-experience') && document.querySelector('.audience-experience') != null && !document.querySelector('.timeline')) {
-		mut.disconnect();
-		let linkCustom = document.createElement('link');
-		linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-		linkCustom.rel = 'stylesheet';
-		document.head.appendChild(linkCustom);
+		mut.disconnect()
+		let linkCustom = document.createElement('link')
+		linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css'
+		linkCustom.rel = 'stylesheet'
+		document.head.appendChild(linkCustom)
 
-		let scriptCustom = document.createElement('script');
-		scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-		scriptCustom.async = false;
-		document.body.appendChild(scriptCustom);
+		let scriptCustom = document.createElement('script')
+		scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js'
+		scriptCustom.async = false
+		document.body.appendChild(scriptCustom)
 
-		let scriptPopper = document.createElement('script');
-		scriptPopper.src = 'https://unpkg.com/popper.js@1';
-		scriptPopper.async = false;
-		document.body.appendChild(scriptPopper);
+		let scriptPopper = document.createElement('script')
+		scriptPopper.src = 'https://unpkg.com/popper.js@1'
+		scriptPopper.async = false
+		document.body.appendChild(scriptPopper)
 
-		let scriptTippy = document.createElement('script');
-		scriptTippy.src = 'https://unpkg.com/tippy.js@5';
-		scriptTippy.async = false;
-		document.body.appendChild(scriptTippy);
+		let scriptTippy = document.createElement('script')
+		scriptTippy.src = 'https://unpkg.com/tippy.js@5'
+		scriptTippy.async = false
+		document.body.appendChild(scriptTippy)
 
-		document.body.insertAdjacentHTML('afterbegin', styles);
-        document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline);
-      
+		document.body.insertAdjacentHTML('afterbegin', styles)
+		document.querySelector('.audience-experience').insertAdjacentHTML('beforebegin', specialOffer + createTimeline)
+
 		for (let key in arrTooltip) {
 			document.querySelector('.slider').insertAdjacentHTML('beforeend', setSlide(key, arrTooltip[key][0], arrTooltip[key][1], arrTooltip[key][2]))
 		}
 		document.querySelector('.slider').addEventListener('click', () => {
-			action = 'Click on timeline slider';
+			action = 'Click on timeline slider'
 			pushDataLayer(action)
 		})
-		countI = 1;
+		countI = 1
 	}
-	mut.observe(document, optionMut);
-	if(document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1 && !document.querySelector('.tns-outer')) {
-		mut.disconnect();
+	mut.observe(document, optionMut)
+	if (document.querySelectorAll('.tooltip_wrapper') && document.querySelectorAll('.tooltip_wrapper') != null && document.querySelectorAll('.tooltip_wrapper').length > 9 && countI == 1 && !document.querySelector('.tns-outer')) {
+		mut.disconnect()
 		let run = setInterval(() => {
 			if (document.querySelector('.tns-outer') && document.querySelector('.tns-outer') != null) {
 				clearInterval(run)
 				console.log('stopRun')
 
-				document.querySelector('.timeline').style.opacity = '1';
+				document.querySelector('.timeline').style.opacity = '1'
 				pushDataLayer('loaded')
 
 				if (window.matchMedia('(max-width: 992px)').matches) {
 					document.querySelector('.button-next').addEventListener('click', () => {
-						document.querySelector('#tns1-mw').style.paddingLeft = '20px';
+						document.querySelector('#tns1-mw').style.paddingLeft = '20px'
 					})
 					document.querySelector('.button-prev').addEventListener('click', (e) => {
 						setTimeout(() => {
 							if (e.target.disabled === true) {
-								document.querySelector('#tns1-mw').style.paddingLeft = '0';
+								document.querySelector('#tns1-mw').style.paddingLeft = '0'
 							}
 						}, 100)
 					})
@@ -858,24 +851,24 @@ let mut = new MutationObserver(function (muts) {
 					pushDataLayer(action)
 				})
 				document.querySelector('.button-prev').addEventListener('click', () => {
-					action =  'Click on left arrow button'
+					action = 'Click on left arrow button'
 					pushDataLayer(action)
 				})
 				let tippyRun = setInterval(() => {
 					clearInterval(tippyRun)
-					document.querySelectorAll('.tooltip_wrapper').forEach((el,index) => {
+					document.querySelectorAll('.tooltip_wrapper').forEach((el, index) => {
 						tippy(el, {
 							content: el.getAttribute('data-title'),
-							placement: 'bottom-start'
-						});
+							placement: 'bottom-start',
+						})
 						el.addEventListener('mouseover', () => {
-							action = 'hover on tooltipe';
-							let label = el.closest('.timeline_title').innerText;
+							action = 'hover on tooltipe'
+							let label = el.closest('.timeline_title').innerText
 							pushDataLayer(action, label)
 						})
-					});
-				}, 200);
-				countI = 0;
+					})
+				}, 200)
+				countI = 0
 			} else {
 				let sliderCategories = tns({
 					container: document.querySelector('.slider'),
@@ -892,17 +885,17 @@ let mut = new MutationObserver(function (muts) {
 					nav: false,
 					preventScrollOnTouch: 'auto',
 					swipeAngle: false,
-				});
+				})
 			}
 		}, 300)
 	}
-});
+})
 
-mut.observe(document, optionMut);
+mut.observe(document, optionMut)
 
 let isClarify = setInterval(() => {
-	if(typeof clarity == 'function') {
+	if (typeof clarity == 'function') {
 		clearInterval(isClarify)
-		clarity("set", "timeline_and_SO_banner", "variant_1");
+		clarity('set', 'timeline_and_SO_banner', 'variant_1')
 	}
 }, 100)
