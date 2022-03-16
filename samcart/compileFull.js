@@ -382,7 +382,7 @@ function startTimer() {
 		intervalTime = currentDate - window.localStorage.getItem('startDate')
 	}
 
-	let count = 3601 - (intervalTime / 1000)
+	let count = 3600 - (intervalTime / 1000)
 
 	if (count > 0) {
 		let counter = setInterval(() => {
