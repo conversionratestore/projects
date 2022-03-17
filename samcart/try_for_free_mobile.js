@@ -713,7 +713,7 @@ function mobileVar() {
                     <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white" />
                   </svg>
                   <span class="hidden_text"
-                    >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel you
+                    >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
                     risk-free trial within 14 days and we will not charge you anything.</span
                   >
                 </span>
@@ -726,7 +726,7 @@ function mobileVar() {
     `
       let hintPlan = /* html*/ `
       <p class="hint_plan">
-        Your plan will start after the end of Free Trial
+        Your plan will start after the end of the Free Trial
         <span>
           <svg class="hint" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.25 5.25H9.75V6.75H8.25V5.25Z" fill="white" />
@@ -743,7 +743,7 @@ function mobileVar() {
             <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white" />
           </svg>
           <span class="hidden_text"
-            >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+            >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
             trial within 14 days and we will not charge you anything.</span
           >
         </span>
@@ -788,7 +788,7 @@ function mobileVar() {
               <div>
                 <p>Risk-free trial. Cancel anytime during the next 14 days</p>
                 <p>
-                  Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
+                  Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
                   risk-free trial within 14 days and we will not charge you anything.
                 </p>
               </div>
@@ -824,7 +824,7 @@ function mobileVar() {
             <path d="M11.5568 8.72844C10.7889 9.52248 9.52275 9.5437 8.72872 8.77586L0.0002195 0.335198L19.9974 -6.09158e-05L11.5568 8.72844Z" fill="white" />
           </svg>
           <span class="hidden_text"
-            >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+            >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
             trial within 14 days and we will not charge you anything.</span
           >
         </span>
@@ -838,7 +838,7 @@ function mobileVar() {
         <div>
           <p>Risk-free trial. Cancel anytime during the next 14 days</p>
           <p>
-            Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+            Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
             trial within 14 days and we will not charge you anything.
           </p>
         </div>
@@ -884,7 +884,7 @@ function mobileVar() {
 
       if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
         document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").textContent =
-          "Create your account to start your 14-day trial and set up your new storefront."
+          "Create your account to start your 14-day trial and set up your new marketplace."
       }
 
       if (document.querySelector("#sce5f6c91d-ac8c-41bd-8893-48dd2b58872c")) {
@@ -1739,7 +1739,7 @@ function desktopVar() {
                 <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6" />
                 </svg>
                 <span class="hidden_text"
-                >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel you
+                >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
                 risk-free trial within 14 days and we will not charge you anything.</span
                 >
             </span>
@@ -1785,7 +1785,7 @@ function desktopVar() {
             <div>
             <p>Risk-free trial. Cancel anytime during the next 14 days</p>
             <p>
-                Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
+                Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your
                 risk-free trial within 14 days and we will not charge you anything.
             </p>
             </div>
@@ -1820,7 +1820,7 @@ function desktopVar() {
         <path d="M18.242 0.47532C19.3515 -0.0677717 20.6497 -0.0677726 21.7592 0.475319L39.9192 9.3645H0.0820312L18.242 0.47532Z" fill="#F4F5F6" />
         </svg>
         <span class="hidden_text"
-        >Our templates can help you start your new online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
+        >Our templates can help you start your online business within days. If you decide that you are not yet ready to create your new marketplace, simply cancel your risk-free
         trial within 14 days and we will not charge you anything.</span
         >
     </span>
@@ -1873,12 +1873,12 @@ function desktopVar() {
       }
 
       if (document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong")) {
-        document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your new business today!"
+        document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").textContent = "Create your business in SamCart today!"
       }
 
       if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
         document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font").textContent =
-          "Create your account to start your 14-day trial and set up your new storefront."
+          "Create your account to start your 14-day trial and set up your new marketplace."
       }
 
       // 3d card
