@@ -13,7 +13,6 @@ let init = setInterval(function () {
 }, 100)
 
 function start() {
-
 	document.querySelectorAll('.js-packs').forEach((item, i) => {
 		item.addEventListener('click', function (e) {
 			e.preventDefault()
