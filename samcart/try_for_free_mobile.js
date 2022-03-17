@@ -879,7 +879,7 @@ function mobileVar() {
       }
 
       if (document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong")) {
-        document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").innerHTML = `Create your new <br/> business <br/> today!`
+        document.querySelector("#sc51e54003-0fac-46db-80a2-881825e46c45 h1 strong").innerHTML = `Create your <br/> business <br/> in SamCart today!`
       }
 
       if (document.querySelector(".sc-element  .mobile-column-width #sc5d10c341-d9b7-4b33-992c-37c47d5322e2 p font")) {
