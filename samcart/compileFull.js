@@ -21,7 +21,7 @@ const style = `
         	width: 105px;
 			height: 45px;
         	right: -15px;
-        	top: -15px;
+        	top: 96px;
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
         	object-fit: cover;
         	transition: all 0.7s ease;
@@ -78,15 +78,14 @@ const style = `
         
         .features ul li {
             position: relative;
-            
-    		
+            justify-content: space-between;
+            display: flex;
         	font-weight: 500;
-			font-size: 12px;
 			color: #5F7384;
 			margin-bottom: 10px;
-			
-			line-height: 15px;
+			line-height: 13px;
 			text-transform: capitalize;
+            font-size: 11px;
         }       
         
         .features ul li::before {
@@ -103,6 +102,9 @@ const style = `
         .features ul li span {
             display: none;
         	text-decoration: line-through;
+        	font-weight: 600;
+            color: #F2813F;
+            font-size: 11px;
         }
         
         .features ul li span.priceless {
@@ -111,7 +113,6 @@ const style = `
         
         .banner.show_sale .features ul li span {
         	display: inline;
-        	font-weight: 300;
         }
   
         .btn-wrapper button {
@@ -158,17 +159,19 @@ const style = `
        		font-weight: 900;
 			font-size: 26px;
 			color: #F2813F;	
+            line-height: 30px;
+            text-align: left;
        		white-space: nowrap;	
        	} 
        	
-        p.price sub{
+        p.price sub {
 			margin: 5px;
 			position: absolute;
         	font-weight: 400;
 			font-size: 11px;
         	color: #5A7386;
         }
-		p.price sub::after{
+		p.price sub::after {
 			content:"";
 			display:block;
 			position:absolute;
@@ -185,19 +188,19 @@ const style = `
 			font-size: 10px;
 		}
         
-        .fullscreen__ctas  {
+        .fullscreen__ctas {
         	display: none;
         }
     </style>
 `
 const mobileCSS = `
 	<style>
-    p.subtitle {
-        font-weight: 900;
-        font-size: 18px;
-        line-height: 20px;
-        margin-top: 2px;
-    }
+        p.subtitle {
+            font-weight: 900;
+            font-size: 18px;
+            line-height: 20px;
+            margin-top: 2px;
+        }
 		.banner {
 			margin-top: 0;
 			max-width: 100%;
@@ -225,9 +228,9 @@ const mobileCSS = `
 		.features {
 			margin-top: 15px;
 		}
-       .features ul {
+        .features ul {
        		padding: 0 0 0 19px;
-       }
+        }
         .btn-wrapper button {
             line-height: 15px;
         	font-size: 18px;
@@ -246,16 +249,10 @@ const mobileCSS = `
             font-size: 12px;
             padding: 5px 15px;
         }
-        .features ul li {
-            font-size: 11px;
-            justify-content: space-between;
-            display: flex;
-        }
         .features ul li span {
             font-weight: 600!important;
             font-size: 11px;
             line-height: 13px;
-            color: #F2813F;
             display: initial;
         }
         .features ul li::before {
@@ -284,7 +281,7 @@ const banner = `
                     <li>Course creation challenge <span>$995</span></li>
                     <li>1 Page wednesday Calls <span>$995</span></li>
                     <li>Private facebook Group <span>$495</span></li>
-                    <li>Top seller strategies  <span>$995</span></li>
+                    <li>Top seller strategies <span>$995</span></li>
                     <li>The 1 page template! <span class="priceless">Priceless</span></li>
                     <li>30 Day money back guarantee</li>                    
                 </ul>
@@ -355,7 +352,7 @@ function _showSaleBtn() {
 		})
 	} else {
 		document.querySelector('.banner').classList.add('show_sale')
-		document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Continue to special offer</button>`
+		document.querySelector('.btn-wrapper').innerHTML = `<button class="btn-wrapper_sale" onclick="location.href='https://checkout.samcart.com/products/courses-special-offer'">Instant Access</button>`
 		document.querySelector('.subtitle').insertAdjacentHTML('afterend', `<p class="price">$349<sub>$588</sub></p>`)
 	}
 
@@ -364,7 +361,7 @@ function _showSaleBtn() {
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp — Timeline & SO banner',
-			'eventAction': 'Click on Continue to special offer button',
+			'eventAction': 'Click on Instant Access button',
 		})
 	})
 }
