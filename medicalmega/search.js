@@ -895,7 +895,7 @@ window.onload = function() {
         }), 
         instantsearch.widgets.searchBox({
             container: '#search-box',
-            placeholder: window.location.pathname.includes('/category') ? 'Search Our Store' : `Search this Category`,
+            placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
             searchAsYouType: window.location.pathname.includes('/category') ? true : false
         }),
@@ -906,29 +906,35 @@ window.onload = function() {
                 empty: `No Item Found`,
                 item: (hit) => {
                     //change selects option
-                    function changeSelect(event) {
-                        console.log('change')
-                        let parent = event.closest('.list_box2');
-                        
-                        let price = event.options[event.selectedIndex].dataset.price,
-                            variantId = event.options[event.selectedIndex].value,
-                            srcImg = event.options[event.selectedIndex].dataset.src,
-                            name = event.options[event.selectedIndex].innerText;
-
-                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                            parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
-                            parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                            parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-
-                        if (name.includes('Out of stock')) {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                            parent.querySelector('.product_quantity').style.display = 'none';
-                            parent.querySelector('.buynow2').style.display = 'none';
-                        } else {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                            parent.querySelector('.product_quantity').style.display = 'block';
-                            parent.querySelector('.buynow2').style.display = 'block';
-                        }
+                    function changeSelect() {  // ${changeSelect(event.target)}
+                     
+                        document.querySelectorAll('.product-variant').forEach(select => {
+                            select.addEventListener('change', (e) => {
+                                e.stopImmediatePropagation();
+                                console.log(select)
+                                let parent = select.closest('.list_box2');
+                            
+                                let price = select.options[select.selectedIndex].dataset.price,
+                                    variantId = select.options[select.selectedIndex].value,
+                                    srcImg = select.options[select.selectedIndex].dataset.src,
+                                    name = select.options[select.selectedIndex].innerText;
+        
+                                    parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                                    parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
+                                    parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                                    parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+        
+                                if (name.includes('Out of stock')) {
+                                    parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                                    parent.querySelector('.product_quantity').style.display = 'none';
+                                    parent.querySelector('.buynow2').style.display = 'none';
+                                } else {
+                                    parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                                    parent.querySelector('.product_quantity').style.display = 'block';
+                                    parent.querySelector('.buynow2').style.display = 'block';
+                                }
+                            })
+                        })
                     }
                     function qty() {
                         let option = ``;
@@ -973,9 +979,10 @@ window.onload = function() {
                                     </span>
                                     <p style="clear:both;display:${hit.variants.length>1?'block':'none'}">
                                         <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                                        <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;" onchange="${changeSelect(event.target)}">
+                                        <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
                                             ${optionBox()}
                                         </select>
+                                        ${changeSelect()}
                                     </p>
                                     <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
                                     <input type="hidden" name="product_id" value="${hit.objectID}">
