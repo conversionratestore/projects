@@ -41,6 +41,7 @@ const style = `
             display: block;
         }
         p.title {
+            margin-top: 10px;
 	        font-weight: 900;
 			font-size: 10px;
             line-height: 1;
