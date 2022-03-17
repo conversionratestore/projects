@@ -21,7 +21,7 @@ const style = `
         	width: 105px;
 			height: 45px;
         	right: -15px;
-        	top: 96px;
+        	top: -15px;
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off.svg") no-repeat;
         	object-fit: cover;
         	transition: all 0.7s ease;
@@ -113,6 +113,9 @@ const style = `
         
         .banner.show_sale .features ul li span {
         	display: inline;
+        }
+        .banner.show_sale::after {
+        	top: 96px;
         }
   
         .btn-wrapper button {
