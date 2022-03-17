@@ -1161,6 +1161,8 @@ window.onload = function() {
                 console.log(data) 
                 if (data.nbHits != 0) {
                     el.insertAdjacentHTML('beforeend', `<img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${data.hits[0].name}">`)
+                } else {
+                    el.closest('li').remove();
                 }
             });
         })
