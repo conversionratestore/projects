@@ -41,10 +41,10 @@ const style = `
             display: block;
         }
         p.title {
-			/*font-size: 10px;*/
-			margin: 10px 0 -10px;
+			margin: 0;
 	        font-weight: 900;
-			font-size: 12px;
+			font-size: 10px;
+            line-height: 1;
 	        letter-spacing: 0.1em;
 			text-transform: uppercase;
 			color: #FFFFFF;
@@ -221,11 +221,6 @@ const mobileCSS = `
         	top: 97px;     
             right: -13px; 	
         	background: url("https://conversionratestore.github.io/projects/samcart/img/off40.svg") no-repeat right top;
-		}
-
-		p.title {
-			font-size: 10px;
-			margin: 0;
 		}
 
 		.features {
