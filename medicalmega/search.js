@@ -866,6 +866,7 @@ window.onload = function() {
 
     //change selects option
     function changeSelect(event) {
+        console.log('change')
         let parent = event.closest('.list_box2');
         
         let price = event.options[event.selectedIndex].dataset.price,
