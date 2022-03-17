@@ -52,6 +52,9 @@ let styles = `
         position: relative;
     }
     .ais-SearchBox-input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         box-sizing: border-box;
         background: #EEEEEE;
         border: 1px solid #C0C0C0;
