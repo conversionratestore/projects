@@ -1159,7 +1159,9 @@ window.onload = function() {
             el.innerHTML = `<span>${text}</span>`;
             fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${text}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(data => {
                 console.log(data) 
-                el.insertAdjacentHTML('beforeend', `<img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${data.hits[0].name}">`)
+                if (data.nbHits != 0) {
+                    el.insertAdjacentHTML('beforeend', `<img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${data.hits[0].name}">`)
+                }
             });
         })
     }
