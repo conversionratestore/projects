@@ -925,7 +925,7 @@ window.onload = function() {
             container: '#hits',
             // showLoadingIndicator: true,
             templates: {
-                empty: `No results for "{{query}}"`,
+                empty: `No results`,
                 item: (hit) => {
                     function qty() {
                         let option = ``;
@@ -998,14 +998,14 @@ window.onload = function() {
         }),
         instantsearch.widgets.pagination({
             container: '.pagination1',
-            totalPages: 9,
-            showFirst: false,
-            showLast: false,
+            // totalPages: 9,
+            // showFirst: false,
+            // showLast: false,
             // paginationLimitedTo: '4',
             // offset: '4',
             templates: {
-                previous: 'Prev',
-                next: 'Next',
+                // previous: 'Prev',
+                // next: 'Next',
                 item: (data) => {
                     console.log(data)
                 }
@@ -1013,14 +1013,14 @@ window.onload = function() {
         }),
         instantsearch.widgets.pagination({
             container: '.pagination2',
-            totalPages: 9,
-            showFirst: false,
-            showLast: false,
+            // totalPages: 9,
+            // showFirst: false,
+            // showLast: false,
             // paginationLimitedTo: '4',
             // offset: '4',
             templates: {
-                previous: 'Prev',
-                next: 'Next',
+                // previous: 'Prev',
+                // next: 'Next',
                 item: (data) => {
                     console.log(data)
                 }
