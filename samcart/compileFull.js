@@ -209,11 +209,6 @@ const mobileCSS = `
 			max-width: 100%;
 			padding: 15px 10px 12px;
 		}
-				
-		p.price {
-            text-align: left;
-            line-height: 30px;
-        }
 	
 		.banner::after {	
             width: 100%;
