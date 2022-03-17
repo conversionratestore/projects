@@ -41,7 +41,6 @@ const style = `
             display: block;
         }
         p.title {
-			margin: 0;
 	        font-weight: 900;
 			font-size: 10px;
             line-height: 1;
@@ -113,6 +112,9 @@ const style = `
         
         .banner.show_sale .features ul li span {
         	display: inline;
+        } 
+        .banner.show_sale p.title {
+			margin: 0;
         }
         .banner.show_sale::after {
         	top: 96px;
@@ -198,6 +200,9 @@ const style = `
 `
 const mobileCSS = `
 	<style>
+        p.title {
+            margin: 0;
+        }
         p.subtitle {
             font-weight: 900;
             font-size: 18px;
