@@ -103,6 +103,13 @@ let styles = `
         background: rgba(255,255,255,0.8);
 //         display: none;
     }
+    .ais-SearchBox-loadingIndicator img { 
+        width: 30px;
+        margin: auto;
+        display: block;
+        object-fit: contain;
+        height: 100%;
+    }
     #listing_container {
         padding: 10px;
         display: none;
