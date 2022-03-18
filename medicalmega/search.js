@@ -511,8 +511,10 @@ let styles = `
     }
     .ais-Pagination-link {
         display: block;
-        margin: 0 4px;
+        padding: 0 2px;
+        margin: 0 2px;
         font-size: 11px; 
+        line-height: 1;
     }
     .icon_burger {
         position: relative;
@@ -1245,6 +1247,10 @@ window.onload = function() {
         document.querySelector('.pagination1').style.opacity = '0';
         document.querySelector('.pagination2').style.opacity = '0';
     }
+    let lastPage1 = document.querySelectorAll('.pagination1 .ais-Pagination-item--page');
+    let lastPage2 = document.querySelectorAll('.pagination2 .ais-Pagination-item--page');
+    lastPage1[lastPage1.length - 1].style.borderRight = 'none';
+    lastPage2[lastPage2.length - 1].style.borderRight = 'none';
 };
 
 window.dataLayer = window.dataLayer || [];
