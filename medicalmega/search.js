@@ -759,8 +759,8 @@ let mut = new MutationObserver(function (muts) {
         }
         let lastPage1 = document.querySelectorAll('.pagination1 .ais-Pagination-item--page');
         let lastPage2 = document.querySelectorAll('.pagination2 .ais-Pagination-item--page');
-        lastPage1[lastPage1.length - 1].style.borderRight = 'none';
-        lastPage2[lastPage2.length - 1].style.borderRight = 'none';
+        lastPage1[lastPage1.length - 1].style.border = 'none';
+        lastPage2[lastPage2.length - 1].style.border = 'none';
     }
   
 })
