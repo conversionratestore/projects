@@ -996,7 +996,7 @@ window.onload = function() {
             loadingIndicator: false,
             searchAsYouType: false, //window.location.pathname.includes('/category') ? true : false
             templates: {
-                loadingIndicator: 'loading',
+                loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
         }),
         instantsearch.widgets.hits({
