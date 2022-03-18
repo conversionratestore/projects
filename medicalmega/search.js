@@ -1,5 +1,8 @@
 let styles = `
     <style>
+    .list_subcategory .ais-RefinementList-item--selected a {     
+        color: #bf0400;
+    }
     html:first-child .list_type3 span {
         line-height: 1;
     }
@@ -308,7 +311,7 @@ let styles = `
     .list_subcategory li:nth-child(2n+2) {
         margin-right: 0;
     }
-    .list_subcategory {
+    .list_subcategory .ais-RefinementList-list, .list_subcategory {
         margin: 0;
         display: flex;
         flex-wrap: wrap;
@@ -674,6 +677,7 @@ function changeSelect() {  // ${changeSelect(event.target)}
     })
 }
 
+let list = [];
 let mut = new MutationObserver(function (muts) {
     if (document.body != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
@@ -703,8 +707,30 @@ let mut = new MutationObserver(function (muts) {
     }
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
-    
         changeSelect()
+    }
+    mut.observe(document, optionMut);
+    if (list.length > 0) {
+        mut.disconnect();
+        for (let i = 0; i < list.length; i++) {
+            let valueArr = list[i].value.split(' > ');
+            let valueLast = valueArr[valueArr.length - 1];
+
+            console.log(list[i])
+            fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(data => {
+                console.log(data) 
+                if (data.nbHits != 0) {
+                    document.querySelector('.list_subcategory').insertAdjacentHTML('beforeend', `
+                    <li>
+                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
+                            <span>${valueLast}</span>
+                            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${valueLast}">
+                        </a>
+                    </li>`)
+                } 
+            });
+            
+        }
     }
 })
 
@@ -829,7 +855,8 @@ window.onload = function() {
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
-        <ul class="list_subcategory"></ul>
+        <div class="list_subcategory"></div>
+        <div class="lvl_subcategory" style="display: none"></div>
         <span class="result_for_search"></span>
         <div class="justify-content-between">
             <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
@@ -911,22 +938,39 @@ window.onload = function() {
     });
 
     let categoryFacet = '*';
+    let categoryCrumbs = '';
+    let lvl = '';
     if (window.location.pathname.includes('/category')) {
+        
         let categoriesLink = document.querySelectorAll('.category a');
+
         for (let i = 0; i < categoriesLink.length; i++) {
+            if (i > 0) {
+                categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
+            }
+            
+           
             if (i == categoriesLink.length - 1) {
+                console.log(categoryCrumbs)
                 if (categoriesLink.length > 1) {
-                    categoryFacet = `categories.lvl${i}:${categoriesLink[i].innerText + " > " + document.querySelector('.category b').innerText}`
-                } else {
+
+                    categoryFacet = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
+                //     categoryFacet = `categories.lvl${i}:${categoriesLink[i].innerText + " > " + document.querySelector('.category b').innerText}`
+                  
+                } 
+                else {
                     categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
                 }
+                // caterogylvl = document.querySelector('.category b').innerText;
                 console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
-               
+                lvl = categoryFacet.split(':')[0].split('lvl')[1];
+ 
             }
         }
     } else {
         categoryFacet = '*'
     }
+    let lvlNew = +lvl + 1;
 
     search.addWidgets([
         instantsearch.widgets.configure({
@@ -950,7 +994,7 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
-            searchAsYouType: window.location.pathname.includes('/category') ? true : false
+            searchAsYouType: false, //window.location.pathname.includes('/category') ? true : false
         }),
         instantsearch.widgets.hits({
             container: '#hits',
@@ -1102,7 +1146,6 @@ window.onload = function() {
 
             templates: {
                 item: (data) => {
-                    console.log(data)
                     let checkbox = `
                         <label class="align-items-center">
                             <span class="check"></span>
@@ -1112,6 +1155,19 @@ window.onload = function() {
                 
                     return checkbox
                 },
+            },
+
+        }),
+        
+        instantsearch.widgets.refinementList({
+            container: `.lvl_subcategory`,
+            attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
+            limit: 20,
+            templates: {
+                item: (data) => {
+                    console.log(data),
+                    list.push(data)
+                }
             },
 
         }),
@@ -1175,27 +1231,13 @@ window.onload = function() {
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
         if (document.querySelector('.listing ul') != null) {
-            document.querySelector('.list_subcategory').innerHTML = document.querySelector('.listing ul') .innerHTML;
+            // document.querySelector('.list_subcategory').innerHTML = document.querySelector('.listing ul') .innerHTML;
         }
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
-
-      
-        if (document.querySelectorAll('.category a') && document.querySelectorAll('.category a').length > 1) {
-            document.querySelector('.ais-SearchBox-input').value = document.querySelector('.category b').innerText;
-        } 
-
-        document.querySelectorAll('.list_subcategory a').forEach(el => {
-            let text = el.innerText;
-            el.innerHTML = `<span>${text}</span>`;
-            fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${text}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(data => {
-                console.log(data) 
-                if (data.nbHits != 0) {
-                    el.insertAdjacentHTML('beforeend', `<img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${data.hits[0].name}">`)
-                } else {
-                    el.closest('li').remove();
-                }
-            });
-        })
+    }
+    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
+        document.querySelector('.pagination1').style.opacity = '0';
+        document.querySelector('.pagination2').style.opacity = '0';
     }
 };
 
