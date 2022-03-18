@@ -104,7 +104,7 @@ let styles = `
 //         display: none;
     }
     #listing_container {
-        padding-top: 10px;
+        padding: 10px;
         display: none;
     }
     .shoppingcart a {
