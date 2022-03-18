@@ -516,8 +516,14 @@ let styles = `
         justify-content: flex-end;
         align-items: center;
     }
-    .ais-Pagination-item--page {
+    .ais-Pagination-item  {
         border-right: 1px solid #171717;
+    }
+    .ais-Pagination-item.ais-Pagination-item--firstPage, .ais-Pagination-item.ais-Pagination-item--previousPage, .ais-Pagination-item.ais-Pagination-item--nextPage, .ais-Pagination-item.ais-Pagination-item--lastPage  {
+        border-right: none;
+    }
+    .ais-Pagination-item:nth-last-child(3) {
+        border-right: none;
     }
     .ais-Pagination-link {
         display: block;
