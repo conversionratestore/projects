@@ -995,6 +995,9 @@ window.onload = function() {
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
             searchAsYouType: false, //window.location.pathname.includes('/category') ? true : false
+            templates: {
+                loadingIndicator: 'loading',
+            },
         }),
         instantsearch.widgets.hits({
             container: '#hits',
