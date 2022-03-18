@@ -681,7 +681,7 @@ let list = [];
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.body != null && window.location.pathname.includes('/category' && count == 0)) {
+    if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
         mut.disconnect();
         count = 1;
         document.body.insertAdjacentHTML('afterbegin',`
