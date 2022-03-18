@@ -339,6 +339,7 @@ let styles = `
         margin-left: 4px;
         flex-shrink: 0;
         object-fit: contain;
+        overflow: hidden;
     }
     .list_type1 {
         width: 100%;
@@ -866,10 +867,17 @@ window.onload = function() {
 
     let categoryFacet = '*';
     if (window.location.pathname.includes('/category')) {
-        if (document.querySelectorAll('.category a').length > 1) {
-            categoryFacet = `category:${document.querySelectorAll('.category a')[1].innerText}`;
-        } else {
-            categoryFacet = `category:${document.querySelector('.categoryTop').innerText}`;
+        let categoriesLink = document.querySelectorAll('.category a');
+        for (let i = 0; i < categoriesLink.length; i++) {
+            if (i == categoriesLink.length - 1) {
+                if (categoriesLink.length > 1) {
+                    categoryFacet = `categories.lvl${i}:${categoriesLink[i].innerText + " > " + document.querySelector('.category b').innerText}`
+                } else {
+                    categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
+                }
+                console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
+               
+            }
         }
     } else {
         categoryFacet = '*'
