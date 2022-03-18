@@ -101,7 +101,7 @@ let styles = `
         height: 100%;
         z-index: 1; 
         background: rgba(255,255,255,0.8);
-        display: none;
+//         display: none;
     }
     #listing_container {
         padding-top: 10px;
