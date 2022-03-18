@@ -516,6 +516,9 @@ let styles = `
         justify-content: flex-end;
         align-items: center;
     }
+    .ais-Pagination-item--page {
+        border-right: 1px solid #171717;
+    }
     .ais-Pagination-link {
         display: block;
         padding: 0 2px;
