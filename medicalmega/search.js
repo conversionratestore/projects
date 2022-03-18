@@ -633,6 +633,47 @@ function pushDataLayer(action,label) {
     }
 }
 
+function changeSelect() {  // ${changeSelect(event.target)}
+                     
+    document.querySelectorAll('.product-variant').forEach(select => {
+        select.addEventListener('change', (e) => {
+            e.stopImmediatePropagation();
+            console.log(select)
+            let parent = select.closest('.list_box2');
+            let option = ``;
+        
+            let price = select.options[select.selectedIndex].dataset.price,
+                variantId = select.options[select.selectedIndex].value,
+                srcImg = select.options[select.selectedIndex].dataset.src,
+                name = select.options[select.selectedIndex].innerText,
+                qty = select.options[select.selectedIndex].dataset.qty;
+
+                parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
+                parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+                parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
+
+                for (let n = 1; n <= +qty; n++) {
+                    option = option + `<option value="${n}">${n}</option>`;
+                }
+
+                parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
+
+            if (name.includes('Out of stock')) {
+                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                parent.querySelector('.product_quantity').style.display = 'none';
+                parent.querySelector('.buynow2').style.display = 'none';
+            } else {
+                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                parent.querySelector('.product_quantity').style.display = 'block';
+                parent.querySelector('.buynow2').style.display = 'block';
+            }
+           
+        })
+    })
+}
+
 let mut = new MutationObserver(function (muts) {
     if (document.body != null && window.location.pathname.includes('/category')) {
         mut.disconnect();
@@ -659,6 +700,11 @@ let mut = new MutationObserver(function (muts) {
                 display: none;
             }
         </style>`)
+    }
+    mut.observe(document, optionMut);
+    if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
+    
+        changeSelect()
     }
 })
 
@@ -790,7 +836,6 @@ window.onload = function() {
             <div class="btn_sort" id="sort-name"></div>
         </div>
         
-        <div id="category"></div>
         <div id="stats-container"></div>
         <div class="flex-center-end page-result">
             <p>Results Per Page: </p>
@@ -914,36 +959,7 @@ window.onload = function() {
                 empty: `No Item Found`,
                 item: (hit) => {
                     //change selects option
-                    function changeSelect() {  // ${changeSelect(event.target)}
-                     
-                        document.querySelectorAll('.product-variant').forEach(select => {
-                            select.addEventListener('change', (e) => {
-                                e.stopImmediatePropagation();
-                                console.log(select)
-                                let parent = select.closest('.list_box2');
-                            
-                                let price = select.options[select.selectedIndex].dataset.price,
-                                    variantId = select.options[select.selectedIndex].value,
-                                    srcImg = select.options[select.selectedIndex].dataset.src,
-                                    name = select.options[select.selectedIndex].innerText;
-        
-                                    parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                                    parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
-                                    parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                                    parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-        
-                                if (name.includes('Out of stock')) {
-                                    parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                                    parent.querySelector('.product_quantity').style.display = 'none';
-                                    parent.querySelector('.buynow2').style.display = 'none';
-                                } else {
-                                    parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                                    parent.querySelector('.product_quantity').style.display = 'block';
-                                    parent.querySelector('.buynow2').style.display = 'block';
-                                }
-                            })
-                        })
-                    }
+                 
                     function qty() {
                         let option = ``;
                         for (let n = 1; n <= +hit.qty; n++) {
@@ -955,7 +971,7 @@ window.onload = function() {
                         let option = ``;
                         for (let i = 0; i < hit.variants.length; i++) {
                             let variantsArr = hit.variants[i];
-                            option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                            option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
                         }
                         return option
                     }
@@ -990,7 +1006,6 @@ window.onload = function() {
                                         <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
                                             ${optionBox()}
                                         </select>
-                                        ${changeSelect()}
                                     </p>
                                     <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
                                     <input type="hidden" name="product_id" value="${hit.objectID}">
