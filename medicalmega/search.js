@@ -526,8 +526,11 @@ let styles = `
     .ais-Pagination-item--disabled {
         display: none;
     }
-    .pagination {
+    .pagination1 {
         padding-top: 15px;
+    }
+    .pagination2 {
+        padding-bottom: 15px;
     }
     #stats-container {
         color: #3d3d3d;
