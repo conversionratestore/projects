@@ -747,6 +747,19 @@ let mut = new MutationObserver(function (muts) {
             
         }
     }
+    mut.observe(document, optionMut);
+    if (document.querySelectorAll('.ais-Pagination-item--page')) {
+        mut.disconnect();
+        if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
+            document.querySelector('.pagination1').style.opacity = '0';
+            document.querySelector('.pagination2').style.opacity = '0';
+        }
+        let lastPage1 = document.querySelectorAll('.pagination1 .ais-Pagination-item--page');
+        let lastPage2 = document.querySelectorAll('.pagination2 .ais-Pagination-item--page');
+        lastPage1[lastPage1.length - 1].style.borderRight = 'none';
+        lastPage2[lastPage2.length - 1].style.borderRight = 'none';
+    }
+  
 })
 
 mut.observe(document, optionMut);
@@ -1253,14 +1266,7 @@ window.onload = function() {
         }
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
-    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
-        document.querySelector('.pagination1').style.opacity = '0';
-        document.querySelector('.pagination2').style.opacity = '0';
-    }
-    let lastPage1 = document.querySelectorAll('.pagination1 .ais-Pagination-item--page');
-    let lastPage2 = document.querySelectorAll('.pagination2 .ais-Pagination-item--page');
-    lastPage1[lastPage1.length - 1].style.borderRight = 'none';
-    lastPage2[lastPage2.length - 1].style.borderRight = 'none';
+
 };
 
 window.dataLayer = window.dataLayer || [];
