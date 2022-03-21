@@ -1228,7 +1228,7 @@ window.onload = function() {
 //                 loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
 //                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
                 let load = isSearchStalled ? 'loading' : 'load';
-                loadingContainer.classList.add(load)
+                loadingContainer.classList.setAttribute('class',load)
                 
                 console.log(isSearchStalled)
                 
