@@ -1206,17 +1206,14 @@ window.onload = function() {
             templates: {
                    item: (data) => {
                     console.log(data)
-                    if (data.label.split('>')[0].includes(categoryFacet.split(':')[1])) {
-
+                    if (data.label.includes(categoryFacet.split(':')[1])) {
                         list.push(data)
                     }
-                    
                 }
             },
 
         }),
-    ]);
-    
+    ]); 
 
     search.start();
 
