@@ -698,7 +698,7 @@ function changeSelect() {  // ${changeSelect(event.target)}
     })
 }
 
-let list = [];
+let list = [], listCount = 0;
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
@@ -734,8 +734,9 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0 && document.querySelector('.list_subcategory') != null) {
+    if (list.length > 0 && document.querySelector('.list_subcategory') != null && listCount == 0) {
         mut.disconnect();
+        listCount = 1;
         for (let i = 0; i < list.length; i++) {
             let valueArr = list[i].value.split(' > ');
             let valueLast = valueArr[valueArr.length - 1];
