@@ -734,7 +734,7 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0 && document.querySelector('.list_subcategory li') == null) {
+    if (list.length > 0 && document.querySelector('.list_subcategory') != null) {
         mut.disconnect();
         for (let i = 0; i < list.length; i++) {
             let valueArr = list[i].value.split(' > ');
