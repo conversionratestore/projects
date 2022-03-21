@@ -1108,7 +1108,7 @@ window.onload = function() {
         instantsearch.widgets.sortBy({
             container: '#sort-name',
             items: [
-                { label: 'Sort by', value: 'staging_products', selected: true, disabled: true },
+                { label: 'Sort by', value: 'staging_products', selected: true, disable: true },
                 { label: 'Product Name ASC', value: 'staging_products' },
                 { label: 'Product Name DESC', value: 'staging_products_name_desc' },
             ],
