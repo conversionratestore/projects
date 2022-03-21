@@ -1204,10 +1204,10 @@ window.onload = function() {
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
             limit: 20,
             templates: {
-                 if (data.label.split('>')[0].includes(categoryFacet.split(':')[1])) {
-                    console.log(data),
-                    list.push(data)
-                 }
+                  console.log(data)
+                  if (data.label.split('>')[0].includes(categoryFacet.split(':')[1])) {
+                        list.push(data)
+                  }
             },
 
         }),
