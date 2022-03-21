@@ -1227,7 +1227,8 @@ window.onload = function() {
 
 //                 loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
 //                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-                loadingContainer.classList.add(isSearchStalled ? 'load' : '')
+               let load = isSearchStalled ? 'load' : '';
+                loadingContainer.classList.add(load)
             },
         },
     ])
