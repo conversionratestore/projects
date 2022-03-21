@@ -1217,28 +1217,7 @@ window.onload = function() {
         }),
     ]);
     
-    const listingContainer = document.querySelector('#listing_container')
-    const loadingContainer = document.querySelector('#loading') 
 
-    search.addWidgets([
-        {
-            render({ searchMetadata = {} }) {
-                const { isSearchStalled } = searchMetadata
-
-//                 loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-//                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-                let load = isSearchStalled ? 'loading' : 'load';
-                loadingContainer.setAttribute('class',load)
-                
-                console.log(isSearchStalled)
-                
-                if (!isSearchStalled) {
-                   
-                    document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
-                }
-            },
-        },
-    ])
     search.start();
 
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
@@ -1304,6 +1283,27 @@ window.onload = function() {
 
 };
 
+search.addWidgets([
+    {
+        render({ searchMetadata = {} }) {
+            const { isSearchStalled } = searchMetadata
+            const loadingContainer = document.querySelector('#loading') 
+
+            // const listingContainer = document.querySelector('#listing_container')
+            // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+            // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+
+            let load = isSearchStalled ? 'loading' : 'load';
+            loadingContainer.setAttribute('class',load)
+            console.log(isSearchStalled)
+            if (!isSearchStalled) {
+               
+                document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
+            }
+            
+        },
+    },
+])
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
