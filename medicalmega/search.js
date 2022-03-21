@@ -756,6 +756,11 @@ let mut = new MutationObserver(function (muts) {
             
         }
     }
+    mut.observe(document, optionMut);
+    if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
+        mut.disconnect();
+        document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
+    }
 //     mut.observe(document, optionMut);
 //     if (document.querySelectorAll('.ais-Pagination-item--page')) {
 //         mut.disconnect();
@@ -1295,15 +1300,11 @@ search.addWidgets([
 
             let load = isSearchStalled ? 'loading' : 'load';
             loadingContainer.setAttribute('class',load)
-            console.log(isSearchStalled)
-            if (!isSearchStalled && document.querySelector('#sort-name .ais-SortBy-option') != null) {
-               
-                document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
-            }
-            
+
         },
     },
 ])
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
