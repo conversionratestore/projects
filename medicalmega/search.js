@@ -1225,8 +1225,9 @@ window.onload = function() {
             render({ searchMetadata = {} }) {
                 const { isSearchStalled } = searchMetadata
 
-                loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-                listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+//                 loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+//                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+                loadingContainer.classList.add(isSearchStalled ? 'load' : '')
             },
         },
     ])
