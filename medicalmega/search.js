@@ -1296,7 +1296,7 @@ search.addWidgets([
             let load = isSearchStalled ? 'loading' : 'load';
             loadingContainer.setAttribute('class',load)
             console.log(isSearchStalled)
-            if (!isSearchStalled) {
+            if (!isSearchStalled && document.querySelector('#sort-name .ais-SortBy-option') != null) {
                
                 document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
             }
