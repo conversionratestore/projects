@@ -1202,7 +1202,7 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            limit: 20,
+            limit: 40,
             templates: {
                    item: (data) => {
                     console.log(data)
