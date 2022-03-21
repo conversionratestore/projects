@@ -1229,6 +1229,13 @@ window.onload = function() {
 //                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
                 let load = isSearchStalled ? 'loading' : 'load';
                 loadingContainer.classList.add(load)
+                
+                console.log(isSearchStalled)
+                
+                if (!isSearchStalled) {
+                   
+                    document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
+                }
             },
         },
     ])
