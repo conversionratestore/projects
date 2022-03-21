@@ -340,6 +340,7 @@ let styles = `
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         height: 36px;
+        word-break: break-word;
     }
     .list_subcategory li img {
         border: 1px solid #EEEEEE;
