@@ -1227,7 +1227,7 @@ window.onload = function() {
 
 //                 loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
 //                 listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-               let load = isSearchStalled ? 'load' : '';
+                let load = isSearchStalled ? 'loading' : 'load';
                 loadingContainer.classList.add(load)
             },
         },
