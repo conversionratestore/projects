@@ -1108,7 +1108,7 @@ window.onload = function() {
         instantsearch.widgets.sortBy({
             container: '#sort-name',
             items: [
-                { label: 'Sort by', value: 'staging_products', default: true },
+                { label: 'Sort by', value: 'staging_products', default: true, disabled: true },
                 { label: 'Product Name ASC', value: 'staging_products' },
                 { label: 'Product Name DESC', value: 'staging_products_name_desc' },
             ],
@@ -1217,18 +1217,19 @@ window.onload = function() {
         }),
     ]);
     
-    const loadingContainer = document.querySelector('#listing_container') //document.querySelector('#loading')
+    const listingContainer = document.querySelector('#listing_container')
+    const loadingContainer = document.querySelector('#loading') 
 
     search.addWidgets([
         {
             render({ searchMetadata = {} }) {
                 const { isSearchStalled } = searchMetadata
 
-                loadingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+                loadingContainer.style = isSearchStalled ? 'Loading..' : ''
+                listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
             },
         },
     ])
-    
     search.start();
 
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
