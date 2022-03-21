@@ -885,10 +885,10 @@ window.onload = function() {
 
     //add elements listing
     if (window.location.pathname == '/') {
-        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div>`);
+        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div><div id="loading"></div>`);
     }
     if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;"></div>`);
+        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;"></div><div id="loading"></div>`);
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
