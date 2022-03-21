@@ -1216,7 +1216,19 @@ window.onload = function() {
 
         }),
     ]);
+    
+    const loadingContainer = document.querySelector('#listing_container') //document.querySelector('#loading')
 
+    search.addWidgets([
+        {
+            render({ searchMetadata = {} }) {
+                const { isSearchStalled } = searchMetadata
+
+                loadingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+            },
+        },
+    ])
+    
     search.start();
 
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
