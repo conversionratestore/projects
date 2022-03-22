@@ -1027,7 +1027,6 @@ window.onload = function() {
             if (i > 0) {
                 categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
             }
-            
            
             if (i == categoriesLink.length - 1) {
                 console.log(categoryCrumbs)
@@ -1053,7 +1052,7 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : categoryFacet]
+            facetFilters: [!categoryFacet.includes('>') ? `"category:${document.querySelector('.category b').innerText}", ${categoryFacet}` : categoryFacet]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
