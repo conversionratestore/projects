@@ -563,6 +563,9 @@ let styles = `
     .ais-Pagination-item--selected a {
         font-weight: 700;
     }
+    #listing_container.loading {
+        display: none!important;
+    }
     </style>`
 
 let header = `
@@ -755,21 +758,18 @@ let mut = new MutationObserver(function (muts) {
                     </li>`)
                 } 
             });
-            
         }
     }
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
+
+        if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
+            document.querySelector('.pagination1').style.opacity = '0';
+            document.querySelector('.pagination2').style.opacity = '0';  
+        }
     }
-    mut.observe(document, optionMut);
-    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
-        mut.disconnect();
-        document.querySelector('.pagination1').style.opacity = '0';
-        document.querySelector('.pagination2').style.opacity = '0';  
-    }
-  
 })
 
 mut.observe(document, optionMut);
@@ -886,10 +886,10 @@ window.onload = function() {
 
     //add elements listing
     if (window.location.pathname == '/') {
-        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div><div id="loading"></div>`);
+        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div><div id="loading">Loading...</div>`);
     }
     if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;"></div><div id="loading"></div>`);
+        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;"></div><div id="loading">Loading...</div>`);
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
@@ -1267,14 +1267,13 @@ search.addWidgets([
     {
         render({ searchMetadata = {} }) {
             const { isSearchStalled } = searchMetadata
+            
+            const listingContainer = document.querySelector('#listing_container') 
             const loadingContainer = document.querySelector('#loading') 
 
-            // const listingContainer = document.querySelector('#listing_container')
-            // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-            // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-
-            let load = isSearchStalled ? 'loading' : 'load';
-            loadingContainer.setAttribute('class', load)
+            loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+            let load = isSearchStalled ? 'loading' : '';
+            listingContainer.setAttribute('class', load)
 
         },
     },
