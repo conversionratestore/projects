@@ -764,6 +764,11 @@ let mut = new MutationObserver(function (muts) {
                             <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${valueLast}">
                         </a>
                     </li>`)
+
+                    document.querySelectorAll('.list_subcategory li a')[i].addEventListener('click', (e) => {
+                        actionDataLayer =  `Click on subcategory icon`;
+                        pushDataLayer(actionDataLayer)
+                    })
                 } 
             });
         }
@@ -777,6 +782,10 @@ let mut = new MutationObserver(function (muts) {
             document.querySelector('.pagination1').style.opacity = '0';
             document.querySelector('.pagination2').style.opacity = '0';  
         }
+        document.querySelector('#sort-name select').addEventListener('click', (e) => {
+            actionDataLayer =  `Click on sort by field`;
+            pushDataLayer(actionDataLayer)
+        })
     }
 })
 
@@ -1256,6 +1265,10 @@ window.onload = function() {
     }
 
     //add text search result
+    document.querySelector('#search-box input').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on search field';
+        pushDataLayer(actionDataLayer)  
+    })
     document.querySelector('#search-box input').addEventListener('input', (e) => {
         let target = e.target;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
