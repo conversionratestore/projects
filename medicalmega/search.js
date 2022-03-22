@@ -991,15 +991,12 @@ window.onload = function() {
             if (i == categoriesLink.length - 1) {
                 console.log(categoryCrumbs)
                 if (categoriesLink.length > 1) {
-
                     categoryFacet = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
-                //     categoryFacet = `categories.lvl${i}:${categoriesLink[i].innerText + " > " + document.querySelector('.category b').innerText}`
-                  
                 } 
                 else {
                     categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
                 }
-                // caterogylvl = document.querySelector('.category b').innerText;
+           
                 console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
                 lvl = categoryFacet.split(':')[0].split('lvl')[1];
  
@@ -1032,7 +1029,7 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
-            searchAsYouType: false, //window.location.pathname.includes('/category') ? true : false
+            searchAsYouType: window.location.pathname.includes('/category') ? true : false, 
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1131,18 +1128,6 @@ window.onload = function() {
         }),
         instantsearch.widgets.pagination({
             container: '.pagination2',
-            // totalPages: 9,
-            // showFirst: false,
-            // showLast: false,
-            // paginationLimitedTo: '4',
-            // offset: '4',
-            templates: {
-                // previous: 'Prev',
-                // next: 'Next',
-                item: (data) => {
-                    console.log(data)
-                }
-            },
         }),
         instantsearch.widgets.stats({
             container: '#stats-container',
@@ -1273,9 +1258,6 @@ window.onload = function() {
     if (window.location.pathname.includes('/category')) {
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
-        if (document.querySelector('.listing ul') != null) {
-            // document.querySelector('.list_subcategory').innerHTML = document.querySelector('.listing ul') .innerHTML;
-        }
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
@@ -1292,7 +1274,7 @@ search.addWidgets([
             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
 
             let load = isSearchStalled ? 'loading' : 'load';
-            loadingContainer.setAttribute('class',load)
+            loadingContainer.setAttribute('class', load)
 
         },
     },
