@@ -563,9 +563,7 @@ let styles = `
     .ais-Pagination-item--selected a {
         font-weight: 700;
     }
-    #listing_container.loading {
-        display: none!important;
-    }
+
     #listing_container.loading:before {
         content: '';
         position: absolute;
