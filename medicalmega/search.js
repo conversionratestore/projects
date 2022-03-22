@@ -1017,6 +1017,7 @@ window.onload = function() {
     });
 
     let categoryFacet = '*';
+    let category = '';
     let categoryCrumbs = '';
     let lvl = '';
     if (window.location.pathname.includes('/category')) {
@@ -1037,9 +1038,12 @@ window.onload = function() {
                     categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
                 }
            
+                if (!categoryFacet.includes('>')) {
+                    category = `category:${document.querySelector('.category b').innerText}`
+                }
                 console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
                 lvl = categoryFacet.split(':')[0].split('lvl')[1];
- 
+                
             }
         }
     } else {
@@ -1052,7 +1056,8 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [!categoryFacet.includes('>') ? `"category:${document.querySelector('.category b').innerText}", "${categoryFacet}"` : categoryFacet]
+            // facetFilters: [categoryFacet,category]
+            facets: [categoryFacet.includes('>') ? categoryFacet : '*', category != '' ? category : '']
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
