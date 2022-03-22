@@ -669,7 +669,7 @@ function pushDataLayer(action,label) {
     }
 }
 
-function changeSelect() {  // ${changeSelect(event.target)}
+function changeSelect() { 
                      
     document.querySelectorAll('.product-variant').forEach(select => {
         select.addEventListener('change', (e) => {
@@ -750,7 +750,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-    mut.observe(document, optionMut);
+    
     if (list.length > 0 && document.querySelector('.list_subcategory') != null && listCount == 0) {
         mut.disconnect();
         listCount = 1;
@@ -1237,7 +1237,8 @@ mut.observe(document, optionMut);
         
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
-            attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
+            attribute:  [`${categoryFacet.split(':')[0].replace(lvl,'') + lvlNew}`,'category'], //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
+
             limit: 80,
             templates: {
                    item: (data) => {
