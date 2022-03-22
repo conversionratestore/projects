@@ -710,6 +710,11 @@ function changeSelect() {  // ${changeSelect(event.target)}
     })
 }
 
+function subcategoryEvent() {
+    actionDataLayer =  `Click on subcategory icon`;
+    pushDataLayer(actionDataLayer)
+}
+
 let list = [], listCount = 0;
 let count = 0;
 
@@ -759,19 +764,13 @@ let mut = new MutationObserver(function (muts) {
                 if (data.nbHits != 0) {
                     document.querySelector('.list_subcategory').insertAdjacentHTML('beforeend', `
                     <li>
-                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
+                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent()">
                             <span>${valueLast}</span>
                             <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${valueLast}">
                         </a>
                     </li>`)
-
-                   
                 } 
             });
-            document.querySelectorAll('.list_subcategory li a')[i].addEventListener('click', (e) => {
-                actionDataLayer =  `Click on subcategory icon`;
-                pushDataLayer(actionDataLayer)
-            })
         }
     }
     mut.observe(document, optionMut);
@@ -1316,7 +1315,6 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
-
 };
 
 window.dataLayer = window.dataLayer || [];
