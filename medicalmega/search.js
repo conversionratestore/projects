@@ -1057,7 +1057,7 @@ window.onload = function() {
             // attributesForFaceting
             // snippetEllipsisText: '...',
             // facetFilters: [categoryFacet],
-            attributesForFaceting: [
+            facets: [
                 categoryFacet,
                 category
               ]
