@@ -1056,7 +1056,11 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [categoryFacet]
+            // facetFilters: [categoryFacet],
+            attributesForFaceting: [
+                categoryFacet,
+                category
+              ]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
@@ -1226,13 +1230,12 @@ window.onload = function() {
                     return checkbox
                 },
             },
-
         }),
         
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
-            limit: 100,
+            limit: 80,
             templates: {
                    item: (data) => {
                     console.log(data)
