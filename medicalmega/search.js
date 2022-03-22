@@ -1053,7 +1053,7 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [categoryFacet]
+            facetFilters: [!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : categoryFacet]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
@@ -1228,7 +1228,7 @@ window.onload = function() {
         
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
-            attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
+            attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
             limit: 100,
             templates: {
                    item: (data) => {
