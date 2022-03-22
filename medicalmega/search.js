@@ -802,7 +802,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -1318,7 +1318,7 @@ mut.observe(document, optionMut);
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
-// };
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
