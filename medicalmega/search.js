@@ -101,7 +101,6 @@ let styles = `
         height: 100%;
         z-index: 1; 
         background: rgba(255,255,255,0.8);
-//         display: none;
     }
     .ais-SearchBox-loadingIndicator img { 
         width: 30px;
@@ -113,6 +112,7 @@ let styles = `
     #listing_container {
         padding: 10px;
         display: none;
+        position: relative;
     }
     .shoppingcart a {
         margin: 0;
@@ -566,6 +566,16 @@ let styles = `
     #listing_container.loading {
         display: none!important;
     }
+    #listing_container.loading:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background: #fff url(https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif) no-repeat center / 30px;
+    }
     </style>`
 
 let header = `
@@ -623,7 +633,7 @@ const APPLICATION_ID = `PXDJAQHDPZ`;
 const requestOptions = {
     headers: {
       'X-Algolia-API-Key': `${API_KEY}`,
-      'X-Algolia-Application-Id': `${APPLICATION_ID}`
+     'X-Algolia-Application-Id': `${APPLICATION_ID}`
     }, 
     method: 'GET'
 }
@@ -764,7 +774,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
-
+        document.querySelector('#listing_container').classList.remove('loading');
         if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
             document.querySelector('.pagination1').style.opacity = '0';
             document.querySelector('.pagination2').style.opacity = '0';  
@@ -886,10 +896,10 @@ window.onload = function() {
 
     //add elements listing
     if (window.location.pathname == '/') {
-        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container"></div><div id="loading"></div>`);
+        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container" class="loading"></div>`);
     }
     if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;"></div><div id="loading"></div>`);
+        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" class="loading" style="display: none;"></div>`);
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
@@ -1263,21 +1273,21 @@ window.onload = function() {
 
 };
 
-search.addWidgets([
-    {
-        render({ searchMetadata = {} }) {
-            const { isSearchStalled } = searchMetadata
+// search.addWidgets([
+//     {
+//         render({ searchMetadata = {} }) {
+//             const { isSearchStalled } = searchMetadata
 
-            const listingContainer = document.querySelector('#listing_container') 
-            const loadingContainer = document.querySelector('#loading') 
+//             const listingContainer = document.querySelector('#listing_container') 
+//             const loadingContainer = document.querySelector('#loading') 
 
-            loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-            let load = isSearchStalled ? 'loading' : '';
-            listingContainer.setAttribute('class', load)
+//             loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+//             let load = isSearchStalled ? 'loading' : '';
+//             listingContainer.setAttribute('class', load)
 
-        },
-    },
-])
+//         },
+//     },
+// ])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
