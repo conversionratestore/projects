@@ -765,12 +765,13 @@ let mut = new MutationObserver(function (muts) {
                         </a>
                     </li>`)
 
-                    document.querySelectorAll('.list_subcategory li a')[i].addEventListener('click', (e) => {
-                        actionDataLayer =  `Click on subcategory icon`;
-                        pushDataLayer(actionDataLayer)
-                    })
+                   
                 } 
             });
+            document.querySelectorAll('.list_subcategory li a')[i].addEventListener('click', (e) => {
+                actionDataLayer =  `Click on subcategory icon`;
+                pushDataLayer(actionDataLayer)
+            })
         }
     }
     mut.observe(document, optionMut);
@@ -802,7 +803,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-// window.onload = function() {
+window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -1316,7 +1317,7 @@ mut.observe(document, optionMut);
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
-// };
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
