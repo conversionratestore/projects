@@ -797,6 +797,16 @@ window.onload = function() {
 
     document.querySelector('.sticky-top').after(document.querySelector('.nav'));
     document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
+    document.querySelector('.nav-menu_login li a').addEventListener('click', (e) => {
+        actionDataLayer =  `Click on ${e.target.innerText.split(',')[1]} button in menu`;
+        pushDataLayer(action)
+    })
+    document.querySelector('.header .nav a').addEventListener('click', (e) => {
+        actionDataLayer =  `Click on menu categories for the User`;
+        labelDataLayer =  e.target.innerText;
+        pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+
     document.querySelectorAll('.nav li').forEach(el => {
         if (el.classList.contains('hide-mobile')) {
             el.classList.remove('hide-mobile','hide-mobile-landscape')
@@ -879,7 +889,6 @@ window.onload = function() {
         document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
             if (index > 4) el.parentElement.hidden = true;
             el.addEventListener('click', (e) => {
-
                 localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
                 if (index < 5) {
                     actionDataLayer = 'Click on most popular categories items';
@@ -1196,7 +1205,7 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            limit: 40,
+            limit: 100,
             templates: {
                    item: (data) => {
                     console.log(data)
