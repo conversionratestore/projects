@@ -1056,10 +1056,11 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            // facetFilters: [categoryFacet],
-            facetFilters: [
-                window.location.pathname.includes('/category') ? document.querySelector('.category b').innerText : "*"
-              ]
+            // facetFilters: [categoryFacet , `category:${window.location.pathname.includes('/category') ? document.querySelector('.category b').innerText : ""}`],
+            attributesForFaceting: [
+                'filterOnly(category)',
+                `searchable(${categoryFacet})`
+            ]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
@@ -1245,6 +1246,7 @@ window.onload = function() {
             },
 
         }),
+      
     ]); 
 
     search.start();
