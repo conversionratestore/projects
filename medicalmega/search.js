@@ -786,6 +786,17 @@ let mut = new MutationObserver(function (muts) {
             actionDataLayer =  `Click on sort by field`;
             pushDataLayer(actionDataLayer)
         })
+
+        document.querySelectorAll('.ais-RefinementList-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (item.closest('.filter_brands')) {
+                    actionDataLayer =  `Click on one of the brand items on filters`;
+                } else {
+                    actionDataLayer =  `Click on one of the price items on filters`;
+                }
+                pushDataLayer(actionDataLayer)
+            })
+        })
     }
 })
 
