@@ -1057,7 +1057,7 @@ window.onload = function() {
             // attributesForFaceting
             // snippetEllipsisText: '...',
             // facetFilters: [categoryFacet,category]
-            facets: [categoryFacet, category != '' ? category : '']
+            facets: [categoryFacet, category]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
