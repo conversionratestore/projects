@@ -1052,7 +1052,7 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [!categoryFacet.includes('>') ? `"category:${document.querySelector('.category b').innerText}", ${categoryFacet}` : categoryFacet]
+            facetFilters: [!categoryFacet.includes('>') ? `"category:${document.querySelector('.category b').innerText}", "${categoryFacet}"` : categoryFacet]
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
