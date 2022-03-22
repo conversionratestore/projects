@@ -799,7 +799,7 @@ window.onload = function() {
     document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
     document.querySelector('.nav-menu_login li a').addEventListener('click', (e) => {
         actionDataLayer =  `Click on ${e.target.innerText.split(',')[1]} button in menu`;
-        pushDataLayer(action)
+        pushDataLayer(actionDataLayer)
     })
     document.querySelector('.header .nav a').addEventListener('click', (e) => {
         actionDataLayer =  `Click on menu categories for the User`;
@@ -875,7 +875,11 @@ window.onload = function() {
 
     }); //open all category
 
-    document.querySelector('.btn_back').addEventListener('click', () => viewAllCategories(true)); //hide all category
+    document.querySelector('.btn_back').addEventListener('click', () => {
+        viewAllCategories(true)
+        actionDataLayer = 'Click on back Main Menu button';
+        pushDataLayer(actionDataLayer)
+    }); //hide all category
 
     requestAllCaterories.then(data => {
         console.log(data)
