@@ -802,7 +802,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -1079,7 +1079,7 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
-            searchAsYouType: window.location.pathname.includes('/category') || document.querySelector('#listing_container').style.display == 'block' ? true : false, 
+            searchAsYouType: false, //window.location.pathname.includes('/category') || document.querySelector('#listing_container').style.display == 'block' ? true : false
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1258,6 +1258,7 @@ window.onload = function() {
 
     function inputChange() {
         let value = document.querySelector('#search-box input').value;
+        document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         if (!window.location.pathname.includes('/category')) {
             if (value.length > 0) {
                 document.querySelector('#listing_container').style.display = 'block';
@@ -1290,19 +1291,19 @@ window.onload = function() {
         actionDataLayer = 'Click on search field';
         pushDataLayer(actionDataLayer)  
     })
-    document.querySelector('#search-box input').addEventListener('input', (e) => {
-        let target = e.target;
-        document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
-        if (target.value.length < 1 && !window.location.pathname.includes('/category')) {
-            document.querySelector('#listing_container').style.display = 'none';
-            if (window.location.pathname == '/') {
-                document.querySelector('.homepage-container').style.display = 'block';
-            }
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'block';
-            }
-        }
-    })
+    // document.querySelector('#search-box input').addEventListener('input', (e) => {
+    //     let target = e.target;
+    //     // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
+    //     if (target.value.length < 1 && !window.location.pathname.includes('/category')) {
+    //         document.querySelector('#listing_container').style.display = 'none';
+    //         if (window.location.pathname == '/') {
+    //             document.querySelector('.homepage-container').style.display = 'block';
+    //         }
+    //         if (document.querySelector('#mainbody') != null) {
+    //             document.querySelector('#mainbody').style.display = 'block';
+    //         }
+    //     }
+    // })
 
     document.querySelector('#search-box input').addEventListener('keypress', (e) => {
         if (e.keyCode == '13') inputChange()
@@ -1315,7 +1316,8 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
-};
+
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
