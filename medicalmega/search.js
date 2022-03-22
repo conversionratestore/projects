@@ -802,7 +802,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -1056,20 +1056,22 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
+            facetFilters: [categoryFacet],
             // facetFilters: [categoryFacet , `category:${window.location.pathname.includes('/category') ? document.querySelector('.category b').innerText : ""}`],
-            attributesForFaceting: [
-                'filterOnly(category)',
-                `searchable(${categoryFacet})`
-            ]
+            // attributesForFaceting: [
+            // searchableAttributes: [
+            //     'category,categories.lvl0'
+            // ]  
         }),
+
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
             items: [
             { label: '5', value: 5 },
             { label: '10', value: 10 },
             { label: '15', value: 15 },
-            { label: '25', value: 25 },
-            { label: '50', value: 50, default: true },
+            { label: '25', value: 25, default: true },
+            { label: '50', value: 50},
             { label: '100', value: 100 }
             ],
         }), 
@@ -1085,6 +1087,7 @@ window.onload = function() {
         instantsearch.widgets.hits({
             container: '#hits',
             // showLoadingIndicator: true,
+            // attributesToHighlight: ['name', 'description','category'],
             templates: {
                 empty: `No Item Found`,
                 item: (hit) => {
@@ -1112,7 +1115,7 @@ window.onload = function() {
                                 <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}"></a></span>
                             </div>
                             <div class="list_type4">
-                                <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
+                                <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name} </a></h3>
                                 <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
                                     <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
                                         <span style="display:block; font-size:12px;">Manufacturer: ${hit.manufacturer}</span>
@@ -1313,7 +1316,7 @@ window.onload = function() {
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
-};
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
