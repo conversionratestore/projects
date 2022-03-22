@@ -1037,7 +1037,7 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
-            searchAsYouType: window.location.pathname.includes('/category') ? true : false, 
+            searchAsYouType: window.location.pathname.includes('/category') || document.querySelector('#listing_container').style.display == 'block' ? true : false, 
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1270,22 +1270,6 @@ window.onload = function() {
     }
 
 };
-
-// search.addWidgets([
-//     {
-//         render({ searchMetadata = {} }) {
-//             const { isSearchStalled } = searchMetadata
-
-//             const listingContainer = document.querySelector('#listing_container') 
-//             const loadingContainer = document.querySelector('#loading') 
-
-//             loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-//             let load = isSearchStalled ? 'loading' : '';
-//             listingContainer.setAttribute('class', load)
-
-//         },
-//     },
-// ])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
