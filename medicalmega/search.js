@@ -750,7 +750,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-    mut.observe(document, optionMut);
+  
     if (list.length > 0 && document.querySelector('.list_subcategory') != null && listCount == 0) {
         mut.disconnect();
         listCount = 1;
@@ -1067,12 +1067,12 @@ window.onload = function() {
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
             items: [
-            { label: '5', value: 5 },
-            { label: '10', value: 10 },
-            { label: '15', value: 15 },
-            { label: '25', value: 25, default: true },
-            { label: '50', value: 50},
-            { label: '100', value: 100 }
+                { label: '5', value: 5 },
+                { label: '10', value: 10 },
+                { label: '15', value: 15 },
+                { label: '25', value: 25, default: true },
+                { label: '50', value: 50},
+                { label: '100', value: 100 }
             ],
         }), 
         instantsearch.widgets.searchBox({
@@ -1237,8 +1237,7 @@ window.onload = function() {
         
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
-            attribute:  [`${categoryFacet.split(':')[0].replace(lvl,'') + lvlNew}`,'category'], //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
-
+            attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
             limit: 80,
             templates: {
                    item: (data) => {
