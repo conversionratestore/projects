@@ -1057,7 +1057,7 @@ window.onload = function() {
             // attributesForFaceting
             // snippetEllipsisText: '...',
             // facetFilters: [categoryFacet],
-            facets: [
+            facetFilters: [
                 window.location.pathname.includes('/category') ? document.querySelector('.category b').innerText : "*"
               ]
         }),
