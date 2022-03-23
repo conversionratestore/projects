@@ -750,7 +750,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-  
+    mut.observe(document, optionMut);
     if (list.length > 0 && document.querySelector('.list_subcategory') != null && listCount == 0) {
         mut.disconnect();
         listCount = 1;
