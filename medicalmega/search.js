@@ -324,7 +324,7 @@ let styles = `
         display: flex;
         flex-wrap: wrap;
     }
-     #manufacturer .ais-RefinementList-list {
+    #manufacturer .ais-RefinementList-list {
         max-height: 300px;
         overflow-y: auto;
     }
@@ -587,6 +587,13 @@ let styles = `
         z-index: 99;
         background: #fff url(https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif) no-repeat center / 30px;
     }
+    .ais-RefinementList-showMore {
+        background: transparent;
+        border: none;
+        text-decoration: underline;
+        margin: 0 auto;
+        display: block;
+    }
     </style>`
 
 let header = `
@@ -723,13 +730,14 @@ function changeSelect() {  // ${changeSelect(event.target)}
     })
 }
 
-function subcategoryEvent() {
+function subcategoryEvent(e) {
+    e.stopImmediatePropagation();
     actionDataLayer =  `Click on subcategory icon`;
     pushDataLayer(actionDataLayer)
 }
 
-let list = [], listCount = 0;
 let count = 0;
+let list = [], listCount = 0;
 
 let mut = new MutationObserver(function (muts) {
     if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
@@ -764,29 +772,19 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0 && document.querySelector('.list_subcategory') != null && listCount == 0) {
+    if (list.length > 0) {
         mut.disconnect();
-        listCount = 1;
         for (let i = 0; i < list.length; i++) {
-            let valueArr = list[i].value.split(' > ');
-            let valueLast = valueArr[valueArr.length - 1];
-
             console.log(list[i])
-            fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(data => {
-                console.log(data) 
-                if (data.nbHits != 0) {
-                    document.querySelector('.list_subcategory').insertAdjacentHTML('beforeend', `
-                    <li>
-                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent()">
-                            <span>${valueLast}</span>
-                            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${data.hits[0].image}" alt="${valueLast}">
-                        </a>
-                    </li>`)
-                } 
-            });
-            
+           
+            document.querySelectorAll('.list_subcategory img').forEach(el => {
+                if (list[i].name == el.alt) {
+                    el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${list[i].src}`
+                }
+            })
         }
     }
+
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
@@ -953,7 +951,6 @@ window.onload = function() {
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
         <div class="list_subcategory"></div>
-        <div class="lvl_subcategory" style="display: none"></div>
         <span class="result_for_search"></span>
         <div class="justify-content-between">
             <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
@@ -1245,16 +1242,41 @@ window.onload = function() {
         }),
         
         instantsearch.widgets.refinementList({
-            container: `.lvl_subcategory`,
+            container: `.list_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            root: categoryFacet.split(':')[0],
-            limit: 40,
+            // root: categoryFacet.split(':')[0],
+            // cssClasses: {
+            //     root: 'ais-RefinementList'
+            // },
+            showMore: true,
+            limit: 8,
+            sortBy: ['isRefined'],
+            transformItems(items) {
+                return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
+              
+            },
             templates: {
-                   item: (data) => {
-                    console.log(data)
+                item: (data) => {
                     if (data.label.includes(categoryFacet.split(':')[1])) {
-                        list.push(data)
-                    }
+                        let valueArr = data.value.split(' > ');
+                        let valueLast = valueArr[valueArr.length - 1];
+
+                        console.log(data)
+                        fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
+                            console.log(dataItem) 
+                            list.push({
+                                "src" : dataItem.hits[0].image,
+                                "name": dataItem.query, 
+                            })
+                        });
+
+                        return `
+                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent()">
+                                <span>${valueLast}</span>
+                                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
+                            </a>
+                        `
+                    } 
                 }
             },
 
@@ -1332,22 +1354,22 @@ window.onload = function() {
 
 };
 
-search.addWidgets([
-    {
-        render({ searchMetadata = {} }) {
-            const { isSearchStalled } = searchMetadata
-            const listContainer = document.querySelector('#listing_container') 
+// search.addWidgets([
+//     {
+//         render({ searchMetadata = {} }) {
+//             const { isSearchStalled } = searchMetadata
+//             const listContainer = document.querySelector('#listing_container') 
 
-            // const listingContainer = document.querySelector('#listing_container')
-            // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-            // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+//             // const listingContainer = document.querySelector('#listing_container')
+//             // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+//             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
 
-            let load = isSearchStalled ? 'loading' : '';
-            listContainer.setAttribute('class', load)
+//             let load = isSearchStalled ? 'loading' : '';
+//             listContainer.setAttribute('class', load)
 
-        },
-    },
-])
+//         },
+//     },
+// ])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
