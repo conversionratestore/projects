@@ -564,7 +564,7 @@ let styles = `
         font-weight: 700;
     }
     #listing_container.loading:before {
-//         content: '';
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -787,6 +787,7 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelectorAll('.ais-RefinementList-item').forEach(item => {
             item.addEventListener('click', (e) => {
+
                 if (item.closest('.filter_brands')) {
                     actionDataLayer =  `Click on one of the brand items on filters`;
                 } else {
@@ -1228,7 +1229,7 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            limit: 20,
+            limit: 40,
             templates: {
                    item: (data) => {
                     console.log(data)
@@ -1305,22 +1306,22 @@ window.onload = function() {
 
 };
 
-// search.addWidgets([
-//     {
-//         render({ searchMetadata = {} }) {
-//             const { isSearchStalled } = searchMetadata
-//             const loadingContainer = document.querySelector('#loading') 
+search.addWidgets([
+    {
+        render({ searchMetadata = {} }) {
+            const { isSearchStalled } = searchMetadata
+            const listContainer = document.querySelector('#listing_container') 
 
-//             // const listingContainer = document.querySelector('#listing_container')
-//             // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-//             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+            // const listingContainer = document.querySelector('#listing_container')
+            // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+            // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
 
-//             let load = isSearchStalled ? 'loading' : 'load';
-//             loadingContainer.setAttribute('class', load)
+            let load = isSearchStalled ? 'loading' : '';
+            listContainer.setAttribute('class', load)
 
-//         },
-//     },
-// ])
+        },
+    },
+])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
