@@ -1148,8 +1148,8 @@ window.onload = function() {
             container: '#sort-name',
             items: [
                 { label: 'Sort by', value: 'staging_products', selected: true, disable: true },
-                { label: 'Product Name ASC', value: 'staging_products_name_asc' },
-                { label: 'Product Name DESC', value: 'staging_products_name_desc' },
+                { label: 'Product Name ASC', value: 'staging_products_asc' },
+                { label: 'Product Name DESC', value: 'staging_products_desc' },
             ],
         }),
         instantsearch.widgets.pagination({
