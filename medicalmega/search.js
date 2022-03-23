@@ -324,6 +324,20 @@ let styles = `
         display: flex;
         flex-wrap: wrap;
     }
+     #manufacturer .ais-RefinementList-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    #manufacturer .ais-RefinementList-list:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 48px;
+        pointer-events: none;
+        background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
+    }
     .list_subcategory li a {
         min-height: 36px;
         padding: 8px;
