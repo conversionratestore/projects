@@ -1238,7 +1238,7 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
-            limit: 80,
+            limit: 40,
             templates: {
                    item: (data) => {
                     console.log(data)
