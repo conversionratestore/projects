@@ -826,6 +826,10 @@ window.onload = function() {
             el.classList.remove('hide-mobile','hide-mobile-landscape')
         }
     })
+    document.querySelector('.header .link_logo').addEventListener('click', (e) => {
+        actionDataLayer =  `Click on logo`;
+        pushDataLayer(actionDataLayer)
+    })
     document.querySelector('.header .nav a').addEventListener('click', (e) => {
         actionDataLayer =  `Click on menu categories for the User`;
         labelDataLayer =  e.target.innerText;
@@ -1051,7 +1055,7 @@ window.onload = function() {
     search.addWidgets([
         instantsearch.widgets.configure({
             // facets: ["*"],
-            attributesToSnippet: "*:7",
+            attributesToSnippet: "*:5",
             snippetEllipsisText: "…",
             facetFilters: [categoryFacet]
         }),
@@ -1148,8 +1152,8 @@ window.onload = function() {
             container: '#sort-name',
             items: [
                 { label: 'Sort by', value: 'staging_products', selected: true, disable: true },
-                { label: 'Product Name ASC', value: 'staging_products_asc' },
-                { label: 'Product Name DESC', value: 'staging_products_desc' },
+                { label: 'Product Name ASC', value: 'staging_products' },
+                { label: 'Product Name DESC', value: 'staging_products_name_desc' },
             ],
         }),
         instantsearch.widgets.pagination({
@@ -1229,6 +1233,7 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
+            root: categoryFacet.split(':')[0],
             limit: 40,
             templates: {
                    item: (data) => {
@@ -1275,9 +1280,16 @@ window.onload = function() {
                 document.querySelector('#mainbody').style.display = 'none';
             }
         }
+        
     }
 
     //add text search result
+    document.querySelector('#search-box input').addEventListener('click', (e) => {
+
+        actionDataLayer = 'Click on input search';
+        labelDataLayer = 'Filters'
+        pushDataLayer(actionDataLayer,labelDataLayer)  
+    })
     // document.querySelector('#search-box input').addEventListener('input', (e) => {
     //     let target = e.target;
     //     // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
