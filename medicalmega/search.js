@@ -1051,8 +1051,8 @@ window.onload = function() {
     search.addWidgets([
         instantsearch.widgets.configure({
             // facets: ["*"],
-            // attributesForFaceting
-            // snippetEllipsisText: '...',
+            attributesToSnippet: "*:7",
+            snippetEllipsisText: "…",
             facetFilters: [categoryFacet]
         }),
         instantsearch.widgets.hitsPerPage({
