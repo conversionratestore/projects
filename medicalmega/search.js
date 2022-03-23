@@ -1278,19 +1278,19 @@ window.onload = function() {
     }
 
     //add text search result
-    document.querySelector('#search-box input').addEventListener('input', (e) => {
-        let target = e.target;
-        // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
-        if (target.value.length < 1 && !window.location.pathname.includes('/category')) {
-            document.querySelector('#listing_container').style.display = 'none';
-            if (window.location.pathname == '/') {
-                document.querySelector('.homepage-container').style.display = 'block';
-            }
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'block';
-            }
-        }
-    })
+    // document.querySelector('#search-box input').addEventListener('input', (e) => {
+    //     let target = e.target;
+    //     // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
+    //     if (target.value.length < 1 && !window.location.pathname.includes('/category')) {
+    //         document.querySelector('#listing_container').style.display = 'none';
+    //         if (window.location.pathname == '/') {
+    //             document.querySelector('.homepage-container').style.display = 'block';
+    //         }
+    //         if (document.querySelector('#mainbody') != null) {
+    //             document.querySelector('#mainbody').style.display = 'block';
+    //         }
+    //     }
+    // })
 
     document.querySelector('#search-box input').addEventListener('keypress', (e) => {
         if (e.keyCode == '13') inputChange()
