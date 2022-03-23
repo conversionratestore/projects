@@ -113,6 +113,7 @@ let styles = `
     #listing_container {
         padding: 10px;
         display: none;
+        position: relative;
     }
     .shoppingcart a {
         margin: 0;
@@ -563,7 +564,7 @@ let styles = `
         font-weight: 700;
     }
     #listing_container.loading:before {
-        content: '';
+//         content: '';
         position: absolute;
         top: 0;
         left: 0;
