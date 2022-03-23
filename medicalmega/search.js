@@ -776,7 +776,9 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
-        
+       
+        document.querySelector('#listing_container').classList.remove('loading');
+      
         document.querySelector('#sort-name select').addEventListener('click', (e) => {
             actionDataLayer =  `Click on sort by field`;
             pushDataLayer(actionDataLayer)
