@@ -101,6 +101,7 @@ let styles = `
         height: 100%;
         z-index: 1; 
         background: rgba(255,255,255,0.8);
+//         display: none;
     }
     .ais-SearchBox-loadingIndicator img { 
         width: 30px;
@@ -112,7 +113,6 @@ let styles = `
     #listing_container {
         padding: 10px;
         display: none;
-        position: relative;
     }
     .shoppingcart a {
         margin: 0;
@@ -475,7 +475,6 @@ let styles = `
         transition: all 0.3s ease; 
         margin-top: 22px;
     }
-
     .ais-RefinementList-item--selected .check{
         background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/check.svg')
     }
@@ -563,7 +562,6 @@ let styles = `
     .ais-Pagination-item--selected a {
         font-weight: 700;
     }
-
     #listing_container.loading:before {
         content: '';
         position: absolute;
@@ -631,7 +629,7 @@ const APPLICATION_ID = `PXDJAQHDPZ`;
 const requestOptions = {
     headers: {
       'X-Algolia-API-Key': `${API_KEY}`,
-     'X-Algolia-Application-Id': `${APPLICATION_ID}`
+      'X-Algolia-Application-Id': `${APPLICATION_ID}`
     }, 
     method: 'GET'
 }
@@ -669,7 +667,7 @@ function pushDataLayer(action,label) {
     }
 }
 
-function changeSelect() { 
+function changeSelect() {  // ${changeSelect(event.target)}
                      
     document.querySelectorAll('.product-variant').forEach(select => {
         select.addEventListener('change', (e) => {
@@ -771,17 +769,14 @@ let mut = new MutationObserver(function (muts) {
                     </li>`)
                 } 
             });
+            
         }
     }
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
-        document.querySelector('#listing_container').classList.remove('loading');
-        if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length == 1) {
-            document.querySelector('.pagination1').style.opacity = '0';
-            document.querySelector('.pagination2').style.opacity = '0';  
-        }
+        
         document.querySelector('#sort-name select').addEventListener('click', (e) => {
             actionDataLayer =  `Click on sort by field`;
             pushDataLayer(actionDataLayer)
@@ -798,6 +793,7 @@ let mut = new MutationObserver(function (muts) {
             })
         })
     }
+
 })
 
 mut.observe(document, optionMut);
@@ -821,16 +817,15 @@ window.onload = function() {
         actionDataLayer =  `Click on ${e.target.innerText.split(',')[1]} button in menu`;
         pushDataLayer(actionDataLayer)
     })
-    document.querySelector('.header .nav a').addEventListener('click', (e) => {
-        actionDataLayer =  `Click on menu categories for the User`;
-        labelDataLayer =  e.target.innerText;
-        pushDataLayer(actionDataLayer,labelDataLayer)
-    })
-
     document.querySelectorAll('.nav li').forEach(el => {
         if (el.classList.contains('hide-mobile')) {
             el.classList.remove('hide-mobile','hide-mobile-landscape')
         }
+    })
+    document.querySelector('.header .nav a').addEventListener('click', (e) => {
+        actionDataLayer =  `Click on menu categories for the User`;
+        labelDataLayer =  e.target.innerText;
+        pushDataLayer(actionDataLayer,labelDataLayer)
     })
 
     document.querySelector('.header .icon_burger').addEventListener('click', (e) => {
@@ -896,7 +891,7 @@ window.onload = function() {
     }); //open all category
 
     document.querySelector('.btn_back').addEventListener('click', () => {
-        viewAllCategories(true)
+        viewAllCategories(true);
         actionDataLayer = 'Click on back Main Menu button';
         pushDataLayer(actionDataLayer)
     }); //hide all category
@@ -913,6 +908,7 @@ window.onload = function() {
         document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
             if (index > 4) el.parentElement.hidden = true;
             el.addEventListener('click', (e) => {
+
                 localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
                 if (index < 5) {
                     actionDataLayer = 'Click on most popular categories items';
@@ -930,7 +926,7 @@ window.onload = function() {
         document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container" class="loading"></div>`);
     }
     if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" class="loading" style="display: none;"></div>`);
+        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;" class="loading"></div>`);
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
@@ -1017,7 +1013,6 @@ window.onload = function() {
     });
 
     let categoryFacet = '*';
-    let category = '';
     let categoryCrumbs = '';
     let lvl = '';
     if (window.location.pathname.includes('/category')) {
@@ -1028,6 +1023,7 @@ window.onload = function() {
             if (i > 0) {
                 categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
             }
+            
            
             if (i == categoriesLink.length - 1) {
                 console.log(categoryCrumbs)
@@ -1038,12 +1034,9 @@ window.onload = function() {
                     categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
                 }
            
-                if (!categoryFacet.includes('>')) {
-                    category = `category:${document.querySelector('.category b').innerText}`
-                }
                 console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
                 lvl = categoryFacet.split(':')[0].split('lvl')[1];
-                
+ 
             }
         }
     } else {
@@ -1056,30 +1049,24 @@ window.onload = function() {
             // facets: ["*"],
             // attributesForFaceting
             // snippetEllipsisText: '...',
-            facetFilters: [categoryFacet],
-            // facetFilters: [categoryFacet , `category:${window.location.pathname.includes('/category') ? document.querySelector('.category b').innerText : ""}`],
-            // attributesForFaceting: [
-            // searchableAttributes: [
-            //     'category,categories.lvl0'
-            // ]  
+            facetFilters: [categoryFacet]
         }),
-
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
             items: [
-                { label: '5', value: 5 },
-                { label: '10', value: 10 },
-                { label: '15', value: 15 },
-                { label: '25', value: 25, default: true },
-                { label: '50', value: 50},
-                { label: '100', value: 100 }
+            { label: '5', value: 5 },
+            { label: '10', value: 10 },
+            { label: '15', value: 15 },
+            { label: '25', value: 25, default: true  },
+            { label: '50', value: 50},
+            { label: '100', value: 100 }
             ],
         }), 
         instantsearch.widgets.searchBox({
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
-            searchAsYouType: false, //window.location.pathname.includes('/category') || document.querySelector('#listing_container').style.display == 'block' ? true : false
+            searchAsYouType: false, 
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1087,7 +1074,6 @@ window.onload = function() {
         instantsearch.widgets.hits({
             container: '#hits',
             // showLoadingIndicator: true,
-            // attributesToHighlight: ['name', 'description','category'],
             templates: {
                 empty: `No Item Found`,
                 item: (hit) => {
@@ -1115,7 +1101,7 @@ window.onload = function() {
                                 <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}"></a></span>
                             </div>
                             <div class="list_type4">
-                                <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name} </a></h3>
+                                <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
                                 <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
                                     <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
                                         <span style="display:block; font-size:12px;">Manufacturer: ${hit.manufacturer}</span>
@@ -1233,11 +1219,12 @@ window.onload = function() {
                     return checkbox
                 },
             },
+
         }),
         
         instantsearch.widgets.refinementList({
             container: `.lvl_subcategory`,
-            attribute:  categoryFacet.split(':')[0].replace(lvl,'') + lvlNew, //!categoryFacet.includes('>') ? `category:${document.querySelector('.category b').innerText}` : 
+            attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
             limit: 40,
             templates: {
                    item: (data) => {
@@ -1249,7 +1236,6 @@ window.onload = function() {
             },
 
         }),
-      
     ]); 
 
     search.start();
@@ -1259,6 +1245,7 @@ window.onload = function() {
     function inputChange() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
+        
         if (!window.location.pathname.includes('/category')) {
             if (value.length > 0) {
                 document.querySelector('#listing_container').style.display = 'block';
@@ -1287,10 +1274,6 @@ window.onload = function() {
     }
 
     //add text search result
-    document.querySelector('#search-box input').addEventListener('click', (e) => {
-        actionDataLayer = 'Click on search field';
-        pushDataLayer(actionDataLayer)  
-    })
     document.querySelector('#search-box input').addEventListener('input', (e) => {
         let target = e.target;
         // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
@@ -1318,6 +1301,23 @@ window.onload = function() {
     }
 
 };
+
+// search.addWidgets([
+//     {
+//         render({ searchMetadata = {} }) {
+//             const { isSearchStalled } = searchMetadata
+//             const loadingContainer = document.querySelector('#loading') 
+
+//             // const listingContainer = document.querySelector('#listing_container')
+//             // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+//             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+
+//             let load = isSearchStalled ? 'loading' : 'load';
+//             loadingContainer.setAttribute('class', load)
+
+//         },
+//     },
+// ])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
