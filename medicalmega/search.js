@@ -738,8 +738,11 @@ function changeSelect() {  // ${changeSelect(event.target)}
 
 function subcategoryEvent(e) {
     e.stopImmediatePropagation();
+    console.log(e);
+    console.log(e.href);
     actionDataLayer =  `Click on subcategory icon`;
-    pushDataLayer(actionDataLayer)
+    pushDataLayer(actionDataLayer);
+    window.location.href = e.href;
 }
 
 let count = 0;
