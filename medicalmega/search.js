@@ -1075,7 +1075,6 @@ window.onload = function() {
 
     search.addWidgets([
         instantsearch.widgets.configure({
-            // facets: ["*"],
             attributesToSnippet: "*:5",
             snippetEllipsisText: "…",
             facetFilters: [categoryFacet]
@@ -1102,11 +1101,9 @@ window.onload = function() {
         }),
         instantsearch.widgets.hits({
             container: '#hits',
-            // showLoadingIndicator: true,
             templates: {
                 empty: `No Item Found`,
                 item: (hit) => {
-                    //change selects option
                  
                     function qty() {
                         let option = ``;
@@ -1179,18 +1176,6 @@ window.onload = function() {
         }),
         instantsearch.widgets.pagination({
             container: '.pagination1',
-            // totalPages: 9,
-            // showFirst: false,
-            // showLast: false,
-            // paginationLimitedTo: '4',
-            // offset: '4',
-            templates: {
-                // previous: 'Prev',
-                // next: 'Next',
-                item: (data) => {
-                    console.log(data)
-                }
-            },
         }),
         instantsearch.widgets.pagination({
             container: '.pagination2',
@@ -1375,9 +1360,7 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
-
 };
-
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
