@@ -1072,8 +1072,8 @@ window.onload = function() {
 
     search.addWidgets([
         instantsearch.widgets.configure({
-            attributesToSnippet: "*:5",
-            snippetEllipsisText: "…",
+            // attributesToSnippet: "*:5",
+            // snippetEllipsisText: "…",
             facetFilters: [categoryFacet]
         }),
         instantsearch.widgets.hitsPerPage({
@@ -1092,16 +1092,18 @@ window.onload = function() {
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
             searchAsYouType: false, 
+            facetFilters: [categoryFacet],
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
         }),
         instantsearch.widgets.hits({
             container: '#hits',
+            facetFilters: [categoryFacet],
             templates: {
                 empty: `No Item Found`,
                 item: (hit) => {
-                 
+                    console.log(hit)
                     function qty() {
                         let option = ``;
                         for (let n = 1; n <= +hit.qty; n++) {
@@ -1199,11 +1201,12 @@ window.onload = function() {
             attribute: 'manufacturer',
             limit: 200,
             sortBy: ['name:asc'],
+            facetFilters: [categoryFacet],
             templates: {
                 item: (data) => {
                     actionDataLayer = "Click on one of the brand items on filters";
                     let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})" > 
+                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
                             <span class="check"></span>
                             <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                         </label>
@@ -1218,6 +1221,7 @@ window.onload = function() {
             attribute: 'price_group',
             limit: 10,
             sortBy: ['isRefined:asc'],
+            facetFilters: [categoryFacet],
 
             templates: {
                 item: (data) => {
@@ -1250,18 +1254,15 @@ window.onload = function() {
                     if (data.label.includes(categoryFacet.split(':')[1])) {
                         let valueArr = data.value.split(' > ');
                         let valueLast = valueArr[valueArr.length - 1];
-
-                        console.log(data)
                     
                         fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
-                            console.log(dataItem) 
+                            
                             document.querySelectorAll('.list_subcategory img').forEach(el => {
                                 if (dataItem.query == el.alt) {
                                     el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
                                 }
                                 el.parentElement.addEventListener('click', (e) => {
                                     e.stopImmediatePropagation();
-                                    console.log(e.target)
                                     actionDataLayer =  `Click on subcategory icon`;
                                     pushDataLayer(actionDataLayer);
                                     window.location.href = el.href;
