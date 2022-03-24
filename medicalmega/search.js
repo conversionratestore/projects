@@ -600,7 +600,7 @@ let styles = `
         margin: 0 auto;
         display: block;
     }
-    .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled {
+    .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled, #lvl_categories {
         display: none;
     }
     </style>`
@@ -773,7 +773,11 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-    
+    mut.observe(document, optionMut);
+    if (document.querySelector('#lvl_categories li') != null && document.querySelector('#lvl_categories .ais-RefinementList-item--selected') == null) {
+        mut.disconnect();
+        document.querySelector('#lvl_categories li').click()
+    }
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
@@ -938,6 +942,7 @@ window.onload = function() {
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
+        <div id="lvl_categories"></div>
         <div class="list_subcategory"></div>
         <span class="result_for_search"></span>
         <div class="justify-content-between">
@@ -1072,9 +1077,7 @@ window.onload = function() {
 
     search.addWidgets([
         instantsearch.widgets.configure({
-            // attributesToSnippet: "*:5",
-            // snippetEllipsisText: "…",
-            facetFilters: [categoryFacet]
+            facetFilters: [categoryFacet],
         }),
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
@@ -1092,16 +1095,15 @@ window.onload = function() {
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: false,
             searchAsYouType: false, 
-            facetFilters: [categoryFacet],
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
         }),
         instantsearch.widgets.hits({
             container: '#hits',
-            facetFilters: [categoryFacet],
             templates: {
                 empty: `No Item Found`,
+                filters: [categoryFacet],
                 item: (hit) => {
                     console.log(hit)
                     function qty() {
@@ -1201,7 +1203,6 @@ window.onload = function() {
             attribute: 'manufacturer',
             limit: 200,
             sortBy: ['name:asc'],
-            facetFilters: [categoryFacet],
             templates: {
                 item: (data) => {
                     actionDataLayer = "Click on one of the brand items on filters";
@@ -1221,8 +1222,6 @@ window.onload = function() {
             attribute: 'price_group',
             limit: 10,
             sortBy: ['isRefined:asc'],
-            facetFilters: [categoryFacet],
-
             templates: {
                 item: (data) => {
                     actionDataLayer = "Click on one of the price items on filters";
@@ -1246,6 +1245,7 @@ window.onload = function() {
             limit: 14,
             showMoreLimit: 100,
             sortBy: ['isRefined'],
+            
             transformItems(items) {
                 return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
             },
@@ -1282,8 +1282,17 @@ window.onload = function() {
             },
 
         }),
+        
+        instantsearch.widgets.refinementList({
+            container: `#lvl_categories`,
+            attribute: categoryFacet.split(':')[0],
+            transformItems(items) {
+                return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
+            },
+            
+        }),
+    
     ]); 
-
     search.start();
 
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
