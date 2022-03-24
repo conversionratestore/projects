@@ -1365,6 +1365,24 @@ window.onload = function() {
         pushDataLayer(actionDataLayer);
     })
 
+    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
+        page.addEventListener('click', (e) => {
+            actionDataLayer = 'Click on pagination';
+            if (page.closest('.ais-Pagination-item--page')) {
+                labelDataLayer = `click on page ${e.target}`
+            } else if (page.closest('.ais-Pagination-item--previousPage')) {
+                labelDataLayer = `click on previous page`
+            } else if (page.closest('.ais-Pagination-item--firstPage')) {
+                labelDataLayer = `click on first page`
+            } else if (page.closest('.ais-Pagination-item--nextPage')) {
+                labelDataLayer = `click on next page`
+            } else if (page.closest('.ais-Pagination-item--lastPage')) {
+                labelDataLayer = `click on last page`
+            }
+            pushDataLayer(actionDataLayer,labelDataLayer)  
+        })
+    })
+
     if (window.location.pathname.includes('/category')) {
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
