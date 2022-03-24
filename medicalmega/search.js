@@ -997,12 +997,17 @@ window.onload = function() {
         el.addEventListener('click', () => {
             el.parentElement.classList.toggle('active');
             if (el.parentElement.classList.contains('active')) {
+                
                 if (el.parentElement.classList.contains('filter_price')) {
                     document.querySelector('.filter_brands').classList.remove('active');
                 } else {
                     document.querySelector('.filter_price').classList.remove('active');
                 }
             }
+            
+            actionDataLayer = `Click on select current - ${el.innerText}`;
+            labelDataLayer = 'Filter';
+            pushDataLayer(actionDataLayer,labelDataLayer)
         })
     })
 
