@@ -1219,7 +1219,7 @@ window.onload = function() {
                 item: (data) => {
                     actionDataLayer = "Click on one of the brand items on filters";
                     let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(actionDataLayer)" > 
+                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})" > 
                             <span class="check"></span>
                             <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                         </label>
@@ -1239,7 +1239,7 @@ window.onload = function() {
                 item: (data) => {
                     actionDataLayer = "Click on one of the price items on filters";
                     let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(actionDataLayer)">
+                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
                             <span class="check"></span>
                             <span class="check_text">${data.value} <span class="count_brand">(${data.count})</span></span>
                         </label>
