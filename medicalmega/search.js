@@ -324,6 +324,9 @@ let styles = `
         display: flex;
         flex-wrap: wrap;
     }
+    #manufacturer {
+        position: relative;
+    }
     #manufacturer .ais-RefinementList-list {
         max-height: 300px;
         overflow-y: auto;
@@ -772,7 +775,7 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0) {
+    if (list.length > 0 && document.querySelectorAll('.list_subcategory img') != null) {
         mut.disconnect();
         for (let i = 0; i < list.length; i++) {
             console.log(list[i])
@@ -1249,8 +1252,8 @@ window.onload = function() {
             //     root: 'ais-RefinementList'
             // },
             showMore: true,
-            limit: 8,
-            sortBy: ['isRefined'],
+            limit: 10,
+            // sortBy: ['isRefined'],
             transformItems(items) {
                 return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
               
@@ -1352,7 +1355,7 @@ window.onload = function() {
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
-};
+}
 
 // search.addWidgets([
 //     {
