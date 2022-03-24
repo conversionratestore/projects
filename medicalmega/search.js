@@ -307,6 +307,9 @@ let styles = `
         text-decoration: underline;
         color: #171717;
     }
+    .list_subcategory .ais-RefinementList {
+        width: 100%;
+    }
     .list_subcategory li {
         width: calc(50% - 7.5px);
         margin: 5px 15px 10px 0;
