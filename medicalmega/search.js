@@ -695,8 +695,7 @@ function pushDataLayer(action,label) {
     }
 }
 
-function changeSelect() {  // ${changeSelect(event.target)}
-                     
+function changeSelect() {             
     document.querySelectorAll('.product-variant').forEach(select => {
         select.addEventListener('change', (e) => {
             e.stopImmediatePropagation();
@@ -736,13 +735,15 @@ function changeSelect() {  // ${changeSelect(event.target)}
     })
 }
 
-function subcategoryEvent(e) {
-    e.stopImmediatePropagation();
-    console.log(e);
-    console.log(e.href);
-    actionDataLayer =  `Click on subcategory icon`;
-    pushDataLayer(actionDataLayer);
-    window.location.href = e.href;
+function subcategoryEvent() {
+    document.querySelectorAll('.list_subcategory a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            actionDataLayer =  `Click on subcategory icon`;
+            pushDataLayer(actionDataLayer);
+            window.location.href = link.href;
+        })
+    })
 }
 
 let count = 0;
@@ -778,6 +779,9 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
+    }
+    if (document.querySelectorAll('.list_subcategory a') && document.querySelector('.list_subcategory a') != null) {
+        subcategoryEvent()
     }
 
     mut.observe(document, optionMut);
@@ -1270,7 +1274,7 @@ window.onload = function() {
                         });
                         
                         return `
-                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent(e.target)">
+                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
                                 <span>${valueLast}</span>
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
