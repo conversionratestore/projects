@@ -998,7 +998,16 @@ window.onload = function() {
     let selectCurrent = document.querySelectorAll('.select_current');
 
     selectCurrent.forEach(el => {
-        el.addEventListener('click', () => el.parentElement.classList.toggle('active'))
+        el.addEventListener('click', () => {
+            el.parentElement.classList.toggle('active');
+            if (el.parentElement.classList.contains('active')) {
+                if (el.parentElement.classList.contains('filter_price')) {
+                    document.querySelector('.filter_brands').classList.remove('active');
+                } else {
+                    document.querySelector('.filter_price').classList.remove('active');
+                }
+            }
+        })
     })
 
     //popup filters
@@ -1355,7 +1364,7 @@ window.onload = function() {
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
 
-}
+};
 
 // search.addWidgets([
 //     {
