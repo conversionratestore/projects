@@ -812,7 +812,7 @@ window.onload = function() {
     //header
     document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
 
-    document.querySelect('.shoppingcart a').addEventListener('click', () => {
+    document.querySelector('.shoppingcart a').addEventListener('click', () => {
         actionDataLayer =  `Click on cart button`;
         pushDataLayer(actionDataLayer)
     })
