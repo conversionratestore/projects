@@ -1239,12 +1239,11 @@ window.onload = function() {
             container: `.list_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
             showMore: true,
-            limit: 10,
+            limit: 14,
             showMoreLimit: 100,
             sortBy: ['isRefined'],
             transformItems(items) {
                 return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
-              
             },
             templates: {
                 item: (data) => {
