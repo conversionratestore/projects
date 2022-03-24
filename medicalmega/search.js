@@ -775,8 +775,9 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0 && document.querySelectorAll('.list_subcategory img')) {
+    if (list.length > 0 && list != 'undefined' && list != []) {
         mut.disconnect();
+        // console.log(' true')
         for (let i = 0; i <= list.length; i++) {
             console.log(list[i])
            
@@ -788,7 +789,7 @@ let mut = new MutationObserver(function (muts) {
         }
     }
 
-    mut.observe(document, optionMut);
+    // mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
@@ -838,10 +839,12 @@ window.onload = function() {
         actionDataLayer =  `Click on logo`;
         pushDataLayer(actionDataLayer)
     })
-    document.querySelector('.header .nav a').addEventListener('click', (e) => {
-        actionDataLayer =  `Click on menu categories for the User`;
-        labelDataLayer =  e.target.innerText;
-        pushDataLayer(actionDataLayer,labelDataLayer)
+    document.querySelectorAll('.header .nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            actionDataLayer =  `Click on menu categories for the User`;
+            labelDataLayer =  e.target.innerText;
+            pushDataLayer(actionDataLayer,labelDataLayer)
+        })
     })
 
     document.querySelector('.header .icon_burger').addEventListener('click', (e) => {
@@ -1275,7 +1278,9 @@ window.onload = function() {
                                 "src" : dataItem.hits[0].image,
                                 "name": dataItem.query, 
                             })
+                            
                         });
+                        
 
                         return `
                             <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent()">
