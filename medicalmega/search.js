@@ -1268,7 +1268,7 @@ window.onload = function() {
                         
 
                         return `
-                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="subcategoryEvent()">
+                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}" onclick="location.href=${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
                                 <span>${valueLast}</span>
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
