@@ -743,7 +743,6 @@ function subcategoryEvent(e) {
 }
 
 let count = 0;
-let list = [], listCount = 0;
 
 let mut = new MutationObserver(function (muts) {
     if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
@@ -1275,22 +1274,14 @@ window.onload = function() {
                         let valueLast = valueArr[valueArr.length - 1];
 
                         console.log(data)
+                    
                         fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
                             console.log(dataItem) 
-                            list.push({
-                                "src" : dataItem.hits[0].image,
-                                "name": dataItem.query, 
+                            document.querySelectorAll('.list_subcategory img').forEach(el => {
+                                if (dataItem.query == el.alt) {
+                                    el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
+                                }
                             })
-                          
-                            for (let i = 0; i < list.length; i++) {
-                                console.log(list[i])
-                               
-                                document.querySelectorAll('.list_subcategory img').forEach(el => {
-                                    if (list[i].name == el.alt) {
-                                        el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${list[i].src}`
-                                    }
-                                })
-                            }
                         });
                         
 
