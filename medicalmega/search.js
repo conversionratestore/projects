@@ -600,6 +600,9 @@ let styles = `
         margin: 0 auto;
         display: block;
     }
+    .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled {
+        display: none;
+    }
     </style>`
 
 let header = `
