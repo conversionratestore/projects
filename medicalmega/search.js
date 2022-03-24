@@ -1026,6 +1026,11 @@ window.onload = function() {
         if (e.target.classList.contains('popup_filter')) {
             popupFilter.classList.remove('active')
             document.body.style.overflow = 'inherit';
+
+            actionDataLayer = `Click on the screen outside the filter`;
+            labelDataLayer = 'Filter';
+            pushDataLayer(actionDataLayer,labelDataLayer)
+            
         }
     })
 
