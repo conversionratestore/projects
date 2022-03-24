@@ -642,7 +642,6 @@ let headerFetch = {
 let optionMut = {
     childList: true,
     subtree: true,
-    attributes: true
 }
 
 let requestAllCaterories = new Promise((resolve, reject) => {
@@ -1279,7 +1278,6 @@ window.onload = function() {
                                 "src" : dataItem.hits[0].image,
                                 "name": dataItem.query, 
                             })
-                            document.querySelector('.list_subcategory').setAttribute('data-count', list.length)
                           
                             for (let i = 0; i < list.length; i++) {
                                 console.log(list[i])
