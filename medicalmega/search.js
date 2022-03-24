@@ -1256,13 +1256,10 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.list_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            // root: categoryFacet.split(':')[0],
-            // cssClasses: {
-            //     root: 'ais-RefinementList'
-            // },
             showMore: true,
             limit: 10,
-            // sortBy: ['isRefined'],
+            showMoreLimit: 100,
+            sortBy: ['isRefined'],
             transformItems(items) {
                 return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
               
