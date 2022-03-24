@@ -775,9 +775,9 @@ let mut = new MutationObserver(function (muts) {
         changeSelect()
     }
     mut.observe(document, optionMut);
-    if (list.length > 0 && document.querySelectorAll('.list_subcategory img') != null) {
+    if (list.length > 0 && document.querySelectorAll('.list_subcategory img')) {
         mut.disconnect();
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i <= list.length; i++) {
             console.log(list[i])
            
             document.querySelectorAll('.list_subcategory img').forEach(el => {
@@ -1353,23 +1353,6 @@ window.onload = function() {
     }
 
 };
-
-// search.addWidgets([
-//     {
-//         render({ searchMetadata = {} }) {
-//             const { isSearchStalled } = searchMetadata
-//             const listContainer = document.querySelector('#listing_container') 
-
-//             // const listingContainer = document.querySelector('#listing_container')
-//             // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-//             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-
-//             let load = isSearchStalled ? 'loading' : '';
-//             listContainer.setAttribute('class', load)
-
-//         },
-//     },
-// ])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
