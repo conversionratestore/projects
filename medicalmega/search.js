@@ -641,7 +641,8 @@ let headerFetch = {
 
 let optionMut = {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true
 }
 
 let requestAllCaterories = new Promise((resolve, reject) => {
@@ -774,22 +775,8 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-    mut.observe(document, optionMut);
-    if (list.length > 0 && list != 'undefined' && list != []) {
-        mut.disconnect();
-        // console.log(' true')
-        for (let i = 0; i <= list.length; i++) {
-            console.log(list[i])
-           
-            document.querySelectorAll('.list_subcategory img').forEach(el => {
-                if (list[i].name == el.alt) {
-                    el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${list[i].src}`
-                }
-            })
-        }
-    }
 
-    // mut.observe(document, optionMut);
+    mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
         document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
@@ -799,6 +786,10 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('#sort-name select').addEventListener('click', (e) => {
             actionDataLayer =  `Click on sort by field`;
             pushDataLayer(actionDataLayer)
+        })
+        document.querySelector('#mm_per_page select').addEventListener('click', (e) => {
+            actionDataLayer = 'Click on per page';
+            pushDataLayer(actionDataLayer);
         })
     }
 
@@ -1288,7 +1279,17 @@ window.onload = function() {
                                 "src" : dataItem.hits[0].image,
                                 "name": dataItem.query, 
                             })
-                            
+                            document.querySelector('.list_subcategory').setAttribute('data-count', list.length)
+                          
+                            for (let i = 0; i < list.length; i++) {
+                                console.log(list[i])
+                               
+                                document.querySelectorAll('.list_subcategory img').forEach(el => {
+                                    if (list[i].name == el.alt) {
+                                        el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${list[i].src}`
+                                    }
+                                })
+                            }
                         });
                         
 
@@ -1360,10 +1361,7 @@ window.onload = function() {
         pushDataLayer(actionDataLayer);  
         inputChange()
     })
-    document.querySelector('#mm_per_page select').addEventListener('click', (e) => {
-        actionDataLayer = 'Click on per page';
-        pushDataLayer(actionDataLayer);
-    })
+
 
     document.querySelectorAll('.ais-Pagination-link').forEach(page => {
         page.addEventListener('click', (e) => {
@@ -1390,6 +1388,7 @@ window.onload = function() {
     }
 
 };
+
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
