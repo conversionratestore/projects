@@ -1091,12 +1091,12 @@ window.onload = function() {
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
             items: [
-            { label: '5', value: 5 },
-            { label: '10', value: 10 },
-            { label: '15', value: 15 },
-            { label: '25', value: 25, default: true  },
-            { label: '50', value: 50},
-            { label: '100', value: 100 }
+                { label: '5', value: 5 },
+                { label: '10', value: 10 },
+                { label: '15', value: 15 },
+                { label: '25', value: 25, default: true  },
+                { label: '50', value: 50},
+                { label: '100', value: 100 }
             ],
         }), 
         instantsearch.widgets.searchBox({
@@ -1359,6 +1359,10 @@ window.onload = function() {
         actionDataLayer = 'Click on submit search';
         pushDataLayer(actionDataLayer);  
         inputChange()
+    })
+    document.querySelector('#mm_per_page select').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on per page';
+        pushDataLayer(actionDataLayer);
     })
 
     if (window.location.pathname.includes('/category')) {
