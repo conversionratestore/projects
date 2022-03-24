@@ -342,7 +342,12 @@ let styles = `
         width: 100%;
         height: 48px;
         pointer-events: none;
+        opacity: 1;
+        transition: all 0.2s ease;
         background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
+    }
+    #manufacturer .ais-RefinementList-list.scrolled:before {
+        opacity: 0;
     }
     .list_subcategory li a {
         min-height: 36px;
@@ -1371,6 +1376,17 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
+ 
+    let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+
+    element.addEventListener('scroll', () => {
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            element.classList.add('scrolled')
+        } else {
+            element.classList.remove('scrolled')
+        }
+    });
+            
 };
 
 window.dataLayer = window.dataLayer || [];
