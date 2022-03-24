@@ -1121,7 +1121,7 @@ window.onload = function() {
                     let boxItem = `
                         <fieldset class="list_box2">
                             <div class="list_type3">
-                                <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image}"></a></span>
+                                <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image != '' ? hit.image : 'dummyimage.jpg' }"></a></span>
                             </div>
                             <div class="list_type4">
                                 <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
