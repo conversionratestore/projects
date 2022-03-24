@@ -735,16 +735,6 @@ function changeSelect() {
     })
 }
 
-function subcategoryEvent() {
-    document.querySelectorAll('.list_subcategory a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.stopImmediatePropagation();
-            actionDataLayer =  `Click on subcategory icon`;
-            pushDataLayer(actionDataLayer);
-            window.location.href = link.href;
-        })
-    })
-}
 
 let count = 0;
 
@@ -780,10 +770,7 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
         changeSelect()
     }
-    if (document.querySelectorAll('.list_subcategory a') && document.querySelector('.list_subcategory a') != null) {
-        subcategoryEvent()
-    }
-
+    
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
@@ -1270,7 +1257,15 @@ window.onload = function() {
                                 if (dataItem.query == el.alt) {
                                     el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
                                 }
+                                el.parentElement.addEventListener('click', (e) => {
+                                    e.stopImmediatePropagation();
+                                    console.log(e.target)
+                                    actionDataLayer =  `Click on subcategory icon`;
+                                    pushDataLayer(actionDataLayer);
+                                    window.location.href = el.href;
+                                })
                             })
+                          
                         });
                         
                         return `
