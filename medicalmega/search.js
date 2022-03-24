@@ -799,18 +799,6 @@ let mut = new MutationObserver(function (muts) {
             actionDataLayer =  `Click on sort by field`;
             pushDataLayer(actionDataLayer)
         })
-
-        document.querySelectorAll('.ais-RefinementList-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-
-                if (item.closest('.filter_brands')) {
-                    actionDataLayer =  `Click on one of the brand items on filters`;
-                } else {
-                    actionDataLayer =  `Click on one of the price items on filters`;
-                }
-                pushDataLayer(actionDataLayer)
-            })
-        })
     }
 
 })
@@ -823,6 +811,11 @@ window.onload = function() {
 
     //header
     document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
+
+    document.querySelect('.shoppingcart a').addEventListener('click', () => {
+        actionDataLayer =  `Click on cart button`;
+        pushDataLayer(actionDataLayer)
+    })
     if (document.querySelector('.topnav .signup') != null) {
         document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
     }
@@ -1221,8 +1214,9 @@ window.onload = function() {
             sortBy: ['name:asc'],
             templates: {
                 item: (data) => {
+                    actionDataLayer = "Click on one of the brand items on filters";
                     let checkbox = `
-                        <label class="align-items-center">
+                        <label class="align-items-center" onclick="pushDataLayer(actionDataLayer)" > 
                             <span class="check"></span>
                             <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                         </label>
@@ -1240,8 +1234,9 @@ window.onload = function() {
 
             templates: {
                 item: (data) => {
+                    actionDataLayer = "Click on one of the price items on filters";
                     let checkbox = `
-                        <label class="align-items-center">
+                        <label class="align-items-center" onclick="pushDataLayer(actionDataLayer)">
                             <span class="check"></span>
                             <span class="check_text">${data.value} <span class="count_brand">(${data.count})</span></span>
                         </label>
@@ -1333,30 +1328,23 @@ window.onload = function() {
 
     //add text search result
     document.querySelector('#search-box input').addEventListener('click', (e) => {
-
         actionDataLayer = 'Click on input search';
-        labelDataLayer = 'Filters'
-        pushDataLayer(actionDataLayer,labelDataLayer)  
+        pushDataLayer(actionDataLayer)  
     })
-    // document.querySelector('#search-box input').addEventListener('input', (e) => {
-    //     let target = e.target;
-    //     // document.querySelector('.result_for_search').innerHTML = `Search result for '${target.value}'`;
-    //     if (target.value.length < 1 && !window.location.pathname.includes('/category')) {
-    //         document.querySelector('#listing_container').style.display = 'none';
-    //         if (window.location.pathname == '/') {
-    //             document.querySelector('.homepage-container').style.display = 'block';
-    //         }
-    //         if (document.querySelector('#mainbody') != null) {
-    //             document.querySelector('#mainbody').style.display = 'block';
-    //         }
-    //     }
-    // })
 
     document.querySelector('#search-box input').addEventListener('keypress', (e) => {
-        if (e.keyCode == '13') inputChange()
+        if (e.keyCode == '13') {
+            actionDataLayer = 'Click on Enter submit search';
+            pushDataLayer(actionDataLayer);  
+            inputChange()
+        }
     })
 
-    document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => inputChange())
+    document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
+        actionDataLayer = 'Click on submit search';
+        pushDataLayer(actionDataLayer);  
+        inputChange()
+    })
 
     if (window.location.pathname.includes('/category')) {
         document.querySelector('#listing_container').style.display = 'block';
