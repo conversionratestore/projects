@@ -1265,7 +1265,6 @@ window.onload = function() {
             attribute: categoryFacet.split(':')[0],
             transformItems(items) {
                 return items.filter(item => {
-                    console.log(item)
                     return item.label.includes(categoryFacet.split(':')[1])
                 }) 
             },
