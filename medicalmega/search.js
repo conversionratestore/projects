@@ -791,10 +791,7 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`)
     }
-    mut.observe(document, optionMut);
-    if (document.querySelectorAll('.product-variant') && document.querySelector('#listing_container.loading') == null) {
-        changeSelect()
-    }
+   
     mut.observe(document, optionMut);
     if (document.querySelector('#lvl_categories li') != null && document.querySelector('#lvl_categories .ais-RefinementList-item--selected') == null) {
         mut.disconnect();
@@ -816,7 +813,11 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer(actionDataLayer);
         })
     }
-
+    mut.observe(document, optionMut);
+    if (document.querySelector('#listing_container.loading') == null) {
+        changeSelect()
+    }
+    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
