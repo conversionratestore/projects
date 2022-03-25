@@ -758,9 +758,9 @@ let mut = new MutationObserver(function (muts) {
     if (document.querySelector('#manufacturer .ais-RefinementList-item') != null) {
         mut.disconnect();
         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-        if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length < 7) {
-            element.classList.add('scrolled')
-        }
+        // if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length < 7) {
+        //     element.classList.add('scrolled')
+        // }
         element.addEventListener('scroll', () => scrolled(element));
     }
     mut.observe(document, optionMut);   
