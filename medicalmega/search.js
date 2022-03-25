@@ -1094,15 +1094,24 @@ window.onload = function() {
                         let option = ``;
                         for (let i = 0; i < hit.variants.length; i++) {
                             let variantsArr = hit.variants[i];
-                            option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                            if (variantsArr.extra != '') {
+                                option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                            }
                         }
                         return option
+                    }
+                    function findImage() {
+                        for (let i = 0; i < hit.variants.length; i++) {
+                            if (hit.variants[i].image != '') {
+                                return hit.variants[i].image
+                            }
+                        }
                     }
 
                     let boxItem = `
                         <fieldset class="list_box2">
                             <div class="list_type3">
-                                <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${hit.image != '' ? hit.image : 'dummyimage.jpg' }"></a></span>
+                                <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }"></a></span>
                             </div>
                             <div class="list_type4">
                                 <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
@@ -1273,7 +1282,7 @@ window.onload = function() {
     
     ]); 
     search.start();
-    
+
     search.addWidgets([
         {
             render({ searchMetadata = {} }) {
@@ -1300,7 +1309,6 @@ window.onload = function() {
                                 qty = select.options[select.selectedIndex].dataset.qty;
                 
                                 parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                                parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
                                 parent.querySelector(`[name="product_variant_id"]`).value = variantId;
                                 parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
                                 parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
@@ -1405,7 +1413,6 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
-    
 };
 
 window.dataLayer = window.dataLayer || [];
