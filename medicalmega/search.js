@@ -747,6 +747,19 @@ function changeSelect() {
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
+    if (document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+        mut.disconnect();
+        let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+
+        element.addEventListener('scroll', () => {
+            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+                element.classList.add('scrolled')
+            } else {
+                element.classList.remove('scrolled')
+            }
+        });
+    }
+    mut.observe(document, optionMut);   
     if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
         mut.disconnect();
         count = 1;
@@ -775,7 +788,7 @@ let mut = new MutationObserver(function (muts) {
         </style>`)
     }
     mut.observe(document, optionMut);
-    if (document.querySelectorAll('.product-variant') && document.querySelector('.product-variant') != null) {
+    if (document.querySelectorAll('.product-variant')) {
         changeSelect()
     }
     mut.observe(document, optionMut);
@@ -1376,17 +1389,7 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
- 
-    let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-
-    element.addEventListener('scroll', () => {
-        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-            element.classList.add('scrolled')
-        } else {
-            element.classList.remove('scrolled')
-        }
-    });
-            
+    
 };
 
 window.dataLayer = window.dataLayer || [];
