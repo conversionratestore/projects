@@ -1362,7 +1362,7 @@ search.addWidgets([
             // const listingContainer = document.querySelector('#listing_container')
             // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
             // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-            if (isSearchStalled) {
+            if (!isSearchStalled) {
                 document.querySelectorAll('.product-variant').forEach((select, index) => {
                     console.log('select mut: ' + index)
                     select.addEventListener('change', (e) => {
