@@ -1095,7 +1095,7 @@ window.onload = function() {
                         for (let i = 0; i < hit.variants.length; i++) {
                             let variantsArr = hit.variants[i];
                             if (variantsArr.extra != '') {
-                                option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-src="${variantsArr.image}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                                option = `<option value="${variantsArr.pv_id}" data-price="${variantsArr.price}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
                             }
                         }
                         return option
@@ -1287,18 +1287,14 @@ window.onload = function() {
         {
             render({ searchMetadata = {} }) {
                 const { isSearchStalled } = searchMetadata
-                // const loadingContainer = document.querySelector('#listing_container') 
-    
-                // const listingContainer = document.querySelector('#listing_container')
-                // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-                // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+
                 console.log(isSearchStalled)
                 if (!isSearchStalled) {
                     document.querySelectorAll('.product-variant').forEach((select, index) => {
-                        console.log('select mut: ' + index)
+                       
                         select.addEventListener('change', (e) => {
                             e.stopImmediatePropagation();
-                            console.log(select)
+                           
                             let parent = select.closest('.list_box2');
                             let option = ``;
                         
@@ -1413,6 +1409,7 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
+    
 };
 
 window.dataLayer = window.dataLayer || [];
