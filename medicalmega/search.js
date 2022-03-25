@@ -704,64 +704,22 @@ function pushDataLayer(action,label) {
     }
 }
 
-function changeSelect() {             
-    document.querySelectorAll('.product-variant').forEach((select, index) => {
-        console.log('select mut: ' + index)
-        select.addEventListener('change', (e) => {
-            e.stopImmediatePropagation();
-            console.log(select)
-            let parent = select.closest('.list_box2');
-            let option = ``;
-        
-            let price = select.options[select.selectedIndex].dataset.price,
-                variantId = select.options[select.selectedIndex].value,
-                srcImg = select.options[select.selectedIndex].dataset.src,
-                name = select.options[select.selectedIndex].innerText,
-                qty = select.options[select.selectedIndex].dataset.qty;
-
-                parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
-                parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-                parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
-
-                for (let n = 1; n <= +qty; n++) {
-                    option = option + `<option value="${n}">${n}</option>`;
-                }
-
-                parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
-
-            if (name.includes('Out of stock')) {
-                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                parent.querySelector('.product_quantity').style.display = 'none';
-                parent.querySelector('.buynow2').style.display = 'none';
-            } else {
-                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                parent.querySelector('.product_quantity').style.display = 'block';
-                parent.querySelector('.buynow2').style.display = 'block';
-            }
-           
-        })
-    })
-}
-
 function scrolled(element) {
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        element.classList.setAttribute('class','ais-RefinementList-list scroll')
+        element.setAttribute('class','ais-RefinementList-list scrolled')
     } else {
-        element.classList.setAttribute('class','ais-RefinementList-list scrolled')
+        element.setAttribute('class','ais-RefinementList-list scroll')
     }
 }
 
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('#manufacturer .ais-RefinementList-item') != null) {
+    if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
         mut.disconnect();
         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-        // if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length < 7) {
-        //     element.classList.add('scrolled')
-        // }
+       
+        element.setAttribute('class','ais-RefinementList-list scroll')
         element.addEventListener('scroll', () => scrolled(element));
     }
     mut.observe(document, optionMut);   
@@ -815,8 +773,45 @@ let mut = new MutationObserver(function (muts) {
         })
     }
 
-    if (document.querySelector('#listing_container.loading') == null) {
-        changeSelect()
+    if (document.querySelector('#listing_container.loading') == null && document.querySelectorAll('#hits .product-variant')) {
+        document.querySelectorAll('.product-variant').forEach((select, index) => {
+            console.log('select mut: ' + index)
+            select.addEventListener('change', (e) => {
+                e.stopImmediatePropagation();
+                console.log(select)
+                let parent = select.closest('.list_box2');
+                let option = ``;
+            
+                let price = select.options[select.selectedIndex].dataset.price,
+                    variantId = select.options[select.selectedIndex].value,
+                    srcImg = select.options[select.selectedIndex].dataset.src,
+                    name = select.options[select.selectedIndex].innerText,
+                    qty = select.options[select.selectedIndex].dataset.qty;
+    
+                    parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                    parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
+                    parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                    parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+                    parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
+    
+                    for (let n = 1; n <= +qty; n++) {
+                        option = option + `<option value="${n}">${n}</option>`;
+                    }
+    
+                    parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
+    
+                if (name.includes('Out of stock')) {
+                    parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                    parent.querySelector('.product_quantity').style.display = 'none';
+                    parent.querySelector('.buynow2').style.display = 'none';
+                } else {
+                    parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                    parent.querySelector('.product_quantity').style.display = 'block';
+                    parent.querySelector('.buynow2').style.display = 'block';
+                }
+               
+            })
+        })
     }
 })
 
@@ -1310,7 +1305,10 @@ window.onload = function() {
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
             transformItems(items) {
-                return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
+                return items.filter(item => {
+                    console.log(item)
+                    return item.label.includes(categoryFacet.split(':')[1])
+                }) 
             },
             
         }),
