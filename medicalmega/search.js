@@ -1274,7 +1274,62 @@ window.onload = function() {
     
     ]); 
     search.start();
-
+    
+    search.addWidgets([
+        {
+            render({ searchMetadata = {} }) {
+                const { isSearchStalled } = searchMetadata
+                // const loadingContainer = document.querySelector('#listing_container') 
+    
+                // const listingContainer = document.querySelector('#listing_container')
+                // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
+                // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
+                console.log(isSearchStalled)
+                if (!isSearchStalled) {
+                    document.querySelectorAll('.product-variant').forEach((select, index) => {
+                        console.log('select mut: ' + index)
+                        select.addEventListener('change', (e) => {
+                            e.stopImmediatePropagation();
+                            console.log(select)
+                            let parent = select.closest('.list_box2');
+                            let option = ``;
+                        
+                            let price = select.options[select.selectedIndex].dataset.price,
+                                variantId = select.options[select.selectedIndex].value,
+                                srcImg = select.options[select.selectedIndex].dataset.src,
+                                name = select.options[select.selectedIndex].innerText,
+                                qty = select.options[select.selectedIndex].dataset.qty;
+                
+                                parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                                parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
+                                parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                                parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+                                parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
+                
+                                for (let n = 1; n <= +qty; n++) {
+                                    option = option + `<option value="${n}">${n}</option>`;
+                                }
+                
+                                parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
+                
+                            if (name.includes('Out of stock')) {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                                parent.querySelector('.product_quantity').style.display = 'none';
+                                parent.querySelector('.buynow2').style.display = 'none';
+                            } else {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                                parent.querySelector('.product_quantity').style.display = 'block';
+                                parent.querySelector('.buynow2').style.display = 'block';
+                            }
+                           
+                        })
+                    })
+                }
+    
+            },
+        },
+    ])
+    
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
     function inputChange() {
@@ -1353,60 +1408,6 @@ window.onload = function() {
     }
     
 };
-search.addWidgets([
-    {
-        render({ searchMetadata = {} }) {
-            const { isSearchStalled } = searchMetadata
-            // const loadingContainer = document.querySelector('#listing_container') 
-
-            // const listingContainer = document.querySelector('#listing_container')
-            // loadingContainer.innerHTML = isSearchStalled ? 'Loading..' : ''
-            // listingContainer.style = isSearchStalled ? 'display:none' : 'display:block'
-            console.log(isSearchStalled)
-            if (!isSearchStalled) {
-                document.querySelectorAll('.product-variant').forEach((select, index) => {
-                    console.log('select mut: ' + index)
-                    select.addEventListener('change', (e) => {
-                        e.stopImmediatePropagation();
-                        console.log(select)
-                        let parent = select.closest('.list_box2');
-                        let option = ``;
-                    
-                        let price = select.options[select.selectedIndex].dataset.price,
-                            variantId = select.options[select.selectedIndex].value,
-                            srcImg = select.options[select.selectedIndex].dataset.src,
-                            name = select.options[select.selectedIndex].innerText,
-                            qty = select.options[select.selectedIndex].dataset.qty;
-            
-                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                            parent.querySelector(`.product_img`).src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/` + srcImg;
-                            parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                            parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-                            parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
-            
-                            for (let n = 1; n <= +qty; n++) {
-                                option = option + `<option value="${n}">${n}</option>`;
-                            }
-            
-                            parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
-            
-                        if (name.includes('Out of stock')) {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                            parent.querySelector('.product_quantity').style.display = 'none';
-                            parent.querySelector('.buynow2').style.display = 'none';
-                        } else {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                            parent.querySelector('.product_quantity').style.display = 'block';
-                            parent.querySelector('.buynow2').style.display = 'block';
-                        }
-                       
-                    })
-                })
-            }
-
-        },
-    },
-])
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
