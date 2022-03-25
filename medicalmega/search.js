@@ -772,8 +772,9 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer(actionDataLayer);
         })
     }
-
-    if (document.querySelector('#listing_container.loading') == null && document.querySelectorAll('#hits .product-variant')) {
+    mut.observe(document, optionMut);
+    if (document.querySelector('#sort-name .ais-SortBy-option') != null && document.querySelectorAll('#hits .product-variant').length <= document.querySelector('#sort-name .ais-SortBy-option').value) {
+        mut.disconnect();
         document.querySelectorAll('.product-variant').forEach((select, index) => {
             console.log('select mut: ' + index)
             select.addEventListener('change', (e) => {
@@ -817,7 +818,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-window.onload = function() {
+// window.onload = function() {
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
@@ -1393,7 +1394,7 @@ window.onload = function() {
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }
     
-};
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
