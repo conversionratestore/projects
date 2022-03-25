@@ -334,7 +334,7 @@ let styles = `
         max-height: 300px;
         overflow-y: auto;
     }
-    #manufacturer .ais-RefinementList-list:before {
+    #manufacturer .ais-RefinementList-list.scroll:before {
         content: '';
         position: absolute;
         bottom: 0;
@@ -746,9 +746,9 @@ function changeSelect() {
 
 function scrolled(element) {
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        element.classList.add('scrolled')
+        element.classList.setAttribute('class','ais-RefinementList-list scroll')
     } else {
-        element.classList.remove('scrolled')
+        element.classList.setAttribute('class','ais-RefinementList-list scrolled')
     }
 }
 
