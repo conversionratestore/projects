@@ -705,7 +705,8 @@ function pushDataLayer(action,label) {
 }
 
 function changeSelect() {             
-    document.querySelectorAll('.product-variant').forEach(select => {
+    document.querySelectorAll('.product-variant').forEach((select, index) => {
+        console.log('select mut: ' + index)
         select.addEventListener('change', (e) => {
             e.stopImmediatePropagation();
             console.log(select)
@@ -813,11 +814,10 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer(actionDataLayer);
         })
     }
-    mut.observe(document, optionMut);
+
     if (document.querySelector('#listing_container.loading') == null) {
         changeSelect()
     }
-    mut.observe(document, optionMut);
 })
 
 mut.observe(document, optionMut);
