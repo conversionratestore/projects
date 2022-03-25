@@ -653,6 +653,7 @@ let headerFetch = {
 let optionMut = {
     childList: true,
     subtree: true,
+    attributes: true
 }
 
 let requestAllCaterories = new Promise((resolve, reject) => {
@@ -743,6 +744,13 @@ function changeSelect() {
     })
 }
 
+function scrolled(element) {
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+        element.classList.add('scrolled')
+    } else {
+        element.classList.remove('scrolled')
+    }
+}
 
 let count = 0;
 
@@ -751,13 +759,8 @@ let mut = new MutationObserver(function (muts) {
         mut.disconnect();
         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
 
-        element.addEventListener('scroll', () => {
-            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                element.classList.add('scrolled')
-            } else {
-                element.classList.remove('scrolled')
-            }
-        });
+        scrolled(element)
+        element.addEventListener('scroll', () => scrolled(element));
     }
     mut.observe(document, optionMut);   
     if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
@@ -788,7 +791,7 @@ let mut = new MutationObserver(function (muts) {
         </style>`)
     }
     mut.observe(document, optionMut);
-    if (document.querySelectorAll('.product-variant')) {
+    if (document.querySelectorAll('.product-variant') && document.querySelector('#listing_container.loading') == null) {
         changeSelect()
     }
     mut.observe(document, optionMut);
