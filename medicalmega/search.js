@@ -755,11 +755,12 @@ function scrolled(element) {
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+    if (document.querySelector('#manufacturer .ais-RefinementList-item') != null) {
         mut.disconnect();
         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-
-        scrolled(element)
+        if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length < 7) {
+            element.classList.add('scrolled')
+        }
         element.addEventListener('scroll', () => scrolled(element));
     }
     mut.observe(document, optionMut);   
