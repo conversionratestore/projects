@@ -1,5 +1,5 @@
 let start = setInterval(function () {
-    if(typeof jQuery === 'function' && ($('.woocommerce-Price-amount') || $('.starter_package_price') || $('#coupon_code'))) {
+    if(typeof jQuery === 'function' && (jQuery('.woocommerce-Price-amount') || jQuery('.starter_package_price') || jQuery('#coupon_code'))) {
         clearInterval(start)
 
         const $ = jQuery
