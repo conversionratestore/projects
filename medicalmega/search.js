@@ -1314,10 +1314,12 @@ window.onload = function() {
                             parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
                             parent.querySelector('.product_quantity').style.display = 'none';
                             parent.querySelector('.buynow2').style.display = 'none';
+                            parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
                         } else {
                             parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
                             parent.querySelector('.product_quantity').style.display = 'block';
                             parent.querySelector('.buynow2').style.display = 'block';
+                            parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
                         }
                     }
                     document.querySelectorAll('.product-variant').forEach((select, index) => {
