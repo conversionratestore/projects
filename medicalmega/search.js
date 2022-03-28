@@ -1308,6 +1308,7 @@ window.onload = function() {
                                 option = option + `<option value="${n}">${n}</option>`;
                             }
             
+                            
                             parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
             
                         if (name.includes('Out of stock')) {
@@ -1430,4 +1431,3 @@ dataLayer.push({
     a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 hj('event', 'search_filters_slide_in_menu');
-
