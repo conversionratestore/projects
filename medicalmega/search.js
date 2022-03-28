@@ -1095,7 +1095,7 @@ window.onload = function() {
                         for (let i = 0; i < hit.variants.length; i++) {
                             let variantsArr = hit.variants[i];
                             if (variantsArr.extra != '') {
-                                option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${hit.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
+                                option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
                             }
                         }
                         return option
