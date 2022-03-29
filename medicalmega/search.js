@@ -367,13 +367,13 @@ let styles = `
         -webkit-box-orient: vertical;
         height: 36px;
         word-break: break-word;
+        padding-right: 4px;
     }
     .list_subcategory li img {
         border: 1px solid #EEEEEE;
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        margin-left: 4px;
         flex-shrink: 0;
         object-fit: contain;
         overflow: hidden;
@@ -1262,7 +1262,7 @@ window.onload = function() {
                         
                         return `
                             <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
-                                <span>${valueLast}</span>
+                                <span title="${valueLast}">${valueLast}</span>
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
                         `
