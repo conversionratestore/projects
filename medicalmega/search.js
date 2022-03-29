@@ -1294,10 +1294,11 @@ window.onload = function() {
                 if (isSearchStalled === false) {
                     console.log(isSearchStalled)
                     function selectOptions(select) {
+                        console.log(select)
                         let parent = select.closest('.list_box2');
                         let option = ``;
-                    
-                        let price = select.options[select.selectedIndex].dataset.price,
+                        if (select.length > 0) {
+                            let price = select.options[select.selectedIndex].dataset.price,
                             variantId = select.options[select.selectedIndex].value,
                             name = select.options[select.selectedIndex].innerText,
                             qty = select.options[select.selectedIndex].dataset.qty;
@@ -1324,6 +1325,8 @@ window.onload = function() {
                             parent.querySelector('.buynow2').style.display = 'block';
                             parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
                         }
+                        }
+                    
                     }
                     document.querySelectorAll('#hits .product-variant').forEach((select, index) => {
                         selectOptions(select)
