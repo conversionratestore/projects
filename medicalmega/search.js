@@ -1404,17 +1404,17 @@ window.onload = function() {
 
     document.querySelectorAll('.ais-Pagination-link').forEach(page => {
         page.addEventListener('click', (e) => {
-            actionDataLayer = 'Click on pagination';
+             labelDataLayer = 'Pagination';
             if (page.closest('.ais-Pagination-item--page')) {
-                labelDataLayer = `click on page ${e.target}`
+                actionDataLayer = `click on page ${e.target}`
             } else if (page.closest('.ais-Pagination-item--previousPage')) {
-                labelDataLayer = `click on previous page`
+                actionDataLayer = `click on previous page`
             } else if (page.closest('.ais-Pagination-item--firstPage')) {
-                labelDataLayer = `click on first page`
+                actionDataLayer = `click on first page`
             } else if (page.closest('.ais-Pagination-item--nextPage')) {
-                labelDataLayer = `click on next page`
+                actionDataLayer = `click on next page`
             } else if (page.closest('.ais-Pagination-item--lastPage')) {
-                labelDataLayer = `click on last page`
+                actionDataLayer = `click on last page`
             }
             pushDataLayer(actionDataLayer,labelDataLayer)  
         })
