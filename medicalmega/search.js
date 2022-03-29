@@ -1130,7 +1130,7 @@ window.onload = function() {
                                             <p class="out-of-stock__message--pv">Out Of Stock</p>
                                         </div>
                                     </span>
-                                    <p style="clear:both;display:${optionBox().split('</option>').length>2?'block':'none'}">
+                                    <p style="clear:both;display:${hit.variants.length>1?'block':'none'}">
                                         <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
                                         <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
                                             ${optionBox()}
