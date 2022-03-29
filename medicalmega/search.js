@@ -1335,7 +1335,14 @@ window.onload = function() {
                             selectOptions(select)
                         })
                     })
-                    
+
+                    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length < 2) {
+                        document.querySelector('.pagination1').style.opacity = '0'
+                        document.querySelector('.pagination2').style.opacity = '0'
+                    } else {
+                        document.querySelector('.pagination1').style.opacity = '1'
+                        document.querySelector('.pagination2').style.opacity = '1'
+                    }
                 }
     
             },
