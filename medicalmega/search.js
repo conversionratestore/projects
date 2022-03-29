@@ -1231,10 +1231,14 @@ window.onload = function() {
             sortBy: ['isRefined'],
             
             transformItems(items) {
-                return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
+                return items.filter(item =>  {
+                    console.log(item)
+                    return item.label.includes(categoryFacet.split(':')[1])
+                }) 
             },
             templates: {
                 item: (data) => {
+                    console.log(data)
                     if (data.label.includes(categoryFacet.split(':')[1])) {
                         let valueArr = data.value.split(' > ');
                         let valueLast = valueArr[valueArr.length - 1];
