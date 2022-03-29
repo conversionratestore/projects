@@ -1296,7 +1296,10 @@ window.onload = function() {
                             name = select.options[select.selectedIndex].innerText,
                             qty = select.options[select.selectedIndex].dataset.qty;
             
-                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                            if (parent.querySelector(`.variant_tag span i`) != null) {
+                                parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                            }
+                            
                             parent.querySelector(`[name="product_variant_id"]`).value = variantId;
                             parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
                             parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
