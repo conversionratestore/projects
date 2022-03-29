@@ -362,11 +362,11 @@ let styles = `
      .list_subcategory li a span {
         text-overflow: ellipsis;
         overflow: hidden;
-        display: -webkit-box;
+        // display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         height: 36px;
-        word-break: break-word;
+        // word-break: break-word;
         padding-right: 4px;
     }
     .list_subcategory li img {
