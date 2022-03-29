@@ -1171,10 +1171,11 @@ window.onload = function() {
                     let hits = data.nbHits;
                     let to = data.hitsPerPage * (data.page + 1); 
             
+                    let displ = data.page == 0 ? data.page + 1 : data.page * data.hitsPerPage + 1
                     if (data.hasManyResults) {
-                        return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
+                        return `Displaying <b>${displ}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
                     } else if (data.hasOneResult) {
-                        return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
+                        return `Displaying <b>${displ}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
                     } else {
                         return `no result`;
                     }
