@@ -1285,8 +1285,9 @@ window.onload = function() {
             render({ searchMetadata = {} }) {
                 const { isSearchStalled } = searchMetadata
 
-                console.log(isSearchStalled)
-                if (!isSearchStalled) {
+                
+                if (isSearchStalled === false) {
+                    console.log(isSearchStalled)
                     function selectOptions(select) {
                         let parent = select.closest('.list_box2');
                         let option = ``;
@@ -1296,10 +1297,7 @@ window.onload = function() {
                             name = select.options[select.selectedIndex].innerText,
                             qty = select.options[select.selectedIndex].dataset.qty;
             
-                            if (parent.querySelector(`.variant_tag span i`) != null) {
-                                parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                            }
-                            
+                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
                             parent.querySelector(`[name="product_variant_id"]`).value = variantId;
                             parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
                             parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
