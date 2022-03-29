@@ -1031,10 +1031,8 @@ window.onload = function() {
             if (i > 0) {
                 categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
             }
-            
-           
+
             if (i == categoriesLink.length - 1) {
-                console.log(categoryCrumbs)
                 if (categoriesLink.length > 1) {
                     categoryFacet = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
                 } 
@@ -1082,7 +1080,6 @@ window.onload = function() {
                 empty: `No Item Found`,
                 filters: [categoryFacet],
                 item: (hit) => {
-                    console.log(hit)
                     function qty() {
                         let option = ``;
                         for (let n = 1; n <= +hit.qty; n++) {
