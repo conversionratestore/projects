@@ -1123,7 +1123,7 @@ window.onload = function() {
                                     </span>
                                     <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
                                         <span class="product_quantity nostyle" style="display:${hit.in_stock==false?'none':'block'};">
-                                            <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty}">${qty()}</select>
+                                            <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty=='0' && hit.in_stock==true ? '100' : hit.qty}">${qty()}</select>
                                         </span>
                                         <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${hit.in_stock==false?'none':'block'};">
                                         <div class="out-of-stock__box--pv" style="display:${hit.in_stock==false?'block':'none'}; ">
