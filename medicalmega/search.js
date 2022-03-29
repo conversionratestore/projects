@@ -1098,6 +1098,7 @@ window.onload = function() {
                                 option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;
                             }
                         }
+                        console.log(option)
                         return option
                     }
                     function findImage() {
