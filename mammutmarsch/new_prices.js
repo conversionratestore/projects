@@ -1,27 +1,33 @@
-let start = setInterval(function () {
-    if(typeof jQuery === 'function' && (jQuery('.woocommerce-Price-amount') || jQuery('.starter_package_price') || jQuery('#coupon_code'))) {
-        clearInterval(start)
-
-        setTimeout(function () {
-
-            const $ = jQuery
-            $('.woocommerce-Price-amount').each((__, item) => {
-                let price = +$(item).text().slice(0, -1).replace(',', '.')
-                price = price * 0.95
-                $(item).text(price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}))
-            })
-
-            $('.starter_package_price, .additional_package_price, .checkout_total_price').each((__, item) => {
-                let price = +$(item).text().replace(',', '.')
-                price = price * 0.95
-                $(item).text(price.toString().replace('.', ','))
-                $(item).css('opacity', '1')
-            })
-
-            $('#coupon_code').val('Price_Test_CRO')
-            $('.checkout_coupon input[type="submit"]').click()
-        }, 300)
+window.onload = function () {
+    function changePrice(item) {
+        let price = +item.innerText.slice(0, -1).trim().replace(',', '.')
+        price = price * 0.95
+        item.innerText = price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})
     }
-}, 100)
+
+    document.querySelectorAll('.woocommerce-Price-amount').forEach((item) => {
+        changePrice(item)
+    })
 
 
+    document.querySelectorAll('.starter_package_price').forEach(( item) => {
+        changePrice(item)
+    })
+
+    document.querySelectorAll('.additional_package_price').forEach(( item) => {
+        changePrice(item)
+    })
+
+    document.querySelectorAll('.checkout_total_price').forEach(( item) => {
+        changePrice(item)
+    })
+
+    document.querySelector('.starter_package_price')?.nextSibling?.remove()
+    document.querySelector('.additional_package_price')?.nextSibling?.remove()
+    document.querySelector('.checkout_total_price')?.nextSibling?.remove()
+
+    if(window.location.pathname.includes('checkout')) {
+        document.querySelector('#coupon_code').value = 'Price_Test_CRO'
+        document.querySelector('.checkout_coupon input[type="submit"]').click()
+    }
+}
