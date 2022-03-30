@@ -1,4 +1,4 @@
-window.onload = function () {
+// window.onload = function () {
     function changePrice(item) {
         let price = +item.innerText.slice(0, -1).trim().replace(',', '.')
         price = price * 0.95
@@ -30,4 +30,4 @@ window.onload = function () {
         document.querySelector('#coupon_code').value = 'Price_Test_CRO'
         document.querySelector('.checkout_coupon input[type="submit"]').click()
     }
-}
+// }
