@@ -1289,7 +1289,7 @@ window.onload = function() {
     
     ]); 
     search.start();
-
+    
     search.addWidgets([
         {
             render({ searchMetadata = {} }) {
@@ -1317,17 +1317,17 @@ window.onload = function() {
             
                             parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
             
-                        if (name.includes('Out of stock')) {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                            parent.querySelector('.product_quantity').style.display = 'none';
-                            parent.querySelector('.buynow2').style.display = 'none';
-                            parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
-                        } else {
-                            parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                            parent.querySelector('.product_quantity').style.display = 'block';
-                            parent.querySelector('.buynow2').style.display = 'block';
-                            parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
-                        }
+                            if (name.includes('Out of stock')) {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                                parent.querySelector('.product_quantity').style.display = 'none';
+                                parent.querySelector('.buynow2').style.display = 'none';
+                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
+                            } else {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                                parent.querySelector('.product_quantity').style.display = 'block';
+                                parent.querySelector('.buynow2').style.display = 'block';
+                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
+                            }
                         }
                     
                     }
@@ -1346,9 +1346,9 @@ window.onload = function() {
                         document.querySelector('.pagination1').style.opacity = '1'
                         document.querySelector('.pagination2').style.opacity = '1'
                     }
-                    
                     document.querySelectorAll('.ais-Pagination-link').forEach(page => {
                         page.addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
                             labelDataLayer = 'Pagination';
                             if (page.closest('.ais-Pagination-item--page')) {
                                 actionDataLayer = `click on page ${e.target.innerText}`
@@ -1364,7 +1364,6 @@ window.onload = function() {
                             pushDataLayer(actionDataLayer,labelDataLayer)  
                         })
                     })
-                  
                 }
     
             },
