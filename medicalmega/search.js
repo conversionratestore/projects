@@ -1277,6 +1277,7 @@ window.onload = function() {
             attribute: categoryFacet.split(':')[0],
             transformItems(items) {
                 return items.filter(item => {
+                    console.log(item)
                     return item.label.includes(categoryFacet.split(':')[1])
                 }) 
             },
@@ -1291,7 +1292,6 @@ window.onload = function() {
             render({ searchMetadata = {} }) {
                 const { isSearchStalled } = searchMetadata
 
-                
                 if (isSearchStalled === false) {
                     console.log(isSearchStalled)
                     function selectOptions(select) {
