@@ -1346,6 +1346,24 @@ window.onload = function() {
                         document.querySelector('.pagination1').style.opacity = '1'
                         document.querySelector('.pagination2').style.opacity = '1'
                     }
+                    
+                    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
+                        page.addEventListener('click', (e) => {
+                            labelDataLayer = 'Pagination';
+                            if (page.closest('.ais-Pagination-item--page')) {
+                                actionDataLayer = `click on page ${e.target}`
+                            } else if (page.closest('.ais-Pagination-item--previousPage')) {
+                                actionDataLayer = `click on previous page`
+                            } else if (page.closest('.ais-Pagination-item--firstPage')) {
+                                actionDataLayer = `click on first page`
+                            } else if (page.closest('.ais-Pagination-item--nextPage')) {
+                                actionDataLayer = `click on next page`
+                            } else if (page.closest('.ais-Pagination-item--lastPage')) {
+                                actionDataLayer = `click on last page`
+                            }
+                            pushDataLayer(actionDataLayer,labelDataLayer)  
+                        })
+                    })
                   
                 }
     
@@ -1403,25 +1421,6 @@ window.onload = function() {
         actionDataLayer = 'Click on submit search';
         pushDataLayer(actionDataLayer);  
         inputChange()
-    })
-
-
-    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
-        page.addEventListener('click', (e) => {
-             labelDataLayer = 'Pagination';
-            if (page.closest('.ais-Pagination-item--page')) {
-                actionDataLayer = `click on page ${e.target}`
-            } else if (page.closest('.ais-Pagination-item--previousPage')) {
-                actionDataLayer = `click on previous page`
-            } else if (page.closest('.ais-Pagination-item--firstPage')) {
-                actionDataLayer = `click on first page`
-            } else if (page.closest('.ais-Pagination-item--nextPage')) {
-                actionDataLayer = `click on next page`
-            } else if (page.closest('.ais-Pagination-item--lastPage')) {
-                actionDataLayer = `click on last page`
-            }
-            pushDataLayer(actionDataLayer,labelDataLayer)  
-        })
     })
 
     if (window.location.pathname.includes('/category')) {
