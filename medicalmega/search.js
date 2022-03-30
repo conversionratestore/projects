@@ -1069,8 +1069,9 @@ window.onload = function() {
         instantsearch.widgets.searchBox({
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
-            loadingIndicator: false,
+            loadingIndicator: true,
             searchAsYouType: false, 
+            showLoadingIndicator: true,
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
