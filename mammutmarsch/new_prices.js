@@ -11,7 +11,7 @@
 
 let change = setInterval(function () {
             console.log(document.querySelectorAll('.starter_package_price')[0].innerText.innerText.length)
-        })
+        }, 100)
 
     document.querySelectorAll('.starter_package_price').forEach(( item) => 
         changePrice(item)
