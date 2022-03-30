@@ -1351,7 +1351,7 @@ window.onload = function() {
                         page.addEventListener('click', (e) => {
                             labelDataLayer = 'Pagination';
                             if (page.closest('.ais-Pagination-item--page')) {
-                                actionDataLayer = `click on page ${e.target}`
+                                actionDataLayer = `click on page ${e.target.innerText}`
                             } else if (page.closest('.ais-Pagination-item--previousPage')) {
                                 actionDataLayer = `click on previous page`
                             } else if (page.closest('.ais-Pagination-item--firstPage')) {
