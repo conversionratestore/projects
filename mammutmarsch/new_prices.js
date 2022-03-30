@@ -9,11 +9,11 @@
         changePrice(item)
     })
 
-
-    document.querySelectorAll('.starter_package_price').forEach(( item) => {
-        let change = setInterval(function () {
-            console.log(item.innerText.innerText.length)
+let change = setInterval(function () {
+            console.log(document.querySelectorAll('.starter_package_price')[0].innerText.innerText.length)
         })
+
+    document.querySelectorAll('.starter_package_price').forEach(( item) => 
         changePrice(item)
     })
 
