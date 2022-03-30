@@ -35,5 +35,5 @@ setTimeout(function () {
     }
 
     document.querySelector('.temp').remove()
-}, 1000)
+}, 2000)
 
