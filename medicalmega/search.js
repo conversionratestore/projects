@@ -750,12 +750,13 @@ let mut = new MutationObserver(function (muts) {
             }
         </style>`)
     }
-   
+
     mut.observe(document, optionMut);
-    if (document.querySelector('#lvl_categories li') != null && document.querySelector('#lvl_categories .ais-RefinementList-item--selected') == null) {
+    if (document.querySelector('#lvl_categories li') != null && document.querySelector('.ais-RefinementList-item--selected') == null) {
         mut.disconnect();
         document.querySelector('#lvl_categories li').click()
     }
+
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
@@ -1229,18 +1230,18 @@ window.onload = function() {
             showMore: true,
             limit: 14,
             showMoreLimit: 100,
-            sortBy: ['isRefined'],
-            
+            // sortBy: ['isRefined'],
+            sortBy: ['name:asc'],
             transformItems(items) {
                 return items.filter(item =>  {
                     console.log(item)
-                    return item.label.includes(categoryFacet.split(':')[1])
+                    return item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())
                 }) 
             },
             templates: {
                 item: (data) => {
                     console.log(data)
-                    if (data.label.includes(categoryFacet.split(':')[1])) {
+                    // if (data.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) {
                         let valueArr = data.value.split(' > ');
                         let valueLast = valueArr[valueArr.length - 1];
                     
@@ -1266,23 +1267,24 @@ window.onload = function() {
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
                         `
-                    } 
+                    // } 
                 }
             },
+            
 
         }),
         
         instantsearch.widgets.refinementList({
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
+            sortBy: ['name:asc'],
             transformItems(items) {
-                return items.filter(item => {
-                    console.log(item)
-                    return item.label.includes(categoryFacet.split(':')[1])
-                }) 
+                console.log(items)
+                return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
             },
             
         }),
+        
     
     ]); 
     search.start();
@@ -1343,6 +1345,7 @@ window.onload = function() {
                         document.querySelector('.pagination1').style.opacity = '1'
                         document.querySelector('.pagination2').style.opacity = '1'
                     }
+                  
                 }
     
             },
