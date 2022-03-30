@@ -1263,7 +1263,7 @@ window.onload = function() {
                         
                         return `
                             <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
-                                <span title="${valueLast}">${valueLast}</span>
+                                <span>${valueLast}</span>
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
                         `
