@@ -1228,9 +1228,8 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `.list_subcategory`,
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            showMore: true,
-            limit: 14,
-            showMoreLimit: 100,
+            showMore: false,
+            limit: 100,
             // sortBy: ['isRefined'],
             // sortBy: ['name:asc'],
             transformItems(items) {
