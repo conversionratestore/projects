@@ -1277,8 +1277,8 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
-            sortBy: ['name:asc'],
-            limit: 100,
+//             sortBy: ['name:asc'],
+//             limit: 100,
             transformItems(items) {
                 console.log(items)
                 return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
