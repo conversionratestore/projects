@@ -760,7 +760,6 @@ let mut = new MutationObserver(function (muts) {
     mut.observe(document, optionMut);
     if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
         mut.disconnect();
-        document.querySelector('#sort-name .ais-SortBy-option').setAttribute('disabled','')
        
         document.querySelector('#listing_container').classList.remove('loading');
       
@@ -1070,8 +1069,8 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: true,
-            searchAsYouType: false, 
-            showLoadingIndicator: true,
+            searchAsYouType: true, 
+//             showLoadingIndicator: true,
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1156,7 +1155,6 @@ window.onload = function() {
         instantsearch.widgets.sortBy({
             container: '#sort-name',
             items: [
-                { label: 'Sort by', value: 'staging_products', selected: true, disable: true },
                 { label: 'Product Name ASC', value: 'staging_products' },
                 { label: 'Product Name DESC', value: 'staging_products_name_desc' },
             ],
@@ -1215,7 +1213,7 @@ window.onload = function() {
                     let checkbox = `
                         <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
                             <span class="check"></span>
-                            <span class="check_text">${data.value} <span class="count_brand">(${data.count})</span></span>
+                            <span class="check_text">$${data.value} <span class="count_brand">(${data.count})</span></span>
                         </label>
                     `;
                 
@@ -1230,8 +1228,6 @@ window.onload = function() {
             attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
             showMore: false,
             limit: 100,
-            // sortBy: ['isRefined'],
-            // sortBy: ['name:asc'],
             transformItems(items) {
                 return items.filter(item =>  {
                     console.log(item)
@@ -1241,7 +1237,6 @@ window.onload = function() {
             templates: {
                 item: (data) => {
                     console.log(data)
-                    // if (data.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) {
                         let valueArr = data.value.split(' > ');
                         let valueLast = valueArr[valueArr.length - 1];
                     
@@ -1267,7 +1262,6 @@ window.onload = function() {
                                 <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
                             </a>
                         `
-                    // } 
                 }
             },
             
@@ -1277,8 +1271,6 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
-//             sortBy: ['name:asc'],
-//             limit: 100,
             transformItems(items) {
                 console.log(items)
                 return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
