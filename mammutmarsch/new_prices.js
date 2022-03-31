@@ -8,8 +8,10 @@ setTimeout(function () {
         item.innerText = price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})
     }
 
-    document.querySelectorAll('.woocommerce-Price-amount').forEach((item) => {
-        changePrice(item)
+    jQuery('.woocommerce-Price-amount').each((__, item) => {
+        let price = +jQuery(item).text().slice(0, -1).trim().replace(',', '.')
+        price = price * 0.95
+        jQuery(item).text(price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}))
     })
 
 
@@ -35,5 +37,5 @@ setTimeout(function () {
     }
 
     document.querySelector('.temp').remove()
-}, 2000)
+}, 500)
 
