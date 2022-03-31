@@ -1411,6 +1411,7 @@ window.onload = function() {
         actionDataLayer = 'Click on input search';
         pushDataLayer(actionDataLayer)  
     })
+    document.querySelector('#search-box input').addEventListener('input', (e) => inputChange())
 
     document.querySelector('#search-box input').addEventListener('keypress', (e) => {
         if (e.keyCode == '13') {
