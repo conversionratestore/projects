@@ -14,18 +14,22 @@ setTimeout(function () {
         jQuery(item).text(price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}))
     })
 
+    function eventPrice() {
+        document.querySelectorAll('.starter_package_price').forEach((item) => {
+            changePrice(item)
+        })
 
-    document.querySelectorAll('.starter_package_price').forEach(( item) => {
-        changePrice(item)
-    })
+        document.querySelectorAll('.additional_package_price').forEach((item) => {
+            changePrice(item)
+        })
 
-    document.querySelectorAll('.additional_package_price').forEach(( item) => {
-        changePrice(item)
-    })
+        document.querySelectorAll('.checkout_total_price').forEach((item) => {
+            changePrice(item)
+        })
+    }
+    eventPrice()
 
-    document.querySelectorAll('.checkout_total_price').forEach(( item) => {
-        changePrice(item)
-    })
+    jQuery('input[type=radio]').change(function(){eventPrice()})
 
     document.querySelector('.starter_package_price')?.nextSibling?.remove()
     document.querySelector('.additional_package_price')?.nextSibling?.remove()
