@@ -1377,7 +1377,7 @@ window.onload = function() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
-        if (!window.location.pathname.includes('/category')) {
+        // if (!window.location.pathname.includes('/category')) {
             if (value.length > 0) {
                 document.querySelector('#listing_container').style.display = 'block';
                 if (window.location.pathname == '/') {
@@ -1387,21 +1387,22 @@ window.onload = function() {
                     document.querySelector('#mainbody').style.display = 'none';
                 }
         
-            } else {
-                document.querySelector('#listing_container').style.display = 'none';
-                if (window.location.pathname == '/') {
-                    document.querySelector('.homepage-container').style.display = 'block';
-                }
-                if (document.querySelector('#mainbody') != null) {
-                    document.querySelector('#mainbody').style.display = 'block';
-                }
-            }
-        } else {
-            document.querySelector('#listing_container').style.display = 'block';
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'none';
-            }
-        }
+            } 
+            // else {
+            //     document.querySelector('#listing_container').style.display = 'none';
+            //     if (window.location.pathname == '/') {
+            //         document.querySelector('.homepage-container').style.display = 'block';
+            //     }
+            //     if (document.querySelector('#mainbody') != null) {
+            //         document.querySelector('#mainbody').style.display = 'block';
+            //     }
+            // }
+        // } else {
+        //     document.querySelector('#listing_container').style.display = 'block';
+        //     if (document.querySelector('#mainbody') != null) {
+        //         document.querySelector('#mainbody').style.display = 'none';
+        //     }
+        // }
         
     }
 
