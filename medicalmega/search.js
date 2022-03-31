@@ -715,14 +715,7 @@ function scrolled(element) {
 let count = 0;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-        mut.disconnect();
-        let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-       
-        element.setAttribute('class','ais-RefinementList-list scroll')
-        element.addEventListener('scroll', () => scrolled(element));
-    }
-    mut.observe(document, optionMut);   
+    
     if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
         mut.disconnect();
         count = 1;
@@ -1210,10 +1203,18 @@ window.onload = function() {
             templates: {
                 item: (data) => {
                     actionDataLayer = "Click on one of the price items on filters";
+                    let sltPrice = '';
+                    if (data.value.includes(' - ')) {
+                        sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+                    }  else {
+                        sltPrice = `> $${data.value.split('> ')[1]}`;
+                    }
+                    
+                    
                     let checkbox = `
                         <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
                             <span class="check"></span>
-                            <span class="check_text">$${data.value} <span class="count_brand">(${data.count})</span></span>
+                            <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
                         </label>
                     `;
                 
@@ -1356,6 +1357,14 @@ window.onload = function() {
                             pushDataLayer(actionDataLayer,labelDataLayer)  
                         })
                     })
+                    let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+                    if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
+                        element.setAttribute('class','ais-RefinementList-list scroll')
+                        element.addEventListener('scroll', () => scrolled(element));
+                    } else {
+                        element.setAttribute('class','ais-RefinementList-list scrolled')
+                    }
+                    
                 }
     
             },
