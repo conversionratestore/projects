@@ -1337,12 +1337,15 @@ window.onload = function() {
                     })
                     let element = document.querySelector('#manufacturer .ais-RefinementList-list');
                     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-                        element.setAttribute('class','ais-RefinementList-list scroll')
+                        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+                            element.setAttribute('class','ais-RefinementList-list scrolled')
+                        } else {
+                            element.setAttribute('class','ais-RefinementList-list scroll')
+                        }
                         element.addEventListener('scroll', () => scrolled(element));
                     } else {
                         element.setAttribute('class','ais-RefinementList-list scrolled')
                     }
-             
 
                     let pricesContainer = document.querySelector('#price_group ul'),
                         para = document.querySelectorAll('#price_group li');
