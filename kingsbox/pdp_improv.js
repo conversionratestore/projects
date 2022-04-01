@@ -1418,17 +1418,17 @@ let isBlackAccordion = setInterval(() => {
 
 		document.querySelector('.accordion.product-accessory-category .card .flex-row').click()
 
-		document.querySelector('.accordion.product-accessory-category').addEventListener('click', () => {
-
-			window.dataLayer = window.dataLayer || [];
-			dataLayer.push({
-				'event': 'event-to-ga',
-				'eventCategory': 'Exp: PDP improvemnets ' + device,
-				'eventAction': 'Click on accessorise'
-			});
-
-			console.log('eventAction Click on accessorise >>>>>')
-		})
+		// document.querySelector('.accordion.product-accessory-category').addEventListener('click', () => {
+		//
+		// 	window.dataLayer = window.dataLayer || [];
+		// 	dataLayer.push({
+		// 		'event': 'event-to-ga',
+		// 		'eventCategory': 'Exp: PDP improvemnets ' + device,
+		// 		'eventAction': 'Click on accessorise'
+		// 	});
+		//
+		// 	console.log('eventAction Click on accessorise >>>>>')
+		// })
 	}
 }, 200)
 let isSimilar = setInterval(() => {
@@ -1738,9 +1738,9 @@ function tnsSettings(container, items, nav, gutter, responsive) {
 	tns(obj)
 }
 
-let isWeigh = setInterval(() => {
+let isWeigth = setInterval(() => {
 	if(document.querySelector('.product-variation .square')){
-		clearInterval(isWeigh)
+		clearInterval(isWeigth)
 
 		document.querySelectorAll('.product-variation .square').forEach(square => {
 			square.addEventListener('click', () => {
@@ -1755,7 +1755,104 @@ let isWeigh = setInterval(() => {
 			})
 		})
 	}
-}, 100)
+}, 200)
+
+// let isRecommended = setInterval(() => {
+// 	if(document.querySelector('.product-recommendations col-12')) {
+// 		document.querySelector('.product-recommendations').addEventListener('click', (e) => {
+// 			if(e.target.closest('.col-12') && document.querySelector('[data-style="not"]')) {
+// 				window.dataLayer = window.dataLayer || [];
+// 				dataLayer.push({
+// 					'event': 'event-to-ga',
+// 					'eventCategory': 'Exp: PDP improvemnets ' + device,
+// 					'eventAction': 'Similar products for out of stock'
+// 				});
+//
+// 				console.log('eventAction Similar products for out of stock')
+// 			}
+// 		})
+// 	}
+// }, 100)
+
+let isSimilarRight = setInterval(() => {
+	if(document.querySelector('.similar_products.right')) {
+		clearInterval(isSimilarRight)
+		document.querySelector('.similar_products.right').addEventListener('click', e => {
+			if(e.target.closest('.my_product')) {
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp: PDP improvemnets ' + device,
+					'eventAction': 'Similar products'
+				});
+
+				console.log('eventAction Similar products')
+			}
+		})
+	}
+}, 200)
+
+let isSimilarLeft = setInterval(() => {
+	if(document.querySelector('.similar_products.left:not(.also-like)')) {
+		clearInterval(isSimilarLeft)
+		document.querySelector('.similar_products.left').addEventListener('click', e => {
+			if(e.target.closest('.my_product')) {
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp: PDP improvemnets ' + device,
+					'eventAction': 'Similar products'
+				});
+
+				console.log('eventAction Similar products')
+			}
+		})
+	}
+}, 200)
+
+let isAlsoLike = setInterval(() => {
+	if(document.querySelector('.also-like')) {
+		clearInterval(isAlsoLike)
+		document.querySelector('.also-like').addEventListener('click', e => {
+			if(e.target.closest('.my_product')) {
+
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp: PDP improvemnets ' + device,
+					'eventAction': 'You may also like for out of stock'
+				});
+
+				console.log('eventAction You may also like for out of stock')
+			}
+		})
+	}
+}, 500)
+
+let isMenu = setInterval(() => {
+	if(document.querySelector('.custom_menu_wrapper')) {
+		clearInterval(isMenu)
+		document.querySelector('.custom_menu_wrapper').addEventListener('click', e => {
+			if(e.target.closest('li')) {
+
+				window.dataLayer = window.dataLayer || [];
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp: PDP improvemnets ' + device,
+					'eventAction': 'Clicks on the shop by categories'
+				});
+
+
+				console.log('eventAction Clicks on the shop by categories')
+			}
+		})
+	}
+}, 500)
+
+setTimeout(() => {
+	clearInterval(isSimilarLeft)
+	clearInterval(isSimilarRight)
+}, 10000)
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
