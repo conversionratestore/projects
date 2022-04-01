@@ -1185,6 +1185,8 @@ window.onload = function() {
                     }  else {
                         sltPrice = `> $${data.value.split('> ')[1]}`;
                     }
+
+                    console.log(data)
                     
                     
                     let checkbox = `
@@ -1340,7 +1342,17 @@ window.onload = function() {
                     } else {
                         element.setAttribute('class','ais-RefinementList-list scrolled')
                     }
-                    
+             
+
+                    let pricesContainer = document.querySelector('#price_group ul'),
+                        para = document.querySelectorAll('#price_group li');
+                    let paraArr = [].slice.call(para).sort(function (a, b) {
+                        return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                    });
+
+                    paraArr.forEach(function (p) {
+                        pricesContainer.appendChild(p);
+                    });
                 }
             },
         },
@@ -1386,8 +1398,7 @@ window.onload = function() {
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
-    }
-    
+    }  
 };
 
 window.dataLayer = window.dataLayer || [];
