@@ -676,7 +676,6 @@ let actionDataLayer = '',
     labelDataLayer = '';
 
 function pushDataLayer(action,label) {
-    console.log(action + " : " + label)
     window.dataLayer = window.dataLayer || [];
     if (label) {
         dataLayer.push({
@@ -1186,9 +1185,6 @@ window.onload = function() {
                         sltPrice = `> $${data.value.split('> ')[1]}`;
                     }
 
-                    console.log(data)
-                    
-                    
                     let checkbox = `
                         <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
                             <span class="check"></span>
@@ -1199,7 +1195,6 @@ window.onload = function() {
                     return checkbox
                 },
             },
-
         }),
         
         instantsearch.widgets.refinementList({
@@ -1208,39 +1203,35 @@ window.onload = function() {
             showMore: false,
             limit: 100,
             transformItems(items) {
-                return items.filter(item =>  {
-                    console.log(item)
-                    return item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())
-                }) 
+                return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
             },
             templates: {
                 item: (data) => {
-                    console.log(data)
-                        let valueArr = data.value.split(' > ');
-                        let valueLast = valueArr[valueArr.length - 1];
-                    
-                        fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
-                            
-                            document.querySelectorAll('.list_subcategory img').forEach(el => {
-                                if (dataItem.query == el.alt) {
-                                    el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
-                                }
-                                el.parentElement.addEventListener('click', (e) => {
-                                    e.stopImmediatePropagation();
-                                    actionDataLayer =  `Click on subcategory icon`;
-                                    pushDataLayer(actionDataLayer);
-                                    window.location.href = el.href;
-                                })
-                            })
-                          
-                        });
+                    let valueArr = data.value.split(' > ');
+                    let valueLast = valueArr[valueArr.length - 1];
+                
+                    fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
                         
-                        return `
-                            <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
-                                <span>${valueLast}</span>
-                                <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
-                            </a>
-                        `
+                        document.querySelectorAll('.list_subcategory img').forEach(el => {
+                            if (dataItem.query == el.alt) {
+                                el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
+                            }
+                            el.parentElement.addEventListener('click', (e) => {
+                                e.stopImmediatePropagation();
+                                actionDataLayer =  `Click on subcategory icon`;
+                                pushDataLayer(actionDataLayer);
+                                window.location.href = el.href;
+                            })
+                        })
+                        
+                    });
+                    
+                    return `
+                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
+                            <span>${valueLast}</span>
+                            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
+                        </a>
+                    `
                 }
             },
             
@@ -1251,14 +1242,12 @@ window.onload = function() {
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
             transformItems(items) {
-                console.log(items)
                 return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
             },
             
         }),
-        
+    ]);
     
-    ]); 
     search.start();
     
     search.addWidgets([
