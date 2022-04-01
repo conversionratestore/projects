@@ -390,19 +390,9 @@ let styles = `
         font-size: 12px;
         padding-right: 8px;
     }
-    .btn_sort {
-        width: calc(50% - 7.5px);
-    }
-    .btn_sort select {
-        height: 30px;
-        border: 1px solid #666666;
-        border-radius: 4px;
-        margin: 0;
-        width: 100%!important;
-        padding: 0 7px;
-    }
+
     .btn_filter {
-        width: calc(50% - 7.5px);
+        width: 100%;
         background: #171717;
         border-radius: 4px;
         line-height: 30px;
@@ -751,15 +741,11 @@ let mut = new MutationObserver(function (muts) {
     }
 
     mut.observe(document, optionMut);
-    if (document.querySelector('#sort-name .ais-SortBy-option') != null) {
+    if (document.querySelector('#mm_per_page .ais-HitsPerPage-option') != null) {
         mut.disconnect();
        
         document.querySelector('#listing_container').classList.remove('loading');
       
-        document.querySelector('#sort-name select').addEventListener('click', (e) => {
-            actionDataLayer =  `Click on sort by field`;
-            pushDataLayer(actionDataLayer)
-        })
         document.querySelector('#mm_per_page select').addEventListener('click', (e) => {
             actionDataLayer = 'Click on per page';
             pushDataLayer(actionDataLayer);
@@ -915,11 +901,9 @@ window.onload = function() {
         <div id="lvl_categories"></div>
         <div class="list_subcategory"></div>
         <span class="result_for_search"></span>
-        <div class="justify-content-between">
-            <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-            <div class="btn_sort" id="sort-name"></div>
-        </div>
-        
+
+        <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
+
         <div id="stats-container"></div>
         <div class="flex-center-end page-result">
             <p>Results Per Page: </p>
@@ -1143,14 +1127,6 @@ window.onload = function() {
                     return boxItem
                 }
             },
-        }),
-
-        instantsearch.widgets.sortBy({
-            container: '#sort-name',
-            items: [
-                { label: 'Product Name ASC', value: 'staging_products' },
-                { label: 'Product Name DESC', value: 'staging_products_name_desc' },
-            ],
         }),
         instantsearch.widgets.pagination({
             container: '.pagination1',
