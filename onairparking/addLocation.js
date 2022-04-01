@@ -1,7 +1,3 @@
-let style = `
-
-  
-`
 
 if (window.location.href.includes('/reservation/search')) {
     document.body.insertAdjacentHTML('afterbegin',`
@@ -138,6 +134,23 @@ if (window.location.href.includes('/reservation/search')) {
 
     let btnLocation = `<a href="${document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`
     document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').insertAdjacentHTML('beforebegin', btnLocation)
+
+    document.querySelector('.btn-location').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: PDP add location',
+            'eventAction': 'Click on "Check location" button'
+        });
+    })
+    document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: PDP add location',
+            'eventAction': 'Park here button'
+        });
+    })
 }
 
 if (window.location.href.includes('/parkingat')) {
@@ -147,8 +160,7 @@ if (window.location.href.includes('/parkingat')) {
             display: none!important;
         }
         #google-map-parking-at {
-            height: 200px;
-            width: 100%;
+            height: 200px!important;
         }
         article.shadow-md.mt-12 {
             box-shadow: none !important;
@@ -201,6 +213,14 @@ if (window.location.href.includes('/parkingat')) {
         .flex.flex-col.items-center {
             font-family: 'Roboto', sans-serif;
         }
+        .list {
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 18px;
+            color: #111827;
+        }
 
     </style>`)
     
@@ -233,9 +253,47 @@ if (window.location.href.includes('/parkingat')) {
 
     document.querySelector('.grid.grid-cols-1.gap-8.justify-center.items-start.my-12.px-4').after(document.querySelector('#google-map-parking-at'))
     document.querySelector('#google-map-parking-at').insertAdjacentHTML('afterend',`
-    <ul class="list">
-        <li></li>
-        <li></li>
-        <li></li>
+    <ul class="list py-5">
+        <li class="flex mb-4">
+            <svg width="24" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.88906 23.4C5.44219 20.3906 0 13.0969 0 9C0 4.02938 4.02938 0 9 0C13.9688 0 18 4.02938 18 9C18 13.0969 12.5156 20.3906 10.1109 23.4C9.53438 24.1172 8.46562 24.1172 7.88906 23.4ZM9 12C10.6547 12 12 10.6547 12 9C12 7.34531 10.6547 6 9 6C7.34531 6 6 7.34531 6 9C6 10.6547 7.34531 12 9 12Z" fill="#E57715"/>
+            </svg>
+            <p class="pl-4">Due to our incredibly low prices, we can only reveal the parking facility after you book</p>
+        </li>
+        <li class="flex mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0ZM7.6875 4.7666C7.93474 4.75202 8.15822 4.8998 8.32764 5.1621L9.96826 8.27342C10.141 8.6421 10.0428 9.03686 9.78516 9.30028L9.0337 10.0517C8.98732 10.1153 8.9568 10.1869 8.95606 10.2656C9.24424 11.3811 10.1184 12.4101 10.8897 13.1177C11.6609 13.8253 12.4899 14.7833 13.5659 15.0102C13.6989 15.0473 13.8619 15.0606 13.957 14.9722L14.8301 14.083C15.1314 13.8546 15.5674 13.7439 15.8892 13.9307H15.9038L18.8642 15.6782C19.2988 15.9506 19.3438 16.4771 19.0327 16.7974L16.9937 18.8203C16.6925 19.1291 16.2925 19.2329 15.9038 19.2334C14.1849 19.1819 12.5607 18.3382 11.2266 17.4712C9.0368 15.8781 7.02814 13.9023 5.7671 11.5151C5.28346 10.5141 4.71532 9.23694 4.76954 8.11966C4.77438 7.69934 4.8881 7.28756 5.1841 7.01664L7.22316 4.97758C7.382 4.84242 7.53914 4.77536 7.6875 4.7666Z" fill="#E57715"/>
+            </svg>
+            <p class="pl-4">24/7 Phone support to help you book your parking reservation</p>
+        </li>
+        <li class="flex mb-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.7633 12.5085C21.157 11.9882 21.375 11.3507 21.375 10.6874C21.375 9.63507 20.7867 8.63897 19.8398 8.0835C19.5961 7.94052 19.3185 7.86527 19.0359 7.86554H13.4156L13.5563 4.98507C13.5891 4.28898 13.343 3.62804 12.8648 3.12414C12.6302 2.87577 12.3471 2.67815 12.0331 2.54351C11.7191 2.40887 11.3807 2.34005 11.0391 2.34133C9.82031 2.34133 8.74219 3.16164 8.41875 4.33585L6.40547 11.6249H6.39844V21.6561H17.468C17.6836 21.6561 17.8945 21.614 18.0891 21.5296C19.2047 21.0538 19.9242 19.964 19.9242 18.7546C19.9242 18.4593 19.882 18.1686 19.7977 17.8874C20.1914 17.3671 20.4094 16.7296 20.4094 16.0663C20.4094 15.771 20.3672 15.4804 20.2828 15.1991C20.6766 14.6788 20.8945 14.0413 20.8945 13.378C20.8898 13.0827 20.8477 12.7897 20.7633 12.5085ZM2.625 12.3749V20.9061C2.625 21.321 2.96016 21.6561 3.375 21.6561H4.89844V11.6249H3.375C2.96016 11.6249 2.625 11.9601 2.625 12.3749Z" fill="#E57715"/>
+            </svg>
+            <p class="pl-4">Free cancellations up to start date</p>
+        </li>
     </ul>`)
+
+    document.querySelector('#google-map-parking-at').addEventListener('click', () => {
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: PDP add location',
+            'eventAction': 'Click on map'
+        });
+    })
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: PDP add location',
+    'eventAction': 'loaded'
+});
+
+let isClarity = setTimeout(function(){
+    if(typeof clarity === 'function'){
+        clearInterval(isClarity)
+        clarity("set", "pdp_add_location", "variant_1");
+  }
+}, 100)
