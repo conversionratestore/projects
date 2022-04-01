@@ -854,7 +854,6 @@ window.onload = function() {
         viewAllCategories(false)
         actionDataLayer = 'Click on view all categories';
         pushDataLayer(actionDataLayer)
-
     }); //open all category
 
     document.querySelector('.btn_back').addEventListener('click', () => {
