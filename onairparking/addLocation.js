@@ -1,3 +1,15 @@
+let action = '';
+
+function pushDataLayer(action) {
+    console.log(action)
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        'event': 'event-to-ga',
+        'eventCategory': 'Exp: PDP add location',
+        'eventAction': action
+    });
+}
+
 window.onload  = function () {
     if (window.location.href.includes('/reservation/search')) {
         document.body.insertAdjacentHTML('afterbegin',`
@@ -134,20 +146,12 @@ window.onload  = function () {
         document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').insertAdjacentHTML('beforebegin', btnLocation)
 
         document.querySelector('.btn-location').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: PDP add location',
-                'eventAction': 'Click on "Check location" button'
-            });
+            action = 'Click on "Check location" button';
+            pushDataLayer(action)
         })
         document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: PDP add location',
-                'eventAction': 'Park here button'
-            });
+            action = 'Park here button';
+            pushDataLayer(action)
         })
     }
 
@@ -272,12 +276,8 @@ window.onload  = function () {
         </ul>`)
 
         document.querySelector('#google-map-parking-at').addEventListener('click', () => {
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                'event': 'event-to-ga',
-                'eventCategory': 'Exp: PDP add location',
-                'eventAction': 'Click on map'
-            });
+            action = 'Click on map';
+            pushDataLayer(action)
         })
     }
 };
