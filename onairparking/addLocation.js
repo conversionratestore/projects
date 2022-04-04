@@ -196,7 +196,7 @@ let mut = new MutationObserver(function (muts) {
                 color: #111827;
                 margin: 0 0 4px 0;
             }
-            .flex.flex-col.items-center:last-child, .flex.flex-col.items-center span,  span.anticon.anticon-clock-circle {
+            #parkingat .flex.flex-col.items-center:last-child, #parkingat .flex.flex-col.items-center span,  #parkingat span.anticon.anticon-clock-circle {
                 display: none!important;
             }
             .flex.flex-col.items-center {
