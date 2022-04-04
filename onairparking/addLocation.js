@@ -119,13 +119,17 @@ let mut = new MutationObserver(function (muts) {
             el.insertAdjacentHTML('beforebegin', `<a href="${linkBtns[index].href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`)
         })
 
-        document.querySelector('.btn-location').addEventListener('click', () => {
-            action = 'Click on "Check location" button';
-            pushDataLayer(action)
+        document.querySelectorAll('.btn-location').forEach(item => {
+            item.addEventListener('click', () => {
+                action = 'Click on "Check location" button';
+                pushDataLayer(action)
+            })
         })
-        document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').addEventListener('click', () => {
-            action = 'Park here button';
-            pushDataLayer(action)
+        linkBtns.forEach(item => {
+            item.addEventListener('click', () => {
+                action = 'Park here button';
+                pushDataLayer(action)
+            })
         })
     }
 
