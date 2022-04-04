@@ -244,7 +244,7 @@ let mut = new MutationObserver(function (muts) {
         linkCustom.rel = 'stylesheet';
         document.head.appendChild(linkCustom);
 
-        document.querySelectorAll('.flex.flex-col.items-center').forEach((item,index) => {
+        document.querySelectorAll('#parkingat .grid .flex.flex-col.items-center').forEach((item,index) => {
             if (index == 0) {
                 if (item.querySelector('svg') != null) {
                     item.querySelector('svg').remove();
