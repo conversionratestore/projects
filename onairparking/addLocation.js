@@ -10,8 +10,19 @@ function pushDataLayer(action) {
     });
 }
 
-window.onload  = function () {
-    if (window.location.href.includes('/reservation/search')) {
+let optionMut = {
+    childList: true,
+    subtree: true,
+    attributes: true
+}
+
+let countMain = 0;
+let countParking = 0;
+
+let mut = new MutationObserver(function (muts) {
+    if (window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto p') != null) {
+        mut.disconnect();
+        countMain = 1
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             h2.text-xl.text-left.w-full.px-4.pt-4.truncate {
@@ -155,7 +166,8 @@ window.onload  = function () {
         })
     }
 
-    if (window.location.href.includes('/parkingat')) {
+    if (window.location.href.includes('/parkingat') && document.querySelector('#google-map-parking-at') != null) {
+        mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
             .relative.bg-gray-100.overflow-hidden.col-span-2.h-40.w-full {
@@ -280,7 +292,7 @@ window.onload  = function () {
             pushDataLayer(action)
         })
     }
-};
+});
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
