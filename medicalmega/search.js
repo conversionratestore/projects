@@ -668,7 +668,7 @@ const searchClient = algoliasearch(
 
 const search = instantsearch({
     indexName: 'staging_products',
-    routing: false,
+    routing: true,
     stalledSearchDelay: 500,
     searchClient,
 });
