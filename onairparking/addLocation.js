@@ -120,8 +120,11 @@ let mut = new MutationObserver(function (muts) {
         }
         document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full').classList.remove('items-center')
 
-        let btnLocation = `<a href="${document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`
-        document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').insertAdjacentHTML('beforebegin', btnLocation)
+        let linkBtns = document.querySelectorAll('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2');
+
+        document.querySelectorAll('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').forEach((el,index) => {
+            el.insertAdjacentHTML('beforebegin',  `<a href="${linkBtns[index].href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`)
+        })
 
         document.querySelector('.btn-location').addEventListener('click', () => {
             action = 'Click on "Check location" button';
