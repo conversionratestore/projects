@@ -190,7 +190,7 @@ let mut = new MutationObserver(function (muts) {
                 align-items: flex-end;
                 padding: 0!important;
                 margin: 25px 0 14px!important;
-                gap: 1rem;
+                gap: 0.5rem;
             }
             .flex.flex-col.items-center svg {
                 margin-bottom: 4px;
