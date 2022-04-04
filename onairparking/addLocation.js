@@ -17,7 +17,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto p') != null) {
+    if (window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto p') != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null) {
         mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
