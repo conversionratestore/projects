@@ -285,6 +285,7 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer(action)
         })
     }
+    mut.observe(document, optionMut);
 });
 
 mut.observe(document, optionMut);
