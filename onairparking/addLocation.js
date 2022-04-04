@@ -161,6 +161,7 @@ let mut = new MutationObserver(function (muts) {
             }
             article.shadow-md.mt-12 {
                 box-shadow: none !important;
+                margin-top: 26px;
             }
             .flex.flex-col.mt-8.px-4.mb-0 {
                 padding-left: 0!important;
