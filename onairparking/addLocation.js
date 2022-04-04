@@ -18,7 +18,7 @@ let optionMut = {
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelectorAll('.flex.flex-col.w-full.col-span-2 p').length > 3 && window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null) {
+    if (document.querySelector('.justify-start img') != null && window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null) {
         mut.disconnect();
         console.log('mut disc 1')
         document.body.insertAdjacentHTML('afterbegin',`
@@ -105,48 +105,13 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').setAttribute('class', 'flex flex-col w-full col-span-2 pb-5 pl-4 pr-0 self-center mx-auto')
 
         document.querySelector('ul.ant-rate.ant-rate-disabled.text-left').insertAdjacentHTML('afterend','<div id="info"><div class="info-item"></div></div>')
-
-        let arr = [
-            {
-                'name': 'Free Shuttle',
-                'nameOld': 'Open',
-                'icon': 'cil_bus-alt.svg'
-            },
-            {
-                'name': 'Shuttle Frequency',
-                'nameOld': 'AVG travel time',
-                'icon': 'bytesize_clock.svg'
-            },
-            {
-                'name': 'Distance',
-                'nameOld': 'Distance from terminal',
-                'icon': 'mdi_map-marker-distance.svg'
-            },
-            {
-                'name': 'Free Cancellations',
-                'nameOld': 'Free',
-                'icon': 'ant-design_like-outlined.svg'
-            }
-
-        ]
     
-        let element = document.querySelectorAll('.flex.flex-col.w-full.col-span-2 p');
+        let element = document.querySelectorAll('.justify-start img');
 
         for (let i = 0; i < element.length; i++) {
-            let supText = element[i].innerText.split(':')[0],
-                subText = element[i].innerText.split(':')[1];
-
-            for (let key in arr) {
-                console.log(arr[key])
-                if (arr[key].nameOld == supText) {
-                    element[i].innerHTML = `
-                        <span class="font-semibold">
-                            <img src="https://conversionratestore.github.io/projects/onairparking/img/${arr[key].icon}" alt="icon">
-                            ${arr[key].name}:
-                        </span>
-                        <span style="padding-left:30px">${subText}</span>
-                    `
-                }
+            let supText = element[i].alt;
+            if (supText == 'Free Shuttle') {
+                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/${arr[key].icon}`  
             }
 
             document.querySelector('.info-item').after(element[i])
