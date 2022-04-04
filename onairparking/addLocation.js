@@ -219,6 +219,9 @@ let mut = new MutationObserver(function (muts) {
                 line-height: 18px;
                 color: #111827;
             }
+            .list svg {
+                flex-shrink: 0;
+            }
 
         </style>`)
         
