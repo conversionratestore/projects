@@ -106,7 +106,7 @@ let mut = new MutationObserver(function (muts) {
 
         document.querySelector('ul.ant-rate.ant-rate-disabled.text-left').insertAdjacentHTML('afterend','<div id="info"><div class="info-item"></div></div>')
     
-        let element = document.querySelectorAll('.justify-start img');
+        let element = document.querySelectorAll('.relative .flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto .justify-start img');
 
         for (let i = 0; i < element.length; i++) {
             let supText = element[i].alt;
@@ -116,13 +116,13 @@ let mut = new MutationObserver(function (muts) {
                 element.src = `https://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`  
             }
 
-            document.querySelector('.info-item').after(element[i])
+            // document.querySelector('.info-item').after(element[i])
             
             element[i].setAttribute('class','mt-4');
         }
         document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full').classList.remove('items-center')
 
-        let linkBtns = document.querySelectorAll('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2');
+        let linkBtns = document.querySelectorAll('.self-end.flex.flex-col a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2');
 
         document.querySelectorAll('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').forEach((el,index) => {
             el.insertAdjacentHTML('beforebegin', `<a href="${linkBtns[index].href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`)
