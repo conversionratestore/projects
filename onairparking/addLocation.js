@@ -177,7 +177,7 @@ let mut = new MutationObserver(function (muts) {
                 margin: 25px 0 14px!important;
                 gap: 0.5rem;
             }
-            ##parkingat .flex.flex-col.items-center svg {
+            #parkingat .flex.flex-col.items-center svg {
                 margin-bottom: 4px;
             }
             #parkingat .flex.flex-col.items-center p.text-center {
