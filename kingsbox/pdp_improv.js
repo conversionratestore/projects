@@ -1756,10 +1756,10 @@ let isSimilarRight = setInterval(() => {
 				dataLayer.push({
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'Similar products'
+					'eventAction': 'You may also like for out of stock'
 				});
 
-				console.log('eventAction Similar products')
+				console.log('eventAction You may also like for out of stock')
 			}
 		})
 	}
@@ -1774,25 +1774,6 @@ let isSimilarLeft = setInterval(() => {
 				dataLayer.push({
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'Similar products'
-				});
-
-				console.log('eventAction Similar products')
-			}
-		})
-	}
-}, 200)
-
-let isAlsoLike = setInterval(() => {
-	if(document.querySelector('.also-like')) {
-		clearInterval(isAlsoLike)
-		document.querySelector('.also-like').addEventListener('click', e => {
-			if(e.target.closest('.my_product')) {
-
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: PDP improvemnets ' + device,
 					'eventAction': 'You may also like for out of stock'
 				});
 
@@ -1800,7 +1781,7 @@ let isAlsoLike = setInterval(() => {
 			}
 		})
 	}
-}, 500)
+}, 200)
 
 let isMenu = setInterval(() => {
 	if(document.querySelector('.custom_menu_wrapper')) {
@@ -1814,7 +1795,6 @@ let isMenu = setInterval(() => {
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
 					'eventAction': 'Clicks on the shop by categories'
 				});
-
 
 				console.log('eventAction Clicks on the shop by categories')
 			}
