@@ -190,6 +190,7 @@ let mut = new MutationObserver(function (muts) {
                 align-items: flex-end;
                 padding: 0!important;
                 margin: 25px 0 14px!important;
+                gap: 1rem;
             }
             .flex.flex-col.items-center svg {
                 margin-bottom: 4px;
@@ -212,6 +213,7 @@ let mut = new MutationObserver(function (muts) {
             }
             .flex.flex-col.items-center {
                 font-family: 'Roboto', sans-serif;
+                max-width: 125px;
             }
             .list {
                 font-family: 'Roboto', sans-serif;
