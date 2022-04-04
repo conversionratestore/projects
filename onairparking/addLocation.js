@@ -161,6 +161,8 @@ let mut = new MutationObserver(function (muts) {
             pushDataLayer(action)
         })
     }
+    
+    mut.observe(document, optionMut);
 
     if (window.location.href.includes('/parkingat') && document.querySelector('#google-map-parking-at') != null) {
         mut.disconnect();
