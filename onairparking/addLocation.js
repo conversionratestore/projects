@@ -54,25 +54,6 @@ let mut = new MutationObserver(function (muts) {
                 font-size: 16px;
                 line-height: 24px;
             }
-            #info span {
-                display: block;
-            }
-            #info {
-                display: grid;
-                margin-left: -2px;
-            }
-            #info p:first-child{
-                order: 4
-            }
-            #info p:last-child{
-                order: 3
-            }
-            #info p:nth-child(2){
-                order: 4
-            }
-            #info p:nth-child(3){
-                order: 1
-            }
             a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2 {
                 font-size: 16px;
                 padding: 0!important;
@@ -165,7 +146,7 @@ let mut = new MutationObserver(function (muts) {
                 box-shadow: none !important;
                 margin-top: 26px;
             }
-            .flex.flex-col.mt-8.px-4.mb-0 {
+            #parkingat .flex.flex-col.mt-8.px-4.mb-0 {
                 padding-left: 0!important;
                 padding-right: 0!important;
             }
@@ -174,17 +155,17 @@ let mut = new MutationObserver(function (muts) {
                 line-height: 24px;
                 font-weight: 400;
             }
-            .ant-rate-star-second svg {
+            #parkingat .ant-rate-star-second svg {
                 width: 12px;
                 height: 12px;
                 margin-right: 3px;
             }
-            .flex.flex-col.mt-8.px-4.mb-0 span {
+            #parkingat .flex.flex-col.mt-8.px-4.mb-0 span {
                 font-weight: 400;
                 font-size: 12px;
                 line-height: 12px;
             }
-            .grid.grid-cols-1.gap-8.justify-center.items-start.my-12.px-4 {
+            #parkingat .grid.grid-cols-1.gap-8.justify-center.items-start.my-12.px-4 {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
@@ -192,16 +173,16 @@ let mut = new MutationObserver(function (muts) {
                 margin: 25px 0 14px!important;
                 gap: 0.5rem;
             }
-            .flex.flex-col.items-center svg {
+            ##parkingat .flex.flex-col.items-center svg {
                 margin-bottom: 4px;
             }
-            .flex.flex-col.items-center p.text-center {
+            #parkingat .flex.flex-col.items-center p.text-center {
                 font-size: 12px;
                 line-height: 12px;
                 text-transform: uppercase;
                 color: #111827;
             }
-            .flex.flex-col.items-center p.text-xs.text-center.font-bold {
+            #parkingat .flex.flex-col.items-center p.text-xs.text-center.font-bold {
                 font-weight: 500;
                 font-size: 12px;
                 line-height: 12px;
@@ -211,7 +192,7 @@ let mut = new MutationObserver(function (muts) {
             #parkingat .flex.flex-col.items-center:last-child, #parkingat .flex.flex-col.items-center span,  #parkingat span.anticon.anticon-clock-circle {
                 display: none!important;
             }
-            .flex.flex-col.items-center {
+            #parkingat .flex.flex-col.items-center {
                 font-family: 'Roboto', sans-serif;
                 max-width: 125px;
             }
