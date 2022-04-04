@@ -1426,7 +1426,7 @@ let isSimilar = setInterval(() => {
 	}
 }, 100)
 
-drawMenu()
+
 
 const dublicatesArr = [
 	'demand_wrapper',
@@ -1441,7 +1441,7 @@ const removeDublicates = duplicate => {
 	}
 }
 
-function drawMenu() {
+(function drawMenu() {
 	let links = [
 		'strength',
 		'rigs-racks',
@@ -1466,7 +1466,7 @@ function drawMenu() {
 		`
 
 	document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
-}
+})()
 
 function checkItemStatus(item, containerDataset) {
 	let $addItemBtn = document.querySelector('div.pt-3.pb-3')
@@ -1647,11 +1647,8 @@ function _addNotStyle() {
 					}
 
 					if ($properties) {
-						console.log($properties)
 						$properties.classList.toggle('custom_hide')
 					}
-
-					console.log($v.innerText)
 
 					$v.innerText === 'V' ? $v.innerText = 'ꓥ' : $v.innerText = 'V'
 
@@ -1714,24 +1711,24 @@ function tnsSettings(container, items, nav, gutter, responsive) {
 	tns(obj)
 }
 
-let isWeigth = setInterval(() => {
-	if(document.querySelector('.product-variation .square')){
-		clearInterval(isWeigth)
-
-		document.querySelectorAll('.product-variation .square').forEach(square => {
-			square.addEventListener('click', () => {
-				window.dataLayer = window.dataLayer || [];
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'Weigth option'
-				});
-
-				console.log('eventAction Weigth option >>>>>')
-			})
-		})
-	}
-}, 200)
+// let isWeigth = setInterval(() => {
+// 	if(document.querySelector('.product-variation .square')){
+// 		clearInterval(isWeigth)
+//
+// 		document.querySelectorAll('.product-variation .square').forEach(square => {
+// 			square.addEventListener('click', () => {
+// 				window.dataLayer = window.dataLayer || [];
+// 				dataLayer.push({
+// 					'event': 'event-to-ga',
+// 					'eventCategory': 'Exp: PDP improvemnets ' + device,
+// 					'eventAction': 'Weigth option'
+// 				});
+//
+// 				console.log('eventAction Weigth option >>>>>')
+// 			})
+// 		})
+// 	}
+// }, 200)
 
 // let isRecommended = setInterval(() => {
 // 	if(document.querySelector('.product-recommendations col-12')) {
@@ -1837,7 +1834,7 @@ dataLayer.push({
 	'eventAction': 'loaded'
 });
 
-console.log('eventCategory Exp: PDP improvemnets ' + device + 'loaded >>>>>')
+console.log('eventCategory Exp: PDP improvemnets ' + device + ' loaded >>>>>')
 
 let isClarity = setInterval(() => {
 	if(typeof clarity == 'function') {
