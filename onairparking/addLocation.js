@@ -150,7 +150,7 @@ let mut = new MutationObserver(function (muts) {
 
     mut.observe(document, optionMut);
 
-    if (document.body != null && window.location.href.includes('/parkingat') && document.querySelector('#google-map-parking-at') != null && document.querySelector('.flex.flex-col.items-center svg') == null) {
+    if (document.body != null && window.location.href.includes('/parkingat') && document.querySelector('#google-map-parking-at') != null && document.querySelector('.flex.flex-col.items-center svg') == null && document.querySelector('.list') == null) {
         mut.disconnect();
         console.log('mut disc 2')
         document.body.insertAdjacentHTML('afterbegin',`
