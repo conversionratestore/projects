@@ -28,6 +28,7 @@ let mut = new MutationObserver(function (muts) {
                 line-height: 24px;
             }
             .flex.flex-col.w-full.col-span-2 p {
+                display: flex;
                 line-height: 16px;
             }
             .flex.flex-col.w-full.col-span-2 p span.font-semibold {
@@ -51,6 +52,9 @@ let mut = new MutationObserver(function (muts) {
                 text-align: left!important;
                 font-size: 16px;
                 line-height: 24px;
+            }
+            #info span {
+                display: block;
             }
             #info {
                 display: grid;
@@ -126,7 +130,7 @@ let mut = new MutationObserver(function (muts) {
 
         ]
     
-        let element = document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto p');
+        let element = document.querySelectorAll('.flex.flex-col.w-full.col-span-2 p');
 
         for (let i = 0; i < element.length; i++) {
             let supText = element[i].innerText.split(':')[0],
