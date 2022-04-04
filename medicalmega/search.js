@@ -668,9 +668,9 @@ const searchClient = algoliasearch(
 
 const search = instantsearch({
     indexName: 'staging_products',
+    searchClient,
     routing: true,
     stalledSearchDelay: 500,
-    searchClient,
 });
 
 let actionDataLayer = '',
@@ -982,7 +982,6 @@ window.onload = function() {
             actionDataLayer = `Click on the screen outside the filter`;
             labelDataLayer = 'Filter';
             pushDataLayer(actionDataLayer,labelDataLayer)
-            
         }
     })
 
