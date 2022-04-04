@@ -111,9 +111,9 @@ let mut = new MutationObserver(function (muts) {
         for (let i = 0; i < element.length; i++) {
             let supText = element[i].alt;
             if (supText == 'Free Shuttle') {
-                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`  
+                element.src = `https://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`  
             } else if (supText == 'Shuttle Frequency') {
-                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`  
+                element.src = `https://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`  
             }
 
             document.querySelector('.info-item').after(element[i])
@@ -125,7 +125,7 @@ let mut = new MutationObserver(function (muts) {
         let linkBtns = document.querySelectorAll('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2');
 
         document.querySelectorAll('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2').forEach((el,index) => {
-            el.insertAdjacentHTML('beforebegin',  `<a href="${linkBtns[index].href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`)
+            el.insertAdjacentHTML('beforebegin', `<a href="${linkBtns[index].href}" class="btn-location">CHECK LOCATION <img src="https://conversionratestore.github.io/projects/onairparking/img/logos_google-maps.svg" alt="icon"></a>`)
         })
 
         document.querySelector('.btn-location').addEventListener('click', () => {
