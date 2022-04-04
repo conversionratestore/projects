@@ -242,7 +242,6 @@ const categoriesLink = {
 	sets: '7510,7520,7530,7540,7550,751010,751020',
 	accessories: '8010,8020,8030,801010,801020,801030,801040,801050,801060,802010,802020,802030,802040,802060,803010,803020,803025,803030,803040,803050,803060,803010,803020,803025,803030,803040,803050,803060',
 }
-
 const productLink = pageLanguage === 'en' ? `https://kingsbox.com/product/` : `https://kingsbox.com/${pageLanguage}/product/`
 
 const fetchCategory = category => {
@@ -463,10 +462,18 @@ fetch(URL, {headers: header})
 							</div>`
 
 				// custom right similar
-				if (!document.querySelector('.product-recommendations div')) {
-					document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
-					document.querySelector('.product-recommendations').insertAdjacentHTML('afterend', similarProductsLeft)
-				}
+				let isRecommend = setInterval(() => {
+					if(document.querySelector('.product-recommendations')) {
+						clearInterval(isRecommend)
+
+						document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
+						document.querySelector('.product-recommendations').insertAdjacentHTML('afterend', similarProductsLeft)
+					}
+				}, 100)
+
+				// if (!document.querySelector('.product-recommendations div')) {
+				//
+				// }
 			})
 	})
 	.catch(err => console.error(err))
@@ -1425,8 +1432,6 @@ let isSimilar = setInterval(() => {
 		}, 1000)
 	}
 }, 100)
-
-
 
 const dublicatesArr = [
 	'demand_wrapper',
