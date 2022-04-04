@@ -111,7 +111,9 @@ let mut = new MutationObserver(function (muts) {
         for (let i = 0; i < element.length; i++) {
             let supText = element[i].alt;
             if (supText == 'Free Shuttle') {
-                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/${arr[key].icon}`  
+                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`  
+            } else if (supText == 'Shuttle Frequency') {
+                element.src = `ttps://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`  
             }
 
             document.querySelector('.info-item').after(element[i])
