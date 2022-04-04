@@ -18,27 +18,28 @@ let optionMut = {
 
 let mut = new MutationObserver(function (muts) {
     console.log('mut')
-    if (document.querySelector('.justify-start img') != null && window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null) {
+    if (document.body != null && document.querySelector('.justify-start img') != null && window.location.href.includes('/reservation/search') && document.querySelector('a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.btn-location') == null) {
         mut.disconnect();
         console.log('mut disc 1')
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
-            h2.text-xl.text-left.w-full.px-4.pt-4.truncate {
+            .relative.max-w-4xl.mx-auto h2{
                 font-size: 18px;
                 line-height: 24px;
+                padding-left: 16px;
+                padding-right: 16px;
             }
             .flex.flex-col.w-full.col-span-2 p {
                 display: flex;
                 line-height: 16px;
+                font-size: 14px;
             }
-            .flex.flex-col.w-full.col-span-2 p span.font-semibold {
-                display: flex;
-                align-items: center;
+            .flex.flex-col.w-full.col-span-2 p span.font-bold {
                 line-height: 18px;
             }
-            .flex.flex-col.w-full.col-span-2 p img {
+            .flex.flex-col.w-full.col-span-2 span img {
                 object-fit: contain;
-                width: 18px;
+                width: 18px!important;
                 height: 18px;
                 flex-shrink: 0;
                 margin-right: 12px;
@@ -97,30 +98,37 @@ let mut = new MutationObserver(function (muts) {
             .flex.flex-col.h-full.justify-center.self-center.py-5.pr-4.w-full {
                 padding-right: 14px!important;
             }
+            .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full {
+                align-items: flex-start;
+            }
             </style>`)
         if (document.querySelector('.grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2') != null) {
             document.querySelector('.grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2').classList.remove('px-2')
         }
         document.querySelector('h2.text-xl.text-left.w-full.px-8.pt-4.truncate').setAttribute('class', 'text-xl text-left w-full px-4 pt-4 truncate')
-        document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').setAttribute('class', 'flex flex-col w-full col-span-2 pb-5 pl-4 pr-0 self-center mx-auto')
-
+        document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach(el => {
+            el.setAttribute('class', 'flex flex-col w-full col-span-2 pb-5 pl-4 pr-0 self-center mx-auto')
+        })
+        
         document.querySelector('ul.ant-rate.ant-rate-disabled.text-left').insertAdjacentHTML('afterend','<div id="info"><div class="info-item"></div></div>')
     
-        let element = document.querySelectorAll('.relative .flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto .justify-start img');
+        let element = document.querySelectorAll('.relative .flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto .justify-start span span img');
 
         for (let i = 0; i < element.length; i++) {
-            let supText = element[i].alt;
+            let supText = element[i].parentElement.nextElementSibling.alt;
             if (supText == 'Free Shuttle') {
-                element.src = `https://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`  
+                console.log(supText)
+                element[i].src = `https://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`;
+                element[i].srcset = `https://conversionratestore.github.io/projects/onairparking/img/cil_bus-alt.svg`;
+                element[i].parentElement.nextElementSibling.style.display = 'none';
             } else if (supText == 'Shuttle Frequency') {
-                element.src = `https://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`  
+                element[i].src = `https://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`;
+                element[i].srcset = `https://conversionratestore.github.io/projects/onairparking/img/bytesize_clock.svg`;
+                element[i].parentElement.nextElementSibling.style.display = 'none';
             }
-
-            // document.querySelector('.info-item').after(element[i])
             
-            element[i].setAttribute('class','mt-4');
+            element[i].closest('.justify-start').classList.add('class','mt-4');
         }
-        document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full').classList.remove('items-center')
 
         let linkBtns = document.querySelectorAll('.self-end.flex.flex-col a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2');
 
