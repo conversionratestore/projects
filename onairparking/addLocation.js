@@ -101,6 +101,10 @@ let mut = new MutationObserver(function (muts) {
             .flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full {
                 align-items: flex-start;
             }
+            .relative .flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto .my-4 {
+                margin-top: 0;
+                margin-bottom: 6px;
+            }
             </style>`)
         if (document.querySelector('.grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2') != null) {
             document.querySelector('.grid.grid-cols-1.divide-y.divide-gray-500.container.mx-auto.px-2').classList.remove('px-2')
@@ -109,8 +113,6 @@ let mut = new MutationObserver(function (muts) {
         document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach(el => {
             el.setAttribute('class', 'flex flex-col w-full col-span-2 pb-5 pl-4 pr-0 self-center mx-auto')
         })
-        
-        document.querySelector('ul.ant-rate.ant-rate-disabled.text-left').insertAdjacentHTML('afterend','<div id="info"><div class="info-item"></div></div>')
     
         let element = document.querySelectorAll('.relative .flex.flex-col.w-full.col-span-2.pb-5.pl-4.pr-0.self-center.mx-auto .justify-start span span img');
 
