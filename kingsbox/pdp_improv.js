@@ -252,24 +252,24 @@ const fetchCategory = category => {
 		console.log('category >>>', category)
 		switch (category) {
 			case 'sets':
-				return 2
+				return 1
 			case 'strength-machines':
 			case 'accessories':
-				return 4
+				return 2
 			case 'strength':
 			case 'apparel-accessories':
-				return 15
+				return 13
 			case 'rigs-racks':
-				minPage = 15
-				return 30
+				minPage = 13
+				return 28
 			default:
-				return 10
+				return 8
 		}
 	}
 
 	let page = Math.floor(Math.random() * (maxPage() - minPage + 1) + minPage)
 
-	return `https://gateway.kingsbox.com/service/products?value=${ categoriesLink[category] }&page_num=${ page }&page_size=6`
+	return `https://gateway.kingsbox.com/service/products?value=${ categoriesLink[category] }&page_num=${ page }&page_size=8`
 }
 const productToHtml = item => `
 		<div class="my_product" >	
@@ -287,13 +287,6 @@ const productToHtml = item => `
 			</div>
 			
 		</div>`
-const randomProperty = (obj, removeItem) => {
-	let keys = Object.keys(obj)
-
-	keys = keys.filter(item => item !== removeItem)
-
-	return keys[keys.length * Math.random() << 0]
-}
 const randomize = (arr, randomNumber) => arr.sort(() => .5 - Math.random()).slice(0, randomNumber)
 const drawStars = number => {
 	let span = ``
@@ -332,6 +325,7 @@ const drawDiagonalLine = (variations, statuses) => {
 		}
 	})
 }
+
 const addTwoVarUrl = item => {
 	let urls = []
 
@@ -400,6 +394,7 @@ fetch(URL, { signal, headers: header})
 		} else {
 			console.log('Now aborting')
 			controller.abort()
+			return false
 		}
 
 		let requests = urls.map(url => fetch(url, {headers: header}))
@@ -453,17 +448,17 @@ fetch(URL, {headers: header})
 			})
 			.then((data) => {
 				let filteredArr = filterItemById(data.data, itemId)
-				let randomItems = randomize(filteredArr, 4)
+				let randomItems = randomize(filteredArr, 6)
 
 				const similarProducts = `
 							<div class="similar_products right">
-								<p class="products_title">${ language.similar }</p>
+								<p class="products_title">${ language.like }</p>
 								${ randomItems.map(productToHtml).join('') }
 							</div>`
 
 				const similarProductsLeft = `
 							<div class="similar_products left">
-								<p class="products_title">${ language.similar }</p>
+								<p class="products_title">${ language.like }</p>
 								${ randomItems.map(productToHtml).join('') }
 							</div>`
 
@@ -471,29 +466,6 @@ fetch(URL, {headers: header})
 				if (!document.querySelector('.product-recommendations div')) {
 					document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
 					document.querySelector('.product-recommendations').insertAdjacentHTML('afterend', similarProductsLeft)
-				}
-			})
-			.then(() => fetch(fetchCategory(randomProperty(categoriesLink, breadcrumb)), {headers: header}))
-			.then((response) => {
-				return response.json()
-			})
-			.then((data) => {
-				console.log(data.data)
-
-				let filteredArr = filterItemById(data.data, itemId)
-				let randomItems = randomize(filteredArr, 4)
-
-				const alsoLikeProducts = `
-									<div class="similar_products left also_like">
-										<p class="products_title">${ language.like }</p>
-										${ randomItems.map(productToHtml).join('') }
-									</div>`
-
-				// custom right similar
-				if (document.querySelector('.similar_products.left')) {
-					document.querySelector('.similar_products.left').insertAdjacentHTML('afterend', alsoLikeProducts)
-				} else {
-					document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', alsoLikeProducts)
 				}
 			})
 	})
@@ -624,13 +596,13 @@ const style = `
 							}
 							
 							[data-style="not"] .similar_products.left .my_product{
-								flex: 0 0 32%;
-								
+								flex: 0 0 32%;								
 							}
-							[data-style="not"] .product-recommendations .col-12:nth-child(4n),
-							[data-style="not"] .my_product:nth-child(4n) {
-								display: none;
-							}
+							
+							/*[data-style="not"] .product-recommendations .col-12:nth-child(4n),*/
+							/*[data-style="not"] .my_product:nth-child(4n) {*/
+							/*	display: none;*/
+							/*}*/
 							
 							.product-recommendations {
 								margin: 0;
@@ -766,6 +738,11 @@ const style = `
 								/*column-gap: 30px;*/
 								row-gap: 16px;
 								margin-bottom: 30px;
+								
+							}
+							
+							.similar_products .products_title {
+								margin-top: 10px;
 							}
 							
 							.similar_products p {
@@ -783,7 +760,8 @@ const style = `
 							}
 							
 							.img_wrapper img {
-								max-height: 340px;
+								max-height: 187px;
+								width: 100%;
 							}
 							.product-recommendations .pic-wrapper img:hover {
 								border:none;
@@ -1386,8 +1364,6 @@ let isStatus = setInterval(() => {
 
 		mutationTemplate($statusTarget, () => checkItemStatus($statusTarget, $containerDataset))
 		mutationTemplate($imagesTarget, checkActiveImg)
-
-
 	}
 }, 200)
 let isWhiteAccordion = setInterval(() => {
@@ -1861,7 +1837,7 @@ dataLayer.push({
 	'eventAction': 'loaded'
 });
 
-console.log('eventCategory Exp: PDP improvemnets' + device + '>>>>>')
+console.log('eventCategory Exp: PDP improvemnets ' + device + 'loaded >>>>>')
 
 let isClarity = setInterval(() => {
 	if(typeof clarity == 'function') {
