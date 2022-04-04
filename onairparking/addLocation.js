@@ -296,6 +296,8 @@ let mut = new MutationObserver(function (muts) {
     }
 });
 
+mut.observe(document, optionMut);
+
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
