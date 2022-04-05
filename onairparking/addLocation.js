@@ -23,6 +23,9 @@ let mut = new MutationObserver(function (muts) {
         console.log('mut disc 1')
         document.body.insertAdjacentHTML('afterbegin',`
         <style>
+            nav.bg-white .h-16 span {
+                pointer-events: none;
+            }
             .relative.max-w-4xl.mx-auto h2{
                 font-size: 18px;
                 line-height: 24px;
