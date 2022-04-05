@@ -1283,8 +1283,6 @@ window.onload = function() {
     search.start();
     
     console.log(search)
-    // Return the InstantSearch index UI state.
-
     autocomplete('#search-box input', {hint: false, debug: true}, [
         {
             source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
@@ -1308,12 +1306,10 @@ window.onload = function() {
             //     }
             // },
             templates: {
-                // filters: [sugTemplate],
                 suggestion: function(suggestion) {
                     let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ suggestion.image +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
                             
                     return sugTemplate;
-                  
                 },
             },
         }
@@ -1321,15 +1317,15 @@ window.onload = function() {
             console.log(suggestion, dataset);
             console.log(event)
             console.log(initialState)
-                document.querySelector('.algolia-autocomplete input').value = suggestion.name;
-                document.querySelector('#search-box pre').innerHTML = suggestion.name;
-             
-                document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
-               document.querySelector('.btn_filter').style.display = 'none';
-               document.querySelector('.page-result').style.display = 'none';
-               document.querySelector('.pagination1 ').style.display = 'none';
-               document.querySelector('.pagination2').style.display = 'none';
-               document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
+            document.querySelector('.algolia-autocomplete input').value = suggestion.name;
+            document.querySelector('#search-box pre').innerHTML = suggestion.name;
+            
+            document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
+            document.querySelector('.btn_filter').style.display = 'none';
+            document.querySelector('.page-result').style.display = 'none';
+            document.querySelector('.pagination1 ').style.display = 'none';
+            document.querySelector('.pagination2').style.display = 'none';
+            document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
             document.querySelector('.ais-Hits-list').innerHTML = initHits(suggestion)   
         })
@@ -1440,15 +1436,19 @@ window.onload = function() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
-        // if (value.length > 0) {
-            document.querySelector('#listing_container').style.display = 'block';
-            if (window.location.pathname == '/') {
-                document.querySelector('.homepage-container').style.display = 'none';
-            }
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'none';
-            }
-        // } 
+      
+        document.querySelector('#listing_container').style.display = 'block';
+        if (window.location.pathname == '/') {
+            document.querySelector('.homepage-container').style.display = 'none';
+        }
+        if (document.querySelector('#mainbody') != null) {
+            document.querySelector('#mainbody').style.display = 'none';
+        }
+
+        document.querySelector('.btn_filter').removeAttribute('style');
+        document.querySelector('.page-result').removeAttribute('style');
+        document.querySelector('.pagination1 ').style.display = 'block';
+        document.querySelector('.pagination2').style.display = 'block';  
     }
 
     //add text search result
