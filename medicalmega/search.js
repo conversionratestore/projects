@@ -598,6 +598,32 @@ let styles = `
     .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled, #lvl_categories {
         display: none;
     }
+    .algolia-autocomplete {
+        width: 100%;
+    }
+    .aa-dropdown-menu {
+        position: fixed!important;
+        top: 51px!important;
+        background: #fff;
+        box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+    }
+    .aa-suggestion {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+    }
+    .aa-suggestion.aa-cursor {
+        background: 
+    }
+    .aa-suggestion img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        object-fit: contain;
+    }
+    .aa-suggestion em {
+        font-weight: 700;
+    }
     </style>`
 
 let header = `
@@ -669,7 +695,19 @@ const searchClient = algoliasearch(
 const search = instantsearch({
     indexName: 'staging_products',
     searchClient,
-    routing: true,
+    routing: true
+    //  {
+    //     stateMapping: {
+    //       stateToRoute(uiState) {
+    //         console.log(uiState)
+    //         return instantSearchRouter
+    //       },
+    //       routeToState(routeState) {
+    //         console.log(routeState)
+    //       },
+    //     },
+    // }
+    ,
     stalledSearchDelay: 500,
 });
 
@@ -1024,11 +1062,13 @@ window.onload = function() {
         categoryFacet = '*'
     }
     let lvlNew = +lvl + 1;
+    let index = searchClient.initIndex('staging_products');
 
     search.addWidgets([
         instantsearch.widgets.configure({
             facetFilters: [categoryFacet],
         }),
+        // instantSearchRouter,
         instantsearch.widgets.hitsPerPage({
             container: '#mm_per_page',
             items: [
@@ -1044,7 +1084,7 @@ window.onload = function() {
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: true,
-            searchAsYouType: true, 
+            searchAsYouType: false, 
 //             showLoadingIndicator: true,
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
@@ -1245,10 +1285,133 @@ window.onload = function() {
             },
             
         }),
+       
+     
     ]);
-    
     search.start();
     
+    console.log(search)
+    // Return the InstantSearch index UI state.
+
+    autocomplete('#search-box input', {hint: false, debug: true}, [
+        {
+            source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
+            displayKey: 'name',
+            // openOnFocus: true,
+            // detachedMediaQuery: 'none',
+            // initialState: {
+            //     query: searchPageState.query || '',
+            // },
+            // onSubmit({ state }) {
+            //     console.log(state)
+            //     setInstantSearchUiState({ query: state.query })
+            // },
+            // onReset() {
+            //     setInstantSearchUiState({ query: '' })
+            // },
+            // onStateChange({ prevState, state }) {
+            //     console.log(prevState, state)
+            //     if (prevState.query !== state.query) {
+            //         setInstantSearchUiState({ query: state.query })
+            //     }
+            // },
+            templates: {
+                // filters: [sugTemplate],
+                suggestion: function(suggestion) {
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ suggestion.image +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+                            
+                    return sugTemplate;
+                  
+                },
+            },
+        }
+        ]).on('autocomplete:selected', function(event, suggestion, dataset, initialState) {
+            console.log(suggestion, dataset);
+            console.log(event)
+            console.log(initialState)
+                document.querySelector('.algolia-autocomplete input').value = suggestion.name;
+                document.querySelector('#search-box pre').innerHTML = suggestion.name;
+             
+                document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
+               document.querySelector('.btn_filter').style.display = 'none';
+               document.querySelector('.page-result').style.display = 'none';
+               document.querySelector('.pagination1 ').style.display = 'none';
+               document.querySelector('.pagination2').style.display = 'none';
+               document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
+
+            function qty() {
+                let option = ``;
+                let qty = suggestion.qty == '0' && suggestion.in_stock==true ? 100 : suggestion.qty
+                for (let n = 1; n <= +qty; n++) {
+                    option = option + `<option value="${n}">${n}</option>`;
+                }
+                return option
+            }
+            function optionBox() {
+                let option = ``;
+                for (let i = 0; i < suggestion.variants.length; i++) {
+                    let variantsArr = suggestion.variants[i];
+                    if (variantsArr.extra != '' && variantsArr.price != '0.00') {
+                        option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;  
+                    }
+                }
+                return option
+            }
+            function findImage() {
+                for (let i = 0; i < suggestion.variants.length; i++) {
+                    if (suggestion.variants[i].image != '') {
+                        return suggestion.variants[i].image
+                    }
+                }
+            }
+            
+            let boxItem = `
+                <fieldset class="list_box2">
+                    <div class="list_type3">
+                        <span><a href="https://medicalmega.com/product/${suggestion.seo}"><img class="product_img" alt="${suggestion.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }"></a></span>
+                    </div>
+                    <div class="list_type4">
+                        <h3><a href="https://medicalmega.com/product/${suggestion.seo}">${suggestion.name}</a></h3>
+                        <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
+                            <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
+                                <span style="display:block; font-size:12px;">Manufacturer: ${suggestion.manufacturer}</span>
+                                <span class="variant_tag">
+                                    <span style="display:block"; font-size:12px;">Sold By: ${suggestion.extra}</span>
+                                    <span style="display:block; font-size:12px;">Item Number: ${suggestion.item_num}</span>
+                                    <span style="margin-right:100px; float:left;display:${suggestion.in_stock==false?'none':'block'};">Price: <i style="color:#CD1109; font-style:normal;">${suggestion.price}</i></span>
+                                </span>
+                            </span>
+                            <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
+                                <span class="product_quantity nostyle" style="display:${suggestion.in_stock==false?'none':'block'};">
+                                    <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${suggestion.qty=='0' && suggestion.in_stock==true ? 100 : suggestion.qty}">${qty()}</select>
+                                </span>
+                                <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${suggestion.in_stock==false?'none':'block'};">
+                                <div class="out-of-stock__box--pv" style="display:${suggestion.in_stock==false?'block':'none'}; ">
+                                    <p class="out-of-stock__message--pv">Out Of Stock</p>
+                                </div>
+                            </span>
+                            <p style="clear:both;display:${optionBox().split('</option>').length>2?'block':'none'}">
+                                <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
+                                <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
+                                    ${optionBox()}
+                                </select>
+                            </p>
+                            <input type="hidden" name="product_variant_id" value="${suggestion.pv_id}">
+                            <input type="hidden" name="product_id" value="${suggestion.objectID}">
+                            <input type="hidden" name="add_to_cart" value="variant">
+                        </form>
+                    </div>
+                </fieldset>
+                <br>
+            `
+
+            
+            document.querySelector('.ais-Hits-list').innerHTML = boxItem
+
+            
+            
+        })
+
     search.addWidgets([
         {
             render({ searchMetadata = {} }) {
@@ -1354,7 +1517,7 @@ window.onload = function() {
     function inputChange() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
-        
+        document.querySelector('.aa-suggestions').style.display = 'none';
         if (value.length > 0) {
             document.querySelector('#listing_container').style.display = 'block';
             if (window.location.pathname == '/') {
@@ -1371,7 +1534,6 @@ window.onload = function() {
         actionDataLayer = 'Click on input search';
         pushDataLayer(actionDataLayer)  
     })
-    document.querySelector('#search-box input').addEventListener('input', (e) => inputChange())
 
     document.querySelector('#search-box input').addEventListener('keypress', (e) => {
         if (e.keyCode == '13') {
