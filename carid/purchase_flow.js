@@ -13,33 +13,33 @@ let startfunkCarid = setInterval(() => {
     document.head.appendChild(scriptCustomTippy)
 
     // // event
-    // let actionDataLayer = "",
-    //   labelDataLayer = "",
-    //   eventVar = "desktop"
+    let actionDataLayer = "",
+      labelDataLayer = "",
+      eventVar = "desktop"
 
-    // if (window.innerWidth <= 768) {
-    //   eventVar = "mobile"
-    // }
+    if (window.innerWidth <= 768) {
+      eventVar = "mobile"
+    }
 
-    // function pushDataLayer(actionDataLayer, labelDataLayer) {
-    //   window.dataLayer = window.dataLayer || []
-    //   if (labelDataLayer) {
-    //     console.log(actionDataLayer + " : " + labelDataLayer)
-    //     dataLayer.push({
-    //       event: "event-to-ga",
-    //       eventCategory: ` ${eventVar}`,
-    //       eventAction: `${actionDataLayer}`,
-    //       eventLabel: `${labelDataLayer}`,
-    //     })
-    //   } else {
-    //     console.log(actionDataLayer)
-    //     dataLayer.push({
-    //       event: "event-to-ga",
-    //       eventCategory: ` ${eventVar}`,
-    //       eventAction: `${actionDataLayer}`,
-    //     })
-    //   }
-    // }
+    function pushDataLayer(actionDataLayer, labelDataLayer) {
+      window.dataLayer = window.dataLayer || []
+      if (labelDataLayer) {
+        console.log(actionDataLayer + " : " + labelDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Purchase flow UI improvement ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+          eventLabel: `${labelDataLayer}`,
+        })
+      } else {
+        console.log(actionDataLayer)
+        dataLayer.push({
+          event: "event-to-ga",
+          eventCategory: `Exp: Purchase flow UI improvement ${eventVar}`,
+          eventAction: `${actionDataLayer}`,
+        })
+      }
+    }
 
     let purchaseFlowStyle = /*html */ `
 <style>
@@ -357,11 +357,16 @@ let startfunkCarid = setInterval(() => {
 
       if (document.querySelector("button#addToCartButReact")) {
         document.querySelector("button#addToCartButReact").textContent = "CHOOSE OPTIONS and Add to cart"
+
+        document.querySelector("button#addToCartButReact").addEventListener("click", function () {
+          pushDataLayer("Click on Choose options and add to cart button")
+        })
       }
 
       if (document.querySelector(".purchase_flow button.now_pay_btn")) {
         document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("click", function (e) {
           e.preventDefault()
+          pushDataLayer("Click on Order now pay later button")
           document.querySelector("button#selectBtnReact").click()
         })
 
@@ -441,8 +446,13 @@ let startfunkCarid = setInterval(() => {
 
             if (document.querySelector(".purchase_flow > div > .hover_block").classList.contains("show_var")) {
               this.classList.add("arrow_down_var")
+              pushDataLayer("Click on the Learn how opens a pop up button")
+              this.setAttribute("data-time", "0")
+              timerEvent(this, "start")
             } else {
               this.classList.remove("arrow_down_var")
+              pushDataLayer("Click on the tooltip close button")
+              timerEvent(this, "stop")
             }
           })
         }
@@ -458,6 +468,14 @@ let startfunkCarid = setInterval(() => {
               allowHTML: true,
               followCursor: true,
               arrow: false,
+              onShow(instance) {
+                console.log(`show`)
+                timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "start")
+              },
+              onHide(instance) {
+                console.log(`hide`)
+                timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "stop")
+              },
               content:
                 '<div class="hover_block_desk"><p>Order now AND pay later in equal instalments</p><ul><li><p>STEP 1</p><p>Choose product options</p></li><li><p>STEP 2</p><p>Add product to cart</p> </li><li><p>STEP 3</p><p>Select <span>affirm</span> as a payment method at checkout</p></li><li><p>STEP 4</p><p>Enter your details and get a real-time loan decision</p></li></ul></div>',
             })
@@ -485,5 +503,60 @@ let startfunkCarid = setInterval(() => {
     // })
 
     //
+    // clarity("set", "purchase_flow_improvement", "variant_1")
+    pushDataLayer("loaded")
+
+    //   timer
+    function timerEvent(el, trigger) {
+      let timeNotClosed = 30
+      let time = 0
+      let currentTime = 0
+
+      let s = setInterval(() => {
+        if (trigger === "start") {
+          currentTime = ++time
+          el.setAttribute("data-time", currentTime)
+        }
+
+        if (trigger === "stop") {
+          clearInterval(s)
+          currentTime = el.getAttribute("data-time")
+          console.log(currentTime)
+          pushDataLayer("'Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
+        }
+
+        if (currentTime === timeNotClosed) {
+          //   clearInterval(s)
+          pushDataLayer("'Visibility equal instalments pop up mobile", "not_closed")
+        }
+
+        if (!el.classList.contains("arrow_down_var")) {
+          clearInterval(s)
+        }
+      }, 1000)
+    }
+
+    function timerEventDesk(el, trigger) {
+      let time = 0
+      let currentTime = 0
+
+      let s = setInterval(() => {
+        if (trigger === "start") {
+          currentTime = ++time
+          el.setAttribute("data-time", currentTime)
+        }
+
+        if (trigger === "stop") {
+          clearInterval(s)
+          currentTime = el.getAttribute("data-time")
+          console.log(currentTime)
+          pushDataLayer("'Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
+        }
+
+        if (!document.querySelector("div#tippy-1")) {
+          clearInterval(s)
+        }
+      }, 1000)
+    }
   }
 }, 10)
