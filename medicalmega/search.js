@@ -1316,18 +1316,17 @@ window.onload = function() {
                         } else {
                             element.setAttribute('class','ais-RefinementList-list scrolled')
                         }
-                        let pricesContainer = document.querySelector('#price_group ul'),
-                            para = document.querySelectorAll('#price_group li');
-                        let paraArr = [].slice.call(para).sort(function (a, b) {
-                            return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-                        });
-
-                        paraArr.forEach(function (p) {
-                            pricesContainer.appendChild(p);
-                        });
                     }
 
-                   
+                    let pricesContainer = document.querySelector('#price_group ul'),
+                        para = document.querySelectorAll('#price_group li');
+                    let paraArr = [].slice.call(para).sort(function (a, b) {
+                        return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                    });
+
+                    paraArr.forEach(function (p) {
+                        pricesContainer.appendChild(p);
+                    });
                 }
             },
         },
