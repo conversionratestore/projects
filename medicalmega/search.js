@@ -1141,7 +1141,7 @@ window.onload = function() {
         instantsearch.widgets.searchBox({
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
-            loadingIndicator: true,
+            loadingIndicator: false,
             searchAsYouType: false, 
 //             showLoadingIndicator: true,
             templates: {
@@ -1158,12 +1158,7 @@ window.onload = function() {
                 }
             },
         }),
-        instantsearch.widgets.pagination({
-            container: '.pagination1',
-        }),
-        instantsearch.widgets.pagination({
-            container: '.pagination2',
-        }),
+
         instantsearch.widgets.stats({
             container: '#stats-container',
             templates: {
@@ -1182,93 +1177,7 @@ window.onload = function() {
                 },
             },
         }),
-        instantsearch.widgets.refinementList({
-            container: '#manufacturer',
-            attribute: 'manufacturer',
-            limit: 200,
-            sortBy: ['name:asc'],
-            templates: {
-                item: (data) => {
-                    actionDataLayer = "Click on one of the brand items on filters";
-                    let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
-                            <span class="check"></span>
-                            <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-                        </label>
-                    `;
-                
-                    return checkbox
-                },
-            },
-        }),
-        instantsearch.widgets.refinementList({
-            container: '#price_group',
-            attribute: 'price_group',
-            limit: 10,
-            sortBy: ['isRefined:asc'],
-            templates: {
-                item: (data) => {
-                    actionDataLayer = "Click on one of the price items on filters";
-                    let sltPrice = '';
-                    if (data.value.includes(' - ')) {
-                        sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-                    }  else {
-                        sltPrice = `> $${data.value.split('> ')[1]}`;
-                    }
 
-                    let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                            <span class="check"></span>
-                            <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
-                        </label>
-                    `;
-                
-                    return checkbox
-                },
-            },
-        }),
-        
-        instantsearch.widgets.refinementList({
-            container: `.list_subcategory`,
-            attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-            showMore: false,
-            limit: 100,
-            transformItems(items) {
-                return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
-            },
-            templates: {
-                item: (data) => {
-                    let valueArr = data.value.split(' > ');
-                    let valueLast = valueArr[valueArr.length - 1];
-                
-                    fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
-                        
-                        document.querySelectorAll('.list_subcategory img').forEach(el => {
-                            if (dataItem.query == el.alt) {
-                                el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
-                            }
-                            el.parentElement.addEventListener('click', (e) => {
-                                e.stopImmediatePropagation();
-                                actionDataLayer =  `Click on subcategory icon`;
-                                pushDataLayer(actionDataLayer);
-                                window.location.href = el.href;
-                            })
-                        })
-                        
-                    });
-                    
-                    return `
-                        <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
-                            <span>${valueLast}</span>
-                            <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
-                        </a>
-                    `
-                }
-            },
-            
-
-        }),
-        
         instantsearch.widgets.refinementList({
             container: `#lvl_categories`,
             attribute: categoryFacet.split(':')[0],
@@ -1439,7 +1348,107 @@ window.onload = function() {
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
+    let countWidget = 0;
+
     function inputChange() {
+        if (countWidget == 0) {
+            countWidget = 1;
+            search.addWidgets([
+                instantsearch.widgets.pagination({
+                    container: '.pagination1',
+                }),
+                instantsearch.widgets.pagination({
+                    container: '.pagination2',
+                }),
+                instantsearch.widgets.refinementList({
+                    container: '#manufacturer',
+                    attribute: 'manufacturer',
+                    limit: 200,
+                    sortBy: ['name:asc'],
+                    templates: {
+                        item: (data) => {
+                            actionDataLayer = "Click on one of the brand items on filters";
+                            let checkbox = `
+                                <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
+                                    <span class="check"></span>
+                                    <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                                </label>
+                            `;
+                        
+                            return checkbox
+                        },
+                    },
+                }),
+                instantsearch.widgets.refinementList({
+                    container: '#price_group',
+                    attribute: 'price_group',
+                    limit: 10,
+                    sortBy: ['isRefined:asc'],
+                    templates: {
+                        item: (data) => {
+                            actionDataLayer = "Click on one of the price items on filters";
+                            let sltPrice = '';
+                            if (data.value.includes(' - ')) {
+                                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+                            }  else {
+                                sltPrice = `> $${data.value.split('> ')[1]}`;
+                            }
+        
+                            let checkbox = `
+                                <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                                    <span class="check"></span>
+                                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+                                </label>
+                            `;
+                        
+                            return checkbox
+                        },
+                    },
+                }),    
+                instantsearch.widgets.refinementList({
+                    container: `.list_subcategory`,
+                    attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
+                    showMore: false,
+                    limit: 100,
+                    transformItems(items) {
+                        return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
+                    },
+                    templates: {
+                        item: (data) => {
+                            let valueArr = data.value.split(' > ');
+                            let valueLast = valueArr[valueArr.length - 1];
+                        
+                            fetch(`https://${APPLICATION_ID}-dsn.algolia.net/1/indexes/staging_products?query=${valueLast}&hitsPerPage=1&page=0`, requestOptions).then(res => res.json()).then(dataItem => {
+                                
+                                document.querySelectorAll('.list_subcategory img').forEach(el => {
+                                    if (dataItem.query == el.alt) {
+                                        el.src = `https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${dataItem.hits[0].image}`
+                                    }
+                                    el.parentElement.addEventListener('click', (e) => {
+                                        e.stopImmediatePropagation();
+                                        actionDataLayer =  `Click on subcategory icon`;
+                                        pushDataLayer(actionDataLayer);
+                                        window.location.href = el.href;
+                                    })
+                                })
+                                
+                            });
+                            
+                            return `
+                                <a href="${window.location.href + "/" + valueLast.toLowerCase().split(' ').join('-')}">
+                                    <span>${valueLast}</span>
+                                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/dummyimage.jpg" alt="${valueLast}">
+                                </a>
+                            `
+                        }
+                    },
+                    
+        
+                }),
+                
+            ])
+        }
+       
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
