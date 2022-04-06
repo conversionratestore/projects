@@ -624,6 +624,9 @@ let styles = `
     .aa-suggestion em {
         font-weight: 700;
     }
+    .ais-SearchBox-input:not(:focus) ~ .aa-dropdown-menu .aa-suggestion {
+        display: none!important;
+    }
     </style>`
 
 let header = `
@@ -1446,13 +1449,8 @@ window.onload = function() {
                             `
                         }
                     },
-                    
-        
-                }),
-                
+                }), 
             ])
-         
-
         }
     }
     function inputChange() {
