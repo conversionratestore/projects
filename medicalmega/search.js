@@ -1228,109 +1228,6 @@ window.onload = function() {
                 document.querySelector('#mainbody').style.display = 'none';
             }
         })
-
-    search.addWidgets([
-        {
-            render({ searchMetadata = {} }) {
-                const { isSearchStalled } = searchMetadata
-
-                if (isSearchStalled === false) {
-                    console.log(isSearchStalled)
-                    function selectOptions(select) {
-                        let parent = select.closest('.list_box2');
-                        let option = ``;
-                        if (select.length > 0) {
-                            let price = select.options[select.selectedIndex].dataset.price,
-                            variantId = select.options[select.selectedIndex].value,
-                            name = select.options[select.selectedIndex].innerText,
-                            qty = select.options[select.selectedIndex].dataset.qty;
-            
-                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                            parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                            parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-                            parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
-            
-                            for (let n = 1; n <= +qty; n++) {
-                                option = option + `<option value="${n}">${n}</option>`;
-                            }
-            
-                            parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
-            
-                            if (name.includes('Out of stock')) {
-                                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                                parent.querySelector('.product_quantity').style.display = 'none';
-                                parent.querySelector('.buynow2').style.display = 'none';
-                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
-                            } else {
-                                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                                parent.querySelector('.product_quantity').style.display = 'block';
-                                parent.querySelector('.buynow2').style.display = 'block';
-                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
-                            }
-                        }
-                    
-                    }
-                    document.querySelectorAll('#hits .product-variant').forEach((select, index) => {
-                        selectOptions(select)
-                        select.addEventListener('change', (e) => {
-                            e.stopImmediatePropagation();
-                            selectOptions(select)
-                        })
-                    })
-
-                    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length < 2) {
-                        document.querySelector('.pagination1').style.opacity = '0'
-                        document.querySelector('.pagination2').style.opacity = '0'
-                    } else {
-                        document.querySelector('.pagination1').style.opacity = '1'
-                        document.querySelector('.pagination2').style.opacity = '1'
-                    }
-                    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
-                        page.addEventListener('click', (e) => {
-                            e.stopImmediatePropagation();
-                            labelDataLayer = 'Pagination';
-                            if (page.closest('.ais-Pagination-item--page')) {
-                                actionDataLayer = `click on page ${e.target.innerText}`
-                            } else if (page.closest('.ais-Pagination-item--previousPage')) {
-                                actionDataLayer = `click on previous page`
-                            } else if (page.closest('.ais-Pagination-item--firstPage')) {
-                                actionDataLayer = `click on first page`
-                            } else if (page.closest('.ais-Pagination-item--nextPage')) {
-                                actionDataLayer = `click on next page`
-                            } else if (page.closest('.ais-Pagination-item--lastPage')) {
-                                actionDataLayer = `click on last page`
-                            }
-                            pushDataLayer(actionDataLayer,labelDataLayer)  
-                        })
-                    })
-
-                    if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
-                        let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-                        if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-                            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                                element.setAttribute('class','ais-RefinementList-list scrolled')
-                            } else {
-                                element.setAttribute('class','ais-RefinementList-list scroll')
-                            }
-                            element.addEventListener('scroll', () => scrolled(element));
-                        } else {
-                            element.setAttribute('class','ais-RefinementList-list scrolled')
-                        }
-                    }
-
-                    let pricesContainer = document.querySelector('#price_group ul'),
-                        para = document.querySelectorAll('#price_group li');
-                    let paraArr = [].slice.call(para).sort(function (a, b) {
-                        return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-                    });
-
-                    paraArr.forEach(function (p) {
-                        pricesContainer.appendChild(p);
-                    });
-                }
-            },
-        },
-    ])
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
@@ -1502,6 +1399,110 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }  
+
+    
+    search.addWidgets([
+        {
+            render({ searchMetadata = {} }) {
+                const { isSearchStalled } = searchMetadata
+
+                if (isSearchStalled === false) {
+                    console.log(isSearchStalled)
+                    function selectOptions(select) {
+                        let parent = select.closest('.list_box2');
+                        let option = ``;
+                        if (select.length > 0) {
+                            let price = select.options[select.selectedIndex].dataset.price,
+                            variantId = select.options[select.selectedIndex].value,
+                            name = select.options[select.selectedIndex].innerText,
+                            qty = select.options[select.selectedIndex].dataset.qty;
+            
+                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
+                            parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                            parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+                            parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
+            
+                            for (let n = 1; n <= +qty; n++) {
+                                option = option + `<option value="${n}">${n}</option>`;
+                            }
+            
+                            parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
+            
+                            if (name.includes('Out of stock')) {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
+                                parent.querySelector('.product_quantity').style.display = 'none';
+                                parent.querySelector('.buynow2').style.display = 'none';
+                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
+                            } else {
+                                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
+                                parent.querySelector('.product_quantity').style.display = 'block';
+                                parent.querySelector('.buynow2').style.display = 'block';
+                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
+                            }
+                        }
+                    
+                    }
+                    document.querySelectorAll('#hits .product-variant').forEach((select, index) => {
+                        selectOptions(select)
+                        select.addEventListener('change', (e) => {
+                            e.stopImmediatePropagation();
+                            selectOptions(select)
+                        })
+                    })
+
+                    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length < 2) {
+                        document.querySelector('.pagination1').style.opacity = '0'
+                        document.querySelector('.pagination2').style.opacity = '0'
+                    } else {
+                        document.querySelector('.pagination1').style.opacity = '1'
+                        document.querySelector('.pagination2').style.opacity = '1'
+                    }
+                    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
+                        page.addEventListener('click', (e) => {
+                            e.stopImmediatePropagation();
+                            labelDataLayer = 'Pagination';
+                            if (page.closest('.ais-Pagination-item--page')) {
+                                actionDataLayer = `click on page ${e.target.innerText}`
+                            } else if (page.closest('.ais-Pagination-item--previousPage')) {
+                                actionDataLayer = `click on previous page`
+                            } else if (page.closest('.ais-Pagination-item--firstPage')) {
+                                actionDataLayer = `click on first page`
+                            } else if (page.closest('.ais-Pagination-item--nextPage')) {
+                                actionDataLayer = `click on next page`
+                            } else if (page.closest('.ais-Pagination-item--lastPage')) {
+                                actionDataLayer = `click on last page`
+                            }
+                            pushDataLayer(actionDataLayer,labelDataLayer)  
+                        })
+                    })
+
+                    if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+                        let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+                        if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
+                            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+                                element.setAttribute('class','ais-RefinementList-list scrolled')
+                            } else {
+                                element.setAttribute('class','ais-RefinementList-list scroll')
+                            }
+                            element.addEventListener('scroll', () => scrolled(element));
+                        } else {
+                            element.setAttribute('class','ais-RefinementList-list scrolled')
+                        }
+                    }
+
+                    let pricesContainer = document.querySelector('#price_group ul'),
+                        para = document.querySelectorAll('#price_group li');
+                    let paraArr = [].slice.call(para).sort(function (a, b) {
+                        return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                    });
+
+                    paraArr.forEach(function (p) {
+                        pricesContainer.appendChild(p);
+                    });
+                }
+            },
+        },
+    ])
 };
 
 window.dataLayer = window.dataLayer || [];
