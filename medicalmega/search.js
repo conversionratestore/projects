@@ -1329,6 +1329,12 @@ window.onload = function() {
 
             document.querySelector('.ais-Hits-list').innerHTML = `<li class="ais-Hits-item selected">${initHits(suggestion)}</li>` ;
             document.querySelector('#listing_container').style.display = 'block';
+            if (window.location.pathname == '/') {
+                document.querySelector('.homepage-container').style.display = 'none';
+            }
+            if (document.querySelector('#mainbody') != null) {
+                document.querySelector('#mainbody').style.display = 'none';
+            }
         })
 
     search.addWidgets([
