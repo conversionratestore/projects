@@ -399,6 +399,7 @@ let startfunkCarid = setInterval(() => {
         if (document.querySelector("button.sticky_mob")) {
           document.querySelector("button.sticky_mob").addEventListener("click", function (e) {
             e.preventDefault()
+            pushDataLayer("Click on sticky_btn Order now pay later button mobile")
             document.querySelector("button#selectBtnReact").click()
           })
         }
