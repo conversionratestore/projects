@@ -606,6 +606,7 @@ let styles = `
         top: 51px!important;
         background: #fff;
         box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+        width: 100%;
     }
     .aa-suggestion {
         display: flex;
