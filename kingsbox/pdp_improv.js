@@ -1,10 +1,14 @@
 /* CSS */
 
 const style = `
-								<style>				
+	<style>				
 									/*  ============
 										General style
 										============= */
+										
+										.picture[_ngcontent-serverApp-c57] img.lazyloading[_ngcontent-serverApp-c57] {
+											opacity: 1;
+										}
 										
 										.similar_products.similar_exist {
 											display: none;
@@ -874,8 +878,7 @@ const style = `
 										}
 										
 									}
-								</style>
-							`
+						</style>`
 document.head.insertAdjacentHTML('beforeend', style)
 
 /* check device */
