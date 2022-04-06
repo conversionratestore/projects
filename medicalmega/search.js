@@ -1220,7 +1220,7 @@ window.onload = function() {
             document.querySelector('.pagination2').style.display = 'none';
             document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
-            document.querySelector('.ais-Hits-list').innerHTML = `<li class="ais-Hits-item selected">${initHits(suggestion)}</li>` ;
+            document.querySelector('#hits').innerHTML = `<div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item selected">${initHits(suggestion)}</li></ol></div></div>` ;
             document.querySelector('#listing_container').style.display = 'block';
             if (window.location.pathname == '/') {
                 document.querySelector('.homepage-container').style.display = 'none';
