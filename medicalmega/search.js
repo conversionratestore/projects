@@ -1085,7 +1085,7 @@ window.onload = function() {
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
             loadingIndicator: true,
             searchAsYouType: false, 
-//             showLoadingIndicator: true,
+            showLoadingIndicator: true,
             templates: {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
@@ -1112,8 +1112,7 @@ window.onload = function() {
             attribute: categoryFacet.split(':')[0],
             transformItems(items) {
                 return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
-            },
-            
+            }, 
         }),
          
         instantsearch.widgets.refinementList({
@@ -1210,11 +1209,11 @@ window.onload = function() {
         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
             console.log(event, suggestion, dataset);
 
-            document.querySelector('.algolia-autocomplete input').value = suggestion.name;
-            document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
+            // document.querySelector('.algolia-autocomplete input').value = suggestion.name;
+            // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
             
-            console.log(document.querySelector('.algolia-autocomplete input').value)
-            console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+            // console.log(document.querySelector('.algolia-autocomplete input').value)
+            // console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
             
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
             document.querySelector('.btn_filter').style.display = 'none';
@@ -1287,9 +1286,9 @@ window.onload = function() {
 
                 if (isSearchStalled === false) {
                     console.log(isSearchStalled)
-                    console.log(document.querySelector('.algolia-autocomplete pre').innerText)
-                    document.querySelector('.algolia-autocomplete input').value = document.querySelector('.algolia-autocomplete pre').innerText;
-                    console.log(document.querySelector('.algolia-autocomplete input').value)
+                    // console.log(document.querySelector('.algolia-autocomplete pre').innerText)
+                    // document.querySelector('.algolia-autocomplete input').value = document.querySelector('.algolia-autocomplete pre').innerText;
+                    // console.log(document.querySelector('.algolia-autocomplete input').value)
                     function selectOptions(select) {
                         let parent = select.closest('.list_box2');
                         let option = ``;
