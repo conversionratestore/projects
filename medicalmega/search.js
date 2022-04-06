@@ -1129,18 +1129,7 @@ window.onload = function() {
         instantsearch.widgets.configure({
             facetFilters: [categoryFacet],
         }),
-        // instantSearchRouter,
-        instantsearch.widgets.hitsPerPage({
-            container: '#mm_per_page',
-            items: [
-                { label: '5', value: 5 },
-                { label: '10', value: 10 },
-                { label: '15', value: 15 },
-                { label: '25', value: 25, default: true  },
-                { label: '50', value: 50},
-                { label: '100', value: 100 }
-            ],
-        }), 
+        
         instantsearch.widgets.searchBox({
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
@@ -1151,17 +1140,6 @@ window.onload = function() {
                 loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
             },
         }),
-        instantsearch.widgets.hits({
-            container: '#hits',
-            templates: {
-                empty: `No Item Found`,
-                filters: [categoryFacet],
-                item: (hit) => {
-                    return initHits(hit) 
-                }
-            },
-        }),
-
         instantsearch.widgets.stats({
             container: '#stats-container',
             templates: {
@@ -1180,16 +1158,18 @@ window.onload = function() {
                 },
             },
         }),
+        instantsearch.widgets.hitsPerPage({
+            container: '#mm_per_page',
+            items: [
+                { label: '5', value: 5 },
+                { label: '10', value: 10 },
+                { label: '15', value: 15 },
+                { label: '25', value: 25, default: true  },
+                { label: '50', value: 50},
+                { label: '100', value: 100 }
+            ],
+        }), 
 
-        instantsearch.widgets.refinementList({
-            container: `#lvl_categories`,
-            attribute: categoryFacet.split(':')[0],
-            transformItems(items) {
-                return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
-            },
-            
-        }),
-       
      
     ]);
     search.start();
@@ -1361,6 +1341,27 @@ window.onload = function() {
         if (countWidget == 0) {
             countWidget = 1;
             search.addWidgets([
+                instantsearch.widgets.hits({
+                    container: '#hits',
+                    templates: {
+                        empty: `No Item Found`,
+                        filters: [categoryFacet],
+                        item: (hit) => {
+                            return initHits(hit) 
+                        }
+                    },
+                }),
+        
+        
+                instantsearch.widgets.refinementList({
+                    container: `#lvl_categories`,
+                    attribute: categoryFacet.split(':')[0],
+                    transformItems(items) {
+                        return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
+                    },
+                    
+                }),
+               
                 instantsearch.widgets.pagination({
                     container: '.pagination1',
                 }),
