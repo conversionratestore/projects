@@ -1287,7 +1287,7 @@ window.onload = function() {
         {
             source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
             displayKey: 'name',
-            // openOnFocus: true,
+            openOnFocus: true,
             // detachedMediaQuery: 'none',
             // initialState: {
             //     query: searchPageState.query || '',
@@ -1327,7 +1327,7 @@ window.onload = function() {
             document.querySelector('.pagination2').style.display = 'none';
             document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
-            document.querySelector('.ais-Hits-list').innerHTML = `<li class="ais-Hits-item">${initHits(suggestion)}</li>` ;
+            document.querySelector('.ais-Hits-list').innerHTML = `<li class="ais-Hits-item selected">${initHits(suggestion)}</li>` ;
             document.querySelector('#listing_container').style.display = 'block';
         })
 
@@ -1436,7 +1436,9 @@ window.onload = function() {
     function inputChange() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
-        document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+        
+        document.querySelector('.ais-Hits-item.selected') != null ? document.querySelector('.ais-Hits-item.selected').remove() : ''
+        // document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
       
         document.querySelector('#listing_container').style.display = 'block';
         if (window.location.pathname == '/') {
