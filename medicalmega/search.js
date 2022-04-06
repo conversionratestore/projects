@@ -542,7 +542,7 @@ let styles = `
         background: transparent;
         border: none;
         text-decoration: underline;
-        margin: 0 auto;
+        margin: 10px auto 0;
         display: block;
     }
     .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled, #lvl_categories {
@@ -1118,7 +1118,9 @@ window.onload = function() {
         instantsearch.widgets.refinementList({
             container: '#manufacturer',
             attribute: 'manufacturer',
-            limit: 200,
+            limit: 7,
+            showMore: true,
+            showMoreLimit: 200,
             sortBy: ['name:asc'],
             templates: {
                 item: (data) => {
