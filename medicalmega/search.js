@@ -1327,7 +1327,7 @@ window.onload = function() {
             document.querySelector('.pagination2').style.display = 'none';
             document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
-            document.querySelector('.ais-Hits-list').innerHTML = initHits(suggestion)   
+            document.querySelector('.ais-Hits-list').innerHTML = `<li class="ais-Hits-item">${initHits(suggestion)}</li>` 
         })
 
     search.addWidgets([
