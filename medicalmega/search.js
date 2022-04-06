@@ -1273,7 +1273,6 @@ window.onload = function() {
     })
 
     if (window.location.pathname.includes('/category')) {
-        addWidget();
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.result_for_search').before(document.querySelector('.listing .categoryTop'));
