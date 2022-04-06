@@ -1343,8 +1343,7 @@ window.onload = function() {
                             pricesContainer.appendChild(p);
                         });
                     }
-
-                   
+ 
                 }
             },
         },
