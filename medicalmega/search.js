@@ -1164,8 +1164,8 @@ window.onload = function() {
             items: [
                 { label: '5', value: 5 },
                 { label: '10', value: 10 },
-                { label: '15', value: 15 },
-                { label: '25', value: 25, default: true  },
+                { label: '15', value: 15, default: true  },
+                { label: '25', value: 25 },
                 { label: '50', value: 50},
                 { label: '100', value: 100 }
             ],
@@ -1181,23 +1181,6 @@ window.onload = function() {
             source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
             displayKey: 'name',
             openOnFocus: true,
-            // detachedMediaQuery: 'none',
-            // initialState: {
-            //     query: searchPageState.query || '',
-            // },
-            // onSubmit({ state }) {
-            //     console.log(state)
-            //     setInstantSearchUiState({ query: state.query })
-            // },
-            // onReset() {
-            //     setInstantSearchUiState({ query: '' })
-            // },
-            // onStateChange({ prevState, state }) {
-            //     console.log(prevState, state)
-            //     if (prevState.query !== state.query) {
-            //         setInstantSearchUiState({ query: state.query })
-            //     }
-            // },
             templates: {
                 suggestion: function(suggestion) {
                     let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ suggestion.image +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
@@ -1216,8 +1199,8 @@ window.onload = function() {
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
             document.querySelector('.btn_filter').style.display = 'none';
             document.querySelector('.page-result').style.display = 'none';
-            document.querySelector('.pagination1 ').style.display = 'none';
-            document.querySelector('.pagination2').style.display = 'none';
+            document.querySelector('.pagination1 ').innerHTML = '';
+            document.querySelector('.pagination2').innerHTML= '';
             document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
             document.querySelector('#hits').innerHTML = `<div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item selected">${initHits(suggestion)}</li></ol></div></div>` ;
@@ -1503,7 +1486,6 @@ window.onload = function() {
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
     }  
-
 };
 
 window.dataLayer = window.dataLayer || [];
