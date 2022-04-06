@@ -1047,7 +1047,6 @@ window.onload = function() {
            
                 console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
                 lvl = categoryFacet.split(':')[0].split('lvl')[1];
- 
             }
         }
     } else {
@@ -1134,7 +1133,7 @@ window.onload = function() {
         instantsearch.widgets.searchBox({
             container: '#search-box',
             placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
-            loadingIndicator: false,
+            loadingIndicator: true,
             searchAsYouType: false, 
 //             showLoadingIndicator: true,
             templates: {
