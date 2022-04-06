@@ -68,7 +68,7 @@ let start = setInterval(function () {
             }
 
             if (window.location.pathname.includes('checkout') && cart) {
-                document.querySelector('#coupon_code').value = 'Price_Test_CRO'
+                document.querySelector('#coupon_code').value = '5-euro-fix'
                 document.querySelector('.checkout_coupon input[type="submit"]').click()
             }
 
