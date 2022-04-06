@@ -1492,13 +1492,17 @@ window.onload = function() {
 
                     let pricesContainer = document.querySelector('#price_group ul'),
                         para = document.querySelectorAll('#price_group li');
+
+                    console.log(para);
+
                     let paraArr = [].slice.call(para).sort(function (a, b) {
                         return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
                     });
-
+                    console.log(paraArr + " - 1");
                     paraArr.forEach(function (p) {
                         pricesContainer.appendChild(p);
                     });
+                    console.log(paraArr + " - 2");
                 }
             },
         },
