@@ -1115,6 +1115,52 @@ window.onload = function() {
             },
             
         }),
+         
+        instantsearch.widgets.refinementList({
+            container: '#manufacturer',
+            attribute: 'manufacturer',
+            limit: 200,
+            sortBy: ['name:asc'],
+            templates: {
+                item: (data) => {
+                    actionDataLayer = 'Click on one of the brand items on filters';
+                    let checkbox = `
+                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
+                            <span class="check"></span>
+                            <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
+                        </label>
+                    `;
+                
+                    return checkbox
+                },
+            },
+        }),
+        instantsearch.widgets.refinementList({
+            container: '#price_group',
+            attribute: 'price_group',
+            limit: 10,
+            sortBy: ['isRefined:asc'],
+            templates: {
+                item: (data) => {
+                    actionDataLayer = 'Click on one of the price items on filters';
+                    let sltPrice = '';
+                    if (data.value.includes(' - ')) {
+                        sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+                    }  else {
+                        sltPrice = `> $${data.value.split('> ')[1]}`;
+                    }
+
+                    let checkbox = `
+                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                            <span class="check"></span>
+                            <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+                        </label>
+                    `;
+                
+                    return checkbox
+                },
+            },
+        }),   
         instantsearch.widgets.stats({
             container: '#stats-container',
             templates: {
@@ -1187,67 +1233,7 @@ window.onload = function() {
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
 
-    let countWidget = 0;
-
-    function addWidget() {
-        if (countWidget == 0) {
-            countWidget = 1;
-            search.addWidgets([
-               
-                instantsearch.widgets.refinementList({
-                    container: '#manufacturer',
-                    attribute: 'manufacturer',
-                    limit: 200,
-                    sortBy: ['name:asc'],
-                    templates: {
-                        item: (data) => {
-                            actionDataLayer = 'Click on one of the brand items on filters';
-                            let checkbox = `
-                                <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
-                                    <span class="check"></span>
-                                    <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-                                </label>
-                            `;
-                        
-                            return checkbox
-                        },
-                    },
-                }),
-                instantsearch.widgets.refinementList({
-                    container: '#price_group',
-                    attribute: 'price_group',
-                    limit: 10,
-                    sortBy: ['isRefined:asc'],
-                    templates: {
-                        item: (data) => {
-                            actionDataLayer = 'Click on one of the price items on filters';
-                            let sltPrice = '';
-                            if (data.value.includes(' - ')) {
-                                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-                            }  else {
-                                sltPrice = `> $${data.value.split('> ')[1]}`;
-                            }
-        
-                            let checkbox = `
-                                <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                                    <span class="check"></span>
-                                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
-                                </label>
-                            `;
-                        
-                            return checkbox
-                        },
-                    },
-                }),    
-               
-            ])
-        }
-    }
-
     function inputChange() {
-        if (!window.location.pathname.includes('/category')) {
-            addWidget() 
-        }
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
