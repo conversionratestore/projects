@@ -309,7 +309,7 @@ let styles = `
         position: relative;
     }
     #manufacturer .ais-RefinementList-list {
-        max-height: 300px;
+        max-height: 280px;
         overflow-y: auto;
     }
     #manufacturer .ais-RefinementList-list.scroll:before {
@@ -737,7 +737,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-// window.onload = function() {
+window.onload = function() {
     document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
@@ -1396,7 +1396,7 @@ mut.observe(document, optionMut);
             },
         },
     ])
-// };
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
