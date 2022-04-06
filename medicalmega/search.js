@@ -1207,12 +1207,14 @@ window.onload = function() {
                 },
             },
         }
-        ]).on('autocomplete:selected', function(event, suggestion, dataset, initialState) {
-            console.log(suggestion, dataset);
-            console.log(event)
-            console.log(initialState)
+        ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+            console.log(event, suggestion, dataset);
+
             document.querySelector('.algolia-autocomplete input').value = suggestion.name;
-            document.querySelector('#search-box pre').innerHTML = suggestion.name;
+            document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
+            
+            console.log(document.querySelector('.algolia-autocomplete input').value)
+            console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
             
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
             document.querySelector('.btn_filter').style.display = 'none';
@@ -1285,7 +1287,9 @@ window.onload = function() {
 
                 if (isSearchStalled === false) {
                     console.log(isSearchStalled)
+                    console.log(document.querySelector('.algolia-autocomplete pre').innerText)
                     document.querySelector('.algolia-autocomplete input').value = document.querySelector('.algolia-autocomplete pre').innerText;
+                    console.log(document.querySelector('.algolia-autocomplete input').value)
                     function selectOptions(select) {
                         let parent = select.closest('.list_box2');
                         let option = ``;
