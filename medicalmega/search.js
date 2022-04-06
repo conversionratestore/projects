@@ -1343,7 +1343,8 @@ window.onload = function() {
                             pricesContainer.appendChild(p);
                         });
                     }
- 
+
+                   
                 }
             },
         },
@@ -1463,7 +1464,7 @@ window.onload = function() {
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
         document.querySelector('.ais-Hits-item.selected') != null ? document.querySelector('.ais-Hits-item.selected').remove() : ''
-        // document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+        document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
       
         document.querySelector('#listing_container').style.display = 'block';
         if (window.location.pathname == '/') {
