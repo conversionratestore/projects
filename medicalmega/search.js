@@ -1359,6 +1359,7 @@ window.onload = function() {
 
                     if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+                        console.log(document.querySelectorAll('#manufacturer .ais-RefinementList-item').length)
                         if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
                             if (element.scrollHeight - element.scrollTop === element.clientHeight) {
                                 element.setAttribute('class','ais-RefinementList-list scrolled')
