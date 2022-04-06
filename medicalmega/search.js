@@ -1350,7 +1350,7 @@ window.onload = function() {
 
     let countWidget = 0;
 
-    function inputChange() {
+    function addWidget() {
         if (countWidget == 0) {
             countWidget = 1;
             search.addWidgets([
@@ -1447,7 +1447,14 @@ window.onload = function() {
                 }),
                 
             ])
+         
+
         }
+    }
+    function inputChange() {
+        if (window.location.pathname == '/') {
+            addWidget()
+        } 
        
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
@@ -1488,6 +1495,7 @@ window.onload = function() {
     })
 
     if (window.location.pathname.includes('/category')) {
+        addWidget();
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
         document.querySelector('.list_subcategory').before(document.querySelector('.listing .categoryTop'));
