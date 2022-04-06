@@ -318,15 +318,15 @@ let styles = `
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 48px;
+        height: 68px;
         pointer-events: none;
         opacity: 1;
         transition: all 0.2s ease;
         background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
     }
-    #manufacturer .ais-RefinementList-list.scrolled:before {
-        opacity: 0;
-    }
+    // #manufacturer .ais-RefinementList-list.scrolled:before {
+    //     opacity: 0;
+    // }
 
     .list_type1 {
         width: 100%;
@@ -544,6 +544,8 @@ let styles = `
         text-decoration: underline;
         margin: 10px auto 0;
         display: block;
+        position: relative;
+        z-index: 2;
     }
     .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled, #lvl_categories {
         display: none;
@@ -676,7 +678,7 @@ function pushDataLayer(action,label) {
 
 function scrolled(element) {
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        element.setAttribute('class','ais-RefinementList-list scrolled')
+        element.setAttribute('class','ais-RefinementList-list')
     } else {
         element.setAttribute('class','ais-RefinementList-list scroll')
     }
@@ -1359,20 +1361,23 @@ window.onload = function() {
                         })
                     })
 
-                    if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+                    // if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-                        console.log(document.querySelectorAll('#manufacturer .ais-RefinementList-item').length)
-                        if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-                            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                                element.setAttribute('class','ais-RefinementList-list scrolled')
-                            } else {
-                                element.setAttribute('class','ais-RefinementList-list scroll')
-                            }
+                    //     console.log(document.querySelectorAll('#manufacturer .ais-RefinementList-item').length)
+                    //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
+                            // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+                            //     element.setAttribute('class','ais-RefinementList-list scrolled')
+                            // } else {
+                            //     element.setAttribute('class','ais-RefinementList-list scroll')
+                            // }
                             element.addEventListener('scroll', () => scrolled(element));
-                        } else {
-                            element.setAttribute('class','ais-RefinementList-list scrolled')
-                        }
-                    }
+                    //     } else {
+                    //         element.setAttribute('class','ais-RefinementList-list scrolled')
+                    //     }
+                    // }
+                    document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                        document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
+                    })
 
                     if (document.querySelector('#price_group li') != null) {
                         let pricesContainer = document.querySelector('#price_group ul'),
