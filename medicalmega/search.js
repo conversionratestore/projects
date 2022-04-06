@@ -1354,6 +1354,7 @@ window.onload = function() {
         
                         if (isSearchStalled === false) {
                             console.log(isSearchStalled)
+                            document.querySelector('.algolia-autocomplete input').value = document.querySelector('.algolia-autocomplete pre').innerText;
                             function selectOptions(select) {
                                 let parent = select.closest('.list_box2');
                                 let option = ``;
