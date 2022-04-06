@@ -786,6 +786,7 @@ let mut = new MutationObserver(function (muts) {
 mut.observe(document, optionMut);
 
 window.onload = function() {
+    document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
 
