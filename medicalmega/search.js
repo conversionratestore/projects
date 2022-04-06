@@ -737,7 +737,7 @@ let mut = new MutationObserver(function (muts) {
 
 mut.observe(document, optionMut);
 
-window.onload = function() {
+// window.onload = function() {
     document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
     document.body.insertAdjacentHTML('afterbegin', styles);
     document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
@@ -1376,7 +1376,9 @@ window.onload = function() {
                     //     }
                     // }
                     document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                        console.log(e.target.innerText)
                         document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
+                        e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
                     })
 
                     if (document.querySelector('#price_group li') != null) {
@@ -1394,7 +1396,7 @@ window.onload = function() {
             },
         },
     ])
-};
+// };
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
