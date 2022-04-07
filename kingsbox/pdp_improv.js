@@ -637,9 +637,7 @@ const style = `
 										
 										[data-style="not"] .product-actions {
 											display: none !important;
-										}	
-										
-										
+										}									
 									
 									
 									/* ============== 
@@ -1369,10 +1367,6 @@ fetch(URL, { headers: header })
 						document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
 					}
 				}, 100)
-
-				// if (!document.querySelector('.product-recommendations div')) {
-				//
-				// }
 			})
 	})
 	.catch(err => console.error(err))
@@ -1500,13 +1494,6 @@ let isSimilar = setInterval(() => {
 					document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
 				}
 			}, 200)
-
-			// document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-
-
-			// document.querySelector('.col-xl-8').insertAdjacentElement('beforeend', document.querySelector('.product-recommendations'))
-			// default similar right
-
 
 			// setTimeout(() => {
 			// 	document.querySelectorAll('.custom_recommendations img').forEach(img => {
@@ -1852,16 +1839,6 @@ function tnsSettings(container, items, nav, gutter, responsive, name) {
 		console.log(`eventAction Swipe on ${ name } slider`)
 	})
 }
-
-// let isSlider = setInterval(() => {
-// 	if(document.querySelector('.col-xl-8 .tns-outer')) {
-// 		clearInterval(isSlider)
-//
-// 		document.querySelector('.slider').events.on('transitionEnd', () => {
-// 			console.log('sss')
-// 		});
-// 	}
-// }, 200)
 
 let isSimilarRight = setInterval(() => {
 	if (document.querySelector('.similar_products.right')) {
