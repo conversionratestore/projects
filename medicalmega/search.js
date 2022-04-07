@@ -1418,7 +1418,7 @@ window.onload = function() {
                         document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                        document.querySelector('##stats-container').style.display = `block'`;
+                        document.querySelector('#stats-container').style.display = `block'`;
                         
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
