@@ -1289,12 +1289,6 @@ window.onload = function() {
         }
     })
 
-    document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
-        actionDataLayer = 'Click on submit search';
-        pushDataLayer(actionDataLayer);  
-        inputChange()
-    })
-
     if (window.location.pathname.includes('/category')) {
         document.querySelector('#listing_container').style.display = 'block';
         document.querySelector('#mainbody').style.display = 'none';
@@ -1424,6 +1418,14 @@ window.onload = function() {
                       
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+                    })
+                    
+                    document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
+                        console.log(document.querySelector('.ais-SearchBox-input').value)
+                        document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
+                        actionDataLayer = 'Click on submit search';
+                        pushDataLayer(actionDataLayer);  
+                        inputChange()
                     })
                 }
             },
