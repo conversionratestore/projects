@@ -563,6 +563,7 @@ let styles = `
     }
     .algolia-autocomplete {
         width: 0;
+        position: absolute!important;
     }
     #autocomplete {
         opacity: 0;
