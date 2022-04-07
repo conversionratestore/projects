@@ -1516,47 +1516,48 @@ let isSimilar = setInterval(() => {
 		}, 1000)
 	}
 }, 100)
+let drawMenu = setInterval(() => {
+	if(document.querySelector('.product-layout-1')) {
+		clearInterval(drawMenu)
+		let links = [
+			'strength',
+			'rigs-racks',
+			'strength-machines',
+			'conditioning',
+			'body-weight',
+			'gym-essentials',
+			'apparel-accessories',
+			'sets',
+			'accessories',
+			'special-offer',
+		]
 
+		let menuItems = ''
 
-const dublicatesArr = [
+		for (let i = 0; i < links.length; i++) {
+			menuItems += `<li><a href="https://kingsbox.com/category/${ links[i] }">${ language.menu[i] }</a></li>`
+		}
+
+		let menu = `
+					<div class="custom_menu_wrapper"><p class="products_title">${ language.shop }</p><ul class='custom_menu'>${ menuItems }</ul></div>
+				`
+
+		document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
+	}
+}, 200)
+
+const duplicatesArr = [
 	'demand_wrapper',
 	'sell_wrapper',
 	'guarantees_wrapper',
 	'not_wrapper',
 	'action_btns',
 ]
-const removeDublicates = duplicate => {
+const removeDuplicates = duplicate => {
 	if (document.querySelector('.' + duplicate)) {
 		document.querySelector('.' + duplicate).remove()
 	}
 }
-
-(function drawMenu() {
-	let links = [
-		'strength',
-		'rigs-racks',
-		'strength-machines',
-		'conditioning',
-		'body-weight',
-		'gym-essentials',
-		'apparel-accessories',
-		'sets',
-		'accessories',
-		'special-offer',
-	]
-
-	let menuItems = ''
-
-	for (let i = 0; i < links.length; i++) {
-		menuItems += `<li><a href="https://kingsbox.com/category/${ links[i] }">${ language.menu[i] }</a></li>`
-	}
-
-	let menu = `
-					<div class="custom_menu_wrapper"><p class="products_title">${ language.shop }</p><ul class='custom_menu'>${ menuItems }</ul></div>
-				`
-
-	document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
-})()
 
 function checkItemStatus(item, containerDataset) {
 	let $addItemBtn = document.querySelector('div.pt-3.pb-3')
@@ -1568,7 +1569,7 @@ function checkItemStatus(item, containerDataset) {
 	})).join('')
 
 	/* check and remove duplicates */
-	dublicatesArr.forEach(removeDublicates)
+	duplicatesArr.forEach(removeDuplicates)
 
 	_addGuarantees($addItemBtn)
 
