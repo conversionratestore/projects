@@ -89,7 +89,18 @@ let styles = `
         z-index: 3;
     }
     .ais-SearchBox-reset {
-        display: none;
+        border: none;
+        transform: translateY(-50%);
+        position: absolute;
+        right: 68px;
+        top: 50%;
+        z-index: 2;
+    }
+    input.ais-SearchBox-input[type="search"]::-webkit-search-decoration,
+    input.ais-SearchBox-input[type="search"]::-webkit-search-cancel-button,
+    input.ais-SearchBox-input[type="search"]::-webkit-search-results-button,
+    input.ais-SearchBox-input[type="search"]::-webkit-search-results-decoration {
+        display: none; 
     }
     .ais-SearchBox-loadingIndicator {
         position: fixed;
