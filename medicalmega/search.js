@@ -1293,9 +1293,11 @@ window.onload = function() {
         }
     })
     document.querySelector('#search-box input').addEventListener('input', (e) => {
+         console.log('input')
         if (e.target.value.length < 1) {
             document.querySelector('#stats-container').style.display = 'block';
             document.querySelector('#hits').style.display = 'block';
+            document.querySelector('.btn_filter').style.display = 'block';
             document.querySelector('.algolia-autocomplete pre').innerHTML = '';
             if (document.querySelector('.hits-selected') != null) {
                 document.querySelector('.hits-selected').remove();
