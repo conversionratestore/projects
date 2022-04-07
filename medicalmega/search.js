@@ -92,7 +92,7 @@ let styles = `
         border: none;
         transform: translateY(-50%);
         position: absolute;
-        right: 68px;
+        right: 70px;
         top: 50%;
         z-index: 2;
     }
