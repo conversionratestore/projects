@@ -1413,6 +1413,13 @@ window.onload = function() {
                             pricesContainer.appendChild(p);
                         });
                     }
+                    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                        console.log(document.querySelector('.ais-SearchBox-input').value)
+                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+                        document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
+                        console.log(document.querySelector('.ais-SearchBox-input').value)
+                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+                    })
                 }
             },
         },
