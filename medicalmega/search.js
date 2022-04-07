@@ -562,7 +562,10 @@ let styles = `
         display: none;
     }
     .algolia-autocomplete {
-        width: 100%;
+        width: 0;
+    }
+    #autocomplete {
+        opacity: 0;
     }
     .aa-dropdown-menu {
         position: fixed!important;
@@ -597,6 +600,7 @@ let header = `
     <header class="header">
         <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger" data-button="menu">
         <div id="search-box"></div>
+        <input type="search" id="autocomplete" class="aa-input-search" placeholder="Search an ingredient..." name="search" autocomplete="off" autofocus/>
         <ul class="header_cart"></ul>
         <div class="nav-menu" data-item="menu">
             <div class="nav-menu_container">
@@ -1208,11 +1212,11 @@ window.onload = function() {
     search.start();
     
     console.log(search)
-    autocomplete('#search-box input', {hint: false, debug: true}, [
+    autocomplete('#autocomplete', {hint: false, debug: true}, [
         {
             source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
             displayKey: 'name',
-            openOnFocus: true,
+            openOnFocus: false,
             templates: {
                 suggestion: function(suggestion) {
                     function findImage() {
@@ -1231,7 +1235,7 @@ window.onload = function() {
         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
             console.log(event, suggestion, dataset);
 
-            // document.querySelector('.algolia-autocomplete input').value = suggestion.name;
+            // document.querySelector('#search-box input').value = suggestion.name;
             // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
             
             // console.log(document.querySelector('.algolia-autocomplete input').value)
@@ -1252,18 +1256,19 @@ window.onload = function() {
             if (document.querySelector('#mainbody') != null) {
                 document.querySelector('#mainbody').style.display = 'none';
             }
-            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
-                document.querySelector('.ais-SearchBox-input').value = '';
-                document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
+            // document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+            //     e.stopImmediatePropagation()
+            //     document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+            //     document.querySelector('.ais-SearchBox-input').value = '';
+            //     document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                 
-                console.log(document.querySelector('.ais-SearchBox-input').value)
-                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
-                document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
+            //     console.log(document.querySelector('.ais-SearchBox-input').value)
+            //     console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+            //     document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
               
-                console.log(document.querySelector('.ais-SearchBox-input').value)
-                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
-            })
+            //     console.log(document.querySelector('.ais-SearchBox-input').value)
+            //     console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+            // })
         })
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
@@ -1299,6 +1304,13 @@ window.onload = function() {
         if (e.keyCode == '13') {
             inputChange()
         }
+    })
+    document.querySelector('#search-box input').addEventListener('input', (e) => {
+        document.querySelector('#autocomplete').focus();
+        document.querySelector('#autocomplete').value = e.target.value;
+    })
+    document.querySelector('#autocomplete').addEventListener('input', (e) => {
+        document.querySelector('#search-box input').value = e.target.value;
     })
 
     if (window.location.pathname.includes('/category')) {
@@ -1422,6 +1434,7 @@ window.onload = function() {
                     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
                         document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
+                        document.querySelector('#autocomplete').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                         
                         console.log(document.querySelector('.ais-SearchBox-input').value)
