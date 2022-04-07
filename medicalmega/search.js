@@ -320,7 +320,7 @@ let styles = `
         position: relative;
     }
     #manufacturer .ais-RefinementList-list {
-        max-height: 280px;
+        max-height: 312px;
         overflow-y: auto;
     }
     #manufacturer .ais-RefinementList-list.scroll:before {
