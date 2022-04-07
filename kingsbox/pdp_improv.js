@@ -640,9 +640,7 @@ const style = `
 										}	
 										
 										
-										.scroll-top[_ngcontent-serverApp-c111] {
-											bottom: 105px;
-										}
+									
 									
 									/* ============== 
 										Mobile style 
