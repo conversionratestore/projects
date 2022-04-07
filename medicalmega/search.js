@@ -1229,11 +1229,16 @@ window.onload = function() {
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
             document.querySelector('.btn_filter').style.display = 'none';
             document.querySelector('.page-result').style.display = 'none';
-            document.querySelector('.pagination1 ').innerHTML = '';
-            document.querySelector('.pagination2').innerHTML= '';
+            document.querySelector('.pagination1 ').style.display = 'none';
+            document.querySelector('.pagination2').style.display = 'none';
             document.querySelector('#stats-container').style.display = 'none';
+            document.querySelector('#hits').style.display = 'none';
 
-            document.querySelector('#hits').innerHTML = `<div class="selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>` ;
+            if (document.querySelector('.hits-selected') != null) {
+                document.querySelector('.hits-selected').remove()
+            }
+            document.querySelector('#hits').insertAdjacentHTML('beforebegin',`<div class="hits-selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>`) ;
+           
             document.querySelector('#listing_container').style.display = 'block';
             if (window.location.pathname == '/') {
                 document.querySelector('.homepage-container').style.display = 'none';
@@ -1242,10 +1247,11 @@ window.onload = function() {
                 document.querySelector('#mainbody').style.display = 'none';
             }
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+                document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                 document.querySelector('.ais-SearchBox-input').value = '';
                 document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                 document.querySelector('#stats-container').style.display = 'block';
+                document.querySelector('#hits').style.display = 'block';
                 
                 document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
             })
@@ -1257,7 +1263,7 @@ window.onload = function() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
-        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
         document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
       
         document.querySelector('#listing_container').style.display = 'block';
@@ -1272,6 +1278,7 @@ window.onload = function() {
         document.querySelector('.page-result').removeAttribute('style');
         document.querySelector('.pagination1 ').style.display = 'block';
         document.querySelector('.pagination2').style.display = 'block';  
+        document.querySelector('#hits').style.display = 'block';  
     }
 
     //add text search result
@@ -1284,6 +1291,21 @@ window.onload = function() {
         if (e.keyCode == '13') {
             inputChange()
         }
+    })
+    document.querySelector('#search-box input').addEventListener('input', (e) => {
+        if (e.target.value.length < 1) {
+            document.querySelector('#stats-container').style.display = 'block';
+            document.querySelector('#hits').style.display = 'block';
+            document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+            if (document.querySelector('.hits-selected') != null) {
+                document.querySelector('.hits-selected').remove();
+            }
+            document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
+            
+            document.querySelector('.pagination1 ').style.display = 'block';
+            document.querySelector('.pagination2').style.display = 'block';  
+           
+        } 
     })
 
     if (window.location.pathname.includes('/category')) {
@@ -1369,7 +1391,7 @@ window.onload = function() {
 
                     if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-                        
+
                     //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
                             // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
                             //     element.setAttribute('class','ais-RefinementList-list scrolled')
@@ -1402,17 +1424,19 @@ window.onload = function() {
                         });
                     }
                     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+                        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                         document.querySelector('#stats-container').style.display = `block'`;
+                        document.querySelector('#hits').style.display = `block'`;
                     
                         document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
                         document.querySelector('.ais-SearchBox-submit').click()
                     })
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
                         document.querySelector('#stats-container').style.display = 'block';
-                        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+                        document.querySelector('#hits').style.display = 'block';
+                        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                       
                         document.querySelector('.ais-SearchBox-input').value =  document.querySelector('pre').innerHTML;
                         document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
