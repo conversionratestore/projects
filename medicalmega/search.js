@@ -1226,12 +1226,6 @@ window.onload = function() {
         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
             console.log(event, suggestion, dataset);
 
-            // document.querySelector('.algolia-autocomplete input').value = suggestion.name;
-            // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
-            
-            // console.log(document.querySelector('.algolia-autocomplete input').value)
-            // console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
-            
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
             document.querySelector('.btn_filter').style.display = 'none';
             document.querySelector('.page-result').style.display = 'none';
@@ -1253,12 +1247,7 @@ window.onload = function() {
                 document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                 document.querySelector('#stats-container').style.display = 'block';
                 
-                console.log(document.querySelector('.ais-SearchBox-input').value)
-                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
                 document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
-              
-                console.log(document.querySelector('.ais-SearchBox-input').value)
-                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
             })
         })
     
@@ -1310,9 +1299,6 @@ window.onload = function() {
 
                 if (isSearchStalled === false) {
                     console.log(isSearchStalled)
-                    // console.log(document.querySelector('.algolia-autocomplete pre').innerText)
-                    // document.querySelector('.algolia-autocomplete input').value = document.querySelector('.algolia-autocomplete pre').innerText;
-                    // console.log(document.querySelector('.algolia-autocomplete input').value)
                     function selectOptions(select) {
                         let parent = select.closest('.list_box2');
                         let option = ``;
@@ -1383,7 +1369,7 @@ window.onload = function() {
 
                     if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-                    //     console.log(document.querySelectorAll('#manufacturer .ais-RefinementList-item').length)
+                        
                     //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
                             // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
                             //     element.setAttribute('class','ais-RefinementList-list scrolled')
@@ -1420,18 +1406,14 @@ window.onload = function() {
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                         document.querySelector('#stats-container').style.display = `block'`;
-                        
-                        console.log(document.querySelector('.ais-SearchBox-input').value)
-                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+                    
                         document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
                         document.querySelector('.ais-SearchBox-submit').click()
-                        console.log(document.querySelector('.ais-SearchBox-input').value)
-                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
                     })
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
                         document.querySelector('#stats-container').style.display = 'block';
                         document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
-                        console.log(document.querySelector('.ais-SearchBox-input').value)
+                      
                         document.querySelector('.ais-SearchBox-input').value =  document.querySelector('pre').innerHTML;
                         document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
                         actionDataLayer = 'Click on submit search';
