@@ -1353,17 +1353,16 @@ fetch(URL, { headers: header })
 						let divClass = isSimilarItem ? 'similar_exist' : ''
 
 						const similarProducts = `
-							<div class="similar_products right ${divClass}">
+							<div class="similar_products right ${ divClass }">
 								<p class="products_title">${ language.like }</p>
 								${ randomItems.map(productToHtml).join('') }
 							</div>`
 
 						const similarProductsLeft = `
-									<div class="similar_products left ${divClass}">
+									<div class="similar_products left ${ divClass }">
 										<p class="products_title">${ language.like }</p>
 										${ randomItems.map(productToHtml).join('') }
 									</div>`
-
 
 
 						document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
@@ -1654,41 +1653,48 @@ function _addGuarantees(where) {
 }
 
 function _addNotStyle() {
-	let $title = document.querySelector('.product-title')
-	let $cloneReviews = document.querySelector('app-reviews-summary').cloneNode(true)
-	let $clonePrice = document.querySelector('.product-price div').cloneNode(true)
-	let sliderItem = ''
+	let intr = setInterval(() => {
+		if (
+			document.querySelector('app-reviews-summary') &&
+			document.querySelector('.product-price div')
+		) {
+			clearInterval(intr)
+
+			let $title = document.querySelector('.product-title')
+			let $cloneReviews = document.querySelector('app-reviews-summary').cloneNode(true)
+			let $clonePrice = document.querySelector('.product-price div').cloneNode(true)
+			let sliderItem = ''
 
 
-	$cloneReviews.classList.add('not_item_mobile')
-	$clonePrice.classList.add('not_item_mobile')
+			$cloneReviews.classList.add('not_item_mobile')
+			$clonePrice.classList.add('not_item_mobile')
 
-	let imgArr
+			let imgArr
 
-	if (device === 'mobile') {
-		imgArr = document.querySelectorAll('#product-images-thumbs .picture')
-	} else {
-		imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
-	}
+			if (device === 'mobile') {
+				imgArr = document.querySelectorAll('#product-images-thumbs .picture')
+			} else {
+				imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
+			}
 
-	let length = imgArr.length - 1
-	console.log(imgArr)
-	console.log(length)
+			let length = imgArr.length - 1
+			console.log(imgArr)
+			console.log(length)
 
-	let isImg = setInterval(() =>  {
-		if(imgArr[length]?.src.includes('cdn.kingsbox.com')) {
-			clearInterval(isImg)
+			let isImg = setInterval(() => {
+				if (imgArr[length]?.src.includes('cdn.kingsbox.com')) {
+					clearInterval(isImg)
 
-			document.querySelector('app-product-images').classList.add('w_load')
+					document.querySelector('app-product-images').classList.add('w_load')
 
-			console.log('includes', imgArr[length]?.src.includes('cdn.kingsbox.com'))
+					console.log('includes', imgArr[length]?.src.includes('cdn.kingsbox.com'))
 
-			imgArr.forEach((img, index) => {
-				// img.src = img.src.replace('&blur=90', '')
-				sliderItem += `<div><img src=${ img.src } alt="slider image ${ index }"></div>`
-			})
+					imgArr.forEach((img, index) => {
+						// img.src = img.src.replace('&blur=90', '')
+						sliderItem += `<div><img src=${ img.src } alt="slider image ${ index }"></div>`
+					})
 
-			let sliderWrapper = `
+					let sliderWrapper = `
 								<div class="not_wrapper">			
 									<div class="slider">
 										${ sliderItem }
@@ -1702,98 +1708,89 @@ function _addNotStyle() {
 								</div>
 							`
 
-			document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
+					document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
 
-			let isSlider = setInterval(() => {
-				if (document.querySelector('.slider img') && typeof tns == 'function') {
-					clearInterval(isSlider)
+					let isSlider = setInterval(() => {
+						if (document.querySelector('.slider img') && typeof tns == 'function') {
+							clearInterval(isSlider)
 
-					tnsSettings('.slider', 2.3, true, 0, true, 'main')
+							tnsSettings('.slider', 2.3, true, 0, true, 'main')
+						}
+					}, 100)
 				}
 			}, 100)
-		}
-	}, 100)
 
-	let clone = setInterval(() => {
-		if(document.querySelector('.item_info div')) {
-			clearInterval(clone)
+			let clone = setInterval(() => {
+				if (document.querySelector('.item_info div')) {
+					clearInterval(clone)
 
-			document.querySelector('.item_info div').insertAdjacentElement('beforeend', $cloneReviews)
-			document.querySelector('.item_info').insertAdjacentElement('beforeend', $clonePrice)
-		}
-	}, 100)
+					document.querySelector('.item_info div').insertAdjacentElement('beforeend', $cloneReviews)
+					document.querySelector('.item_info').insertAdjacentElement('beforeend', $clonePrice)
+				}
+			}, 100)
 
-
-
-
-	let actionBtns = `
+			let actionBtns = `
 							<div class="action_btns bottom">
 								<p class="switch_info">${ language.details } <span>V</span></p>
 								<p class="join_wl">${ language.wl }</p>
 							</div>`
 
-	let priceInterval = setInterval(() => {
-		if(document.querySelector('.col-xl-4 .product-price')) {
-			clearInterval(priceInterval)
 			if (device === 'mobile') {
 				document.querySelector('.vat-indicator').insertAdjacentHTML('afterend', actionBtns)
 			} else {
 				document.querySelector('.col-xl-4 .product-price').insertAdjacentHTML('afterend', actionBtns)
 			}
+
+			let isBtns = setInterval(() => {
+				if (document.querySelector('.action_btns')) {
+					clearInterval(isBtns)
+
+					let $guarantees = document.querySelector('.guarantees_wrapper')
+					let $accessories = document.querySelector('app-product-accessories')
+					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3')
+
+					let $v = document.querySelector('.switch_info span')
+
+					$guarantees?.classList.add('custom_hide')
+					$accessories?.classList.add('custom_hide')
+					$properties?.classList.add('custom_hide')
+
+
+					document.querySelector('.action_btns').addEventListener('click', (e) => {
+						if (e.target.closest('.switch_info')) {
+							if ($guarantees) {
+								$guarantees.classList.toggle('custom_hide')
+							}
+
+							if ($accessories) {
+								$accessories.classList.toggle('custom_hide')
+							}
+
+							if ($properties) {
+								$properties.classList.toggle('custom_hide')
+							}
+
+							$v.innerText === 'V' ? $v.innerText = 'ꓥ' : $v.innerText = 'V'
+
+							document.querySelector('.action_btns').classList.toggle('bottom')
+
+							window.dataLayer = window.dataLayer || []
+							dataLayer.push({
+								'event': 'event-to-ga',
+								'eventCategory': 'Exp: PDP improvemnets ' + device,
+								'eventAction': 'Click on Product details',
+							})
+
+							console.log('eventAction Click on Product details')
+						}
+						if (e.target.matches('.join_wl')) {
+							document.querySelector('.product-actions button').click()
+						}
+					})
+				}
+			}, 200)
 		}
 	}, 100)
-
-
-
-
-	let isBtns = setInterval(() => {
-		if (document.querySelector('.action_btns')) {
-			clearInterval(isBtns)
-
-			let $guarantees = document.querySelector('.guarantees_wrapper')
-			let $accessories = document.querySelector('app-product-accessories')
-			let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3')
-
-			let $v = document.querySelector('.switch_info span')
-
-			$guarantees?.classList.add('custom_hide')
-			$accessories?.classList.add('custom_hide')
-			$properties?.classList.add('custom_hide')
-
-
-			document.querySelector('.action_btns').addEventListener('click', (e) => {
-				if (e.target.closest('.switch_info')) {
-					if ($guarantees) {
-						$guarantees.classList.toggle('custom_hide')
-					}
-
-					if ($accessories) {
-						$accessories.classList.toggle('custom_hide')
-					}
-
-					if ($properties) {
-						$properties.classList.toggle('custom_hide')
-					}
-
-					$v.innerText === 'V' ? $v.innerText = 'ꓥ' : $v.innerText = 'V'
-
-					document.querySelector('.action_btns').classList.toggle('bottom')
-
-					window.dataLayer = window.dataLayer || []
-					dataLayer.push({
-						'event': 'event-to-ga',
-						'eventCategory': 'Exp: PDP improvemnets ' + device,
-						'eventAction': 'Click on Product details',
-					})
-
-					console.log('eventAction Click on Product details')
-				}
-				if (e.target.matches('.join_wl')) {
-					document.querySelector('.product-actions button').click()
-				}
-			})
-		}
-	}, 200)
 }
 
 function checkActiveImg() {
@@ -1848,11 +1845,11 @@ function tnsSettings(container, items, nav, gutter, responsive, name) {
 		dataLayer.push({
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp: PDP improvemnets ' + device,
-			'eventAction': `Swipe on ${name} slider`,
+			'eventAction': `Swipe on ${ name } slider`,
 		})
 
-		console.log(`eventAction Swipe on ${name} slider`)
-	});
+		console.log(`eventAction Swipe on ${ name } slider`)
+	})
 }
 
 // let isSlider = setInterval(() => {
