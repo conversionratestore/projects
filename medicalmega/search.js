@@ -4,7 +4,7 @@ let styles = `
     html:first-child .list_type3 span {
         line-height: 1;
     }
-    .list_type2 {
+    .list_type2, #listing_main {
         width: 100%;
     }
     #hdr, #banner, .listing .category, .listing .subhead {
