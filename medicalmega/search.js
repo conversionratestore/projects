@@ -1361,7 +1361,7 @@ window.onload = function() {
                         })
                     })
 
-                    // if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+                    if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
                     //     console.log(document.querySelectorAll('#manufacturer .ais-RefinementList-item').length)
                     //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
@@ -1374,12 +1374,15 @@ window.onload = function() {
                     //     } else {
                     //         element.setAttribute('class','ais-RefinementList-list scrolled')
                     //     }
-                    // }
-                    document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                        console.log(e.target.innerText)
-                        document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
-                        e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
-                    })
+                    }
+                    if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
+                        document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                            console.log(e.target.innerText)
+                            document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
+                            e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+                        })
+                    }
+                    
 
                     if (document.querySelector('#price_group li') != null) {
                         let pricesContainer = document.querySelector('#price_group ul'),
