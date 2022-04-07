@@ -1541,9 +1541,9 @@ const duplicatesArr = [
 	'action_btns',
 ]
 const removeDuplicates = duplicate => {
-	if (document.querySelector('.' + duplicate)) {
-		document.querySelector('.' + duplicate).remove()
-	}
+		document.querySelectorAll('.' + duplicate)?.forEach(duplicate => {
+			duplicate.remove()
+		})
 }
 
 function checkItemStatus(item, containerDataset) {
