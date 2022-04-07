@@ -884,10 +884,10 @@ window.onload = function() {
 
     //add elements listing
     if (window.location.pathname == '/' && document.querySelector('.homepage-container') != null) {
-        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container" class="loading"></div>`);
+        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container" class=""></div>`); //loading
     }
     if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;" class="loading"></div>`);
+        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;" class=""></div>`); //loading
     }
 
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
