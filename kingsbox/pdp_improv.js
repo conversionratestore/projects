@@ -389,6 +389,10 @@ const style = `
 										margin-top: 4px;
 									}
 									
+									.product-images-container,
+									.product-images-container-mobile {
+										position: relative;
+									}
 									
 									/*  =====================
 										Item status: Expected 
@@ -1193,11 +1197,7 @@ const drawDiagonalLine = (variations, statuses) => {
 		console.log(status)
 
 		status = status.split('_')[0].toLowerCase()
-		if (
-			status === 'able' ||
-			status === 'pre' ||
-			status === 'not'
-		) {
+		if (status === 'not') {
 			variation.classList.add('out')
 		} else {
 			console.log(variation)
@@ -1504,7 +1504,7 @@ let isSimilar = setInterval(() => {
 	}
 }, 100)
 let drawMenu = setInterval(() => {
-	if(document.querySelector('.product-layout-1')) {
+	if (document.querySelector('.product-layout-1')) {
 		clearInterval(drawMenu)
 		let links = [
 			'strength',
@@ -1613,7 +1613,9 @@ function _setExpectedItem(where) {
 											</div>
 										`
 
-			document.querySelector('app-product-layout-1-images div')?.insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container').insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container-mobile').insertAdjacentHTML('beforeend', sellImg)
+
 			where.insertAdjacentHTML('beforebegin', demandText)
 		}
 	}, 200)
