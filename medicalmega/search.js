@@ -92,7 +92,7 @@ let styles = `
         border: none;
         transform: translateY(-50%);
         position: absolute;
-        right: 70px;
+        right: 68px;
         top: 50%;
         z-index: 2;
     }
@@ -1215,7 +1215,14 @@ window.onload = function() {
             openOnFocus: true,
             templates: {
                 suggestion: function(suggestion) {
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ suggestion.image +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+                    function findImage() {
+                        for (let i = 0; i < suggestion.variants.length; i++) {
+                            if (suggestion.variants[i].image != '') {
+                                return suggestion.variants[i].image
+                            }
+                        }
+                    }
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
                             
                     return sugTemplate;
                 },
