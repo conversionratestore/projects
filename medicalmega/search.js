@@ -1237,7 +1237,7 @@ window.onload = function() {
             document.querySelector('.page-result').style.display = 'none';
             document.querySelector('.pagination1 ').innerHTML = '';
             document.querySelector('.pagination2').innerHTML= '';
-            document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
+            document.querySelector('#stats-container').style.display = 'none';
 
             document.querySelector('#hits').innerHTML = `<div class="selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>` ;
             document.querySelector('#listing_container').style.display = 'block';
@@ -1418,15 +1418,17 @@ window.onload = function() {
                         document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
+                        document.querySelector('##stats-container').style.display = `block'`;
                         
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
                         document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
-                      
+                        document.querySelector('.ais-SearchBox-submit').click()
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
                     })
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
+                        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         document.querySelector('.ais-SearchBox-input').value =  document.querySelector('pre').innerHTML;
                         document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
