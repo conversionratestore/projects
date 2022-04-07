@@ -1086,6 +1086,8 @@ window.onload = function() {
         return boxItem
     }
 
+    let inputWord = false;
+
     search.addWidgets([
         instantsearch.widgets.configure({
             facetFilters: [categoryFacet],
@@ -1250,7 +1252,8 @@ window.onload = function() {
                 document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                 document.querySelector('#listing_main').style = '';
                 
-                document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
+                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+                inputWord = false;
             })
         })
     
@@ -1286,8 +1289,12 @@ window.onload = function() {
         }
     })
     document.querySelector('#search-box input').addEventListener('input', (e) => {
-         console.log('input')
+        console.log(e.target.value)
+
+        inputWord = true;
+        document.querySelector('.algolia-autocomplete pre').innerHTML = e.target.value;
         if (e.target.value.length < 1) {
+            inputWord = false;
             document.querySelector('.algolia-autocomplete pre').innerHTML = '';
             if (document.querySelector('.hits-selected') != null) {
                 document.querySelector('.hits-selected').remove();
@@ -1295,7 +1302,9 @@ window.onload = function() {
             document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
             
             document.querySelector('#listing_main').style = '';
+            
         } 
+        
     })
 
     if (window.location.pathname.includes('/category')) {
@@ -1414,13 +1423,14 @@ window.onload = function() {
                         });
                     }
                     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                        inputWord = false;
                         document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
                         
                         document.querySelector('#listing_main').style = '';
                     
-                        document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
+                        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
                         document.querySelector('.ais-SearchBox-submit').click()
                     })
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
@@ -1438,6 +1448,12 @@ window.onload = function() {
             },
         },
     ])
+
+    document.addEventListener('click', () => {
+        if (inputWord == false) {
+            document.querySelector('.ais-SearchBox-input').value = '';
+        }
+    })
 };
 
 window.dataLayer = window.dataLayer || [];
