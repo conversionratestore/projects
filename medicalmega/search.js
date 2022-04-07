@@ -1252,6 +1252,18 @@ window.onload = function() {
             if (document.querySelector('#mainbody') != null) {
                 document.querySelector('#mainbody').style.display = 'none';
             }
+            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
+                document.querySelector('.ais-SearchBox-input').value = '';
+                document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
+                
+                console.log(document.querySelector('.ais-SearchBox-input').value)
+                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+                document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
+              
+                console.log(document.querySelector('.ais-SearchBox-input').value)
+                console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
+            })
         })
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
@@ -1407,19 +1419,7 @@ window.onload = function() {
                             pricesContainer.appendChild(p);
                         });
                     }
-                    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
-                        document.querySelector('.ais-SearchBox-input').value = '';
-                        document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                        
-                        console.log(document.querySelector('.ais-SearchBox-input').value)
-                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
-                        document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
-                      
-                        console.log(document.querySelector('.ais-SearchBox-input').value)
-                        console.log(document.querySelector('.algolia-autocomplete pre').innerHTML)
-                    })
-                    
+       
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
                         console.log(document.querySelector('.ais-SearchBox-input').value)
                         document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
