@@ -161,7 +161,7 @@ input {
       color: #9AA6AB;
       background-color: #F0F1F2;
       border-color: #F0F1F2; }
-  .btn[disabled] svg, .form-search button[disabled] svg {
+  .btn[disabled] svg, #form-search button[disabled] svg {
       fill: #9AA6AB; }
   .btn_white {
     background-color: #FFFFFF;
@@ -170,7 +170,7 @@ input {
       background-color: #E9EBEC; }
   .btn_white:hover {
     background-color: #F0F1F2;}
-  .btn_white[disabled], .form-search button[disabled] {
+  .btn_white[disabled], #form-search button[disabled] {
       border-color: #F0F1F2;
       background-color: #FBFBFB;
       color: #9AA6AB; }
@@ -200,10 +200,8 @@ input {
   font-size: 14px;
   line-height: 150%; }
 
-.checkbox {
-  display: none; }
-  .checkbox:checked ~ .check:before {
-    content: ''; }
+.ais-RefinementList-item--selected .check:before {
+  content: ''; }
 
 .header {
   -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
@@ -248,15 +246,15 @@ input {
   .logo span {
     color: #96280F; }
 
-.form-search {
+#form-search {
   position: relative;
   width: 545px; }
-  .form-search input {
+  .ais-SearchBox-input {
     background: #E9EBEC;
     border-radius: 38px;
     padding: 11px 50px 11px 20px;
     width: 100%; }
-  .form-search button {
+  .ais-SearchBox-submit {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -268,7 +266,26 @@ input {
     height: 40px;
     border-radius: 50%;
     background-color: #1E3944; }
-
+    .ais-SearchBox-submit svg {
+      fill: #fff;
+      width: 16px;
+      height: 16px;
+    }
+    .ais-SearchBox-reset {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      padding: 5px;
+      transform: translateY(-50%);
+    }
+    .ais-SearchBox-loadingIndicator {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+    }
 .subbar {
   border-top: 1px solid #BCC4C7;
   padding: 9px 0; }
@@ -548,8 +565,21 @@ input {
       color: #FBFBFB; }
   .select_option:focus {
       border-color: #344D57;}
-
+.ais-SortBy-select {
+  background: #FBFBFB;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  padding: 9.5px 25px 9.5px 16px;
+  color: #344D57;
+border: 1px solid #E0E4E5;
+box-sizing: border-box;
+border-radius: 100px;
+}
 .filter {
+  // position: sticky;
+  // top: 90px;
+  // height: fit-content;
   width: 200px;
   padding-top: 58px; }
   .filter_title {
@@ -572,8 +602,8 @@ input {
   margin-bottom: 33px; }
 
 .listing_content {
-  border-top: 1px solid #BCC4C7;
-  border-left: 1px solid #BCC4C7;
+  border-top: 1px solid #E3E6E7;
+  border-left: 1px solid #E3E6E7;
   margin-top: 12px; }
   .listing_content .ais-Hits-item {
     width: 25%; 
@@ -724,6 +754,7 @@ input {
   transition: all 0.3s ease;
   position: relative; }
   .card:hover {
+    z-index: 1;
     box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
   }
   .card img {
@@ -743,9 +774,9 @@ input {
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
+      height: 47px;
       -webkit-box-orient: vertical;
-      line-height: 130%;
-      height: 55px;
+      line-height: 15.6px;
       margin-bottom: 20px; }
   .card .btn {
     padding: 0;
@@ -1018,21 +1049,6 @@ let html = `
               <div class="d-flex">
                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                 <div id="form-search"></div>
-                <form class="form-search">
-                  <input type="text" placeholder="Search by Name">
-                  <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none">
-                      <g clip-path="url(#clip0_114_1946)" stroke="#fff">
-                        <path d="M6.857 13.313A6.457 6.457 0 106.857.4a6.457 6.457 0 000 12.913zm4.29-2.169l4.571 4.571"></path>
-                      </g>
-                      <defs>
-                        <clippath id="clip0_114_1946">
-                          <path fill="#fff" d="M0 0h16v16H0z"></path>
-                        </clippath>
-                      </defs>
-                    </svg>
-                  </button>
-                </form>
               </div>
               <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">0</span>)</span></a></div>
             </div>
@@ -1245,10 +1261,6 @@ let html = `
         </div>
       </form>
     </div>
-
-    <script src="js/main.js"></script>
-
-
 `
 
 document.body.insertAdjacentHTML('afterbegin', html);
@@ -1309,23 +1321,41 @@ search.addWidgets([
                       }
                   }
               }
+              function optionBox() {
+                let option = ``;
+                for (let i = 0; i < hit.variants.length; i++) {
+                    let variantsArr = hit.variants[i];
+                    if (variantsArr.extra != '' && variantsArr.price != '0.00') {
+                        option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''}</option>` + option;  
+                    }
+                }
+                return option
+            }
+              
               
               let boxItem = `
                 <div class="card">
                   <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
                   <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
                     <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
-                    <span>${hit.name}</span>
+                    <span title="${hit.name}">${hit.name}</span>
                   </a>
-                  <div>
+                  <p class="sold-by">Sold by: ${hit.extra}</p>
+                  <form action="https://medicalmega.com/cart.html" method="post">
                     <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
                       <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                      <input class="calc-qty" type="number" value="1" data-max-value="${hit.qty}">
+                      <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
                       <button class="btn-calc btn-calc_plus" type="button"></button>
                     </div>
-                    ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="button" data-variant-id="' + hit.pv_id + '" data-id="' + hit.objectID + '"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span>| Add to Cart</span></button>'}
+                    ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+                    <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+                    <input type="hidden" name="product_id" value="${hit.objectID }">
+                    <input type="hidden" name="add_to_cart" value="variant">
+                      <select class="product-variant product-variant__options-box__select" style="display:none;">
+                          ${optionBox()}
+                      </select>
                     
-                  </div>
+                  </form>
                 </div>
                 `
 
@@ -1336,8 +1366,9 @@ search.addWidgets([
 
   instantsearch.widgets.sortBy({
       container: '#select_sort',
+      placeholder: 'Featured',
       items: [
-          { label: 'by default', value: 'staging_products', selected: true, disable: true },
+          { label: 'Featured', value: 'staging_products', selected: true, disable: true },
           { label: 'Product Name ASC', value: 'staging_products' },
           { label: 'Product Name DESC', value: 'staging_products_name_desc' },
       ],
@@ -1371,10 +1402,9 @@ search.addWidgets([
       sortBy: ['name:asc'],
       templates: {
           item: (data) => {
-              actionDataLayer = "Click on one of the brand items on filters";
+              actionDataLayer = 'Click on one of the brand items on filters';
               let checkbox = `
                   <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                    <input class="checkbox" type="checkbox">
                     <span class="check"></span>
                     <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
                   </label>
@@ -1391,13 +1421,11 @@ search.addWidgets([
       sortBy: ['isRefined:asc'],
       templates: {
           item: (data) => {
-              actionDataLayer = "Click on one of the price items on filters";
+              actionDataLayer = 'Click on one of the price items on filters';
               let checkbox = `
                   <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                    <input class="checkbox" type="checkbox">
                     <span class="check"></span>
                     <span class="check_text">${data.value}  <span class="count_brand">(${data.count})</span></span>
-                   
                   </label>
               `;
           
@@ -1482,6 +1510,37 @@ search.addWidgets([
 
                 }
 
+                
+              document.querySelectorAll('.card .product-variant').forEach((select, index) => {
+                let parent = select.closest('.card');
+                if (select.length > 0) {
+                  let price = select.options[select.selectedIndex].dataset.price,
+                    variantId = select.options[select.selectedIndex].value,
+                    name = select.options[select.selectedIndex].innerText,
+                    qty = select.options[select.selectedIndex].dataset.qty;
+
+                  parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+                  parent.querySelector(`.sold-by`).innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
+                  parent.querySelector(`[name="quantity"]`).dataset.maxValue = qty;
+  
+                  if (name.includes('Out of stock')) {
+                      parent.querySelector('.status').style.display = 'block';
+                      parent.querySelector('.calc ').classList.add('disabled');
+                      parent.querySelector('.btn').setAttribute('class','btn btn_white');
+                      parent.querySelector('.btn').setAttribute('data-button','notify');
+                      parent.querySelector('.btn').type = 'button';
+                      parent.querySelector('.btn').innerHTML = '<span>notify when available</span>';
+                  } else {
+                      parent.querySelector('.status').style.display = 'none';
+                      parent.querySelector('.calc ').classList.remove('disabled');
+                      parent.querySelector('.btn').setAttribute('class','btn btn_dark');
+                      parent.querySelector('.btn').removeAttribute('data-button');
+                      parent.querySelector('.btn').type = 'submit';
+                      parent.querySelector('.btn').innerHTML = `<span>$<span class="pr" data-price="${price}">${price}</span> | Add to Cart</span>`;
+                  }
+                }
+              })
+
                 //+/- btns quantity
                 calc.forEach((el, i) => {
                   btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
@@ -1510,7 +1569,6 @@ search.addWidgets([
                 }
 
           }
-
       },
   },
 ])
