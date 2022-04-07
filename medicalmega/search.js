@@ -891,16 +891,19 @@ window.onload = function() {
     document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
         <div id="lvl_categories"></div>
         <span class="result_for_search"></span>
-        <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-        <div id="stats-container"></div>
-        <div class="flex-center-end page-result">
-            <p>Results Per Page: </p>
-            <div id="mm_per_page" ></div>
+        <div id="listing_main">
+            <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
+            <div id="stats-container"></div>
+            <div class="flex-center-end page-result">
+                <p>Results Per Page: </p>
+                <div id="mm_per_page" ></div>
+            </div>
+            <div class="pagination1 pagination"></div>
+            <div id="additional-categories"></div>
+            <div id="hits"></div>
+            <div class="pagination2 pagination"></div>
         </div>
-        <div class="pagination1 pagination"></div>
-        <div id="additional-categories"></div>
-        <div id="hits"></div>
-        <div class="pagination2 pagination"></div>
+       
         <div class="popup_filter" data-item="popup_filter">
             <div class="popup_container">
                 <div class="popup_header">
@@ -1227,17 +1230,12 @@ window.onload = function() {
             console.log(event, suggestion, dataset);
 
             document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
-            document.querySelector('.btn_filter').style.display = 'none';
-            document.querySelector('.page-result').style.display = 'none';
-            document.querySelector('.pagination1 ').style.display = 'none';
-            document.querySelector('.pagination2').style.display = 'none';
-            document.querySelector('#stats-container').style.display = 'none';
-            document.querySelector('#hits').style.display = 'none';
+            document.querySelector('#listing_main').style.display = 'none';
 
             if (document.querySelector('.hits-selected') != null) {
                 document.querySelector('.hits-selected').remove()
             }
-            document.querySelector('#hits').insertAdjacentHTML('beforebegin',`<div class="hits-selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>`) ;
+            document.querySelector('#listing_main').insertAdjacentHTML('beforebegin',`<div class="hits-selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>`) ;
            
             document.querySelector('#listing_container').style.display = 'block';
             if (window.location.pathname == '/') {
@@ -1250,8 +1248,7 @@ window.onload = function() {
                 document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                 document.querySelector('.ais-SearchBox-input').value = '';
                 document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                document.querySelector('#stats-container').style.display = 'block';
-                document.querySelector('#hits').style.display = 'block';
+                document.querySelector('#listing_main').style = '';
                 
                 document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
             })
@@ -1274,11 +1271,7 @@ window.onload = function() {
             document.querySelector('#mainbody').style.display = 'none';
         }
 
-        document.querySelector('.btn_filter').removeAttribute('style');
-        document.querySelector('.page-result').removeAttribute('style');
-        document.querySelector('.pagination1 ').style.display = 'block';
-        document.querySelector('.pagination2').style.display = 'block';  
-        document.querySelector('#hits').style.display = 'block';  
+        document.querySelector('#listing_main').style = '';
     }
 
     //add text search result
@@ -1295,18 +1288,13 @@ window.onload = function() {
     document.querySelector('#search-box input').addEventListener('input', (e) => {
          console.log('input')
         if (e.target.value.length < 1) {
-            document.querySelector('#stats-container').style.display = 'block';
-            document.querySelector('#hits').style.display = 'block';
-            document.querySelector('.btn_filter').style.display = 'block';
             document.querySelector('.algolia-autocomplete pre').innerHTML = '';
             if (document.querySelector('.hits-selected') != null) {
                 document.querySelector('.hits-selected').remove();
             }
             document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
             
-            document.querySelector('.pagination1 ').style.display = 'block';
-            document.querySelector('.pagination2').style.display = 'block';  
-           
+            document.querySelector('#listing_main').style = '';
         } 
     })
 
@@ -1429,17 +1417,17 @@ window.onload = function() {
                         document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                         document.querySelector('.ais-SearchBox-input').value = '';
                         document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                        document.querySelector('#stats-container').style.display = `block'`;
-                        document.querySelector('#hits').style.display = `block'`;
+                        
+                        document.querySelector('#listing_main').style = '';
                     
                         document.querySelector('.algolia-autocomplete pre').innerHTML = document.querySelector('.ais-SearchBox-input').value;
                         document.querySelector('.ais-SearchBox-submit').click()
                     })
                     document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
-                        document.querySelector('#stats-container').style.display = 'block';
-                        document.querySelector('#hits').style.display = 'block';
                         document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
                       
+                        document.querySelector('#listing_main').style = '';
+                        
                         document.querySelector('.ais-SearchBox-input').value =  document.querySelector('pre').innerHTML;
                         document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
                         actionDataLayer = 'Click on submit search';
