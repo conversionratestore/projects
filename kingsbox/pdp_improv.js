@@ -1874,7 +1874,6 @@ let isSimilarLeft = setInterval(() => {
 		})
 	}
 }, 200)
-
 let isMenu = setInterval(() => {
 	if (document.querySelector('.custom_menu_wrapper')) {
 		clearInterval(isMenu)
