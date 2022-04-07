@@ -1244,7 +1244,7 @@ window.onload = function() {
             document.querySelector('.pagination2').innerHTML= '';
             document.querySelector('.ais-Stats-text').innerHTML = 'Displaying <b>1</b> to <b>1</b> (of <b>1</b> products)';
 
-            document.querySelector('#hits').innerHTML = `<div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item selected">${initHits(suggestion)}</li></ol></div></div>` ;
+            document.querySelector('#hits').innerHTML = `<div class="selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>` ;
             document.querySelector('#listing_container').style.display = 'block';
             if (window.location.pathname == '/') {
                 document.querySelector('.homepage-container').style.display = 'none';
@@ -1260,7 +1260,7 @@ window.onload = function() {
         let value = document.querySelector('#search-box input').value;
         document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
         
-        document.querySelector('.ais-Hits-item.selected') != null ? document.querySelector('.ais-Hits-item.selected').remove() : ''
+        document.querySelector('#hits .selected') != null ? document.querySelector('#hits .selected').remove() : ''
         document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
       
         document.querySelector('#listing_container').style.display = 'block';
