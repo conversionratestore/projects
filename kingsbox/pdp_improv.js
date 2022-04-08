@@ -1174,7 +1174,6 @@ const fetchCategory = category => {
 	let minPage = 1
 
 	const maxPage = () => {
-		console.log('category >>>', category)
 		switch (category) {
 			case 'sets':
 				return 1
@@ -1232,16 +1231,10 @@ const drawDiagonalLine = (variations, statuses) => {
 	variations.forEach((variation, index) => {
 		let status = statuses[index]
 
-		console.log(variation)
-
-		console.log(status)
-
 		status = status.split('_')[0].toLowerCase()
 		if (status === 'not') {
 			variation.classList.add('out')
 		} else {
-			console.log(variation)
-
 			variation.classList.remove('out')
 		}
 	})
@@ -1313,7 +1306,6 @@ fetch(URL, { signal, headers: header })
 		} else if (item.productVariations[0]?.values.length) {
 			urls = addOneVarUrl(item)
 		} else {
-			console.log('Now aborting')
 			controller.abort()
 			return false
 		}
@@ -1376,15 +1368,11 @@ fetch(URL, { headers: header })
 					if (document.querySelector('.product-recommendations')) {
 						clearInterval(isRecommend)
 
-						console.log('geasdasd')
-
 						let isSimilarItem = !!document.querySelector('.product-recommendations .col-12')
 
 						if (isSimilarItem) {
 							randomItemsNumber = 4
 						}
-
-						console.log('isSimilarItem', isSimilarItem)
 
 						let randomItems = randomize(filteredArr, randomItemsNumber)
 
@@ -1487,7 +1475,24 @@ let isWhiteAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
 	}
 }, 200)
+let isBlackAccordion = setInterval(() => {
+	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
+		clearInterval(isBlackAccordion)
 
+		document.querySelector('.accordion.product-accessory-category')?.before(document.querySelector('.accordion.product-properties'))
+		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
+
+		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
+			if (e.target.closest('.card-header')) {
+				initializeCarousel()
+			}
+		})
+
+		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+		}
+	}
+}, 200)
 let isSimilar = setInterval(() => {
 	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card source')) {
 		clearInterval(isSimilar)
@@ -1560,30 +1565,21 @@ function checkItemStatus(item, containerDataset) {
 
 	_addGuarantees($addItemBtn)
 
-
-
-	// if(!document.querySelector('.card-body .tns-outer')) {
-	// 	let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
-	//
-	// 	tnsSettings(blackAccordion, 3, false, 8, false, 'accessories')
-	// }
-
-
-
-
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	switch (itemStatus) {
 		case 'not':
 			_addNotStyle()
+			initializeCarousel()
 			break
 		case 'expected':
 		case 'pre':
-			accessoriesSlider()
 			_setExpectedItem($addItemBtn)
+
+			initializeCarousel()
 			break
 		default:
-			accessoriesSlider()
+			initializeCarousel()
 			break
 	}
 }
@@ -1630,35 +1626,6 @@ function _setExpectedItem(where) {
 			where.insertAdjacentHTML('beforebegin', demandText)
 		}
 	}, 200)
-}
-
-function accessoriesSlider() {
-	if(!document.querySelector('.card-body .tns-outer')) {
-		let isBlackAccordion = setInterval(() => {
-			if (document.querySelector('.accordion.product-accessory-category') &&
-				(typeof tns == 'function') &&
-				document.querySelector('.accordion.product-accessory-category .card .flex-row')
-
-			) {
-				clearInterval(isBlackAccordion)
-
-				document.querySelector('.accordion.product-accessory-category')?.before(document.querySelector('.accordion.product-properties'))
-				document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
-
-				document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
-					if (e.target.closest('.card-header')) {
-						initializeCarousel()
-					}
-				})
-
-				if(document.querySelector('.accordion.product-accessory-category .collapse.show')) {
-					initializeCarousel()
-				} else {
-					document.querySelector('.accordion.product-accessory-category .card .flex-row').click()
-				}
-			}
-		}, 200)
-	}
 }
 
 function _addGuarantees(where) {
@@ -1708,16 +1675,12 @@ function _addNotStyle() {
 			}
 
 			let length = imgArr.length - 1
-			console.log(imgArr)
-			console.log(length)
 
 			let isImg = setInterval(() => {
 				if (imgArr[length]?.src.includes('cdn.kingsbox.com')) {
 					clearInterval(isImg)
 
 					document.querySelector('app-product-images').classList.add('w_load')
-
-					console.log('includes', imgArr[length]?.src.includes('cdn.kingsbox.com'))
 
 					imgArr.forEach((img, index) => {
 						// img.src = img.src.replace('&blur=90', '')
@@ -1830,7 +1793,7 @@ function checkActiveImg() {
 
 function initializeCarousel() {
 	let interval = setInterval(() => {
-		if (document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]) {
+		if (document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] && typeof tns == 'function') {
 			clearInterval(interval)
 
 			document.querySelector('.product-accessories').addEventListener('click', e => {
@@ -1842,7 +1805,7 @@ function initializeCarousel() {
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
-			if(!document.querySelector('.card-body .tns-outer')) {
+			if (!document.querySelector('.card-body .tns-outer')) {
 				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
 			}
 		}
@@ -1852,6 +1815,7 @@ function initializeCarousel() {
 }
 
 function tnsSettings(container, items, nav, gutter, responsive, name, controls, slideBy) {
+
 	let obj = {
 		container,
 		items,
@@ -1867,7 +1831,7 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 		mouseDrag: true,
 		swipeAngle: 30,
 		gutter,
-		slideBy
+		slideBy,
 	}
 
 	responsive ? obj.responsive = { 768: { items: 1 } } : null
