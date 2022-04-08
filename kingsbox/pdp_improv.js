@@ -1476,31 +1476,18 @@ let isBlackAccordion = setInterval(() => {
 	}
 }, 200)
 let isSimilar = setInterval(() => {
-	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
+	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card source')) {
 		clearInterval(isSimilar)
 
-		setTimeout(() => {
-			let length = document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img').length - 1
+		document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
+			document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[index].src = source.getAttribute('lazyload')
+		})
 
-			let isSrc = setInterval(() => {
-				if (document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[length].src) {
-					clearInterval(isSrc)
+		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
+		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-					let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
-					$recommendCopyRight.classList.add('custom_recommendations', 'right')
-
-					document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-
-					document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-				}
-			}, 200)
-
-			// setTimeout(() => {
-			// 	document.querySelectorAll('.custom_recommendations img').forEach(img => {
-			// 		img.src = img.src.replace('&blur=90', '')
-			// 	})
-			// }, 1000)
-		}, 1000)
+		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
 	}
 }, 100)
 let drawMenu = setInterval(() => {
@@ -1541,9 +1528,9 @@ const duplicatesArr = [
 	'action_btns',
 ]
 const removeDuplicates = duplicate => {
-		document.querySelectorAll('.' + duplicate)?.forEach(duplicate => {
-			duplicate.remove()
-		})
+	document.querySelectorAll('.' + duplicate)?.forEach(duplicate => {
+		duplicate.remove()
+	})
 }
 
 function checkItemStatus(item, containerDataset) {
