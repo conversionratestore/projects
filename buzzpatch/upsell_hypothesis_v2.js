@@ -427,7 +427,7 @@ if (window.innerWidth <= 768) {
             </div>
           </div>
           <div class="additionally_cart" id="scrollSvg">
-                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant each relief.</p>
+                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant itch relief.</p>
 
                 <div class="drop_down_cart">
                     <div class="text_absolute">
