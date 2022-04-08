@@ -124,7 +124,7 @@ const style = `
 										display: none;
 									}
 									
-									[data-style="not"] .similar_products.left.similar_exist .my_product:nth-child(4n){
+									[data-style="not"] .similar_products.left.similar_exist .my_product:nth-child(4){
 										display: none;
 									}
 									
@@ -314,6 +314,7 @@ const style = `
 									
 									.img_wrapper img {
 										/*max-height: 187px;*/
+										object-fit: cover;
 										width: 100%;
 									}
 									.product-recommendations .pic-wrapper img:hover {
@@ -651,6 +652,16 @@ const style = `
 									@media only screen and (min-width: 769px)  {
 										.img_wrapper img {
 											min-height: 290px;
+											max-height: 290px;
+										}
+										
+										[data-style="not"] .product-recommendations .col-12 {
+											display: none;
+										}
+										[data-style="not"] .product-recommendations .col-12:nth-child(1),
+										[data-style="not"] .product-recommendations .col-12:nth-child(2), 
+										[data-style="not"] .product-recommendations .col-12:nth-child(3) {
+											display: block;
 										}
 									}
 									   
@@ -670,7 +681,7 @@ const style = `
 										font-size: 26px;
 									}
 									
-									[data-style="not"] .similar_products.left.similar_exist .my_product:nth-child(4n){
+									[data-style="not"] .similar_products.left.similar_exist .my_product:nth-child(4){
 										display: flex;
 									}
 									
@@ -713,10 +724,10 @@ const style = `
 										border: none;
 									}
 									
-									[data-style="not"] .product-recommendations .col-12:nth-child(4n) {
+									[data-style="not"] .product-recommendations .col-12:nth-child(4) {
 										display: block;
 									}
-									[data-style="not"] .my_product:nth-child(4n) {
+									[data-style="not"] .my_product:nth-child(4) {
 										display: flex;
 									}
 										.guarantees_wrapper img {
@@ -1447,34 +1458,7 @@ let isWhiteAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
 	}
 }, 200)
-let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && (typeof tns == 'function')) {
-		clearInterval(isBlackAccordion)
 
-		document.querySelector('.accordion.product-accessory-category')?.before(document.querySelector('.accordion.product-properties'))
-		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
-
-		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
-			if (e.target.closest('.card-header')) {
-				initializeCarousel()
-			}
-		})
-
-		document.querySelector('.accordion.product-accessory-category .card .flex-row').click()
-
-		// document.querySelector('.accordion.product-accessory-category').addEventListener('click', () => {
-		//
-		// 	window.dataLayer = window.dataLayer || [];
-		// 	dataLayer.push({
-		// 		'event': 'event-to-ga',
-		// 		'eventCategory': 'Exp: PDP improvemnets ' + device,
-		// 		'eventAction': 'Click on accessorise'
-		// 	});
-		//
-		// 	console.log('eventAction Click on accessorise >>>>>')
-		// })
-	}
-}, 200)
 let isSimilar = setInterval(() => {
 	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card source')) {
 		clearInterval(isSimilar)
@@ -1547,7 +1531,16 @@ function checkItemStatus(item, containerDataset) {
 
 	_addGuarantees($addItemBtn)
 
-	console.log(itemStatus)
+
+
+	// if(!document.querySelector('.card-body .tns-outer')) {
+	// 	let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+	//
+	// 	tnsSettings(blackAccordion, 3, false, 8, false, 'accessories')
+	// }
+
+
+
 
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
@@ -1557,9 +1550,11 @@ function checkItemStatus(item, containerDataset) {
 			break
 		case 'expected':
 		case 'pre':
+			accessoriesSlider()
 			_setExpectedItem($addItemBtn)
 			break
 		default:
+			accessoriesSlider()
 			break
 	}
 }
@@ -1606,6 +1601,35 @@ function _setExpectedItem(where) {
 			where.insertAdjacentHTML('beforebegin', demandText)
 		}
 	}, 200)
+}
+
+function accessoriesSlider() {
+	if(!document.querySelector('.card-body .tns-outer')) {
+		let isBlackAccordion = setInterval(() => {
+			if (document.querySelector('.accordion.product-accessory-category') &&
+				(typeof tns == 'function') &&
+				document.querySelector('.accordion.product-accessory-category .card .flex-row')
+
+			) {
+				clearInterval(isBlackAccordion)
+
+				document.querySelector('.accordion.product-accessory-category')?.before(document.querySelector('.accordion.product-properties'))
+				document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
+
+				document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
+					if (e.target.closest('.card-header')) {
+						initializeCarousel()
+					}
+				})
+
+				if(document.querySelector('.accordion.product-accessory-category .collapse.show')) {
+					initializeCarousel()
+				} else {
+					document.querySelector('.accordion.product-accessory-category .card .flex-row').click()
+				}
+			}
+		}, 200)
+	}
 }
 
 function _addGuarantees(where) {
@@ -1789,7 +1813,9 @@ function initializeCarousel() {
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
-			tnsSettings(blackAccordion, 3, false, 8, false, 'accessories')
+			if(!document.querySelector('.card-body .tns-outer')) {
+				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories')
+			}
 		}
 	}, 100)
 
