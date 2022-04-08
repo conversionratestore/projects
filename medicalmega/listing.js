@@ -337,19 +337,16 @@ input {
   padding: 20px 40px;
   width: 327px;
   background: #FBFBFB; }
-  .list_categories ul {
-    display: none; }
-    .list_categories ul.active {
-      display: block; }
+  .list_categories li.active a {
+    text-decoration: underline;}
   .list_categories a {
     font-size: 16px;
     line-height: 150%;
     color: #344D57;
     margin-bottom: 12px;
     display: block; }
-    .list_categories a:hover {
-      text-decoration: underline; }
-
+  .list_categories a:hover {
+    text-decoration: underline; }
   .nav_category.active .all_category {
     background: #E9EBEC; }
   .nav_category.active .dropdown_categories {
@@ -599,6 +596,7 @@ border-radius: 100px;
   font-weight: 600;
   font-size: 36px;
   line-height: 120%;
+  min-height: 43.2px;
   margin-bottom: 33px; }
 
 .listing_content {
@@ -1062,17 +1060,11 @@ let html = `
               <input type="text" placeholder="Enter Keyword" name="search_keyword">
               <div class="select select_category" name="search_c_id">
                 <p class="select_current"><span>Select Category</span></p>
-                <ul class="select_dropdown">
-                  <li class="select_option active">Select Category</li>
-                  <li class="select_option">New Products!</li>
-                </ul>
+                <ul class="select_dropdown"></ul>
               </div>
               <div class="select select_brand" name="search_m_id">
                 <p class="select_current"><span>Select Manufacturer</span></p>
-                <ul class="select_dropdown right">
-                  <li class="select_option active">Select Manufacturer</li>
-                  <li class="select_option">21st century nutritional products</li>
-                </ul>
+                <ul class="select_dropdown right"></ul>
               </div>
               <button class="btn btn_dark" type="submit">Submit</button>
             </div>
@@ -1086,113 +1078,8 @@ let html = `
                 <p class="p-main">All Categories</p>
               </div>
               <div class="dropdown_categories">
-                <ul class="alphabet"> 
-                  <li class="active">a</li>
-                  <li>b</li>
-                  <li>c</li>
-                  <li>d</li>
-                  <li>e</li>
-                  <li>f</li>
-                  <li>g</li>
-                  <li>h</li>
-                  <li>i</li>
-                  <li>l</li>
-                  <li>m</li>
-                  <li>n</li>
-                  <li>o</li>
-                  <li>p</li>
-                  <li>r</li>
-                  <li>s</li>
-                  <li>t</li>
-                  <li>u</li>
-                  <li>v</li>
-                  <li>w</li>
-                </ul>
-                <div class="list_categories"> 
-                  <ul class="active">
-                    <li> <a href="#">Aerosol Machines</a></li>
-                    <li> <a href="#">Aids to Daily Living</a></li>
-                    <li> <a href="#">Ambulatory Aids</a></li>
-                    <li> <a href="#">Ambulatory Equipment</a></li>
-                    <li> <a href="#">Anti-Coagulation</a></li>
-                    <li> <a href="#">Apparel</a></li>
-                    <li> <a href="#">Appliances Durable Goods</a></li>
-                  </ul>
-                  <ul>
-                    <li> <a href="#">Baby Care</a></li>
-                    <li> <a href="#">Beauty</a></li>
-                    <li> <a href="#">Body Pressure Relief &amp; Positioning</a></li>
-                  </ul>
-                  <ul>
-                    <li> <a href="#">Casting Products</a></li>
-                    <li> <a href="#">Casualty Training Kits</a></li>
-                    <li> <a href="#">Clinical Laboratory</a></li>
-                    <li> <a href="#">Cold and Flu</a></li>
-                    <li> <a href="#">Cough</a></li>
-                    <li> <a href="#">CPAP</a></li>
-                  </ul>
-                  <ul>
-                    <li> <a href="#">Dental Items</a></li>
-                    <li> <a href="#">Deodorizers</a></li>
-                    <li> <a href="#">Diabetes</a></li>
-                    <li> <a href="#">Diagnostic Instruments &amp; Supplies</a></li>
-                    <li> <a href="#">Diagnostics &amp; Self Care</a></li>
-                    <li> <a href="#">Disinfectant Hand Soap &amp; Hand Cleaning</a></li>
-                    <li> <a href="#">Disinfectant Spray &amp; Cleaning Spray</a></li>
-                    <li> <a href="#">Disinfectants</a></li>
-                    <li> <a href="#">Disposables</a></li>
-                    <li> <a href="#">Dme</a></li>
-                    <li> <a href="#">Drainage &amp; Suction</a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                  <ul> 
-                    <li> <a></a></li>
-                  </ul>
-                </div>
+                <ul class="alphabet"></ul>
+                <div class="list_categories"> </div>
               </div>
             </nav>
             <ul class="d-flex category_popular">
@@ -1211,6 +1098,7 @@ let html = `
         <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
       </header>
       <div class="container"> 
+        <div id="breadcrumbs"></div>
         <ul class="breadcrumbs">
           <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="href">Home </a>
           </li>
@@ -1234,7 +1122,7 @@ let html = `
             </div>
           </div>
           <div class="listing_wrapper">
-            <h2 class="listing_title">Hand Sanitizing</h2>
+            <h2 class="listing_title"></h2>
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
               <div class="align-items-center">
@@ -1262,24 +1150,52 @@ let html = `
       </form>
     </div>
 `
+let actionDataLayer = '';
+let labelDataLayer = '';
+
+let headerFetch = {
+  headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  method: "GET",
+}
+function pushDataLayer(actionDataLayer, labelDataLayer) {
+  console.log(actionDataLayer + ' : ' + labelDataLayer)
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp — New LP',
+      'eventAction': actionDataLayer,
+      'eventLabel': labelDataLayer
+  });
+}
 
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
-let alphabet = document.querySelectorAll('.alphabet li'), //alphabets
-    listCategories = document.querySelectorAll('.list_categories ul'), //list categories
-    btnAllCategories = document.querySelector('.all_category');
-    
+//select
+function remActiveSelect() {
+    let dropdowns = document.querySelectorAll(".select");
+    for (let i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].classList.contains('active')) {
+            dropdowns[i].classList.remove('active');
+        }
+    }
+}
+
+function toggleActive(getData) {
+  console.log(getData);
+  if (document.querySelector(`[data-item=${getData}]`)) {
+      document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
+      if (getData == 'advanced-search') {
+          document.querySelector(`[data-button=${getData}]`).classList.toggle('active')
+          document.querySelector(`.nav_category`).classList.remove('active')
+      }
+  }
+}
+
 const API_KEY = `e3a0cffec873466acf71806748550356`;
 const APPLICATION_ID = `PXDJAQHDPZ`;
-
-const requestOptions = {
-    headers: {
-      'X-Algolia-API-Key': `${API_KEY}`,
-      'X-Algolia-Application-Id': `${APPLICATION_ID}`
-    }, 
-    method: 'GET'
-}
 
 const searchClient = algoliasearch(
     APPLICATION_ID,
@@ -1312,8 +1228,6 @@ search.addWidgets([
       templates: {
           empty: `No Item Found`,
           item: (hit) => {
-              console.log(hit)
-
               function findImage() {
                   for (let i = 0; i < hit.variants.length; i++) {
                       if (hit.variants[i].image != '') {
@@ -1330,8 +1244,7 @@ search.addWidgets([
                     }
                 }
                 return option
-            }
-              
+              }
               
               let boxItem = `
                 <div class="card">
@@ -1357,7 +1270,7 @@ search.addWidgets([
                     
                   </form>
                 </div>
-                `
+              `
 
               return boxItem
           }
@@ -1434,6 +1347,44 @@ search.addWidgets([
       },
 
   }),
+  instantsearch.widgets.breadcrumb({
+    container: '#breadcrumbs',
+    attributes: [
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+      'categories.lvl4',
+    ],
+    // rootPath: string,
+    // separator: string,
+    // rootPath: 'New Products!',
+    // templates: {
+    //   item: (data) => {
+    //     console.log(data)
+    //   }
+    // },
+    transformItems: function transformItems(items) {
+      console.log(items)
+      return items.map((function(item) {
+        console.log(item)
+          // return _objectSpread(_objectSpread({}, item), {}, {
+              
+          //     label: "".concat(item.label, " (transformed)")
+          // })
+        }
+      ))
+  }
+    // templates: {
+    //   item: (data) => {
+    //     consoel.log(data)
+    //     let breadcrumb = `<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="href">Home </a></li>`;
+    //     return data
+    //   }
+    // },
+    // cssClasses: object,
+    // transformItems: function,
+  }),
   
   // instantsearch.widgets.refinementList({
   //     container: `.list_subcategory`,
@@ -1462,8 +1413,26 @@ search.addWidgets([
   //         }) 
   //     },  
   // }),
-
+  instantsearch.widgets.hierarchicalMenu({
+      container: `.list_categories`,
+      attributes: [
+        'categories.lvl0',
+        'categories.lvl1',
+        'categories.lvl2',
+        'categories.lvl3',
+        'categories.lvl4',
+      ], 
+      separator: ' / ',
+      // rootPath: 'Aids to Daily Living',
+      sortBy: ['isRefined'],  
+      showParentLevel: true,
+      limit: 100,  
+      templates: {
+        item: ` <a href="#">{{label}} </a>`,
+      },
+  }),
 ]); 
+
 search.start();
 
 search.addWidgets([
@@ -1479,37 +1448,86 @@ search.addWidgets([
                 calc = document.querySelectorAll('.calc'), // calc wrapper +\-
                 dataButton = document.querySelectorAll('[data-button]'), // btn for open popup or block
                 price = document.querySelectorAll('.pr'), //price
-                closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
-          
-                function changeQty(qty,pr,action) {
-                  if (action == 'plus') {
-                      qty.value = parseInt(qty.value) + 1;
-                  } else if (action == 'minus') {
-                      qty.value = parseInt(qty.value) - 1;
-                  }
-                  if (action == 'plus' || action == 'minus') {
-                      if (qty.value == '') {
-                          qty.value = 1;
-                      }
-                  }
-                  if (qty.value > 1) {
-                      qty.previousElementSibling.disabled = false;
-                  } else {
-                      qty.previousElementSibling.disabled = true;
-                  }
+                closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
+                alphabet = document.querySelector('.alphabet'), //alphabet
+                listCategories = document.querySelectorAll('.list_categories li'), //list categories
+                btnCategory = document.querySelector('.all_category');
 
-                  pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+              //all categories
+              btnCategory.addEventListener('click', (e) => {
+                if (e.target.matches('.all_category')) {
 
-                  if (qty.value == 0 && qty.value != '') {
-                      qty.value = 1;
-                      pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-                  }
-                  if (qty.value == '') {
-                      pr.innerHTML = pr.dataset.price
-                  }
+                  e.target.parentElement.classList.toggle('active');
+                  document.querySelector('.advanced-search').classList.remove('active');
+                  document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+                }
+              })
 
+              let litterAlphabet = [];
+
+              function changeQty(qty,pr,action) {
+                if (action == 'plus') {
+                    qty.value = parseInt(qty.value) + 1;
+                } else if (action == 'minus') {
+                    qty.value = parseInt(qty.value) - 1;
+                }
+                if (action == 'plus' || action == 'minus') {
+                    if (qty.value == '') {
+                        qty.value = 1;
+                    }
+                }
+                if (qty.value > 1) {
+                    qty.previousElementSibling.disabled = false;
+                } else {
+                    qty.previousElementSibling.disabled = true;
                 }
 
+                pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
+                if (qty.value == 0 && qty.value != '') {
+                    qty.value = 1;
+                    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+                }
+                if (qty.value == '') {
+                    pr.innerHTML = pr.dataset.price
+                }
+
+              }
+
+              listCategories.forEach(el => litterAlphabet.push({'letter': el.innerText[0]}))
+              
+              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                  index === self.findIndex((t) => (
+                      t.letter === thing.letter
+                  ))
+              )
+
+              for (let i = 0; i < litterAlphabet.length; i++) {
+                if (litterAlphabet[i].letter != 'undefined') {
+                  alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                }
+              }
+
+              function sortAlphabetCategories(item) {
+                item.forEach(el => {
+                  if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+                    el.style.display = "none";
+                  } else {
+                    el.style.display = "block";
+                  }
+                });  
+              }
+
+              sortAlphabetCategories(listCategories)
+
+               //change Class active
+              alphabet.querySelectorAll('li').forEach(el => {
+                el.addEventListener('mouseover', (e) => {
+                  e.target.parentElement.querySelector('.active').classList.remove('active');
+                  e.target.classList.add('active');
+                  sortAlphabetCategories(listCategories)
+                })
+              })   
                 
               document.querySelectorAll('.card .product-variant').forEach((select, index) => {
                 let parent = select.closest('.card');
@@ -1541,62 +1559,43 @@ search.addWidgets([
                 }
               })
 
-                //+/- btns quantity
-                calc.forEach((el, i) => {
-                  btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
-                  btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
-                  inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
-                  inputQty[i].addEventListener('blur', (e) => {
-                      if (e.target.value == '') {
-                          e.target.value = 1;
-                      }
-                  }, true)
+              //+/- btns quantity
+              calc.forEach((el, i) => {
+                btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
+                btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
+                inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
+                inputQty[i].addEventListener('blur', (e) => {
+                    if (e.target.value == '') {
+                        e.target.value = 1;
+                    }
+                }, true)
+              })
+
+              for (let i = 0; i < dataButton.length; i++) {
+                dataButton[i].addEventListener('click', () => toggleActive(dataButton[i].getAttribute('data-button')))
+                closeBtn[i].addEventListener('click', () => toggleActive(closeBtn[i].getAttribute('data-close')))
+              }
+          
+              // for (let i = 0; i < categories.length; i++) {
+              //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
+              // }
+              // for (let i = 0; i < categories.length; i++) {
+              //     document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`);
+              // }
+              
+              listCategories.forEach((el) => {
+                el.querySelector('a').addEventListener('click', (e) => {
+                  document.querySelector('.nav_category').classList.remove('active')
+                  document.querySelector('.listing_title').innerHTML = el.innerText
+                  actionDataLayer = `Click on category item - ${el.innerText}`;
+                  labelDataLayer = `All categories`;
+                  pushDataLayer(actionDataLayer,labelDataLayer)
                 })
-
-                function toggleActive(getData) {
-                  if (document.querySelector(`[data-item=${getData}]`)) {
-                      document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
-                      if (getData == 'advanced-search') {
-                          document.querySelector(`[data-button=${getData}]`).classList.toggle('active')
-                          document.querySelector(`.nav_category`).classList.remove('active')
-                      }
-                  }
-                }
-
-                for (let i = 0; i < dataButton.length; i++) {
-                  dataButton[i].addEventListener('click', () => toggleActive(dataButton[i].getAttribute('data-button')))
-                  closeBtn[i].addEventListener('click', () => toggleActive(closeBtn[i].getAttribute('data-close')))
-                }
-
+              })
           }
       },
   },
 ])
-
-//change Class active
-function toggleClass(item,content,event) {
-    for (let i = 0; i < item.length; i++) {
-        item[i].addEventListener(event, () => {
-            item[i].parentElement.querySelector('.active').classList.remove('active');
-            content[i].parentElement.querySelector('.active').classList.remove('active');
-            item[i].classList.add('active');
-            content[i].classList.add('active');
-        })
-    }
-}
-
-toggleClass(alphabet,listCategories,'mouseover') //all categories 
-
-
-//select
-function remActiveSelect() {
-    let dropdowns = document.querySelectorAll(".select");
-    for (let i = 0; i < dropdowns.length; i++) {
-        if (dropdowns[i].classList.contains('active')) {
-            dropdowns[i].classList.remove('active');
-        }
-    }
-}
 
 document.querySelectorAll('.select_current').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -1632,9 +1631,3 @@ document.querySelectorAll('.select_filter').forEach(el => {
     el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
 })
 
-//all categories
-btnAllCategories.addEventListener('click', (e) => {
-    e.target.parentElement.classList.toggle('active');
-    document.querySelector('.advanced-search').classList.remove('active');
-    document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-})
