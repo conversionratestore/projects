@@ -562,6 +562,26 @@ if (window.innerWidth <= 768) {
                 document.querySelector(".additionally_cart").style.display = "none"
               }
 
+              if (upSelector === ".cart_box .additionally_cart > a.scroll_svg") {
+                setTimeout(() => {
+                  document.querySelector(".drop_down_cart").classList.toggle("show_var")
+                }, 10)
+
+                if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
+                  pushDataLayer("Click to Wrap out arrow")
+
+                  this.hash = "#scrollAddBtn"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
+                } else {
+                  pushDataLayer("Click to Wrap up arrow")
+                  this.hash = "#scrollSvg"
+
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
+                }
+              }
+
               let widthTop = document.documentElement.scrollTop,
                 hash = this.hash,
                 toBlock = document.querySelector(hash).getBoundingClientRect().top - 87,
@@ -585,26 +605,6 @@ if (window.innerWidth <= 768) {
                   // console.log(`hash`)
                 }
                 location.hash = hash
-              }
-
-              if (upSelector === ".cart_box .additionally_cart > a.scroll_svg") {
-                setTimeout(() => {
-                  document.querySelector(".drop_down_cart").classList.toggle("show_var")
-                }, 10)
-
-                if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
-                  pushDataLayer("Click to Wrap out arrow")
-
-                  this.hash = "#scrollAddBtn"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
-                } else {
-                  pushDataLayer("Click to Wrap up arrow")
-                  this.hash = "#scrollSvg"
-
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
-                }
               }
             })
           })
