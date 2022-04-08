@@ -1570,12 +1570,10 @@ function checkItemStatus(item, containerDataset) {
 	switch (itemStatus) {
 		case 'not':
 			_addNotStyle()
-			initializeCarousel()
 			break
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-
 			initializeCarousel()
 			break
 		default:
