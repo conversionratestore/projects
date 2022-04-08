@@ -237,6 +237,31 @@ const style = `
 										display: none;
 									}
 									
+									.tns-outer {
+										position: relative;
+									}								
+									
+									.tns-outer button img {
+										min-height: auto !important;
+										height: 42px;
+										width: 42px;
+										cursor: pointer;										
+									}
+									
+									[data-controls="prev"] {
+										    transform: rotate(180deg);
+									}
+									
+									.tns-controls {
+										    position: absolute;
+										    z-index: 1;
+										    width: 100%;
+										    display: flex;
+										    justify-content: space-between;
+										    top: 50%;
+										    transform: translateY(-50%);
+									}
+									
 									.tns-outer .product-accessory {
 										flex-direction: column !important;
 										max-width: 135px;
@@ -642,7 +667,11 @@ const style = `
 										
 										[data-style="not"] .product-actions {
 											display: none !important;
-										}									
+										}					
+										
+										.product-accessories .product-accessory .title {
+											white-space: normal;
+										}				
 									
 									
 									/* ============== 
@@ -1715,7 +1744,7 @@ function _addNotStyle() {
 						if (document.querySelector('.slider img') && typeof tns == 'function') {
 							clearInterval(isSlider)
 
-							tnsSettings('.slider', 2.3, true, 0, true, 'main')
+							tnsSettings('.slider', 2.3, true, 0, true, 'main', false, 1)
 						}
 					}, 100)
 				}
@@ -1814,7 +1843,7 @@ function initializeCarousel() {
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
 			if(!document.querySelector('.card-body .tns-outer')) {
-				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories')
+				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
 			}
 		}
 	}, 100)
@@ -1822,12 +1851,13 @@ function initializeCarousel() {
 	// setTimeout(() => clearInterval(interval), 10000)
 }
 
-function tnsSettings(container, items, nav, gutter, responsive, name) {
+function tnsSettings(container, items, nav, gutter, responsive, name, controls, slideBy) {
 	let obj = {
 		container,
 		items,
 		autoplay: false,
-		controls: false,
+		controls,
+		controlsText: [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`],
 		loop: false,
 		autoplayButton: false,
 		autoplayButtonOutput: false,
@@ -1837,6 +1867,7 @@ function tnsSettings(container, items, nav, gutter, responsive, name) {
 		mouseDrag: true,
 		swipeAngle: 30,
 		gutter,
+		slideBy
 	}
 
 	responsive ? obj.responsive = { 768: { items: 1 } } : null
