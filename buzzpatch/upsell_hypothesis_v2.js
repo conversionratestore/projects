@@ -543,7 +543,7 @@ if (window.innerWidth <= 768) {
         // js scrolling
         function scrolling(upSelector) {
           let links = document.querySelectorAll(upSelector),
-            speed = 0.9
+            speed = 1
 
           links.forEach((link) => {
             link.addEventListener("click", function (event) {
