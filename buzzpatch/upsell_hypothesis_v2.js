@@ -174,7 +174,7 @@ if (window.innerWidth <= 768) {
             .cart_box .additionally_cart >a.scroll_svg svg{
               text-align: center;
               stroke: #FF3C81;
-              transition: all 0.9s ease;
+              transition: all 1s ease;
             }
            
             .drop_down_cart{
@@ -188,7 +188,7 @@ if (window.innerWidth <= 768) {
                 position: absolute;
                 pointer-events: none;
                 opacity: 0;
-                transition: all 0.9s ease;
+                transition: all 1s ease-in-out;
                 visibility: hidden;
             }
 
@@ -427,7 +427,7 @@ if (window.innerWidth <= 768) {
             </div>
           </div>
           <div class="additionally_cart" id="scrollSvg">
-                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant itch relief.</p>
+                <p>You will now be protected from mosquito bites. But just in case you get <span>an unexpected bite</span>, try our popular instant each relief.</p>
 
                 <div class="drop_down_cart">
                     <div class="text_absolute">
@@ -562,24 +562,6 @@ if (window.innerWidth <= 768) {
                 document.querySelector(".additionally_cart").style.display = "none"
               }
 
-              if (upSelector === ".cart_box .additionally_cart > a.scroll_svg") {
-                document.querySelector(".drop_down_cart").classList.toggle("show_var")
-
-                if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
-                  pushDataLayer("Click to Wrap out arrow")
-
-                  this.hash = "#scrollSvg"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
-                } else {
-                  pushDataLayer("Click to Wrap up arrow")
-
-                  this.hash = "#scrollAddBtn"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
-                }
-              }
-
               let widthTop = document.documentElement.scrollTop,
                 hash = this.hash,
                 toBlock = document.querySelector(hash).getBoundingClientRect().top - 87,
@@ -603,6 +585,26 @@ if (window.innerWidth <= 768) {
                   // console.log(`hash`)
                 }
                 location.hash = hash
+              }
+
+              if (upSelector === ".cart_box .additionally_cart > a.scroll_svg") {
+                setTimeout(() => {
+                  document.querySelector(".drop_down_cart").classList.toggle("show_var")
+                }, 10)
+
+                if (document.querySelector(".drop_down_cart").classList.contains("show_var")) {
+                  pushDataLayer("Click to Wrap out arrow")
+
+                  this.hash = "#scrollAddBtn"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
+                } else {
+                  pushDataLayer("Click to Wrap up arrow")
+                  this.hash = "#scrollSvg"
+
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
+                }
               }
             })
           })
