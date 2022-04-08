@@ -571,14 +571,13 @@ if (window.innerWidth <= 768) {
                   pushDataLayer("Click to Wrap out arrow")
 
                   this.hash = "#scrollAddBtn"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
                 } else {
                   pushDataLayer("Click to Wrap up arrow")
                   this.hash = "#scrollSvg"
-
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(0deg)"
-                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "#FF3C82"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.transform = "rotate(180deg)"
+                  document.querySelector(".cart_box .additionally_cart > a.scroll_svg svg").style.stroke = "rgba(255, 60, 129, 0.5)"
                 }
               }
 
