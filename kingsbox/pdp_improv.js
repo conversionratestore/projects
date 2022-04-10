@@ -258,13 +258,12 @@ const style = `
 										    width: 100%;
 										    display: flex;
 										    justify-content: space-between;
-										    top: 50%;
-										    transform: translateY(-50%);
+										    top: 15%;										    
 									}
 									
 									.tns-outer .product-accessory {
 										flex-direction: column !important;
-										max-width: 135px;
+										/*max-width: 135px;*/
 									}
 									
 									.tns-outer .product-accessory-image-wrapper + div {
@@ -278,6 +277,7 @@ const style = `
 									
 									.product-accessories .product-accessory .product-accessory-image-wrapper { 
 										min-width: auto;
+										max-width: 100%;
 									}
 									
 									.add_btn {
@@ -475,6 +475,10 @@ const style = `
 									/*.product-recommendations {*/
 									/*	display: none;*/
 									/*}*/
+									
+									.tns-inner div:first-child {
+										display: flex;
+									}
 									
 									.custom_recommendations {
 										display: flex;
@@ -722,13 +726,13 @@ const style = `
 										flex-direction: row;
 									}
 									
-									.product-accessory-category .card {
-											margin-right: -15px;
-										}
-										
-										.product-accessory-category .card .card-header {
-											margin-right: 15px;
-										}
+									/*.product-accessory-category .card {*/
+									/*		margin-right: -15px;*/
+									/*	}*/
+									/*	*/
+									/*	.product-accessory-category .card .card-header {*/
+									/*		margin-right: 15px;*/
+									/*	}*/
 									
 									.custom_menu_wrapper {
 											padding-bottom: 35px;
@@ -942,7 +946,7 @@ const languagesObj = {
 		},
 		demand: 'This product is in high demand',
 		order: 'Order today and get your order dispatched within',
-		weeks: '2 weeks',
+		weeks: 'weeks',
 		details: 'Product details',
 		wl: 'join waiting list',
 		guarantee: '30-day money back guarantee',
@@ -973,7 +977,7 @@ const languagesObj = {
 		},
 		demand: 'Questo prodotto è molto richiesto',
 		order: 'Ordina oggi e ricevi il tuo ordine entro',
-		weeks: '2 settimane',
+		weeks: 'settimane',
 		details: 'Dettagli del prodotto',
 		wl: `Iscriviti alla lista d'attesa`,
 		guarantee: 'Garanzia di rimborso di 30 giorni',
@@ -1004,7 +1008,7 @@ const languagesObj = {
 		},
 		demand: 'Ovaj proizvod je vrlo tražen',
 		order: 'Naručite danas i vaša  narudžba će biti poslana u roku od',
-		weeks: '2 tjedna',
+		weeks: 'tjedna',
 		details: 'Detalji o proizvodu',
 		wl: 'PRIDRUŽITE SE LISTI ČEKANJA',
 		guarantee: '30-dnevno jamstvo povrata novca',
@@ -1035,7 +1039,7 @@ const languagesObj = {
 		},
 		demand: 'Za ta produkt je zelo veliko povpraševanja',
 		order: 'Naroči danes in tvoje naročilo bo odpremljeno v',
-		weeks: '2 tednih',
+		weeks: 'tednih',
 		details: 'Podrobnosti o izdelku',
 		wl: 'Obvesti me, ko bo izdelek na voljo',
 		guarantee: '30-dnevni odstop od nakupa',
@@ -1066,7 +1070,7 @@ const languagesObj = {
 		},
 		demand: 'Dieses Produkt hat eine hohe Nachfrage',
 		order: 'Bestellen Sie noch heute und Ihre Bestellung wird innerhalb von',
-		weeks: '2 Wochen versandt',
+		weeks: 'Wochen versandt',
 		details: 'Einzelheiten zum Produkt',
 		wl: 'WARTELISTE BEITRETEN',
 		guarantee: '30 Tage Geld-zurück-Garantie',
@@ -1097,7 +1101,7 @@ const languagesObj = {
 		},
 		demand: 'Ce produit est très en demande',
 		order: `Commandez aujourd'hui et recevez votre commande en`,
-		weeks: '2 semaines',
+		weeks: 'semaines',
 		details: 'Détails du produit',
 		wl: `REJOINDRE LA LISTE D'ATTENTE`,
 		guarantee: 'Garantie de remboursement de 30 jours',
@@ -1128,7 +1132,7 @@ const languagesObj = {
 		},
 		demand: 'Este producto tiene una gran demanda',
 		order: 'Haz tu pedido hoy y recibe tu pedido en',
-		weeks: '2 semanas',
+		weeks: 'semanas',
 		details: 'Detalles de producto',
 		wl: 'ÚNETE A LA LISTA DE ESPERA',
 		guarantee: '30 días de garantía de devolución de dinero',
@@ -1601,9 +1605,33 @@ function _setExpectedItem(where) {
 	let interval = setInterval(() => {
 		if (
 			document.querySelector('div.pt-3.pb-3') &&
-			document.querySelector('.product-image-wrapper')
+			document.querySelector('.product-image-wrapper') &&
+			document.querySelector('.indicator + p')
 		) {
 			clearInterval(interval)
+
+			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '') || ''
+
+			if (document.querySelector('.able-to-buy')) {
+				let parts = weeksNumber.split('.')
+
+				let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
+
+				let min = Math.floor(weekDifference)
+				let max = Math.ceil(weekDifference)
+
+				console.log(min, max)
+
+				if(min === 0 && max === 0) {
+					weeksNumber = 1
+				} else if(min !== max) {
+					weeksNumber = min + ' - ' + max
+				} else {
+					weeksNumber = max
+				}
+			} else if (document.querySelector('.pre-order')) {
+				weeksNumber = weeksNumber.replace('-', ' - ')
+			}
 
 			let sellImg = `
 											<div class="sell_wrapper">
@@ -1614,7 +1642,7 @@ function _setExpectedItem(where) {
 			let demandText = `
 											<div class="demand_wrapper">
 												<p>${ language.demand }.</p>
-												<p>${ language.order } <span>${ language.weeks }</span>.</p>
+												<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>
 											</div>
 										`
 
@@ -1830,6 +1858,7 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 		swipeAngle: 30,
 		gutter,
 		slideBy,
+		autoHeight: false,
 	}
 
 	responsive ? obj.responsive = { 768: { items: 1 } } : null
