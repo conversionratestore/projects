@@ -1620,8 +1620,6 @@ function _setExpectedItem(where) {
 				let min = Math.floor(weekDifference)
 				let max = Math.ceil(weekDifference)
 
-				console.log(min, max)
-
 				if(min === 0 && max === 0) {
 					weeksNumber = 1
 				} else if(min !== max) {
