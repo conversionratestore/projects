@@ -340,7 +340,7 @@ if (window.innerWidth <= 768) {
       let arrTooltip = {
         Mandarin: [
           `Mandarin`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Mandarin essential oil helps to quell feelings of irritation, anger and anxiety.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/mandarin.png`,
         ],
         Lavender: [
@@ -350,12 +350,12 @@ if (window.innerWidth <= 768) {
         ],
         Marjoram: [
           `Marjoram`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Sweet marjoram essential oil helps to widen and relax blood vessels to ease blood flow and reduce blood pressure.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/sweet_marjoram.png`,
         ],
         Vetiver: [
           `Vetiver`,
-          `Lavender essential oil works by calming the central nervous system and promoting slow-wave sleep, so helping to sleep longer and better.`,
+          `Vetiver essential oil improves breathing quality and promotes relaxation.`,
           `https://conversionratestore.github.io/projects/buzzpatch/img/vetiver.png`,
         ],
       }
