@@ -888,10 +888,7 @@ const style = `
 										/*	min-height: 149px;*/
 										/*}*/
 										
-										[data-style="not"] .product-recommendations .product-card .product-image {
-											/*height: 110px;*/
-											height: 149px;
-										}
+										
 										
 										[data-style="not"]  .product-card .product-name,
 										[data-style="not"]  .product-card .card-price					 
@@ -910,9 +907,12 @@ const style = `
 											flex: 0 0 48%;								
 										}
 										
-										[data-style="not"] .similar_products.left img {
+										[data-style="not"] .similar_products.left img,
+										 [data-style="not"] .product-recommendations .product-card .product-image{
 											min-height: 149px;
-										}
+											max-height: 210px;
+										}								
+										
 										
 										.left p.product_name,  
 										.left p.product_price  {
