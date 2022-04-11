@@ -353,7 +353,7 @@ let startfunkCarid = setInterval(() => {
     startfunk()
 
     function startfunk() {
-      if (document.querySelector("#prod-slct-opts-btn-holder")) {
+      if (document.querySelector("#selectBtnReact")) {
         document.querySelector("#prod-slct-opts-btn-holder").insertAdjacentHTML("beforeend", purchaseFlow)
       }
 
