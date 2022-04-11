@@ -310,15 +310,15 @@ if (window.innerWidth <= 768) {
                     <h2>How to use SleepyPatch</h2>
                     <ul>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use1.jpg" alt="patch">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use1.png" alt="patch">
                             <p>Take 1 patch. <br> Use 1 patch per night.</p>
                         </li>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use2.jpg" alt="children's jumpsuit">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use2.png" alt="children's jumpsuit">
                             <p>Stick a patch to your kids <br> pyjamas, not on skin.</p>
                         </li>
                         <li>
-                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use3.jpg" alt="moon and stars">
+                            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/how_to_use3.png" alt="moon and stars">
                             <p>Calm down and fall <br> asleep without a fuss.</p>
                         </li>
                     </ul>
