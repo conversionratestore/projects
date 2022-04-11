@@ -161,6 +161,7 @@ if (window.innerWidth <= 768) {
               .not_addictive .container_var img, 
               .safe_for_kids .container_var img{
                 margin-right: 16px;
+                width: 60px;
               }
 
               .how_to_use .container_var{
