@@ -329,7 +329,7 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <h2>What’s inside the pack</h2>
                     <div class="img_wrap">
-                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/inside_pack.jpg" alt="sleepy patch box">
+                        <img src="https://conversionratestore.github.io/projects/buzzpatch/img/inside_pack.png" alt="sleepy patch box">
                     </div>
                     <a href="#getNow" class="">GET SLEEPYPATCH</a>
                 </div>
