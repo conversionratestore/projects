@@ -353,7 +353,9 @@ let startfunkCarid = setInterval(() => {
     startfunk()
 
     function startfunk() {
-      document.querySelector("#prod-slct-opts-btn-holder").insertAdjacentHTML("beforeend", purchaseFlow)
+      if (document.querySelector("#prod-slct-opts-btn-holder")) {
+        document.querySelector("#prod-slct-opts-btn-holder").insertAdjacentHTML("beforeend", purchaseFlow)
+      }
 
       if (document.querySelector("button#addToCartButReact")) {
         document.querySelector("button#addToCartButReact").textContent = "CHOOSE OPTIONS and Add to cart"
