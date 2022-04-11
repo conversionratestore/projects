@@ -3,15 +3,15 @@ if (window.innerWidth <= 768) {
     if (document.querySelector("#flowers")) {
       clearInterval(startFunkMobSleepy)
 
-      let scriptPopper = document.createElement("script")
-      scriptPopper.src = "https://unpkg.com/popper.js@1"
-      scriptPopper.async = false
-      document.body.appendChild(scriptPopper)
+      let scriptCustomPopper = document.createElement("script")
+      scriptCustomPopper.src = "https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
+      scriptCustomPopper.async = false
+      document.head.appendChild(scriptCustomPopper)
 
-      let scriptTippy = document.createElement("script")
-      scriptTippy.src = "https://unpkg.com/tippy.js@5"
-      scriptTippy.async = false
-      document.body.appendChild(scriptTippy)
+      let scriptCustomTippy = document.createElement("script")
+      scriptCustomTippy.src = "https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
+      scriptCustomTippy.async = false
+      document.head.appendChild(scriptCustomTippy)
 
       // event
       function pushDataLayer(actionDataLayer, labelDataLayer) {
@@ -64,7 +64,7 @@ if (window.innerWidth <= 768) {
                 padding-right: 0;
             }
 
-            .tippy-tooltip{
+            .tippy-box{
                 background: #FFFFFF;
                 border-radius: 2px;
                 color: #212529;
@@ -73,8 +73,9 @@ if (window.innerWidth <= 768) {
                 max-width: 252px !important;
             }
 
-            .tippy-tooltip[data-placement^=bottom]>.tippy-arrow{
+            .tippy-box[data-placement^=bottom]>.tippy-arrow{
                 border-bottom-color: #FFFFFF;
+                color: white;
             }
 
               section.new_section_sleepy{
