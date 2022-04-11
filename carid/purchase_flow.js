@@ -523,12 +523,12 @@ let startfunkCarid = setInterval(() => {
           clearInterval(s)
           currentTime = el.getAttribute("data-time")
           console.log(currentTime)
-          pushDataLayer("'Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
+          pushDataLayer("Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
         }
 
         if (currentTime === timeNotClosed) {
           //   clearInterval(s)
-          pushDataLayer("'Visibility equal instalments pop up mobile", "not_closed")
+          pushDataLayer("Visibility equal instalments pop up mobile", "not_closed")
         }
 
         if (!el.classList.contains("arrow_down_var")) {
@@ -551,7 +551,7 @@ let startfunkCarid = setInterval(() => {
           clearInterval(s)
           currentTime = el.getAttribute("data-time")
           console.log(currentTime)
-          pushDataLayer("'Visibility equal instalments pop up mobile", `setTimeM ${currentTime}`)
+          pushDataLayer("Visibility equal instalments pop up desktop", `setTimeM ${currentTime}`)
         }
 
         if (!document.querySelector("div#tippy-1")) {
