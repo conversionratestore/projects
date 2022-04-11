@@ -331,21 +331,21 @@ input {
     line-height: 29px;
       font-size: 24px; }
 
-.list_categories {
+#list_categories {
   height: calc(100vh - 188px);
   overflow-y: auto;
   padding: 20px 40px;
   width: 327px;
   background: #FBFBFB; }
-  .list_categories li.active a {
+  #list_categories li.active a {
     text-decoration: underline;}
-  .list_categories a {
+  #list_categories a {
     font-size: 16px;
     line-height: 150%;
     color: #344D57;
     margin-bottom: 12px;
     display: block; }
-  .list_categories a:hover {
+  #list_categories a:hover {
     text-decoration: underline; }
   .nav_category.active .all_category {
     background: #E9EBEC; }
@@ -584,6 +584,9 @@ border-radius: 100px;
     font-weight: 600;
     font-size: 18px;
     line-height: 120%; }
+  #clear-refinements {
+    margin-bottom: 34px;
+  }
   .filter .select_drop {
     padding: 10px 0; }
 
@@ -780,37 +783,24 @@ border-radius: 100px;
     padding: 0;
     font-size: 12px;
     width: 100%; }
-
-.breadcrumbs {
-  padding: 10px 0 5px;
-  display: flex; }
-  .breadcrumbs__item {
-    float: left; }
-  .breadcrumbs__link {
+.ais-Breadcrumb-list {  
+  display: flex;
+  align-items: center;
+}
+.ais-Breadcrumb {
+  padding: 10px 0 5px; }
+  .ais-Breadcrumb-link {
     font-weight: normal;
     font-size: 12px;
     line-height: 15px;
     color: #344D57;
-    display: block;
-    position: relative;
-    margin-right: 11px;
-    padding: 10px 19px 10px 0; }
-    .breadcrumbs__link:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 4px 0 4px 4px;
-      border-color: transparent transparent transparent #E0E4E5;
-      border-radius: 0.5px;
-    }
-  .breadcrumbs__text {
+    display: block;}
+
+  .ais-Breadcrumb-item {
     color: #6D7E85;
-    display: block;
+    display: flex;
+    align-items: center;
+    line-height: 18px;
     padding: 10px 0; }
 
 .ml-40 {
@@ -824,13 +814,6 @@ border-radius: 100px;
   
 .mt-16 {
   margin-top: 16px; }
-
-// .mt-22 {
-//   margin-top: 22px; }
-
-// .mx-auto {
-//   margin-right: auto;
-//   margin-left: auto; }
 
 .fw-light {
   font-weight: 300; }
@@ -847,32 +830,6 @@ border-radius: 100px;
 .fs-14 {
   font-size: 14px;
   line-height: 25px; }
-
-// .fs-16 {
-// font-size: 16px;
-// line-height: 24px; }
-
-// .fs-24 {
-//   font-size: 24px;
-//   line-height: 29px; }
-
-// .l-t-02 {
-//   letter-spacing: 0.02em; }
-
-// .text-small {
-//   font-weight: normal;
-//   font-size: 8px;
-//   line-height: 10px;
-//   color: #6D7E85; }
-
-// .text-up {
-//   text-transform: uppercase; }
-
-// .text-center {
-//   text-align: center; }
-
-// .text-nowrap {
-//   white-space: nowrap; }
 
 .d-flex {
   display: flex; }
@@ -1011,7 +968,34 @@ border-radius: 100px;
     .popup_container_container img {
       width: 150px;
       height: 150px; }
-
+  #list_categories .ais-HierarchicalMenu-list--child {
+    padding-left: 10px;
+    border-left: 1px dotted #ddd;
+  }
+  #list_categories .ais-HierarchicalMenu-list--child li {
+    display: block!important;
+  }
+  #list_categories .ais-HierarchicalMenu-item--selected>div:first-child {
+    text-decoration: underline; 
+  }
+  #list_categories .ais-HierarchicalMenu-count {
+    display: none;
+  }
+  .ais-Breadcrumb-separator {
+    width: 18px;
+    height: 18px;
+    margin: 0 4px;
+    display: block;
+    color: transparent;
+    background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+  }
+  .ais-ClearRefinements-button {
+    background: transparent url(https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg) no-repeat right center / 13px;
+    padding-right: 17px;
+  }
+  .ais-ClearRefinements-button--disabled {
+    display: none!important;
+  }
   @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
@@ -1026,10 +1010,7 @@ border-radius: 100px;
     .category_popular a {
       margin: 0 3px
     }
-
   }
-
-
 </style>`
 
 let html = `
@@ -1074,12 +1055,13 @@ let html = `
         <div class="subbar">
           <div class="container flex-center-between">
            <nav class="nav_category">
-              <div class="align-items-center all_category"><img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
+              <div class="align-items-center all_category">
+                <img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
                 <p class="p-main">All Categories</p>
               </div>
               <div class="dropdown_categories">
                 <ul class="alphabet"></ul>
-                <div class="list_categories"> </div>
+                <div id="list_categories"> </div>
               </div>
             </nav>
             <ul class="d-flex category_popular">
@@ -1099,15 +1081,12 @@ let html = `
       </header>
       <div class="container"> 
         <div id="breadcrumbs"></div>
-        <ul class="breadcrumbs">
-          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="href">Home </a>
-          </li>
-          <li class="breadcrumbs__item"><span class="breadcrumbs__text">Hand Sanitizing</span>
-          </li>
-        </ul>
         <div class="flex-wrap w-100">
           <div class="filter">
-            <h3 class="filter_title">Filters</h3>
+            <div class="flex-center-between">
+              <h3 class="filter_title">Filters</h3>
+              <div id="clear-refinements"></div>
+            </div>
             <div class="select_filter active">
               <div class="select_item">
                 <p>Brands</p>
@@ -1150,6 +1129,8 @@ let html = `
       </form>
     </div>
 `
+
+let isSearchStalledCount = 0;
 let actionDataLayer = '';
 let labelDataLayer = '';
 
@@ -1208,6 +1189,7 @@ const search = instantsearch({
     searchClient,
 });
 
+let categoryFacet = '';
 
 search.addWidgets([
   instantsearch.widgets.configure({
@@ -1333,57 +1315,26 @@ search.addWidgets([
       limit: 10,
       sortBy: ['isRefined:asc'],
       templates: {
-          item: (data) => {
-              actionDataLayer = 'Click on one of the price items on filters';
-              let checkbox = `
-                  <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+        item: (data) => {
+            actionDataLayer = 'Click on one of the price items on filters';
+            let sltPrice = '';
+            if (data.value.includes(' - ')) {
+                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+            }  else {
+                sltPrice = `> $${data.value.split('> ')[1]}`;
+            }
+
+            let checkbox = `
+                <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
                     <span class="check"></span>
-                    <span class="check_text">${data.value}  <span class="count_brand">(${data.count})</span></span>
-                  </label>
-              `;
-          
-              return checkbox
-          },
+                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+                </label>
+            `;
+        
+            return checkbox
+        },
       },
 
-  }),
-  instantsearch.widgets.breadcrumb({
-    container: '#breadcrumbs',
-    attributes: [
-      'categories.lvl0',
-      'categories.lvl1',
-      'categories.lvl2',
-      'categories.lvl3',
-      'categories.lvl4',
-    ],
-    // rootPath: string,
-    // separator: string,
-    // rootPath: 'New Products!',
-    // templates: {
-    //   item: (data) => {
-    //     console.log(data)
-    //   }
-    // },
-    transformItems: function transformItems(items) {
-      console.log(items)
-      return items.map((function(item) {
-        console.log(item)
-          // return _objectSpread(_objectSpread({}, item), {}, {
-              
-          //     label: "".concat(item.label, " (transformed)")
-          // })
-        }
-      ))
-  }
-    // templates: {
-    //   item: (data) => {
-    //     consoel.log(data)
-    //     let breadcrumb = `<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="href">Home </a></li>`;
-    //     return data
-    //   }
-    // },
-    // cssClasses: object,
-    // transformItems: function,
   }),
   
   // instantsearch.widgets.refinementList({
@@ -1414,7 +1365,7 @@ search.addWidgets([
   //     },  
   // }),
   instantsearch.widgets.hierarchicalMenu({
-      container: `.list_categories`,
+      container: `#list_categories`,
       attributes: [
         'categories.lvl0',
         'categories.lvl1',
@@ -1422,49 +1373,154 @@ search.addWidgets([
         'categories.lvl3',
         'categories.lvl4',
       ], 
-      separator: ' / ',
-      // rootPath: 'Aids to Daily Living',
+      // separator: ' / ',
+      // rootPath: '',
       sortBy: ['isRefined'],  
-      showParentLevel: true,
-      limit: 100,  
-      templates: {
-        item: ` <a href="#">{{label}} </a>`,
-      },
+      showParentLevel: false,
+      limit: 150,  
+      // connector: false,
+      // templates: {
+      //   item: (data) => {
+      //     console.log(data)
+      //     console.log(categoryFacet)
+      //     if (data.label.toLowerCase().includes(categoryFacet.toLowerCase())) {
+      //       if (data.label.split('>')) {
+
+      //         let label = data.label.split('>');
+              
+      //         return `<a href="#">${label[label.length - 1]}</a>`
+      //       } else {
+      //         return `<a href="#">${data.label}</a>`
+
+      //       }
+      //     }
+      //   }
+      // },
+  }),
+  
+  instantsearch.widgets.breadcrumb({
+    container: '#breadcrumbs',
+    attributes: [
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+      'categories.lvl4',
+    ],
+  }),
+  instantsearch.widgets.clearRefinements({
+    container: '#clear-refinements',
+    templates: {
+      resetLabel: 'Clear',
+    },
   }),
 ]); 
 
 search.start();
 
+console.log(categoryFacet)
+
+document.body.addEventListener('click', (e) => {
+  if (!e.target.closest('.select')) remActiveSelect();
+  if (!e.target.closest('.nav_category')) {
+      document.querySelector(`.nav_category`).classList.remove('active');
+  }  
+})
+
 search.addWidgets([
   {
       render({ searchMetadata = {} }) {
           const { isSearchStalled } = searchMetadata
-
-          console.log(isSearchStalled)
-          if (!isSearchStalled) {
+          
+          if (isSearchStalled === false ) {
+            console.log(isSearchStalled)
+            let litterAlphabet = [];
+            
             let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
                 btnMinus = document.querySelectorAll('.btn-calc_minus'), //btn -
                 inputQty = document.querySelectorAll('.calc-qty'), //quantity input
                 calc = document.querySelectorAll('.calc'), // calc wrapper +\-
                 dataButton = document.querySelectorAll('[data-button]'), // btn for open popup or block
                 price = document.querySelectorAll('.pr'), //price
-                closeBtn = document.querySelectorAll('[data-close]'), //btn close for hide popup or block
-                alphabet = document.querySelector('.alphabet'), //alphabet
-                listCategories = document.querySelectorAll('.list_categories li'), //list categories
-                btnCategory = document.querySelector('.all_category');
+                closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
+                console.log(calc)
+              let listCategories = document.querySelectorAll('#list_categories li'), //list categories
+                alphabet = document.querySelector('.alphabet'); //alphabet
+
+              alphabet.innerHTML = '';
+
+              let btnCategory = document.querySelector('.all_category');
+              function clickCategories(item) {
+                item.forEach((el) => {
+                  
+                  litterAlphabet.push({'letter': el.innerText[0]})
+                  el.querySelector('a').addEventListener('click', (e) => {
+                    categoryFacet = el.innerText;
+                    console.log(categoryFacet)
+                    actionDataLayer = `Click on category item - ${el.innerText}`;
+                    labelDataLayer = `All categories`;
+                    pushDataLayer(actionDataLayer,labelDataLayer)
+                  })
+                })
+              }
+              // if (isSearchStalledCount == 0) {
+                isSearchStalledCount = 1;
+               
+  
+                clickCategories(listCategories)
+               
+                litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                  index === self.findIndex((t) => (
+                      t.letter === thing.letter
+                  ))
+                )
+  
+                for (let i = 0; i < litterAlphabet.length; i++) {
+                  if (litterAlphabet[i].letter != 'undefined') {
+                    alphabet.insertAdjacentHTML('beforeend',`<li class="${i < 1 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                  }
+                }
+  
+                function toggleCategoriesForAlphabet(item) {
+                  item.forEach(el => {
+                    if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+                      el.style.display = "none";
+                    } else {
+                      el.style.display = "block";
+                    }
+                  });  
+                }
+  
+                toggleCategoriesForAlphabet(listCategories)
+  
+                //change Class active
+                alphabet.querySelectorAll('li').forEach(el => {
+                  el.addEventListener('mouseover', (e) => {
+                    e.target.parentElement.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    toggleCategoriesForAlphabet(document.querySelectorAll('#list_categories li'));
+                    clickCategories(document.querySelectorAll('#list_categories li'))
+                    
+                  })
+                })   
+              // }
 
               //all categories
               btnCategory.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                // console.log(e.target)
                 if (e.target.matches('.all_category')) {
-
+                  console.log(e.target)
                   e.target.parentElement.classList.toggle('active');
                   document.querySelector('.advanced-search').classList.remove('active');
                   document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+
+                  toggleCategoriesForAlphabet(document.querySelectorAll('#list_categories li'));
+                  clickCategories(document.querySelectorAll('#list_categories li'));
+              
                 }
               })
-
-              let litterAlphabet = [];
-
+              
               function changeQty(qty,pr,action) {
                 if (action == 'plus') {
                     qty.value = parseInt(qty.value) + 1;
@@ -1494,41 +1550,6 @@ search.addWidgets([
 
               }
 
-              listCategories.forEach(el => litterAlphabet.push({'letter': el.innerText[0]}))
-              
-              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                  index === self.findIndex((t) => (
-                      t.letter === thing.letter
-                  ))
-              )
-
-              for (let i = 0; i < litterAlphabet.length; i++) {
-                if (litterAlphabet[i].letter != 'undefined') {
-                  alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-                }
-              }
-
-              function sortAlphabetCategories(item) {
-                item.forEach(el => {
-                  if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
-                    el.style.display = "none";
-                  } else {
-                    el.style.display = "block";
-                  }
-                });  
-              }
-
-              sortAlphabetCategories(listCategories)
-
-               //change Class active
-              alphabet.querySelectorAll('li').forEach(el => {
-                el.addEventListener('mouseover', (e) => {
-                  e.target.parentElement.querySelector('.active').classList.remove('active');
-                  e.target.classList.add('active');
-                  sortAlphabetCategories(listCategories)
-                })
-              })   
-                
               document.querySelectorAll('.card .product-variant').forEach((select, index) => {
                 let parent = select.closest('.card');
                 if (select.length > 0) {
@@ -1561,9 +1582,15 @@ search.addWidgets([
 
               //+/- btns quantity
               calc.forEach((el, i) => {
-                btnPlus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'plus'))
-                btnMinus[i].addEventListener('click', () => changeQty(inputQty[i], price[i],'minus'))
-                inputQty[i].addEventListener('input', () => changeQty(inputQty[i], price[i]))
+                btnPlus[i].addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  changeQty(inputQty[i], price[i],'plus')
+                })
+                btnMinus[i].addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  changeQty(inputQty[i], price[i],'minus')
+                })
+                inputQty[i].addEventListener('input', (e) => changeQty(inputQty[i], price[i]))
                 inputQty[i].addEventListener('blur', (e) => {
                     if (e.target.value == '') {
                         e.target.value = 1;
@@ -1580,18 +1607,20 @@ search.addWidgets([
               //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
               // }
               // for (let i = 0; i < categories.length; i++) {
-              //     document.querySelector('.list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`);
+              //     document.querySelector('#list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`);
               // }
-              
-              listCategories.forEach((el) => {
-                el.querySelector('a').addEventListener('click', (e) => {
-                  document.querySelector('.nav_category').classList.remove('active')
-                  document.querySelector('.listing_title').innerHTML = el.innerText
-                  actionDataLayer = `Click on category item - ${el.innerText}`;
-                  labelDataLayer = `All categories`;
-                  pushDataLayer(actionDataLayer,labelDataLayer)
-                })
-              })
+              if (document.querySelector('#price_group li') != null) {
+                let pricesContainer = document.querySelector('#price_group ul'),
+                para = document.querySelectorAll('#price_group li');
+
+                let paraArr = [].slice.call(para).sort(function (a, b) {
+                    return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                });
+                paraArr.forEach(function (p) {
+                    pricesContainer.appendChild(p);
+                });
+            }
+
           }
       },
   },
@@ -1619,7 +1648,6 @@ document.querySelectorAll('.select_current').forEach((el) => {
     })
 })
 
-
 document.body.addEventListener('click', (e) => {
     if (!e.target.matches('.select_current')) remActiveSelect();
 })
@@ -1630,4 +1658,3 @@ window.addEventListener('scroll', () => remActiveSelect())
 document.querySelectorAll('.select_filter').forEach(el => {
     el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
 })
-
