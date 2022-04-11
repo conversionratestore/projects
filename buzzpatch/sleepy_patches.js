@@ -253,6 +253,10 @@ if (window.innerWidth <= 768) {
                 margin-right: 3px;
               }
 
+              .tooltip_bar ul li img{
+                width: 70px;
+              }
+
                @media (max-width: 320px){
                     .tooltip_bar ul li img{
                         width: 60px;
