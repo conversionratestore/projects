@@ -1333,21 +1333,27 @@ fetch(URL, { signal, headers: header })
 			.then(responses => Promise.all(responses.map(r => r.json())))
 			.then(items => items.map(item => item.data.status))
 			.then(statuses => {
+				console.log(statuses)
+
 				let variations
 
 				if (document.querySelectorAll('.product-variation .square').length) {
 					variations = document.querySelectorAll('.product-variation .square')
 				}
 				if (document.querySelectorAll('.product-variation div .circle').length) {
-					variations = document.querySelectorAll('.product-variation div .circle')
+					variations = document.querySelector('.product-variation div ').querySelectorAll('.circle')
 				}
 
 				drawDiagonalLine(variations, statuses)
 
-				if (isSizeOption && document.querySelector('.product-variation .square')) {
-					let colorsPerSize = statuses.length / document.querySelectorAll('.product-variation .square').length
+				let $secondOption = document.querySelector('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
-					document.querySelectorAll('.product-variation .square').forEach((size, index) => {
+				console.log($secondOption)
+
+				if (isSizeOption && $secondOption) {
+					let colorsPerSize = statuses.length / $secondOption.length
+
+					$secondOption.forEach((size, index) => {
 						size.addEventListener('click', () => {
 							let currSizeStatus = statuses.slice(index * colorsPerSize, index * colorsPerSize + colorsPerSize)
 
@@ -1427,7 +1433,7 @@ document.head.appendChild(scriptCustom)
 
 /* custom functions */
 
-let isCircle
+
 let isStatus = setInterval(() => {
 	if (
 		document.querySelector('p.indicator + p') &&
@@ -1435,11 +1441,10 @@ let isStatus = setInterval(() => {
 	) {
 		clearInterval(isStatus)
 
-		isCircle = !!document.querySelector('.product-variation .circle')
+		let isCircle = !!document.querySelector('.product-variation .circle')
 
 		if (isCircle) {
 			document.querySelector('.product-variation .circle').classList.add('my_flex')
-
 		}
 
 		if (document.querySelector('.product-variation p.label')) {
@@ -1624,7 +1629,7 @@ function _setExpectedItem(where) {
 
 			let drawWeeks = true
 
-			if(weeksNumber !== '') {
+			if (weeksNumber !== '') {
 				if (document.querySelector('.able-to-buy')) {
 					let parts = weeksNumber.split('.')
 
@@ -1657,7 +1662,7 @@ function _setExpectedItem(where) {
 			let demandText = `
 											<div class="demand_wrapper">
 												<p>${ language.demand }.</p>
-												${weekP}
+												${ weekP }
 											</div>
 										`
 
@@ -1711,25 +1716,23 @@ function _addNotStyle() {
 
 			if (device === 'mobile') {
 				imgArr = document.querySelectorAll('#product-images-thumbs .picture')
-				imgArr.length ? null : imgArr=  document.querySelectorAll('.product-images-container-mobile img')
+				imgArr.length ? null : imgArr = document.querySelectorAll('.product-images-container-mobile img')
 			} else {
+					document.querySelectorAll('.product-images-container .product-image-wrapper source').forEach((source, index) => {
+					document.querySelectorAll('.product-images-container .product-image-wrapper source + img')[index].src = source.getAttribute('lazyload')
+				})
+
 				imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
 			}
 
-			let length = imgArr.length - 1
+			document.querySelector('app-product-images').classList.add('w_load')
 
-			let isImg = setInterval(() => {
-				if (imgArr[length]?.src.includes('cdn.kingsbox.com')) {
-					clearInterval(isImg)
+			imgArr.forEach((img, index) => {
+				// img.src = img.src.replace('&blur=90', '')
+				sliderItem += `<div><img src=${ img.src } alt="slider image ${ index }"></div>`
+			})
 
-					document.querySelector('app-product-images').classList.add('w_load')
-
-					imgArr.forEach((img, index) => {
-						// img.src = img.src.replace('&blur=90', '')
-						sliderItem += `<div><img src=${ img.src } alt="slider image ${ index }"></div>`
-					})
-
-					let sliderWrapper = `
+			let sliderWrapper = `
 								<div class="not_wrapper">			
 									<div class="slider">
 										${ sliderItem }
@@ -1743,17 +1746,16 @@ function _addNotStyle() {
 								</div>
 							`
 
-					document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
+			document.querySelector('.col-xl-8 .product-breadcrumb').insertAdjacentHTML('afterend', sliderWrapper)
 
-					let isSlider = setInterval(() => {
-						if (document.querySelector('.slider img') && typeof tns == 'function') {
-							clearInterval(isSlider)
+			let isSlider = setInterval(() => {
+				if (document.querySelector('.slider img') && typeof tns == 'function') {
+					clearInterval(isSlider)
 
-							tnsSettings('.slider', 2.3, true, 0, true, 'main', false, 1)
-						}
-					}, 100)
+					tnsSettings('.slider', 2.3, true, 0, true, 'main', false, 1)
 				}
 			}, 100)
+
 
 			let clone = setInterval(() => {
 				if (document.querySelector('.item_info div')) {
@@ -1772,7 +1774,7 @@ function _addNotStyle() {
 
 			if (device === 'mobile') {
 				let custom = setInterval(() => {
-					if(document.querySelector('.item_info .vat-indicator')) {
+					if (document.querySelector('.item_info .vat-indicator')) {
 						clearInterval(custom)
 						document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
 					}
