@@ -385,10 +385,10 @@ if (window.innerWidth <= 768) {
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom",
-              // trigger: "click",
-              // hideOnClick: true,
+              trigger: "click",
+              hideOnClick: true,
 
-              onTrigger() {
+              onTrigger(e) {
                 pushDataLayer(el.getAttribute("data-title"))
               },
             })
