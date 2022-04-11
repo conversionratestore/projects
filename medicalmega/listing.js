@@ -1189,7 +1189,7 @@ requestAllCaterories.then(data => {
       alphabet.insertAdjacentHTML('beforeend',`<li class="${i < 1 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
     }
   }
-  
+
   function openCategoriesFoeAlphabet(item) {
     item.forEach(el => {
       if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
@@ -1224,6 +1224,10 @@ requestAllCaterories.then(data => {
       
     })
   })   
+
+  let items = [...alphabet.querySelectorAll("li")];
+  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+  items.forEach(item => alphabet.appendChild(item));
 
   //all categories
   btnCategory.addEventListener('click', (e) => {
