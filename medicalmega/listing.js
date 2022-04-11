@@ -1103,7 +1103,6 @@ document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
 
-
 //select
 function remActiveSelect() {
     let dropdowns = document.querySelectorAll(".select");
@@ -1186,7 +1185,7 @@ requestAllCaterories.then(data => {
 
   for (let i = 0; i < litterAlphabet.length; i++) {
     if (litterAlphabet[i].letter != 'undefined') {
-      alphabet.insertAdjacentHTML('beforeend',`<li class="${i < 1 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+      alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
     }
   }
 
@@ -1300,16 +1299,16 @@ search.addWidgets([
                       }
                   }
               }
-              function optionBox() {
-                let option = ``;
-                for (let i = 0; i < hit.variants.length; i++) {
-                    let variantsArr = hit.variants[i];
-                    if (variantsArr.extra != '' && variantsArr.price != '0.00') {
-                        option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''}</option>` + option;  
-                    }
-                }
-                return option
-              }
+              // function optionBox() {
+              //   let option = ``;
+              //   for (let i = 0; i < hit.variants.length; i++) {
+              //       let variantsArr = hit.variants[i];
+              //       if (variantsArr.extra != '' && variantsArr.price != '0.00') {
+              //           option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''}</option>` + option;  
+              //       }
+              //   }
+              //   return option
+              // }
               
               let boxItem = `
                 <div class="card">
@@ -1328,14 +1327,14 @@ search.addWidgets([
                     <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
                     <input type="hidden" name="product_id" value="${hit.objectID }">
                     <input type="hidden" name="add_to_cart" value="variant">
-                      <select class="product-variant product-variant__options-box__select" style="display:none;">
-                          ${optionBox()}
-                      </select>
                     
                   </form>
                 </div>
               `
-
+              
+          //     <select class="product-variant product-variant__options-box__select" style="display:none;">
+          //     ${optionBox()}
+          // </select>
               return boxItem
           }
       },
@@ -1547,34 +1546,34 @@ search.addWidgets([
                 // price = document.querySelectorAll('.ais-Hits .card .pr'), //price
                 closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
 
-              document.querySelectorAll('.card .product-variant').forEach((select, index) => {
-                let parent = select.closest('.card');
-                if (select.length > 0) {
-                  let price = select.options[select.selectedIndex].dataset.price,
-                    variantId = select.options[select.selectedIndex].value,
-                    name = select.options[select.selectedIndex].innerText,
-                    qty = select.options[select.selectedIndex].dataset.qty;
+              // document.querySelectorAll('.card .product-variant').forEach((select, index) => {
+              //   let parent = select.closest('.card');
+              //   if (select.length > 0) {
+              //     let price = select.options[select.selectedIndex].dataset.price,
+              //       variantId = select.options[select.selectedIndex].value,
+              //       name = select.options[select.selectedIndex].innerText,
+              //       qty = select.options[select.selectedIndex].dataset.qty;
 
-                  parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                  parent.querySelector(`[name="quantity"]`).dataset.maxValue = qty;
+              //     parent.querySelector(`[name="product_variant_id"]`).value = variantId;
+              //     parent.querySelector(`[name="quantity"]`).dataset.maxValue = qty;
   
-                  if (name.includes('Out of stock')) {
-                      parent.querySelector('.status').style.display = 'block';
-                      parent.querySelector('.calc ').classList.add('disabled');
-                      parent.querySelector('.btn').setAttribute('class','btn btn_white');
-                      parent.querySelector('.btn').setAttribute('data-button','notify');
-                      parent.querySelector('.btn').type = 'button';
-                      parent.querySelector('.btn').innerHTML = '<span>notify when available</span>';
-                  } else {
-                      parent.querySelector('.status').style.display = 'none';
-                      parent.querySelector('.calc ').classList.remove('disabled');
-                      parent.querySelector('.btn').setAttribute('class','btn btn_dark');
-                      parent.querySelector('.btn').removeAttribute('data-button');
-                      parent.querySelector('.btn').type = 'submit';
-                      parent.querySelector('.btn').innerHTML = `<span>$<span class="pr" data-price="${price}">${price}</span> | Add to Cart</span>`;
-                  }
-                }
-              })
+              //     if (name.includes('Out of stock')) {
+              //         parent.querySelector('.status').style.display = 'block';
+              //         parent.querySelector('.calc ').classList.add('disabled');
+              //         parent.querySelector('.btn').setAttribute('class','btn btn_white');
+              //         parent.querySelector('.btn').setAttribute('data-button','notify');
+              //         parent.querySelector('.btn').type = 'button';
+              //         parent.querySelector('.btn').innerHTML = '<span>notify when available</span>';
+              //     } else {
+              //         parent.querySelector('.status').style.display = 'none';
+              //         parent.querySelector('.calc ').classList.remove('disabled');
+              //         parent.querySelector('.btn').setAttribute('class','btn btn_dark');
+              //         parent.querySelector('.btn').removeAttribute('data-button');
+              //         parent.querySelector('.btn').type = 'submit';
+              //         parent.querySelector('.btn').innerHTML = `<span>$<span class="pr" data-price="${price}">${price}</span> | Add to Cart</span>`;
+              //     }
+              //   }
+              // })
 
               dataButton.forEach(item => {
                 item.addEventListener('click', () => toggleActive(item.getAttribute('data-button')))
