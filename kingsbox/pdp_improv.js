@@ -555,6 +555,7 @@ const style = `
 									}
 										
 									[data-style="not"] #product-accessory-category,
+									[data-style="not"] .product-accessories-header,
 									[data-style="not"] .product-layout-1 .col-xl-8 app-product-layout-1-images {
 										display: none;
 									}
@@ -1785,7 +1786,7 @@ function _addNotStyle() {
 
 					let $guarantees = document.querySelector('.guarantees_wrapper')
 					let $accessories = document.querySelector('app-product-accessories')
-					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3')
+					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3') || document.querySelector('.product-properties')
 
 					let $v = document.querySelector('.switch_info span')
 
