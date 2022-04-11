@@ -568,6 +568,7 @@ const style = `
 										filter: grayscale(1);
 										opacity: 0.8;
 										width: 100%;
+										height: 135px;
 										object-fit: cover;
 									}
 									
@@ -1752,7 +1753,7 @@ function _addNotStyle() {
 				if (document.querySelector('.slider img') && typeof tns == 'function') {
 					clearInterval(isSlider)
 
-					tnsSettings('.slider', 2.3, true, 0, true, 'main', false, 1)
+					tnsSettings('.slider', 2.2, true, 0, true, 'main', false, 1)
 				}
 			}, 100)
 
