@@ -117,7 +117,7 @@ if (window.innerWidth <= 768) {
 
               .tooltip_bar{
                 background: #ECEEF0;
-                padding: 0 0 40px;
+                padding: 0 0 20px;
               }
               
               .tooltip_bar .container_var{
@@ -235,26 +235,34 @@ if (window.innerWidth <= 768) {
                 align-items: center;
               }
 
-              .tooltip_bar ul li p{
+              .tooltip_bar ul li > div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 5px;
+              }
+
+              .tooltip_bar ul li > div p{
                 font-family: "Roboto", sans-serif;
                 font-weight: 400;
                 font-size: 14px !important;
                 line-height: 171% !important;
                 color: #234799;
-                margin: 7px 0 5px;
+                margin: 0;
+                margin-right: 3px;
               }
 
                @media (max-width: 320px){
-                    .tooltip_bar ul li img:first-child{
+                    .tooltip_bar ul li img{
                         width: 60px;
                     }
 
-                   .tooltip_bar ul li p{
+                   .tooltip_bar ul li > div p{
 
                        font-size: 10px !important;
                    }
 
-                   .tooltip_bar ul li img:last-child{
+                   .tooltip_bar ul li > div img{
                        width: 14px;
                    }
                }
@@ -354,9 +362,10 @@ if (window.innerWidth <= 768) {
         return ` 
         <li>
             <img src="${img}" alt="${title}">
-            <p>${title}</p>
-            <img data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
-
+            <div>
+              <p>${title}</p>
+              <img data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+            </div>
         </li>
         `
       }
