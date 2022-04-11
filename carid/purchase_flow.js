@@ -1,5 +1,5 @@
 let startfunkCarid = setInterval(() => {
-  if (document.querySelector("#product_orderform")) {
+  if (document.querySelector("#selectBtnReact")) {
     clearInterval(startfunkCarid)
 
     let scriptCustomPopper = document.createElement("script")
