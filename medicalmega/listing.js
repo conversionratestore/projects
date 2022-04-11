@@ -622,6 +622,7 @@ border-radius: 100px;
       width: 150px;
       height: 150px; }
     .listing_content .card .btn {
+      pointer-events: none;
       font-size: 10px;
       line-height: 36px;
       font-weight: 600; }
@@ -783,20 +784,31 @@ border-radius: 100px;
     padding: 0;
     font-size: 12px;
     width: 100%; }
-.ais-Breadcrumb-list {  
+.ais-Breadcrumb-list, #breadcrumbs ul {  
   display: flex;
   align-items: center;
 }
-.ais-Breadcrumb {
+.ais-Breadcrumb, #breadcrumbs {
   padding: 10px 0 5px; }
-  .ais-Breadcrumb-link {
+  .ais-Breadcrumb-link, #breadcrumbs a {
     font-weight: normal;
     font-size: 12px;
     line-height: 15px;
     color: #344D57;
-    display: block;}
+    display: flex;
+    align-items: center;
+  }
+  #breadcrumbs a:after{
+    content: '';
+    width: 18px;
+    height: 18px;
+    margin: 0 4px;
+    display: block;
+    color: transparent;
+    background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+  }
 
-  .ais-Breadcrumb-item {
+  .ais-Breadcrumb-item, #breadcrumbs p {
     color: #6D7E85;
     display: flex;
     align-items: center;
@@ -911,63 +923,6 @@ border-radius: 100px;
 .arrow_button_next {
   margin-right: -26px;}
 
-.popup {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 7;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  opacity: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  padding: 169px 10px 10px; }
-  .popup.active {
-    opacity: 1;
-    pointer-events: auto; }
-  .popup h3, .popup .title {
-    font-weight: 600;
-    text-align: center;
-    font-size: 24px;
-    line-height: 120%;
-    color: #091114;
-    margin-bottom: 40px; }
-  .popup .btn {
-    width: 100%;
-    margin-top: 28px; }
-  .popup .btn_reset {
-    margin-left: auto;
-    display: block;
-    margin-bottom: 20px; }
-
-.popup_container {
-  background: #FFFFFF;
-  border-radius: 8px;
-  max-width: 701px;
-  width: 100%;
-  padding: 16px;
-  min-height: 330px;
-  margin: auto; }
-  .popup_container img {
-    width: 150px;
-    height: 150px; }
-  .popup_container_container {
-    background: #FFFFFF;
-    border-radius: 8px;
-    max-width: 701px;
-    width: 100%;
-    padding: 16px;
-    min-height: 330px;
-    margin: auto; }
-    .popup_container_container img {
-      width: 150px;
-      height: 150px; }
   #list_categories .ais-HierarchicalMenu-list--child {
     padding-left: 10px;
     border-left: 1px dotted #ddd;
@@ -1061,7 +1016,7 @@ let html = `
               </div>
               <div class="dropdown_categories">
                 <ul class="alphabet"></ul>
-                <div id="list_categories"> </div>
+                <ul id="list_categories"> </ul>
               </div>
             </nav>
             <ul class="d-flex category_popular">
@@ -1080,7 +1035,7 @@ let html = `
         <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
       </header>
       <div class="container"> 
-        <div id="breadcrumbs"></div>
+        <nav id="breadcrumbs"><ul></ul></nav>
         <div class="flex-wrap w-100">
           <div class="filter">
             <div class="flex-center-between">
@@ -1116,18 +1071,6 @@ let html = `
         </div>
       </div>
     </div>
-    <div class="popup" data-item="notify">
-      <form class="popup_container">
-        <button class="btn_reset" type="reset" data-close="notify"></button>
-        <h3 class="title">Leave Your e-mail to be Notified when it’s Available</h3>
-        <div class="flex-center-center"><img src="https://medicalmegaimgs.net/prod/uploaded/product/159907855915375725325f50009f9b40e.jpg" alt="Ansel Latex Exam Gloves, Medium Box of 150">
-          <div class="max-391 ml-40">
-            <input type="email" placeholder="Your e-mail" required>
-            <button class="btn btn_red" type="submit">notify me</button>
-          </div>
-        </div>
-      </form>
-    </div>
 `
 
 let isSearchStalledCount = 0;
@@ -1140,6 +1083,7 @@ let headerFetch = {
   },
   method: "GET",
 }
+
 function pushDataLayer(actionDataLayer, labelDataLayer) {
   console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
@@ -1151,8 +1095,14 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
+let requestAllCaterories = new Promise((resolve, reject) => {
+  fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
+})
+
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
+
+
 
 //select
 function remActiveSelect() {
@@ -1189,11 +1139,140 @@ const search = instantsearch({
     searchClient,
 });
 
-let categoryFacet = '';
+let litterAlphabet = [];
 
+requestAllCaterories.then(data => {
+  console.log(data)
+
+  for (let key in data.categories) {
+      if (data.categories[key].url) {
+          document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
+      }
+  }
+
+  let btnCategory = document.querySelector('.all_category'),
+      listCategories = document.querySelectorAll('#list_categories li'), //list categories
+      alphabet = document.querySelector('.alphabet'); //alphabet
+
+  // document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
+  //     if (index > 4) el.parentElement.hidden = true;
+  //     el.addEventListener('click', (e) => {
+
+  //         localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
+  //         if (index < 5) {
+  //             actionDataLayer = 'Click on most popular categories items';
+  //         } else {
+  //             actionDataLayer = 'Click on other categories items';
+  //         }
+  //         labelDataLayer = e.target.innerText;
+  //         pushDataLayer(actionDataLayer,labelDataLayer)
+  //     })
+  // })
+  
+  listCategories.forEach((el) => {
+    litterAlphabet.push({'letter': el.innerText[0]})
+    el.querySelector('a').addEventListener('click', (e) => {
+      actionDataLayer = `Click on category item - ${el.innerText}`;
+      labelDataLayer = `All categories`;
+      pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+  })
+   
+  litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+    index === self.findIndex((t) => (
+        t.letter === thing.letter
+    ))
+  )
+
+  for (let i = 0; i < litterAlphabet.length; i++) {
+    if (litterAlphabet[i].letter != 'undefined') {
+      alphabet.insertAdjacentHTML('beforeend',`<li class="${i < 1 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+    }
+  }
+  
+  function openCategoriesFoeAlphabet(item) {
+    item.forEach(el => {
+      if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+        el.style.display = "none";
+      } else {
+        el.style.display = "block";
+      }
+    }); 
+  } 
+  openCategoriesFoeAlphabet(listCategories)
+
+  //change Class active
+  let alphabetContainer = document.querySelector('.alphabet'),
+      para = document.querySelectorAll('.alphabet li');
+      console.log(alphabetContainer)
+      console.log(para)
+
+  let paraArr = [].slice.call(para).sort(function (a, b) {
+      return a - b
+  });
+  console.log(paraArr)
+  paraArr.forEach(function (p) {
+    alphabetContainer.appendChild(p);
+  });
+
+  alphabet.querySelectorAll('li').forEach(el => {
+    el.addEventListener('mouseover', (e) => {
+      console.log(e.target)
+      e.target.parentElement.querySelector('.active').classList.remove('active');
+      e.target.classList.add('active');
+      openCategoriesFoeAlphabet(listCategories)
+      
+    })
+  })   
+
+  //all categories
+  btnCategory.addEventListener('click', (e) => {
+    if (e.target.matches('.all_category')) {
+      console.log(e.target)
+      e.target.parentElement.classList.toggle('active');
+      document.querySelector('.advanced-search').classList.remove('active');
+      document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+  
+    }
+  })
+})
+
+let facetCategories = '*';
+let categoryCrumbs = '';
+let lvl = '';
+
+if (window.location.pathname.includes('/category')) {
+        
+  document.querySelector('.listing_title').innerHTML = document.querySelector('.category b').innerText;
+
+  let categoriesLink = document.querySelectorAll('.category a');
+
+  for (let i = 0; i < categoriesLink.length; i++) {
+      if (i > 0) {
+          categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
+      }
+
+      if (i == categoriesLink.length - 1) {
+          if (categoriesLink.length > 1) {
+            facetCategories = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
+          } 
+          else {
+            facetCategories = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
+          }
+     
+          console.log(i + " : " + document.querySelector('.category b').innerText + " : " + facetCategories)
+          lvl = facetCategories.split(':')[0].split('lvl')[1];
+      }
+      document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><a href="${categoriesLink[i].href}">${categoriesLink[i].innerText}</a></li>`)
+  }
+  document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><p>${document.querySelector('.category b').innerText}</p></li>`);
+} else {
+  facetCategories = '*'
+}
 search.addWidgets([
   instantsearch.widgets.configure({
       hitsPerPage: '12',
+      facetFilters: [facetCategories],
   }),
 
   instantsearch.widgets.searchBox({
@@ -1235,7 +1314,6 @@ search.addWidgets([
                     <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
                     <span title="${hit.name}">${hit.name}</span>
                   </a>
-                  <p class="sold-by">Sold by: ${hit.extra}</p>
                   <form action="https://medicalmega.com/cart.html" method="post">
                     <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
                       <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
@@ -1266,6 +1344,8 @@ search.addWidgets([
           { label: 'Featured', value: 'staging_products', selected: true, disable: true },
           { label: 'Product Name ASC', value: 'staging_products' },
           { label: 'Product Name DESC', value: 'staging_products_name_desc' },
+          { label: 'Product Price ASC', value: 'staging_products_price_asc' },
+          { label: 'Product Price DESC', value: 'staging_products_price_desc' },
       ],
   }),
   // instantsearch.widgets.pagination({
@@ -1292,8 +1372,7 @@ search.addWidgets([
   instantsearch.widgets.refinementList({
       container: '#manufacturer',
       attribute: 'manufacturer',
-      limit: 7,
-      showMore: true,
+      limit: 100,
       sortBy: ['name:asc'],
       templates: {
           item: (data) => {
@@ -1364,20 +1443,20 @@ search.addWidgets([
   //         }) 
   //     },  
   // }),
-  instantsearch.widgets.hierarchicalMenu({
-      container: `#list_categories`,
-      attributes: [
-        'categories.lvl0',
-        'categories.lvl1',
-        'categories.lvl2',
-        'categories.lvl3',
-        'categories.lvl4',
-      ], 
-      // separator: ' / ',
-      // rootPath: '',
-      sortBy: ['isRefined'],  
-      showParentLevel: false,
-      limit: 150,  
+  // instantsearch.widgets.hierarchicalMenu({
+  //     container: `#list_categories`,
+  //     attributes: [
+  //       'categories.lvl0',
+  //       'categories.lvl1',
+  //       'categories.lvl2',
+  //       'categories.lvl3',
+  //       'categories.lvl4',
+  //     ], 
+  //     // separator: ' / ',
+  //     rootPath: facetCategories,
+  //     sortBy: ['isRefined'],  
+  //     showParentLevel: false,
+  //     limit: 150,  
       // connector: false,
       // templates: {
       //   item: (data) => {
@@ -1396,18 +1475,8 @@ search.addWidgets([
       //     }
       //   }
       // },
-  }),
-  
-  instantsearch.widgets.breadcrumb({
-    container: '#breadcrumbs',
-    attributes: [
-      'categories.lvl0',
-      'categories.lvl1',
-      'categories.lvl2',
-      'categories.lvl3',
-      'categories.lvl4',
-    ],
-  }),
+  // }),
+
   instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     templates: {
@@ -1418,7 +1487,37 @@ search.addWidgets([
 
 search.start();
 
-console.log(categoryFacet)
+//qty change
+function changeQty(qty,pr,action) {
+  if (action == 'plus') {
+      qty.value = parseInt(qty.value) + 1;
+  } else if (action == 'minus') {
+      qty.value = parseInt(qty.value) - 1;
+  }
+  if (action == 'plus' || action == 'minus') {
+      if (qty.value == '') {
+          qty.value = 1;
+      }
+  }
+  if (qty.value > 1) {
+      qty.previousElementSibling.disabled = false;
+  } else {
+      qty.previousElementSibling.disabled = true;
+  }
+
+  pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
+  if (qty.value == 0 && qty.value != '') {
+      qty.value = 1;
+      pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+  }
+  if (qty.value == '') {
+      pr.innerHTML = pr.dataset.price
+  }
+  
+  console.log(qty.value,pr.innerHTML)
+
+}
 
 document.body.addEventListener('click', (e) => {
   if (!e.target.closest('.select')) remActiveSelect();
@@ -1434,121 +1533,15 @@ search.addWidgets([
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
-            let litterAlphabet = [];
             
-            let btnPlus = document.querySelectorAll('.btn-calc_plus'), //btn +
-                btnMinus = document.querySelectorAll('.btn-calc_minus'), //btn -
-                inputQty = document.querySelectorAll('.calc-qty'), //quantity input
-                calc = document.querySelectorAll('.calc'), // calc wrapper +\-
-                dataButton = document.querySelectorAll('[data-button]'), // btn for open popup or block
-                price = document.querySelectorAll('.pr'), //price
+            let 
+                // btnPlus = document.querySelectorAll('.ais-Hits .card .btn-calc_plus'), //btn +
+                // btnMinus = document.querySelectorAll('.ais-Hits .card .btn-calc_minus'), //btn -
+                // inputQty = document.querySelectorAll('.ais-Hits .card .calc-qty'), //quantity input
+                // calc = document.querySelectorAll('.ais-Hits .card .calc'), // calc wrapper +\-
+                dataButton = document.querySelectorAll('[data-button]'), // btn for open or block
+                // price = document.querySelectorAll('.ais-Hits .card .pr'), //price
                 closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
-                console.log(calc)
-              let listCategories = document.querySelectorAll('#list_categories li'), //list categories
-                alphabet = document.querySelector('.alphabet'); //alphabet
-
-              alphabet.innerHTML = '';
-
-              let btnCategory = document.querySelector('.all_category');
-              function clickCategories(item) {
-                item.forEach((el) => {
-                  
-                  litterAlphabet.push({'letter': el.innerText[0]})
-                  el.querySelector('a').addEventListener('click', (e) => {
-                    categoryFacet = el.innerText;
-                    console.log(categoryFacet)
-                    actionDataLayer = `Click on category item - ${el.innerText}`;
-                    labelDataLayer = `All categories`;
-                    pushDataLayer(actionDataLayer,labelDataLayer)
-                  })
-                })
-              }
-              // if (isSearchStalledCount == 0) {
-                isSearchStalledCount = 1;
-               
-  
-                clickCategories(listCategories)
-               
-                litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                  index === self.findIndex((t) => (
-                      t.letter === thing.letter
-                  ))
-                )
-  
-                for (let i = 0; i < litterAlphabet.length; i++) {
-                  if (litterAlphabet[i].letter != 'undefined') {
-                    alphabet.insertAdjacentHTML('beforeend',`<li class="${i < 1 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-                  }
-                }
-  
-                function toggleCategoriesForAlphabet(item) {
-                  item.forEach(el => {
-                    if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
-                      el.style.display = "none";
-                    } else {
-                      el.style.display = "block";
-                    }
-                  });  
-                }
-  
-                toggleCategoriesForAlphabet(listCategories)
-  
-                //change Class active
-                alphabet.querySelectorAll('li').forEach(el => {
-                  el.addEventListener('mouseover', (e) => {
-                    e.target.parentElement.querySelector('.active').classList.remove('active');
-                    e.target.classList.add('active');
-                    toggleCategoriesForAlphabet(document.querySelectorAll('#list_categories li'));
-                    clickCategories(document.querySelectorAll('#list_categories li'))
-                    
-                  })
-                })   
-              // }
-
-              //all categories
-              btnCategory.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                // console.log(e.target)
-                if (e.target.matches('.all_category')) {
-                  console.log(e.target)
-                  e.target.parentElement.classList.toggle('active');
-                  document.querySelector('.advanced-search').classList.remove('active');
-                  document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-
-                  toggleCategoriesForAlphabet(document.querySelectorAll('#list_categories li'));
-                  clickCategories(document.querySelectorAll('#list_categories li'));
-              
-                }
-              })
-              
-              function changeQty(qty,pr,action) {
-                if (action == 'plus') {
-                    qty.value = parseInt(qty.value) + 1;
-                } else if (action == 'minus') {
-                    qty.value = parseInt(qty.value) - 1;
-                }
-                if (action == 'plus' || action == 'minus') {
-                    if (qty.value == '') {
-                        qty.value = 1;
-                    }
-                }
-                if (qty.value > 1) {
-                    qty.previousElementSibling.disabled = false;
-                } else {
-                    qty.previousElementSibling.disabled = true;
-                }
-
-                pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-
-                if (qty.value == 0 && qty.value != '') {
-                    qty.value = 1;
-                    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-                }
-                if (qty.value == '') {
-                    pr.innerHTML = pr.dataset.price
-                }
-
-              }
 
               document.querySelectorAll('.card .product-variant').forEach((select, index) => {
                 let parent = select.closest('.card');
@@ -1559,7 +1552,6 @@ search.addWidgets([
                     qty = select.options[select.selectedIndex].dataset.qty;
 
                   parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                  parent.querySelector(`.sold-by`).innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
                   parent.querySelector(`[name="quantity"]`).dataset.maxValue = qty;
   
                   if (name.includes('Out of stock')) {
@@ -1580,28 +1572,13 @@ search.addWidgets([
                 }
               })
 
-              //+/- btns quantity
-              calc.forEach((el, i) => {
-                btnPlus[i].addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
-                  changeQty(inputQty[i], price[i],'plus')
-                })
-                btnMinus[i].addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
-                  changeQty(inputQty[i], price[i],'minus')
-                })
-                inputQty[i].addEventListener('input', (e) => changeQty(inputQty[i], price[i]))
-                inputQty[i].addEventListener('blur', (e) => {
-                    if (e.target.value == '') {
-                        e.target.value = 1;
-                    }
-                }, true)
+              dataButton.forEach(item => {
+                item.addEventListener('click', () => toggleActive(item.getAttribute('data-button')))
               })
-
-              for (let i = 0; i < dataButton.length; i++) {
-                dataButton[i].addEventListener('click', () => toggleActive(dataButton[i].getAttribute('data-button')))
-                closeBtn[i].addEventListener('click', () => toggleActive(closeBtn[i].getAttribute('data-close')))
-              }
+              
+              closeBtn.forEach(item => {
+                item.addEventListener('click', () => toggleActive(item.getAttribute('data-close')))
+              })
           
               // for (let i = 0; i < categories.length; i++) {
               //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
@@ -1619,8 +1596,7 @@ search.addWidgets([
                 paraArr.forEach(function (p) {
                     pricesContainer.appendChild(p);
                 });
-            }
-
+              }
           }
       },
   },
@@ -1658,3 +1634,38 @@ window.addEventListener('scroll', () => remActiveSelect())
 document.querySelectorAll('.select_filter').forEach(el => {
     el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
 })
+
+
+let optionMut = {
+  childList: true,
+  subtree: true,
+  attributes: true
+}
+
+let mut = new MutationObserver(function (muts) {
+  if( document.querySelectorAll('.ais-Hits .card .calc')) {
+    mut.disconnect();
+    //+/- btns quantity
+    document.querySelectorAll('.ais-Hits .card .calc').forEach((el, i) => {
+      el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        console.log(el.nextElementSibling.querySelector('.pr'))
+        changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
+      })
+      el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
+      })
+      el.querySelector('.calc-qty').addEventListener('input', (e) => {
+        changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
+      })
+      el.querySelector('.calc-qty').addEventListener('blur', (e) => {
+          if (e.target.value == '') {
+              e.target.value = 1;
+          }
+      }, true)
+    })
+  }
+  mut.observe(document, optionMut);
+})
+mut.observe(document, optionMut);
