@@ -6,8 +6,8 @@ const style = `
 										General style
 										============= */
 										
-										.picture[_ngcontent-serverApp-c57] img.lazyloading[_ngcontent-serverApp-c57] {
-											opacity: 1;
+										img.lazyloading {
+											opacity: 1 !important;
 										}
 										
 										.similar_products.similar_exist {
