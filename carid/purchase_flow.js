@@ -209,7 +209,7 @@ let startfunkCarid = setInterval(() => {
             background: url(https://conversionratestore.github.io/projects/carid/img/arrow.svg) no-repeat 0 0;
             height: 11px;
             width: 14px;
-            right: 14px;
+            right: 24px;
             top: 13px;
             background-size: cover;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
