@@ -1711,6 +1711,7 @@ function _addNotStyle() {
 
 			if (device === 'mobile') {
 				imgArr = document.querySelectorAll('#product-images-thumbs .picture')
+				imgArr.length ? null : imgArr=  document.querySelectorAll('.product-images-container-mobile img')
 			} else {
 				imgArr = document.querySelectorAll('.product-images-container .product-image-wrapper img')
 			}
