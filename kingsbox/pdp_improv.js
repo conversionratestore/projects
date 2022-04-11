@@ -253,12 +253,21 @@ const style = `
 									}
 									
 									.tns-controls {
-										    position: absolute;
-										    z-index: 1;
-										    width: 100%;
-										    display: flex;
-										    justify-content: space-between;
-										    top: 15%;										    
+									    height: 0;									    
+									}
+									
+									.tns-controls button {
+										position: absolute;
+    									z-index: 1;
+    									top: 15%;
+									}
+									
+									[data-controls="prev"] {
+										left: 0;
+									}
+									
+									[data-controls="next"] {
+										right: 0;
 									}
 									
 									.tns-outer .product-accessory {
@@ -1483,7 +1492,7 @@ let isBlackAccordion = setInterval(() => {
 	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
 		clearInterval(isBlackAccordion)
 
-		document.querySelector('.accordion.product-accessory-category')?.before(document.querySelector('.accordion.product-properties'))
+		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
 		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
 
 		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
@@ -1753,7 +1762,12 @@ function _addNotStyle() {
 							</div>`
 
 			if (device === 'mobile') {
-				document.querySelector('.vat-indicator').insertAdjacentHTML('afterend', actionBtns)
+				let custom = setInterval(() => {
+					if(document.querySelector('.item_info .vat-indicator')) {
+						clearInterval(custom)
+						document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
+					}
+				}, 100)
 			} else {
 				document.querySelector('.col-xl-4 .product-price').insertAdjacentHTML('afterend', actionBtns)
 			}
@@ -1763,7 +1777,7 @@ function _addNotStyle() {
 					clearInterval(isBtns)
 
 					let $guarantees = document.querySelector('.guarantees_wrapper')
-					let $accessories = document.querySelector('app-product-accessories')
+					let $accessories = document.querySelector('app-product-accessories')?.closest('.pt-3')
 					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3')
 
 					let $v = document.querySelector('.switch_info span')
