@@ -193,8 +193,6 @@ let startfunkCarid = setInterval(() => {
     }
 
     @media (max-width: 768px) {
-
-
         .tooltip_bar{
             background: #F8F8F8;
             border: 1px solid #4062B9;
@@ -209,11 +207,11 @@ let startfunkCarid = setInterval(() => {
             position: absolute;
             content: "";
             background: url(https://conversionratestore.github.io/projects/carid/img/arrow.svg) no-repeat 0 0;
-            height: 6px;
-            width: 10px;
+            height: 11px;
+            width: 14px;
             right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 13px;
+            background-size: cover;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
         }
 
@@ -274,7 +272,7 @@ let startfunkCarid = setInterval(() => {
         }
 
         .arrow_down_var.tooltip_bar::after{
-            transform: translateY(-50%) rotateX(180deg);
+            transform: rotateX(180deg);
         }
 
         .sticky_wrapp{
@@ -371,26 +369,6 @@ let startfunkCarid = setInterval(() => {
           pushDataLayer("Click on Order now pay later button")
           document.querySelector("button#selectBtnReact").click()
         })
-
-        // if (window.innerWidth > 768) {
-        //   console.log(window.innerWidth)
-        //   document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("mouseenter", function () {
-        //     const block = document.querySelector(".purchase_flow > div")
-        //     document.querySelector(".purchase_flow > div > .hover_block").style.opacity = "1"
-        //     document.querySelector(".purchase_flow > div > .hover_block").style.visibility = "unset"
-
-        //     if (block.getBoundingClientRect().top >= 365) {
-        //       document.querySelector(".purchase_flow > div > .hover_block").style.top = "-214px"
-        //     } else {
-        //       document.querySelector(".purchase_flow > div > .hover_block").style.top = "60px"
-        //     }
-        //   })
-
-        //   document.querySelector(".purchase_flow button.now_pay_btn").addEventListener("mouseleave", function () {
-        //     document.querySelector(".purchase_flow > div > .hover_block").style.opacity = "0"
-        //     document.querySelector(".purchase_flow > div > .hover_block").style.visibility = "hidden"
-        //   })
-        // }
       }
 
       //   sticky btn mobile and  click on tooltip_bar mobile
@@ -506,7 +484,7 @@ let startfunkCarid = setInterval(() => {
     // })
 
     //
-    // clarity("set", "purchase_flow_improvement", "variant_1")
+    clarity("set", "purchase_flow_improvement", "variant_1")
     pushDataLayer("loaded")
 
     //   timer
