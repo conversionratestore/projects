@@ -208,7 +208,7 @@ let startfunkCarid = setInterval(() => {
         .tooltip_bar::after{
             position: absolute;
             content: "";
-            background: url(https://cdn.carid.com/css/prod-images/ca4806dc.svg) no-repeat 0 0;
+            background: url(https://conversionratestore.github.io/projects/carid/img/arrow.svg) no-repeat 0 0;
             height: 6px;
             width: 10px;
             right: 14px;
