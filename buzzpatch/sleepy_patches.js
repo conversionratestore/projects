@@ -386,7 +386,6 @@ if (window.innerWidth <= 768) {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
-              hideOnClick: true,
 
               onTrigger(e) {
                 pushDataLayer(el.getAttribute("data-title"))
