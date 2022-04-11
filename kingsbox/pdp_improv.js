@@ -1619,25 +1619,31 @@ function _setExpectedItem(where) {
 		) {
 			clearInterval(interval)
 
-			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '') || ''
+			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
-			if (document.querySelector('.able-to-buy')) {
-				let parts = weeksNumber.split('.')
+			let drawWeeks = true
 
-				let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
+			if(weeksNumber !== '') {
+				if (document.querySelector('.able-to-buy')) {
+					let parts = weeksNumber.split('.')
 
-				let min = Math.floor(weekDifference)
-				let max = Math.ceil(weekDifference)
+					let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
 
-				if(min === 0 && max === 0) {
-					weeksNumber = 1
-				} else if(min !== max) {
-					weeksNumber = min + ' - ' + max
-				} else {
-					weeksNumber = max
+					let min = Math.floor(weekDifference)
+					let max = Math.ceil(weekDifference)
+
+					if (min === 0 && max === 0) {
+						weeksNumber = 1
+					} else if (min !== max) {
+						weeksNumber = min + ' - ' + max
+					} else {
+						weeksNumber = max
+					}
+				} else if (document.querySelector('.pre-order')) {
+					weeksNumber = weeksNumber.replace('-', ' - ')
 				}
-			} else if (document.querySelector('.pre-order')) {
-				weeksNumber = weeksNumber.replace('-', ' - ')
+			} else {
+				drawWeeks = false
 			}
 
 			let sellImg = `
@@ -1645,11 +1651,12 @@ function _setExpectedItem(where) {
 												<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
 											</div>
 										`
+			let weekP = drawWeeks ? `<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>` : ''
 
 			let demandText = `
 											<div class="demand_wrapper">
 												<p>${ language.demand }.</p>
-												<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>
+												${weekP}
 											</div>
 										`
 
@@ -1777,7 +1784,7 @@ function _addNotStyle() {
 					clearInterval(isBtns)
 
 					let $guarantees = document.querySelector('.guarantees_wrapper')
-					let $accessories = document.querySelector('app-product-accessories')?.closest('.pt-3')
+					let $accessories = document.querySelector('app-product-accessories')
 					let $properties = document.querySelector('.product-properties')?.parentNode?.closest('.pt-3')
 
 					let $v = document.querySelector('.switch_info span')
