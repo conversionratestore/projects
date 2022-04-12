@@ -601,9 +601,9 @@ const style = `
 									.action_btns {
 										display: none;
 										justify-content: space-between;
-										
-										padding: 0 15px 10px;
-										margin: 0 -15px;
+										padding: 15px;
+										/*padding: 15px;*/
+										margin: -10px -15px;
 									}
 									
 									[data-style="not"] .action_btns {
@@ -753,7 +753,7 @@ const style = `
 										}
 									
 									.action_btns {
-										padding: 5px 15px 5px;
+										padding: 5px 15px 15px;
 										background-color: #F4F4F4;
 									}
 									
@@ -1710,7 +1710,8 @@ function _addNotStyle() {
 	let intr = setInterval(() => {
 		if (
 			document.querySelector('app-reviews-summary') &&
-			document.querySelector('.product-price div')
+			document.querySelector('.product-price div') &&
+			document.querySelector('app-product-variations')
 		) {
 			clearInterval(intr)
 
@@ -1783,16 +1784,18 @@ function _addNotStyle() {
 								<p class="join_wl">${ language.wl }</p>
 							</div>`
 
-			if (device === 'mobile') {
-				let custom = setInterval(() => {
-					if (document.querySelector('.item_info .vat-indicator')) {
-						clearInterval(custom)
-						document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
-					}
-				}, 100)
-			} else {
-				document.querySelector('.col-xl-4 .product-price').insertAdjacentHTML('afterend', actionBtns)
-			}
+			// if (device === 'mobile') {
+			// 	let custom = setInterval(() => {
+			// 		if (document.querySelector('.item_info .vat-indicator')) {
+			// 			clearInterval(custom)
+			// 			document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
+			// 		}
+			// 	}, 100)
+			// } else {
+			//
+			// }
+
+			document.querySelector('app-product-variations').insertAdjacentHTML('beforeend', actionBtns)
 
 			let isBtns = setInterval(() => {
 				if (document.querySelector('.action_btns')) {
