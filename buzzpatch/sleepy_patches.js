@@ -20,7 +20,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1.V2`,
+            eventCategory: `Exp: PDP improvements mobile`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -28,7 +28,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: Upsell hypothesis 1.V2`,
+            eventCategory: `Exp: PDP improvements mobile`,
             eventAction: `${actionDataLayer}`,
           })
         }
@@ -158,8 +158,8 @@ if (window.innerWidth <= 768) {
                 margin-bottom: 16px;
               }
 
-              .not_addictive .container_var img, 
-              .safe_for_kids .container_var img{
+              .not_addictive .container_var > div > img, 
+              .safe_for_kids .container_var > div > img{
                 margin-right: 16px;
                 width: 60px;
               }
@@ -289,7 +289,9 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/not_addictive.png" alt="ban on pills">
-                        <h2>Not addictive</h2>
+                        <h2>Not addictive
+                          <img data-id="non addictive hint" data-title="The SleepyPatch is formulated with a blend of mandarin, lavender, sweet marjoram, and vetiver essential oils - 100% natural content & chemical free and addiction-free." src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+                        </h2>
                     </div>
                     <p>Comparing to melatonin, SleepyPatch is not addictive and does not have any side effects. It’s not a medcine.</p>
                 </div>
@@ -299,7 +301,9 @@ if (window.innerWidth <= 768) {
                 <div class="container_var">
                     <div>
                         <img src="https://conversionratestore.github.io/projects/buzzpatch/img/old_adults.png" alt="woman and girl">
-                        <h2>Safe for kids 2+ <br> years old & adults</h2>
+                        <h2>Safe for kids 2+ <br> years old & adults
+                          <img data-id="safe for kids 2+" data-title="100% natural ingredients that are suitable for adults and kids 2+ years old." src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">
+                        </h2>
                     </div>
                     <p>100% natural components and medical adhesive are safe for even the littlest ones.</p>
                 </div>
@@ -387,21 +391,27 @@ if (window.innerWidth <= 768) {
           clearInterval(tippyRun)
           console.log(`hello tippy`)
           document.querySelectorAll(".tooltip_bar ul li img:last-child").forEach((el, index) => {
-            console.log(el)
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
 
               onTrigger(e) {
-                pushDataLayer(el.getAttribute("data-title"))
+                pushDataLayer(`Clicks on each hints ${el.previousElementSibling.textContent}`)
               },
             })
-            //   el.addEventListener("mouseover", () => {
-            //     action = "hover on tooltipe"
-            //     let label = el.closest(".timeline_title").innerText
-            //     pushDataLayer(el.getAttribute("data-title"), label)
-            //   })
+          })
+
+          document.querySelectorAll(".new_section_sleepy h2 > img").forEach((el) => {
+            tippy(el, {
+              content: el.getAttribute("data-title"),
+              placement: "bottom",
+              trigger: "click",
+
+              onTrigger(e) {
+                pushDataLayer(`Click on ${el.getAttribute("data-id")}`)
+              },
+            })
           })
         }
       }, 300)
@@ -443,6 +453,9 @@ if (window.innerWidth <= 768) {
           })
         })
       }
+
+      pushDataLayer("loaded")
+      clarity("set", "pdp_improvements_mobile", "variant_1")
     }
   }, 10)
 }
