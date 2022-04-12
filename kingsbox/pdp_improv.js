@@ -567,8 +567,7 @@ const style = `
 									.slider img {
 										filter: grayscale(1);
 										opacity: 0.8;
-										width: 100%;
-										height: 135px;
+										width: 100%;										
 										object-fit: cover;
 									}
 									
@@ -932,6 +931,9 @@ const style = `
 										padding: 0;
 										}
 										
+										[data-style="not"] .slider img {
+											height: 135px;
+										}										
 									}
 						</style>`
 document.head.insertAdjacentHTML('beforeend', style)
