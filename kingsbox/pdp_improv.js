@@ -1628,10 +1628,12 @@ function _setExpectedItem(where) {
 
 			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
+			console.log('weeksNumber 1 ', weeksNumber)
+
 			let drawWeeks = true
 
 			if (weeksNumber !== '') {
-				if (document.querySelector('.able-to-buy')) {
+				if (document.querySelector('.product-stock-wrapper .able-to-buy')) {
 					let parts = weeksNumber.split('.')
 
 					let weekDifference = (new Date(parts[2], parts[1] - 1, parts[0]) - new Date()) / (7 * 24 * 60 * 60 * 1000)
@@ -1646,12 +1648,15 @@ function _setExpectedItem(where) {
 					} else {
 						weeksNumber = max
 					}
-				} else if (document.querySelector('.pre-order')) {
+				} else if (document.querySelector('.product-stock-wrapper .pre-order')) {
 					weeksNumber = weeksNumber.replace('-', ' - ')
+					console.log('weeksNumber 2', weeksNumber)
 				}
 			} else {
 				drawWeeks = false
 			}
+
+			console.log('weeksNumber', weeksNumber)
 
 			let sellImg = `
 											<div class="sell_wrapper">
