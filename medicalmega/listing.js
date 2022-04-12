@@ -277,6 +277,7 @@ input {
       top: 50%;
       padding: 5px;
       transform: translateY(-50%);
+      background-color: transparent;
     }
     .ais-SearchBox-loadingIndicator {
       position: absolute;
@@ -550,7 +551,7 @@ input {
       color: #344D57;
       border-radius: 4px;
       border: 1px solid transparent;
-      margin: 8px 0;}
+      margin: 4px 0;}
   .select_option[data-value="408"] {
     order: 1; }
   .select_option:hover {
@@ -603,20 +604,19 @@ border-radius: 100px;
   margin-bottom: 33px; }
 
 .listing_content {
-  border-top: 1px solid #E3E6E7;
-  border-left: 1px solid #E3E6E7;
-  margin-top: 12px; }
-  .listing_content .ais-Hits-item {
+  paddin-left: 1px;
+  margin-top: 13px; }
+  .listing_content li {
     width: 25%; 
   }
-  .listing_content .ais-Hits-list {
+  .listing_content ol{
     display: flex;
     flex-wrap: wrap;
   }
   .listing_content .card {
-    border-left: none;
-    border-top: none;
     border-radius: 0;
+    margin-top: -1px;
+    margin-left: -1px;
     }
     .listing_content .card img {
       width: 150px;
@@ -945,11 +945,28 @@ border-radius: 100px;
     background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
   }
   .ais-ClearRefinements-button {
-    background: transparent url(https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg) no-repeat right center / 13px;
-    padding-right: 17px;
+    background-color: #e9ebec;
+    padding: 3px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
-  .ais-ClearRefinements-button--disabled {
+  .ais-ClearRefinements-button:hover svg {
+    fill: #bf0400;
+  }
+  .ais-ClearRefinements-button--disabled, .listing_content .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
     display: none!important;
+  }
+  .ais-RefinementList-showMore {
+    background: none; 
+    text-decoration: underline;
+    margin-top: 10px;
+  }
+  .main a#top {
+    background-color: #1E3944;
+    padding: 4px;
+    border-radius: 40px;
   }
   @media only screen and (min-width: 1750px) {
     .nav_category {
@@ -994,15 +1011,15 @@ let html = `
             <div class="d-flex">
               <input type="text" placeholder="Enter Item #" name="search_item">
               <input type="text" placeholder="Enter Keyword" name="search_keyword">
-              <div class="select select_category" name="search_c_id">
+              <div class="select select_category">
                 <p class="select_current"><span>Select Category</span></p>
-                <ul class="select_dropdown"></ul>
+                <ul class="select_dropdown"> <li class="select_option active">Select Category</li></ul>
               </div>
-              <div class="select select_brand" name="search_m_id">
+              <div class="select select_brand">
                 <p class="select_current"><span>Select Manufacturer</span></p>
-                <ul class="select_dropdown right"></ul>
+                <ul class="select_dropdown right"> <li class="select_option active">Select Manufacturer</li></ul>
               </div>
-              <button class="btn btn_dark" type="submit">Submit</button>
+              <button class="btn btn_dark" type="button">Submit</button>
             </div>
             <button class="btn_reset" type="reset" data-close="advanced-search"></button>
           </div>
@@ -1059,12 +1076,6 @@ let html = `
             <h2 class="listing_title"></h2>
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
-              <div class="align-items-center">
-                <p class="fs-14 mr-16">Sort by</p>
-
-                <div id="select_sort" class="select select_sort"></div>
-               
-              </div>
             </div>
             <div class="listing_content"> </div>
           </div>
@@ -1077,13 +1088,20 @@ let isSearchStalledCount = 0;
 let actionDataLayer = '';
 let labelDataLayer = '';
 
-let headerFetch = {
+let optionFetchAlgolia = {
   headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-Algolia-API-Key': 'e3a0cffec873466acf71806748550356',
+    'X-Algolia-Application-Id':'PXDJAQHDPZ'
   },
-  method: "GET",
+  method: 'GET'
 }
 
+let requestAllCaterories = new Promise((resolve, reject) => {
+  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+})
+
+//push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
   console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
@@ -1095,22 +1113,20 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
-let requestAllCaterories = new Promise((resolve, reject) => {
-  fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
-})
-
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
+document.querySelector('.header').before(document.querySelector('#top'));
+document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
 
 //select
 function remActiveSelect() {
-    let dropdowns = document.querySelectorAll(".select");
-    for (let i = 0; i < dropdowns.length; i++) {
-        if (dropdowns[i].classList.contains('active')) {
-            dropdowns[i].classList.remove('active');
-        }
-    }
+  let dropdowns = document.querySelectorAll(".select");
+  for (let i = 0; i < dropdowns.length; i++) {
+      if (dropdowns[i].classList.contains('active')) {
+          dropdowns[i].classList.remove('active');
+      }
+  }
 }
 
 function toggleActive(getData) {
@@ -1118,8 +1134,8 @@ function toggleActive(getData) {
   if (document.querySelector(`[data-item=${getData}]`)) {
       document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
       if (getData == 'advanced-search') {
-          document.querySelector(`[data-button=${getData}]`).classList.toggle('active')
-          document.querySelector(`.nav_category`).classList.remove('active')
+          document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
+          document.querySelector(`.nav_category`).classList.remove('active');
       }
   }
 }
@@ -1143,30 +1159,20 @@ let litterAlphabet = [];
 requestAllCaterories.then(data => {
   console.log(data)
 
-  for (let key in data.categories) {
-      if (data.categories[key].url) {
-          document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}">${data.categories[key].title}</a></li>`)
-      }
+  let categoriesLvl0 = data.facets["categories.lvl0"],
+      brand = data.facets.manufacturer;
+  for (let key in categoriesLvl0) {
+    document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/category/${key.toLowerCase().split(' ').join('-')}">${key}</a><ul></ul></li>`)
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+  }
+
+  for (let key in brand) {
+    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
   }
 
   let btnCategory = document.querySelector('.all_category'),
       listCategories = document.querySelectorAll('#list_categories li'), //list categories
       alphabet = document.querySelector('.alphabet'); //alphabet
-
-  // document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
-  //     if (index > 4) el.parentElement.hidden = true;
-  //     el.addEventListener('click', (e) => {
-
-  //         localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
-  //         if (index < 5) {
-  //             actionDataLayer = 'Click on most popular categories items';
-  //         } else {
-  //             actionDataLayer = 'Click on other categories items';
-  //         }
-  //         labelDataLayer = e.target.innerText;
-  //         pushDataLayer(actionDataLayer,labelDataLayer)
-  //     })
-  // })
   
   listCategories.forEach((el) => {
     litterAlphabet.push({'letter': el.innerText[0]})
@@ -1201,18 +1207,18 @@ requestAllCaterories.then(data => {
   openCategoriesFoeAlphabet(listCategories)
 
   //change Class active
-  let alphabetContainer = document.querySelector('.alphabet'),
-      para = document.querySelectorAll('.alphabet li');
-      console.log(alphabetContainer)
-      console.log(para)
+  // let alphabetContainer = document.querySelector('.alphabet'),
+  //     para = document.querySelectorAll('.alphabet li');
+  //     console.log(alphabetContainer)
+  //     console.log(para)
 
-  let paraArr = [].slice.call(para).sort(function (a, b) {
-      return a - b
-  });
-  console.log(paraArr)
-  paraArr.forEach(function (p) {
-    alphabetContainer.appendChild(p);
-  });
+  // let paraArr = [].slice.call(para).sort(function (a, b) {
+  //     return a - b
+  // });
+  // console.log(paraArr)
+  // paraArr.forEach(function (p) {
+  //   alphabetContainer.appendChild(p);
+  // });
 
   alphabet.querySelectorAll('li').forEach(el => {
     el.addEventListener('mouseover', (e) => {
@@ -1224,9 +1230,9 @@ requestAllCaterories.then(data => {
     })
   })   
 
-  let items = [...alphabet.querySelectorAll("li")];
-  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-  items.forEach(item => alphabet.appendChild(item));
+  // let items = [...alphabet.querySelectorAll("li")];
+  // items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+  // items.forEach(item => alphabet.appendChild(item));
 
   //all categories
   btnCategory.addEventListener('click', (e) => {
@@ -1272,167 +1278,137 @@ if (window.location.pathname.includes('/category')) {
 } else {
   facetCategories = '*'
 }
+
 search.addWidgets([
   instantsearch.widgets.configure({
-      hitsPerPage: '12',
-      facetFilters: [facetCategories],
+    hitsPerPage: '12',
+    facetFilters: [facetCategories],
+    // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
   }),
 
   instantsearch.widgets.searchBox({
-      container: '#form-search',
-      placeholder: 'Search by Name',
-      loadingIndicator: false,
-      searchAsYouType: false, 
-      templates: {
-          loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
-      },
+    container: '#form-search',
+    placeholder: 'Search by Name',
+    loadingIndicator: false,
+    searchAsYouType: false, 
+    templates: {
+        loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+    },
   }),
-  instantsearch.widgets.hits({
-      container: '.listing_content',
-      templates: {
-          empty: `No Item Found`,
-          item: (hit) => {
-              function findImage() {
-                  for (let i = 0; i < hit.variants.length; i++) {
-                      if (hit.variants[i].image != '') {
-                          return hit.variants[i].image
-                      }
-                  }
-              }
-              // function optionBox() {
-              //   let option = ``;
-              //   for (let i = 0; i < hit.variants.length; i++) {
-              //       let variantsArr = hit.variants[i];
-              //       if (variantsArr.extra != '' && variantsArr.price != '0.00') {
-              //           option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''}</option>` + option;  
-              //       }
-              //   }
-              //   return option
-              // }
-              
-              let boxItem = `
-                <div class="card">
-                  <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
-                  <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
-                    <span title="${hit.name}">${hit.name}</span>
-                  </a>
-                  <form action="https://medicalmega.com/cart.html" method="post">
-                    <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
-                      <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                      <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
-                      <button class="btn-calc btn-calc_plus" type="button"></button>
-                    </div>
-                    ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
-                    <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
-                    <input type="hidden" name="product_id" value="${hit.objectID }">
-                    <input type="hidden" name="add_to_cart" value="variant">
-                    
-                  </form>
-                </div>
-              `
-              
-          //     <select class="product-variant product-variant__options-box__select" style="display:none;">
-          //     ${optionBox()}
-          // </select>
-              return boxItem
-          }
-      },
+  instantsearch.widgets.infiniteHits({
+    container: '.listing_content',
+    escapeHTML: false,
+    transformItems(items) {
+      return items.filter(item => item.price != '0.00' )
+    },
+    templates: {
+        empty: `No Item Found`,
+        item: (hit) => {
+            function findImage() {
+                for (let i = 0; i < hit.variants.length; i++) {
+                    if (hit.variants[i].image != '') {
+                        return hit.variants[i].image
+                    }
+                }
+            }
+            
+            let boxItem = `
+              <div class="card">
+                <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
+                <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
+                  <span title="${hit.name}">${hit.name}</span>
+                </a>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                  <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
+                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                    <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
+                    <button class="btn-calc btn-calc_plus" type="button"></button>
+                  </div>
+                  ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+                  <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+                  <input type="hidden" name="product_id" value="${hit.objectID }">
+                  <input type="hidden" name="add_to_cart" value="variant">
+                  
+                </form>
+              </div>
+            `
+            
+            return boxItem
+        }
+    },
   }),
-
-  instantsearch.widgets.sortBy({
-      container: '#select_sort',
-      placeholder: 'Featured',
-      items: [
-          { label: 'Featured', value: 'staging_products', selected: true, disable: true },
-          { label: 'Product Name ASC', value: 'staging_products' },
-          { label: 'Product Name DESC', value: 'staging_products_name_desc' },
-          { label: 'Product Price ASC', value: 'staging_products_price_asc' },
-          { label: 'Product Price DESC', value: 'staging_products_price_desc' },
-      ],
-  }),
-  // instantsearch.widgets.pagination({
-  //     container: '.pagination1',
-  // }),
 
   instantsearch.widgets.stats({
-      container: '#stats-container',
-      templates: {
-          text(data) {
-              let hits = data.nbHits;
-              let to = data.hitsPerPage * (data.page + 1); 
+    container: '#stats-container',
+    templates: {
+      text(data) {
+        if (data.hasManyResults || data.hasOneResult) {
+            return `${data.nbHits} items`;
+        } else {
+            return `no result`;
+        }
+      },
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: '#manufacturer',
+    attribute: 'manufacturer',
+    limit: 7,
+    showMore: true,
+    showMoreLimit: 100,
+    sortBy: ['name:asc'],
+    templates: {
+      item: (data) => {
+        actionDataLayer = 'Click on one of the brand items on filters';
+        let checkbox = `
+            <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+              <span class="check"></span>
+              <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+            </label>
+        `;
+    
+        return checkbox
+      },
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: '#price_group',
+    attribute: 'price_group',
+    limit: 10,
+    sortBy: ['isRefined:asc'],
+    templates: {
+      item: (data) => {
+          actionDataLayer = 'Click on one of the price items on filters';
+          let sltPrice = '';
+          if (data.value.includes(' - ')) {
+              sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+          }  else {
+              sltPrice = `> $${data.value.split('> ')[1]}`;
+          }
+
+          let checkbox = `
+              <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                  <span class="check"></span>
+                  <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+              </label>
+          `;
       
-              if (data.hasManyResults) {
-                  return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
-              } else if (data.hasOneResult) {
-                  return `Displaying <b>${data.page + 1}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
-              } else {
-                  return `no result`;
-              }
-          },
+          return checkbox
       },
-  }),
-  instantsearch.widgets.refinementList({
-      container: '#manufacturer',
-      attribute: 'manufacturer',
-      limit: 100,
-      sortBy: ['name:asc'],
-      templates: {
-          item: (data) => {
-              actionDataLayer = 'Click on one of the brand items on filters';
-              let checkbox = `
-                  <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                    <span class="check"></span>
-                    <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-                  </label>
-              `;
-          
-              return checkbox
-          },
-      },
-  }),
-  instantsearch.widgets.refinementList({
-      container: '#price_group',
-      attribute: 'price_group',
-      limit: 10,
-      sortBy: ['isRefined:asc'],
-      templates: {
-        item: (data) => {
-            actionDataLayer = 'Click on one of the price items on filters';
-            let sltPrice = '';
-            if (data.value.includes(' - ')) {
-                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-            }  else {
-                sltPrice = `> $${data.value.split('> ')[1]}`;
-            }
-
-            let checkbox = `
-                <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                    <span class="check"></span>
-                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
-                </label>
-            `;
-        
-            return checkbox
-        },
-      },
-
+    },
   }),
   
   // instantsearch.widgets.refinementList({
-  //     container: `.list_subcategory`,
-  //     attribute: categoryFacet.split(':')[0].replace(lvl,'') + lvlNew,
-  //     showMore: true,
-  //     limit: 14,
-  //     showMoreLimit: 100,
+  //     container: `.select_category .select_dropdown`,
+  //     attribute: 'categories.lvl0',
+  //     limit: 100,
   //     sortBy: ['isRefined'],
-      
-  //     transformItems(items) {
-  //         return items.filter(item => item.label.includes(categoryFacet.split(':')[1])) 
-  //     },
+
   //     templates: {
   //         item: (data) => {
   //             console.log(data)
+  //             return data.label
   //         }
   //     },
   // }),
@@ -1483,12 +1459,15 @@ search.addWidgets([
   instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     templates: {
-      resetLabel: 'Clear',
+      resetLabel: `Clear <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
     },
   }),
 ]); 
 
 search.start();
+
+let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
+    closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
 
 //qty change
 function changeQty(qty,pr,action) {
@@ -1529,6 +1508,52 @@ document.body.addEventListener('click', (e) => {
   }  
 })
 
+dataButton.forEach(item => {
+  item.addEventListener('click', (e) => {
+    toggleActive(item.getAttribute('data-button'))
+  })
+})
+
+closeBtn.forEach(item => {
+  item.addEventListener('click', (e) => {
+    toggleActive(item.getAttribute('data-close'));
+    document.querySelector('.select_category ul li').click();
+    document.querySelector('.select_brand ul li').click();
+  })
+})
+
+let index = searchClient.initIndex('staging_products');
+
+// search.addWidgets([
+//   instantsearch.widgets.configure({
+//     hitsPerPage: '12',
+//     facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex','query:wear 814'],
+//   }),
+// ])
+
+// index.getObject('78438').then(object => {
+//   console.log(object);
+// });
+// index.getObjects(hit => hit.item_num == "78438").then(obj => {
+//   console.log(obj);
+// });
+
+// index.getSettings().then(settings => {
+//   console.log(settings);
+// });
+// var index = searchClient.initIndex(algoliaConfig.indexName + '_categories.lvl0');
+// index.search('Urostomy 7331', {
+//   facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex']
+// }).then(({ hits }) => {
+//   console.log(hits);
+// });
+// index.search(' ',{
+//   facetFilters: ['categories.lvl0:Ostomy', '',''] // AND "item_num:5585"
+// }).then(({ hits }) => {
+//   console.log(hits);
+// });
+ 
+
 search.addWidgets([
   {
       render({ searchMetadata = {} }) {
@@ -1536,59 +1561,7 @@ search.addWidgets([
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
-            
-            let 
-                // btnPlus = document.querySelectorAll('.ais-Hits .card .btn-calc_plus'), //btn +
-                // btnMinus = document.querySelectorAll('.ais-Hits .card .btn-calc_minus'), //btn -
-                // inputQty = document.querySelectorAll('.ais-Hits .card .calc-qty'), //quantity input
-                // calc = document.querySelectorAll('.ais-Hits .card .calc'), // calc wrapper +\-
-                dataButton = document.querySelectorAll('[data-button]'), // btn for open or block
-                // price = document.querySelectorAll('.ais-Hits .card .pr'), //price
-                closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
-
-              // document.querySelectorAll('.card .product-variant').forEach((select, index) => {
-              //   let parent = select.closest('.card');
-              //   if (select.length > 0) {
-              //     let price = select.options[select.selectedIndex].dataset.price,
-              //       variantId = select.options[select.selectedIndex].value,
-              //       name = select.options[select.selectedIndex].innerText,
-              //       qty = select.options[select.selectedIndex].dataset.qty;
-
-              //     parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-              //     parent.querySelector(`[name="quantity"]`).dataset.maxValue = qty;
-  
-              //     if (name.includes('Out of stock')) {
-              //         parent.querySelector('.status').style.display = 'block';
-              //         parent.querySelector('.calc ').classList.add('disabled');
-              //         parent.querySelector('.btn').setAttribute('class','btn btn_white');
-              //         parent.querySelector('.btn').setAttribute('data-button','notify');
-              //         parent.querySelector('.btn').type = 'button';
-              //         parent.querySelector('.btn').innerHTML = '<span>notify when available</span>';
-              //     } else {
-              //         parent.querySelector('.status').style.display = 'none';
-              //         parent.querySelector('.calc ').classList.remove('disabled');
-              //         parent.querySelector('.btn').setAttribute('class','btn btn_dark');
-              //         parent.querySelector('.btn').removeAttribute('data-button');
-              //         parent.querySelector('.btn').type = 'submit';
-              //         parent.querySelector('.btn').innerHTML = `<span>$<span class="pr" data-price="${price}">${price}</span> | Add to Cart</span>`;
-              //     }
-              //   }
-              // })
-
-              dataButton.forEach(item => {
-                item.addEventListener('click', () => toggleActive(item.getAttribute('data-button')))
-              })
-              
-              closeBtn.forEach(item => {
-                item.addEventListener('click', () => toggleActive(item.getAttribute('data-close')))
-              })
           
-              // for (let i = 0; i < categories.length; i++) {
-              //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option" data-value="${categories[i]["category_id"]}">${categories[i].title}</li>`)
-              // }
-              // for (let i = 0; i < categories.length; i++) {
-              //     document.querySelector('#list_categories').insertAdjacentHTML('afterbegin', `<li><a href="${categories[i].url}">${categories[i].title}</a></li>`);
-              // }
               if (document.querySelector('#price_group li') != null) {
                 let pricesContainer = document.querySelector('#price_group ul'),
                 para = document.querySelectorAll('#price_group li');
@@ -1600,42 +1573,90 @@ search.addWidgets([
                     pricesContainer.appendChild(p);
                 });
               }
+              document.querySelectorAll('.card .calc').forEach((el, i) => {
+                el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  console.log(el.nextElementSibling.querySelector('.pr'))
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
+                })
+                el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
+                })
+                el.querySelector('.calc-qty').addEventListener('input', (e) => {
+                  changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
+                })
+                el.querySelector('.calc-qty').addEventListener('blur', (e) => {
+                    if (e.target.value == '') {
+                        e.target.value = 1;
+                    }
+                }, true)
+              })
           }
       },
   },
 ])
 
-document.querySelectorAll('.select_current').forEach((el) => {
-    el.addEventListener('click', (e) => {
-       e.stopImmediatePropagation();
-        remActiveSelect();
-        el.parentElement.classList.toggle('active');
-    })
-    el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
-        option.addEventListener('click', (e) => {
-            e.stopImmediatePropagation()
-            option.closest('.select').querySelector('.active').classList.remove('active');
-
-            option.classList.add('active');
-
-            if (index == 0) {
-                el.innerHTML = `<span>${option.innerHTML}</span>`;
-            } else {
-                el.innerHTML = option.innerHTML;
-            }
-        })
-    })
+document.body.addEventListener('click', (e) => { 
+  if (!e.target.closest('.select')) remActiveSelect();
+  if (!e.target.closest('.nav_category')) {
+      document.querySelector(`.nav_category`).classList.remove('active');
+  }  
 })
 
-document.body.addEventListener('click', (e) => {
-    if (!e.target.matches('.select_current')) remActiveSelect();
+window.addEventListener('scroll', (e) => {
+  remActiveSelect(); 
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    console.log('bottom')
+    if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
+      document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+    }
+  }
 })
-
-window.addEventListener('scroll', () => remActiveSelect())
 
 //select filter
 document.querySelectorAll('.select_filter').forEach(el => {
     el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
+})
+
+document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+  document.querySelector('.advanced-search .btn_reset').click();
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: ["*"],
+    }),
+  ])
+});
+
+document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+  let categories = document.querySelector('.select_category .select_current').innerText.includes('Select') ? "*" : `categories.lvl0:${document.querySelector('.select_category .select_current').innerText}`;
+  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
+  
+  let queryKeyword = document.querySelector('[name="search_keyword"]').value,
+      queryItem = document.querySelector('[name="search_item"]').value,
+      querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+
+  console.log(categories,brand,querySum)
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: [categories,brand],
+      query: querySum
+    }),
+  ])
+})
+
+
+document.querySelectorAll('.advanced-search input').forEach(input => {
+  // input.addEventListener('input', (e) => {
+  //   return e.target.value.replace(/\s/g, "");
+  // })
+  input.addEventListener('keypress', (e) => {
+    if (e.keyCode == '13') {
+      document.querySelector('.advanced-search .btn').click();
+    }
+  })
 })
 
 
@@ -1646,29 +1667,82 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-  if( document.querySelectorAll('.ais-Hits .card .calc')) {
+  if (document.querySelectorAll('.select_current')) {
     mut.disconnect();
-    //+/- btns quantity
-    document.querySelectorAll('.ais-Hits .card .calc').forEach((el, i) => {
-      el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
-        e.stopImmediatePropagation();
-        console.log(el.nextElementSibling.querySelector('.pr'))
-        changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
-      })
-      el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
-        e.stopImmediatePropagation();
-        changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
-      })
-      el.querySelector('.calc-qty').addEventListener('input', (e) => {
-        changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
-      })
-      el.querySelector('.calc-qty').addEventListener('blur', (e) => {
-          if (e.target.value == '') {
-              e.target.value = 1;
+    
+    document.querySelectorAll('.select_current').forEach((el,index) => {
+      el.addEventListener('click',(e) => {
+          e.stopImmediatePropagation()
+          el.parentElement.classList.toggle('active');
+
+          if (index == 0) {
+              document.querySelectorAll('.select')[1].classList.remove('active');
+          } 
+          if (index == 1)  {
+              document.querySelectorAll('.select')[0].classList.remove('active');
           }
-      }, true)
+          //events
+          let notes = ' select';
+          if (el.closest('.select_category')) {
+              notes = ' select category';
+          } else if (el.closest('.select_brand')) {
+              notes = ' select brand'
+          }
+          labelDataLayer = `Header`;
+          actionDataLayer = `Click on ${notes}`;
+          pushDataLayer(actionDataLayer, labelDataLayer)
+      })
+      el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+          option.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+
+            console.log('click')
+              let notes = 'select';
+              if (option.closest('.select_category')) {
+                  notes = 'select category';
+              
+                  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                    console.log(data)
+                    let brand = data.facets.manufacturer;
+                    document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active">Select Manufacturer</li>`;
+                    document.querySelector('.select_brand .select_dropdown li').click();
+                    for (let key in brand) {
+                      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                    }
+                    
+                  })       
+              } else if (option.closest('.select_brand')) {
+                  notes = 'select manufacturer';
+                  // fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=categories.lv0&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                  //   console.log(data)
+                  //   let categoriesLvl0 = data.facets['categories.lvl0'];
+                  //   document.querySelector('.select_category .select_dropdown').innerHTML = `<li class="select_option active">Select Category</li>`;
+                  //   // document.querySelector('.select_category .select_dropdown li').click();
+                  //   for (let key in categoriesLvl0) {
+                  //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                  //   }
+                  // })
+              }
+              actionDataLayer = `Click on option ${notes}`;
+              labelDataLayer = 'Advanced Search';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+
+              if (option.closest('.select').querySelector('.active') != null) {
+                  option.closest('.select').querySelector('.active').classList.remove('active');
+              }
+
+              option.classList.add('active');
+            
+              if (index == 0) {
+                  el.innerHTML = `<span>${option.innerHTML}</span>`;
+              } else {
+                  el.innerHTML = option.innerHTML;
+              }
+              option.closest('.select').classList.remove('active');
+          })
+      })
     })
   }
   mut.observe(document, optionMut);
-})
+});
 mut.observe(document, optionMut);
