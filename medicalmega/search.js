@@ -1,656 +1,1147 @@
-let styles = `
-    <style>
-   
-    html:first-child .list_type3 span {
-        line-height: 1;
-    }
-    .list_type2, #listing_main {
-        width: 100%;
-    }
-    #hdr, #banner, .listing .category, .listing .subhead {
-        display: none;
-    }
-    span.categoryTop, .listing span.categoryTop {
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 28px;
-        text-align: center;
-        text-transform: capitalize;
-        color: #171717;
-        display: block;
-        padding: 10px 0;
-    }
-    .result_for_search {
-        color: #cd1109;
-        font-size: 13px;
-        font-weight: 700;
-        display: block;
-        padding: 10px 0;
-    }
-    #wrap {
-        padding-top: 50px;
-    }
-    .header * {
-        box-sizing: border-box;
-        clear: both;
-    }
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 9999;
-        background-color: #fff;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-        padding: 6px 20px;
-        box-sizing: border-box;
-    }
-    #search-box {
-        width: calc(100% - 80px);
-        position: relative;
-    }
-    .ais-SearchBox-input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        box-sizing: border-box;
-        background: #EEEEEE;
-        border: 1px solid #C0C0C0;
-        border-radius: 4px;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-        padding: 10px 66px 10px 20px;
-        color: #666666;
-        height: auto;
-        width: 100%;
-        position: relative;
-        z-index: 2;
-    }
-    .ais-SearchBox-submit {
-        text-indent: 1px;
-        width: fit-content;
-        background: linear-gradient(180deg, #E44640 0%, #C11008 100%);
-        border: 1px solid #780F11;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 14px;
-        text-align: center;
-        color: #FFFFFF;
-        padding: 7px;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 4px;
-        position: absolute;
-        z-index: 3;
-    }
-    .ais-SearchBox-reset {
-        border: none;
-        transform: translateY(-50%);
-        position: absolute;
-        right: 68px;
-        top: 50%;
-        z-index: 2;
-    }
-    input.ais-SearchBox-input[type="search"]::-webkit-search-decoration,
-    input.ais-SearchBox-input[type="search"]::-webkit-search-cancel-button,
-    input.ais-SearchBox-input[type="search"]::-webkit-search-results-button,
-    input.ais-SearchBox-input[type="search"]::-webkit-search-results-decoration {
-        display: none; 
-    }
-    .ais-SearchBox-loadingIndicator {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1; 
-        background: rgba(255,255,255,0.8);
-//         display: none;
-    }
-    .ais-SearchBox-loadingIndicator img { 
-        width: 30px;
-        margin: auto;
-        display: block;
-        object-fit: contain;
-        height: 100%;
-    }
-    #listing_container {
-        padding: 10px;
-        display: none;
-        position: relative;
-    }
-    .shoppingcart a {
-        margin: 0;
-        display: block;
-        color: transparent;
-        width: 24px;
-        height: 24px;
-    }
-    .search {
-        width: calc(100% - 24px - 16px - 24px - 16px);
-    }
-    .search dd {
-        width: 100%;
-    }
-    .shoppingcart {
-        background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/shopping_cart.svg');
-        background-size: contain;
-        height: 24px;
-        width: 24px;
-        position: relative;
-        z-index: 3;
-    }
-    .by_num {
-        color: transparent;
-        position: absolute;
-        top: -1px;
-        right: 50%;
-        transform: translateX(50%);
-        pointer-events: none;
-    }
-    .by_num span {
-        font-weight: bold;
-        font-size: 11px;
-        line-height: 11px;
-        text-align: center;
-        color: #C23D31;
-    }
-    .nav-menu {
-        opacity: 0;
-        pointer-events: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 999;
-        background: rgba(0,0,0,0.5);
-        width: 100%;
-        height: 100vh;
-        transition: all 0.3s ease;
-    }
-    .nav-menu.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    .nav-menu.active .nav-menu_container {
-        transform: translateX(0)
-    }
-    .nav-menu_container {
-        max-width: 315px;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        overflow-y: auto;
-        transition: all 0.3s ease;
-        transform: translateX(-100px);
-    }
-    .nav-menu_login li {
-        background: url("https://conversionratestore.github.io/projects/medicalmega/img/user.svg") no-repeat left center / 28px;
-        padding-left: 36px;
-        line-height: 28px;
-        margin-top: 20px;
-    }
-    .nav-menu_login li a {
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 28px;
-        color: #171717;
-    }
-    .nav span, .nav span span {
-        background: none;
-    }
-    .sticky-top {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        background-color: #fff;
-        padding: 12px 12px 16px 20px;
-        border-bottom: 1px solid #C0C0C0;
-    }
-    #listing_container .justify-content-between {
-        padding-top: 20px;
-    }
-    .justify-content-between {
-        display: flex;
-        justify-content: space-between;
-    }
-    .header .nav {
-        padding: 12px 0 20px;
-        width: 100%;
-        border-bottom: 1px solid #C0C0C0;
-    }
-    .header .nav li {
-        clear: both;
-        width: 100%;
-    }
-    .header .nav li:last-child {
-        display: none!important;
-    }
-    .header .nav a {
-        background: none;
-        padding: 4px 11px;
-        margin: 8px 0;
-        width: 100%;
-        display: block;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 28px;
-        text-transform: uppercase;
-        color: #171717;
-    }
-    .header .nav a:hover span{
-        background: none!important;
-        color: #C23D31;
-    }
-    .category_popular { 
-        padding: 24px 0 11px;
-        border-bottom: 1px solid #C0C0C0;
-    }
-    .category_popular .title {
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 20px;
-        color: #666666;
-        padding: 0 20px;
-        margin-bottom: 16px;
-    }
-    .category_popular .altnav {
-        width: 100%;
-        padding: 0 20px;
-        margin: 0;
-        background: none;
-    }
-    .category_popular .altnav li a {
-        color: #171717;
-        font-size: 16px;
-        padding: 7px 0;
-        width: 100%;
-        display: block;
-        font-weight: bold;
-    }
-    .category_popular .altnav li a:hover {
-        color: #C23D31;
-    }
-    .category_popular .altnav li {
-        width: 100%;
-        border: none;
-        line-height: 20px;
-        margin: 0;
-    }
-    .btn_all-category, .btn_back  {
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 20px;
-        color: #666666;
-        width: 100%;
-        text-align: left;
-        border: none;
-    }
-    .btn_back {
-        z-index: 1;
-        position: sticky;
-        top: 110px;
-        padding: 14px 20px 14px 52px;
-        border-bottom: 1px solid #C0C0C0;
-        background: #fff url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward.svg') no-repeat left 20px center / 24px;
-    }
-    .btn_all-category {
-        padding: 14px 52px 14px 20px;
-        background: url('https://conversionratestore.github.io/projects/medicalmega/img/arrow_forward-right.svg') no-repeat right 20px center / 24px;   
-    }
-    .menu_footer {
-        padding: 25px 20px 0;
-    }
-    .menu_footer p {
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 23px;
-        color: #666666;
-        margin-bottom: 21px;
-    }
-    .menu_footer a {
-        text-decoration: underline;
-        color: #171717;
-    }
-    #manufacturer {
-        position: relative;
-    }
-    #manufacturer .ais-RefinementList-list {
-        max-height: 312px;
-        overflow-y: auto;
-    }
-    #manufacturer .ais-RefinementList-list.scroll:before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 68px;
-        pointer-events: none;
-        opacity: 1;
-        transition: all 0.2s ease;
-        background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
-    }
-    // #manufacturer .ais-RefinementList-list.scrolled:before {
-    //     opacity: 0;
-    // }
-    .list_type1 {
-        width: 100%;
-    }
-    .list_type2 {
-        padding-right: 0px;
-    }
-    .list_type2 label {
-        font-weight: 400;
-        width: auto!important;
-        font-size: 12px;
-        padding-right: 8px;
-    }
-    .btn_filter {
-        width: 100%;
-        background: #171717;
-        border-radius: 4px;
-        line-height: 30px;
-        border: none;
-        font-weight: bold;
-        font-size: 12px;
-        text-align: center;
-        color: #FFFFFF;
-    }
-    .popup_filter {
-        position: fixed;
-        z-index: 9999;
-        top: 0;
-        left: 0; 
-        height: 100%; 
-        width: 100%;
-        background: rgba(0,0,0,0.5);
-        display: none;
-        transition: all 0.3s ease; 
-    }
-    .popup_filter.active {
-        display: inline-flex;
-    }
-    .popup_filter.active .popup_container{
-        transform: translateY(0);
-    }
-    .popup_container {
-        background: #FFFFFF;
-        border-radius: 10px 10px 0px 0px;
-        width: 100%; 
-        margin-top: auto;
-        transform: translateY(100px);
-        transition: all 0.3s ease; 
-        overflow-y: auto;
-        max-height: 100%;
-        height: auto;
-    }
-    .popup_header {
-        padding: 12px;
-        position: sticky;
-        top: 0; 
-        background-color: #fff;
-        z-index: 1;
-    }
-    .btn_close {
-        width: 24px;
-        height: 24px; 
-        background: url('https://conversionratestore.github.io/projects/medicalmega/img/close2.svg') no-repeat center / contain;
-        margin-left: auto;
-        display: block;
-        border: none;
-        margin-bottom: 4px;
-    }
-    .filter_content {
-        padding: 0 40px 40px;
-    }
-    .popup_filter .title {
-        font-size: 24px;
-        line-height: 28px;
-        text-align: center;
-        text-transform: capitalize;
-    }
-    .select_current {
-        border-bottom: 1px solid #C0C0C0;
-        padding: 10px 0;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 20px;
-        color: #666666;
-        display: flex; 
-        justify-content: space-between;
-    }
-    .select_current img {
-        width: 12px;
-        hegith: 12px;
-        transition: all 0.3s ease; 
-    }
-    .select_dropdown {
-        opacity: 0;
-        transition: opacity 0.3s ease; 
-        display: none;
-        // max-height: 60vh;
-        // overflow-y: auto;
-    }
-    .select.active .select_dropdown {
-        opacity: 1;
-        display: block;
-    }
-    .select.active .select_current img {
-        transform: scaleY(-1)
-    }
-    .select_dropdown li {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-        transition: all 0.3s ease; 
-        margin-top: 22px;
-    }
-    .ais-RefinementList-item--selected .check{
-        background-image: url('https://conversionratestore.github.io/projects/medicalmega/img/check.svg')
-    }
-    .check {
-        box-sizing: border-box;
-        display: block;
-        border: 2px solid #171717;
-        width: 18px;
-        height: 18px;
-        margin-right: 15px;
-        background: no-repeat center / cover;
-        border-radius: 4px;
-    }
-    .filter_brands {
-        margin-bottom: 20px;
-    }
-    .align-items-center {
-        display: flex;
-        align-items: center;
-    }
-    .flex-center-end {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-    .count_brand {
-        color: #666666;
-    }
-    .list_type3 span img {
-        width: 100%;
-        height: 100%!important;
-        object-fit: contain;
-    }
-    a#top-navigation {
-        display: none!important;
-    }
-    .ais-Pagination-list {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-    .ais-Pagination-item  {
-        border-right: 1px solid #171717;
-    }
-    .ais-Pagination-item.ais-Pagination-item--firstPage, .ais-Pagination-item.ais-Pagination-item--previousPage, .ais-Pagination-item.ais-Pagination-item--nextPage, .ais-Pagination-item.ais-Pagination-item--lastPage  {
-        border-right: none;
-    }
-    .ais-Pagination-item:nth-last-child(3) {
-        border-right: none;
-    }
-    .ais-Pagination-link {
-        display: block;
-        padding: 0 2px;
-        margin: 0 2px;
-        font-size: 11px; 
-        line-height: 1;
-    }
-    .icon_burger {
-        position: relative;
-        z-index: 2;
-    }
-    #mm_per_page {
-        min-width: 52px;
-    }
-    .ais-Pagination-item--disabled {
-        display: none;
-    }
-    .pagination1 {
-        padding-top: 15px;
-    }
-    .pagination2 {
-        padding-bottom: 15px;
-    }
-    #stats-container {
-        color: #3d3d3d;
-        font-size: 11px;
-        font-weight: 400;
-        padding: 15px 0;
-    }
-    .page-result p {
-        padding-right: 10px;
-        font-size: 11px;
-        font-weight: 700;
-    }
-    .ais-Pagination-item--selected a {
-        font-weight: 700;
-    }
-    #listing_container.loading:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 99;
-        background: #fff url(https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif) no-repeat center / 30px;
-    }
-    .ais-RefinementList-showMore {
-        background: transparent;
-        border: none;
-        text-decoration: underline;
-        margin: 10px auto 0;
-        display: block;
-        position: relative;
-        z-index: 2;
-    }
-    .ais-RefinementList-showMore.ais-RefinementList-showMore--disabled, #lvl_categories {
-        display: none;
-    }
-    .algolia-autocomplete {
-        width: 100%;
-    }
-    .aa-dropdown-menu {
-        position: fixed!important;
-        top: 51px!important;
-        background: #fff;
-        box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
-        width: 100%;
-    }
-    .aa-suggestion {
-        display: flex;
-        align-items: center;
-        padding: 5px 10px;
-    }
-    .aa-suggestion.aa-cursor {
-        background: 
-    }
-    .aa-suggestion img {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        object-fit: contain;
-    }
-    .aa-suggestion em {
-        font-weight: 700;
-    }
-    .ais-SearchBox-input:not(:focus) ~ .aa-dropdown-menu .aa-suggestion {
-        display: none!important;
-    }
-    </style>`
+let style = `
+<style>
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
+  font-weight: 300;
+  font-style: "normal"; }
 
-let header = `
-    <header class="header">
-        <img src="https://conversionratestore.github.io/projects/medicalmega/img/menu.svg" alt="icon burger" class="icon_burger" data-button="menu">
-        <div id="search-box"></div>
-        <ul class="header_cart"></ul>
-        <div class="nav-menu" data-item="menu">
-            <div class="nav-menu_container">
-                <div class="sticky-top">
-                    <div class="justify-content-between">
-                        <a href="/" class="link_logo"><img src="https://conversionratestore.github.io/projects/medicalmega/img/logo-2.png" class="logo"></a>
-                        <img src="https://conversionratestore.github.io/projects/medicalmega/img/close.svg" class="btn_close" data-button="menu">
-                    </div>
-                    <ul class="nav-menu_login"></ul>
-                </div>
-                <button type='button' class="btn_back" hidden>Main Menu</button>
-                <div class="category_popular">
-                    <p class="title">Most Popular Categories</p>
-                    <ul class="altnav"></ul>
-                    <button type='button' class="btn_all-category">View All Categories</button>
-                </div>
-                <div class="menu_footer">
-                    <p>Local Phone #   <a href="#" class="tel:17182084380">1-718-208-4380</a></p>
-                    <p>Toll Free Phone # <a class="tel:18556336342">1-855-MED-MEGA (633-6342)</a></p>
-                </div>  
-            </div>
-        </div>
-    </header>`;
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: "normal"; }
 
-let brandsFilter = [],
-    priceRange = [];
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: "normal"; }
 
-let idCategory = '';
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: "normal"; }
 
-let headerFetch = {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    method: "GET",
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: "normal"; }
+
+@font-face {
+  font-family: "Inter";
+  src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
+  font-weight: 800;
+  font-style: "normal"; }
+
+*, *::before, *::after {
+  -webkit-appearance: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; }
+
+ul, ol, li {
+    list-style: none;
 }
 
-let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+body {
+  font-size: 12px;
+  border-top: 0;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: normal;}
+
+button {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield; }
+
+*::-webkit-input-placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #9AA6AB;
+  line-height: 26px; }
+
+*:-moz-placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #9AA6AB;
+  line-height: 26px; }
+
+*::-moz-placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #9AA6AB;
+  line-height: 26px; }
+
+*:-ms-input-placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #9AA6AB;
+  line-height: 26px; }
+
+@-webkit-keyframes autofill {
+    to {
+        color: #091114;
+        background-color: #E9EBEC;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #E9EBEC;
+  border-radius: 30px;
+  padding: 7.5px 20px;
+  width: 100%;
+  font-size: 14px;
+  outline-color: #344D57;
+  line-height: 26px; }
+
+.container {
+  max-width: 1260px;
+  padding: 0 10px;
+  width: 100%;
+  margin: 0 auto; }
+#wrap, .modal {
+  display: none;}
+.main {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #091114;
+  text-align: left;
+  line-height: 16px; }
+
+.btn {
+  font-family: "Inter", sans-serif;
+  background-color: #1E3944;
+  border: 2px solid #1E3944;
+  border-radius: 40px;
+  color: #FBFBFB;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 44px;
+  font-size: 12px;
+  padding: 0 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; }
+    .btn:hover, .btn:not(.btn_white):focus  {
+      background-color: #344D57;
+      border-color: #344D57; }
+  .btn[disabled] {
+      color: #9AA6AB;
+      background-color: #F0F1F2;
+      border-color: #F0F1F2; }
+  .btn[disabled] svg, #form-search button[disabled] svg {
+      fill: #9AA6AB; }
+  .btn_white {
+    background-color: #FFFFFF;
+    color: #1E3944; }
+  .btn_white.active {
+      background-color: #E9EBEC; }
+  .btn_white:hover {
+    background-color: #F0F1F2;}
+  .btn_white[disabled], #form-search button[disabled] {
+      border-color: #F0F1F2;
+      background-color: #FBFBFB;
+      color: #9AA6AB; }
+
+.check {
+  border: 1px solid #6D7E85;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  display: block;
+  margin-right: 8px;
+  position: relative; }
+  .check:before {
+    content: none;
+    width: 8px;
+    height: 8px;
+    background: #091114;
+    border-radius: 1px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
+.check_text {
+  font-size: 14px;
+  line-height: 150%; }
+
+.ais-RefinementList-item--selected .check:before {
+  content: ''; }
+
+.header {
+  -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  color: #1E3944;
+  z-index: 8;
+  background: #fff; }
+
+.supbar {
+  background: #1E3944;
+  padding: 10px 0 11px; }
+  .supbar p, .supbar a {
+    font-size: 12px;
+    line-height: 1;
+    color: #E9EBEC; }
+  .supbar img {
+    margin-right: 8px; }
+
+.midbar {
+  padding: 20px 0; }
+.midbar_action {
+  padding: 12px;}
+.midbar_action span {
+  font-weight: 600;
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 10px;
+  color: #1E3944; }
+.midbar .btn {
+  font-size: 12px;}
+.midbar_action span.cart_count {
+  color: #96280F;}
+.logo {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 18px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #1E3944!important; }
+  .logo span {
+    color: #96280F; }
+
+#form-search {
+  position: relative;
+  width: 545px; }
+  .ais-SearchBox-input {
+    background: #E9EBEC;
+    border-radius: 38px;
+    padding: 11px 50px 11px 20px;
+    width: 100%; }
+  .ais-SearchBox-submit {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1E3944; }
+    .ais-SearchBox-submit svg {
+      fill: #fff;
+      width: 16px;
+      height: 16px;
+    }
+    .ais-SearchBox-reset {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      padding: 5px;
+      transform: translateY(-50%);
+      background-color: transparent;
+    }
+    .ais-SearchBox-loadingIndicator {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+    }
+.subbar {
+  border-top: 1px solid #BCC4C7;
+  padding: 9px 0; }
+
+.all_category {
+  cursor: pointer;
+  padding: 13px 10px 13px 8px;
+  border-radius: 100px;
+  transition: all 0.3s ease; }
+
+.dropdown_categories {
+  position: absolute;
+  top: 188px;
+  left: 0;
+  display: flex;
+  opacity: 0;
+  pointer-events: none; }
+
+.alphabet {
+  height: calc(100vh - 188px);
+  overflow-y: auto;
+  padding: 16px 0;
+  min-width: 61px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #E3E6E7; }
+  .nav_category *::-webkit-scrollbar, .nav_category *::-webkit-scrollbar-track {
+    width: 4px;
+  }
+  .alphabet li {
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #6d7e85;
+    margin: 4px 0;
+    text-transform: uppercase;
+    cursor: pointer; }
+    .alphabet li.active {
+      color: #96280F;
+      font-weight: 600;
+    line-height: 29px;
+      font-size: 24px; }
+
+#list_categories {
+  height: calc(100vh - 188px);
+  overflow-y: auto;
+  padding: 20px 40px;
+  width: 327px;
+  background: #FBFBFB; }
+  #list_categories li.active a {
+    text-decoration: underline;}
+  #list_categories a {
+    font-size: 16px;
+    line-height: 150%;
+    color: #344D57;
+    margin-bottom: 12px;
+    display: block; }
+  #list_categories a:hover {
+    text-decoration: underline; }
+  .nav_category.active .all_category {
+    background: #E9EBEC; }
+  .nav_category.active .dropdown_categories {
+    opacity: 1;
+    pointer-events: auto; }
+.nav_category .p-main {
+  pointer-events: none;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1E3944; }
+.burger_category {
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px; }
+.category_popular a {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #6D7E85;
+  padding: 12px 6px;
+  display: block;
+  margin: 0 8px; }
+  .category_popular a:hover, .previous-version:hover {
+    color: #091114; }
+.previous-version {
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 10px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 12px;
+      color: #1E3944;}
+.burger {
+  display: none;
+  width: 21px;
+  height: 17px;
+  position: relative;
+  z-index: 9;
+  background-color: transparent;
+  border: none; }
+  .burger-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    pointer-events: none; }
+    .burger-line-top {
+      top: 0; }
+    .burger-line-center {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%); }
+    .burger-line-bottom {
+      bottom: 0; }
+  .burger.active .burger-line {
+    top: 50%; }
+    .burger.active .burger-line-top {
+      -webkit-transform: translateY(-50%) rotate(224deg);
+      -ms-transform: translateY(-50%) rotate(224deg);
+      transform: translateY(-50%) rotate(224deg); }
+    .burger.active .burger-line-center {
+      opacity: 0; }
+    .burger.active .burger-line-bottom {
+      bottom: auto;
+      -webkit-transform: translateY(-50%) rotate(-224deg);
+      -ms-transform: translateY(-50%) rotate(-224deg);
+      transform: translateY(-50%) rotate(-224deg); }
+
+.btn_reset {
+  background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
+  width: 130px;
+  height: 24px;
+  cursor: pointer; }
+
+.advanced-search {
+  border-top: 1px solid #BCC4C7;
+  opacity: 0;
+  padding: 0;
+  height: 0;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  pointer-events: none; }
+  .advanced-search.active {
+    padding: 16px 0;
+    height: 64px;
+    opacity: 1;
+    pointer-events: auto; }
+  .advanced-search input {
+    padding: 2px 14px;
+    background-color: #F0F1F2;
+    width: fit-content;
+    border: 1px solid #E0E4E5;
+    max-width: 115px;
+    font-size: 12px;
+    line-height: 26px;
+    text-align: center;
+    margin-right: 20px; }
+  .advanced-search .btn {
+    line-height: 28px;
+    margin-left: 20px;
+    font-size: 10px; }
+  .advanced-search .select {
+    margin-right: 20px; }
+.select {
+  position: relative;
+  z-index: 6;}
+  .select:before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    border-radius: 0.5px;
+    border-color: #9AA6AB transparent transparent transparent;}
+    .select:after {
+      content: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #344D57;
+      pointer-events: none;
+      border-radius: 30px;
+    }
+.select_brand {
+  width: 165px; }
+.select_category {
+  width: 142px;}
+  .select_current {
+    width: 100%;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #F0F1F2;
+    border-radius: 30px;
+    border: 1px solid #E0E4E5;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 30px;
+    color: #344D57;
+    padding: 0 30px 0 16px; }
+  .select_current span {
+      pointer-events: none;
+      color: #9AA6AB; }
+  .select_dropdown {
+      display: grid;
+      position: absolute;
+      left: 0;
+      top: calc(100% + 4px);
+      background-color: #FBFBFB;
+      border: 1px solid #E3E6E7;
+      box-shadow: 0 2px 4px rgba(9, 17, 20, 0.1), 0 12px 32px rgba(0, 0, 0, 0.05);
+      overflow-y: auto; 
+      transition: all 0.3s ease;
+      height: 0;
+      visibility: hidden;
+      width: max-content;
+      max-width: 327px;
+      padding: 0 16px;}
+  .select_dropdown.right {
+      left: auto;
+      right: 0;}
+  .select.active:before {
+      transform: translateY(-50%) scaleY(-1);}
+  .select.active:after {
+    content: '';}
+  .select.active .select_dropdown {
+      visibility: visible;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      height: 330px;}
+  .select_dropdown::-webkit-scrollbar-track {
+      width: 6px;}
+  .select_option {
+      cursor: pointer;
+      order: 2;
+      font-size: 14px;
+      line-height: 21px;
+      padding: 4px 12px;
+      color: #344D57;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      margin: 4px 0;}
+  .select_option[data-value="408"] {
+    order: 1; }
+  .select_option:hover {
+      border-color: #E0E4E5;
+      background-color: #E0E4E5; }
+  .select_option.active {
+      background: #344D57;
+      border-color: #344D57;
+      color: #FBFBFB; }
+  .select_option:focus {
+      border-color: #344D57;}
+.ais-SortBy-select {
+  background: #FBFBFB;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  padding: 9.5px 25px 9.5px 16px;
+  color: #344D57;
+border: 1px solid #E0E4E5;
+box-sizing: border-box;
+border-radius: 100px;
+}
+.filter {
+  // position: sticky;
+  // top: 90px;
+  // height: fit-content;
+  width: 200px;
+  padding-top: 58px; }
+  .filter_title {
+    margin-bottom: 34px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%; }
+  #clear-refinements {
+    margin-bottom: 34px;
+  }
+  .filter .select_drop {
+    padding: 10px 0; }
+
+.listing_wrapper {
+  width: calc(100% - 200px);
+  padding: 41px 0 22px 48px; }
+
+.listing_title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 120%;
+  min-height: 43.2px;
+  margin-bottom: 33px; }
+
+.listing_content {
+  paddin-left: 1px;
+  margin-top: 13px; }
+  .listing_content li {
+    width: 25%; 
+  }
+  .listing_content ol{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .listing_content .card {
+    border-radius: 0;
+    margin-top: -1px;
+    margin-left: -1px;
+    }
+    .listing_content .card img {
+      width: 150px;
+      height: 150px; }
+    .listing_content .card .btn {
+      pointer-events: none;
+      font-size: 10px;
+      line-height: 36px;
+      font-weight: 600; }
+  .listing_content .card_name {
+    font-size: 12px;
+    line-height: 130%; }
+    .listing_content .card_name span {
+      margin-bottom: 33px; }
+  .listing_content .calc-qty {
+    width: 32px;
+    height: 32px;
+    line-height: 32px; }
+  .listing_content .btn-calc {
+    width: 24px;
+    height: 24px;
+    margin: 0 12px; }
+
+.count_brand {
+  color: #9AA6AB;
+  margin-left: 4px; }
+
+.select_filter {
+  margin-bottom: 26px; }
+  .select_filter.active .select_item:before {
+    -webkit-transform: translateY(-50%) scaleY(-1);
+    -ms-transform: translateY(-50%) scaleY(-1);
+    transform: translateY(-50%) scaleY(-1); }
+  .select_filter.active .select_drop {
+    display: block; }
+
+.select_item {
+  padding: 6px 0;
+  font-size: 18px;
+  line-height: 150%;
+  color: #344D57;
+  border-bottom: 1px solid #E0E4E5;
+  position: relative; }
+  .select_item:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    border-radius: 0.5px;
+    border-color: #9AA6AB transparent transparent transparent; }
+
+.select_drop {
+  display: none; }
+
+.status {
+  color: #96280F;
+  position: absolute;
+  top: 16px;
+  right: 16px; }
+
+.line {
+  background: #DCE0E1;
+  width: 100%;
+  height: 1px;
+  display: block;
+  margin: 12px 0; }
+
+.calc {
+  margin-bottom: 16px; }
+.calc.disabled {
+  pointer-events: none;
+  opacity: 0.7;}
+.calc-qty, input.calc-qty {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: #171717;
+  font-size: 12px;
+  background-color: #FBFBFB;
+  border: 1px solid #E0E4E5;
+  border-radius: 50%;
+  text-align: center;
+  padding: 0; }
+
+.btn-calc {
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: 0 4px; }
+  .btn-calc:hover:before, .btn-calc:hover:after {
+    background: #96280F; }
+  .btn-calc:before, .btn-calc:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #1E3944; }
+  .btn-calc[disabled]:before, .btn-calc[disabled]:after {
+    background: #BCC4C7; }
+  .btn-calc:before {
+    content: '';
+    width: 14px;
+    height: 2px; }
+  .btn-calc:after {
+    width: 2px;
+    height: 14px; }
+  .btn-calc_plus:after {
+    content: ''; }
+
+.card {
+  // max-width: 281px;
+  // width: calc(25% - 10px);
+  background: #FFFFFF;
+  border: 1px solid #E3E6E7;
+  border-radius: 4px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative; }
+  .card:hover {
+    z-index: 1;
+    box-shadow: 0px 2px 4px rgba(9, 17, 20, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.05);
+  }
+  .card img {
+    border-radius: 2px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 16px; }
+  .card_name {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 130%;
+    color: #344D57; }
+    .card_name span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      height: 47px;
+      -webkit-box-orient: vertical;
+      line-height: 15.6px;
+      margin-bottom: 20px; }
+  .card .btn {
+    padding: 0;
+    font-size: 12px;
+    width: 100%; }
+.ais-Breadcrumb-list, #breadcrumbs ul {  
+  display: flex;
+  align-items: center;
+}
+.ais-Breadcrumb, #breadcrumbs {
+  padding: 10px 0 5px; }
+  .ais-Breadcrumb-link, #breadcrumbs a {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #344D57;
+    display: flex;
+    align-items: center;
+  }
+  #breadcrumbs a:after{
+    content: '';
+    width: 18px;
+    height: 18px;
+    margin: 0 4px;
+    display: block;
+    color: transparent;
+    background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+  }
+
+  .ais-Breadcrumb-item, #breadcrumbs p {
+    color: #6D7E85;
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    padding: 10px 0; }
+
+.ml-40 {
+  margin-left: 40px; }
+  
+.mr-8 {
+  margin-right: 8px; }
+  
+.mr-16 {
+  margin-right: 16px; }
+  
+.mt-16 {
+  margin-top: 16px; }
+
+.fw-light {
+  font-weight: 300; }
+
+.fw-semi {
+  font-weight: 600; }
+
+.c-gray {
+  color: #6D7E85; }
+
+.c-red {
+  color: #96280F; }
+
+.fs-14 {
+  font-size: 14px;
+  line-height: 25px; }
+
+.d-flex {
+  display: flex; }
+
+.align-items-center {
+  display: flex;
+  align-items: center; }
+
+.justify-content-center {
+  display: flex;
+  justify-content: center; }
+
+.justify-content-between {
+  display: flex;
+  justify-content: space-between; }
+
+.justify-content-around {
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around; }
+
+.flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.flex-end-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; }
+
+.flex-center-around {
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  align-items: center; }
+
+.flex-wrap {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.w-100 {
+  width: 100%; }
+
+.relative {
+  position: relative; }
+
+.max-391 {
+  width: 100%;
+  max-width: 391px; }
+
+.scroll-x {
+  overflow-x: auto;}
+.scroll-x::-webkit-scrollbar {
+  display: none; }
+
+  
+.arrow_buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  display: flex;
+  justify-content: space-between;} 
+.arrow_button {
+  cursor: pointer; }
+.arrow_button[disabled] svg path{
+   fill: #BCC4C7;}
+.arrow_button_prev {
+  margin-left: -26px; }
+.arrow_button_next {
+  margin-right: -26px;}
+
+  #list_categories .ais-HierarchicalMenu-list--child {
+    padding-left: 10px;
+    border-left: 1px dotted #ddd;
+  }
+  #list_categories .ais-HierarchicalMenu-list--child li {
+    display: block!important;
+  }
+  #list_categories .ais-HierarchicalMenu-item--selected>div:first-child {
+    text-decoration: underline; 
+  }
+  #list_categories .ais-HierarchicalMenu-count {
+    display: none;
+  }
+  .ais-Breadcrumb-separator {
+    width: 18px;
+    height: 18px;
+    margin: 0 4px;
+    display: block;
+    color: transparent;
+    background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+  }
+  .ais-ClearRefinements-button {
+    background-color: #e9ebec;
+    padding: 3px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .ais-ClearRefinements-button:hover svg {
+    fill: #bf0400;
+  }
+  .ais-ClearRefinements-button--disabled, .listing_content .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
+    display: none!important;
+  }
+  .ais-RefinementList-showMore {
+    background: none; 
+    text-decoration: underline;
+    margin-top: 10px;
+  }
+  .main a#top {
+    background-color: #1E3944;
+    padding: 4px;
+    border-radius: 40px;
+  }
+  @media only screen and (min-width: 1750px) {
+    .nav_category {
+      position: relative; }
+    .dropdown_categories {
+      left: -100px;
+      top: 99%;
+      padding-top: calc(1% + 9px);
+    }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    .category_popular a {
+      margin: 0 3px
+    }
+  }
+</style>`
+
+let html = `
+    <div class="main">
+      <header class="header">
+        <div class="supbar">
+          <div class="container flex-center-between">
+            <p class="align-items-center"><img src="img/common/quotation.svg" alt="icon quotation">Customer Service</p>
+            <div class="d-flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
+          </div>
+        </div>
+        <div class="midbar">
+          <div class="container">
+            <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
+              <div class="d-flex">
+                <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
+                <div id="form-search"></div>
+              </div>
+              <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">0</span>)</span></a></div>
+            </div>
+          </div>
+        </div>
+        <form class="advanced-search" data-item="advanced-search">
+          <div class="container flex-center-between">
+            <p class="fs-14 c-gray">Advanced Search</p>
+            <div class="d-flex">
+              <input type="text" placeholder="Enter Item #" name="search_item">
+              <input type="text" placeholder="Enter Keyword" name="search_keyword">
+              <div class="select select_category">
+                <p class="select_current"><span>Select Category</span></p>
+                <ul class="select_dropdown"> <li class="select_option active">Select Category</li></ul>
+              </div>
+              <div class="select select_brand">
+                <p class="select_current"><span>Select Manufacturer</span></p>
+                <ul class="select_dropdown right"> <li class="select_option active">Select Manufacturer</li></ul>
+              </div>
+              <button class="btn btn_dark" type="button">Submit</button>
+            </div>
+            <button class="btn_reset" type="reset" data-close="advanced-search"></button>
+          </div>
+        </form>
+        <div class="subbar">
+          <div class="container flex-center-between">
+           <nav class="nav_category">
+              <div class="align-items-center all_category">
+                <img class="burger_category" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/burger.svg" alt="icon burger">
+                <p class="p-main">All Categories</p>
+              </div>
+              <div class="dropdown_categories">
+                <ul class="alphabet"></ul>
+                <ul id="list_categories"> </ul>
+              </div>
+            </nav>
+            <ul class="d-flex category_popular">
+              <li><a href="/category/new-products">New Products</a></li>
+              <li><a href="/sales.html">Sale Products</a></li>
+              <li><a href="/category/hand-sanitizing">Hand Sanitizing</a></li>
+              <li><a href="/category/wound-care">Wound care</a></li>
+              <li><a href="/category/gloves">Gloves</a></li>
+              <li><a href="/category/disinfectants">Disinfectants</a></li>
+              <li><a href="/category/ostomy">Ostomy</a></li>
+              <li><a href="/category/instruments">Instruments</a></li>
+            </ul>
+            <p class="previous-version">switch to the previous version</p>
+          </div>
+        </div>
+        <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
+      </header>
+      <div class="container"> 
+        <nav id="breadcrumbs"><ul></ul></nav>
+        <div class="flex-wrap w-100">
+          <div class="filter">
+            <div class="flex-center-between">
+              <h3 class="filter_title">Filters</h3>
+              <div id="clear-refinements"></div>
+            </div>
+            <div class="select_filter active">
+              <div class="select_item">
+                <p>Brands</p>
+              </div>
+              <div class="select_drop" id="manufacturer"></div>
+            </div>
+            <div class="select_filter active">
+              <div class="select_item">
+                <p>Price</p>
+              </div>
+              <div class="select_drop" id="price_group"></div>
+            </div>
+          </div>
+          <div class="listing_wrapper">
+            <h2 class="listing_title"></h2>
+            <div class="flex-end-between">
+              <p class="c-gray" id="stats-container"></p>
+            </div>
+            <div class="listing_content"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+`
+
+let isSearchStalledCount = 0;
+let actionDataLayer = '';
+let labelDataLayer = '';
+
+let optionFetchAlgolia = {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-Algolia-API-Key': 'e3a0cffec873466acf71806748550356',
+    'X-Algolia-Application-Id':'PXDJAQHDPZ'
+  },
+  method: 'GET'
 }
 
 let requestAllCaterories = new Promise((resolve, reject) => {
-    fetch(`/api/categories&limit=100`, headerFetch).then(res => res.json()).then(data => resolve(data))
+  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
+
+//push dataLayer
+function pushDataLayer(actionDataLayer, labelDataLayer) {
+  console.log(actionDataLayer + ' : ' + labelDataLayer)
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+      'event': 'event-to-ga',
+      'eventCategory': 'Exp — New LP',
+      'eventAction': actionDataLayer,
+      'eventLabel': labelDataLayer
+  });
+}
+
+document.body.insertAdjacentHTML('afterbegin', html);
+document.body.insertAdjacentHTML('afterbegin', style);
+
+document.querySelector('.header').before(document.querySelector('#top'));
+document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+
+//select
+function remActiveSelect() {
+  let dropdowns = document.querySelectorAll(".select");
+  for (let i = 0; i < dropdowns.length; i++) {
+      if (dropdowns[i].classList.contains('active')) {
+          dropdowns[i].classList.remove('active');
+      }
+  }
+}
+
+function toggleActive(getData) {
+  console.log(getData);
+  if (document.querySelector(`[data-item=${getData}]`)) {
+      document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
+      if (getData == 'advanced-search') {
+          document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
+          document.querySelector(`.nav_category`).classList.remove('active');
+      }
+  }
+}
 
 const API_KEY = `e3a0cffec873466acf71806748550356`;
 const APPLICATION_ID = `PXDJAQHDPZ`;
-
-const requestOptions = {
-    headers: {
-      'X-Algolia-API-Key': `${API_KEY}`,
-      'X-Algolia-Application-Id': `${APPLICATION_ID}`
-    }, 
-    method: 'GET'
-}
 
 const searchClient = algoliasearch(
     APPLICATION_ID,
@@ -659,816 +1150,599 @@ const searchClient = algoliasearch(
 
 const search = instantsearch({
     indexName: 'staging_products',
+    routing: false,
     searchClient,
-    routing: true,
-    stalledSearchDelay: 500,
 });
 
-let actionDataLayer = '',
-    labelDataLayer = '';
+let litterAlphabet = [];
 
-function pushDataLayer(action,label) {
-    window.dataLayer = window.dataLayer || [];
-    if (label) {
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Search filters slide-in menu',
-            'eventAction': `${action}`,
-            'eventLabel': `${label}`
-        });
-    } else {
-        dataLayer.push({
-            'event': 'event-to-ga',
-            'eventCategory': 'Exp: Search filters slide-in menu',
-            'eventAction': `${action}`
-        });
+requestAllCaterories.then(data => {
+  console.log(data)
+
+  let categoriesLvl0 = data.facets["categories.lvl0"],
+      brand = data.facets.manufacturer;
+  for (let key in categoriesLvl0) {
+    document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/category/${key.toLowerCase().split(' ').join('-')}">${key}</a><ul></ul></li>`)
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+  }
+
+  for (let key in brand) {
+    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+  }
+
+  let btnCategory = document.querySelector('.all_category'),
+      listCategories = document.querySelectorAll('#list_categories li'), //list categories
+      alphabet = document.querySelector('.alphabet'); //alphabet
+  
+  listCategories.forEach((el) => {
+    litterAlphabet.push({'letter': el.innerText[0]})
+    el.querySelector('a').addEventListener('click', (e) => {
+      actionDataLayer = `Click on category item - ${el.innerText}`;
+      labelDataLayer = `All categories`;
+      pushDataLayer(actionDataLayer,labelDataLayer)
+    })
+  })
+   
+  litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+    index === self.findIndex((t) => (
+        t.letter === thing.letter
+    ))
+  )
+
+  for (let i = 0; i < litterAlphabet.length; i++) {
+    if (litterAlphabet[i].letter != 'undefined') {
+      alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
     }
-}
+  }
 
-function scrolled(element) {
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        element.setAttribute('class','ais-RefinementList-list')
-    } else {
-        element.setAttribute('class','ais-RefinementList-list scroll')
-    }
-}
+  function openCategoriesFoeAlphabet(item) {
+    item.forEach(el => {
+      if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+        el.style.display = "none";
+      } else {
+        el.style.display = "block";
+      }
+    }); 
+  } 
+  openCategoriesFoeAlphabet(listCategories)
 
-let count = 0;
+  //change Class active
+  // let alphabetContainer = document.querySelector('.alphabet'),
+  //     para = document.querySelectorAll('.alphabet li');
+  //     console.log(alphabetContainer)
+  //     console.log(para)
 
-let mut = new MutationObserver(function (muts) {
-    
-    if (document.body != null && window.location.pathname.includes('/category') && count == 0) {
-        mut.disconnect();
-        count = 1;
-        document.body.insertAdjacentHTML('afterbegin',`
-        <style>
-            .hide, .altPayment {
-                display: none!important;
-            }
-         
-            .list_type1 p {
-                float: right;
-                position: relative;
-                width: calc(50% - 7.5px);
-                margin-left: 15px;
-            }
-            .list_type1 p {
-                display: none;
-            }
-            .list_type1 span {
-                opacity: 0;
-                width: 100%;
-            }
-            .list_type2 i {
-                display: none;
-            }
-        </style>`)
-    }
+  // let paraArr = [].slice.call(para).sort(function (a, b) {
+  //     return a - b
+  // });
+  // console.log(paraArr)
+  // paraArr.forEach(function (p) {
+  //   alphabetContainer.appendChild(p);
+  // });
 
-    mut.observe(document, optionMut);
-    if (document.querySelector('#lvl_categories li') != null && document.querySelector('.ais-RefinementList-item--selected') == null) {
-        mut.disconnect();
-        document.querySelector('#lvl_categories li').click()
-    }
-
-    mut.observe(document, optionMut);
-    if (document.querySelector('#mm_per_page .ais-HitsPerPage-option') != null) {
-        mut.disconnect();
-       
-        document.querySelector('#listing_container').classList.remove('loading');
+  alphabet.querySelectorAll('li').forEach(el => {
+    el.addEventListener('mouseover', (e) => {
+      console.log(e.target)
+      e.target.parentElement.querySelector('.active').classList.remove('active');
+      e.target.classList.add('active');
+      openCategoriesFoeAlphabet(listCategories)
       
-        document.querySelector('#mm_per_page select').addEventListener('click', (e) => {
-            actionDataLayer = 'Click on per page';
-            pushDataLayer(actionDataLayer);
-        })
+    })
+  })   
+
+  // let items = [...alphabet.querySelectorAll("li")];
+  // items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+  // items.forEach(item => alphabet.appendChild(item));
+
+  //all categories
+  btnCategory.addEventListener('click', (e) => {
+    if (e.target.matches('.all_category')) {
+      console.log(e.target)
+      e.target.parentElement.classList.toggle('active');
+      document.querySelector('.advanced-search').classList.remove('active');
+      document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+  
     }
+  })
 })
 
-mut.observe(document, optionMut);
+let facetCategories = '*';
+let categoryCrumbs = '';
+let lvl = '';
 
-window.onload = function() {
-    document.querySelector('meta[name="viewport"]').content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-    document.body.insertAdjacentHTML('afterbegin', styles);
-    document.querySelector('#wrap').insertAdjacentHTML('afterbegin', header);
+if (window.location.pathname.includes('/category')) {
+        
+  document.querySelector('.listing_title').innerHTML = document.querySelector('.category b').innerText;
 
-    //header
-    document.querySelector('.header_cart').appendChild(document.querySelector('.shoppingcart.tooltip-cart'));
+  let categoriesLink = document.querySelectorAll('.category a');
 
-    document.querySelector('.shoppingcart a').addEventListener('click', () => {
-        actionDataLayer =  `Click on cart button`;
-        pushDataLayer(actionDataLayer)
-    })
-    if (document.querySelector('.topnav .signup') != null) {
-        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .signup'));
-    }
-    if (document.querySelector('.topnav .logout') != null) {
-        document.querySelector('.nav-menu_login').appendChild(document.querySelector('.topnav .logout'));
-    }
+  for (let i = 0; i < categoriesLink.length; i++) {
+      if (i > 0) {
+          categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
+      }
 
-    document.querySelector('.sticky-top').after(document.querySelector('.nav'));
-    document.querySelector('.nav-menu_login li a').insertAdjacentHTML('afterbegin','Hello, ');
-    document.querySelector('.nav-menu_login li a').addEventListener('click', (e) => {
-        actionDataLayer =  `Click on ${e.target.innerText.split(',')[1]} button in menu`;
-        pushDataLayer(actionDataLayer)
-    })
-    document.querySelectorAll('.nav li').forEach(el => {
-        if (el.classList.contains('hide-mobile')) {
-            el.classList.remove('hide-mobile','hide-mobile-landscape')
-        }
-    })
-    document.querySelector('.header .link_logo').addEventListener('click', (e) => {
-        actionDataLayer =  `Click on logo`;
-        pushDataLayer(actionDataLayer)
-    })
-    document.querySelectorAll('.header .nav a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            actionDataLayer =  `Click on menu categories for the User`;
-            labelDataLayer =  e.target.innerText;
-            pushDataLayer(actionDataLayer,labelDataLayer)
-        })
-    })
+      if (i == categoriesLink.length - 1) {
+          if (categoriesLink.length > 1) {
+            facetCategories = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
+          } 
+          else {
+            facetCategories = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
+          }
+     
+          console.log(i + " : " + document.querySelector('.category b').innerText + " : " + facetCategories)
+          lvl = facetCategories.split(':')[0].split('lvl')[1];
+      }
+      document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><a href="${categoriesLink[i].href}">${categoriesLink[i].innerText}</a></li>`)
+  }
+  document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><p>${document.querySelector('.category b').innerText}</p></li>`);
+} else {
+  facetCategories = '*'
+}
 
-    document.querySelector('.header .icon_burger').addEventListener('click', (e) => {
-        e.stopImmediatePropagation()
-        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-        popup.classList.add('active')
+search.addWidgets([
+  instantsearch.widgets.configure({
+    hitsPerPage: '12',
+    facetFilters: [facetCategories],
+    // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
+  }),
 
-        document.body.style.overflow = 'hidden';
-
-        actionDataLayer = `Click on burger button`;
-        labelDataLayer = 'Header';
-        pushDataLayer(actionDataLayer,labelDataLayer)
-    })
-
-    let navMenu = document.querySelector('.nav-menu');
-
-    navMenu.querySelector('.btn_close').addEventListener('click', (e) => {
-        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-
-        popup.classList.remove('active')
-        document.body.style.overflow = 'inherit';
-
-        actionDataLayer = 'Click on cross button';
-        labelDataLayer = 'Menu'
-        pushDataLayer(actionDataLayer,labelDataLayer)
-    })
-
-    navMenu.addEventListener('click', (e) => {
-        if (e.target.classList.contains('nav-menu')) {
-            actionDataLayer = `Click on the screen outside the menu`;
-            labelDataLayer = 'Menu';
-            pushDataLayer(actionDataLayer,labelDataLayer)
-            navMenu.classList.remove('active')
-            document.body.style.overflow = 'inherit';
-        }
-    })
-
-    document.querySelector('.category_popular .title').after(document.querySelector('.altnav'))
-
-    function viewAllCategories(boolean) {
-        document.querySelectorAll('.category_popular .altnav li').forEach( (el, i) => {
-            if (i > 4) {
-                el.hidden = boolean;
+  instantsearch.widgets.searchBox({
+    container: '#form-search',
+    placeholder: 'Search by Name',
+    loadingIndicator: false,
+    searchAsYouType: false, 
+    templates: {
+        loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+    },
+  }),
+  instantsearch.widgets.infiniteHits({
+    container: '.listing_content',
+    escapeHTML: false,
+    transformItems(items) {
+      return items.filter(item => item.price != '0.00' )
+    },
+    templates: {
+        empty: `No Item Found`,
+        item: (hit) => {
+            function findImage() {
+                for (let i = 0; i < hit.variants.length; i++) {
+                    if (hit.variants[i].image != '') {
+                        return hit.variants[i].image
+                    }
+                }
             }
-        })
-        document.querySelector('.btn_back').hidden = boolean;
-        if (boolean == false) {
-            document.querySelector('.category_popular .title').innerHTML = 'All Categoties';
-            document.querySelector('.btn_all-category').hidden = true;
-            document.querySelector('.nav-menu .nav').hidden = true;
+            
+            let boxItem = `
+              <div class="card">
+                <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
+                <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
+                  <span title="${hit.name}">${hit.name}</span>
+                </a>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                  <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
+                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                    <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
+                    <button class="btn-calc btn-calc_plus" type="button"></button>
+                  </div>
+                  ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+                  <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+                  <input type="hidden" name="product_id" value="${hit.objectID }">
+                  <input type="hidden" name="add_to_cart" value="variant">
+                  
+                </form>
+              </div>
+            `
+            
+            return boxItem
+        }
+    },
+  }),
+
+  instantsearch.widgets.stats({
+    container: '#stats-container',
+    templates: {
+      text(data) {
+        if (data.hasManyResults || data.hasOneResult) {
+            return `${data.nbHits} items`;
         } else {
-            document.querySelector('.category_popular .title').innerHTML = 'Most Popular Categories';
-            document.querySelector('.btn_all-category').hidden = false;
-            document.querySelector('.nav-menu .nav').hidden = false;
+            return `no result`;
         }
-    }
-
-    document.querySelector('.btn_all-category').addEventListener('click', () => {
-        viewAllCategories(false)
-        actionDataLayer = 'Click on view all categories';
-        pushDataLayer(actionDataLayer)
-    }); //open all category
-
-    document.querySelector('.btn_back').addEventListener('click', () => {
-        viewAllCategories(true);
-        actionDataLayer = 'Click on back Main Menu button';
-        pushDataLayer(actionDataLayer)
-    }); //hide all category
-
-    requestAllCaterories.then(data => {
-        console.log(data)
-
-        for (let key in data.categories) {
-            if (data.categories[key].url) {
-                document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
-            }
-        }
-
-        document.querySelectorAll('.category_popular .altnav a').forEach((el,index) => {
-            if (index > 4) el.parentElement.hidden = true;
-            el.addEventListener('click', (e) => {
-
-                localStorage.setItem('idCategory', JSON.stringify(e.target.dataset.id))
-                if (index < 5) {
-                    actionDataLayer = 'Click on most popular categories items';
-                } else {
-                    actionDataLayer = 'Click on other categories items';
-                }
-                labelDataLayer = e.target.innerText;
-                pushDataLayer(actionDataLayer,labelDataLayer)
-            })
-        })
-    })
-
-    //add elements listing
-    if (window.location.pathname == '/' && document.querySelector('.homepage-container') != null) {
-        document.querySelector('.homepage-container').insertAdjacentHTML('beforebegin', `<div id="listing_container" class=""></div>`); //loading
-    }
-    if (document.querySelector('#mainbody') != null) {
-        document.querySelector('#mainbody').insertAdjacentHTML('beforebegin', `<div id="listing_container" style="display: none;" class=""></div>`); //loading
-    }
-
-    document.querySelector('#listing_container').insertAdjacentHTML('afterbegin',`
-        <div id="lvl_categories"></div>
-        <span class="result_for_search"></span>
-        <div id="listing_main">
-            <button type="button" class="btn_filter" data-button="popup_filter">Filters</button>
-            <div id="stats-container"></div>
-            <div class="flex-center-end page-result">
-                <p>Results Per Page: </p>
-                <div id="mm_per_page" ></div>
-            </div>
-            <div class="pagination1 pagination"></div>
-            <div id="additional-categories"></div>
-            <div id="hits"></div>
-            <div class="pagination2 pagination"></div>
-        </div>
-       
-        <div class="popup_filter" data-item="popup_filter">
-            <div class="popup_container">
-                <div class="popup_header">
-                    <button type="button" class="btn_close" data-button="popup_filter"></button>
-                    <h3 class="title">Filters</h3>
-                </div>
-                <div class="filter_content">
-                    <div class="select filter_brands active">
-                        <div class="select_current">Brands <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                        <div class="select_dropdown">
-                            <div id="manufacturer"></div>
-                        </div>
-                    </div>
-                    <div class="select filter_price">
-                        <div class="select_current">Price <img src="https://conversionratestore.github.io/projects/medicalmega/img/arrow_down.svg" alt="arrow icon"></div>
-                        <div class="select_dropdown">
-                            <div id="price_group"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `)
-
-    //select
-    let selectCurrent = document.querySelectorAll('.select_current');
-
-    selectCurrent.forEach(el => {
-        el.addEventListener('click', () => {
-            el.parentElement.classList.toggle('active');
-            if (el.parentElement.classList.contains('active')) {
-                
-                if (el.parentElement.classList.contains('filter_price')) {
-                    document.querySelector('.filter_brands').classList.remove('active');
-                } else {
-                    document.querySelector('.filter_price').classList.remove('active');
-                }
-            }
-            
-            actionDataLayer = `Click on select current - ${el.innerText}`;
-            labelDataLayer = 'Filter';
-            pushDataLayer(actionDataLayer,labelDataLayer)
-        })
-    })
-
-    //popup filters
-    let popupFilter = document.querySelector('.popup_filter'),
-        btnFilters = document.querySelector('.btn_filter');
-
-    btnFilters.addEventListener('click', (e) => {
-        e.stopImmediatePropagation()
-        let popup = document.querySelector(`[data-item="${e.target.dataset.button}"]`);
-        
-        popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        actionDataLayer = `Click on ${e.target.innerText} button`;
-        labelDataLayer = 'Filters'
-        pushDataLayer(actionDataLayer,labelDataLayer)
-    })
+      },
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: '#manufacturer',
+    attribute: 'manufacturer',
+    limit: 7,
+    showMore: true,
+    showMoreLimit: 100,
+    sortBy: ['name:asc'],
+    templates: {
+      item: (data) => {
+        actionDataLayer = 'Click on one of the brand items on filters';
+        let checkbox = `
+            <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+              <span class="check"></span>
+              <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+            </label>
+        `;
     
-    popupFilter.addEventListener('click', (e) => {
-        if (e.target.classList.contains('popup_filter')) {
-            popupFilter.classList.remove('active')
-            document.body.style.overflow = 'inherit';
+        return checkbox
+      },
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: '#price_group',
+    attribute: 'price_group',
+    limit: 10,
+    sortBy: ['isRefined:asc'],
+    templates: {
+      item: (data) => {
+          actionDataLayer = 'Click on one of the price items on filters';
+          let sltPrice = '';
+          if (data.value.includes(' - ')) {
+              sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+          }  else {
+              sltPrice = `> $${data.value.split('> ')[1]}`;
+          }
 
-            actionDataLayer = `Click on the screen outside the filter`;
-            labelDataLayer = 'Filter';
-            pushDataLayer(actionDataLayer,labelDataLayer)
-        }
-    })
-
-    //hide popup filter
-    popupFilter.querySelector('.btn_close').addEventListener('click', (e) => {
-        document.querySelector(`[data-item="${e.target.dataset.button}"]`).classList.remove('active')
-        document.body.style.overflow = 'inherit';
-
-        actionDataLayer = 'Click on cross button';
-        labelDataLayer = 'Filters'
-        pushDataLayer(actionDataLayer,labelDataLayer)  
-    });
-
-    let categoryFacet = '*';
-    let categoryCrumbs = '';
-    let lvl = '';
-    if (window.location.pathname.includes('/category')) {
-        
-        let categoriesLink = document.querySelectorAll('.category a');
-
-        for (let i = 0; i < categoriesLink.length; i++) {
-            if (i > 0) {
-                categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
-            }
-
-            if (i == categoriesLink.length - 1) {
-                if (categoriesLink.length > 1) {
-                    categoryFacet = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
-                } 
-                else {
-                    categoryFacet = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
-                }
-           
-                console.log(i + " : " + document.querySelector('.category b').innerText + " : " + categoryFacet)
-                lvl = categoryFacet.split(':')[0].split('lvl')[1];
-            }
-        }
-    } else {
-        categoryFacet = '*'
-    }
-    let lvlNew = +lvl + 1;
-    let index = searchClient.initIndex('staging_products');
-
-    function initHits(hit) {
-        function qty() {
-            let option = ``;
-            let qty = hit.qty == '0' && hit.in_stock==true ? 100 : hit.qty
-            for (let n = 1; n <= +qty; n++) {
-                option = option + `<option value="${n}">${n}</option>`;
-            }
-            return option
-        }
-        function optionBox() {
-            let option = ``;
-            for (let i = 0; i < hit.variants.length; i++) {
-                let variantsArr = hit.variants[i];
-                if (variantsArr.extra != '' && variantsArr.price != '0.00') {
-                    option = `<option value="${variantsArr.pv_id}" ${variantsArr.extra == 'Each' ? 'selected':''} data-price="${variantsArr.price}" data-qty="${variantsArr.qty == '0' && variantsArr.in_stock==true ? '100': variantsArr.qty}"> ${variantsArr.extra} ${variantsArr.in_stock==false? ' (Out of stock)':''} </option>` + option;  
-                }
-            }
-            return option
-        }
-        function findImage() {
-            for (let i = 0; i < hit.variants.length; i++) {
-                if (hit.variants[i].image != '') {
-                    return hit.variants[i].image
-                }
-            }
-        }
-        
-        let boxItem = `
-            <fieldset class="list_box2">
-                <div class="list_type3">
-                    <span><a href="https://medicalmega.com/product/${hit.seo}"><img class="product_img" alt="${hit.name}" src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }"></a></span>
-                </div>
-                <div class="list_type4">
-                    <h3><a href="https://medicalmega.com/product/${hit.seo}">${hit.name}</a></h3>
-                    <form action="https://medicalmega.com/cart.html" method="post" style="position: relative;">
-                        <span style="vertical-align: middle; display: inline-block; width: 290px; line-height: 19px;" class="p product-variant__info-section">
-                            <span style="display:block; font-size:12px;">Manufacturer: ${hit.manufacturer}</span>
-                            <span class="variant_tag">
-                                <span style="display:block"; font-size:12px;">Sold By: ${hit.extra}</span>
-                                <span style="display:block; font-size:12px;">Item Number: ${hit.item_num}</span>
-                                <span style="margin-right:100px; float:left;display:${hit.in_stock==false?'none':'block'};">Price: <i style="color:#CD1109; font-style:normal;">${hit.price}</i></span>
-                            </span>
-                        </span>
-                        <span style="vertical-align: top; display: inline-block; width: 130px; line-height: 19px;" class="p product-variant__buy-box">
-                            <span class="product_quantity nostyle" style="display:${hit.in_stock==false?'none':'block'};">
-                                <select name="quantity" style="width:42px; margin:6px 10px 8px 0; height:20px; float:right;" class="product-variant__quantity__select" data-qty="${hit.qty=='0' && hit.in_stock==true ? 100 : hit.qty}">${qty()}</select>
-                            </span>
-                            <input type="image" name="register_user" class="buynow2" src="https://medicalmega.com/images/buy-now.gif" alt="Submit" style="display:${hit.in_stock==false?'none':'block'};">
-                            <div class="out-of-stock__box--pv" style="display:${hit.in_stock==false?'block':'none'}; ">
-                                <p class="out-of-stock__message--pv">Out Of Stock</p>
-                            </div>
-                        </span>
-                        <p style="clear:both;display:${optionBox().split('</option>').length>2?'block':'none'}">
-                            <label style="width:60px;display:block;float:left;font-size:15px;">Options:</label>
-                            <select class="product-variant product-variant__options-box__select" style="font-size:11px;float:left;margin-top:2px;">
-                                ${optionBox()}
-                            </select>
-                        </p>
-                        <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
-                        <input type="hidden" name="product_id" value="${hit.objectID}">
-                        <input type="hidden" name="add_to_cart" value="variant">
-                    </form>
-                </div>
-            </fieldset>
-            <br>
-        `
-
-        return boxItem
-    }
-
-    let inputWord = false;
-
-    search.addWidgets([
-        instantsearch.widgets.configure({
-            facetFilters: [categoryFacet],
-        }),
-        
-        instantsearch.widgets.searchBox({
-            container: '#search-box',
-            placeholder: window.location.pathname.includes('/category') ? `Search in this category` : 'Search Our Store',
-            loadingIndicator: true,
-            searchAsYouType: false, 
-            showLoadingIndicator: true,
-            templates: {
-                loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
-            },
-        }),
-        instantsearch.widgets.hits({
-            container: '#hits',
-            templates: {
-                empty: `No Item Found`,
-                filters: [categoryFacet],
-                item: (hit) => {
-                    return initHits(hit) 
-                }
-            },
-        }),
-
-        instantsearch.widgets.pagination({
-            container: '.pagination1',
-        }),
-        instantsearch.widgets.pagination({
-            container: '.pagination2',
-        }),
-        instantsearch.widgets.refinementList({
-            container: `#lvl_categories`,
-            attribute: categoryFacet.split(':')[0],
-            transformItems(items) {
-                return items.filter(item => item.label.toLowerCase().includes(categoryFacet.split(':')[1].toLowerCase())) 
-            }, 
-        }),
-         
-        instantsearch.widgets.refinementList({
-            container: '#manufacturer',
-            attribute: 'manufacturer',
-            limit: 7,
-            showMore: true,
-            showMoreLimit: 200,
-            sortBy: ['name:asc'],
-            templates: {
-                item: (data) => {
-                    actionDataLayer = 'Click on one of the brand items on filters';
-                    let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
-                            <span class="check"></span>
-                            <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
-                        </label>
-                    `;
-                
-                    return checkbox
-                },
-            },
-        }),
-        instantsearch.widgets.refinementList({
-            container: '#price_group',
-            attribute: 'price_group',
-            limit: 10,
-            sortBy: ['isRefined:asc'],
-            templates: {
-                item: (data) => {
-                    actionDataLayer = 'Click on one of the price items on filters';
-                    let sltPrice = '';
-                    if (data.value.includes(' - ')) {
-                        sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-                    }  else {
-                        sltPrice = `> $${data.value.split('> ')[1]}`;
-                    }
-
-                    let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                            <span class="check"></span>
-                            <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
-                        </label>
-                    `;
-                
-                    return checkbox
-                },
-            },
-        }),   
-        instantsearch.widgets.stats({
-            container: '#stats-container',
-            templates: {
-                text(data) {
-                    let hits = data.nbHits;
-                    let to = data.hitsPerPage * (data.page + 1); 
-            
-                    let displ = data.page == 0 ? data.page + 1 : data.page * data.hitsPerPage + 1
-                    if (data.hasManyResults) {
-                        return `Displaying <b>${displ}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
-                    } else if (data.hasOneResult) {
-                        return `Displaying <b>${displ}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
-                    } else {
-                        return `no result`;
-                    }
-                },
-            },
-        }),
-        instantsearch.widgets.hitsPerPage({
-            container: '#mm_per_page',
-            items: [
-                { label: '5', value: 5 },
-                { label: '10', value: 10 },
-                { label: '15', value: 15, default: true  },
-                { label: '25', value: 25 },
-                { label: '50', value: 50},
-                { label: '100', value: 100 }
-            ],
-        }), 
-    ]);
-    search.start();
-    
-    console.log(search)
-    autocomplete('#search-box input', {hint: false, debug: true}, [
-        {
-            source: autocomplete.sources.hits(index, {hitsPerPage: 5, facetFilters: [categoryFacet]}),
-            displayKey: 'name',
-            openOnFocus: true,
-            templates: {
-                suggestion: function(suggestion) {
-                    function findImage() {
-                        for (let i = 0; i < suggestion.variants.length; i++) {
-                            if (suggestion.variants[i].image != '') {
-                                return suggestion.variants[i].image
-                            }
-                        }
-                    }
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
-                            
-                    return sugTemplate;
-                },
-            },
-        }
-        ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-            console.log(event, suggestion, dataset);
-
-            document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
-            document.querySelector('#listing_main').style.display = 'none';
-
-            if (document.querySelector('.hits-selected') != null) {
-                document.querySelector('.hits-selected').remove()
-            }
-            document.querySelector('#listing_main').insertAdjacentHTML('beforebegin',`<div class="hits-selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>`) ;
-           
-            document.querySelector('#listing_container').style.display = 'block';
-            if (window.location.pathname == '/') {
-                document.querySelector('.homepage-container').style.display = 'none';
-            }
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'none';
-            }
-            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
-                document.querySelector('.ais-SearchBox-input').value = '';
-                document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                document.querySelector('#listing_main').style = '';
-                
-                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-                inputWord = false;
-            })
-        })
-    
-    document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
-
-    function inputChange() {
-        let value = document.querySelector('#search-box input').value;
-        document.querySelector('.result_for_search').innerHTML = `Search result for '${value}'`;
-        
-        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
-        document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+          let checkbox = `
+              <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                  <span class="check"></span>
+                  <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+              </label>
+          `;
       
-        document.querySelector('#listing_container').style.display = 'block';
-        if (window.location.pathname == '/') {
-            document.querySelector('.homepage-container').style.display = 'none';
-        }
-        if (document.querySelector('#mainbody') != null) {
-            document.querySelector('#mainbody').style.display = 'none';
-        }
+          return checkbox
+      },
+    },
+  }),
+  
+  // instantsearch.widgets.refinementList({
+  //     container: `.select_category .select_dropdown`,
+  //     attribute: 'categories.lvl0',
+  //     limit: 100,
+  //     sortBy: ['isRefined'],
 
-        document.querySelector('#listing_main').style = '';
+  //     templates: {
+  //         item: (data) => {
+  //             console.log(data)
+  //             return data.label
+  //         }
+  //     },
+  // }),
+  
+  // instantsearch.widgets.refinementList({
+  //     container: `#lvl_categories`,
+  //     attribute: categoryFacet.split(':')[0],
+  //     transformItems(items) {
+  //         return items.filter(item => {
+  //             return item.label.includes(categoryFacet.split(':')[1])
+  //         }) 
+  //     },  
+  // }),
+  // instantsearch.widgets.hierarchicalMenu({
+  //     container: `#list_categories`,
+  //     attributes: [
+  //       'categories.lvl0',
+  //       'categories.lvl1',
+  //       'categories.lvl2',
+  //       'categories.lvl3',
+  //       'categories.lvl4',
+  //     ], 
+  //     // separator: ' / ',
+  //     rootPath: facetCategories,
+  //     sortBy: ['isRefined'],  
+  //     showParentLevel: false,
+  //     limit: 150,  
+      // connector: false,
+      // templates: {
+      //   item: (data) => {
+      //     console.log(data)
+      //     console.log(categoryFacet)
+      //     if (data.label.toLowerCase().includes(categoryFacet.toLowerCase())) {
+      //       if (data.label.split('>')) {
+
+      //         let label = data.label.split('>');
+              
+      //         return `<a href="#">${label[label.length - 1]}</a>`
+      //       } else {
+      //         return `<a href="#">${data.label}</a>`
+
+      //       }
+      //     }
+      //   }
+      // },
+  // }),
+
+  instantsearch.widgets.clearRefinements({
+    container: '#clear-refinements',
+    templates: {
+      resetLabel: `Clear <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
+    },
+  }),
+]); 
+
+search.start();
+
+let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
+    closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
+
+//qty change
+function changeQty(qty,pr,action) {
+  if (action == 'plus') {
+      qty.value = parseInt(qty.value) + 1;
+  } else if (action == 'minus') {
+      qty.value = parseInt(qty.value) - 1;
+  }
+  if (action == 'plus' || action == 'minus') {
+      if (qty.value == '') {
+          qty.value = 1;
+      }
+  }
+  if (qty.value > 1) {
+      qty.previousElementSibling.disabled = false;
+  } else {
+      qty.previousElementSibling.disabled = true;
+  }
+
+  pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
+  if (qty.value == 0 && qty.value != '') {
+      qty.value = 1;
+      pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+  }
+  if (qty.value == '') {
+      pr.innerHTML = pr.dataset.price
+  }
+  
+  console.log(qty.value,pr.innerHTML)
+
+}
+
+document.body.addEventListener('click', (e) => {
+  if (!e.target.closest('.select')) remActiveSelect();
+  if (!e.target.closest('.nav_category')) {
+      document.querySelector(`.nav_category`).classList.remove('active');
+  }  
+})
+
+dataButton.forEach(item => {
+  item.addEventListener('click', (e) => {
+    toggleActive(item.getAttribute('data-button'))
+  })
+})
+
+closeBtn.forEach(item => {
+  item.addEventListener('click', (e) => {
+    toggleActive(item.getAttribute('data-close'));
+    document.querySelector('.select_category ul li').click();
+    document.querySelector('.select_brand ul li').click();
+  })
+})
+
+let index = searchClient.initIndex('staging_products');
+
+// search.addWidgets([
+//   instantsearch.widgets.configure({
+//     hitsPerPage: '12',
+//     facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex','query:wear 814'],
+//   }),
+// ])
+
+// index.getObject('78438').then(object => {
+//   console.log(object);
+// });
+// index.getObjects(hit => hit.item_num == "78438").then(obj => {
+//   console.log(obj);
+// });
+
+// index.getSettings().then(settings => {
+//   console.log(settings);
+// });
+// var index = searchClient.initIndex(algoliaConfig.indexName + '_categories.lvl0');
+// index.search('Urostomy 7331', {
+//   facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex']
+// }).then(({ hits }) => {
+//   console.log(hits);
+// });
+// index.search(' ',{
+//   facetFilters: ['categories.lvl0:Ostomy', '',''] // AND "item_num:5585"
+// }).then(({ hits }) => {
+//   console.log(hits);
+// });
+ 
+
+search.addWidgets([
+  {
+      render({ searchMetadata = {} }) {
+          const { isSearchStalled } = searchMetadata
+          
+          if (isSearchStalled === false ) {
+            console.log(isSearchStalled)
+          
+              if (document.querySelector('#price_group li') != null) {
+                let pricesContainer = document.querySelector('#price_group ul'),
+                para = document.querySelectorAll('#price_group li');
+
+                let paraArr = [].slice.call(para).sort(function (a, b) {
+                    return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                });
+                paraArr.forEach(function (p) {
+                    pricesContainer.appendChild(p);
+                });
+              }
+              document.querySelectorAll('.card .calc').forEach((el, i) => {
+                el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  console.log(el.nextElementSibling.querySelector('.pr'))
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
+                })
+                el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
+                })
+                el.querySelector('.calc-qty').addEventListener('input', (e) => {
+                  changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
+                })
+                el.querySelector('.calc-qty').addEventListener('blur', (e) => {
+                    if (e.target.value == '') {
+                        e.target.value = 1;
+                    }
+                }, true)
+              })
+          }
+      },
+  },
+])
+
+document.body.addEventListener('click', (e) => { 
+  if (!e.target.closest('.select')) remActiveSelect();
+  if (!e.target.closest('.nav_category')) {
+      document.querySelector(`.nav_category`).classList.remove('active');
+  }  
+})
+
+window.addEventListener('scroll', (e) => {
+  remActiveSelect(); 
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    console.log('bottom')
+    if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
+      document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
     }
+  }
+})
 
-    //add text search result
-    document.querySelector('#search-box input').addEventListener('click', (e) => {
-        actionDataLayer = 'Click on input search';
-        pushDataLayer(actionDataLayer)  
-    })
+//select filter
+document.querySelectorAll('.select_filter').forEach(el => {
+    el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
+})
 
-    document.querySelector('#search-box input').addEventListener('keypress', (e) => {
-        if (e.keyCode == '13') {
-            inputChange()
-        }
-    })
-    document.querySelector('#search-box input').addEventListener('input', (e) => {
-        console.log(e.target.value)
-
-        inputWord = true;
-        document.querySelector('.algolia-autocomplete pre').innerHTML = e.target.value;
-        if (e.target.value.length < 1) {
-            inputWord = false;
-            document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-            if (document.querySelector('.hits-selected') != null) {
-                document.querySelector('.hits-selected').remove();
-            }
-            document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-            
-            document.querySelector('#listing_main').style = '';
-            
-        } 
-        
-    })
-
-    if (window.location.pathname.includes('/category')) {
-        document.querySelector('#listing_container').style.display = 'block';
-        document.querySelector('#mainbody').style.display = 'none';
-        document.querySelector('.result_for_search').before(document.querySelector('.listing .categoryTop'));
-    }  
-        
-    search.addWidgets([
-        {
-            render({ searchMetadata = {} }) {
-                const { isSearchStalled } = searchMetadata
-
-                if (isSearchStalled === false) {
-                    console.log(isSearchStalled)
-                    function selectOptions(select) {
-                        let parent = select.closest('.list_box2');
-                        let option = ``;
-                        if (select.length > 0) {
-                            let price = select.options[select.selectedIndex].dataset.price,
-                            variantId = select.options[select.selectedIndex].value,
-                            name = select.options[select.selectedIndex].innerText,
-                            qty = select.options[select.selectedIndex].dataset.qty;
-            
-                            parent.querySelector(`.variant_tag span i`).innerHTML = price;
-                            parent.querySelector(`[name="product_variant_id"]`).value = variantId;
-                            parent.querySelectorAll(`.variant_tag span`)[0].innerHTML = `Sold By: ${name.replace('(Out of stock)','')}`;
-                            parent.querySelector(`.product-variant__quantity__select`).dataset.qty = qty;
-            
-                            for (let n = 1; n <= +qty; n++) {
-                                option = option + `<option value="${n}">${n}</option>`;
-                            }
-            
-                            parent.querySelector(`.product-variant__quantity__select`).innerHTML = option;
-            
-                            if (name.includes('Out of stock')) {
-                                parent.querySelector('.out-of-stock__box--pv').style.display = 'block';
-                                parent.querySelector('.product_quantity').style.display = 'none';
-                                parent.querySelector('.buynow2').style.display = 'none';
-                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'none';
-                            } else {
-                                parent.querySelector('.out-of-stock__box--pv').style.display = 'none';
-                                parent.querySelector('.product_quantity').style.display = 'block';
-                                parent.querySelector('.buynow2').style.display = 'block';
-                                parent.querySelectorAll('.variant_tag span')[2].style.display = 'block';
-                            }
-                        }
-                    
-                    }
-                    document.querySelectorAll('#hits .product-variant').forEach((select, index) => {
-                        selectOptions(select)
-                        select.addEventListener('change', (e) => {
-                            e.stopImmediatePropagation();
-                            selectOptions(select)
-                        })
-                    })
-
-                    if (document.querySelectorAll('.pagination1 .ais-Pagination-item--page').length < 2) {
-                        document.querySelector('.pagination1').style.opacity = '0'
-                        document.querySelector('.pagination2').style.opacity = '0'
-                    } else {
-                        document.querySelector('.pagination1').style.opacity = '1'
-                        document.querySelector('.pagination2').style.opacity = '1'
-                    }
-                    document.querySelectorAll('.ais-Pagination-link').forEach(page => {
-                        page.addEventListener('click', (e) => {
-                            e.stopImmediatePropagation();
-                            labelDataLayer = 'Pagination';
-                            if (page.closest('.ais-Pagination-item--page')) {
-                                actionDataLayer = `click on page ${e.target.innerText}`
-                            } else if (page.closest('.ais-Pagination-item--previousPage')) {
-                                actionDataLayer = `click on previous page`
-                            } else if (page.closest('.ais-Pagination-item--firstPage')) {
-                                actionDataLayer = `click on first page`
-                            } else if (page.closest('.ais-Pagination-item--nextPage')) {
-                                actionDataLayer = `click on next page`
-                            } else if (page.closest('.ais-Pagination-item--lastPage')) {
-                                actionDataLayer = `click on last page`
-                            }
-                            pushDataLayer(actionDataLayer,labelDataLayer)  
-                        })
-                    })
-
-                    if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
-                        let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-
-                    //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-                            // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                            //     element.setAttribute('class','ais-RefinementList-list scrolled')
-                            // } else {
-                            //     element.setAttribute('class','ais-RefinementList-list scroll')
-                            // }
-                            element.addEventListener('scroll', () => scrolled(element));
-                    //     } else {
-                    //         element.setAttribute('class','ais-RefinementList-list scrolled')
-                    //     }
-                    }
-                    if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
-                        document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                            console.log(e.target.innerText)
-                            document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
-                            e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
-                        })
-                    }
-                    
-
-                    if (document.querySelector('#price_group li') != null) {
-                        let pricesContainer = document.querySelector('#price_group ul'),
-                        para = document.querySelectorAll('#price_group li');
-
-                        let paraArr = [].slice.call(para).sort(function (a, b) {
-                            return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-                        });
-                        paraArr.forEach(function (p) {
-                            pricesContainer.appendChild(p);
-                        });
-                    }
-                    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                        inputWord = false;
-                        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
-                        document.querySelector('.ais-SearchBox-input').value = '';
-                        document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                        
-                        document.querySelector('#listing_main').style = '';
-                    
-                        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-                        document.querySelector('.ais-SearchBox-submit').click()
-                    })
-                    document.querySelector('.ais-SearchBox-submit').addEventListener('click', (e) => {
-                        document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
-                      
-                        document.querySelector('#listing_main').style = '';
-                        
-                        document.querySelector('.ais-SearchBox-input').value =  document.querySelector('pre').innerHTML;
-                        document.querySelector('.result_for_search').innerHTML = `Search result for '${document.querySelector('.ais-SearchBox-input').value}'`
-                        actionDataLayer = 'Click on submit search';
-                        pushDataLayer(actionDataLayer);  
-                        inputChange()
-                    })
-                }
-            },
-        },
-    ])
-
-    document.addEventListener('click', () => {
-        if (inputWord == false) {
-            document.querySelector('.ais-SearchBox-input').value = '';
-        }
-    })
-};
-
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
-    'event': 'event-to-ga',
-    'eventCategory': 'Exp: Search filters slide-in menu',
-    'eventAction': 'loaded'
+document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+  document.querySelector('.advanced-search .btn_reset').click();
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: ["*"],
+    }),
+  ])
 });
 
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1483840,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-hj('event', 'search_filters_slide_in_menu');
+document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+  let categories = document.querySelector('.select_category .select_current').innerText.includes('Select') ? "*" : `categories.lvl0:${document.querySelector('.select_category .select_current').innerText}`;
+  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
+  
+  let queryKeyword = document.querySelector('[name="search_keyword"]').value,
+      queryItem = document.querySelector('[name="search_item"]').value,
+      querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+
+  console.log(categories,brand,querySum)
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: [categories,brand],
+      query: querySum
+    }),
+  ])
+})
+
+
+document.querySelectorAll('.advanced-search input').forEach(input => {
+  // input.addEventListener('input', (e) => {
+  //   return e.target.value.replace(/\s/g, "");
+  // })
+  input.addEventListener('keypress', (e) => {
+    if (e.keyCode == '13') {
+      document.querySelector('.advanced-search .btn').click();
+    }
+  })
+})
+
+
+let optionMut = {
+  childList: true,
+  subtree: true,
+  attributes: true
+}
+
+let mut = new MutationObserver(function (muts) {
+  if (document.querySelectorAll('.select_current')) {
+    mut.disconnect();
+    
+    document.querySelectorAll('.select_current').forEach((el,index) => {
+      el.addEventListener('click',(e) => {
+          e.stopImmediatePropagation()
+          el.parentElement.classList.toggle('active');
+
+          if (index == 0) {
+              document.querySelectorAll('.select')[1].classList.remove('active');
+          } 
+          if (index == 1)  {
+              document.querySelectorAll('.select')[0].classList.remove('active');
+          }
+          //events
+          let notes = ' select';
+          if (el.closest('.select_category')) {
+              notes = ' select category';
+          } else if (el.closest('.select_brand')) {
+              notes = ' select brand'
+          }
+          labelDataLayer = `Header`;
+          actionDataLayer = `Click on ${notes}`;
+          pushDataLayer(actionDataLayer, labelDataLayer)
+      })
+      el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+          option.addEventListener('click', (e) => {
+          e.stopImmediatePropagation()
+
+            console.log('click')
+              let notes = 'select';
+              if (option.closest('.select_category')) {
+                  notes = 'select category';
+              
+                  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                    console.log(data)
+                    let brand = data.facets.manufacturer;
+                    document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active">Select Manufacturer</li>`;
+                    document.querySelector('.select_brand .select_dropdown li').click();
+                    for (let key in brand) {
+                      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                    }
+                    
+                  })       
+              } else if (option.closest('.select_brand')) {
+                  notes = 'select manufacturer';
+                  // fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=categories.lv0&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                  //   console.log(data)
+                  //   let categoriesLvl0 = data.facets['categories.lvl0'];
+                  //   document.querySelector('.select_category .select_dropdown').innerHTML = `<li class="select_option active">Select Category</li>`;
+                  //   // document.querySelector('.select_category .select_dropdown li').click();
+                  //   for (let key in categoriesLvl0) {
+                  //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                  //   }
+                  // })
+              }
+              actionDataLayer = `Click on option ${notes}`;
+              labelDataLayer = 'Advanced Search';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+
+              if (option.closest('.select').querySelector('.active') != null) {
+                  option.closest('.select').querySelector('.active').classList.remove('active');
+              }
+
+              option.classList.add('active');
+            
+              if (index == 0) {
+                  el.innerHTML = `<span>${option.innerHTML}</span>`;
+              } else {
+                  el.innerHTML = option.innerHTML;
+              }
+              option.closest('.select').classList.remove('active');
+          })
+      })
+    })
+  }
+  mut.observe(document, optionMut);
+});
+mut.observe(document, optionMut);
