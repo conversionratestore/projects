@@ -73,9 +73,14 @@ if (window.innerWidth <= 768) {
                 max-width: 252px !important;
             }
 
-            .tippy-box[data-placement^=bottom]>.tippy-arrow{
+            .tippy-box[data-placement^=bottom]>.tippy-arrow,
+            .tippy-box[data-placement^=top]>.tippy-arrow{
                 border-bottom-color: #FFFFFF;
                 color: white;
+            }
+
+            header .navbar.fixed-top{
+              z-index: 100440011;
             }
 
               section.new_section_sleepy{
@@ -258,6 +263,16 @@ if (window.innerWidth <= 768) {
                 width: 70px;
               }
 
+              .bp-mob-table-container p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .bp-mob-table-container p > img{
+                margin-left: 8px;
+              }
+
                @media (max-width: 320px){
                     .tooltip_bar ul li img{
                         width: 60px;
@@ -364,6 +379,22 @@ if (window.innerWidth <= 768) {
         ],
       }
 
+      let arrTooltipTable = {
+        SuitableForAges: [`100% natural ingredients that are suitable for adults and kids 2+ years old`],
+        RequiresMedicalSupervision: [
+          `Comparing to melatonin or other speep remedies, SleepyPatch is 100% natural content & chemical free. It’s not a medcine and does not require medical supervision.`,
+        ],
+        CanBeAddictive: [
+          `The SleepyPatch is formulated with a blend of mandarin, lavender, sweet marjoram, and vetiver essential oils - 100% natural content & chemical free and addiction-free.`,
+        ],
+        HowToTake: [`Stick a patch to the pyjamas, not on skin.`],
+        Side_Effects: [`Comparing to melatonin or other speep remedies, SleepyPatch is 100% natural content & chemical free. It does not have any side effects.`],
+        DurationOfEffect: [
+          `SleepyPatch nanomaterial releases molecules of oils every 30 seconds. Signs of relaxation make take up to 30 minutes and the range effect will vary between individuals.`,
+        ],
+        Ingredients: [`Mandarin, Lavender, Sweet Marjoram, Vetiver  - 100% natural essential oils & chemical free`],
+      }
+
       document.head.insertAdjacentHTML("beforeend", sleepyPatchesStyle)
       document.querySelector("#flowers").insertAdjacentHTML("afterend", sleepyPatches)
 
@@ -386,15 +417,49 @@ if (window.innerWidth <= 768) {
         }
       }
 
+      // setTooltipBarTable
+      // function setTooltipBarTable(event, tooltip) {
+      //   return `<img data-id="${event}" data-title="${tooltip}" src="https://conversionratestore.github.io/projects/buzzpatch/img/inform_btn.svg" alt="tooltip icon">`
+      // }
+
+      // if (document.querySelector(".bp-comparison .container .js-mobile")) {
+      //   document.querySelectorAll(".bp-comparison .bp-mob-table-container p").forEach((el) => {
+      //     let product
+      //     if (el.textContent === `Suitable for Ages`) {
+      //       product = "SuitableForAges"
+      //     } else if (el.textContent === `Requires Medical Supervision`) {
+      //       product = "RequiresMedicalSupervision"
+      //     } else if (el.textContent === `Can Be Addictive`) {
+      //       product = "CanBeAddictive"
+      //     } else if (el.textContent === `How To Take`) {
+      //       product = "HowToTake"
+      //     } else if (el.textContent === `Side effects`) {
+      //       product = "Side_Effects"
+      //     } else if (el.textContent === `Duration of Effect`) {
+      //       product = "DurationOfEffect"
+      //     } else if (el.textContent === `Ingredients`) {
+      //       product = "Ingredients"
+      //     }
+
+      //     let arrTooltipTableVar = arrTooltipTable[product]
+
+      //     for (let key in arrTooltipTableVar) {
+      //       el.insertAdjacentHTML("beforeend", setTooltipBarTable(product, arrTooltipTableVar[key]))
+      //     }
+      //   })
+      // }
+
       let tippyRun = setInterval(() => {
         if (typeof tippy === "function") {
           clearInterval(tippyRun)
-          console.log(`hello tippy`)
           document.querySelectorAll(".tooltip_bar ul li img:last-child").forEach((el, index) => {
             tippy(el, {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
+              appendTo: function () {
+                return document.querySelector(".js-iphone")
+              },
 
               onTrigger(e) {
                 pushDataLayer(`Clicks on each hints ${el.previousElementSibling.textContent}`)
@@ -407,12 +472,30 @@ if (window.innerWidth <= 768) {
               content: el.getAttribute("data-title"),
               placement: "bottom",
               trigger: "click",
+              appendTo: function () {
+                return document.querySelector(".js-iphone")
+              },
 
               onTrigger(e) {
                 pushDataLayer(`Click on ${el.getAttribute("data-id")}`)
               },
             })
           })
+
+          // document.querySelectorAll(".bp-comparison .bp-mob-table-container p > img").forEach((el) => {
+          //   tippy(el, {
+          //     content: el.getAttribute("data-title"),
+          //     placement: "bottom",
+          //     trigger: "click",
+          //     appendTo: function () {
+          //       return document.querySelector(".js-iphone")
+          //     },
+
+          //     onTrigger(e) {
+          //       pushDataLayer(`Click on hint ${el.getAttribute("data-id")}`)
+          //     },
+          //   })
+          // })
         }
       }, 300)
 
