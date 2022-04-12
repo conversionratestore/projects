@@ -1674,10 +1674,13 @@ function _setExpectedItem(where) {
 											</div>
 										`
 
+
 			document.querySelector('.product-images-container').insertAdjacentHTML('beforeend', sellImg)
 			document.querySelector('.product-images-container-mobile').insertAdjacentHTML('beforeend', sellImg)
 
-			where.insertAdjacentHTML('beforebegin', demandText)
+			if(!document.querySelector('.demand_wrapper')) {
+				where.insertAdjacentHTML('beforebegin', demandText)
+			}
 		}
 	}, 200)
 }
