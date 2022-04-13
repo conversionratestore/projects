@@ -1060,7 +1060,7 @@ const languagesObj = {
 		demand: 'Za ta produkt je zelo veliko povpraševanja',
 		order: 'Naroči danes in tvoje naročilo bo odpremljeno v',
 		weeks: 'tednih',
-		weeks: 'tednu',
+		week: 'tednu',
 		details: 'Podrobnosti o izdelku',
 		wl: 'Obvesti me, ko bo izdelek na voljo',
 		guarantee: '30-dnevni odstop od nakupa',
