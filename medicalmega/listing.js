@@ -66,33 +66,33 @@ button {
   appearance: none; }
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+.main input::-webkit-outer-spin-button, .main input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 
 /* Firefox */
-input[type=number] {
+.main input[type=number] {
   -moz-appearance: textfield; }
 
-*::-webkit-input-placeholder {
+.main *::-webkit-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*:-moz-placeholder {
+.main *:-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*::-moz-placeholder {
+.main *::-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-*:-ms-input-placeholder {
+.main *:-ms-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
@@ -105,12 +105,12 @@ input[type=number] {
     }
 }
 
-input:-webkit-autofill {
+.main input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
 
-input {
+.main input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -121,7 +121,17 @@ input {
   width: 100%;
   font-size: 14px;
   outline-color: #344D57;
-  line-height: 26px; }
+  line-height: 26px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.main input[type="search"]::-webkit-search-decoration,
+.main input[type="search"]::-webkit-search-cancel-button,
+.main input[type="search"]::-webkit-search-results-button,
+.main input[type="search"]::-webkit-search-results-decoration {
+  display: none; }
 
 .container {
   max-width: 1260px;
@@ -249,7 +259,7 @@ input {
 #form-search {
   position: relative;
   width: 545px; }
-  .ais-SearchBox-input {
+  .main .ais-SearchBox-input {
     background: #E9EBEC;
     border-radius: 38px;
     padding: 11px 50px 11px 20px;
@@ -340,13 +350,19 @@ input {
   background: #FBFBFB; }
   #list_categories li.active a {
     text-decoration: underline;}
-  #list_categories a {
+  #list_categories li ul {
+    padding-left: 15px;
+    border-left: 1px solid #ddd;}
+  #list_categories li li {
+    display: block!important;}
+  #list_categories p {
     font-size: 16px;
     line-height: 150%;
+    cursor: pointer;
     color: #344D57;
     margin-bottom: 12px;
     display: block; }
-  #list_categories a:hover {
+  #list_categories p:hover {
     text-decoration: underline; }
   .nav_category.active .all_category {
     background: #E9EBEC; }
@@ -366,15 +382,16 @@ input {
   width: 18px;
   height: 18px;
   margin-right: 10px; }
-.category_popular a {
+.category_popular li {
   font-weight: 400;
+  cursor: pointer;
   font-size: 14px;
   line-height: 21px;
   color: #6D7E85;
   padding: 12px 6px;
   display: block;
   margin: 0 8px; }
-  .category_popular a:hover, .previous-version:hover {
+  .category_popular li:hover, .previous-version:hover {
     color: #091114; }
 .previous-version {
       font-weight: 600;
@@ -528,6 +545,10 @@ input {
       width: max-content;
       max-width: 327px;
       padding: 0 16px;}
+    .select_dropdown ul {
+      padding-left: 5px;
+      border-left: 1px solid #ddd;
+      margin-left: 12px;}
   .select_dropdown.right {
       left: auto;
       right: 0;}
@@ -542,26 +563,28 @@ input {
       height: 330px;}
   .select_dropdown::-webkit-scrollbar-track {
       width: 6px;}
-  .select_option {
-      cursor: pointer;
-      order: 2;
-      font-size: 14px;
-      line-height: 21px;
-      padding: 4px 12px;
-      color: #344D57;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      margin: 4px 0;}
+  .select_option p {
+
+    cursor: pointer;
+    order: 2;
+    font-size: 14px;
+    line-height: 21px;
+    padding: 4px 12px;
+    color: #344D57;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    margin: 4px 0;
+  }
   .select_option[data-value="408"] {
     order: 1; }
-  .select_option:hover {
+  .select_option p:hover {
       border-color: #E0E4E5;
       background-color: #E0E4E5; }
-  .select_option.active {
+  .select_option p.active {
       background: #344D57;
       border-color: #344D57;
       color: #FBFBFB; }
-  .select_option:focus {
+  .select_option p:focus {
       border-color: #344D57;}
 .ais-SortBy-select {
   background: #FBFBFB;
@@ -579,7 +602,7 @@ border-radius: 100px;
   // top: 90px;
   // height: fit-content;
   width: 200px;
-  padding-top: 58px; }
+  padding-top: 50px; }
   .filter_title {
     margin-bottom: 34px;
     font-weight: 600;
@@ -621,8 +644,10 @@ border-radius: 100px;
     .listing_content .card img {
       width: 150px;
       height: 150px; }
-    .listing_content .card .btn {
+    .listing_content .card .btn_white {
       pointer-events: none;
+    }
+    .listing_content .card .btn {
       font-size: 10px;
       line-height: 36px;
       font-weight: 600; }
@@ -658,6 +683,7 @@ border-radius: 100px;
   font-size: 18px;
   line-height: 150%;
   color: #344D57;
+  cursor: pointer;
   border-bottom: 1px solid #E0E4E5;
   position: relative; }
   .select_item:before {
@@ -798,6 +824,9 @@ border-radius: 100px;
     display: flex;
     align-items: center;
   }
+  #breadcrumbs li:last-child a:after {
+    content: none;
+  }
   #breadcrumbs a:after{
     content: '';
     width: 18px;
@@ -808,11 +837,12 @@ border-radius: 100px;
     background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
   }
 
-  .ais-Breadcrumb-item, #breadcrumbs p {
+  .ais-Breadcrumb-item,  #breadcrumbs li:last-child a {
     color: #6D7E85;
     display: flex;
     align-items: center;
     line-height: 18px;
+    coursor: default;
     padding: 10px 0; }
 
 .ml-40 {
@@ -979,7 +1009,7 @@ border-radius: 100px;
   }
 
   @media only screen and (max-width: 1250px) {
-    .category_popular a {
+    .category_popular li {
       margin: 0 3px
     }
   }
@@ -1012,12 +1042,12 @@ let html = `
               <input type="text" placeholder="Enter Item #" name="search_item">
               <input type="text" placeholder="Enter Keyword" name="search_keyword">
               <div class="select select_category">
-                <p class="select_current"><span>Select Category</span></p>
-                <ul class="select_dropdown"> <li class="select_option active">Select Category</li></ul>
+                <p class="select_current" data-category="*"><span>Select Category</span></p>
+                <ul class="select_dropdown"> <li class="select_option active"><p>Select Category</p></li></ul>
               </div>
               <div class="select select_brand">
                 <p class="select_current"><span>Select Manufacturer</span></p>
-                <ul class="select_dropdown right"> <li class="select_option active">Select Manufacturer</li></ul>
+                <ul class="select_dropdown right"> <li class="select_option active"><p>Select Manufacturer</p></li></ul>
               </div>
               <button class="btn btn_dark" type="button">Submit</button>
             </div>
@@ -1037,14 +1067,13 @@ let html = `
               </div>
             </nav>
             <ul class="d-flex category_popular">
-              <li><a href="/category/new-products">New Products</a></li>
-              <li><a href="/sales.html">Sale Products</a></li>
-              <li><a href="/category/hand-sanitizing">Hand Sanitizing</a></li>
-              <li><a href="/category/wound-care">Wound care</a></li>
-              <li><a href="/category/gloves">Gloves</a></li>
-              <li><a href="/category/disinfectants">Disinfectants</a></li>
-              <li><a href="/category/ostomy">Ostomy</a></li>
-              <li><a href="/category/instruments">Instruments</a></li>
+              <li data-category="categories.lvl0:New Products!">New Products!</li>
+              <li data-category="categories.lvl0:Hand Sanitizing">Hand Sanitizing</li>
+              <li data-category="categories.lvl0:Wound care">Wound care</li>
+              <li data-category="categories.lvl0:Gloves">Gloves</li>
+              <li data-category="categories.lvl0:Disinfectants">Disinfectants</li>
+              <li data-category="categories.lvl0:Ostomy">Ostomy</li>
+              <li data-category="categories.lvl0:Instruments">Instruments</li>
             </ul>
             <p class="previous-version">switch to the previous version</p>
           </div>
@@ -1084,9 +1113,10 @@ let html = `
     </div>
 `
 
-let isSearchStalledCount = 0;
 let actionDataLayer = '';
 let labelDataLayer = '';
+
+let facetCategories = '*'; //facet  algolia
 
 let optionFetchAlgolia = {
   headers: {
@@ -1156,33 +1186,147 @@ const search = instantsearch({
 
 let litterAlphabet = [];
 
+//choice all next sibling
+function nextAll(elem) {
+  var next = false;
+  return [].filter.call(elem.parentNode.children, function(child) {
+      if (child === elem) next = true;
+      return next && child !== elem
+  })
+};
+
+function setConfigureAlgolia(e) {
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: [e],
+    }),
+  ])
+}
+
 requestAllCaterories.then(data => {
   console.log(data)
 
   let categoriesLvl0 = data.facets["categories.lvl0"],
+      categoriesLvl1 = data.facets["categories.lvl1"],
+      categoriesLvl2 = data.facets["categories.lvl2"],
+      categoriesLvl3 = data.facets["categories.lvl3"],
+      categoriesLvl4 = data.facets["categories.lvl4"],
       brand = data.facets.manufacturer;
+
   for (let key in categoriesLvl0) {
-    document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/category/${key.toLowerCase().split(' ').join('-')}">${key}</a><ul></ul></li>`)
-    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+    document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+  }
+  for (let key in categoriesLvl1) {
+    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl0')) {
+        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl1:${key}">${key.split(' > ')[1]}</p><ul></ul></li>`);
+        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul></ul></li>`)
+      }
+    })
+  }
+  for (let key in categoriesLvl2) {
+    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
+        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl2:${key}">${key.split(' > ')[2]}</p><ul></ul></li>`);
+        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul></ul></li>`)
+      }
+    })
+  }
+  for (let key in categoriesLvl3) {
+    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
+        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl3:${key}">${key.split(' > ')[3]}</p><ul></ul></li>`);
+        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
+      }
+    })
+  }
+  for (let key in categoriesLvl4) {
+    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
+        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl4:${key}">${key.split(' > ')[4]}</p><ul></ul></li>`);
+        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
+      }
+    })
   }
 
   for (let key in brand) {
-    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
   }
 
   let btnCategory = document.querySelector('.all_category'),
       listCategories = document.querySelectorAll('#list_categories li'), //list categories
+      listCategoriesPopular = document.querySelectorAll('.category_popular li'), //list popular ategories
       alphabet = document.querySelector('.alphabet'); //alphabet
-  
-  listCategories.forEach((el) => {
-    litterAlphabet.push({'letter': el.innerText[0]})
-    el.querySelector('a').addEventListener('click', (e) => {
+
+  function clickOnCategory(e) {
+    console.log(e.target.dataset.category)
+    facetCategories = e.target.dataset.category;
+
+    setConfigureAlgolia(facetCategories)
+
+    document.querySelector('.listing_title').innerHTML = e.target.innerText;
+    document.querySelector('#breadcrumbs ul').innerHTML = `<li><a href="#" data-category="*">Home</a></li>`;
+
+    let breadcrumbs = facetCategories.split(":")[1],
+        arrCrumbs = breadcrumbs.split(' > ') ;
+
+    let href = `#category/${breadcrumbs.split(' > ').join('/').toLowerCase().split(' ').join('-')}`;
+
+    let newCrumbs = ''
+    for (let i = 0; i < arrCrumbs.length; i++) {
+      newCrumbs += arrCrumbs[i] + ' > ';
+      document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend', `<li><a href="#category/${newCrumbs.toLowerCase().split(' > ').join('/').split(' ').join('-')}" data-category="categories.lvl${i}:${newCrumbs.substring(0, newCrumbs.length - 3)}">${arrCrumbs[i]}</a></li>`);
+    }
+
+    window.location.href = `https://medicalmega.com/${href}`;
+       
+    document.querySelectorAll('#breadcrumbs ul li').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        let next = nextAll(link);
+
+        facetCategories = link.querySelector('a').dataset.category;
+
+        console.log(facetCategories)
+        setConfigureAlgolia(facetCategories);
+        if (facetCategories == "*") {
+          document.querySelector('.listing_title').innerHTML = '';
+          document.querySelector('#breadcrumbs ul').innerHTML = '';
+        } else {
+          document.querySelector('.listing_title').innerHTML = e.target.innerText
+        }
+        window.location.href = `${e.target.href}`;
+        next.forEach(function(el) {
+          el.remove();
+        })
+      }) 
+    })
+    
+  }
+
+  listCategoriesPopular.forEach((el) => {
+    el.addEventListener('click', (e) => {
+      clickOnCategory(e)
+
       actionDataLayer = `Click on category item - ${el.innerText}`;
-      labelDataLayer = `All categories`;
-      pushDataLayer(actionDataLayer,labelDataLayer)
+      labelDataLayer = `Popular categories`;
+      pushDataLayer(actionDataLayer,labelDataLayer);
     })
   })
-   
+
+  listCategories.forEach((el) => {
+    litterAlphabet.push({'letter': el.innerText[0]})
+    el.querySelector('p').addEventListener('click', (e) => {
+      clickOnCategory(e)
+
+      actionDataLayer = `Click on category item - ${el.innerText}`;
+      labelDataLayer = `All categories`;
+      pushDataLayer(actionDataLayer,labelDataLayer);
+    })
+  })
+
   litterAlphabet = litterAlphabet.filter((thing, index, self) =>
     index === self.findIndex((t) => (
         t.letter === thing.letter
@@ -1204,6 +1348,7 @@ requestAllCaterories.then(data => {
       }
     }); 
   } 
+
   openCategoriesFoeAlphabet(listCategories)
 
   //change Class active
@@ -1230,9 +1375,9 @@ requestAllCaterories.then(data => {
     })
   })   
 
-  // let items = [...alphabet.querySelectorAll("li")];
-  // items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-  // items.forEach(item => alphabet.appendChild(item));
+  let items = [...alphabet.querySelectorAll("li")];
+  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+  items.forEach(item => alphabet.appendChild(item));
 
   //all categories
   btnCategory.addEventListener('click', (e) => {
@@ -1245,39 +1390,6 @@ requestAllCaterories.then(data => {
     }
   })
 })
-
-let facetCategories = '*';
-let categoryCrumbs = '';
-let lvl = '';
-
-if (window.location.pathname.includes('/category')) {
-        
-  document.querySelector('.listing_title').innerHTML = document.querySelector('.category b').innerText;
-
-  let categoriesLink = document.querySelectorAll('.category a');
-
-  for (let i = 0; i < categoriesLink.length; i++) {
-      if (i > 0) {
-          categoryCrumbs = categoryCrumbs + categoriesLink[i].innerText + " > "
-      }
-
-      if (i == categoriesLink.length - 1) {
-          if (categoriesLink.length > 1) {
-            facetCategories = `categories.lvl${i}:${categoryCrumbs + document.querySelector('.category b').innerText}`
-          } 
-          else {
-            facetCategories = `categories.lvl${i}:${document.querySelector('.category b').innerText}`
-          }
-     
-          console.log(i + " : " + document.querySelector('.category b').innerText + " : " + facetCategories)
-          lvl = facetCategories.split(':')[0].split('lvl')[1];
-      }
-      document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><a href="${categoriesLink[i].href}">${categoriesLink[i].innerText}</a></li>`)
-  }
-  document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend',`<li><p>${document.querySelector('.category b').innerText}</p></li>`);
-} else {
-  facetCategories = '*'
-}
 
 search.addWidgets([
   instantsearch.widgets.configure({
@@ -1620,22 +1732,25 @@ document.querySelectorAll('.select_filter').forEach(el => {
 })
 
 document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
-  document.querySelector('.advanced-search .btn_reset').click();
-  search.addWidgets([
-    instantsearch.widgets.configure({
-      hitsPerPage: '12',
-      facetFilters: ["*"],
-    }),
-  ])
+  if (document.querySelector('.advanced-search.active') != null) {
+    document.querySelector('.advanced-search .btn_reset').click();
+  }
+  document.querySelector('#breadcrumbs ul').innerHTML = '';
+  document.querySelector('.listing_title').innerHTML = '';
+
+  setConfigureAlgolia("*")
 });
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
-  let categories = document.querySelector('.select_category .select_current').innerText.includes('Select') ? "*" : `categories.lvl0:${document.querySelector('.select_category .select_current').innerText}`;
+  let categories = document.querySelector('.select_category .select_current').dataset.category;
   let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
   
   let queryKeyword = document.querySelector('[name="search_keyword"]').value,
       queryItem = document.querySelector('[name="search_item"]').value,
       querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+
+  document.querySelector('#breadcrumbs ul').innerHTML = '';
+  document.querySelector('.listing_title').innerHTML = '';
 
   console.log(categories,brand,querySum)
   search.addWidgets([
@@ -1647,7 +1762,6 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   ])
 })
 
-
 document.querySelectorAll('.advanced-search input').forEach(input => {
   // input.addEventListener('input', (e) => {
   //   return e.target.value.replace(/\s/g, "");
@@ -1658,7 +1772,6 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
     }
   })
 })
-
 
 let optionMut = {
   childList: true,
@@ -1692,7 +1805,7 @@ let mut = new MutationObserver(function (muts) {
           actionDataLayer = `Click on ${notes}`;
           pushDataLayer(actionDataLayer, labelDataLayer)
       })
-      el.nextElementSibling.querySelectorAll('.select_option').forEach( (option, index) => {
+      el.nextElementSibling.querySelectorAll('.select_option p').forEach( (option, index) => {
           option.addEventListener('click', (e) => {
           e.stopImmediatePropagation()
 
@@ -1700,14 +1813,14 @@ let mut = new MutationObserver(function (muts) {
               let notes = 'select';
               if (option.closest('.select_category')) {
                   notes = 'select category';
-              
+                  el.dataset.category = option.dataset.category;
                   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
                     console.log(data)
                     let brand = data.facets.manufacturer;
-                    document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active">Select Manufacturer</li>`;
+                    document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active"><p>Select Manufacturer</p></li>`;
                     document.querySelector('.select_brand .select_dropdown li').click();
                     for (let key in brand) {
-                      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
                     }
                     
                   })       
