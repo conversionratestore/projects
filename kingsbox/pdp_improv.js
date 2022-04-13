@@ -964,6 +964,7 @@ const languagesObj = {
 		demand: 'This product is in high demand',
 		order: 'Order today and get your order dispatched within',
 		weeks: 'weeks',
+		week: 'week',
 		details: 'Product details',
 		wl: 'join waiting list',
 		guarantee: '30-day money back guarantee',
@@ -995,6 +996,7 @@ const languagesObj = {
 		demand: 'Questo prodotto è molto richiesto',
 		order: 'Ordina oggi e ricevi il tuo ordine entro',
 		weeks: 'settimane',
+		week: 'settimana',
 		details: 'Dettagli del prodotto',
 		wl: `Iscriviti alla lista d'attesa`,
 		guarantee: 'Garanzia di rimborso di 30 giorni',
@@ -1026,6 +1028,7 @@ const languagesObj = {
 		demand: 'Ovaj proizvod je vrlo tražen',
 		order: 'Naručite danas i vaša  narudžba će biti poslana u roku od',
 		weeks: 'tjedna',
+		week: 'tjedna',
 		details: 'Detalji o proizvodu',
 		wl: 'PRIDRUŽITE SE LISTI ČEKANJA',
 		guarantee: '30-dnevno jamstvo povrata novca',
@@ -1057,6 +1060,7 @@ const languagesObj = {
 		demand: 'Za ta produkt je zelo veliko povpraševanja',
 		order: 'Naroči danes in tvoje naročilo bo odpremljeno v',
 		weeks: 'tednih',
+		weeks: 'tednu',
 		details: 'Podrobnosti o izdelku',
 		wl: 'Obvesti me, ko bo izdelek na voljo',
 		guarantee: '30-dnevni odstop od nakupa',
@@ -1088,6 +1092,7 @@ const languagesObj = {
 		demand: 'Dieses Produkt hat eine hohe Nachfrage',
 		order: 'Bestellen Sie noch heute und Ihre Bestellung wird innerhalb von',
 		weeks: 'Wochen versandt',
+		week: 'Woche versandt',
 		details: 'Einzelheiten zum Produkt',
 		wl: 'WARTELISTE BEITRETEN',
 		guarantee: '30 Tage Geld-zurück-Garantie',
@@ -1119,6 +1124,7 @@ const languagesObj = {
 		demand: 'Ce produit est très en demande',
 		order: `Commandez aujourd'hui et recevez votre commande en`,
 		weeks: 'semaines',
+		week: 'semaine',
 		details: 'Détails du produit',
 		wl: `REJOINDRE LA LISTE D'ATTENTE`,
 		guarantee: 'Garantie de remboursement de 30 jours',
@@ -1150,6 +1156,7 @@ const languagesObj = {
 		demand: 'Este producto tiene una gran demanda',
 		order: 'Haz tu pedido hoy y recibe tu pedido en',
 		weeks: 'semanas',
+		week: 'semana',
 		details: 'Detalles de producto',
 		wl: 'ÚNETE A LA LISTA DE ESPERA',
 		guarantee: '30 días de garantía de devolución de dinero',
@@ -1487,15 +1494,6 @@ let isStatus = setInterval(() => {
 			})
 		}
 
-
-		document.querySelector('.product-actions input').closest('div').addEventListener('click', e => {
-			if (e.target.matches('[data-action="minus"]')) {
-				document.querySelector('.material-icons.down').click()
-			} else if (e.target.matches('[data-action="plus"]')) {
-				document.querySelector('.material-icons.up').click()
-			}
-		})
-
 		let $containerDataset = document.querySelector('.product-container').dataset
 		let $statusTarget = document.querySelector('p.indicator + p')
 
@@ -1670,6 +1668,7 @@ function _setExpectedItem(where) {
 
 
 			let drawWeeks = true
+			let oneWeek = false
 
 			if (weeksNumber !== '') {
 				if (document.querySelector('.product-stock-wrapper .able-to-buy')) {
@@ -1682,10 +1681,14 @@ function _setExpectedItem(where) {
 
 					if (min >= 0 || max >= 0) {
 						weeksNumber = 1
+						oneWeek = true
 					} else if (min !== max) {
 						weeksNumber = min + ' - ' + max
 					} else {
 						weeksNumber = max
+						if(weeksNumber == 1) {
+							oneWeek = true
+						}
 					}
 				} else if (document.querySelector('.product-stock-wrapper .pre-order')) {
 					weeksNumber = weeksNumber.replace('-', ' - ')
@@ -1701,7 +1704,12 @@ function _setExpectedItem(where) {
 												<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
 											</div>
 										`
-			let weekP = drawWeeks ? `<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>` : ''
+
+			let weekP = ''
+
+			if(drawWeeks) {
+				weekP = `<p>${ language.order } <span>${ weeksNumber } ${ oneWeek ? language.week : language.weeks }</span>.</p>`
+			}
 
 			let demandText = `
 											<div class="demand_wrapper">
@@ -1910,7 +1918,6 @@ function initializeCarousel() {
 }
 
 function tnsSettings(container, items, nav, gutter, responsive, name, controls, slideBy) {
-
 	let obj = {
 		container,
 		items,
