@@ -1387,7 +1387,6 @@ fetch(URL, { headers: header })
 
 				let randomItemsNumber = 6
 
-				// custom right similar
 				let isRecommend = setInterval(() => {
 					if (document.querySelector('.product-recommendations')) {
 						clearInterval(isRecommend)
@@ -1417,6 +1416,37 @@ fetch(URL, { headers: header })
 
 						document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
 						document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
+
+						let isSimilarRight = setInterval(() => {
+							if (document.querySelector('.similar_products.right')) {
+								clearInterval(isSimilarRight)
+								document.querySelector('.similar_products.right').addEventListener('click', e => {
+									if (e.target.closest('.my_product')) {
+										window.dataLayer = window.dataLayer || []
+										dataLayer.push({
+											'event': 'event-to-ga',
+											'eventCategory': 'Exp: PDP improvemnets ' + device,
+											'eventAction': 'You may also like',
+										})
+									}
+								})
+							}
+						}, 200)
+						let isSimilarLeft = setInterval(() => {
+							if (document.querySelector('.similar_products.left')) {
+								clearInterval(isSimilarLeft)
+								document.querySelector('.similar_products.left').addEventListener('click', e => {
+									if (e.target.closest('.my_product')) {
+										window.dataLayer = window.dataLayer || []
+										dataLayer.push({
+											'event': 'event-to-ga',
+											'eventCategory': 'Exp: PDP improvemnets ' + device,
+											'eventAction': 'You may also like',
+										})
+									}
+								})
+							}
+						}, 200)
 					}
 				}, 100)
 			})
@@ -1456,7 +1486,6 @@ let isStatus = setInterval(() => {
 				p.innerText += ':'
 			})
 		}
-
 
 
 		document.querySelector('.product-actions input').closest('div').addEventListener('click', e => {
@@ -1549,6 +1578,23 @@ let drawMenu = setInterval(() => {
 				`
 
 		document.querySelector('.product-layout-1').insertAdjacentHTML('beforeend', menu)
+
+		let isMenu = setInterval(() => {
+			if (document.querySelector('.custom_menu_wrapper')) {
+				clearInterval(isMenu)
+				document.querySelector('.custom_menu_wrapper').addEventListener('click', e => {
+					if (e.target.closest('li')) {
+
+						window.dataLayer = window.dataLayer || []
+						dataLayer.push({
+							'event': 'event-to-ga',
+							'eventCategory': 'Exp: PDP improvemnets ' + device,
+							'eventAction': 'Clicks on the shop by categories',
+						})
+					}
+				})
+			}
+		}, 200)
 	}
 }, 200)
 
@@ -1897,58 +1943,6 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 		})
 	})
 }
-
-let isSimilarRight = setInterval(() => {
-	if (document.querySelector('.similar_products.right')) {
-		clearInterval(isSimilarRight)
-		document.querySelector('.similar_products.right').addEventListener('click', e => {
-			if (e.target.closest('.my_product')) {
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'You may also like',
-				})
-			}
-		})
-	}
-}, 200)
-let isSimilarLeft = setInterval(() => {
-	if (document.querySelector('.similar_products.left:not(.also-like)')) {
-		clearInterval(isSimilarLeft)
-		document.querySelector('.similar_products.left').addEventListener('click', e => {
-			if (e.target.closest('.my_product')) {
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'You may also like',
-				})
-			}
-		})
-	}
-}, 500)
-let isMenu = setInterval(() => {
-	if (document.querySelector('.custom_menu_wrapper')) {
-		clearInterval(isMenu)
-		document.querySelector('.custom_menu_wrapper').addEventListener('click', e => {
-			if (e.target.closest('li')) {
-
-				window.dataLayer = window.dataLayer || []
-				dataLayer.push({
-					'event': 'event-to-ga',
-					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'Clicks on the shop by categories',
-				})
-			}
-		})
-	}
-}, 500)
-
-setTimeout(() => {
-	clearInterval(isSimilarLeft)
-	clearInterval(isSimilarRight)
-}, 30000)
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
