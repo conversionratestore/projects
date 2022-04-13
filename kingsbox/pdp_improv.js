@@ -998,8 +998,8 @@ const languagesObj = {
 		superb: 'Superba qualità garantita',
 		similar: 'PRODOTTI SIMILI',
 		like: 'potrebbe anche piacerti',
-		shop: '',
-		sell: '',
+		shop: 'Acquista per categoria',
+		sell: 'Vendi velocemente',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1029,8 +1029,8 @@ const languagesObj = {
 		superb: 'Zajamčena vrhunska kvaliteta',
 		similar: 'SLIČNI PROIZVODI',
 		like: 'možda će vam se svidjeti i',
-		shop: '',
-		sell: '',
+		shop: 'Kupujte po kategoriji',
+		sell: 'Brzo se prodaje',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1060,8 +1060,8 @@ const languagesObj = {
 		superb: 'Zagotovljena visoka kakovost',
 		similar: 'PODOBNI PRODUKTI',
 		like: 'morda vam bo všeč tudi',
-		shop: '',
-		sell: '',
+		shop: 'Nakupuj po kategorijah',
+		sell: 'Priljubljen izdelek',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1091,8 +1091,8 @@ const languagesObj = {
 		superb: 'Hervorragende Qualität garantiert',
 		similar: 'ÄHNLICHE PRODUKTE',
 		like: 'Folgende Produkte könnten Ihnen auch gefallen',
-		shop: '',
-		sell: '',
+		shop: 'Nach Kategorie shoppen',
+		sell: 'Schnell verkaufen',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1122,8 +1122,8 @@ const languagesObj = {
 		superb: 'Haute qualité garantie',
 		similar: 'PRODUITS SIMILAIRES',
 		like: 'Vous pourriez apprécier aussi',
-		shop: '',
-		sell: '',
+		shop: 'Acheter par catégorie',
+		sell: 'Le produit s’envole rapidement',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1153,8 +1153,8 @@ const languagesObj = {
 		superb: 'Excelente calidad garantizada',
 		similar: 'PRODUCTOS SIMILARES',
 		like: 'También te puede interesar',
-		shop: '',
-		sell: '',
+		shop: 'Compra por categoría',
+		sell: 'Vendiendo rápido',
 		menu: [
 			'STRENGTH',
 			'RIGS & RACKS',
@@ -1336,8 +1336,6 @@ fetch(URL, { signal, headers: header })
 			.then(responses => Promise.all(responses.map(r => r.json())))
 			.then(items => items.map(item => item.data.status))
 			.then(statuses => {
-				console.log(statuses)
-
 				let variations
 
 				if (document.querySelectorAll('.product-variation .square').length) {
@@ -1351,7 +1349,6 @@ fetch(URL, { signal, headers: header })
 
 				let $secondOption = document.querySelector('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
-				console.log($secondOption)
 
 				if (isSizeOption && $secondOption) {
 					let colorsPerSize = statuses.length / $secondOption.length
@@ -1630,7 +1627,6 @@ function _setExpectedItem(where) {
 
 			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
-			console.log('weeksNumber 1 ', weeksNumber)
 
 			let drawWeeks = true
 
@@ -1652,13 +1648,12 @@ function _setExpectedItem(where) {
 					}
 				} else if (document.querySelector('.product-stock-wrapper .pre-order')) {
 					weeksNumber = weeksNumber.replace('-', ' - ')
-					console.log('weeksNumber 2', weeksNumber)
+
 				}
 			} else {
 				drawWeeks = false
 			}
 
-			console.log('weeksNumber', weeksNumber)
 
 			let sellImg = `
 											<div class="sell_wrapper">
@@ -1678,7 +1673,7 @@ function _setExpectedItem(where) {
 			document.querySelector('.product-images-container').insertAdjacentHTML('beforeend', sellImg)
 			document.querySelector('.product-images-container-mobile').insertAdjacentHTML('beforeend', sellImg)
 
-			if(!document.querySelector('.demand_wrapper')) {
+			if (!document.querySelector('.demand_wrapper')) {
 				where.insertAdjacentHTML('beforebegin', demandText)
 			}
 		}
@@ -1730,7 +1725,7 @@ function _addNotStyle() {
 				imgArr = document.querySelectorAll('#product-images-thumbs .picture')
 				imgArr.length ? null : imgArr = document.querySelectorAll('.product-images-container-mobile img')
 			} else {
-					document.querySelectorAll('.product-images-container .product-image-wrapper source').forEach((source, index) => {
+				document.querySelectorAll('.product-images-container .product-image-wrapper source').forEach((source, index) => {
 					document.querySelectorAll('.product-images-container .product-image-wrapper source + img')[index].src = source.getAttribute('lazyload')
 				})
 
@@ -1836,8 +1831,6 @@ function _addNotStyle() {
 								'eventCategory': 'Exp: PDP improvemnets ' + device,
 								'eventAction': 'Click on Product details',
 							})
-
-							console.log('eventAction Click on Product details')
 						}
 						if (e.target.matches('.join_wl')) {
 							document.querySelector('.product-actions button').click()
@@ -1873,8 +1866,6 @@ function initializeCarousel() {
 			}
 		}
 	}, 100)
-
-	// setTimeout(() => clearInterval(interval), 10000)
 }
 
 function tnsSettings(container, items, nav, gutter, responsive, name, controls, slideBy) {
@@ -1909,8 +1900,6 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 			'eventCategory': 'Exp: PDP improvemnets ' + device,
 			'eventAction': `Swipe on ${ name } slider`,
 		})
-
-		console.log(`eventAction Swipe on ${ name } slider`)
 	})
 }
 
@@ -1923,10 +1912,8 @@ let isSimilarRight = setInterval(() => {
 				dataLayer.push({
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'You may also like for out of stock',
+					'eventAction': 'You may also like',
 				})
-
-				console.log('eventAction You may also like for out of stock')
 			}
 		})
 	}
@@ -1940,14 +1927,12 @@ let isSimilarLeft = setInterval(() => {
 				dataLayer.push({
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
-					'eventAction': 'You may also like for out of stock',
+					'eventAction': 'You may also like',
 				})
-
-				console.log('eventAction You may also like for out of stock')
 			}
 		})
 	}
-}, 200)
+}, 500)
 let isMenu = setInterval(() => {
 	if (document.querySelector('.custom_menu_wrapper')) {
 		clearInterval(isMenu)
@@ -1960,8 +1945,6 @@ let isMenu = setInterval(() => {
 					'eventCategory': 'Exp: PDP improvemnets ' + device,
 					'eventAction': 'Clicks on the shop by categories',
 				})
-
-				console.log('eventAction Clicks on the shop by categories')
 			}
 		})
 	}
@@ -1970,7 +1953,7 @@ let isMenu = setInterval(() => {
 setTimeout(() => {
 	clearInterval(isSimilarLeft)
 	clearInterval(isSimilarRight)
-}, 10000)
+}, 30000)
 
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
@@ -1979,14 +1962,10 @@ dataLayer.push({
 	'eventAction': 'loaded',
 })
 
-console.log('eventCategory Exp: PDP improvemnets ' + device + ' loaded >>>>>')
-
 let isClarity = setInterval(() => {
 	if (typeof clarity == 'function') {
 		clearInterval(isClarity)
 
 		clarity('set', `pdp_improvemnets_${ device }`, 'variant_1')
-
-		console.log('clarity >>>>>')
 	}
 }, 100)
