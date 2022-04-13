@@ -6,6 +6,10 @@ const style = `
 										General style
 										============= */
 										
+										.product-actions .mr-2 {
+											display: none;
+										}
+										
 										img.lazyloading {
 											opacity: 1 !important;
 										}
@@ -1453,16 +1457,7 @@ let isStatus = setInterval(() => {
 			})
 		}
 
-		if (document.querySelector('.product-variation .circle')) {
-			document.querySelector('.product-actions div.ng-star-inserted').hidden = true
-		}
 
-		document.querySelector('.product-actions input').insertAdjacentHTML('beforebegin', `
-						<span data-action="minus">-</span>
-					`)
-		document.querySelector('.product-actions input').insertAdjacentHTML('afterend', `
-						<span data-action="plus">+</span>
-					`)
 
 		document.querySelector('.product-actions input').closest('div').addEventListener('click', e => {
 			if (e.target.matches('[data-action="minus"]')) {
