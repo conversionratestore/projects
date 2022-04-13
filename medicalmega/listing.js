@@ -998,6 +998,31 @@ border-radius: 100px;
     padding: 4px;
     border-radius: 40px;
   }
+  .algolia-autocomplete {
+    width: 100%:
+  }
+  .aa-dropdown-menu {
+    background: #FBFBFB;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+    width: 100%;
+  }
+.aa-suggestion {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+.aa-suggestion.aa-cursor {
+  background-color: #E0E4E5;
+}
+.aa-suggestion img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+.aa-suggestion em {
+    font-weight: 700;
+}
   @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
@@ -1634,38 +1659,6 @@ closeBtn.forEach(item => {
   })
 })
 
-let index = searchClient.initIndex('staging_products');
-
-// search.addWidgets([
-//   instantsearch.widgets.configure({
-//     hitsPerPage: '12',
-//     facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex','query:wear 814'],
-//   }),
-// ])
-
-// index.getObject('78438').then(object => {
-//   console.log(object);
-// });
-// index.getObjects(hit => hit.item_num == "78438").then(obj => {
-//   console.log(obj);
-// });
-
-// index.getSettings().then(settings => {
-//   console.log(settings);
-// });
-// var index = searchClient.initIndex(algoliaConfig.indexName + '_categories.lvl0');
-// index.search('Urostomy 7331', {
-//   facetFilters: ['categories.lvl0:Ostomy','manufacturer:Genairex']
-// }).then(({ hits }) => {
-//   console.log(hits);
-// });
-// index.search(' ',{
-//   facetFilters: ['categories.lvl0:Ostomy', '',''] // AND "item_num:5585"
-// }).then(({ hits }) => {
-//   console.log(hits);
-// });
- 
-
 search.addWidgets([
   {
       render({ searchMetadata = {} }) {
@@ -1772,6 +1765,32 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
     }
   })
 })
+
+let index = searchClient.initIndex('staging_products');
+
+autocomplete('#form-search input', {hint: false, debug: true}, [
+  {
+      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
+      displayKey: 'name',
+      openOnFocus: true,
+      templates: {
+          suggestion: function(suggestion) {
+              function findImage() {
+                  for (let i = 0; i < suggestion.variants.length; i++) {
+                      if (suggestion.variants[i].image != '') {
+                          return suggestion.variants[i].image
+                      }
+                  }
+              }
+              let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+                      
+              return sugTemplate;
+          },
+      },
+  }
+  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+      console.log(event, suggestion, dataset);
+  })
 
 let optionMut = {
   childList: true,
