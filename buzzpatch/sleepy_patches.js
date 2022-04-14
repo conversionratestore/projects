@@ -509,6 +509,7 @@ if (window.innerWidth <= 768) {
         links.forEach((link) => {
           link.addEventListener("click", function (event) {
             event.preventDefault()
+            pushDataLayer(`Click on Get Sleepypatch button`, `Safe for kids 0 section`)
 
             let widthTop = document.documentElement.scrollTop,
               hash = this.hash,
