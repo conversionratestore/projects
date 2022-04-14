@@ -256,9 +256,11 @@ button {
   .logo span {
     color: #96280F; }
 
-#form-search {
+.box-search {
   position: relative;
   width: 545px; }
+  .form-search {
+    width: 100%;}
   .main .ais-SearchBox-input {
     background: #E9EBEC;
     border-radius: 38px;
@@ -1023,6 +1025,11 @@ border-radius: 100px;
 .aa-suggestion em {
     font-weight: 700;
 }
+#autocomplete {
+  position: absolute!important;
+  opacity: 0;
+  pointer-events: none;
+}
   @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
@@ -1054,7 +1061,10 @@ let html = `
             <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
               <div class="d-flex">
                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
-                <div id="form-search"></div>
+                <div class="box-search"> 
+                  <div id="form-search"></div>
+                  <input type="text" id="autocomplete">
+                </div>
               </div>
               <div class="align-items-center"><a class="align-items-center midbar_action mr-16" href="https://medicalmega.com/myaccount.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/user.svg" alt="icon account"><span>Account</span></a><a class="align-items-center midbar_action" href="https://medicalmega.com/cart.html"><img class="mr-8" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/cart.svg" alt="icon Cart"><span>Cart (<span class="cart_count">0</span>)</span></a></div>
             </div>
@@ -1138,6 +1148,22 @@ let html = `
     </div>
 `
 
+const API_KEY = `e3a0cffec873466acf71806748550356`;
+const APPLICATION_ID = `PXDJAQHDPZ`;
+
+const searchClient = algoliasearch(
+    APPLICATION_ID,
+    API_KEY,
+);
+
+const search = instantsearch({
+    indexName: 'staging_products',
+    routing: false,
+    searchClient,
+});
+
+let litterAlphabet = [];
+
 let actionDataLayer = '';
 let labelDataLayer = '';
 
@@ -1194,22 +1220,6 @@ function toggleActive(getData) {
       }
   }
 }
-
-const API_KEY = `e3a0cffec873466acf71806748550356`;
-const APPLICATION_ID = `PXDJAQHDPZ`;
-
-const searchClient = algoliasearch(
-    APPLICATION_ID,
-    API_KEY,
-);
-
-const search = instantsearch({
-    indexName: 'staging_products',
-    routing: false,
-    searchClient,
-});
-
-let litterAlphabet = [];
 
 //choice all next sibling
 function nextAll(elem) {
@@ -1640,17 +1650,9 @@ search.addWidgets([
                     }
                 }, true)
               })
-                  
-          //     document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
-          //       document.querySelector('#form-search pre').innerHTML = '';
-          //       document.querySelector('#form-search .ais-SearchBox-input').value = '';
-          //       console.log( document.querySelector('#form-search pre').innerHTML)
-          //       console.log( document.querySelector('#form-search .ais-SearchBox-input').value)
-          //       inputWord = false;
-          //       setConfigureAlgolia("*")
-          //     })
+
           }
-      }
+      },
   },
 ])
 
@@ -1684,15 +1686,15 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
-  // document.querySelector('#form-search input').value =  document.querySelector('#form-search pre').innerText;
-  setConfigureAlgolia("*")
-  // search.addWidgets([
-  //   instantsearch.widgets.configure({
-  //     hitsPerPage: '12',
-  //     facetFilters: ["*"],
-  //     query: document.querySelector('#form-search pre').innerText
-  //   }),
-  // ])
+  document.querySelector('#form-search input').value = document.querySelector('#autocomplete').value;
+  // setConfigureAlgolia("*")
+  search.addWidgets([
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      facetFilters: ["*"],
+      query: document.querySelector('#autocomplete').value
+    }),
+  ])
 });
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
@@ -1715,12 +1717,11 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
     }),
   ])
 })
-let inputWord = false;
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
-  input.addEventListener('input', (e) => {
+  // input.addEventListener('input', (e) => {
   //   return e.target.value.replace(/\s/g, "");
-  })
+  // })
   input.addEventListener('keypress', (e) => {
     if (e.keyCode == '13') {
       document.querySelector('.advanced-search .btn').click();
@@ -1729,76 +1730,56 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
 })
 
 let index = searchClient.initIndex('staging_products');
-//<input class="ais-SearchBox-input" type="search" placeholder="Search by Name" autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="512">
-//<input class="ais-SearchBox-input aa-input" type="search" placeholder="Search by Name" autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="512" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
-// autocomplete('#form-search input', {hint: false, debug: true}, [
-//   {
-//       source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
-//       displayKey: 'name',
-//       openOnFocus: true,
-//       templates: {
-//           suggestion: function(suggestion) {
-//               function findImage() {
-//                   for (let i = 0; i < suggestion.variants.length; i++) {
-//                       if (suggestion.variants[i].image != '') {
-//                           return suggestion.variants[i].image
-//                       }
-//                   }
-//               }
-//               let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+
+autocomplete('#autocomplete', {hint: false, debug: true}, [
+  {
+      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
+      displayKey: 'name',
+      // openOnFocus: true,
+      onStateChange: true,
+      templates: {
+          suggestion: function(suggestion) {
+              function findImage() {
+                  for (let i = 0; i < suggestion.variants.length; i++) {
+                      if (suggestion.variants[i].image != '') {
+                          return suggestion.variants[i].image
+                      }
+                  }
+              }
+              let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
                       
-//               return sugTemplate;
-//           },
-//       },
-//   }
-//   ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-//     console.log(event.target.innerText, suggestion, dataset);
-//     // inputWord = true;
+              return sugTemplate;
+          },
+      },
+  }
+  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+    console.log(event.target.innerText, suggestion, dataset);
 
-//     console.log(search)
-//     search.addWidgets([
-//       instantsearch.widgets.configure({
-//         hitsPerPage: '12',
-//         facetFilters: [`item_num:${suggestion.item_num}`],
-//       }),
+    console.log(search)
+    search.addWidgets([
+      instantsearch.widgets.configure({
+        hitsPerPage: '12',
+        facetFilters: [`item_num:${suggestion.item_num}`],
+      }),
      
-//     ])
-//     document.querySelector('#form-search pre').innerHTML = document.querySelector('#form-search .ais-SearchBox-input').value;
-//     // document.querySelector('.listing_title').focus()
-//     // document.querySelector('#form-search .ais-SearchBox-input').value = document.querySelector('#form-search pre').innerText;
-//     document.querySelector('#form-search .ais-SearchBox-input').setAttribute('aria-expanded','true');
+    ])
+  })
 
-//     document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
-//       document.querySelector('#form-search pre').innerHTML = '';
-//       document.querySelector('#form-search .ais-SearchBox-input').value = '';
-//       console.log( document.querySelector('#form-search pre').innerHTML)
-//       console.log( document.querySelector('#form-search .ais-SearchBox-input').value)
-//       inputWord = false;
-//       setConfigureAlgolia("*")
-//     })
-//   })
+  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*"))
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#form-search')) {
-      
       document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     }
-//     if (inputWord == false) {
-//         document.querySelector('.ais-SearchBox-input').value = '';
-//     }
   })
 
-//   document.querySelector('#form-search input').addEventListener('input', (e) => {
-//   inputWord = true;
-//   document.querySelector('.algolia-autocomplete pre').innerHTML = e.target.value;
-//   if (e.target.value.length < 1) {
-//       inputWord = false;
-//       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-//       document.querySelector('.aa-suggestions').style.display = 'none';
-//   } else {
-    
-//   }
-// })
+  document.querySelector('#autocomplete').addEventListener('input', (e) => {
+    document.querySelector('#form-search input').value = e.target.value;
+  })
+  document.querySelector('#form-search input').addEventListener('input', (e) => {
+    document.querySelector('#autocomplete').value = e.target.value;
+    document.querySelector('#autocomplete').focus()
+  })
 };
 
 let optionMut = {
