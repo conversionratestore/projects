@@ -1780,11 +1780,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     
     // search.helper.search();
     // console.log(search.helper.search())
-    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-        document.querySelector('.ais-SearchBox-input').value = '';
-        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-        inputWord = false;
-    })
+
     search.addWidgets([
         instantsearch.widgets.configure({
           hitsPerPage: '12',
@@ -1792,6 +1788,11 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
           query: suggestion.name,
         }),
     ])
+    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+      document.querySelector('.ais-SearchBox-input').value = '';
+      document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+      inputWord = false;
+    })
   })
 
   document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*"))
