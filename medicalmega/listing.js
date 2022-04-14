@@ -1178,6 +1178,8 @@ let optionFetchAlgolia = {
   method: 'GET'
 }
 
+let inputWord = false;
+
 let requestAllCaterories = new Promise((resolve, reject) => {
   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
@@ -1650,6 +1652,11 @@ search.addWidgets([
                     }
                 }, true)
               })
+              document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                document.querySelector('.ais-SearchBox-input').value = '';
+                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+                inputWord = false;
+            })
 
           }
       },
@@ -1686,15 +1693,15 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
-  document.querySelector('#form-search input').value = document.querySelector('#autocomplete').value;
-  // setConfigureAlgolia("*")
-  search.addWidgets([
-    instantsearch.widgets.configure({
-      hitsPerPage: '12',
-      facetFilters: ["*"],
-      query: document.querySelector('#autocomplete').value
-    }),
-  ])
+  document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
+  setConfigureAlgolia("*")
+//   search.addWidgets([
+//     instantsearch.widgets.configure({
+//       hitsPerPage: '12',
+//       facetFilters: ["*"],
+//       query: document.querySelector('#form-search pre').value
+//     }),
+//   ])
 });
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
@@ -1731,12 +1738,13 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
 
 let index = searchClient.initIndex('staging_products');
 
-autocomplete('#autocomplete', {hint: false, debug: true}, [
+autocomplete('#form-search input', {hint: false, debug: true}, [
   {
       source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
       displayKey: 'name',
       // openOnFocus: true,
       onStateChange: true,
+    
       templates: {
           suggestion: function(suggestion) {
               function findImage() {
@@ -1755,13 +1763,34 @@ autocomplete('#autocomplete', {hint: false, debug: true}, [
   ]).on('autocomplete:selected', function(event, suggestion, dataset) {
     console.log(event.target.innerText, suggestion, dataset);
 
-    console.log(search)
+
+    // search.helper.removeFacetRefinement('name')
+    search.helper.lastResults.query = suggestion.name;
+    search.helper.state.query = suggestion.name;
+    
+    console.log(search.helper.lastResults.query)
+    console.log(search.helper.state.query)
+    // console.log(search.helper.search())
+
+    // if (suggestion.name) {
+    //     search.helper.addFacetRefinement('name', suggestion.name);
+    //     console.log(search.helper.addFacetRefinement('name', suggestion.name))
+    // }
+
+    
+    // search.helper.search();
+    // console.log(search.helper.search())
+    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+        document.querySelector('.ais-SearchBox-input').value = '';
+        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+        inputWord = false;
+    })
     search.addWidgets([
-      instantsearch.widgets.configure({
-        hitsPerPage: '12',
-        facetFilters: [`item_num:${suggestion.item_num}`],
-      }),
-     
+        instantsearch.widgets.configure({
+          hitsPerPage: '12',
+          facetFilters: [`item_num:${suggestion.item_num}`],
+          query: suggestion.name,
+        }),
     ])
   })
 
@@ -1771,14 +1800,21 @@ autocomplete('#autocomplete', {hint: false, debug: true}, [
     if (!e.target.closest('#form-search')) {
       document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     }
+    if (inputWord == false) {
+      document.querySelector('.ais-SearchBox-input').value = '';
+    }
   })
 
-  document.querySelector('#autocomplete').addEventListener('input', (e) => {
-    document.querySelector('#form-search input').value = e.target.value;
-  })
+//   document.querySelector('#autocomplete').addEventListener('input', (e) => {
+//     document.querySelector('#form-search input').value = e.target.value;
+//   })
   document.querySelector('#form-search input').addEventListener('input', (e) => {
-    document.querySelector('#autocomplete').value = e.target.value;
-    document.querySelector('#autocomplete').focus()
+    inputWord = true;
+    if (e.target.value.length < 1) {
+        inputWord = false;
+    }
+    // document.querySelector('#autocomplete').value = e.target.value;
+    // document.querySelector('#autocomplete').focus()
   })
 };
 
