@@ -999,7 +999,7 @@ border-radius: 100px;
     border-radius: 40px;
   }
   .algolia-autocomplete {
-    width: 100%:
+    width: 100%;
   }
   .aa-dropdown-menu {
     background: #FBFBFB;
@@ -1167,7 +1167,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
       'eventLabel': labelDataLayer
   });
 }
-
+window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1535,63 +1535,6 @@ search.addWidgets([
       },
     },
   }),
-  
-  // instantsearch.widgets.refinementList({
-  //     container: `.select_category .select_dropdown`,
-  //     attribute: 'categories.lvl0',
-  //     limit: 100,
-  //     sortBy: ['isRefined'],
-
-  //     templates: {
-  //         item: (data) => {
-  //             console.log(data)
-  //             return data.label
-  //         }
-  //     },
-  // }),
-  
-  // instantsearch.widgets.refinementList({
-  //     container: `#lvl_categories`,
-  //     attribute: categoryFacet.split(':')[0],
-  //     transformItems(items) {
-  //         return items.filter(item => {
-  //             return item.label.includes(categoryFacet.split(':')[1])
-  //         }) 
-  //     },  
-  // }),
-  // instantsearch.widgets.hierarchicalMenu({
-  //     container: `#list_categories`,
-  //     attributes: [
-  //       'categories.lvl0',
-  //       'categories.lvl1',
-  //       'categories.lvl2',
-  //       'categories.lvl3',
-  //       'categories.lvl4',
-  //     ], 
-  //     // separator: ' / ',
-  //     rootPath: facetCategories,
-  //     sortBy: ['isRefined'],  
-  //     showParentLevel: false,
-  //     limit: 150,  
-      // connector: false,
-      // templates: {
-      //   item: (data) => {
-      //     console.log(data)
-      //     console.log(categoryFacet)
-      //     if (data.label.toLowerCase().includes(categoryFacet.toLowerCase())) {
-      //       if (data.label.split('>')) {
-
-      //         let label = data.label.split('>');
-              
-      //         return `<a href="#">${label[label.length - 1]}</a>`
-      //       } else {
-      //         return `<a href="#">${data.label}</a>`
-
-      //       }
-      //     }
-      //   }
-      // },
-  // }),
 
   instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
@@ -1697,8 +1640,17 @@ search.addWidgets([
                     }
                 }, true)
               })
+                  
+          //     document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
+          //       document.querySelector('#form-search pre').innerHTML = '';
+          //       document.querySelector('#form-search .ais-SearchBox-input').value = '';
+          //       console.log( document.querySelector('#form-search pre').innerHTML)
+          //       console.log( document.querySelector('#form-search .ais-SearchBox-input').value)
+          //       inputWord = false;
+          //       setConfigureAlgolia("*")
+          //     })
           }
-      },
+      }
   },
 ])
 
@@ -1725,13 +1677,22 @@ document.querySelectorAll('.select_filter').forEach(el => {
 })
 
 document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+  
+  document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
   if (document.querySelector('.advanced-search.active') != null) {
     document.querySelector('.advanced-search .btn_reset').click();
   }
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
-
+  // document.querySelector('#form-search input').value =  document.querySelector('#form-search pre').innerText;
   setConfigureAlgolia("*")
+  // search.addWidgets([
+  //   instantsearch.widgets.configure({
+  //     hitsPerPage: '12',
+  //     facetFilters: ["*"],
+  //     query: document.querySelector('#form-search pre').innerText
+  //   }),
+  // ])
 });
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
@@ -1754,11 +1715,12 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
     }),
   ])
 })
+let inputWord = false;
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
-  // input.addEventListener('input', (e) => {
+  input.addEventListener('input', (e) => {
   //   return e.target.value.replace(/\s/g, "");
-  // })
+  })
   input.addEventListener('keypress', (e) => {
     if (e.keyCode == '13') {
       document.querySelector('.advanced-search .btn').click();
@@ -1767,30 +1729,77 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
 })
 
 let index = searchClient.initIndex('staging_products');
-
-autocomplete('#form-search input', {hint: false, debug: true}, [
-  {
-      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
-      displayKey: 'name',
-      openOnFocus: true,
-      templates: {
-          suggestion: function(suggestion) {
-              function findImage() {
-                  for (let i = 0; i < suggestion.variants.length; i++) {
-                      if (suggestion.variants[i].image != '') {
-                          return suggestion.variants[i].image
-                      }
-                  }
-              }
-              let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+//<input class="ais-SearchBox-input" type="search" placeholder="Search by Name" autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="512">
+//<input class="ais-SearchBox-input aa-input" type="search" placeholder="Search by Name" autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="512" spellcheck="false" role="combobox" aria-autocomplete="both" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+// autocomplete('#form-search input', {hint: false, debug: true}, [
+//   {
+//       source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
+//       displayKey: 'name',
+//       openOnFocus: true,
+//       templates: {
+//           suggestion: function(suggestion) {
+//               function findImage() {
+//                   for (let i = 0; i < suggestion.variants.length; i++) {
+//                       if (suggestion.variants[i].image != '') {
+//                           return suggestion.variants[i].image
+//                       }
+//                   }
+//               }
+//               let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
                       
-              return sugTemplate;
-          },
-      },
-  }
-  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-      console.log(event, suggestion, dataset);
+//               return sugTemplate;
+//           },
+//       },
+//   }
+//   ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+//     console.log(event.target.innerText, suggestion, dataset);
+//     // inputWord = true;
+
+//     console.log(search)
+//     search.addWidgets([
+//       instantsearch.widgets.configure({
+//         hitsPerPage: '12',
+//         facetFilters: [`item_num:${suggestion.item_num}`],
+//       }),
+     
+//     ])
+//     document.querySelector('#form-search pre').innerHTML = document.querySelector('#form-search .ais-SearchBox-input').value;
+//     // document.querySelector('.listing_title').focus()
+//     // document.querySelector('#form-search .ais-SearchBox-input').value = document.querySelector('#form-search pre').innerText;
+//     document.querySelector('#form-search .ais-SearchBox-input').setAttribute('aria-expanded','true');
+
+//     document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
+//       document.querySelector('#form-search pre').innerHTML = '';
+//       document.querySelector('#form-search .ais-SearchBox-input').value = '';
+//       console.log( document.querySelector('#form-search pre').innerHTML)
+//       console.log( document.querySelector('#form-search .ais-SearchBox-input').value)
+//       inputWord = false;
+//       setConfigureAlgolia("*")
+//     })
+//   })
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#form-search')) {
+      
+      document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+    }
+//     if (inputWord == false) {
+//         document.querySelector('.ais-SearchBox-input').value = '';
+//     }
   })
+
+//   document.querySelector('#form-search input').addEventListener('input', (e) => {
+//   inputWord = true;
+//   document.querySelector('.algolia-autocomplete pre').innerHTML = e.target.value;
+//   if (e.target.value.length < 1) {
+//       inputWord = false;
+//       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+//       document.querySelector('.aa-suggestions').style.display = 'none';
+//   } else {
+    
+//   }
+// })
+};
 
 let optionMut = {
   childList: true,
