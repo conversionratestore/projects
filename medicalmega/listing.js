@@ -1195,6 +1195,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
       'eventLabel': labelDataLayer
   });
 }
+
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
@@ -1788,6 +1789,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
           query: suggestion.name,
         }),
     ])
+    document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
@@ -1804,6 +1806,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     if (inputWord == false) {
       document.querySelector('.ais-SearchBox-input').value = '';
     }
+    
+    document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
   })
 
 //   document.querySelector('#autocomplete').addEventListener('input', (e) => {
@@ -1826,6 +1830,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     labelDataLayer = 'Header';
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
+
 };
 
 let optionMut = {
