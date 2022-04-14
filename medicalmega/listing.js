@@ -1190,7 +1190,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
-      'eventCategory': 'Exp — New LP',
+      'eventCategory': 'Exp — New PL',
       'eventAction': actionDataLayer,
       'eventLabel': labelDataLayer
   });
@@ -1233,11 +1233,12 @@ function nextAll(elem) {
   })
 };
 
-function setConfigureAlgolia(e) {
+function setConfigureAlgolia(e,query) {
   search.addWidgets([
     instantsearch.widgets.configure({
       hitsPerPage: '12',
       facetFilters: [e],
+      query: query
     }),
   ])
 }
@@ -1302,8 +1303,7 @@ requestAllCaterories.then(data => {
     console.log(e.target.dataset.category)
     facetCategories = e.target.dataset.category;
 
-    setConfigureAlgolia(facetCategories)
-
+    setConfigureAlgolia(facetCategories,"")
     document.querySelector('.listing_title').innerHTML = e.target.innerText;
     document.querySelector('#breadcrumbs ul').innerHTML = `<li><a href="#" data-category="*">Home</a></li>`;
 
@@ -1327,8 +1327,7 @@ requestAllCaterories.then(data => {
 
         facetCategories = link.querySelector('a').dataset.category;
 
-        console.log(facetCategories)
-        setConfigureAlgolia(facetCategories);
+        setConfigureAlgolia(facetCategories,"")
         if (facetCategories == "*") {
           document.querySelector('.listing_title').innerHTML = '';
           document.querySelector('#breadcrumbs ul').innerHTML = '';
@@ -1695,7 +1694,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
-  setConfigureAlgolia("*")
+  setConfigureAlgolia("*",document.querySelector('#form-search input').value)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
 //       hitsPerPage: '12',
@@ -1717,13 +1716,8 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   document.querySelector('.listing_title').innerHTML = '';
 
   console.log(categories,brand,querySum)
-  search.addWidgets([
-    instantsearch.widgets.configure({
-      hitsPerPage: '12',
-      facetFilters: [categories,brand],
-      query: querySum
-    }),
-  ])
+  
+  setConfigureAlgolia(`${categories,brand}`,querySum)
 })
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
@@ -1782,13 +1776,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     // search.helper.search();
     // console.log(search.helper.search())
 
-    search.addWidgets([
-        instantsearch.widgets.configure({
-          hitsPerPage: '12',
-          facetFilters: [`item_num:${suggestion.item_num}`],
-          query: suggestion.name,
-        }),
-    ])
+    setConfigureAlgolia(`item_num:${suggestion.item_num}`,suggestion.name)
+    
     document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
       document.querySelector('.ais-SearchBox-input').value = '';
@@ -1797,7 +1786,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     })
   })
 
-  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*"))
+  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*",""))
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#form-search')) {
@@ -1919,3 +1908,21 @@ let mut = new MutationObserver(function (muts) {
   mut.observe(document, optionMut);
 });
 mut.observe(document, optionMut);
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+ 'event': 'event-to-ga',
+ 'eventCategory': 'Exp — New PL',
+ 'eventAction': 'loaded'
+});
+
+ (function(h,o,t,j,a,r){
+ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+ h._hjSettings={hjid:1483840,hjsv:6};
+ a=o.getElementsByTagName('head')[0];
+ r=o.createElement('script');r.async=1;
+ r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+ a.appendChild(r);
+ })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+ window.hj=window.hj||function(){(hj.q=hj.q||[]).push(arguments)};
+ hj('event', 'new_pl_desktop');
