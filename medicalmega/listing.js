@@ -1,5 +1,5 @@
 let style = `
-<style>
+<style class="style-main">
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
@@ -66,33 +66,33 @@ button {
   appearance: none; }
 
 /* Chrome, Safari, Edge, Opera */
-.main input::-webkit-outer-spin-button, .main input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 
 /* Firefox */
-.main input[type=number] {
+input[type=number] {
   -moz-appearance: textfield; }
 
-.main *::-webkit-input-placeholder {
+*::-webkit-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-.main *:-moz-placeholder {
+*:-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-.main *::-moz-placeholder {
+*::-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
 
-.main *:-ms-input-placeholder {
+*:-ms-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
@@ -105,12 +105,12 @@ button {
     }
 }
 
-.main input:-webkit-autofill {
+input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
 
-.main input {
+input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -127,10 +127,10 @@ button {
   -moz-appearance: none;
   appearance: none; }
 
-.main input[type="search"]::-webkit-search-decoration,
-.main input[type="search"]::-webkit-search-cancel-button,
-.main input[type="search"]::-webkit-search-results-button,
-.main input[type="search"]::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
   display: none; }
 
 .container {
@@ -1195,6 +1195,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
       'eventLabel': labelDataLayer
   });
 }
+
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
@@ -1816,6 +1817,15 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     }
     // document.querySelector('#autocomplete').value = e.target.value;
     // document.querySelector('#autocomplete').focus()
+  })
+
+  document.querySelector('.previous-version').addEventListener('click', (e) => {
+    document.querySelector('.main').remove();
+    document.querySelector('#wrap').style.display = 'block';
+    document.querySelector('.style-main').remove();
+    actionDataLayer = `Click on ${e.target.innerText}`;
+    labelDataLayer = 'Header';
+    pushDataLayer(actionDataLayer, labelDataLayer)
   })
 };
 
