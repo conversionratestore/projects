@@ -1607,8 +1607,8 @@ dataButton.forEach(item => {
 closeBtn.forEach(item => {
   item.addEventListener('click', (e) => {
     toggleActive(item.getAttribute('data-close'));
-    document.querySelector('.select_category ul li').click();
-    document.querySelector('.select_brand ul li').click();
+    document.querySelector('.select_category ul li p').click();
+    document.querySelector('.select_brand ul li p').click();
   })
 })
 
