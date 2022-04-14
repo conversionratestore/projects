@@ -433,7 +433,7 @@ if (window.innerWidth <= 768) {
             </div>
           </div>
           <div class="additionally_cart" id="scrollSvg">                
-                <p>Buzzpatch will now protect you, but in case you get <span>the odd bite</span>, try our popular Instant Itch Relief</p>
+                <p>Buzzpatch will now protect you, but in case you get <br> <span>the odd bite</span>, try our popular Instant Itch Relief</p>
 
                 <div class="drop_down_cart">
                     <div class="text_absolute">
