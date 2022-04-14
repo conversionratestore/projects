@@ -146,7 +146,7 @@ if (window.innerWidth <= 768) {
            .cart_box .additionally_cart > p{
                 font-family: 'DINEngschrift LT', sans-serif;
                 font-weight: 400;
-                font-size: 20px !important;
+                font-size: 18px !important;
                 line-height: 120% !important;
                 text-transform: uppercase;
                 color: #0C0B0B;
@@ -387,6 +387,12 @@ if (window.innerWidth <= 768) {
             .additionally_cart #BuzzPacks.price_box > div.img_box{
                 height: 108px;
                 max-width: 120px;
+            }
+
+            @media (max-width: 320px){
+              .cart_box .additionally_cart > p{
+                font-size: 15px !important;
+              }
             }
             
         </style>
