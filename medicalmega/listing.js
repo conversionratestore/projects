@@ -1195,7 +1195,6 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
       'eventLabel': labelDataLayer
   });
 }
-
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
@@ -1766,8 +1765,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
 
 
     // search.helper.removeFacetRefinement('name')
-    search.helper.lastResults.query = suggestion.name;
-    search.helper.state.query = suggestion.name;
+    // search.helper.lastResults.query = suggestion.name;
+    // search.helper.state.query = suggestion.name;
     
     console.log(search.helper.lastResults.query)
     console.log(search.helper.state.query)
