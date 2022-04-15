@@ -1058,7 +1058,7 @@ let html = `
         </div>
         <div class="midbar">
           <div class="container">
-            <div class="flex-center-between"><a class="logo" href="/">Medical<span>Mega</span></a>
+            <div class="flex-center-between"><a class="logo" href=#">Medical<span>Mega</span></a>
               <div class="d-flex">
                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                 <div class="box-search"> 
@@ -1220,6 +1220,9 @@ function toggleActive(getData) {
       if (getData == 'advanced-search') {
           document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
           document.querySelector(`.nav_category`).classList.remove('active');
+          actionDataLayer = `Click on advanced search`;
+          labelDataLayer = `Header`;
+          pushDataLayer(actionDataLayer,labelDataLayer);
       }
   }
 }
@@ -1656,12 +1659,25 @@ search.addWidgets([
                 document.querySelector('.ais-SearchBox-input').value = '';
                 document.querySelector('.algolia-autocomplete pre').innerHTML = '';
                 inputWord = false;
+                
+                actionDataLayer = `Click on reset button`;
+                labelDataLayer = 'Search by Name';
+                pushDataLayer(actionDataLayer, labelDataLayer)
             })
 
           }
       },
   },
 ])
+
+document.querySelector('.header .logo').addEventListener('click', (e) => { 
+  document.querySelector('#form-search .ais-SearchBox-input').value = '';
+  document.querySelector('#form-search pre').innerHTML = '';
+  setConfigureAlgolia("*","");
+  actionDataLayer = `Click on logo`;
+  labelDataLayer = 'Header';
+  pushDataLayer(actionDataLayer, labelDataLayer)
+})
 
 document.body.addEventListener('click', (e) => { 
   if (!e.target.closest('.select')) remActiveSelect();
@@ -1702,6 +1718,10 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
 //       query: document.querySelector('#form-search pre').value
 //     }),
 //   ])
+
+  actionDataLayer = `Click on submit button`;
+  labelDataLayer = 'Search by Name';
+  pushDataLayer(actionDataLayer, labelDataLayer)
 });
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
@@ -1717,7 +1737,10 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
 
   console.log(categories,brand,querySum)
   
-  setConfigureAlgolia(`${categories,brand}`,querySum)
+  setConfigureAlgolia(`${categories,brand}`,querySum);
+  actionDataLayer = `Click on submit button`;
+  labelDataLayer = 'Advanced Search';
+  pushDataLayer(actionDataLayer, labelDataLayer)
 })
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
@@ -1783,7 +1806,16 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
       inputWord = false;
+      
+      actionDataLayer = `Click on reset button`;
+      labelDataLayer = 'Search by Name';
+      pushDataLayer(actionDataLayer, labelDataLayer)
     })
+
+    
+    actionDataLayer = `Selected suggestion`;
+    labelDataLayer = 'Autocomplete Search by Name';
+    pushDataLayer(actionDataLayer, labelDataLayer)
   })
 
   document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*",""))
@@ -1802,6 +1834,11 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
 //   document.querySelector('#autocomplete').addEventListener('input', (e) => {
 //     document.querySelector('#form-search input').value = e.target.value;
 //   })
+  document.querySelector('#form-search input').addEventListener('click', (e) => {
+    actionDataLayer = `Click on Search by Name`;
+    labelDataLayer = 'Header';
+    pushDataLayer(actionDataLayer, labelDataLayer)
+  })
   document.querySelector('#form-search input').addEventListener('input', (e) => {
     inputWord = true;
     if (e.target.value.length < 1) {
@@ -1859,48 +1896,48 @@ let mut = new MutationObserver(function (muts) {
           e.stopImmediatePropagation()
 
             console.log('click')
-              let notes = 'select';
-              if (option.closest('.select_category')) {
-                  notes = 'select category';
-                  el.dataset.category = option.dataset.category;
-                  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
-                    console.log(data)
-                    let brand = data.facets.manufacturer;
-                    document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active"><p>Select Manufacturer</p></li>`;
-                    document.querySelector('.select_brand .select_dropdown li').click();
-                    for (let key in brand) {
-                      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
-                    }
-                    
-                  })       
-              } else if (option.closest('.select_brand')) {
-                  notes = 'select manufacturer';
-                  // fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=categories.lv0&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
-                  //   console.log(data)
-                  //   let categoriesLvl0 = data.facets['categories.lvl0'];
-                  //   document.querySelector('.select_category .select_dropdown').innerHTML = `<li class="select_option active">Select Category</li>`;
-                  //   // document.querySelector('.select_category .select_dropdown li').click();
-                  //   for (let key in categoriesLvl0) {
-                  //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
-                  //   }
-                  // })
-              }
-              actionDataLayer = `Click on option ${notes}`;
-              labelDataLayer = 'Advanced Search';
-              pushDataLayer(actionDataLayer, labelDataLayer)
+            let notes = 'select';
+            if (option.closest('.select_category')) {
+                notes = 'select category';
+                el.dataset.category = option.dataset.category;
+                fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                  console.log(data)
+                  let brand = data.facets.manufacturer;
+                  document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active"><p>Select Manufacturer</p></li>`;
+                  document.querySelector('.select_brand .select_dropdown li').click();
+                  for (let key in brand) {
+                    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
+                  }
+                  
+                })       
+            } else if (option.closest('.select_brand')) {
+                notes = 'select manufacturer';
+                // fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=categories.lv0&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                //   console.log(data)
+                //   let categoriesLvl0 = data.facets['categories.lvl0'];
+                //   document.querySelector('.select_category .select_dropdown').innerHTML = `<li class="select_option active">Select Category</li>`;
+                //   // document.querySelector('.select_category .select_dropdown li').click();
+                //   for (let key in categoriesLvl0) {
+                //     document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option">${key}</li>`)
+                //   }
+                // })
+            }
+            actionDataLayer = `Click on option ${notes}`;
+            labelDataLayer = 'Advanced Search';
+            pushDataLayer(actionDataLayer, labelDataLayer)
 
-              if (option.closest('.select').querySelector('.active') != null) {
-                  option.closest('.select').querySelector('.active').classList.remove('active');
-              }
+            if (option.closest('.select').querySelector('.active') != null) {
+                option.closest('.select').querySelector('.active').classList.remove('active');
+            }
 
-              option.classList.add('active');
-            
-              if (index == 0) {
-                  el.innerHTML = `<span>${option.innerHTML}</span>`;
-              } else {
-                  el.innerHTML = option.innerHTML;
-              }
-              option.closest('.select').classList.remove('active');
+            option.classList.add('active');
+          
+            if (index == 0) {
+                el.innerHTML = `<span>${option.innerHTML}</span>`;
+            } else {
+                el.innerHTML = option.innerHTML;
+            }
+            option.closest('.select').classList.remove('active');
           })
       })
     })
