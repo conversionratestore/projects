@@ -1324,6 +1324,53 @@ requestAllCaterories.then(data => {
   })
 })
 
+// const renderAutocomplete = (renderOptions, isFirstRender) => {
+//   const { indices, currentRefinement, refine, widgetParams } = renderOptions;
+
+//   console.log(indices)
+//   console.log('-------------------------')
+//   console.log(currentRefinement)
+//   console.log('-------------------------')
+//   console.log(refine)
+//   console.log('-------------------------')
+//   console.log(widgetParams)
+//   console.log('-------------------------')
+//   console.log(isFirstRender)
+//   if (isFirstRender) {
+//     console.log(isFirstRender)
+//     const input = document.querySelector('.ais-SearchBox-input');
+//     const ul = document.querySelectorAll('.aa-suggestion');
+
+//     input.addEventListener('input', event => {
+//       refine(event.currentTarget.value);
+//     });
+
+//     ul.addEventListener('click', (event) => {
+//       if (event.target.tagName === 'LI') {
+//         const indexId = event.target.getAttribute('data-index-id');
+//         const hitIndex = event.target.getAttribute('data-hit-index');
+//         const index = indices.find(index => index.indexId === indexId);
+//         const hit = index.hits[hitIndex];
+
+//         index.sendEvent('conversion', hit, 'Product Added');
+//       }
+//     });
+//   }
+
+//   widgetParams.container.querySelector('input').value = currentRefinement;
+//   widgetParams.container.querySelector('ul').innerHTML = indices
+//     .map(renderIndexListItem)
+//     .join('');
+// };
+
+// const customAutocomplete = instantsearch.connectors.connectAutocomplete(
+//   renderAutocomplete
+// );
+const renderHits = (renderOptions, isFirstRender) => {
+  const { widgetParams } = renderOptions;
+
+  widgetParams.container.innerHTML = '...';
+};
 search.addWidgets([
   instantsearch.widgets.configure({
     hitsPerPage: '12',
@@ -1332,6 +1379,10 @@ search.addWidgets([
     // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
   }),
 
+  // customAutocomplete({
+  //   container: document.querySelector('#form-search'),
+  //   // searchAsYouType: true, 
+  // }),
   instantsearch.widgets.searchBox({
     container: '#form-search',
     placeholder: 'Search by Name',
@@ -1593,7 +1644,7 @@ search.addWidgets([
             })
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
               document.querySelector('.ais-SearchBox-input').value = '';
-              document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+              // document.querySelector('.algolia-autocomplete pre').innerHTML = '';
               inputWord = false;
               
               document.querySelector('.filter').style = '';
@@ -1813,7 +1864,7 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
 
 let index = searchClient.initIndex('staging_products');
 
-autocomplete('#form-search input', {hint: false, debug: true}, [
+autocomplete('#form-search input', {hint: false, debug: false}, [
   {
       source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
       displayKey: 'name',
@@ -1836,12 +1887,16 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       },
   }
   ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-    console.log(event.target.innerText, suggestion, dataset);
+    console.log(event.target, suggestion, dataset);
 
-
+ 
     // search.helper.removeFacetRefinement('name')
     // search.helper.lastResults.query = suggestion.name;
     // search.helper.state.query = suggestion.name;
+    
+    event.target.value = suggestion.name
+    // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
+
     document.querySelector('#breadcrumbs ul').innerHTML = '';
     document.querySelector('.listing_title').innerHTML = '';
     console.log(search.helper.lastResults.query)
@@ -1852,7 +1907,6 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     //     search.helper.addFacetRefinement('name', suggestion.name);
     //     console.log(search.helper.addFacetRefinement('name', suggestion.name))
     // }
-
     
     // search.helper.search();
     // console.log(search.helper.search())
@@ -1861,19 +1915,22 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
     facetCategories = `item_num:${suggestion.item_num}`;
     setConfigureAlgolia(facetCategories,suggestion.name);
-    
-    document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
-    // document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-    //   document.querySelector('.ais-SearchBox-input').value = '';
-    //   document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-    //   inputWord = false;
+
+
+    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+      e.stopImmediatePropagation()
+      event.target.value = '';
+      document.querySelector('.ais-SearchBox-input').value = '';
+      document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+      inputWord = false;
+      facetCategories = `*`;
+      setConfigureAlgolia(facetCategories,"");
       
-    //   actionDataLayer = `Click on reset button`;
-    //   labelDataLayer = 'Search by Name';
-    //   pushDataLayer(actionDataLayer, labelDataLayer)
-    // })
-    
-    
+      actionDataLayer = `Click on reset button`;
+      labelDataLayer = 'Search by Name';
+      pushDataLayer(actionDataLayer, labelDataLayer)
+    })
+
     actionDataLayer = `Selected suggestion`;
     labelDataLayer = 'Autocomplete Search by Name';
     pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1887,7 +1944,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       document.querySelector('.ais-SearchBox-input').value = '';
     }
     
-    document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
+    // document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
   })
 
 //   document.querySelector('#autocomplete').addEventListener('input', (e) => {
