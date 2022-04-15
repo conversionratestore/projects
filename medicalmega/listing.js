@@ -1196,7 +1196,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
-window.onload = function() {
+// window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1308,6 +1308,7 @@ requestAllCaterories.then(data => {
 
     setConfigureAlgolia(facetCategories,"")
     document.querySelector('.listing_title').innerHTML = e.target.innerText;
+    document.querySelector('#form-search .ais-SearchBox-input').value = '';
     document.querySelector('#breadcrumbs ul').innerHTML = `<li><a href="#" data-category="*">Home</a></li>`;
 
     let breadcrumbs = facetCategories.split(":")[1],
@@ -1338,6 +1339,11 @@ requestAllCaterories.then(data => {
           document.querySelector('.listing_title').innerHTML = e.target.innerText
         }
         window.location.href = `${e.target.href}`;
+        
+        actionDataLayer = `Click on link item - ${e.target.innerText}`;
+        labelDataLayer = `Breadcrumbs`;
+        pushDataLayer(actionDataLayer,labelDataLayer);
+
         next.forEach(function(el) {
           el.remove();
         })
@@ -1703,7 +1709,12 @@ window.addEventListener('scroll', (e) => {
 
 //select filter
 document.querySelectorAll('.select_filter').forEach(el => {
-    el.querySelector('.select_item').addEventListener('click', () => el.classList.toggle('active'))
+    el.querySelector('.select_item').addEventListener('click', (e) => {
+      el.classList.toggle('active');
+      actionDataLayer = `Click on ${e.target.innerText} button`;
+      labelDataLayer = 'Filter';
+      pushDataLayer(actionDataLayer, labelDataLayer)
+    })
 })
 
 document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
@@ -1874,7 +1885,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-};
+// };
 
 let optionMut = {
   childList: true,
