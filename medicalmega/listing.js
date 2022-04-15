@@ -611,7 +611,9 @@ border-radius: 100px;
     font-size: 18px;
     line-height: 120%; }
   #clear-refinements {
-    margin-bottom: 34px;
+    margin-top: 34px;
+    width: 100%;
+
   }
   .filter .select_drop {
     padding: 10px 0; }
@@ -974,11 +976,13 @@ border-radius: 100px;
   }
   .ais-ClearRefinements-button {
     background-color: #e9ebec;
-    padding: 3px;
+    padding: 16px;
     border-radius: 40px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 100%;
+    justify-content: space-between;
   }
   .ais-ClearRefinements-button:hover svg {
     fill: #bf0400;
@@ -1098,13 +1102,13 @@ let html = `
               </div>
             </nav>
             <ul class="category_popular d-flex">
-              <li><a href="#category/new-products">New Products!</a></li>
-              <li><a href="#category/hand-sanitizing">Hand Sanitizing</a></li>
-              <li><a href="#category/wound-care">Wound care</a></li>
-              <li><a href="#category/gloves">Gloves</a></li>
-              <li><a href="#category/disinfectants">Disinfectants</a></li>
-              <li><a href="#category/ostomy">Ostomy</a></li>
-              <li><a href="#category/instruments">Instruments</a></li>
+              <li><a href="#">New Products!</a></li>
+              <li><a href="#">Hand Sanitizing</a></li>
+              <li><a href="#">Wound care</a></li>
+              <li><a href="#">Gloves</a></li>
+              <li><a href="#">Disinfectants</a></li>
+              <li><a href="#">Ostomy</a></li>
+              <li><a href="#">Instruments</a></li>
             </ul>
             <p class="previous-version">switch to the previous version</p>
           </div>
@@ -1115,10 +1119,8 @@ let html = `
         <nav id="breadcrumbs"><ul></ul></nav>
         <div class="flex-wrap w-100">
           <div class="filter">
-            <div class="flex-center-between">
               <h3 class="filter_title">Filters</h3>
-              <div id="clear-refinements"></div>
-            </div>
+            
             <div class="select_filter active">
               <div class="select_item">
                 <p>Brands</p>
@@ -1131,6 +1133,8 @@ let html = `
               </div>
               <div class="select_drop" id="price_group"></div>
             </div>
+            
+            <div id="clear-refinements"></div>
           </div>
           <div class="listing_wrapper">
             <h2 class="listing_title"></h2>
@@ -1337,6 +1341,9 @@ search.addWidgets([
         loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
     },
   }),
+  // autocomplete({
+  //   container: document.querySelector('#form-search'),
+  // }),
   instantsearch.widgets.infiniteHits({
     container: '.listing_content',
     // escapeHTML: false,
@@ -1444,7 +1451,7 @@ search.addWidgets([
   instantsearch.widgets.clearRefinements({
     container: '#clear-refinements',
     templates: {
-      resetLabel: `Clear <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
+      resetLabel: `Clear results <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
     },
   }),
   // instantsearch.widgets.menu({
@@ -1589,6 +1596,10 @@ search.addWidgets([
               document.querySelector('.algolia-autocomplete pre').innerHTML = '';
               inputWord = false;
               
+              document.querySelector('.filter').style = '';
+              facetCategories = "*"
+              setConfigureAlgolia(facetCategories,"")
+
               actionDataLayer = `Click on reset button`;
               labelDataLayer = 'Search by Name';
               pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1608,7 +1619,11 @@ search.addWidgets([
 
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
-                      item.click()
+                      
+                      item.click();
+                      
+                      facetCategories = `categories.lvl0:${e.target.innerText}`;
+                      setConfigureAlgolia(facetCategories,"")
                       alphabet.querySelectorAll('li').forEach(letter => {
                         letter.classList.contains('active') ? letter.classList.remove('active') : '';
                         if (letter.innerText == item.querySelector('.ais-HierarchicalMenu-label').innerText[0]) {
@@ -1629,6 +1644,8 @@ search.addWidgets([
               listCategories.forEach((el) => {
                 litterAlphabet.push({'letter': el.innerText[0]})
                 el.addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  document.querySelector('.filter').style = '';
 
                   console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
                   actionDataLayer = `Click on category item - ${el.innerText}`;
@@ -1666,14 +1683,14 @@ search.addWidgets([
               //   alphabetContainer.appendChild(p);
               // });
 
-              alphabet.querySelectorAll('li').forEach(el => {
-                el.addEventListener('mouseover', (e) => {
-                  console.log(e.target)
-                  e.target.parentElement.querySelector('.active').classList.remove('active');
-                  e.target.classList.add('active');
-                  openCategoriesFoeAlphabet(listCategories)
-                })
-              })   
+              // alphabet.querySelectorAll('li').forEach(el => {
+              //   el.addEventListener('mouseover', (e) => {
+              //     console.log(e.target)
+              //     e.target.parentElement.querySelector('.active').classList.remove('active');
+              //     e.target.classList.add('active');
+              //     openCategoriesFoeAlphabet(listCategories)
+              //   })
+              // })   
 
               let items = [...alphabet.querySelectorAll("li")];
               items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
@@ -1695,10 +1712,12 @@ search.addWidgets([
 ])
 
 document.querySelector('.header .logo').addEventListener('click', (e) => { 
+  
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
   facetCategories = "*";
   setConfigureAlgolia(facetCategories,"");
+  document.querySelector('.filter').style = '';
   actionDataLayer = `Click on logo`;
   labelDataLayer = 'Header';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1739,6 +1758,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
   document.querySelector('.ais-ClearRefinements-button').click();
+  document.querySelector('.filter').style = '';
   facetCategories = "*";
   // setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
 //   search.addWidgets([
@@ -1768,6 +1788,8 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   console.log(categories,brand,querySum)
   facetCategories = `${categories},${brand}`;
   setConfigureAlgolia(facetCategories,querySum);
+  
+  document.querySelector('.filter').style = '';
   actionDataLayer = `Click on submit button`;
   labelDataLayer = 'Advanced Search';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1834,29 +1856,27 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     
     // search.helper.search();
     // console.log(search.helper.search())
+    
+    document.querySelector('.ais-ClearRefinements-button').click();
+    document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
     facetCategories = `item_num:${suggestion.item_num}`;
-    setConfigureAlgolia(facetCategories,suggestion.name)
+    setConfigureAlgolia(facetCategories,suggestion.name);
     
     document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
-    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-      document.querySelector('.ais-SearchBox-input').value = '';
-      document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-      inputWord = false;
+    // document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+    //   document.querySelector('.ais-SearchBox-input').value = '';
+    //   document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+    //   inputWord = false;
       
-      actionDataLayer = `Click on reset button`;
-      labelDataLayer = 'Search by Name';
-      pushDataLayer(actionDataLayer, labelDataLayer)
-    })
-
+    //   actionDataLayer = `Click on reset button`;
+    //   labelDataLayer = 'Search by Name';
+    //   pushDataLayer(actionDataLayer, labelDataLayer)
+    // })
+    
     
     actionDataLayer = `Selected suggestion`;
     labelDataLayer = 'Autocomplete Search by Name';
     pushDataLayer(actionDataLayer, labelDataLayer)
-  })
-
-  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
-    facetCategories = "*"
-    setConfigureAlgolia(facetCategories,"")
   })
 
   document.addEventListener('click', (e) => {
@@ -1902,6 +1922,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
+
 };
 
 let optionMut = {
