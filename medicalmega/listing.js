@@ -1058,7 +1058,7 @@ let html = `
         </div>
         <div class="midbar">
           <div class="container">
-            <div class="flex-center-between"><a class="logo" href=#">Medical<span>Mega</span></a>
+            <div class="flex-center-between"><a class="logo" href="#">Medical<span>Mega</span></a>
               <div class="d-flex">
                 <button class="btn btn_white mr-16" type="button" data-button="advanced-search">Advanced Search</button>
                 <div class="box-search"> 
@@ -1427,6 +1427,9 @@ requestAllCaterories.then(data => {
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
   
+      actionDataLayer = `Click on ${e.target.innerText} button`;
+      labelDataLayer = `Header`;
+      pushDataLayer(actionDataLayer,labelDataLayer);
     }
   })
 })
@@ -1612,8 +1615,10 @@ dataButton.forEach(item => {
 closeBtn.forEach(item => {
   item.addEventListener('click', (e) => {
     toggleActive(item.getAttribute('data-close'));
-    document.querySelector('.select_category ul li p').click();
-    document.querySelector('.select_brand ul li p').click();
+    document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
+    
+    document.querySelector('.select_category ul li p').classList.add('active');
+    document.querySelector('.select_brand ul li p').classList.add('active');
   })
 })
 
@@ -1705,7 +1710,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   
   document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
   if (document.querySelector('.advanced-search.active') != null) {
-    document.querySelector('.advanced-search .btn_reset').click();
+    document.querySelector('.advanced-search').classList.remove('active');
   }
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
@@ -1744,12 +1749,17 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
 })
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
+  input.addEventListener('click', (e) => {
+    actionDataLayer = `Click on ${e.target.placeholder}`;
+    labelDataLayer = 'Advanced Search';
+    pushDataLayer(actionDataLayer, labelDataLayer)
+  })
   // input.addEventListener('input', (e) => {
   //   return e.target.value.replace(/\s/g, "");
   // })
   input.addEventListener('keypress', (e) => {
     if (e.keyCode == '13') {
-      document.querySelector('.advanced-search .btn').click();
+      document.querySelector('.advanced-search .btn').classList.remove('active');
     }
   })
 })
@@ -1785,7 +1795,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     // search.helper.removeFacetRefinement('name')
     // search.helper.lastResults.query = suggestion.name;
     // search.helper.state.query = suggestion.name;
-    
+    document.querySelector('#breadcrumbs ul').innerHTML = '';
+    document.querySelector('.listing_title').innerHTML = '';
     console.log(search.helper.lastResults.query)
     console.log(search.helper.state.query)
     // console.log(search.helper.search())
@@ -1856,7 +1867,13 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     labelDataLayer = 'Header';
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
-
+  document.querySelectorAll('.midbar_action').forEach(el => {
+    e.addEventListener('click', (e) => {
+      actionDataLayer = `Click on ${e.target.innerText}`;
+      labelDataLayer = 'Header';
+      pushDataLayer(actionDataLayer, labelDataLayer)
+    })
+  })
 };
 
 let optionMut = {
@@ -1903,8 +1920,7 @@ let mut = new MutationObserver(function (muts) {
                 fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
                   console.log(data)
                   let brand = data.facets.manufacturer;
-                  document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option active"><p>Select Manufacturer</p></li>`;
-                  document.querySelector('.select_brand .select_dropdown li').click();
+                  document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option "><p class="active">Select Manufacturer</p></li>`;
                   for (let key in brand) {
                     document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
                   }
