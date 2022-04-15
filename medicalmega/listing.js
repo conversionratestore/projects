@@ -1596,7 +1596,7 @@ search.addWidgets([
                 el.addEventListener('click', (e) => {
                   listCategories.forEach(item => {
 
-                    if (el.innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
+                    if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
                       item.click()
                       alphabet.querySelectorAll('li').forEach(letter => {
@@ -1736,7 +1736,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
   document.querySelector('.ais-ClearRefinements-button').click();
-  // facetCategories = "*";
+  facetCategories = "*";
   // setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
