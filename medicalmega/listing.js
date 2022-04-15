@@ -1196,7 +1196,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
-// window.onload = function() {
+window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1879,13 +1879,13 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
   document.querySelectorAll('.midbar_action').forEach(el => {
-    e.addEventListener('click', (e) => {
+    el.addEventListener('click', (e) => {
       actionDataLayer = `Click on ${e.target.innerText}`;
       labelDataLayer = 'Header';
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-// };
+};
 
 let optionMut = {
   childList: true,
