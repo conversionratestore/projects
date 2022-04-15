@@ -357,14 +357,14 @@ input[type="search"]::-webkit-search-results-decoration {
     border-left: 1px solid #ddd;}
   #list_categories li li {
     display: block!important;}
-  #list_categories p {
+  #list_categories a {
     font-size: 16px;
     line-height: 150%;
     cursor: pointer;
     color: #344D57;
     margin-bottom: 12px;
     display: block; }
-  #list_categories p:hover {
+  #list_categories a:hover {
     text-decoration: underline; }
   .nav_category.active .all_category {
     background: #E9EBEC; }
@@ -384,7 +384,7 @@ input[type="search"]::-webkit-search-results-decoration {
   width: 18px;
   height: 18px;
   margin-right: 10px; }
-.category_popular li {
+.category_popular li a{
   font-weight: 400;
   cursor: pointer;
   font-size: 14px;
@@ -393,7 +393,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding: 12px 6px;
   display: block;
   margin: 0 8px; }
-  .category_popular li:hover, .previous-version:hover {
+  .category_popular li a:hover, .previous-version:hover {
     color: #091114; }
 .previous-version {
       font-weight: 600;
@@ -816,7 +816,7 @@ border-radius: 100px;
   display: flex;
   align-items: center;
 }
-.ais-Breadcrumb, #breadcrumbs {
+#breadcrumbs {
   padding: 10px 0 5px; }
   .ais-Breadcrumb-link, #breadcrumbs a {
     font-weight: normal;
@@ -826,20 +826,20 @@ border-radius: 100px;
     display: flex;
     align-items: center;
   }
-  #breadcrumbs li:last-child a:after {
-    content: none;
-  }
-  #breadcrumbs a:after{
-    content: '';
-    width: 18px;
-    height: 18px;
-    margin: 0 4px;
-    display: block;
-    color: transparent;
-    background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
-  }
+  // #breadcrumbs li:last-child a:after {
+  //   content: none;
+  // }
+  // #breadcrumbs a:after{
+  //   content: '';
+  //   width: 18px;
+  //   height: 18px;
+  //   margin: 0 4px;
+  //   display: block;
+  //   color: transparent;
+  //   background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
+  // }
 
-  .ais-Breadcrumb-item,  #breadcrumbs li:last-child a {
+  .ais-Breadcrumb-item, #breadcrumbs li {
     color: #6D7E85;
     display: flex;
     align-items: center;
@@ -955,10 +955,6 @@ border-radius: 100px;
 .arrow_button_next {
   margin-right: -26px;}
 
-  #list_categories .ais-HierarchicalMenu-list--child {
-    padding-left: 10px;
-    border-left: 1px dotted #ddd;
-  }
   #list_categories .ais-HierarchicalMenu-list--child li {
     display: block!important;
   }
@@ -1098,17 +1094,17 @@ let html = `
               </div>
               <div class="dropdown_categories">
                 <ul class="alphabet"></ul>
-                <ul id="list_categories"> </ul>
+                <div id="list_categories"> </div>
               </div>
             </nav>
-            <ul class="d-flex category_popular">
-              <li data-category="categories.lvl0:New Products!">New Products!</li>
-              <li data-category="categories.lvl0:Hand Sanitizing">Hand Sanitizing</li>
-              <li data-category="categories.lvl0:Wound care">Wound care</li>
-              <li data-category="categories.lvl0:Gloves">Gloves</li>
-              <li data-category="categories.lvl0:Disinfectants">Disinfectants</li>
-              <li data-category="categories.lvl0:Ostomy">Ostomy</li>
-              <li data-category="categories.lvl0:Instruments">Instruments</li>
+            <ul class="category_popular d-flex">
+              <li><a href="#category/new-products">New Products!</a></li>
+              <li><a href="#category/hand-sanitizing">Hand Sanitizing</a></li>
+              <li><a href="#category/wound-care">Wound care</a></li>
+              <li><a href="#category/gloves">Gloves</a></li>
+              <li><a href="#category/disinfectants">Disinfectants</a></li>
+              <li><a href="#category/ostomy">Ostomy</a></li>
+              <li><a href="#category/instruments">Instruments</a></li>
             </ul>
             <p class="previous-version">switch to the previous version</p>
           </div>
@@ -1196,7 +1192,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
-window.onload = function() {
+// window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1256,174 +1252,48 @@ requestAllCaterories.then(data => {
       categoriesLvl4 = data.facets["categories.lvl4"],
       brand = data.facets.manufacturer;
 
-  for (let key in categoriesLvl0) {
-    document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
-    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
-  }
-  for (let key in categoriesLvl1) {
-    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl0')) {
-        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl1:${key}">${key.split(' > ')[1]}</p><ul></ul></li>`);
-        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul></ul></li>`)
-      }
-    })
-  }
-  for (let key in categoriesLvl2) {
-    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
-        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl2:${key}">${key.split(' > ')[2]}</p><ul></ul></li>`);
-        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul></ul></li>`)
-      }
-    })
-  }
-  for (let key in categoriesLvl3) {
-    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
-        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl3:${key}">${key.split(' > ')[3]}</p><ul></ul></li>`);
-        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
-      }
-    })
-  }
-  for (let key in categoriesLvl4) {
-    document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-      if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
-        el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl4:${key}">${key.split(' > ')[4]}</p><ul></ul></li>`);
-        document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
-      }
-    })
-  }
+  // for (let key in categoriesLvl0) {
+  //   document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+  //   document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+  // }
+  // for (let key in categoriesLvl1) {
+  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl0')) {
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl1:${key}">${key.split(' > ')[1]}</p><ul></ul></li>`);
+  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul></ul></li>`)
+  //     }
+  //   })
+  // }
+  // for (let key in categoriesLvl2) {
+  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl2:${key}">${key.split(' > ')[2]}</p><ul></ul></li>`);
+  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul></ul></li>`)
+  //     }
+  //   })
+  // }
+  // for (let key in categoriesLvl3) {
+  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl3:${key}">${key.split(' > ')[3]}</p><ul></ul></li>`);
+  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
+  //     }
+  //   })
+  // }
+  // for (let key in categoriesLvl4) {
+  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl4:${key}">${key.split(' > ')[4]}</p><ul></ul></li>`);
+  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
+  //     }
+  //   })
+  // }
 
   for (let key in brand) {
     document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
   }
 
-  let btnCategory = document.querySelector('.all_category'),
-      listCategories = document.querySelectorAll('#list_categories li'), //list categories
-      listCategoriesPopular = document.querySelectorAll('.category_popular li'), //list popular ategories
-      alphabet = document.querySelector('.alphabet'); //alphabet
-
-  function clickOnCategory(e) {
-    console.log(e.target.dataset.category)
-    facetCategories = e.target.dataset.category;
-
-    setConfigureAlgolia(facetCategories,"")
-    document.querySelector('.listing_title').innerHTML = e.target.innerText;
-    document.querySelector('#form-search .ais-SearchBox-input').value = '';
-    document.querySelector('#breadcrumbs ul').innerHTML = `<li><a href="#" data-category="*">Home</a></li>`;
-
-    let breadcrumbs = facetCategories.split(":")[1],
-        arrCrumbs = breadcrumbs.split(' > ') ;
-
-    let href = `#category/${breadcrumbs.split(' > ').join('/').toLowerCase().split(' ').join('-')}`;
-
-    let newCrumbs = ''
-    for (let i = 0; i < arrCrumbs.length; i++) {
-      newCrumbs += arrCrumbs[i] + ' > ';
-      document.querySelector('#breadcrumbs ul').insertAdjacentHTML('beforeend', `<li><a href="#category/${newCrumbs.toLowerCase().split(' > ').join('/').split(' ').join('-')}" data-category="categories.lvl${i}:${newCrumbs.substring(0, newCrumbs.length - 3)}">${arrCrumbs[i]}</a></li>`);
-    }
-
-    window.location.href = `https://medicalmega.com/${href}`;
-       
-    document.querySelectorAll('#breadcrumbs ul li').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.stopImmediatePropagation();
-        let next = nextAll(link);
-
-        facetCategories = link.querySelector('a').dataset.category;
-
-        setConfigureAlgolia(facetCategories,"")
-        if (facetCategories == "*") {
-          document.querySelector('.listing_title').innerHTML = '';
-          document.querySelector('#breadcrumbs ul').innerHTML = '';
-        } else {
-          document.querySelector('.listing_title').innerHTML = e.target.innerText
-        }
-        window.location.href = `${e.target.href}`;
-        
-        actionDataLayer = `Click on link item - ${e.target.innerText}`;
-        labelDataLayer = `Breadcrumbs`;
-        pushDataLayer(actionDataLayer,labelDataLayer);
-
-        next.forEach(function(el) {
-          el.remove();
-        })
-      }) 
-    })
-    
-  }
-
-  listCategoriesPopular.forEach((el) => {
-    el.addEventListener('click', (e) => {
-      clickOnCategory(e)
-
-      actionDataLayer = `Click on category item - ${el.innerText}`;
-      labelDataLayer = `Popular categories`;
-      pushDataLayer(actionDataLayer,labelDataLayer);
-    })
-  })
-
-  listCategories.forEach((el) => {
-    litterAlphabet.push({'letter': el.innerText[0]})
-    el.querySelector('p').addEventListener('click', (e) => {
-      clickOnCategory(e)
-
-      actionDataLayer = `Click on category item - ${el.innerText}`;
-      labelDataLayer = `All categories`;
-      pushDataLayer(actionDataLayer,labelDataLayer);
-    })
-  })
-
-  litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-    index === self.findIndex((t) => (
-        t.letter === thing.letter
-    ))
-  )
-
-  for (let i = 0; i < litterAlphabet.length; i++) {
-    if (litterAlphabet[i].letter != 'undefined') {
-      alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-    }
-  }
-
-  function openCategoriesFoeAlphabet(item) {
-    item.forEach(el => {
-      if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
-        el.style.display = "none";
-      } else {
-        el.style.display = "block";
-      }
-    }); 
-  } 
-
-  openCategoriesFoeAlphabet(listCategories)
-
-  //change Class active
-  // let alphabetContainer = document.querySelector('.alphabet'),
-  //     para = document.querySelectorAll('.alphabet li');
-  //     console.log(alphabetContainer)
-  //     console.log(para)
-
-  // let paraArr = [].slice.call(para).sort(function (a, b) {
-  //     return a - b
-  // });
-  // console.log(paraArr)
-  // paraArr.forEach(function (p) {
-  //   alphabetContainer.appendChild(p);
-  // });
-
-  alphabet.querySelectorAll('li').forEach(el => {
-    el.addEventListener('mouseover', (e) => {
-      console.log(e.target)
-      e.target.parentElement.querySelector('.active').classList.remove('active');
-      e.target.classList.add('active');
-      openCategoriesFoeAlphabet(listCategories)
-      
-    })
-  })   
-
-  let items = [...alphabet.querySelectorAll("li")];
-  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-  items.forEach(item => alphabet.appendChild(item));
+  let btnCategory = document.querySelector('.all_category');
 
   //all categories
   btnCategory.addEventListener('click', (e) => {
@@ -1444,6 +1314,7 @@ search.addWidgets([
   instantsearch.widgets.configure({
     hitsPerPage: '12',
     facetFilters: [facetCategories],
+    enablePersonalization: true,
     // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
   }),
 
@@ -1458,7 +1329,7 @@ search.addWidgets([
   }),
   instantsearch.widgets.infiniteHits({
     container: '.listing_content',
-    escapeHTML: false,
+    // escapeHTML: false,
     transformItems(items) {
       return items.filter(item => item.price != '0.00' )
     },
@@ -1566,9 +1437,45 @@ search.addWidgets([
       resetLabel: `Clear <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
     },
   }),
+  // instantsearch.widgets.menu({
+  //   container: '.category_popular',
+  //   attribute: 'categories.lvl0',
+  //   limit: 100,  
+  //   transformItems(items) {
+  //     console.log(items)
+  //     return items.filter(item => item.label == 'New Products!' || item.label == 'Hand Sanitizing' || item.label == 'Wound care' || item.label == 'Gloves' || item.label == 'Disinfectants' || item.label == 'Ostomy' || item.label == 'Instruments')
+  //   },
+    
+  // }),
+  instantsearch.widgets.hierarchicalMenu({
+    container: `#list_categories`,
+    attributes: [
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+      'categories.lvl4',
+    ], 
+    sortBy: ['isRefined'],  
+    showParentLevel: false,
+    limit: 150,  
+  }),
+
+  instantsearch.widgets.breadcrumb({
+    container: '#breadcrumbs',
+    attributes: [
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+      'categories.lvl4',
+    ],
+  }),
 ]); 
 
+console.log(facetCategories + " - before start")
 search.start();
+console.log(facetCategories + " - after start")
 
 let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
     closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -1627,7 +1534,7 @@ closeBtn.forEach(item => {
     document.querySelector('.select_brand ul li p').classList.add('active');
   })
 })
-
+let countSearchStalled = 0;
 search.addWidgets([
   {
       render({ searchMetadata = {} }) {
@@ -1635,47 +1542,144 @@ search.addWidgets([
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
-          
-              if (document.querySelector('#price_group li') != null) {
-                let pricesContainer = document.querySelector('#price_group ul'),
-                para = document.querySelectorAll('#price_group li');
+            console.log(facetCategories)
 
-                let paraArr = [].slice.call(para).sort(function (a, b) {
-                    return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-                });
-                paraArr.forEach(function (p) {
-                    pricesContainer.appendChild(p);
-                });
-              }
-              document.querySelectorAll('.card .calc').forEach((el, i) => {
-                el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
-                  console.log(el.nextElementSibling.querySelector('.pr'))
-                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
-                })
-                el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
-                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
-                })
-                el.querySelector('.calc-qty').addEventListener('input', (e) => {
-                  changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
-                })
-                el.querySelector('.calc-qty').addEventListener('blur', (e) => {
-                    if (e.target.value == '') {
-                        e.target.value = 1;
-                    }
-                }, true)
+            if (document.querySelector('#price_group li') != null) {
+              let pricesContainer = document.querySelector('#price_group ul'),
+              para = document.querySelectorAll('#price_group li');
+
+              let paraArr = [].slice.call(para).sort(function (a, b) {
+                  return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+              });
+              paraArr.forEach(function (p) {
+                  pricesContainer.appendChild(p);
+              });
+            }
+            document.querySelectorAll('.card .calc').forEach((el, i) => {
+              el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                console.log(el.nextElementSibling.querySelector('.pr'))
+                changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
               })
-              document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                document.querySelector('.ais-SearchBox-input').value = '';
-                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-                inputWord = false;
-                
-                actionDataLayer = `Click on reset button`;
-                labelDataLayer = 'Search by Name';
-                pushDataLayer(actionDataLayer, labelDataLayer)
+              el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
+              })
+              el.querySelector('.calc-qty').addEventListener('input', (e) => {
+                changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
+              })
+              el.querySelector('.calc-qty').addEventListener('blur', (e) => {
+                  if (e.target.value == '') {
+                      e.target.value = 1;
+                  }
+              }, true)
             })
+            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+              document.querySelector('.ais-SearchBox-input').value = '';
+              document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+              inputWord = false;
+              
+              actionDataLayer = `Click on reset button`;
+              labelDataLayer = 'Search by Name';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+            })
+            
+            document.querySelector('.ais-ClearRefinements-button').addEventListener('click', () => countSearchStalled = 0);
 
+            if (countSearchStalled == 0) {
+              countSearchStalled = 1;
+              let listCategories = document.querySelectorAll('#list_categories li'), //list categories
+                  listCategoriesPopular = document.querySelectorAll('.category_popular li'), //list popular ategories
+                  alphabet = document.querySelector('.alphabet'); //alphabet
+                  
+              listCategoriesPopular.forEach((el) => {
+                el.addEventListener('click', (e) => {
+                  listCategories.forEach(item => {
+
+                    if (el.innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
+                      countSearchStalled = 1;
+                      item.click()
+                    }
+                  })
+                 
+                  console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
+                  labelDataLayer = `Popular categories`;
+                  pushDataLayer(actionDataLayer,labelDataLayer);
+                })
+              })
+
+              listCategories.forEach((el) => {
+                litterAlphabet.push({'letter': el.innerText[0]})
+                el.addEventListener('click', (e) => {
+
+                  console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
+                  actionDataLayer = `Click on category item - ${el.innerText}`;
+                  labelDataLayer = `All categories`;
+                  pushDataLayer(actionDataLayer,labelDataLayer);
+                })
+              })
+
+              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                index === self.findIndex((t) => (
+                    t.letter === thing.letter
+                ))
+              )
+
+              for (let i = 0; i < litterAlphabet.length; i++) {
+                if (litterAlphabet[i].letter != 'undefined') {
+                  alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                }
+              }
+
+              function openCategoriesFoeAlphabet(item) {
+                item.forEach(el => {
+                  if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+                    el.style.display = "none";
+                  } else {
+                    el.style.display = "block";
+                  }
+                }); 
+              } 
+
+              openCategoriesFoeAlphabet(listCategories)    
+
+              //change Class active
+              // let alphabetContainer = document.querySelector('.alphabet'),
+              //     para = document.querySelectorAll('.alphabet li');
+              //     console.log(alphabetContainer)
+              //     console.log(para)
+
+              // let paraArr = [].slice.call(para).sort(function (a, b) {
+              //     return a - b
+              // });
+              // console.log(paraArr)
+              // paraArr.forEach(function (p) {
+              //   alphabetContainer.appendChild(p);
+              // });
+
+              alphabet.querySelectorAll('li').forEach(el => {
+                el.addEventListener('mouseover', (e) => {
+                  console.log(e.target)
+                  e.target.parentElement.querySelector('.active').classList.remove('active');
+                  e.target.classList.add('active');
+                  openCategoriesFoeAlphabet(listCategories)
+                })
+              })   
+
+              let items = [...alphabet.querySelectorAll("li")];
+              items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+              items.forEach(item => alphabet.appendChild(item));
+
+            }
+            let crumbs = document.querySelectorAll('#breadcrumbs li');
+            if (crumbs.length < 2) {
+              document.querySelector('#breadcrumbs').style.display = 'none';
+              document.querySelector('.listing_title').innerHTML = '';
+            } else {
+              document.querySelector('#breadcrumbs').style.display = 'block';
+              document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
+            }
+      
           }
       },
   },
@@ -1684,7 +1688,8 @@ search.addWidgets([
 document.querySelector('.header .logo').addEventListener('click', (e) => { 
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
-  setConfigureAlgolia("*","");
+  facetCategories = "*";
+  setConfigureAlgolia(facetCategories,"");
   actionDataLayer = `Click on logo`;
   labelDataLayer = 'Header';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1723,10 +1728,10 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   if (document.querySelector('.advanced-search.active') != null) {
     document.querySelector('.advanced-search').classList.remove('active');
   }
-  document.querySelector('#breadcrumbs ul').innerHTML = '';
-  document.querySelector('.listing_title').innerHTML = '';
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
-  setConfigureAlgolia("*",document.querySelector('#form-search input').value)
+  document.querySelector('.ais-ClearRefinements-button').click();
+  // facetCategories = "*";
+  // setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
 //       hitsPerPage: '12',
@@ -1752,8 +1757,8 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   document.querySelector('.listing_title').innerHTML = '';
 
   console.log(categories,brand,querySum)
-  
-  setConfigureAlgolia(`${categories,brand}`,querySum);
+  facetCategories = `${categories},${brand}`;
+  setConfigureAlgolia(facetCategories,querySum);
   actionDataLayer = `Click on submit button`;
   labelDataLayer = 'Advanced Search';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1779,7 +1784,7 @@ let index = searchClient.initIndex('staging_products');
 
 autocomplete('#form-search input', {hint: false, debug: true}, [
   {
-      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: [facetCategories]}),
+      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
       displayKey: 'name',
       // openOnFocus: true,
       onStateChange: true,
@@ -1820,8 +1825,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     
     // search.helper.search();
     // console.log(search.helper.search())
-
-    setConfigureAlgolia(`item_num:${suggestion.item_num}`,suggestion.name)
+    facetCategories = `item_num:${suggestion.item_num}`;
+    setConfigureAlgolia(facetCategories,suggestion.name)
     
     document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
@@ -1840,7 +1845,10 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
 
-  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => setConfigureAlgolia("*",""))
+  document.querySelector('.ais-SearchBox-reset').addEventListener('click', () => {
+    facetCategories = "*"
+    setConfigureAlgolia(facetCategories,"")
+  })
 
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#form-search')) {
@@ -1885,7 +1893,8 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-};
+
+// };
 
 let optionMut = {
   childList: true,
