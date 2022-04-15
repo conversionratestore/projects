@@ -1192,6 +1192,16 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
+function openCategoriesFoeAlphabet(item) {
+  item.forEach(el => {
+    if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
+      el.style.display = "none";
+    } else {
+      el.style.display = "block";
+    }
+  }); 
+} 
+
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
@@ -1603,6 +1613,8 @@ search.addWidgets([
                         letter.classList.contains('active') ? letter.classList.remove('active') : '';
                         if (letter.innerText == item.querySelector('.ais-HierarchicalMenu-label').innerText[0]) {
                           letter.classList.add('active');
+                          
+                          openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
                         }
                       })
                     }
@@ -1637,15 +1649,6 @@ search.addWidgets([
                 }
               }
 
-              function openCategoriesFoeAlphabet(item) {
-                item.forEach(el => {
-                  if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
-                    el.style.display = "none";
-                  } else {
-                    el.style.display = "block";
-                  }
-                }); 
-              } 
 
               openCategoriesFoeAlphabet(listCategories)    
 
@@ -1984,6 +1987,20 @@ let mut = new MutationObserver(function (muts) {
     })
   }
   mut.observe(document, optionMut);
+  if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
+    mut.disconnect();
+    document.querySelectorAll('.alphabet li').forEach(el => {
+      el.addEventListener('mouseover', (e) => {
+        e.stopImmediatePropagation();
+        console.log(e.target)
+        e.target.parentElement.querySelector('.active').classList.remove('active');
+        e.target.classList.add('active');
+        openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
+      })
+    })  
+  }
+  mut.observe(document, optionMut);
+ 
 });
 mut.observe(document, optionMut);
 
