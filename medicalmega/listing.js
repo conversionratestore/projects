@@ -1760,7 +1760,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   document.querySelector('.ais-ClearRefinements-button').click();
   document.querySelector('.filter').style = '';
   facetCategories = "*";
-  // setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
+  setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
 //       hitsPerPage: '12',
@@ -1922,7 +1922,6 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
 };
 
 let optionMut = {
