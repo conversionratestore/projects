@@ -1192,7 +1192,7 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
-// window.onload = function() {
+window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -1599,6 +1599,12 @@ search.addWidgets([
                     if (el.innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
                       item.click()
+                      alphabet.querySelectorAll('li').forEach(letter => {
+                        letter.classList.contains('active') ? letter.classList.remove('active') : '';
+                        if (letter.innerText == item.querySelector('.ais-HierarchicalMenu-label').innerText[0]) {
+                          letter.classList.add('active');
+                        }
+                      })
                     }
                   })
                  
@@ -1893,8 +1899,7 @@ autocomplete('#form-search input', {hint: false, debug: true}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
-// };
+};
 
 let optionMut = {
   childList: true,
