@@ -1187,6 +1187,17 @@ const search = instantsearch({
   indexName: 'staging_products',
   routing: false,
   searchClient,
+  initialUiState: {
+    indexName: {
+      query: 'hand',
+      page: 12,
+    },
+    instant_search: {
+        hierarchicalMenu: {
+            "categories.lvl0": ["Gloves"]
+        }
+    }
+  }
 });
 
 let litterAlphabet = [];
@@ -1301,11 +1312,36 @@ function nextAll(elem) {
 };
 
 function setConfigureAlgolia(e,query) {
+  let lvl = e.split(':')[0];
+  let lvlItem = e.split(':')[1];
+
   search.addWidgets([
     instantsearch.widgets.configure({
       hitsPerPage: '12',
       facetFilters: [e],
       query: query
+    }),
+    
+    instantsearch.widgets.refinementList({
+      container: '#manufacturer',
+      attribute: 'manufacturer',
+      limit: 7,
+      showMore: true,
+      showMoreLimit: 100,
+      sortBy: ['name:asc'],
+      templates: {
+        item: (data) => {
+          actionDataLayer = 'Click on one of the brand items on filters';
+          let checkbox = `
+              <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                <span class="check"></span>
+                <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+              </label>
+          `;
+      
+          return checkbox
+        },
+      },
     }),
   ])
 
@@ -1314,11 +1350,15 @@ function setConfigureAlgolia(e,query) {
   //   routing: true,
   //   searchClient,
   //   initialUiState: {
-  //       instant_search: {
-  //           hierarchicalMenu: {
-  //               "categories.lvl0": ["Ostomy"]
-  //           }
-  //       }
+  //     indexName: {
+  //       query: query,
+  //       page: 12,
+  //     },
+  //     instant_search: {
+  //         hierarchicalMenu: {
+  //             lvl: [lvlItem]
+  //         }
+  //     }
   //   }
   // });
 }
@@ -1627,7 +1667,9 @@ closeBtn.forEach(item => {
     document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
     
     document.querySelector('.select_category ul li p').classList.add('active');
+    document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
     document.querySelector('.select_brand ul li p').classList.add('active');
+    document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
   })
 })
 let countSearchStalled = 0;
@@ -1691,16 +1733,13 @@ search.addWidgets([
               let listCategories = document.querySelectorAll('#list_categories li'), //list categories
                   listCategoriesPopular = document.querySelectorAll('.category_popular li'), //list popular ategories
                   alphabet = document.querySelector('.alphabet'); //alphabet
-                  
+                  alphabet.innerHTML = '';
+
               listCategoriesPopular.forEach((el) => {
                 el.addEventListener('click', (e) => {
                   listCategories.forEach(item => {
-
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
-                      
-                      // facetCategories = `categories.lvl0:${e.target.innerText}`;
-                      // setConfigureAlgolia(facetCategories,"")
                       alphabet.querySelectorAll('li').forEach(letter => {
                         letter.classList.contains('active') ? letter.classList.remove('active') : '';
                         if (letter.innerText == el.innerText[0]) {
@@ -1713,10 +1752,6 @@ search.addWidgets([
                       })
                     }
                   })
-                 
-                  // console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
-                  // labelDataLayer = `Popular categories`;
-                  // pushDataLayer(actionDataLayer,labelDataLayer);
                 })
               })
 
@@ -1737,9 +1772,7 @@ search.addWidgets([
                   }
                   if (firstLoaded == false) {
                     pushDataLayer(actionDataLayer,labelDataLayer);
-
                   }
-                  
                 })
               })
 
@@ -1754,7 +1787,6 @@ search.addWidgets([
                   alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
                 }
               }
-
 
               openCategoriesFoeAlphabet(listCategories)    
 
@@ -1823,13 +1855,25 @@ search.addWidgets([
                     e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
                 })
             }
+            if (document.querySelector('#clear-refinement button') != null) {
+              document.querySelector('#clear-refinement button').addEventListener('click', (e) => {
+                document.querySelectorAll('.alphabet li').forEach((letter, index) => {
+                  if (index == 0) {
+                    letter.classList.add('active')
+                  } else {
+                    letter.classList.remove('active')
+                  }
+                })
+                
+                openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
+              })
+            }
           }
       },
   },
 ])
 
 document.querySelector('.header .logo').addEventListener('click', (e) => { 
-  
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
   document.querySelector('#clear-refinements button').click();
@@ -2131,6 +2175,7 @@ let mut = new MutationObserver(function (muts) {
   mut.observe(document, optionMut);
   if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
     mut.disconnect();
+   
     document.querySelectorAll('.alphabet li').forEach(el => {
       el.addEventListener('mouseover', (e) => {
         e.stopImmediatePropagation();
