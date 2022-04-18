@@ -1936,11 +1936,13 @@ function initializeCarousel() {
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
-			if (!document.querySelector('.card-body .tns-outer')) {
+
 				setTimeout(() => {
-					tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+					if (!document.querySelector('.card-body .tns-outer')) {
+						tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+					}
 				}, 1000)
-			}
+
 		}
 	}, 100)
 }
