@@ -1563,13 +1563,9 @@ let isSimilar = setInterval(() => {
 
 		console.log($recommendCopyRight)
 		console.log(document.querySelector(`.product-layout-1 .col-xl-4`))
-
-		// setTimeout(() => {
-			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-		// }, 1000)
-
-
+		
+		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)		
 	}
 }, 200)
 let drawMenu = setInterval(() => {
