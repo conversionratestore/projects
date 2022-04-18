@@ -192,6 +192,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border-radius: 2px;
   display: block;
   margin-right: 8px;
+  flex-shrink: 0;
   position: relative; }
   .check:before {
     content: none;
@@ -995,6 +996,9 @@ border-radius: 100px;
     background: none; 
     text-decoration: underline;
     margin-top: 10px;
+    display: block;
+    position: relative;
+    z-index: 2;
   }
   .main a#top {
     background-color: #1E3944;
@@ -1031,6 +1035,25 @@ border-radius: 100px;
   position: absolute!important;
   opacity: 0;
   pointer-events: none;
+}
+#manufacturer {
+  position: relative;
+}
+#manufacturer .ais-RefinementList-list {
+  max-height: 312px;
+  overflow-y: auto;
+}
+#manufacturer .ais-RefinementList-list.scroll:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  pointer-events: none;
+  opacity: 1;
+  transition: all 0.2s ease;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
 }
   @media only screen and (min-width: 1750px) {
     .nav_category {
@@ -1207,6 +1230,14 @@ function openCategoriesFoeAlphabet(item) {
     }
   }); 
 } 
+
+function scrolled(element) {
+  if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      element.setAttribute('class','ais-RefinementList-list')
+  } else {
+      element.setAttribute('class','ais-RefinementList-list scroll')
+  }
+}
 
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
@@ -1757,6 +1788,18 @@ search.addWidgets([
             } else {
               document.querySelector('#breadcrumbs').style.display = 'block';
               document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
+            }
+
+            if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+              let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+                  element.addEventListener('scroll', () => scrolled(element));
+            }
+            if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
+                document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                    console.log(e.target.innerText)
+                    document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
+                    e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+                })
             }
       
           }
