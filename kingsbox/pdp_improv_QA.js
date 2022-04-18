@@ -1559,11 +1559,17 @@ let isSimilar = setInterval(() => {
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-		console.log($recommendCopyRight)
-		console.log(document.querySelector(`.product-layout-1 .col-xl-4`))
 
-		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+
+
+		setTimeout(() => {
+			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+
+			console.log($recommendCopyRight)
+		}, 1000)
+
+
 
 		document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
 			document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
