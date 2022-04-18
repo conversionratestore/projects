@@ -1305,15 +1305,6 @@ function toggleActive(getData) {
   }
 }
 
-//choice all next sibling
-function nextAll(elem) {
-  var next = false;
-  return [].filter.call(elem.parentNode.children, function(child) {
-      if (child === elem) next = true;
-      return next && child !== elem
-  })
-};
-
 function setConfigureAlgolia(e,query) {
   let lvl = e.split(':')[0];
   let lvlItem = e.split(':')[1];
@@ -1731,6 +1722,7 @@ search.addWidgets([
 
               listCategoriesPopular.forEach((el) => {
                 el.addEventListener('click', (e) => {
+                  e.preventDefault();
                   e.stopImmediatePropagation();
                   listCategories.forEach(item => {
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
