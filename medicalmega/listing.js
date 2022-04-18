@@ -1182,9 +1182,16 @@ const searchClient = algoliasearch(
 );
 
 const search = instantsearch({
-    indexName: 'staging_products',
-    routing: false,
-    searchClient,
+  indexName: 'staging_products',
+  routing: false,
+  searchClient,
+  // initialUiState: {
+  //   instant_search: {
+  //       hierarchicalMenu: {
+  //           "categories.lvl0": ["Ostomy"] //document.querySelector('title').innerHTML.split(' |')[0]
+  //       }
+  //   }
+  // }
 });
 
 let litterAlphabet = [];
@@ -1289,6 +1296,19 @@ function setConfigureAlgolia(e,query) {
       query: query
     }),
   ])
+
+  // instantsearch({
+  //   indexName: 'staging_products',
+  //   routing: true,
+  //   searchClient,
+  //   initialUiState: {
+  //       instant_search: {
+  //           hierarchicalMenu: {
+  //               "categories.lvl0": ["Ostomy"]
+  //           }
+  //       }
+  //   }
+  // });
 }
 
 requestAllCaterories.then(data => {
@@ -1301,39 +1321,40 @@ requestAllCaterories.then(data => {
       categoriesLvl4 = data.facets["categories.lvl4"],
       brand = data.facets.manufacturer;
 
+
   // for (let key in categoriesLvl0) {
-  //   document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
-  //   document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+  //   // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+  //   document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
+  //   <li class="select_option"><p data-item="${key}" data-category="categories.lvl0:${key}">${key}</p>
+  //     <ul></ul>
+  //   </li>`)
+  //   for (let key1 in categoriesLvl1) {
+  //     document.querySelectorAll(`.select_category .select_dropdown [data-item="${key}"]`).forEach((el, index) => {
+  //       if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
+  //         el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul class=""></ul></li>`)
+  //       }
+  //     })
+  //   }
   // }
-  // for (let key in categoriesLvl1) {
-  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl0')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl1:${key}">${key.split(' > ')[1]}</p><ul></ul></li>`);
-  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul></ul></li>`)
-  //     }
-  //   })
-  // }
+ 
   // for (let key in categoriesLvl2) {
-  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //   document.querySelectorAll(`.select_category .select_dropdown .lvl1 [data-category]`).forEach((el, index) => {
   //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl2:${key}">${key.split(' > ')[2]}</p><ul></ul></li>`);
-  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul></ul></li>`)
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl2"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul class=""></ul></li>`)
   //     }
   //   })
   // }
   // for (let key in categoriesLvl3) {
-  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
   //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl3:${key}">${key.split(' > ')[3]}</p><ul></ul></li>`);
-  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
   //     }
   //   })
   // }
   // for (let key in categoriesLvl4) {
-  //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
   //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl4:${key}">${key.split(' > ')[4]}</p><ul></ul></li>`);
-  //       document.querySelectorAll(`.select_category .select_dropdown [data-category]`)[index].nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
   //     }
   //   })
   // }
@@ -1359,58 +1380,22 @@ requestAllCaterories.then(data => {
   })
 })
 
-// const renderAutocomplete = (renderOptions, isFirstRender) => {
-//   const { indices, currentRefinement, refine, widgetParams } = renderOptions;
-
-//   console.log(indices)
-//   console.log('-------------------------')
-//   console.log(currentRefinement)
-//   console.log('-------------------------')
-//   console.log(refine)
-//   console.log('-------------------------')
-//   console.log(widgetParams)
-//   console.log('-------------------------')
-//   console.log(isFirstRender)
-//   if (isFirstRender) {
-//     console.log(isFirstRender)
-//     const input = document.querySelector('.ais-SearchBox-input');
-//     const ul = document.querySelectorAll('.aa-suggestion');
-
-//     input.addEventListener('input', event => {
-//       refine(event.currentTarget.value);
-//     });
-
-//     ul.addEventListener('click', (event) => {
-//       if (event.target.tagName === 'LI') {
-//         const indexId = event.target.getAttribute('data-index-id');
-//         const hitIndex = event.target.getAttribute('data-hit-index');
-//         const index = indices.find(index => index.indexId === indexId);
-//         const hit = index.hits[hitIndex];
-
-//         index.sendEvent('conversion', hit, 'Product Added');
-//       }
-//     });
-//   }
-
-//   widgetParams.container.querySelector('input').value = currentRefinement;
-//   widgetParams.container.querySelector('ul').innerHTML = indices
-//     .map(renderIndexListItem)
-//     .join('');
-// };
-
-// const customAutocomplete = instantsearch.connectors.connectAutocomplete(
-//   renderAutocomplete
-// );
 const renderHits = (renderOptions, isFirstRender) => {
   const { widgetParams } = renderOptions;
 
   widgetParams.container.innerHTML = '...';
 };
+
 search.addWidgets([
+
   instantsearch.widgets.configure({
     hitsPerPage: '12',
     facetFilters: [facetCategories],
     enablePersonalization: true,
+    // attributesToHighlight: [
+    //   'name',
+    // ],
+    
     // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
   }),
 
@@ -1421,15 +1406,14 @@ search.addWidgets([
   instantsearch.widgets.searchBox({
     container: '#form-search',
     placeholder: 'Search by Name',
+    // filters: 'categories.lvl0:New Products!',
     loadingIndicator: false,
     searchAsYouType: false, 
     templates: {
         loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
     },
   }),
-  // autocomplete({
-  //   container: document.querySelector('#form-search'),
-  // }),
+
   instantsearch.widgets.infiniteHits({
     container: '.listing_content',
     // escapeHTML: false,
@@ -1540,16 +1524,7 @@ search.addWidgets([
       resetLabel: `Clear results <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
     },
   }),
-  // instantsearch.widgets.menu({
-  //   container: '.category_popular',
-  //   attribute: 'categories.lvl0',
-  //   limit: 100,  
-  //   transformItems(items) {
-  //     console.log(items)
-  //     return items.filter(item => item.label == 'New Products!' || item.label == 'Hand Sanitizing' || item.label == 'Wound care' || item.label == 'Gloves' || item.label == 'Disinfectants' || item.label == 'Ostomy' || item.label == 'Instruments')
-  //   },
-    
-  // }),
+
   instantsearch.widgets.hierarchicalMenu({
     container: `#list_categories`,
     attributes: [
@@ -1562,8 +1537,17 @@ search.addWidgets([
     sortBy: ['isRefined'],  
     showParentLevel: false,
     limit: 150,  
+    // filters: 'categories.lvl0:Ostomy',
+    // initialUiState: {
+    //   instant_search: {
+    //       hierarchicalMenu: {
+    //           "categories.lvl0": ["Ostomy"]
+    //       }
+    //   }
+    // },
   }),
-
+ 
+  
   instantsearch.widgets.breadcrumb({
     container: '#breadcrumbs',
     attributes: [
@@ -1573,8 +1557,33 @@ search.addWidgets([
       'categories.lvl3',
       'categories.lvl4',
     ],
+    // rootPath: "Ostomy"
   }),
 ]); 
+if (window.location.pathname.includes('/category')) {
+
+  // let mySentence = window.location.pathname.split('category/')[1].split('-').join(' ');
+
+  // const words = mySentence.split(" ");
+
+  // for (let i = 0; i < words.length; i++) {
+  //     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+  // }
+  // words.join(" ");
+
+   instantsearch({
+    indexName: 'staging_products',
+    routing: true,
+    searchClient,
+    initialUiState: {
+        instant_search: {
+            hierarchicalMenu: {
+                "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
+            }
+        }
+    }
+  });
+}
 
 console.log(facetCategories + " - before start")
 search.start();
@@ -1705,7 +1714,7 @@ search.addWidgets([
 
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
-                      
+                      item.classList.add('popular');
                       item.click();
                       
                       facetCategories = `categories.lvl0:${e.target.innerText}`;
@@ -1721,22 +1730,29 @@ search.addWidgets([
                     }
                   })
                  
-                  console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
-                  labelDataLayer = `Popular categories`;
-                  pushDataLayer(actionDataLayer,labelDataLayer);
+                  // console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
+                  // labelDataLayer = `Popular categories`;
+                  // pushDataLayer(actionDataLayer,labelDataLayer);
                 })
               })
 
               listCategories.forEach((el) => {
                 litterAlphabet.push({'letter': el.innerText[0]})
                 el.addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
+                  // e.stopImmediatePropagation();
                   document.querySelector('.filter').style = '';
 
                   console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
-                  actionDataLayer = `Click on category item - ${el.innerText}`;
-                  labelDataLayer = `All categories`;
+                  actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
+                  
+                  if (e.target.classList.contains('popular')) {
+                    labelDataLayer = `Popular categories`;
+                    el.classList.remove('popular');
+                  } else {
+                    labelDataLayer = `All categories`;
+                  }
                   pushDataLayer(actionDataLayer,labelDataLayer);
+                  
                 })
               })
 
@@ -1748,7 +1764,7 @@ search.addWidgets([
 
               for (let i = 0; i < litterAlphabet.length; i++) {
                 if (litterAlphabet[i].letter != 'undefined') {
-                  alphabet.insertAdjacentHTML('beforeend',`<li class="${litterAlphabet[i].letter == 'A' ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                  alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
                 }
               }
 
@@ -1883,8 +1899,8 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   document.querySelector('#breadcrumbs ul').innerHTML = '';
   document.querySelector('.listing_title').innerHTML = '';
 
-  console.log(categories,brand,querySum)
   facetCategories = `${categories},${brand}`;
+  console.log(facetCategories,querySum)
   setConfigureAlgolia(facetCategories,querySum);
   
   document.querySelector('.filter').style = '';
@@ -2026,6 +2042,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
+
 };
 
 let optionMut = {
