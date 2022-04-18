@@ -1648,13 +1648,6 @@ function changeQty(qty,pr,action) {
 
 }
 
-document.body.addEventListener('click', (e) => {
-  if (!e.target.closest('.select')) remActiveSelect();
-  if (!e.target.closest('.nav_category')) {
-      document.querySelector(`.nav_category`).classList.remove('active');
-  }  
-})
-
 dataButton.forEach(item => {
   item.addEventListener('click', (e) => {
     toggleActive(item.getAttribute('data-button'))
@@ -1871,6 +1864,13 @@ document.body.addEventListener('click', (e) => {
   if (!e.target.closest('.nav_category')) {
       document.querySelector(`.nav_category`).classList.remove('active');
   }  
+  if (!e.target.closest('#form-search')) {
+    document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+  }
+  if (inputWord == false) {
+    document.querySelector('.ais-SearchBox-input').value = '';
+    document.querySelector('#form-search pre').innerHTML = '';
+  }
 })
 
 window.addEventListener('scroll', (e) => {
@@ -2028,16 +2028,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
 
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('#form-search')) {
-      document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
-    }
-    if (inputWord == false) {
-      document.querySelector('.ais-SearchBox-input').value = '';
-    }
-    
-    // document.querySelector('.ais-SearchBox-input').value = document.querySelector('.algolia-autocomplete pre').innerHTML;
-  })
 
 //   document.querySelector('#autocomplete').addEventListener('input', (e) => {
 //     document.querySelector('#form-search input').value = e.target.value;
