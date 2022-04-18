@@ -1538,6 +1538,11 @@ search.addWidgets([
     sortBy: ['isRefined'],  
     showParentLevel: false,
     limit: 150,  
+    templates: {
+      item: (data) => {
+        return `<a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">${data.label}</span></a>`
+      }
+    }
     // filters: 'categories.lvl0:Ostomy',
     // initialUiState: {
     //   instant_search: {
@@ -1558,6 +1563,7 @@ search.addWidgets([
       'categories.lvl3',
       'categories.lvl4',
     ],
+    limit: 150, 
     // rootPath: "Ostomy"
   }),
 ]); 
@@ -1574,7 +1580,7 @@ if (window.location.pathname.includes('/category')) {
 
    instantsearch({
     indexName: 'staging_products',
-    routing: true,
+    routing: false,
     searchClient,
     initialUiState: {
         instant_search: {
@@ -1715,17 +1721,17 @@ search.addWidgets([
 
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
-                      item.classList.add('popular');
-                      item.click();
                       
-                      facetCategories = `categories.lvl0:${e.target.innerText}`;
-                      setConfigureAlgolia(facetCategories,"")
+                      // facetCategories = `categories.lvl0:${e.target.innerText}`;
+                      // setConfigureAlgolia(facetCategories,"")
                       alphabet.querySelectorAll('li').forEach(letter => {
                         letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                        if (letter.innerText == item.querySelector('.ais-HierarchicalMenu-label').innerText[0]) {
+                        if (letter.innerText == el.innerText[0]) {
                           letter.classList.add('active');
                           
-                          openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
+                          openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
+                          item.classList.add('popular');
+                          item.click();
                         }
                       })
                     }
