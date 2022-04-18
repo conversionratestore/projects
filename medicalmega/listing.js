@@ -1788,36 +1788,19 @@ search.addWidgets([
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
                   if (el.innerText == document.querySelector('title').innerHTML.split(' |')[0] && firstLoaded == true) {
-                    el.click();
-                    firstLoaded = false;
+                    document.querySelectorAll('.alphabet li').forEach(letter => {
+                      letter.classList.contains('active') ? letter.classList.remove('active') : '';
+                      if (el.innerText[0] == letter.innerText[0]) {
+                        letter.classList.add('active');
+                        el.click();
+                        firstLoaded = false;
+                      }
+                    })
                   }
-              })
-              // let mySentence = window.location.pathname.split('category/')[1].split('-').join(' ');
-            
-              // const words = mySentence.split(" ");
-            
-              // for (let i = 0; i < words.length; i++) {
-              //     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-              // }
-              // words.join(" ");
-            
-              // instantsearch({
-              //   indexName: 'staging_products',
-              //   routing: true,
-              //   searchClient,
-              //   // initialUiState: {
-              //   //     instant_search: {
-              //   //         hierarchicalMenu: {
-              //   //             "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
-              //   //         }
-              //   //     }
-              //   // }
-              // });
-              
+              }) 
             } else {
               firstLoaded = false
             }
-            
 
             let crumbs = document.querySelectorAll('#breadcrumbs li');
             if (crumbs.length < 2) {
@@ -1839,7 +1822,6 @@ search.addWidgets([
                     e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
                 })
             }
-      
           }
       },
   },
