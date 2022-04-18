@@ -1559,21 +1559,20 @@ let isSimilar = setInterval(() => {
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-
-
+		document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
+			document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
+		})
 
 		setTimeout(() => {
 			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
 			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
 
 			console.log($recommendCopyRight)
-		}, 1000)
+		}, 500)
 
 
 
-		document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
-			document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
-		})
+
 	}
 }, 200)
 let drawMenu = setInterval(() => {
@@ -1943,7 +1942,7 @@ function initializeCarousel() {
 			if (!document.querySelector('.card-body .tns-outer')) {
 				setTimeout(() => {
 					tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-				}, 1000)
+				}, 500)
 			}
 		}
 	}, 100)
