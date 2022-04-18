@@ -1187,17 +1187,17 @@ const search = instantsearch({
   indexName: 'staging_products',
   routing: false,
   searchClient,
-  initialUiState: {
-    indexName: {
-      query: 'hand',
-      page: 12,
-    },
-    instant_search: {
-        hierarchicalMenu: {
-            "categories.lvl0": ["Gloves"]
-        }
-    }
-  }
+  // initialUiState: {
+  //   indexName: {
+  //     query: 'hand',
+  //     page: 12,
+  //   },
+  //   instant_search: {
+  //       hierarchicalMenu: {
+  //           "categories.lvl0": ["Gloves"]
+  //       }
+  //   }
+  // }
 });
 
 let litterAlphabet = [];
@@ -2088,6 +2088,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
+
 };
 
 let optionMut = {
