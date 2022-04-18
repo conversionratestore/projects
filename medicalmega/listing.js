@@ -290,7 +290,7 @@ input[type="search"]::-webkit-search-results-decoration {
       padding: 5px;
       transform: translateY(-50%);
       background-color: transparent;
-      coursor: pointer;
+      cursor: pointer;
     }
     .ais-SearchBox-loadingIndicator {
       position: absolute;
