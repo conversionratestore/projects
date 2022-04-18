@@ -1377,7 +1377,7 @@ requestAllCaterories.then(data => {
 
 })
 // if (window.location.pathname.includes('/category')) {
-//   facetCategories = `categories.lvl0:${document.querySelector('title').innerHTML.split(' |')[0]}`
+//   facetCategories = `categories.lvl0:${document.querySelector('title').innerText.split(' |')[0]}`
 // }
 search.addWidgets([
 
@@ -1562,7 +1562,7 @@ if (window.location.pathname.includes('/category')) {
   //   // initialUiState: {
   //   //     instant_search: {
   //   //         hierarchicalMenu: {
-  //   //             "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
+  //   //             "categories.lvl0": [document.querySelector('title').innerText.split(' |')[0]]
   //   //         }
   //   //     }
   //   // }
@@ -1787,7 +1787,7 @@ search.addWidgets([
             }
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
-                  if (el.innerText == document.querySelector('title').innerHTML.split(' |')[0] && firstLoaded == true) {
+                  if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
                     document.querySelectorAll('.alphabet li').forEach(letter => {
                       letter.classList.contains('active') ? letter.classList.remove('active') : '';
                       if (el.innerText[0] == letter.innerText[0]) {
