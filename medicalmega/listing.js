@@ -290,6 +290,7 @@ input[type="search"]::-webkit-search-results-decoration {
       padding: 5px;
       transform: translateY(-50%);
       background-color: transparent;
+      coursor: pointer;
     }
     .ais-SearchBox-loadingIndicator {
       position: absolute;
@@ -726,7 +727,7 @@ border-radius: 100px;
 
 .calc {
   margin-bottom: 16px; }
-.calc.disabled {
+.calc[disabled] {
   pointer-events: none;
   opacity: 0.7;}
 .calc-qty, input.calc-qty {
@@ -1012,6 +1013,7 @@ border-radius: 100px;
     display: flex;
     align-items: center;
     padding: 5px 10px;
+    cursor: pointer;
 }
 .aa-suggestion.aa-cursor {
   background-color: #E0E4E5;
@@ -1052,7 +1054,7 @@ let html = `
       <header class="header">
         <div class="supbar">
           <div class="container flex-center-between">
-            <p class="align-items-center"><img src="img/common/quotation.svg" alt="icon quotation">Customer Service</p>
+            <p class="align-items-center"><img src="https://conversionratestore.github.io/projects/medicalmega/img/quotation.svg" alt="icon quotation">Customer Service</p>
             <div class="d-flex"><a href="tel:17182084380"><span class="fw-light">Local Phone #</span>1-718-208-4380</a><a class="ml-40" href="tel:18556336342"><span class="fw-light">Toll Free Phone #</span>1-855-MED-MEGA (633-6342)</a></div>
           </div>
         </div>
@@ -1979,7 +1981,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
 };
 
 let optionMut = {
