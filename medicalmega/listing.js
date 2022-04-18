@@ -615,7 +615,8 @@ border-radius: 100px;
   #clear-refinements {
     margin-top: 34px;
     width: 100%;
-
+    opacity: 0;
+    pointer-events: none;
   }
   .filter .select_drop {
     padding: 10px 0; }
@@ -1831,8 +1832,7 @@ document.querySelector('.header .logo').addEventListener('click', (e) => {
   
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
-  facetCategories = "*";
-  setConfigureAlgolia(facetCategories,"");
+  document.querySelector('#clear-refinements button').click();
   document.querySelector('.filter').style = '';
   actionDataLayer = `Click on logo`;
   labelDataLayer = 'Header';
