@@ -1563,9 +1563,9 @@ let isSimilar = setInterval(() => {
 
 		console.log($recommendCopyRight)
 		console.log(document.querySelector(`.product-layout-1 .col-xl-4`))
-		
+
 		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)		
+		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
 	}
 }, 200)
 let drawMenu = setInterval(() => {
@@ -1933,7 +1933,10 @@ function initializeCarousel() {
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
 			if (!document.querySelector('.card-body .tns-outer')) {
-				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+				setTimeout(() => {
+					tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+				}, 1000)
+
 			}
 		}
 	}, 100)
