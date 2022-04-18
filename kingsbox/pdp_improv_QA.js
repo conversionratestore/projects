@@ -1554,9 +1554,7 @@ let isSimilar = setInterval(() => {
 
 		console.log('isSimilar here >>>>>>>')
 
-		document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
-			document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[index].src = source.getAttribute('lazyload')
-		})
+
 
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
@@ -1566,6 +1564,10 @@ let isSimilar = setInterval(() => {
 
 		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
 		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+
+		document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
+			document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
+		})
 	}
 }, 200)
 let drawMenu = setInterval(() => {
