@@ -1569,7 +1569,7 @@ let isSimilar = setInterval(() => {
 					})
 				}
 			}, 100)
-		}, 500)
+		}, 1000)
 	}
 }, 200)
 let drawMenu = setInterval(() => {
@@ -1939,7 +1939,7 @@ function initializeCarousel() {
 			if (!document.querySelector('.card-body .tns-outer')) {
 				setTimeout(() => {
 					tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-				}, 500)
+				}, 1000)
 			}
 		}
 	}, 100)
