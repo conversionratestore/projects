@@ -1395,7 +1395,11 @@ fetch(URL, { headers: header })
 				let randomItemsNumber = 6
 
 				let isRecommend = setInterval(() => {
-					if (document.querySelector('.product-recommendations')) {
+					if (
+						document.querySelector('.product-recommendations') &&
+						document.querySelector('.product-layout-1 .col-xl-4') &&
+						document.querySelector('.product-recommendations:not(.custom_recommendations)')
+					) {
 						clearInterval(isRecommend)
 
 						let isSimilarItem = !!document.querySelector('.product-recommendations .col-12')
