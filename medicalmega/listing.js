@@ -2028,10 +2028,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     pushDataLayer(actionDataLayer, labelDataLayer)
   })
 
-
-//   document.querySelector('#autocomplete').addEventListener('input', (e) => {
-//     document.querySelector('#form-search input').value = e.target.value;
-//   })
   document.querySelector('#form-search input').addEventListener('click', (e) => {
     actionDataLayer = `Click on Search by Name`;
     labelDataLayer = 'Header';
