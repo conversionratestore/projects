@@ -1979,6 +1979,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
+
 };
 
 let optionMut = {
