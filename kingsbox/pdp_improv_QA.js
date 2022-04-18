@@ -1564,10 +1564,10 @@ let isSimilar = setInterval(() => {
 		console.log($recommendCopyRight)
 		console.log(document.querySelector(`.product-layout-1 .col-xl-4`))
 
-		setTimeout(() => {
+		// setTimeout(() => {
 			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
 			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-		}, 1000)
+		// }, 1000)
 
 
 	}
@@ -1926,7 +1926,7 @@ function initializeCarousel() {
 			clearInterval(interval)
 
 			console.log('initializeCarousel INNEr >>>>')
-			
+
 			document.querySelector('.product-accessories').addEventListener('click', e => {
 				if (e.target.matches('.add_btn')) {
 					e.target.previousElementSibling.click()
