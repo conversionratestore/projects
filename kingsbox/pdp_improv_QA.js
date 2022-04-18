@@ -1557,17 +1557,18 @@ let isSimilar = setInterval(() => {
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-
-
 		setTimeout(() => {
 			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
 			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-
-			document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
-				document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
-			})
-
-			console.log($recommendCopyRight)
+			
+			let interval = setInterval(() => {
+				if(document.querySelector('.custom_recommendations.right')) {
+					clearInterval(interval)
+					document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
+						document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
+					})
+				}
+			}, 100)
 		}, 500)
 	}
 }, 200)
