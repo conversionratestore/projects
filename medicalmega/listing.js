@@ -1189,8 +1189,11 @@ const search = instantsearch({
   searchClient,
   // initialUiState: {
   //   indexName: {
-  //     query: 'hand',
+  //     query: '',
   //     page: 12,
+  //   },
+  //   refinementList: {
+  //     manufacturer: ["3M"]
   //   },
   //   instant_search: {
   //       hierarchicalMenu: {
@@ -1713,6 +1716,7 @@ search.addWidgets([
               }, true)
             })
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+              e.stopImmediatePropagation()
               document.querySelector('.ais-SearchBox-input').value = '';
               // document.querySelector('.algolia-autocomplete pre').innerHTML = '';
               inputWord = false;
@@ -1737,6 +1741,7 @@ search.addWidgets([
 
               listCategoriesPopular.forEach((el) => {
                 el.addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
                   listCategories.forEach(item => {
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
@@ -1755,26 +1760,7 @@ search.addWidgets([
                 })
               })
 
-              listCategories.forEach((el) => {
-                litterAlphabet.push({'letter': el.innerText[0]})
-                el.addEventListener('click', (e) => {
-                  // e.stopImmediatePropagation();
-                  document.querySelector('.filter').style = '';
-
-                  console.log(document.querySelector('#form-search input.ais-SearchBox-input').value)
-                  actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
-                  
-                  if (e.target.classList.contains('popular')) {
-                    labelDataLayer = `Popular categories`;
-                    el.classList.remove('popular');
-                  } else {
-                    labelDataLayer = `All categories`;
-                  }
-                  if (firstLoaded == false) {
-                    pushDataLayer(actionDataLayer,labelDataLayer);
-                  }
-                })
-              })
+              listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
 
               litterAlphabet = litterAlphabet.filter((thing, index, self) =>
                 index === self.findIndex((t) => (
@@ -2088,7 +2074,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
 };
 
 let optionMut = {
@@ -2174,9 +2159,28 @@ let mut = new MutationObserver(function (muts) {
     })
   }
   mut.observe(document, optionMut);
-  if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
+  if (document.querySelector('.alphabet li') != null && document.querySelectorAll('#list_categories li')) {
     mut.disconnect();
-   
+  
+    document.querySelectorAll('#list_categories li').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        document.querySelector('.filter').style = '';
+
+        actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
+        
+        if (e.target.classList.contains('popular')) {
+          labelDataLayer = `Popular categories`;
+          el.classList.remove('popular');
+        } else {
+          labelDataLayer = `All categories`;
+        }
+        if (firstLoaded == false) {
+          pushDataLayer(actionDataLayer,labelDataLayer);
+        }
+      })
+    })
+
     document.querySelectorAll('.alphabet li').forEach(el => {
       el.addEventListener('mouseover', (e) => {
         e.stopImmediatePropagation();
@@ -2185,7 +2189,7 @@ let mut = new MutationObserver(function (muts) {
         e.target.classList.add('active');
         openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
       })
-    })  
+    })
   }
   mut.observe(document, optionMut);
  
