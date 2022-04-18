@@ -495,7 +495,10 @@ const style = `
 									
 									.custom_recommendations {
 										display: flex;
+										flex-direction: column;
 									}
+									
+									
 									
 									.custom_recommendations .row{
 										flex-direction: column;
@@ -697,6 +700,10 @@ const style = `
 									   ============== */
 									   
 									@media only screen and (min-width: 769px)  {
+										[data-style="not"] .custom_recommendations {
+											flex-direction: row;
+										}
+									
 										.img_wrapper img {
 											min-height: 290px;
 											max-height: 290px;
@@ -1913,10 +1920,13 @@ function checkActiveImg() {
 }
 
 function initializeCarousel() {
+	console.log('initializeCarousel >>>>')
 	let interval = setInterval(() => {
 		if (document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] && typeof tns == 'function') {
 			clearInterval(interval)
 
+			console.log('initializeCarousel INNEr >>>>')
+			
 			document.querySelector('.product-accessories').addEventListener('click', e => {
 				if (e.target.matches('.add_btn')) {
 					e.target.previousElementSibling.click()
