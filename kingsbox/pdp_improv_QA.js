@@ -663,7 +663,7 @@ const style = `
 									
 									/*#product-accessory-category .tns-outer {margin-bottom: -10px;}*/
 									
-									#product-accessory-category img {min-height: 110px;}
+									#product-accessory-category img {min-height: 110px;max-height: 111px;}
 									#product-accessory-category app-product-stock {display: none;}
 									/*#product-accessory-category .title {min-height: 50px;}*/
 									/*#product-accessory-category .price {min-height: auto;}						*/
