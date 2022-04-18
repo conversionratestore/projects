@@ -1186,13 +1186,6 @@ const search = instantsearch({
   indexName: 'staging_products',
   routing: false,
   searchClient,
-  // initialUiState: {
-  //   instant_search: {
-  //       hierarchicalMenu: {
-  //           "categories.lvl0": ["Ostomy"] //document.querySelector('title').innerHTML.split(' |')[0]
-  //       }
-  //   }
-  // }
 });
 
 let litterAlphabet = [];
@@ -1212,6 +1205,7 @@ let optionFetchAlgolia = {
 }
 
 let inputWord = false;
+let firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
@@ -1255,6 +1249,22 @@ document.querySelector('.header').before(document.querySelector('#top'));
 document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
 
 document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
+
+let btnCategory = document.querySelector('.all_category');
+
+//all categories
+btnCategory.addEventListener('click', (e) => {
+  if (e.target.matches('.all_category')) {
+    console.log(e.target)
+    e.target.parentElement.classList.toggle('active');
+    document.querySelector('.advanced-search').classList.remove('active');
+    document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+
+    actionDataLayer = `Click on ${e.target.innerText} button`;
+    labelDataLayer = `Header`;
+    pushDataLayer(actionDataLayer,labelDataLayer);
+  }
+})
 
 //select
 function remActiveSelect() {
@@ -1323,21 +1333,22 @@ requestAllCaterories.then(data => {
       brand = data.facets.manufacturer;
 
 
-  // for (let key in categoriesLvl0) {
-  //   // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
-  //   document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
-  //   <li class="select_option"><p data-item="${key}" data-category="categories.lvl0:${key}">${key}</p>
-  //     <ul></ul>
-  //   </li>`)
-  //   for (let key1 in categoriesLvl1) {
-  //     document.querySelectorAll(`.select_category .select_dropdown [data-item="${key}"]`).forEach((el, index) => {
-  //       if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
-  //         el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key}">${key.split('>')[1]}</p><ul class=""></ul></li>`)
-  //       }
-  //     })
-  //   }
+  for (let key in categoriesLvl0) {
+    // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
+    <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
+      <ul></ul>
+    </li>`)
+  }
+  // for (let key1 in categoriesLvl1) {
+  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
+  //     if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
+  //       console.log()
+  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key1}">${key1.split('>')[1]}</p><ul class=""></ul></li>`)
+  //     }
+  //   })
   // }
- 
+
   // for (let key in categoriesLvl2) {
   //   document.querySelectorAll(`.select_category .select_dropdown .lvl1 [data-category]`).forEach((el, index) => {
   //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
@@ -1364,29 +1375,10 @@ requestAllCaterories.then(data => {
     document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
   }
 
-  let btnCategory = document.querySelector('.all_category');
-
-  //all categories
-  btnCategory.addEventListener('click', (e) => {
-    if (e.target.matches('.all_category')) {
-      console.log(e.target)
-      e.target.parentElement.classList.toggle('active');
-      document.querySelector('.advanced-search').classList.remove('active');
-      document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-  
-      actionDataLayer = `Click on ${e.target.innerText} button`;
-      labelDataLayer = `Header`;
-      pushDataLayer(actionDataLayer,labelDataLayer);
-    }
-  })
 })
-
-const renderHits = (renderOptions, isFirstRender) => {
-  const { widgetParams } = renderOptions;
-
-  widgetParams.container.innerHTML = '...';
-};
-
+// if (window.location.pathname.includes('/category')) {
+//   facetCategories = `categories.lvl0:${document.querySelector('title').innerHTML.split(' |')[0]}`
+// }
 search.addWidgets([
 
   instantsearch.widgets.configure({
@@ -1398,16 +1390,11 @@ search.addWidgets([
     // ],
     
     // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
+    // filters: 'categories.lvl0:New Products!',
   }),
-
-  // customAutocomplete({
-  //   container: document.querySelector('#form-search'),
-  //   // searchAsYouType: true, 
-  // }),
   instantsearch.widgets.searchBox({
     container: '#form-search',
     placeholder: 'Search by Name',
-    // filters: 'categories.lvl0:New Products!',
     loadingIndicator: false,
     searchAsYouType: false, 
     templates: {
@@ -1417,7 +1404,7 @@ search.addWidgets([
 
   instantsearch.widgets.infiniteHits({
     container: '.listing_content',
-    // escapeHTML: false,
+    escapeHTML: false,
     transformItems(items) {
       return items.filter(item => item.price != '0.00' )
     },
@@ -1543,17 +1530,7 @@ search.addWidgets([
         return `<a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">${data.label}</span></a>`
       }
     }
-    // filters: 'categories.lvl0:Ostomy',
-    // initialUiState: {
-    //   instant_search: {
-    //       hierarchicalMenu: {
-    //           "categories.lvl0": ["Ostomy"]
-    //       }
-    //   }
-    // },
   }),
- 
-  
   instantsearch.widgets.breadcrumb({
     container: '#breadcrumbs',
     attributes: [
@@ -1578,23 +1555,22 @@ if (window.location.pathname.includes('/category')) {
   // }
   // words.join(" ");
 
-   instantsearch({
-    indexName: 'staging_products',
-    routing: false,
-    searchClient,
-    initialUiState: {
-        instant_search: {
-            hierarchicalMenu: {
-                "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
-            }
-        }
-    }
-  });
+  // instantsearch({
+  //   indexName: 'staging_products',
+  //   routing: true,
+  //   searchClient,
+  //   // initialUiState: {
+  //   //     instant_search: {
+  //   //         hierarchicalMenu: {
+  //   //             "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
+  //   //         }
+  //   //     }
+  //   // }
+  // });
+  
 }
 
-console.log(facetCategories + " - before start")
 search.start();
-console.log(facetCategories + " - after start")
 
 let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
     closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -1662,7 +1638,7 @@ search.addWidgets([
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
             console.log(facetCategories)
-
+      
             if (document.querySelector('#price_group li') != null) {
               let pricesContainer = document.querySelector('#price_group ul'),
               para = document.querySelectorAll('#price_group li');
@@ -1758,7 +1734,10 @@ search.addWidgets([
                   } else {
                     labelDataLayer = `All categories`;
                   }
-                  pushDataLayer(actionDataLayer,labelDataLayer);
+                  if (firstLoaded == false) {
+                    pushDataLayer(actionDataLayer,labelDataLayer);
+
+                  }
                   
                 })
               })
@@ -1806,6 +1785,40 @@ search.addWidgets([
               items.forEach(item => alphabet.appendChild(item));
 
             }
+            if (window.location.pathname.includes('/category')) {
+              document.querySelectorAll('#list_categories li a').forEach(el => {
+                  if (el.innerText == document.querySelector('title').innerHTML.split(' |')[0] && firstLoaded == true) {
+                    el.click();
+                    firstLoaded = false;
+                  }
+              })
+              // let mySentence = window.location.pathname.split('category/')[1].split('-').join(' ');
+            
+              // const words = mySentence.split(" ");
+            
+              // for (let i = 0; i < words.length; i++) {
+              //     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+              // }
+              // words.join(" ");
+            
+              // instantsearch({
+              //   indexName: 'staging_products',
+              //   routing: true,
+              //   searchClient,
+              //   // initialUiState: {
+              //   //     instant_search: {
+              //   //         hierarchicalMenu: {
+              //   //             "categories.lvl0": [document.querySelector('title').innerHTML.split(' |')[0]]
+              //   //         }
+              //   //     }
+              //   // }
+              // });
+              
+            } else {
+              firstLoaded = false
+            }
+            
+
             let crumbs = document.querySelectorAll('#breadcrumbs li');
             if (crumbs.length < 2) {
               document.querySelector('#breadcrumbs').style.display = 'none';
