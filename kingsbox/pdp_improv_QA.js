@@ -1536,7 +1536,7 @@ let isBlackAccordion = setInterval(() => {
 }, 200)
 let isSimilar = setInterval(() => {
 	if (
-		document.querySelector('.product-recommendations:not(.custom_recommendations) .card source') &&
+		document.querySelector('.product-recommendations:not(.custom_recommendations) .card img') &&
 		document.querySelector(`.product-layout-1 .col-xl-4`)
 	) {
 		clearInterval(isSimilar)
@@ -1553,10 +1553,14 @@ let isSimilar = setInterval(() => {
 		console.log($recommendCopyRight)
 		console.log(document.querySelector(`.product-layout-1 .col-xl-4`))
 
-		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+		setTimeout(() => {
+			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+		}, 1000)
+
+
 	}
-}, 100)
+}, 200)
 let drawMenu = setInterval(() => {
 	if (document.querySelector('.product-layout-1')) {
 		clearInterval(drawMenu)
