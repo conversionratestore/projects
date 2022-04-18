@@ -1935,7 +1935,7 @@ function initializeCarousel() {
 			if (!document.querySelector('.card-body .tns-outer')) {
 				setTimeout(() => {
 					tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-				}, 100)
+				}, 1000)
 			}
 		}
 	}, 100)
