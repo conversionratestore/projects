@@ -999,6 +999,7 @@ border-radius: 100px;
     display: block;
     position: relative;
     z-index: 2;
+    outline: none;
   }
   .main a#top {
     background-color: #1E3944;
@@ -1040,20 +1041,20 @@ border-radius: 100px;
   position: relative;
 }
 #manufacturer .ais-RefinementList-list {
-  max-height: 312px;
+  max-height: 328px;
   overflow-y: auto;
 }
 #manufacturer .ais-RefinementList-list.scroll:before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   width: 100%;
-  height: 68px;
+  height: 56px;
   pointer-events: none;
   opacity: 1;
   transition: all 0.2s ease;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3))
+  background: linear-gradient(to top, rgba(255, 255, 255, 1) 26%, rgba(255, 255, 255, 0.3))
 }
   @media only screen and (min-width: 1750px) {
     .nav_category {
@@ -2042,7 +2043,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
 };
 
 let optionMut = {
