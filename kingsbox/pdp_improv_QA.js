@@ -1534,17 +1534,15 @@ let isBlackAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
 		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
 
-		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
-			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
-		}
-
 		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
 			if (e.target.closest('.card-header')) {
 				initializeCarousel()
 			}
 		})
 
-
+		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+		}
 	}
 }, 200)
 let isSimilar = setInterval(() => {
@@ -1657,10 +1655,10 @@ function checkItemStatus(item, containerDataset) {
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-			initializeCarousel()
+			// initializeCarousel()
 			break
 		default:
-			initializeCarousel()
+			// initializeCarousel()
 			break
 	}
 }
