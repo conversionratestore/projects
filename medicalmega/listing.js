@@ -1325,27 +1325,26 @@ function setConfigureAlgolia(e,query) {
       query: query
     }),
     
-    instantsearch.widgets.refinementList({
-      container: '#manufacturer',
-      attribute: 'manufacturer',
-      limit: 7,
-      showMore: true,
-      showMoreLimit: 100,
-      sortBy: ['name:asc'],
-      templates: {
-        item: (data) => {
-          actionDataLayer = 'Click on one of the brand items on filters';
-          let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
-                <span class="check"></span>
-                <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-              </label>
-          `;
+    // instantsearch.widgets.refinementList({
+    //   container: '#manufacturer',
+    //   attribute: 'manufacturer',
+    //   limit: 7,
+    //   showMore: true,
+    //   showMoreLimit: 100,
+    //   sortBy: ['name:asc'],
+    //   templates: {
+    //     item: (data) => {
+    //       let checkbox = `
+    //           <label class="mt-16 align-items-center" onclick="${pushDataLayer('Click on one of the brand items on filters')}">
+    //             <span class="check"></span>
+    //             <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
+    //           </label>
+    //       `;
       
-          return checkbox
-        },
-      },
-    }),
+    //       return checkbox
+    //     },
+    //   },
+    // }),
   ])
 
   // instantsearch({
@@ -1511,9 +1510,8 @@ search.addWidgets([
     sortBy: ['name:asc'],
     templates: {
       item: (data) => {
-        actionDataLayer = 'Click on one of the brand items on filters';
         let checkbox = `
-            <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+            <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters')">
               <span class="check"></span>
               <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
             </label>
@@ -1530,7 +1528,6 @@ search.addWidgets([
     sortBy: ['isRefined:asc'],
     templates: {
       item: (data) => {
-          actionDataLayer = 'Click on one of the price items on filters';
           let sltPrice = '';
           if (data.value.includes(' - ')) {
               sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
@@ -1539,7 +1536,7 @@ search.addWidgets([
           }
 
           let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
                   <span class="check"></span>
                   <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
               </label>
