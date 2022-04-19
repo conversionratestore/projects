@@ -1104,8 +1104,8 @@ let html = `
               <input type="text" placeholder="Enter Item #" name="search_item">
               <input type="text" placeholder="Enter Keyword" name="search_keyword">
               <div class="select select_category">
-                <p class="select_current" data-category="*"><span>Select Category</span></p>
-                <ul class="select_dropdown"> <li class="select_option active"><p>Select Category</p></li></ul>
+                <p class="select_current" data-category=""><span>Select Category</span></p>
+                <ul class="select_dropdown"> <li class="select_option active"><p data-category="categories.lvl0:*">Select Category</p></li></ul>
               </div>
               <div class="select select_brand">
                 <p class="select_current"><span>Select Manufacturer</span></p>
@@ -1143,7 +1143,7 @@ let html = `
         <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
       </header>
       <div class="container"> 
-        <nav id="breadcrumbs"><ul></ul></nav>
+        <nav id="breadcrumbs"></nav>
         <div class="flex-wrap w-100">
           <div class="filter">
               <h3 class="filter_title">Filters</h3>
@@ -1190,17 +1190,18 @@ const search = instantsearch({
   indexName: 'staging_products',
   routing: false,
   searchClient,
+
   // initialUiState: {
   //   indexName: {
   //     query: '',
   //     page: 12,
   //   },
   //   refinementList: {
-  //     manufacturer: ["3M"]
+  //     manufacturer: ['3M']
   //   },
   //   instant_search: {
   //       hierarchicalMenu: {
-  //           "categories.lvl0": ["Gloves"]
+  //         "categories.lvl0": ["Ostomy"]
   //       }
   //   }
   // }
@@ -1273,8 +1274,8 @@ let btnCategory = document.querySelector('.all_category');
 //all categories
 btnCategory.addEventListener('click', (e) => {
   if (e.target.matches('.all_category')) {
-    console.log(e.target)
     document.querySelector('#clear-refinements').click();
+    console.log(e.target)
     e.target.parentElement.classList.toggle('active');
     document.querySelector('.advanced-search').classList.remove('active');
     document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1310,54 +1311,53 @@ function toggleActive(getData) {
 }
 
 function setConfigureAlgolia(e,query) {
-  let lvl = e.split(':')[0];
-  let lvlItem = e.split(':')[1];
 
   search.addWidgets([
     instantsearch.widgets.configure({
       hitsPerPage: '12',
       facetFilters: [e],
-      query: query
-    }),
-    
-    // instantsearch.widgets.refinementList({
-    //   container: '#manufacturer',
-    //   attribute: 'manufacturer',
-    //   limit: 7,
-    //   showMore: true,
-    //   showMoreLimit: 100,
-    //   sortBy: ['name:asc'],
-    //   templates: {
-    //     item: (data) => {
-    //       let checkbox = `
-    //           <label class="mt-16 align-items-center" onclick="${pushDataLayer('Click on one of the brand items on filters')}">
-    //             <span class="check"></span>
-    //             <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-    //           </label>
-    //       `;
+      query: query,
       
-    //       return checkbox
-    //     },
-    //   },
-    // }),
+      // attributesToHighlight: [
+      //   'name',
+      // ],
+      
+      // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
+      // filters: 'categories.lvl0:New Products!',
+    }),
   ])
+  
+  // let categories = document.querySelector('.select_category .select_current').dataset.category;
 
+  // let lvl = categories.split(':')[0];
+  // let lvlItem = categories.split(':')[1];
+  // let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
+  
+  // let queryKeyword = document.querySelector('[name="search_keyword"]').value,
+  //     queryItem = document.querySelector('[name="search_item"]').value,
+  //     querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+  // console.log(lvlItem,querySum )
   // instantsearch({
   //   indexName: 'staging_products',
   //   routing: true,
   //   searchClient,
   //   initialUiState: {
   //     indexName: {
-  //       query: query,
+  //       query: querySum,
   //       page: 12,
+  //     },
+  //     refinementList: {
+  //       manufacturer: [brand]
   //     },
   //     instant_search: {
   //         hierarchicalMenu: {
-  //             lvl: [lvlItem]
+  //           "categories.lvl0": [lvlItem]
   //         }
   //     }
   //   }
   // });
+  // console.log(instantsearch)
+
 }
 
 requestAllCaterories.then(data => {
@@ -1451,11 +1451,46 @@ function initHits(hit) {
   return boxItem
 }
 
+
+const renderRefinementList = (renderOptions, isFirstRendering) => {
+  const { sendEvent } = renderOptions;
+  console.log(renderOptions, isFirstRendering)
+  console.log(sendEvent)
+  // `sendEvent` from `connectRefinementList` can send `click` events.
+  const clickedFacetValue = '3M';
+  
+  // // This sends an event like the following:
+  // /*
+  //   {
+  //     eventType: 'click',
+  //     insightsMethod: 'clickedFilters',
+  //     payload: {
+  //       eventName: 'Filter Applied',
+  //       filters: ['brand:"Apple"'],
+  //       index: '<your-index-name>',
+  //     },
+  //     widgetType: 'ais.refinementList',
+  //   }
+  // */
+  sendEvent('click', clickedFacetValue);
+
+  // Or, you can send a custom payload
+  sendEvent({
+    eventType: 'click',
+    insightsMethod: 'clickedFilters',
+    payload: {
+      // eventName: 'manufacturer',
+      filters: [`manufacturer:${JSON.stringify(clickedFacetValue)}`],
+      index: 'staging_products',
+    },
+    widgetType: 'ais.refinementList',
+  });
+}
 search.addWidgets([
 
   instantsearch.widgets.configure({
     hitsPerPage: '12',
-    facetFilters: [facetCategories],
+    // facetFilters: [facetCategories],
     enablePersonalization: true,
     // attributesToHighlight: [
     //   'name',
@@ -1588,32 +1623,9 @@ search.addWidgets([
     limit: 150, 
     // rootPath: "Ostomy"
   }),
-]); 
-if (window.location.pathname.includes('/category')) {
-
-  // let mySentence = window.location.pathname.split('category/')[1].split('-').join(' ');
-
-  // const words = mySentence.split(" ");
-
-  // for (let i = 0; i < words.length; i++) {
-  //     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-  // }
-  // words.join(" ");
-
-  // instantsearch({
-  //   indexName: 'staging_products',
-  //   routing: true,
-  //   searchClient,
-  //   // initialUiState: {
-  //   //     instant_search: {
-  //   //         hierarchicalMenu: {
-  //   //             "categories.lvl0": [document.querySelector('title').innerText.split(' |')[0]]
-  //   //         }
-  //   //     }
-  //   // }
-  // });
   
-}
+]); 
+
 
 search.start();
 
@@ -1657,11 +1669,15 @@ function toggleSearch(boolean) {
     document.querySelector('#hits').style.display = 'none';
     document.querySelector('#stats-container').style.display = 'none';
     document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
+    document.querySelector('#breadcrumbs ul').style.display = 'none';
+    document.querySelector('.listing_title').style.display = 'none';
   } else {
     document.querySelector('#hits').style = '';
     document.querySelector('#stats-container').style = '';
     document.querySelector('.filter').style = '';
     document.querySelector('.listing_suggestion').innerHTML = '';
+    document.querySelector('#breadcrumbs ul').style = '';
+    document.querySelector('.listing_title').style = '';
     document.querySelector('#clear-refinements').click();
   }
 }
@@ -1684,15 +1700,23 @@ closeBtn.forEach(item => {
   })
 })
 let countSearchStalled = 0;
+
+
 search.addWidgets([
   {
       render({ searchMetadata = {} }) {
+        console.log(searchMetadata)
           const { isSearchStalled } = searchMetadata
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
             console.log(facetCategories)
-      
+            instantsearch({
+              indexName: 'staging_products',
+              routing: false,
+              searchClient,
+            
+            });
             if (document.querySelector('#price_group li') != null) {
               let pricesContainer = document.querySelector('#price_group ul'),
               para = document.querySelectorAll('#price_group li');
@@ -1730,10 +1754,13 @@ search.addWidgets([
               inputWord = false;
               
               toggleSearch(true)
-
-              actionDataLayer = `Click on reset button`;
-              labelDataLayer = 'Search by Name';
-              pushDataLayer(actionDataLayer, labelDataLayer)
+              if (!e.target.classList.contains('reset')) {
+                actionDataLayer = `Click on reset button`;
+                labelDataLayer = 'Search by Name';
+                pushDataLayer(actionDataLayer, labelDataLayer)
+              } else {
+                e.target.classList.remove('reset')
+              }
             })
             
             document.querySelector('.ais-ClearRefinements-button').addEventListener('click', () => countSearchStalled = 0);
@@ -1749,6 +1776,7 @@ search.addWidgets([
                 el.addEventListener('click', (e) => {
                   e.preventDefault();
                   e.stopImmediatePropagation();
+                  document.querySelector('.ais-SearchBox-reset').classList.add('reset')
                   document.querySelector('.ais-SearchBox-reset').click();
                   listCategories.forEach(item => {
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
@@ -1862,6 +1890,19 @@ search.addWidgets([
                 openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
               })
             }
+            
+            document.querySelectorAll('#breadcrumbs a').forEach((crumb, index) => {
+              crumb.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                if (crumb.classList.contains('forclear')) {
+                  crumb.classList.remove('forclear');
+                } else {
+                  actionDataLayer = `Click on crumb - ${e.target.innerText}`;
+                  labelDataLayer = 'Breadcrumbs';
+                  pushDataLayer(actionDataLayer, labelDataLayer)
+                }
+              })
+            })
           }
       },
   },
@@ -1871,6 +1912,8 @@ document.querySelector('.header .logo').addEventListener('click', (e) => {
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
   document.querySelector('#clear-refinements button').click();
+  document.querySelector('#breadcrumbs a').classList.add('forclear');
+  document.querySelector('#breadcrumbs a').click();
   toggleSearch(true)
   actionDataLayer = `Click on logo`;
   labelDataLayer = 'Header';
@@ -1904,6 +1947,7 @@ window.addEventListener('scroll', (e) => {
 //select filter
 document.querySelectorAll('.select_filter').forEach(el => {
     el.querySelector('.select_item').addEventListener('click', (e) => {
+      console.log(search)
       el.classList.toggle('active');
       actionDataLayer = `Click on ${e.target.innerText} button`;
       labelDataLayer = 'Filter';
@@ -1919,6 +1963,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
   document.querySelector('.ais-ClearRefinements-button').click();
+  // document.querySelector(' #breadcrumbs a').click();
   toggleSearch(true)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
@@ -1947,8 +1992,18 @@ document.querySelector('.advanced-search .btn').addEventListener('click', () => 
   facetCategories = `${categories},${brand}`;
   console.log(facetCategories,querySum)
   setConfigureAlgolia(facetCategories,querySum);
+
+  let option = ``;
+  let crumbs = categories.split(':')[1].split(' > ');
+
+  for (let i = 0; i < crumbs.length; i++) {
+    option += ''
+  }
+  //%5B = [
+    //%5D ]
+  // window.location.href = `https://medicalmega.com/?staging_products[refinementList][manufacturer][0]=3M Healthcare&staging_products[hierarchicalMenu][categories.lvl0][0]=Ostomy&staging_products[hierarchicalMenu][categories.lvl0][1]=${crumbs}`
   
-  document.querySelector('.filter').style = '';
+  toggleSearch(true)
   actionDataLayer = `Click on submit button`;
   labelDataLayer = 'Advanced Search';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -2005,8 +2060,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     event.target.value = suggestion.name
     // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
 
-    document.querySelector('#breadcrumbs ul').innerHTML = '';
-    document.querySelector('.listing_title').innerHTML = '';
     console.log(search.helper.lastResults.query)
     console.log(search.helper.state.query)
     // console.log(search.helper.search())
@@ -2033,10 +2086,13 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
       inputWord = false;
       toggleSearch(true)
-      
-      actionDataLayer = `Click on reset button`;
-      labelDataLayer = 'Search by Name';
-      pushDataLayer(actionDataLayer, labelDataLayer)
+      if (!e.target.classList.contains('reset')) {
+        actionDataLayer = `Click on reset button`;
+        labelDataLayer = 'Search by Name';
+        pushDataLayer(actionDataLayer, labelDataLayer)
+      } else {
+        e.target.classList.remove('reset')
+      }
     })
 
     actionDataLayer = `Selected suggestion`;
@@ -2074,6 +2130,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     })
   })
 };
+
 
 let optionMut = {
   childList: true,
