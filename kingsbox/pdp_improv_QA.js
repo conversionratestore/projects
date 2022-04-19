@@ -1554,7 +1554,7 @@ let isSimilar = setInterval(() => {
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
 		let isCloned2 = setInterval(() => {
-			if(
+			if (
 				document.querySelector(`.product-layout-1 .col-xl-4`) &&
 				$recommendCopyRight
 			) {
@@ -1705,7 +1705,7 @@ function _setExpectedItem(where) {
 						weeksNumber = min + ' - ' + max
 					} else {
 						weeksNumber = max
-						if(weeksNumber == 1) {
+						if (weeksNumber == 1) {
 							oneWeek = true
 						}
 					}
@@ -1726,7 +1726,7 @@ function _setExpectedItem(where) {
 
 			let weekP = ''
 
-			if(drawWeeks) {
+			if (drawWeeks) {
 				weekP = `<p>${ language.order } <span>${ weeksNumber } ${ oneWeek ? language.week : language.weeks }</span>.</p>`
 			}
 
@@ -1931,16 +1931,23 @@ function checkActiveImg() {
 function initializeCarousel() {
 	let interval = setInterval(() => {
 		if (
-			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] &&
+			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img') &&
 			typeof tns == 'function'
 		) {
 			clearInterval(interval)
 
-			if(!document.querySelector('.card-body .tns-outer')) {
-				let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+			let length = blackAccordion.querySelectorAll('img').length
 
-				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-			}
+			let interval = setInterval(() => {
+				if (blackAccordion.querySelectorAll('img')[length - 1].src) {
+					clearInterval(interval)
+
+					if (!document.querySelector('.card-body .tns-outer')) {
+						tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+					}
+				}
+			}, 100)
 		}
 	}, 100)
 }
@@ -1963,7 +1970,6 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 		gutter,
 		slideBy,
 		autoHeight: false,
-		autoWidth: true
 	}
 
 	responsive ? obj.responsive = { 768: { items: 1 } } : null
