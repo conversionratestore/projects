@@ -634,7 +634,7 @@ border-radius: 100px;
   margin-bottom: 33px; }
 
 .listing_content {
-  paddin-left: 1px;
+  padding-left: 1px;
   margin-top: 13px; }
   .listing_content li {
     width: 25%; 
@@ -1168,8 +1168,10 @@ let html = `
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
             </div>
-            <div class="listing_suggestion"></div>
-            <div class="listing_content"> </div>
+            <div class="listing_content"> 
+              <ol class="listing_suggestion"></ol>
+              <div id="hits"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1414,6 +1416,40 @@ requestAllCaterories.then(data => {
 // if (window.location.pathname.includes('/category')) {
 //   facetCategories = `categories.lvl0:${document.querySelector('title').innerText.split(' |')[0]}`
 // }
+
+function initHits(hit) {
+  function findImage() {
+    for (let i = 0; i < hit.variants.length; i++) {
+        if (hit.variants[i].image != '') {
+            return hit.variants[i].image
+        }
+    }
+  }
+
+  let boxItem = `
+    <div class="card">
+      <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
+      <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+        <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
+        <span title="${hit.name}">${hit.name}</span>
+      </a>
+      <form action="https://medicalmega.com/cart.html" method="post">
+        <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
+          <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+          <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
+          <button class="btn-calc btn-calc_plus" type="button"></button>
+        </div>
+        ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+        <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+        <input type="hidden" name="product_id" value="${hit.objectID }">
+        <input type="hidden" name="add_to_cart" value="variant">
+        
+      </form>
+    </div>
+  `
+  return boxItem
+}
+
 search.addWidgets([
 
   instantsearch.widgets.configure({
@@ -1438,46 +1474,14 @@ search.addWidgets([
   }),
 
   instantsearch.widgets.infiniteHits({
-    container: '.listing_content',
+    container: '#hits',
     escapeHTML: false,
     transformItems(items) {
       return items.filter(item => item.price != '0.00' )
     },
     templates: {
         empty: `No Item Found`,
-        item: (hit) => {
-            function findImage() {
-                for (let i = 0; i < hit.variants.length; i++) {
-                    if (hit.variants[i].image != '') {
-                        return hit.variants[i].image
-                    }
-                }
-            }
-            
-            let boxItem = `
-              <div class="card">
-                <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
-                <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
-                  <span title="${hit.name}">${hit.name}</span>
-                </a>
-                <form action="https://medicalmega.com/cart.html" method="post">
-                  <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
-                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                    <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
-                    <button class="btn-calc btn-calc_plus" type="button"></button>
-                  </div>
-                  ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
-                  <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
-                  <input type="hidden" name="product_id" value="${hit.objectID }">
-                  <input type="hidden" name="add_to_cart" value="variant">
-                  
-                </form>
-              </div>
-            `
-            
-            return boxItem
-        }
+        item: (hit) => initHits(hit)
     },
   }),
 
@@ -1640,6 +1644,20 @@ function changeQty(qty,pr,action) {
 
 }
 
+function toggleSearch(boolean) {
+  if (boolean == false) {
+    document.querySelector('#hits').style.display = 'none';
+    document.querySelector('#stats-container').style.display = 'none';
+    document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
+  } else {
+    document.querySelector('#hits').style = '';
+    document.querySelector('#stats-container').style = '';
+    document.querySelector('.filter').style = '';
+    document.querySelector('.listing_suggestion').innerHTML = '';
+    document.querySelector('#clear-refinements').click();
+  }
+}
+
 dataButton.forEach(item => {
   item.addEventListener('click', (e) => {
     toggleActive(item.getAttribute('data-button'))
@@ -1703,9 +1721,7 @@ search.addWidgets([
               // document.querySelector('.algolia-autocomplete pre').innerHTML = '';
               inputWord = false;
               
-              document.querySelector('.filter').style = '';
-              facetCategories = "*"
-              setConfigureAlgolia(facetCategories,"")
+              toggleSearch(true)
 
               actionDataLayer = `Click on reset button`;
               labelDataLayer = 'Search by Name';
@@ -1847,7 +1863,7 @@ document.querySelector('.header .logo').addEventListener('click', (e) => {
   document.querySelector('#form-search .ais-SearchBox-input').value = '';
   document.querySelector('#form-search pre').innerHTML = '';
   document.querySelector('#clear-refinements button').click();
-  document.querySelector('.filter').style = '';
+  toggleSearch(true)
   actionDataLayer = `Click on logo`;
   labelDataLayer = 'Header';
   pushDataLayer(actionDataLayer, labelDataLayer)
@@ -1895,9 +1911,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
   }
   document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
   document.querySelector('.ais-ClearRefinements-button').click();
-  document.querySelector('.filter').style = '';
-  facetCategories = "*";
-  setConfigureAlgolia(facetCategories,document.querySelector('#form-search input').value)
+  toggleSearch(true)
 //   search.addWidgets([
 //     instantsearch.widgets.configure({
 //       hitsPerPage: '12',
@@ -1997,11 +2011,12 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     // search.helper.search();
     // console.log(search.helper.search())
     
-    document.querySelector('.ais-ClearRefinements-button').click();
-    document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
-    facetCategories = `item_num:${suggestion.item_num}`;
-    setConfigureAlgolia(facetCategories,suggestion.name);
-
+    // document.querySelector('.ais-ClearRefinements-button').click();
+    // document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
+    // facetCategories = `item_num:${suggestion.item_num}`;
+    // setConfigureAlgolia(facetCategories,suggestion.name);
+    document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
+    toggleSearch(false)
 
     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
@@ -2009,8 +2024,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
       inputWord = false;
-      facetCategories = `*`;
-      setConfigureAlgolia(facetCategories,"");
+      toggleSearch(true)
       
       actionDataLayer = `Click on reset button`;
       labelDataLayer = 'Search by Name';
@@ -2142,7 +2156,7 @@ let mut = new MutationObserver(function (muts) {
     document.querySelectorAll('#list_categories li').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
-        document.querySelector('.filter').style = '';
+        toggleSearch(true)
 
         actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
         
