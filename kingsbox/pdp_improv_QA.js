@@ -1524,8 +1524,9 @@ let isWhiteAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
 	}
 }, 200)
+
 let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
+	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a') ) {
 		clearInterval(isBlackAccordion)
 
 		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
@@ -1538,10 +1539,16 @@ let isBlackAccordion = setInterval(() => {
 			}
 		})
 
-		// if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
-		// 	document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
-		// 	console.log('clicked')
-		// }
+		let txt = document.querySelector('.product-breadcrumb a').innerText.split(' ').join('').toLowerCase()
+
+		if(txt !== 'sets') {
+			if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+				document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+				console.log('clicked')
+			}
+		} else {
+			initializeCarousel()
+		}	
 	}
 }, 200)
 let isSimilar = setInterval(() => {
