@@ -1553,20 +1553,6 @@ let isSimilar = setInterval(() => {
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-		let isCloned = setInterval(() => {
-			if(
-				document.querySelector(`.product-layout-1 .col-xl-4`) &&
-				document.querySelector('.product-recommendations.custom_recommendations')
-			) {
-				clearInterval(isCloned)
-
-				console.log('cloned >>>>')
-
-				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-			}
-		})
-
 		let isCloned2 = setInterval(() => {
 			if(
 				document.querySelector(`.product-layout-1 .col-xl-4`) &&
@@ -1977,6 +1963,7 @@ function tnsSettings(container, items, nav, gutter, responsive, name, controls, 
 		gutter,
 		slideBy,
 		autoHeight: false,
+		autoWidth: true
 	}
 
 	responsive ? obj.responsive = { 768: { items: 1 } } : null
