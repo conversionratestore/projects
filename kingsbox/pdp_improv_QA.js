@@ -1533,12 +1533,14 @@ let isBlackAccordion = setInterval(() => {
 
 		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
 			if (e.target.closest('.card-header')) {
+				console.log('closest header init slider')
 				initializeCarousel()
 			}
 		})
 
 		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
 			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+			console.log('clicked')
 		}
 	}
 }, 200)
