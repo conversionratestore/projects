@@ -1936,7 +1936,7 @@ function initializeCarousel() {
 		) {
 			clearInterval(interval)
 
-			console.log('document.querySelectorAll(\'#product-accessory-category [role="tabpanel"] .ng-star-inserted\')[1]?.querySelector(\'img\')')
+			console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 			let length = blackAccordion.querySelectorAll('img').length
