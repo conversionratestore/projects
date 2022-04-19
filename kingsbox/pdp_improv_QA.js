@@ -1929,12 +1929,12 @@ function checkActiveImg() {
 // }, 100)
 
 function initializeCarousel() {
-	let interval = setInterval(() => {
+	let outerInterval = setInterval(() => {
 		if (
 			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img') &&
 			typeof tns == 'function'
 		) {
-			clearInterval(interval)
+			clearInterval(outerInterval)
 
 			console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
 
@@ -1943,9 +1943,9 @@ function initializeCarousel() {
 
 			console.log(length)
 
-			let interval = setInterval(() => {
+			let innerInterval = setInterval(() => {
 				if (blackAccordion.querySelectorAll('img')[length - 1].src) {
-					clearInterval(interval)
+					clearInterval(innerInterval)
 
 					console.log('interval >>')
 
