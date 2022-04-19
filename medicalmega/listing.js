@@ -1274,6 +1274,7 @@ let btnCategory = document.querySelector('.all_category');
 btnCategory.addEventListener('click', (e) => {
   if (e.target.matches('.all_category')) {
     console.log(e.target)
+    document.querySelector('#clear-refinements').click();
     e.target.parentElement.classList.toggle('active');
     document.querySelector('.advanced-search').classList.remove('active');
     document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1548,6 +1549,13 @@ search.addWidgets([
     templates: {
       resetLabel: `Clear results <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
     },
+    excludedAttributes: [
+      'categories.lvl0',
+      'categories.lvl1',
+      'categories.lvl2',
+      'categories.lvl3',
+      'categories.lvl4',
+    ],
   }),
 
   instantsearch.widgets.hierarchicalMenu({
