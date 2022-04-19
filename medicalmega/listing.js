@@ -1168,6 +1168,7 @@ let html = `
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
             </div>
+            <div class="listing_suggestion"></div>
             <div class="listing_content"> </div>
           </div>
         </div>
@@ -1555,7 +1556,7 @@ search.addWidgets([
       'categories.lvl4',
     ], 
     sortBy: ['isRefined'],  
-    showParentLevel: false,
+    showParentLevel: true,
     limit: 150,  
     templates: {
       item: (data) => {
@@ -1724,6 +1725,7 @@ search.addWidgets([
                 el.addEventListener('click', (e) => {
                   e.preventDefault();
                   e.stopImmediatePropagation();
+                  document.querySelector('.ais-SearchBox-reset').click();
                   listCategories.forEach(item => {
                     if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                       countSearchStalled = 1;
@@ -2156,6 +2158,7 @@ let mut = new MutationObserver(function (muts) {
       })
     })
 
+    openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
     document.querySelectorAll('.alphabet li').forEach(el => {
       el.addEventListener('mouseover', (e) => {
         e.stopImmediatePropagation();
