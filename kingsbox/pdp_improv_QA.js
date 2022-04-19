@@ -1941,23 +1941,34 @@ function initializeCarousel() {
 			console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
-			let length = blackAccordion.querySelectorAll('img').length
+			// let length = blackAccordion.querySelectorAll('img').length
+			//
+			// blackAccordion.querySelectorAll('source').forEach(img => {
+			//
+			// })
 
-			console.log(length)
+			blackAccordion.querySelectorAll('source').forEach((source, index) => {
+				blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
+			})
 
-			let innerInterval = setInterval(() => {
-				if (blackAccordion.querySelectorAll('img')[length - 1].src) {
-					clearInterval(innerInterval)
+			if (!document.querySelector('.card-body .tns-outer')) {
+				console.log('interval 2 >>')
 
-					console.log('interval >>')
+				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+			}
 
-					if (!document.querySelector('.card-body .tns-outer')) {
-						console.log('interval 2 >>')
 
-						tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-					}
-				}
-			}, 100)
+			// console.log(length)
+			//
+			// let innerInterval = setInterval(() => {
+			// 	if (blackAccordion.querySelectorAll('img')[length - 1].src) {
+			// 		clearInterval(innerInterval)
+			//
+			// 		console.log('interval >>')
+			//
+			//
+			// 	}
+			// }, 100)
 		}
 	}, 100)
 }
