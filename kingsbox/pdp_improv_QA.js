@@ -498,8 +498,6 @@ const style = `
 										flex-direction: column;
 									}
 									
-									
-									
 									.custom_recommendations .row{
 										flex-direction: column;
 									}
@@ -663,7 +661,7 @@ const style = `
 									
 									/*#product-accessory-category .tns-outer {margin-bottom: -10px;}*/
 									
-									#product-accessory-category img {min-height: 110px;max-height: 111px;}
+									#product-accessory-category img {min-height: 110px;}
 									#product-accessory-category app-product-stock {display: none;}
 									/*#product-accessory-category .title {min-height: 50px;}*/
 									/*#product-accessory-category .price {min-height: auto;}						*/
@@ -1404,8 +1402,7 @@ fetch(URL, { headers: header })
 				let isRecommend = setInterval(() => {
 					if (
 						document.querySelector('.product-recommendations') &&
-						document.querySelector('.product-layout-1 .col-xl-4') &&
-						document.querySelector('.product-recommendations:not(.custom_recommendations)')
+						document.querySelector('.product-layout-1 .col-xl-4')
 					) {
 						clearInterval(isRecommend)
 
@@ -1546,32 +1543,45 @@ let isBlackAccordion = setInterval(() => {
 	}
 }, 200)
 let isSimilar = setInterval(() => {
-	if (
-		document.querySelector('.product-recommendations:not(.custom_recommendations) .card img') &&
-		document.querySelector(`.product-layout-1 .col-xl-4`)
-	) {
+	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
 		clearInterval(isSimilar)
 
-		console.log('isSimilar here >>>>>>>')
+		document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
+			document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card img')[index].src = source.getAttribute('lazyload')
+		})
 
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-		setTimeout(() => {
-			document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-			document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
-			
-			let interval = setInterval(() => {
-				if(document.querySelector('.custom_recommendations.right')) {
-					clearInterval(interval)
-					document.querySelectorAll('.product-recommendations .card source').forEach((source, index) => {
-						document.querySelectorAll('.product-recommendations .card img')[index].src = source.getAttribute('lazyload')
-					})
-				}
-			}, 100)
-		}, 1000)
+		let isCloned = setInterval(() => {
+			if(
+				document.querySelector(`.product-layout-1 .col-xl-4`) &&
+				document.querySelector('.product-recommendations.custom_recommendations')
+			) {
+				clearInterval(isCloned)
+
+				console.log('cloned >>>>')
+
+				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+			}
+		})
+
+		let isCloned2 = setInterval(() => {
+			if(
+				document.querySelector(`.product-layout-1 .col-xl-4`) &&
+				$recommendCopyRight
+			) {
+				clearInterval(isCloned2)
+
+				console.log('cloned 2 >>>>')
+
+				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+			}
+		})
 	}
-}, 200)
+}, 100)
 let drawMenu = setInterval(() => {
 	if (document.querySelector('.product-layout-1')) {
 		clearInterval(drawMenu)
@@ -1655,10 +1665,10 @@ function checkItemStatus(item, containerDataset) {
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-			// initializeCarousel()
+			initializeCarousel()
 			break
 		default:
-			// initializeCarousel()
+			initializeCarousel()
 			break
 	}
 }
@@ -1919,30 +1929,32 @@ function checkActiveImg() {
 	document.querySelector('.product-images-thumb .active')?.closest('.product-images-thumb').classList.add('active_img')
 }
 
+// let someInterval = setInterval(() => {
+// 	if(document.querySelector('.product-accessories')) {
+// 		clearInterval(someInterval)
+//
+// 		document.querySelector('.product-accessories').addEventListener('click', e => {
+// 			if (e.target.matches('.add_btn')) {
+// 				e.target.previousElementSibling.click()
+// 				e.target.disabled = true
+// 			}
+// 		})
+// 	}
+// }, 100)
+
 function initializeCarousel() {
-	console.log('initializeCarousel >>>>')
 	let interval = setInterval(() => {
-		if (document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] && typeof tns == 'function') {
+		if (
+			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] &&
+			typeof tns == 'function'
+		) {
 			clearInterval(interval)
 
-			console.log('initializeCarousel INNEr >>>>')
+			if(!document.querySelector('.card-body .tns-outer')) {
+				let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
-			document.querySelector('.product-accessories').addEventListener('click', e => {
-				if (e.target.matches('.add_btn')) {
-					e.target.previousElementSibling.click()
-					e.target.disabled = true
-				}
-			})
-
-			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
-
-
-				setTimeout(() => {
-					if (!document.querySelector('.card-body .tns-outer')) {
-						tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
-					}
-				}, 1000)
-
+				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
+			}
 		}
 	}, 100)
 }
