@@ -1938,6 +1938,8 @@ function initializeCarousel() {
 		) {
 			clearInterval(outerInterval)
 
+			if (!document.querySelector('.card-body .tns-outer')) {
+
 			console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
 
 			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
@@ -1951,7 +1953,7 @@ function initializeCarousel() {
 				blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
 			})
 
-			if (!document.querySelector('.card-body .tns-outer')) {
+
 				console.log('interval 2 >>')
 
 				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
