@@ -1653,10 +1653,10 @@ function checkItemStatus(item, containerDataset) {
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-			initializeCarousel()
+			// initializeCarousel()
 			break
 		default:
-			initializeCarousel()
+			// initializeCarousel()
 			break
 	}
 }
