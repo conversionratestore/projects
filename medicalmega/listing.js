@@ -1189,7 +1189,7 @@ const searchClient = algoliasearch(
 
 const search = instantsearch({
   indexName: 'staging_products',
-  routing: false,
+  routing: true,
   searchClient,
 
   // initialUiState: {
@@ -1275,7 +1275,7 @@ let btnCategory = document.querySelector('.all_category');
 //all categories
 btnCategory.addEventListener('click', (e) => {
   if (e.target.matches('.all_category')) {
-    document.querySelector('#clear-refinements').click();
+    document.querySelector('#clear-refinements button').click();
     console.log(e.target)
     e.target.parentElement.classList.toggle('active');
     document.querySelector('.advanced-search').classList.remove('active');
@@ -1458,34 +1458,13 @@ const renderRefinementList = (renderOptions, isFirstRendering) => {
   console.log(renderOptions, isFirstRendering)
   console.log(sendEvent)
   // `sendEvent` from `connectRefinementList` can send `click` events.
-  const clickedFacetValue = '3M';
+  const clickedFacetValue = '3M'; 
   
-  // // This sends an event like the following:
-  // /*
-  //   {
-  //     eventType: 'click',
-  //     insightsMethod: 'clickedFilters',
-  //     payload: {
-  //       eventName: 'Filter Applied',
-  //       filters: ['brand:"Apple"'],
-  //       index: '<your-index-name>',
-  //     },
-  //     widgetType: 'ais.refinementList',
-  //   }
-  // */
+
   sendEvent('click', clickedFacetValue);
 
   // Or, you can send a custom payload
-  sendEvent({
-    eventType: 'click',
-    insightsMethod: 'clickedFilters',
-    payload: {
-      // eventName: 'manufacturer',
-      filters: [`manufacturer:${JSON.stringify(clickedFacetValue)}`],
-      index: 'staging_products',
-    },
-    widgetType: 'ais.refinementList',
-  });
+
 }
 search.addWidgets([
 
@@ -1679,7 +1658,7 @@ function toggleSearch(boolean) {
     document.querySelector('.listing_suggestion').innerHTML = '';
     document.querySelector('#breadcrumbs ul').style = '';
     document.querySelector('.listing_title').style = '';
-    document.querySelector('#clear-refinements').click();
+    document.querySelector('#clear-refinements button').click();
   }
 }
 
@@ -1704,6 +1683,28 @@ let countSearchStalled = 0;
 
 
 search.addWidgets([
+  // { 
+  //   refresh({instantSearchInstance = {} }) {
+
+  //   }
+  //   // const renderClearRefinements = (renderOptions, isFirstRender) => {
+  //   //   const { refine } = renderOptions;
+    
+  //   //   const container = document.querySelector('#clear-refinements');
+    
+  //   //   if (isFirstRender) {
+  //   //     console.log(isFirstRender)
+  //   //     // const button = document.createElement('button');
+  //   //     // button.textContent = 'Clear refinements';
+    
+  //   //     // button.addEventListener('click', () => {
+  //   //     //   refine();
+  //   //     // });
+    
+  //   //     // container.appendChild(button);
+  //   //   }
+  //   // };
+  // },
   {
       render({ searchMetadata = {} }) {
         console.log(searchMetadata)
@@ -1768,12 +1769,11 @@ search.addWidgets([
 
             if (countSearchStalled == 0) {
               countSearchStalled = 1;
-              let listCategories = document.querySelectorAll('#list_categories li'), //list categories
-                  listCategoriesPopular = document.querySelectorAll('.category_popular li'), //list popular ategories
+              let listCategories = document.querySelectorAll('#list_categories li'),
                   alphabet = document.querySelector('.alphabet'); //alphabet
                   alphabet.innerHTML = '';
 
-              listCategoriesPopular.forEach((el) => {
+              document.querySelectorAll('.category_popular li').forEach((el) => {
                 el.addEventListener('click', (e) => {
                   e.preventDefault();
                   e.stopImmediatePropagation();
@@ -1812,29 +1812,6 @@ search.addWidgets([
               }
 
               openCategoriesFoeAlphabet(listCategories)    
-
-              //change Class active
-              // let alphabetContainer = document.querySelector('.alphabet'),
-              //     para = document.querySelectorAll('.alphabet li');
-              //     console.log(alphabetContainer)
-              //     console.log(para)
-
-              // let paraArr = [].slice.call(para).sort(function (a, b) {
-              //     return a - b
-              // });
-              // console.log(paraArr)
-              // paraArr.forEach(function (p) {
-              //   alphabetContainer.appendChild(p);
-              // });
-
-              // alphabet.querySelectorAll('li').forEach(el => {
-              //   el.addEventListener('mouseover', (e) => {
-              //     console.log(e.target)
-              //     e.target.parentElement.querySelector('.active').classList.remove('active');
-              //     e.target.classList.add('active');
-              //     openCategoriesFoeAlphabet(listCategories)
-              //   })
-              // })   
 
               let items = [...alphabet.querySelectorAll("li")];
               items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
@@ -1981,33 +1958,26 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
   let categories = document.querySelector('.select_category .select_current').dataset.category;
-  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
+  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : document.querySelector('.select_brand .select_current').innerText;
   
   let queryKeyword = document.querySelector('[name="search_keyword"]').value,
       queryItem = document.querySelector('[name="search_item"]').value,
       querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
 
-  document.querySelector('#breadcrumbs ul').innerHTML = '';
-  document.querySelector('.listing_title').innerHTML = '';
-
-  facetCategories = `${categories},${brand}`;
-  console.log(facetCategories,querySum)
-  setConfigureAlgolia(facetCategories,querySum);
-
   let option = ``;
   let crumbs = categories.split(':')[1].split(' > ');
 
+  console.log(crumbs)
+
   for (let i = 0; i < crumbs.length; i++) {
-    option += ''
+    option += `&staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
   }
-  //%5B = [
-    //%5D ]
-  // window.location.href = `https://medicalmega.com/?staging_products[refinementList][manufacturer][0]=3M Healthcare&staging_products[hierarchicalMenu][categories.lvl0][0]=Ostomy&staging_products[hierarchicalMenu][categories.lvl0][1]=${crumbs}`
-  
-  toggleSearch(true)
+
   actionDataLayer = `Click on submit button`;
   labelDataLayer = 'Advanced Search';
   pushDataLayer(actionDataLayer, labelDataLayer)
+
+  window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${brand}${option}`;
 })
 
 document.querySelectorAll('.advanced-search input').forEach(input => {
@@ -2083,8 +2053,8 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
       e.stopImmediatePropagation()
       event.target.value = '';
-      document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+      document.querySelector('.ais-SearchBox-input').value = '';
       inputWord = false;
       toggleSearch(true)
       if (!e.target.classList.contains('reset')) {
