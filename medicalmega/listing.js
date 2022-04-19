@@ -1658,7 +1658,7 @@ function toggleSearch(boolean) {
     document.querySelector('.listing_suggestion').innerHTML = '';
     document.querySelector('#breadcrumbs ul').style = '';
     document.querySelector('.listing_title').style = '';
-    document.querySelector('#clear-refinements button').click();
+    document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
   }
 }
 
