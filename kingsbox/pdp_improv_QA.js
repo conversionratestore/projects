@@ -1524,26 +1524,26 @@ let isWhiteAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
 	}
 }, 200)
-let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
-		clearInterval(isBlackAccordion)
-
-		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
-		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
-
-		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
-			if (e.target.closest('.card-header')) {
-				console.log('closest header init slider')
-				initializeCarousel()
-			}
-		})
-
-		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
-			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
-			console.log('clicked')
-		}
-	}
-}, 200)
+// let isBlackAccordion = setInterval(() => {
+// 	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
+// 		clearInterval(isBlackAccordion)
+//
+// 		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
+// 		document.querySelector('.accordion.product-accessory-category .card').style.marginTop = '12px'
+//
+// 		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
+// 			if (e.target.closest('.card-header')) {
+// 				console.log('closest header init slider')
+// 				initializeCarousel()
+// 			}
+// 		})
+//
+// 		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+// 			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+// 			console.log('clicked')
+// 		}
+// 	}
+// }, 200)
 let isSimilar = setInterval(() => {
 	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
 		clearInterval(isSimilar)
@@ -1939,6 +1939,7 @@ function initializeCarousel() {
 			clearInterval(outerInterval)
 
 			if (!document.querySelector('.card-body .tns-outer')) {
+
 
 			console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
 
