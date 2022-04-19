@@ -1261,6 +1261,24 @@ function scrolled(element) {
   }
 }
 
+function toggleSearch(boolean) {
+  if (boolean == false) {
+    document.querySelector('#hits').style.display = 'none';
+    document.querySelector('#stats-container').style.display = 'none';
+    document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
+    document.querySelector('#breadcrumbs ul').style.display = 'none';
+    document.querySelector('.listing_title').style.display = 'none';
+  } else {
+    document.querySelector('#hits').style = '';
+    document.querySelector('#stats-container').style = '';
+    document.querySelector('.filter').style = '';
+    document.querySelector('.listing_suggestion').innerHTML = '';
+    document.querySelector('#breadcrumbs ul').style = '';
+    document.querySelector('.listing_title').style = '';
+    document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
+  }
+}
+
 window.onload = function() {
 document.body.insertAdjacentHTML('afterbegin', html);
 document.body.insertAdjacentHTML('afterbegin', style);
@@ -1642,24 +1660,6 @@ function changeQty(qty,pr,action) {
   
   console.log(qty.value,pr.innerHTML)
 
-}
-
-function toggleSearch(boolean) {
-  if (boolean == false) {
-    document.querySelector('#hits').style.display = 'none';
-    document.querySelector('#stats-container').style.display = 'none';
-    document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
-    document.querySelector('#breadcrumbs ul').style.display = 'none';
-    document.querySelector('.listing_title').style.display = 'none';
-  } else {
-    document.querySelector('#hits').style = '';
-    document.querySelector('#stats-container').style = '';
-    document.querySelector('.filter').style = '';
-    document.querySelector('.listing_suggestion').innerHTML = '';
-    document.querySelector('#breadcrumbs ul').style = '';
-    document.querySelector('.listing_title').style = '';
-    document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
-  }
 }
 
 dataButton.forEach(item => {
