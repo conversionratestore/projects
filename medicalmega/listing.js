@@ -996,11 +996,12 @@ border-radius: 100px;
   .ais-RefinementList-showMore {
     background: none; 
     text-decoration: underline;
-    margin-top: 10px;
+    margin-top: 15px;
     display: block;
     position: relative;
     z-index: 2;
     outline: none;
+    color: #344D57;
   }
   .main a#top {
     background-color: #1E3944;
@@ -2130,7 +2131,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     })
   })
 };
-
 
 let optionMut = {
   childList: true,
