@@ -967,13 +967,14 @@ const languagesObj = {
 			expected: 'expected',
 		},
 		demand: 'This product is in high demand',
-		order: 'Order today and get your order dispatched within',
+		order: 'Pre-order today and get your order dispatched within',
 		weeks: 'weeks',
 		week: 'week',
 		details: 'Product details',
 		wl: 'join waiting list',
 		guarantee: '30-day money back guarantee',
 		made: 'Made in EU',
+		designed: 'Designed in EU',
 		superb: 'Superb quality guaranteed',
 		similar: 'Similar product',
 		like: 'you may also like',
@@ -999,7 +1000,7 @@ const languagesObj = {
 			expected: 'disponibiltà',
 		},
 		demand: 'Questo prodotto è molto richiesto',
-		order: 'Ordina oggi e ricevi il tuo ordine entro',
+		order: 'Preordine oggi e ricevi il tuo ordine entro',
 		weeks: 'settimane',
 		week: 'settimana',
 		details: 'Dettagli del prodotto',
@@ -1031,7 +1032,7 @@ const languagesObj = {
 			expected: 'očekivana',
 		},
 		demand: 'Ovaj proizvod je vrlo tražen',
-		order: 'Naručite danas i vaša  narudžba će biti poslana u roku od',
+		order: 'Prednarudžba danas i vaša  narudžba će biti poslana u roku od',
 		weeks: 'tjedna',
 		week: 'tjedna',
 		details: 'Detalji o proizvodu',
@@ -1063,7 +1064,7 @@ const languagesObj = {
 			expected: 'Predvidena',
 		},
 		demand: 'Za ta produkt je zelo veliko povpraševanja',
-		order: 'Naroči danes in tvoje naročilo bo odpremljeno v',
+		order: 'Prednaročilo danes in tvoje naročilo bo odpremljeno v',
 		weeks: 'tednih',
 		week: 'tednu',
 		details: 'Podrobnosti o izdelku',
@@ -1095,7 +1096,7 @@ const languagesObj = {
 			expected: 'Erwartete',
 		},
 		demand: 'Dieses Produkt hat eine hohe Nachfrage',
-		order: 'Bestellen Sie noch heute und Ihre Bestellung wird innerhalb von',
+		order: 'Vorbestellung Sie noch heute und Ihre Bestellung wird innerhalb von',
 		weeks: 'Wochen versandt',
 		week: 'Woche versandt',
 		details: 'Einzelheiten zum Produkt',
@@ -1127,7 +1128,7 @@ const languagesObj = {
 			expected: 'Réassort',
 		},
 		demand: 'Ce produit est très en demande',
-		order: `Commandez aujourd'hui et recevez votre commande en`,
+		order: `Précommander aujourd'hui et recevez votre commande en`,
 		weeks: 'semaines',
 		week: 'semaine',
 		details: 'Détails du produit',
@@ -1159,7 +1160,7 @@ const languagesObj = {
 			expected: 'Disponibilidad',
 		},
 		demand: 'Este producto tiene una gran demanda',
-		order: 'Haz tu pedido hoy y recibe tu pedido en',
+		order: 'Reservación tu pedido hoy y recibe tu pedido en',
 		weeks: 'semanas',
 		week: 'semana',
 		details: 'Detalles de producto',
@@ -1318,16 +1319,63 @@ const productUrl = `https://gateway.kingsbox.com/service/products/details/`
 const itemNameUrl = window.location.pathname.split('product')[1].replace(/\//g, '')
 const URL = productUrl + itemNameUrl
 
-const controller = new AbortController()
-const signal = controller.signal
+let exceptionProduct = false
+
+if (
+	itemNameUrl === 'kingsbox-hi-temp-bumper-plates-3-0' ||
+	itemNameUrl === 'royal-hi-temp-rubber-floor-100x100-cm' ||
+	itemNameUrl === 'royal-hi-temp-rubber-floor-50x50-cm'
+) {
+	exceptionProduct = true
+}
 
 let header = new Headers({ 'Accept-Language': pageLanguage })
 
-fetch(URL, { signal, headers: header })
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
+let skuType = ''
+
+const fetchURL = async () => {
+	try {
+		let response = await fetch(URL, { headers: header })
+		return await response.json()
+	} catch (e) {
+		console.error(e)
+	}
+}
+const getSKU = async data => {
+	try {
+		let itemSKU
+
+		data = data.data
+
+		console.log(data)
+
+		if (data.variationsChildren.length) {
+			itemSKU = data.variationsChildren[0].sku
+		} else {
+			itemSKU = data.sku
+		}
+
+		let code = itemSKU[0] + itemSKU[1]
+		skuType = code
+
+		console.log(itemSKU)
+
+		let isStatus = setInterval(() => {
+			if (document.querySelector('div.pt-3.pb-3')) {
+				clearInterval(isStatus)
+				_addGuarantees(code)
+			}
+		})
+
+		// check - 3-4 weeks
+
+	} catch (e) {
+		console.error(e)
+	}
+
+}
+const getAvailable = async data => {
+	try {
 		let urls = []
 		let item = data.data
 		let isSizeOption = false
@@ -1339,7 +1387,6 @@ fetch(URL, { signal, headers: header })
 		} else if (item.productVariations[0]?.values.length) {
 			urls = addOneVarUrl(item)
 		} else {
-			controller.abort()
 			return false
 		}
 
@@ -1378,18 +1425,16 @@ fetch(URL, { signal, headers: header })
 					})
 				}
 			})
-	})
-	.catch(err => console.error(err))
+	} catch (e) {
+		console.error(e)
+	}
 
-fetch(URL, { headers: header })
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
-		return [data.data.breadcrumb[0].url, data.data.id]
-	})
-	.then((arguments) => {
-		const [breadcrumb, itemId] = arguments
+}
+const getSimilar = async data => {
+	try {
+		const breadcrumb = data.data.breadcrumb[0].url
+		const itemId = data.data.id
+
 		fetch(fetchCategory(breadcrumb), { headers: header })
 			.then((response) => {
 				return response.json()
@@ -1465,8 +1510,17 @@ fetch(URL, { headers: header })
 					}
 				}, 100)
 			})
-	})
-	.catch(err => console.error(err))
+	} catch (e) {
+		console.error(e)
+	}
+}
+
+(async () => {
+	const data = await fetchURL()
+	await getSKU(data)
+	await getAvailable(data)
+	await getSimilar(data)
+})()
 
 /* load tiny slider */
 
@@ -1526,7 +1580,7 @@ let isWhiteAccordion = setInterval(() => {
 }, 200)
 
 let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a') ) {
+	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a')) {
 		clearInterval(isBlackAccordion)
 
 		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
@@ -1534,21 +1588,19 @@ let isBlackAccordion = setInterval(() => {
 
 		document.querySelector('.accordion.product-accessory-category').addEventListener('click', e => {
 			if (e.target.closest('.card-header')) {
-				console.log('closest header init slider')
 				initializeCarousel()
 			}
 		})
 
 		let txt = document.querySelector('.product-breadcrumb a').innerText.split(' ').join('').toLowerCase()
 
-		if(txt !== 'sets') {
+		if (txt !== 'sets') {
 			if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
 				document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
-				console.log('clicked')
 			}
 		} else {
 			initializeCarousel()
-		}	
+		}
 	}
 }, 200)
 let isSimilar = setInterval(() => {
@@ -1568,8 +1620,6 @@ let isSimilar = setInterval(() => {
 				$recommendCopyRight
 			) {
 				clearInterval(isCloned2)
-
-				console.log('cloned 2 >>>>')
 
 				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
 				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
@@ -1649,8 +1699,6 @@ function checkItemStatus(item, containerDataset) {
 	/* check and remove duplicates */
 	duplicatesArr.forEach(removeDuplicates)
 
-	_addGuarantees($addItemBtn)
-
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	switch (itemStatus) {
@@ -1660,10 +1708,8 @@ function checkItemStatus(item, containerDataset) {
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-			// initializeCarousel()
 			break
 		default:
-			// initializeCarousel()
 			break
 	}
 }
@@ -1726,29 +1772,33 @@ function _setExpectedItem(where) {
 				drawWeeks = false
 			}
 
-
-			let sellImg = `
-											<div class="sell_wrapper">
-												<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
-											</div>
-										`
-
 			let weekP = ''
 
 			if (drawWeeks) {
 				weekP = `<p>${ language.order } <span>${ weeksNumber } ${ oneWeek ? language.week : language.weeks }</span>.</p>`
+			} else {
+				weekP = `<p>${ language.order } <span>3 - 4 ${ language.weeks }</span>.</p>`
 			}
 
 			let demandText = `
-											<div class="demand_wrapper">
-												<p>${ language.demand }.</p>
-												${ weekP }
-											</div>
-										`
+				<div class="demand_wrapper">
+					<p>${ language.demand }.</p>
+					${ weekP }
+				</div>
+			`
 
+			if (skuType === '') {
+				let isSKU = setInterval(() => {
+					if (skuType !== '') {
+						clearInterval(isSKU)
 
-			document.querySelector('.product-images-container').insertAdjacentHTML('beforeend', sellImg)
-			document.querySelector('.product-images-container-mobile').insertAdjacentHTML('beforeend', sellImg)
+						addBadge()
+					}
+				}, 100)
+			} else {
+				addBadge()
+			}
+
 
 			if (!document.querySelector('.demand_wrapper')) {
 				where.insertAdjacentHTML('beforebegin', demandText)
@@ -1757,12 +1807,59 @@ function _setExpectedItem(where) {
 	}, 200)
 }
 
-function _addGuarantees(where) {
+function addBadge() {
+	let badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt=${ language.sell }><span>${ language.sell }</span>`
+
+	switch (skuType) {
+		case 'KX':
+			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ languagesObj['en'].designed }><span>${ languagesObj['en'].designed }</span>`
+			break
+		case 'KB':
+			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
+			break
+		default:
+			break
+	}
+
+	if (exceptionProduct) {
+		badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
+	}
+
+	let sellImg = `
+				<div class="sell_wrapper">
+					${ badge }
+				</div>
+			`
+
+	document.querySelector('.product-images-container')?.insertAdjacentHTML('beforeend', sellImg)
+	document.querySelector('.product-images-container-mobile')?.insertAdjacentHTML('beforeend', sellImg)
+}
+
+function _addGuarantees(code) {
+	/* KX - Designed in EU
+		KB - Made in EU
+		X - Nothing (except 3 products Made in EU)
+	 */
+
 	let guaranteesArr = [
 		{ img: 'guarantee', text: language.guarantee },
-		{ img: 'made_in_eu', text: language.made },
 		{ img: 'trustpilot', text: language.superb },
 	]
+
+	switch (code) {
+		case 'KX':
+			guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: languagesObj['en'].designed })
+			break
+		case 'KB':
+			guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: language.made })
+			break
+		default:
+			break
+	}
+
+	if (exceptionProduct) {
+		guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: language.made })
+	}
 
 	let guaranteeMarkup = guarantee => `
 									<div class="guarantee">
@@ -1775,7 +1872,7 @@ function _addGuarantees(where) {
 										${ guaranteesArr.map(guaranteeMarkup).join('') }
 									</div>`
 
-	where.insertAdjacentHTML('afterend', guaranteesBlock)
+	document.querySelector('div.pt-3.pb-3').insertAdjacentHTML('afterend', guaranteesBlock)
 }
 
 function _addNotStyle() {
@@ -1856,17 +1953,6 @@ function _addNotStyle() {
 								<p class="join_wl">${ language.wl }</p>
 							</div>`
 
-			// if (device === 'mobile') {
-			// 	let custom = setInterval(() => {
-			// 		if (document.querySelector('.item_info .vat-indicator')) {
-			// 			clearInterval(custom)
-			// 			document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
-			// 		}
-			// 	}, 100)
-			// } else {
-			//
-			// }
-
 			document.querySelector('app-product-variations').insertAdjacentHTML('beforeend', actionBtns)
 
 			let isBtns = setInterval(() => {
@@ -1924,19 +2010,6 @@ function checkActiveImg() {
 	document.querySelector('.product-images-thumb .active')?.closest('.product-images-thumb').classList.add('active_img')
 }
 
-// let someInterval = setInterval(() => {
-// 	if(document.querySelector('.product-accessories')) {
-// 		clearInterval(someInterval)
-//
-// 		document.querySelector('.product-accessories').addEventListener('click', e => {
-// 			if (e.target.matches('.add_btn')) {
-// 				e.target.previousElementSibling.click()
-// 				e.target.disabled = true
-// 			}
-// 		})
-// 	}
-// }, 100)
-
 function initializeCarousel() {
 	let outerInterval = setInterval(() => {
 		if (
@@ -1946,34 +2019,14 @@ function initializeCarousel() {
 			clearInterval(outerInterval)
 
 			if (!document.querySelector('.card-body .tns-outer')) {
-
-
-				console.log(document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img'))
-
 				let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
 
 				blackAccordion.querySelectorAll('source').forEach((source, index) => {
 					blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
 				})
 
-
-				console.log('interval 2 >>')
-
 				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
 			}
-
-
-			// console.log(length)
-			//
-			// let innerInterval = setInterval(() => {
-			// 	if (blackAccordion.querySelectorAll('img')[length - 1].src) {
-			// 		clearInterval(innerInterval)
-			//
-			// 		console.log('interval >>')
-			//
-			//
-			// 	}
-			// }, 100)
 		}
 	}, 100)
 }
