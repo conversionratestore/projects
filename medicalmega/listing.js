@@ -1330,56 +1330,6 @@ function toggleActive(getData) {
   }
 }
 
-function setConfigureAlgolia(e,query) {
-
-  search.addWidgets([
-    instantsearch.widgets.configure({
-      hitsPerPage: '12',
-      facetFilters: [e],
-      query: query,
-      
-      // attributesToHighlight: [
-      //   'name',
-      // ],
-      
-      // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
-      // filters: 'categories.lvl0:New Products!',
-    }),
-  ])
-  
-  // let categories = document.querySelector('.select_category .select_current').dataset.category;
-
-  // let lvl = categories.split(':')[0];
-  // let lvlItem = categories.split(':')[1];
-  // let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : `manufacturer:${document.querySelector('.select_brand .select_current').innerText}`;
-  
-  // let queryKeyword = document.querySelector('[name="search_keyword"]').value,
-  //     queryItem = document.querySelector('[name="search_item"]').value,
-  //     querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
-  // console.log(lvlItem,querySum )
-  // instantsearch({
-  //   indexName: 'staging_products',
-  //   routing: true,
-  //   searchClient,
-  //   initialUiState: {
-  //     indexName: {
-  //       query: querySum,
-  //       page: 12,
-  //     },
-  //     refinementList: {
-  //       manufacturer: [brand]
-  //     },
-  //     instant_search: {
-  //         hierarchicalMenu: {
-  //           "categories.lvl0": [lvlItem]
-  //         }
-  //     }
-  //   }
-  // });
-  // console.log(instantsearch)
-
-}
-
 requestAllCaterories.then(data => {
   console.log(data)
 
@@ -1471,20 +1421,6 @@ function initHits(hit) {
   return boxItem
 }
 
-
-const renderRefinementList = (renderOptions, isFirstRendering) => {
-  const { sendEvent } = renderOptions;
-  console.log(renderOptions, isFirstRendering)
-  console.log(sendEvent)
-  // `sendEvent` from `connectRefinementList` can send `click` events.
-  const clickedFacetValue = '3M'; 
-  
-
-  sendEvent('click', clickedFacetValue);
-
-  // Or, you can send a custom payload
-
-}
 search.addWidgets([
 
   instantsearch.widgets.configure({
@@ -1992,7 +1928,7 @@ document.querySelectorAll('.advanced-search input').forEach(input => {
   // })
   input.addEventListener('keypress', (e) => {
     if (e.keyCode == '13') {
-      document.querySelector('.advanced-search .btn').classList.remove('active');
+      document.querySelector('.advanced-search .btn').click();
     }
   })
 })
@@ -2035,11 +1971,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     console.log(search.helper.lastResults.query)
     console.log(search.helper.state.query)
     // console.log(search.helper.search())
-
-    // if (suggestion.name) {
-    //     search.helper.addFacetRefinement('name', suggestion.name);
-    //     console.log(search.helper.addFacetRefinement('name', suggestion.name))
-    // }
     
     // search.helper.search();
     // console.log(search.helper.search())
@@ -2047,7 +1978,7 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     // document.querySelector('.ais-ClearRefinements-button').click();
     // document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
     // facetCategories = `item_num:${suggestion.item_num}`;
-    // setConfigureAlgolia(facetCategories,suggestion.name);
+
     document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
     toggleSearch(false)
 
@@ -2082,8 +2013,6 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
     if (e.target.value.length < 1) {
         inputWord = false;
     }
-    // document.querySelector('#autocomplete').value = e.target.value;
-    // document.querySelector('#autocomplete').focus()
   })
 
   document.querySelector('.previous-version').addEventListener('click', (e) => {
