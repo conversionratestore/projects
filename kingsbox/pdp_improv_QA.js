@@ -1347,8 +1347,6 @@ const getSKU = async data => {
 
 		data = data.data
 
-		console.log(data)
-
 		if (data.variationsChildren.length) {
 			itemSKU = data.variationsChildren[0].sku
 		} else {
@@ -1366,9 +1364,6 @@ const getSKU = async data => {
 				_addGuarantees(code)
 			}
 		})
-
-		// check - 3-4 weeks
-
 	} catch (e) {
 		console.error(e)
 	}
