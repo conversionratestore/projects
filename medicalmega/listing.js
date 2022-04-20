@@ -1958,7 +1958,7 @@ document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('c
 
 document.querySelector('.advanced-search .btn').addEventListener('click', () => {
   let categories = document.querySelector('.select_category .select_current').dataset.category;
-  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "*" : document.querySelector('.select_brand .select_current').innerText;
+  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : document.querySelector('.select_brand .select_current').innerText;
   
   let queryKeyword = document.querySelector('[name="search_keyword"]').value,
       queryItem = document.querySelector('[name="search_item"]').value,
