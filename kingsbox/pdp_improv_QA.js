@@ -1347,29 +1347,26 @@ const getSKU = async data => {
 
 		data = data.data
 
+		console.log(data)
+
 		if (data.variationsChildren.length) {
 			itemSKU = data.variationsChildren[0].sku
 		} else {
 			itemSKU = data.sku
 		}
 
-		let code = itemSKU[0] + itemSKU[1]
-		skuType = code
+		skuType = itemSKU[0] + itemSKU[1]
 
 		console.log(itemSKU)
 
-		let isStatus = setInterval(() => {
-			if (document.querySelector('div.pt-3.pb-3')) {
-				clearInterval(isStatus)
-				_addGuarantees(code)
-			}
-		})
+
 	} catch (e) {
 		console.error(e)
 	}
 
 }
 const getAvailable = async data => {
+	console.log(data)
 	try {
 		let urls = []
 		let item = data.data
@@ -1405,8 +1402,9 @@ const getAvailable = async data => {
 
 				drawDiagonalLine(variations, statuses)
 
-				let $secondOption = document.querySelector('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
+				let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
+				console.log($secondOption)
 
 				if (isSizeOption && $secondOption) {
 					let colorsPerSize = statuses.length / $secondOption.length
@@ -1694,6 +1692,9 @@ function checkItemStatus(item, containerDataset) {
 	/* check and remove duplicates */
 	duplicatesArr.forEach(removeDuplicates)
 
+	_addGuarantees()
+	waitSkuGuarantee()
+
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	switch (itemStatus) {
@@ -1830,32 +1831,12 @@ function addBadge() {
 	document.querySelector('.product-images-container-mobile')?.insertAdjacentHTML('beforeend', sellImg)
 }
 
-function _addGuarantees(code) {
-	/* KX - Designed in EU
-		KB - Made in EU
-		X - Nothing (except 3 products Made in EU)
-	 */
-
+function _addGuarantees() {
 	let guaranteesArr = [
 		{ img: 'guarantee', text: language.guarantee },
 		{ img: 'trustpilot', text: language.superb },
 	]
-
-	switch (code) {
-		case 'KX':
-			guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: languagesObj['en'].designed })
-			break
-		case 'KB':
-			guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: language.made })
-			break
-		default:
-			break
-	}
-
-	if (exceptionProduct) {
-		guaranteesArr.splice(1, 0, { img: 'made_in_eu', text: language.made })
-	}
-
+	
 	let guaranteeMarkup = guarantee => `
 									<div class="guarantee">
 										<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ guarantee.img }.svg" alt="${ guarantee.img }">
@@ -1868,6 +1849,45 @@ function _addGuarantees(code) {
 									</div>`
 
 	document.querySelector('div.pt-3.pb-3').insertAdjacentHTML('afterend', guaranteesBlock)
+}
+
+function waitSkuGuarantee() {
+	let skuGuarantee = setInterval(() => {
+		if(document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
+			clearInterval(skuGuarantee)
+
+			const addEU = text =>
+				`<div class="guarantee EU">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/made_in_eu.svg" alt="${ text }">
+				<p>${ text }</p>
+			</div>`
+
+			let txt = ''
+			let isEU = false
+
+			switch (skuType) {
+				case 'KX':
+					txt = languagesObj['en'].designed
+					isEU = true
+					break
+				case 'KB':
+					txt = language.made
+					isEU = true
+					break
+				default:
+					break
+			}
+
+			if (exceptionProduct) {
+				txt = language.made
+				isEU = true
+			}
+
+			if(!document.querySelector('EU') && isEU) {
+				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt))
+			}
+		}
+	}, 100)
 }
 
 function _addNotStyle() {
