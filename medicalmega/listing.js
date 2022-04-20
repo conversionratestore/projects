@@ -1044,6 +1044,7 @@ border-radius: 100px;
 }
 #manufacturer .ais-RefinementList-list {
   max-height: 328px;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 #manufacturer .ais-RefinementList-list.scroll:before {
