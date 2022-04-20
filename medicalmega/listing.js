@@ -636,38 +636,38 @@ border-radius: 100px;
 .listing_content {
   padding-left: 1px;
   margin-top: 13px; }
-  .listing_content li {
+  .listing_wrapper li {
     width: 25%; 
   }
-  .listing_content ol{
+  .listing_wrapper ol{
     display: flex;
     flex-wrap: wrap;
   }
-  .listing_content .card {
+  .listing_wrapper .card {
     border-radius: 0;
     margin-top: -1px;
     margin-left: -1px;
     }
-    .listing_content .card img {
+    .listing_wrapper .card img {
       width: 150px;
       height: 150px; }
-    .listing_content .card .btn_white {
+    .listing_wrapper .card .btn_white {
       pointer-events: none;
     }
-    .listing_content .card .btn {
+    .listing_wrapper .card .btn {
       font-size: 10px;
       line-height: 36px;
       font-weight: 600; }
-  .listing_content .card_name {
+  .listing_wrapper .card_name {
     font-size: 12px;
     line-height: 130%; }
-    .listing_content .card_name span {
+    .listing_wrapper .card_name span {
       margin-bottom: 33px; }
-  .listing_content .calc-qty {
+  .listing_wrapper .calc-qty {
     width: 32px;
     height: 32px;
     line-height: 32px; }
-  .listing_content .btn-calc {
+  .listing_wrapper .btn-calc {
     width: 24px;
     height: 24px;
     margin: 0 12px; }
@@ -990,7 +990,7 @@ border-radius: 100px;
   .ais-ClearRefinements-button:hover svg {
     fill: #bf0400;
   }
-  .ais-ClearRefinements-button--disabled, .listing_content .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
+  .ais-ClearRefinements-button--disabled, .listing_wrapper .ais-InfiniteHits-loadMore, .ais-RefinementList-showMore--disabled {
     display: none!important;
   }
   .ais-RefinementList-showMore {
@@ -1058,6 +1058,27 @@ border-radius: 100px;
   opacity: 1;
   transition: all 0.2s ease;
   background: linear-gradient(to top, rgba(255, 255, 255, 1) 26%, rgba(255, 255, 255, 0.3))
+}
+.listing_popular {
+  margin-bottom: 33px;
+  display: grid;
+}
+.listing_popular .new-products {
+  order: 0;
+}
+.listing_popular .ostomy {
+  order: 1;
+}
+.listing_popular .wound-care {
+  order: 2;
+}
+.listing_popular h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 120%;
+  min-height: 43.2px;
+  margin: 30px 0;
 }
   @media only screen and (min-width: 1750px) {
     .nav_category {
@@ -1166,7 +1187,8 @@ let html = `
             <div id="clear-refinements"></div>
           </div>
           <div class="listing_wrapper">
-            <h2 class="listing_title"></h2>
+            <div class="listing_popular"></div>
+            <h2 class="listing_title">All Products</h2>
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
             </div>
@@ -1208,6 +1230,10 @@ const search = instantsearch({
   //   }
   // }
 });
+
+let index = searchClient.initIndex('staging_products');
+
+let currentPath = 'https://medicalmega.com/';
 
 let litterAlphabet = [];
 
@@ -1281,727 +1307,695 @@ function toggleSearch(boolean) {
 }
 
 window.onload = function() {
-document.body.insertAdjacentHTML('afterbegin', html);
-document.body.insertAdjacentHTML('afterbegin', style);
+  document.body.insertAdjacentHTML('afterbegin', html);
+  document.body.insertAdjacentHTML('afterbegin', style);
 
-document.querySelector('.header').before(document.querySelector('#top'));
-document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
+  document.querySelector('.header').before(document.querySelector('#top'));
+  document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
 
-document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
+  document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
-let btnCategory = document.querySelector('.all_category');
+  let btnCategory = document.querySelector('.all_category');
 
-//all categories
-btnCategory.addEventListener('click', (e) => {
-  if (e.target.matches('.all_category')) {
-    document.querySelector('#clear-refinements button').click();
-    console.log(e.target)
-    e.target.parentElement.classList.toggle('active');
-    document.querySelector('.advanced-search').classList.remove('active');
-    document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+  //all categories
+  btnCategory.addEventListener('click', (e) => {
+    if (e.target.matches('.all_category')) {
+      document.querySelector('#clear-refinements button').click();
+      console.log(e.target)
+      e.target.parentElement.classList.toggle('active');
+      document.querySelector('.advanced-search').classList.remove('active');
+      document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
 
-    actionDataLayer = `Click on ${e.target.innerText} button`;
-    labelDataLayer = `Header`;
-    pushDataLayer(actionDataLayer,labelDataLayer);
-  }
-})
+      actionDataLayer = `Click on ${e.target.innerText} button`;
+      labelDataLayer = `Header`;
+      pushDataLayer(actionDataLayer,labelDataLayer);
+    }
+  })
 
-//select
-function remActiveSelect() {
-  let dropdowns = document.querySelectorAll(".select");
-  for (let i = 0; i < dropdowns.length; i++) {
-      if (dropdowns[i].classList.contains('active')) {
-          dropdowns[i].classList.remove('active');
-      }
-  }
-}
-
-function toggleActive(getData) {
-  console.log(getData);
-  if (document.querySelector(`[data-item=${getData}]`)) {
-      document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
-      if (getData == 'advanced-search') {
-          document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
-          document.querySelector(`.nav_category`).classList.remove('active');
-          actionDataLayer = `Click on advanced search`;
-          labelDataLayer = `Header`;
-          pushDataLayer(actionDataLayer,labelDataLayer);
-      }
-  }
-}
-
-requestAllCaterories.then(data => {
-  console.log(data)
-
-  let categoriesLvl0 = data.facets["categories.lvl0"],
-      categoriesLvl1 = data.facets["categories.lvl1"],
-      categoriesLvl2 = data.facets["categories.lvl2"],
-      categoriesLvl3 = data.facets["categories.lvl3"],
-      categoriesLvl4 = data.facets["categories.lvl4"],
-      brand = data.facets.manufacturer;
-
-
-  for (let key in categoriesLvl0) {
-    // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
-    document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
-    <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
-      <ul></ul>
-    </li>`)
-  }
-  // for (let key1 in categoriesLvl1) {
-  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-  //     if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
-  //       console.log()
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key1}">${key1.split('>')[1]}</p><ul class=""></ul></li>`)
-  //     }
-  //   })
-  // }
-
-  // for (let key in categoriesLvl2) {
-  //   document.querySelectorAll(`.select_category .select_dropdown .lvl1 [data-category]`).forEach((el, index) => {
-  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl2"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul class=""></ul></li>`)
-  //     }
-  //   })
-  // }
-  // for (let key in categoriesLvl3) {
-  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
-  //     }
-  //   })
-  // }
-  // for (let key in categoriesLvl4) {
-  //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-  //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
-  //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
-  //     }
-  //   })
-  // }
-
-  for (let key in brand) {
-    document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
-  }
-
-})
-// if (window.location.pathname.includes('/category')) {
-//   facetCategories = `categories.lvl0:${document.querySelector('title').innerText.split(' |')[0]}`
-// }
-
-function initHits(hit) {
-  function findImage() {
-    for (let i = 0; i < hit.variants.length; i++) {
-        if (hit.variants[i].image != '') {
-            return hit.variants[i].image
+  //select
+  function remActiveSelect() {
+    let dropdowns = document.querySelectorAll(".select");
+    for (let i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].classList.contains('active')) {
+            dropdowns[i].classList.remove('active');
         }
     }
   }
 
-  let boxItem = `
-    <div class="card">
-      <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
-      <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-        <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
-        <span title="${hit.name}">${hit.name}</span>
-      </a>
-      <form action="https://medicalmega.com/cart.html" method="post">
-        <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
-          <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-          <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
-          <button class="btn-calc btn-calc_plus" type="button"></button>
-        </div>
-        ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
-        <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
-        <input type="hidden" name="product_id" value="${hit.objectID }">
-        <input type="hidden" name="add_to_cart" value="variant">
-        
-      </form>
-    </div>
-  `
-  return boxItem
-}
-
-search.addWidgets([
-
-  instantsearch.widgets.configure({
-    hitsPerPage: '12',
-    // facetFilters: [facetCategories],
-    enablePersonalization: true,
-    // attributesToHighlight: [
-    //   'name',
-    // ],
-    
-    // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
-    // filters: 'categories.lvl0:New Products!',
-  }),
-  instantsearch.widgets.searchBox({
-    container: '#form-search',
-    placeholder: 'Search by Name',
-    loadingIndicator: false,
-    searchAsYouType: false, 
-    templates: {
-        loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
-    },
-  }),
-
-  instantsearch.widgets.infiniteHits({
-    container: '#hits',
-    escapeHTML: false,
-    transformItems(items) {
-      return items.filter(item => item.price != '0.00' )
-    },
-    templates: {
-        empty: `No Item Found`,
-        item: (hit) => initHits(hit)
-    },
-  }),
-
-  instantsearch.widgets.stats({
-    container: '#stats-container',
-    templates: {
-      text(data) {
-        if (data.hasManyResults || data.hasOneResult) {
-            return `${data.nbHits} items`;
-        } else {
-            return `no result`;
+  function toggleActive(getData) {
+    console.log(getData);
+    if (document.querySelector(`[data-item=${getData}]`)) {
+        document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
+        if (getData == 'advanced-search') {
+            document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
+            document.querySelector(`.nav_category`).classList.remove('active');
+            actionDataLayer = `Click on advanced search`;
+            labelDataLayer = `Header`;
+            pushDataLayer(actionDataLayer,labelDataLayer);
         }
-      },
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: '#manufacturer',
-    attribute: 'manufacturer',
-    limit: 7,
-    showMore: true,
-    showMoreLimit: 100,
-    sortBy: ['name:asc'],
-    templates: {
-      item: (data) => {
-        let checkbox = `
-            <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters')">
-              <span class="check"></span>
-              <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
-            </label>
-        `;
-    
-        return checkbox
-      },
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: '#price_group',
-    attribute: 'price_group',
-    limit: 10,
-    sortBy: ['isRefined:asc'],
-    templates: {
-      item: (data) => {
-          let sltPrice = '';
-          if (data.value.includes(' - ')) {
-              sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-          }  else {
-              sltPrice = `> $${data.value.split('> ')[1]}`;
-          }
+    }
+  }
 
+  requestAllCaterories.then(data => {
+    console.log(data)
+
+    let categoriesLvl0 = data.facets["categories.lvl0"],
+        categoriesLvl1 = data.facets["categories.lvl1"],
+        categoriesLvl2 = data.facets["categories.lvl2"],
+        categoriesLvl3 = data.facets["categories.lvl3"],
+        categoriesLvl4 = data.facets["categories.lvl4"],
+        brand = data.facets.manufacturer;
+
+
+    for (let key in categoriesLvl0) {
+      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+      document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
+      <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
+        <ul></ul>
+      </li>`)
+    }
+    // for (let key1 in categoriesLvl1) {
+    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
+    //     if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
+    //       console.log()
+    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key1}">${key1.split('>')[1]}</p><ul class=""></ul></li>`)
+    //     }
+    //   })
+    // }
+
+    // for (let key in categoriesLvl2) {
+    //   document.querySelectorAll(`.select_category .select_dropdown .lvl1 [data-category]`).forEach((el, index) => {
+    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
+    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl2"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul class=""></ul></li>`)
+    //     }
+    //   })
+    // }
+    // for (let key in categoriesLvl3) {
+    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
+    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
+    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
+    //     }
+    //   })
+    // }
+    // for (let key in categoriesLvl4) {
+    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
+    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
+    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
+    //     }
+    //   })
+    // }
+
+    for (let key in brand) {
+      document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
+    }
+
+  })
+  // if (window.location.pathname.includes('/category')) {
+  //   facetCategories = `categories.lvl0:${document.querySelector('title').innerText.split(' |')[0]}`
+  // }
+
+  function initHits(hit) {
+    function findImage() {
+      for (let i = 0; i < hit.variants.length; i++) {
+          if (hit.variants[i].image != '') {
+              return hit.variants[i].image
+          }
+      }
+    }
+
+    let boxItem = `
+      <div class="card">
+        <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
+        <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
+          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
+          <span title="${hit.name}">${hit.name}</span>
+        </a>
+        <form action="https://medicalmega.com/cart.html" method="post">
+          <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
+            <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+            <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
+            <button class="btn-calc btn-calc_plus" type="button"></button>
+          </div>
+          ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+          <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
+          <input type="hidden" name="product_id" value="${hit.objectID }">
+          <input type="hidden" name="add_to_cart" value="variant">
+          
+        </form>
+      </div>
+    `
+    return boxItem
+  }
+
+  search.addWidgets([
+
+    instantsearch.widgets.configure({
+      hitsPerPage: '12',
+      // facetFilters: [facetCategories],
+      enablePersonalization: true,
+      // attributesToHighlight: [
+      //   'name',
+      // ],
+      
+      // facetFilters: ['categories.lvl0:Ostomy','manufacturer:Coloplast',`urostomy`],
+      // filters: 'categories.lvl0:New Products!',
+    }),
+    instantsearch.widgets.searchBox({
+      container: '#form-search',
+      placeholder: 'Search by Name',
+      loadingIndicator: false,
+      searchAsYouType: false, 
+      templates: {
+          loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
+      },
+    }),
+
+    instantsearch.widgets.infiniteHits({
+      container: '#hits',
+      escapeHTML: false,
+      transformItems(items) {
+        return items.filter(item => item.price != '0.00' )
+      },
+      templates: {
+          empty: `No Item Found`,
+          item: (hit) => initHits(hit)
+      },
+    }),
+
+    instantsearch.widgets.stats({
+      container: '#stats-container',
+      templates: {
+        text(data) {
+          if (data.hasManyResults || data.hasOneResult) {
+              return `${data.nbHits} items`;
+          } else {
+              return `no result`;
+          }
+        },
+      },
+    }),
+    instantsearch.widgets.refinementList({
+      container: '#manufacturer',
+      attribute: 'manufacturer',
+      limit: 7,
+      showMore: true,
+      showMoreLimit: 100,
+      sortBy: ['name:asc'],
+      templates: {
+        item: (data) => {
           let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
-                  <span class="check"></span>
-                  <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters')">
+                <span class="check"></span>
+                <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
               </label>
           `;
       
           return checkbox
+        },
       },
-    },
-  }),
-
-  instantsearch.widgets.clearRefinements({
-    container: '#clear-refinements',
-    templates: {
-      resetLabel: `Clear Filters <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
-    },
-    excludedAttributes: [
-      'categories.lvl0',
-      'categories.lvl1',
-      'categories.lvl2',
-      'categories.lvl3',
-      'categories.lvl4',
-    ],
-  }),
-
-  instantsearch.widgets.hierarchicalMenu({
-    container: `#list_categories`,
-    attributes: [
-      'categories.lvl0',
-      'categories.lvl1',
-      'categories.lvl2',
-      'categories.lvl3',
-      'categories.lvl4',
-    ], 
-    sortBy: ['isRefined'],  
-    showParentLevel: true,
-    limit: 150,  
-    templates: {
-      item: (data) => {
-        return `<a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">${data.label}</span></a>`
-      }
-    }
-  }),
-  instantsearch.widgets.breadcrumb({
-    container: '#breadcrumbs',
-    attributes: [
-      'categories.lvl0',
-      'categories.lvl1',
-      'categories.lvl2',
-      'categories.lvl3',
-      'categories.lvl4',
-    ],
-    limit: 150, 
-    // rootPath: "Ostomy"
-  }),
-  
-]); 
-
-
-search.start();
-
-let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
-    closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
-
-//qty change
-function changeQty(qty,pr,action) {
-  if (action == 'plus') {
-      qty.value = parseInt(qty.value) + 1;
-  } else if (action == 'minus') {
-      qty.value = parseInt(qty.value) - 1;
-  }
-  if (action == 'plus' || action == 'minus') {
-      if (qty.value == '') {
-          qty.value = 1;
-      }
-  }
-  if (qty.value > 1) {
-      qty.previousElementSibling.disabled = false;
-  } else {
-      qty.previousElementSibling.disabled = true;
-  }
-
-  pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-
-  if (qty.value == 0 && qty.value != '') {
-      qty.value = 1;
-      pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
-  }
-  if (qty.value == '') {
-      pr.innerHTML = pr.dataset.price
-  }
-  
-  console.log(qty.value,pr.innerHTML)
-
-}
-
-dataButton.forEach(item => {
-  item.addEventListener('click', (e) => {
-    toggleActive(item.getAttribute('data-button'))
-  })
-})
-
-closeBtn.forEach(item => {
-  item.addEventListener('click', (e) => {
-    toggleActive(item.getAttribute('data-close'));
-    document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
-    
-    document.querySelector('.select_category ul li p').classList.add('active');
-    document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
-    document.querySelector('.select_brand ul li p').classList.add('active');
-    document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
-  })
-})
-let countSearchStalled = 0;
-
-
-search.addWidgets([
-  // { 
-  //   refresh({instantSearchInstance = {} }) {
-
-  //   }
-  //   // const renderClearRefinements = (renderOptions, isFirstRender) => {
-  //   //   const { refine } = renderOptions;
-    
-  //   //   const container = document.querySelector('#clear-refinements');
-    
-  //   //   if (isFirstRender) {
-  //   //     console.log(isFirstRender)
-  //   //     // const button = document.createElement('button');
-  //   //     // button.textContent = 'Clear refinements';
-    
-  //   //     // button.addEventListener('click', () => {
-  //   //     //   refine();
-  //   //     // });
-    
-  //   //     // container.appendChild(button);
-  //   //   }
-  //   // };
-  // },
-  {
-      render({ searchMetadata = {} }) {
-        console.log(searchMetadata)
-          const { isSearchStalled } = searchMetadata
-          
-          if (isSearchStalled === false ) {
-            console.log(isSearchStalled)
-            console.log(facetCategories)
-            instantsearch({
-              indexName: 'staging_products',
-              routing: false,
-              searchClient,
-            
-            });
-            if (document.querySelector('#price_group li') != null) {
-              let pricesContainer = document.querySelector('#price_group ul'),
-              para = document.querySelectorAll('#price_group li');
-
-              let paraArr = [].slice.call(para).sort(function (a, b) {
-                  return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
-              });
-              paraArr.forEach(function (p) {
-                  pricesContainer.appendChild(p);
-              });
+    }),
+    instantsearch.widgets.refinementList({
+      container: '#price_group',
+      attribute: 'price_group',
+      limit: 10,
+      sortBy: ['isRefined:asc'],
+      templates: {
+        item: (data) => {
+            let sltPrice = '';
+            if (data.value.includes(' - ')) {
+                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+            }  else {
+                sltPrice = `> $${data.value.split('> ')[1]}`;
             }
-            document.querySelectorAll('.card .calc').forEach((el, i) => {
-              el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                console.log(el.nextElementSibling.querySelector('.pr'))
-                changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
-              })
-              el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
-              })
-              el.querySelector('.calc-qty').addEventListener('input', (e) => {
-                changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
-              })
-              el.querySelector('.calc-qty').addEventListener('blur', (e) => {
-                  if (e.target.value == '') {
-                      e.target.value = 1;
-                  }
-              }, true)
-            })
-            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-              e.stopImmediatePropagation()
-              document.querySelector('.ais-SearchBox-input').value = '';
-              document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-              inputWord = false;
-              
-              toggleSearch(true)
-              if (!e.target.classList.contains('reset')) {
-                actionDataLayer = `Click on reset button`;
-                labelDataLayer = 'Search by Name';
-                pushDataLayer(actionDataLayer, labelDataLayer)
-              } else {
-                e.target.classList.remove('reset')
-              }
-            })
+
+            let checkbox = `
+                <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
+                    <span class="check"></span>
+                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+                </label>
+            `;
+        
+            return checkbox
+        },
+      },
+    }),
+
+    instantsearch.widgets.clearRefinements({
+      container: '#clear-refinements',
+      templates: {
+        resetLabel: `Clear Filters <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
+      },
+      excludedAttributes: [
+        'categories.lvl0',
+        'categories.lvl1',
+        'categories.lvl2',
+        'categories.lvl3',
+        'categories.lvl4',
+      ],
+    }),
+
+    instantsearch.widgets.hierarchicalMenu({
+      container: `#list_categories`,
+      attributes: [
+        'categories.lvl0',
+        'categories.lvl1',
+        'categories.lvl2',
+        'categories.lvl3',
+        'categories.lvl4',
+      ], 
+      sortBy: ['isRefined'],  
+      showParentLevel: true,
+      limit: 150,  
+      templates: {
+        item: (data) => {
+          return `<a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">${data.label}</span></a>`
+        }
+      }
+    }),
+    instantsearch.widgets.breadcrumb({
+      container: '#breadcrumbs',
+      attributes: [
+        'categories.lvl0',
+        'categories.lvl1',
+        'categories.lvl2',
+        'categories.lvl3',
+        'categories.lvl4',
+      ],
+      limit: 150, 
+      // rootPath: "Ostomy"
+    }),
+    
+  ]); 
+
+  search.start();
+
+  let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
+      closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
+
+  //qty change
+  function changeQty(qty,pr,action) {
+    if (action == 'plus') {
+        qty.value = parseInt(qty.value) + 1;
+    } else if (action == 'minus') {
+        qty.value = parseInt(qty.value) - 1;
+    }
+    if (action == 'plus' || action == 'minus') {
+        if (qty.value == '') {
+            qty.value = 1;
+        }
+    }
+    if (qty.value > 1) {
+        qty.previousElementSibling.disabled = false;
+    } else {
+        qty.previousElementSibling.disabled = true;
+    }
+
+    pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+
+    if (qty.value == 0 && qty.value != '') {
+        qty.value = 1;
+        pr.innerHTML= (+pr.dataset.price * +qty.value).toFixed(2)
+    }
+    if (qty.value == '') {
+        pr.innerHTML = pr.dataset.price
+    }
+    
+    console.log(qty.value,pr.innerHTML)
+
+  }
+
+  dataButton.forEach(item => {
+    item.addEventListener('click', (e) => {
+      toggleActive(item.getAttribute('data-button'))
+    })
+  })
+
+  closeBtn.forEach(item => {
+    item.addEventListener('click', (e) => {
+      toggleActive(item.getAttribute('data-close'));
+      document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
+      
+      document.querySelector('.select_category ul li p').classList.add('active');
+      document.querySelector('.select_category .select_current').innerHTML = `<span>Select Category</span>`;
+      document.querySelector('.select_brand ul li p').classList.add('active');
+      document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
+    })
+  })
+  let countSearchStalled = 0;
+
+  search.addWidgets([
+    {
+        render({ searchMetadata = {} }) {
+          console.log(searchMetadata)
+            const { isSearchStalled } = searchMetadata
             
-            document.querySelector('.ais-ClearRefinements-button').addEventListener('click', () => countSearchStalled = 0);
+            if (isSearchStalled === false ) {
+              console.log(isSearchStalled)
+              console.log(facetCategories)
+              instantsearch({
+                indexName: 'staging_products',
+                routing: false,
+                searchClient,
+              
+              });
+              if (document.querySelector('#price_group li') != null) {
+                let pricesContainer = document.querySelector('#price_group ul'),
+                para = document.querySelectorAll('#price_group li');
 
-            if (countSearchStalled == 0) {
-              countSearchStalled = 1;
-              let listCategories = document.querySelectorAll('#list_categories li'),
-                  alphabet = document.querySelector('.alphabet'); //alphabet
-                  alphabet.innerHTML = '';
-
-              document.querySelectorAll('.category_popular li').forEach((el) => {
-                el.addEventListener('click', (e) => {
-                  e.preventDefault();
+                let paraArr = [].slice.call(para).sort(function (a, b) {
+                    return a.querySelector('.check_text').innerText.split(' -')[0].replace('$','') - b.querySelector('.check_text').innerText.split(' -')[0].replace('$','')
+                });
+                paraArr.forEach(function (p) {
+                    pricesContainer.appendChild(p);
+                });
+              }
+              document.querySelectorAll('.card .calc').forEach((el, i) => {
+                el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
                   e.stopImmediatePropagation();
-                  document.querySelector('.ais-SearchBox-reset').classList.add('reset')
-                  document.querySelector('.ais-SearchBox-reset').click();
-                  listCategories.forEach(item => {
-                    if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
-                      countSearchStalled = 1;
-                      alphabet.querySelectorAll('li').forEach(letter => {
+                  console.log(el.nextElementSibling.querySelector('.pr'))
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
+                })
+                el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
+                })
+                el.querySelector('.calc-qty').addEventListener('input', (e) => {
+                  changeQty(e.target, el.nextElementSibling.querySelector('.pr'))
+                })
+                el.querySelector('.calc-qty').addEventListener('blur', (e) => {
+                    if (e.target.value == '') {
+                        e.target.value = 1;
+                    }
+                }, true)
+              })
+              document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                document.querySelector('.ais-SearchBox-input').value = '';
+                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+                inputWord = false;
+                
+                toggleSearch(true)
+                if (!e.target.classList.contains('reset')) {
+                  actionDataLayer = `Click on reset button`;
+                  labelDataLayer = 'Search by Name';
+                  pushDataLayer(actionDataLayer, labelDataLayer)
+                } else {
+                  e.target.classList.remove('reset')
+                }
+              })
+              
+              document.querySelector('.ais-ClearRefinements-button').addEventListener('click', () => countSearchStalled = 0);
+
+              if (countSearchStalled == 0) {
+                countSearchStalled = 1;
+                let listCategories = document.querySelectorAll('#list_categories li'),
+                    alphabet = document.querySelector('.alphabet'); //alphabet
+                    alphabet.innerHTML = '';
+
+                document.querySelectorAll('.category_popular li').forEach((el) => {
+                  el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    document.querySelector('.ais-SearchBox-reset').classList.add('reset')
+                    document.querySelector('.ais-SearchBox-reset').click();
+                    listCategories.forEach(item => {
+                      if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
+                        countSearchStalled = 1;
+                        alphabet.querySelectorAll('li').forEach(letter => {
+                          letter.classList.contains('active') ? letter.classList.remove('active') : '';
+                          if (letter.innerText == el.innerText[0]) {
+                            letter.classList.add('active');
+                            
+                            openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
+                            item.classList.add('popular');
+                            item.click();
+                          }
+                        })
+                      }
+                    })
+                  })
+                })
+
+                listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
+
+                litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                  index === self.findIndex((t) => (
+                      t.letter === thing.letter
+                  ))
+                )
+
+                for (let i = 0; i < litterAlphabet.length; i++) {
+                  if (litterAlphabet[i].letter != 'undefined') {
+                    alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                  }
+                }
+
+                openCategoriesFoeAlphabet(listCategories)    
+
+                let items = [...alphabet.querySelectorAll("li")];
+                items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+                items.forEach(item => alphabet.appendChild(item));
+
+              }
+              if (window.location.pathname.includes('/category')) {
+                document.querySelectorAll('#list_categories li a').forEach(el => {
+                    if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
+                      document.querySelectorAll('.alphabet li').forEach(letter => {
                         letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                        if (letter.innerText == el.innerText[0]) {
+                        if (el.innerText[0] == letter.innerText[0]) {
                           letter.classList.add('active');
-                          
-                          openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
-                          item.classList.add('popular');
-                          item.click();
+                          el.click();
+                          firstLoaded = false;
                         }
                       })
                     }
-                  })
-                })
-              })
-
-              listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
-
-              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                index === self.findIndex((t) => (
-                    t.letter === thing.letter
-                ))
-              )
-
-              for (let i = 0; i < litterAlphabet.length; i++) {
-                if (litterAlphabet[i].letter != 'undefined') {
-                  alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-                }
+                }) 
+              } else {
+                firstLoaded = false
               }
 
-              openCategoriesFoeAlphabet(listCategories)    
+              let crumbs = document.querySelectorAll('#breadcrumbs li');
+              if (crumbs.length < 2) {
+                document.querySelector('#breadcrumbs').style.display = 'none';
+                document.querySelector('.listing_title').innerHTML = 'All Products';
+              } else {
+                document.querySelector('#breadcrumbs').style.display = 'block';
+                document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
+              }
 
-              let items = [...alphabet.querySelectorAll("li")];
-              items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-              items.forEach(item => alphabet.appendChild(item));
-
-            }
-            if (window.location.pathname.includes('/category')) {
-              document.querySelectorAll('#list_categories li a').forEach(el => {
-                  if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
-                    document.querySelectorAll('.alphabet li').forEach(letter => {
-                      letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                      if (el.innerText[0] == letter.innerText[0]) {
-                        letter.classList.add('active');
-                        el.click();
-                        firstLoaded = false;
-                      }
-                    })
-                  }
-              }) 
-            } else {
-              firstLoaded = false
-            }
-
-            let crumbs = document.querySelectorAll('#breadcrumbs li');
-            if (crumbs.length < 2) {
-              document.querySelector('#breadcrumbs').style.display = 'none';
-              document.querySelector('.listing_title').innerHTML = '';
-            } else {
-              document.querySelector('#breadcrumbs').style.display = 'block';
-              document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
-            }
-
-            if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
-              let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-                  element.addEventListener('scroll', () => scrolled(element));
-            }
-            if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
-                document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                    console.log(e.target.innerText)
-                    document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
-                    e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+              if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
+                let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+                    element.addEventListener('scroll', () => scrolled(element));
+              }
+              if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
+                  document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                      console.log(e.target.innerText)
+                      document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
+                      e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+                  })
+              }
+              if (document.querySelector('#clear-refinement button') != null) {
+                document.querySelector('#clear-refinement button').addEventListener('click', (e) => {
+                  document.querySelectorAll('.alphabet li').forEach((letter, index) => {
+                    if (index == 0) {
+                      letter.classList.add('active')
+                    } else {
+                      letter.classList.remove('active')
+                    }
+                  })
+                  
+                  openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
                 })
-            }
-            if (document.querySelector('#clear-refinement button') != null) {
-              document.querySelector('#clear-refinement button').addEventListener('click', (e) => {
-                document.querySelectorAll('.alphabet li').forEach((letter, index) => {
+              }
+              
+              document.querySelectorAll('#breadcrumbs li').forEach((crumb, index) => {
+                crumb.addEventListener('click', (e) => {
                   if (index == 0) {
-                    letter.classList.add('active')
-                  } else {
-                    letter.classList.remove('active')
+                    document.querySelector('#clear-refinements button').click();
                   }
-                })
-                
-                openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
-              })
-            }
-            
-            document.querySelectorAll('#breadcrumbs a').forEach((crumb, index) => {
-              crumb.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                if (crumb.classList.contains('forclear')) {
-                  crumb.classList.remove('forclear');
-                } else {
+                  e.stopImmediatePropagation();
                   actionDataLayer = `Click on crumb - ${e.target.innerText}`;
                   labelDataLayer = 'Breadcrumbs';
-                  pushDataLayer(actionDataLayer, labelDataLayer)
-                }
+                  pushDataLayer(actionDataLayer, labelDataLayer);
+                })
               })
-            })
-          }
-      },
-  },
-])
+            }
+        },
+    },
+  ])
 
-document.querySelector('.header .logo').addEventListener('click', (e) => { 
-  document.querySelector('#form-search .ais-SearchBox-input').value = '';
-  document.querySelector('#form-search pre').innerHTML = '';
-  document.querySelector('#clear-refinements button').click();
-  document.querySelector('#breadcrumbs a').classList.add('forclear');
-  document.querySelector('#breadcrumbs a').click();
-  toggleSearch(true)
-  actionDataLayer = `Click on logo`;
-  labelDataLayer = 'Header';
-  pushDataLayer(actionDataLayer, labelDataLayer)
-})
+  document.querySelector('.header .logo').addEventListener('click', (e) => { 
+    actionDataLayer = `Click on logo`;
+    labelDataLayer = 'Header';
+    pushDataLayer(actionDataLayer, labelDataLayer);
+    window.location.href = currentPath;
+  })
 
-document.body.addEventListener('click', (e) => { 
-  if (!e.target.closest('.select')) remActiveSelect();
-  if (!e.target.closest('.nav_category')) {
-      document.querySelector(`.nav_category`).classList.remove('active');
-  }  
-  if (!e.target.closest('#form-search')) {
-    document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
-  }
-  if (inputWord == false) {
-    document.querySelector('.ais-SearchBox-input').value = '';
-    document.querySelector('#form-search pre').innerHTML = '';
-  }
-})
-
-window.addEventListener('scroll', (e) => {
-  remActiveSelect(); 
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    console.log('bottom')
-    if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
-      document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+  document.body.addEventListener('click', (e) => { 
+    if (!e.target.closest('.select')) remActiveSelect();
+    if (!e.target.closest('.nav_category')) {
+        document.querySelector(`.nav_category`).classList.remove('active');
+    }  
+    if (!e.target.closest('#form-search')) {
+      document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     }
-  }
-})
+    if (inputWord == false) {
+      document.querySelector('.ais-SearchBox-input').value = '';
+      document.querySelector('#form-search pre').innerHTML = '';
+    }
+  })
 
-//select filter
-document.querySelectorAll('.select_filter').forEach(el => {
-    el.querySelector('.select_item').addEventListener('click', (e) => {
-      console.log(search)
-      el.classList.toggle('active');
-      actionDataLayer = `Click on ${e.target.innerText} button`;
-      labelDataLayer = 'Filter';
-      pushDataLayer(actionDataLayer, labelDataLayer)
-    })
-})
+  window.addEventListener('scroll', (e) => {
+    remActiveSelect(); 
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      console.log('bottom')
+      if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
+        document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+      }
+    }
+  })
 
-document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
-  
-  document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
-  if (document.querySelector('.advanced-search.active') != null) {
-    document.querySelector('.advanced-search').classList.remove('active');
-  }
-  document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
-  document.querySelector('.ais-ClearRefinements-button').click();
-  // document.querySelector(' #breadcrumbs a').click();
-  toggleSearch(true)
-//   search.addWidgets([
-//     instantsearch.widgets.configure({
-//       hitsPerPage: '12',
-//       facetFilters: ["*"],
-//       query: document.querySelector('#form-search pre').value
-//     }),
-//   ])
+  //select filter
+  document.querySelectorAll('.select_filter').forEach(el => {
+      el.querySelector('.select_item').addEventListener('click', (e) => {
+        console.log(search)
+        el.classList.toggle('active');
+        actionDataLayer = `Click on ${e.target.innerText} button`;
+        labelDataLayer = 'Filter';
+        pushDataLayer(actionDataLayer, labelDataLayer)
+      })
+  })
 
-  actionDataLayer = `Click on submit button`;
-  labelDataLayer = 'Search by Name';
-  pushDataLayer(actionDataLayer, labelDataLayer)
-});
+  document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+    
+    document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
+    if (document.querySelector('.advanced-search.active') != null) {
+      document.querySelector('.advanced-search').classList.remove('active');
+    }
+    document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
+    document.querySelector('.ais-ClearRefinements-button').click();
 
-document.querySelector('.advanced-search .btn').addEventListener('click', () => {
-  let categories = document.querySelector('.select_category .select_current').dataset.category;
-  let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : document.querySelector('.select_brand .select_current').innerText;
-  
-  let queryKeyword = document.querySelector('[name="search_keyword"]').value,
-      queryItem = document.querySelector('[name="search_item"]').value,
-      querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
+    toggleSearch(true)
+  //   search.addWidgets([
+  //     instantsearch.widgets.configure({
+  //       hitsPerPage: '12',
+  //       facetFilters: ["*"],
+  //       query: document.querySelector('#form-search pre').value
+  //     }),
+  //   ])
 
-  let option = ``;
-  let crumbs = categories.split(':')[1].split(' > ');
+    actionDataLayer = `Click on submit button`;
+    labelDataLayer = 'Search by Name';
+    pushDataLayer(actionDataLayer, labelDataLayer)
+  });
 
-  console.log(crumbs)
+  document.querySelector('.advanced-search .btn').addEventListener('click', () => {
+    let categories = document.querySelector('.select_category .select_current').dataset.category;
+    let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : document.querySelector('.select_brand .select_current').innerText;
+    
+    let queryKeyword = document.querySelector('[name="search_keyword"]').value,
+        queryItem = document.querySelector('[name="search_item"]').value,
+        querySum = queryItem + (queryKeyword != '' && queryItem != '' ? ' ' : '') + queryKeyword;
 
-  for (let i = 0; i < crumbs.length; i++) {
-    option += `&staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
-  }
+    let option = ``;
+    let crumbs = categories.split(':')[1].split(' > ');
 
-  actionDataLayer = `Click on submit button`;
-  labelDataLayer = 'Advanced Search';
-  pushDataLayer(actionDataLayer, labelDataLayer)
+    console.log(crumbs)
 
-  window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${brand}${option}`;
-})
+    for (let i = 0; i < crumbs.length; i++) {
+      option += `&staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+    }
 
-document.querySelectorAll('.advanced-search input').forEach(input => {
-  input.addEventListener('click', (e) => {
-    actionDataLayer = `Click on ${e.target.placeholder}`;
+    actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Advanced Search';
     pushDataLayer(actionDataLayer, labelDataLayer)
+
+    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${brand}${option}`;
   })
-  // input.addEventListener('input', (e) => {
-  //   return e.target.value.replace(/\s/g, "");
-  // })
-  input.addEventListener('keypress', (e) => {
-    if (e.keyCode == '13') {
-      document.querySelector('.advanced-search .btn').click();
-    }
-  })
-})
 
-let index = searchClient.initIndex('staging_products');
-
-autocomplete('#form-search input', {hint: false, debug: false}, [
-  {
-      source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
-      displayKey: 'name',
-      // openOnFocus: true,
-      onStateChange: true,
-    
-      templates: {
-          suggestion: function(suggestion) {
-              function findImage() {
-                  for (let i = 0; i < suggestion.variants.length; i++) {
-                      if (suggestion.variants[i].image != '') {
-                          return suggestion.variants[i].image
-                      }
-                  }
-              }
-              let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
-                      
-              return sugTemplate;
-          },
-      },
-  }
-  ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-    console.log(event.target, suggestion, dataset);
-
- 
-    // search.helper.removeFacetRefinement('name')
-    // search.helper.lastResults.query = suggestion.name;
-    // search.helper.state.query = suggestion.name;
-    
-    event.target.value = suggestion.name
-    // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
-
-    console.log(search.helper.lastResults.query)
-    console.log(search.helper.state.query)
-    // console.log(search.helper.search())
-    
-    // search.helper.search();
-    // console.log(search.helper.search())
-    
-    // document.querySelector('.ais-ClearRefinements-button').click();
-    // document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
-    // facetCategories = `item_num:${suggestion.item_num}`;
-
-    document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
-    toggleSearch(false)
-
-    document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-      event.target.value = '';
-      document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-      document.querySelector('.ais-SearchBox-input').value = '';
-      inputWord = false;
-      toggleSearch(true)
-      if (!e.target.classList.contains('reset')) {
-        actionDataLayer = `Click on reset button`;
-        labelDataLayer = 'Search by Name';
-        pushDataLayer(actionDataLayer, labelDataLayer)
-      } else {
-        e.target.classList.remove('reset')
+  document.querySelectorAll('.advanced-search input').forEach(input => {
+    input.addEventListener('click', (e) => {
+      actionDataLayer = `Click on ${e.target.placeholder}`;
+      labelDataLayer = 'Advanced Search';
+      pushDataLayer(actionDataLayer, labelDataLayer)
+    })
+    // input.addEventListener('input', (e) => {
+    //   return e.target.value.replace(/\s/g, "");
+    // })
+    input.addEventListener('keypress', (e) => {
+      if (e.keyCode == '13') {
+        document.querySelector('.advanced-search .btn').click();
       }
     })
-
-    actionDataLayer = `Selected suggestion`;
-    labelDataLayer = 'Autocomplete Search by Name';
-    pushDataLayer(actionDataLayer, labelDataLayer)
   })
+
+  autocomplete('#form-search input', {hint: false, debug: false}, [
+    {
+        source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
+        displayKey: 'name',
+        // openOnFocus: true,
+        onStateChange: true,
+      
+        templates: {
+            suggestion: function(suggestion) {
+                function findImage() {
+                    for (let i = 0; i < suggestion.variants.length; i++) {
+                        if (suggestion.variants[i].image != '') {
+                            return suggestion.variants[i].image
+                        }
+                    }
+                }
+                let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+                        
+                return sugTemplate;
+            },
+        },
+    }
+    ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+      console.log(event.target, suggestion, dataset);
+
+  
+      // search.helper.removeFacetRefinement('name')
+      // search.helper.lastResults.query = suggestion.name;
+      // search.helper.state.query = suggestion.name;
+      
+      event.target.value = suggestion.name
+      // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
+
+      console.log(search.helper.lastResults.query)
+      console.log(search.helper.state.query)
+      // console.log(search.helper.search())
+      
+      // search.helper.search();
+      // console.log(search.helper.search())
+      
+      // document.querySelector('.ais-ClearRefinements-button').click();
+      // document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
+      // facetCategories = `item_num:${suggestion.item_num}`;
+
+      document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
+      toggleSearch(false)
+
+      document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
+        e.stopImmediatePropagation()
+        event.target.value = '';
+        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+        document.querySelector('.ais-SearchBox-input').value = '';
+        inputWord = false;
+        toggleSearch(true)
+        if (!e.target.classList.contains('reset')) {
+          actionDataLayer = `Click on reset button`;
+          labelDataLayer = 'Search by Name';
+          pushDataLayer(actionDataLayer, labelDataLayer)
+        } else {
+          e.target.classList.remove('reset')
+        }
+      })
+
+      actionDataLayer = `Selected suggestion`;
+      labelDataLayer = 'Autocomplete Search by Name';
+      pushDataLayer(actionDataLayer, labelDataLayer)
+    })
 
   document.querySelector('#form-search input').addEventListener('click', (e) => {
     actionDataLayer = `Click on Search by Name`;
@@ -2030,6 +2024,45 @@ autocomplete('#form-search input', {hint: false, debug: false}, [
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
+
+  index.search( {
+    facetFilters: ['categories.lvl0:New Products!'],
+    hitsPerPage: '4'
+  }).then(({ hits }) => {
+    console.log(hits)
+    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="new-products"><h2>New Products!</h2><ul class=" d-flex"></ul></div>`);
+    for (let i = 0; i < hits.length; i++) {
+      document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
+    }
+  });
+  index.search('', {
+    facetFilters: ['categories.lvl0:Ostomy',],
+    hitsPerPage: '4'
+  }).then(({ hits }) => {
+    console.log(hits)
+    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="ostomy"><h2>Ostomy</h2><ul class="d-flex"></ul></div>`);
+    for (let i = 0; i < hits.length; i++) {
+      document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
+    }
+  });
+  index.search('', {
+    facetFilters: ['categories.lvl0:Wound Care',],
+    hitsPerPage: '4'
+  }).then(({ hits }) => {
+    console.log(hits)
+    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="wound-care"><h2>Wound Care</h2><ul class="d-flex"></ul></div>`);
+    for (let i = 0; i < hits.length; i++) {
+      document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
+    }
+  });
+
+  setInterval(() => {
+    if (window.location.href != currentPath) {
+      document.querySelector('.listing_popular').style.display = 'none';
+    } else {
+      document.querySelector('.listing_popular').style = '';
+    }
+  }) 
 };
 
 let optionMut = {
@@ -2149,7 +2182,6 @@ let mut = new MutationObserver(function (muts) {
     })
   }
   mut.observe(document, optionMut);
- 
 });
 mut.observe(document, optionMut);
 
