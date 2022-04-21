@@ -1342,6 +1342,8 @@ const fetchURL = async () => {
 	}
 }
 const getSKU = async data => {
+	console.log(data)
+
 	try {
 		let itemSKU
 
@@ -1883,7 +1885,7 @@ function waitSkuGuarantee() {
 				isEU = true
 			}
 
-			if(!document.querySelector('EU') && isEU) {
+			if(!document.querySelector('.EU') && isEU) {
 				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt))
 			}
 		}
