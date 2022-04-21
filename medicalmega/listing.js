@@ -1126,7 +1126,7 @@ let html = `
               <input type="text" placeholder="Enter Item #" name="search_item">
               <input type="text" placeholder="Enter Keyword" name="search_keyword">
               <div class="select select_category">
-                <p class="select_current" data-category=""><span>Select Category</span></p>
+                <p class="select_current" data-category="categories.lvl0:*"><span>Select Category</span></p>
                 <ul class="select_dropdown"> <li class="select_option active"><p data-category="categories.lvl0:*">Select Category</p></li></ul>
               </div>
               <div class="select select_brand">
