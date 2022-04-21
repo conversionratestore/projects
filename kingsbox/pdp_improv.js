@@ -1358,7 +1358,7 @@ fetch(URL, { signal, headers: header })
 
 				drawDiagonalLine(variations, statuses)
 
-				let $secondOption = document.querySelector('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
+				let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
 
 				if (isSizeOption && $secondOption) {
