@@ -1512,7 +1512,7 @@ window.onload = function() {
       limit: 7,
       showMore: true,
       showMoreLimit: 400,
-      sortBy: ['name:asc'],
+      // sortBy: ['name:asc'],
       templates: {
         item: (data) => {
           let checkbox = `
@@ -1903,7 +1903,7 @@ window.onload = function() {
 
   document.querySelector('.advanced-search .btn').addEventListener('click', () => {
     let categories = document.querySelector('.select_category .select_current').dataset.category;
-    let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : document.querySelector('.select_brand .select_current').innerText;
+    let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
     
     let queryKeyword = document.querySelector('[name="search_keyword"]').value,
         queryItem = document.querySelector('[name="search_item"]').value,
@@ -1922,7 +1922,7 @@ window.onload = function() {
     labelDataLayer = 'Advanced Search';
     pushDataLayer(actionDataLayer, labelDataLayer)
 
-    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${brand}${option}`;
+    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${option}`;
   })
 
   document.querySelectorAll('.advanced-search input').forEach(input => {
