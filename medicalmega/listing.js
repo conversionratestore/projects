@@ -1061,24 +1061,23 @@ border-radius: 100px;
 }
 .listing_popular {
   margin-bottom: 33px;
-  display: grid;
 }
-.listing_popular .new-products {
-  order: 0;
+
+.listing_popular ul {
+  margin: 13px 0 20px
 }
-.listing_popular .ostomy {
-  order: 1;
-}
-.listing_popular .wound-care {
-  order: 2;
-}
+
 .listing_popular h2 {
   text-align: center;
   font-weight: 600;
   font-size: 36px;
   line-height: 120%;
   min-height: 43.2px;
-  margin: 30px 0;
+  margin-bottom: 33px;
+}
+.listing_popular .btn {
+  margin: 0 auto 33px;
+  display: block;
 }
   @media only screen and (min-width: 1750px) {
     .nav_category {
@@ -1279,6 +1278,19 @@ function openCategoriesFoeAlphabet(item) {
     }
   }); 
 } 
+
+function scrollTop(a, b) {
+
+  const scrollTarget = a;
+  const topOffset = b.offsetHeight;
+  const elementPosition = scrollTarget.getBoundingClientRect().top;
+  const offsetPosition = elementPosition - topOffset;
+
+  window.scrollBy({
+      top: offsetPosition,
+      behavior: 'smooth'
+  });
+}
 
 function scrolled(element) {
   if (element.scrollHeight - element.scrollTop === element.clientHeight) {
@@ -1499,7 +1511,7 @@ window.onload = function() {
       attribute: 'manufacturer',
       limit: 7,
       showMore: true,
-      showMoreLimit: 100,
+      showMoreLimit: 400,
       sortBy: ['name:asc'],
       templates: {
         item: (data) => {
@@ -2025,35 +2037,63 @@ window.onload = function() {
     })
   })
 
-  index.search( {
+  
+
+  let requestNewProduct = index.search( {
     facetFilters: ['categories.lvl0:New Products!'],
+    hitsPerPage: '4',
+  })
+  let requestOstomy = index.search('', {
+    facetFilters: ['categories.lvl0:Ostomy'],
     hitsPerPage: '4'
-  }).then(({ hits }) => {
-    console.log(hits)
-    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="new-products"><h2>New Products!</h2><ul class=" d-flex"></ul></div>`);
-    for (let i = 0; i < hits.length; i++) {
-      document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
+  })
+  let requestWoundCare = index.search('', {
+    facetFilters: ['categories.lvl0:Wound Care'],
+    hitsPerPage: '4',
+
+  })
+  Promise.all([requestNewProduct,requestOstomy,requestWoundCare]).then(res => {
+    console.log(res)
+    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `
+    <div class="new-products">
+      <h2>New Products!</h2>
+      <p class="c-gray">${res[0].nbHits} items</p>
+      <ul class="d-flex"></ul>
+      <button type="button" class="btn btn_white" data-category="new products!">Show More</button>
+    </div>
+    <div class="ostomy">
+      <h2>Ostomy</h2>
+      <p class="c-gray">${res[1].nbHits} items</p>
+      <ul class="d-flex"></ul>
+      <button type="button" class="btn btn_white" data-category="ostomy">Show More</button>
+    </div>
+    <div class="wound-care">
+      <h2>Wound Care</h2>
+      <p class="c-gray">${res[2].nbHits} items</p>
+      <ul class="d-flex"></ul>
+      <button type="button" class="btn btn_white" data-category="wound care">Show More</button>
+    </div>`);
+
+    for (let i = 0; i < 4; i++) {
+      document.querySelector(`.listing_popular .new-products ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[0].hits[i])}</li>`)
+      document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[1].hits[i])}</li>`)
+      document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[2].hits[i])}</li>`)
     }
-  });
-  index.search('', {
-    facetFilters: ['categories.lvl0:Ostomy',],
-    hitsPerPage: '4'
-  }).then(({ hits }) => {
-    console.log(hits)
-    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="ostomy"><h2>Ostomy</h2><ul class="d-flex"></ul></div>`);
-    for (let i = 0; i < hits.length; i++) {
-      document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
-    }
-  });
-  index.search('', {
-    facetFilters: ['categories.lvl0:Wound Care',],
-    hitsPerPage: '4'
-  }).then(({ hits }) => {
-    console.log(hits)
-    document.querySelector('.listing_popular').insertAdjacentHTML('beforeend', `<div class="wound-care"><h2>Wound Care</h2><ul class="d-flex"></ul></div>`);
-    for (let i = 0; i < hits.length; i++) {
-      document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend',`<li>${initHits(hits[i])}</li>`)
-    }
+    document.querySelectorAll('.listing_popular .btn').forEach(el => {
+      el.addEventListener('click', (e) => {
+        document.querySelectorAll('#list_categories li a').forEach(el => {
+          if (e.target.dataset.category.includes(el.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase())) {
+            el.classList.add('home-popular');
+            el.click();
+          }
+        })
+
+        let scrollTarget = document.body,
+            topOffset = e.target;
+
+        scrollTop(scrollTarget, topOffset)
+      })
+    })
   });
 
   setInterval(() => {
@@ -2155,15 +2195,21 @@ let mut = new MutationObserver(function (muts) {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         toggleSearch(true)
+        if (e.target.classList.contains('home-popular')) {
+          actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
+          labelDataLayer = `Home page`;
 
-        actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
-        
-        if (e.target.classList.contains('popular')) {
-          labelDataLayer = `Popular categories`;
-          el.classList.remove('popular');
         } else {
-          labelDataLayer = `All categories`;
+          actionDataLayer = `Click on category item - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
+        
+          if (e.target.classList.contains('popular')) {
+            labelDataLayer = `Popular categories`;
+            el.classList.remove('popular');
+          }  else {
+            labelDataLayer = `All categories`;
+          }
         }
+        
         if (firstLoaded == false) {
           pushDataLayer(actionDataLayer,labelDataLayer);
         }
