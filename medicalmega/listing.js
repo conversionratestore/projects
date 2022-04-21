@@ -1437,18 +1437,18 @@ window.onload = function() {
 
     let boxItem = `
       <div class="card">
-        <p class="status" style="display:${hit.in_stock==false? 'block':'none'}">Out of Stock</p>
+        <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
           <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
           <span title="${hit.name}">${hit.name}</span>
         </a>
         <form action="https://medicalmega.com/cart.html" method="post">
-          <div class="flex-center-center calc" ${hit.in_stock==false ? 'disabled' : ''}>
+          <div class="flex-center-center calc" ${hit.in_stock==false || hit.price == '0:00' ? 'disabled' : ''}>
             <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
             <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
             <button class="btn-calc btn-calc_plus" type="button"></button>
           </div>
-          ${hit.in_stock==false ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
           <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
           <input type="hidden" name="product_id" value="${hit.objectID }">
           <input type="hidden" name="add_to_cart" value="variant">
@@ -1485,9 +1485,9 @@ window.onload = function() {
     instantsearch.widgets.infiniteHits({
       container: '#hits',
       escapeHTML: false,
-      transformItems(items) {
-        return items.filter(item => item.price != '0.00' )
-      },
+      // transformItems(items) {
+      //   return items.filter(item => item.price != '0.00' )
+      // },
       templates: {
           empty: `No Item Found`,
           item: (hit) => initHits(hit)
