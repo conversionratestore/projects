@@ -1922,7 +1922,7 @@ window.onload = function() {
     labelDataLayer = 'Advanced Search';
     pushDataLayer(actionDataLayer, labelDataLayer)
 
-    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${option}`;
+    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
   })
 
   document.querySelectorAll('.advanced-search input').forEach(input => {
