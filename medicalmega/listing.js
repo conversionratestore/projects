@@ -1921,8 +1921,9 @@ window.onload = function() {
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Advanced Search';
     pushDataLayer(actionDataLayer, labelDataLayer)
-
-    window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
+    if (querySum != '' || brand != '' || !option.includes("*")) {
+      window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
+    }
   })
 
   document.querySelectorAll('.advanced-search input').forEach(input => {
@@ -2036,8 +2037,6 @@ window.onload = function() {
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
   })
-
-  
 
   let requestNewProduct = index.search( {
     facetFilters: ['categories.lvl0:New Products!'],
