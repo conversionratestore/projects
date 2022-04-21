@@ -1788,10 +1788,10 @@ window.onload = function() {
 
               let crumbs = document.querySelectorAll('#breadcrumbs li');
               if (crumbs.length < 2) {
-                document.querySelector('#breadcrumbs').style.display = 'none';
+                document.querySelector('#breadcrumbs').style.opacity = '0';
                 document.querySelector('.listing_title').innerHTML = 'All Products';
               } else {
-                document.querySelector('#breadcrumbs').style.display = 'block';
+                document.querySelector('#breadcrumbs').style = '';
                 document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
               }
 
