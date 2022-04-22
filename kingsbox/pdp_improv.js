@@ -1353,14 +1353,10 @@ const fetchURL = async () => {
 	}
 }
 const getSKU = async data => {
-	console.log(data)
-
 	try {
 		let itemSKU
 
 		data = data.data
-
-		console.log(data)
 
 		if (data.variationsChildren.length) {
 			itemSKU = data.variationsChildren[0].sku
@@ -1379,7 +1375,6 @@ const getSKU = async data => {
 
 }
 const getAvailable = async data => {
-	console.log(data)
 	try {
 		let urls = []
 		let item = data.data
@@ -1416,8 +1411,6 @@ const getAvailable = async data => {
 				drawDiagonalLine(variations, statuses)
 
 				let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
-
-				console.log($secondOption)
 
 				if (isSizeOption && $secondOption) {
 					let colorsPerSize = statuses.length / $secondOption.length
