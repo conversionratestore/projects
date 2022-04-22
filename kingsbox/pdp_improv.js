@@ -437,16 +437,27 @@ const style = `
 										Item status: Expected 
 										=====================*/
 										
-									[data-style="expected"] .sell_wrapper,
-									[data-style="pre"] .sell_wrapper
-									 {
-										position: absolute;
-										top: 0;
-										left: 0;
-										display: flex;
+									.sell_wrapper {
 										align-items: center;
 										background-color: #EDC96D;	
 										padding: 5px 10px;
+										position: absolute;
+										top: 0;
+									}
+										
+									[data-style="expected"] .sell_wrapper.fire,
+									[data-style="pre"] .sell_wrapper.fire {																			
+										left: 0;
+										display: flex;										
+									}
+									
+									.product-container:not([data-style="not"]) .sell_wrapper.eu {															
+										right: 0;
+										display: flex;										
+									}
+									
+									.product-tag.action .sell_wrapper {
+										top: 29px;
 									}
 									
 									.sell_wrapper img {
@@ -495,6 +506,7 @@ const style = `
 									
 									.custom_recommendations {
 										display: flex;
+										flex-direction: column;
 									}
 									
 									.custom_recommendations .row{
@@ -697,6 +709,10 @@ const style = `
 									   ============== */
 									   
 									@media only screen and (min-width: 769px)  {
+										[data-style="not"] .custom_recommendations {
+											flex-direction: row;
+										}
+									
 										.img_wrapper img {
 											min-height: 290px;
 											max-height: 290px;
@@ -962,13 +978,14 @@ const languagesObj = {
 			expected: 'expected',
 		},
 		demand: 'This product is in high demand',
-		order: 'Order today and get your order dispatched within',
+		order: 'Pre-order today and get your order dispatched within',
 		weeks: 'weeks',
 		week: 'week',
 		details: 'Product details',
 		wl: 'join waiting list',
 		guarantee: '30-day money back guarantee',
 		made: 'Made in EU',
+		designed: 'Designed in EU',
 		superb: 'Superb quality guaranteed',
 		similar: 'Similar product',
 		like: 'you may also like',
@@ -994,7 +1011,7 @@ const languagesObj = {
 			expected: 'disponibiltà',
 		},
 		demand: 'Questo prodotto è molto richiesto',
-		order: 'Ordina oggi e ricevi il tuo ordine entro',
+		order: 'Preordine oggi e ricevi il tuo ordine entro',
 		weeks: 'settimane',
 		week: 'settimana',
 		details: 'Dettagli del prodotto',
@@ -1026,7 +1043,7 @@ const languagesObj = {
 			expected: 'očekivana',
 		},
 		demand: 'Ovaj proizvod je vrlo tražen',
-		order: 'Naručite danas i vaša  narudžba će biti poslana u roku od',
+		order: 'Prednarudžba danas i vaša  narudžba će biti poslana u roku od',
 		weeks: 'tjedna',
 		week: 'tjedna',
 		details: 'Detalji o proizvodu',
@@ -1058,7 +1075,7 @@ const languagesObj = {
 			expected: 'Predvidena',
 		},
 		demand: 'Za ta produkt je zelo veliko povpraševanja',
-		order: 'Naroči danes in tvoje naročilo bo odpremljeno v',
+		order: 'Prednaročilo danes in tvoje naročilo bo odpremljeno v',
 		weeks: 'tednih',
 		week: 'tednu',
 		details: 'Podrobnosti o izdelku',
@@ -1090,7 +1107,7 @@ const languagesObj = {
 			expected: 'Erwartete',
 		},
 		demand: 'Dieses Produkt hat eine hohe Nachfrage',
-		order: 'Bestellen Sie noch heute und Ihre Bestellung wird innerhalb von',
+		order: 'Vorbestellung Sie noch heute und Ihre Bestellung wird innerhalb von',
 		weeks: 'Wochen versandt',
 		week: 'Woche versandt',
 		details: 'Einzelheiten zum Produkt',
@@ -1122,7 +1139,7 @@ const languagesObj = {
 			expected: 'Réassort',
 		},
 		demand: 'Ce produit est très en demande',
-		order: `Commandez aujourd'hui et recevez votre commande en`,
+		order: `Précommander aujourd'hui et recevez votre commande en`,
 		weeks: 'semaines',
 		week: 'semaine',
 		details: 'Détails du produit',
@@ -1154,7 +1171,7 @@ const languagesObj = {
 			expected: 'Disponibilidad',
 		},
 		demand: 'Este producto tiene una gran demanda',
-		order: 'Haz tu pedido hoy y recibe tu pedido en',
+		order: 'Reservación tu pedido hoy y recibe tu pedido en',
 		weeks: 'semanas',
 		week: 'semana',
 		details: 'Detalles de producto',
@@ -1313,16 +1330,57 @@ const productUrl = `https://gateway.kingsbox.com/service/products/details/`
 const itemNameUrl = window.location.pathname.split('product')[1].replace(/\//g, '')
 const URL = productUrl + itemNameUrl
 
-const controller = new AbortController()
-const signal = controller.signal
+let exceptionProduct = false
+
+if (
+	itemNameUrl === 'kingsbox-hi-temp-bumper-plates-3-0' ||
+	itemNameUrl === 'royal-hi-temp-rubber-floor-100x100-cm' ||
+	itemNameUrl === 'royal-hi-temp-rubber-floor-50x50-cm'
+) {
+	exceptionProduct = true
+}
 
 let header = new Headers({ 'Accept-Language': pageLanguage })
 
-fetch(URL, { signal, headers: header })
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
+let skuType = ''
+
+const fetchURL = async () => {
+	try {
+		let response = await fetch(URL, { headers: header })
+		return await response.json()
+	} catch (e) {
+		console.error(e)
+	}
+}
+const getSKU = async data => {
+	console.log(data)
+
+	try {
+		let itemSKU
+
+		data = data.data
+
+		console.log(data)
+
+		if (data.variationsChildren.length) {
+			itemSKU = data.variationsChildren[0].sku
+		} else {
+			itemSKU = data.sku
+		}
+
+		skuType = itemSKU[0] + itemSKU[1]
+
+		console.log(itemSKU)
+
+
+	} catch (e) {
+		console.error(e)
+	}
+
+}
+const getAvailable = async data => {
+	console.log(data)
+	try {
 		let urls = []
 		let item = data.data
 		let isSizeOption = false
@@ -1334,7 +1392,6 @@ fetch(URL, { signal, headers: header })
 		} else if (item.productVariations[0]?.values.length) {
 			urls = addOneVarUrl(item)
 		} else {
-			controller.abort()
 			return false
 		}
 
@@ -1360,6 +1417,7 @@ fetch(URL, { signal, headers: header })
 
 				let $secondOption = document.querySelectorAll('.product-variation .square') || document.querySelectorAll('.product-variation')[1]?.querySelectorAll('.circle')
 
+				console.log($secondOption)
 
 				if (isSizeOption && $secondOption) {
 					let colorsPerSize = statuses.length / $secondOption.length
@@ -1373,18 +1431,16 @@ fetch(URL, { signal, headers: header })
 					})
 				}
 			})
-	})
-	.catch(err => console.error(err))
+	} catch (e) {
+		console.error(e)
+	}
 
-fetch(URL, { headers: header })
-	.then((response) => {
-		return response.json()
-	})
-	.then((data) => {
-		return [data.data.breadcrumb[0].url, data.data.id]
-	})
-	.then((arguments) => {
-		const [breadcrumb, itemId] = arguments
+}
+const getSimilar = async data => {
+	try {
+		const breadcrumb = data.data.breadcrumb[0].url
+		const itemId = data.data.id
+
 		fetch(fetchCategory(breadcrumb), { headers: header })
 			.then((response) => {
 				return response.json()
@@ -1395,7 +1451,10 @@ fetch(URL, { headers: header })
 				let randomItemsNumber = 6
 
 				let isRecommend = setInterval(() => {
-					if (document.querySelector('.product-recommendations')) {
+					if (
+						document.querySelector('.product-recommendations') &&
+						document.querySelector('.product-layout-1 .col-xl-4')
+					) {
 						clearInterval(isRecommend)
 
 						let isSimilarItem = !!document.querySelector('.product-recommendations .col-12')
@@ -1457,8 +1516,17 @@ fetch(URL, { headers: header })
 					}
 				}, 100)
 			})
-	})
-	.catch(err => console.error(err))
+	} catch (e) {
+		console.error(e)
+	}
+}
+
+(async () => {
+	const data = await fetchURL()
+	await getSKU(data)
+	await getAvailable(data)
+	await getSimilar(data)
+})()
 
 /* load tiny slider */
 
@@ -1516,8 +1584,9 @@ let isWhiteAccordion = setInterval(() => {
 		document.querySelector('.accordion.product-properties .card').before(document.querySelectorAll('.accordion.product-properties .card')[1])
 	}
 }, 200)
+
 let isBlackAccordion = setInterval(() => {
-	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]')) {
+	if (document.querySelector('.accordion.product-accessory-category') && !document.querySelector('[data-style="not"]') && document.querySelector('.product-breadcrumb a')) {
 		clearInterval(isBlackAccordion)
 
 		document.querySelector('.accordion.product-accessory-category')?.closest('.pt-3')?.before(document.querySelector('.accordion.product-properties'))
@@ -1529,13 +1598,19 @@ let isBlackAccordion = setInterval(() => {
 			}
 		})
 
-		if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
-			document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+		let txt = document.querySelector('.product-breadcrumb a').innerText.split(' ').join('').toLowerCase()
+
+		if (txt !== 'sets') {
+			if (!document.querySelectorAll('.accordion.product-accessory-category .card')[0]?.querySelector('.collapse.show')) {
+				document.querySelector('.accordion.product-accessory-category .card .flex-row')?.click()
+			}
+		} else {
+			initializeCarousel()
 		}
 	}
 }, 200)
 let isSimilar = setInterval(() => {
-	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card source')) {
+	if (document.querySelector('.product-recommendations:not(.custom_recommendations) .card img')) {
 		clearInterval(isSimilar)
 
 		document.querySelectorAll('.product-recommendations:not(.custom_recommendations) .card source').forEach((source, index) => {
@@ -1545,8 +1620,17 @@ let isSimilar = setInterval(() => {
 		let $recommendCopyRight = document.querySelector('.product-recommendations').cloneNode(true)
 		$recommendCopyRight.classList.add('custom_recommendations', 'right')
 
-		document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
-		document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+		let isCloned2 = setInterval(() => {
+			if (
+				document.querySelector(`.product-layout-1 .col-xl-4`) &&
+				$recommendCopyRight
+			) {
+				clearInterval(isCloned2)
+
+				document.querySelector('.product-recommendations:not(.custom_recommendations)').style.display = 'none'
+				document.querySelector(`.product-layout-1 .col-xl-4`).insertAdjacentElement('beforeend', $recommendCopyRight)
+			}
+		})
 	}
 }, 100)
 let drawMenu = setInterval(() => {
@@ -1621,7 +1705,22 @@ function checkItemStatus(item, containerDataset) {
 	/* check and remove duplicates */
 	duplicatesArr.forEach(removeDuplicates)
 
-	_addGuarantees($addItemBtn)
+	_addGuarantees()
+	waitSkuGuarantee()
+
+	if (itemStatus !== 'not') {
+		if (skuType === '') {
+			let isSKU = setInterval(() => {
+				if (skuType !== '') {
+					clearInterval(isSKU)
+
+					addBadge()
+				}
+			}, 100)
+		} else {
+			addBadge()
+		}
+	}
 
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
@@ -1632,10 +1731,8 @@ function checkItemStatus(item, containerDataset) {
 		case 'expected':
 		case 'pre':
 			_setExpectedItem($addItemBtn)
-			initializeCarousel()
 			break
 		default:
-			initializeCarousel()
 			break
 	}
 }
@@ -1664,8 +1761,9 @@ function _setExpectedItem(where) {
 		) {
 			clearInterval(interval)
 
-			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
+			addSellBadge()
 
+			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
 			let drawWeeks = true
 			let oneWeek = false
@@ -1686,7 +1784,7 @@ function _setExpectedItem(where) {
 						weeksNumber = min + ' - ' + max
 					} else {
 						weeksNumber = max
-						if(weeksNumber == 1) {
+						if (weeksNumber == 1) {
 							oneWeek = true
 						}
 					}
@@ -1698,29 +1796,20 @@ function _setExpectedItem(where) {
 				drawWeeks = false
 			}
 
-
-			let sellImg = `
-											<div class="sell_wrapper">
-												<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
-											</div>
-										`
-
 			let weekP = ''
 
-			if(drawWeeks) {
+			if (drawWeeks) {
 				weekP = `<p>${ language.order } <span>${ weeksNumber } ${ oneWeek ? language.week : language.weeks }</span>.</p>`
+			} else {
+				weekP = `<p>${ language.order } <span>3 - 4 ${ language.weeks }</span>.</p>`
 			}
 
 			let demandText = `
-											<div class="demand_wrapper">
-												<p>${ language.demand }.</p>
-												${ weekP }
-											</div>
-										`
-
-
-			document.querySelector('.product-images-container').insertAdjacentHTML('beforeend', sellImg)
-			document.querySelector('.product-images-container-mobile').insertAdjacentHTML('beforeend', sellImg)
+				<div class="demand_wrapper">
+					<p>${ language.demand }.</p>
+					${ weekP }
+				</div>
+			`
 
 			if (!document.querySelector('.demand_wrapper')) {
 				where.insertAdjacentHTML('beforebegin', demandText)
@@ -1729,10 +1818,57 @@ function _setExpectedItem(where) {
 	}, 200)
 }
 
-function _addGuarantees(where) {
+function addBadge() {
+	let badge = ''
+
+	switch (skuType) {
+		case 'KX':
+		case 'HG':
+		case 'VH':
+			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ languagesObj['en'].designed }><span>${ languagesObj['en'].designed }</span>`
+			break
+		case 'KB':
+		case '13':
+			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
+			break
+		default:
+			break
+	}
+
+	if (exceptionProduct) {
+		badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
+	}
+
+	if (badge) {
+		let sellImg = `
+				<div class="sell_wrapper eu">
+					${ badge }
+				</div>
+			`
+
+		if(!document.querySelector('.product-images-container div .eu')) {
+			document.querySelector('.product-images-container div').insertAdjacentHTML('beforeend', sellImg)
+		}
+		if(!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
+			document.querySelector('.product-images-container-mobile .product-image-wrapper div').insertAdjacentHTML('beforeend', sellImg)
+		}
+	}
+
+}
+function addSellBadge() {
+	let sellImg = `
+				<div class="sell_wrapper fire">
+					<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
+				</div>
+			`
+
+	document.querySelector('.product-images-container div')?.insertAdjacentHTML('beforeend', sellImg)
+	document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+}
+
+function _addGuarantees() {
 	let guaranteesArr = [
 		{ img: 'guarantee', text: language.guarantee },
-		{ img: 'made_in_eu', text: language.made },
 		{ img: 'trustpilot', text: language.superb },
 	]
 
@@ -1747,7 +1883,54 @@ function _addGuarantees(where) {
 										${ guaranteesArr.map(guaranteeMarkup).join('') }
 									</div>`
 
-	where.insertAdjacentHTML('afterend', guaranteesBlock)
+	document.querySelector('div.pt-3.pb-3').insertAdjacentHTML('afterend', guaranteesBlock)
+}
+
+function waitSkuGuarantee() {
+	let skuGuarantee = setInterval(() => {
+		if (document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
+			clearInterval(skuGuarantee)
+
+			let txt = ''
+			let imgName = ''
+			let isEU = false
+
+
+			const addEU = (text, imageName) =>
+				`<div class="guarantee EU">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ imageName }.svg" alt="${ text }">
+				<p>${ text }</p>
+			</div>`
+
+			switch (skuType) {
+				case 'KX':
+				case 'HG':
+				case 'VH':
+					txt = languagesObj['en'].designed
+					imgName = 'designed_eu'
+					isEU = true
+					break
+				case 'KB':
+				case '13':
+					txt = language.made
+					imgName = 'made_in_eu'
+					isEU = true
+					break
+				default:
+					break
+			}
+
+			if (exceptionProduct) {
+				txt = language.made
+				isEU = true
+				imgName = 'made_in_eu'
+			}
+
+			if (!document.querySelector('.EU') && isEU) {
+				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt, imgName))
+			}
+		}
+	}, 100)
 }
 
 function _addNotStyle() {
@@ -1828,17 +2011,6 @@ function _addNotStyle() {
 								<p class="join_wl">${ language.wl }</p>
 							</div>`
 
-			// if (device === 'mobile') {
-			// 	let custom = setInterval(() => {
-			// 		if (document.querySelector('.item_info .vat-indicator')) {
-			// 			clearInterval(custom)
-			// 			document.querySelector('.item_info .vat-indicator').insertAdjacentHTML('afterend', actionBtns)
-			// 		}
-			// 	}, 100)
-			// } else {
-			//
-			// }
-
 			document.querySelector('app-product-variations').insertAdjacentHTML('beforeend', actionBtns)
 
 			let isBtns = setInterval(() => {
@@ -1897,20 +2069,20 @@ function checkActiveImg() {
 }
 
 function initializeCarousel() {
-	let interval = setInterval(() => {
-		if (document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1] && typeof tns == 'function') {
-			clearInterval(interval)
-
-			document.querySelector('.product-accessories').addEventListener('click', e => {
-				if (e.target.matches('.add_btn')) {
-					e.target.previousElementSibling.click()
-					e.target.disabled = true
-				}
-			})
-
-			let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+	let outerInterval = setInterval(() => {
+		if (
+			document.querySelectorAll('#product-accessory-category [role="tabpanel"] .ng-star-inserted')[1]?.querySelector('img') &&
+			typeof tns == 'function'
+		) {
+			clearInterval(outerInterval)
 
 			if (!document.querySelector('.card-body .tns-outer')) {
+				let blackAccordion = document.querySelectorAll(`#product-accessory-category [role="tabpanel"] .ng-star-inserted`)[1]
+
+				blackAccordion.querySelectorAll('source').forEach((source, index) => {
+					blackAccordion.querySelectorAll('source + img')[index].src = source.getAttribute('lazyload')
+				})
+
 				tnsSettings(blackAccordion, 3, false, 8, false, 'accessories', true, 3)
 			}
 		}
