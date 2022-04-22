@@ -1838,7 +1838,7 @@ function _addGuarantees() {
 		{ img: 'guarantee', text: language.guarantee },
 		{ img: 'trustpilot', text: language.superb },
 	]
-	
+
 	let guaranteeMarkup = guarantee => `
 									<div class="guarantee">
 										<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ guarantee.img }.svg" alt="${ guarantee.img }">
@@ -1858,22 +1858,26 @@ function waitSkuGuarantee() {
 		if(document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
 			clearInterval(skuGuarantee)
 
-			const addEU = text =>
+			let txt = ''
+			let imgName = ''
+			let isEU = false
+
+
+			const addEU = (text, imgName) =>
 				`<div class="guarantee EU">
-				<img src="https://conversionratestore.github.io/projects/kingsbox/img/made_in_eu.svg" alt="${ text }">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${imgName}.svg" alt="${ text }">
 				<p>${ text }</p>
 			</div>`
-
-			let txt = ''
-			let isEU = false
 
 			switch (skuType) {
 				case 'KX':
 					txt = languagesObj['en'].designed
+					imgName = 'designed_eu'
 					isEU = true
 					break
 				case 'KB':
 					txt = language.made
+					imgName = 'made_in_eu'
 					isEU = true
 					break
 				default:
