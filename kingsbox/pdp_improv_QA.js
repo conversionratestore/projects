@@ -1893,6 +1893,7 @@ function waitSkuGuarantee() {
 			if (exceptionProduct) {
 				txt = language.made
 				isEU = true
+				imgName = 'made_in_eu'
 			}
 
 			if(!document.querySelector('.EU') && isEU) {
