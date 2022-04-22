@@ -437,16 +437,27 @@ const style = `
 										Item status: Expected 
 										=====================*/
 										
-									[data-style="expected"] .sell_wrapper,
-									[data-style="pre"] .sell_wrapper
-									 {
-										position: absolute;
-										top: 0;
-										left: 0;
-										display: flex;
+									.sell_wrapper {
 										align-items: center;
 										background-color: #EDC96D;	
 										padding: 5px 10px;
+										position: absolute;
+										top: 0;
+									}
+										
+									[data-style="expected"] .sell_wrapper.fire,
+									[data-style="pre"] .sell_wrapper.fire {																			
+										left: 0;
+										display: flex;										
+									}
+									
+									.product-container:not([data-style="not"]) .sell_wrapper.eu {															
+										right: 0;
+										display: flex;										
+									}
+									
+									.product-tag.action .sell_wrapper {
+										top: 29px;
 									}
 									
 									.sell_wrapper img {
@@ -1697,6 +1708,20 @@ function checkItemStatus(item, containerDataset) {
 	_addGuarantees()
 	waitSkuGuarantee()
 
+	if (itemStatus !== 'not') {
+		if (skuType === '') {
+			let isSKU = setInterval(() => {
+				if (skuType !== '') {
+					clearInterval(isSKU)
+
+					addBadge()
+				}
+			}, 100)
+		} else {
+			addBadge()
+		}
+	}
+
 	window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	switch (itemStatus) {
@@ -1736,8 +1761,9 @@ function _setExpectedItem(where) {
 		) {
 			clearInterval(interval)
 
-			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
+			addSellBadge()
 
+			let weeksNumber = document.querySelector('.indicator + p')?.innerText.replace(/[^0-9.-]/g, '')
 
 			let drawWeeks = true
 			let oneWeek = false
@@ -1785,19 +1811,6 @@ function _setExpectedItem(where) {
 				</div>
 			`
 
-			if (skuType === '') {
-				let isSKU = setInterval(() => {
-					if (skuType !== '') {
-						clearInterval(isSKU)
-
-						addBadge()
-					}
-				}, 100)
-			} else {
-				addBadge()
-			}
-
-
 			if (!document.querySelector('.demand_wrapper')) {
 				where.insertAdjacentHTML('beforebegin', demandText)
 			}
@@ -1806,7 +1819,7 @@ function _setExpectedItem(where) {
 }
 
 function addBadge() {
-	let badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt=${ language.sell }><span>${ language.sell }</span>`
+	let badge = ''
 
 	switch (skuType) {
 		case 'KX':
@@ -1826,14 +1839,27 @@ function addBadge() {
 		badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
 	}
 
-	let sellImg = `
-				<div class="sell_wrapper">
+	if (badge) {
+		let sellImg = `
+				<div class="sell_wrapper eu">
 					${ badge }
 				</div>
 			`
 
-	document.querySelector('.product-images-container')?.insertAdjacentHTML('beforeend', sellImg)
-	document.querySelector('.product-images-container-mobile')?.insertAdjacentHTML('beforeend', sellImg)
+		document.querySelector('.product-images-container .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+		document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+	}
+
+}
+function addSellBadge() {
+	let sellImg = `
+				<div class="sell_wrapper fire">
+					<img src="https://conversionratestore.github.io/projects/kingsbox/img/fire.svg" alt="hot sale"><span>${ language.sell }</span>
+				</div>
+			`
+
+	document.querySelector('.product-images-container .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+	document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
 }
 
 function _addGuarantees() {
@@ -1858,7 +1884,7 @@ function _addGuarantees() {
 
 function waitSkuGuarantee() {
 	let skuGuarantee = setInterval(() => {
-		if(document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
+		if (document.querySelector('.guarantees_wrapper .guarantee') && skuType) {
 			clearInterval(skuGuarantee)
 
 			let txt = ''
@@ -1868,7 +1894,7 @@ function waitSkuGuarantee() {
 
 			const addEU = (text, imageName) =>
 				`<div class="guarantee EU">
-				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${imageName}.svg" alt="${ text }">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${ imageName }.svg" alt="${ text }">
 				<p>${ text }</p>
 			</div>`
 
@@ -1896,7 +1922,7 @@ function waitSkuGuarantee() {
 				imgName = 'made_in_eu'
 			}
 
-			if(!document.querySelector('.EU') && isEU) {
+			if (!document.querySelector('.EU') && isEU) {
 				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt, imgName))
 			}
 		}
