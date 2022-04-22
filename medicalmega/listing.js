@@ -1153,7 +1153,7 @@ let html = `
             <ul class="category_popular d-flex">
               <li><a href="#">New Products!</a></li>
               <li><a href="#">Hand Sanitizing</a></li>
-              <li><a href="#">Wound care</a></li>
+              <li><a href="#">Wound Care</a></li>
               <li><a href="#">Gloves</a></li>
               <li><a href="#">Disinfectants</a></li>
               <li><a href="#">Ostomy</a></li>
@@ -1702,6 +1702,7 @@ window.onload = function() {
               })
               document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
                 e.stopImmediatePropagation()
+                search.helper.state.query = '';
                 document.querySelector('.ais-SearchBox-input').value = '';
                 document.querySelector('.algolia-autocomplete pre').innerHTML = '';
                 inputWord = false;
@@ -1730,6 +1731,7 @@ window.onload = function() {
                     e.stopImmediatePropagation();
                     document.querySelector('.ais-SearchBox-reset').classList.add('reset')
                     document.querySelector('.ais-SearchBox-reset').click();
+                    search.helper.state.query = '';
                     listCategories.forEach(item => {
                       if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                         countSearchStalled = 1;
@@ -1741,6 +1743,7 @@ window.onload = function() {
                             openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
                             item.classList.add('popular');
                             item.click();
+                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
                           }
                         })
                       }
@@ -1768,6 +1771,7 @@ window.onload = function() {
                 items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
                 items.forEach(item => alphabet.appendChild(item));
 
+              
               }
               if (window.location.pathname.includes('/category')) {
                 document.querySelectorAll('#list_categories li a').forEach(el => {
@@ -1782,6 +1786,11 @@ window.onload = function() {
                       })
                     }
                 }) 
+              } else if (window.location.pathname.includes('/search') && firstLoaded == true && !window.location.href.includes('staging_products')) {
+                search.helper.state.query = window.location.pathname.split('search/')[1];
+                document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1];
+                search.refresh();
+                firstLoaded = false
               } else {
                 firstLoaded = false
               }
@@ -1855,6 +1864,7 @@ window.onload = function() {
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
+    console.log(search.helper.state)
   })
 
   window.addEventListener('scroll', (e) => {
@@ -1880,6 +1890,7 @@ window.onload = function() {
 
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
     
+    search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
@@ -1991,7 +2002,7 @@ window.onload = function() {
 
       document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
         e.stopImmediatePropagation()
-        event.target.value = '';
+        search.helper.state.query = '';
         document.querySelector('.algolia-autocomplete pre').innerHTML = '';
         document.querySelector('.ais-SearchBox-input').value = '';
         inputWord = false;
