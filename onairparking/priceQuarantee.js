@@ -49,3 +49,17 @@ let mut = new MutationObserver(function (muts) {
     }
 })
 mut.observe(document, optionMut);
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': 'Exp: Lowest price quarantee',
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', 'lowest_price_quarantee', 'variant_1')
+	}
+}, 100)
