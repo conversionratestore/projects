@@ -1846,7 +1846,7 @@ function addBadge() {
 				</div>
 			`
 
-		document.querySelector('.product-images-container .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+		document.querySelector('.product-images-container div')?.insertAdjacentHTML('beforeend', sellImg)
 		document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
 	}
 
@@ -1858,7 +1858,7 @@ function addSellBadge() {
 				</div>
 			`
 
-	document.querySelector('.product-images-container .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
+	document.querySelector('.product-images-container div')?.insertAdjacentHTML('beforeend', sellImg)
 	document.querySelector('.product-images-container-mobile .product-image-wrapper div')?.insertAdjacentHTML('beforeend', sellImg)
 }
 
