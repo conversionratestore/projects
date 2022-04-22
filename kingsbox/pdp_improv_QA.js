@@ -1810,9 +1810,12 @@ function addBadge() {
 
 	switch (skuType) {
 		case 'KX':
+		case 'HG':
+		case 'VH':
 			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ languagesObj['en'].designed }><span>${ languagesObj['en'].designed }</span>`
 			break
 		case 'KB':
+		case '13':
 			badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
 			break
 		default:
@@ -1871,11 +1874,14 @@ function waitSkuGuarantee() {
 
 			switch (skuType) {
 				case 'KX':
+				case 'HG':
+				case 'VH':
 					txt = languagesObj['en'].designed
 					imgName = 'designed_eu'
 					isEU = true
 					break
 				case 'KB':
+				case '13':
 					txt = language.made
 					imgName = 'made_in_eu'
 					isEU = true
