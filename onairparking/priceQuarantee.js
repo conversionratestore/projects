@@ -41,7 +41,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('main.ant-layout-content.site-layout') != null && document.querySelector('.list') == null) {
+    if (document.querySelector('main.ant-layout-content.site-layout') != null && document.querySelector('.list') == null && window.location.pathname.includes('reservation/search')) {
         mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('beforebegin', html)
