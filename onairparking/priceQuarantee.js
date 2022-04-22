@@ -6,7 +6,6 @@ let style = `
     .list li {
         display: flex;
         align-items: center;
-        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
