@@ -41,6 +41,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
+	console.log('mut')
     if (document.querySelector('.list') == null && window.location.pathname.includes('reservation/search') && document.querySelector('#parkingat') == null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results') {
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('afterbegin', html)
