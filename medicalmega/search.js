@@ -1239,7 +1239,7 @@ window.onload = function() {
                             }
                         }
                     }
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
                             
                     return sugTemplate;
                 },
