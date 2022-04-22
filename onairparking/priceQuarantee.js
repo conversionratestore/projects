@@ -46,6 +46,7 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('beforebegin', html)
     }
+    mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
 
