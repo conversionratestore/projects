@@ -1866,9 +1866,9 @@ function waitSkuGuarantee() {
 			let isEU = false
 
 
-			const addEU = (text, imgName) =>
+			const addEU = (text, imageName) =>
 				`<div class="guarantee EU">
-				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${imgName}.svg" alt="${ text }">
+				<img src="https://conversionratestore.github.io/projects/kingsbox/img/${imageName}.svg" alt="${ text }">
 				<p>${ text }</p>
 			</div>`
 
@@ -1896,7 +1896,7 @@ function waitSkuGuarantee() {
 			}
 
 			if(!document.querySelector('.EU') && isEU) {
-				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt))
+				document.querySelector('.guarantees_wrapper .guarantee').insertAdjacentHTML('afterend', addEU(txt, imgName))
 			}
 		}
 	}, 100)
