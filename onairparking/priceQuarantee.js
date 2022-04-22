@@ -42,9 +42,12 @@ let optionMut = {
 
 let mut = new MutationObserver(function (muts) {
 	console.log('mut')
-    if (document.body != null && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.list') == null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results') {
+    if (document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.list') == null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results') {
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('afterbegin', html)
+    }
+    if (document.querySelector('.list') != null && window.location.pathname == '/') {
+        document.querySelector('.list').remove()
     }
     mut.observe(document, optionMut);
 })
