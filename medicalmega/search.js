@@ -580,6 +580,7 @@ let styles = `
     .aa-suggestion img {
         width: 42px;
         height: 42px;
+        border: 1px solid #eeeeee;
         margin-right: 10px;
         object-fit: contain;
     }
