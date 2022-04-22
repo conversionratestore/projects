@@ -600,7 +600,7 @@ let styles = `
         color: gray;
     }
     .aa-suggestion .price {
-        fonr-size: 11px
+        font-size: 11px
     }
     .ais-SearchBox-input:not(:focus) ~ .aa-dropdown-menu .aa-suggestion {
         display: none!important;
