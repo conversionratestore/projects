@@ -578,13 +578,29 @@ let styles = `
         background: 
     }
     .aa-suggestion img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         margin-right: 10px;
         object-fit: contain;
     }
     .aa-suggestion em {
         font-weight: 700;
+    }
+    .aa-suggestion .name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        height: 14px;
+    }
+    .aa-suggestion .item_num {
+        font-size: 10px;
+        margin-bottom: 5px;
+        color: gray;
+    }
+    .aa-suggestion .price {
+        fonr-size: 11px
     }
     .ais-SearchBox-input:not(:focus) ~ .aa-dropdown-menu .aa-suggestion {
         display: none!important;
@@ -1222,7 +1238,7 @@ window.onload = function() {
                             }
                         }
                     }
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
                             
                     return sugTemplate;
                 },
@@ -1390,17 +1406,7 @@ window.onload = function() {
 
                     if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
                         let element = document.querySelector('#manufacturer .ais-RefinementList-list');
-
-                    //     if (document.querySelectorAll('#manufacturer .ais-RefinementList-item').length > 7) {
-                            // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-                            //     element.setAttribute('class','ais-RefinementList-list scrolled')
-                            // } else {
-                            //     element.setAttribute('class','ais-RefinementList-list scroll')
-                            // }
                             element.addEventListener('scroll', () => scrolled(element));
-                    //     } else {
-                    //         element.setAttribute('class','ais-RefinementList-list scrolled')
-                    //     }
                     }
                     if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                         document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
