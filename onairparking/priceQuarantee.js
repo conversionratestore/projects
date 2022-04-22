@@ -47,7 +47,7 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin', style)
         document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('afterbegin', html)
     }
-    if (document.querySelector('.list') != null && window.location.pathname == '/') {
+    if (document.querySelector('.list') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
         console.log('true home')
         document.querySelector('.list').remove()
     }
