@@ -1606,7 +1606,7 @@ window.onload = function() {
       templates: {
         item: (data) => {
           let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters')">
+              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters','Filters')">
                 <span class="check"></span>
                 <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
               </label>
@@ -1630,7 +1630,7 @@ window.onload = function() {
       templates: {
         item: (data) => {
           let checkbox = `
-              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
+              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters','Filters')">
                   <span class="check"></span>
                   <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
               </label>
@@ -1877,6 +1877,7 @@ window.onload = function() {
                   pushDataLayer(actionDataLayer, labelDataLayer);
                 })
               })
+            
             }
         },
     },
