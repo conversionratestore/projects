@@ -1618,19 +1618,18 @@ window.onload = function() {
       attribute: 'price_group',
       limit: 10,
       sortBy: ['name:asc'],
+      transformItems(items) {
+        return items.map(item => ({
+          ...item,
+          label: item.label.includes(' - ') ? `$${item.value.split(' - ')[0]} - $${item.value.split(' - ')[1]}` : `> $${item.value.split('> ')[1]}`,
+        }));
+      },
       templates: {
         item: (data) => {
-          let sltPrice = '';
-          if (data.value.includes(' - ')) {
-              sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-          }  else {
-              sltPrice = `> $${data.value.split('> ')[1]}`;
-          }
-
           let checkbox = `
               <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
                   <span class="check"></span>
-                  <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+                  <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
               </label>
           `;
       
@@ -1681,7 +1680,6 @@ window.onload = function() {
         'categories.lvl4',
       ],
       limit: 150, 
-      // rootPath: "Ostomy"
     }),
     instantsearch.widgets.currentRefinements({
       container: "#current-refinements",
