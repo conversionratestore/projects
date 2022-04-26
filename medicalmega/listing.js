@@ -1340,6 +1340,7 @@ function toggleSearch(boolean) {
     document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
     document.querySelector('#breadcrumbs ul').style.display = 'none';
     document.querySelector('.listing_title').style.display = 'none';
+    document.querySelector('#current-refinements').style.display = 'none';
   } else {
     document.querySelector('#hits').style = '';
     document.querySelector('#stats-container').style = '';
@@ -1347,6 +1348,7 @@ function toggleSearch(boolean) {
     document.querySelector('.listing_suggestion').innerHTML = '';
     document.querySelector('#breadcrumbs ul').style = '';
     document.querySelector('.listing_title').style = '';
+    document.querySelector('#current-refinements').style = '';
     document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
   }
 }
