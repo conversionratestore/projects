@@ -2126,8 +2126,11 @@ window.onload = function() {
       document.querySelector(`.listing_popular .ostomy ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[1].hits[i])}</li>`)
       document.querySelector(`.listing_popular .wound-care ul`).insertAdjacentHTML('beforeend',`<li>${initHits(res[2].hits[i])}</li>`)
     }
-    document.querySelectorAll('.listing_popular .btn').forEach(el => {
+    document.querySelectorAll('.listing_popular .btn_white').forEach(el => {
       el.addEventListener('click', (e) => {
+        labelDataLayer = `el.dataset.category`;
+        actionDataLayer = `Click on Show More}`;
+        pushDataLayer(actionDataLayer, labelDataLayer)
         document.querySelectorAll('#list_categories li a').forEach(el => {
           if (e.target.dataset.category.includes(el.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase())) {
             el.classList.add('home-popular');
