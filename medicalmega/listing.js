@@ -1079,6 +1079,38 @@ border-radius: 100px;
   margin: 0 auto 33px;
   display: block;
 }
+#current-refinements li {
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ais-CurrentRefinements-list {
+  display: flex;
+  justify-content: flex-end;
+}
+.ais-CurrentRefinements-category {
+  padding: 4px 6px;
+  line-height: 1;
+  border-radius: 40px;
+  background-color: #e9ebec;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+.ais-CurrentRefinements-label {
+  margin: 0 5px 0 15px;
+}
+.ais-CurrentRefinements-delete {
+  padding-left: 4px;
+  cursor: pointer;
+}
+.ais-CurrentRefinements-delete:hover {
+  color: #bf0400;
+}
+#stats-container {
+  white-space: nowrap;
+}
   @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
@@ -1190,6 +1222,7 @@ let html = `
             <h2 class="listing_title">All Products</h2>
             <div class="flex-end-between">
               <p class="c-gray" id="stats-container"></p>
+              <div id="current-refinements"></div>
             </div>
             <div class="listing_content"> 
               <ol class="listing_suggestion"></ol>
@@ -1596,7 +1629,24 @@ window.onload = function() {
       limit: 150, 
       // rootPath: "Ostomy"
     }),
-    
+    instantsearch.widgets.currentRefinements({
+      container: "#current-refinements",
+      excludedAttributes: [
+        'categories.lvl0',
+        'categories.lvl1',
+        'categories.lvl2',
+        'categories.lvl3',
+        'categories.lvl4',
+        'query',
+      ],
+      transformItems(items) {
+        console.log(items)
+        return items.map(item => ({
+          ...item,
+          label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
+        }));
+      }
+    }),
   ]); 
 
   search.start();
