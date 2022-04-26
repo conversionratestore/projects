@@ -1366,7 +1366,7 @@ const getSKU = async data => {
 
 		skuType = itemSKU[0] + itemSKU[1]
 
-		console.log(itemSKU)
+		
 
 
 	} catch (e) {
