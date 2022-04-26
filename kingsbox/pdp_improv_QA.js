@@ -6,6 +6,10 @@ const style = `
 										General style
 										============= */
 										
+										.footer-wrapper {
+											margin-top: 30px;
+										}
+										
 										.product-actions .mr-2 {
 											display: none;
 										}
@@ -523,7 +527,7 @@ const style = `
 										Item status: Not in stock 
 										============================ */
 										.custom_menu_wrapper {
-											padding-bottom: 150px;
+											padding-bottom: 120px;
 											display: none;
 										}
 										
@@ -1815,6 +1819,8 @@ function _setExpectedItem(where) {
 }
 
 function addBadge() {
+	console.log('addBadge working')
+
 	let badge = ''
 
 	switch (skuType) {
@@ -1835,6 +1841,8 @@ function addBadge() {
 		badge = `<img src="https://conversionratestore.github.io/projects/kingsbox/img/EU.svg" alt=${ language.made }><span>${ language.made }</span>`
 	}
 
+	console.log('badge', badge)
+
 	if (badge) {
 		let sellImg = `
 				<div class="sell_wrapper eu">
@@ -1842,15 +1850,17 @@ function addBadge() {
 				</div>
 			`
 
+
+
 		if(!document.querySelector('.product-images-container div .eu')) {
-			document.querySelector('.product-images-container div').insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
 		if(!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
-			document.querySelector('.product-images-container-mobile .product-image-wrapper div').insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container-mobile .product-image-wrapper div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
 	}
-
 }
+
 function addSellBadge() {
 	let sellImg = `
 				<div class="sell_wrapper fire">
