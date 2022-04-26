@@ -1533,21 +1533,21 @@ window.onload = function() {
       sortBy: ['name:asc'],
       templates: {
         item: (data) => {
-            let sltPrice = '';
-            if (data.value.includes(' - ')) {
-                sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
-            }  else {
-                sltPrice = `> $${data.value.split('> ')[1]}`;
-            }
+          let sltPrice = '';
+          if (data.value.includes(' - ')) {
+              sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
+          }  else {
+              sltPrice = `> $${data.value.split('> ')[1]}`;
+          }
 
-            let checkbox = `
-                <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
-                    <span class="check"></span>
-                    <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
-                </label>
-            `;
-        
-            return checkbox
+          let checkbox = `
+              <label class="mt-16 align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
+                  <span class="check"></span>
+                  <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
+              </label>
+          `;
+      
+          return checkbox
         },
       },
     }),
@@ -1729,9 +1729,14 @@ window.onload = function() {
                   el.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopImmediatePropagation();
-                    document.querySelector('.ais-SearchBox-reset').classList.add('reset')
-                    document.querySelector('.ais-SearchBox-reset').click();
-                    search.helper.state.query = '';
+                    if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
+                      search.helper.state.query = '';
+                      // document.querySelector('#form-search .ais-SearchBox-input').value = '';
+                      // document.querySelector('#form-search pre').innerHTML = '';
+                      search.refresh()
+                      // document.querySelector('.ais-SearchBox-reset').classList.add('reset')
+                      // document.querySelector('.ais-SearchBox-reset').click();
+                    }
                     listCategories.forEach(item => {
                       if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
                         countSearchStalled = 1;
@@ -1861,6 +1866,7 @@ window.onload = function() {
       document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     }
     if (inputWord == false) {
+      search.helper.state.query = '';
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
