@@ -1377,6 +1377,8 @@ function toggleSearch(boolean) {
 window.onload = function() {
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
+  
+  startStuff();
 
   document.querySelector('.header').before(document.querySelector('#top'));
   document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
