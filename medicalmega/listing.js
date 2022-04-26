@@ -1936,13 +1936,6 @@ window.onload = function() {
     document.querySelector('.ais-ClearRefinements-button').click();
 
     toggleSearch(true)
-  //   search.addWidgets([
-  //     instantsearch.widgets.configure({
-  //       hitsPerPage: '12',
-  //       facetFilters: ["*"],
-  //       query: document.querySelector('#form-search pre').value
-  //     }),
-  //   ])
 
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
@@ -1980,9 +1973,7 @@ window.onload = function() {
       labelDataLayer = 'Advanced Search';
       pushDataLayer(actionDataLayer, labelDataLayer)
     })
-    // input.addEventListener('input', (e) => {
-    //   return e.target.value.replace(/\s/g, "");
-    // })
+
     input.addEventListener('keypress', (e) => {
       if (e.keyCode == '13') {
         document.querySelector('.advanced-search .btn').click();
