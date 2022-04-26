@@ -1848,8 +1848,12 @@ window.onload = function() {
               if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                   document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
                       console.log(e.target.innerText)
+                      actionDataLayer = `Click on ${e.target.innerText} button`;
+                      labelDataLayer = 'Filters';
+                      pushDataLayer(actionDataLayer, labelDataLayer);
                       document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
-                      e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+                      e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): '';
+                    
                   })
               }
               if (document.querySelector('#clear-refinement button') != null) {
