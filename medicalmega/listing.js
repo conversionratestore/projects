@@ -1530,7 +1530,7 @@ window.onload = function() {
       container: '#price_group',
       attribute: 'price_group',
       limit: 10,
-      sortBy: ['isRefined:asc'],
+      sortBy: ['name:asc'],
       templates: {
         item: (data) => {
             let sltPrice = '';
