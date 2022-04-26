@@ -222,7 +222,6 @@ let startfunkCarid = setInterval(() => {
             background-size: contain;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
             z-index: 2;
-            border: 1px solid red;
         }
 
         .tooltip_bar > .tooltip_svg{
