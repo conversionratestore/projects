@@ -6,6 +6,10 @@ const style = `
 										General style
 										============= */
 										
+										.footer-wrapper {
+											margin-top: 30px;
+										}
+										
 										.product-actions .mr-2 {
 											display: none;
 										}
@@ -523,7 +527,7 @@ const style = `
 										Item status: Not in stock 
 										============================ */
 										.custom_menu_wrapper {
-											padding-bottom: 150px;
+											padding-bottom: 120px;
 											display: none;
 										}
 										
@@ -1365,10 +1369,6 @@ const getSKU = async data => {
 		}
 
 		skuType = itemSKU[0] + itemSKU[1]
-
-		
-
-
 	} catch (e) {
 		console.error(e)
 	}
@@ -1458,54 +1458,55 @@ const getSimilar = async data => {
 
 						let randomItems = randomize(filteredArr, randomItemsNumber)
 
-						let divClass = isSimilarItem ? 'similar_exist' : ''
+						if(randomItems.length > 0) {
+							let divClass = isSimilarItem ? 'similar_exist' : ''
 
-						const similarProducts = `
+							const similarProducts = `
 							<div class="similar_products right ${ divClass }">
 								<p class="products_title">${ language.like }</p>
 								${ randomItems.map(productToHtml).join('') }
 							</div>`
 
-						const similarProductsLeft = `
+							const similarProductsLeft = `
 									<div class="similar_products left ${ divClass }">
 										<p class="products_title">${ language.like }</p>
 										${ randomItems.map(productToHtml).join('') }
 									</div>`
 
+							document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
+							document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
 
-						document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
-						document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
-
-						let isSimilarRight = setInterval(() => {
-							if (document.querySelector('.similar_products.right')) {
-								clearInterval(isSimilarRight)
-								document.querySelector('.similar_products.right').addEventListener('click', e => {
-									if (e.target.closest('.my_product')) {
-										window.dataLayer = window.dataLayer || []
-										dataLayer.push({
-											'event': 'event-to-ga',
-											'eventCategory': 'Exp: PDP improvemnets ' + device,
-											'eventAction': 'You may also like',
-										})
-									}
-								})
-							}
-						}, 200)
-						let isSimilarLeft = setInterval(() => {
-							if (document.querySelector('.similar_products.left')) {
-								clearInterval(isSimilarLeft)
-								document.querySelector('.similar_products.left').addEventListener('click', e => {
-									if (e.target.closest('.my_product')) {
-										window.dataLayer = window.dataLayer || []
-										dataLayer.push({
-											'event': 'event-to-ga',
-											'eventCategory': 'Exp: PDP improvemnets ' + device,
-											'eventAction': 'You may also like',
-										})
-									}
-								})
-							}
-						}, 200)
+							let isSimilarRight = setInterval(() => {
+								if (document.querySelector('.similar_products.right')) {
+									clearInterval(isSimilarRight)
+									document.querySelector('.similar_products.right').addEventListener('click', e => {
+										if (e.target.closest('.my_product')) {
+											window.dataLayer = window.dataLayer || []
+											dataLayer.push({
+												'event': 'event-to-ga',
+												'eventCategory': 'Exp: PDP improvemnets ' + device,
+												'eventAction': 'You may also like',
+											})
+										}
+									})
+								}
+							}, 200)
+							let isSimilarLeft = setInterval(() => {
+								if (document.querySelector('.similar_products.left')) {
+									clearInterval(isSimilarLeft)
+									document.querySelector('.similar_products.left').addEventListener('click', e => {
+										if (e.target.closest('.my_product')) {
+											window.dataLayer = window.dataLayer || []
+											dataLayer.push({
+												'event': 'event-to-ga',
+												'eventCategory': 'Exp: PDP improvemnets ' + device,
+												'eventAction': 'You may also like',
+											})
+										}
+									})
+								}
+							}, 200)
+						}
 					}
 				}, 100)
 			})
@@ -1516,6 +1517,7 @@ const getSimilar = async data => {
 
 (async () => {
 	const data = await fetchURL()
+
 	await getSKU(data)
 	await getAvailable(data)
 	await getSimilar(data)
@@ -1839,15 +1841,16 @@ function addBadge() {
 				</div>
 			`
 
+
 		if(!document.querySelector('.product-images-container div .eu')) {
-			document.querySelector('.product-images-container div').insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
 		if(!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
-			document.querySelector('.product-images-container-mobile .product-image-wrapper div').insertAdjacentHTML('beforeend', sellImg)
+			document.querySelector('.product-images-container-mobile .product-image-wrapper div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
 	}
-
 }
+
 function addSellBadge() {
 	let sellImg = `
 				<div class="sell_wrapper fire">
