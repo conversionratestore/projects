@@ -1725,37 +1725,6 @@ window.onload = function() {
                     alphabet = document.querySelector('.alphabet'); //alphabet
                     alphabet.innerHTML = '';
 
-                document.querySelectorAll('.category_popular li').forEach((el) => {
-                  el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
-                      search.helper.state.query = '';
-                      // document.querySelector('#form-search .ais-SearchBox-input').value = '';
-                      // document.querySelector('#form-search pre').innerHTML = '';
-                      search.refresh()
-                      // document.querySelector('.ais-SearchBox-reset').classList.add('reset')
-                      // document.querySelector('.ais-SearchBox-reset').click();
-                    }
-                    listCategories.forEach(item => {
-                      if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
-                        countSearchStalled = 1;
-                        alphabet.querySelectorAll('li').forEach(letter => {
-                          letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                          if (letter.innerText == el.innerText[0]) {
-                            letter.classList.add('active');
-                            
-                            openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
-                            item.classList.add('popular');
-                            item.click();
-                            search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
-                          }
-                        })
-                      }
-                    })
-                  })
-                })
-
                 listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
 
                 litterAlphabet = litterAlphabet.filter((thing, index, self) =>
@@ -2240,6 +2209,38 @@ let mut = new MutationObserver(function (muts) {
         e.target.parentElement.querySelector('.active').classList.remove('active');
         e.target.classList.add('active');
         openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
+      })
+    })
+
+    document.querySelectorAll('.category_popular li').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        // search.helper.state.hierarchicalFacetsRefinements["categories.lvl0"] = e.target.innerText
+        if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
+          search.helper.state.query = '';
+          // document.querySelector('#form-search .ais-SearchBox-input').value = '';
+          // document.querySelector('#form-search pre').innerHTML = '';
+          search.refresh()
+          // document.querySelector('.ais-SearchBox-reset').classList.add('reset')
+          // document.querySelector('.ais-SearchBox-reset').click();
+        }
+        document.querySelectorAll('#list_categories li').forEach(item => {
+          if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
+            countSearchStalled = 1;
+            document.querySelectorAll('.alphabet li').forEach(letter => {
+              letter.classList.contains('active') ? letter.classList.remove('active') : '';
+              if (letter.innerText == el.innerText[0]) {
+                letter.classList.add('active');
+                
+                openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
+                item.classList.add('popular');
+                item.click();
+                // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
+              }
+            })
+          }
+        })
       })
     })
   }
