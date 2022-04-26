@@ -303,6 +303,12 @@ let startfunkCarid = setInterval(() => {
         }
     }
 
+      @media (max-width: 320px) {
+          .purchase_flow > div > .hover_block > ul li p:first-child{
+            font-size: 10px;
+          }
+      }
+
 </style>
 
 `
