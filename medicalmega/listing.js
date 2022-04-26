@@ -1084,26 +1084,29 @@ border-radius: 100px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
 }
 .ais-CurrentRefinements-list {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 .ais-CurrentRefinements-category {
-  padding: 4px 6px;
+  padding: 5px 8px;
   line-height: 1;
   border-radius: 40px;
   background-color: #e9ebec;
   display: flex;
   align-items: center;
-  margin-left: 5px;
+  margin: 2.5px 0 2.5px 5px;
 }
 .ais-CurrentRefinements-label {
-  margin: 0 5px 0 15px;
+  margin: 4px 5px 4px 15px;
 }
 .ais-CurrentRefinements-delete {
   padding-left: 4px;
   cursor: pointer;
+  line-height: 1;
 }
 .ais-CurrentRefinements-delete:hover {
   color: #bf0400;
