@@ -1335,6 +1335,21 @@ function scrolled(element) {
       element.setAttribute('class','ais-RefinementList-list scroll')
   }
 }
+let interval = null;    
+
+function startStuff() {
+  interval = setInterval(() => {
+    if (window.location.href != currentPath) {
+      document.querySelector('.listing_popular').style.display = 'none';
+    } else {
+      document.querySelector('.listing_popular').style = '';
+    }
+  });
+}
+
+function stopStuff() {
+  clearInterval(interval);
+}
 
 function toggleSearch(boolean) {
   if (boolean == false) {
@@ -1344,6 +1359,8 @@ function toggleSearch(boolean) {
     document.querySelector('#breadcrumbs ul').style.display = 'none';
     document.querySelector('.listing_title').style.display = 'none';
     document.querySelector('#current-refinements').style.display = 'none';
+    document.querySelector('.listing_popular').style.display = 'none';
+    stopStuff()
   } else {
     document.querySelector('#hits').style = '';
     document.querySelector('#stats-container').style = '';
@@ -1352,6 +1369,7 @@ function toggleSearch(boolean) {
     document.querySelector('#breadcrumbs ul').style = '';
     document.querySelector('.listing_title').style = '';
     document.querySelector('#current-refinements').style = '';
+    startStuff()
     document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
   }
 }
@@ -1646,9 +1664,17 @@ window.onload = function() {
       ],
       transformItems(items) {
         console.log(items)
+        // let sltPrice = ``;
+        // if (items.value.includes(' - ')) {
+        //   sltPrice = `$${items.value.split(' - ')[0]} - $${items.value.split(' - ')[1]}`
+        // }  else {
+        //   sltPrice = `> $${items.value.split('> ')[1]}`;
+        // }
+        // console.log(sltPrice)
         return items.map(item => ({
           ...item,
           label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
+          // refinements: item.refinements.label.includes
         }));
       }
     }),
@@ -2135,15 +2161,7 @@ window.onload = function() {
       })
     })
   });
-
-  setInterval(() => {
-    if (window.location.href != currentPath) {
-      document.querySelector('.listing_popular').style.display = 'none';
-    } else {
-      document.querySelector('.listing_popular').style = '';
-    }
-  }) 
-};
+ };
 
 let optionMut = {
   childList: true,
