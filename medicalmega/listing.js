@@ -1411,7 +1411,11 @@ window.onload = function() {
 
   document.querySelector('.header').before(document.querySelector('#top'));
   document.querySelector('#top img').src = 'https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg';
-
+  document.querySelector('#top').addEventListener('click', (e) => {
+    actionDataLayer = `Click on Top button`;
+    labelDataLayer = `Footer`;
+    pushDataLayer(actionDataLayer,labelDataLayer);
+  })
   document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
   let btnCategory = document.querySelector('.all_category');
@@ -1420,7 +1424,6 @@ window.onload = function() {
   btnCategory.addEventListener('click', (e) => {
     if (e.target.matches('.all_category')) {
       document.querySelector('#clear-refinements button').click();
-      console.log(e.target)
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -2303,7 +2306,6 @@ let mut = new MutationObserver(function (muts) {
         actionDataLayer = `Click on plus button`;
         labelDataLayer = `Card Product`;
         pushDataLayer(actionDataLayer,labelDataLayer);
-        console.log(el.nextElementSibling.querySelector('.pr'))
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
       })
       el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
@@ -2328,6 +2330,14 @@ let mut = new MutationObserver(function (muts) {
               e.target.value = 1;
           }
       }, true)
+    })
+    document.querySelectorAll('.card_name').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        actionDataLayer = `Click on Card Product`;
+        labelDataLayer = `Card Product`;
+        pushDataLayer(actionDataLayer,labelDataLayer);
+      })
     })
   }
   mut.observe(document, optionMut);
