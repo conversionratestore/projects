@@ -282,7 +282,8 @@ let startfunkCarid = setInterval(() => {
         }
 
         .arrow_down_var.tooltip_bar::after{
-            transform: rotateX(180deg);
+            content: "";
+            transform: rotateZ(180deg);
         }
 
         .sticky_wrapp{
