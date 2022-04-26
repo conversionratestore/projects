@@ -1458,54 +1458,57 @@ const getSimilar = async data => {
 
 						let randomItems = randomize(filteredArr, randomItemsNumber)
 
-						let divClass = isSimilarItem ? 'similar_exist' : ''
+						console.log('randomItems', randomItems)
 
-						const similarProducts = `
+						if(randomItems.length > 0) {
+							let divClass = isSimilarItem ? 'similar_exist' : ''
+
+							const similarProducts = `
 							<div class="similar_products right ${ divClass }">
 								<p class="products_title">${ language.like }</p>
 								${ randomItems.map(productToHtml).join('') }
 							</div>`
 
-						const similarProductsLeft = `
+							const similarProductsLeft = `
 									<div class="similar_products left ${ divClass }">
 										<p class="products_title">${ language.like }</p>
 										${ randomItems.map(productToHtml).join('') }
 									</div>`
 
+							document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
+							document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
 
-						document.querySelector('.product-layout-1 .col-xl-4').insertAdjacentHTML('beforeend', similarProducts)
-						document.querySelector('.product-recommendations:not(.custom_recommendations)').insertAdjacentHTML('afterend', similarProductsLeft)
-
-						let isSimilarRight = setInterval(() => {
-							if (document.querySelector('.similar_products.right')) {
-								clearInterval(isSimilarRight)
-								document.querySelector('.similar_products.right').addEventListener('click', e => {
-									if (e.target.closest('.my_product')) {
-										window.dataLayer = window.dataLayer || []
-										dataLayer.push({
-											'event': 'event-to-ga',
-											'eventCategory': 'Exp: PDP improvemnets ' + device,
-											'eventAction': 'You may also like',
-										})
-									}
-								})
-							}
-						}, 200)
-						let isSimilarLeft = setInterval(() => {
-							if (document.querySelector('.similar_products.left')) {
-								clearInterval(isSimilarLeft)
-								document.querySelector('.similar_products.left').addEventListener('click', e => {
-									if (e.target.closest('.my_product')) {
-										window.dataLayer = window.dataLayer || []
-										dataLayer.push({
-											'event': 'event-to-ga',
-											'eventCategory': 'Exp: PDP improvemnets ' + device,
-											'eventAction': 'You may also like',
-										})
-									}
-								})
-							}
-						}, 200)
+							let isSimilarRight = setInterval(() => {
+								if (document.querySelector('.similar_products.right')) {
+									clearInterval(isSimilarRight)
+									document.querySelector('.similar_products.right').addEventListener('click', e => {
+										if (e.target.closest('.my_product')) {
+											window.dataLayer = window.dataLayer || []
+											dataLayer.push({
+												'event': 'event-to-ga',
+												'eventCategory': 'Exp: PDP improvemnets ' + device,
+												'eventAction': 'You may also like',
+											})
+										}
+									})
+								}
+							}, 200)
+							let isSimilarLeft = setInterval(() => {
+								if (document.querySelector('.similar_products.left')) {
+									clearInterval(isSimilarLeft)
+									document.querySelector('.similar_products.left').addEventListener('click', e => {
+										if (e.target.closest('.my_product')) {
+											window.dataLayer = window.dataLayer || []
+											dataLayer.push({
+												'event': 'event-to-ga',
+												'eventCategory': 'Exp: PDP improvemnets ' + device,
+												'eventAction': 'You may also like',
+											})
+										}
+									})
+								}
+							}, 200)
+						}
 					}
 				}, 100)
 			})
