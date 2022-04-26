@@ -233,7 +233,7 @@ let startfunkCarid = setInterval(() => {
         .hover_block{
             pointer-events: unset;
             margin-top: 8px;
-            background: #F8F8F8;
+            background: rgba(248, 248, 248, 0.95);
             opacity: 0;
             position: absolute;
             transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
