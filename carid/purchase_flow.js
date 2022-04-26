@@ -449,6 +449,7 @@ let startfunkCarid = setInterval(() => {
               allowHTML: true,
               followCursor: true,
               arrow: false,
+              placement: "bottom",
               onShow(instance) {
                 console.log(`show`)
                 timerEventDesk(document.querySelector(".purchase_flow button.now_pay_btn"), "start")
