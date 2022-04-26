@@ -1444,14 +1444,17 @@ window.onload = function() {
     }
   }
 
-  function toggleActive(getData) {
-    console.log(getData);
+  function toggleActive(getData,action) {
     if (document.querySelector(`[data-item=${getData}]`)) {
         document.querySelector(`[data-item=${getData}]`).classList.toggle('active')
         if (getData == 'advanced-search') {
             document.querySelector(`[data-button=${getData}]`).classList.toggle('active');
             document.querySelector(`.nav_category`).classList.remove('active');
-            actionDataLayer = `Click on advanced search`;
+            if (action != 'close') {
+              actionDataLayer = `Click on advanced search`;
+            } else {
+              actionDataLayer = `Click on cross button`;
+            }
             labelDataLayer = `Header`;
             pushDataLayer(actionDataLayer,labelDataLayer);
         }
@@ -1722,7 +1725,7 @@ window.onload = function() {
 
   closeBtn.forEach(item => {
     item.addEventListener('click', (e) => {
-      toggleActive(item.getAttribute('data-close'));
+      toggleActive(item.getAttribute('data-close'),'close');
       document.querySelectorAll('.select_option p.active').forEach(el => el.classList.remove('active'))
       
       document.querySelector('.select_category ul li p').classList.add('active');
