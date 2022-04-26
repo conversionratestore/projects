@@ -192,6 +192,14 @@ let startfunkCarid = setInterval(() => {
         background-color: #3157ab;
     }
 
+            .prod_add{
+          width: 100% !important;
+        }
+
+        .prod-slct:not(.-wide)+.prod_add{
+          width: 100% !important;
+        }
+
     @media (max-width: 768px) {
         .tooltip_bar{
             background: #F8F8F8;
