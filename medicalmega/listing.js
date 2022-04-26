@@ -1882,6 +1882,15 @@ window.onload = function() {
                 })
               })
             
+              if (document.querySelector('.ais-CurrentRefinements-delete')!= null) {
+                document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
+                  item.addEventListener('click', (e) => {
+                    actionDataLayer = `Click on cross button`;
+                    labelDataLayer = 'Current Refinements';
+                    pushDataLayer(actionDataLayer, labelDataLayer);
+                  })
+                })
+              }
             }
         },
     },
