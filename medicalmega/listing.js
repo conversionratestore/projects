@@ -613,10 +613,10 @@ border-radius: 100px;
     font-size: 18px;
     line-height: 120%; }
   #clear-refinements {
-    margin-top: 34px;
-    width: 100%;
-    opacity: 0;
-    pointer-events: none;
+    margin-bottom: 34px;
+    // width: 100%;
+    // opacity: 0;
+    // pointer-events: none;
   }
   .filter .select_drop {
     padding: 10px 0; }
@@ -979,12 +979,12 @@ border-radius: 100px;
   }
   .ais-ClearRefinements-button {
     background-color: #e9ebec;
-    padding: 16px;
+    padding: 5px 8px;
     border-radius: 40px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 100%;
+    font-size: 12px;
     justify-content: space-between;
   }
   .ais-ClearRefinements-button:hover svg {
@@ -1204,7 +1204,10 @@ let html = `
         <nav id="breadcrumbs"></nav>
         <div class="flex-wrap w-100">
           <div class="filter">
+            <div class="flex-center-between">
               <h3 class="filter_title">Filters</h3>
+              <div id="clear-refinements"></div>
+            </div>
             
             <div class="select_filter active">
               <div class="select_item">
@@ -1219,7 +1222,6 @@ let html = `
               <div class="select_drop" id="price_group"></div>
             </div>
             
-            <div id="clear-refinements"></div>
           </div>
           <div class="listing_wrapper">
             <div class="listing_popular"></div>
@@ -1247,9 +1249,9 @@ const searchClient = algoliasearch(
 );
 
 const search = instantsearch({
+  searchClient,
   indexName: 'staging_products',
   routing: true,
-  searchClient,
 
   // initialUiState: {
   //   indexName: {
@@ -1371,7 +1373,6 @@ function toggleSearch(boolean) {
     document.querySelector('.listing_title').style = '';
     document.querySelector('#current-refinements').style = '';
     startStuff()
-    document.querySelector('#clear-refinements button') != null ? document.querySelector('#clear-refinements button').click() : '';
   }
 }
 
@@ -1423,6 +1424,7 @@ window.onload = function() {
   //all categories
   btnCategory.addEventListener('click', (e) => {
     if (e.target.matches('.all_category')) {
+      document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
       document.querySelector('#clear-refinements button').click();
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
@@ -1473,17 +1475,21 @@ window.onload = function() {
 
 
     for (let key in categoriesLvl0) {
-      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><p data-category="categories.lvl0:${key}">${key}</p><ul></ul></li>`)
+      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}" data-category="categories.lvl0:${key}">${key}</a><ul></ul></li>`)
       document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
       <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
         <ul></ul>
       </li>`)
     }
-    // for (let key1 in categoriesLvl1) {
-    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-    //     if (key1.toLowerCase().includes(el.innerText.toLowerCase())) {
-    //       console.log()
-    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl1"><p data-item="${key1}" data-category="categories.lvl1:${key1}">${key1.split('>')[1]}</p><ul class=""></ul></li>`)
+    // for (let key in categoriesLvl1) {
+    //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
+    //     if (key.toLowerCase().includes(el.innerText.toLowerCase())) {
+    //       let spt = key.split(' > ')
+    //       let option = ``;
+    //       for (let i = 0; i < spt.length; i++) {
+    //         option += `staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${spt[i]}&`;
+    //       }
+    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${option}" data-category="categories.lvl1:${key}">${key}</a><ul></ul></li>`)
     //     }
     //   })
     // }
@@ -1644,7 +1650,7 @@ window.onload = function() {
     instantsearch.widgets.clearRefinements({
       container: '#clear-refinements',
       templates: {
-        resetLabel: `Clear Filters <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
+        resetLabel: `Clear All Filters <svg width="13" height="13" fill="#666666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" /></svg>`,
       },
       excludedAttributes: [
         'categories.lvl0',
@@ -1654,7 +1660,6 @@ window.onload = function() {
         'categories.lvl4',
       ],
     }),
-
     instantsearch.widgets.hierarchicalMenu({
       container: `#list_categories`,
       attributes: [
@@ -1745,12 +1750,6 @@ window.onload = function() {
             if (isSearchStalled === false ) {
               console.log(isSearchStalled)
               console.log(facetCategories)
-              instantsearch({
-                indexName: 'staging_products',
-                routing: false,
-                searchClient,
-              
-              });
               if (document.querySelector('#price_group li') != null) {
                 let pricesContainer = document.querySelector('#price_group ul'),
                 para = document.querySelectorAll('#price_group li');
@@ -1779,8 +1778,6 @@ window.onload = function() {
                   e.target.classList.remove('reset')
                 }
               })
-              
-              document.querySelector('.ais-ClearRefinements-button').addEventListener('click', () => countSearchStalled = 0);
 
               if (countSearchStalled == 0) {
                 countSearchStalled = 1;
@@ -1858,6 +1855,15 @@ window.onload = function() {
               }
               if (document.querySelector('#clear-refinement button') != null) {
                 document.querySelector('#clear-refinement button').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  countSearchStalled = 0;
+                  if (!e.target.classList.contains('action-clean')) {
+                    actionDataLayer = `Click on All Clear Filters button`;
+                    labelDataLayer = 'Filters';
+                    pushDataLayer(actionDataLayer, labelDataLayer)
+                  }
+                  e.target.classList.remove('action-clean');
+
                   document.querySelectorAll('.alphabet li').forEach((letter, index) => {
                     if (index == 0) {
                       letter.classList.add('active')
@@ -1872,9 +1878,6 @@ window.onload = function() {
               
               document.querySelectorAll('#breadcrumbs li').forEach((crumb, index) => {
                 crumb.addEventListener('click', (e) => {
-                  if (index == 0) {
-                    document.querySelector('#clear-refinements button').click();
-                  }
                   e.stopImmediatePropagation();
                   actionDataLayer = `Click on crumb - ${e.target.innerText}`;
                   labelDataLayer = 'Breadcrumbs';
@@ -1948,7 +1951,8 @@ window.onload = function() {
       document.querySelector('.advanced-search').classList.remove('active');
     }
     document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
-    document.querySelector('.ais-ClearRefinements-button').click();
+    // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean')
+    // document.querySelector('.ais-ClearRefinements-button').click();
 
     toggleSearch(true)
 
@@ -2236,7 +2240,7 @@ let mut = new MutationObserver(function (muts) {
     })
   }
   mut.observe(document, optionMut);
-  if (document.querySelector('.alphabet li') != null && document.querySelectorAll('#list_categories li')) {
+  if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
     mut.disconnect();
   
     document.querySelectorAll('#list_categories li').forEach((el) => {
@@ -2275,11 +2279,18 @@ let mut = new MutationObserver(function (muts) {
       })
     })
 
+  }
+  mut.observe(document, optionMut);
+  if ( document.querySelector('#list_categories li') != null ) {
+    mut.disconnect();
+    
     document.querySelectorAll('.category_popular li').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
         // search.helper.state.hierarchicalFacetsRefinements["categories.lvl0"] = e.target.innerText
+        console.log(search.helper.state)
+      
         if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
           search.helper.state.query = '';
           // document.querySelector('#form-search .ais-SearchBox-input').value = '';
@@ -2288,22 +2299,31 @@ let mut = new MutationObserver(function (muts) {
           // document.querySelector('.ais-SearchBox-reset').classList.add('reset')
           // document.querySelector('.ais-SearchBox-reset').click();
         }
-        document.querySelectorAll('#list_categories li').forEach(item => {
-          if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
-            countSearchStalled = 1;
-            document.querySelectorAll('.alphabet li').forEach(letter => {
-              letter.classList.contains('active') ? letter.classList.remove('active') : '';
-              if (letter.innerText == el.innerText[0]) {
-                letter.classList.add('active');
-                
-                openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
-                item.classList.add('popular');
-                item.click();
-                // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
-              }
-            })
-          }
-        })
+        if (document.querySelector('#clear-refinements button') != null) {
+          document.querySelector('#clear-refinements button').classList.add('action-clean');
+          document.querySelector('#clear-refinements button').click() 
+        }
+        setTimeout(function() {
+          console.log(document.querySelectorAll('#list_categories li').length)
+          document.querySelectorAll('#list_categories li').forEach(item => {
+            if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
+              countSearchStalled = 1;
+              
+              document.querySelectorAll('.alphabet li').forEach(letter => {
+                letter.classList.contains('active') ? letter.classList.remove('active') : '';
+                if (letter.innerText == el.innerText[0]) {
+                  letter.classList.add('active');
+                  
+                  openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
+                  item.classList.add('popular');
+                  item.click();
+                  // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
+                }
+              })
+            }
+          })
+        },200)
+       
       })
     })
   }
