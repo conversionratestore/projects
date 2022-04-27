@@ -198,6 +198,7 @@ let startfunkCarid = setInterval(() => {
 
         .prod-slct:not(.-wide)+.prod_add{
           width: 100% !important;
+          float: unset !important;
         }
 
     @media (max-width: 768px) {
