@@ -1025,14 +1025,32 @@ border-radius: 100px;
 .aa-suggestion.aa-cursor {
   background-color: #E0E4E5;
 }
+
 .aa-suggestion img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    object-fit: contain;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #eeeeee;
+  margin-right: 10px;
+  object-fit: contain;
 }
 .aa-suggestion em {
-    font-weight: 700;
+  font-weight: 700;
+}
+.aa-suggestion .name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  height: 14px;
+}
+.aa-suggestion .item_num {
+  font-size: 10px;
+  margin-bottom: 4px;
+  color: gray;
+}
+.aa-suggestion .price {
+  fonr-size: 11px
 }
 #autocomplete {
   position: absolute!important;
@@ -2009,18 +2027,18 @@ window.onload = function() {
         onStateChange: true,
       
         templates: {
-            suggestion: function(suggestion) {
-                function findImage() {
-                    for (let i = 0; i < suggestion.variants.length; i++) {
-                        if (suggestion.variants[i].image != '') {
-                            return suggestion.variants[i].image
-                        }
+          suggestion: function(suggestion) {
+            function findImage() {
+                for (let i = 0; i < suggestion.variants.length; i++) {
+                    if (suggestion.variants[i].image != '') {
+                        return suggestion.variants[i].image
                     }
                 }
-                let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><span>"+ suggestion._highlightResult.name.value +"</span>"
-                        
-                return sugTemplate;
-            },
+            }
+            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
+                    
+            return sugTemplate;
+          },
         },
     }
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
