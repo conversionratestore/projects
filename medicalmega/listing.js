@@ -2089,7 +2089,7 @@ window.onload = function() {
   })
 
   document.querySelector('.previous-version').addEventListener('click', (e) => {
-    document.querySelector('.main').remove();
+    document.querySelector('.main').style.display = 'none';
     document.querySelector('#wrap').style.display = 'block';
     document.querySelector('.style-main').remove();
     actionDataLayer = `Click on ${e.target.innerText}`;
