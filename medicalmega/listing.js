@@ -239,6 +239,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding: 12px;}
 .midbar_action span {
   font-weight: 600;
+  white-space: nowrap;
   font-size: 10px;
   text-transform: uppercase;
   line-height: 10px;
