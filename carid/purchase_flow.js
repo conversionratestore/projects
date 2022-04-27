@@ -150,6 +150,7 @@ let startfunkCarid = setInterval(() => {
         color: #4062B9;
         margin: 0;
         text-align: left;
+        white-space: nowrap;
     }
 
     .purchase_flow > div > .hover_block > ul li p:last-child,
