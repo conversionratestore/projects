@@ -1144,7 +1144,7 @@ border-radius: 100px;
   }
 
   @media only screen and (max-width: 1250px) {
-    .category_popular li {
+    .category_popular li a {
       margin: 0 3px
     }
   }
