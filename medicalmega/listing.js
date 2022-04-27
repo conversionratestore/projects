@@ -1099,6 +1099,9 @@ border-radius: 100px;
   margin: 0 auto 33px;
   display: block;
 }
+#current-refinements {
+  min-height: 27px;
+}
 #current-refinements li {
   width: fit-content;
   display: flex;
