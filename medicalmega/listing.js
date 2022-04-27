@@ -1152,6 +1152,9 @@ border-radius: 100px;
     .box-search {
       width: 500px;
     }
+    .listing_wrapper {
+      padding: 41px 0 22px 24px;
+    }
   }
 </style>`
 
