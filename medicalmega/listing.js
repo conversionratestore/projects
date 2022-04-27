@@ -252,6 +252,7 @@ input[type="search"]::-webkit-search-results-decoration {
   font-size: 24px;
   line-height: 18px;
   letter-spacing: 0.01em;
+  margin-right: 12px;
   text-transform: uppercase;
   color: #1E3944!important; }
   .logo span {
