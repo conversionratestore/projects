@@ -345,19 +345,19 @@ let startfunkCarid = setInterval(() => {
             <p>Order now AND pay later in equal instalments</p>
             <ul>
                 <li>
-                    <p>STEP 1&nbsp;</p>
+                    <p>STEP&nbsp;1</p>
                     <p>Choose product options</p>
                 </li>
                 <li>
-                    <p>STEP 2&nbsp;</p>
+                    <p>STEP&nbsp;2</p>
                     <p>Add product to cart</p>
                 </li>
                 <li>
-                    <p>STEP 3&nbsp;</p>
+                    <p>STEP&nbsp;3</p>
                     <p>Select <span>affirm</span> as a payment method at checkout</p>
                 </li>
                 <li>
-                    <p>STEP 4</p>
+                    <p>STEP&nbsp;4</p>
                     <p>Enter your details and get a real-time loan decision</p>
                 </li>
             </ul>
