@@ -1425,7 +1425,7 @@ window.onload = function() {
   btnCategory.addEventListener('click', (e) => {
     if (e.target.matches('.all_category')) {
       document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-      document.querySelector('#clear-refinements button').click();
+      document.querySelector('.ais-ClearRefinements-button').click();
       e.target.parentElement.classList.toggle('active');
       document.querySelector('.advanced-search').classList.remove('active');
       document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
@@ -1853,28 +1853,7 @@ window.onload = function() {
                     
                   })
               }
-              if (document.querySelector('#clear-refinement button') != null) {
-                document.querySelector('#clear-refinement button').addEventListener('click', (e) => {
-                  e.stopImmediatePropagation();
-                  countSearchStalled = 0;
-                  if (!e.target.classList.contains('action-clean')) {
-                    actionDataLayer = `Click on All Clear Filters button`;
-                    labelDataLayer = 'Filters';
-                    pushDataLayer(actionDataLayer, labelDataLayer)
-                  }
-                  e.target.classList.remove('action-clean');
-
-                  document.querySelectorAll('.alphabet li').forEach((letter, index) => {
-                    if (index == 0) {
-                      letter.classList.add('active')
-                    } else {
-                      letter.classList.remove('active')
-                    }
-                  })
-                  
-                  openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
-                })
-              }
+       
               
               document.querySelectorAll('#breadcrumbs li').forEach((crumb, index) => {
                 crumb.addEventListener('click', (e) => {
@@ -1892,6 +1871,28 @@ window.onload = function() {
                     labelDataLayer = 'Current Refinements';
                     pushDataLayer(actionDataLayer, labelDataLayer);
                   })
+                })
+              }
+              if (document.querySelector('.ais-ClearRefinements-button') != null) {
+                document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
+                  countSearchStalled = 0;
+                  if (!e.target.classList.contains('action-clean')) {
+                    actionDataLayer = `Click on All Clear Filters button`;
+                    labelDataLayer = 'Filters';
+                    pushDataLayer(actionDataLayer, labelDataLayer)
+                  } 
+                  e.target.classList.remove('action-clean');
+
+                  document.querySelectorAll('.alphabet li').forEach((letter, index) => {
+                    if (index == 0) {
+                      letter.classList.add('active')
+                    } else {
+                      letter.classList.remove('active')
+                    }
+                  })
+                  
+                  openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'))
                 })
               }
             }
@@ -2299,9 +2300,9 @@ let mut = new MutationObserver(function (muts) {
           // document.querySelector('.ais-SearchBox-reset').classList.add('reset')
           // document.querySelector('.ais-SearchBox-reset').click();
         }
-        if (document.querySelector('#clear-refinements button') != null) {
-          document.querySelector('#clear-refinements button').classList.add('action-clean');
-          document.querySelector('#clear-refinements button').click() 
+        if (document.querySelector('.ais-ClearRefinements-button') != null) {
+          document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+          document.querySelector('.ais-ClearRefinements-button').click() 
         }
         setTimeout(function() {
           console.log(document.querySelectorAll('#list_categories li').length)
