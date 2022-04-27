@@ -1435,6 +1435,11 @@ window.onload = function() {
     labelDataLayer = `Footer`;
     pushDataLayer(actionDataLayer,labelDataLayer);
   })
+  document.querySelector('.supbar a').addEventListener('click', (e) => {
+    actionDataLayer = `Click on Customer Service`;
+    labelDataLayer = `Header`;
+    pushDataLayer(actionDataLayer,labelDataLayer);
+  })
   document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
 
   let btnCategory = document.querySelector('.all_category');
@@ -2044,24 +2049,8 @@ window.onload = function() {
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
       console.log(event.target, suggestion, dataset);
 
-  
-      // search.helper.removeFacetRefinement('name')
-      // search.helper.lastResults.query = suggestion.name;
-      // search.helper.state.query = suggestion.name;
-      
       event.target.value = suggestion.name
       // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
-
-      console.log(search.helper.lastResults.query)
-      console.log(search.helper.state.query)
-      // console.log(search.helper.search())
-      
-      // search.helper.search();
-      // console.log(search.helper.search())
-      
-      // document.querySelector('.ais-ClearRefinements-button').click();
-      // document.querySelector('.filter').style = 'opacity: 0;pointer-events: none;';
-      // facetCategories = `item_num:${suggestion.item_num}`;
 
       document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
       toggleSearch(false)
@@ -2385,6 +2374,15 @@ let mut = new MutationObserver(function (muts) {
         actionDataLayer = `Click on Card Product`;
         labelDataLayer = `Card Product`;
         pushDataLayer(actionDataLayer,labelDataLayer);
+      })
+    })
+    document.querySelectorAll('.card .btn').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
+        actionDataLayer = `Click on Add to cart button`;
+        labelDataLayer = `Card Product`;
+        pushDataLayer(actionDataLayer,labelDataLayer);
+
       })
     })
   }
