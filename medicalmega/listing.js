@@ -1027,8 +1027,8 @@ border-radius: 100px;
 }
 
 .aa-suggestion img {
-  width: 42px;
-  height: 42px;
+  width: 45px;
+  height: 45px;
   border: 1px solid #eeeeee;
   margin-right: 10px;
   object-fit: contain;
@@ -1422,7 +1422,7 @@ function changeQty(qty,pr,action) {
       pr.innerHTML = pr.dataset.price
   }
 }
-window.onload = function() {
+// window.onload = function() {
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
   
@@ -1934,10 +1934,7 @@ window.onload = function() {
     if (!e.target.closest('.select')) remActiveSelect();
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
-    }  
-    if (!e.target.closest('#form-search')) {
-      document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
-    }
+    } 
     if (inputWord == false) {
       search.helper.state.query = '';
       document.querySelector('.ais-SearchBox-input').value = '';
@@ -1968,16 +1965,10 @@ window.onload = function() {
   })
 
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
-    
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-    document.querySelector('.aa-suggestions') != null ? document.querySelector('.aa-suggestions').style.display = 'none': '';
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
     }
-    document.querySelector('#form-search input').value = document.querySelector('#form-search pre').value;
-    // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean')
-    // document.querySelector('.ais-ClearRefinements-button').click();
-
     toggleSearch(true)
 
     actionDataLayer = `Click on submit button`;
@@ -2163,7 +2154,7 @@ window.onload = function() {
       })
     })
   });
-};
+// };
 
 let optionMut = {
   childList: true,
