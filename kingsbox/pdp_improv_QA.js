@@ -1958,10 +1958,4 @@ dataLayer.push({
 	'eventAction': 'loaded',
 })
 
-let isClarity = setInterval(() => {
-	if (typeof clarity == 'function') {
-		clearInterval(isClarity)
 
-		clarity('set', `pdp_improvemnets_${ device }`, 'variant_1')
-	}
-}, 100)
