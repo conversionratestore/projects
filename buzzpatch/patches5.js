@@ -10,7 +10,7 @@ const style = `
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-const priceInfo = ['59.96', '51', '120.00', '61', '11.99']
+const priceInfo = ['59.96', '50', '119.96', '60', '11.99']
 
 let waitForElement = setInterval(() => {
 	if (document.querySelectorAll('.js-packs label')[2]) {
