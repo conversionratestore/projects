@@ -363,8 +363,8 @@ let startFunk = setInterval(() => {
     display: flex;
     flex-direction: column;
     padding: 0;
-    margin: 32px auto 32px 195px;
-    gap: 14px;
+    margin: 20px auto 20px 195px;
+    gap: 10px;
     max-width: 376px;
   }
   
@@ -385,7 +385,7 @@ let startFunk = setInterval(() => {
   .security_box {
     display: flex;
     align-items: center;
-    margin: 0 auto 36px;
+    margin: 0 auto;
     max-width: 440px;
     justify-content: center;
   }
@@ -423,7 +423,7 @@ let startFunk = setInterval(() => {
   }
   
   .popup_adress .body_popup > p {
-    margin: 0 auto 32px;
+    margin: 0 auto 15px;
     padding: 10px;
     border: 1px solid #6fb3fa;
     box-sizing: border-box;
@@ -466,6 +466,9 @@ let startFunk = setInterval(() => {
       text-align: left;
   }
   
+  .popup_adress .body_popup > h2 {
+    margin-bottom: 0px !important;
+  }
   </style>
   `
 
@@ -664,7 +667,7 @@ let startFunk = setInterval(() => {
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M14 1.75C7.23516 1.75 1.75 7.23516 1.75 14C1.75 20.7648 7.23516 26.25 14 26.25C20.7648 26.25 26.25 20.7648 26.25 14C26.25 7.23516 20.7648 1.75 14 1.75ZM17.9402 14.1887L11.9684 18.5336C11.9356 18.5571 11.897 18.5712 11.8568 18.5742C11.8166 18.5772 11.7764 18.5691 11.7405 18.5507C11.7046 18.5324 11.6745 18.5044 11.6534 18.4701C11.6323 18.4357 11.6212 18.3962 11.6211 18.3559V9.67148C11.621 9.63109 11.632 9.59144 11.653 9.55695C11.6741 9.52245 11.7042 9.49444 11.7402 9.47604C11.7761 9.45763 11.8165 9.44955 11.8568 9.45267C11.897 9.4558 11.9357 9.47002 11.9684 9.49375L17.9402 13.8359C17.9684 13.8559 17.9915 13.8823 18.0073 13.913C18.0232 13.9437 18.0315 13.9777 18.0315 14.0123C18.0315 14.0469 18.0232 14.0809 18.0073 14.1116C17.9915 14.1423 17.9684 14.1687 17.9402 14.1887Z" fill="#699CD0"/>
                   </svg>
-                  <p>Workshop durarion: 56 minutes</p>
+                  <p>Workshop duration: 56 minutes</p>
               </li>
           </ul>
   
