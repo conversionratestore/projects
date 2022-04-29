@@ -698,11 +698,11 @@ let startFunk = setInterval(() => {
 
     document
       .querySelector(`#firstModal input[name='dog_name']`)
-      .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter your Dog’s name without space, numbers or special characters</span>`)
+      .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
 
     document
       .querySelector(`#firstModal input[name='first_name']`)
-      .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter your Your name without space, numbers or special characters</span>`)
+      .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
 
     // click on btn My dog is a puppy (aged less than 1 year)
     document.querySelector("#firstModal .popup_first .btn_wrapp > div a:first-child").addEventListener("click", function (e) {
@@ -787,11 +787,11 @@ let startFunk = setInterval(() => {
       console.log(`#openModal`)
       document
         .querySelector(`#openModal input[name='dog_name']`)
-        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter your Dog’s name without space, numbers or special characters</span>`)
+        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
 
       document
         .querySelector(`#openModal input[name='first_name']`)
-        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter your Your name without space, numbers or special characters</span>`)
+        .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your name without spaces, numbers or special characters</span>`)
 
       // create new element popup finalForm -> input name, email, number
       document.querySelector("#openModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
