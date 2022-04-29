@@ -388,7 +388,7 @@ span.top-levels,
   padding: 0;
   margin: 20px auto 20px 195px;
   gap: 10px;
-  max-width: 376px;
+  max-width: 415px;
 }
 
 .benefits ul li {
@@ -442,7 +442,7 @@ span.top-levels,
 
 #finalForm .popup_third .popup_adress .body_popup {
   padding: 24px 0 0;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .popup_adress .body_popup > p {
@@ -455,12 +455,12 @@ span.top-levels,
   font-size: 12px;
   line-height: 20px;
   text-align: center;
-  max-width: 413px;
+  max-width: 560px;
   color: #808080 !important;
 }
 
 #finalForm .popup_third .popup_adress .body_popup > h2 {
-  max-width: 413px;
+  max-width: 560px;
 }
 
 button.close {
@@ -500,7 +500,7 @@ form .text_for_work_shop {
   line-height: 20px;
   text-align: center;
   color: #808080 !important;
-  margin-bottom: 32px !important;
+  margin-bottom: 23px !important;
   display: none;
 }
     </style>
@@ -618,8 +618,8 @@ form .text_for_work_shop {
           </button>
             </div>
             <div class="body_popup">
-                <p>The workshop will be conducted by Dr. Alexa Diaz PhD <br> (one of the foremost service dog trainers in the U.S.) and Eric Presnall<br> (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
-                <h2>Enter your email and mobile number <br> to access this FREE online workshop <br> now</h2>
+                <p>The workshop will be conducted by Dr. Alexa Diaz PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
+                <h2>Enter your email and mobile number to access this FREE online workshop now</h2>
             </div>
         </div>
     </div>
@@ -716,7 +716,7 @@ form .text_for_work_shop {
     `
 
     let textForWorkShop = /*html */ `
-    <p class="text_for_work_shop">We’ll email and text you the link for the workshop <br> and tips to train your dog.</p>
+    <p class="text_for_work_shop">We’ll email and text you the link for the workshop and tips to train your dog.</p>
     `
 
     document.head.insertAdjacentHTML("beforeend", popupStyle)
@@ -812,13 +812,7 @@ form .text_for_work_shop {
         // click on btn checkbox continue #puppyContent
         if (document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue")) {
           document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            // label checkbox
-            let array = []
-            document.querySelectorAll("#firstModal .custom_checkbox:checked + label").forEach((el) => {
-              array.push(el.getAttribute("for"))
-            })
-
-            pushDataLayer(`Step 2 Continue #puppyContent ${array}`)
+            pushDataLayer(`Step 2 Continue #puppyContent`)
 
             document.querySelector("#firstModal #puppyContent .yesno .ysn.popup_link:nth-child(1) a").click()
             document.querySelector("#firstModal #puppyContent  .popup_second").style.display = "none"
@@ -829,19 +823,20 @@ form .text_for_work_shop {
         // click on btn checkbox continue #adultContent
         if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue")) {
           document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            // label checkbox
-            let array = []
-            document.querySelectorAll("#firstModal .custom_checkbox:checked + label").forEach((el) => {
-              array.push(el.getAttribute("for"))
-            })
-
-            pushDataLayer(`Step 2 Continue #adultContent ${array}`)
+            pushDataLayer(`Step 2 Continue #adultContent`)
 
             document.querySelector("#firstModal #adultContent .yesno .ysn.popup_link:nth-child(1) a").click()
             document.querySelector("#firstModal #adultContent .popup_second").style.display = "none"
             document.querySelector("#firstModal .popup_third").style.display = "block"
           })
         }
+
+        // click on label checkbox
+        document.querySelectorAll("#firstModal .custom_checkbox + label").forEach((el) => {
+          el.addEventListener("click", function () {
+            pushDataLayer(`${this.getAttribute("for")} selected`)
+          })
+        })
       }
 
       document.querySelector("#firstModal .button_input_name").addEventListener("click", () => {
@@ -892,8 +887,6 @@ form .text_for_work_shop {
         document.querySelector("#openModal .row-md-12.style-of-row-free-workshop > div:first-child").insertAdjacentHTML("afterend", popup_third)
 
         if (document.querySelector("#openModal form .form-group")) {
-          console.log(`HELLO form2`)
-
           //   value btn main submit
           document.querySelector("#openModal #contact-submit").value = "Get workshop link"
 
