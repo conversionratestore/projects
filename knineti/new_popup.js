@@ -32,6 +32,10 @@ let startFunk = setInterval(() => {
   display: none !important;
 }
 
+.border-of-modal .modal-header{
+  border: unset !important;
+}
+
 #steptwoadult,
 #steppuppies,
 .yesno,
