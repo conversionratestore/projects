@@ -221,6 +221,7 @@ let startFunk = setInterval(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .popup_second .body_popup .show_more p {
