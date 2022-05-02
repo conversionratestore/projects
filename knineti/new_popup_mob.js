@@ -30,10 +30,6 @@ if (window.innerWidth <= 768) {
       height: 100% !important;
     }
 
-    .modal-open .modal{
-      overflow-y: unset;
-    }
-
     .submission_form_old {
       margin-top: 40px !important;
     }
@@ -50,7 +46,6 @@ if (window.innerWidth <= 768) {
         margin-right: 0;
         margin-left: 0;
     }
-
 
 
     @media only screen and (max-width: 480px){
