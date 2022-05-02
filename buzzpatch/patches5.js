@@ -1,51 +1,51 @@
-const style = `
-	<style>
-	
-		.custom_checked label {
-			color: #fff !important;
-			background: #FF3C81;
-		}
-	</style>
+const priceInfo = ['47.50', '62', '124.95', '77.45', '9.5']
+
+const myPack = `
+<div class="js-packs my_pack"> 
+	<input type="radio" name="radios" id="radios-5" value=""> 
+	<label class="radio-inline" for="radios-5"> 5 Packs<br><span>$9.5 Each</span></label> 
+</div>
 `
 
-document.head.insertAdjacentHTML('beforeend', style)
+const onCLick = () => {
+	document.querySelector('.my_pack').addEventListener('click', () => {
+		if (document.querySelector('.prices .rs')) {
+			document.querySelector('.prices .pr').innerText = priceInfo[0]
+			document.querySelector('.prices .ps').innerText = priceInfo[1]
+			document.querySelector('.prices .rp').innerText = priceInfo[2]
+			document.querySelector('.prices .rs').innerText = priceInfo[3]
+		}
 
-const priceInfo = ['47.50', '61', '119.99', '73', '9.5']
 
-let waitForElement = setInterval(() => {
-	if (document.querySelectorAll('.js-packs label')[2]) {
-		clearInterval(waitForElement)
-
-		document.querySelectorAll('.js-packs label')[2].innerHTML = ` 5 Packs<br><span>$${priceInfo[4]} Each</span>`
-
-		document.querySelectorAll('.js-packs')[2].classList.add('my_custom')
-
-		document.querySelector('.form-group').addEventListener('click', (e) => {
-			if (e.target.closest('.js-packs:not(.my_custom)')) {
-				document.querySelector('.custom_checked')?.classList.remove('custom_checked')
-			}
-			if (e.target.closest('.js-packs.my_custom')) {
-				e.preventDefault()
-
-				if (document.querySelector('.js-packs input:checked')) {
-					document.querySelector('.js-packs input:checked').checked = false
-				}
-
-				if (document.querySelector('.prices .rs')) {
-					document.querySelector('.js-packs.my_custom').classList.add('custom_checked')
-
-					document.querySelector('.prices .pr').innerText = priceInfo[0]
-					document.querySelector('.prices .ps').innerText = priceInfo[1]
-					document.querySelector('.prices .rp').innerText = priceInfo[2]
-					document.querySelector('.prices .rs').innerText = priceInfo[3]
-				}
-			}
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Tiles 5 instead of 2',
+			'eventAction': 'Clicks on 5 packs tile',
 		})
+
+	})
+}
+
+let waitForPatch2 = setInterval(() => {
+	if (document.querySelectorAll('.js-packs label')[2]) {
+		clearInterval(waitForPatch2)
+
+		document.querySelectorAll('.js-packs')[2].hidden = true
+		document.querySelectorAll('.js-packs')[2].insertAdjacentHTML('afterend', myPack)
+
+		let waitForMyPack = setInterval(() => {
+			if (document.querySelector('.my_pack')) {
+				clearInterval(waitForMyPack)
+
+				onCLick()
+			}
+		}, 100)
 	}
 }, 200)
 
 document.querySelector('#addToCart').addEventListener('click', function (e) {
-	if (document.querySelector('.custom_checked')) {
+	if (document.querySelector('.my_pack input:checked')) {
 		e.preventDefault()
 
 		let formData = { 'items': [{ 'id': '40266425696300', 'quantity': 1 }] }
