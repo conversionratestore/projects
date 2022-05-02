@@ -1,4 +1,4 @@
-const priceInfo = ['47.50', '62', '124.95', '77.45', '9.5']
+const priceInfo = ['47.50', '62', '124.95', '78', '9.5']
 
 const myPack = `
 <div class="js-packs my_pack"> 
