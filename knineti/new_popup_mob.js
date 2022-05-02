@@ -55,8 +55,8 @@ if (window.innerWidth <= 768) {
         max-width: 95% !important;
       }
 
-      .modal-of-content {
-          margin: 10px auto;
+      .popup-first-body.modal-of-content {
+          margin: 56px auto;
       }
     }
 
