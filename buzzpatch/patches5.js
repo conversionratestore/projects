@@ -50,18 +50,25 @@ document.querySelector('#addToCart').addEventListener('click', function (e) {
 
 		let formData = { 'items': [{ 'id': '40266425696300', 'quantity': 1 }] }
 
-		fetch('/cart/clear.js', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
-		fetch('/cart/add.js', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(formData),
-		}).then(response => {
-			return response.json()
-		}).then(data => {
-			window.location.href = '/checkout'
-		}).catch((error) => {
-			console.error('Error:', error)
-		})
+		(async () => {
+			try {
+				await fetch('/cart/clear.js', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
+
+				await fetch('/cart/add.js', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(formData),
+				}).then(response => {
+					// return response.json()
+					window.location.href = '/checkout'
+				})
+				// 	.then(() => {
+				//
+				// })
+			} catch (err) {
+				console.error(err)
+			}
+		})()
 	}
 })
 
@@ -77,12 +84,5 @@ dataLayer.push({
 	'event': 'event-to-ga',
 	'eventCategory': 'Exp — Tiles 5 instead of 2',
 	'eventAction': 'loaded',
-})
-
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-	'event': 'event-to-ga',
-	'eventCategory': 'Exp — Tiles 5 instead of 2',
-	'eventAction': 'Clicks on 5 packs tile',
 })
 
