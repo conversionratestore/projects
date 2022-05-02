@@ -45,6 +45,10 @@ if (window.innerWidth <= 768) {
         width: 95% !important;
         max-width: 95% !important;
       }
+
+      .modal-of-content {
+          margin: 10px auto;
+      }
     }
 
 .vis-ver-2_1.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
@@ -542,6 +546,14 @@ form .text_for_work_shop {
   display: none;
 }
 
+#openModal .popup_third .body_popup{
+    padding: 40px 16px 56px;
+}
+
+#openModal .popup_third .body_popup > h2{
+    margin: 0 auto !important;
+}
+
 @media (max-width: 320px){
   .header_popup > p{
     font-size: 14px;
@@ -912,7 +924,7 @@ form .text_for_work_shop {
       // #openModal
       // document.querySelectorAll('#openModal') -> click on btn popup
       let a = setInterval(() => {
-        if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body.landscape-popup-width")) {
+        if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body")) {
           clearInterval(a)
           document.querySelector("#openModal #subs-name2").placeholder = "Your name"
           document.querySelector("#openModal #dog-name2").placeholder = "Dog’s name"
