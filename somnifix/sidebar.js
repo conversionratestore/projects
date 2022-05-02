@@ -261,8 +261,8 @@ const TEMPLATE = `
 	                        <p class="title">One - Time</p>
 	                        <p class="month">1 MONTH - 28 DAYS</p>
 	                        <div class="price">
+	                            <span></span>
 	                            <span>$23.99</span>
-	                            <span>$22.49</span>
 	                            <span>PER 4 WEEKS</span>
 	                        </div>
 	                    </div>
