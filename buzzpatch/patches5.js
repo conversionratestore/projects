@@ -8,13 +8,20 @@ const myPack = `
 `
 
 const onCLick = () => {
-	document.querySelector('.my_pack').addEventListener('click', (e) => {
+	document.querySelector('.my_pack').addEventListener('click', () => {
 		if (document.querySelector('.prices .rs')) {
 			document.querySelector('.prices .pr').innerText = priceInfo[0]
 			document.querySelector('.prices .ps').innerText = priceInfo[1]
 			document.querySelector('.prices .rp').innerText = priceInfo[2]
 			document.querySelector('.prices .rs').innerText = priceInfo[3]
 		}
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp — Tiles 5 instead of 2',
+			'eventAction': 'Clicks on 5 packs tile',
+		})
 	})
 }
 
