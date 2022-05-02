@@ -38,6 +38,15 @@ if (window.innerWidth <= 768) {
       margin: 0 !important;
     }
 
+    .modal-body {
+        padding: 0;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
 
 
     @media only screen and (max-width: 480px){
