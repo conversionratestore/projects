@@ -30,6 +30,10 @@ if (window.innerWidth <= 768) {
       height: 100% !important;
     }
 
+    .modal-open .modal{
+      overflow-y: unset;
+    }
+
     .submission_form_old {
       margin-top: 40px !important;
     }
@@ -53,10 +57,6 @@ if (window.innerWidth <= 768) {
     .modal.in .modal-dialog .popup-first-body {
         width: 95% !important;
         max-width: 95% !important;
-      }
-
-      .popup-first-body.modal-of-content {
-          margin: 56px auto;
       }
     }
 
