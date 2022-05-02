@@ -314,8 +314,8 @@ const TEMPLATE = `
 	                	<p class="strips">28 Strips - 1 month</p>
 					</div>
 					<div class="right">
-						<p class="full_price">$23.99</p>
-						<p class="sale_price">$22.49</p>
+						<p class="full_price"></p>
+						<p class="sale_price">$23.99</p>
 					</div>
 	            </div>
 	            <div class="calc_btn">
