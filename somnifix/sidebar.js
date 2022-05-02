@@ -79,6 +79,10 @@ const STYLE = `
 	        .card.card_third::after {
 	            content: 'BEST DEAL';
 	        }
+	        
+	        .card_info {                
+			    width: 100%;			
+	        }
 	
 	        .card_info .title {
 	            color: #2EA5C7;
@@ -99,6 +103,9 @@ const STYLE = `
 	        }
 	
 	        .price {
+	        	display: flex;
+	        	flex-direction: row;
+	        	justify-content: space-between;
 	            white-space: nowrap;
 	        }
 	
@@ -379,12 +386,12 @@ let isTemplate = setInterval(() => {
 					break
 				default:
 					stripsText.innerText = '28 Strips = 4 Weeks'
-					
+
 					checkInput.checked = false
-					
+
 					checkbox.classList.remove('visible')
 					signs.classList.remove('blur')
-					
+
 					fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
 					salePrice.innerText = card.querySelectorAll('.price span')[1].innerText
 					break
@@ -472,11 +479,11 @@ let isTemplate = setInterval(() => {
 
 				if(checkInput.checked) {
 					if (selectedCardId === "32115046056051") {
-				        addItemToCart("31272810676339", 1, "3", "Month", "95310");
+						addItemToCart("31272810676339", 1, "3", "Month", "95310");
 
-				    } else if (selectedCardId === "32115046940787") {
-				        addItemToCart("32190023958643", 1, "12", "Month", "95310");
-				    }
+					} else if (selectedCardId === "32115046940787") {
+						addItemToCart("32190023958643", 1, "12", "Month", "95310");
+					}
 				} else {
 					addItemToCart(selectedCardId, quantity);
 				}
