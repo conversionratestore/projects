@@ -31,7 +31,7 @@ if (window.innerWidth <= 768) {
     }
 
     .submission_form_old {
-        margin-top: 40px !important;
+      margin-top: 40px !important;
     }
 
     #openModal .submission_form_old{
@@ -39,7 +39,7 @@ if (window.innerWidth <= 768) {
     }
 
     .modal-body {
-        padding: 0;
+      padding: 0 !important;
     }
 
     .row {
