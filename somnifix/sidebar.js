@@ -112,7 +112,6 @@ const STYLE = `
 	        .price span {
 	            color: #1E415F;
 	            font-size: 13px;
-	            margin-right: 10px;
 	        }
 	
 	        .price span:first-child{
@@ -329,19 +328,19 @@ const TEMPLATE = `
 document.head.insertAdjacentHTML('beforeend', STYLE)
 
 let isCloseX = setInterval(() => {
-	if(document.querySelectorAll('.on-button-get-sominifix-close')[1]) {
+	if (document.querySelectorAll('.on-button-get-sominifix-close')[1]) {
 		clearInterval(isCloseX)
 
 		let closeX = document.querySelectorAll('.on-button-get-sominifix-close')[1]
 
 		closeX.insertAdjacentHTML('afterend', TEMPLATE)
 		closeX.addEventListener('click', () => {
-			window.dataLayer = window.dataLayer || [];
+			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Slide PDP subscription offer',
-				'eventAction': 'Click at Close button'
-			});
+				'eventAction': 'Click at Close button',
+			})
 
 			console.log('eventAction: Click at Close button')
 		})
@@ -377,7 +376,7 @@ let isTemplate = setInterval(() => {
 
 			signs.classList.add('blur')
 
-			switch(index) {
+			switch (index) {
 				case 1:
 					changeCheckboxText('3', '$49.97', '84', '12 Weeks', card)
 					break
@@ -397,26 +396,28 @@ let isTemplate = setInterval(() => {
 					break
 			}
 		}
-		function changeCheckboxText (month, price, strips, time, card) {
+
+		function changeCheckboxText(month, price, strips, time, card) {
 			checkInput.checked = true
 
 			checkbox.classList.add('visible')
-			checkboxText.innerHTML = `Auto delivery every ${month} month for <span class="check_price">${price}</span><br>Cancel anytime`
-			stripsText.innerText = `${strips} Strips = ${time}`
+			checkboxText.innerHTML = `Auto delivery every ${ month } month for <span class="check_price">${ price }</span><br>Cancel anytime`
+			stripsText.innerText = `${ strips } Strips = ${ time }`
 
 			fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
 			salePrice.innerText = price
 
-			window.dataLayer = window.dataLayer || [];
+			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Slide PDP subscription offer',
 				'eventAction': 'Click at pack',
-				'eventLabel': `${month} months`
-			});
+				'eventLabel': `${ month } months`,
+			})
 
 			console.log(`eventAction: Click at pack; eventLabel: ${ month } months >>>`)
 		}
+
 		function calculatePatches() {
 			document.querySelector('.sign.plus').addEventListener('click', () => {
 				if (counter < 20) {
@@ -431,6 +432,7 @@ let isTemplate = setInterval(() => {
 				}
 			})
 		}
+
 		function calcPrice() {
 			cardQuantity.innerText = counter
 
@@ -440,9 +442,11 @@ let isTemplate = setInterval(() => {
 			fullPrice.innerText = '$' + convertToMoney(price)
 			salePrice.innerText = '$' + convertToMoney(sale)
 		}
+
 		function convertToMoney(amount) {
 			return (Math.round(amount * 100) / 100).toFixed(2)
 		}
+
 		function checkSubscription() {
 			document.querySelector('.custom_checkbox input').addEventListener('click', () => {
 				if (checkInput.checked) {
@@ -458,16 +462,17 @@ let isTemplate = setInterval(() => {
 					salePrice.innerText = document.querySelectorAll('.card.selected .price span')[1].innerText
 				}
 
-				window.dataLayer = window.dataLayer || [];
+				window.dataLayer = window.dataLayer || []
 				dataLayer.push({
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: Slide PDP subscription offer',
-					'eventAction': 'Click at checkbox Subscribe and save'
-				});
+					'eventAction': 'Click at checkbox Subscribe and save',
+				})
 
 				console.log('eventAction: Click at checkbox Subscribe and save >>>')
 			})
 		}
+
 		function addToCart() {
 			let btn = document.querySelector('.calc_btn button')
 
@@ -477,21 +482,21 @@ let isTemplate = setInterval(() => {
 
 				console.log(selectedCardId)
 
-				if(checkInput.checked) {
-					if (selectedCardId === "32115046056051") {
-						addItemToCart("31272810676339", 1, "3", "Month", "95310");
+				if (checkInput.checked) {
+					if (selectedCardId === '32115046056051') {
+						addItemToCart('31272810676339', 1, '3', 'Month', '95310')
 
-					} else if (selectedCardId === "32115046940787") {
-						addItemToCart("32190023958643", 1, "12", "Month", "95310");
+					} else if (selectedCardId === '32115046940787') {
+						addItemToCart('32190023958643', 1, '12', 'Month', '95310')
 					}
 				} else {
-					addItemToCart(selectedCardId, quantity);
+					addItemToCart(selectedCardId, quantity)
 				}
 			})
 		}
 
-		cards.forEach( (card, index) => {
-			card.addEventListener("click", e => {
+		cards.forEach((card, index) => {
+			card.addEventListener('click', e => {
 				onCardClick(e, index)
 			})
 		})
@@ -502,17 +507,17 @@ let isTemplate = setInterval(() => {
 	}
 }, 300)
 let isClarityCustom = setInterval(() => {
-	if(typeof clarity == 'function') {
+	if (typeof clarity == 'function') {
 		clearInterval(isClarityCustom)
-		clarity("set", "slide_subscription_offer", "variant_1");
+		clarity('set', 'slide_subscription_offer', 'variant_1')
 	}
 }, 200)
 
-window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || []
 dataLayer.push({
 	'event': 'event-to-ga',
 	'eventCategory': 'Exp: Slide PDP subscription offer',
-	'eventAction': 'loaded'
-});
+	'eventAction': 'loaded',
+})
 
 console.log('eventAction: loaded >>>')
