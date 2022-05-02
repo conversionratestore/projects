@@ -50,7 +50,7 @@ document.querySelector('#addToCart').addEventListener('click', function (e) {
 
 		let formData = { 'items': [{ 'id': '40266425696300', 'quantity': 1 }] }
 
-		(async () => {
+		;(async () => {
 			try {
 				await fetch('/cart/clear.js', { method: 'POST', headers: { 'Content-Type': 'application/json' } })
 
@@ -58,13 +58,9 @@ document.querySelector('#addToCart').addEventListener('click', function (e) {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData),
-				}).then(response => {
-					// return response.json()
+				}).then(() => {
 					window.location.href = '/checkout'
 				})
-				// 	.then(() => {
-				//
-				// })
 			} catch (err) {
 				console.error(err)
 			}
