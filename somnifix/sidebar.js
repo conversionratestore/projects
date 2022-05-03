@@ -338,7 +338,7 @@ let isCloseX = setInterval(() => {
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
-				'eventCategory': 'Exp: Slide PDP subscription offer',
+				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at Close button',
 			})
 
@@ -410,7 +410,7 @@ let isTemplate = setInterval(() => {
 			window.dataLayer = window.dataLayer || []
 			dataLayer.push({
 				'event': 'event-to-ga',
-				'eventCategory': 'Exp: Slide PDP subscription offer',
+				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at pack',
 				'eventLabel': `${ month } months`,
 			})
@@ -465,7 +465,7 @@ let isTemplate = setInterval(() => {
 				window.dataLayer = window.dataLayer || []
 				dataLayer.push({
 					'event': 'event-to-ga',
-					'eventCategory': 'Exp: Slide PDP subscription offer',
+					'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 					'eventAction': 'Click at checkbox Subscribe and save',
 				})
 
@@ -516,7 +516,7 @@ let isClarityCustom = setInterval(() => {
 window.dataLayer = window.dataLayer || []
 dataLayer.push({
 	'event': 'event-to-ga',
-	'eventCategory': 'Exp: Slide PDP subscription offer',
+	'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 	'eventAction': 'loaded',
 })
 
