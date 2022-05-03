@@ -356,6 +356,7 @@ let isCloseX = setInterval(() => {
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at Close button',
+				'eventLabel': ''
 			})
 		})
 	}
@@ -482,6 +483,7 @@ let isTemplate = setInterval(() => {
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 					'eventAction': 'Click at checkbox Subscribe and save',
+					'eventLabel': ''
 				})
 			})
 		}
