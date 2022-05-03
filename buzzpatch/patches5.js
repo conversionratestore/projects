@@ -8,7 +8,7 @@ const myPack = `
 `
 
 const onCLick = () => {
-	document.querySelector('.my_pack').addEventListener('click', () => {
+	document.querySelector('.my_pack input').addEventListener('click', () => {
 		if (document.querySelector('.prices .rs')) {
 			document.querySelector('.prices .pr').innerText = priceInfo[0]
 			document.querySelector('.prices .ps').innerText = priceInfo[1]
