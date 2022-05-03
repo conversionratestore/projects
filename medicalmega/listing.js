@@ -1856,7 +1856,7 @@ window.onload = function() {
                     }
                 }) 
               } else if (window.location.pathname.includes('/search') && firstLoaded == true && !window.location.href.includes('staging_products')) {
-                search.helper.state.query = window.location.pathname.split('search/')[1];
+                search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
                 document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1];
                 search.refresh();
                 firstLoaded = false
