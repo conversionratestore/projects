@@ -14,11 +14,7 @@ const onCLick = () => {
 			document.querySelector('.prices .ps').innerText = priceInfo[1]
 			document.querySelector('.prices .rp').innerText = priceInfo[2]
 			document.querySelector('.prices .rs').innerText = priceInfo[3]
-
-			console.log('prices changed')
 		}
-
-		console.log('clicked')
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
