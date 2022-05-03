@@ -873,8 +873,6 @@ window.onload = function() {
     }); //hide all category
 
     requestAllCaterories.then(data => {
-        console.log(data)
-
         for (let key in data.categories) {
             if (data.categories[key].url) {
                 document.querySelector('.category_popular .altnav').insertAdjacentHTML('beforeend',`<li><a href="${data.categories[key].url}" data-id="${data.categories[key].category_id}">${data.categories[key].title}</a></li>`)
@@ -1030,7 +1028,6 @@ window.onload = function() {
     } else {
         categoryFacet = '*'
     }
-    let lvlNew = +lvl + 1;
     let index = searchClient.initIndex('staging_products');
 
     function initHits(hit) {
@@ -1239,39 +1236,18 @@ window.onload = function() {
                             }
                         }
                     }
-                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
+                    let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                             
                     return sugTemplate;
                 },
             },
         }
         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-            console.log(event, suggestion, dataset);
+            window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
 
-            document.querySelector('.result_for_search').innerHTML = `Search result for '${suggestion.name}'`;
-            document.querySelector('#listing_main').style.display = 'none';
-
-            if (document.querySelector('.hits-selected') != null) {
-                document.querySelector('.hits-selected').remove()
-            }
-            document.querySelector('#listing_main').insertAdjacentHTML('beforebegin',`<div class="hits-selected"><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item ">${initHits(suggestion)}</li></ol></div></div>`) ;
-           
-            document.querySelector('#listing_container').style.display = 'block';
-            if (window.location.pathname == '/') {
-                document.querySelector('.homepage-container').style.display = 'none';
-            }
-            if (document.querySelector('#mainbody') != null) {
-                document.querySelector('#mainbody').style.display = 'none';
-            }
-            document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-                document.querySelector('.hits-selected') != null ? document.querySelector('.hits-selected').remove() : ''
-                document.querySelector('.ais-SearchBox-input').value = '';
-                document.querySelector('.result_for_search').innerHTML = `Search result for ''`;
-                document.querySelector('#listing_main').style = '';
-                
-                document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-                inputWord = false;
-            })
+            actionDataLayer = `Click on suggestion`;
+            labelDataLayer = 'Autocomplete Header'
+            pushDataLayer(actionDataLayer,labelDataLayer)
         })
     
     document.querySelector('.ais-SearchBox-submit').innerHTML = `Search`;
@@ -1306,8 +1282,6 @@ window.onload = function() {
         }
     })
     document.querySelector('#search-box input').addEventListener('input', (e) => {
-        console.log(e.target.value)
-
         inputWord = true;
         document.querySelector('.algolia-autocomplete pre').innerHTML = e.target.value;
         if (e.target.value.length < 1) {
@@ -1411,9 +1385,13 @@ window.onload = function() {
                     }
                     if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                         document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                            console.log(e.target.innerText)
+
                             document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
                             e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): ''
+                        
+                            actionDataLayer = `click on show more button`;
+                            labelDataLayer = 'Filters';
+                            pushDataLayer(actionDataLayer,labelDataLayer)  
                         })
                     }
                     
