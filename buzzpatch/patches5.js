@@ -9,12 +9,16 @@ const myPack = `
 
 const onCLick = () => {
 	document.querySelector('.my_pack label').addEventListener('click', () => {
-		if (document.querySelector('.prices .rs')) {
-			document.querySelector('.prices .pr').innerText = priceInfo[0]
-			document.querySelector('.prices .ps').innerText = priceInfo[1]
-			document.querySelector('.prices .rp').innerText = priceInfo[2]
-			document.querySelector('.prices .rs').innerText = priceInfo[3]
-		}
+		let waitForPrices = setInterval(() => {
+			if (document.querySelector('.prices .rs')) {
+				clearInterval(waitForPrices)
+				
+				document.querySelector('.prices .pr').innerText = priceInfo[0]
+				document.querySelector('.prices .ps').innerText = priceInfo[1]
+				document.querySelector('.prices .rp').innerText = priceInfo[2]
+				document.querySelector('.prices .rs').innerText = priceInfo[3]
+			}
+		}, 100)
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
