@@ -517,10 +517,18 @@ let isTemplate = setInterval(() => {
 		addToCart()
 	}
 }, 300)
-let isClarityCustom = setInterval(() => {
-	if (typeof clarity == 'function') {
-		clearInterval(isClarityCustom)
-		clarity('set', 'slide_subscription_offer', 'variant_1')
+
+let isOpen = setInterval(() => {
+	if(document.querySelector('.on-button-get-sominifix-open')) {
+		clearInterval(isOpen)
+		document.querySelector('.on-button-get-sominifix-open').addEventListener('click', () => {
+			let isClarityCustom = setInterval(() => {
+				if (typeof clarity == 'function') {
+					clearInterval(isClarityCustom)
+					clarity('set', 'slide_subscription_offer', 'variant_1')
+				}
+			}, 200)
+		})
 	}
 }, 200)
 
