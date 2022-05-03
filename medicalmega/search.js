@@ -1200,6 +1200,9 @@ window.onload = function() {
                     } else if (data.hasOneResult) {
                         return `Displaying <b>${displ}</b> to <b>${to > hits?hits:to}</b> (of <b>${hits}</b> products)`;
                     } else {
+                        
+                        actionDataLayer = `No result products`;
+                        pushDataLayer(actionDataLayer)  
                         return `no result`;
                     }
                 },
