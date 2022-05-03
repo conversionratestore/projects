@@ -8,13 +8,17 @@ const myPack = `
 `
 
 const onCLick = () => {
-	document.querySelector('.my_pack input').addEventListener('click', () => {
+	document.querySelector('.my_pack label').addEventListener('click', () => {
 		if (document.querySelector('.prices .rs')) {
 			document.querySelector('.prices .pr').innerText = priceInfo[0]
 			document.querySelector('.prices .ps').innerText = priceInfo[1]
 			document.querySelector('.prices .rp').innerText = priceInfo[2]
 			document.querySelector('.prices .rs').innerText = priceInfo[3]
+
+			console.log('prices changed')
 		}
+
+		console.log('clicked')
 
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
@@ -79,4 +83,3 @@ dataLayer.push({
 	'eventCategory': 'Exp — Tiles 5 instead of 2',
 	'eventAction': 'loaded',
 })
-
