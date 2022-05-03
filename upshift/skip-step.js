@@ -16,16 +16,51 @@ const style = `
 			#ipmb-mobile-top-buttons a {
 				margin: 0 !important;
 			}
+			
+			[data-qa="welcome-screen-wrapper"] {
+				display: none;
+			}
 	</style>
 `
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-let waifForBtn = setInterval(() => {
-	if(document.querySelector('#ipmb-mobile-top-buttons a')) {
-		clearInterval(waifForBtn)
-		document.querySelector('#ipmb-mobile-top-buttons a').innerText = `Take a quiz to apply >`
+let waitForMainBtn = setInterval(() => {
+	if (document.querySelector('#ipmb-mobile-top-buttons a')) {
+		clearInterval(waitForMainBtn)
+		document.querySelector('#ipmb-mobile-top-buttons a').innerText = `Take a quiz to apply <img src="https://conversionratestore.github.io/projects/somnifix/img/arrow.svg" alt="arrow"/>`
 	}
 }, 200)
 
-console.log('loaded')
+let waitForStartedBtn = setInterval(() => {
+	if (document.querySelector('.lbdUdY button')) {
+		clearInterval(waitForStartedBtn)
+		document.querySelector('.lbdUdY button').click()
+	}
+}, 200)
+
+let waitForCloseX = setInterval(() => {
+	if (document.querySelector('[data-qa="close-button-mobile"]')) {
+		clearInterval(waitForCloseX)
+		document.querySelector('[data-qa="close-button-mobile"]').addEventListener('click', (e) => {
+			e.preventDefault()
+
+			window.open('https://www.upshift.work/for-people', '_self')
+		})
+	}
+}, 200)
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp: Remove one step',
+	'eventAction': 'loaded',
+})
+
+let waitForClarity = setInterval(() => {
+	if(typeof clarity === 'function') {
+		clearInterval(waitForClarity)
+		clarity('set', 'remove_one_step', 'variant_1');
+	}
+}, 200)
+
