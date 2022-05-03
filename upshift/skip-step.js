@@ -13,6 +13,10 @@ const style = `
 				margin-bottom: 4% !important;
 			}
 			
+			#ipmb-mobile-top-buttons .ipmb-blue-button img {
+				margin-left: 8px;
+			}
+			
 			#ipmb-mobile-top-buttons a {
 				margin: 0 !important;
 			}
@@ -28,7 +32,7 @@ document.head.insertAdjacentHTML('beforeend', style)
 let waitForMainBtn = setInterval(() => {
 	if (document.querySelector('#ipmb-mobile-top-buttons a')) {
 		clearInterval(waitForMainBtn)
-		document.querySelector('#ipmb-mobile-top-buttons a').innerText = `Take a quiz to apply <img src="https://conversionratestore.github.io/projects/somnifix/img/arrow.svg" alt="arrow"/>`
+		document.querySelector('#ipmb-mobile-top-buttons a').innerHTML = `Take a quiz to apply <img src="https://conversionratestore.github.io/projects/upshift/img/arrow.svg" alt="arrow"/>`
 	}
 }, 200)
 
