@@ -519,16 +519,16 @@ let isTemplate = setInterval(() => {
 }, 300)
 
 let isOpen = setInterval(() => {
-	if(document.querySelector('.on-button-get-sominifix-open')) {
+	if (document.querySelector('.on-button-get-sominifix-open')) {
 		clearInterval(isOpen)
 		document.querySelector('.on-button-get-sominifix-open').addEventListener('click', () => {
 			let isClarityCustom = setInterval(() => {
 				if (typeof clarity == 'function') {
 					clearInterval(isClarityCustom)
-					clarity('set', 'slide_subscription_offer', 'variant_1')
+					clarity('set', 'slide_subscription_offer', 'open_sidebar_on_click')
 				}
 			}, 200)
-		})
+		}, { once: true })
 	}
 }, 200)
 
