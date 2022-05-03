@@ -259,7 +259,7 @@ const TEMPLATE = `
 	                    </div>
 	                    <div class="card_info">
 	                        <p class="title">One - Time</p>
-	                        <p class="month">4 WEEK - 28 DAYS</p>
+	                        <p class="month">4 WEEK PACK - 28 DAYS</p>
 	                        <div class="price">
 	                            <span></span>
 	                            <span>$23.99</span>
@@ -273,7 +273,7 @@ const TEMPLATE = `
 	                    </div>
 	                    <div class="card_info">
 	                        <p class="title">Save 7%</p>
-	                        <p class="month">12 WEEK - 84 DAYS</p>
+	                        <p class="month">12 WEEK PACK - 84 DAYS</p>
 	                        <div class="price">
 	                            <span>$59.99</span>
 	                            <span>$55.97</span>
@@ -303,7 +303,7 @@ const TEMPLATE = `
 	                </div>
 	                <div class="card_info">
 	                    <p class="title">Save 15%</p>
-	                    <p class="month">52 WEEK - 364 DAYS</p>
+	                    <p class="month">52 WEEK PACK - 364 DAYS</p>
 	                    <div class="price">
 	                        <span>$259.99</span>
 	                        <span>$219.97</span>
