@@ -47,7 +47,7 @@ let startfunk = setInterval(() => {
     function addTargetBlankGrd() {
       console.log(`startfunkGrd`)
       //   setTimeout(() => {
-      document.querySelectorAll("#prod-list .prod_grd .lst_a").forEach(function (el) {
+      document.querySelectorAll(".prod_grd .lst_a").forEach(function (el) {
         el.addEventListener("click", function (e) {
           e.preventDefault()
           e.stopPropagation()
@@ -65,11 +65,11 @@ let startfunk = setInterval(() => {
         observer.disconnect()
         console.log(`observer`)
 
-        if (document.querySelector("#prod-list .prod_lst")) {
+        if (document.querySelector(".prod_lst")) {
           addTargetBlankLst()
         }
 
-        if (document.querySelector("#prod-list .prod_grd")) {
+        if (document.querySelector(".prod_grd")) {
           addTargetBlankGrd()
         }
 
