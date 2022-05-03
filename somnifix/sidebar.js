@@ -259,7 +259,7 @@ const TEMPLATE = `
 	                    </div>
 	                    <div class="card_info">
 	                        <p class="title">One - Time</p>
-	                        <p class="month">1 MONTH - 28 DAYS</p>
+	                        <p class="month">4 WEEK - 28 DAYS</p>
 	                        <div class="price">
 	                            <span></span>
 	                            <span>$23.99</span>
@@ -273,7 +273,7 @@ const TEMPLATE = `
 	                    </div>
 	                    <div class="card_info">
 	                        <p class="title">Save 7%</p>
-	                        <p class="month">3 MONTHS - 84 DAYS</p>
+	                        <p class="month">12 WEEK - 84 DAYS</p>
 	                        <div class="price">
 	                            <span>$59.99</span>
 	                            <span>$55.97</span>
@@ -287,7 +287,7 @@ const TEMPLATE = `
 	                </div>
 	                <div class="card_info">
 	                    <p class="title">Save 15%</p>
-	                    <p class="month">12 MONTHS - 365 DAYS</p>
+	                    <p class="month">52 WEEK - 365 DAYS</p>
 	                    <div class="price">
 	                        <span>$259.99</span>
 	                        <span>$219.97</span>
@@ -341,8 +341,6 @@ let isCloseX = setInterval(() => {
 				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at Close button',
 			})
-
-			console.log('eventAction: Click at Close button')
 		})
 	}
 }, 200)
@@ -414,8 +412,6 @@ let isTemplate = setInterval(() => {
 				'eventAction': 'Click at pack',
 				'eventLabel': `${ month } months`,
 			})
-
-			console.log(`eventAction: Click at pack; eventLabel: ${ month } months >>>`)
 		}
 
 		function calculatePatches() {
@@ -439,7 +435,10 @@ let isTemplate = setInterval(() => {
 			let price = (document.querySelectorAll('.card.selected .price span')[0].innerText).replace('$', '') * counter
 			let sale = (document.querySelectorAll('.card.selected .price span')[1].innerText).replace('$', '') * counter
 
-			fullPrice.innerText = '$' + convertToMoney(price)
+			if (convertToMoney(price) !== '0.00') {
+				fullPrice.innerText = '$' + convertToMoney(price)
+			}
+
 			salePrice.innerText = '$' + convertToMoney(sale)
 		}
 
@@ -468,8 +467,6 @@ let isTemplate = setInterval(() => {
 					'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 					'eventAction': 'Click at checkbox Subscribe and save',
 				})
-
-				console.log('eventAction: Click at checkbox Subscribe and save >>>')
 			})
 		}
 
@@ -479,8 +476,6 @@ let isTemplate = setInterval(() => {
 			btn.addEventListener('click', () => {
 				let selectedCardId = document.querySelector('.selected').dataset.id
 				let quantity = cardQuantity.innerText
-
-				console.log(selectedCardId)
 
 				if (checkInput.checked) {
 					if (selectedCardId === '32115046056051') {
@@ -519,5 +514,3 @@ dataLayer.push({
 	'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 	'eventAction': 'loaded',
 })
-
-console.log('eventAction: loaded >>>')
