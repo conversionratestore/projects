@@ -525,12 +525,19 @@ let isOpen = setInterval(() => {
 		clearInterval(isOpen)
 		document.querySelector('.on-button-get-sominifix-open').addEventListener('click', () => {
 			let isClarityCustom = setInterval(() => {
-				if (typeof clarity == 'function') {
+				if (typeof clarity === 'function') {
 					clearInterval(isClarityCustom)
 					clarity('set', 'slide_subscription_offer', 'open_sidebar_on_click')
 				}
 			}, 200)
 		}, { once: true })
+	}
+}, 200)
+
+let isClarityCustomMain = setInterval(() => {
+	if (typeof clarity === 'function') {
+		clearInterval(isClarityCustomMain)
+		clarity('set', 'slide_subscription_offer', 'variant_1')
 	}
 }, 200)
 
