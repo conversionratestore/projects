@@ -1151,9 +1151,8 @@ window.onload = function() {
             sortBy: ['name:asc'],
             templates: {
                 item: (data) => {
-                    actionDataLayer = 'Click on one of the brand items on filters';
                     let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})"> 
+                        <label class="align-items-center" onclick="pushDataLayer('Click on one of the brand items on filters')"> 
                             <span class="check"></span>
                             <span class="check_text">${data.label} <span class="count_brand">(${data.count})</span></span>
                         </label>
@@ -1170,7 +1169,6 @@ window.onload = function() {
             sortBy: ['isRefined:asc'],
             templates: {
                 item: (data) => {
-                    actionDataLayer = 'Click on one of the price items on filters';
                     let sltPrice = '';
                     if (data.value.includes(' - ')) {
                         sltPrice = `$${data.value.split(' - ')[0]} - $${data.value.split(' - ')[1]}`
@@ -1179,7 +1177,7 @@ window.onload = function() {
                     }
 
                     let checkbox = `
-                        <label class="align-items-center" onclick="pushDataLayer(${actionDataLayer})">
+                        <label class="align-items-center" onclick="pushDataLayer('Click on one of the price items on filters')">
                             <span class="check"></span>
                             <span class="check_text">${sltPrice} <span class="count_brand">(${data.count})</span></span>
                         </label>
