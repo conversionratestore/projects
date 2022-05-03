@@ -303,7 +303,7 @@ const TEMPLATE = `
 	                </div>
 	                <div class="card_info">
 	                    <p class="title">Save 15%</p>
-	                    <p class="month">52 WEEK - 365 DAYS</p>
+	                    <p class="month">52 WEEK - 364 DAYS</p>
 	                    <div class="price">
 	                        <span>$259.99</span>
 	                        <span>$219.97</span>
