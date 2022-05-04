@@ -374,7 +374,6 @@ let isTemplate = setInterval(() => {
 		let signs = document.querySelector('.signs')
 		let checkbox = document.querySelector('.subscribe_block')
 		let checkboxText = document.querySelector('.undertext span')
-		// let stripsText = document.querySelector('.strips')
 		let stripsNumber = document.querySelector('[data-strips]')
 		let stripsWeeks = document.querySelector('[data-weeks]')
 		let cards = document.querySelectorAll('.sidebar_body .card')
@@ -493,6 +492,9 @@ let isTemplate = setInterval(() => {
 				if (checkInput.checked) {
 					counter = 1
 					cardQuantity.innerText = 1
+
+					stripsNumber.innerText = document.querySelector('.card.selected .card_info').dataset.infoStrips
+					stripsWeeks.innerText = document.querySelector('.card.selected .card_info').dataset.infoWeeks
 
 					fullPrice.innerText = document.querySelector('.card.selected .price span').innerText
 					salePrice.innerText = document.querySelector('.check_price').innerText
