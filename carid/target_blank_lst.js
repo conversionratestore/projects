@@ -32,26 +32,32 @@ let startfunk = setInterval(() => {
 
     function addTargetBlankLst() {
       document.querySelectorAll("#prod-list .prod_lst .lst_a").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          pushDataLayer("Click on view details button")
-          e.preventDefault()
-          e.stopPropagation()
+        if (!el.getAttribute("data-lst")) {
+          el.addEventListener("click", function (e) {
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer("Click on view details button")
+            this.setAttribute("data-lst", "prod_lst")
 
-          window.open(this.href, "_blank")
-        })
+            window.open(this.href, "_blank")
+          })
+        }
       })
     }
 
     function addTargetBlankGrd() {
       //   setTimeout(() => {
       document.querySelectorAll(".prod_grd .lst_a").forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          pushDataLayer("Click on view details button")
-          e.preventDefault()
-          e.stopPropagation()
+        if (!el.getAttribute("data-grd")) {
+          el.addEventListener("click", function (e) {
+            e.preventDefault()
+            e.stopPropagation()
+            pushDataLayer("Click on view details button")
+            this.setAttribute("data-grd", "prod_grd")
 
-          window.open(this.href, "_blank")
-        })
+            window.open(this.href, "_blank")
+          })
+        }
       })
       //   }, 500)
     }
