@@ -42,11 +42,32 @@ if (window.innerWidth <= 768) {
       padding: 0 !important;
     }
 
-    .row {
+    #openModal .row,
+    #firstModal .row {
         margin-right: 0;
         margin-left: 0;
     }
 
+            form span.top-levels {
+            right: 225px !important;
+      }
+    @media only screen and (max-width: 480px){
+        form span.top-levels {
+            right: 52px !important;
+      }
+    }
+
+    @media (max-width: 393px){
+        form span.top-levels{
+          right: 37px !important;
+        }
+    }
+
+    @media (max-width: 320px){
+        form span.top-levels{
+          right: 27px !important;
+        }
+    }
 
     @media only screen and (max-width: 480px){
     .modal.in .modal-dialog .popup-first-body {
@@ -383,7 +404,6 @@ form .form-group img,
   margin: 0 auto 16px !important;
 }
 
-span.top-levels,
 .fa {
   display: none !important;
 }
@@ -799,6 +819,8 @@ form .text_for_work_shop {
         document.querySelector("#firstModal #subs-email").placeholder = "Enter your email"
         document.querySelector("#firstModal #subs-mobile").placeholder = "Enter your phone number"
         document.querySelector("#firstModal #contact-submit").textContent = "Get workshop link"
+        document.querySelector("#firstModal #dog-name-top-levels").textContent = "Dog’s name"
+        document.querySelector("#firstModal #subs-name-top-levels").textContent = "Your name"
         document.querySelector("#firstModal #subs-name").tabIndex = "0"
         document.querySelector("#firstModal #dog-name").tabIndex = "0"
         document.querySelector("#firstModal #subs-email").tabIndex = "0"
@@ -935,6 +957,8 @@ form .text_for_work_shop {
           document.querySelector("#openModal #subs-email2").placeholder = "Enter your email"
           document.querySelector("#openModal #subs-mobile2").placeholder = "Enter your phone number"
           document.querySelector("#openModal #contact-submit").textContent = "Get workshop link"
+          document.querySelector("#openModal #dog-name2-top-levels").textContent = "Dog’s name"
+          document.querySelector("#openModal #subs-name2-top-levels").textContent = "Your name"
           document.querySelector("#openModal #subs-name2").tabIndex = "0"
           document.querySelector("#openModal #dog-name2").tabIndex = "0"
           document.querySelector("#openModal #subs-email2").tabIndex = "0"
@@ -1015,6 +1039,8 @@ form .text_for_work_shop {
           document.querySelector("#openModal .button_input_name").style.display = "none"
           document.querySelector("#openModal #subs-name2").style.display = "none"
           document.querySelector("#openModal #dog-name2").style.display = "none"
+          document.querySelector("#openModal #dog-name2-top-levels").style.display = "none"
+          document.querySelector("#openModal #subs-name2-top-levels").style.display = "none"
 
           document.querySelector("#openModal #subs-email2").style.display = "flex"
           document.querySelector("#openModal #subs-mobile2").style.display = "flex"
@@ -1031,6 +1057,8 @@ form .text_for_work_shop {
           document.querySelector("#firstModal .button_input_name").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
           document.querySelector("#firstModal #dog-name").style.display = "none"
+          document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
+          document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
 
           document.querySelector("#firstModal #subs-email").style.display = "flex"
           document.querySelector("#firstModal #subs-mobile").style.display = "flex"
