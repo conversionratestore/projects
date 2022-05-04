@@ -25,56 +25,99 @@ if (window.innerWidth <= 768) {
 
       let popupStyle = /*html */ `
     <style>
-    #firstModal .modal-content, #openModal .modal-content{
-      max-height: calc(100vh - 10px) !important;
-      height: 100% !important;
-    }
+    #firstModal .modal-content,
+#openModal .modal-content {
+  max-height: calc(100vh - 10px) !important;
+  height: 100% !important;
+}
 
-    .submission_form_old {
-      margin-top: 40px !important;
-    }
+.submission_form_old {
+  margin-top: 40px !important;
+}
 
-    #openModal .submission_form_old{
-      margin: 0 !important;
-    }
+#openModal .submission_form_old {
+  margin: 0 !important;
+}
 
-    .modal-body {
-      padding: 0 !important;
-    }
+.modal-body {
+  padding: 0 !important;
+}
 
-    #openModal .row,
-    #firstModal .row {
-        margin-right: 0;
-        margin-left: 0;
-    }
+#openModal .row,
+#firstModal .row {
+  margin-right: 0;
+  margin-left: 0;
+}
 
-            form span.top-levels {
-            right: 225px !important;
-      }
-    @media only screen and (max-width: 480px){
-        form span.top-levels {
-            right: 52px !important;
-      }
-    }
+form span.top-levels {
+  right: 150px !important;
+}
 
-    @media (max-width: 393px){
-        form span.top-levels{
-          right: 37px !important;
-        }
-    }
+@media only screen and (max-width: 730px) {
+  form span.top-levels {
+    right: 130px !important;
+  }
+}
 
-    @media (max-width: 320px){
-        form span.top-levels{
-          right: 27px !important;
-        }
-    }
+@media only screen and (max-width: 675px) {
+  form span.top-levels {
+    right: 110px !important;
+  }
+}
 
-    @media only screen and (max-width: 480px){
-    .modal.in .modal-dialog .popup-first-body {
-        width: 95% !important;
-        max-width: 95% !important;
-      }
-    }
+@media only screen and (max-width: 640px) {
+  form span.top-levels {
+    right: 96px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  form span.top-levels {
+    right: 78px !important;
+  }
+}
+
+@media only screen and (max-width: 552px) {
+  form span.top-levels {
+    right: 62px !important;
+  }
+}
+
+@media only screen and (max-width: 494px) {
+  form span.top-levels {
+    right: 46px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  form span.top-levels {
+    right: 74px !important;
+  }
+}
+@media only screen and (max-width: 430px) {
+  form span.top-levels {
+    right: 52px !important;
+  }
+}
+
+@media (max-width: 393px) {
+  form span.top-levels {
+    right: 37px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  form span.top-levels {
+    right: 27px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal.in .modal-dialog .popup-first-body {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}
 
 .vis-ver-2_1.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
 .vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
@@ -84,7 +127,7 @@ if (window.innerWidth <= 768) {
   display: none !important;
 }
 
-.border-of-modal .modal-header{
+.border-of-modal .modal-header {
   border: unset !important;
 }
 
@@ -447,11 +490,11 @@ form .form-group img,
 
 .benefits ul {
   display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 32px auto 40px;
-    gap: 14px;
-    max-width: 304px;
+  flex-direction: column;
+  padding: 0;
+  margin: 32px auto 40px;
+  gap: 14px;
+  max-width: 304px;
 }
 
 .benefits ul li {
@@ -459,7 +502,7 @@ form .form-group img,
   align-items: center;
 }
 
-.benefits ul li > svg{
+.benefits ul li > svg {
   width: 100%;
   max-width: 28px;
   height: 28px;
@@ -482,7 +525,7 @@ form .form-group img,
   justify-content: center;
 }
 
-.security_box > svg{
+.security_box > svg {
   width: 100%;
   max-width: 16px;
 }
@@ -570,27 +613,28 @@ form .text_for_work_shop {
   display: none;
 }
 
-#openModal .popup_third .body_popup{
-    padding: 40px 16px 56px;
+#openModal .popup_third .body_popup {
+  padding: 40px 16px 56px;
 }
 
-#openModal .popup_third .body_popup > h2{
-    margin: 0 auto !important;
+#openModal .popup_third .body_popup > h2 {
+  margin: 0 auto !important;
 }
 
-@media (max-width: 320px){
-  .header_popup > p{
+@media (max-width: 320px) {
+  .header_popup > p {
     font-size: 14px;
   }
 
-  .body_popup > h2{
+  .body_popup > h2 {
     font-size: 19px !important;
   }
 
-  .btn_wrapp > div a{
+  .btn_wrapp > div a {
     font-size: 15px;
   }
 }
+
     </style>
     `
 
