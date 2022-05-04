@@ -122,7 +122,7 @@ form span.top-levels#subs-mobile-top-levels{
 
 @media (max-width: 393px) {
   form span.top-levels {
-    right: 37px !important;
+    right: 45px !important;
   }
 }
 
