@@ -623,7 +623,7 @@ form .text_for_work_shop {
           </button>
             </div>
             <div class="body_popup">
-                <p>The workshop will be conducted by Dr. Alexa Diaz PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
+                <p>The workshop will be conducted by Dr. Alexa Diaz, PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
                 <h2>Enter your email and mobile number to access this FREE online workshop now</h2>
             </div>
         </div>
