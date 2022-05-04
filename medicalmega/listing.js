@@ -2043,7 +2043,7 @@ window.onload = function() {
                     }
                 }
             }
-            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$ " + suggestion.price + "</p></div>"
+            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                     
             return sugTemplate;
           },
@@ -2051,28 +2051,7 @@ window.onload = function() {
     }
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
       console.log(event.target, suggestion, dataset);
-
-      event.target.value = suggestion.name
-      // document.querySelector('.algolia-autocomplete pre').innerHTML = suggestion.name;
-
-      document.querySelector('.listing_suggestion').innerHTML = `<li>${initHits(suggestion)}</li>`;
-      toggleSearch(false)
-
-      document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
-        e.stopImmediatePropagation()
-        search.helper.state.query = '';
-        document.querySelector('.algolia-autocomplete pre').innerHTML = '';
-        document.querySelector('.ais-SearchBox-input').value = '';
-        inputWord = false;
-        toggleSearch(true)
-        if (!e.target.classList.contains('reset')) {
-          actionDataLayer = `Click on reset button`;
-          labelDataLayer = 'Search by Name';
-          pushDataLayer(actionDataLayer, labelDataLayer)
-        } else {
-          e.target.classList.remove('reset')
-        }
-      })
+      window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
 
       actionDataLayer = `Selected suggestion`;
       labelDataLayer = 'Autocomplete Search by Name';
