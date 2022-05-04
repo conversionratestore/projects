@@ -22,33 +22,13 @@ let startfunk = setInterval(() => {
       }
     }
 
-    if (document.querySelector("#prod-list .prod_lst")) {
-      addTargetBlankLst()
-    }
-
-    if (document.querySelector("#prod-list .prod_grd")) {
+    if (document.querySelector("#prod-list .js-main-prod-list")) {
       addTargetBlankGrd()
     }
 
-    function addTargetBlankLst() {
-      document.querySelectorAll("#prod-list .prod_lst .lst_a").forEach(function (el) {
-        if (!el.getAttribute("data-lst")) {
-          el.addEventListener("click", function (e) {
-            console.log(`data-lst`, !el.getAttribute("data-lst"))
-            e.preventDefault()
-            e.stopPropagation()
-            pushDataLayer("Click on view details button")
-
-            window.open(this.href, "_blank")
-          })
-          el.setAttribute("data-lst", "prod_lst")
-        }
-      })
-    }
-
     function addTargetBlankGrd() {
-      //   setTimeout(() => {
-      document.querySelectorAll(".prod_grd .lst_a").forEach(function (el) {
+      console.log(`#prod_grd`)
+      document.querySelectorAll(".js-main-prod-list .lst_a").forEach(function (el) {
         if (!el.getAttribute("data-grd")) {
           el.addEventListener("click", function (e) {
             console.log(`data-grd`, !el.getAttribute("data-grd"))
@@ -57,11 +37,11 @@ let startfunk = setInterval(() => {
             pushDataLayer("Click on view details button")
 
             window.open(this.href, "_blank")
+            console.log(el)
           })
           el.setAttribute("data-grd", "prod_grd")
         }
       })
-      //   }, 500)
     }
 
     // observer
@@ -69,11 +49,7 @@ let startfunk = setInterval(() => {
       if (document) {
         observer.disconnect()
 
-        if (document.querySelector(".prod_lst")) {
-          addTargetBlankLst()
-        }
-
-        if (document.querySelector(".prod_grd")) {
+        if (document.querySelector("#prod-list .js-main-prod-list")) {
           addTargetBlankGrd()
         }
 
