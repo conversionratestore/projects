@@ -458,7 +458,7 @@ form span.top-levels#subs-mobile-top-levels{
   display: flex;
   flex-direction: column;
   padding: 0;
-  margin: 20px auto 15px 195px;
+  margin: 15px auto 15px 195px;
   gap: 10px;
   max-width: 415px;
 }
