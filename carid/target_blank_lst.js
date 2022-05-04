@@ -38,10 +38,10 @@ let startfunk = setInterval(() => {
             e.preventDefault()
             e.stopPropagation()
             pushDataLayer("Click on view details button")
-            this.setAttribute("data-lst", "prod_lst")
 
             window.open(this.href, "_blank")
           })
+          el.setAttribute("data-lst", "prod_lst")
         }
       })
     }
@@ -55,10 +55,10 @@ let startfunk = setInterval(() => {
             e.preventDefault()
             e.stopPropagation()
             pushDataLayer("Click on view details button")
-            this.setAttribute("data-grd", "prod_grd")
 
             window.open(this.href, "_blank")
           })
+          el.setAttribute("data-grd", "prod_grd")
         }
       })
       //   }, 500)
