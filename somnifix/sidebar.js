@@ -356,7 +356,7 @@ let isCloseX = setInterval(() => {
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at Close button',
-				'eventLabel': ''
+				'eventLabel': '',
 			})
 		})
 	}
@@ -408,6 +408,14 @@ let isTemplate = setInterval(() => {
 
 					fullPrice.innerText = card.querySelectorAll('.price span')[0].innerText
 					salePrice.innerText = card.querySelectorAll('.price span')[1].innerText
+
+					window.dataLayer = window.dataLayer || []
+					dataLayer.push({
+						'event': 'event-to-ga',
+						'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
+						'eventAction': 'Click at pack',
+						'eventLabel': `4 week`,
+					})
 					break
 			}
 		}
@@ -427,7 +435,7 @@ let isTemplate = setInterval(() => {
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 				'eventAction': 'Click at pack',
-				'eventLabel': `${ month } weeks`,
+				'eventLabel': `${ month } week`,
 			})
 		}
 
@@ -435,18 +443,18 @@ let isTemplate = setInterval(() => {
 			document.querySelector('.sign.plus').addEventListener('click', () => {
 				if (counter < 20) {
 					counter++
-					calcPrice()
+					calcPrice('PLUS')
 				}
 			})
 			document.querySelector('.sign.minus').addEventListener('click', () => {
 				if (counter > 1) {
 					counter--
-					calcPrice()
+					calcPrice('MINUS')
 				}
 			})
 		}
 
-		function calcPrice() {
+		function calcPrice(operator) {
 			cardQuantity.innerText = counter
 
 			let price = (document.querySelectorAll('.card.selected .price span')[0].innerText).replace('$', '') * counter
@@ -457,6 +465,13 @@ let isTemplate = setInterval(() => {
 			}
 
 			salePrice.innerText = '$' + convertToMoney(sale)
+
+			window.dataLayer = window.dataLayer || [];
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
+				'eventAction': 'Click on ' + operator
+			})
 		}
 
 		function convertToMoney(amount) {
@@ -483,7 +498,7 @@ let isTemplate = setInterval(() => {
 					'event': 'event-to-ga',
 					'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
 					'eventAction': 'Click at checkbox Subscribe and save',
-					'eventLabel': ''
+					'eventLabel': '',
 				})
 			})
 		}
@@ -505,6 +520,13 @@ let isTemplate = setInterval(() => {
 				} else {
 					addItemToCart(selectedCardId, quantity)
 				}
+
+				window.dataLayer = window.dataLayer || []
+				dataLayer.push({
+					'event': 'event-to-ga',
+					'eventCategory': 'Exp: Slide PDP subscription offer Desktop',
+					'eventAction': 'Click on Checkout button',
+				})
 			})
 		}
 
