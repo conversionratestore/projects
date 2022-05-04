@@ -345,9 +345,76 @@ form .form-group img,
   margin: 0 auto 16px !important;
 }
 
-span.top-levels,
 .fa {
   display: none !important;
+}
+
+form span.top-levels{
+  right: 226px !important;
+}
+
+form span.top-levels#subs-email2-top-levels,
+form span.top-levels#subs-mobile2-top-levels,
+form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 211px !important;
+}
+
+@media (max-width: 939px){
+  form span.top-levels{
+  right: 203px !important;
+}
+}
+
+@media only screen and (min-width: 896px) and (max-width: 920px){
+  form span.top-levels{
+  right: 203px !important;
+}
+}
+
+@media only screen and (min-width: 947px) and (max-width: 981px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 203px !important;
+}
+}
+
+@media only screen and (min-width: 932px) and (max-width: 946px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+  form span.top-levels#subs-mobile-top-levels{
+  right: 190px !important;
+}
+}
+
+@media only screen and (min-width: 870px) and (max-width: 931px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+  form span.top-levels#subs-mobile-top-levels{
+  right: 182px !important;
+}
+}
+
+@media only screen and (min-width: 858px) and (max-width: 895px){
+  form span.top-levels{
+  right: 187px !important;
+}
+}
+
+@media only screen and (min-width: 821px) and (max-width: 857px){
+  form span.top-levels{
+  right: 175px !important;
+}
+}
+
+@media only screen and (min-width: 795px) and (max-width: 821px){
+  form span.top-levels{
+  right: 160px !important;
+}
 }
 
 #finalForm {
@@ -391,7 +458,7 @@ span.top-levels,
   display: flex;
   flex-direction: column;
   padding: 0;
-  margin: 20px auto 20px 195px;
+  margin: 20px auto 15px 195px;
   gap: 10px;
   max-width: 415px;
 }
@@ -952,6 +1019,8 @@ form .text_for_work_shop {
         document.querySelector("#openModal .button_input_name").style.display = "none"
         document.querySelector("#openModal #subs-name2").style.display = "none"
         document.querySelector("#openModal #dog-name2").style.display = "none"
+        document.querySelector("#openModal #dog-name2-top-levels").style.display = "none"
+        document.querySelector("#openModal #subs-name2-top-levels").style.display = "none"
 
         document.querySelector("#openModal #subs-email2").style.display = "flex"
         document.querySelector("#openModal #subs-mobile2").style.display = "flex"
@@ -968,6 +1037,8 @@ form .text_for_work_shop {
         document.querySelector("#firstModal .button_input_name").style.display = "none"
         document.querySelector("#firstModal #subs-name").style.display = "none"
         document.querySelector("#firstModal #dog-name").style.display = "none"
+        document.querySelector("#firstModal #dog-name-top-levels").style.display = "none"
+        document.querySelector("#firstModal #subs-name-top-levels").style.display = "none"
 
         document.querySelector("#firstModal #subs-email").style.display = "flex"
         document.querySelector("#firstModal #subs-mobile").style.display = "flex"
