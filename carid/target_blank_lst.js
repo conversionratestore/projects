@@ -34,6 +34,7 @@ let startfunk = setInterval(() => {
       document.querySelectorAll("#prod-list .prod_lst .lst_a").forEach(function (el) {
         if (!el.getAttribute("data-lst")) {
           el.addEventListener("click", function (e) {
+            console.log(`data-lst`, !el.getAttribute("data-lst"))
             e.preventDefault()
             e.stopPropagation()
             pushDataLayer("Click on view details button")
@@ -50,6 +51,7 @@ let startfunk = setInterval(() => {
       document.querySelectorAll(".prod_grd .lst_a").forEach(function (el) {
         if (!el.getAttribute("data-grd")) {
           el.addEventListener("click", function (e) {
+            console.log(`data-grd`, !el.getAttribute("data-grd"))
             e.preventDefault()
             e.stopPropagation()
             pushDataLayer("Click on view details button")
