@@ -53,6 +53,26 @@ form span.top-levels {
   right: 150px !important;
 }
 
+
+
+@media only screen and (max-width: 430px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 52px !important;
+}
+}
+
+@media only screen and (max-width: 393px){
+  form span.top-levels#subs-email2-top-levels,
+  form span.top-levels#subs-mobile2-top-levels,
+  form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels{
+  right: 29px !important;
+}
+}
+
 @media only screen and (max-width: 730px) {
   form span.top-levels {
     right: 130px !important;
