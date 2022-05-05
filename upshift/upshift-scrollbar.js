@@ -192,12 +192,49 @@ let waitForBar = setInterval(() => {
 	}
 })
 
+let percent20 = false
+let percent40 = false
+let percent60 = false
+let percent80 = false
+let percent100 = false
+
+function scrollEvent(percent) {
+	window.dataLayer = window.dataLayer || []
+	dataLayer.push({
+		'event': 'event-to-ga',
+		'eventCategory': 'Exp: Scrollbar',
+		'eventAction': 'Scroll to',
+		'eventLabel': percent + '%',
+	})
+}
+
 function scrollBar() {
 	let winScroll = document.body.scrollTop || document.documentElement.scrollTop
 	let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
 	let scrolled = (winScroll / height) * 100
 
-	if (scrolled > 25 && !document.querySelector('.show')) {
+	if (scrolled === 20 && percent20 === false) {
+		percent20 = true
+		scrollEvent('20')
+	}
+	if (scrolled === 40 && percent40 === false) {
+		percent40 = true
+		scrollEvent('40')
+	}
+	if (scrolled === 60 && percent60 === false) {
+		percent60 = true
+		scrollEvent('60')
+	}
+	if (scrolled === 80 && percent80 === false) {
+		percent80 = true
+		scrollEvent('80')
+	}
+	if (scrolled === 100 && percent100 === false) {
+		percent100 = true
+		scrollEvent('100')
+	}
+
+	if (scrolled >= 25 && !document.querySelector('.my_btn-wrapper.show')) {
 		document.querySelector('.my_btn-wrapper').classList.add('show')
 
 		window.dataLayer = window.dataLayer || []
@@ -206,9 +243,7 @@ function scrollBar() {
 			'eventCategory': 'Exp: Scrollbar',
 			'eventAction': 'Display sticky button',
 		})
-
-		console.log('Display event here >>.')
-	} else {
+	} else if (scrolled < 25) {
 		document.querySelector('.my_btn-wrapper').classList.remove('show')
 	}
 
