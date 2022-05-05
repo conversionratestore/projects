@@ -80,7 +80,7 @@ const style2 = `
 		.my_btn-wrapper {
 			/*display: none;*/
 			position: fixed;
-			bottom: 0;
+			bottom: 3px;
 			left: 0;
 			height: 0;
 			z-index: 10000;
