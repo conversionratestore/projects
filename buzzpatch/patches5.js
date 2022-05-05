@@ -8,18 +8,12 @@ const myPack = `
 `
 
 const onCLick = () => {
-	document.querySelector('.my_pack label').addEventListener('click', () => {
-		let waitForPrices = setInterval(() => {
-			if (document.querySelector('.prices .rs')) {
-				clearInterval(waitForPrices)
-				
-				document.querySelector('.prices .pr').innerText = priceInfo[0]
-				document.querySelector('.prices .ps').innerText = priceInfo[1]
-				document.querySelector('.prices .rp').innerText = priceInfo[2]
-				document.querySelector('.prices .rs').innerText = priceInfo[3]
-			}
-		}, 100)
-
+	document.querySelector('.my_pack input').addEventListener('click', () => {				
+		document.querySelector('.prices .pr').innerText = priceInfo[0]
+		document.querySelector('.prices .ps').innerText = priceInfo[1]
+		document.querySelector('.prices .rp').innerText = priceInfo[2]
+		document.querySelector('.prices .rs').innerText = priceInfo[3]
+		
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
 			'event': 'event-to-ga',
