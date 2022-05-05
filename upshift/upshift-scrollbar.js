@@ -78,9 +78,8 @@ const style2 = `
 		}
 		
 		.my_btn-wrapper {
-			/*display: none;*/
 			position: fixed;
-			bottom: 3px;
+			bottom: 0;
 			left: 0;
 			height: 0;
 			z-index: 10000;
@@ -128,7 +127,7 @@ const style2 = `
 		}
 		
 		.acsb-trigger {
-			left: 22px;
+			left: 22px !important;
 		}
 	</style>`
 
@@ -147,7 +146,7 @@ const stickyBtn = `
 document.head.insertAdjacentHTML('beforeend', style2)
 
 let waitForBox = setInterval(() => {
-	if(document.querySelector('.box-container')) {
+	if (document.querySelector('.box-container')) {
 		clearInterval(waitForBox)
 
 		document.querySelector('.box-container').insertAdjacentHTML('afterbegin', bar)
@@ -156,7 +155,7 @@ let waitForBox = setInterval(() => {
 })
 
 let waitForBlock = setInterval(() => {
-	if(document.querySelector('#ipmb-for-people-second-section')) {
+	if (document.querySelector('#ipmb-for-people-second-section')) {
 		clearInterval(waitForBlock)
 
 		document.querySelector('#ipmb-for-people-second-section').insertAdjacentHTML('beforebegin', `
@@ -173,7 +172,7 @@ let waitForBlock = setInterval(() => {
 })
 
 let waitForBar = setInterval(() => {
-	if(document.getElementById('myBar') && document.querySelector('.my_btn')) {
+	if (document.getElementById('myBar') && document.querySelector('.my_btn')) {
 		clearInterval(waitForBar)
 
 		window.onscroll = function () {
@@ -198,7 +197,7 @@ function scrollBar() {
 	let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
 	let scrolled = (winScroll / height) * 100
 
-	if (scrolled > 25) {
+	if (scrolled > 25 && !document.querySelector('.show')) {
 		document.querySelector('.my_btn-wrapper').classList.add('show')
 
 		window.dataLayer = window.dataLayer || []
@@ -224,8 +223,8 @@ dataLayer.push({
 })
 
 let waitForClarity = setInterval(() => {
-	if(typeof clarity === 'function') {
+	if (typeof clarity === 'function') {
 		clearInterval(waitForClarity)
-		clarity('set', 'scrollbar', 'variant_1');
+		clarity('set', 'scrollbar', 'variant_1')
 	}
 }, 200)
