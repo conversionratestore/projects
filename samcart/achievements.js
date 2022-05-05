@@ -485,7 +485,7 @@ transition: all 2s ease;
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
 
-        onscroll(170, "#box_second")
+        // onscroll(170, "#box_second")
       })
     })
 
@@ -500,7 +500,7 @@ transition: all 2s ease;
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
 
-        onscroll(130, "#box_third")
+        // onscroll(130, "#box_third")
       })
     })
 
@@ -513,7 +513,7 @@ transition: all 2s ease;
         radio.checked = false
       }
       document.querySelector(".achievements_block .box_first").classList.add("show_var")
-      onscroll(210, "#box_first")
+    //   onscroll(210, "#box_first")
     })
 
     document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function () {
@@ -521,7 +521,7 @@ transition: all 2s ease;
       document.querySelector(".achievements_block .box_third").classList.add("back")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
       document.querySelector(".achievements_block > h2").style.display = "block"
-      onscroll(170, "#box_second")
+    //   onscroll(170, "#box_second")
     })
 
     //   click on Try SamCart for FREE
