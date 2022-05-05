@@ -211,23 +211,23 @@ function scrollBar() {
 	let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
 	let scrolled = (winScroll / height) * 100
 
-	if (scrolled > 20 && scrolled < 40 && percent20 === false) {
+	if (scrolled >= 20 && scrolled < 40 && percent20 === false) {
 		percent20 = true
 		scrollEvent('20')
 	}
-	if (scrolled > 40 && scrolled < 60 && percent40 === false) {
+	if (scrolled >= 40 && scrolled < 60 && percent40 === false) {
 		percent40 = true
 		scrollEvent('40')
 	}
-	if (scrolled > 60 && scrolled < 80 && percent60 === false) {
+	if (scrolled >= 60 && scrolled < 80 && percent60 === false) {
 		percent60 = true
 		scrollEvent('60')
 	}
-	if (scrolled > 80 && scrolled < 95 && percent80 === false) {
+	if (scrolled >= 80 && scrolled < 95 && percent80 === false) {
 		percent80 = true
 		scrollEvent('80')
 	}
-	if (95 < scrolled && percent100 === false) {
+	if (95 <= scrolled && percent100 === false) {
 		percent100 = true
 		scrollEvent('100')
 	}
