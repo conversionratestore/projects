@@ -53,7 +53,11 @@ form span.top-levels {
   right: 150px !important;
 }
 
-
+@media only screen and (max-width: 768px){
+  form span.top-levels {
+  right: 224px !important;
+}
+}
 
 @media only screen and (max-width: 430px){
   form span.top-levels#subs-email2-top-levels,
@@ -539,7 +543,7 @@ form .form-group img,
 
 .security_box {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 auto;
   max-width: 304px;
   justify-content: center;
@@ -548,6 +552,9 @@ form .form-group img,
 .security_box > svg {
   width: 100%;
   max-width: 16px;
+  margin-top: 4px;
+  height: 100%;
+  max-height: 16px;
 }
 
 .security_box > p {
