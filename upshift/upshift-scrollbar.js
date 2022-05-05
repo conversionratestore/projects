@@ -80,7 +80,7 @@ const style2 = `
 		.my_btn-wrapper {
 			/*display: none;*/
 			position: fixed;
-			bottom: 0px;
+			bottom: 3px;
 			left: 0;
 			height: 0;
 			z-index: 10000;
@@ -98,6 +98,8 @@ const style2 = `
 		.my_btn {
 			background: #03a9f4;
 			color: #fff;
+			border-radius: 0 0 5px 5px;
+			/*padding: 15px 0;*/
 			height: 100%;
 			width: 100%;
 			border: 1px solid #03a9f4;
@@ -122,7 +124,11 @@ const style2 = `
 		}
 		
 		.footer-scroll-top {
-			bottom: 75px;
+			bottom: 67px;
+		}
+		
+		.acsb-trigger {
+			left: 22px;
 		}
 	</style>`
 
