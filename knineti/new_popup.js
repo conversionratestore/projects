@@ -479,10 +479,14 @@ form span.top-levels#subs-mobile-top-levels{
 
 .security_box {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 auto;
   max-width: 440px;
   justify-content: center;
+}
+
+.security_box > svg {
+  margin-top: 5px;
 }
 
 .security_box > p {
