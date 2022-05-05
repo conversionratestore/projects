@@ -201,7 +201,7 @@ function scrollEvent(percent) {
 	dataLayer.push({
 		'event': 'event-to-ga',
 		'eventCategory': 'Exp: Scrollbar',
-		'eventAction': 'Scroll to',
+		'eventAction': 'Scroll depth',
 		'eventLabel': percent + '%',
 	})
 }
