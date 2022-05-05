@@ -300,6 +300,10 @@ let startfunkCarid = setInterval(() => {
             margin: 0;
         }
 
+        .left-panel{
+          z-index: 1000;
+        }
+
         .purchase_flow button.now_pay_btn{
             height: 52px;
             margin: 0;
