@@ -178,6 +178,13 @@ let waitForBar = setInterval(() => {
 
 		document.querySelector('.my_btn').addEventListener('click', () => {
 			window.location.href = 'https://www.upshift.work/for-people/sign-up/'
+
+			window.dataLayer = window.dataLayer || []
+			dataLayer.push({
+				'event': 'event-to-ga',
+				'eventCategory': 'Exp: Scrollbar',
+				'eventAction': 'Click on Apply now',
+			})
 		})
 	}
 })
@@ -195,3 +202,17 @@ function scrollBar() {
 
 	document.getElementById('myBar').style.width = scrolled + '%'
 }
+
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+	'event': 'event-to-ga',
+	'eventCategory': 'Exp: Scrollbar',
+	'eventAction': 'loaded',
+})
+
+let waitForClarity = setInterval(() => {
+	if(typeof clarity === 'function') {
+		clearInterval(waitForClarity)
+		clarity('set', 'scrollbar', 'variant_1');
+	}
+}, 200)
