@@ -223,7 +223,8 @@ transition: all 2s ease;
   margin: 0 0 40px;
 }
 
-.achievements_block .box_third > a:last-child {
+.achievements_block .box_third > a:last-child,
+.btn_next {
   font-family: "Gilroy", sans-serif;
   max-width: 220px;
   height: 60px;
@@ -246,6 +247,14 @@ transition: all 2s ease;
   transition: all 250ms ease;
 }
 
+.btn_next{
+    margin-top: 50px;
+}
+
+.btn_next.btn_next:hover{
+    box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
 .achievements_block .box_third > a:last-child > span {
   color: #ffffff;
   margin-left: 5px;
@@ -262,7 +271,7 @@ transition: all 2s ease;
           <section class="achievements">
               <div class="container">
                   <div class="achievements_block">
-                      <h2>What do you want to achieve with Samcart?</h2>
+                      <h2>What do you want to achieve with SamCart?</h2>
             
                   <div class="box_first show_var">
                     <ul>
@@ -321,6 +330,8 @@ transition: all 2s ease;
                         </label>
                       </li>
                     </ul>
+
+                    <!-- <button class="btn_next">Next</button> -->
                   </div>
             
                   <div class="box_second">
@@ -425,6 +436,18 @@ transition: all 2s ease;
                         </label>
                       </li>
                     </ul>
+
+                    <!-- <button class="btn_back">
+                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16 7C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9V7ZM0.292892 8.70711C-0.0976315 8.31658 -0.0976315 7.68342 0.292892 7.29289L6.65685 0.928932C7.04738 0.538408 7.68054 0.538408 8.07107 0.928932C8.46159 1.31946 8.46159 1.95262 8.07107 2.34315L2.41421 8L8.07107 13.6569C8.46159 14.0474 8.46159 14.6805 8.07107 15.0711C7.68054 15.4616 7.04738 15.4616 6.65685 15.0711L0.292892 8.70711ZM16 9H0.999999V7H16V9Z"
+                          fill="#5A7386"
+                        />
+                      </svg>
+                      Back
+                    </button> -->
+
+                     <!-- <button class="btn_next">Next</button> -->
                   </div>
             
                   <div class="box_third">
