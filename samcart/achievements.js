@@ -127,6 +127,10 @@ let startfunk = setInterval(() => {
   }
 }
 
+.radio-box:checked + label {
+    border: 2px solid #183B56;
+}
+
 .radio-box:checked + label .radio-style {
   border: 2px solid #183b56;
 }
