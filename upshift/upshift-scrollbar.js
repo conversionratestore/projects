@@ -213,7 +213,6 @@ function scrollBar() {
 
 	if (scrolled > 20 && scrolled < 40 && percent20 === false) {
 		percent20 = true
-		console.log('here')
 		scrollEvent('20')
 	}
 	if (scrolled > 40 && scrolled < 60 && percent40 === false) {
