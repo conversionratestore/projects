@@ -26,9 +26,9 @@ const onCLick = () => {
 let waitForPatch2 = setInterval(() => {
 	if (document.querySelectorAll('.js-packs label')[2]) {
 		clearInterval(waitForPatch2)
-
-		document.querySelectorAll('.js-packs')[2].hidden = true
-		document.querySelectorAll('.js-packs')[2].insertAdjacentHTML('afterend', myPack)
+		
+		document.querySelectorAll('.js-packs')[2].remove()
+		document.querySelectorAll('.js-packs')[1].insertAdjacentHTML('afterend', myPack)
 
 		let waitForMyPack = setInterval(() => {
 			if (document.querySelector('.my_pack')) {
