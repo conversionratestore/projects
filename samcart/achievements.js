@@ -4,10 +4,6 @@ let startfunk = setInterval(() => {
 
     let achievementsStyle = /*html */ `
 <style>
-.achievements_block .box_second,
-.achievements_block .box_third {
-  display: none;
-}
 
 .achievements {
   margin-top: 150px;
@@ -49,7 +45,7 @@ let startfunk = setInterval(() => {
 .achievements_block .btn_back {
   max-width: 100px;
   width: 100%;
-  height: 24px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,6 +61,13 @@ let startfunk = setInterval(() => {
   padding: 0;
   margin: 0 auto;
   cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.achievements_block .btn_back:hover{
+    box-shadow: 2px 2px 6px 6px rgb(0 0 0 / 20%);
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .achievements_block ul {
@@ -153,13 +156,47 @@ let startfunk = setInterval(() => {
   margin-top: 80px;
 }
 
-.achievements_block .box_second {
+.achievements_block .box_second{
   margin-top: 40px;
 }
 
 .achievements_block .box_second > ul {
   margin: 40px auto 0;
 }
+
+
+.achievements_block .box_first,
+.achievements_block .box_second,
+.achievements_block .box_third{
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: unset;
+    visibility: hidden;
+}
+
+
+.achievements_block .box_first.show_var,
+.achievements_block .box_third.show_var,
+.achievements_block .box_second.show_var {  
+ opacity: 1;  
+ position: static;
+ visibility: unset;
+ transition: all 1s cubic-bezier(0.4, 0, 1, 1);;
+}
+
+.achievements_block .box_second.back,
+.achievements_block .box_third.back{
+    /*
+left: -100%;
+position: absolute;
+transition: all 2s ease;  
+*/
+}
+
+
 
 .achievements_block .box_third > h3 {
   font-family: "Inter", sans-serif;
@@ -202,11 +239,16 @@ let startfunk = setInterval(() => {
   border: none;
   cursor: pointer;
   text-decoration: unset;
+  transition: all 250ms ease;
 }
 
 .achievements_block .box_third > a:last-child > span {
   color: #ffffff;
   margin-left: 5px;
+}
+
+.achievements_block .box_third > a:last-child:hover{
+    box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
              
 </style>
@@ -218,7 +260,7 @@ let startfunk = setInterval(() => {
                   <div class="achievements_block">
                       <h2>What do you want to achieve with Samcart?</h2>
             
-                  <div class="box_first">
+                  <div class="box_first show_var">
                     <ul>
                       <li>
                         <input type="radio" name="achievements" id="achievements1" class="radio-box" />
@@ -290,7 +332,7 @@ let startfunk = setInterval(() => {
                     <ul>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
-                        <label for="achievements7">
+                        <label for="achievements7" data-count="1111">
                           <div>
                             <span class="radio-style"></span>
                             <span>Online courses</span>
@@ -299,7 +341,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements8" class="radio-box" />
-                        <label for="achievements8">
+                        <label for="achievements8" data-count="1457">
                           <div>
                             <span class="radio-style"></span>
                             <span>eBooks</span>
@@ -308,7 +350,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements9" class="radio-box" />
-                        <label for="achievements9">
+                        <label for="achievements9" data-count="1174">
                           <div>
                             <span class="radio-style"></span>
                             <span>Coaching</span>
@@ -317,7 +359,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements10" class="radio-box" />
-                        <label for="achievements10">
+                        <label for="achievements10" data-count="2274">
                           <div>
                             <span class="radio-style"></span>
                             <span>Consulting</span>
@@ -326,7 +368,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements11" class="radio-box" />
-                        <label for="achievements11">
+                        <label for="achievements11" data-count="1854">
                           <div>
                             <span class="radio-style"></span>
                             <span>Consumer goods</span>
@@ -335,7 +377,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements12" class="radio-box" />
-                        <label for="achievements12">
+                        <label for="achievements12" data-count="9655">
                           <div>
                             <span class="radio-style"></span>
                             <span>Craft products</span>
@@ -344,7 +386,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements13" class="radio-box" />
-                        <label for="achievements13">
+                        <label for="achievements13" data-count="8524">
                           <div>
                             <span class="radio-style"></span>
                             <span>Food</span>
@@ -353,7 +395,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements14" class="radio-box" />
-                        <label for="achievements14">
+                        <label for="achievements14" data-count="7412">
                           <div>
                             <span class="radio-style"></span>
                             <span>Electronics</span>
@@ -362,7 +404,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements15" class="radio-box" />
-                        <label for="achievements15">
+                        <label for="achievements15" data-count="4521">
                           <div>
                             <span class="radio-style"></span>
                             <span>Healthcare products</span>
@@ -371,7 +413,7 @@ let startfunk = setInterval(() => {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
-                        <label for="achievements16">
+                        <label for="achievements16" data-count="7453">
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
@@ -407,32 +449,45 @@ let startfunk = setInterval(() => {
     //   click on radiobatton box_first
     document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        document.querySelector(".achievements_block .box_first").style.display = "none"
-        document.querySelector(".achievements_block .box_second").style.display = "block"
+        document.querySelector(".achievements_block .box_first").classList.remove("show_var")
+        document.querySelector(".achievements_block .box_second").classList.add("show_var")
+        if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
+          document.querySelector(".achievements_block .box_second").classList.remove("back")
+        }
+        if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+          document.querySelector(".achievements_block .box_third").classList.remove("back")
+        }
       })
     })
 
     //   click on radiobatton box_second
     document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        document.querySelector(".achievements_block .box_second").style.display = "none"
+        document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
+        document.querySelector(".achievements_block .box_second").classList.remove("show_var")
         document.querySelector(".achievements_block > h2").style.display = "none"
-        document.querySelector(".achievements_block .box_third").style.display = "block"
+        document.querySelector(".achievements_block .box_third").classList.add("show_var")
+        if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
+          document.querySelector(".achievements_block .box_third").classList.remove("back")
+        }
       })
     })
 
     //   click on btn Back
     document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function () {
-      document.querySelector(".achievements_block .box_second").style.display = "none"
+      document.querySelector(".achievements_block .box_second").classList.remove("show_var")
+      document.querySelector(".achievements_block .box_second").classList.add("back")
+
       for (let radio of document.querySelectorAll('[type="radio"]')) {
         radio.checked = false
       }
-      document.querySelector(".achievements_block .box_first").style.display = "block"
+      document.querySelector(".achievements_block .box_first").classList.add("show_var")
     })
 
     document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function () {
-      document.querySelector(".achievements_block .box_third").style.display = "none"
-      document.querySelector(".achievements_block .box_second").style.display = "block"
+      document.querySelector(".achievements_block .box_third").classList.remove("show_var")
+      document.querySelector(".achievements_block .box_third").classList.add("back")
+      document.querySelector(".achievements_block .box_second").classList.add("show_var")
       document.querySelector(".achievements_block > h2").style.display = "block"
     })
 
