@@ -240,6 +240,8 @@ function scrollBar() {
 			'event': 'event-to-ga',
 			'eventCategory': 'Exp: Scrollbar',
 			'eventAction': 'Display sticky button',
+			'eventLabel': '',
+
 		})
 	} else if (scrolled < 25) {
 		document.querySelector('.my_btn-wrapper').classList.remove('show')
@@ -253,6 +255,7 @@ dataLayer.push({
 	'event': 'event-to-ga',
 	'eventCategory': 'Exp: Scrollbar',
 	'eventAction': 'loaded',
+	'eventLabel': '',
 })
 
 let waitForClarity = setInterval(() => {
