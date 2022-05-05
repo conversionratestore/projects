@@ -223,11 +223,11 @@ function scrollBar() {
 		percent60 = true
 		scrollEvent('60')
 	}
-	if (scrolled >= 80 && scrolled < 95 && percent80 === false) {
+	if (scrolled >= 80 && scrolled < 97 && percent80 === false) {
 		percent80 = true
 		scrollEvent('80')
 	}
-	if (95 <= scrolled && percent100 === false) {
+	if (97 <= scrolled && percent100 === false) {
 		percent100 = true
 		scrollEvent('100')
 	}
