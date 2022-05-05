@@ -273,7 +273,7 @@ transition: all 2s ease;
                   <div class="achievements_block">
                       <h2>What do you want to achieve with SamCart?</h2>
             
-                  <div class="box_first show_var">
+                  <div class="box_first show_var" id="#box_first">
                     <ul>
                       <li>
                         <input type="radio" name="achievements" id="achievements1" class="radio-box" />
@@ -334,7 +334,7 @@ transition: all 2s ease;
                     <!-- <button class="btn_next">Next</button> -->
                   </div>
             
-                  <div class="box_second">
+                  <div class="box_second" id="#box_second">
                     <button class="btn_back">
                       <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -450,7 +450,7 @@ transition: all 2s ease;
                      <!-- <button class="btn_next">Next</button> -->
                   </div>
             
-                  <div class="box_third">
+                  <div class="box_third" id="#box_third">
                     <button class="btn_back">
                       <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -484,6 +484,8 @@ transition: all 2s ease;
         if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
+
+        onscroll(170, "#box_second")
       })
     })
 
@@ -497,6 +499,8 @@ transition: all 2s ease;
         if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
           document.querySelector(".achievements_block .box_third").classList.remove("back")
         }
+
+        onscroll(130, "#box_third")
       })
     })
 
@@ -509,6 +513,7 @@ transition: all 2s ease;
         radio.checked = false
       }
       document.querySelector(".achievements_block .box_first").classList.add("show_var")
+      onscroll(210, "#box_first")
     })
 
     document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function () {
@@ -516,11 +521,25 @@ transition: all 2s ease;
       document.querySelector(".achievements_block .box_third").classList.add("back")
       document.querySelector(".achievements_block .box_second").classList.add("show_var")
       document.querySelector(".achievements_block > h2").style.display = "block"
+      onscroll(170, "#box_second")
     })
 
     //   click on Try SamCart for FREE
     document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function (e) {
       console.log(`Try SamCart for FREE`)
     })
+
+    function onscroll(topOff, id) {
+      const scrollTarget = document.getElementById(id)
+
+      const topOffset = topOff + 80
+      const elementPosition = scrollTarget.getBoundingClientRect().top
+      const offsetPosition = elementPosition - topOffset
+
+      window.scrollBy({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
   }
 }, 10)
