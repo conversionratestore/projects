@@ -187,7 +187,7 @@ let waitForBar = setInterval(() => {
 			dataLayer.push({
 				'event': 'event-to-ga',
 				'eventCategory': 'Exp: Scrollbar',
-				'eventAction': 'Click on Apply now',
+				'eventAction': 'Click on sticky button',
 			})
 		})
 	}
@@ -200,6 +200,15 @@ function scrollBar() {
 
 	if (scrolled > 25) {
 		document.querySelector('.my_btn-wrapper').classList.add('show')
+
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			'event': 'event-to-ga',
+			'eventCategory': 'Exp: Scrollbar',
+			'eventAction': 'Display sticky button',
+		})
+
+		console.log('Display event here >>.')
 	} else {
 		document.querySelector('.my_btn-wrapper').classList.remove('show')
 	}
