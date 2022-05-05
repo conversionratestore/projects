@@ -435,7 +435,7 @@ transition: all 2s ease;
                     </button>
                     <h3>There are currently <span>4781</span> entrepreneurs successfully selling Online Courses using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
-                    <a href="https://www.samcart.com/pricing?type=annual">Try SamCart for <span>FREE</span></a>
+                    <a target="_blank" href="https://checkout.samcart.com/products/samcart-grow-yearly-trial">Try SamCart for <span>FREE</span></a>
                   </div>
                   </div>
               </div>
@@ -492,6 +492,8 @@ transition: all 2s ease;
     })
 
     //   click on Try SamCart for FREE
-    document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function () {})
+    document.querySelector(".achievements_block .box_third > a:last-child").addEventListener("click", function (e) {
+      console.log(`Try SamCart for FREE`)
+    })
   }
 }, 10)
