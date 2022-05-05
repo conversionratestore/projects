@@ -7,13 +7,20 @@ const myPack = `
 </div>
 `
 
+let isSecondChecked = setInterval(() => {
+	if(document.querySelectorAll('.js-packs input:checked')[2] && document.querySelector('.my_pack input')) {
+		clearInterval(isSecondChecked)
+		document.querySelector('.my_pack input').click()
+	}
+}, 100)
+
 const onCLick = () => {
-	document.querySelector('.my_pack input').addEventListener('click', () => {				
+	document.querySelector('.my_pack input').addEventListener('click', () => {
 		document.querySelector('.prices .pr').innerText = priceInfo[0]
 		document.querySelector('.prices .ps').innerText = priceInfo[1]
 		document.querySelector('.prices .rp').innerText = priceInfo[2]
 		document.querySelector('.prices .rs').innerText = priceInfo[3]
-		
+
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
 			'event': 'event-to-ga',
@@ -26,9 +33,9 @@ const onCLick = () => {
 let waitForPatch2 = setInterval(() => {
 	if (document.querySelectorAll('.js-packs label')[2]) {
 		clearInterval(waitForPatch2)
-		
-		document.querySelectorAll('.js-packs')[2].remove()
-		document.querySelectorAll('.js-packs')[1].insertAdjacentHTML('afterend', myPack)
+
+		document.querySelectorAll('.js-packs')[2].hidden = true
+		document.querySelectorAll('.js-packs')[2].insertAdjacentHTML('afterend', myPack)
 
 		let waitForMyPack = setInterval(() => {
 			if (document.querySelector('.my_pack')) {
