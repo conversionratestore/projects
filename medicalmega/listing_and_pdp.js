@@ -833,13 +833,13 @@ border-radius: 100px;
     padding: 0;
     font-size: 12px;
     width: 100%; }
-.ais-Breadcrumb-list, #breadcrumbs ul {  
+.ais-Breadcrumb-list, .breadcrumbs ul {  
   display: flex;
   align-items: center;
 }
-#breadcrumbs {
+.breadcrumbs {
   padding: 10px 0 5px; }
-  .ais-Breadcrumb-link, #breadcrumbs a {
+  .ais-Breadcrumb-link, .breadcrumbs a {
     font-weight: normal;
     font-size: 12px;
     line-height: 15px;
@@ -847,10 +847,10 @@ border-radius: 100px;
     display: flex;
     align-items: center;
   }
-  // #breadcrumbs li:last-child a:after {
+  // .breadcrumbs li:last-child a:after {
   //   content: none;
   // }
-  // #breadcrumbs a:after{
+  // .breadcrumbs a:after{
   //   content: '';
   //   width: 18px;
   //   height: 18px;
@@ -860,7 +860,7 @@ border-radius: 100px;
   //   background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
   // }
 
-  .ais-Breadcrumb-item, #breadcrumbs li {
+  .ais-Breadcrumb-item, .breadcrumbs li {
     color: #6D7E85;
     display: flex;
     align-items: center;
@@ -983,6 +983,12 @@ border-radius: 100px;
   }
   #list_categories .ais-HierarchicalMenu-count {
     display: none;
+  }
+  li.ais-Breadcrumb-item.ais-Breadcrumb-item--selected {
+    max-width: 600px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .ais-Breadcrumb-separator {
     width: 18px;
@@ -1566,8 +1572,8 @@ let html = `
         </div>
         <button class="burger" id="burger" type="button"><span class="burger-line burger-line-top"></span><span class="burger-line burger-line-center"></span><span class="burger-line burger-line-bottom"></span></button>
       </header>
-      <div class="container"> 
-        <nav id="breadcrumbs"></nav>
+      <div class="container" id="container-listing"> 
+        <nav id="breadcrumbs" class="breadcrumbs"></nav>
         <div id="relatedProducts"></div>
         <div class="flex-wrap w-100" id="listing">
           <div class="filter">
@@ -1718,12 +1724,12 @@ function stopStuff() {
 
 function toggleListing(boolean) {
   if (boolean == false) {
-    document.querySelector('#listing').style.display = 'none';
-    document.querySelector('.product') != null ? document.querySelector('.product').style.display = 'flex' : '';
+    document.querySelector('#container-listing').style.display = 'none';
+    document.querySelector('#container-product') != null ? document.querySelector('#container-product').style.display = 'block' : '';
     stopStuff()
   } else {
-    document.querySelector('#listing').style = '';
-    document.querySelector('.product') != null ? document.querySelector('.product').style.display = 'none' : '';
+    document.querySelector('#container-listing').style = '';
+    document.querySelector('#container-product') != null ? document.querySelector('#container-product').style.display = 'none' : '';
     startStuff()
   }
 }
@@ -2204,7 +2210,7 @@ function toggleClass(item,content,event) {
             }
      
             
-            document.querySelectorAll('#breadcrumbs li').forEach((crumb, index) => {
+            document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
               crumb.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
                 actionDataLayer = `Click on crumb - ${e.target.innerText}`;
@@ -2289,7 +2295,7 @@ function toggleClass(item,content,event) {
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
-    console.log(search.helper.state)
+    // console.log(search.helper.state)
   })
 
   window.addEventListener('scroll', (e) => {
@@ -2481,7 +2487,12 @@ function toggleClass(item,content,event) {
 
   //pdp
   if (window.location.pathname.includes('/product/')) {
+    let scriptCustom = document.createElement('script');
+    scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
+    document.head.appendChild(scriptCustom);
+
     toggleListing(false); //hide listing
+    
 
     requestProduct.then(data => {
       console.log(data)
@@ -2491,20 +2502,6 @@ function toggleClass(item,content,event) {
 
 
       let imagesProduct = firstVariant.images;
-      document.querySelector('#breadcrumbs').style.opacity = `1`;
-      document.querySelector('#breadcrumbs').innerHTML = `
-      <div class="ais-Breadcrumb">
-        <ul class="ais-Breadcrumb-list">
-          <li class="ais-Breadcrumb-item">
-            <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
-          </li>
-          <li class="ais-Breadcrumb-item">
-            <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-            <a class="ais-Breadcrumb-link" href="https://medicalmega.com?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
-          </li>
-          <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
-        </ul>
-      </div> `;
   
       // search.addWidgets([
       //   instantsearch.widgets.breadcrumb({
@@ -2575,66 +2572,80 @@ function toggleClass(item,content,event) {
       }
 
       let htmlProduct = `
-        <div class="flex-wrap w-100 justify-content-between product"> 
-          <div class="col_left flex-wrap"> 
-            <div class="side_one">
-              <div class="slider-nav">${getSlidesImage()}</div>
-              <div class="trustpilot"></div>
-            </div>
-            <div class="side_two">
-              <div class="slider-for">
-                <div class="slide" data-item="show-zoom">
-                  <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
-                  <div class="img-zoom-result" id="zoomResult"></div>
+      <div id="container-product" class="container">
+        <nav id="breadcrumbs-pdp" class="breadcrumbs">
+          <ul class="ais-Breadcrumb-list">
+            <li class="ais-Breadcrumb-item">
+              <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
+            </li>
+            <li class="ais-Breadcrumb-item">
+              <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
+              <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
+            </li>
+            <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
+          </ul>  
+        </nav>
+          <div class="flex-wrap w-100 justify-content-between product"> 
+            <div class="col_left flex-wrap"> 
+              <div class="side_one">
+                <div class="slider-nav">${getSlidesImage()}</div>
+                <div class="trustpilot"></div>
+              </div>
+              <div class="side_two">
+                <div class="slider-for">
+                  <div class="slide" data-item="show-zoom">
+                    <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
+                    <div class="img-zoom-result" id="zoomResult"></div>
+                  </div>
                 </div>
+                <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
               </div>
-              <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
             </div>
-          </div>
-          <div class="col_right"> 
-            <div class="product_content justify-content-between"> 
-              <div class="col_mid">
-                <h2 class="title">${product.name}</h2>
-                <ul class="list">
-                  <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
-                  <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
-                  <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
-                </ul>
-                <ul class="tabs-discription d-flex"> </ul>
-                <div class="content-discription"></div>
-              </div>
-              <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
-                ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
-                <div class="product_sidebar_top">
-                  <div class="shipping_block">
-                      <div class="align-items-center"> 
-                        <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                        <div> 
-                          <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                          <p class="c-gray">2-3 business days*</p>
+            <div class="col_right"> 
+              <div class="product_content justify-content-between"> 
+                <div class="col_mid">
+                  <h2 class="title">${product.name}</h2>
+                  <ul class="list">
+                    <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
+                    <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
+                    <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
+                  </ul>
+                  <ul class="tabs-discription d-flex"> </ul>
+                  <div class="content-discription"></div>
+                </div>
+                <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
+                  ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
+                  <div class="product_sidebar_top">
+                    <div class="shipping_block">
+                        <div class="align-items-center"> 
+                          <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                          <div> 
+                            <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                            <p class="c-gray">2-3 business days*</p>
+                          </div>
                         </div>
+                        <div class="line"></div>
+                    </div>     
+                    ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
+                  </div>
+                  <form action="https://medicalmega.com/cart.html" method="post">
+                      <div class="flex-center-center calc"> 
+                        <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                        <input class="calc-qty" type="number" value="1" name="quantity">
+                        <button class="btn-calc btn-calc_plus" type="button"></button>
                       </div>
-                      <div class="line"></div>
-                   </div>     
-                   ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
+                      ${firstVariant.in_stock == false ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                      <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
+                      <input type="hidden" name="product_id" value="${product.objectID}">
+                      <input type="hidden" name="add_to_cart" value="variant">
+                  </form>
                 </div>
-                <form action="https://medicalmega.com/cart.html" method="post">
-                    <div class="flex-center-center calc"> 
-                      <button class="btn-calc btn-calc_minus" type="button" disabled></button>
-                      <input class="calc-qty" type="number" value="1" name="quantity">
-                      <button class="btn-calc btn-calc_plus" type="button"></button>
-                    </div>
-                    ${firstVariant.in_stock == false ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                    <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
-                    <input type="hidden" name="product_id" value="${product.objectID}">
-                    <input type="hidden" name="add_to_cart" value="variant">
-                </form>
               </div>
             </div>
           </div>
         </div>`
     
-      document.querySelector('#listing').insertAdjacentHTML('beforebegin', htmlProduct);
+      document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
 
       document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
@@ -2661,13 +2672,11 @@ function toggleClass(item,content,event) {
         }
       })
 
-      let scriptCustom = document.createElement('script');
-      scriptCustom.src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/js/zoom.js';
-      document.head.appendChild(scriptCustom);
       
       let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
           contents = document.querySelectorAll('.content-discription .content-item'), // content discription
           slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
+          slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
       
       toggleClass(tabs,contents,'click') ;
 
@@ -2682,6 +2691,27 @@ function toggleClass(item,content,event) {
             document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
         })
       })
+      
+      //slider nav
+      slidesNav.forEach((el,i) => {
+        el.addEventListener('click', () => {
+            el.closest('.slider-nav').querySelector('.active').classList.remove('active');
+            el.classList.add('active');
+
+            let src = el.querySelector('img').getAttribute('src');
+            document.querySelector('.slider-for_img').setAttribute('src',src)
+            document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
+        })
+      })
+
+        //zoom
+      let startZoom = setInterval(() => {
+        if (document.querySelector('.img-zoom-result') != null) {
+            console.log('true')
+            clearInterval(startZoom)
+            imageZoom("forImg", "zoomResult")
+        }
+      }, 200);
 
       if (product.variants.length > 2) {
         let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
@@ -2745,8 +2775,8 @@ function toggleClass(item,content,event) {
                 }
             }
         }, 200)
-
-
+      }
+      
         //checkbox choice
         document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
             checkbox.addEventListener('click', (e) => {
@@ -2765,7 +2795,6 @@ function toggleClass(item,content,event) {
                 }
             })
         })
-      }
     })
  
 
