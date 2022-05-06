@@ -64,56 +64,47 @@ let startfunk = setInterval(() => {
 
     document.head.insertAdjacentHTML("beforeend", prodLstStyle)
 
-    if (document.querySelector("#prod-list .js-main-prod-list.prod_lst")) {
-      addTargetBlankLst()
-    }
+    // if (document.querySelector("#prod-list .js-main-prod-list.prod_lst")) {
+    //   addTargetBlankLst()
+    // }
 
-    if (document.querySelector("#prod-list .js-main-prod-list.prod_grd")) {
-      addTargetBlankGrd()
-    }
+    document.querySelectorAll(".js-main-prod-list li").forEach((el) => {
+      if (!el.querySelector("a.test_btn")) {
+        addTargetBlankGrd(el)
+      }
+    })
 
-    function addTargetBlankLst() {
-      console.log(`#prod_lst`)
-      document.querySelectorAll(".js-main-prod-list.prod_lst .lst_a").forEach(function (el) {
-        if (!el.getAttribute("data-lst")) {
+    // function addTargetBlankLst() {
+    //   console.log(`#prod_lst`)
+    //   document.querySelectorAll(".js-main-prod-list.prod_lst .lst_a").forEach(function (el) {
+    //     if (!el.getAttribute("data-lst")) {
+    //       el.addEventListener("click", function (e) {
+    //         if (e.target === el) {
+    //           e.preventDefault()
+    //           e.stopPropagation()
+    //           pushDataLayer("Click on view details button")
+
+    //           window.open(this.href, "_blank")
+    //         }
+    //       })
+
+    //       el.setAttribute("data-lst", "prod_lst")
+    //     }
+    //   })
+    // }
+
+    function addTargetBlankGrd(li) {
+      li.insertAdjacentHTML("afterbegin", `<a class="link_target_blank test_btn" href="" target="_blank"></a>`)
+
+      li.insertAdjacentHTML("beforeend", `<a class="link_target_blank_var test_btn" href="" target="_blank"></a>`)
+
+      addClickOnLink(".test_btn")
+
+      function addClickOnLink(selector) {
+        li.querySelectorAll(selector).forEach(function (el) {
           el.addEventListener("click", function (e) {
-            if (e.target === el) {
-              e.preventDefault()
-              e.stopPropagation()
-              pushDataLayer("Click on view details button")
-
-              window.open(this.href, "_blank")
-            }
+            pushDataLayer(`Click on view details button`)
           })
-
-          el.setAttribute("data-lst", "prod_lst")
-        }
-      })
-    }
-
-    function addTargetBlankGrd() {
-      document.querySelectorAll(".js-main-prod-list.prod_grd li").forEach((el) => {
-        el.insertAdjacentHTML("afterbegin", `<a class="link_target_blank" href="" target="_blank"></a>`)
-      })
-
-      document.querySelectorAll(".js-main-prod-list.prod_grd li").forEach((el) => {
-        el.insertAdjacentHTML("beforeend", `<a class="link_target_blank_var" href="" target="_blank"></a>`)
-      })
-
-      addClickOnLink(".js-main-prod-list.prod_grd a.link_target_blank", "link_target_blank")
-      addClickOnLink(".js-main-prod-list.prod_grd a.link_target_blank_var", "link_target_blank_var")
-
-      function addClickOnLink(selector, event) {
-        document.querySelectorAll(selector).forEach(function (el) {
-          if (!el.getAttribute("data-grd")) {
-            this.addEventListener("click", function (e) {
-              if (e.target === el) {
-                pushDataLayer(`Click on view details button ${event}`)
-              }
-            })
-
-            el.setAttribute("data-grd", "prod_grd")
-          }
         })
       }
     }
@@ -123,13 +114,13 @@ let startfunk = setInterval(() => {
       if (document) {
         observer.disconnect()
 
-        if (document.querySelector("#prod-list .js-main-prod-list.prod_lst")) {
-          addTargetBlankLst()
-        }
+        // if (document.querySelector("#prod-list .js-main-prod-list.prod_lst")) {
+        //   addTargetBlankLst()
+        // }
 
-        document.querySelectorAll(".js-main-prod-list.prod_grd li").forEach((el) => {
-          if (!el.querySelector("a.link_target_blank") && !el.querySelector("a.link_target_blank_var")) {
-            addTargetBlankGrd()
+        document.querySelectorAll(".js-main-prod-list li").forEach((el) => {
+          if (!el.querySelector("a.test_btn")) {
+            addTargetBlankGrd(el)
           }
         })
 
