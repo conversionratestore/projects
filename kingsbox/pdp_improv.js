@@ -1458,7 +1458,7 @@ const getSimilar = async data => {
 
 						let randomItems = randomize(filteredArr, randomItemsNumber)
 
-						if(randomItems.length > 0) {
+						if (randomItems.length > 0) {
 							let divClass = isSimilarItem ? 'similar_exist' : ''
 
 							const similarProducts = `
@@ -1785,7 +1785,6 @@ function _setExpectedItem(where) {
 					}
 				} else if (document.querySelector('.product-stock-wrapper .pre-order')) {
 					weeksNumber = weeksNumber.replace('-', ' - ')
-
 				}
 			} else {
 				drawWeeks = false
@@ -1794,7 +1793,11 @@ function _setExpectedItem(where) {
 			let weekP = ''
 
 			if (drawWeeks) {
-				weekP = `<p>${ language.order } <span>${ weeksNumber } ${ oneWeek ? language.week : language.weeks }</span>.</p>`
+				if (oneWeek) {
+					weekP = `<p>${ language.order } <span>2 ${ language.weeks }</span>.</p>`
+				} else {
+					weekP = `<p>${ language.order } <span>${ weeksNumber } ${ language.weeks }</span>.</p>`
+				}
 			} else {
 				weekP = `<p>${ language.order } <span>3 - 4 ${ language.weeks }</span>.</p>`
 			}
@@ -1842,10 +1845,10 @@ function addBadge() {
 			`
 
 
-		if(!document.querySelector('.product-images-container div .eu')) {
+		if (!document.querySelector('.product-images-container div .eu')) {
 			document.querySelector('.product-images-container div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
-		if(!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
+		if (!document.querySelector('.product-images-container-mobile .product-image-wrapper div .eu')) {
 			document.querySelector('.product-images-container-mobile .product-image-wrapper div:not(.product-discount-badge)').insertAdjacentHTML('beforeend', sellImg)
 		}
 	}
