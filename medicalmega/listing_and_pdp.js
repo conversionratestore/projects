@@ -1806,7 +1806,6 @@ function toggleClass(item,content,event) {
       })
   }
 }
-
 window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
@@ -2509,10 +2508,24 @@ window.onload = function() {
       let product = data.hits[0],
           firstVariant = product.variants[0];
 
-      let imagesProduct = firstVariant.images;
-  
+      let imagesProduct = firstVariant.images,
+          categoriesHit = product.categories;
+
+      let categoryLvl = ''
+      for (let i = 0; i < categoriesHit.length; i++) {
+        if (i >= categoriesHit[i].length) {
+          let itemCategories = categoriesHit[i];
+          for (let j = 0; j < itemCategories.length; j++) {
+            if (itemCategories[j] != null) {
+              categoryLvl = `categories.lvl${i}:${categoriesHit[i][j]}`
+            }
+          }
+        }
+      }
+      console.log(categoryLvl)
+
       let requestSimilarProduct = index.search( {
-        facetFilters: [`category:${product.category}`],
+        facetFilters: [categoryLvl],
         hitsPerPage: '4',
       })
 
@@ -2643,6 +2656,10 @@ window.onload = function() {
               </div>
             </div>
           </div>
+          <section class="similar-products">
+            <h2 class="text-center">Similar Products</h2>
+            <div class="justify-content-between cards_similar"></div>
+          </section>
         </div>`
     
       document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
@@ -2796,38 +2813,53 @@ window.onload = function() {
       })
 
       //Similar products
+      document.querySelectorAll('.products_gallery dd').forEach((el) => {
+        document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+        <div class="card" >
+            <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
+                <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+                <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
+            </a>
+            <form action="https://medicalmega.com/cart.html" method="post">
+              <div class="flex-center-center calc"> 
+                <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                <input class="calc-qty" type="number" value="1" name="quantity">
+                <button class="btn-calc btn-calc_plus" type="button"></button>
+              </div>
+              <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
+              <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
+              <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
+              <input type="hidden" name="add_to_cart" value="variant">
+            </form>
+        </div>`)
+      })
       requestSimilarProduct.then(res => {
         console.log(res)
         let hits = res.hits;
 
-        if (hits.length > 0) {
-          document.querySelector('.product').insertAdjacentHTML('afterend',`
-          <section class="similar-products">
-            <h2 class="text-center">Similar Products</h2>
-            <div class="justify-content-between cards_similar"></div>
-          </section>`)
+        // if (hits.length > 0) {
 
-          for (let i = 0; i < hits.length; i++) {
-            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-            <div class="card" >
-                <a class="card_name" href="${hits[i].seo}">
-                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
-                    <span title="${hits[i].name}">${hits[i].name}</span>
-                </a>
-                <form action="https://medicalmega.com/cart.html" method="post">
-                    <div class="flex-center-center calc"> 
-                      <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                      <input class="calc-qty" type="number" value="1" name="quantity">
-                      <button class="btn-calc btn-calc_plus" type="button"></button>
-                    </div>
-                    <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
-                    <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
-                    <input type="hidden" name="product_id" value="${hits[i].objectID}">
-                    <input type="hidden" name="add_to_cart" value="variant">
-                </form>
-            </div>`)
-          }
-        }
+        //   for (let i = 0; i < hits.length; i++) {
+        //     document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+        //     <div class="card" >
+        //         <a class="card_name" href="${hits[i].seo}">
+        //             <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
+        //             <span title="${hits[i].name}">${hits[i].name}</span>
+        //         </a>
+        //         <form action="https://medicalmega.com/cart.html" method="post">
+        //             <div class="flex-center-center calc"> 
+        //               <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+        //               <input class="calc-qty" type="number" value="1" name="quantity">
+        //               <button class="btn-calc btn-calc_plus" type="button"></button>
+        //             </div>
+        //             <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
+        //             <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
+        //             <input type="hidden" name="product_id" value="${hits[i].objectID}">
+        //             <input type="hidden" name="add_to_cart" value="variant">
+        //         </form>
+        //     </div>`)
+        //   }
+        // }
       })
     })
   }
