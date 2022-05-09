@@ -1363,7 +1363,12 @@ border-radius: 100px;
       font-size: 24px;
       line-height: 29px;
       margin-bottom: 56px; }
-
+      .similar-products .card {
+        max-width: 281px;
+        width: calc(25% - 10px); }
+      .similar-products .card img {
+        width: 100%;
+        height: 200px;}
   .product {
     padding-top: 17px;
     padding-bottom: 60px; }
@@ -1629,9 +1634,6 @@ const search = instantsearch({
 });
 
 const index = searchClient.initIndex(indexName);
-
-// const algoliarecommend = window['@algolia/recommend'];
-// const recommendClient = algoliarecommend(APPLICATION_ID, API_KEY);
 
 let currentPath = 'https://medicalmega.com/';
 
@@ -1962,7 +1964,6 @@ function toggleClass(item,content,event) {
           loadingIndicator: '<img src="https://conversionratestore.github.io/projects/medicalmega/img/loading-buffering.gif" alt="icon loading">',
       },
     }),
-
     instantsearch.widgets.infiniteHits({
       container: '#hits',
       escapeHTML: false,
@@ -2100,6 +2101,7 @@ function toggleClass(item,content,event) {
         }));
       }
     }),
+
     {
       render({ searchMetadata = {} }) {
           const { isSearchStalled } = searchMetadata
@@ -2493,16 +2495,19 @@ function toggleClass(item,content,event) {
 
     toggleListing(false); //hide listing
     
-
     requestProduct.then(data => {
       console.log(data)
  
       let product = data.hits[0],
           firstVariant = product.variants[0];
 
-
       let imagesProduct = firstVariant.images;
   
+      let requestSimilarProduct = index.search( {
+        facetFilters: [`category:${product.category}`],
+        hitsPerPage: '4',
+      })
+
       // search.addWidgets([
       //   instantsearch.widgets.breadcrumb({
       //     container: '#breadcrumbs',
@@ -2516,6 +2521,20 @@ function toggleClass(item,content,event) {
       //     limit: 150, 
       //   }),
       // ])
+      // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
+      // const recommend = window['@algolia/recommend'];
+      // const recommendClient = recommend(APPLICATION_ID, API_KEY);
+
+      // relatedProducts({
+      //   container: '#relatedProducts',
+      //   recommendClient,
+      //   indexName,
+      //   objectIDs: [product.objectID],
+      //   itemComponent({ item }) {
+      //     console.log(item)
+      //     return item;
+      //   },
+      // });
       // recommendClient.getRelatedProducts([
       //   {
       //     indexName: 'staging_products',
@@ -2523,27 +2542,13 @@ function toggleClass(item,content,event) {
       //     // manufacturer: data.hits[0].manufacturer,
       //   },
       // ])
-      // .then(({ results }) => {
+      // .then(results => {
       //   console.log(results);
       // })
       // .catch(err => {
       //   console.log(err);
       // });
-      // relatedProducts({
-      //   container: '#relatedProducts',
-      //   recommendClient,
-      //   indexName: 'staging_products',
-      //   objectIDs: [product.objectID],
-      //   itemComponent({ item }) {
-      //     console.log(item)
-      //     return item
-      //     //(
-      //     //   <pre>
-      //     //     <code>{JSON.stringify(item)}</code>
-      //     //   </pre>
-      //     // );
-      //   },
-      // });
+
     
       //Available Options
       let htmlAvailableOptions = `
@@ -2643,6 +2648,10 @@ function toggleClass(item,content,event) {
               </div>
             </div>
           </div>
+          <section class="similar-products">
+            <h2 class="text-center">Similar Products</h2>
+            <div class="justify-content-between cards_similar"></div>
+          </section>
         </div>`
     
       document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
@@ -2777,86 +2786,52 @@ function toggleClass(item,content,event) {
         }, 200)
       }
       
-        //checkbox choice
-        document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-            checkbox.addEventListener('click', (e) => {
-                if (checkbox.checked) {
-                    let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
-                        qty = document.querySelector('.product_sidebar .calc-qty'),
-                        priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
+      //checkbox choice
+      document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+          checkbox.addEventListener('click', (e) => {
+              if (checkbox.checked) {
+                  let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
+                      qty = document.querySelector('.product_sidebar .calc-qty'),
+                      priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
 
-                    document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
-                    priceProduct.dataset.price = optionPrice;
-                   
-                    priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                    if (qty.value == '') {
-                      priceProduct.innerHTML = optionPrice
-                    }
-                }
-            })
-        })
+                  document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
+                  priceProduct.dataset.price = optionPrice;
+                  
+                  priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                  if (qty.value == '') {
+                    priceProduct.innerHTML = optionPrice
+                  }
+              }
+          })
+      })
+
+      //Similar products
+      requestSimilarProduct.then(res => {
+        console.log(res)
+        
+        let hits = res.hits;
+        for (let i = 0; i < hits.length; i++) {
+          document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+          <div class="card" >
+              <a class="card_name" href="${hits[i].seo}">
+                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/${hits[i].image}" alt="${hits[i].name}">
+                  <span title="${hits[i].name}">${hits[i].name}</span>
+              </a>
+              <form action="https://medicalmega.com/cart.html" method="post">
+                  <div class="flex-center-center calc"> 
+                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                    <input class="calc-qty" type="number" value="1" name="quantity">
+                    <button class="btn-calc btn-calc_plus" type="button"></button>
+                  </div>
+                  <button class="btn btn_dark add-cart" type="submit"><span hidden="">$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
+                  <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
+                  <input type="hidden" name="product_id" value="${hits[i].objectID}">
+                  <input type="hidden" name="add_to_cart" value="variant">
+              </form>
+          </div>`)
+        }
+      })
     })
- 
-
-    // //price product
-    // if (document.querySelector('.product-price') != null) {
-    //   if (document.querySelector('.box_item') == null && document.querySelector('.product-page-bulk__box') == null) {
-    //       document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend',`
-    //       <div class="flex-end-between fw-semi total">
-    //         <p class="fs-16">Price:</p> <p class="fs-24">$<span class="pr-state">${document.querySelector('.product-price').innerText.replace('$','')}</span></p>
-    //       </div>`)
-    //   }
-    //   document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_dark add-cart" type="submit" data-variant="${document.querySelector('.type2 [name="product_variant_id"]').value}" data-id="${document.querySelector('[name="product_id"]').value}"> <span hidden>$<span class="pr" data-price="${document.querySelector('.product-price').innerText.replace('$','')}">${document.querySelector('.product-price').innerText.replace('$','')}</span> | </span>Add to Cart</button>`);
-    // } else {
-    //     document.querySelector('.product_sidebar').insertAdjacentHTML('afterbegin','<p class="out-of-stick">Out Of Stock</p>');
-    //     document.querySelector('.product_sidebar').classList.add('disabled');
-    //     document.querySelector('.product_sidebar .btn-calc_plus').disabled = true;
-    //     document.querySelector('.product_sidebar .icon-car').src = 'https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car-gray.svg';
-    //     document.querySelector('.product_sidebar .calc').insertAdjacentHTML('afterend',` <button class="btn btn_white" type="button" disabled><span class="pr" data-price="" hidden></span>Out Of Stock</button>`);
-    // }
-
-   
-
-    // function setBulkOptionHTML(i=1,bulk,price,variantId) {
-    //     return `
-    //     <label>
-    //         <input type="radio" name="radio" class="checkbox" ${i==0?'checked':''} data-variant="${variantId}">
-    //         <span class="radio-check">
-    //           <span>${bulk}</span>
-    //           <span class="radio-check_price">${price}</span>
-    //         </span>
-    //     </label>`
-    // }
-
-    // if (document.querySelector('.box_item') != null || document.querySelector('.product-page-bulk__box') != null) {
-    //     document.querySelector('.product_sidebar .shipping_block').insertAdjacentHTML('afterend', availableOptionsHTML)
-
-    //     document.querySelector('.product_sidebar .add-cart span').hidden = false;
-
-    //     let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
-
-    //     if (document.querySelector('.product-page-bulk__box') != null && document.querySelector('#product_bulk') == null) {
-    //         contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
-    //         contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,document.querySelector('#bulk_tag').innerHTML.split('</b>')[2].split('/')[0],document.querySelector('#bulk_tag .number').innerHTML,document.querySelector('.boxcon1 [name="product_variant_id"]').value));
-    //     }
-
-    //     if (document.querySelector('.box_item') != null) {
-    //         document.querySelectorAll('.box_item').forEach((item,i) => {
-    //             contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(i,item.querySelectorAll('span')[0].innerText,item.querySelectorAll('span')[1].innerText,item.getAttribute('onclick').split('(')[1].split(',')[0]));
-    //         })
-    //     }
-
-    //     if (document.querySelector('.product-price') != null && document.querySelector('#product_bulk') != null) {
-    //         console.log('product_bulk')
-    //         contentAvailableOptions.insertAdjacentHTML('afterbegin', setBulkOptionHTML(0,'Each',document.querySelector('.product-price').innerHTML,document.querySelector('.type2 [name="product_variant_id"]').value));
-    //         for (let i = 0; i < pb_values.length; i++) {
-    //             contentAvailableOptions.insertAdjacentHTML('beforeend', setBulkOptionHTML(1,pb_values[i][2],pb_values[i][0],pb_values[i][3]))
-    //         }
-    //     }
-   
-   
-    // }
-
   }
   
 // };
@@ -3012,27 +2987,33 @@ let mut = new MutationObserver(function (muts) {
   }
   mut.observe(document, optionMut);
   if (document.querySelector('.calc') != null) {
+    console.log( document.querySelectorAll('.calc').length)
+    function labelForCards() {
+      if (e.target.closest('.product_sidebar ')) {
+        return `PDP`;
+      } else if (e.target.closest('.cards_similar')) {
+        return `Similar Products`;
+      } else {
+        return `Listing`;
+      }
+    }
     document.querySelectorAll('.calc').forEach((el, i) => {
       el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
+
         actionDataLayer = `Click on plus button`;
-        if (e.target.closest('.product_sidebar ')) {
-          labelDataLayer = `PDP`;
-        } else {
-          labelDataLayer = `Listing`;
-        }
+        labelDataLayer = labelForCards();
         pushDataLayer(actionDataLayer,labelDataLayer);
+
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
       })
       el.querySelector('.btn-calc_minus').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
+
         actionDataLayer = `Click on minus button`;
-        if (e.target.closest('.product_sidebar ')) {
-          labelDataLayer = `PDP`;
-        } else {
-          labelDataLayer = `Listing`;
-        }
+        labelDataLayer = labelForCards();
         pushDataLayer(actionDataLayer,labelDataLayer);
+        
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
       })
       el.querySelector('.calc-qty').addEventListener('input', (e) => {
@@ -3042,7 +3023,7 @@ let mut = new MutationObserver(function (muts) {
       el.querySelector('.calc-qty').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         actionDataLayer = `Click on quantity button`;
-        labelDataLayer = `Card Product`;
+        labelDataLayer = labelForCards();
         pushDataLayer(actionDataLayer,labelDataLayer);
       })
       el.querySelector('.calc-qty').addEventListener('blur', (e) => {
