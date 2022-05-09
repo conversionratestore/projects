@@ -13,10 +13,7 @@ const style = /*html*/`
                 align-items: center;
             }
 
-            .my_text {
-                margin-top: 60px;
-                margin-left: 35px;
-            }
+            
 
             .my_list li {
                 color: #fff;
@@ -66,6 +63,16 @@ const style = /*html*/`
 
             .trust_wrapper {
                 display: flex;
+                margin-bottom: 25px;
+            }
+
+            .my_img {
+                margin-left: -25px;
+            }
+
+            .my_text {
+                margin-top: 50px;
+                margin-left: 15px;
             }
 	</style>
 `
@@ -107,7 +114,7 @@ let waitForForm = setInterval(() => {
         document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
     <div class="images">
         <div>
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/x24.svg" alt="24 patches">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/x24.png" alt="24 patches">
             <p>24 patches<br>in 1 pack</p>
         </div>
         <div>
