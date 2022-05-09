@@ -130,7 +130,7 @@ let waitForForm = setInterval(() => {
         document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
     <div class="images">
         <div>
-            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/x24.png" alt="24 patches">
+            <img src="https://conversionratestore.github.io/projects/buzzpatch/img/x24.svg" alt="24 patches">
             <p>24 patches<br>in 1 pack</p>
         </div>
         <div>
