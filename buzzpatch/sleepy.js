@@ -13,8 +13,6 @@ const style = /*html*/`
                 align-items: center;
             }
 
-            
-
             .my_list li {
                 color: #fff;
                 font-size: 14px !important;
@@ -73,6 +71,10 @@ const style = /*html*/`
             .my_text {
                 margin-top: 50px;
                 margin-left: 15px;
+            }
+
+            #getNow h2 + p {
+                display: none;
             }
 	</style>
 `
