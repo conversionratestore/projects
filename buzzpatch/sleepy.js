@@ -5,8 +5,14 @@ const style = /*html*/`
                 display: none;
             }
 
+            .js-heading h1 {
+                font-weight: 700 !important;
+                font-size: 36px !important;
+                line-height: 42px !important;
+            }
+
             .my_list {
-                margin: 30px auto 0;                
+                margin-top: 31px;               
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -17,7 +23,7 @@ const style = /*html*/`
                 color: #fff;
                 font-size: 14px !important;
                 list-style-image: url("https://conversionratestore.github.io/projects/buzzpatch/img/disc_blue.svg"); !important;
-                margin-bottom: 8px !important;
+                margin-bottom: 12px !important;
             }
             
             .my_text p {
@@ -63,6 +69,7 @@ const style = /*html*/`
                 display: flex;
                 margin-bottom: 25px;
                 justify-content: center;
+                margin-top: -25px;
             }
 
             .my_img {
@@ -70,12 +77,16 @@ const style = /*html*/`
             }
 
             .my_text {
-                margin-top: 50px;
+                margin-top: 55px;
                 margin-left: 10%;
             }
 
             #getNow h2 + p {
                 display: none;
+            }
+
+           .my_text p.my_smaller {
+                font-size: 12px;
             }
 	</style>
 `
@@ -87,18 +98,20 @@ let waitForHeading = setInterval(() => {
         clearInterval(waitForHeading)
 
         document.querySelector('.trust-rating').insertAdjacentHTML('afterend', /*html*/`
-        <ul class="my_list">
-            <li>100% natural content & chemical free</li>
-            <li>Scientifically proven to improve sleep</li>
-            <li>Safe for kids 2+ years old & adults</li>
-            <li>Not addictive. No side effects</li>
-        </ul>
+        <div class="my_list">
+            <ul >
+                <li>100% natural content & chemical free</li>
+                <li>Scientifically proven to improve sleep</li>
+                <li>Safe for kids 2+ years old & adults</li>
+                <li>Not addictive. No side effects</li>
+            </ul>
+        </div>
         <div>
             <div class="trust_wrapper">
                 <div class="my_text">
                     <p>Our customers rate<br>us as <b>Excellent</b></p>
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/stars-trust.svg" alt="stars">
-                    <p>Reviews 473</p>
+                    <p class="my_smaller">Reviews 473</p>
                 </div>
                 <div class="my_img">
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_patches.svg" alt="patches">
