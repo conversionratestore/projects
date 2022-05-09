@@ -39,7 +39,7 @@ const style = /*html*/`
             }
 
             .my_img {
-                margin: 0 6%;
+                margin: 0 -4%;
             }
 
             .images {
