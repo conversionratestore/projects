@@ -1763,14 +1763,14 @@ function changeQty(qty,pr,action) {
   if (qty.value == '') {
       pr.innerHTML = pr.dataset.price
   }
-  if (qty.closest('.product_sidebar')) {
-    if (qty.value > 1) {
-        document.querySelector('.product_sidebar .add-cart span').hidden = false;
-    } else {
+  if (qty.value > 1) {
+    qty.parentElement.nextElementSibling.querySelector('span').hidden = false;
+  } else {
+    if (qty.closest('.product_sidebar')) {
       if (document.querySelector('.available-options') == null) {
-        document.querySelector('.product_sidebar .add-cart span').hidden = true;
+        qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = true;
       } else {
-        document.querySelector('.product_sidebar .add-cart span').hidden = false;
+        qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = false;
       }
     }
   }
@@ -1794,7 +1794,7 @@ function toggleClass(item,content,event) {
       })
   }
 }
-// window.onload = function() {
+window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
@@ -2823,7 +2823,7 @@ function toggleClass(item,content,event) {
                     <input class="calc-qty" type="number" value="1" name="quantity">
                     <button class="btn-calc btn-calc_plus" type="button"></button>
                   </div>
-                  <button class="btn btn_dark add-cart" type="submit"><span hidden="">$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
+                  <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
                   <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
                   <input type="hidden" name="product_id" value="${hits[i].objectID}">
                   <input type="hidden" name="add_to_cart" value="variant">
@@ -2833,8 +2833,7 @@ function toggleClass(item,content,event) {
       })
     })
   }
-  
-// };
+};
 
 let optionMut = {
   childList: true,
@@ -2988,10 +2987,10 @@ let mut = new MutationObserver(function (muts) {
   mut.observe(document, optionMut);
   if (document.querySelector('.calc') != null) {
     console.log( document.querySelectorAll('.calc').length)
-    function labelForCards() {
-      if (e.target.closest('.product_sidebar ')) {
+    function labelForCards(e) {
+      if (e.closest('.product_sidebar ')) {
         return `PDP`;
-      } else if (e.target.closest('.cards_similar')) {
+      } else if (e.closest('.cards_similar')) {
         return `Similar Products`;
       } else {
         return `Listing`;
@@ -3002,7 +3001,7 @@ let mut = new MutationObserver(function (muts) {
         e.stopImmediatePropagation();
 
         actionDataLayer = `Click on plus button`;
-        labelDataLayer = labelForCards();
+        labelDataLayer = labelForCards(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
 
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
@@ -3011,7 +3010,7 @@ let mut = new MutationObserver(function (muts) {
         e.stopImmediatePropagation();
 
         actionDataLayer = `Click on minus button`;
-        labelDataLayer = labelForCards();
+        labelDataLayer = labelForCards(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
         
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
@@ -3023,7 +3022,7 @@ let mut = new MutationObserver(function (muts) {
       el.querySelector('.calc-qty').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         actionDataLayer = `Click on quantity button`;
-        labelDataLayer = labelForCards();
+        labelDataLayer = labelForCards(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
       })
       el.querySelector('.calc-qty').addEventListener('blur', (e) => {
