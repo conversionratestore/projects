@@ -36,10 +36,9 @@ const style = /*html*/`
 
             .trust_wrapper {
                 display: flex;
-            }
-
-            .my_img {
-                margin: 0 -4%;
+                margin-right: -15px;
+                position: relative;
+                justify-content: space-between;
             }
 
             .images {
