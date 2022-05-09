@@ -101,7 +101,7 @@ let waitForHeading = setInterval(() => {
 }, 200)
 
 let waitForForm = setInterval(() => {
-    if (document.querySelector('.my_btn')) {
+    if (document.querySelector('#purchase form')) {
         clearInterval(waitForForm)
 
         document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
