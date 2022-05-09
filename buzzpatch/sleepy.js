@@ -6,39 +6,33 @@ const style = /*html*/`
             }
 
             .my_list {
-                margin: 0;
-                margin-left: 10%;
-                padding: 0;
-                margin-top: 50px;
+                margin: 30px auto 0;                
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             .my_text {
-                margin-left: 7%;
-                margin-top: 13%;
+                margin-top: 60px;
+                margin-left: 35px;
             }
 
             .my_list li {
                 color: #fff;
-                font-size: 16px !important;
-                list-style-type: disc !important;
-                margin-bottom: 12px !important;
+                font-size: 14px !important;
+                list-style-image: url("https://conversionratestore.github.io/projects/buzzpatch/img/disc_blue.svg"); !important;
+                margin-bottom: 8px !important;
             }
-
+            
             .my_text p {
-                font-size: 12px !important;
+                font-size: 14px !important;
                 margin: 0;
-                line-height: 16px !important;
+                line-height: 18px !important;
             }
 
             .my_text img {
-                margin: 8px 0;
-            }
-
-            .trust_wrapper {
-                display: flex;
-                margin-right: -15px;
-                position: relative;
-                justify-content: space-between;
+                margin: 4px 0;
             }
 
             .images {
@@ -65,6 +59,10 @@ const style = /*html*/`
 
             .images div p {
                 text-align: left;
+            }
+
+            .trust_wrapper {
+                display: flex;
             }
 	</style>
 `
