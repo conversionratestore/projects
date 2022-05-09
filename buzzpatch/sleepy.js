@@ -74,7 +74,7 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 let waitForHeading = setInterval(() => {
     if (document.querySelector('.trust-rating')) {
-        clearInterval(waitForBtn)
+        clearInterval(waitForHeading)
 
         document.querySelector('.trust-rating').insertAdjacentHTML('afterend', /*html*/`
         <ul class="my_list">
@@ -102,7 +102,7 @@ let waitForHeading = setInterval(() => {
 
 let waitForForm = setInterval(() => {
     if (document.querySelector('.my_btn')) {
-        clearInterval(waitForBtn)
+        clearInterval(waitForForm)
 
         document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
     <div class="images">
@@ -118,8 +118,6 @@ let waitForForm = setInterval(() => {
 `)
     }
 }, 200)
-
-
 
 
 let waitForBtn = setInterval(() => {
