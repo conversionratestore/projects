@@ -45,16 +45,17 @@ const style = /*html*/`
             .images {
                 display: flex;
                 flex-direction: row;
-                max-width: 275px;
+                max-width: 290px;
                 margin: 0 auto;
                 justify-content: space-between;
-                margin-bottom: 50px;
+                margin-bottom: 45px;
             }
 
             .package .images p {
                 font-weight: 400 !important;
                 font-size: 12px !important;
                 line-height: 16px !important;
+                color: #000;
             }
 
             .images div {
