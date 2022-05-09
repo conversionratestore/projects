@@ -38,10 +38,13 @@ const style = /*html*/`
             .images {
                 display: flex;
                 flex-direction: row;
-                max-width: 290px;
+                max-width: 312px;
                 margin: 0 auto;
                 justify-content: space-between;
                 margin-bottom: 45px;
+                background: #FFFFFF;
+                border-radius: 10px;
+                padding: 8px;
             }
 
             .package .images p {
