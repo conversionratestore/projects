@@ -996,6 +996,7 @@ border-radius: 100px;
     margin: 0 4px;
     display: block;
     color: transparent;
+    flex-shrink: 0;
     background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
   }
   .ais-ClearRefinements-button {
@@ -1678,6 +1679,17 @@ function pushDataLayer(actionDataLayer, labelDataLayer) {
   });
 }
 
+//set Label For Events
+function labelForEvents(e) {
+  if (e.closest('.product_sidebar ')) {
+    return `PDP`;
+  } else if (e.closest('.cards_similar')) {
+    return `Similar Products`;
+  } else {
+    return `Listing`;
+  }
+}
+
 function openCategoriesFoeAlphabet(item) {
   item.forEach(el => {
     if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
@@ -1794,6 +1806,7 @@ function toggleClass(item,content,event) {
       })
   }
 }
+
 window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
@@ -1916,20 +1929,21 @@ window.onload = function() {
 
   })
 
-  function initHits(hit) {
-    function findImage() {
-      for (let i = 0; i < hit.variants.length; i++) {
-          if (hit.variants[i].image != '') {
-              return hit.variants[i].image
-          }
-      }
+  function findImageHits(variants) {
+    for (let i = 0; i < variants.length; i++) {
+        if (variants[i].image != '') {
+            return variants[i].image
+        }
     }
+  }
+
+  function initHits(hit) {
 
     let boxItem = `
       <div class="card">
         <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImage() != '' ? findImage() : 'dummyimage.jpg' }" alt="${hit.name}">
+          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
           <span title="${hit.name}">${hit.name}</span>
         </a>
         <form action="https://medicalmega.com/cart.html" method="post">
@@ -1938,7 +1952,7 @@ window.onload = function() {
             <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
             <button class="btn-calc btn-calc_plus" type="button"></button>
           </div>
-          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
           <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
           <input type="hidden" name="product_id" value="${hit.objectID }">
           <input type="hidden" name="add_to_cart" value="variant">
@@ -2167,16 +2181,17 @@ window.onload = function() {
             }
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
-                  if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
-                    document.querySelectorAll('.alphabet li').forEach(letter => {
-                      letter.classList.contains('active') ? letter.classList.remove('active') : '';
-                      if (el.innerText[0] == letter.innerText[0]) {
-                        letter.classList.add('active');
-                        el.click();
-                        firstLoaded = false;
-                      }
-                    })
-                  }
+                if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
+                  console.log(el.innerText)
+                  document.querySelectorAll('.alphabet li').forEach(letter => {
+                    letter.classList.contains('active') ? letter.classList.remove('active') : '';
+                    if (el.innerText[0] == letter.innerText[0]) {
+                      letter.classList.add('active');
+                      el.click();
+                      firstLoaded = false;
+                    }
+                  })
+                }
               }) 
             } else if (window.location.pathname.includes('/search') && firstLoaded == true && !window.location.href.includes('staging_products')) {
               search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
@@ -2377,14 +2392,7 @@ window.onload = function() {
       
         templates: {
           suggestion: function(suggestion) {
-            function findImage() {
-                for (let i = 0; i < suggestion.variants.length; i++) {
-                    if (suggestion.variants[i].image != '') {
-                        return suggestion.variants[i].image
-                    }
-                }
-            }
-            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImage() != '' ? findImage() : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                     
             return sugTemplate;
           },
@@ -2508,19 +2516,6 @@ window.onload = function() {
         hitsPerPage: '4',
       })
 
-      // search.addWidgets([
-      //   instantsearch.widgets.breadcrumb({
-      //     container: '#breadcrumbs',
-      //     attributes: [
-      //       'categories.lvl0',
-      //       'categories.lvl1',
-      //       'categories.lvl2',
-      //       'categories.lvl3',
-      //       'categories.lvl4',
-      //     ],
-      //     limit: 150, 
-      //   }),
-      // ])
       // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
       // const recommend = window['@algolia/recommend'];
       // const recommendClient = recommend(APPLICATION_ID, API_KEY);
@@ -2648,10 +2643,6 @@ window.onload = function() {
               </div>
             </div>
           </div>
-          <section class="similar-products">
-            <h2 class="text-center">Similar Products</h2>
-            <div class="justify-content-between cards_similar"></div>
-          </section>
         </div>`
     
       document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
@@ -2681,7 +2672,6 @@ window.onload = function() {
         }
       })
 
-      
       let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
           contents = document.querySelectorAll('.content-discription .content-item'), // content discription
           slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
@@ -2713,7 +2703,7 @@ window.onload = function() {
         })
       })
 
-        //zoom
+      //zoom
       let startZoom = setInterval(() => {
         if (document.querySelector('.img-zoom-result') != null) {
             console.log('true')
@@ -2808,27 +2798,35 @@ window.onload = function() {
       //Similar products
       requestSimilarProduct.then(res => {
         console.log(res)
-        
         let hits = res.hits;
-        for (let i = 0; i < hits.length; i++) {
-          document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-          <div class="card" >
-              <a class="card_name" href="${hits[i].seo}">
-                  <img src="https://medicalmegaimgs.net/prod/uploaded/product/${hits[i].image}" alt="${hits[i].name}">
-                  <span title="${hits[i].name}">${hits[i].name}</span>
-              </a>
-              <form action="https://medicalmega.com/cart.html" method="post">
-                  <div class="flex-center-center calc"> 
-                    <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                    <input class="calc-qty" type="number" value="1" name="quantity">
-                    <button class="btn-calc btn-calc_plus" type="button"></button>
-                  </div>
-                  <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
-                  <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
-                  <input type="hidden" name="product_id" value="${hits[i].objectID}">
-                  <input type="hidden" name="add_to_cart" value="variant">
-              </form>
-          </div>`)
+
+        if (hits.length > 0) {
+          document.querySelector('.product').insertAdjacentHTML('afterend',`
+          <section class="similar-products">
+            <h2 class="text-center">Similar Products</h2>
+            <div class="justify-content-between cards_similar"></div>
+          </section>`)
+
+          for (let i = 0; i < hits.length; i++) {
+            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+            <div class="card" >
+                <a class="card_name" href="${hits[i].seo}">
+                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
+                    <span title="${hits[i].name}">${hits[i].name}</span>
+                </a>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                    <div class="flex-center-center calc"> 
+                      <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                      <input class="calc-qty" type="number" value="1" name="quantity">
+                      <button class="btn-calc btn-calc_plus" type="button"></button>
+                    </div>
+                    <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
+                    <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
+                    <input type="hidden" name="product_id" value="${hits[i].objectID}">
+                    <input type="hidden" name="add_to_cart" value="variant">
+                </form>
+            </div>`)
+          }
         }
       })
     })
@@ -2986,22 +2984,12 @@ let mut = new MutationObserver(function (muts) {
   }
   mut.observe(document, optionMut);
   if (document.querySelector('.calc') != null) {
-    console.log( document.querySelectorAll('.calc').length)
-    function labelForCards(e) {
-      if (e.closest('.product_sidebar ')) {
-        return `PDP`;
-      } else if (e.closest('.cards_similar')) {
-        return `Similar Products`;
-      } else {
-        return `Listing`;
-      }
-    }
     document.querySelectorAll('.calc').forEach((el, i) => {
       el.querySelector('.btn-calc_plus').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
 
         actionDataLayer = `Click on plus button`;
-        labelDataLayer = labelForCards(e.target);
+        labelDataLayer = labelForEvents(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
 
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'plus')
@@ -3010,7 +2998,7 @@ let mut = new MutationObserver(function (muts) {
         e.stopImmediatePropagation();
 
         actionDataLayer = `Click on minus button`;
-        labelDataLayer = labelForCards(e.target);
+        labelDataLayer = labelForEvents(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
         
         changeQty(el.querySelector('.calc-qty'), el.nextElementSibling.querySelector('.pr'),'minus')
@@ -3022,7 +3010,7 @@ let mut = new MutationObserver(function (muts) {
       el.querySelector('.calc-qty').addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         actionDataLayer = `Click on quantity button`;
-        labelDataLayer = labelForCards(e.target);
+        labelDataLayer = labelForEvents(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
       })
       el.querySelector('.calc-qty').addEventListener('blur', (e) => {
@@ -3039,11 +3027,11 @@ let mut = new MutationObserver(function (muts) {
         pushDataLayer(actionDataLayer,labelDataLayer);
       })
     })
-    document.querySelectorAll('.card .btn').forEach(el => {
+    document.querySelectorAll('.add-cart').forEach(el => {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         actionDataLayer = `Click on Add to cart button`;
-        labelDataLayer = `Card Product`;
+        labelDataLayer = labelForEvents(e.target);
         pushDataLayer(actionDataLayer,labelDataLayer);
 
       })
@@ -3051,6 +3039,7 @@ let mut = new MutationObserver(function (muts) {
   }
   mut.observe(document, optionMut);
 });
+
 mut.observe(document, optionMut);
 
 window.dataLayer = window.dataLayer || [];
