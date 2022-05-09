@@ -74,6 +74,18 @@ const style = /*html*/`
 
             .my_img {
                 margin-left: -25px;
+                position: relative;
+            }
+
+            .my_img::before {
+                content: '';
+                left: 91px;
+                top: 15px;
+                position: absolute;
+                background: #234799;
+                width: 70px;
+                height: 3px;
+                transform: rotate(10deg);
             }
 
             .my_text {
