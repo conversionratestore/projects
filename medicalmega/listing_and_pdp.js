@@ -1366,7 +1366,11 @@ border-radius: 100px;
       margin-bottom: 56px; }
       .similar-products .card {
         max-width: 281px;
-        width: calc(25% - 10px); }
+        width: calc(25% - 30px);
+        margin-right: 40px; }
+      .similar-products .card:last-child {
+        margin-right: 0;
+      }
       .similar-products .card img {
         width: 100%;
         height: 200px;}
@@ -1506,6 +1510,10 @@ border-radius: 100px;
     }
     .listing_wrapper {
       padding: 41px 0 22px 24px;
+    }
+    .similar-products .card {
+      width: calc(25% - 15px);
+      margin-right: 20px;
     }
   }
 </style>`
@@ -2662,7 +2670,7 @@ window.onload = function() {
           </div>
           <section class="similar-products">
             <h2 class="text-center">Similar Products</h2>
-            <div class="justify-content-between cards_similar"></div>
+            <div class="justify-content-center cards_similar"></div>
           </section>
         </div>`
     
