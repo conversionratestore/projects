@@ -62,6 +62,7 @@ const style = /*html*/`
             .trust_wrapper {
                 display: flex;
                 margin-bottom: 25px;
+                justify-content: center;
             }
 
             .my_img {
@@ -70,7 +71,7 @@ const style = /*html*/`
 
             .my_text {
                 margin-top: 50px;
-                margin-left: 15px;
+                margin-left: 10%;
             }
 
             #getNow h2 + p {
