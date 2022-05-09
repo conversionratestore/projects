@@ -71,7 +71,11 @@ const style = /*html*/`
 
 document.head.insertAdjacentHTML('beforeend', style)
 
-document.querySelector('.trust-rating').insertAdjacentHTML('afterend', /*html*/`
+let waitForHeading = setInterval(() => {
+    if (document.querySelector('.trust-rating')) {
+        clearInterval(waitForBtn)
+
+        document.querySelector('.trust-rating').insertAdjacentHTML('afterend', /*html*/`
         <ul class="my_list">
             <li>100% natural content & chemical free</li>
             <li>Scientifically proven to improve sleep</li>
@@ -92,8 +96,14 @@ document.querySelector('.trust-rating').insertAdjacentHTML('afterend', /*html*/`
             <button class="btn js-btn btn-primary get-it dark my_btn">get it now!</button>
         </div>
 `)
+    }
+}, 200)
 
-document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
+let waitForForm = setInterval(() => {
+    if (document.querySelector('.my_btn')) {
+        clearInterval(waitForBtn)
+
+        document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*html*/`
     <div class="images">
         <div>
             <img src="https://conversionratestore.github.io/projects/buzzpatch/img/x24.svg" alt="24 patches">
@@ -105,6 +115,11 @@ document.querySelector('#purchase form').insertAdjacentHTML('beforebegin', /*htm
         </div>
     </div>  
 `)
+    }
+}, 200)
+
+
+
 
 let waitForBtn = setInterval(() => {
     if (document.querySelector('.my_btn')) {
