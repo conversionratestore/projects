@@ -1779,6 +1779,7 @@ function changeQty(qty,pr,action) {
     qty.parentElement.nextElementSibling.querySelector('span').hidden = false;
   } else {
     if (qty.closest('.product_sidebar')) {
+      qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = true;
       if (document.querySelector('.available-options') == null) {
         qty.closest('.product_sidebar').querySelector('.add-cart span').hidden = true;
       } else {
@@ -2511,20 +2512,21 @@ window.onload = function() {
       let imagesProduct = firstVariant.images,
           categoriesHit = product.categories;
 
-      let categoryLvl = ''
-      for (let i = 0; i < categoriesHit.length; i++) {
-        if (i >= categoriesHit[i].length) {
-          let itemCategories = categoriesHit[i];
-          for (let j = 0; j < itemCategories.length; j++) {
-            if (itemCategories[j] != null) {
-              categoryLvl = `categories.lvl${i}:${categoriesHit[i][j]}`
-            }
+      let categoryLvl = '';
+
+      for (const key in categoriesHit) {
+        let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
+
+        for (let j = 0; j < lastLvlCategories.length; j++) {
+          if (lastLvlCategories[j] != null) {
+            categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
       }
+    
       console.log(categoryLvl)
 
-      let requestSimilarProduct = index.search( {
+      let requestSimilarProduct = index.search({
         facetFilters: [categoryLvl],
         hitsPerPage: '4',
       })
@@ -2571,7 +2573,9 @@ window.onload = function() {
         let options = product.variants,
             label = ``;
         for (let i = 0; i < options.length; i++) {
-          label += `<label><input class="checkbox" type="radio" name="radio" ${i==0 ? 'checked':''}  data-variant="${options[i].pv_id}"><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`  
+          if (options[i].price != '0.00') {
+            label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}"><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+          }
         }
         return label
       }
@@ -2642,12 +2646,12 @@ window.onload = function() {
                     ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
                   </div>
                   <form action="https://medicalmega.com/cart.html" method="post">
-                      <div class="flex-center-center calc"> 
+                      <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
                         <button class="btn-calc btn-calc_minus" type="button" disabled></button>
                         <input class="calc-qty" type="number" value="1" name="quantity">
                         <button class="btn-calc btn-calc_plus" type="button"></button>
                       </div>
-                      ${firstVariant.in_stock == false ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                      ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                       <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
                       <input type="hidden" name="product_id" value="${product.objectID}">
                       <input type="hidden" name="add_to_cart" value="variant">
@@ -2795,71 +2799,78 @@ window.onload = function() {
       
       //checkbox choice
       document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-          checkbox.addEventListener('click', (e) => {
-              if (checkbox.checked) {
-                  let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
-                      qty = document.querySelector('.product_sidebar .calc-qty'),
-                      priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
+        if (index == 0) {
+          checkbox.checked = true
+        }
+        checkbox.addEventListener('change', (e) => {
+            if (checkbox.checked) {
+                let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
+                    qty = document.querySelector('.product_sidebar .calc-qty'),
+                    priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
 
-                  document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
-                  priceProduct.dataset.price = optionPrice;
-                  
-                  priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                  if (qty.value == '') {
-                    priceProduct.innerHTML = optionPrice
-                  }
-              }
-          })
+                document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
+                priceProduct.dataset.price = optionPrice;
+                
+                priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                if (qty.value == '') {
+                  priceProduct.innerHTML = optionPrice
+                }
+            }
+            actionDataLayer = 'Click on available options';
+            labelDataLayer = 'PDP';
+            pushDataLayer(actionDataLayer, labelDataLayer)
+        })
       })
 
       //Similar products
-      document.querySelectorAll('.products_gallery dd').forEach((el) => {
-        document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-        <div class="card" >
-            <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-                <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-                <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
-            </a>
-            <form action="https://medicalmega.com/cart.html" method="post">
-              <div class="flex-center-center calc"> 
-                <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                <input class="calc-qty" type="number" value="1" name="quantity">
-                <button class="btn-calc btn-calc_plus" type="button"></button>
-              </div>
-              <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
-              <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
-              <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
-              <input type="hidden" name="add_to_cart" value="variant">
-            </form>
-        </div>`)
-      })
+      // document.querySelectorAll('.products_gallery dd').forEach((el) => {
+      //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+      //   <div class="card" >
+      //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
+      //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+      //           <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
+      //       </a>
+      //       <form action="https://medicalmega.com/cart.html" method="post">
+      //         <div class="flex-center-center calc"> 
+      //           <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+      //           <input class="calc-qty" type="number" value="1" name="quantity">
+      //           <button class="btn-calc btn-calc_plus" type="button"></button>
+      //         </div>
+      //         <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
+      //         <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
+      //         <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
+      //         <input type="hidden" name="add_to_cart" value="variant">
+      //       </form>
+      //   </div>`)
+      // })
       requestSimilarProduct.then(res => {
         console.log(res)
         let hits = res.hits;
 
-        // if (hits.length > 0) {
+        if (hits.length > 0) {
 
-        //   for (let i = 0; i < hits.length; i++) {
-        //     document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-        //     <div class="card" >
-        //         <a class="card_name" href="${hits[i].seo}">
-        //             <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
-        //             <span title="${hits[i].name}">${hits[i].name}</span>
-        //         </a>
-        //         <form action="https://medicalmega.com/cart.html" method="post">
-        //             <div class="flex-center-center calc"> 
-        //               <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-        //               <input class="calc-qty" type="number" value="1" name="quantity">
-        //               <button class="btn-calc btn-calc_plus" type="button"></button>
-        //             </div>
-        //             <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${hits[i].price}">${hits[i].price}</span> | </span>Add to Cart</button>
-        //             <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
-        //             <input type="hidden" name="product_id" value="${hits[i].objectID}">
-        //             <input type="hidden" name="add_to_cart" value="variant">
-        //         </form>
-        //     </div>`)
-        //   }
-        // }
+          for (let i = 0; i < hits.length; i++) {
+            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+            <div class="card" >
+                <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
+                <a class="card_name" href="${hits[i].seo}">
+                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
+                    <span title="${hits[i].name}">${hits[i].name}</span>
+                </a>
+                <form action="https://medicalmega.com/cart.html" method="post">
+                    <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
+                      <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+                      <input class="calc-qty" type="number" value="1" name="quantity">
+                      <button class="btn-calc btn-calc_plus" type="button"></button>
+                    </div>
+                    ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
+                    <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
+                    <input type="hidden" name="product_id" value="${hits[i].objectID}">
+                    <input type="hidden" name="add_to_cart" value="variant">
+                </form>
+            </div>`)
+          }
+        }
       })
     })
   }
