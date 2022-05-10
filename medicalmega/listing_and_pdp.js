@@ -2513,373 +2513,378 @@ window.onload = function() {
     
     requestProduct.then(data => {
       console.log(data)
- 
-      let product = data.hits[0],
-          firstVariant = product.variants[0];
+      if (data.nbHits == 0) {
+        document.querySelector('.main').style.display = 'none';
+        document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
+        document.querySelector('#wrap').style.display = 'block';
+      } else {
+        let product = data.hits[0],
+            firstVariant = product.variants[0];
 
-      let imagesProduct = firstVariant.images,
-          categoriesHit = product.categories;
+        let imagesProduct = firstVariant.images,
+            categoriesHit = product.categories;
 
-      let categoryLvl = '';
+        let categoryLvl = '';
 
-      for (const key in categoriesHit) {
-        let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
+        for (const key in categoriesHit) {
+          let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
 
-        for (let j = 0; j < lastLvlCategories.length; j++) {
-          if (lastLvlCategories[j] != null) {
-            categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
+          for (let j = 0; j < lastLvlCategories.length; j++) {
+            if (lastLvlCategories[j] != null) {
+              categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
+            }
           }
         }
-      }
-    
-      console.log(categoryLvl)
+      
+        console.log(categoryLvl)
 
-      let requestSimilarProduct = index.search({
-        facetFilters: [categoryLvl],
-        hitsPerPage: '4',
-      })
+        let requestSimilarProduct = index.search({
+          facetFilters: [categoryLvl],
+          hitsPerPage: '4',
+        })
 
-      // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
-      // const recommend = window['@algolia/recommend'];
-      // const recommendClient = recommend(APPLICATION_ID, API_KEY);
+        // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
+        // const recommend = window['@algolia/recommend'];
+        // const recommendClient = recommend(APPLICATION_ID, API_KEY);
 
-      // relatedProducts({
-      //   container: '#relatedProducts',
-      //   recommendClient,
-      //   indexName,
-      //   objectIDs: [product.objectID],
-      //   itemComponent({ item }) {
-      //     console.log(item)
-      //     return item;
-      //   },
-      // });
-      // recommendClient.getRelatedProducts([
-      //   {
-      //     indexName: 'staging_products',
-      //     objectID: product.objectID,
-      //     // manufacturer: data.hits[0].manufacturer,
-      //   },
-      // ])
-      // .then(results => {
-      //   console.log(results);
-      // })
-      // .catch(err => {
-      //   console.log(err);
-      // });
+        // relatedProducts({
+        //   container: '#relatedProducts',
+        //   recommendClient,
+        //   indexName,
+        //   objectIDs: [product.objectID],
+        //   itemComponent({ item }) {
+        //     console.log(item)
+        //     return item;
+        //   },
+        // });
+        // recommendClient.getRelatedProducts([
+        //   {
+        //     indexName: 'staging_products',
+        //     objectID: product.objectID,
+        //     // manufacturer: data.hits[0].manufacturer,
+        //   },
+        // ])
+        // .then(results => {
+        //   console.log(results);
+        // })
+        // .catch(err => {
+        //   console.log(err);
+        // });
 
-    
-      //Available Options
-      let htmlAvailableOptions = `
-      <div class="available-options"> 
-        <p class="fs-14 fw-semi">Available Options: </p> 
-        <div class="relative">
-          <div class="justify-content-between scroll-x"></div>
-        </div>
-      </div>`;
+      
+        //Available Options
+        let htmlAvailableOptions = `
+        <div class="available-options"> 
+          <p class="fs-14 fw-semi">Available Options: </p> 
+          <div class="relative">
+            <div class="justify-content-between scroll-x"></div>
+          </div>
+        </div>`;
 
-      function availableOptions() {
-        let options = product.variants,
-            label = ``;
-        for (let i = 0; i < options.length; i++) {
-          if (options[i].price != '0.00') {
-            label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}"><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+        function availableOptions() {
+          let options = product.variants,
+              label = ``;
+          for (let i = 0; i < options.length; i++) {
+            if (options[i].price != '0.00') {
+              label += `<label><input class="checkbox" type="radio" name="radio" data-variant="${options[i].pv_id}"><span class="radio-check"><span>${options[i].extra}</span><span class="radio-check_price">$${options[i].price}</span></span></label>`;
+            }
           }
+          return label
         }
-        return label
-      }
 
-      function getSlidesImage() {
-        let slides = ''
-        for (let i = 0; i < imagesProduct.length; i++) {
-          slides += `<div class="slide ${i==0?'active':''}"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"> </div>`
+        function getSlidesImage() {
+          let slides = ''
+          for (let i = 0; i < imagesProduct.length; i++) {
+            slides += `<div class="slide ${i==0?'active':''}"><img src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[i]}" alt="image ${i}"> </div>`
+          }
+          return slides
         }
-        return slides
-      }
 
-      let htmlProduct = `
-      <div id="container-product" class="container">
-        <nav id="breadcrumbs-pdp" class="breadcrumbs">
-          <ul class="ais-Breadcrumb-list">
-            <li class="ais-Breadcrumb-item">
-              <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
-            </li>
-            <li class="ais-Breadcrumb-item">
-              <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-              <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
-            </li>
-            <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
-          </ul>  
-        </nav>
-          <div class="flex-wrap w-100 justify-content-between product"> 
-            <div class="col_left flex-wrap"> 
-              <div class="side_one">
-                <div class="slider-nav">${getSlidesImage()}</div>
-                <div class="trustpilot"></div>
+        let htmlProduct = `
+        <div id="container-product" class="container">
+          <nav id="breadcrumbs-pdp" class="breadcrumbs">
+            <ul class="ais-Breadcrumb-list">
+              <li class="ais-Breadcrumb-item">
+                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/">Home</a>
+              </li>
+              <li class="ais-Breadcrumb-item">
+                <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
+                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
+              </li>
+              <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
+            </ul>  
+          </nav>
+            <div class="flex-wrap w-100 justify-content-between product"> 
+              <div class="col_left flex-wrap"> 
+                <div class="side_one">
+                  <div class="slider-nav">${getSlidesImage()}</div>
+                  <div class="trustpilot"></div>
+                </div>
+                <div class="side_two">
+                  <div class="slider-for">
+                    <div class="slide" data-item="show-zoom">
+                      <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
+                      <div class="img-zoom-result" id="zoomResult"></div>
+                    </div>
+                  </div>
+                  <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
+                </div>
               </div>
-              <div class="side_two">
-                <div class="slider-for">
-                  <div class="slide" data-item="show-zoom">
-                    <img class="slider-for_img" id="forImg" src="https://medicalmegaimgs.net/prod/uploaded/product/${imagesProduct[0]}" alt="image ${product.name}">
-                    <div class="img-zoom-result" id="zoomResult"></div>
+              <div class="col_right"> 
+                <div class="product_content justify-content-between"> 
+                  <div class="col_mid">
+                    <h2 class="title">${product.name}</h2>
+                    <ul class="list">
+                      <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
+                      <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
+                      <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
+                    </ul>
+                    <ul class="tabs-discription d-flex"> </ul>
+                    <div class="content-discription"></div>
+                  </div>
+                  <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
+                    ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
+                    <div class="product_sidebar_top">
+                      <div class="shipping_block">
+                          <div class="align-items-center"> 
+                            <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
+                            <div> 
+                              <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
+                              <p class="c-gray">2-3 business days*</p>
+                            </div>
+                          </div>
+                          <div class="line"></div>
+                      </div>     
+                      ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
+                    </div>
+                    <form action="https://medicalmega.com/cart.html" method="post">
+                        <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
+                          <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                          <input class="calc-qty" type="number" value="1" name="quantity">
+                          <button class="btn-calc btn-calc_plus" type="button"></button>
+                        </div>
+                        ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                        <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
+                        <input type="hidden" name="product_id" value="${product.objectID}">
+                        <input type="hidden" name="add_to_cart" value="variant">
+                    </form>
                   </div>
                 </div>
-                <p class="text-small text-center">Image shown for reference purposes only. Actual product appearance may vary.</p>
               </div>
             </div>
-            <div class="col_right"> 
-              <div class="product_content justify-content-between"> 
-                <div class="col_mid">
-                  <h2 class="title">${product.name}</h2>
-                  <ul class="list">
-                    <li> Sold By: <span class="fw-semi">${firstVariant.extra}</span></li>
-                    <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
-                    <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
-                  </ul>
-                  <ul class="tabs-discription d-flex"> </ul>
-                  <div class="content-discription"></div>
-                </div>
-                <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
-                  ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
-                  <div class="product_sidebar_top">
-                    <div class="shipping_block">
-                        <div class="align-items-center"> 
-                          <img class="mr-16 icon-car" src="https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/car.svg" alt="icon shipping">
-                          <div> 
-                            <p class="c-red text-up fw-semi l-t-02">Estimated shipping</p>
-                            <p class="c-gray">2-3 business days*</p>
-                          </div>
-                        </div>
-                        <div class="line"></div>
-                    </div>     
-                    ${product.variants.length < 2 ? `<div class="flex-end-between fw-semi total"> <p class="fs-14">Price:</p><p class="fs-24">$<span class="pr-state">${firstVariant.price}</span></p> </div>` : htmlAvailableOptions}
-                  </div>
+            <section class="similar-products">
+              <h2 class="text-center">Similar Products</h2>
+              <div class="justify-content-center cards_similar"></div>
+            </section>
+          </div>`
+      
+        document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
+
+        document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
+
+        //description
+        document.querySelectorAll('.product-desc h3').forEach((el, i) => {
+          if (i == 0) {
+              document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
+              if (el.nextElementSibling.innerHTML.includes('<h2>')) {
+                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+              } else {
+                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
+              }
+
+              document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
+                  document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+              })
+              document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
+                  if (strong.parentElement.tagName != 'SPAN') {
+                      document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
+                      document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
+                  }
+              })
+          }
+        })
+
+        let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
+            contents = document.querySelectorAll('.content-discription .content-item'), // content discription
+            slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
+            slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
+        
+        toggleClass(tabs,contents,'click') ;
+
+        //slider zoom
+        slidesFor.forEach((el) => {
+          el.addEventListener('mousemove', (e) => {
+              document.querySelector('.img-zoom-result').style.visibility = 'visible';
+              document.querySelector('.img-zoom-lens').style.visibility = 'visible';
+          })
+          el.addEventListener('mouseout', (e) => {
+              document.querySelector('.img-zoom-result').style.visibility = 'hidden';
+              document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
+          })
+        })
+        
+        //slider nav
+        slidesNav.forEach((el,i) => {
+          el.addEventListener('click', () => {
+              el.closest('.slider-nav').querySelector('.active').classList.remove('active');
+              el.classList.add('active');
+
+              let src = el.querySelector('img').getAttribute('src');
+              document.querySelector('.slider-for_img').setAttribute('src',src)
+              document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
+          })
+        })
+
+        //zoom
+        let startZoom = setInterval(() => {
+          if (document.querySelector('.img-zoom-result') != null) {
+              console.log('true')
+              clearInterval(startZoom)
+              imageZoom("forImg", "zoomResult")
+          }
+        }, 200);
+
+        if (product.variants.length > 2) {
+          let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
+
+          contentAvailableOptions.insertAdjacentHTML('beforebegin',`
+          <div class="arrow_buttons">
+              <button class="arrow_button arrow_button_prev" type="button" disabled>
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
+                  </svg>
+              </button>
+              <button class="arrow_button arrow_button_next" type="button">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
+                  </svg>
+              </button>
+          </div>`)
+
+          document.querySelectorAll('.arrow_button').forEach(arrow => {
+              arrow.addEventListener('click', () => {
+                  actionDataLayer = 'Click on arrow-slide button';
+                  labelDataLayer = 'Product section';
+                  pushDataLayer(actionDataLayer, labelDataLayer)
+              })
+          })
+
+          let linkCustom = document.createElement('link');
+          linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
+          linkCustom.rel = 'stylesheet';
+          document.head.appendChild(linkCustom);
+
+          let scriptCustom = document.createElement('script');
+          scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
+          scriptCustom.async = false;
+          document.body.appendChild(scriptCustom);
+
+          let startInterval = setInterval(() => {
+              if (contentAvailableOptions != null) {
+                  if (document.querySelector('.tns-outer') != null) {
+                      console.log('true')
+                      clearInterval(startInterval)
+                  } else {
+                      console.log('false')
+                      let sliderCategories = tns({
+                          container: contentAvailableOptions,
+                          items: 2,
+                          axis: 'horizontal',
+                          controls: true,
+                          loop: false,
+                          prevButton: document.querySelector('.arrow_button_prev'),
+                          nextButton: document.querySelector('.arrow_button_next'),
+                          autoplayButton: false,
+                          autoplayButtonOutput: false,
+                          mouseDrag: true,
+                          nav: false,
+                          // autoWidth: true,
+                          preventScrollOnTouch: 'auto',
+                          swipeAngle: false,
+                      });
+                      clearInterval(startInterval)
+                  }
+              }
+          }, 200)
+        }
+        
+        //checkbox choice
+        document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
+          if (index == 0) {
+            checkbox.checked = true
+          }
+          checkbox.addEventListener('change', (e) => {
+              if (checkbox.checked) {
+                  let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
+                      qty = document.querySelector('.product_sidebar .calc-qty'),
+                      priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
+
+                  document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
+                  priceProduct.dataset.price = optionPrice;
+                  
+                  priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
+                  if (qty.value == '') {
+                    priceProduct.innerHTML = optionPrice
+                  }
+              }
+              actionDataLayer = 'Click on available options';
+              labelDataLayer = 'PDP';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+          })
+        })
+
+        //Similar products
+        // document.querySelectorAll('.products_gallery dd').forEach((el) => {
+        //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+        //   <div class="card" >
+        //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
+        //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+        //           <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
+        //       </a>
+        //       <form action="https://medicalmega.com/cart.html" method="post">
+        //         <div class="flex-center-center calc"> 
+        //           <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
+        //           <input class="calc-qty" type="number" value="1" name="quantity">
+        //           <button class="btn-calc btn-calc_plus" type="button"></button>
+        //         </div>
+        //         <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
+        //         <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
+        //         <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
+        //         <input type="hidden" name="add_to_cart" value="variant">
+        //       </form>
+        //   </div>`)
+        // })
+        requestSimilarProduct.then(res => {
+          console.log(res)
+          let hits = res.hits;
+
+          if (hits.length > 0) {
+
+            for (let i = 0; i < hits.length; i++) {
+              document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
+              <div class="card" >
+                  <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
+                  <a class="card_name" href="${hits[i].seo}">
+                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
+                      <span title="${hits[i].name}">${hits[i].name}</span>
+                  </a>
                   <form action="https://medicalmega.com/cart.html" method="post">
-                      <div class="flex-center-center calc" ${firstVariant.in_stock==false || firstVariant.price == '0:00' ? 'disabled' : ''}> 
-                        <button class="btn-calc btn-calc_minus" type="button" disabled></button>
+                      <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
+                        <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
                         <input class="calc-qty" type="number" value="1" name="quantity">
                         <button class="btn-calc btn-calc_plus" type="button"></button>
                       </div>
-                      ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
-                      <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
-                      <input type="hidden" name="product_id" value="${product.objectID}">
+                      ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
+                      <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
+                      <input type="hidden" name="product_id" value="${hits[i].objectID}">
                       <input type="hidden" name="add_to_cart" value="variant">
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <section class="similar-products">
-            <h2 class="text-center">Similar Products</h2>
-            <div class="justify-content-center cards_similar"></div>
-          </section>
-        </div>`
-    
-      document.querySelector('#container-listing').insertAdjacentHTML('beforebegin', htmlProduct);
-
-      document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
-
-      //description
-      document.querySelectorAll('.product-desc h3').forEach((el, i) => {
-        if (i == 0) {
-            document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
-            if (el.nextElementSibling.innerHTML.includes('<h2>')) {
-                document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-            } else {
-                document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
+              </div>`)
             }
-
-            document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-                document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-                document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
-            })
-            document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
-                if (strong.parentElement.tagName != 'SPAN') {
-                    document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
-                    document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
-                }
-            })
-        }
-      })
-
-      let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
-          contents = document.querySelectorAll('.content-discription .content-item'), // content discription
-          slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
-          slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
-      
-      toggleClass(tabs,contents,'click') ;
-
-      //slider zoom
-      slidesFor.forEach((el) => {
-        el.addEventListener('mousemove', (e) => {
-            document.querySelector('.img-zoom-result').style.visibility = 'visible';
-            document.querySelector('.img-zoom-lens').style.visibility = 'visible';
-        })
-        el.addEventListener('mouseout', (e) => {
-            document.querySelector('.img-zoom-result').style.visibility = 'hidden';
-            document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
-        })
-      })
-      
-      //slider nav
-      slidesNav.forEach((el,i) => {
-        el.addEventListener('click', () => {
-            el.closest('.slider-nav').querySelector('.active').classList.remove('active');
-            el.classList.add('active');
-
-            let src = el.querySelector('img').getAttribute('src');
-            document.querySelector('.slider-for_img').setAttribute('src',src)
-            document.querySelector('.img-zoom-result').style.backgroundImage = `url("${src}")`
-        })
-      })
-
-      //zoom
-      let startZoom = setInterval(() => {
-        if (document.querySelector('.img-zoom-result') != null) {
-            console.log('true')
-            clearInterval(startZoom)
-            imageZoom("forImg", "zoomResult")
-        }
-      }, 200);
-
-      if (product.variants.length > 2) {
-        let contentAvailableOptions = document.querySelector('.product_sidebar .available-options .justify-content-between');
-
-        contentAvailableOptions.insertAdjacentHTML('beforebegin',`
-        <div class="arrow_buttons">
-            <button class="arrow_button arrow_button_prev" type="button" disabled>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.2868 13.8473C12.3432 13.9036 12.375 13.9803 12.375 14.0602C12.375 14.1402 12.3432 14.2169 12.2868 14.2732L11.6546 14.9091C11.6005 14.9671 11.5249 15 11.4459 15C11.3668 15 11.2912 14.9671 11.2371 14.9091L5.75621 9.39594C5.6723 9.31164 5.6251 9.19728 5.625 9.07799V8.92201C5.6251 8.80272 5.6723 8.68836 5.75621 8.60406L11.2371 3.0909C11.2912 3.0329 11.3668 3 11.4459 3C11.5249 3 11.6005 3.0329 11.6546 3.0909L12.2868 3.7268C12.3432 3.78312 12.375 3.85979 12.375 3.93977C12.375 4.01975 12.3432 4.09641 12.2868 4.15274L7.46788 9L12.2868 13.8473Z" fill="#091114"/>
-                </svg>
-            </button>
-            <button class="arrow_button arrow_button_next" type="button">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.71321 13.8473C5.65675 13.9036 5.625 13.9803 5.625 14.0602C5.625 14.1402 5.65675 14.2169 5.71321 14.2732L6.34539 14.9091C6.39951 14.9671 6.47506 15 6.55413 15C6.63321 15 6.70876 14.9671 6.76287 14.9091L12.2438 9.39594C12.3277 9.31164 12.3749 9.19728 12.375 9.07799V8.92201C12.3749 8.80272 12.3277 8.68836 12.2438 8.60406L6.76287 3.0909C6.70876 3.0329 6.63321 3 6.55413 3C6.47506 3 6.39951 3.0329 6.34539 3.0909L5.71321 3.7268C5.65675 3.78312 5.625 3.85979 5.625 3.93977C5.625 4.01975 5.65675 4.09641 5.71321 4.15274L10.5321 9L5.71321 13.8473Z" fill="#091114"/>
-                </svg>
-            </button>
-        </div>`)
-
-        document.querySelectorAll('.arrow_button').forEach(arrow => {
-            arrow.addEventListener('click', () => {
-                actionDataLayer = 'Click on arrow-slide button';
-                labelDataLayer = 'Product section';
-                pushDataLayer(actionDataLayer, labelDataLayer)
-            })
-        })
-
-        let linkCustom = document.createElement('link');
-        linkCustom.href = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css';
-        linkCustom.rel = 'stylesheet';
-        document.head.appendChild(linkCustom);
-
-        let scriptCustom = document.createElement('script');
-        scriptCustom.src = 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js';
-        scriptCustom.async = false;
-        document.body.appendChild(scriptCustom);
-
-        let startInterval = setInterval(() => {
-            if (contentAvailableOptions != null) {
-                if (document.querySelector('.tns-outer') != null) {
-                    console.log('true')
-                    clearInterval(startInterval)
-                } else {
-                    console.log('false')
-                    let sliderCategories = tns({
-                        container: contentAvailableOptions,
-                        items: 2,
-                        axis: 'horizontal',
-                        controls: true,
-                        loop: false,
-                        prevButton: document.querySelector('.arrow_button_prev'),
-                        nextButton: document.querySelector('.arrow_button_next'),
-                        autoplayButton: false,
-                        autoplayButtonOutput: false,
-                        mouseDrag: true,
-                        nav: false,
-                        // autoWidth: true,
-                        preventScrollOnTouch: 'auto',
-                        swipeAngle: false,
-                    });
-                    clearInterval(startInterval)
-                }
-            }
-        }, 200)
-      }
-      
-      //checkbox choice
-      document.querySelectorAll('.available-options .checkbox').forEach((checkbox, index) => {
-        if (index == 0) {
-          checkbox.checked = true
-        }
-        checkbox.addEventListener('change', (e) => {
-            if (checkbox.checked) {
-                let optionPrice = checkbox.nextElementSibling.querySelector('.radio-check_price').innerText.replace('$',''), 
-                    qty = document.querySelector('.product_sidebar .calc-qty'),
-                    priceProduct = document.querySelector('.product_sidebar .add-cart .pr');
-
-                document.querySelector('.product_sidebar [name="product_variant_id"]').value = checkbox.dataset.variant;
-                priceProduct.dataset.price = optionPrice;
-                
-                priceProduct.innerHTML = (+optionPrice * +qty.value).toFixed(2);
-                if (qty.value == '') {
-                  priceProduct.innerHTML = optionPrice
-                }
-            }
-            actionDataLayer = 'Click on available options';
-            labelDataLayer = 'PDP';
-            pushDataLayer(actionDataLayer, labelDataLayer)
-        })
-      })
-
-      //Similar products
-      // document.querySelectorAll('.products_gallery dd').forEach((el) => {
-      //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-      //   <div class="card" >
-      //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-      //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-      //           <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
-      //       </a>
-      //       <form action="https://medicalmega.com/cart.html" method="post">
-      //         <div class="flex-center-center calc"> 
-      //           <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-      //           <input class="calc-qty" type="number" value="1" name="quantity">
-      //           <button class="btn-calc btn-calc_plus" type="button"></button>
-      //         </div>
-      //         <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
-      //         <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
-      //         <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
-      //         <input type="hidden" name="add_to_cart" value="variant">
-      //       </form>
-      //   </div>`)
-      // })
-      requestSimilarProduct.then(res => {
-        console.log(res)
-        let hits = res.hits;
-
-        if (hits.length > 0) {
-
-          for (let i = 0; i < hits.length; i++) {
-            document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-            <div class="card" >
-                <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
-                <a class="card_name" href="${hits[i].seo}">
-                    <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
-                    <span title="${hits[i].name}">${hits[i].name}</span>
-                </a>
-                <form action="https://medicalmega.com/cart.html" method="post">
-                    <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
-                      <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-                      <input class="calc-qty" type="number" value="1" name="quantity">
-                      <button class="btn-calc btn-calc_plus" type="button"></button>
-                    </div>
-                    ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
-                    <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
-                    <input type="hidden" name="product_id" value="${hits[i].objectID}">
-                    <input type="hidden" name="add_to_cart" value="variant">
-                </form>
-            </div>`)
           }
-        }
-      })
+        })
+      }
     })
   }
 };
