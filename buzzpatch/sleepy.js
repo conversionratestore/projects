@@ -5,6 +5,10 @@ const style = /*html*/`
                 display: none;
             }
 
+            .hand-banner {
+                padding: 0 !important;
+            }
+
             .js-heading h1 {
                 font-weight: 700 !important;
                 font-size: 36px !important;
