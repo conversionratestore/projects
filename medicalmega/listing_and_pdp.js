@@ -947,7 +947,6 @@ border-radius: 100px;
     display: none!important;
   }
   .ais-RefinementList-showMore {
-    background: none; 
     text-decoration: underline;
     padding-top: 15px;
     display: block;
@@ -958,6 +957,7 @@ border-radius: 100px;
     z-index: 2;
     outline: none;
     color: #344D57;
+    text-align: left;
   }
   .main a#top {
     background-color: #1E3944;
