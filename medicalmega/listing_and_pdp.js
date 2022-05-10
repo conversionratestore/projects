@@ -1946,13 +1946,12 @@ window.onload = function() {
   }
 
   function initHits(hit) {
-
     let boxItem = `
       <div class="card">
         <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
           <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
-          <span title="${hit.name}">${hit.name}</span>
+          <span title='${hit.name}'>${hit.name}</span>
         </a>
         <form action="https://medicalmega.com/cart.html" method="post">
           <div class="flex-center-center calc" ${hit.in_stock==false || hit.price == '0:00' ? 'disabled' : ''}>
@@ -2840,7 +2839,7 @@ window.onload = function() {
         //   <div class="card" >
         //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
         //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-        //           <span title="${el.querySelectorAll('a')[1].innerText}">${el.querySelectorAll('a')[1].innerText}</span>
+        //           <span title='${el.querySelectorAll('a')[1].innerText}'>${el.querySelectorAll('a')[1].innerText}</span>
         //       </a>
         //       <form action="https://medicalmega.com/cart.html" method="post">
         //         <div class="flex-center-center calc"> 
@@ -2867,7 +2866,7 @@ window.onload = function() {
                   <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
                   <a class="card_name" href="${hits[i].seo}">
                       <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
-                      <span title="${hits[i].name}">${hits[i].name}</span>
+                      <span title='${hits[i].name}'>${hits[i].name}</span>
                   </a>
                   <form action="https://medicalmega.com/cart.html" method="post">
                       <div class="flex-center-center calc" ${hits[i].in_stock==false || hits[i].price == '0:00' ? 'disabled' : ''}> 
