@@ -1725,11 +1725,8 @@ function toggleClass(item,content,event) {
       })
   }
 }
-if (window.location.pathname.includes('/search/') && !window.location.href.includes('staging_products')) {
-  window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${window.location.pathname.split('search/')[1].split('-').join('%20')}`
-}
 window.onload = function() {
-  
+
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
 
@@ -2115,6 +2112,12 @@ window.onload = function() {
               }) 
             }  else {
               firstLoaded = false
+            }
+            if (window.location.pathname.includes('/search') && !window.location.href.includes('staging_products') && firstLoaded == true) {
+              firstLoaded = false
+              search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
+              // document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1].split('-').join(' ');
+              search.refresh();
             }
 
             let crumbs = document.querySelectorAll('#breadcrumbs li');
