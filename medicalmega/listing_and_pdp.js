@@ -1925,7 +1925,7 @@ window.onload = function() {
       limit: 7,
       showMore: true,
       // searchable: true,
-      showMoreLimit: 300,
+      showMoreLimit: 400,
       sortBy: ['name:asc'],
       templates: {
         item: (data) => {
