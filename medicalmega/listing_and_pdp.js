@@ -2216,7 +2216,7 @@ window.onload = function() {
               document.querySelector('.listing_title').innerHTML = 'All Products';
             } else {
               document.querySelector('#breadcrumbs').style = '';
-              document.querySelector('.listing_title').innerHTML = document.querySelector('.ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
+              document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
             }
 
             if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
