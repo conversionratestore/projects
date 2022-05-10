@@ -2110,15 +2110,17 @@ window.onload = function() {
                   })
                 }
               }) 
-            }  else {
-              firstLoaded = false
-            }
-            if (window.location.pathname.includes('/search') && !window.location.href.includes('staging_products') && firstLoaded == true) {
+            } else if (window.location.pathname.includes('/search') && !window.location.href.includes('staging_products') && firstLoaded == true) {
+              console.log('search/')
               firstLoaded = false
               search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
-              // document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1].split('-').join(' ');
+              document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1].split('-').join(' ');
               search.refresh();
+              console.log(search.helper.state)
+            } else {
+              firstLoaded = false
             }
+   
 
             let crumbs = document.querySelectorAll('#breadcrumbs li');
             if (crumbs.length < 2) {
@@ -2135,6 +2137,7 @@ window.onload = function() {
             }
             if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                 document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
                   console.log('click showMore')
                   actionDataLayer = `Click on ${e.target.innerText} button`;
                   labelDataLayer = 'Filters';
@@ -2238,6 +2241,8 @@ window.onload = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+        
+        console.log(search.helper.state)
       }
     }
   })
