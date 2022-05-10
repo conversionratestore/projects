@@ -1726,7 +1726,7 @@ function toggleClass(item,content,event) {
   }
 }
 if (window.location.pathname.includes('/search/') && !window.location.href.includes('staging_products')) {
-  window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${window.location.pathname.split('search/')[1]}`
+  window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${window.location.pathname.split('search/')[1].split('-').join('%20')}`
 }
 window.onload = function() {
   
