@@ -1926,7 +1926,7 @@ window.onload = function() {
       showMore: true,
       // searchable: true,
       showMoreLimit: 400,
-      // sortBy: ['name:asc'],
+      sortBy: ['name:asc'],
       templates: {
         item: (data) => {
           let checkbox = `
