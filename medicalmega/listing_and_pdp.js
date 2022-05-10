@@ -1699,6 +1699,22 @@ function labelForEvents(e) {
 }
 
 function openCategoriesFoeAlphabet(item) {
+  
+  document.querySelector('.alphabet').innerHTML = ''
+  litterAlphabet = [];
+  item.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
+
+  litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+    index === self.findIndex((t) => (
+        t.letter === thing.letter
+    ))
+  )
+
+  for (let i = 0; i < litterAlphabet.length; i++) {
+    if (litterAlphabet[i].letter != 'undefined') {
+      document.querySelector('.alphabet').insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+    }
+  }
   item.forEach(el => {
     if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
       el.style.display = "none";
@@ -1706,6 +1722,10 @@ function openCategoriesFoeAlphabet(item) {
       el.style.display = "block";
     }
   }); 
+  
+  let items = [...document.querySelectorAll('.alphabet li')];
+  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+  items.forEach(item => document.querySelector('.alphabet').appendChild(item));
 } 
 
 function scrollTop(a, b) {
@@ -2164,27 +2184,9 @@ window.onload = function() {
                   alphabet = document.querySelector('.alphabet'); //alphabet
                   alphabet.innerHTML = '';
 
-              listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
-
-              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-                index === self.findIndex((t) => (
-                    t.letter === thing.letter
-                ))
-              )
-
-              for (let i = 0; i < litterAlphabet.length; i++) {
-                if (litterAlphabet[i].letter != 'undefined') {
-                  alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-                }
-              }
+            
 
               openCategoriesFoeAlphabet(listCategories)    
-
-              let items = [...alphabet.querySelectorAll("li")];
-              items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-              items.forEach(item => alphabet.appendChild(item));
-
-            
             }
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
