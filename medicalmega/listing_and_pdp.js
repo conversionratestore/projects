@@ -2134,16 +2134,15 @@ window.onload = function() {
             }
             if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                 document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
-                    actionDataLayer = `Click on ${e.target.innerText} button`;
-                    labelDataLayer = 'Filters';
-                    pushDataLayer(actionDataLayer, labelDataLayer);
-                    document.querySelector('#manufacturer').classList.toggle('scroll');
-                    e.target.innerText == 'Show more' ? document.querySelector('#manufacturer').classList.remove('scroll'): '';
-                  
+                  console.log('click showMore')
+                  actionDataLayer = `Click on ${e.target.innerText} button`;
+                  labelDataLayer = 'Filters';
+                  pushDataLayer(actionDataLayer, labelDataLayer);
+                  document.querySelector('#manufacturer').classList.toggle('scroll');
+                  e.target.innerText == 'Show more' ? document.querySelector('#manufacturer').classList.remove('scroll'): '';
                 })
             }
      
-            
             document.querySelectorAll('.breadcrumbs li').forEach((crumb, index) => {
               crumb.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
@@ -2156,6 +2155,7 @@ window.onload = function() {
             if (document.querySelector('.ais-CurrentRefinements-delete')!= null) {
               document.querySelectorAll('.ais-CurrentRefinements-delete').forEach(item => {
                 item.addEventListener('click', (e) => {
+                  e.stopImmediatePropagation();
                   actionDataLayer = `Click on cross button`;
                   labelDataLayer = 'Current Refinements';
                   pushDataLayer(actionDataLayer, labelDataLayer);
