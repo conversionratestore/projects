@@ -5,111 +5,92 @@ let style = `
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Light.ttf) format("truetype");
   font-weight: 300;
   font-style: "normal"; }
-
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Regular.ttf) format("truetype");
   font-weight: 400;
   font-style: "normal"; }
-
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Medium.ttf) format("truetype");
   font-weight: 500;
   font-style: "normal"; }
-
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-SemiBold.ttf) format("truetype");
   font-weight: 600;
   font-style: "normal"; }
-
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-Bold.ttf) format("truetype");
   font-weight: 700;
   font-style: "normal"; }
-
 @font-face {
   font-family: "Inter";
   src: url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff) format("woff"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.woff2) format("woff2"), url(https://olha1001.github.io/medicalmega/pdp-rediesign/fonts/Inter/Inter-ExtraBold.ttf) format("truetype");
   font-weight: 800;
   font-style: "normal"; }
-
 *, *::before, *::after {
   -webkit-appearance: none;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
   margin: 0; }
-
 ul, ol, li {
     list-style: none;
 }
-
 a {
     color: #000;
     text-decoration: none;
 }
-
 body {
   font-size: 12px;
   border-top: 0;
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: normal;}
-
 button {
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield; }
-
 *::-webkit-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
-
 *:-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
-
 *::-moz-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
-
 *:-ms-input-placeholder {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #9AA6AB;
   line-height: 26px; }
-
 @-webkit-keyframes autofill {
     to {
         color: #091114;
         background-color: #E9EBEC;
     }
 }
-
 input:-webkit-autofill {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both;
 }
-
 input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -122,17 +103,14 @@ input {
   font-size: 14px;
   outline-color: #344D57;
   line-height: 26px;
-
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
-
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none; }
-
 .container {
   max-width: 1260px;
   padding: 0 10px;
@@ -147,7 +125,6 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #091114;
   text-align: left;
   line-height: 16px; }
-
 .btn {
   font-family: "Inter", sans-serif;
   background-color: #1E3944;
@@ -184,7 +161,6 @@ input[type="search"]::-webkit-search-results-decoration {
       border-color: #F0F1F2;
       background-color: #FBFBFB;
       color: #9AA6AB; }
-
 .check {
   border: 1px solid #6D7E85;
   width: 16px;
@@ -206,11 +182,9 @@ input[type="search"]::-webkit-search-results-decoration {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
-
 .check_text {
   font-size: 14px;
   line-height: 150%; }
-
   .checkbox {
     display: none; }
     .checkbox:checked ~ .check:before {
@@ -223,10 +197,8 @@ input[type="search"]::-webkit-search-results-decoration {
       border-color: #E3E6E7; }
       .checkbox:disabled ~ .radio-check span {
         color: #BCC4C7; }
-
 .ais-RefinementList-item--selected .check:before {
   content: ''; }
-
 .header {
   -webkit-box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
   box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.1);
@@ -235,7 +207,6 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #1E3944;
   z-index: 8;
   background: #fff; }
-
 .supbar {
   background: #1E3944;
   padding: 10px 0 11px; }
@@ -245,7 +216,6 @@ input[type="search"]::-webkit-search-results-decoration {
     color: #E9EBEC; }
   .supbar img {
     margin-right: 8px; }
-
 .midbar {
   padding: 20px 0; }
 .midbar_action {
@@ -271,7 +241,6 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #1E3944!important; }
   .logo span {
     color: #96280F; }
-
 .box-search {
   position: relative;
   width: 545px; }
@@ -319,13 +288,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .subbar {
   border-top: 1px solid #BCC4C7;
   padding: 9px 0; }
-
 .all_category {
   cursor: pointer;
   padding: 13px 10px 13px 8px;
   border-radius: 100px;
   transition: all 0.3s ease; }
-
 .dropdown_categories {
   position: absolute;
   top: 188px;
@@ -333,7 +300,6 @@ input[type="search"]::-webkit-search-results-decoration {
   display: flex;
   opacity: 0;
   pointer-events: none; }
-
 .alphabet {
   height: calc(100vh - 188px);
   overflow-y: auto;
@@ -360,7 +326,6 @@ input[type="search"]::-webkit-search-results-decoration {
       font-weight: 600;
     line-height: 29px;
       font-size: 24px; }
-
 #list_categories {
   height: calc(100vh - 188px);
   overflow-y: auto;
@@ -461,13 +426,11 @@ input[type="search"]::-webkit-search-results-decoration {
       -webkit-transform: translateY(-50%) rotate(-224deg);
       -ms-transform: translateY(-50%) rotate(-224deg);
       transform: translateY(-50%) rotate(-224deg); }
-
 .btn_reset {
   background: transparent url("https://olha1001.github.io/medicalmega/pdp-rediesign/img/common/close.svg") no-repeat right center/contain;
   width: 130px;
   height: 24px;
   cursor: pointer; }
-
 .advanced-search {
   border-top: 1px solid #BCC4C7;
   opacity: 0;
@@ -583,7 +546,6 @@ input[type="search"]::-webkit-search-results-decoration {
   .select_dropdown::-webkit-scrollbar-track {
       width: 6px;}
   .select_option p {
-
     cursor: pointer;
     order: 2;
     font-size: 14px;
@@ -635,11 +597,9 @@ border-radius: 100px;
   }
   .filter .select_drop {
     padding: 10px 0; }
-
 .listing_wrapper {
   width: calc(100% - 200px);
   padding: 41px 0 22px 48px; }
-
 .listing_title {
   text-align: center;
   font-weight: 600;
@@ -647,7 +607,6 @@ border-radius: 100px;
   line-height: 120%;
   min-height: 43.2px;
   margin-bottom: 33px; }
-
 .listing_content {
   padding-left: 1px;
   margin-top: 13px; }
@@ -687,11 +646,9 @@ border-radius: 100px;
     width: 24px;
     height: 24px;
     margin: 0 12px; }
-
 .count_brand {
   color: #9AA6AB;
   margin-left: 4px; }
-
 .select_filter {
   margin-bottom: 26px; }
   .select_filter.active .select_item:before {
@@ -700,7 +657,6 @@ border-radius: 100px;
     transform: translateY(-50%) scaleY(-1); }
   .select_filter.active .select_drop {
     display: block; }
-
 .select_item {
   padding: 6px 0;
   font-size: 18px;
@@ -726,23 +682,19 @@ border-radius: 100px;
     border-width: 4px 4px 0 4px;
     border-radius: 0.5px;
     border-color: #9AA6AB transparent transparent transparent; }
-
 .select_drop {
   display: none; }
-
 .status {
   color: #96280F;
   position: absolute;
   top: 16px;
   right: 16px; }
-
 .line {
   background: #DCE0E1;
   width: 100%;
   height: 1px;
   display: block;
   margin: 12px 0; }
-
 .calc {
   margin-bottom: 16px; }
 .calc[disabled] {
@@ -759,7 +711,6 @@ border-radius: 100px;
   border-radius: 50%;
   text-align: center;
   padding: 0; }
-
 .btn-calc {
   position: relative;
   background-color: transparent;
@@ -791,7 +742,6 @@ border-radius: 100px;
     height: 14px; }
   .btn-calc_plus:after {
     content: ''; }
-
 .card {
   // max-width: 281px;
   // width: calc(25% - 10px);
@@ -859,7 +809,6 @@ border-radius: 100px;
   //   color: transparent;
   //   background: url(https://conversionratestore.github.io/projects/medicalmega/img/chevron-right.svg) no-repeat center / contain;
   // }
-
   .ais-Breadcrumb-item, .breadcrumbs li {
     color: #6D7E85;
     display: flex;
@@ -867,7 +816,6 @@ border-radius: 100px;
     line-height: 18px;
     cursor: default;
     padding: 10px 0; }
-
 .ml-40 {
   margin-left: 40px; }
   
@@ -879,79 +827,60 @@ border-radius: 100px;
   
 .mt-16 {
   margin-top: 16px; }
-
 .fw-light {
   font-weight: 300; }
-
 .fw-semi {
   font-weight: 600; }
-
 .c-gray {
   color: #6D7E85; }
-
 .c-red {
   color: #96280F; }
-
 .fs-14 {
   font-size: 14px;
   line-height: 25px; }
-
 .d-flex {
   display: flex; }
-
 .align-items-center {
   display: flex;
   align-items: center; }
-
 .justify-content-center {
   display: flex;
   justify-content: center; }
-
 .justify-content-between {
   display: flex;
   justify-content: space-between; }
-
 .justify-content-around {
   display: flex;
   -ms-flex-pack: distribute;
   justify-content: space-around; }
-
 .flex-center-between {
   display: flex;
   justify-content: space-between;
   align-items: center; }
-
 .flex-end-between {
   display: flex;
   justify-content: space-between;
   align-items: flex-end; }
-
 .flex-center-around {
   display: flex;
   -ms-flex-pack: distribute;
   justify-content: space-around;
   align-items: center; }
-
 .flex-wrap {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
-
 .flex-center-center {
   display: flex;
   justify-content: center;
   align-items: center; }
-
 .w-100 {
   width: 100%; }
-
 .relative {
   position: relative; }
-
 .max-391 {
   width: 100%;
   max-width: 391px; }
-
 .scroll-x {
   overflow-x: auto;}
 .scroll-x::-webkit-scrollbar {
@@ -974,7 +903,6 @@ border-radius: 100px;
   margin-left: -26px; }
 .arrow_button_next {
   margin-right: -26px;}
-
   #list_categories .ais-HierarchicalMenu-list--child li {
     display: block!important;
   }
@@ -1048,7 +976,6 @@ border-radius: 100px;
   .aa-suggestion.aa-cursor {
     background-color: #E0E4E5;
   }
-
   .aa-suggestion img {
     width: 45px;
     height: 45px;
@@ -1103,11 +1030,9 @@ border-radius: 100px;
   .listing_popular {
     margin-bottom: 33px;
   }
-
   .listing_popular ul {
     margin: 13px 0 20px
   }
-
   .listing_popular h2 {
     text-align: center;
     font-weight: 600;
@@ -1168,11 +1093,9 @@ border-radius: 100px;
     height: -moz-fit-content;
     height: fit-content;
     z-index: 2; }
-
   .col_right {
     width: calc(100% - 456px);
     max-width: calc(100% - 456px - 48px); }
-
   .side_one {
     width: 96px;
     padding-top: 10px;
@@ -1185,7 +1108,6 @@ border-radius: 100px;
     height: 91px!important;}
   .side_two {
     width: calc(100% - 96px); }
-
   .slider-nav .slide {
     width: 56px;
     height: 56px;
@@ -1195,20 +1117,17 @@ border-radius: 100px;
     margin-bottom: 8px; }
     .slider-nav .slide.active {
       border-color: #BCC4C7; }
-
   .slider-nav img {
     width: 100%;
     height: 100%;
     -o-object-fit: contain;
     object-fit: contain; }
-
   .img-zoom-lens {
     position: absolute;
     border: 1px solid #d4d4d4;
     width: 140px;
     height: 140px;
     visibility: hidden; }
-
   .main .img-zoom-result {
     border: 1px solid #d4d4d4;
     width: 300px;
@@ -1218,7 +1137,6 @@ border-radius: 100px;
     left: 100%;
     visibility: hidden;
     background-color: #fff; }
-
   .slider-for {
     position: relative;
     width: 360px;
@@ -1229,7 +1147,6 @@ border-radius: 100px;
       height: 360px;
       -o-object-fit: contain;
       object-fit: contain; }
-
   .list {
     color: #344D57;
     margin-bottom: 15px; }
@@ -1245,7 +1162,6 @@ border-radius: 100px;
     font-size: 14px;
     line-height: 150%;
     color: #96280F!important;}
-
   .product_sidebar {
     min-height: 381px;
     background: #F0F1F2;
@@ -1277,18 +1193,15 @@ border-radius: 100px;
         padding-right: 10px;
         width: calc(100% - 280px);
         max-width: 426px; }
-
   .line {
     background: #DCE0E1;
     width: 100%;
     height: 1px;
     display: block;
     margin: 12px 0; }
-
   .total {
     padding: 10px 0;
     margin-bottom: 25px; }
-
   .calc {
     margin-bottom: 16px; }
   .calc.disabled {
@@ -1305,7 +1218,6 @@ border-radius: 100px;
     border-radius: 50%;
     text-align: center;
     padding: 0; }
-
     .content-discription * {
       font-family: 'Inter', sans-serif!important; }
   .content-discription {
@@ -1351,12 +1263,10 @@ border-radius: 100px;
       border-bottom-color: #091114;
       font-weight: 600;
       color: #091114; }
-
   .content-item {
     display: none; }
     .content-item.active {
       display: block; }
-
   .similar-products {
     padding: 60px 0; }
     .similar-products h2 {
@@ -1377,7 +1287,6 @@ border-radius: 100px;
   .product {
     padding-top: 17px;
     padding-bottom: 60px; }
-
   .ml-40 {
     margin-left: 40px; }
     
@@ -1490,7 +1399,6 @@ border-radius: 100px;
   line-height: 130%;
   color: #091114;
   margin-top: 8px;}
-
   @media only screen and (min-width: 1750px) {
     .nav_category {
       position: relative; }
@@ -1500,7 +1408,6 @@ border-radius: 100px;
       padding-top: calc(1% + 9px);
     }
   }
-
   @media only screen and (max-width: 1250px) {
     .category_popular li a {
       margin: 0 3px;
@@ -1699,22 +1606,6 @@ function labelForEvents(e) {
 }
 
 function openCategoriesFoeAlphabet(item) {
-  
-  document.querySelector('.alphabet').innerHTML = ''
-  litterAlphabet = [];
-  item.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
-
-  litterAlphabet = litterAlphabet.filter((thing, index, self) =>
-    index === self.findIndex((t) => (
-        t.letter === thing.letter
-    ))
-  )
-
-  for (let i = 0; i < litterAlphabet.length; i++) {
-    if (litterAlphabet[i].letter != 'undefined') {
-      document.querySelector('.alphabet').insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
-    }
-  }
   item.forEach(el => {
     if (el.innerText[0] != document.querySelector('.alphabet .active').innerText[0]) {
       el.style.display = "none";
@@ -1722,10 +1613,6 @@ function openCategoriesFoeAlphabet(item) {
       el.style.display = "block";
     }
   }); 
-  
-  let items = [...document.querySelectorAll('.alphabet li')];
-  items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
-  items.forEach(item => document.querySelector('.alphabet').appendChild(item));
 } 
 
 function scrollTop(a, b) {
@@ -1970,7 +1857,7 @@ window.onload = function() {
       <div class="card">
         <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt='${hit.name}'>
+          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
           <span title='${hit.name}'>${hit.name}</span>
         </a>
         <form action="https://medicalmega.com/cart.html" method="post">
@@ -2184,9 +2071,27 @@ window.onload = function() {
                   alphabet = document.querySelector('.alphabet'); //alphabet
                   alphabet.innerHTML = '';
 
-            
+              listCategories.forEach((el) => litterAlphabet.push({'letter': el.innerText[0]}))
+
+              litterAlphabet = litterAlphabet.filter((thing, index, self) =>
+                index === self.findIndex((t) => (
+                    t.letter === thing.letter
+                ))
+              )
+
+              for (let i = 0; i < litterAlphabet.length; i++) {
+                if (litterAlphabet[i].letter != 'undefined') {
+                  alphabet.insertAdjacentHTML('beforeend',`<li class="${i == 0 ? 'active': ''}">${litterAlphabet[i].letter}</li>`);
+                }
+              }
 
               openCategoriesFoeAlphabet(listCategories)    
+
+              let items = [...alphabet.querySelectorAll("li")];
+              items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
+              items.forEach(item => alphabet.appendChild(item));
+
+            
             }
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
@@ -2401,7 +2306,7 @@ window.onload = function() {
       
         templates: {
           suggestion: function(suggestion) {
-            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"' alt='"+ suggestion._highlightResult.name.value + "'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                     
             return sugTemplate;
           },
@@ -2840,7 +2745,7 @@ window.onload = function() {
         //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
         //   <div class="card" >
         //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-        //           <img src="${el.querySelector('a img').src}" alt='${el.querySelector('a img').alt}'>
+        //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
         //           <span title='${el.querySelectorAll('a')[1].innerText}'>${el.querySelectorAll('a')[1].innerText}</span>
         //       </a>
         //       <form action="https://medicalmega.com/cart.html" method="post">
@@ -2867,7 +2772,7 @@ window.onload = function() {
               <div class="card" >
                   <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
                   <a class="card_name" href="${hits[i].seo}">
-                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt='${hits[i].name}'>
+                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
                       <span title='${hits[i].name}'>${hits[i].name}</span>
                   </a>
                   <form action="https://medicalmega.com/cart.html" method="post">
