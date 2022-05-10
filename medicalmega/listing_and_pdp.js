@@ -1925,7 +1925,7 @@ window.onload = function() {
       limit: 7,
       showMore: true,
       // searchable: true,
-      showMoreLimit: 400,
+      showMoreLimit: 300,
       sortBy: ['name:asc'],
       templates: {
         item: (data) => {
@@ -1935,7 +1935,6 @@ window.onload = function() {
                 <span class="check_text">${data.value}<span class="count_brand">(${data.count})</span></span>
               </label>
           `;
-      
           return checkbox
         },
       },
