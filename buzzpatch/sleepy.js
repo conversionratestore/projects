@@ -1,7 +1,7 @@
 const style = /*html*/`
 	<style>
 			.trust-rating,
-            .js-heading.js-mobile .container-fluid {
+            .js-heading.js-mobile .container-fluid img {
                 display: none;
             }
 
@@ -129,7 +129,6 @@ let waitForHeading = setInterval(() => {
                     <img src="https://conversionratestore.github.io/projects/buzzpatch/img/sleepy_patches.svg" alt="patches">
                 </div>
             </div>            
-            <button class="btn js-btn btn-primary get-it dark my_btn">get it now!</button>
         </div>
 `)
     }
@@ -154,17 +153,6 @@ let waitForForm = setInterval(() => {
     }
 }, 200)
 
-
-let waitForBtn = setInterval(() => {
-    if (document.querySelector('.my_btn')) {
-        clearInterval(waitForBtn)
-
-        document.querySelector('.my_btn').addEventListener('click', () => {
-            document.querySelector('.js-heading .hand-banner a').click()
-        })
-    }
-}, 200)
-
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
     'event': 'event-to-ga',
@@ -177,4 +165,6 @@ let waitForClarity = setInterval(() => {
         clarity('set', 'Sleepy patch - select package block A/B test', 'variant_1');
     }
 }, 200);
+
+document.addEventListener("mousewheel", this.mousewheel.bind(this), { passive: false })
 
