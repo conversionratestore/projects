@@ -596,7 +596,8 @@ border-radius: 100px;
     // pointer-events: none;
   }
   .filter .select_drop {
-    padding: 10px 0; }
+    padding-top: 10px; 
+    margin-bottom: 10px;}
 .listing_wrapper {
   width: calc(100% - 200px);
   padding: 41px 0 22px 48px; }
@@ -650,6 +651,7 @@ border-radius: 100px;
   color: #9AA6AB;
   margin-left: 4px; }
 .select_filter {
+  position: relative;
   margin-bottom: 26px; }
   .select_filter.active .select_item:before {
     -webkit-transform: translateY(-50%) scaleY(-1);
@@ -947,9 +949,12 @@ border-radius: 100px;
   .ais-RefinementList-showMore {
     background: none; 
     text-decoration: underline;
-    margin-top: 15px;
+    padding-top: 15px;
     display: block;
-    position: relative;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
     z-index: 2;
     outline: none;
     color: #344D57;
@@ -1008,20 +1013,18 @@ border-radius: 100px;
     pointer-events: none;
   }
   #manufacturer {
-    position: relative;
-  }
-  #manufacturer .ais-RefinementList-list {
-    max-height: 328px;
+    max-height: 330px;
     overflow-x: hidden;
     overflow-y: auto;
   }
-  #manufacturer .ais-RefinementList-list.scroll:before {
+  #manufacturer.scroll:before {
     content: '';
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 56px;
+    z-index: 2;
     pointer-events: none;
     opacity: 1;
     transition: all 0.2s ease;
@@ -1921,6 +1924,7 @@ window.onload = function() {
       attribute: 'manufacturer',
       limit: 7,
       showMore: true,
+      // searchable: true,
       showMoreLimit: 400,
       // sortBy: ['name:asc'],
       templates: {
@@ -2050,9 +2054,9 @@ window.onload = function() {
          
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
-              search.helper.state.query = '';
-              document.querySelector('.ais-SearchBox-input').value = '';
-              document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+              // search.helper.state.query = '';
+              // document.querySelector('.ais-SearchBox-input').value = '';
+              // document.querySelector('.algolia-autocomplete pre').innerHTML = '';
               inputWord = false;
               
               toggleListing(true)
@@ -2125,8 +2129,8 @@ window.onload = function() {
               document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
             }
 
-            if ( document.querySelector('#manufacturer .ais-RefinementList-list') != null) {
-              let element = document.querySelector('#manufacturer .ais-RefinementList-list');
+            if ( document.querySelector('#manufacturer') != null) {
+              let element = document.querySelector('#manufacturer');
                   element.addEventListener('scroll', () => scrolled(element));
             }
             if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
@@ -2134,8 +2138,8 @@ window.onload = function() {
                     actionDataLayer = `Click on ${e.target.innerText} button`;
                     labelDataLayer = 'Filters';
                     pushDataLayer(actionDataLayer, labelDataLayer);
-                    document.querySelector('#manufacturer .ais-RefinementList-list').classList.toggle('scroll');
-                    e.target.innerText == 'Show more' ? document.querySelector('#manufacturer .ais-RefinementList-list').classList.remove('scroll'): '';
+                    document.querySelector('#manufacturer').classList.toggle('scroll');
+                    e.target.innerText == 'Show more' ? document.querySelector('#manufacturer').classList.remove('scroll'): '';
                   
                 })
             }
