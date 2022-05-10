@@ -1950,7 +1950,7 @@ window.onload = function() {
       <div class="card">
         <p class="status" style="display:${hit.in_stock==false || hit.price == '0:00'? 'block':'none'}">Out of Stock</p>
         <a class="card_name" href="https://medicalmega.com/product/${hit.seo}">
-          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt="${hit.name}">
+          <img src="https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/${findImageHits(hit.variants) != '' ? findImageHits(hit.variants) : 'dummyimage.jpg' }" alt='${hit.name}'>
           <span title='${hit.name}'>${hit.name}</span>
         </a>
         <form action="https://medicalmega.com/cart.html" method="post">
@@ -2399,7 +2399,7 @@ window.onload = function() {
       
         templates: {
           suggestion: function(suggestion) {
-            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
+            let sugTemplate = "<img src='https://medicalmegaimgs.net/prod/uploaded/product/pro_thumb/"+ (findImageHits(suggestion.variants) != '' ? findImageHits(suggestion.variants) : 'dummyimage.jpg') +"' alt='"+ suggestion._highlightResult.name.value + "'/><div><p class='name'>"+ suggestion._highlightResult.name.value +"</p><p class='item_num'>Item #" + suggestion._highlightResult.item_num.value + "</p><p class='price'>$" + suggestion.price + "</p></div>"
                     
             return sugTemplate;
           },
@@ -2838,7 +2838,7 @@ window.onload = function() {
         //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
         //   <div class="card" >
         //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-        //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
+        //           <img src="${el.querySelector('a img').src}" alt='${el.querySelector('a img').alt}'>
         //           <span title='${el.querySelectorAll('a')[1].innerText}'>${el.querySelectorAll('a')[1].innerText}</span>
         //       </a>
         //       <form action="https://medicalmega.com/cart.html" method="post">
@@ -2865,7 +2865,7 @@ window.onload = function() {
               <div class="card" >
                   <p class="status" style="display:${hits[i].in_stock==false || hits[i].price == '0:00'? 'block':'none'}">Out of Stock</p>
                   <a class="card_name" href="${hits[i].seo}">
-                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt="${hits[i].name}">
+                      <img src="https://medicalmegaimgs.net/prod/uploaded/product/${findImageHits(hits[i].variants) == '' ? 'dummyimage.jpg' : findImageHits(hits[i].variants)}" alt='${hits[i].name}'>
                       <span title='${hits[i].name}'>${hits[i].name}</span>
                   </a>
                   <form action="https://medicalmega.com/cart.html" method="post">
