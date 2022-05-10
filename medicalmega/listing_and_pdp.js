@@ -1633,9 +1633,9 @@ function scrollTop(a, b) {
 
 function scrolled(element) {
   if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      element.setAttribute('class','ais-RefinementList-list')
+      element.classList.remove('scroll')
   } else {
-      element.setAttribute('class','ais-RefinementList-list scroll')
+      element.classList.add('scroll')
   }
 }
 let interval = null;    
