@@ -47,7 +47,6 @@ let style = `
 
 let html = `
     <div class="flex items-center parent_block">
-       
         <div class="tooltipe_block ml-auto">    
             <div class="font-bold items-center flex mb-2">
                 <img src="https://conversionratestore.github.io/projects/onairparking/img/guaranteee.png" alt="icon" class="mx-2">
@@ -65,16 +64,16 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-	console.log('mut')
     if (document.querySelector('.tooltipe_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center').innerText == 'BACK') {
         console.log('true')
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').insertAdjacentHTML('afterend', html);
         document.querySelector('.tooltipe_block').before(document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
     } 
-    if (document.querySelector('.parent_block') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
-        document.querySelector('.js-style').remove();
-        document.querySelector('.parent_block').remove();
+    if (document.querySelector('.parent_block') != null || document.querySelector('.js-style') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
+        console.log('true2')
+        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
+        document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
     }
     mut.observe(document, optionMut);
 })
