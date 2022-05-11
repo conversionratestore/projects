@@ -65,7 +65,7 @@ let optionMut = {
 let loadedContent = false;
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.js-style') == null && document.querySelector('.parent_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results' && document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full') != null && document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto')) {
+    if (loadedContent = false && document.querySelector('.js-style') == null && document.querySelector('.parent_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results' && document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full') != null && document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto')) {
         loadedContent = true;
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
@@ -74,7 +74,7 @@ let mut = new MutationObserver(function (muts) {
         }) 
         console.log(loadedContent)
     } 
-    if (document.querySelector('.js-style') != null && window.location.pathname != '/reservation/search' || document.querySelector('#parkingat') != null) {
+    if (document.querySelector('#parkingat') != null) {
         loadedContent = false;
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
         document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
