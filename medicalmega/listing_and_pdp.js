@@ -2423,44 +2423,45 @@ window.onload = function() {
 
         let categoryLvl = '';
 
-        for (const key in categoriesHit) {
-          let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
+        let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
+        console.log(lastLvlCategories)
 
-          for (let j = 0; j < lastLvlCategories.length; j++) {
-            if (lastLvlCategories[j] != null) {
-              categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
-            }
+        for (let j = 0; j < lastLvlCategories.length; j++) {
+          if (lastLvlCategories[j] != null) {
+            categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
-      
         console.log(categoryLvl)
-
         let requestSimilarProduct = index.search({
           facetFilters: [categoryLvl],
+          // filters: categoryLvl,
           hitsPerPage: '4',
         })
 
         // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
-        const recommend = window['@algolia/recommend'];
-        const recommendClient = recommend(APPLICATION_ID, API_KEY);
+        // const recommend = window['@algolia/recommend'];
+        // const recommendClient = recommend(APPLICATION_ID, API_KEY);
 
         // relatedProducts({
         //   container: '#relatedProducts',
         //   recommendClient,
         //   indexName,
         //   objectIDs: [product.objectID],
-        //   itemComponent({ item }) {
+        //   itemComponent: (item) => {
         //     console.log(item)
-        //     return item;
+        //     return `
+        //       <a href="#">
+        //         <span>${item.name}</span>
+        //       </a>`;
         //   },
         // });
-        // recommendClient.getRelatedProducts([
+        // recommendClient.getRelatedProducts(
         //   {
         //     indexName: 'products',
         //     objectID: product.objectID,
         //     // manufacturer: data.hits[0].manufacturer,
         //   },
-        // ])
+        // )
         // .then(results => {
         //   console.log(results);
         // })
@@ -2583,35 +2584,11 @@ window.onload = function() {
 
         document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
-        //description
-        // document.querySelectorAll('.product-desc h3').forEach((el, i) => {
-        //   if (i == 0) {
-        //       document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
-        //       if (el.nextElementSibling.innerHTML.includes('<h2>')) {
-        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-        //       } else {
-        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
-        //       }
-
-        //       document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-        //           document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
-        //       })
-        //       document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
-        //           if (strong.parentElement.tagName != 'SPAN') {
-        //               document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
-        //               document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
-        //           }
-        //       })
-        //   }
-        // })
-
         let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
             contents = document.querySelectorAll('.content-discription .content-item'), // content discription
             slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
             slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
         
-
         tabs.forEach((tab,i) => {
           tab.addEventListener('click', () => {
             tab.parentElement.querySelector('.active').classList.remove('active');
