@@ -1851,7 +1851,7 @@ window.onload = function() {
             <input class="calc-qty" type="number" name="quantity" value="1" data-max-value="${hit.qty}">
             <button class="btn-calc btn-calc_plus" type="button"></button>
           </div>
-          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
+          ${hit.in_stock==false || hit.price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stock</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hit.price + '">' + hit.price + '</span> | Add to Cart</span></button>'}
           <input type="hidden" name="product_variant_id" value="${hit.pv_id}">
           <input type="hidden" name="product_id" value="${hit.objectID }">
           <input type="hidden" name="add_to_cart" value="variant">
@@ -2578,7 +2578,7 @@ window.onload = function() {
                           <input class="calc-qty" type="number" value="1" name="quantity">
                           <button class="btn-calc btn-calc_plus" type="button"></button>
                         </div>
-                        ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">notify when available</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
+                        ${firstVariant.in_stock == false || firstVariant.price == '0:00' ? '<button class="btn btn btn_white" type="button" data-button="notify">Out of Stock</button>' : `<button class="btn btn_dark add-cart" type="submit" ><span hidden>$<span class="pr" data-price="${firstVariant.price}">${firstVariant.price}</span> | </span>Add to Cart</button>`}
                         <input type="hidden" name="product_variant_id" value="${firstVariant.pv_id }">
                         <input type="hidden" name="product_id" value="${product.objectID}">
                         <input type="hidden" name="add_to_cart" value="variant">
