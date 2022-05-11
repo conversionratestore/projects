@@ -1544,7 +1544,7 @@ const searchClient = algoliasearch(
     API_KEY,
 );
 
-const indexName = 'staging_products';
+const indexName = 'products';
 
 const search = instantsearch({
   searchClient,
@@ -1576,12 +1576,12 @@ let inputWord = false,
     firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
-  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+  fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
 })
 
 let requestProduct = new Promise((resolve, reject) => {
   if (window.location.pathname.includes('/product/')) {
-    fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
+    fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?query=${window.location.pathname.split('/product/')[1]}`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
   }
 })
 
@@ -1706,25 +1706,7 @@ function changeQty(qty,pr,action) {
     }
   }
 }
-//change Class active
-function toggleClass(item,content,event) {
-  item[0].classList.add('active');
-  content[0].classList.add('active');
-  for (let i = 0; i < item.length; i++) {
-      item[i].addEventListener(event, () => {
-          item[i].parentElement.querySelector('.active').classList.remove('active');
-          content[i].parentElement.querySelector('.active').classList.remove('active');
-          item[i].classList.add('active');
-          content[i].classList.add('active');
-          sortAlphabet()
-          if (item[i].closest('.tabs-discription')) {
-              actionDataLayer = `Click at the ${item[i].innerText} tab`;
-              labelDataLayer = `Product section`;
-              pushDataLayer(actionDataLayer, labelDataLayer)
-          } 
-      })
-  }
-}
+
 window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
@@ -1800,7 +1782,7 @@ window.onload = function() {
 
 
     for (let key in categoriesLvl0) {
-      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}" data-category="categories.lvl0:${key}">${key}</a><ul></ul></li>`)
+      // document.querySelector('#list_categories').insertAdjacentHTML('beforeend',`<li><a href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${key}" data-category="categories.lvl0:${key}">${key}</a><ul></ul></li>`)
       document.querySelector('.select_category .select_dropdown').insertAdjacentHTML('beforeend', ` 
       <li class="select_option"><p data-category="categories.lvl0:${key}">${key}</p>
         <ul></ul>
@@ -1812,7 +1794,7 @@ window.onload = function() {
     //       let spt = key.split(' > ')
     //       let option = ``;
     //       for (let i = 0; i < spt.length; i++) {
-    //         option += `staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${spt[i]}&`;
+    //         option += `products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${spt[i]}&`;
     //       }
     //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${option}" data-category="categories.lvl1:${key}">${key}</a><ul></ul></li>`)
     //     }
@@ -2110,7 +2092,7 @@ window.onload = function() {
                   })
                 }
               }) 
-            } else if (window.location.pathname.includes('/search') && !window.location.href.includes('staging_products') && firstLoaded == true) {
+            } else if (window.location.pathname.includes('/search') && !window.location.href.includes('products') && firstLoaded == true) {
               console.log('search/')
               firstLoaded = false
               search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
@@ -2271,7 +2253,7 @@ window.onload = function() {
   
   document.querySelector('.advanced-search .btn').addEventListener('click', () => {
     let categories = document.querySelector('.select_category .select_current').dataset.category;
-    let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&staging_products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
+    let brand = document.querySelector('.select_brand .select_current').innerText.includes('Select') ? "" : `&products%5BrefinementList%5D%5Bmanufacturer%5D%5B0%5D=${document.querySelector('.select_brand .select_current').innerText}`;
     
     let queryKeyword = document.querySelector('[name="search_keyword"]').value,
         queryItem = document.querySelector('[name="search_item"]').value,
@@ -2281,14 +2263,14 @@ window.onload = function() {
     let crumbs = categories.split(':')[1].split(' > ');
 
     for (let i = 0; i < crumbs.length; i++) {
-      option += `&staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
+      option += `&products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${crumbs[i]}`
     }
 
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Advanced Search';
     pushDataLayer(actionDataLayer, labelDataLayer)
     if (querySum != '' || brand != '' || !option.includes("*")) {
-      window.location.href = `https://medicalmega.com/?staging_products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
+      window.location.href = `https://medicalmega.com/?products%5Bquery%5D=${querySum}${brand}${!option.includes("*") ? option : ''}`;
     }
   })
 
@@ -2459,8 +2441,8 @@ window.onload = function() {
         })
 
         // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
-        // const recommend = window['@algolia/recommend'];
-        // const recommendClient = recommend(APPLICATION_ID, API_KEY);
+        const recommend = window['@algolia/recommend'];
+        const recommendClient = recommend(APPLICATION_ID, API_KEY);
 
         // relatedProducts({
         //   container: '#relatedProducts',
@@ -2474,7 +2456,7 @@ window.onload = function() {
         // });
         // recommendClient.getRelatedProducts([
         //   {
-        //     indexName: 'staging_products',
+        //     indexName: 'products',
         //     objectID: product.objectID,
         //     // manufacturer: data.hits[0].manufacturer,
         //   },
@@ -2524,7 +2506,7 @@ window.onload = function() {
               </li>
               <li class="ais-Breadcrumb-item">
                 <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?staging_products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
+                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
               </li>
               <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
             </ul>  
@@ -2554,8 +2536,12 @@ window.onload = function() {
                       <li> Item Number: <span class="fw-semi">${product.item_num}</span></li>
                       <li> Manufacturer: <span class="fw-semi">${product.manufacturer}</span></li>
                     </ul>
-                    <ul class="tabs-discription d-flex"> </ul>
-                    <div class="content-discription"></div>
+                    <ul class="tabs-discription d-flex"> 
+                      <li class="active">Product details</li>
+                    </ul>
+                    <div class="content-discription">
+                      <div class="content-item active">${firstVariant.desc}</div>
+                    </div>
                   </div>
                   <div class="product_sidebar ${firstVariant.in_stock == false ? 'disabled' :''}">
                     ${firstVariant.in_stock == false ? '<p class="out-of-stick">Out Of Stock</p>' :''}
@@ -2598,35 +2584,46 @@ window.onload = function() {
         document.querySelector('.available-options .scroll-x') != null ? document.querySelector('.available-options .scroll-x').innerHTML = availableOptions() : '';
 
         //description
-        document.querySelectorAll('.product-desc h3').forEach((el, i) => {
-          if (i == 0) {
-              document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
-              if (el.nextElementSibling.innerHTML.includes('<h2>')) {
-                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
-              } else {
-                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
-              }
+        // document.querySelectorAll('.product-desc h3').forEach((el, i) => {
+        //   if (i == 0) {
+        //       document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${el.innerText}</li>`);
+        //       if (el.nextElementSibling.innerHTML.includes('<h2>')) {
+        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<h2>')[0]}</div>`);
+        //       } else {
+        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('<p><strong>')[0]}</div>`);
+        //       }
 
-              document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
-                  document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
-                  document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
-              })
-              document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
-                  if (strong.parentElement.tagName != 'SPAN') {
-                      document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
-                      document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
-                  }
-              })
-          }
-        })
+        //       document.querySelectorAll('.product-desc h2').forEach((h2, i) => {
+        //           document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${h2.innerText}</li>`);
+        //           document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</h2>')[1].split('<p><strong>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</h2>')[1].split('</div>')[0]}</div>`);
+        //       })
+        //       document.querySelectorAll('.product-desc p strong').forEach((strong, i) => {
+        //           if (strong.parentElement.tagName != 'SPAN') {
+        //               document.querySelector('.tabs-discription').insertAdjacentHTML('beforeend',`<li>${strong.innerText}</li>`);
+        //               document.querySelector('.content-discription').insertAdjacentHTML('beforeend', `<div class="content-item">${el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('<h2>')[0] || el.nextElementSibling.innerHTML.split('</strong></p>')[1].split('</div>')[0]}</div>`);
+        //           }
+        //       })
+        //   }
+        // })
 
         let tabs = document.querySelectorAll('.tabs-discription li'), //tabs description
             contents = document.querySelectorAll('.content-discription .content-item'), // content discription
             slidesFor = document.querySelectorAll('.slider-for .slide'); //slider main
             slidesNav = document.querySelectorAll('.slider-nav .slide'); //slider main
         
-        toggleClass(tabs,contents,'click') ;
 
+        tabs.forEach((tab,i) => {
+          tab.addEventListener('click', () => {
+            tab.parentElement.querySelector('.active').classList.remove('active');
+            contents[i].parentElement.querySelector('.active').classList.remove('active');
+            tab.classList.add('active');
+            contents[i].classList.add('active');
+            actionDataLayer = `Click at the ${tab.innerText} tab`;
+            labelDataLayer = `Product section`;
+            pushDataLayer(actionDataLayer, labelDataLayer)
+              
+          })
+        })
         //slider zoom
         slidesFor.forEach((el) => {
           el.addEventListener('mousemove', (e) => {
@@ -2843,7 +2840,7 @@ let mut = new MutationObserver(function (muts) {
             if (option.closest('.select_category')) {
                 notes = 'select category';
                 el.dataset.category = option.dataset.category;
-                fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/staging_products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
+                fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=manufacturer&query=${e.target.innerText.includes('Select') ? '*' : e.target.innerText}`, optionFetchAlgolia).then(res => res.json()).then(data => {
                   let brand = data.facets.manufacturer;
                   document.querySelector('.select_brand .select_current').innerHTML = `<span>Select Manufacturer</span>`;
                   document.querySelector('.select_brand .select_dropdown').innerHTML = `<li class="select_option "><p class="active">Select Manufacturer</p></li>`;
