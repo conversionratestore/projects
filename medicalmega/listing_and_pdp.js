@@ -1013,7 +1013,6 @@ border-radius: 100px;
     pointer-events: none;
   }
   #manufacturer {
-    max-height: 330px;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -2113,6 +2112,7 @@ window.onload = function() {
 
             if (document.querySelector('#manufacturer li') != null) {
               let element = document.querySelector('#manufacturer');
+                  element.style.height = element.getHeight();
                   element.addEventListener('scroll', (e) => {
                     e.stopImmediatePropagation();
                     scrolled(e.target)}
