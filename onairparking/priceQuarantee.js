@@ -72,13 +72,14 @@ let mut = new MutationObserver(function (muts) {
             item.insertAdjacentHTML('afterend', html);
             document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]);
         }) 
+        console.log(loadedContent)
     } 
     if (document.querySelector('.js-style') != null && window.location.pathname != '/reservation/search' || document.querySelector('#parkingat') != null) {
         loadedContent = false;
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
         document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
+        console.log(loadedContent)
     }
-    console.log(loadedContent)
     mut.observe(document, optionMut);
 })
 mut.observe(document, optionMut);
