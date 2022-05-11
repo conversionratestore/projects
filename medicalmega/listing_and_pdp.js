@@ -2736,27 +2736,6 @@ window.onload = function() {
           })
         })
 
-        //Similar products
-        // document.querySelectorAll('.products_gallery dd').forEach((el) => {
-        //   document.querySelector('.cards_similar').insertAdjacentHTML('beforeend',`
-        //   <div class="card" >
-        //       <a class="card_name" href="${el.querySelectorAll('a')[1].href}">
-        //           <img src="${el.querySelector('a img').src}" alt="${el.querySelector('a img').alt}">
-        //           <span title='${el.querySelectorAll('a')[1].innerText}'>${el.querySelectorAll('a')[1].innerText}</span>
-        //       </a>
-        //       <form action="https://medicalmega.com/cart.html" method="post">
-        //         <div class="flex-center-center calc"> 
-        //           <button class="btn-calc btn-calc_minus" type="button" disabled=""></button>
-        //           <input class="calc-qty" type="number" value="1" name="quantity">
-        //           <button class="btn-calc btn-calc_plus" type="button"></button>
-        //         </div>
-        //         <button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="${el.getAttribute('data-product-price').replace('$','')}">${el.getAttribute('data-product-price').replace('$','')}</span> | </span>Add to Cart</button>
-        //         <input type="hidden" name="product_variant_id" value="${el.getAttribute('data-product-variant-id')}">
-        //         <input type="hidden" name="product_id" value="${el.getAttribute('data-product-id')}">
-        //         <input type="hidden" name="add_to_cart" value="variant">
-        //       </form>
-        //   </div>`)
-        // })
         requestSimilarProduct.then(res => {
           console.log(res)
           let hits = res.hits;
