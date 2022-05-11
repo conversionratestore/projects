@@ -73,9 +73,9 @@ let mut = new MutationObserver(function (muts) {
             document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]);
         }) 
     } 
-    if (document.querySelector('.js-style') != null && window.location.pathname != '/reservation/search' && document.querySelector('#detail-info') != null) {
+    if (document.querySelector('.js-style') != null && window.location.pathname != '/reservation/search' || document.querySelector('#parkingat') != null) {
         loadedContent = false;
-        document.querySelector('.js-style').remove();
+        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
         document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
     }
     console.log(loadedContent)
