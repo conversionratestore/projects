@@ -75,7 +75,6 @@ let mut = new MutationObserver(function (muts) {
     } 
     mut.observe(document, optionMut);
     if (document.querySelector('.js-style') != null && window.location.pathname != '/reservation/search' && document.querySelector('#detail-info') != null) {
-        loadedContent = false;
         document.querySelector('.js-style').remove();
     }
     mut.observe(document, optionMut);
