@@ -2756,7 +2756,7 @@ window.onload = function() {
                         <input class="calc-qty" type="number" value="1" name="quantity">
                         <button class="btn-calc btn-calc_plus" type="button"></button>
                       </div>
-                      ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>notify when available</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
+                      ${hits[i].in_stock==false || hits[i].price == '0:00' ? '<button class="btn btn_white" type="button" data-button="notify"><span>Out of Stick</span></button>':'<button class="btn btn_dark add-cart" type="submit"><span>$<span class="pr" data-price="' + hits[i].price + '">' + hits[i].price + '</span> | Add to Cart</span></button>'}
                       <input type="hidden" name="product_variant_id" value="${hits[i].pv_id}">
                       <input type="hidden" name="product_id" value="${hits[i].objectID}">
                       <input type="hidden" name="add_to_cart" value="variant">
