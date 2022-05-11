@@ -675,7 +675,7 @@ const searchClient = algoliasearch(
 );
 
 const search = instantsearch({
-    indexName: 'staging_products',
+    indexName: 'products',
     searchClient,
     routing: true,
     stalledSearchDelay: 500,
@@ -1028,7 +1028,7 @@ window.onload = function() {
     } else {
         categoryFacet = '*'
     }
-    let index = searchClient.initIndex('staging_products');
+    let index = searchClient.initIndex('products');
 
     function initHits(hit) {
         function qty() {
