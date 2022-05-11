@@ -1,38 +1,62 @@
 let style = `
-<style>
-    .list {
-        padding: 10px 16px;
+<style class="js-style">
+    .tooltipe_block {
+        background: rgba(6, 155, 39, 0.1);
+        border-radius: 20px;
+        padding: 12px 14px 11px;
+        font-family: "Inter", sans-serif;
     }
-    .list li {
-        display: flex;
-        align-items: center;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 20px;
-        color: #434343;
+    .fs-11 {
+        font-size: 11px;
+        line-height: 13px;
     }
-    .list svg {
-        margin-right: 8px;
-        flex-shrink: 0;
+    .fs-10 {
+        font-size: 10px;
+        line-height: 12px;
     }
-    .list b {
-        font-weight: 700;
+    .grid.grid-cols-3.w-full {
+        display: block!important;
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start {
+        display: flex!important;
+        flex-wrap: wrap!important;
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start > div {
+        width: calc(50% - 0.14rem);
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start > div:nth-child(3) {
+        order: 1;
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start > div:first-child {
+        order: 2;
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start > div:last-child {
+        order: 3;
+    }
+    .grid.grid-cols-1.gap-1.self-center.items-start > div:nth-child(2) {
+        order: 4;
+    }
+    .flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto, h2.text-xl.text-left.w-full.px-8.pt-4.truncate {
+        padding-left: 1.25rem!important;
+        padding-bottom: 0!important
+    }
+    .parent_block {
+        padding: 0 1.25rem!important;
     }
 </style>`;
 
 let html = `
-    <ul class="list">
-        <li>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="#E57715"/>
-                <path d="M9 12L11 14L15 10" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <p>
-                <b> Lowest price quarantee </b>- we’ll pay you the difference if you find the same deal cheaper after booking
-            </p>
-        </li>
-    </ul>`;
+    <div class="flex items-center parent_block">
+       
+        <div class="tooltipe_block ml-auto">    
+            <div class="font-bold items-center flex mb-2">
+                <img src="https://conversionratestore.github.io/projects/onairparking/img/guaranteee.png" alt="icon" class="mx-2">
+                <p class="font-bold fs-11">Lowest price guarantee</p>
+            </div>
+            <p class="font-medium fs-10">We’ll pay you the difference if you find the same deal cheaper after booking</p>
+        </div>
+    </div>
+    `;
 
 let optionMut = {
     childList: true,
@@ -42,14 +66,15 @@ let optionMut = {
 
 let mut = new MutationObserver(function (muts) {
 	console.log('mut')
-    if (document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('.self-end.flex.flex-col.px-4.pb-4.col-span-3.disabled a.rounded-full.uppercase.mt-4.bg-primary.text-white.text-center.mt-4.px-4.text-xs.font-bold.py-2') != null && document.querySelector('.list') == null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results') {
+    if (document.querySelector('.tooltipe_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center').innerText == 'BACK') {
         console.log('true')
-        document.body.insertAdjacentHTML('afterbegin', style)
-        document.querySelector('main.ant-layout-content.site-layout').insertAdjacentHTML('afterbegin', html)
-    }
-    if (document.querySelector('.list') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
-        console.log('true home')
-        document.querySelector('.list').remove()
+        document.body.insertAdjacentHTML('afterbegin', style);
+        document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').insertAdjacentHTML('afterend', html);
+        document.querySelector('.tooltipe_block').before(document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
+    } 
+    if (document.querySelector('.parent_block') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
+        document.querySelector('.js-style').remove();
+        document.querySelector('.parent_block').remove();
     }
     mut.observe(document, optionMut);
 })
