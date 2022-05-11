@@ -64,7 +64,7 @@ let optionMut = {
 }
 
 let mut = new MutationObserver(function (muts) {
-    if (document.querySelector('.parent_block') == null && document.querySelector('.tooltipe_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center').innerText == 'BACK') {
+    if (document.querySelector('.parent_block') == null && document.querySelector('.tooltipe_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center').innerText == 'BACK' && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results') {
         document.body.insertAdjacentHTML('afterbegin', style);
         document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').insertAdjacentHTML('afterend', html);
         document.querySelector('.tooltipe_block').before(document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
