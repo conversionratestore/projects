@@ -2049,7 +2049,6 @@ window.onload = function() {
                 e.target.classList.remove('reset')
               }
             })
-
             if (countSearchStalled == 0) {
               countSearchStalled = 1;
               let listCategories = document.querySelectorAll('#list_categories li'),
@@ -2102,7 +2101,6 @@ window.onload = function() {
             } else {
               firstLoaded = false
             }
-   
 
             let crumbs = document.querySelectorAll('#breadcrumbs li');
             if (crumbs.length < 2) {
@@ -2113,9 +2111,12 @@ window.onload = function() {
               document.querySelector('.listing_title').innerHTML = document.querySelector('#breadcrumbs .ais-Breadcrumb-item.ais-Breadcrumb-item--selected').innerText.replace('>','')
             }
 
-            if ( document.querySelector('#manufacturer') != null) {
+            if (document.querySelector('#manufacturer li') != null) {
               let element = document.querySelector('#manufacturer');
-                  element.addEventListener('scroll', () => scrolled(element));
+                  element.addEventListener('scroll', (e) => {
+                    e.stopImmediatePropagation();
+                    scrolled(e.target)}
+                  );
             }
             if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                 document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
@@ -2177,6 +2178,17 @@ window.onload = function() {
 
   search.start();
 
+  // const makeHits = instantsearch.connectors.connectHits(
+  //   function renderHits({ hits }, isFirstRendering) {
+  //     hits.forEach(hit => {
+  //       console.log(hit);
+  //     });
+  //   }
+  // );
+  
+  
+  // search.addWidgets([makeHits()]);
+  
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
 
