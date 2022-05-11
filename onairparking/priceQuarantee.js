@@ -69,7 +69,7 @@ let mut = new MutationObserver(function (muts) {
         document.querySelector('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').insertAdjacentHTML('afterend', html);
         document.querySelector('.tooltipe_block').before(document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full'));
     } 
-    if ((document.querySelector('.parent_block') != null || document.querySelector('.js-style') != null) && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
+    if (document.querySelector('.js-style') != null && (window.location.pathname == '/' || window.location.pathname.includes('/parkingat/'))) {
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
         document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
     }
