@@ -64,19 +64,16 @@ let start = setInterval(() => {
 
     document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
         if (document.querySelectorAll('.parent_block .tooltipe_block')[i] == null) {
-            console.log(item.querySelector('.parent_block .tooltipe_block'))
             item.insertAdjacentHTML('afterend', html);
             document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]); 
         }
     }) 
 
     if (loadedContent == false && document.querySelector('.js-style') == null && document.body != null) {
-        console.log(loadedContent)
         document.body.insertAdjacentHTML('afterbegin', style);
     } 
 
     if (document.querySelector('#parkingat') != null || loadedContent == true) {
-        console.log(loadedContent)
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
     }
 },100); 
