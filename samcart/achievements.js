@@ -211,7 +211,7 @@ transition: all 2s ease;
   line-height: 45px;
   text-align: center;
   color: #183b56;
-  width: 735px;
+  max-width: 735px;
   margin: 29px auto 20px;
 }
 
@@ -237,16 +237,20 @@ transition: all 2s ease;
   justify-content: center;
   background: #183b56;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
-  color: #e3e7f3;
+  color: #FFFFFF;
   outline: none;
   border: none;
   cursor: pointer;
   text-decoration: unset;
   transition: all 250ms ease;
+}
+
+.achievements_block .box_third >.btn_wrapp a:last-child{
+  font-weight: 600;
 }
 
 
@@ -255,8 +259,8 @@ transition: all 2s ease;
 }
 
 .achievements_block .box_third > .btn_wrapp a:last-child > span {
-  color: #ffffff;
   margin-left: 5px;
+  font-weight: 800;
 }
 
 .achievements_block .box_third > .btn_wrapp a:last-child:hover{
