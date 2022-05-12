@@ -65,20 +65,23 @@ let optionMut = {
 let loadedContent = false;
 
 let mut = new MutationObserver(function (muts) {
-    if (loadedContent == false && document.querySelector('.js-style') == null && document.querySelector('.parent_block') == null && document.body != null && window.location.pathname == '/reservation/search' && document.querySelector('button.ant-btn.ant-btn-link.ant-btn-sm.text-secondary.uppercase.ml-auto.flex.flex-row.items-center') != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p") != null && document.querySelector(".container.mx-auto > .container > div.flex.flex-row.items-center.mb-2.w-full > p").innerText == 'Search results' && document.querySelector('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full') != null && document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto')) {
-        loadedContent = true;
+    window.location.pathname == '/reservation/search' ?  loadedContent = false : loadedContent = true;
+   
+    if (loadedContent == false && document.querySelector('.js-style') == null && document.body != null) {
+        console.log(loadedContent)
+        mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style);
-        document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
-            item.insertAdjacentHTML('afterend', html);
-            document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]);
-        }) 
-        console.log(loadedContent)
+        let start = setInterval(() => {
+            document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
+                clearInterval(start)
+                item.insertAdjacentHTML('afterend', html);
+                document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]);
+           }) 
+        },100); 
     } 
-    if (document.querySelector('#parkingat') != null) {
-        loadedContent = false;
-        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
-        document.querySelector('.parent_block') != null ? document.querySelector('.parent_block').remove() : '';
+    if (document.querySelector('#parkingat') != null || loadedContent == true) {
         console.log(loadedContent)
+        document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
     }
     mut.observe(document, optionMut);
 })
