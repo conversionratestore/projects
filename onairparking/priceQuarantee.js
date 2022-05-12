@@ -59,8 +59,7 @@ let html = `
             </div>
             <p class="font-medium fs-10">We’ll pay you the difference if you find the same deal cheaper after booking</p>
         </div>
-    </div>
-    `;
+    </div>`;
 
 let loadedContent = false;
 
