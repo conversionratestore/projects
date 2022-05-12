@@ -57,38 +57,29 @@ let html = `
     </div>
     `;
 
-let optionMut = {
-    childList: true,
-    subtree: true,
-    attributes: true
-}
 let loadedContent = false;
 
-let mut = new MutationObserver(function (muts) {
+let start = setInterval(() => {
     window.location.pathname == '/reservation/search' ?  loadedContent = false : loadedContent = true;
-   
+
+    document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
+        if (document.querySelectorAll('.parent_block .tooltipe_block')[i] == null) {
+            console.log(item.querySelector('.parent_block .tooltipe_block'))
+            item.insertAdjacentHTML('afterend', html);
+            document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]); 
+        }
+    }) 
+
     if (loadedContent == false && document.querySelector('.js-style') == null && document.body != null) {
         console.log(loadedContent)
-        mut.disconnect();
         document.body.insertAdjacentHTML('afterbegin', style);
-        let start = setInterval(() => {
-            document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
-                if (item.querySelector('.parent_block .tooltipe_block') == null) {
-                    clearInterval(start)
-			
-                    item.insertAdjacentHTML('afterend', html);
-                    document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]); 
-                }
-            }) 
-        },100); 
     } 
+
     if (document.querySelector('#parkingat') != null || loadedContent == true) {
         console.log(loadedContent)
         document.querySelector('.js-style') != null ? document.querySelector('.js-style').remove() : '';
     }
-    mut.observe(document, optionMut);
-})
-mut.observe(document, optionMut);
+},100); 
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
