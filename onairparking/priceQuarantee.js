@@ -43,6 +43,11 @@ let style = `
     .parent_block {
         padding: 0 1.25rem!important;
     }
+    .tooltipe_block img {
+    	object-fit: contain;
+	width: 16px;
+	height: 22px;
+    }
 </style>`;
 
 let html = `
