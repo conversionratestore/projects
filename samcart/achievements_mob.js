@@ -532,7 +532,6 @@ if (window.innerWidth <= 768) {
         links.forEach((link) => {
           link.addEventListener("click", function (event) {
             event.preventDefault()
-            console.log(link)
 
             if (upSelector === ".achievements_block .box_first .btn_wrapp .btn_next") {
               document.querySelector(".achievements_block .box_first").classList.remove("show_var")
