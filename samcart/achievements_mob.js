@@ -439,7 +439,7 @@ if (window.innerWidth <= 768) {
                   </div>
             
                   <div class="box_third" id="box_third">
-                     <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help / Motivational / Wellness</span> niche that are successfully using SamCart</h3>
+                     <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
                     
                     
