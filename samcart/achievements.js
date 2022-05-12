@@ -273,6 +273,10 @@ transition: all 2s ease;
   justify-content: center;
   margin-top: 50px;
 }
+
+.achievements_block .box_third > h3 span:not(.var_text){
+  color: #3096ea;
+}
              
 </style>
 `
@@ -466,7 +470,7 @@ transition: all 2s ease;
                   </div>
             
                   <div class="box_third" id="box_third">
-                    <h3>There are currently <span>11955</span> entrepreneurs from <span class="var_text">Self-help / Motivational / Wellness</span> niche that are successfully using SamCart</h3>
+                    <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help / Motivational / Wellness</span> niche that are successfully using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
 
                     <div class="btn_wrapp">
