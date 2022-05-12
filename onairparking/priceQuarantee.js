@@ -73,10 +73,12 @@ let mut = new MutationObserver(function (muts) {
         document.body.insertAdjacentHTML('afterbegin', style);
         let start = setInterval(() => {
             document.querySelectorAll('.flex.flex-col.w-full.col-span-2.pb-5.pl-8.pr-0.self-center.mx-auto').forEach((item, i) => {
-                clearInterval(start)
-                item.insertAdjacentHTML('afterend', html);
-                document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]);
-           }) 
+                if (item.querySelector('.parent_block .tooltipe_block') == null) {
+                    clearInterval(start)
+                    item.insertAdjacentHTML('afterend', html);
+                    document.querySelectorAll('.tooltipe_block')[i].before(document.querySelectorAll('.flex.flex-col.h-full.items-center.justify-center.self-center.py-5.pr-4.w-full')[i]); 
+                }
+            }) 
         },100); 
     } 
     if (document.querySelector('#parkingat') != null || loadedContent == true) {
