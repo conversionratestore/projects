@@ -512,11 +512,21 @@ transition: all 2s ease;
 
     document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
+        if (el.querySelector("div > span:last-child").textContent === "Other") {
+          document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
+          <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
+          `
+        } else {
+          document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
+          <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
+          `
+        }
+
         document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
         document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = el.querySelector("div > span:last-child").textContent
 
         if (el.querySelector("div > span:last-child").textContent === "Other") {
-          document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "Different"
+          document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "vast variety"
         }
       })
     })
