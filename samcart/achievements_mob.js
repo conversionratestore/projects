@@ -320,7 +320,7 @@ if (window.innerWidth <= 768) {
                     <ul>
                       <li>
                         <input checked type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
-                        <label for="achievements7" data-count="1111">
+                        <label for="achievements7" data-count="11955">
                           <div>
                             <span class="radio-style"></span>
                             <span>Self-help / Motivational / Wellness</span>
@@ -329,7 +329,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements8" class="radio-box" />
-                        <label for="achievements8" data-count="1457">
+                        <label for="achievements8" data-count="996">
                           <div>
                             <span class="radio-style"></span>
                             <span>Beauty / Fashion</span>
@@ -338,7 +338,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements9" class="radio-box" />
-                        <label for="achievements9" data-count="1174">
+                        <label for="achievements9" data-count="4872">
                           <div>
                             <span class="radio-style"></span>
                             <span>Business / Money / Finance / real Estate</span>
@@ -347,7 +347,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements10" class="radio-box" />
-                        <label for="achievements10" data-count="2274">
+                        <label for="achievements10" data-count="663">
                           <div>
                             <span class="radio-style"></span>
                             <span>Relationships</span>
@@ -356,7 +356,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements11" class="radio-box" />
-                        <label for="achievements11" data-count="1854">
+                        <label for="achievements11" data-count="3432">
                           <div>
                             <span class="radio-style"></span>
                             <span>Health / Fitness</span>
@@ -365,7 +365,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements12" class="radio-box" />
-                        <label for="achievements12" data-count="9655">
+                        <label for="achievements12" data-count="555">
                           <div>
                             <span class="radio-style"></span>
                             <span>Technology Services</span>
@@ -374,7 +374,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements13" class="radio-box" />
-                        <label for="achievements13" data-count="8524">
+                        <label for="achievements13" data-count="2769">
                           <div>
                             <span class="radio-style"></span>
                             <span>Arts / Music / Photography</span>
@@ -383,7 +383,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements14" class="radio-box" />
-                        <label for="achievements14" data-count="7412">
+                        <label for="achievements14" data-count="333">
                           <div>
                             <span class="radio-style"></span>
                             <span>Cooking</span>
@@ -392,7 +392,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements15" class="radio-box" />
-                        <label for="achievements15" data-count="4521">
+                        <label for="achievements15" data-count="2658">
                           <div>
                             <span class="radio-style"></span>
                             <span>Marketing Services</span>
@@ -401,7 +401,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
-                        <label for="achievements16" data-count="7453">
+                        <label for="achievements16" data-count="30212">
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
@@ -410,7 +410,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements17" class="radio-box" />
-                        <label for="achievements17" data-count="6853">
+                        <label for="achievements17" data-count="1551">
                           <div>
                             <span class="radio-style"></span>
                             <span>Education</span>
@@ -435,7 +435,7 @@ if (window.innerWidth <= 768) {
                   </div>
             
                   <div class="box_third" id="box_third">
-                    <h3>There are currently <span>1111</span> entrepreneurs successfully selling Online Courses using SamCart</h3>
+                     <h3>There are currently <span>11955</span> entrepreneurs from <span class="var_text">Self-help / Motivational / Wellness</span> niche that are successfully using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
                     
                     
@@ -476,7 +476,12 @@ if (window.innerWidth <= 768) {
 
       document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
         el.addEventListener("click", function () {
-          document.querySelector(".achievements_block .box_third > h3 span").textContent = el.getAttribute("data-count")
+          document.querySelector(".achievements_block .box_third > h3 span:not(.var_text)").textContent = el.getAttribute("data-count")
+          document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = el.querySelector("div > span:last-child").textContent
+
+          if (el.querySelector("div > span:last-child").textContent === "Other") {
+            document.querySelector(".achievements_block .box_third > h3 span.var_text").textContent = "Different"
+          }
         })
       })
 
@@ -514,10 +519,10 @@ if (window.innerWidth <= 768) {
         console.log(`Try SamCart for FREE`)
       })
 
-      scrolling(".achievements_block .box_first .btn_wrapp .btn_next", 250)
+      scrolling(".achievements_block .box_first .btn_wrapp .btn_next", 300)
       scrolling(".achievements_block .box_second .btn_wrapp .btn_next", 150)
       scrolling(".achievements_block .box_second .btn_back", 250)
-      scrolling(".achievements_block .box_third .btn_back", 250)
+      scrolling(".achievements_block .box_third .btn_back", 300)
 
       // js scrolling
       function scrolling(upSelector, upWidth) {
@@ -532,6 +537,7 @@ if (window.innerWidth <= 768) {
             if (upSelector === ".achievements_block .box_first .btn_wrapp .btn_next") {
               document.querySelector(".achievements_block .box_first").classList.remove("show_var")
               document.querySelector(".achievements_block .box_second").classList.add("show_var")
+              document.querySelector(".achievements_block > h2").textContent = "Which of the following best describes your niche?"
               if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
                 document.querySelector(".achievements_block .box_second").classList.remove("back")
               }
@@ -553,6 +559,7 @@ if (window.innerWidth <= 768) {
               document.querySelector(".achievements_block .box_second").classList.remove("show_var")
               document.querySelector(".achievements_block .box_second").classList.add("back")
               document.querySelector(".achievements_block .box_first").classList.add("show_var")
+              document.querySelector(".achievements_block > h2").textContent = "What do you want to achieve with SamCart?"
             }
 
             if (upSelector === ".achievements_block .box_third .btn_back") {
