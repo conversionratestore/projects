@@ -350,7 +350,7 @@ transition: all 2s ease;
                         <label for="achievements7" data-count="1111">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Online courses</span>
+                            <span>Self-help / Motivational / Wellness</span>
                           </div>
                         </label>
                       </li>
@@ -359,7 +359,7 @@ transition: all 2s ease;
                         <label for="achievements8" data-count="1457">
                           <div>
                             <span class="radio-style"></span>
-                            <span>eBooks</span>
+                            <span>Beauty / Fashion</span>
                           </div>
                         </label>
                       </li>
@@ -368,7 +368,7 @@ transition: all 2s ease;
                         <label for="achievements9" data-count="1174">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Coaching</span>
+                            <span>Business / Money / Finance / real Estate</span>
                           </div>
                         </label>
                       </li>
@@ -377,7 +377,7 @@ transition: all 2s ease;
                         <label for="achievements10" data-count="2274">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Consulting</span>
+                            <span>Relationships</span>
                           </div>
                         </label>
                       </li>
@@ -386,7 +386,7 @@ transition: all 2s ease;
                         <label for="achievements11" data-count="1854">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Consumer goods</span>
+                            <span>Health / Fitness</span>
                           </div>
                         </label>
                       </li>
@@ -395,7 +395,7 @@ transition: all 2s ease;
                         <label for="achievements12" data-count="9655">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Craft products</span>
+                            <span>Technology Services</span>
                           </div>
                         </label>
                       </li>
@@ -404,7 +404,7 @@ transition: all 2s ease;
                         <label for="achievements13" data-count="8524">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Food</span>
+                            <span>Arts / Music / Photography</span>
                           </div>
                         </label>
                       </li>
@@ -413,7 +413,7 @@ transition: all 2s ease;
                         <label for="achievements14" data-count="7412">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Electronics</span>
+                            <span>Cooking</span>
                           </div>
                         </label>
                       </li>
@@ -422,7 +422,7 @@ transition: all 2s ease;
                         <label for="achievements15" data-count="4521">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Healthcare products</span>
+                            <span>Marketing Services</span>
                           </div>
                         </label>
                       </li>
@@ -432,6 +432,15 @@ transition: all 2s ease;
                           <div>
                             <span class="radio-style"></span>
                             <span>Other</span>
+                          </div>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements17" class="radio-box" />
+                        <label for="achievements17" data-count="6853">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Education</span>
                           </div>
                         </label>
                       </li>
