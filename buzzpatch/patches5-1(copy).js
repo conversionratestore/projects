@@ -11,6 +11,15 @@ document.head.insertAdjacentHTML('beforeend', style)
 
 const priceInfo = ['47.50', '62', '124.95', '78', '9.5']
 
+let waitForFrPack = setInterval(() => {
+    if (document.querySelector('.js-packs input')) {
+        clearInterval(document.querySelector('.js-packs input'))
+
+        document.querySelector('.js-packs input').click()
+    }
+}, 200);
+
+
 let waitForElement = setInterval(() => {
     if (document.querySelectorAll('.js-packs label')[3]) {
         clearInterval(waitForElement)
@@ -20,9 +29,8 @@ let waitForElement = setInterval(() => {
         document.querySelectorAll('.js-packs')[3].classList.add('my_custom')
 
         document.querySelector('.form-group').addEventListener('click', (e) => {
-            if (e.target.closest('.js-packs:not(.my_custom)')) {
-                document.querySelector('.custom_checked')?.classList.remove('custom_checked')
-            }
+            document.querySelector('.custom_checked')?.classList.remove('custom_checked')
+
             if (e.target.closest('.js-packs.my_custom')) {
                 e.preventDefault()
 
@@ -38,6 +46,13 @@ let waitForElement = setInterval(() => {
                     document.querySelector('.prices .rp').innerText = priceInfo[2]
                     document.querySelector('.prices .rs').innerText = priceInfo[3]
                 }
+
+                window.dataLayer = window.dataLayer || []
+                dataLayer.push({
+                    'event': 'event-to-ga',
+                    'eventCategory': 'Exp — Tiles 5 instead of 1',
+                    'eventAction': 'Clicks on 5 packs tile v2',
+                })
             }
         })
     }
@@ -64,6 +79,8 @@ document.querySelector('#addToCart').addEventListener('click', function (e) {
                     console.error(err)
                 }
             })()
+    } else {
+
     }
 })
 
