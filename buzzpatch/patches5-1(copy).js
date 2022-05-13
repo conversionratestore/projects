@@ -13,7 +13,7 @@ const priceInfo = ['47.50', '62', '124.95', '78', '9.5']
 
 let waitForFrPack = setInterval(() => {
     if (document.querySelector('.js-packs input')) {
-        clearInterval(document.querySelector('.js-packs input'))
+        clearInterval(waitForFrPack)
 
         document.querySelector('.js-packs input').click()
     }
