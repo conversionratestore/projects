@@ -95,9 +95,6 @@ function abjqlr(n) {
                     var t =
                         n(this).offset().left -
                         n('body').find('.ab-test-menu').offset().left;
-                    console.log(n(this)),
-                        console.log(t),
-                        n(this).data('firstposition', t);
                 });
     }
     n('.row.collapse.navbar-collapse.no-transition').html(
