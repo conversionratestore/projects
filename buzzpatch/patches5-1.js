@@ -34,8 +34,8 @@ let waitForPatch2 = setInterval(() => {
 	if (document.querySelectorAll('.js-packs label')[3]) {
 		clearInterval(waitForPatch2)
 
+		document.querySelectorAll('.js-packs')[3].hidden = true
 		document.querySelectorAll('.js-packs')[3].insertAdjacentHTML('afterend', myPack)
-		document.querySelectorAll('.js-packs')[3].remove()
 
 		let waitForMyPack = setInterval(() => {
 			if (document.querySelector('.my_pack')) {
