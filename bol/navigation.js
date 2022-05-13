@@ -15,12 +15,12 @@ function abjql(e) {
 function abjqlr(n) {
     var e = window.language_abtest
 
-        (window.dataLayer = window.dataLayer || []),
-        dataLayer.push({
-            event: 'event-to-ga',
-            eventCategory: 'Exp - PL Navigation v.2',
-            eventAction: 'loaded',
-        });
+    window.dataLayer = window.dataLayer || [], dataLayer.push({
+        event: "event-to-ga",
+        eventCategory: "Exp - PL Navigation v.2",
+        eventAction: "loaded"
+    })
+
     var i = e,
         l = {
             marine: {
