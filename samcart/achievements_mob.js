@@ -3,6 +3,26 @@ if (window.innerWidth <= 768) {
     if (document.querySelector(".block-3-photo")) {
       clearInterval(startfunk)
 
+      function pushDataLayer(actionDataLayer, labelDataLayer) {
+        window.dataLayer = window.dataLayer || []
+        if (labelDataLayer) {
+          console.log(actionDataLayer + " : " + labelDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventAction: `${actionDataLayer}`,
+            eventLabel: `${labelDataLayer}`,
+          })
+        } else {
+          console.log(actionDataLayer)
+          dataLayer.push({
+            event: "event-to-ga",
+            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventAction: `${actionDataLayer}`,
+          })
+        }
+      }
+
       let achievementsStyle = /*html */ `
 <style>
 
@@ -324,7 +344,7 @@ if (window.innerWidth <= 768) {
                     <ul>
                       <li>
                         <input checked type="radio" name="achievementsSecond" id="achievements7" class="radio-box" />
-                        <label for="achievements7" data-count="11955">
+                        <label for="achievements7" data-count="11,955">
                           <div>
                             <span class="radio-style"></span>
                             <span>Self-help and Motivation</span>
@@ -342,7 +362,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements9" class="radio-box" />
-                        <label for="achievements9" data-count="4872">
+                        <label for="achievements9" data-count="4,872">
                           <div>
                             <span class="radio-style"></span>
                             <span>Business and Money</span>
@@ -360,7 +380,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements11" class="radio-box" />
-                        <label for="achievements11" data-count="3432">
+                        <label for="achievements11" data-count="3,432">
                           <div>
                             <span class="radio-style"></span>
                             <span>Health, Fitness & Dieting</span>
@@ -378,7 +398,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements13" class="radio-box" />
-                        <label for="achievements13" data-count="2769">
+                        <label for="achievements13" data-count="2,769">
                           <div>
                             <span class="radio-style"></span>
                             <span>Arts, Music and Photography</span>
@@ -396,7 +416,7 @@ if (window.innerWidth <= 768) {
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements15" class="radio-box" />
-                        <label for="achievements15" data-count="2658">
+                        <label for="achievements15" data-count="2,658">
                           <div>
                             <span class="radio-style"></span>
                             <span>Marketing Services</span>
@@ -404,20 +424,20 @@ if (window.innerWidth <= 768) {
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
-                        <label for="achievements16" data-count="30212">
-                          <div>
-                            <span class="radio-style"></span>
-                            <span>Other</span>
-                          </div>
-                        </label>
-                      </li>
-                      <li>
                         <input type="radio" name="achievementsSecond" id="achievements17" class="radio-box" />
-                        <label for="achievements17" data-count="1551">
+                        <label for="achievements17" data-count="1,551">
                           <div>
                             <span class="radio-style"></span>
                             <span>Education</span>
+                          </div>
+                      </label>
+                      </li>
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
+                        <label for="achievements16" data-count="30,212">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Other</span>
                           </div>
                         </label>
                       </li>
@@ -439,7 +459,7 @@ if (window.innerWidth <= 768) {
                   </div>
             
                   <div class="box_third" id="box_third">
-                     <h3>There are currently <span>11955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
+                     <h3>There are currently <span>11,955</span> entrepreneurs from the <span class="var_text">Self-help and Motivation</span> niche that are successfully using SamCart</h3>
                     <p>Create your sales page for free and start selling online courses today</p>
                     
                     
@@ -465,20 +485,77 @@ if (window.innerWidth <= 768) {
       document.head.insertAdjacentHTML("beforeend", achievementsStyle)
       document.querySelector(".block-3-photo").insertAdjacentHTML("afterend", achievements)
 
-      // click on btn NEXT box_first
-      // document.querySelector(".achievements_block .box_first .btn_wrapp .btn_next").addEventListener("click", function (e) {
-      //   e.preventDefault()
-      //   document.querySelector(".achievements_block .box_first").classList.remove("show_var")
-      //   document.querySelector(".achievements_block .box_second").classList.add("show_var")
-      //   if (document.querySelector(".achievements_block .box_second").classList.contains("back")) {
-      //     document.querySelector(".achievements_block .box_second").classList.remove("back")
-      //   }
-      //   if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
-      //     document.querySelector(".achievements_block .box_third").classList.remove("back")
-      //   }
-      // })
+      //observer
+      const options = {
+        root: null,
+        threshold: 0.5,
+      }
+
+      let boxFirst = document.querySelector(".achievements_block .box_first")
+      let boxSecond = document.querySelector(".achievements_block .box_second")
+      let boxThird = document.querySelector(".achievements_block .box_third")
+
+      let observerFirst = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer(boxFirst, 1)
+            observerFirst.disconnect()
+          }
+        })
+      })
+
+      if (boxFirst.classList.contains("show_var")) {
+        observerFirst.observe(boxFirst, options)
+      }
+
+      let observerSecond = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer(boxSecond, 2)
+            observerSecond.disconnect()
+          }
+        })
+      })
+
+      let observerThird = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timer(boxThird, 3)
+            observerThird.disconnect()
+          }
+        })
+      })
+
+      function timer(box, step) {
+        let timeNotClick = 30
+        let time = 0
+        let currentTime = 0
+
+        let s = setInterval(() => {
+          currentTime = ++time
+
+          if (!box.classList.contains("show_var") || box.classList.contains("end")) {
+            clearInterval(s)
+            pushDataLayer(`Time spend on the screen step ${step}`, `setTimeM ${currentTime}`)
+          }
+
+          if (currentTime === timeNotClick) {
+            clearInterval(s)
+            pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
+          }
+        }, 1000)
+      }
+
+      document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
+        el.addEventListener("click", function () {
+          pushDataLayer("click on radio button step1", `Click ${el.querySelector("div > span:last-child").textContent}`)
+        })
+      })
+
       document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
         el.addEventListener("click", function () {
+          pushDataLayer("click on radio button step 2", `Click ${el.querySelector("div > span:last-child").textContent}`)
+
           if (el.querySelector("div > span:last-child").textContent === "Other") {
             document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
           <h3>There are currently more than <span>11955</span> entrepreneurs from a <span class="var_text">vast variety</span> of niches that are successfully using SamCart</h3>
@@ -498,44 +575,20 @@ if (window.innerWidth <= 768) {
         })
       })
 
-      // click on btn NEXT box_second
-      // document.querySelector(".achievements_block .box_second .btn_wrapp .btn_next").addEventListener("click", function (e) {
-      //   e.preventDefault()
-
-      //   document.querySelector(".achievements_block .box_second").classList.remove("show_var")
-      //   document.querySelector(".achievements_block > h2").style.display = "none"
-      //   document.querySelector(".achievements_block .box_third").classList.add("show_var")
-      //   if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
-      //     document.querySelector(".achievements_block .box_third").classList.remove("back")
-      //   }
-      // })
-
-      //   click on btn Back box_second
-      // document.querySelector(".achievements_block .box_second .btn_back").addEventListener("click", function (e) {
-      //   e.preventDefault()
-      //   document.querySelector(".achievements_block .box_second").classList.remove("show_var")
-      //   document.querySelector(".achievements_block .box_second").classList.add("back")
-      //   document.querySelector(".achievements_block .box_first").classList.add("show_var")
-      // })
-
-      //   click on btn Back box_third
-      // document.querySelector(".achievements_block .box_third .btn_back").addEventListener("click", function (e) {
-      //   e.preventDefault()
-      //   document.querySelector(".achievements_block .box_third").classList.remove("show_var")
-      //   document.querySelector(".achievements_block .box_third").classList.add("back")
-      //   document.querySelector(".achievements_block .box_second").classList.add("show_var")
-      //   document.querySelector(".achievements_block > h2").style.display = "block"
-      // })
-
       //   click on Try SamCart for FREE
       document.querySelector(".achievements_block .box_third > .btn_wrapp a:first-child").addEventListener("click", function (e) {
-        console.log(`Try SamCart for FREE`)
+        pushDataLayer("click on Try it for free button step 3")
+
+        document.querySelector(".achievements_block .box_third").classList.add("end")
       })
 
       scrolling(".achievements_block .box_first .btn_wrapp .btn_next", 300)
       scrolling(".achievements_block .box_second .btn_wrapp .btn_next", 150)
       scrolling(".achievements_block .box_second .btn_back", 250)
       scrolling(".achievements_block .box_third .btn_back", 300)
+
+      pushDataLayer("loaded")
+      clarity("set", "hp_conversion_through_engagement", "variant_1")
 
       // js scrolling
       function scrolling(upSelector, upWidth) {
@@ -547,6 +600,8 @@ if (window.innerWidth <= 768) {
             event.preventDefault()
 
             if (upSelector === ".achievements_block .box_first .btn_wrapp .btn_next") {
+              pushDataLayer("click on Next button step 1")
+
               document.querySelector(".achievements_block .box_first").classList.remove("show_var")
               document.querySelector(".achievements_block .box_second").classList.add("show_var")
               document.querySelector(".achievements_block > h2").textContent = "Which of the following best describes your niche?"
@@ -556,29 +611,51 @@ if (window.innerWidth <= 768) {
               if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
                 document.querySelector(".achievements_block .box_third").classList.remove("back")
               }
+
+              if (boxSecond.classList.contains("show_var")) {
+                observerSecond.observe(boxSecond, options)
+              }
             }
 
             if (upSelector === ".achievements_block .box_second .btn_wrapp .btn_next") {
+              pushDataLayer("click on Next button step 2")
               document.querySelector(".achievements_block .box_second").classList.remove("show_var")
               document.querySelector(".achievements_block > h2").style.display = "none"
               document.querySelector(".achievements_block .box_third").classList.add("show_var")
               if (document.querySelector(".achievements_block .box_third").classList.contains("back")) {
                 document.querySelector(".achievements_block .box_third").classList.remove("back")
               }
+
+              if (boxThird.classList.contains("show_var")) {
+                observerThird.observe(boxThird, options)
+              }
             }
 
             if (upSelector === ".achievements_block .box_second .btn_back") {
+              pushDataLayer("click on Back button step 2")
               document.querySelector(".achievements_block .box_second").classList.remove("show_var")
               document.querySelector(".achievements_block .box_second").classList.add("back")
               document.querySelector(".achievements_block .box_first").classList.add("show_var")
               document.querySelector(".achievements_block > h2").textContent = "What do you want to achieve with SamCart?"
+
+              if (boxFirst.classList.contains("show_var")) {
+                observerFirst.observe(boxFirst, options)
+              }
             }
 
             if (upSelector === ".achievements_block .box_third .btn_back") {
+              pushDataLayer("click on Back button step 3")
               document.querySelector(".achievements_block .box_third").classList.remove("show_var")
+              if (document.querySelector(".achievements_block .box_third").classList.contains("end")) {
+                document.querySelector(".achievements_block .box_third").classList.remove("end")
+              }
               document.querySelector(".achievements_block .box_third").classList.add("back")
               document.querySelector(".achievements_block .box_second").classList.add("show_var")
               document.querySelector(".achievements_block > h2").style.display = "block"
+
+              if (boxSecond.classList.contains("show_var")) {
+                observerSecond.observe(boxSecond, options)
+              }
             }
 
             let widthTop = document.documentElement.scrollTop,
