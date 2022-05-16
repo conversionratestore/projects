@@ -1548,8 +1548,6 @@ const indexName = 'products';
 
 let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : '';
 
-console.log(query)
-
 const search = instantsearch({
   searchClient,
   indexName: indexName,
@@ -1557,7 +1555,6 @@ const search = instantsearch({
   searchFunction(helper) {
     const page = helper.getPage(); // Retrieve the current page
     console.log(helper)
-    console.log(query)
     helper.setQuery(query) // this call resets the page
           .setPage(page) // we re-apply the previous page
           .search();
@@ -2196,6 +2193,7 @@ window.onload = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
         query = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1] : document.querySelector('#form-search .ais-SearchBox-input').value;
+        console.log(query)
         search._searchFunction(search.helper)
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
       }
@@ -2215,6 +2213,7 @@ window.onload = function() {
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     query = document.querySelector('#form-search .ais-SearchBox-input').value;
+    console.log(query)
     search._searchFunction(search.helper)
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
@@ -2778,6 +2777,7 @@ let mut = new MutationObserver(function (muts) {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         query = '';
+        console.log(query)
         search._searchFunction(search.helper)
         toggleListing(true)
         if (e.target.classList.contains('home-popular')) {
@@ -2820,10 +2820,14 @@ let mut = new MutationObserver(function (muts) {
         e.preventDefault();
         e.stopImmediatePropagation();
         query = '';
+        console.log(query)
         search._searchFunction(search.helper)
         if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
-          search.helper.state.query = '';
-          search.refresh()
+          // search.helper.state.query = '';
+          query = '';
+          console.log(query)
+          // search.refresh()
+          search._searchFunction(search.helper)
         }
         if (document.querySelector('.ais-ClearRefinements-button') != null) {
           document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
