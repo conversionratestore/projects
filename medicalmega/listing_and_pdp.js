@@ -2195,6 +2195,7 @@ window.onload = function() {
     remActiveSelect(); 
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
+        search._searchFunction(search.helper)
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
       }
     }
