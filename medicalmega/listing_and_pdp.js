@@ -1581,8 +1581,7 @@ let optionFetchAlgolia = {
   method: 'GET'
 }
 
-let inputWord = false,
-    firstLoaded = true;
+let firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
@@ -1716,7 +1715,7 @@ function changeQty(qty,pr,action) {
   }
 }
 
-window.onload = function() {
+// window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
@@ -2009,8 +2008,6 @@ window.onload = function() {
               query = '';
               search._searchFunction(search.helper);
 
-              inputWord = false;
-              
               toggleListing(true)
               if (!e.target.classList.contains('reset')) {
                 actionDataLayer = `Click on reset button`;
@@ -2180,22 +2177,22 @@ window.onload = function() {
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
-    if (inputWord == false) {
-      query = '';
-      search._searchFunction(search.helper)
-      document.querySelector('.ais-SearchBox-input').value = '';
-      document.querySelector('#form-search pre').innerHTML = '';
-    }
   })
-
+  
   window.addEventListener('scroll', (e) => {
     remActiveSelect(); 
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
-        query = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1] : document.querySelector('#form-search .ais-SearchBox-input').value;
-        console.log(query)
-        search._searchFunction(search.helper)
+        let state = window.location.pathname.includes('/search/') ? window.location.pathname.split('search/')[1].split('-').join(' ') : '';
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
+        if (state == query && window.location.pathname.includes('/search/')) {
+          query = window.location.pathname.split('search/')[1].split('-').join(' ');
+        } 
+        // else {
+        //   query = document.querySelector('#form-search .ais-SearchBox-input').value;
+        // }
+       console.log(query)
+        search._searchFunction(search.helper)
       }
     }
   })
@@ -2291,12 +2288,6 @@ window.onload = function() {
     actionDataLayer = `Click on Search by Name`;
     labelDataLayer = 'Header';
     pushDataLayer(actionDataLayer, labelDataLayer)
-  })
-  document.querySelector('#form-search input').addEventListener('input', (e) => {
-    inputWord = true;
-    if (e.target.value.length < 1) {
-        inputWord = false;
-    }
   })
 
   document.querySelector('.previous-version').addEventListener('click', (e) => {
@@ -2697,7 +2688,7 @@ window.onload = function() {
       }
     })
   }
-};
+// };
 
 let optionMut = {
   childList: true,
