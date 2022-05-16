@@ -1546,9 +1546,6 @@ const searchClient = algoliasearch(
 
 const indexName = 'products';
 
-// if (window.location.pathname.includes('/search/')) { 
-//   window.location.pathname = `/search/${window.location.pathname.split('search/')[1]}?products%5Bquery%5D=${window.location.pathname.split('search/')[1]}`
-// }
 let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : '';
 
 const search = instantsearch({
@@ -1586,8 +1583,7 @@ let optionFetchAlgolia = {
 }
 
 let inputWord = false,
-    firstLoaded = true,
-    searchPage = true;
+    firstLoaded = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
@@ -1802,45 +1798,10 @@ window.onload = function() {
         <ul></ul>
       </li>`)
     }
-    // for (let key in categoriesLvl1) {
-    //   document.querySelectorAll(`#list_categories [data-category]`).forEach((el, index) => {
-    //     if (key.toLowerCase().includes(el.innerText.toLowerCase())) {
-    //       let spt = key.split(' > ')
-    //       let option = ``;
-    //       for (let i = 0; i < spt.length; i++) {
-    //         option += `products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B${i}%5D=${spt[i]}&`;
-    //       }
-    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li><a href="https://medicalmega.com/?${option}" data-category="categories.lvl1:${key}">${key}</a><ul></ul></li>`)
-    //     }
-    //   })
-    // }
-
-    // for (let key in categoriesLvl2) {
-    //   document.querySelectorAll(`.select_category .select_dropdown .lvl1 [data-category]`).forEach((el, index) => {
-    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl1')) {
-    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option lvl2"><p data-category="categories.lvl2:${key}">${key.split('>')[2]}</p><ul class=""></ul></li>`)
-    //     }
-    //   })
-    // }
-    // for (let key in categoriesLvl3) {
-    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl2')) {
-    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl3:${key}">${key.split('>')[3]}</p><ul></ul></li>`)
-    //     }
-    //   })
-    // }
-    // for (let key in categoriesLvl4) {
-    //   document.querySelectorAll(`.select_category .select_dropdown [data-category]`).forEach((el, index) => {
-    //     if (key.toLowerCase().includes(el.innerText.toLowerCase()) && el.dataset.category.includes('categories.lvl3')) {
-    //       el.nextElementSibling.insertAdjacentHTML('beforeend', `<li class="select_option"><p data-category="categories.lvl4:${key}">${key.split('>')[4]}</p></li>`)
-    //     }
-    //   })
-    // }
 
     for (let key in brand) {
       document.querySelector('.select_brand .select_dropdown').insertAdjacentHTML('beforeend', ` <li class="select_option"><p>${key}</p></li>`)
     }
-
   })
 
   function findImageHits(variants) {
@@ -1894,9 +1855,6 @@ window.onload = function() {
     instantsearch.widgets.infiniteHits({
       container: '#hits',
       escapeHTML: false,
-      // transformItems(items) {
-      //   return items.filter(item => item.price != '0.00' )
-      // },
       templates: {
           empty: `No Item Found`,
           item: (hit) => initHits(hit)
@@ -2049,9 +2007,9 @@ window.onload = function() {
          
             document.querySelector('.ais-SearchBox-reset').addEventListener('click', (e) => {
               e.stopImmediatePropagation()
-              // search.helper.state.query = '';
-              // document.querySelector('.ais-SearchBox-input').value = '';
-              // document.querySelector('.algolia-autocomplete pre').innerHTML = '';
+              query = '';
+              search._searchFunction(search.helper);
+
               inputWord = false;
               
               toggleListing(true)
@@ -2227,7 +2185,6 @@ window.onload = function() {
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
-    // console.log(search.helper.state)
   })
 
   window.addEventListener('scroll', (e) => {
@@ -2235,8 +2192,6 @@ window.onload = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
-        
-        console.log(search.helper.state)
       }
     }
   })
