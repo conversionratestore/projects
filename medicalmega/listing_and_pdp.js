@@ -1546,10 +1546,23 @@ const searchClient = algoliasearch(
 
 const indexName = 'products';
 
+// if (window.location.pathname.includes('/search/')) { 
+//   window.location.pathname = `/search/${window.location.pathname.split('search/')[1]}?products%5Bquery%5D=${window.location.pathname.split('search/')[1]}`
+// }
+let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : '';
+
 const search = instantsearch({
   searchClient,
   indexName: indexName,
   routing: true,
+  searchFunction(helper) {
+    const page = helper.getPage(); // Retrieve the current page
+    console.log(helper)
+    console.log(query)
+    helper.setQuery(query) // this call resets the page
+          .setPage(page) // we re-apply the previous page
+          .search();
+  },
 });
 
 const index = searchClient.initIndex(indexName);
@@ -1573,7 +1586,8 @@ let optionFetchAlgolia = {
 }
 
 let inputWord = false,
-    firstLoaded = true;
+    firstLoaded = true,
+    searchPage = true;
 
 let requestAllCaterories = new Promise((resolve, reject) => {
   fetch(`https://PXDJAQHDPZ-dsn.algolia.net/1/indexes/products?facets=["categories.lvl0","categories.lvl1","categories.lvl2","categories.lvl3","categories.lvl4","manufacturer"]`, optionFetchAlgolia).then(res => res.json()).then(data => resolve(data))
@@ -2074,9 +2088,8 @@ window.onload = function() {
               let items = [...alphabet.querySelectorAll("li")];
               items.sort((a, b) => a.innerText == b.innerText ? 0 : a.innerText < b.innerText ? -1 : 1);
               items.forEach(item => alphabet.appendChild(item));
-
-            
             }
+
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
                 if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
@@ -2091,18 +2104,10 @@ window.onload = function() {
                   })
                 }
               }) 
-            } else if (window.location.pathname.includes('/search') && !window.location.href.includes('products') && firstLoaded == true) {
-              console.log('search/')
-              firstLoaded = false
-              search.helper.state.query = window.location.pathname.split('search/')[1].split('-').join(' ');
-              document.querySelector('#form-search .ais-SearchBox-input').value = window.location.pathname.split('search/')[1].split('-').join(' ');
-              search.refresh();
-              console.log(search.helper.state)
             } else {
               firstLoaded = false
             }
-
-
+            
             let crumbs = document.querySelectorAll('#breadcrumbs li');
             if (crumbs.length < 2) {
               document.querySelector('#breadcrumbs').style.opacity = '0';
@@ -2154,6 +2159,11 @@ window.onload = function() {
               document.querySelector('.ais-ClearRefinements-button').addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
                 countSearchStalled = 0;
+                
+                query = '';
+                search._searchFunction(search.helper);
+                document.querySelector('#form-search .ais-SearchBox-input').value = '';
+
                 if (!e.target.classList.contains('action-clean')) {
                   actionDataLayer = `Click on All Clear Filters button`;
                   labelDataLayer = 'Filters';
@@ -2178,17 +2188,6 @@ window.onload = function() {
   ]); 
 
   search.start();
-
-  // const makeHits = instantsearch.connectors.connectHits(
-  //   function renderHits({ hits }, isFirstRendering) {
-  //     hits.forEach(hit => {
-  //       console.log(hit);
-  //     });
-  //   }
-  // );
-  
-  
-  // search.addWidgets([makeHits()]);
   
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -2234,7 +2233,7 @@ window.onload = function() {
   window.addEventListener('scroll', (e) => {
     remActiveSelect(); 
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null) {
+      if (document.querySelector('.listing_content .ais-InfiniteHits-loadMore') != null && document.querySelector('.listing_content .ais-InfiniteHits-loadMore.ais-InfiniteHits-loadMore--disabled') == null) {
         document.querySelector('.listing_content .ais-InfiniteHits-loadMore').click();
         
         console.log(search.helper.state)
@@ -2253,6 +2252,8 @@ window.onload = function() {
   })
 
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+    query = document.querySelector('#form-search .ais-SearchBox-input').value;
+    search._searchFunction(search.helper)
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
@@ -2444,44 +2445,12 @@ window.onload = function() {
             categoryLvl = `categories.lvl${Object.keys(categoriesHit).length - 1}:${lastLvlCategories[j]}`
           }
         }
-        console.log(categoryLvl)
+
         let requestSimilarProduct = index.search({
           facetFilters: [categoryLvl],
           // filters: categoryLvl,
           hitsPerPage: '4',
         })
-
-        // const { frequentlyBoughtTogether, relatedProducts } = window['@algolia/recommend-js'];
-        // const recommend = window['@algolia/recommend'];
-        // const recommendClient = recommend(APPLICATION_ID, API_KEY);
-
-        // relatedProducts({
-        //   container: '#relatedProducts',
-        //   recommendClient,
-        //   indexName,
-        //   objectIDs: [product.objectID],
-        //   itemComponent: (item) => {
-        //     console.log(item)
-        //     return `
-        //       <a href="#">
-        //         <span>${item.name}</span>
-        //       </a>`;
-        //   },
-        // });
-        // recommendClient.getRelatedProducts(
-        //   {
-        //     indexName: 'products',
-        //     objectID: product.objectID,
-        //     // manufacturer: data.hits[0].manufacturer,
-        //   },
-        // )
-        // .then(results => {
-        //   console.log(results);
-        // })
-        // .catch(err => {
-        //   console.log(err);
-        // });
-
       
         //Available Options
         let htmlAvailableOptions = `
@@ -2847,6 +2816,8 @@ let mut = new MutationObserver(function (muts) {
     document.querySelectorAll('#list_categories li').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
+        query = '';
+        search._searchFunction(search.helper)
         toggleListing(true)
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
@@ -2887,7 +2858,8 @@ let mut = new MutationObserver(function (muts) {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopImmediatePropagation();
-
+        query = '';
+        search._searchFunction(search.helper)
         if (document.querySelector('#form-search .ais-SearchBox-input').value != '') {
           search.helper.state.query = '';
           search.refresh()
