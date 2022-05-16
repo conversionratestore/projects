@@ -2208,9 +2208,9 @@ window.onload = function() {
   })
 
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+    search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     query = document.querySelector('#form-search .ais-SearchBox-input').value;
     search._searchFunction(search.helper)
-    search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
     }
