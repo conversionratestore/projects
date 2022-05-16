@@ -1548,6 +1548,8 @@ const indexName = 'products';
 
 let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : '';
 
+console.log(query)
+
 const search = instantsearch({
   searchClient,
   indexName: indexName,
@@ -2146,6 +2148,7 @@ window.onload = function() {
   ]); 
 
   search.start();
+  search._searchFunction(search.helper)
   
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
