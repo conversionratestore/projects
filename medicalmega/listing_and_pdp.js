@@ -2825,7 +2825,7 @@ let mut = new MutationObserver(function (muts) {
           document.querySelector('.ais-ClearRefinements-button').click() 
         }
         setTimeout(function() {
-          document.querySelectorAll('#list_categories li').forEach(item => {
+          document.querySelectorAll('#list_categories ul > li').forEach(item => {
             if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
               countSearchStalled = 1;
               
