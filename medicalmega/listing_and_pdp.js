@@ -2181,7 +2181,8 @@ window.onload = function() {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
     if (inputWord == false) {
-      search.helper.state.query = '';
+      query = '';
+      search._searchFunction(search.helper)
       document.querySelector('.ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
