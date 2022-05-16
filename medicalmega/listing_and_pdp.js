@@ -2145,7 +2145,7 @@ window.onload = function() {
   ]); 
 
   search.start();
-  search._searchFunction(search.helper)
+  // search._searchFunction(search.helper)
   
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
