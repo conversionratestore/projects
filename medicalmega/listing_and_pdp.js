@@ -2825,7 +2825,7 @@ let mut = new MutationObserver(function (muts) {
           document.querySelector('.ais-ClearRefinements-button').click() 
         }
         setTimeout(function() {
-          document.querySelectorAll('#list_categories ul > li').forEach(item => {
+          document.querySelectorAll('#list_categories > .ais-HierarchicalMenu > ul > li').forEach(item => {
             if (el.querySelector('a').innerText.toLowerCase() == item.querySelector('.ais-HierarchicalMenu-label').innerText.toLowerCase()) {
               countSearchStalled = 1;
               
@@ -2837,7 +2837,6 @@ let mut = new MutationObserver(function (muts) {
                   openCategoriesFoeAlphabet(document.querySelectorAll('#list_categories li'));
                   item.classList.add('popular');
                   item.click();
-                  // search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'][0] = el.querySelector('a').innerText;
                 }
               })
             }
