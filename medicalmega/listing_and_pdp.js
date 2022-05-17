@@ -2165,6 +2165,7 @@ window.onload = function() {
     } 
     if (search.helper.state.query == '') {
       document.querySelector('#form-search .ais-SearchBox-input').valua = '';
+      document.querySelector('#form-search pre').innerHTML = '';
     }
   })
   
