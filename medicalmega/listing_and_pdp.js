@@ -2756,7 +2756,7 @@ let mut = new MutationObserver(function (muts) {
         setTimeout(function() {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             console.log(window.location.href.split('?')[1])
-            window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
+            if (window.location.href.includes('?products')) window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
           } else {
             toggleListing(true)
           }
