@@ -2194,6 +2194,8 @@ window.onload = function() {
 
   document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+    document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+    document.querySelector('.ais-ClearRefinements-button').click()
     query = document.querySelector('#form-search .ais-SearchBox-input').value;
     console.log(query)
     search._searchFunction(search.helper)
