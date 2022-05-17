@@ -1715,7 +1715,7 @@ function changeQty(qty,pr,action) {
   }
 }
 
-// window.onload = function() {
+window.onload = function() {
 
   document.body.insertAdjacentHTML('afterbegin', html);
   document.body.insertAdjacentHTML('afterbegin', style);
@@ -2688,7 +2688,7 @@ function changeQty(qty,pr,action) {
       }
     })
   }
-// };
+};
 
 let optionMut = {
   childList: true,
