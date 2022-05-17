@@ -2755,6 +2755,12 @@ let mut = new MutationObserver(function (muts) {
         query = '';
         console.log(query)
         search._searchFunction(search.helper)
+
+        let scrollTarget = document.body,
+        topOffset = scrollTarget;
+    
+        scrollTop(scrollTarget, topOffset)
+
         let interval = setInterval(function() {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             if (window.location.href.includes('?products')) {
