@@ -2423,7 +2423,7 @@ window.onload = function() {
               </li>
               <li class="ais-Breadcrumb-item">
                 <span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>
-                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product.category}">${product.category}</a>
+                <a class="ais-Breadcrumb-link" href="https://medicalmega.com/?products%5BhierarchicalMenu%5D%5Bcategories.lvl0%5D%5B0%5D=${product['categories.lvl0'][0]}">${product['categories.lvl0'][0]}</a>
               </li>
               <li class="ais-Breadcrumb-item ais-Breadcrumb-item--selected"><span class="ais-Breadcrumb-separator" aria-hidden="true">&gt;</span>${product.name}</li>
             </ul>  
