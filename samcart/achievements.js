@@ -600,13 +600,13 @@ transition: all 2s ease;
 
     document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        pushDataLayer("click on radio button step1", `Click ${el.querySelector("div > span:last-child").textContent}`)
+        pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
       })
     })
 
     document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
       el.addEventListener("click", function () {
-        pushDataLayer("click on radio button step 2", `Click ${el.querySelector("div > span:last-child").textContent}`)
+        pushDataLayer("click on radio button step 2", `${el.querySelector("div > span:last-child").textContent}`)
 
         if (el.querySelector("div > span:last-child").textContent === "Other") {
           document.querySelector(".achievements_block .box_third > h3").innerHTML = `          
