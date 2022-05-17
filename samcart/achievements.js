@@ -141,17 +141,12 @@ let startfunk = setInterval(() => {
   text-align: left;
 }
 
-@media (max-width: 991.98px) {
-  .achievements_block ul li label {
-    font-size: 12px;
-  }
-}
+
 
 .radio-box:checked + label {
     border: 2px solid #183B56;
     color: #183B56;
     font-weight: 700;
-    font-size: 11px;
 }
 
 .radio-box:checked + label .radio-style {
@@ -297,6 +292,16 @@ transition: all 2s ease;
 
 .achievements_block .box_third > h3 span:not(.var_text){
   color: #3096ea;
+}
+
+@media (max-width: 991.98px) {
+  .achievements_block ul li label {
+    font-size: 12px;
+  }
+
+  .radio-box:checked + label {
+    font-size: 11px;
+  }
 }
              
 </style>
