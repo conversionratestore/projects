@@ -1012,12 +1012,12 @@ border-radius: 100px;
     opacity: 0;
     pointer-events: none;
   }
-  #manufacturer {
+  #manufacturer ul {
     max-height: 370px;
     overflow-x: hidden;
     overflow-y: auto;
   }
-  #manufacturer.scroll:before {
+  #manufacturer ul.scroll:before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -1554,7 +1554,6 @@ const search = instantsearch({
   routing: true,
   searchFunction(helper) {
     const page = helper.getPage(); // Retrieve the current page
-    console.log(helper)
     helper.setQuery(query) // this call resets the page
           .setPage(page) // we re-apply the previous page
           .search();
@@ -1969,14 +1968,6 @@ window.onload = function() {
         'query',
       ],
       transformItems(items) {
-        // console.log(items)
-        // let sltPrice = ``;
-        // if (items.value.includes(' - ')) {
-        //   sltPrice = `$${items.value.split(' - ')[0]} - $${items.value.split(' - ')[1]}`
-        // }  else {
-        //   sltPrice = `> $${items.value.split('> ')[1]}`;
-        // }
-        // console.log(sltPrice)
         return items.map(item => ({
           ...item,
           label: item.label == "manufacturer" ? item.label = "brands" : item.label == "price_group" ? item.label = "prices" : '',
@@ -2047,7 +2038,6 @@ window.onload = function() {
             if (window.location.pathname.includes('/category')) {
               document.querySelectorAll('#list_categories li a').forEach(el => {
                 if (el.innerText == document.querySelector('title').innerText.split(' |')[0] && firstLoaded == true) {
-                  console.log(el.innerText)
                   document.querySelectorAll('.alphabet li').forEach(letter => {
                     letter.classList.contains('active') ? letter.classList.remove('active') : '';
                     if (el.innerText[0] == letter.innerText[0]) {
@@ -2072,7 +2062,7 @@ window.onload = function() {
             }
 
             if (document.querySelector('#manufacturer li') != null) {
-              let element = document.querySelector('#manufacturer');
+              let element = document.querySelector('#manufacturer ul');
                   element.addEventListener('scroll', (e) => {
                     e.stopImmediatePropagation();
                     scrolled(e.target)}
@@ -2081,12 +2071,11 @@ window.onload = function() {
             if (document.querySelector('#manufacturer .ais-RefinementList-showMore') != null) {
                 document.querySelector('#manufacturer .ais-RefinementList-showMore').addEventListener('click', (e) => {
                   e.stopImmediatePropagation();
-                  console.log('click showMore')
                   actionDataLayer = `Click on ${e.target.innerText} button`;
                   labelDataLayer = 'Filters';
                   pushDataLayer(actionDataLayer, labelDataLayer);
-                  document.querySelector('#manufacturer').classList.toggle('scroll');
-                  e.target.innerText == 'Show more' ? document.querySelector('#manufacturer').classList.remove('scroll'): '';
+                  document.querySelector('#manufacturer ul').classList.toggle('scroll');
+                  e.target.innerText == 'Show more' ? document.querySelector('#manufacturer ul').classList.remove('scroll'): '';
                 })
             }
      
@@ -2142,7 +2131,6 @@ window.onload = function() {
   ]); 
 
   search.start();
-  // search._searchFunction(search.helper)
   
   let dataButton = document.querySelectorAll('[data-button]'), // btn for open or bloc
       closeBtn = document.querySelectorAll('[data-close]'); //btn close for hide popup or block
@@ -2188,10 +2176,7 @@ window.onload = function() {
         if (state == query && window.location.pathname.includes('/search/')) {
           query = window.location.pathname.split('search/')[1].split('-').join(' ');
         } 
-        // else {
-        //   query = document.querySelector('#form-search .ais-SearchBox-input').value;
-        // }
-       console.log(query)
+        console.log(query)
         search._searchFunction(search.helper)
       }
     }
@@ -2275,8 +2260,6 @@ window.onload = function() {
         },
     }
     ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-      console.log(event.target, suggestion, dataset);
-
       window.location.href = `https://medicalmega.com/product/${suggestion.seo}`
 
       actionDataLayer = `Selected suggestion`;
