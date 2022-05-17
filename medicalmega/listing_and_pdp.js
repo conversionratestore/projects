@@ -2753,14 +2753,18 @@ let mut = new MutationObserver(function (muts) {
         query = '';
         console.log(query)
         search._searchFunction(search.helper)
-        setTimeout(function() {
+        let interval = setInterval(function() {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
-            console.log(window.location.href.split('?')[1])
-            if (window.location.href.includes('?products')) window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
+            if (window.location.href.includes('?products')) {
+              clearInterval(interval)
+              console.log(window.location.href.split('?')[1])
+              window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
+            }
           } else {
+            clearInterval(interval)
             toggleListing(true)
           }
-        }, 200)
+        })
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
           labelDataLayer = `Home page`;
