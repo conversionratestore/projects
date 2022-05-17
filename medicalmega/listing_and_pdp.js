@@ -1546,7 +1546,7 @@ const searchClient = algoliasearch(
 
 const indexName = 'products';
 
-let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : '';
+let query = window.location.pathname.includes('/search/') ? window.location.pathname.split('/search/')[1].split('-').join(' ') : window.location.href.includes('query%5D=') ? window.location.href.split('query%5D=')[1].split('&products')[0] : '';
 
 const search = instantsearch({
   searchClient,
