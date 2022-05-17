@@ -2163,7 +2163,7 @@ window.onload = function() {
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
-    if (search.helper == '') {
+    if (search.helper.state.query == '') {
       document.querySelector('#form-search .ais-SearchBox-input').valua = '';
     }
   })
