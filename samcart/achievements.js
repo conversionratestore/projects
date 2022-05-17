@@ -151,6 +151,7 @@ let startfunk = setInterval(() => {
     border: 2px solid #183B56;
     color: #183B56;
     font-weight: 700;
+    font-size: 11px;
 }
 
 .radio-box:checked + label .radio-style {
