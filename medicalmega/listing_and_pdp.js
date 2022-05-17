@@ -1996,6 +1996,8 @@ window.onload = function() {
               e.stopImmediatePropagation()
               query = '';
               search._searchFunction(search.helper);
+              document.querySelector('#form-search .ais-SearchBox-input').value = '';
+              document.querySelector('#form-search pre').innerHTML = '';
 
               toggleListing(true)
               if (!e.target.classList.contains('reset')) {
