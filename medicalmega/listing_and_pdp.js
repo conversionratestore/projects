@@ -2753,11 +2753,13 @@ let mut = new MutationObserver(function (muts) {
         query = '';
         console.log(query)
         search._searchFunction(search.helper)
-        if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
-          window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
-        } else {
-          toggleListing(true)
-        }
+        setTimeout(function() {
+          if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
+            window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
+          } else {
+            toggleListing(true)
+          }
+        }, 200)
         if (e.target.classList.contains('home-popular')) {
           actionDataLayer = `Click on Show more button - ${el.querySelector('.ais-HierarchicalMenu-label').innerText}`;
           labelDataLayer = `Home page`;
