@@ -950,8 +950,6 @@ border-radius: 100px;
     text-decoration: underline;
     padding-top: 15px;
     display: block;
-    position: sticky;
-    bottom: 0;
     width: 100%;
     background: #fff;
     z-index: 2;
