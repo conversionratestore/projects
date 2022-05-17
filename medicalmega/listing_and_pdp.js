@@ -1836,7 +1836,7 @@ window.onload = function() {
 
     instantsearch.widgets.configure({
       hitsPerPage: '12',
-      enablePersonalization: true,
+      // enablePersonalization: true,
     }),
     instantsearch.widgets.searchBox({
       container: '#form-search',
@@ -1996,8 +1996,6 @@ window.onload = function() {
               e.stopImmediatePropagation()
               query = '';
               search._searchFunction(search.helper);
-              document.querySelector('#form-search .ais-SearchBox-input').value = '';
-              document.querySelector('#form-search pre').innerHTML = '';
 
               toggleListing(true)
               if (!e.target.classList.contains('reset')) {
@@ -2165,6 +2163,9 @@ window.onload = function() {
     if (!e.target.closest('.nav_category')) {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
+    if (search.helper == '') {
+      document.querySelector('#form-search .ais-SearchBox-input').valua = '';
+    }
   })
   
   window.addEventListener('scroll', (e) => {
@@ -2251,7 +2252,7 @@ window.onload = function() {
         source: autocomplete.sources.hits(index, {hitsPerPage: 7, facetFilters: ["*"]}),
         displayKey: 'name',
         // openOnFocus: true,
-        onStateChange: true,
+        onStateChange: false,
       
         templates: {
           suggestion: function(suggestion) {
@@ -2761,15 +2762,15 @@ let mut = new MutationObserver(function (muts) {
     
         scrollTop(scrollTarget, topOffset)
 
-        let interval = setInterval(function() {
+        let startInterval = setInterval(function() {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             if (window.location.href.includes('?products')) {
-              clearInterval(interval)
+              clearInterval(startInterval)
               console.log(window.location.href.split('?')[1])
               window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
             }
           } else {
-            clearInterval(interval)
+            clearInterval(startInterval)
             toggleListing(true)
           }
         })
