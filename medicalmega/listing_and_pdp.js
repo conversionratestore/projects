@@ -2164,7 +2164,7 @@ window.onload = function() {
         document.querySelector(`.nav_category`).classList.remove('active');
     } 
     if (search.helper.state.query == '') {
-      document.querySelector('#form-search .ais-SearchBox-input').valua = '';
+      document.querySelector('#form-search .ais-SearchBox-input').value = '';
       document.querySelector('#form-search pre').innerHTML = '';
     }
   })
