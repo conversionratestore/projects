@@ -502,7 +502,11 @@ const checkCart = async cartId => {
 
 			return false
 		} else {
-			// console.log(`Checking ${data.data.entities[productIndex].name}; SKU: ${data.data.entities[productIndex].sku}`)
+			console.group(`%cchecking ` + `%c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen')
+			// console.log(`SKU: ${data.data.entities[productIndex].sku}`);
+			console.log(`${HOME_URL}/products/details/${data.data.entities[productIndex].sku}/accessories/categories`);
+			console.groupEnd()
+
 			// console.log('previous Product SKU: ', currentProductSKU)
 
 			if (currentProductSKU === '') {
@@ -523,7 +527,7 @@ const checkCart = async cartId => {
 }
 
 const drawSelectedAccessory = (categoryAccessoryIndex) => {
-	let accessoryItems
+	let accessoryItems = ''
 
 	const cartNames = [...document.querySelectorAll('.product-name span')].map(span => span.innerText)
 
