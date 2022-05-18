@@ -2525,11 +2525,11 @@ window.onload = function() {
         slidesFor.forEach((el) => {
           el.addEventListener('mousemove', (e) => {
               document.querySelector('.img-zoom-result').style.visibility = 'visible';
-              if (document.querySelector('.img-zoom-lens') != null) document.querySelector('.img-zoom-lens').style.visibility = 'visible';
+              document.querySelector('.img-zoom-lens').style.visibility = 'visible';
           })
           el.addEventListener('mouseout', (e) => {
               document.querySelector('.img-zoom-result').style.visibility = 'hidden';
-              if (document.querySelector('.img-zoom-lens') != null) document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
+              document.querySelector('.img-zoom-lens').style.visibility = 'hidden';
           })
         })
         
