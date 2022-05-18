@@ -607,7 +607,7 @@ if (window.innerWidth <= 768) {
       scrolling(".achievements_block .box_third .btn_back", 300)
 
       pushDataLayer("loaded")
-      clarity("set", "hp_conversion_through_engagement", "variant_1")
+      clarity("set", `hp_conversion_through_engagement_${eventVar}`, "variant_1")
 
       // js scrolling
       function scrolling(upSelector, upWidth) {
