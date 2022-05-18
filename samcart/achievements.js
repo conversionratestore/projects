@@ -713,6 +713,6 @@ transition: all 2s ease;
     })
 
     pushDataLayer("loaded")
-    clarity("set", "hp_conversion_through_engagement", "variant_1")
+    clarity("set", `hp_conversion_through_engagement_${eventVar}`, "variant_1")
   }
 }, 10)
