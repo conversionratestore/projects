@@ -3,13 +3,19 @@ if (window.innerWidth <= 768) {
     if (document.querySelector(".block-3-photo")) {
       clearInterval(startfunk)
 
+      let eventVar = "desktop"
+
+      if (window.innerWidth <= 768) {
+        eventVar = "mobile"
+      }
+
       function pushDataLayer(actionDataLayer, labelDataLayer) {
         window.dataLayer = window.dataLayer || []
         if (labelDataLayer) {
           console.log(actionDataLayer + " : " + labelDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
             eventAction: `${actionDataLayer}`,
             eventLabel: `${labelDataLayer}`,
           })
@@ -17,7 +23,7 @@ if (window.innerWidth <= 768) {
           console.log(actionDataLayer)
           dataLayer.push({
             event: "event-to-ga",
-            eventCategory: `Exp: HP Conversion through engagement mobile`,
+            eventCategory: `Exp: HP Conversion through engagement - ${eventVar}`,
             eventAction: `${actionDataLayer}`,
           })
         }
