@@ -502,9 +502,9 @@ const checkCart = async cartId => {
 
 			return false
 		} else {
-			console.group(`%cchecking ` + `%c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen')
+			console.group(`%c checking %c${data.data.entities[productIndex].name}`, 'background: black; color: yellow', 'background: black; color: lightgreen; font-weigth: bold; font-size: 16px;')
 			// console.log(`SKU: ${data.data.entities[productIndex].sku}`);
-			console.log(`${HOME_URL}/products/details/${data.data.entities[productIndex].sku}/accessories/categories`);
+			console.log(`%c ${HOME_URL}/products/details/${data.data.entities[productIndex].sku}/accessories/categories`, 'background: purple;');
 			console.groupEnd()
 
 			// console.log('previous Product SKU: ', currentProductSKU)
