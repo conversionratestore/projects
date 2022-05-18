@@ -544,22 +544,21 @@ if (window.innerWidth <= 768) {
             pushDataLayer(`Time spend on the screen step ${step}`, `setTimeM ${currentTime}`)
           }
 
-          if (currentTime === timeNotClick) {
-            clearInterval(s)
-            pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
-          }
+          // if (currentTime === timeNotClick) {
+          //   clearInterval(s)
+          //   pushDataLayer(`Time spend on the screen step ${step}`, "not_click")
+          // }
         }, 1000)
       }
 
       document.querySelectorAll(".achievements_block .box_first ul li label").forEach((el) => {
         el.addEventListener("click", function () {
           pushDataLayer("click on radio button step1", `${el.querySelector("div > span:last-child").textContent}`)
-          
+
           if (document.querySelector(".achievements_block .box_first .btn_next").classList.contains("disabled_btn")) {
             document.querySelector(".achievements_block .box_first .btn_next.disabled_btn").classList.remove("disabled_btn")
           }
         })
-
       })
 
       document.querySelectorAll(".achievements_block .box_second ul li label").forEach((el) => {
