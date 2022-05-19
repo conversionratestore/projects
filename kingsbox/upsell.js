@@ -181,10 +181,6 @@ const myStyle = `
 						.bottom_part p span {
 							margin-right: 8px;
 						}
-
-						.tns-controls * {
-							outline: none;
-						}
 						
 						.cart_accessories .category_wrapper .tns-controls button {
 						    top: 22px;
@@ -240,6 +236,7 @@ const myStyle = `
 						
 						.cart_accessories .tns-controls button {
 						    border: none;
+							outline: none;
 						    position: absolute;
 						    background-color: transparent;
 						    top: 45%;
