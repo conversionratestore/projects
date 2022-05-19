@@ -139,9 +139,11 @@ const myStyle = `
 							display: block;
 						}
 						
-						
-						
 						.category_wrapper .category {
+							display: none;
+						}
+						
+						.category_wrapper .category.loaded {
 							display: flex;
 						}
 						
@@ -323,9 +325,14 @@ const myStyle = `
 							margin-bottom: 20px;
 						}
 
+
+						
 						@media (min-width: 768px) {
 							.my_cart {
 								width: 450px;
+							}
+							.shopping-cart .shopping-cart-products {
+								max-height: calc(100vh - 345px) !important; 
 							}
 						}
 					</style>
@@ -584,6 +591,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 				clearInterval(waitForFrSlider)
 
 				document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
+				document.querySelector('.category_wrapper .category').classList.add('loaded')
 			}
 		}, 100)
 	}
@@ -669,7 +677,13 @@ const checkIsEmptyCategory = (selectedCategoryIndex) => {
 				if (document.querySelectorAll('.category_list li')[selectedCategoryIndex]?.classList.contains('selected')) {
 					clearInterval(waitForSelected)
 
+					let selectedCategory = document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`)
+
 					document.querySelector(`.category[data-category-index="${selectedCategoryIndex}"]`).closest('.tns-outer').classList.add('selected')
+
+					if (!selectedCategory.classList.contains('loaded')) {
+						selectedCategory.classList.add('loaded')
+					}
 
 					// console.log('checking is empty category...')
 
@@ -750,7 +764,6 @@ const drawAccessoriesNew = () => {
 									drawSelectedAccessory(index)
 								}
 							}
-
 
 							window.dataLayer = window.dataLayer || [];
 							dataLayer.push({
