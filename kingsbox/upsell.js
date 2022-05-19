@@ -181,6 +181,10 @@ const myStyle = `
 						.bottom_part p span {
 							margin-right: 8px;
 						}
+
+						.tns-controls * {
+							outline: none;
+						}
 						
 						.cart_accessories .category_wrapper .tns-controls button {
 						    top: 22px;
