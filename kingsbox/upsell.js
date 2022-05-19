@@ -109,7 +109,10 @@ const myStyle = `
 						.category_list li span {
 							display: block;
 							cursor: pointer;
-							padding: 5px;				
+							padding: 5px;			
+							white-space: nowrap;
+							overflow: hidden !important;
+							text-overflow: ellipsis;	
 						}
 						
 						.cart_accessories .tns-outer button img {
