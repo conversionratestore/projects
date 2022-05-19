@@ -1,6 +1,6 @@
 /* CSS */
 
-const myStyle = `
+const myStyle = /*html*/`
 					<style>
 						.shopping-cart-product .product {
 						    gap: 6px;
@@ -236,11 +236,11 @@ const myStyle = `
 						
 						.cart_accessories .tns-controls button {
 						    border: none;
-							outline: none;
+							/* outline: none; */
 						    position: absolute;
 						    background-color: transparent;
 						    top: 45%;
-						    transform: translateY(-50%);
+						    /* transform: translateY(-50%); */
 						    z-index: 1;
 						}
 						
@@ -250,7 +250,7 @@ const myStyle = `
 						
 						.cart_accessories .category .tns-controls button {
 							top: 19px;
-							transform: translateY(0);
+							/* transform: translateY(0); */
 						}
 						
 						.category .tns-outer button img {
