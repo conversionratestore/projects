@@ -835,7 +835,7 @@ form .text_for_work_shop {
 
         onShowMore()
         document.querySelector("#firstModal #puppyContent .popup_second").style.display = "block"
-        console.log(`click on btn My dog is a puppy (aged less than 1 year)`)
+        pushDataLayer("click on btn My dog is a puppy (aged less than 1 year)")
       })
 
       // click on btn My dog is a young or adult dog (aged 1 year or more)
@@ -848,7 +848,7 @@ form .text_for_work_shop {
 
         onShowMore()
         document.querySelector("#firstModal #adultContent .popup_second").style.display = "block"
-        console.log(`click on btn My dog is a young or adult dog (aged 1 year or more)`)
+        pushDataLayer("click on btn My dog is a young or adult dog (aged 1 year or more)")
       })
 
       // create new element popup finalForm -> input name, email, number
