@@ -953,7 +953,7 @@ form .text_for_work_shop {
           // click on btn #puppyContent show_more
           if (document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more")) {
             document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-              pushDataLayer("Show_more #puppyContent")
+              pushDataLayer("Click on Show_more #puppyContent")
 
               document.querySelector("#firstModal #puppyContent .second_block_checkbox").style.display = "flex"
               document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").style.display = "none"
@@ -963,7 +963,7 @@ form .text_for_work_shop {
           // click on btn #adultContent show_more
           if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more")) {
             document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-              pushDataLayer("Show_more #adultContent")
+              pushDataLayer("Click on Show_more #adultContent")
 
               document.querySelector("#firstModal #adultContent .second_block_checkbox").style.display = "flex"
               document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").style.display = "none"
@@ -973,7 +973,7 @@ form .text_for_work_shop {
           // click on btn checkbox continue #puppyContent
           if (document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue")) {
             document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-              pushDataLayer(`Step 2 Continue #puppyContent`)
+              pushDataLayer(`Click on Continue on step "Choose the behavior you want to address" #puppyContent`)
 
               document.querySelector("#firstModal #puppyContent .yesno .ysn.popup_link:nth-child(1) a").click()
               document.querySelector("#firstModal #puppyContent  .popup_second").style.display = "none"
@@ -984,7 +984,7 @@ form .text_for_work_shop {
           // click on btn checkbox continue #adultContent
           if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue")) {
             document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-              pushDataLayer(`Step 2 Continue #adultContent`)
+              pushDataLayer(`Click on Continue on step "Choose the behavior you want to address" #adultContent`)
 
               document.querySelector("#firstModal #adultContent .yesno .ysn.popup_link:nth-child(1) a").click()
               document.querySelector("#firstModal #adultContent .popup_second").style.display = "none"
@@ -1007,13 +1007,13 @@ form .text_for_work_shop {
         // click on button.close
         if (document.querySelector("#firstModal .popup_name button.close")) {
           document.querySelector("#firstModal .popup_name button.close").addEventListener("click", () => {
-            pushDataLayer("#firstModal Step 3 closed")
+            pushDataLayer(`Click on Closed on step "How should we address you and your dog?" #firstModal`)
           })
         }
 
         if (document.querySelector("#firstModal .popup_adress button.close")) {
           document.querySelector("#firstModal .popup_adress button.close").addEventListener("click", () => {
-            pushDataLayer("#firstModal Step 4 closed")
+            pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access" #firstModal`)
           })
         }
       }
@@ -1070,13 +1070,13 @@ form .text_for_work_shop {
           // click on button.close
           if (document.querySelector("#openModal .popup_name button.close")) {
             document.querySelector("#openModal .popup_name button.close").addEventListener("click", () => {
-              pushDataLayer("#openModal Step 3 closed")
+              pushDataLayer(`Click on Closed on step "How should we address you and your dog?" #openModal`)
             })
           }
 
           if (document.querySelector("#openModal .popup_adress button.close")) {
             document.querySelector("#openModal .popup_adress button.close").addEventListener("click", () => {
-              pushDataLayer("#openModal Step 4 closed")
+              pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access" #openModal`)
             })
           }
         }
@@ -1106,7 +1106,7 @@ form .text_for_work_shop {
         }
 
         if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
-          pushDataLayer(`Step 3 Continue ${parent}`)
+          pushDataLayer(`Click on Continue on step "How should we address you and your dog?" ${parent}`)
           document.querySelector("#openModal .button_input_name").style.display = "none"
           document.querySelector("#openModal #subs-name2").style.display = "none"
           document.querySelector("#openModal #dog-name2").style.display = "none"
@@ -1124,7 +1124,7 @@ form .text_for_work_shop {
         }
 
         if (document.querySelector(`${parent} input.input_error`) === null && parent === `#firstModal`) {
-          pushDataLayer(`Step 3 Continue ${parent}`)
+          pushDataLayer(`Click on Continue on step "How should we address you and your dog?" ${parent}`)
           document.querySelector("#firstModal .button_input_name").style.display = "none"
           document.querySelector("#firstModal #subs-name").style.display = "none"
           document.querySelector("#firstModal #dog-name").style.display = "none"
