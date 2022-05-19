@@ -370,8 +370,8 @@ const translations = {
 	fr: ['Accessories', 'Ajouter au panier', `Il n'y a pas encore de produits dans cette catégorie`, `Il n'y a pas encore de produits dans ces catégories de produits`],
 	es: ['Accesorios', 'Agregar al carrito', 'Todavía no hay productos en esta categoría', 'Todavía no hay productos en estas categorías de productos'],
 }
-let pageLanguage2 = window.location.pathname.split('product')[0].replace(/\//g, '') || 'en'
-let language = translations[pageLanguage2]
+let pageLanguage2 = window.location.pathname.split('/')[1]
+let language = translations[pageLanguage2] || translations['en']
 
 /* code */
 
