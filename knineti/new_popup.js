@@ -835,7 +835,12 @@ form .text_for_work_shop {
 
         onShowMore()
         document.querySelector("#firstModal #puppyContent .popup_second").style.display = "block"
+        document.querySelector("#firstModal #puppyContent .popup_second").classList.add("bbbbbb")
         pushDataLayer("click on btn My dog is a puppy (aged less than 1 year)")
+
+        if (document.querySelector("#firstModal #puppyContent .popup_second").classList.contains("bbbbbb")) {
+          observerSecond.observe(document.querySelector("#firstModal #puppyContent .popup_second.bbbbbb"), options)
+        }
       })
 
       // click on btn My dog is a young or adult dog (aged 1 year or more)
@@ -848,7 +853,12 @@ form .text_for_work_shop {
 
         onShowMore()
         document.querySelector("#firstModal #adultContent .popup_second").style.display = "block"
+        document.querySelector("#firstModal #adultContent .popup_second").classList.add("bbbbbb")
         pushDataLayer("click on btn My dog is a young or adult dog (aged 1 year or more)")
+
+        if (document.querySelector("#firstModal #adultContent .popup_second").classList.contains("bbbbbb")) {
+          observerSecond.observe(document.querySelector("#firstModal #adultContent .popup_second.bbbbbb"), options)
+        }
       })
 
       // create new element popup finalForm -> input name, email, number
@@ -870,7 +880,7 @@ form .text_for_work_shop {
         // click on btn #puppyContent show_more
         if (document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more")) {
           document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-            pushDataLayer("Click on Show_more #puppyContent")
+            pushDataLayer("Click on Show_more")
 
             document.querySelector("#firstModal #puppyContent .second_block_checkbox").style.display = "flex"
             document.querySelector("#firstModal #puppyContent .popup_second .body_popup .show_more").style.display = "none"
@@ -880,7 +890,7 @@ form .text_for_work_shop {
         // click on btn #adultContent show_more
         if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more")) {
           document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").addEventListener("click", () => {
-            pushDataLayer("Click on Show_more #adultContent")
+            pushDataLayer("Click on Show_more")
 
             document.querySelector("#firstModal #adultContent .second_block_checkbox").style.display = "flex"
             document.querySelector("#firstModal #adultContent .popup_second .body_popup .show_more").style.display = "none"
@@ -890,22 +900,32 @@ form .text_for_work_shop {
         // click on btn checkbox continue #puppyContent
         if (document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue")) {
           document.querySelector("#firstModal #puppyContent  .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            pushDataLayer(`Click on Continue on step "Choose the behavior you want to address" #puppyContent`)
+            pushDataLayer(`Click on Continue on step "Choose the behavior you want to address"`)
 
             document.querySelector("#firstModal #puppyContent .yesno .ysn.popup_link:nth-child(1) a").click()
             document.querySelector("#firstModal #puppyContent  .popup_second").style.display = "none"
             document.querySelector("#firstModal .popup_third").style.display = "block"
+
+            document.querySelector("#firstModal .popup_third .popup_name").classList.add("bbbbbb")
+            if (document.querySelector("#firstModal .popup_third .popup_name").classList.contains("bbbbbb")) {
+              observerThird.observe(document.querySelector("#firstModal .popup_third .popup_name.bbbbbb"), options)
+            }
           })
         }
 
         // click on btn checkbox continue #adultContent
         if (document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue")) {
           document.querySelector("#firstModal #adultContent .popup_second .body_popup .btn_continue").addEventListener("click", function () {
-            pushDataLayer(`Click on Continue on step "Choose the behavior you want to address" #adultContent`)
+            pushDataLayer(`Click on Continue on step "Choose the behavior you want to address"`)
 
             document.querySelector("#firstModal #adultContent .yesno .ysn.popup_link:nth-child(1) a").click()
             document.querySelector("#firstModal #adultContent .popup_second").style.display = "none"
             document.querySelector("#firstModal .popup_third").style.display = "block"
+
+            document.querySelector("#firstModal .popup_third .popup_name").classList.add("bbbbbb")
+            if (document.querySelector("#firstModal .popup_third .popup_name").classList.contains("bbbbbb")) {
+              observerThird.observe(document.querySelector("#firstModal .popup_third .popup_name.bbbbbb"), options)
+            }
           })
         }
 
@@ -953,6 +973,7 @@ form .text_for_work_shop {
         document.querySelector("#openModal #subs-mobile2").tabIndex = "0"
         document.querySelector("#openModal #contact-submit").tabIndex = "0"
         console.log(`#openModal`)
+
         document
           .querySelector(`#openModal input[name='dog_name']`)
           .insertAdjacentHTML("afterend", `<span class="input_error_text">Please enter Your Dog’s name without spaces, numbers or special characters</span>`)
@@ -996,6 +1017,34 @@ form .text_for_work_shop {
             pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access" #openModal`)
           })
         }
+
+        document.querySelectorAll(".buttons a:first-child").forEach((el) => {
+          el.addEventListener("click", () => {
+            setTimeout(() => {
+              document.querySelector("#openModal .popup_name").classList.add("bbbbbb")
+              if (document.querySelector("#openModal .popup_name").classList.contains("bbbbbb")) {
+                observerThird.observe(document.querySelector("#openModal .popup_name.bbbbbb"), options)
+              }
+
+              if (document.querySelector("#openModal .popup_adress").classList.contains("bbbbbb")) {
+                observerFourth.observe(document.querySelector("#openModal .popup_adress.bbbbbb"), options)
+              }
+            }, 500)
+          })
+        })
+
+        document.querySelector(".what a.grab_butn").addEventListener("click", () => {
+          setTimeout(() => {
+            document.querySelector("#openModal .popup_name").classList.add("bbbbbb")
+            if (document.querySelector("#openModal .popup_name").classList.contains("bbbbbb")) {
+              observerThird.observe(document.querySelector("#openModal .popup_name.bbbbbb"), options)
+            }
+
+            if (document.querySelector("#openModal .popup_adress").classList.contains("bbbbbb")) {
+              observerFourth.observe(document.querySelector("#openModal .popup_adress.bbbbbb"), options)
+            }
+          }, 500)
+        })
       }
     }, 10)
 
@@ -1023,7 +1072,7 @@ form .text_for_work_shop {
       }
 
       if (document.querySelector(`${parent} input.input_error`) === null && parent === `#openModal`) {
-        pushDataLayer(`Click on Continue on step "How should we address you and your dog?" ${parent}`)
+        pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
         document.querySelector("#openModal .button_input_name").style.display = "none"
         document.querySelector("#openModal #subs-name2").style.display = "none"
         document.querySelector("#openModal #dog-name2").style.display = "none"
@@ -1038,10 +1087,15 @@ form .text_for_work_shop {
         document.querySelector("#openModal .benefits").style.display = "block"
         document.querySelector("#openModal .popup_adress").style.display = "block"
         document.querySelector("#openModal .popup_name").style.display = "none"
+
+        document.querySelector("#openModal .popup_adress").classList.add("bbbbbb")
+        if (document.querySelector("#openModal .popup_adress").classList.contains("bbbbbb")) {
+          observerFourth.observe(document.querySelector("#openModal .popup_adress.bbbbbb"), options)
+        }
       }
 
       if (document.querySelector(`${parent} input.input_error`) === null && parent === `#firstModal`) {
-        pushDataLayer(`Click on Continue on step "How should we address you and your dog?" ${parent}`)
+        pushDataLayer(`Click on Continue on step "How should we address you and your dog?"`)
         document.querySelector("#firstModal .button_input_name").style.display = "none"
         document.querySelector("#firstModal #subs-name").style.display = "none"
         document.querySelector("#firstModal #dog-name").style.display = "none"
@@ -1056,7 +1110,60 @@ form .text_for_work_shop {
         document.querySelector("#firstModal .benefits").style.display = "block"
         document.querySelector("#firstModal .popup_adress").style.display = "block"
         document.querySelector("#firstModal .popup_name").style.display = "none"
+
+        document.querySelector("#firstModal .popup_adress").classList.add("bbbbbb")
+        if (document.querySelector("#firstModal .popup_adress").classList.contains("bbbbbb")) {
+          observerFourth.observe(document.querySelector("#firstModal .popup_adress.bbbbbb"), options)
+        }
       }
+    }
+
+    //observer
+    const options = {
+      root: null,
+      threshold: 0.5,
+    }
+
+    let boxFirst = document.querySelector(".popup_first")
+
+    let observerFirst = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          pushDataLayer("Viewed step 'Learn how to train your dog to become as obedient as a service dog'")
+          observerFirst.disconnect()
+        }
+      })
+    })
+
+    let observerSecond = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          pushDataLayer("Viewed step 'Choose the behavior you want to address'")
+          observerSecond.disconnect()
+        }
+      })
+    })
+
+    let observerThird = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          pushDataLayer("Viewed step 'How should we address you and your dog?'")
+          observerThird.disconnect()
+        }
+      })
+    })
+
+    let observerFourth = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          pushDataLayer("Viewed step 'Enter your email and mobile number'")
+          observerFourth.disconnect()
+        }
+      })
+    })
+
+    if (boxFirst.style.display !== "none") {
+      observerFirst.observe(boxFirst, options)
     }
 
     pushDataLayer("loaded")
