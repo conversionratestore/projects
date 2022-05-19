@@ -1,6 +1,6 @@
 /* CSS */
 
-const myStyle = /*html*/`
+const myStyle = `
 					<style>
 						.shopping-cart-product .product {
 						    gap: 6px;
@@ -181,6 +181,11 @@ const myStyle = /*html*/`
 						.bottom_part p span {
 							margin-right: 8px;
 						}
+
+						.cart_accessories *:focus {
+							outline: 0 !important;
+							box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+						}
 						
 						.cart_accessories .category_wrapper .tns-controls button {
 						    top: 22px;
@@ -236,11 +241,10 @@ const myStyle = /*html*/`
 						
 						.cart_accessories .tns-controls button {
 						    border: none;
-							/* outline: none; */
 						    position: absolute;
 						    background-color: transparent;
 						    top: 45%;
-						    /* transform: translateY(-50%); */
+						    transform: translateY(-50%);
 						    z-index: 1;
 						}
 						
@@ -250,7 +254,7 @@ const myStyle = /*html*/`
 						
 						.cart_accessories .category .tns-controls button {
 							top: 19px;
-							/* transform: translateY(0); */
+							transform: translateY(0);
 						}
 						
 						.category .tns-outer button img {
@@ -397,6 +401,7 @@ const initSlider = sliders => {
 			slideBy: 'page',
 			mouseDrag: true,
 			swipeAngle: 30,
+			gutter: 8,
 			loop: false,
 			autoplay: false,
 			autoplayButton: false,
@@ -406,11 +411,9 @@ const initSlider = sliders => {
 
 		if (sliders === '.category_list') {
 			name = 'category list'
-			sliderObj.gutter = 20
 			sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_forward.svg" alt="arrow right"></span>`]
 		} else {
 			name = 'category'
-			sliderObj.gutter = 8
 			sliderObj.controlsText = [`<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_new_round_back.svg" alt="arrow left"></span>`, `<span><img src="https://conversionratestore.github.io/projects/kingsbox/img/arrow_back.svg" alt="arrow right"></span>`]
 		}
 
