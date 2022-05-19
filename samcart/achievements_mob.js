@@ -376,7 +376,7 @@ if (window.innerWidth <= 768) {
                         <label for="achievements9" data-count="4,872">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Business and Money</span>
+                            <span>Business and Finance</span>
                           </div>
                         </label>
                       </li>
@@ -394,7 +394,7 @@ if (window.innerWidth <= 768) {
                         <label for="achievements11" data-count="3,432">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Health, Fitness & Dieting</span>
+                            <span>Health and Fitness</span>
                           </div>
                         </label>
                       </li>
@@ -403,7 +403,7 @@ if (window.innerWidth <= 768) {
                         <label for="achievements12" data-count="555">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Technology & Engineering</span>
+                            <span>Technology</span>
                           </div>
                         </label>
                       </li>
@@ -430,7 +430,7 @@ if (window.innerWidth <= 768) {
                         <label for="achievements15" data-count="2,658">
                           <div>
                             <span class="radio-style"></span>
-                            <span>Marketing Services</span>
+                            <span>Marketing and Design Services</span>
                           </div>
                         </label>
                       </li>
