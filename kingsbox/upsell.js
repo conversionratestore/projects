@@ -574,7 +574,7 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 							</a>
 						</div>
 						<div class="bottom_part">
-							<p>${entity.price.priceDiscounted} €</p>
+							<p>${entity.price.price} €</p>
 							<button>${language[1]}</button>
 						</div>
 					</div>																				
