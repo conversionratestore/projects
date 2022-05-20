@@ -363,29 +363,11 @@ if (window.innerWidth <= 768) {
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievementsSecond" id="achievements8" class="radio-box" />
-                        <label for="achievements8" data-count="996">
-                          <div>
-                            <span class="radio-style"></span>
-                            <span>Beauty and Fashion</span>
-                          </div>
-                        </label>
-                      </li>
-                      <li>
                         <input type="radio" name="achievementsSecond" id="achievements9" class="radio-box" />
                         <label for="achievements9" data-count="4,872">
                           <div>
                             <span class="radio-style"></span>
                             <span>Business and Finance</span>
-                          </div>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="radio" name="achievementsSecond" id="achievements10" class="radio-box" />
-                        <label for="achievements10" data-count="663">
-                          <div>
-                            <span class="radio-style"></span>
-                            <span>Relationships, Family and Parenting</span>
                           </div>
                         </label>
                       </li>
@@ -399,29 +381,11 @@ if (window.innerWidth <= 768) {
                         </label>
                       </li>
                       <li>
-                        <input type="radio" name="achievementsSecond" id="achievements12" class="radio-box" />
-                        <label for="achievements12" data-count="555">
-                          <div>
-                            <span class="radio-style"></span>
-                            <span>Technology</span>
-                          </div>
-                        </label>
-                      </li>
-                      <li>
                         <input type="radio" name="achievementsSecond" id="achievements13" class="radio-box" />
                         <label for="achievements13" data-count="2,769">
                           <div>
                             <span class="radio-style"></span>
                             <span>Arts, Music and Photography</span>
-                          </div>
-                        </label>
-                      </li>
-                      <li>
-                        <input type="radio" name="achievementsSecond" id="achievements14" class="radio-box" />
-                        <label for="achievements14" data-count="333">
-                          <div>
-                            <span class="radio-style"></span>
-                            <span>Food and Cooking</span>
                           </div>
                         </label>
                       </li>
@@ -442,6 +406,43 @@ if (window.innerWidth <= 768) {
                             <span>Education</span>
                           </div>
                       </label>
+                      </li>
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements8" class="radio-box" />
+                        <label for="achievements8" data-count="996">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Beauty and Fashion</span>
+                          </div>
+                        </label>
+                      </li>
+
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements10" class="radio-box" />
+                        <label for="achievements10" data-count="663">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Relationships, Family and Parenting</span>
+                          </div>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements12" class="radio-box" />
+                        <label for="achievements12" data-count="555">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Technology</span>
+                          </div>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="radio" name="achievementsSecond" id="achievements14" class="radio-box" />
+                        <label for="achievements14" data-count="333">
+                          <div>
+                            <span class="radio-style"></span>
+                            <span>Food and Cooking</span>
+                          </div>
+                        </label>
                       </li>
                       <li>
                         <input type="radio" name="achievementsSecond" id="achievements16" class="radio-box" />
