@@ -57,6 +57,7 @@ let startFunkDesk = setInterval(() => {
   cursor: pointer;
   box-shadow: none;
   text-transform: none;
+  transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 /*join_text */
@@ -175,10 +176,17 @@ let startFunkDesk = setInterval(() => {
   line-height: 250%;
   outline: none;
   border: none;
+  transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 .enroll_box .info_box > div:first-child > a:hover {
   box-shadow: 5px 5px 10px #272020;
+}
+
+#contact-submit:hover,
+.btn_continue:hover,
+.button_input_name:hover{
+  box-shadow: 4px -4px 10px #272020;
 }
 
 .enroll_box .info_box > div.img_wrap {
@@ -494,6 +502,15 @@ let startFunkDesk = setInterval(() => {
   border: 3px solid #193973;
 }
 
+.first_block_checkbox label:focus,
+.first_block_checkbox label:hover,
+.popup_new > div:last-child .popup_second ul li label:focus,
+.popup_new > div:last-child .popup_second ul li label:hover{
+border-color: #66afe9;
+box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+    outline: 0;
+}
+
 .popup_new > div:last-child .popup_first.active_popup,
 .popup_new > div:last-child .popup_second.active_popup,
 .popup_new > div:last-child .popup_third_box.active_popup {
@@ -551,16 +568,53 @@ let startFunkDesk = setInterval(() => {
 
 #openModal .form-group {
   background: white;
+  border-radius: 10px;
 }
 
 .border-of-modal .vis-ver-2_2.modal-header.modal-header-style.modal-of-header.style-border.modal-header1 {
   display: none;
 }
 
-.popup_third,
-.active_btn_fourth {
+.popup_third {
   display: none;
 }
+
+.btn_wrapp {
+  display: none;
+  max-width: 844px;
+  width: 100%;
+  margin: 20px auto;
+  position: relative;
+}
+
+.btn_wrapp > p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: #808080 !important;
+margin: 0;
+cursor: pointer;
+}
+
+.btn_wrapp > p span{
+  margin-left: 8px;
+}
+
+.btn_wrapp button.close{
+    top: 0;
+    right: -5px;
+    color: #808080;
+}
+
+
+.btn_wrapp > p.active_btn_fifth{
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 #openModal .popup_third {
   display: block;
@@ -597,7 +651,8 @@ let startFunkDesk = setInterval(() => {
     padding: 0 15px;
     border: 2px solid #E8F1F9;
     border-radius: 10px;
-    max-width: 75vh;
+    max-width: 844px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -620,6 +675,7 @@ let startFunkDesk = setInterval(() => {
 .body_popup {
   background: #ffffff;
   padding: 25px 56px 28px;
+  border-radius: 10px;
 }
 
 .body_popup > h2 {
@@ -653,6 +709,7 @@ let startFunkDesk = setInterval(() => {
   cursor: pointer;
   box-shadow: none;
   text-transform: none;
+  transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 #contact-submit {
@@ -664,7 +721,8 @@ let startFunkDesk = setInterval(() => {
 }
 
 .button_input_name:focus,
-#contact-submit:focus {
+#contact-submit:focus,
+.btn_continue:focus {
   box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -696,72 +754,29 @@ form .form-group img,
 }
 
 form span.top-levels {
-  right: 226px !important;
+  right: 277px !important;
 }
 
 form span.top-levels#subs-email2-top-levels,
 form span.top-levels#subs-mobile2-top-levels,
 form span.top-levels#subs-email-top-levels,
 form span.top-levels#subs-mobile-top-levels {
-  right: 211px !important;
+  right: 267px !important;
 }
 
-@media (max-width: 939px) {
-  form span.top-levels {
-    right: 203px !important;
-  }
-}
 
-@media only screen and (min-width: 896px) and (max-width: 920px) {
-  form span.top-levels {
-    right: 203px !important;
-  }
-}
 
-@media only screen and (min-width: 947px) and (max-width: 981px) {
+
+@media only screen and (min-width: 768px) and (max-width: 857px) {
+  form span.top-levels,
   form span.top-levels#subs-email2-top-levels,
-  form span.top-levels#subs-mobile2-top-levels,
-  form span.top-levels#subs-email-top-levels,
-  form span.top-levels#subs-mobile-top-levels {
-    right: 203px !important;
+form span.top-levels#subs-mobile2-top-levels,
+form span.top-levels#subs-email-top-levels,
+form span.top-levels#subs-mobile-top-levels {
+    right: 254px !important;
   }
 }
 
-@media only screen and (min-width: 932px) and (max-width: 946px) {
-  form span.top-levels#subs-email2-top-levels,
-  form span.top-levels#subs-mobile2-top-levels,
-  form span.top-levels#subs-email-top-levels,
-  form span.top-levels#subs-mobile-top-levels {
-    right: 190px !important;
-  }
-}
-
-@media only screen and (min-width: 870px) and (max-width: 931px) {
-  form span.top-levels#subs-email2-top-levels,
-  form span.top-levels#subs-mobile2-top-levels,
-  form span.top-levels#subs-email-top-levels,
-  form span.top-levels#subs-mobile-top-levels {
-    right: 182px !important;
-  }
-}
-
-@media only screen and (min-width: 858px) and (max-width: 895px) {
-  form span.top-levels {
-    right: 187px !important;
-  }
-}
-
-@media only screen and (min-width: 821px) and (max-width: 857px) {
-  form span.top-levels {
-    right: 175px !important;
-  }
-}
-
-@media only screen and (min-width: 795px) and (max-width: 821px) {
-  form span.top-levels {
-    right: 160px !important;
-  }
-}
 
 #finalForm {
   display: block;
@@ -828,7 +843,7 @@ form span.top-levels#subs-mobile-top-levels {
   align-items: flex-start;
   margin: 0 auto;
   max-width: 440px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .security_box > svg {
@@ -881,10 +896,6 @@ form span.top-levels#subs-mobile-top-levels {
   color: #808080 !important;
 }
 
-#finalForm .popup_third .popup_adress .body_popup > h2 {
-  max-width: 560px;
-}
-
 button.close {
   display: block;
   position: absolute;
@@ -912,7 +923,8 @@ button.close {
 }
 
 .popup_adress .body_popup > h2 {
-  margin-bottom: 0px !important;
+  max-width: 512px;
+  margin: 0 auto !important;
 }
 
 form .text_for_work_shop {
@@ -1213,10 +1225,10 @@ form .text_for_work_shop {
                     <li></li>
                 </ul>
                 <div>
-                   <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
+                   <p class="active_btn_first" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="" tabIndex="0">
                        <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
                    </p>
-                    <p class="active_btn_second">
+                    <p class="active_btn_second" tabIndex="0">
                        <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
                        <span>Previous</span>
                    </p>
@@ -1229,51 +1241,51 @@ form .text_for_work_shop {
                 <p>Select all problems you’ve experienced in the last 2 months</p>
                 <div class="first_block_checkbox">
                     <input class="custom_checkbox" id="barking" type="checkbox" name="barking" value="barking">
-                    <label for="barking">Barking
+                    <label for="barking" tabIndex="0">Barking
                     </label>
     
                     <input class="custom_checkbox" id="jumping" type="checkbox" name="jumping" value="jumping">
-                    <label for="jumping">Jumping
+                    <label for="jumping" tabIndex="0">Jumping
                     </label>
     
                     <input class="custom_checkbox" id="pulling" type="checkbox" name="pulling" value="pulling">
-                    <label for="pulling">Pulling on leash
+                    <label for="pulling" tabIndex="0">Pulling on leash
                     </label>
     
                     <input class="custom_checkbox" id="housebreaking" type="checkbox" name="housebreaking" value="housebreaking">
-                    <label for="housebreaking">Housebreaking
+                    <label for="housebreaking" tabIndex="0">Housebreaking
                     </label>
     
                     <input class="custom_checkbox" id="nipping" type="checkbox" name="nipping" value="nipping">
-                    <label for="nipping">Nipping or biting
+                    <label for="nipping" tabIndex="0">Nipping or biting
                     </label>
     
                     <input class="custom_checkbox" id="called" type="checkbox" name="called" value="called">
-                    <label for="called">Don’t come when you call
+                    <label for="called" tabIndex="0">Don’t come when you call
                     </label>
     
                     <input class="custom_checkbox" id="listen" type="checkbox" name="listen" value="listen">
-                    <label for="listen">Doesn't listen</label>
+                    <label for="listen" tabIndex="0">Doesn't listen</label>
     
                     <input class="custom_checkbox" id="chewing" type="checkbox" name="chewing" value="chewing">
-                    <label for="chewing">Chewing</label>
+                    <label for="chewing" tabIndex="0">Chewing</label>
     
                     <input class="custom_checkbox" id="excitable" type="checkbox" name="excitable" value="excitable">
-                    <label for="excitable">Extremely excitable</label>
+                    <label for="excitable" tabIndex="0">Extremely excitable</label>
     
                     <input class="custom_checkbox" id="aggression" type="checkbox" name="aggression" value="aggression">
-                    <label for="aggression">Aggression</label>
+                    <label for="aggression" tabIndex="0">Aggression</label>
     
                     <input class="custom_checkbox" id="anxiety" type="checkbox" name="anxiety" value="anxiety">
-                    <label for="anxiety">Anxiety</label>
+                    <label for="anxiety" tabIndex="0">Anxiety</label>
     
                     <input class="custom_checkbox" type="checkbox" id="reacting" name="reacting" value="reacting">
-                    <label for="reacting">Reacting to other dogs</label>
+                    <label for="reacting" tabIndex="0">Reacting to other dogs</label>
     
                     <input class="custom_checkbox" type="checkbox" id="other" name="other" value="other">
-                    <label for="other">Other</label>
+                    <label for="other" tabIndex="0">Other</label>
                 </div>
-                <div class="btn_continue">Continue</div>
+                <div class="btn_continue" tabIndex="0">Continue</div>
             </div>
 
 
@@ -1282,7 +1294,7 @@ form .text_for_work_shop {
                 <ul>
                     <li>
                         <input class="radio_box" name="ageDog" id="puppy" type="radio">
-                        <label for="puppy">
+                        <label for="puppy" tabIndex="0">
                             <span class="radio_style"></span>
                             <span>Puppy</span>
                             <span>Up to 12 months</span>
@@ -1290,7 +1302,7 @@ form .text_for_work_shop {
                     </li>
                     <li>
                         <input class="radio_box" name="ageDog" id="adult" type="radio">
-                        <label for="adult">
+                        <label for="adult" tabIndex="0">
                             <span class="radio_style"></span>
                             <span>Adult</span>
                             <span>From 1 to 7 years</span>
@@ -1298,14 +1310,14 @@ form .text_for_work_shop {
                     </li>
                     <li>
                         <input class="radio_box" name="ageDog" id="senior" type="radio">
-                        <label for="senior">
+                        <label for="senior" tabIndex="0">
                             <span class="radio_style"></span>
                             <span>Older Adult/Senior</span>
                             <span>More than 7 years</span>
                         </label>
                     </li>
                 </ul>
-                <div class="btn_continue">Continue</div>
+                <div class="btn_continue" tabIndex="0">Continue</div>
             </div> 
 
             <div class="popup_third_box">
@@ -1318,7 +1330,7 @@ form .text_for_work_shop {
                         </select>
                 
 
-                <div class="btn_continue">Continue</div>
+                <div class="btn_continue" tabIndex="0">Continue</div>
             </div>
 
         </div>
@@ -1364,18 +1376,12 @@ form .text_for_work_shop {
     let popup_third = /*html*/ `
     <div class="popup_third">       
         <div class="popup_name">
-            <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
-                <spam class="btn_space" data-original-title="" title="">×</spam>
-            </button>
             <div class="body_popup">
                 <h2>How should we address you and your <br> dog?</h2>
             </div>
         </div>
     
         <div class="popup_adress">
-            <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
-                <spam class="btn_space" data-original-title="" title="">×</spam>
-            </button>
             <div class="body_popup">
                 <p>The workshop will be conducted by Dr. Alexa Diaz, PhD (one of the foremost service dog trainers in the U.S.) and Eric Presnall (host of the Animal Planet TV show "Who Let the Dogs Out").</p>
                 <h2>Enter your email and mobile number to access this FREE online workshop now</h2>
@@ -1445,10 +1451,14 @@ form .text_for_work_shop {
 
           document.querySelector(".modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
             "afterend",
-            `        <p class="active_btn_fourth">
+            `<div class="btn_wrapp">     
+             <p class="active_btn_fourth" tabIndex="0">
             <img src="https://conversionratestore.github.io/projects/knineti/img/previous_btn.svg" alt="previous button">
-            <span>Previous</span>
-        </p>`
+            <span>Previous</span></p>
+            <button type="button" class="close" id="closestepthree" data-dismiss="modal" style="display: block;" data-original-title="" title="">
+                <spam class="btn_space" data-original-title="" title="">×</spam>
+            </button>
+            </div>  `
           )
         }
 
@@ -1490,7 +1500,7 @@ form .text_for_work_shop {
         document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue").addEventListener("click", function () {
           document.querySelector(".popup_new").style.display = "none"
           document.querySelector("#openModal .modal-body").style.display = "block"
-          document.querySelector(".active_btn_fourth").style.display = "flex"
+          document.querySelector(".btn_wrapp").style.display = "flex"
         })
 
         // //   btn back first
@@ -1527,6 +1537,49 @@ form .text_for_work_shop {
               document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)").classList.remove("active_step")
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
             }
+          })
+        }
+
+        // btn back fourth
+        if (document.querySelector(".modal.in .modal-dialog .btn_wrapp")) {
+          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
+            // btn back fourth
+            if (this.classList.contains("active_btn_fourth")) {
+              document.querySelector(".popup_new").style.display = "flex"
+              document.querySelector("#openModal .modal-body").style.display = "none"
+              document.querySelector(".btn_wrapp").style.display = "none"
+            }
+
+            // btn back fifth
+            // if (this.classList.contains("active_btn_fifth")) {
+            //   document.querySelector("#openModal .button_input_name").style.display = "flex"
+            //   document.querySelector("#openModal #subs-name2").style.display = "flex"
+            //   document.querySelector("#openModal #dog-name2").style.display = "flex"
+            //   document.querySelector("#openModal #dog-name2-top-levels").style.display = "flex"
+            //   document.querySelector("#openModal #subs-name2-top-levels").style.display = "flex"
+
+            //   document.querySelector("#openModal #subs-email2").style.display = "none"
+            //   document.querySelector("#openModal #subs-mobile2").style.display = "none"
+            //   if (document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-mobile2-top-levels")) {
+            //     document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-mobile2-top-levels").style.display = "none"
+            //   }
+
+            //   if (document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-email2-top-levels")) {
+            //     document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-email2-top-levels").style.display = "none"
+            //   }
+
+            //   document.querySelector("#openModal #contact-submit").style.display = "none"
+
+            //   document.querySelector("#openModal .text_for_work_shop").style.display = "none"
+            //   document.querySelector("#openModal .benefits").style.display = "none"
+            //   document.querySelector("#openModal .popup_adress").style.display = "none"
+            //   document.querySelector("#openModal .popup_name").style.display = "flex"
+
+            //   if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.contains("active_btn_fifth")) {
+            //     document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.remove("active_btn_fifth")
+            //     document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.add("active_btn_fourth")
+            //   }
+            // }
           })
         }
 
@@ -1632,7 +1685,26 @@ form .text_for_work_shop {
         document.querySelector("#openModal .benefits").style.display = "block"
         document.querySelector("#openModal .popup_adress").style.display = "block"
         document.querySelector("#openModal .popup_name").style.display = "none"
+        if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.contains("active_btn_fourth")) {
+          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.remove("active_btn_fourth")
+          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.add("active_btn_fifth")
+        }
       }
     }
+
+    // click on img list Dog
+    document.querySelectorAll(".dog_list ul li a").forEach((el) => {
+      el.addEventListener("click", function (e) {
+        e.preventDefault()
+
+        document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
+        let a = setInterval(() => {
+          if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
+            clearInterval(a)
+            document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
+          }
+        }, 10)
+      })
+    })
   }
 }, 10)
