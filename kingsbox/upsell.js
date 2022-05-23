@@ -508,9 +508,9 @@ const checkCart = async cartId => {
 			})
 
 			let waitForContent = setInterval(() => {
-				if (document.querySelector('.cart_content')) {
+				if (document.querySelector('.cart_content') && !document.querySelector('.no_products')) {
 					clearInterval(waitForContent)
-					document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p>${language[3]}</p>`)
+					document.querySelector('.cart_content').insertAdjacentHTML('beforeend', `<p class="no_products">${language[3]}</p>`)
 				}
 			}, 100)
 
@@ -583,25 +583,31 @@ const drawSelectedAccessory = (categoryAccessoryIndex) => {
 		</div>`
 	}
 
-	document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
+	let waitForWrapper = setInterval(() => {
+		if (document.querySelector('.category_wrapper')) {
+			clearInterval(waitForWrapper)
 
-	let waitForList = setInterval(() => {
-		if (typeof tns === 'function') {
-			clearInterval(waitForList)
-			initSlider('.category_wrapper .category:not(.tns-slider)')
-		}
-	}, 200)
+			document.querySelector('.category_wrapper').insertAdjacentHTML('beforeend', accessoryItems)
 
-	if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
-		let waitForFrSlider = setInterval(() => {
-			if (document.querySelector('.category_wrapper .tns-outer')) {
-				clearInterval(waitForFrSlider)
+			let waitForList = setInterval(() => {
+				if (typeof tns === 'function') {
+					clearInterval(waitForList)
+					initSlider('.category_wrapper .category:not(.tns-slider)')
+				}
+			}, 200)
 
-				document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
-				document.querySelector('.category_wrapper .category').classList.add('loaded')
+			if (document.querySelectorAll('.category_wrapper .tns-outer').length < 1) {
+				let waitForFrSlider = setInterval(() => {
+					if (document.querySelector('.category_wrapper .tns-outer')) {
+						clearInterval(waitForFrSlider)
+
+						document.querySelector('.category_wrapper .tns-outer').classList.add('selected')
+						document.querySelector('.category_wrapper .category').classList.add('loaded')
+					}
+				}, 100)
 			}
-		}, 100)
-	}
+		}
+	}, 100);
 }
 
 const getAccessory = async (accessoryId, accessoryIndex) => {
