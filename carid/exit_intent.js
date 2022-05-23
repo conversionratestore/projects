@@ -1,9 +1,267 @@
 let arrPopularProducts = [];
+let modalLoaded = false;
+
+let style = `
+<style>
+    .modal__popular hr {
+        height: 2px;
+        width: 100%;
+        background: #D8D8D8;
+        max-width: 222px;
+    }
+    [hidden] {
+        display: none!important;
+    }
+    .modal__popular {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        padding: 20px;
+        overflow-y: auto;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    .modal__popular.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .modal__popular.show .container {
+        transform: translateY(0);
+    }
+    .modal__popular * {
+        box-sizing: border-box;
+    }
+    .modal__popular .container {
+        background: #FFFFFF;
+        padding: 30px 0;
+        max-width: 556px;
+        width: calc(100% - 40px);
+        margin: auto;
+        position: relative;
+        transform: translateY(100px);
+        transition: all 0.3s ease;
+    }
+    .modal__header, .modal__footer {
+        padding: 0 30px;
+    }
+    .btn_close {
+        border: none;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 15px;
+        height: 15px;
+        opacity: 0.3;
+        background: url(https://conversionratestore.github.io/projects/carid/img/close.svg) no-repeat center / 100%;
+    }
+    .modal__popular h2 {
+        font-size: 30px;
+        line-height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #111111;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+    .modal__popular p {
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        color: #464646;
+    }
+    .message__block {
+        background: #F9FBFC;
+        border: 1px solid #068922;
+        border-radius: 5px;
+        margin: 15px 0;
+        width: 100%;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        color: #068922;
+        padding: 10px;
+    }
+    .modal__products {
+        text-align: left;
+        overflow: hidden;
+        padding: 0 30px 15px;
+    }
+    .modal__body {
+        position: relative;
+    }
+    .modal__body.scroll .modal__products {
+        overflow-y: auto; 
+        max-height: 380px; 
+        padding: 0 15px 0 30px; 
+        margin-right: 10px;
+        margin-bottom: 30px;
+    }
+    .modal__body.scroll:before, .modal__body.scroll:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+        height: 100%;
+        top: 0;
+    }
+    .modal__body.top:before {
+        background: linear-gradient(360deg, rgba(255, 255, 255, 0) 83.55%, #FFFFFF 100%);
+    }
+    .modal__body.bottom:after {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 83.55%, #FFFFFF 100%);
+    }
+    .modal__products::-webkit-scrollbar {
+        background: #D9D9D9;
+        border-radius: 44px;
+        width: 5px;
+    }
+    .modal__products::-webkit-scrollbar-track {
+        background: #D9D9D9;
+        border-radius: 44px;
+    }
+    .modal__products::-webkit-scrollbar-thumb {
+        background: #464646;
+        border-radius: 44px;
+    }
+    .modal__products li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid #D8D8D8;
+    }
+    .modal__products li:last-child {
+        border: none;
+    }
+    .items-center {
+        display: flex;
+        align-items: center;
+    }
+    .modal__products li img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        object-fit: cover;
+        margin-right: 18px;
+    }
+    .modal__products li .name {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 26px;
+        text-transform: uppercase;
+        color: #464646;
+        margin-bottom: 4px
+    }
+    .modal__products li .desc {
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 20px;
+        color: #464646;
+        display: block;
+    }
+    .modal__products li .price {
+        font-size: 14px;
+        line-height: 16px;
+        text-align: right;
+        color: #111111;
+        padding-left: 20px;
+    }
+    .btn {
+        background: #068922;
+        border-radius: 5px;
+        line-height: 52px;
+        border: none;
+        width: 100%;
+        font-weight: 800;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn img , .btn svg {
+        margin-left: 10px;
+    }
+    .btn__google-pay, .btn__apple-pay {
+        background: #111111;
+        font-weight: 400;
+        text-transform: inherit;
+    }
+    .btn__paypal, .btn__affirm {
+        background: #F0F0F0;
+        font-weight: 400;
+        color: #4D4D4D;
+        text-transform: inherit;
+    }
+    .btns .btn {
+        margin-bottom: 15px;
+    }
+    .btns .btn:last-child {
+        margin: 0;
+    }
+    .btn_more {
+        background: #fff;
+        border: none;
+        margin-top: -1px;
+        margin-bottom: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+    .btn_more span {
+        background: #F0F0F0;
+        border-radius: 3px;
+        color: #464646;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        padding: 5px 10px;
+    }
+    .btn_more .line {
+        max-width: 190px;
+        width: calc(100% - 20px);
+        height: 1px;
+        opacity: 0.5;
+        background: #D8D8D8;
+        padding: 0;
+    }
+    .modal__popular .heading {
+        border-top: 2px solid #d8d8d8;
+        margin: 24px 0;
+        max-width: 100%;
+        position: relative;
+    }
+    .modal__popular .heading::after {
+        content: "or";
+        background: #fff;
+        color: #464646;
+        font-size: 14px;
+        left: 50%;
+        top: calc(50% - 1px);
+        transform: translate(-50%,-50%);
+        line-height: 1;
+        padding: 0 20px;
+        position: absolute;
+    }
+</style>`
 
 /* Products */
 class Products{
     constructor(name,image,price) {
-        this.name = name.includes(' - ') ? name.split(' - ')[0] : name;
+        this.name = name;
         this.image = image;
         this.price = price;
         this.desc = name.includes(' - ') ? name.split(' - ')[1] : '';
@@ -16,7 +274,7 @@ class Products{
             <div class="items-center">
                 <img src="${this.image}" alt="${this.name}">
                 <span>
-                    <span class="name">${this.name}</span>
+                    <span class="name">${this.name.includes(' - ') ? this.name.split(' - ')[0] : this.name}</span>
                     <span class="desc">${this.desc}</span>
                 </span>
             </div>
@@ -24,6 +282,15 @@ class Products{
         `
 
         document.querySelector('.modal__products').appendChild(element);
+    }
+}
+
+//exit intent
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    } else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
     }
 }
 
@@ -50,288 +317,40 @@ function pushProducts(name,image,price) {
 }
 
 //PDP 
-if (document.querySelector('.prod-sections') != null) {
+let interval = null;    
 
-    if (document.querySelector('.prod-buttons-holder') != null) {
-        let name = document.querySelector('.prod-title>.name').innerHTML,
-            image = document.querySelector('.product-image-main>img').src,
-            price = document.querySelector('.prod-price').innerHTML;
-
-        document.querySelector('.prod-buttons-holder').addEventListener('click', () => {
-            pushProducts(name,image,price)
-        })
-    }
-
-    let interval = setInterval(() => {
+function startStuff() {
+    interval = setInterval(() => {
         if (document.querySelector('.prod_add_to_cart_lst') != null) {
-            clearInterval(interval)
+            clearInterval(interval);
             let list = document.querySelectorAll(".prod_add_to_cart_lst li");
-         
-            // if (list[0].querySelector('.black').innerHTML.toLowerCase() == document.querySelector('.prod-title>.name').innerHTML.toLowerCase() ) {
-            //     pushProducts(list[0].querySelector('.black').innerHTML,list[0].querySelector('img').src,list[0].querySelector('b').innerHTML) 
-                
-            //     console.log(list[0])
-            // } else {
-                let maxNumber = [].reduce.call(list, function(a, b) {
-                    return 0 <= a.querySelector('b').innerHTML.replace('$','') - b.querySelector('b').innerHTML.replace('$','') ? a : b
-                },)
 
-                console.log(maxNumber)
-                pushProducts(maxNumber.querySelector('.black').innerHTML,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
-            // }
+            let maxNumber = [].reduce.call(list, function(a, b) {
+                return 0 <= a.querySelector('b').innerHTML.replace('$','') - b.querySelector('b').innerHTML.replace('$','') ? a : b
+            },)
+
+            pushProducts(maxNumber.querySelector('.black').innerText,maxNumber.querySelector('img').src,maxNumber.querySelector('b').innerHTML)  
         }
-    }, 200)
-    
+    })
+}
+
+startStuff()
+
+// function stopStuff() {
+//     clearInterval(interval);
+// }
+
+//show modal 
+function showModal() {
+    document.querySelector('.modal__popular').classList.add('show');
+}
+//hide modal 
+function hideModal() {
+    document.querySelector('.modal__popular').classList.remove('show');
 }
 
 //cart
-if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrPopularProducts') != null && localStorage.getItem('arrPopularProducts') != '') { 
-    let style = `
-    <style>
-        .modal__popular hr {
-            height: 2px;
-            width: 100%;
-            background: #D8D8D8;
-            max-width: 222px;
-        }
-        [hidden] {
-            display: none!important;
-        }
-        .modal__popular {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            padding: 20px;
-            overflow-y: auto;
-            z-index: 9999;
-        }
-        .modal__popular * {
-            box-sizing: border-box;
-        }
-        .modal__popular .container {
-            background: #FFFFFF;
-            padding: 30px 0;
-            max-width: 556px;
-            width: 100%;
-            margin: auto;
-            position: relative;
-        }
-        .modal__header, .modal__footer {
-            padding: 0 30px;
-        }
-        .btn_close {
-            border: none;
-            position: absolute;
-            right: 30px;
-            top: 30px;
-            width: 15px;
-            height: 15px;
-            opacity: 0.3;
-            background: url(https://conversionratestore.github.io/projects/carid/img/close.svg) no-repeat center / 100%;
-        }
-        .modal__popular h2 {
-            font-size: 30px;
-            line-height: 30px;
-            text-align: center;
-            text-transform: uppercase;
-            color: #111111;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-        .modal__popular p {
-            font-size: 20px;
-            line-height: 28px;
-            text-align: center;
-            color: #464646;
-        }
-        .message__block {
-            background: #F9FBFC;
-            border: 1px solid #068922;
-            border-radius: 5px;
-            margin: 15px 0;
-            width: 100%;
-            font-size: 14px;
-            line-height: 18px;
-            text-align: center;
-            color: #068922;
-            padding: 10px;
-        }
-        .modal__products {
-            text-align: left;
-            height: 333px;
-            overflow: hidden;
-            padding: 0 30px;
-        }
-        .modal__body {
-            position: relative;
-        }
-        .modal__body.scroll .modal__products {
-            overflow-y: auto; 
-            height: 380px; 
-            padding: 0 15px 0 30px; 
-            margin-right: 10px;
-            margin-bottom: 30px;
-        }
-        .modal__body.scroll:before, .modal__body.scroll:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-            height: 100%;
-        }
-        .modal__body.top:before {
-            top: 0;
-            background: linear-gradient(360deg, rgba(255, 255, 255, 0) 83.55%, #FFFFFF 100%);
-        }
-        .modal__body.bottom:after {
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 83.55%, #FFFFFF 100%);
-        }
-        .modal__products::-webkit-scrollbar {
-            background: #D9D9D9;
-            border-radius: 44px;
-            width: 5px;
-        }
-        .modal__products::-webkit-scrollbar-track {
-            background: #D9D9D9;
-            border-radius: 44px;
-        }
-        .modal__products::-webkit-scrollbar-thumb {
-            background: #464646;
-            border-radius: 44px;
-        }
-        .modal__products li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 15px 0;
-            border-bottom: 1px solid #D8D8D8;
-        }
-        .modal__products li:last-child {
-            border: none;
-        }
-        .items-center {
-            display: flex;
-            align-items: center;
-        }
-        .modal__products li img {
-            width: 80px;
-            height: 80px;
-            flex-shrink: 0;
-            object-fit: cover;
-            margin-right: 18px;
-        }
-        .modal__products li .name {
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 26px;
-            text-transform: uppercase;
-            color: #464646;
-            margin-bottom: 4px
-        }
-        .modal__products li .desc {
-            font-weight: 300;
-            font-size: 14px;
-            line-height: 20px;
-            color: #464646
-            display: block;
-        }
-        .modal__products li .price {
-            font-size: 14px;
-            line-height: 16px;
-            text-align: right;
-            color: #111111;
-            padding-left: 20px;
-        }
-        .btn {
-            background: #068922;
-            border-radius: 5px;
-            line-height: 52px;
-            border: none;
-            width: 100%;
-            font-weight: 800;
-            font-size: 14px;
-            text-transform: uppercase;
-            color: #FFFFFF;
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn img , .btn svg {
-            margin-left: 10px;
-        }
-        .btn__google-pay, .btn__apple-pay {
-            background: #111111;
-            font-weight: 400;
-            text-transform: inherit;
-        }
-        .btn__paypal, .btn__affirm {
-            background: #F0F0F0;
-            font-weight: 400;
-            color: #4D4D4D;
-            text-transform: inherit;
-        }
-        .btns .btn {
-            margin-bottom: 15px;
-        }
-        .btns .btn:last-child {
-            margin: 0;
-        }
-        .btn_more {
-            background: #fff;
-            border: none;
-            margin-top: -1px;
-            margin-bottom: 15px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-        .btn_more span {
-            background: #F0F0F0;
-            border-radius: 3px;
-            color: #464646;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 18px;
-            padding: 5px 10px;
-        }
-        .btn_more .line {
-            max-width: 190px;
-            width: calc(100% - 20px);
-            height: 1px;
-            opacity: 0.5;
-            background: #D8D8D8;
-            padding: 0;
-        }
-        .modal__popular .heading {
-            border-top: 2px solid #d8d8d8;
-            margin: 24px 0;
-            max-width: 100%;
-            position: relative;
-        }
-        .modal__popular .heading::after {
-            content: "or";
-            background: #fff;
-            color: #464646;
-            font-size: 14px;
-            left: 50%;
-            top: calc(50% - 1px);
-            transform: translate(-50%,-50%);
-            line-height: 1;
-            padding: 0 20px;
-            position: absolute;
-        }
-    </style>`
+if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrPopularProducts') != null && localStorage.getItem('arrPopularProducts') != '' && localStorage.getItem('arrPopularProducts') != []) { 
 
     //local storage products
     let items = JSON.parse(localStorage.getItem('arrPopularProducts'))
@@ -343,7 +362,7 @@ if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrP
                     <button type="button" class="btn_close"></button>
                     <h2>It’s almost yours! </h2>
                     <p>One step remaining</p>
-                    <div class="message__block">This is a popular ${items.length > 1 ? 'products' : 'product'} <br>Complete your order now while it is still in stock </div>
+                    <div class="message__block"></div>
                 </div>
                 <div class="modal__body">
                     <ul class="modal__products"></ul>
@@ -365,14 +384,14 @@ if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrP
                                 <path d="M7.52101 2.63186C7.03758 3.20786 6.26744 3.66429 5.49858 3.59743C5.39701 2.82086 5.78015 1.989 6.22244 1.47343C6.70458 0.885857 7.54801 0.464142 8.23201 0.429428C8.31301 1.24071 7.99672 2.03786 7.5223 2.63186H7.52101ZM8.2243 3.75043C7.10701 3.68229 6.14787 4.392 5.61815 4.392C5.07687 4.392 4.26558 3.78386 3.3823 3.80443C2.23673 3.81857 1.16572 4.473 0.583296 5.526C-0.629132 7.62043 0.268296 10.7216 1.43315 12.429C2.00272 13.2724 2.68415 14.1969 3.58287 14.1711C4.43272 14.1364 4.77472 13.6093 5.79944 13.6093C6.83701 13.6093 7.13144 14.1711 8.03658 14.1506C8.96615 14.1364 9.55501 13.3071 10.1246 12.4637C10.7739 11.5059 11.0413 10.5673 11.0554 10.521C11.0413 10.5004 9.25415 9.81129 9.2413 7.73486C9.22715 5.99271 10.6466 5.16343 10.707 5.11586C9.90987 3.91114 8.65115 3.78386 8.22301 3.75171L8.2243 3.75043ZM14.6734 1.39243V14.0631H16.6213V9.73157H19.3149C21.7719 9.73157 23.4999 8.02414 23.4999 5.55943C23.4999 3.08957 21.8066 1.39371 19.3817 1.39371L14.6734 1.39243ZM16.6213 3.05357H18.8649C20.5517 3.05357 21.5173 3.96386 21.5173 5.56457C21.5173 7.16529 20.5517 8.08329 18.852 8.08329H16.6213V3.05357ZM27.0472 14.157C28.2724 14.157 29.4039 13.5347 29.9207 12.5421H29.9619V14.0631H31.7619V7.75414C31.7619 5.93357 30.3167 4.74943 28.086 4.74943C26.0237 4.74943 24.4963 5.94772 24.4436 7.58829H26.1909C26.3387 6.80529 27.0484 6.29614 28.0333 6.29614C29.2252 6.29614 29.8886 6.858 29.8886 7.89043V8.586L27.465 8.73386C25.2009 8.874 23.982 9.80486 23.982 11.4326C23.982 13.0731 25.242 14.1583 27.0484 14.1583L27.0472 14.157ZM27.5769 12.6566C26.538 12.6566 25.8759 12.1539 25.8759 11.385C25.8759 10.5879 26.5123 10.1186 27.7234 10.044L29.8873 9.91029V10.6264C29.8873 11.8131 28.8896 12.6566 27.5692 12.6566H27.5769ZM34.1662 17.5114C36.06 17.5114 36.9523 16.7747 37.7289 14.5581L41.1437 4.87543H39.1689L36.879 12.3544H36.8379L34.548 4.87543H32.5127L35.808 14.0966L35.6332 14.6584C35.331 15.6034 34.8502 15.9699 33.9926 15.9699C33.8383 15.9699 33.5439 15.9506 33.423 15.9377V17.4587C33.5362 17.4909 34.0196 17.505 34.1597 17.505L34.1662 17.5114Z" fill="#F8F8F8"/>
                             </svg>
                         </button>
-                        <button type="button" class="btn btn__paypal">
+                        <a href="${document.querySelector('.cart-order a.-paypal').href}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
                             Check out with
                             <img src="https://conversionratestore.github.io/projects/carid/img/paypal.svg" alt="paypal">
-                        </button>
-                        <button type="button" class="btn btn__affirm">
+                        </a>
+                        <a href="${document.querySelector('.cart-order a.-affirm-monthly') != null ? document.querySelector('.cart-order a.-affirm-monthly').href : ''}" class="btn btn__affirm" ${document.querySelector('.cart-order a.-affirm-monthly') == null ? 'hidden' : ''}>
                             Monthly Payment 
                             <img src="https://conversionratestore.github.io/projects/carid/img/monthly-payment.svg" alt="monthly payment affirm"> 
-                        </button>
+                        </a>
                     </div>
                 </div>  
             </div>
@@ -381,6 +400,40 @@ if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrP
 
     document.body.insertAdjacentHTML('afterbegin', style);
     document.body.insertAdjacentHTML('beforeend', html);
+    
+    let cards = document.querySelectorAll('.cart-section');
+
+    let result = []
+
+    for (let j = 0; j < cards.length; j++) {
+        for (let i = 0; i < items.length; i++) {
+            if (cards[j].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...',''))) {
+                console.log(cards[j].querySelector('.cart_prod_name').innerText.toLowerCase() + " == " + items[i].name.toLowerCase())
+                result.push(items[i])
+            } else {
+                console.log(cards[j].querySelector('.cart_prod_name').innerText.toLowerCase() + " != " + items[i].name.toLowerCase())
+            }
+        }
+    }
+
+    console.log(result)
+    localStorage.setItem('arrPopularProducts', JSON.stringify(result));
+
+    document.querySelector('.message__block').innerHTML = `This is a popular ${result.length > 1 ? 'products' : 'product'} <br>Complete your order now while it is still in stock `
+
+    //click on payment buttons
+    document.querySelector('.btn__google-pay').addEventListener('click', (e) => {
+        document.querySelector('.cart-order .google-pay-button').click();
+    })
+    document.querySelector('.btn__apple-pay').addEventListener('click', (e) => {
+        document.querySelector('.cart-order .apple-pay-button').click();
+    })
+
+    //close modal
+    document.querySelector('.btn_close').addEventListener('click', hideModal)
+    document.querySelector('.modal__popular').addEventListener('click', (e) => {
+        if (e.target.matches('.modal__popular')) hideModal()
+    })
 
     //click on "complete my order now" button
     document.querySelector('.btn_complete').addEventListener('click', (e) => {
@@ -388,15 +441,12 @@ if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrP
         document.querySelector('.btns').hidden = false;
     })
 
-    for (let i = 0; i < items.length; i++) {
-        console.log(items[i].name)
-        new Products(
-            items[i].name,
-            items[i].image,
-            items[i].price
-        ).render()
-    }
+    //render products
+    result.forEach(({name, image, price}) => {
+        new Products(name, image, price).render();
+    });
 
+    //add more button
     if (items.length > 3) {
         document.querySelector('.btn_complete').insertAdjacentHTML('beforebegin',`<button type="button" class="btn_more"><span class="line"></span><span>+ ${items.length - 3} more</span><span class="line"></span></button>`)
         document.querySelector('.btn_more').addEventListener('click', (e) => {  
@@ -420,4 +470,11 @@ if (window.location.pathname.includes('/cart.php') && localStorage.getItem('arrP
             })
         })
     }
+
+    addEvent(document, 'mouseout', function(e) {
+        if (e.toElement == null && e.relatedTarget == null && modalLoaded == false) {
+            modalLoaded = true;
+            showModal()
+        }
+    })
 }
