@@ -2198,14 +2198,15 @@ window.onload = function() {
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
     document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
     document.querySelector('.ais-ClearRefinements-button').click()
-    query = document.querySelector('#form-search .ais-SearchBox-input').value;
-    console.log(query)
-    search._searchFunction(search.helper)
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
     }
     toggleListing(true)
 
+    query = document.querySelector('#form-search .ais-SearchBox-input').value;
+    console.log(query)
+    search._searchFunction(search.helper)
+    
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
     pushDataLayer(actionDataLayer, labelDataLayer)
