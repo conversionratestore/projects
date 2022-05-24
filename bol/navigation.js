@@ -159,12 +159,7 @@ function abjqlr(n) {
     emergency: 'Emergency',
     mounting: 'Mounting',
 }),
-    window.jQuery
-        ? jQuery(function (e) {
-            abjqlr(e);
-        })
-        : abjql(function () {
-            jQuery(function (e) {
-                abjqlr(e);
-            });
-        });
+
+    jQuery(function (e) {
+        abjqlr(e);
+    })
