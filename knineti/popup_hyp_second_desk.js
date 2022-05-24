@@ -1754,15 +1754,18 @@ let startFunkDesk = setInterval(() => {
           // filter
           document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
             let filterValue = this.value.toUpperCase()
-            console.log(filterValue)
 
-            document.querySelectorAll(".chosen_select ul li").forEach((el) => {
+            document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
+              el.addEventListener("click", function () {
+                console.log(el.textContent)
+                filterValue.textContent = el.textContent
+              })
+
               let text = el.textContent.toUpperCase()
               if (text.includes(filterValue)) {
                 el.classList.add("show")
                 el.classList.remove("hide")
               } else {
-                console.log(el.textContent)
                 el.classList.add("hide")
                 el.classList.remove("show")
               }
