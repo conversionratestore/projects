@@ -1056,6 +1056,16 @@ let startFunkDesk = setInterval(() => {
   display: none;
 }
 
+
+.hide {
+	visibility: hidden;
+	position: absolute;
+}
+
+.show {
+	visibility: visible;
+}
+
     </style>
     `
     let newBlock = /*html */ `
@@ -1743,16 +1753,18 @@ let startFunkDesk = setInterval(() => {
 
           // filter
           document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
-            let filterValue = this.value.toLowerCase()
+            let filterValue = this.value.toUpperCase()
             console.log(filterValue)
 
             document.querySelectorAll(".chosen_select ul li").forEach((el) => {
-              let text = el.textContent.toLowerCase()
-              if (text.indexOf(filterValue) > -1) {
-                el.style.display = "none"
+              let text = el.textContent.toUpperCase()
+              if (text.includes(filterValue)) {
+                el.classList.add("show")
+                el.classList.remove("hide")
               } else {
                 console.log(el.textContent)
-                el.style.display = "block"
+                el.classList.add("hide")
+                el.classList.remove("show")
               }
             })
           })
