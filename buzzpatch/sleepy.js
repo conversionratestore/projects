@@ -170,5 +170,3 @@ let waitForClarity = setInterval(() => {
     }
 }, 200);
 
-document.addEventListener("mousewheel", this.mousewheel.bind(this), { passive: false })
-
