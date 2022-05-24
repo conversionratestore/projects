@@ -459,150 +459,151 @@ function showModal() {
 function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
 }
+window.onload = function() {
+    //cart
+    if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
 
-//cart
-if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('popular_products') != null && sessionStorage.getItem('popular_products') != '' && sessionStorage.getItem('popular_products') != []) { 
-
-    //html modal
-    let html = `
-        <div class="modal__popular">
-            <div class="container">
-                <div class="modal__header">
-                    <button type="button" class="btn_close"></button>
-                    <h2>It’s almost yours! </h2>
-                    <p>One step remaining</p>
-                    <div class="message__block">This is a popular product <br>
-                    Complete your order now while it is still in stock</div>
-                </div>
-                <div class="modal__body">
-                    <ul class="modal__products"></ul>
-                </div>
-                <div class="modal__footer">
-                    <button type="button" class="btn btn_complete">complete my order now</button>
-                    <div class="btns" hidden>
-                        <a class="btn btn_credit_card_checkout" href="${document.querySelector('.cart-order a.simple-btn').href}">Credit Card Checkout</a>
-                        <div class="heading"></div>
-                       
-                        <a href="${document.querySelector('.cart-order a.-paypal').href}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
-                            Check out with
-                            <img src="https://conversionratestore.github.io/projects/carid/img/paypal.svg" alt="paypal">
-                        </a>
-                        <a href="${document.querySelector('.cart-order a.-affirm-monthly') != null ? document.querySelector('.cart-order a.-affirm-monthly').href : ''}" class="btn btn__affirm" ${document.querySelector('.cart-order a.-affirm-monthly') == null ? 'hidden' : ''}>
-                            Monthly Payment 
-                            <img src="https://conversionratestore.github.io/projects/carid/img/monthly-payment.svg" alt="monthly payment affirm"> 
-                        </a>
+        //html modal
+        let html = `
+            <div class="modal__popular">
+                <div class="container">
+                    <div class="modal__header">
+                        <button type="button" class="btn_close"></button>
+                        <h2>It’s almost yours! </h2>
+                        <p>One step remaining</p>
+                        <div class="message__block">This is a popular product <br>
+                        Complete your order now while it is still in stock</div>
                     </div>
-                </div>  
+                    <div class="modal__body">
+                        <ul class="modal__products"></ul>
+                    </div>
+                    <div class="modal__footer">
+                        <button type="button" class="btn btn_complete">complete my order now</button>
+                        <div class="btns" hidden>
+                            <a class="btn btn_credit_card_checkout" href="${document.querySelector('.cart-order a.simple-btn').href}">Credit Card Checkout</a>
+                            <div class="heading"></div>
+                        
+                            <a href="${document.querySelector('.cart-order a.-paypal').href}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
+                                Check out with
+                                <img src="https://conversionratestore.github.io/projects/carid/img/paypal.svg" alt="paypal">
+                            </a>
+                            <a href="${document.querySelector('.cart-order a.-affirm-monthly') != null ? document.querySelector('.cart-order a.-affirm-monthly').href : ''}" class="btn btn__affirm" ${document.querySelector('.cart-order a.-affirm-monthly') == null ? 'hidden' : ''}>
+                                Monthly Payment 
+                                <img src="https://conversionratestore.github.io/projects/carid/img/monthly-payment.svg" alt="monthly payment affirm"> 
+                            </a>
+                        </div>
+                    </div>  
+                </div>
             </div>
-        </div>
-        `
+            `
 
-    document.body.insertAdjacentHTML('afterbegin', style); //insert styles
-    document.body.insertAdjacentHTML('beforeend', html); //insert html
+        document.body.insertAdjacentHTML('afterbegin', style); //insert styles
+        document.body.insertAdjacentHTML('beforeend', html); //insert html
+        
     
-   
-    let items = JSON.parse(sessionStorage.getItem('popular_products')) //products in storage 
-    let cards = document.querySelectorAll('.cart-section'); //products in cart
-    let refreshPopularProducts = []; //new array
+        let items = JSON.parse(sessionStorage.getItem('popular_products')) //products in storage 
+        let cards = document.querySelectorAll('.cart-section'); //products in cart
+        let refreshPopularProducts = []; //new array
 
-    //sort products in cart and storage
-    for (let j = 0; j < cards.length; j++) {
-        for (let i = 0; i < items.length; i++) {
-            //find products on name and price in cart and storage
-            if (cards[j].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...',''))) { 
-                if (cards[j].querySelector('.cart_prod_each_prc') != null && cards[j].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0].includes(items[i].price)) {
-                    refreshPopularProducts.push(items[i]) //add products in new array
-                } else if (cards[j].querySelector('.cart_prod_each_prc') == null && cards[j].querySelector('.cart-product-total-price').innerHTML.includes(items[i].price)) {
-                    refreshPopularProducts.push(items[i])
-                }
-                
-            } 
+        //sort products in cart and storage
+        for (let j = 0; j < cards.length; j++) {
+            for (let i = 0; i < items.length; i++) {
+                //find products on name and price in cart and storage
+                if (cards[j].querySelector('.cart_prod_name').innerText.toLowerCase().includes(items[i].name.toLowerCase().replace('...',''))) { 
+                    if (cards[j].querySelector('.cart_prod_each_prc') != null && cards[j].querySelector('.cart_prod_each_prc').innerHTML.split('<span>')[0].includes(items[i].price)) {
+                        refreshPopularProducts.push(items[i]) //add products in new array
+                    } else if (cards[j].querySelector('.cart_prod_each_prc') == null && cards[j].querySelector('.cart-product-total-price').innerHTML.includes(items[i].price)) {
+                        refreshPopularProducts.push(items[i])
+                    }
+                    
+                } 
+            }
         }
-    }
-   
-    console.log(refreshPopularProducts)
-    sessionStorage.setItem('popular_products', JSON.stringify(refreshPopularProducts)); //set new array in storage
+    
+        console.log(refreshPopularProducts)
+        sessionStorage.setItem('popular_products', JSON.stringify(refreshPopularProducts)); //set new array in storage
 
-    if (refreshPopularProducts.length > 0) {
-        //render last added product
-        let lastProduct = refreshPopularProducts[Object.keys(refreshPopularProducts)[Object.keys(refreshPopularProducts).length - 1]];
-        new Products(lastProduct.name, lastProduct.image, lastProduct.price).render();
+        if (refreshPopularProducts.length > 0) {
+            //render last added product
+            let lastProduct = refreshPopularProducts[Object.keys(refreshPopularProducts)[Object.keys(refreshPopularProducts).length - 1]];
+            new Products(lastProduct.name, lastProduct.image, lastProduct.price).render();
 
-        //show modal desktop
-        addEvent(document, 'mouseout', function(e) {
-            if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
-                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                showModal() //show modal
-                starSecInterval()
+            //show modal desktop
+            addEvent(document, 'mouseout', function(e) {
+                if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
+                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                    showModal() //show modal
+                    starSecInterval()
+                }
+            })
+
+            //show modal mobile
+            let my_scroll = (function() {
+                let last_position, new_position, timer, delta, delay = 20;
+
+                function clear() {
+                    last_position = null;
+                    delta = 0;
+                }
+
+                clear();
+
+                return function(){
+                    new_position = window.scrollY;
+                    if (last_position != null){
+                        delta = new_position -  last_position;
+                    }
+                    last_position = new_position;
+                    clearTimeout(timer);
+                    timer = setTimeout(clear, delay);
+                    return delta;
+                };
+            })();
+            
+            function myScrollSpeedFunction(){
+                if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded')) {
+                    sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                    showModal() //show modal
+                    starSecInterval()
+                }
+            }
+
+            if (detectMob() == true) {
+                window.addEventListener('scroll', myScrollSpeedFunction);
+            } 
+        } 
+
+        //close modal
+        document.querySelector('.btn_close').addEventListener('click', () => {
+            hideModal();
+            stopSecInterval()
+            pushDataLayer(`Click close on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
+        })
+        document.querySelector('.modal__popular').addEventListener('click', (e) => {
+            if (e.target.matches('.modal__popular')) {
+                hideModal()
+                stopSecInterval()
+                pushDataLayer(`Click outside modal on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
             }
         })
 
-        //show modal mobile
-        let my_scroll = (function() {
-            let last_position, new_position, timer, delta, delay = 20;
+        //click on "complete my order now" button
+        document.querySelector('.btn_complete').addEventListener('click', (e) => {
+            e.target.hidden = true;
+            document.querySelector('.btns').hidden = false;
+            pushDataLayer('Click on complete my order now button')
+        })
 
-            function clear() {
-                last_position = null;
-                delta = 0;
-            }
+        document.querySelector('.btn_credit_card_checkout').addEventListener('click', (e) => pushDataLayer('Click on credit card checkout button'))
+        document.querySelector('.btn__paypal').addEventListener('click', (e) => pushDataLayer('Click on check out with PayPal button'))
+        document.querySelector('.btn__affirm').addEventListener('click', (e) => pushDataLayer('Click on monthly payment affirm button'))
 
-            clear();
-
-            return function(){
-                new_position = window.scrollY;
-                if (last_position != null){
-                    delta = new_position -  last_position;
-                }
-                last_position = new_position;
-                clearTimeout(timer);
-                timer = setTimeout(clear, delay);
-                return delta;
-            };
-        })();
-        
-        function myScrollSpeedFunction(){
-            if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded')) {
-                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                showModal() //show modal
-                starSecInterval()
-            }
-        }
-
-        if (detectMob() == true) {
-            window.addEventListener('scroll', myScrollSpeedFunction);
-        } 
-    } 
-
-    //close modal
-    document.querySelector('.btn_close').addEventListener('click', () => {
-        hideModal();
-        stopSecInterval()
-        pushDataLayer(`Click close on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
-    })
-    document.querySelector('.modal__popular').addEventListener('click', (e) => {
-        if (e.target.matches('.modal__popular')) {
-            hideModal()
-            stopSecInterval()
-            pushDataLayer(`Click outside modal on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
-        }
-    })
-
-    //click on "complete my order now" button
-    document.querySelector('.btn_complete').addEventListener('click', (e) => {
-        e.target.hidden = true;
-        document.querySelector('.btns').hidden = false;
-        pushDataLayer('Click on complete my order now button')
-    })
-
-    document.querySelector('.btn_credit_card_checkout').addEventListener('click', (e) => pushDataLayer('Click on credit card checkout button'))
-    document.querySelector('.btn__paypal').addEventListener('click', (e) => pushDataLayer('Click on check out with PayPal button'))
-    document.querySelector('.btn__affirm').addEventListener('click', (e) => pushDataLayer('Click on monthly payment affirm button'))
-
-    //refresh status modal
-    document.querySelectorAll('.cart-body-wrap .icon-delete').forEach(button => {
-        button.addEventListener('click', () => sessionStorage.removeItem('modal_loaded'))
-    });
-}
+        //refresh status modal
+        document.querySelectorAll('.cart-body-wrap .icon-delete').forEach(button => {
+            button.addEventListener('click', () => sessionStorage.removeItem('modal_loaded'))
+        });
+    }
+};
 
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
