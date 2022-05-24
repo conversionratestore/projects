@@ -19,7 +19,6 @@ let style = `
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
         display: flex;
-        padding: 20px;
         overflow-y: auto;
         z-index: 9999;
         opacity: 0;
@@ -107,10 +106,6 @@ let style = `
         width: 100%;
         padding: 15px 0;
     }
-    .items-center {
-        display: flex;
-        align-items: center;
-    }
     .modal__products li img {
         width: 90px;
         height: 90px;
@@ -132,10 +127,15 @@ let style = `
         line-height: 20px;
         color: #464646;
         display: block;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     .modal__products li .price {
         font-size: 14px;
-        line-height: 16px;
+        line-height: 26px;
         text-align: right;
         color: #111111;
         padding-left: 20px;
@@ -222,6 +222,55 @@ let style = `
         padding: 0 20px;
         position: absolute;
     }
+    .d-flex {
+        display: flex;
+    }
+    @media only screen and (min-width: 557px)  {
+        .items-sm-center {
+            display: flex;
+            align-items: center;
+        }
+    }
+    @media only screen and (max-width: 556px)  {
+        .modal__popular .container { 
+            max-width: 335px;
+        }
+        .modal__popular h2 {
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 10px;
+        }
+        .btn_close {
+            right: 18px;
+            top: 18px;
+            width: 10px;
+            height: 10px;
+        }
+        .modal__popular p {
+            font-size: 16px;
+            line-height: 19px;
+        }
+        .message__block {
+            font-size: 12px;
+            padding: 8px;
+        }
+        .modal__products li img {
+            width: 70px;
+            height: 70px;
+            margin-right: 10px;
+        }
+        .modal__products li .desc {
+            font-size: 12px;
+            line-height: 20px;  
+            -webkit-line-clamp: 2;
+        }
+        .modal__products li {
+            align-items: flex-start;
+        }
+        .modal__products li .price {
+            font-weight: 500;
+        }
+    }
 </style>`
 
 /* Classes method for Product */
@@ -237,7 +286,7 @@ class Products{
         let element = document.createElement('li');
 
         element.innerHTML = `
-            <div class="items-center">
+            <div class="items-sm-center d-flex">
                 <img src="${this.image}" alt="${this.name}">
                 <span>
                     <span class="name">${this.name.includes(' - ') ? this.name.split(' - ')[0] : this.name}</span>
@@ -282,6 +331,44 @@ function pushProducts(name,image,price) {
     sessionStorage.setItem('popular_products', JSON.stringify(popularProducts));
 }
 
+//detect mobile
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+}
+
+//push data layer
+function pushDataLayer(action,label) {
+    console.log(action + ' : ' + label)
+    window.dataLayer = window.dataLayer || [];
+    if (label) {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': 'Exp: Exit-intent pop-up - {{device category}}',
+            'eventAction': action,
+            'eventLabel': label
+        });
+    } else {
+        dataLayer.push({
+            'event': 'event-to-ga',
+            'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'disktop'}`,
+            'eventAction': action
+        });
+
+    }
+}
+
 //PDP 
 //html google pay button
 let googlePayBtn = `
@@ -302,7 +389,8 @@ let applePayBtn = `
 </button>
 `
 
-let interval = null;    
+let interval = null, 
+    secInterval = null;   
 
 function starInterval() {
     interval = setInterval(() => {
@@ -320,6 +408,7 @@ function starInterval() {
            
             document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
                 document.querySelector('.cart-order .google-pay-button button').click();
+                pushDataLayer('Click on check out with GPay button')
             })
         }
         //apple pay button
@@ -329,6 +418,7 @@ function starInterval() {
             
             document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
                 document.querySelector('.cart-order .apple-pay-button button').click();
+                pushDataLayer('Click on check out with ApplePay button')
             })
         }
         
@@ -344,13 +434,26 @@ function starInterval() {
 
 starInterval()
 
-// function stopStuff() {
+// function stopInterval() {
 //     clearInterval(interval);
 // }
 
+let setTime = 0;
+function starSecInterval() {
+    secInterval = setInterval(() => { 
+        setTime++
+        console.log(setTime)
+    }, 1000);
+}
+
+function stopSecInterval() {
+    clearInterval(secInterval);
+}
+
 //show modal 
 function showModal() {
-    document.querySelector('.modal__popular').classList.add('show');
+    document.querySelector('.modal__popular').classList.add('show');  
+    pushDataLayer(`Visibility equals the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`) 
 }
 //hide modal 
 function hideModal() {
@@ -377,7 +480,7 @@ if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('po
                 <div class="modal__footer">
                     <button type="button" class="btn btn_complete">complete my order now</button>
                     <div class="btns" hidden>
-                        <a class="btn" href="${document.querySelector('.cart-order a.simple-btn').href}">Credit Card Checkout</a>
+                        <a class="btn btn_credit_card_checkout" href="${document.querySelector('.cart-order a.simple-btn').href}">Credit Card Checkout</a>
                         <div class="heading"></div>
                        
                         <a href="${document.querySelector('.cart-order a.-paypal').href}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
@@ -429,25 +532,88 @@ if (window.location.pathname.includes('/cart.php') && sessionStorage.getItem('po
         addEvent(document, 'mouseout', function(e) {
             if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
                 sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
-                showModal()
+                showModal() //show modal
+                starSecInterval()
             }
         })
+
+        //show modal mobile
+        let my_scroll = (function() {
+            let last_position, new_position, timer, delta, delay = 20;
+
+            function clear() {
+                last_position = null;
+                delta = 0;
+            }
+
+            clear();
+
+            return function(){
+                new_position = window.scrollY;
+                if (last_position != null){
+                    delta = new_position -  last_position;
+                }
+                last_position = new_position;
+                clearTimeout(timer);
+                timer = setTimeout(clear, delay);
+                return delta;
+            };
+        })();
+        
+        function myScrollSpeedFunction(){
+            if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded')) {
+                sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
+                showModal() //show modal
+                starSecInterval()
+            }
+        }
+
+        if (detectMob() == true) {
+            window.addEventListener('scroll', myScrollSpeedFunction);
+        } 
     } 
 
     //close modal
-    document.querySelector('.btn_close').addEventListener('click', hideModal)
+    document.querySelector('.btn_close').addEventListener('click', () => {
+        hideModal();
+        stopSecInterval()
+        pushDataLayer(`Click close on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
+    })
     document.querySelector('.modal__popular').addEventListener('click', (e) => {
-        if (e.target.matches('.modal__popular')) hideModal()
+        if (e.target.matches('.modal__popular')) {
+            hideModal()
+            stopSecInterval()
+            pushDataLayer(`Click outside modal on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
+        }
     })
 
     //click on "complete my order now" button
     document.querySelector('.btn_complete').addEventListener('click', (e) => {
         e.target.hidden = true;
         document.querySelector('.btns').hidden = false;
+        pushDataLayer('Click on complete my order now button')
     })
+
+    document.querySelector('.btn_credit_card_checkout').addEventListener('click', (e) => pushDataLayer('Click on credit card checkout button'))
+    document.querySelector('.btn__paypal').addEventListener('click', (e) => pushDataLayer('Click on check out with PayPal button'))
+    document.querySelector('.btn__affirm').addEventListener('click', (e) => pushDataLayer('Click on monthly payment affirm button'))
 
     //refresh status modal
     document.querySelectorAll('.cart-body-wrap .icon-delete').forEach(button => {
         button.addEventListener('click', () => sessionStorage.removeItem('modal_loaded'))
     });
 }
+
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'event-to-ga',
+    'eventCategory': `Exp: Exit-intent pop-up - ${detectMob() == true ? 'mobile' : 'desktop'}`,
+    'eventAction': 'loaded'
+});
+
+let isClarify = setInterval(() => {
+	if (typeof clarity == 'function') {
+		clearInterval(isClarify)
+		clarity('set', `Exit_intent_pop_up_${detectMob() == true ? 'mobile' : 'desktop'}`, 'variant_1')
+	}
+}, 100)
