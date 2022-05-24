@@ -13,7 +13,7 @@ let startFunkDesk = setInterval(() => {
 
     let popupStyle = /*html */ `
     <style>
-        header,
+      header,
 .main section .desktop-view,
 .main section .mobile-view {
   display: none !important;
@@ -93,7 +93,7 @@ let startFunkDesk = setInterval(() => {
 }
 
 .enroll_box .info_box > div:first-child > div {
-  max-width: 360px;
+  max-width: 668px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -104,7 +104,7 @@ let startFunkDesk = setInterval(() => {
 
 .enroll_box .info_box > div:first-child > div span {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 188%;
   color: #193973;
   margin-left: 16px;
@@ -167,7 +167,7 @@ let startFunkDesk = setInterval(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 431px;
+  max-width: 503px;
   height: 80px;
   width: 100%;
   color: #ffffff;
@@ -177,6 +177,13 @@ let startFunkDesk = setInterval(() => {
   outline: none;
   border: none;
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  text-align: center;
+}
+
+@media (max-width: 810px) {
+  .enroll_box .info_box > div:first-child > a {
+    font-size: 21px;
+  }
 }
 
 .enroll_box .info_box > div:first-child > a:hover {
@@ -185,12 +192,18 @@ let startFunkDesk = setInterval(() => {
 
 #contact-submit:hover,
 .btn_continue:hover,
-.button_input_name:hover{
+.button_input_name:hover {
   box-shadow: 4px -4px 10px #272020;
 }
 
 .enroll_box .info_box > div.img_wrap {
   max-width: 413px;
+}
+
+.popup_new > div:last-child .popup_third_box .btn_continue.disabled_var {
+  background: #c0c5cd;
+  cursor: inherit;
+  pointer-events: none;
 }
 
 /*dog_list */
@@ -208,7 +221,8 @@ let startFunkDesk = setInterval(() => {
   line-height: 94% !important;
   text-align: center;
   color: #193973 !important;
-  margin-bottom: 65px !important;
+  margin: 0 auto 65px !important;
+  max-width: 628px;
 }
 
 .dog_list ul {
@@ -363,8 +377,8 @@ let startFunkDesk = setInterval(() => {
   align-items: center;
 }
 
-.popup_new > div:last-child .progress_bar > div p.active_btn_second{
-    display: none;
+.popup_new > div:last-child .progress_bar > div p.active_btn_second {
+  display: none;
 }
 
 .popup_new > div:last-child .progress_bar > div p:nth-child(2),
@@ -376,8 +390,8 @@ let startFunkDesk = setInterval(() => {
   display: none;
 }
 
-.popup_new > div:last-child .progress_bar > div p:nth-child(2) span{
-    margin-left: 10px;
+.popup_new > div:last-child .progress_bar > div p:nth-child(2) span {
+  margin-left: 10px;
 }
 
 .first_block_checkbox {
@@ -505,10 +519,10 @@ let startFunkDesk = setInterval(() => {
 .first_block_checkbox label:focus,
 .first_block_checkbox label:hover,
 .popup_new > div:last-child .popup_second ul li label:focus,
-.popup_new > div:last-child .popup_second ul li label:hover{
-border-color: #66afe9;
-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
-    outline: 0;
+.popup_new > div:last-child .popup_second ul li label:hover {
+  border-color: #66afe9;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+  outline: 0;
 }
 
 .popup_new > div:last-child .popup_first.active_popup,
@@ -531,7 +545,7 @@ box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: #193973;
+  color: #193973 !important;
 }
 
 .chosen-container .chosen-results li em {
@@ -539,47 +553,154 @@ box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
   text-decoration: unset;
 }
 
-/* */
-
-.fade.in {
-    background-color: #FFFFFF;
+/*chosen_select */
+.chosen_select {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 85px;
 }
 
-.vis-ver-0_0.modal-header.modal-header-style.modal-of-header.style-border.modal-header1,
-.for-spacing,
+.chosen_select label {
+  border: 1px solid #e8f1f9;
+  border-radius: 10px;
+  outline: unset;
+  display: flex;
+  width: 100%;
+  height: 44px;
+  max-width: 520px;
+  margin: 0 0 8px;
+  align-items: center;
+  padding: 5px 18px;
+}
+
+.chosen_select label svg {
+  max-width: 24px;
+  height: 24px;
+  width: 100%;
+}
+
+.chosen_select label svg#removeTextInput {
+  cursor: pointer;
+}
+
+.chosen_select label > input {
+  width: 100%;
+  outline: unset;
+  border-radius: 10px;
+  border: none;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #193973;
+  height: 100%;
+  margin: 0 0 0 8px;
+}
+
+.chosen_select label:focus {
+  border: 1px solid #6fb3fa;
+  border-radius: 10px;
+  box-shadow: unset;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.chosen_select label > input::placeholder {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  color: #a9b4b8;
+}
+
+.chosen_select label > input:focus {
+  box-shadow: unset;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.chosen_select div {
+  border: 1px solid #e8f1f9;
+  border-radius: 10px;
+  padding: 10px 19px 0px 16px;
+  max-width: 520px;
+}
+
+.chosen_select div ul {
+  overflow-x: auto;
+  max-height: 240px;
+}
+
+.chosen_select ul::-webkit-scrollbar {
+  width: 2px;
+}
+
+.chosen_select ul::-webkit-scrollbar-thumb {
+  background: #6f767b;
+  border-radius: 10px;
+}
+
+.chosen_select ul li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #193973 !important;
+  padding: 6px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chosen_select::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8f1f9;
+  border-radius: 10px;
+  max-width: 501px;
+}
+
+/* */
+
+#openModal.fade.in {
+  background-color: #ffffff;
+}
+
+#openModal .for-spacing,
 #openModal .modal-header.modal-header-style.modal-of-header.style-border,
 #openModal .row-md-12.style-of-row-free-workshop > div:first-child {
   display: none !important;
 }
 
-.border-of-modal .modal-header {
+#openModal .border-of-modal .modal-header {
   border: unset !important;
 }
 
-#steptwoadult,
-#steppuppies,
-.yesno,
-#puppyContent > p:last-child,
-#adultContent > p:last-child,
-#subs-email2,
-#subs-mobile2 {
+#openModal #subs-email2,
+#openModal #subs-mobile2 {
   display: none;
 }
 
-#openModal .form-group {
+#openModal #openModal .form-group {
   background: white;
   border-radius: 10px;
 }
 
-.border-of-modal .vis-ver-2_2.modal-header.modal-header-style.modal-of-header.style-border.modal-header1 {
+#openModal .border-of-modal .vis-ver-2_2.modal-header.modal-header-style.modal-of-header.style-border.modal-header1 {
   display: none;
 }
 
-.popup_third {
+#openModal .popup_third {
   display: none;
 }
 
-.btn_wrapp {
+#openModal .btn_wrapp {
   display: none;
   max-width: 844px;
   width: 100%;
@@ -587,52 +708,54 @@ box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
   position: relative;
 }
 
-.btn_wrapp > p{
+#openModal .btn_wrapp > p {
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 400;
-font-size: 16px;
-line-height: 20px;
-color: #808080 !important;
-margin: 0;
-cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  color: #808080 !important;
+  margin: 0;
+  cursor: pointer;
 }
 
-.btn_wrapp > p span{
+.btn_wrapp > p span {
   margin-left: 8px;
 }
 
-.btn_wrapp button.close{
-    top: 0;
-    right: -5px;
-    color: #808080;
+#openModal .btn_wrapp button.close {
+  top: 0;
+  right: -5px;
+  color: #808080;
 }
 
-
-.btn_wrapp > p.active_btn_fifth{
+#openModal .btn_wrapp > p.active_btn_fifth {
   opacity: 0;
   pointer-events: none;
 }
-
 
 #openModal .popup_third {
   display: block;
 }
 
-
-.border-of-modal {
+#openModal .border-of-modal {
   margin: 0;
 }
 
-.modal-dialog {
+#openModal .modal-dialog {
   width: 95% !important;
   margin: 10px auto;
 }
 
-.modal-dialog > .img_wrap{
-    max-width: 200px;
-    margin-bottom: 10px;
+#openModal .modal-dialog > .img_wrap {
+  margin: 0 auto 10px;
+  max-width: 1358px;
+  width: 90%;
+}
+
+#openModal .modal-dialog > .img_wrap img {
+  max-width: 200px;
 }
 
 #openModal .modal-content {
@@ -645,15 +768,15 @@ cursor: pointer;
   max-width: unset !important;
 }
 
-.modal-body {
-    display: none;
-    background: unset !important;
-    padding: 0 15px;
-    border: 2px solid #E8F1F9;
-    border-radius: 10px;
-    max-width: 844px;
-    width: 100%;
-    margin: 0 auto;
+#openModal .modal-body {
+  display: none;
+  background: unset !important;
+  padding: 0 15px;
+  border: 2px solid #e8f1f9;
+  border-radius: 10px;
+  max-width: 844px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .header_popup {
@@ -688,7 +811,7 @@ cursor: pointer;
 }
 
 .button_input_name,
-#contact-submit {
+#openModal #contact-submit {
   background: #193973;
   border-radius: 10px;
   margin: 0 auto;
@@ -712,7 +835,7 @@ cursor: pointer;
   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
-#contact-submit {
+#openModal #contact-submit {
   margin: 0 !important;
 }
 
@@ -726,79 +849,75 @@ cursor: pointer;
   box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-#finalForm .style-text,
-form .form-group > div:last-child,
-form .form-group img,
-.fst_icon.fa-user:before,
-.fa-envelope:before,
-#subs-email,
-#subs-mobile,
-#contact-submit,
+#openModal #finalForm .style-text,
+#openModal form .form-group > div:last-child,
+#openModal form .form-group img,
+#openModal .fst_icon.fa-user:before,
+#openModal .fa-envelope:before,
+#openModal #subs-email,
+#openModal #subs-mobile,
+#openModal #contact-submit,
 .benefits,
 .popup_adress {
   display: none;
 }
 
-#subs-email,
-#subs-mobile,
-#contact-submit,
-#subs-email2,
-#subs-mobile2 {
+#openModal #subs-email,
+#openModal #subs-mobile,
+#openModal #contact-submit,
+#openModal #subs-email2,
+#openModal #subs-mobile2 {
   max-width: 331px;
   width: 100% !important;
   margin: 0 auto 16px !important;
 }
 
-.fa {
+#openModal .fa {
   display: none !important;
 }
 
-form span.top-levels {
+#openModal form span.top-levels {
   right: 277px !important;
 }
 
-form span.top-levels#subs-email2-top-levels,
-form span.top-levels#subs-mobile2-top-levels,
-form span.top-levels#subs-email-top-levels,
-form span.top-levels#subs-mobile-top-levels {
+#openModal form span.top-levels#subs-email2-top-levels,
+#openModal form span.top-levels#subs-mobile2-top-levels,
+#openModal form span.top-levels#subs-email-top-levels,
+#openModal form span.top-levels#subs-mobile-top-levels {
   right: 267px !important;
 }
 
-
-
-
 @media only screen and (min-width: 768px) and (max-width: 857px) {
-  form span.top-levels,
-  form span.top-levels#subs-email2-top-levels,
-form span.top-levels#subs-mobile2-top-levels,
-form span.top-levels#subs-email-top-levels,
-form span.top-levels#subs-mobile-top-levels {
+  #openModal form span.top-levels,
+  #openModal form span.top-levels#subs-email2-top-levels,
+  #openModal form span.top-levels#subs-mobile2-top-levels,
+  #openModal form span.top-levels#subs-email-top-levels,
+  #openModal form span.top-levels#subs-mobile-top-levels {
     right: 254px !important;
   }
 }
 
-
-#finalForm {
+#openModal #finalForm {
   display: block;
   background: #ffffff;
   border-radius: 10px;
 }
 
-.form-group {
+#openModal .form-group {
   margin: 0;
   padding: 0 0 24px;
 }
 
-#finalForm .popup_third .body_popup > h2 {
+#openModal #finalForm .popup_third .body_popup > h2 {
   margin: 0 auto !important;
 }
 
-#finalForm .popup_third .body_popup {
+#openModal #finalForm .popup_third .body_popup {
   padding: 28px 164px 0;
   margin-bottom: 56px;
 }
 
-.form-control {
+#openModal .form-control {
   width: 100% !important;
   margin: 0 auto 16px !important;
   padding: 10px 18px;
@@ -859,10 +978,10 @@ form span.top-levels#subs-mobile-top-levels {
   margin: 0 0 0 14px;
 }
 
-#subs-name,
-#dog-name,
-#subs-name2,
-#dog-name2 {
+#openModal #subs-name,
+#openModal #dog-name,
+#openModal #subs-name2,
+#openModal #dog-name2 {
   display: flex;
 }
 
@@ -877,7 +996,7 @@ form span.top-levels#subs-mobile-top-levels {
   margin-left: 10px;
 }
 
-#finalForm .popup_third .popup_adress .body_popup {
+#openModal #finalForm .popup_third .popup_adress .body_popup {
   padding: 24px 0 0;
   margin-bottom: 16px;
 }
@@ -896,7 +1015,7 @@ form span.top-levels#subs-mobile-top-levels {
   color: #808080 !important;
 }
 
-button.close {
+#openModal button.close {
   display: block;
   position: absolute;
   top: 13px;
@@ -906,8 +1025,8 @@ button.close {
   text-shadow: unset;
 }
 
-.close:hover,
-.close:focus {
+#openModal .close:hover,
+#openModal .close:focus {
   color: #a0a1a8;
   opacity: 1;
 }
@@ -927,7 +1046,7 @@ button.close {
   margin: 0 auto !important;
 }
 
-form .text_for_work_shop {
+#openModal form .text_for_work_shop {
   font-weight: 400;
   font-size: 12px !important;
   line-height: 20px;
@@ -937,13 +1056,12 @@ form .text_for_work_shop {
   display: none;
 }
 
-
     </style>
     `
     let newBlock = /*html */ `
     <section class="new_block">
         <div class="join_text">
-            <p>Join free online workshop </p>
+            <p>Join our free online workshop</p>
         </div>
         <div class="enroll_box">
             <div class="container_var">
@@ -954,25 +1072,25 @@ form .text_for_work_shop {
                     <div>
                         <div>
                             <img src="https://conversionratestore.github.io/projects/knineti/img/medal.svg" alt="medal">
-                            <span>First workshop from service dog trainer </span>
+                            <span>Exclusive and first ever online workshop by renowned service dog trainer Dr. Alexa Diaz, PhD</span>
                         </div>
                         <h1>Learn how to train your dog to be as <br> <span>obedient</span> as a service dog</h1>
-                        <p>Take 1-minute quiz about your dog to access <b>free online workshop</b> and learn how to deal with barking, housebreaking, nipping and other unwanted behavior</p>
+                        <p>Take a 1-minute quiz about your dog to access our <b>free online workshop</b> and learn how to deal with barking, housebreaking, nipping and other unwanted behaviors</p>
                         <ul>
                             <li>
                                 <img src="https://conversionratestore.github.io/projects/knineti/img/bi_play-circle-fill.svg" alt="play circle">
-                                <span>Workshop durarion: 56 minutes</span>
+                                <span>Workshop duration: 56 minutes</span>
                             </li>
                              <li>
                                 <img src="https://conversionratestore.github.io/projects/knineti/img/bx_time-five.svg" alt="time five">
-                                <span>Starts immediately</span>
+                                <span>Watch on demand at your convenience</span>
                             </li>
                             <li>
                                 <img src="https://conversionratestore.github.io/projects/knineti/img/bi_person-fill.svg" alt="person">
-                                <span>Viewed by 500,000 dog owners</span>
+                                <span>This workshop has helped train 2.7 million dogs</span>
                             </li>
                         </ul>
-                        <a href="#">Enroll to free online workshop</a>
+                        <a href="#">Sign up for the free online workshop</a>
                     </div>
                     <div class="img_wrap">
                         <img src="https://conversionratestore.github.io/projects/knineti/img/enroll_box_dog.jpg" alt="dog">
@@ -992,226 +1110,226 @@ form .text_for_work_shop {
     `
 
     let arrayDog = {
-      "Reactivity to the other dogs": ["https://conversionratestore.github.io/projects/knineti/img/dog_list12.jpg"],
+      "Reacting to other dogs": ["https://conversionratestore.github.io/projects/knineti/img/dog_list12.jpg"],
       "Anxiety ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list11.jpg"],
       "Aggression ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list10.jpg"],
       "Extremely excited": ["https://conversionratestore.github.io/projects/knineti/img/dog_list9.jpg"],
       "Chewing ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list8.jpg"],
-      "Don’t listen": ["https://conversionratestore.github.io/projects/knineti/img/dog_list7.jpg"],
-      "Don’t come when you call": ["https://conversionratestore.github.io/projects/knineti/img/dog_list6.jpg"],
-      "Nipping or Biting": ["https://conversionratestore.github.io/projects/knineti/img/dog_list5.jpg"],
+      "Doesn't listen": ["https://conversionratestore.github.io/projects/knineti/img/dog_list7.jpg"],
+      "Not coming when called": ["https://conversionratestore.github.io/projects/knineti/img/dog_list6.jpg"],
+      "Nipping or biting": ["https://conversionratestore.github.io/projects/knineti/img/dog_list5.jpg"],
       "Housebreaking ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list4.jpg"],
-      "Pulling the leash": ["https://conversionratestore.github.io/projects/knineti/img/dog_list3.jpg"],
+      "Pulling on leash": ["https://conversionratestore.github.io/projects/knineti/img/dog_list3.jpg"],
       "Jumping ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list2.jpg"],
       "Barking ": ["https://conversionratestore.github.io/projects/knineti/img/dog_list1.jpg"],
     }
 
     let arrayBreedDog = [
-      "Affenpinscher",
-      "Afghan Hound",
-      "Airedale Terrier",
-      "Akbash",
-      "Akita",
-      "Alaskan Husky",
-      "Alaskan Klee Kai",
-      "Alaskan Malamute",
-      "American BullDog",
-      "American Eskimo",
-      "American Foxhound",
-      "Mexican Hairless Terrier",
-      "American Hairless Terrier",
-      "American Pit Bull Terrier",
-      "American Staffordshire Terrier",
-      "Anatolian Shepherd",
-      "Argentine Dogo",
-      "Armant",
-      "Australian Cattle Dog",
-      "Australian Kelpie",
-      "Australian Shepherd",
-      "Australian Terrier",
-      "Barbet",
-      "Basenji",
-      "Basset Griffon",
-      "Basset Hound",
-      "Beagle",
-      "Bearded Collie",
-      "Beauceron",
-      "Bedlington Terrier",
-      "Belgian Sheepdog",
-      "Belgian Tervuren",
-      "Bergamasco",
-      "Berger Picard",
-      "Berger Pyrenees",
-      "Bernese Mountain Dog",
-      "Bichon Frise",
-      "Biewer",
-      "Redbone Coonhound",
-      "Black and Tan Coonhound",
-      "Black Russian Terrier",
-      "Bloodhound",
-      "Blue Heeler",
-      "Boerboel",
-      "Border Collie",
-      "Border Terrier",
-      "Borzoi",
-      "Boston Terrier",
-      "Boxer",
-      "Boykin Spaniel",
-      "Brandlbracke",
-      "Briard",
-      "Briquet",
-      "Brittany Dog",
-      "Brussels Griffon",
-      "Bull Mastiff",
-      "Staffordshire Bull Terrier",
-      "Bull Terrier",
-      "Cairn Terrier",
-      "Canaan Dog",
-      "Cane Corso",
-      "Cardigan Welsh Corgi",
-      "Carolina Dog",
-      "Catahoula",
-      "Caucasian Mountain Dog",
-      "Cavalier King Charles Spaniel",
-      "Chesapeake Bay Retriever",
-      "Chihuahua",
-      "Chinese Crested",
-      "Chinese Shar-Pei",
-      "Chow Chow",
-      "Clumber Spaniel",
-      "English Cocker Spaniel",
-      "Cocker Spaniel",
-      "Coton De Tulear",
-      "Curly-Coated Retriever",
-      "Dachshund",
-      "Dalmatian",
-      "Dingo",
-      "Doberman Pinscher",
-      "Drever",
-      "Dutch Shepherd",
-      "French BullDog",
-      "Olde English BullDogge",
-      "English BullDog",
-      "English Foxhound",
-      "English Setter",
-      "English Springer Spaniel",
-      "English Toy Spaniel",
-      "Entlebucher",
-      "Eurasier",
-      "Field Spaniel",
-      "Finnish Spitz",
-      "Flat-Coated Retriever",
-      "German Pinscher",
-      "German Shepherd",
-      "German Shorthaired Pointer",
-      "German Spitz",
-      "German Wirehaired Pointer",
-      "Giant Schnauzer",
-      "Glen of Imaal Terrier",
-      "Golden Retriever",
-      "Gordon Setter",
-      "Great Dane",
-      "Greater Swiss Mountain Dog",
-      "Italian Greyhound",
-      "Greyhound",
-      "Havanese",
-      "Hovawart",
-      "Ibizan Hound",
-      "Irish Setter",
-      "Irish Terrier",
-      "Irish Water Spaniel",
-      "Irish Wolfhound",
-      "Italian Spinone",
-      "Parson Russell Terrier",
-      "Jack Russell Terrier",
-      "Japanese Chin",
-      "Japanese Spitz",
-      "Jindo",
-      "Keeshond",
-      "Kerry Blue Terrier",
-      "King Shepherd",
-      "Komondor",
-      "Kuvasz",
-      "Labrador Retriever",
-      "Lakeland Terrier",
-      "Landseer",
-      "Lapphund",
-      "Leonberger",
-      "Lhasa Apso",
-      "Lowchen",
-      "Malinois",
-      "Maltese",
-      "Manchester Terrier",
-      "Neapolitan Mastiff",
-      "Tibetan Mastiff",
-      "Mastiff",
-      "Miniature Pinscher",
-      "Miniature Schnauzer",
-      "Mountain Cur",
-      "Mudi",
-      "Munsterlander",
-      "Newfoundland",
-      "Norfolk Terrier",
-      "Norwegian Elkhound",
-      "Norwich Terrier",
-      "Nova Scotia Duck Tolling Retriever",
-      "Old English Sheepdog",
-      "Otterhound",
-      "Papillon",
-      "Patterdale Terrier",
-      "Pekingese",
-      "Pembroke Welsh Corgi",
-      "Pharaoh Hound",
-      "Pit Bull",
-      "Plott Hound",
-      "Pudelpointer",
-      "Pointer",
-      "Pomeranian",
-      "Toy Poodle",
-      "Poodle",
-      "Portuguese Water Dog",
-      "Presa Canario",
-      "Pug",
-      "Puli",
-      "Pumi",
-      "Rat Terrier",
-      "Thai Ridgeback",
-      "Rhodesian Ridgeback",
-      "Rottweiler",
-      "Saint Bernard",
-      "Saluki",
-      "Samoyed",
-      "Schipperke",
-      "Scottish Terrier",
-      "Shetland Sheepdog",
-      "Shiba Inu",
-      "Shih Tzu",
-      "Shiloh Shepherd",
-      "Siberian Husky",
-      "Skye Terrier",
-      "Smooth Fox Terrier",
-      "Smoushond",
-      "Soft Coated Wheaten Terrier",
-      "Spanish Water Dog",
-      "Tasy",
-      "Tibetan Spaniel",
-      "Tibetan Terrier",
-      "Tosa Inu",
-      "Vizsla",
-      "Weimaraner",
-      "Welsh Springer Spaniel",
-      "Welsh Terrier",
-      "West Highland White Terrier",
-      "Whippet",
-      "White German Shepherd",
-      "Wire Fox Terrier",
-      "Wolfdog",
       "Yorkshire Terrier",
+      "Wolfdog",
+      "Wire Fox Terrier",
+      "White German Shepherd",
+      "Whippet",
+      "West Highland White Terrier",
+      "Welsh Terrier",
+      "Welsh Springer Spaniel",
+      "Weimaraner",
+      "Vizsla",
+      "Tosa Inu",
+      "Tibetan Terrier",
+      "Tibetan Spaniel",
+      "Tasy",
+      "Spanish Water Dog",
+      "Soft Coated Wheaten Terrier",
+      "Smoushond",
+      "Smooth Fox Terrier",
+      "Skye Terrier",
+      "Siberian Husky",
+      "Shiloh Shepherd",
+      "Shih Tzu",
+      "Shiba Inu",
+      "Shetland Sheepdog",
+      "Scottish Terrier",
+      "Schipperke",
+      "Samoyed",
+      "Saluki",
+      "Saint Bernard",
+      "Rottweiler",
+      "Rhodesian Ridgeback",
+      "Thai Ridgeback",
+      "Rat Terrier",
+      "Pumi",
+      "Puli",
+      "Pug",
+      "Presa Canario",
+      "Portuguese Water Dog",
+      "Poodle",
+      "Toy Poodle",
+      "Pomeranian",
+      "Pointer",
+      "Pudelpointer",
+      "Plott Hound",
+      "Pit Bull",
+      "Pharaoh Hound",
+      "Pembroke Welsh Corgi",
+      "Pekingese",
+      "Patterdale Terrier",
+      "Papillon",
+      "Otterhound",
+      "Old English Sheepdog",
+      "Nova Scotia Duck Tolling Retriever",
+      "Norwich Terrier",
+      "Norwegian Elkhound",
+      "Norfolk Terrier",
+      "Newfoundland",
+      "Munsterlander",
+      "Mudi",
+      "Mountain Cur",
+      "Miniature Schnauzer",
+      "Miniature Pinscher",
+      "Mastiff",
+      "Tibetan Mastiff",
+      "Neapolitan Mastiff",
+      "Manchester Terrier",
+      "Maltese",
+      "Malinois",
+      "Lowchen",
+      "Lhasa Apso",
+      "Leonberger",
+      "Lapphund",
+      "Landseer",
+      "Lakeland Terrier",
+      "Labrador Retriever",
+      "Kuvasz",
+      "Komondor",
+      "King Shepherd",
+      "Kerry Blue Terrier",
+      "Keeshond",
+      "Jindo",
+      "Japanese Spitz",
+      "Japanese Chin",
+      "Jack Russell Terrier",
+      "Parson Russell Terrier",
+      "Italian Spinone",
+      "Irish Wolfhound",
+      "Irish Water Spaniel",
+      "Irish Terrier",
+      "Irish Setter",
+      "Ibizan Hound",
+      "Hovawart",
+      "Havanese",
+      "Greyhound",
+      "Italian Greyhound",
+      "Greater Swiss Mountain Dog",
+      "Great Dane",
+      "Gordon Setter",
+      "Golden Retriever",
+      "Glen of Imaal Terrier",
+      "Giant Schnauzer",
+      "German Wirehaired Pointer",
+      "German Spitz",
+      "German Shorthaired Pointer",
+      "German Shepherd",
+      "German Pinscher",
+      "Flat-Coated Retriever",
+      "Finnish Spitz",
+      "Field Spaniel",
+      "Eurasier",
+      "Entlebucher",
+      "English Toy Spaniel",
+      "English Springer Spaniel",
+      "English Setter",
+      "English Foxhound",
+      "English BullDog",
+      "Olde English BullDogge",
+      "French BullDog",
+      "Dutch Shepherd",
+      "Drever",
+      "Doberman Pinscher",
+      "Dingo",
+      "Dalmatian",
+      "Dachshund",
+      "Curly-Coated Retriever",
+      "Coton De Tulear",
+      "Cocker Spaniel",
+      "English Cocker Spaniel",
+      "Clumber Spaniel",
+      "Chow Chow",
+      "Chinese Shar-Pei",
+      "Chinese Crested",
+      "Chihuahua",
+      "Chesapeake Bay Retriever",
+      "Cavalier King Charles Spaniel",
+      "Caucasian Mountain Dog",
+      "Catahoula",
+      "Carolina Dog",
+      "Cardigan Welsh Corgi",
+      "Cane Corso",
+      "Canaan Dog",
+      "Cairn Terrier",
+      "Bull Terrier",
+      "Staffordshire Bull Terrier",
+      "Bull Mastiff",
+      "Brussels Griffon",
+      "Brittany Dog",
+      "Briquet",
+      "Briard",
+      "Brandlbracke",
+      "Boykin Spaniel",
+      "Boxer",
+      "Boston Terrier",
+      "Borzoi",
+      "Border Terrier",
+      "Border Collie",
+      "Boerboel",
+      "Blue Heeler",
+      "Bloodhound",
+      "Black Russian Terrier",
+      "Black and Tan Coonhound",
+      "Redbone Coonhound",
+      "Biewer",
+      "Bichon Frise",
+      "Bernese Mountain Dog",
+      "Berger Pyrenees",
+      "Berger Picard",
+      "Bergamasco",
+      "Belgian Tervuren",
+      "Belgian Sheepdog",
+      "Bedlington Terrier",
+      "Beauceron",
+      "Bearded Collie",
+      "Beagle",
+      "Basset Hound",
+      "Basset Griffon",
+      "Basenji",
+      "Barbet",
+      "Australian Terrier",
+      "Australian Shepherd",
+      "Australian Kelpie",
+      "Australian Cattle Dog",
+      "Armant",
+      "Argentine Dogo",
+      "Anatolian Shepherd",
+      "American Staffordshire Terrier",
+      "American Pit Bull Terrier",
+      "American Hairless Terrier",
+      "Mexican Hairless Terrier",
+      "American Foxhound",
+      "American Eskimo",
+      "American BullDog",
+      "Alaskan Malamute",
+      "Alaskan Klee Kai",
+      "Alaskan Husky",
+      "Akita",
+      "Akbash",
+      "Airedale Terrier",
+      "Afghan Hound",
+      "Affenpinscher",
     ]
 
     let popupNew = /*html*/ `
     <div class="popup_new">
-        <div class="img_wrap">
+      <div class="img_wrap">
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog_select_problem.jpg" alt="dog" class="dog_first">
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog_age_block.jpg" alt="dog" class="dog_second">
             <img src="https://conversionratestore.github.io/projects/knineti/img/dog_breed_block.jpg" alt="dog" class="dog_third">
@@ -1237,8 +1355,8 @@ form .text_for_work_shop {
             </div>
 
             <div class="popup_first active_popup">
-                <h2>What unwanted behavior you want to address?</h2>
-                <p>Select all problems you’ve experienced in the last 2 months</p>
+                <h2>What unwanted behavior do you want to address?</h2>
+                <p>Select any problems you’ve experienced in the last 2 months</p>
                 <div class="first_block_checkbox">
                     <input class="custom_checkbox" id="barking" type="checkbox" name="barking" value="barking">
                     <label for="barking" tabIndex="0">Barking
@@ -1249,7 +1367,7 @@ form .text_for_work_shop {
                     </label>
     
                     <input class="custom_checkbox" id="pulling" type="checkbox" name="pulling" value="pulling">
-                    <label for="pulling" tabIndex="0">Pulling on leash
+                    <label for="pulling" tabIndex="0">Pulling leash
                     </label>
     
                     <input class="custom_checkbox" id="housebreaking" type="checkbox" name="housebreaking" value="housebreaking">
@@ -1261,7 +1379,7 @@ form .text_for_work_shop {
                     </label>
     
                     <input class="custom_checkbox" id="called" type="checkbox" name="called" value="called">
-                    <label for="called" tabIndex="0">Don’t come when you call
+                    <label for="called" tabIndex="0">Not coming when called
                     </label>
     
                     <input class="custom_checkbox" id="listen" type="checkbox" name="listen" value="listen">
@@ -1271,7 +1389,7 @@ form .text_for_work_shop {
                     <label for="chewing" tabIndex="0">Chewing</label>
     
                     <input class="custom_checkbox" id="excitable" type="checkbox" name="excitable" value="excitable">
-                    <label for="excitable" tabIndex="0">Extremely excitable</label>
+                    <label for="excitable" tabIndex="0">Extremely excited</label>
     
                     <input class="custom_checkbox" id="aggression" type="checkbox" name="aggression" value="aggression">
                     <label for="aggression" tabIndex="0">Aggression</label>
@@ -1325,12 +1443,23 @@ form .text_for_work_shop {
                     What breed is your dog?
                 </h2>
 
-                        <select data-placeholder="Enter your dog’s breed" multiple class="chosen-select">
-                            <option value=""></option>
-                        </select>
-                
+                <div class="chosen_select">
+                  <label>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.04 17.2798C7.58405 17.2798 4.80005 14.4958 4.80005 11.0398C4.80005 7.5838 7.58405 4.7998 11.04 4.7998C14.496 4.7998 17.28 7.5838 17.28 11.0398C17.28 14.4958 14.496 17.2798 11.04 17.2798ZM11.04 5.7598C8.11205 5.7598 5.76005 8.1118 5.76005 11.0398C5.76005 13.9678 8.11205 16.3198 11.04 16.3198C13.968 16.3198 16.32 13.9678 16.32 11.0398C16.32 8.1118 13.968 5.7598 11.04 5.7598Z" fill="#A9B4B8"/>
+                    <path d="M15.6873 15.0078L19.9977 19.3182L19.3189 19.9969L15.0085 15.6865L15.6873 15.0078Z" fill="#A9B4B8"/>
+                    </svg>
+                    <input type="text" placeholder='Enter your dog’s breed'>
 
-                <div class="btn_continue" tabIndex="0">Continue</div>
+                    <svg id="removeTextInput" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0604 11.9996L17.7802 7.27982C17.9168 7.13837 17.9924 6.94892 17.9907 6.75227C17.989 6.55562 17.9101 6.36751 17.7711 6.22846C17.632 6.0894 17.4439 6.01053 17.2472 6.00882C17.0506 6.00711 16.8611 6.0827 16.7197 6.21932L11.9999 10.9391L7.28019 6.21932C7.13874 6.0827 6.94929 6.00711 6.75264 6.00882C6.55599 6.01053 6.36788 6.0894 6.22882 6.22846C6.08977 6.36751 6.01089 6.55562 6.00918 6.75227C6.00747 6.94892 6.08307 7.13837 6.21969 7.27982L10.9394 11.9996L6.21969 16.7193C6.14806 16.7885 6.09092 16.8713 6.05161 16.9628C6.01231 17.0543 5.99162 17.1527 5.99075 17.2523C5.98989 17.3519 6.00886 17.4506 6.04657 17.5428C6.08428 17.635 6.13997 17.7187 6.21039 17.7891C6.28081 17.8595 6.36455 17.9152 6.45672 17.9529C6.5489 17.9907 6.64765 18.0096 6.74724 18.0088C6.84682 18.0079 6.94524 17.9872 7.03674 17.9479C7.12825 17.9086 7.211 17.8515 7.28019 17.7798L11.9999 13.0601L16.7197 17.7798C16.8611 17.9164 17.0506 17.992 17.2472 17.9903C17.4439 17.9886 17.632 17.9097 17.7711 17.7707C17.9101 17.6316 17.989 17.4435 17.9907 17.2469C17.9924 17.0502 17.9168 16.8608 17.7802 16.7193L13.0604 11.9996Z" fill="#808080"/>
+                    </svg>
+                  </label>
+                  <div>
+                    <ul></ul>
+                  </div>
+                </div>
+                <div class="btn_continue disabled_var" tabIndex="0">Continue</div>
             </div>
 
         </div>
@@ -1407,7 +1536,7 @@ form .text_for_work_shop {
     }
 
     function setListBreedDog(title) {
-      return `  <option value="${title}">${title}</option>`
+      return `  <li data-breed="${title}">${title}</li>`
     }
 
     for (let key in arrayDog) {
@@ -1421,35 +1550,20 @@ form .text_for_work_shop {
       document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
     })
 
-    //
-    let slickInterval = setInterval(() => {
-      if (typeof jQuery(".chosen-select").chosen === "function" && document.querySelector(".chosen-select")) {
-        clearInterval(slickInterval)
-
-        $(document).ready(function () {
-          $(".chosen-select").chosen({
-            //   max_selected_options: 1,
-            no_results_text: "Oops, nothing found!",
-            width: "55%",
-          })
-        })
-      }
-    }, 100)
-
-    //       // #openModal
+    // #openModal
     // document.querySelectorAll('#openModal') -> click on btn popup
     let a = setInterval(() => {
       if (document.querySelector("#openModal .modal-content.modal-of-content.popup-first-body.landscape-popup-width")) {
         clearInterval(a)
-        if (document.querySelector(".modal.in .modal-dialog")) {
-          document.querySelector(".modal.in .modal-dialog").insertAdjacentHTML(
+        if (document.querySelector("#openModal.modal.in .modal-dialog")) {
+          document.querySelector("#openModal.modal.in .modal-dialog").insertAdjacentHTML(
             "afterbegin",
             `     <div class="img_wrap">
                           <img src="https://conversionratestore.github.io/projects/knineti/img/logo_dog.png" alt="logo dog">
                       </div>`
           )
 
-          document.querySelector(".modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
+          document.querySelector("#openModal.modal.in .modal-dialog > .img_wrap").insertAdjacentHTML(
             "afterend",
             `<div class="btn_wrapp">     
              <p class="active_btn_fourth" tabIndex="0">
@@ -1465,22 +1579,27 @@ form .text_for_work_shop {
         document.querySelector("#openModal .border-of-modal").insertAdjacentHTML("afterbegin", popupNew)
 
         arrayBreedDog.forEach((el) => {
-          document.querySelector(".chosen-select").insertAdjacentHTML("afterbegin", setListBreedDog(el))
+          document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
         })
 
         //   click on first btn Continue
-        document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
-          console.log(this)
-          this.closest(".popup_first").classList.remove("active_popup")
+        if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
+          document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
+            console.log(this)
+            this.closest(".popup_first").classList.remove("active_popup")
 
-          document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").style.display = "none"
-          document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second").style.display = "flex"
-          document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
-          document.querySelector(".popup_new .img_wrap .dog_first").style.display = "none"
-          document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
-          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.add("active_step")
-          document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
-        })
+            document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").style.display = "none"
+            if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.contains("active_btn_first")) {
+              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.remove("active_btn_first")
+            }
+            document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second").style.display = "flex"
+            document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
+            document.querySelector(".popup_new .img_wrap .dog_first").style.display = "none"
+            document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
+            document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.add("active_step")
+            document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
+          })
+        }
 
         //   click on second btn Continue
         document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
@@ -1516,6 +1635,7 @@ form .text_for_work_shop {
             if (this.classList.contains("active_btn_second")) {
               this.style.display = "none"
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").style.display = "flex"
+              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.add("active_btn_first")
               console.log("popup_second")
               document.querySelector(".popup_new > div:last-child .popup_first").classList.add("active_popup")
               document.querySelector(".popup_new > div:last-child .popup_second").classList.remove("active_popup")
@@ -1549,37 +1669,6 @@ form .text_for_work_shop {
               document.querySelector("#openModal .modal-body").style.display = "none"
               document.querySelector(".btn_wrapp").style.display = "none"
             }
-
-            // btn back fifth
-            // if (this.classList.contains("active_btn_fifth")) {
-            //   document.querySelector("#openModal .button_input_name").style.display = "flex"
-            //   document.querySelector("#openModal #subs-name2").style.display = "flex"
-            //   document.querySelector("#openModal #dog-name2").style.display = "flex"
-            //   document.querySelector("#openModal #dog-name2-top-levels").style.display = "flex"
-            //   document.querySelector("#openModal #subs-name2-top-levels").style.display = "flex"
-
-            //   document.querySelector("#openModal #subs-email2").style.display = "none"
-            //   document.querySelector("#openModal #subs-mobile2").style.display = "none"
-            //   if (document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-mobile2-top-levels")) {
-            //     document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-mobile2-top-levels").style.display = "none"
-            //   }
-
-            //   if (document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-email2-top-levels")) {
-            //     document.querySelector("#openModal  form span.top-levels#subs-mobile2-top-levels form span.top-levels#subs-email2-top-levels").style.display = "none"
-            //   }
-
-            //   document.querySelector("#openModal #contact-submit").style.display = "none"
-
-            //   document.querySelector("#openModal .text_for_work_shop").style.display = "none"
-            //   document.querySelector("#openModal .benefits").style.display = "none"
-            //   document.querySelector("#openModal .popup_adress").style.display = "none"
-            //   document.querySelector("#openModal .popup_name").style.display = "flex"
-
-            //   if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.contains("active_btn_fifth")) {
-            //     document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.remove("active_btn_fifth")
-            //     document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.add("active_btn_fourth")
-            //   }
-            // }
           })
         }
 
@@ -1643,6 +1732,31 @@ form .text_for_work_shop {
             // pushDataLayer(`Click on Closed on step "Enter your email and mobile number to access" #openModal`)
           })
         }
+
+        // choose select
+        if (document.querySelector(".popup_third_box.active_popup .chosen_select")) {
+          // remove all text input
+          document.querySelector("#removeTextInput").addEventListener("click", function (e) {
+            this.previousElementSibling.value = ""
+            console.log(this.previousElementSibling.value)
+          })
+
+          // filter
+          document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
+            let filterValue = this.value.toLowerCase()
+            console.log(filterValue)
+
+            document.querySelectorAll(".chosen_select ul li").forEach((el) => {
+              let text = el.textContent.toLowerCase()
+              if (text.indexOf(filterValue) > -1) {
+                el.style.display = "none"
+              } else {
+                console.log(el.textContent)
+                el.style.display = "block"
+              }
+            })
+          })
+        }
       }
     }, 10)
 
@@ -1698,12 +1812,21 @@ form .text_for_work_shop {
         e.preventDefault()
 
         document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
+
         let a = setInterval(() => {
-          if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
+          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.contains("active_btn_first")) {
             clearInterval(a)
-            document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
+            console.log(`setInterval`)
+            setTimeout(() => {
+              if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
+                if (!el.getAttribute("data-lst-dog")) {
+                  document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
+                }
+                el.setAttribute("data-lst-dog", "2")
+              }
+            }, 50)
           }
-        }, 10)
+        }, 20)
       })
     })
   }
