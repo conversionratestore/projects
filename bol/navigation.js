@@ -1,17 +1,17 @@
-function abjql(e) {
-    var a = document.createElement('script');
-    (a.type = 'text/javascript'),
-        a.readyState
-            ? (a.onreadystatechange = function () {
-                ('loaded' !== a.readyState && 'complete' !== a.readyState) ||
-                    ((a.onreadystatechange = null), e());
-            })
-            : (a.onload = function () {
-                e();
-            }),
-        (a.src = '//code.jquery.com/jquery-3.3.1.min.js'),
-        document.getElementsByTagName('head')[0].appendChild(a);
-}
+// function abjql(e) {
+//     var a = document.createElement('script');
+//     (a.type = 'text/javascript'),
+//         a.readyState
+//             ? (a.onreadystatechange = function () {
+//                 ('loaded' !== a.readyState && 'complete' !== a.readyState) ||
+//                     ((a.onreadystatechange = null), e());
+//             })
+//             : (a.onload = function () {
+//                 e();
+//             }),
+//         (a.src = '//code.jquery.com/jquery-3.3.1.min.js'),
+//         document.getElementsByTagName('head')[0].appendChild(a);
+// }
 function abjqlr(n) {
     var e = window.language_abtest
 
