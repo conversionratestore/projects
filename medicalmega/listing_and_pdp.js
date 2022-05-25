@@ -1597,7 +1597,6 @@ let requestProduct = new Promise((resolve, reject) => {
 
 //push dataLayer
 function pushDataLayer(actionDataLayer, labelDataLayer) {
-  console.log(actionDataLayer + ' : ' + labelDataLayer)
   window.dataLayer = window.dataLayer || [];
   dataLayer.push({
       'event': 'event-to-ga',
@@ -1737,23 +1736,6 @@ window.onload = function() {
     pushDataLayer(actionDataLayer,labelDataLayer);
   })
   document.querySelector('.cart_count').innerHTML = document.querySelector('.shoppingcart .by_num span').innerHTML;
-
-  let btnCategory = document.querySelector('.all_category');
-
-  //all categories
-  btnCategory.addEventListener('click', (e) => {
-    if (e.target.matches('.all_category')) {
-      document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-      document.querySelector('.ais-ClearRefinements-button').click();
-      e.target.parentElement.classList.toggle('active');
-      document.querySelector('.advanced-search').classList.remove('active');
-      document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
-
-      actionDataLayer = `Click on ${e.target.innerText} button`;
-      labelDataLayer = `Header`;
-      pushDataLayer(actionDataLayer,labelDataLayer);
-    }
-  })
 
   //select
   function remActiveSelect() {
@@ -1986,6 +1968,28 @@ window.onload = function() {
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
+            
+            let btnCategory = document.querySelector('.all_category');
+
+            //all categories
+            btnCategory.addEventListener('click', (e) => {
+              if (e.target.matches('.all_category')) {
+                e.stopImmediatePropagation()
+                query = '';
+                search._searchFunction(search.helper);
+                search.refresh()
+                document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+                document.querySelector('.ais-ClearRefinements-button').click();
+                e.target.parentElement.classList.toggle('active');
+                document.querySelector('.advanced-search').classList.remove('active');
+                document.querySelector(`[data-button="advanced-search"]`).classList.remove('active');
+
+                actionDataLayer = `Click on ${e.target.innerText} button`;
+                labelDataLayer = `Header`;
+                pushDataLayer(actionDataLayer,labelDataLayer);
+              }
+            })
+
             if (document.querySelector('#price_group li') != null) {
               let pricesContainer = document.querySelector('#price_group ul'),
               para = document.querySelectorAll('#price_group li');
@@ -2109,7 +2113,7 @@ window.onload = function() {
                 
                 query = '';
                 search._searchFunction(search.helper);
-                document.querySelector('#form-search .ais-SearchBox-input').value = '';
+                document.querySelector('#form-search .ais-SearchBox-input').value = query;
 
                 if (!e.target.classList.contains('action-clean')) {
                   actionDataLayer = `Click on All Clear Filters button`;
@@ -2184,7 +2188,6 @@ window.onload = function() {
         if (state == query && window.location.pathname.includes('/search/')) {
           query = window.location.pathname.split('search/')[1].split('-').join(' ');
         } 
-        console.log(query)
         search._searchFunction(search.helper)
       }
     }
@@ -2200,18 +2203,24 @@ window.onload = function() {
       })
   })
 
-  document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
+  document.querySelector('#form-search input').addEventListener('input', (e) => {
+    query = e.target.value;
+    // search._searchFunction(search.helper)
+  })
+
+  document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+    // e.stopImmediatePropagation()
     search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-    document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-    document.querySelector('.ais-ClearRefinements-button').click()
+    // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+    // document.querySelector('.ais-ClearRefinements-button').click()
     if (document.querySelector('.advanced-search.active') != null) {
       document.querySelector('.advanced-search').classList.remove('active');
     }
     toggleListing(true)
 
-    query = document.querySelector('#form-search .ais-SearchBox-input').value;
-    console.log(query)
+    // query = document.querySelector('#form-search .ais-SearchBox-input').value;
     search._searchFunction(search.helper)
+    // search.refresh()
     
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
@@ -2368,7 +2377,6 @@ window.onload = function() {
     toggleListing(false); //hide listing
     
     requestProduct.then(data => {
-      console.log(data)
       if (data.nbHits == 0) {
         document.querySelector('.main').style.display = 'none';
         document.querySelector('.style-main') != null ? document.querySelector('.style-main').remove() : '';
@@ -2383,7 +2391,6 @@ window.onload = function() {
         let categoryLvl = '';
 
         let lastLvlCategories = categoriesHit[Object.keys(categoriesHit)[Object.keys(categoriesHit).length - 1]];
-        console.log(lastLvlCategories)
 
         for (let j = 0; j < lastLvlCategories.length; j++) {
           if (lastLvlCategories[j] != null) {
@@ -2555,7 +2562,6 @@ window.onload = function() {
         //zoom
         let startZoom = setInterval(() => {
           if (document.querySelector('.img-zoom-result') != null) {
-              console.log('true')
               clearInterval(startZoom)
               imageZoom("forImg", "zoomResult")
           }
@@ -2599,10 +2605,8 @@ window.onload = function() {
           let startInterval = setInterval(() => {
               if (contentAvailableOptions != null) {
                   if (document.querySelector('.tns-outer') != null) {
-                      console.log('true')
                       clearInterval(startInterval)
                   } else {
-                      console.log('false')
                       let sliderCategories = tns({
                           container: contentAvailableOptions,
                           items: 2,
@@ -2651,7 +2655,6 @@ window.onload = function() {
         })
 
         requestSimilarProduct.then(res => {
-          console.log(res)
           let hits = res.hits;
 
           if (hits.length > 0) {
@@ -2763,7 +2766,6 @@ let mut = new MutationObserver(function (muts) {
       el.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
         query = '';
-        console.log(query)
         search._searchFunction(search.helper)
 
         let scrollTarget = document.body,
@@ -2775,7 +2777,6 @@ let mut = new MutationObserver(function (muts) {
           if (window.location.pathname.includes('/product/') || window.location.pathname.includes('/search/')) {
             if (window.location.href.includes('?products')) {
               clearInterval(startInterval)
-              console.log(window.location.href.split('?')[1])
               window.location.href = "https://medicalmega.com/?" + window.location.href.split('?')[1];
             }
           } else {
@@ -2823,7 +2824,6 @@ let mut = new MutationObserver(function (muts) {
         e.preventDefault();
         e.stopImmediatePropagation();
         query = '';
-        console.log(query)
         search._searchFunction(search.helper)
         document.querySelector('#form-search .ais-SearchBox-input').value = '';
        
