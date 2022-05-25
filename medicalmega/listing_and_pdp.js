@@ -2218,7 +2218,7 @@ window.onload = function() {
     }
     toggleListing(true)
 
-    // query = document.querySelector('#form-search .ais-SearchBox-input').value;
+    query = document.querySelector('#form-search .ais-SearchBox-input').value;
     search._searchFunction(search.helper)
     search.refresh()
     
