@@ -1999,6 +1999,7 @@ window.onload = function() {
               query = document.querySelector('#form-search .ais-SearchBox-input').value;
               console.log(query)
               search._searchFunction(search.helper)
+              search.refresh()
               
               actionDataLayer = `Click on submit button`;
               labelDataLayer = 'Search by Name';
