@@ -392,6 +392,20 @@ let applePayBtn = `
 let interval = null, 
     secInterval = null;   
 
+let setTime = 0;
+
+function starSecInterval() {
+    secInterval = setInterval(() => { 
+        setTime++
+        console.log(setTime)
+    }, 1000);
+}
+
+function stopSecInterval() {
+    clearInterval(secInterval);
+    pushDataLayer(`Visibility equals the pop-up its almost yours`,  setTime * 1000)
+}
+    
 function starInterval() {
     interval = setInterval(() => {
         //pdp add product
@@ -402,7 +416,7 @@ function starInterval() {
             sessionStorage.removeItem('modal_loaded'); //refresh status modal
         }
         //google pay button
-        if (document.querySelector('.cart-payments .google-pay-button') != null) {
+        if (document.querySelector('.cart-order .google-pay-button') != null && document.querySelector('.cart-order .google-pay-button.hidden') == null) {
             clearInterval(interval);
             document.querySelector('.btns .heading').insertAdjacentHTML('afterend', googlePayBtn) //add google pay button
            
@@ -412,7 +426,7 @@ function starInterval() {
             })
         }
         //apple pay button
-        if (document.querySelector('.cart-payments .apple-pay-button') != null) {
+        if (document.querySelector('.cart-order .apple-pay-button') != null && document.querySelector('.cart-order .apple-pay-button.hidden') == null) {
             clearInterval(interval);
             document.querySelector('.btns .heading').insertAdjacentHTML('afterend', applePayBtn) //add apple pay button
             
@@ -438,26 +452,16 @@ starInterval()
 //     clearInterval(interval);
 // }
 
-let setTime = 0;
-function starSecInterval() {
-    secInterval = setInterval(() => { 
-        setTime++
-        console.log(setTime)
-    }, 1000);
-}
-
-function stopSecInterval() {
-    clearInterval(secInterval);
-}
-
 //show modal 
 function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
-    pushDataLayer(`Visibility equals the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`) 
+    setTime = 0;
+    starSecInterval()
 }
 //hide modal 
 function hideModal() {
     document.querySelector('.modal__popular').classList.remove('show');
+    stopSecInterval()
 }
 window.onload = function() {
     //cart
@@ -480,14 +484,14 @@ window.onload = function() {
                     <div class="modal__footer">
                         <button type="button" class="btn btn_complete">complete my order now</button>
                         <div class="btns" hidden>
-                            <a class="btn btn_credit_card_checkout" href="${document.querySelector('.cart-order a.simple-btn').href}">Credit Card Checkout</a>
+                            <a class="btn btn_credit_card_checkout" href="${document.querySelector('.cart-order a.simple-btn') != null ? document.querySelector('.cart-order a.simple-btn').href : ''}">Credit Card Checkout</a>
                             <div class="heading"></div>
                         
-                            <a href="${document.querySelector('.cart-order a.-paypal').href}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
+                            <a href="${document.querySelector('.cart-order a.-paypal') != null ? document.querySelector('.cart-order a.-paypal').href : '#'}" class="btn btn__paypal" ${document.querySelector('.cart-order a.-paypal') == null ? 'hidden' : ''}>
                                 Check out with
                                 <img src="https://conversionratestore.github.io/projects/carid/img/paypal.svg" alt="paypal">
                             </a>
-                            <a href="${document.querySelector('.cart-order a.-affirm-monthly') != null ? document.querySelector('.cart-order a.-affirm-monthly').href : ''}" class="btn btn__affirm" ${document.querySelector('.cart-order a.-affirm-monthly') == null ? 'hidden' : ''}>
+                            <a href="${document.querySelector('.cart-order a.-affirm-monthly') != null ? document.querySelector('.cart-order a.-affirm-monthly').href : '#'}" class="btn btn__affirm" ${document.querySelector('.cart-order a.-affirm-monthly') == null ? 'hidden' : ''}>
                                 Monthly Payment 
                                 <img src="https://conversionratestore.github.io/projects/carid/img/monthly-payment.svg" alt="monthly payment affirm"> 
                             </a>
@@ -533,7 +537,7 @@ window.onload = function() {
                 if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-                    starSecInterval()
+                    
                 }
             })
 
@@ -564,7 +568,6 @@ window.onload = function() {
                 if(my_scroll() < -200 && !sessionStorage.getItem('modal_loaded')) {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-                    starSecInterval()
                 }
             }
 
@@ -576,14 +579,10 @@ window.onload = function() {
         //close modal
         document.querySelector('.btn_close').addEventListener('click', () => {
             hideModal();
-            stopSecInterval()
-            pushDataLayer(`Click close on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
         })
         document.querySelector('.modal__popular').addEventListener('click', (e) => {
             if (e.target.matches('.modal__popular')) {
                 hideModal()
-                stopSecInterval()
-                pushDataLayer(`Click outside modal on the ${document.querySelector('.btns').hidden == true ? 'first' : 'second'} pop-up its almost yours`,  setTime * 1000)
             }
         })
 
@@ -594,9 +593,18 @@ window.onload = function() {
             pushDataLayer('Click on complete my order now button')
         })
 
-        document.querySelector('.btn_credit_card_checkout').addEventListener('click', (e) => pushDataLayer('Click on credit card checkout button'))
-        document.querySelector('.btn__paypal').addEventListener('click', (e) => pushDataLayer('Click on check out with PayPal button'))
-        document.querySelector('.btn__affirm').addEventListener('click', (e) => pushDataLayer('Click on monthly payment affirm button'))
+        document.querySelector('.btn_credit_card_checkout').addEventListener('click', (e) => {
+            pushDataLayer('Click on credit card checkout button')
+            hideModal()
+        })
+        document.querySelector('.btn__paypal').addEventListener('click', (e) => {
+            pushDataLayer('Click on check out with PayPal button')
+            hideModal()
+        })
+        document.querySelector('.btn__affirm').addEventListener('click', (e) => {
+            pushDataLayer('Click on monthly payment affirm button')
+            hideModal()
+        })
 
         //refresh status modal
         document.querySelectorAll('.cart-body-wrap .icon-delete').forEach(button => {
