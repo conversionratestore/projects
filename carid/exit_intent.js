@@ -586,7 +586,7 @@ window.onload = function() {
             }
         })
 
-        //click on "complete my order now" button
+        //click on btns in modal
         document.querySelector('.btn_complete').addEventListener('click', (e) => {
             e.target.hidden = true;
             document.querySelector('.btns').hidden = false;
@@ -597,10 +597,12 @@ window.onload = function() {
             pushDataLayer('Click on credit card checkout button')
             hideModal()
         })
+
         document.querySelector('.btn__paypal').addEventListener('click', (e) => {
             pushDataLayer('Click on check out with PayPal button')
             hideModal()
         })
+        
         document.querySelector('.btn__affirm').addEventListener('click', (e) => {
             pushDataLayer('Click on monthly payment affirm button')
             hideModal()
