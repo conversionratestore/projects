@@ -1986,6 +1986,25 @@ window.onload = function() {
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
+            document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+              e.stopImmediatePropagation()
+              search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+              // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+              // document.querySelector('.ais-ClearRefinements-button').click()
+              if (document.querySelector('.advanced-search.active') != null) {
+                document.querySelector('.advanced-search').classList.remove('active');
+              }
+              toggleListing(true)
+          
+              query = document.querySelector('#form-search .ais-SearchBox-input').value;
+              console.log(query)
+              search._searchFunction(search.helper)
+              
+              actionDataLayer = `Click on submit button`;
+              labelDataLayer = 'Search by Name';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+            });
+
             if (document.querySelector('#price_group li') != null) {
               let pricesContainer = document.querySelector('#price_group ul'),
               para = document.querySelectorAll('#price_group li');
@@ -2200,23 +2219,6 @@ window.onload = function() {
       })
   })
 
-  document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', () => {
-    search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-    // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-    // document.querySelector('.ais-ClearRefinements-button').click()
-    if (document.querySelector('.advanced-search.active') != null) {
-      document.querySelector('.advanced-search').classList.remove('active');
-    }
-    toggleListing(true)
-
-    query = document.querySelector('#form-search .ais-SearchBox-input').value;
-    console.log(query)
-    search._searchFunction(search.helper)
-    
-    actionDataLayer = `Click on submit button`;
-    labelDataLayer = 'Search by Name';
-    pushDataLayer(actionDataLayer, labelDataLayer)
-  });
   
   document.querySelector('.advanced-search .btn').addEventListener('click', () => {
     let categories = document.querySelector('.select_category .select_current').dataset.category;
