@@ -423,6 +423,7 @@ let startFunkDesk = setInterval(() => {
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-align: left;
 }
 
 .custom_checkbox + label::before {
@@ -447,6 +448,7 @@ let startFunkDesk = setInterval(() => {
   background-position: center center;
   border-color: #193973;
 }
+
 
 /*popup_second */
 .popup_new > div:last-child .popup_second,
@@ -557,7 +559,7 @@ let startFunkDesk = setInterval(() => {
 .chosen_select {
   position: relative;
   max-width: 520px;
-  margin: 0 auto 85px;
+  margin: 0 auto 80px;
 }
 
 .chosen_select label {
@@ -571,6 +573,37 @@ let startFunkDesk = setInterval(() => {
   margin: 0 0 8px;
   align-items: center;
   padding: 5px 18px;
+   transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.chosen_select label.on_focus{
+    border: 1px solid #6FB3FA;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
+}
+
+.chosen_select label:hover{
+  border: 1px solid #6FB3FA;
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%); 
+}
+
+
+.chosen_select p.hover_text{
+  display: flex;
+  align-items: center;
+  position: absolute;
+    bottom: -30px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #808080 !important;
+    left: 6px;
+    margin: 0;
+     transition: all 250ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.chosen_select p.hover_text svg{
+  margin-right: 8px;
 }
 
 .chosen_select label svg {
@@ -581,6 +614,7 @@ let startFunkDesk = setInterval(() => {
 
 .chosen_select label svg#removeTextInput {
   cursor: pointer;
+  display: none;
 }
 
 .chosen_select label > input {
@@ -595,16 +629,6 @@ let startFunkDesk = setInterval(() => {
   color: #193973;
   height: 100%;
   margin: 0 0 0 8px;
-}
-
-.chosen_select label:focus {
-  border: 1px solid #6fb3fa;
-  border-radius: 10px;
-  box-shadow: unset;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 20px;
-  color: #000000;
 }
 
 .chosen_select label > input::placeholder {
@@ -653,17 +677,8 @@ let startFunkDesk = setInterval(() => {
   cursor: pointer;
 }
 
-.chosen_select::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 18px;
-  background: #ffffff;
-  border-bottom: 1px solid #e8f1f9;
-  border-radius: 10px;
-  max-width: 501px;
+.chosen_select ul li:hover{  
+  background: #E8F1F9;
 }
 
 /* */
@@ -1595,18 +1610,18 @@ let startFunkDesk = setInterval(() => {
         //   click on first btn Continue
         if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
           document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").addEventListener("click", function (el) {
-            console.log(this)
-            this.closest(".popup_first").classList.remove("active_popup")
+            console.log(`.popup_first .btn_continue`, this)
+            this.closest(".popup_first")?.classList.remove("active_popup")
 
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:first-child.active_btn_first").style.display = "none"
-            if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.contains("active_btn_first")) {
-              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.remove("active_btn_first")
+            if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
+              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.remove("active_btn_first")
             }
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second").style.display = "flex"
-            document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
+            document.querySelector(".popup_new > div:last-child .popup_second")?.classList.add("active_popup")
             document.querySelector(".popup_new .img_wrap .dog_first").style.display = "none"
             document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
-            document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.add("active_step")
+            document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)")?.classList.add("active_step")
             document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
           })
         }
@@ -1614,14 +1629,14 @@ let startFunkDesk = setInterval(() => {
         //   click on second btn Continue
         document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
           console.log(this)
-          this.closest(".popup_second").classList.remove("active_popup")
+          this.closest(".popup_second")?.classList.remove("active_popup")
 
-          document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second").classList.remove("active_btn_second")
-          document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").classList.add("active_btn_third")
-          document.querySelector(".popup_new > div:last-child .popup_third_box").classList.add("active_popup")
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second")?.classList.remove("active_btn_second")
+          document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)")?.classList.add("active_btn_third")
+          document.querySelector(".popup_new > div:last-child .popup_third_box")?.classList.add("active_popup")
           document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
           document.querySelector(".popup_new .img_wrap .dog_third").style.display = "block"
-          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)").classList.add("active_step")
+          document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.add("active_step")
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "3"
         })
 
@@ -1635,36 +1650,30 @@ let startFunkDesk = setInterval(() => {
         // //   btn back first
         if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)")) {
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").addEventListener("click", function (el) {
-            console.log(this)
-            if (this.classList.contains("active_btn_first")) {
-              console.log("popup_first")
-              // document.querySelector(".popup_new").style.display = "none"
-            }
-
             //   btn back active_btn_second
-            if (this.classList.contains("active_btn_second")) {
+            if (this?.classList.contains("active_btn_second")) {
               this.style.display = "none"
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").style.display = "flex"
-              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.add("active_btn_first")
+              document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.add("active_btn_first")
               console.log("popup_second")
-              document.querySelector(".popup_new > div:last-child .popup_first").classList.add("active_popup")
-              document.querySelector(".popup_new > div:last-child .popup_second").classList.remove("active_popup")
+              document.querySelector(".popup_new > div:last-child .popup_first")?.classList.add("active_popup")
+              document.querySelector(".popup_new > div:last-child .popup_second")?.classList.remove("active_popup")
               document.querySelector(".popup_new .img_wrap .dog_second").style.display = "none"
               document.querySelector(".popup_new .img_wrap .dog_first").style.display = "block"
-              document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)").classList.remove("active_step")
+              document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(2)")?.classList.remove("active_step")
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "1"
             }
 
             //   btn back active_btn_third
-            if (this.classList.contains("active_btn_third")) {
+            if (this?.classList.contains("active_btn_third")) {
               console.log("popup_third_box")
-              this.classList.remove("active_btn_third")
-              this.classList.add("active_btn_second")
-              document.querySelector(".popup_new > div:last-child .popup_third_box").classList.remove("active_popup")
-              document.querySelector(".popup_new > div:last-child .popup_second").classList.add("active_popup")
+              this?.classList.remove("active_btn_third")
+              this?.classList.add("active_btn_second")
+              document.querySelector(".popup_new > div:last-child .popup_third_box")?.classList.remove("active_popup")
+              document.querySelector(".popup_new > div:last-child .popup_second")?.classList.add("active_popup")
               document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
               document.querySelector(".popup_new .img_wrap .dog_second").style.display = "block"
-              document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)").classList.remove("active_step")
+              document.querySelector(".popup_new > div:last-child .progress_bar > ul li:nth-child(3)")?.classList.remove("active_step")
               document.querySelector(".popup_new > div:last-child .progress_bar > div p:last-child span:nth-child(1)").textContent = "2"
             }
           })
@@ -1674,7 +1683,7 @@ let startFunkDesk = setInterval(() => {
         if (document.querySelector(".modal.in .modal-dialog .btn_wrapp")) {
           document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").addEventListener("click", function () {
             // btn back fourth
-            if (this.classList.contains("active_btn_fourth")) {
+            if (this?.classList.contains("active_btn_fourth")) {
               document.querySelector(".popup_new").style.display = "flex"
               document.querySelector("#openModal .modal-body").style.display = "none"
               document.querySelector(".btn_wrapp").style.display = "none"
@@ -1744,33 +1753,106 @@ let startFunkDesk = setInterval(() => {
         }
 
         // choose select
-        if (document.querySelector(".popup_third_box.active_popup .chosen_select")) {
+        if (document.querySelector(".chosen_select")) {
+          console.log(`choose select`)
+          filteInputText()
           // remove all text input
           document.querySelector("#removeTextInput").addEventListener("click", function (e) {
+            document.querySelector(".chosen_select ul").innerHTML = ""
+            arrayBreedDog.forEach((el) => {
+              document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
+            })
             this.previousElementSibling.value = ""
+            document.querySelector(".chosen_select div").style.display = "block"
+            document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
+            filteInputText()
             console.log(this.previousElementSibling.value)
           })
 
           // filter
+          document.querySelector(".chosen_select label > input").addEventListener("focus", () => {
+            document.querySelector(".chosen_select label")?.classList.add("on_focus")
+            document.querySelector(".chosen_select").insertAdjacentHTML(
+              "beforeend",
+              `<p class="hover_text"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_732_846)"><path d="M11.8087 9.26711L7.222 1.3227C6.96695 0.880953 6.51013 0.617188 5.99999 0.617188C5.48988 0.617188 5.03303 0.880953 4.77799 1.3227L0.191302 9.26708C-0.0637675 9.70888 -0.0637675 10.2364 0.191302 10.6781C0.446372 11.1199 0.903168 11.3837 1.41331 11.3837H10.5867C11.0968 11.3837 11.5536 11.1199 11.8087 10.6782C12.0638 10.2364 12.0638 9.70888 11.8087 9.26711ZM11.1999 10.3266C11.0719 10.5483 10.8426 10.6806 10.5867 10.6806H1.41331C1.15732 10.6806 0.928106 10.5483 0.800137 10.3266C0.672169 10.105 0.672169 9.84032 0.800137 9.61865L5.38687 1.67424C5.51484 1.45257 5.74406 1.32024 6.00002 1.32024C6.25595 1.32024 6.4852 1.45257 6.61316 1.67424L11.1999 9.61865C11.3278 9.84032 11.3278 10.105 11.1999 10.3266Z" fill="#808080"/><path d="M6.35147 4.125H5.64844V7.6402H6.35147V4.125Z" fill="#808080"/><path d="M5.99995 8.34375C5.74151 8.34375 5.53125 8.55401 5.53125 8.81245C5.53125 9.0709 5.74151 9.28115 5.99995 9.28115C6.25837 9.28115 6.46865 9.0709 6.46865 8.81245C6.46865 8.55401 6.2584 8.34375 5.99995 8.34375Z" fill="#808080"/></g><defs><clipPath id="clip0_732_846"><rect width="12" height="12" fill="white"/></clipPath></defs></svg>
+              Choose your dog breed to continue</p>`
+            )
+          })
+
+          document.querySelector(".chosen_select label > input").addEventListener("blur", () => {
+            if (document.querySelector(".chosen_select label")?.classList.contains("on_focus")) {
+              document.querySelector(".chosen_select label")?.classList.remove("on_focus")
+
+              if (document.querySelector(".chosen_select > p")) {
+                document.querySelector(".chosen_select > p").remove()
+              }
+              if (document.querySelector(".chosen_select label > input").value === "") {
+                document.querySelector(".chosen_select label svg#removeTextInput").style.display = "none"
+              }
+            }
+          })
+
           document.querySelector(".chosen_select label > input").addEventListener("input", function (e) {
-            let filterValue = this.value.toUpperCase()
+            if (e.value !== "") {
+              document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
+            }
+
+            document.querySelector(".chosen_select ul").innerHTML = ""
+            arrayBreedDog.forEach((el) => {
+              document.querySelector(".chosen_select ul").insertAdjacentHTML("afterbegin", setListBreedDog(el))
+            })
+
+            document.querySelector(".chosen_select div").style.display = "block"
+            document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
+            filteInputText()
+          })
+
+          function filteInputText() {
+            let filterValue = document.querySelector(".chosen_select label > input").value.toUpperCase()
+            let notFound = true
 
             document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
               el.addEventListener("click", function () {
                 console.log(el.textContent)
-                filterValue.textContent = el.textContent
+                document.querySelector(".chosen_select label > input").value = el.textContent
+                document.querySelector(".chosen_select div").style.display = "none"
+                document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue.disabled_var")?.classList.remove("disabled_var")
+                if (document.querySelector(".chosen_select label > input").value !== "") {
+                  document.querySelector(".chosen_select label svg#removeTextInput").style.display = "block"
+                }
               })
 
               let text = el.textContent.toUpperCase()
               if (text.includes(filterValue)) {
-                el.classList.add("show")
-                el.classList.remove("hide")
+                el?.classList.add("show")
+                el?.classList.remove("hide")
+                notFound = false
+                includesSymb(filterValue, text, el.firstChild)
               } else {
-                el.classList.add("hide")
-                el.classList.remove("show")
+                el?.classList.add("hide")
+                el?.classList.remove("show")
               }
             })
-          })
+
+            if (notFound) {
+              document.querySelector(".chosen_select ul").innerHTML = `<li>Opps, no result!</li>`
+            }
+          }
+        }
+
+        function includesSymb(text, cont, element) {
+          let root = element
+          let content = cont
+
+          let rng = document.createRange()
+
+          rng.setStart(root, content.indexOf(text))
+
+          rng.setEnd(root, content.indexOf(text) + text.length)
+
+          let highlightDiv = document.createElement("strong")
+
+          rng.surroundContents(highlightDiv)
         }
       }
     }, 10)
@@ -1782,19 +1864,19 @@ let startFunkDesk = setInterval(() => {
 
       // first_name
       if (inputValueName === null) {
-        document.querySelector(`${parent} input[name='first_name']`).classList.add("input_error")
+        document.querySelector(`${parent} input[name='first_name']`)?.classList.add("input_error")
         document.querySelector(`${parent} .input_error_text`).style.display = "block"
       } else {
-        document.querySelector(`${parent} input[name='first_name']`).classList.remove("input_error")
+        document.querySelector(`${parent} input[name='first_name']`)?.classList.remove("input_error")
         document.querySelector(`${parent} .input_error_text`).style.display = "none"
       }
 
       // dog_name
       if (inputDogName === null) {
-        document.querySelector(`${parent} input[name='dog_name']`).classList.add("input_error")
+        document.querySelector(`${parent} input[name='dog_name']`)?.classList.add("input_error")
         document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "block"
       } else {
-        document.querySelector(`${parent} input[name='dog_name']`).classList.remove("input_error")
+        document.querySelector(`${parent} input[name='dog_name']`)?.classList.remove("input_error")
         document.querySelector(`${parent} input[name='dog_name'] + .input_error_text`).style.display = "none"
       }
 
@@ -1814,9 +1896,9 @@ let startFunkDesk = setInterval(() => {
         document.querySelector("#openModal .benefits").style.display = "block"
         document.querySelector("#openModal .popup_adress").style.display = "block"
         document.querySelector("#openModal .popup_name").style.display = "none"
-        if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.contains("active_btn_fourth")) {
-          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.remove("active_btn_fourth")
-          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p").classList.add("active_btn_fifth")
+        if (document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.contains("active_btn_fourth")) {
+          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.remove("active_btn_fourth")
+          document.querySelector(".modal.in .modal-dialog .btn_wrapp > p")?.classList.add("active_btn_fifth")
         }
       }
     }
@@ -1829,15 +1911,15 @@ let startFunkDesk = setInterval(() => {
         document.querySelector(".desktop-view .button-header a.button-blue-large:link").click()
 
         let a = setInterval(() => {
-          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").classList.contains("active_btn_first")) {
+          if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
             clearInterval(a)
             console.log(`setInterval`)
             setTimeout(() => {
               if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
-                if (!el.getAttribute("data-lst-dog")) {
-                  document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
-                }
-                el.setAttribute("data-lst-dog", "2")
+                // if (!el.getAttribute("data-lst-dog")) {
+                document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
+                // }
+                // el.setAttribute("data-lst-dog", "2")
               }
             }, 50)
           }
