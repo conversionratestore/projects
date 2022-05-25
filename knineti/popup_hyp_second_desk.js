@@ -1628,7 +1628,7 @@ let startFunkDesk = setInterval(() => {
 
         //   click on second btn Continue
         document.querySelector(".popup_new > div:last-child .popup_second .btn_continue").addEventListener("click", function (el) {
-          console.log(this)
+          console.log(`.popup_second .btn_continue`, this)
           this.closest(".popup_second")?.classList.remove("active_popup")
 
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2).active_btn_second")?.classList.remove("active_btn_second")
@@ -1648,6 +1648,12 @@ let startFunkDesk = setInterval(() => {
         })
 
         // //   btn back first
+        document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)").addEventListener("click", function () {
+          if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").getAttribute("data-lst-dog")) {
+            document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").removeAttribute("data-lst-dog", "2")
+          }
+        })
+
         if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)")) {
           document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(2)").addEventListener("click", function (el) {
             //   btn back active_btn_second
@@ -1669,6 +1675,8 @@ let startFunkDesk = setInterval(() => {
               console.log("popup_third_box")
               this?.classList.remove("active_btn_third")
               this?.classList.add("active_btn_second")
+
+              document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").setAttribute("data-lst-dog", "2")
               document.querySelector(".popup_new > div:last-child .popup_third_box")?.classList.remove("active_popup")
               document.querySelector(".popup_new > div:last-child .popup_second")?.classList.add("active_popup")
               document.querySelector(".popup_new .img_wrap .dog_third").style.display = "none"
@@ -1754,7 +1762,6 @@ let startFunkDesk = setInterval(() => {
 
         // choose select
         if (document.querySelector(".chosen_select")) {
-          console.log(`choose select`)
           filteInputText()
           // remove all text input
           document.querySelector("#removeTextInput").addEventListener("click", function (e) {
@@ -1766,7 +1773,6 @@ let startFunkDesk = setInterval(() => {
             document.querySelector(".chosen_select div").style.display = "block"
             document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue")?.classList.add("disabled_var")
             filteInputText()
-            console.log(this.previousElementSibling.value)
           })
 
           // filter
@@ -1813,7 +1819,6 @@ let startFunkDesk = setInterval(() => {
 
             document.querySelectorAll(".chosen_select ul li").forEach(function (el) {
               el.addEventListener("click", function () {
-                console.log(el.textContent)
                 document.querySelector(".chosen_select label > input").value = el.textContent
                 document.querySelector(".chosen_select div").style.display = "none"
                 document.querySelector(".popup_new > div:last-child .popup_third_box .btn_continue.disabled_var")?.classList.remove("disabled_var")
@@ -1913,15 +1918,14 @@ let startFunkDesk = setInterval(() => {
         let a = setInterval(() => {
           if (document.querySelector(".popup_new > div:last-child .progress_bar > div p:nth-child(1)")?.classList.contains("active_btn_first")) {
             clearInterval(a)
+
             console.log(`setInterval`)
-            setTimeout(() => {
-              if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
-                // if (!el.getAttribute("data-lst-dog")) {
+
+            if (document.querySelector(".popup_new > div:last-child .popup_first .btn_continue")) {
+              if (!document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").getAttribute("data-lst-dog")) {
                 document.querySelector(".popup_new > div:last-child .popup_first .btn_continue").click()
-                // }
-                // el.setAttribute("data-lst-dog", "2")
               }
-            }, 50)
+            }
           }
         }, 20)
       })
