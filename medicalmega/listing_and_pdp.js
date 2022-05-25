@@ -2220,7 +2220,7 @@ window.onload = function() {
 
     // query = document.querySelector('#form-search .ais-SearchBox-input').value;
     search._searchFunction(search.helper)
-    // search.refresh()
+    search.refresh()
     
     actionDataLayer = `Click on submit button`;
     labelDataLayer = 'Search by Name';
