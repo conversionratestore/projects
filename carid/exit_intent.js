@@ -422,7 +422,8 @@ function starInterval() {
            
             document.querySelector('.btn__google-pay').addEventListener('click', (e) => {  //click on google pay button
                 document.querySelector('.cart-order .google-pay-button button').click();
-                pushDataLayer('Click on check out with GPay button')
+                pushDataLayer('Click on check out with GPay button');
+                hideModal();
             })
         }
         //apple pay button
@@ -432,14 +433,16 @@ function starInterval() {
             
             document.querySelector('.btn__apple-pay').addEventListener('click', (e) => { //click on apple pay button
                 document.querySelector('.cart-order .apple-pay-button button').click();
-                pushDataLayer('Click on check out with ApplePay button')
+                pushDataLayer('Click on check out with ApplePay button');
+                hideModal();
             })
         }
-        
+
+        //refresh status modal on click delete in cart
         if (document.querySelector('.cart-item-remove-btn.-delete') != null && sessionStorage.getItem('modal_loaded') != null) {
             clearInterval(interval);
             document.querySelector('.cart-item-remove-btn.-delete').addEventListener('click', () => {
-                sessionStorage.removeItem('modal_loaded'); //refresh status modal
+                sessionStorage.removeItem('modal_loaded'); 
                 starInterval()
             })
         }
