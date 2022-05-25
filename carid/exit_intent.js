@@ -546,7 +546,7 @@ window.onload = function() {
             })();
             
             function myScrollSpeedFunction(){
-                if(my_scroll() < -100 && !sessionStorage.getItem('modal_loaded')) {
+                if(my_scroll() < -150 && !sessionStorage.getItem('modal_loaded')) {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
                 }
