@@ -456,6 +456,7 @@ starInterval()
 function showModal() {
     document.querySelector('.modal__popular').classList.add('show');  
     setTime = 0;
+    pushDataLayer('Showed pop-up its almost yours')
     starSecInterval()
 }
 //hide modal 
@@ -537,7 +538,6 @@ window.onload = function() {
                 if (e.toElement == null && e.relatedTarget == null && !sessionStorage.getItem('modal_loaded')) {
                     sessionStorage.setItem('modal_loaded', 'true'); //refresh status modal
                     showModal() //show modal
-                    
                 }
             })
 
