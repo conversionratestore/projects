@@ -1986,7 +1986,27 @@ window.onload = function() {
           
           if (isSearchStalled === false ) {
             console.log(isSearchStalled)
-           
+            console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
+            document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
+              e.stopImmediatePropagation()
+              search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
+              // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
+              // document.querySelector('.ais-ClearRefinements-button').click()
+              if (document.querySelector('.advanced-search.active') != null) {
+                document.querySelector('.advanced-search').classList.remove('active');
+              }
+              toggleListing(true)
+          
+              query = document.querySelector('#form-search .ais-SearchBox-input').value;
+              console.log(query)
+              search._searchFunction(search.helper)
+              search.refresh()
+              
+              actionDataLayer = `Click on submit button`;
+              labelDataLayer = 'Search by Name';
+              pushDataLayer(actionDataLayer, labelDataLayer)
+            });
+
             if (document.querySelector('#price_group li') != null) {
               let pricesContainer = document.querySelector('#price_group ul'),
               para = document.querySelectorAll('#price_group li');
@@ -2738,31 +2758,6 @@ let mut = new MutationObserver(function (muts) {
           })
       })
     })
-  }
-  mut.observe(document, optionMut);
-  if (document.querySelector('#form-search .ais-SearchBox-submit') != null) {
-    mut.disconnect();
-    console.log( document.querySelector('#form-search .ais-SearchBox-submit'))
-    document.querySelector('#form-search .ais-SearchBox-submit').addEventListener('click', (e) => {
-      e.stopImmediatePropagation()
-      search.helper.state.hierarchicalFacetsRefinements['categories.lvl0'] = [];
-      // document.querySelector('.ais-ClearRefinements-button').classList.add('action-clean');
-      // document.querySelector('.ais-ClearRefinements-button').click()
-      if (document.querySelector('.advanced-search.active') != null) {
-        document.querySelector('.advanced-search').classList.remove('active');
-      }
-      toggleListing(true)
-  
-      query = document.querySelector('#form-search .ais-SearchBox-input').value;
-      console.log(query)
-      search._searchFunction(search.helper)
-      search.refresh()
-      
-      actionDataLayer = `Click on submit button`;
-      labelDataLayer = 'Search by Name';
-      pushDataLayer(actionDataLayer, labelDataLayer)
-    });
-
   }
   mut.observe(document, optionMut);
   if (document.querySelector('.alphabet li') != null && document.querySelector('#list_categories li') != null) {
